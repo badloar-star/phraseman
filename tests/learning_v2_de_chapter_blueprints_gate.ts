@@ -10599,6 +10599,312 @@ function validateL22SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l22_semantic_contract_invalid:identity");
 }
 
+const L23_CONTRACT_HASH =
+  "dcbd6936b2cf534309c7d24e0a47f2a9d4d3ded9344307ec367df1eb5472fcbc";
+const L23_PLAN_HASH =
+  "ca0071375a2b5eb0914e0c74821b6c7b35a4f5c36524e4d0079344c540143067";
+const L23_ALLOWED = [
+  "de_gc_relative_clause_gender_case_v1",
+  "de_gc_connector_topology_contrast_v1",
+  "de_gc_perfekt_haben_classes_v1",
+  "de_gc_perfekt_sein_classes_v1",
+  "de_gc_two_object_case_contrast_v1",
+  "de_gc_doch_response_contrast_v1",
+];
+const L23_FINAL = L23_ALLOWED.slice(0, 4);
+const L23_PROHIBITED = ["de_gc_event_passive_v1"];
+const L23_NO_EXPANSION =
+  "Permit only review-only integration of the already introduced bounded relative-clause gender-case mappings, deshalb-plus-V2 versus weil-plus-complete-verb-final topology, verified haben-class and sein-class Perfekt lexical wholes, the verified geben dative-recipient plus accusative-item frame, and the bounded doch response contrast. Relative forms remain limited to the closed L22 mappings masculine singular der, den and dem, feminine singular die in nominative role, neuter singular das in nominative role, and plural die in nominative role. Completed-event production is limited to the already verified lexical wholes angekommen, abgefahren, bezahlt, korrigiert and abgeholt with their verified auxiliaries; the combined subordinate Perfekt model is limited to weil der Abholdienst nicht angekommen ist. Bounded spoken Präteritum remains cross-lesson comparison evidence only and is not a productive target. Do not introduce a participle-formation rule, auxiliary guessing, a new relative form or function, a new connector or introducer, a new case or preposition relation, a new two-object frame, a free doch use, a narrative tense paradigm, event or state passive, modal perfect or Ersatzinfinitiv, L24 grammar, or any Task6 lexical adjudication.";
+const L22_L23_INVERSE = [
+  { sourceChapterId: "de_l22_c01", targetPacketId: "de_l23_c07_s51" },
+  { sourceChapterId: "de_l22_c02", targetPacketId: "de_l23_c07_s52" },
+  { sourceChapterId: "de_l22_c03", targetPacketId: "de_l23_c07_s53" },
+  { sourceChapterId: "de_l22_c04", targetPacketId: "de_l23_c07_s54" },
+  { sourceChapterId: "de_l22_c05", targetPacketId: "de_l23_c07_s55" },
+  { sourceChapterId: "de_l22_c06", targetPacketId: "de_l23_c07_s56" },
+  { sourceChapterId: "de_l22_c07", targetPacketId: "de_l23_c07_s55" },
+];
+
+function l23Hash(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function validateL23SemanticContract(raw: R, plan: Boundary): void {
+  const l23 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l23",
+  );
+  if (!l23) throw new Error("l23_semantic_contract_invalid:identity");
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l23",
+    ) as R,
+    chapters = l23.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l23.grammarBoundary as R;
+  if (
+    !expected ||
+    l23Hash(expected) !== L23_CONTRACT_HASH ||
+    l23.lessonId !== "de_l23" ||
+    l23.lessonOrdinal !== 23 ||
+    chapters.length !== 7
+  )
+    throw new Error("l23_semantic_contract_invalid:identity");
+  if (boundary.noExpansion !== L23_NO_EXPANSION)
+    throw new Error("l23_semantic_contract_invalid:no_expansion");
+  if (
+    l23Hash(plan as unknown as R) !== L23_PLAN_HASH ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L23_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L23_PROHIBITED) ||
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.allowedConstructIds) !==
+          JSON.stringify(index === 6 ? L23_FINAL : L23_ALLOWED) ||
+        JSON.stringify(chapter.prohibitedConstructIds) !==
+          JSON.stringify(L23_PROHIBITED) ||
+        JSON.stringify((chapter.checkpoint as R).integratedConstructIds) !==
+          JSON.stringify(index === 6 ? L23_FINAL : L23_ALLOWED),
+    )
+  )
+    throw new Error("l23_semantic_contract_invalid:sets");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.lifecycleAnchors) !==
+        JSON.stringify(expectedChapters[index].lifecycleAnchors),
+    )
+  )
+    throw new Error("l23_semantic_contract_invalid:anchors");
+  const incoming = L22_L23_INVERSE.map(({ sourceChapterId }) => {
+    const source = (
+      (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l22")
+        ?.chapters as R[]
+    ).find((chapter) => chapter.id === sourceChapterId) as R;
+    return {
+      sourceChapterId,
+      targetPacketId: ((source.recallSchedule as R).futureDelayedProbe as R)
+        .packetId,
+    };
+  });
+  if (JSON.stringify(incoming) !== JSON.stringify(L22_L23_INVERSE))
+    throw new Error("l22_l23_inverse_provenance_invalid");
+
+  const support = chapters.map((chapter) => chapter.supportFading as R),
+    expectedSupport = expectedChapters.map(
+      (chapter) => chapter.supportFading as R,
+    ),
+    c07 = support[6],
+    c07Sense = (
+      (chapters[6].checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0] as R,
+    c07Text = `${String(c07.entry)} ${String(c07.exit)} ${String(
+      c07Sense.communicativeUse,
+    )}`;
+  if (!String(support[1].entry).includes("den Frau Keller sucht"))
+    throw new Error("l23_c02_relative_mapping_invalid");
+  if (
+    !String(support[2].entry).includes(
+      "Zuerst ist Frau Keller am Bahnhof angekommen.",
+    ) ||
+    !String(support[2].entry).includes("Dann hat sie die Rechnung bezahlt.")
+  )
+    throw new Error("l23_c03_perfekt_sequence_invalid");
+  if (
+    !String(support[3].entry).includes(
+      "Deshalb habe ich die Rechnung korrigiert.",
+    ) ||
+    !String(support[3].entry).includes("weil sie falsch ist.")
+  )
+    throw new Error("l23_c04_connector_topology_invalid");
+  if (
+    !String(support[4].entry).includes(
+      "Ich gebe dem Berater, der Frau Keller hilft, den Kurzbericht.",
+    )
+  )
+    throw new Error("l23_c05_mediation_invalid");
+  if (
+    (String(support[5].entry).match(/→/gu) ?? []).length !== 2 ||
+    !String(support[5].entry).includes(
+      "Der Berater, der die Rechnung hat, hilft dem Helfer.",
+    ) ||
+    !String(support[5].entry).includes("Frau Keller ist am Bahnhof angekommen.")
+  )
+    throw new Error("l23_c06_repair_items");
+  if (!c07Text.includes("der Frau Keller hilft"))
+    throw new Error("l23_c07_relative_mapping_missing");
+  if (
+    !c07Text.includes("Deshalb hat der Berater") ||
+    !c07Text.includes("weil der Abholdienst nicht angekommen ist")
+  )
+    throw new Error("l23_c07_connector_topology_missing");
+  if (!c07Text.includes("Frau Keller hat das Paket abgeholt"))
+    throw new Error("l23_c07_perfekt_haben_missing");
+  if (!c07Text.includes("Der Abholdienst ist nicht am Bahnhof angekommen"))
+    throw new Error("l23_c07_perfekt_sein_missing");
+  if (
+    !c07Text.includes("Hat Frau Keller das Paket abgeholt?") ||
+    !c07Text.includes("Ja, Frau Keller hat das Paket abgeholt.")
+  )
+    throw new Error("l23_c07_clarification_missing");
+  if (!c07Text.includes("Herr Brandt,"))
+    throw new Error("l23_c07_register_missing");
+  if (
+    c07.entryLevel !== 2 ||
+    c07.exitLevel !== 0 ||
+    c07.independentEvidenceByPacketId !== "de_l23_c07_s56" ||
+    (chapters[6].checkpoint as R).packetId !== "de_l23_c07_s56" ||
+    JSON.stringify(chapters[6].situation) !==
+      JSON.stringify(expectedChapters[6].situation) ||
+    c07.entry !== expectedSupport[6].entry ||
+    c07.exit !== expectedSupport[6].exit
+  )
+    throw new Error("l23_c07_final_transfer");
+
+  const probeSurface = JSON.stringify(l23);
+  if (
+    /relativeExpansionProbe|dessen|deren|\bwem\b|free relative|preposition-plus-relative/iu.test(
+      probeSurface.replaceAll(L23_NO_EXPANSION, ""),
+    )
+  )
+    throw new Error("l23_genitive_or_relative_expansion");
+  if (
+    /connectorExpansionProbe|obwohl|während|nachdem|bevor|damit/iu.test(
+      probeSurface,
+    )
+  )
+    throw new Error("l23_connector_expansion");
+  if (
+    /unverifiedParticipleProbe|participle-formation-probe/iu.test(probeSurface)
+  )
+    throw new Error("l23_unverified_participle_leak");
+  if (/auxiliaryClassProbe|auxiliary-guessing-probe/iu.test(probeSurface))
+    throw new Error("l23_auxiliary_class_leak");
+  if (
+    /narrativeTenseProbe|Plusquamperfekt|tense-paradigm-probe/iu.test(
+      probeSurface,
+    )
+  )
+    throw new Error("l23_narrative_tense_leak");
+  if (/passiveProbe|werden-passive|sein-passive/iu.test(probeSurface))
+    throw new Error("l23_passive_leak");
+  if (
+    /newCaseOrPrepositionRelationProbe|für Familien|wegen|trotz/iu.test(
+      probeSurface,
+    )
+  )
+    throw new Error("l23_new_case_or_preposition_relation_leak");
+  if (l23.learnerArtifactsAuthorized === true)
+    throw new Error("l23_interaction_001_future_boundary_invalid");
+  if (l23.allowNonGermanAssessedTarget === true)
+    throw new Error("l23_interaction_002_future_boundary_invalid");
+  if (l23.englishContourProbe !== undefined)
+    throw new Error("l23_english_contour_leak");
+
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.supportFading) !==
+        JSON.stringify(expectedChapters[index].supportFading),
+    )
+  )
+    throw new Error("l23_semantic_contract_invalid:support_fading");
+  if (
+    chapters.some((chapter, index) => {
+      const expectedChapter = expectedChapters[index],
+        current = chapter.situation as R,
+        next = (chapter.checkpoint as R).newSituation as R,
+        materialDifferences = ["setting", "participants", "goal"].filter(
+          (key) => current[key] !== next[key],
+        ).length;
+      return (
+        JSON.stringify(current) !== JSON.stringify(expectedChapter.situation) ||
+        JSON.stringify(next) !==
+          JSON.stringify((expectedChapter.checkpoint as R).newSituation) ||
+        materialDifferences < 2
+      );
+    })
+  )
+    throw new Error("l23_semantic_contract_invalid:situations");
+  const lexicalKeys = [
+    "id",
+    "semanticIdentity",
+    "lemmaOrExpression",
+    "partOfSpeech",
+    "lexicalKind",
+    "nounPackage",
+    "nounPackageIdentity",
+    "verbPackage",
+    "senseGloss",
+    "communicativeUse",
+    "lemmaStatus",
+    "contrastsWithSenseId",
+    "contrastEvidence",
+    "chapterOutcomeId",
+  ];
+  if (
+    chapters.some((chapter, index) => {
+      const checkpoint = chapter.checkpoint as R,
+        expectedCheckpoint = expectedChapters[index].checkpoint as R,
+        sense = (checkpoint.plannedNewLexicalSenses as R[])[0],
+        expectedSense = (expectedCheckpoint.plannedNewLexicalSenses as R[])[0];
+      return (
+        checkpoint.lexicalStatus !== expectedCheckpoint.lexicalStatus ||
+        (checkpoint.plannedNewLexicalSenses as R[]).length !== 1 ||
+        lexicalKeys.some(
+          (key) =>
+            JSON.stringify(sense[key]) !== JSON.stringify(expectedSense[key]),
+        )
+      );
+    })
+  )
+    throw new Error("l23_semantic_contract_invalid:lexical_packages");
+  if (
+    chapters.some((chapter, index) => {
+      const sense = (
+          (chapter.checkpoint as R).plannedNewLexicalSenses as R[]
+        )[0] as R,
+        expectedSense = (
+          (expectedChapters[index].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0] as R;
+      return (
+        JSON.stringify(sense.utilityProof) !==
+        JSON.stringify(expectedSense.utilityProof)
+      );
+    })
+  )
+    throw new Error("l23_semantic_contract_invalid:lexical_utility");
+  if (
+    chapters.some((chapter, index) => {
+      const expectedChapter = expectedChapters[index];
+      return (
+        JSON.stringify(chapter.chapterEvidencePacketIds) !==
+          JSON.stringify(expectedChapter.chapterEvidencePacketIds) ||
+        (chapter.checkpoint as R).packetId !==
+          (expectedChapter.checkpoint as R).packetId ||
+        JSON.stringify(chapter.recallSchedule) !==
+          JSON.stringify(expectedChapter.recallSchedule)
+      );
+    })
+  )
+    throw new Error("l23_semantic_contract_invalid:evidence");
+  if (
+    chapters.some((chapter, index) => {
+      const expectedChapter = expectedChapters[index];
+      return (
+        chapter.id !== expectedChapter.id ||
+        chapter.ordinal !== expectedChapter.ordinal ||
+        chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+        chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+        JSON.stringify(chapter.packetIds) !==
+          JSON.stringify(expectedChapter.packetIds)
+      );
+    }) ||
+    l23Hash(l23) !== L23_CONTRACT_HASH
+  )
+    throw new Error("l23_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -10712,6 +11018,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l22")
   )
     validateL22SemanticContract(raw, l22Plan);
+  const l23Plan = source.get("de_l23");
+  if (
+    l23Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l23")
+  )
+    validateL23SemanticContract(raw, l23Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -11652,6 +11964,40 @@ function expectL22PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL22SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL23Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l23",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL23SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL23PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l23") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL23SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -14446,6 +14792,196 @@ function fixtures(): void {
         `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
       );
   }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;22\/32 lessons;154\/224 chapters/u);
+
+  const l23 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l23") as R;
+  expectL23Exact((raw) => {
+    l23(raw).lessonOrdinal = 24;
+  }, "l23_semantic_contract_invalid:identity");
+  expectL23Exact((raw) => {
+    (l23(raw).grammarBoundary as R).noExpansion = `${L23_NO_EXPANSION} `;
+  }, "l23_semantic_contract_invalid:no_expansion");
+  expectL23PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).reverse();
+  }, "l23_semantic_contract_invalid:sets");
+  expectL23Exact((raw) => {
+    (((l23(raw).chapters as R[])[6].lifecycleAnchors as R[])[0] as R).packetId =
+      "de_l23_c07_s50";
+  }, "l23_semantic_contract_invalid:anchors");
+  expectL23Exact((raw) => {
+    ((l23(raw).chapters as R[])[3].supportFading as R).exitLevel = 2;
+  }, "l23_semantic_contract_invalid:support_fading");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[0];
+    (chapter.checkpoint as R).newSituation = clone(chapter.situation);
+  }, "l23_semantic_contract_invalid:situations");
+  expectL23Exact((raw) => {
+    const sense = (
+      ((l23(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.nounPackage as R).article = "der";
+  }, "l23_semantic_contract_invalid:lexical_packages");
+  expectL23Exact((raw) => {
+    const sense = (
+      ((l23(raw).chapters as R[])[3].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.utilityProof as R).facetValue = "connect-cause-and-correction";
+  }, "l23_semantic_contract_invalid:lexical_utility");
+  expectL23Exact((raw) => {
+    ((l23(raw).chapters as R[])[4].chapterEvidencePacketIds as string[]).pop();
+  }, "l23_semantic_contract_invalid:evidence");
+  expectL23Exact((raw) => {
+    const predecessor = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l22",
+    ) as R;
+    (
+      ((predecessor.chapters as R[])[6].recallSchedule as R)
+        .futureDelayedProbe as R
+    ).packetId = "de_l23_c07_s56";
+  }, "l22_l23_inverse_provenance_invalid");
+  expectL23Exact((raw) => {
+    const support = (l23(raw).chapters as R[])[1].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "den Frau Keller sucht",
+      "der Frau Keller sucht",
+    );
+  }, "l23_c02_relative_mapping_invalid");
+  expectL23Exact((raw) => {
+    const support = (l23(raw).chapters as R[])[2].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "ist Frau Keller am Bahnhof angekommen",
+      "hat Frau Keller am Bahnhof angekommen",
+    );
+  }, "l23_c03_perfekt_sequence_invalid");
+  expectL23Exact((raw) => {
+    const support = (l23(raw).chapters as R[])[3].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Deshalb habe ich",
+      "Deshalb ich habe",
+    );
+  }, "l23_c04_connector_topology_invalid");
+  expectL23Exact((raw) => {
+    const support = (l23(raw).chapters as R[])[4].supportFading as R;
+    support.entry = String(support.entry).replace("dem Berater", "den Berater");
+  }, "l23_c05_mediation_invalid");
+  expectL23Exact((raw) => {
+    ((l23(raw).chapters as R[])[5].supportFading as R).entry =
+      "Der Berater hilft dem Helfer. Er hat die Rechnung. → Der Berater, der die Rechnung hat, hilft dem Helfer.";
+  }, "l23_c06_repair_items");
+  expectL23Exact((raw) => {
+    ((l23(raw).chapters as R[])[6].supportFading as R).exitLevel = 1;
+  }, "l23_c07_final_transfer");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const mutate = (value: unknown) =>
+      String(value).replace(", der Frau Keller hilft,", ",");
+    support.entry = mutate(support.entry);
+    support.exit = mutate(support.exit);
+    sense.communicativeUse = mutate(sense.communicativeUse);
+  }, "l23_c07_relative_mapping_missing");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const mutate = (value: unknown) => String(value).replace("Deshalb ", "");
+    support.entry = mutate(support.entry);
+    support.exit = mutate(support.exit);
+    sense.communicativeUse = mutate(sense.communicativeUse);
+  }, "l23_c07_connector_topology_missing");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const mutate = (value: unknown) =>
+      String(value).replace(
+        "Frau Keller hat das Paket abgeholt",
+        "Frau Keller holt das Paket ab",
+      );
+    support.entry = mutate(support.entry);
+    support.exit = mutate(support.exit);
+    sense.communicativeUse = mutate(sense.communicativeUse);
+  }, "l23_c07_perfekt_haben_missing");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const mutate = (value: unknown) =>
+      String(value).replace(
+        "Der Abholdienst ist nicht am Bahnhof angekommen",
+        "Der Abholdienst kommt nicht am Bahnhof an",
+      );
+    support.entry = mutate(support.entry);
+    support.exit = mutate(support.exit);
+    sense.communicativeUse = mutate(sense.communicativeUse);
+  }, "l23_c07_perfekt_sein_missing");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const mutate = (value: unknown) =>
+      String(value).replace("Hat Frau Keller das Paket abgeholt? ", "");
+    support.entry = mutate(support.entry);
+    support.exit = mutate(support.exit);
+    sense.communicativeUse = mutate(sense.communicativeUse);
+  }, "l23_c07_clarification_missing");
+  expectL23Exact((raw) => {
+    l23(raw).relativeExpansionProbe = "Teach dessen as a new relative form.";
+  }, "l23_genitive_or_relative_expansion");
+  expectL23Exact((raw) => {
+    l23(raw).connectorExpansionProbe = "Teach obwohl as a new connector.";
+  }, "l23_connector_expansion");
+  expectL23Exact((raw) => {
+    l23(raw).unverifiedParticipleProbe = "Teach a new participle.";
+  }, "l23_unverified_participle_leak");
+  expectL23Exact((raw) => {
+    l23(raw).auxiliaryClassProbe = "Teach auxiliary guessing.";
+  }, "l23_auxiliary_class_leak");
+  expectL23Exact((raw) => {
+    l23(raw).narrativeTenseProbe = "Teach Plusquamperfekt productively.";
+  }, "l23_narrative_tense_leak");
+  expectL23Exact((raw) => {
+    l23(raw).passiveProbe = "Teach werden-passive.";
+  }, "l23_passive_leak");
+  expectL23Exact((raw) => {
+    l23(raw).newCaseOrPrepositionRelationProbe = "Teach für Familien.";
+  }, "l23_new_case_or_preposition_relation_leak");
+  expectL23Exact((raw) => {
+    l23(raw).learnerArtifactsAuthorized = true;
+  }, "l23_interaction_001_future_boundary_invalid");
+  expectL23Exact((raw) => {
+    l23(raw).allowNonGermanAssessedTarget = true;
+  }, "l23_interaction_002_future_boundary_invalid");
+  expectL23Exact((raw) => {
+    l23(raw).englishContourProbe = "Import the English learner contour.";
+  }, "l23_english_contour_leak");
+  expectL23Exact((raw) => {
+    const chapter = (l23(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    support.entry = String(support.entry).replace("Herr Brandt, ", "");
+    support.exit = String(support.exit).replace("Herr Brandt, ", "");
+    sense.communicativeUse = String(sense.communicativeUse).replace(
+      "Herr Brandt, ",
+      "",
+    );
+  }, "l23_c07_register_missing");
+  const prematureL23 = clone(json(FILE)) as R;
+  prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);
+  assert.throws(() => {
+    const result = validate(prematureL23);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;23\/32 lessons;161\/224 chapters/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

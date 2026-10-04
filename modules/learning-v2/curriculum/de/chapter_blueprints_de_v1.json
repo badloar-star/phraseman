@@ -20118,6 +20118,773 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l23",
+      "lessonOrdinal": 23,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_doch_response_contrast_v1"
+        ],
+        "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+        "noExpansion": "Permit only review-only integration of the already introduced bounded relative-clause gender-case mappings, deshalb-plus-V2 versus weil-plus-complete-verb-final topology, verified haben-class and sein-class Perfekt lexical wholes, the verified geben dative-recipient plus accusative-item frame, and the bounded doch response contrast. Relative forms remain limited to the closed L22 mappings masculine singular der, den and dem, feminine singular die in nominative role, neuter singular das in nominative role, and plural die in nominative role. Completed-event production is limited to the already verified lexical wholes angekommen, abgefahren, bezahlt, korrigiert and abgeholt with their verified auxiliaries; the combined subordinate Perfekt model is limited to weil der Abholdienst nicht angekommen ist. Bounded spoken Präteritum remains cross-lesson comparison evidence only and is not a productive target. Do not introduce a participle-formation rule, auxiliary guessing, a new relative form or function, a new connector or introducer, a new case or preposition relation, a new two-object frame, a free doch use, a narrative tense paradigm, event or state passive, modal perfect or Ersatzinfinitiv, L24 grammar, or any Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l23_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l23_ch01",
+          "lessonOutcome": "extract the main problem and participant relations from a clear account",
+          "packetIds": [
+            "de_l23_c01_s01",
+            "de_l23_c01_s02",
+            "de_l23_c01_s03",
+            "de_l23_c01_s04",
+            "de_l23_c01_s05",
+            "de_l23_c01_s06",
+            "de_l23_c01_s07",
+            "de_l23_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "service-desk-problem-account",
+            "participants": "resident-and-service-clerk",
+            "goal": "extract-main-problem-and-participant-relations-from-a-clear-account",
+            "contextSignature": "service-problem-participant-relation-extraction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das Serviceproblem ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Der Berater, der Frau Keller hilft, hat die Rechnung.",
+            "exit": "Das Serviceproblem ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Der Berater, der Frau Keller hilft, hat die Rechnung.",
+            "independentEvidenceByPacketId": "de_l23_c01_s08"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c01_s03", "de_l23_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l23_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c01_serviceproblem_v1",
+                "semanticIdentity": "serviceproblem|service problem whose main event and participant relations must be extracted",
+                "lemmaOrExpression": "Serviceproblem",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Serviceproblem",
+                  "plural": "Serviceprobleme"
+                },
+                "nounPackageIdentity": "das|serviceproblem|serviceprobleme",
+                "verbPackage": null,
+                "senseGloss": "service problem whose main event and participant relations must be extracted",
+                "communicativeUse": "Das Serviceproblem ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Der Berater, der Frau Keller hilft, hat die Rechnung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch01",
+                  "checkpointPacketId": "de_l23_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "hotel-billing-problem-summary",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l23_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "hotel-billing-problem-summary",
+              "participants": "hotel-guest-and-front-desk-manager",
+              "goal": "independently-extract-the-main-problem-and-participant-relations-from-a-clear-account",
+              "contextSignature": "hotel-billing-problem-extraction-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c06", "de_l22_c07"],
+            "targetsFutureChapterIds": ["de_l23_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l23_ch02",
+          "lessonOutcome": "identify a relevant person or item with a known relative clause",
+          "packetIds": [
+            "de_l23_c02_s09",
+            "de_l23_c02_s10",
+            "de_l23_c02_s11",
+            "de_l23_c02_s12",
+            "de_l23_c02_s13",
+            "de_l23_c02_s14",
+            "de_l23_c02_s15",
+            "de_l23_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "local-service-person-identification",
+            "participants": "customer-and-service-coordinator",
+            "goal": "identify-a-relevant-person-or-item-with-a-known-relative-clause",
+            "contextSignature": "service-person-relative-identification"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das ist der Kundenberater, den Frau Keller sucht. Er hilft Frau Keller.",
+            "exit": "Das ist der Kundenberater, den Frau Keller sucht. Er hilft Frau Keller.",
+            "independentEvidenceByPacketId": "de_l23_c02_s16"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c02_s11", "de_l23_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l23_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c02_kundenberater_v1",
+                "semanticIdentity": "kundenberater|customer adviser identified precisely in a known relative clause frame",
+                "lemmaOrExpression": "Kundenberater",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Kundenberater",
+                  "plural": "Kundenberater"
+                },
+                "nounPackageIdentity": "der|kundenberater|kundenberater",
+                "verbPackage": null,
+                "senseGloss": "customer adviser identified precisely in a known relative-clause frame",
+                "communicativeUse": "Das ist der Kundenberater, den Frau Keller sucht. Er hilft Frau Keller.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch02",
+                  "checkpointPacketId": "de_l23_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "visitor-and-second-repair-adviser",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l23_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "repair-cafe-adviser-identification",
+              "participants": "visitor-and-second-repair-adviser",
+              "goal": "independently-identify-a-relevant-person-or-item-with-a-known-relative-clause",
+              "contextSignature": "repair-cafe-relative-identification-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c07", "de_l23_c01"],
+            "targetsFutureChapterIds": ["de_l23_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l23_ch03",
+          "lessonOutcome": "sequence completed events with known Perfekt classes",
+          "packetIds": [
+            "de_l23_c03_s17",
+            "de_l23_c03_s18",
+            "de_l23_c03_s19",
+            "de_l23_c03_s20",
+            "de_l23_c03_s21",
+            "de_l23_c03_s22",
+            "de_l23_c03_s23",
+            "de_l23_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "station-service-event-sequencing",
+            "participants": "passenger-and-travel-adviser",
+            "goal": "sequence-completed-events-with-known-perfekt-classes",
+            "contextSignature": "station-perfekt-event-sequence"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Ablauf ist klar: Zuerst ist Frau Keller am Bahnhof angekommen. Dann hat sie die Rechnung bezahlt.",
+            "exit": "Der Ablauf ist klar: Zuerst ist Frau Keller am Bahnhof angekommen. Dann hat sie die Rechnung bezahlt.",
+            "independentEvidenceByPacketId": "de_l23_c03_s24"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c03_s19", "de_l23_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l23_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c03_ablauf_v1",
+                "semanticIdentity": "ablauf|sequence of completed service events ordered with established temporal markers",
+                "lemmaOrExpression": "Ablauf",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Ablauf",
+                  "plural": "Abläufe"
+                },
+                "nounPackageIdentity": "der|ablauf|ablaufe",
+                "verbPackage": null,
+                "senseGloss": "sequence of completed service events ordered with established temporal markers",
+                "communicativeUse": "Der Ablauf ist klar: Zuerst ist Frau Keller am Bahnhof angekommen. Dann hat sie die Rechnung bezahlt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch03",
+                  "checkpointPacketId": "de_l23_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sequence-completed-events-with-known-perfekt-classes",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l23_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "hotel-arrival-payment-sequencing",
+              "participants": "guest-and-hotel-clerk",
+              "goal": "independently-sequence-completed-events-with-known-perfekt-classes",
+              "contextSignature": "hotel-perfekt-event-sequence-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l23_c01", "de_l23_c02"],
+            "targetsFutureChapterIds": ["de_l23_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l23_ch04",
+          "lessonOutcome": "connect cause and correction with established topology",
+          "packetIds": [
+            "de_l23_c04_s25",
+            "de_l23_c04_s26",
+            "de_l23_c04_s27",
+            "de_l23_c04_s28",
+            "de_l23_c04_s29",
+            "de_l23_c04_s30",
+            "de_l23_c04_s31",
+            "de_l23_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "incorrect-bill-cause-correction",
+            "participants": "customer-and-billing-clerk",
+            "goal": "connect-cause-and-correction-with-established-topology",
+            "contextSignature": "billing-cause-correction-topology"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Die Ursache ist klar: Die Rechnung ist falsch. Deshalb habe ich die Rechnung korrigiert. Ich habe die Rechnung korrigiert, weil sie falsch ist.",
+            "exit": "Die Ursache ist klar: Die Rechnung ist falsch. Deshalb habe ich die Rechnung korrigiert. Ich habe die Rechnung korrigiert, weil sie falsch ist.",
+            "independentEvidenceByPacketId": "de_l23_c04_s32"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c04_s27", "de_l23_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l23_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c04_ursache_v1",
+                "semanticIdentity": "ursache|stated cause linked to a completed correction",
+                "lemmaOrExpression": "Ursache",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Ursache",
+                  "plural": "Ursachen"
+                },
+                "nounPackageIdentity": "die|ursache|ursachen",
+                "verbPackage": null,
+                "senseGloss": "stated cause linked to a completed correction",
+                "communicativeUse": "Die Ursache ist klar: Die Rechnung ist falsch. Deshalb habe ich die Rechnung korrigiert. Ich habe die Rechnung korrigiert, weil sie falsch ist.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch04",
+                  "checkpointPacketId": "de_l23_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-connect-cause-and-correction-with-established-topology",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l23_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "membership-form-cause-correction",
+              "participants": "club-member-and-registration-clerk",
+              "goal": "independently-connect-cause-and-correction-with-established-topology",
+              "contextSignature": "membership-cause-correction-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l23_c02", "de_l23_c03"],
+            "targetsFutureChapterIds": ["de_l23_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l23_ch05",
+          "lessonOutcome": "relay the essential problem details to a third person",
+          "packetIds": [
+            "de_l23_c05_s33",
+            "de_l23_c05_s34",
+            "de_l23_c05_s35",
+            "de_l23_c05_s36",
+            "de_l23_c05_s37",
+            "de_l23_c05_s38",
+            "de_l23_c05_s39",
+            "de_l23_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "service-problem-third-person-relay",
+            "participants": "resident-neighbour-and-service-adviser",
+            "goal": "relay-the-essential-problem-details-to-a-third-person",
+            "contextSignature": "service-problem-mediated-relay"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Der Kurzbericht ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Ich gebe dem Berater, der Frau Keller hilft, den Kurzbericht.",
+            "exit": "Der Kurzbericht ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Ich gebe dem Berater, der Frau Keller hilft, den Kurzbericht.",
+            "independentEvidenceByPacketId": "de_l23_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c05_s35", "de_l23_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l23_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c05_kurzbericht_v1",
+                "semanticIdentity": "kurzbericht|short report carrying only essential service problem facts to a third person",
+                "lemmaOrExpression": "Kurzbericht",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Kurzbericht",
+                  "plural": "Kurzberichte"
+                },
+                "nounPackageIdentity": "der|kurzbericht|kurzberichte",
+                "verbPackage": null,
+                "senseGloss": "short report carrying only essential service-problem facts to a third person",
+                "communicativeUse": "Der Kurzbericht ist klar: Frau Keller ist am Bahnhof angekommen. Der Zug ist abgefahren. Ich gebe dem Berater, der Frau Keller hilft, den Kurzbericht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch05",
+                  "checkpointPacketId": "de_l23_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-relay-the-essential-problem-details-to-a-third-person",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l23_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "repair-case-mediated-handover",
+              "participants": "customer-friend-and-repair-coordinator",
+              "goal": "independently-relay-the-essential-problem-details-to-a-third-person",
+              "contextSignature": "repair-case-third-person-relay-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l23_c03", "de_l23_c04"],
+            "targetsFutureChapterIds": ["de_l23_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l23_ch06",
+          "lessonOutcome": "repair ambiguous reference or missing event detail",
+          "packetIds": [
+            "de_l23_c06_s41",
+            "de_l23_c06_s42",
+            "de_l23_c06_s43",
+            "de_l23_c06_s44",
+            "de_l23_c06_s45",
+            "de_l23_c06_s46",
+            "de_l23_c06_s47",
+            "de_l23_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "ambiguous-service-record-repair",
+            "participants": "learner-and-language-reviewer",
+            "goal": "repair-ambiguous-reference-or-missing-event-detail",
+            "contextSignature": "service-record-reference-event-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Der Berater hilft dem Helfer. Er hat die Rechnung. → Der Berater, der die Rechnung hat, hilft dem Helfer. [2] Frau Keller ist am Bahnhof. → Frau Keller ist am Bahnhof angekommen. Das Detail ist jetzt klar.",
+            "exit": "[1] Der Berater hilft dem Helfer. Er hat die Rechnung. → Der Berater, der die Rechnung hat, hilft dem Helfer. [2] Frau Keller ist am Bahnhof. → Frau Keller ist am Bahnhof angekommen. Das Detail ist jetzt klar.",
+            "independentEvidenceByPacketId": "de_l23_c06_s48"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l23_c06_s43", "de_l23_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l23_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c06_detail_v1",
+                "semanticIdentity": "detail|event or reference detail made explicit during repair",
+                "lemmaOrExpression": "Detail",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Detail",
+                  "plural": "Details"
+                },
+                "nounPackageIdentity": "das|detail|details",
+                "verbPackage": null,
+                "senseGloss": "event or reference detail made explicit during repair",
+                "communicativeUse": "[1] Der Berater hilft dem Helfer. Er hat die Rechnung. → Der Berater, der die Rechnung hat, hilft dem Helfer. [2] Frau Keller ist am Bahnhof. → Frau Keller ist am Bahnhof angekommen. Das Detail ist jetzt klar.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch06",
+                  "checkpointPacketId": "de_l23_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-ambiguous-reference-or-missing-event-detail",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l23_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "travel-problem-peer-clarification",
+              "participants": "traveller-and-peer-reviewer",
+              "goal": "independently-repair-ambiguous-reference-or-missing-event-detail",
+              "contextSignature": "travel-problem-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l23_c04", "de_l23_c05"],
+            "targetsFutureChapterIds": ["de_l23_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l23_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l23_ch07",
+          "lessonOutcome": "transfer problem description and mediation to a new service case",
+          "packetIds": [
+            "de_l23_c07_s49",
+            "de_l23_c07_s50",
+            "de_l23_c07_s51",
+            "de_l23_c07_s52",
+            "de_l23_c07_s53",
+            "de_l23_c07_s54",
+            "de_l23_c07_s55",
+            "de_l23_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+          "situation": {
+            "setting": "unfamiliar-pickup-failure-mediation",
+            "participants": "resident-and-new-service-adviser",
+            "goal": "transfer-problem-description-and-mediation-to-a-new-service-case",
+            "contextSignature": "changed-pickup-problem-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Herr Brandt, das Lieferproblem ist klar: Der Abholdienst ist nicht am Bahnhof angekommen. Hat Frau Keller das Paket abgeholt? Ja, Frau Keller hat das Paket abgeholt. Deshalb hat der Berater, der Frau Keller hilft, den Kurzbericht. Der Kurzbericht ist wichtig, weil der Abholdienst nicht angekommen ist.",
+            "exit": "Herr Brandt, das Lieferproblem ist klar: Der Abholdienst ist nicht am Bahnhof angekommen. Hat Frau Keller das Paket abgeholt? Ja, Frau Keller hat das Paket abgeholt. Deshalb hat der Berater, der Frau Keller hilft, den Kurzbericht. Der Kurzbericht ist wichtig, weil der Abholdienst nicht angekommen ist.",
+            "independentEvidenceByPacketId": "de_l23_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "delayed",
+              "packetId": "de_l23_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l23_c07_s51",
+            "de_l23_c07_s52",
+            "de_l23_c07_s53",
+            "de_l23_c07_s54",
+            "de_l23_c07_s55",
+            "de_l23_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l23_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l23_c07_lieferproblem_v1",
+                "semanticIdentity": "lieferproblem|new pickup service failure used for independent clarification and mediation",
+                "lemmaOrExpression": "Lieferproblem",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Lieferproblem",
+                  "plural": "Lieferprobleme"
+                },
+                "nounPackageIdentity": "das|lieferproblem|lieferprobleme",
+                "verbPackage": null,
+                "senseGloss": "new pickup-service failure used for independent clarification and mediation",
+                "communicativeUse": "Herr Brandt, das Lieferproblem ist klar: Der Abholdienst ist nicht am Bahnhof angekommen. Hat Frau Keller das Paket abgeholt? Ja, Frau Keller hat das Paket abgeholt. Deshalb hat der Berater, der Frau Keller hilft, den Kurzbericht. Der Kurzbericht ist wichtig, weil der Abholdienst nicht angekommen ist.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l23_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l23_ch07",
+                  "checkpointPacketId": "de_l23_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-a-new-service-failure-answer-clarification-questions-and-relay-the-essential-facts",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l23_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "pharmacy-collection-failure-relay",
+              "participants": "customer-and-pharmacy-coordinator",
+              "goal": "independently-explain-a-new-service-failure-answer-clarification-questions-and-relay-the-essential-facts",
+              "contextSignature": "pharmacy-service-failure-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l23_c05", "de_l23_c06"],
+            "targetsFutureChapterIds": ["de_l24_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l24_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

@@ -81,7 +81,7 @@ export function DialogueV2BriefingScreen({
             <View style={{ width: 88, height: 88, borderRadius: 28, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="chatbubbles-outline" size={40} color={glass.text} />
             </View>
-            <View style={[styles.level, { backgroundColor: glass.opaqueControl }]}>
+            <View style={[styles.level, { backgroundColor: glass.opaqueControl, borderColor: glass.line }]}>{/* guard-ok: 1px кромка `.lvl` (исключение 2.0) */}
               <Text maxFontSizeMultiplier={1.3} style={[styles.levelText, { color: glass.text }]}>{cefr}</Text>
             </View>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row' },
   scroll: { paddingHorizontal: 16, paddingBottom: 28 },
   hero: { alignItems: 'center', marginTop: 18 },
-  level: { marginTop: 14, borderRadius: 9, paddingHorizontal: 10, paddingVertical: 4 },
+  // dialogs.html B `.lvl`: 38×26, радиус 8, поля 0·9, тонкая кромка.
+  level: { marginTop: 14, minWidth: 38, height: 26, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth },
   levelText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   title: { marginTop: 10, fontSize: 32, lineHeight: 38, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
   briefCard: { marginTop: 22, padding: 18 },

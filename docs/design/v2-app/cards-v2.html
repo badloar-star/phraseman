@@ -156,7 +156,7 @@ const two = (a, b) => `<div class="two">${a}${b}</div>`;
 // Лимит Free — только аккуратная пилюля в шапке, без текстов над кнопкой.
 const lim = (n) => `<span class="pill s">${li('cards', 's16')}${n}/3</span>`;
 const volBtn = `<span class="rb fill t">${icon('vol', 's18')}</span>`;
-const top = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
 const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
 const navHead = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${t}</div>${right}</div>`;
 const empty = (ic, h, l, btn, o = {}) => `<div class="empty"><div class="tile t61"${o.c ? ` style="color:${o.c}"` : ''}>${ic}</div><div class="h">${h}</div><div class="l">${l}</div><span class="cta t">${btn}</span></div>`;
@@ -186,7 +186,7 @@ const hubHero = (o = {}) => `<div class="card c2" style="margin-top:26px;padding
   <div class="flex" style="gap:14px"><div class="tile t55">${li('cards', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div></div>
   <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться'}${arr}</div></div>`;
 const hub = () => phone(`
-  ${top(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
   ${title('Карточки', 'Слова и фразы')}
   ${hubHero()}
   ${sec('Ваши карточки')}
@@ -197,7 +197,7 @@ const hub = () => phone(`
 
 const skRow = () => `<div class="card" style="padding:16px 18px;min-height:74px"><div class="skel" style="width:46%;height:16px"></div><div class="skel" style="width:28%;height:12px;margin-top:10px"></div><div class="skel" style="width:40%;height:12px;margin-top:10px"></div></div>`;
 const hubLoading = () => phone(`
-  ${top(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
   ${title('Карточки', 'Слова и фразы')}
   ${hubHero()}
   ${sec('Ваши карточки')}
@@ -206,7 +206,7 @@ const hubLoading = () => phone(`
   <div class="stack">${skRow()}${skRow()}${skRow()}</div>`);
 
 const hubNew = () => phone(`
-  ${top(`<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${topRow(`<span class="rb t">${icon('plus', 's20')}</span>`)}
   ${title('Карточки', 'Слова и фразы')}
   <div class="card c2" style="margin-top:26px;padding:22px 18px 20px">
     <div class="flex" style="gap:14px"><div class="tile t55">${icon('people', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Начните с готового</div><div style="font-size:15px;color:var(--sec);margin-top:4px">Наборы сообщества</div></div></div>
@@ -221,20 +221,20 @@ const hubNew = () => phone(`
 // =====================================================================
 const SAVED = [['Pitch in', 'Сброситься, помочь'], ['I’ll get back to you', 'Я вам перезвоню'], ['Grandchildren', 'Внуки'], ['Make a decision', 'Принять решение'], ['Although', 'Хотя'], ['Would rather', 'Лучше бы'], ['Boarding pass', 'Посадочный талон']];
 const saved = () => phone(`
-  ${top()}
+  ${topRow()}
   ${title('Сохранённые', '64 карточки')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}Поиск</div>
   <div class="stack" style="margin-top:16px">${SAVED.map(([w, t]) => wordRow(w, t)).join('')}</div>`,
   { fixed: bot(`<div class="cta t" data-open="mode">Тренировать${arr}</div>`), overlay: sheet('mode', modeInner) });
 
 const savedSearch = () => phone(`
-  ${top()}
+  ${topRow()}
   ${title('Сохранённые', '64 карточки')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}<span class="v">dec<span class="caret"></span></span><span class="x">${icon('close', 's18')}</span></div>
   <div class="ov" style="margin:22px 4px 12px">Найдено · 2</div>
   <div class="stack">${wordRow('Make a <u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">dec</u>ision', 'Принять решение')}${wordRow('<u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">Dec</u>line', 'Отклонять')}</div>`);
 
-const savedEmpty = () => phone(`${top()}${title('Сохранённые')}
+const savedEmpty = () => phone(`${topRow()}${title('Сохранённые')}
   ${empty(icon('bookmark', 's28'), 'Пока пусто', 'Сохраняйте слова в уроках', 'Найти наборы')}`);
 
 // =====================================================================
@@ -244,17 +244,17 @@ const setRow = (ic, t, s, n) => `<div class="card t"><div class="row"><div class
 const MINE_OWN = () => setRow(icon('layers', 's20'), 'Travel', 'Только вы', 24) + setRow(icon('layers', 's20'), 'Phrasal verbs', 'В сообществе', 18);
 const MINE_ADDED = () => setRow(icon('people', 's20'), 'B2 глаголы', 'Ирина', 49) + setRow(icon('people', 's20'), 'Family', 'Лидия', 20);
 const mine = () => phone(`
-  ${top()}
+  ${topRow()}
   ${title('Мои наборы', '4 набора')}
   ${sec('Созданные', '', 2)}<div class="stack">${MINE_OWN()}</div>
   ${sec('Добавленные', '', 2)}<div class="stack">${MINE_ADDED()}</div>`,
   { fixed: bot(`<div class="cta t">${icon('plus', 's20')}Создать набор</div>`) });
 
-const mineEmpty = () => phone(`${top()}${title('Мои наборы')}
+const mineEmpty = () => phone(`${topRow()}${title('Мои наборы')}
   ${empty(icon('layers', 's28'), 'Наборов пока нет', 'Создайте свой первый', `${icon('plus', 's20')}Создать набор`)}`);
 
 const menuRow = (ic, t, mut) => `<div class="card t"><div class="row"><div class="tile">${ic}</div><div class="tx"><div class="tt${mut ? ' mut' : ''}">${t}</div></div></div></div>`;
-const mineMenu = () => phone(`<div style="opacity:.3">${top()}${title('Мои наборы', '4 набора')}<div class="stack" style="margin-top:30px">${MINE_OWN()}</div></div>`, { overlay: sheet('mm', `
+const mineMenu = () => phone(`<div style="opacity:.3">${topRow()}${title('Мои наборы', '4 набора')}<div class="stack" style="margin-top:30px">${MINE_OWN()}</div></div>`, { overlay: sheet('mm', `
   <div class="flex" style="padding:0 4px 18px"><div class="grow"><div style="font-size:22px;font-weight:700">Travel</div><div style="font-size:15px;color:var(--sec);margin-top:4px">24 карточки</div></div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div class="menu">${menuRow(icon('bolt', 's20'), 'Тренировать')}${menuRow(icon('edit', 's20'), 'Изменить')}${menuRow(li('share', 's20'), 'Открыть сообществу')}${menuRow(icon('trash', 's20'), 'Удалить набор', true)}</div>`, true) });
 
@@ -347,14 +347,14 @@ const editSet = () => phone(`
 // =====================================================================
 const chips = (on) => `<div class="chips" style="margin-top:14px">${['Популярные', 'Новые', 'A2', 'B1', 'B2', 'C1'].map((c, i) => `<span class="chipbtn t${i === on ? ' on' : ''}">${c}</span>`).join('')}</div>`;
 const catalog = () => phone(`
-  ${top()}
+  ${topRow()}
   ${title('Сообщество', '1 240 наборов')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}Название или слово</div>
   ${chips(0)}
   <div class="stack" style="margin-top:18px">${packRow('Family', 'Лидия', meta(4, 9), 20, 'A2')}${packRow('B2 глаголы', 'Ирина', meta(3, 11, 1), 49, 'B2')}${packRow('Антоніми дієслів', 'Natalia', meta(1, 2), 30, 'B1')}${packRow('Phrasal verbs', 'Вы', meta(2, 5), 18, 'B1')}${packRow('Kitchen talk', 'Олег', meta(2, 4), 26, 'A2')}</div>`);
 
 const catalogNone = () => phone(`
-  ${top()}
+  ${topRow()}
   ${title('Сообщество')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}<span class="v">idioms about rain<span class="caret"></span></span><span class="x">${icon('close', 's18')}</span></div>
   ${chips(4)}
@@ -363,7 +363,7 @@ const catalogNone = () => phone(`
 // =====================================================================
 // 8. ВЫБОР РЕЖИМА
 // =====================================================================
-const modeSheet = () => phone(`<div style="opacity:.3">${top()}${title('Карточки', 'Слова и фразы')}${hubHero()}</div>`, { overlay: sheet('m', modeInner, true) });
+const modeSheet = () => phone(`<div style="opacity:.3">${topRow()}${title('Карточки', 'Слова и фразы')}${hubHero()}</div>`, { overlay: sheet('m', modeInner, true) });
 
 // =====================================================================
 // 9. НАСТРОЙКА ПЕРЕД СТАРТОМ
@@ -373,7 +373,7 @@ const SETS = [['bookmark', 'Сохранённые', 64], ['layers', 'Travel', 2
 const pick = (sel, list = SETS) => `<div class="stack">${list.map(([ic, t, n]) => { const on = sel.includes(t); return `<div class="card t${on ? ' sel' : ''}"><div class="row"><div class="tile">${icon(ic, 's20')}</div><div class="tx"><div class="tt">${t}</div><div class="st">${n} ${pl(n)}</div></div><span class="chk${on ? ' on' : ''}">${icon('check', 's16')}</span></div></div>`; }).join('')}</div>`;
 const segc = (t, items, on) => `${sec(t)}<div class="seg3">${items.map((x, i) => `<span class="t${i === on ? ' on' : ''}">${x}</span>`).join('')}</div>`;
 const setup = (o) => phone(`
-  ${top(lim(o.lim ?? 2))}
+  ${topRow(lim(o.lim ?? 2))}
   ${title(o.t, o.su)}
   ${sec('Наборы', o.total)}
   ${pick(o.sel, o.list)}
@@ -385,13 +385,13 @@ const setupTf = () => setup({ t: 'Правда / ложь', su: 'Верен ли
 const setupRecall = () => setup({ t: 'Вспомни и напиши', su: 'Пишите по памяти', sel: ['Сохранённые'], total: '64 выбрано', extra: segc('Карточек', ['10', '20', 'Все'], 0) + segc('Направление', ['RU → EN', 'EN → RU'], 0), btn: 'Начать · 10' });
 // Мало карточек: вместо серой кнопки — понятное следующее действие.
 const setupFew = () => phone(`
-  ${top(lim(2))}
+  ${topRow(lim(2))}
   ${title('Блиц', 'Минута на скорость')}
   ${sec('Наборы', '3 из 4')}
   ${pick(['Сохранённые'], [['bookmark', 'Сохранённые', 3]])}
   <div class="card t" style="margin-top:9px"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить набор</div></div>${ch}</div></div>`,
   { fixed: bot(`<div class="cta t">Найти наборы${arr}</div>`) });
-const setupEmpty = () => phone(`${top(lim(2))}${title('Устно', 'Говорите вслух')}
+const setupEmpty = () => phone(`${topRow(lim(2))}${title('Устно', 'Говорите вслух')}
   ${empty(icon('layers', 's28'), 'Пока нет карточек', 'Добавьте набор и начните', 'Найти наборы')}`);
 
 // =====================================================================
@@ -492,9 +492,9 @@ const resPerfect = () => phone(`
 // =====================================================================
 // 13–14. ЛИМИТ И СЕТЬ
 // =====================================================================
-const limitOut = () => phone(`${top(lim(0))}${title('Блиц', 'Минута на скорость')}
+const limitOut = () => phone(`${topRow(lim(0))}${title('Блиц', 'Минута на скорость')}
   ${empty(li('clock', 's28'), 'На сегодня всё', 'Новые тренировки — завтра', 'Листать карточки')}`);
-const offline = () => phone(`${top()}${title('Карточки')}
+const offline = () => phone(`${topRow()}${title('Карточки')}
   ${empty(icon('wifiOff', 's28'), 'Сейчас недоступно', 'Проверьте интернет', `${li('refresh', 's18')}Попробовать снова`, { c: 'var(--sec)' })}`);
 
 // =====================================================================

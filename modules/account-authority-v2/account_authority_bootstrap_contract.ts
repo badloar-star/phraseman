@@ -83,6 +83,8 @@ function normalizeLease(value: unknown, log: AccountAuthorityLogger): AccountAut
         firebaseAuthUid: parseFirebaseAuthUid(request.firebaseAuthUid),
         deviceId: parseDeviceId(request.deviceId),
         operationId: parseOperationId(request.operationId),
+        // AA S4b: намерение (явный вход / продление) — только из закрытого списка.
+        ...(request.intent === 'sign_in' || request.intent === 'resume' ? { intent: request.intent } : {}),
       });
       const response: unknown = await port.acquire(safeRequest);
       try {

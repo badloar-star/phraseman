@@ -643,7 +643,10 @@ describe('AA S2b round 2 — exact lease codes (R3/R4)', () => {
     'acquire %s is final: no rotation, no retry',
     async (code) => {
       const setup = rotatingSetup(() => contractRejected(code));
-      await expect(setup.run()).rejects.toThrow('account_authority_lease_rejected');
+      // AA S4b: продление известной аренды с кодом из закрытого списка вытеснения
+      // — отдельный окончательный код lease_evicted (по-прежнему без ротации/повтора).
+      const evicted = code === 'revision_mismatch' || code === 'stale_lease';
+      await expect(setup.run()).rejects.toThrow(evicted ? 'account_authority_lease_evicted' : 'account_authority_lease_rejected');
       expect(setup.issued()).toBe(1);
       expect(setup.invoke.mock.calls.filter(([name]) => name === 'accountAuthorityLeaseAcquire')).toHaveLength(1);
       expect(setup.log.events()).not.toContain('lease acquire_lease_code_missing');

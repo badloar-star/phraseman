@@ -90,6 +90,14 @@ function publishedLeaseCode(error: unknown): string | null {
 
 /** S2b-R3: ротация привязки — только при устаревшей эпохе устройства. */
 export const ACCOUNT_AUTHORITY_ROTATE_LEASE_CODES: ReadonlySet<string> = new Set(['stale_auth_epoch']);
+/**
+ * AA S4b: продление СУЩЕСТВУЮЩЕЙ аренды (известна ревизия) получило эти коды —
+ * аренду забрало другое устройство (ревизия ушла вперёд) или сессию списали.
+ * Закрытый список; временные сбои сюда не входят (они retryable).
+ */
+export const ACCOUNT_AUTHORITY_EVICTION_LEASE_CODES: ReadonlySet<string> = new Set(['revision_mismatch', 'stale_lease']);
+/** AA S4b: код транспорта «аренду забрали» — runtime переводит в device_taken_over. */
+export const ACCOUNT_AUTHORITY_LEASE_EVICTED_CODE = 'account_authority_lease_evicted';
 /** S2b-R4: на ПОВТОРЕ потерянного выхода эти коды значат «первая попытка дошла». */
 export const ACCOUNT_AUTHORITY_RELEASE_DONE_LEASE_CODES: ReadonlySet<string> = new Set(['revision_mismatch', 'stale_lease']);
 

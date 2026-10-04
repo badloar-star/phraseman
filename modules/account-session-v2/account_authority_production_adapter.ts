@@ -65,7 +65,18 @@ const LOCAL_METADATA_SCHEMA = 'account-authority-local-metadata.v1';
 const SCOPE_METADATA_KEY = 'account_authority.scope.v1';
 const REVISION_SCHEMA = 'account-authority-lease-revision.v1';
 const LEASE_OWNER_REVISION_SCHEMA = 'account-authority-lease-owner-revision.v1';
+// Прежний формат v1: весь журнал (до 512 операций) одним значением — больше
+// предела SecureStore 2048 Б. Читается только для переноса (AA S4b, п. 3).
 const MAX_DURABLE_OPERATIONS = 512;
+// AA S4b: журнал v2 — поколение отдельным ключом, операции — по одной на ключ.
+const LOCAL_METADATA_V2_KEY = 'phraseman.account_authority.local_metadata.v2';
+const LOCAL_METADATA_V2_SCHEMA = 'account-authority-local-metadata.v2';
+export const OPERATION_JOURNAL_PREFIX = 'phraseman.account_authority.operations.v2';
+const OPERATION_JOURNAL_SCHEMA = 'account-authority-operation.v2';
+/** Предел журнала v2; незавершённые разрушающие операции не вытесняются никогда. */
+export const MAX_JOURNAL_OPERATIONS = 64;
+/** Сколько завершённых разрушающих операций (квитанций повтора) держим. */
+export const MAX_JOURNAL_RECEIPTS = 16;
 // зачем (AA S4a): надгробия локального удаления и исходящая очередь серверного
 // удаления — отдельные ключи SecureStore с синхронной записью: переживают
 // убийство процесса между нажатием «Удалить» и концом фоновой работы.
@@ -318,26 +329,56 @@ function parseMetadata(raw: string | null, log: AccountAuthorityLogger): Durable
   }
   const seen = new Set<string>();
   const operations = value.operations.map((entry): DurableOperation => {
-    if (
-      !isRecord(entry)
-      || !exactKeys(entry, ['operationId', 'kind', 'destructive'])
-      || !operationKind(entry.kind)
-    ) throw new Error('account_authority_local_metadata_invalid');
-    const operationId = parseOperationId(entry.operationId).value;
-    if (seen.has(operationId)) throw new Error('account_authority_local_metadata_invalid');
-    seen.add(operationId);
-    const destructive = parseDurableDestructive(entry.destructive, entry.kind, log);
-    if (destructive === null && destructiveKind(entry.kind)) {
-      throw new Error('account_authority_local_metadata_invalid');
-    }
-    return Object.freeze({ operationId, kind: entry.kind, destructive });
+    const operation = parseDurableOperation(entry, log);
+    if (seen.has(operation.operationId)) throw new Error('account_authority_local_metadata_invalid');
+    seen.add(operation.operationId);
+    return operation;
   });
   log.info('local_store metadata_loaded', { generation: value.generation, operations: operations.length });
   return Object.freeze({ generation: value.generation, operations: Object.freeze(operations) });
 }
 
-function metadataJson(metadata: DurableMetadata): string {
-  return JSON.stringify({ schemaVersion: LOCAL_METADATA_SCHEMA, ...metadata });
+function parseDurableOperation(entry: unknown, log: AccountAuthorityLogger): DurableOperation {
+  if (
+    !isRecord(entry)
+    || !exactKeys(entry, ['operationId', 'kind', 'destructive'])
+    || !operationKind(entry.kind)
+  ) throw new Error('account_authority_local_metadata_invalid');
+  const operationId = parseOperationId(entry.operationId).value;
+  const destructive = parseDurableDestructive(entry.destructive, entry.kind, log);
+  if (destructive === null && destructiveKind(entry.kind)) {
+    throw new Error('account_authority_local_metadata_invalid');
+  }
+  return Object.freeze({ operationId, kind: entry.kind, destructive });
+}
+
+/**
+ * AA S4b (п. 3): очистка журнала. Незавершённые разрушающие операции (нужны
+ * восстановлению прерванных выхода/удаления/вытеснения) не трогаются никогда.
+ * Сначала уходят старые завершённые квитанции сверх MAX_JOURNAL_RECEIPTS,
+ * затем при переполнении — старые неразрушающие (вход/продление/фиксация),
+ * затем старые завершённые разрушающие.
+ */
+export function pruneOperationJournal(operations: readonly DurableOperation[]): readonly DurableOperation[] {
+  let next = [...operations];
+  const completed = next.filter((entry) => entry.destructive !== null && entry.destructive.receipt !== null);
+  const excessReceipts = completed.length - MAX_JOURNAL_RECEIPTS;
+  if (excessReceipts > 0) {
+    const drop = new Set(completed.slice(0, excessReceipts).map((entry) => entry.operationId));
+    next = next.filter((entry) => !drop.has(entry.operationId));
+  }
+  const dropFirst = (predicate: (entry: DurableOperation) => boolean): boolean => {
+    const index = next.findIndex(predicate);
+    if (index < 0) return false;
+    next.splice(index, 1);
+    return true;
+  };
+  while (next.length > MAX_JOURNAL_OPERATIONS) {
+    if (dropFirst((entry) => entry.destructive === null)) continue;
+    if (dropFirst((entry) => entry.destructive !== null && entry.destructive.receipt !== null)) continue;
+    break;
+  }
+  return Object.freeze(next);
 }
 
 function sameOwner(left: DurableOwner | null, right: DurableOwner | null): boolean {
@@ -418,15 +459,92 @@ function createDurableLocalStore(input: Readonly<{
 }>): DurableLocalStore {
   const log = input.log;
   const options = secureOptions(input.secureStore);
-  const raw = input.secureStore.getItem(LOCAL_METADATA_KEY, options);
-  let metadata = parseMetadata(raw, log);
-  if (raw === null) {
-    const genesis = metadataJson(metadata);
-    input.secureStore.setItem(LOCAL_METADATA_KEY, genesis, options);
-    if (input.secureStore.getItem(LOCAL_METADATA_KEY, options) !== genesis) {
-      log.warn('local_store genesis_verify_failed', { code: 'account_authority_local_metadata_unavailable' });
+  /*
+   * AA S4b (п. 3): журнал операций v2. Поколение — свой ключ, каждая операция —
+   * свой слот (account_authority_durable_slots: ≤ 2048 Б на значение, номера
+   * не переиспользуются, нечитаемая запись не валит хранилище). Почему всё ещё
+   * SecureStore: порт синхронный (заборы поколения и резервирование операций
+   * обязаны быть надёжными ДО ответа), а AsyncStorage асинхронный; секретов в
+   * журнале нет (id аккаунта/сессии/операции, поколение) — храним «только на
+   * этом устройстве», как раньше.
+   */
+  const journal = createDurableSlotList<DurableOperation>({
+    secureStore: input.secureStore,
+    options,
+    log,
+    prefix: OPERATION_JOURNAL_PREFIX,
+    schema: OPERATION_JOURNAL_SCHEMA,
+    max: MAX_JOURNAL_OPERATIONS,
+    label: 'journal',
+    invalidCode: 'account_authority_local_metadata_invalid',
+    fullCode: 'account_authority_operation_store_full',
+    unavailableCode: 'account_authority_local_metadata_unavailable',
+    parse: (value) => parseDurableOperation(value, log),
+    keyOf: (operation) => operation.operationId,
+    reportCritical: input.reportCritical,
+  });
+  const writeGeneration = (generation: number): void => {
+    const encoded = JSON.stringify({ schemaVersion: LOCAL_METADATA_V2_SCHEMA, generation });
+    input.secureStore.setItem(LOCAL_METADATA_V2_KEY, encoded, options);
+    if (input.secureStore.getItem(LOCAL_METADATA_V2_KEY, options) !== encoded) {
+      log.warn('local_store persist_verify_failed', { code: 'account_authority_local_metadata_unavailable' });
       throw new Error('account_authority_local_metadata_unavailable');
     }
+  };
+  const upsertOperation = (operation: DurableOperation, overCapacity = false): void => {
+    const current = journal.find(operation.operationId);
+    if (current === null) journal.add(operation, { overCapacity });
+    else if (JSON.stringify(current) !== JSON.stringify(operation)) journal.replace(operation);
+  };
+  const isOpenDestructive = (operation: DurableOperation): boolean => (
+    operation.destructive !== null && operation.destructive.receipt === null
+  );
+  let metadata: DurableMetadata;
+  const rawV2 = input.secureStore.getItem(LOCAL_METADATA_V2_KEY, options);
+  const rawV1 = input.secureStore.getItem(LOCAL_METADATA_KEY, options);
+  if (rawV2 !== null) {
+    const generation = parseOrThrow(log, 'local_store metadata_invalid', 'account_authority_local_metadata_invalid', () => {
+      const value: unknown = JSON.parse(rawV2);
+      if (!isRecord(value) || !exactKeys(value, ['schemaVersion', 'generation'])
+        || value.schemaVersion !== LOCAL_METADATA_V2_SCHEMA || !safeInteger(value.generation)) {
+        throw new Error('invalid');
+      }
+      return value.generation as number;
+    });
+    metadata = Object.freeze({ generation, operations: journal.values() });
+    log.info('[AA-S4] journal loaded', { generation, operations: metadata.operations.length, source: 'v2' });
+  } else {
+    // Перенос v1 → v2 (или первый запуск). Незавершённые разрушающие операции
+    // переносятся все: по ним восстанавливаются прерванные удаления/выходы.
+    const legacy = parseMetadata(rawV1, log);
+    const kept = pruneOperationJournal(legacy.operations);
+    // зачем (S4b раунд 2, L-3): незавершённых разрушающих в v1 может быть больше
+    // предела журнала — они переносятся ВСЕ (иначе потерялось бы восстановление
+    // прерванных удалений), сверх ёмкости; отказ — только если физически не
+    // влезают в индекс слотов (громкая тревога, отказ закрыто).
+    const openDestructive = kept.filter(isOpenDestructive).length;
+    if (openDestructive > journal.indexLimit()) {
+      log.warn('[AA-S4] journal migration_overflow', { count: openDestructive, limit: journal.indexLimit() });
+      try {
+        input.reportCritical?.('aa_s4:journal migration_overflow', 'account_authority_local_metadata_unavailable');
+      } catch (error) {
+        log.warn('[AA-S4] journal critical_report_failed', failureFields(error));
+      }
+      throw new Error('account_authority_local_metadata_unavailable');
+    }
+    for (const operation of kept) upsertOperation(operation, isOpenDestructive(operation));
+    writeGeneration(legacy.generation);
+    metadata = Object.freeze({ generation: legacy.generation, operations: journal.values() });
+    log.info('[AA-S4] journal migrated', {
+      source: rawV1 === null ? 'genesis' : 'v1', operations: kept.length, dropped: legacy.operations.length - kept.length,
+    });
+  }
+  if (rawV1 !== null) {
+    // guard-ok: v2 уже записан с проверкой; старый ключ — только мусор, отказ логируется.
+    void input.secureStore.deleteItemAsync(LOCAL_METADATA_KEY, options).then(
+      () => log.info('[AA-S4] journal v1_removed'),
+      (error: unknown) => log.warn('[AA-S4] journal v1_remove_failed', failureFields(error)),
+    );
   }
   const scopeStore = createAccountScopeStore(input.storageAdapter);
   let openScope: AccountAuthorityLocalScope | null = null;
@@ -516,14 +634,17 @@ function createDurableLocalStore(input: Readonly<{
     );
   };
 
-  const persist = (next: DurableMetadata): void => {
-    const encoded = metadataJson(next);
-    input.secureStore.setItem(LOCAL_METADATA_KEY, encoded, options);
-    if (input.secureStore.getItem(LOCAL_METADATA_KEY, options) !== encoded) {
-      log.warn('local_store persist_verify_failed', { code: 'account_authority_local_metadata_unavailable' });
-      throw new Error('account_authority_local_metadata_unavailable');
+  // AA S4b: запись журнала — поколение и изменённые операции по отдельности,
+  // после очистки (pruneOperationJournal).
+  const persist = (requested: DurableMetadata): void => {
+    const operations = pruneOperationJournal(requested.operations);
+    if (requested.generation !== metadata.generation) writeGeneration(requested.generation);
+    const keep = new Set(operations.map((operation) => operation.operationId));
+    for (const operation of metadata.operations) {
+      if (!keep.has(operation.operationId)) journal.remove(operation.operationId);
     }
-    metadata = next;
+    for (const operation of operations) upsertOperation(operation);
+    metadata = Object.freeze({ generation: requested.generation, operations });
   };
   const operationIndex = (operationId: string): number => (
     metadata.operations.findIndex((entry) => entry.operationId === operationId)
@@ -596,8 +717,10 @@ function createDurableLocalStore(input: Readonly<{
         ) throw new Error('account_authority_operation_id_reused');
         return;
       }
-      if (metadata.operations.length >= MAX_DURABLE_OPERATIONS) {
-        log.warn('local_store reserve_rejected', { reason: 'store_full', limit: MAX_DURABLE_OPERATIONS });
+      // AA S4b: место освобождает очистка; полон журнал только из незавершённых разрушающих.
+      const pruned = pruneOperationJournal([...metadata.operations, Object.freeze({ operationId: id, kind, destructive: durable })]);
+      if (pruned.length > MAX_JOURNAL_OPERATIONS || !pruned.some((entry) => entry.operationId === id)) {
+        log.warn('local_store reserve_rejected', { reason: 'store_full', limit: MAX_JOURNAL_OPERATIONS });
         throw new Error('account_authority_operation_store_full');
       }
       persist(Object.freeze({

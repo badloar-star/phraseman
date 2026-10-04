@@ -366,8 +366,10 @@ describe('L-S2b-3 — presumed release is verified on the next sign-in of the sa
 
     // Отметка снята: следующий вход — обычный окончательный отказ, без второй проверки.
     const checks = log.events().filter((event) => event === 'lease acquire_presumed_release_check').length;
+    // AA S4b: отметка снята — обычное продление с устаревшей ревизией теперь
+    // «аренду забрали» (lease_evicted); явный вход вернёт её повтором с ревизией сервера.
     await expect(port.acquire({ firebaseAuthUid: uidA, deviceId, operationId: parseOperationId('op-acquire-3') }))
-      .rejects.toThrow('account_authority_lease_rejected');
+      .rejects.toThrow('account_authority_lease_evicted');
     expect(log.events().filter((event) => event === 'lease acquire_presumed_release_check')).toHaveLength(checks);
   });
 
@@ -396,8 +398,9 @@ describe('L-S2b-3 — presumed release is verified on the next sign-in of the sa
     await revisionStore.write(uidB, 3);
     server.state.revision = 4;
 
+    // AA S4b: B продлевает аренду с устаревшей ревизией — вытеснение, а не общий отказ.
     await expect(port.acquire({ firebaseAuthUid: uidB, deviceId, operationId: parseOperationId('op-b') }))
-      .rejects.toThrow('account_authority_lease_rejected');
+      .rejects.toThrow('account_authority_lease_evicted');
     expect(log.events()).toContain('lease acquire_presumed_release_other_owner');
     expect(log.events()).not.toContain('lease acquire_presumed_release_check');
   });

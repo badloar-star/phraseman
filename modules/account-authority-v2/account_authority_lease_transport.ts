@@ -11,6 +11,8 @@ import type {
 } from './account_authority_ids';
 import type { AccountAuthorityLeasePort } from './account_authority_runtime';
 import {
+  ACCOUNT_AUTHORITY_EVICTION_LEASE_CODES,
+  ACCOUNT_AUTHORITY_LEASE_EVICTED_CODE,
   ACCOUNT_AUTHORITY_RELEASE_DONE_LEASE_CODES,
   ACCOUNT_AUTHORITY_RETRY_MAX_ATTEMPTS,
   ACCOUNT_AUTHORITY_ROTATE_LEASE_CODES,
@@ -431,6 +433,7 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
     let requestRevision = expectedRevision;
     let presumedChecked = false;
     let rotated = false;
+    let takeoverTried = false;
     for (let attempt = 1; ; attempt += 1) {
       try {
         const binding = await input.installationBinding.obtain(request.firebaseAuthUid);
@@ -525,6 +528,29 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
               code: accountAuthorityErrorCode(resetError),
             });
           }
+        }
+        // зачем (AA S4b): продление уже известной аренды (ревизия есть, проверка
+        // «допущенного выхода» не идёт) отклонено кодом из закрытого списка —
+        // аренду забрало другое устройство. Это не «ошибка входа», а вытеснение:
+        // отдельный код, чтобы runtime сохранил записи и не выходил из провайдера.
+        if (
+          failure.kind === 'contract_rejected'
+          && requestRevision !== null
+          && presumedKey === null
+          && failure.leaseCode !== null
+          && ACCOUNT_AUTHORITY_EVICTION_LEASE_CODES.has(failure.leaseCode)
+        ) {
+          // Явный вход человека — его выбор «войти здесь»: ОДИН повтор с ревизией
+          // сервера (сервер сам заберёт аренду у другого устройства). Продление —
+          // никогда: иначе устройства отбирали бы аренду друг у друга по кругу.
+          if (request.intent === 'sign_in' && !takeoverTried) {
+            takeoverTried = true;
+            requestRevision = null;
+            log.warn('[AA-S4] lease acquire_takeover_retry', { reason: failure.leaseCode, attempt });
+            continue;
+          }
+          log.warn('[AA-S4] lease acquire_evicted', { reason: failure.leaseCode, attempt });
+          throw new Error(ACCOUNT_AUTHORITY_LEASE_EVICTED_CODE);
         }
         if (presumedKey !== null && presumedChecked) {
           // Проверка выполнена и не помогла — отметку снимаем, чтобы не крутить её

@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import { getRemoteBool } from './remote_flags';
 
 /*
@@ -21,6 +21,44 @@ let accountAuthorityResumeQueued = false;
 let accountAuthorityResumeLatestClient:
   Pick<AccountsV2ClientRuntime, 'resumeAccountAuthorityProviderSession'> | null = null;
 let accountAuthorityBootstrapInstall: Promise<boolean> | null = null;
+let accountAuthorityRenewal: Readonly<{ trigger(trigger: 'cold_start' | 'foreground'): Promise<unknown> }> | null = null;
+let accountAuthorityForegroundListener: Readonly<{ remove(): void }> | null = null;
+
+/**
+ * AA S4b (п. 4): шлюз продления R1 — только холодный старт и возврат из фона,
+ * не чаще раза в 5 минут. Модули AA грузятся лениво и ТОЛЬКО при включённых
+ * воротах cutover (горячий путь без лишнего кода).
+ */
+function accountAuthorityRenewalDriver(
+  resume: () => Promise<void>,
+): Readonly<{ trigger(trigger: 'cold_start' | 'foreground'): Promise<unknown> }> {
+  if (accountAuthorityRenewal !== null) return accountAuthorityRenewal;
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const policy = require('../modules/account-authority-v2/account_authority_failure_policy') as
+    typeof import('../modules/account-authority-v2/account_authority_failure_policy');
+  const driver = require('../modules/account-authority-v2/account_authority_renewal_driver') as
+    typeof import('../modules/account-authority-v2/account_authority_renewal_driver');
+  const logger = require('../modules/account-authority-v2/account_authority_logger') as
+    typeof import('../modules/account-authority-v2/account_authority_logger');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+  accountAuthorityRenewal = driver.createAccountAuthorityRenewalDriver({
+    gate: policy.createAccountAuthorityRenewalGate({ nowMs: () => Date.now() }),
+    resume,
+    log: logger.safeAccountAuthorityLogger(undefined),
+  });
+  return accountAuthorityRenewal;
+}
+
+function installAccountAuthorityForegroundRenewal(resume: () => Promise<void>): void {
+  if (accountAuthorityForegroundListener !== null) return;
+  accountAuthorityForegroundListener = AppState.addEventListener('change', (state) => {
+    if (state !== 'active') return;
+    void accountAuthorityRenewalDriver(resume).trigger('foreground').catch((error: unknown) => {
+      console.warn(`[AA-S4] renewal foreground_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    });
+  });
+  console.log('[AA-S4] renewal foreground_listener_installed');
+}
 
 // Owner gate: wiring may land before the durable client bootstrap, callable
 // exports, and migration proof. Never make this remotely activatable.
@@ -116,10 +154,12 @@ export function syncAccountsV2ClientAuth(uid: string | null): void {
         console.warn('[ACCOUNT-AUTHORITY] startup_resume blocked reason=bootstrap_unavailable');
         return;
       }
-      resumeAccountAuthorityProviderSessionIfIdle({
-        resumeAccountAuthorityProviderSession: async () => client.resumeAccountAuthorityProviderSession().catch((error: unknown) => {
-          console.warn(`[ACCOUNT-AUTHORITY] startup_resume failed kind=${error instanceof Error ? error.name : typeof error}`);
-        }),
+      // зачем (AA S4b, R1): продление — через шлюз (холодный старт / возврат из
+      // фона, не чаще раза в 5 минут); отказ «аренду забрали» решает runtime.
+      const resume = () => client.resumeAccountAuthorityProviderSession();
+      installAccountAuthorityForegroundRenewal(resume);
+      void accountAuthorityRenewalDriver(resume).trigger('cold_start').catch((error: unknown) => {
+        console.warn(`[ACCOUNT-AUTHORITY] startup_resume failed kind=${error instanceof Error ? error.name : typeof error}`);
       });
     });
     return;

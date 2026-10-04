@@ -651,7 +651,9 @@ describe('Account Authority 2.0 FIFO runtime', () => {
     expect(jest.mocked(harness.provider.authenticate)).toHaveBeenCalledTimes(2);
   });
 
-  test('a write captured under the old account/session/generation is rejected after switch', async () => {
+  // AA S4b: запись, захваченная до смены аккаунта, фиксируется в области
+  // ПРЕЖНЕГО владельца до её закрытия (не теряется) и никогда — в области B.
+  test('a write captured under the old account/session is committed into A before switch, never into B', async () => {
     const harness = createHarness();
     harness.authentications.push(authenticated(uidA), authenticated(uidB));
     await harness.runtime.signIn(operation('sign-in-a'));
@@ -660,12 +662,13 @@ describe('Account Authority 2.0 FIFO runtime', () => {
     });
 
     await harness.runtime.signIn(operation('sign-in-b'));
+    expect(harness.localStore.committed).toEqual([captured]);
     const result = await harness.runtime.commitPreservedWrite(captured);
 
     expect(result).toEqual({
-      type: 'rejected', operationId: operation('write-a'), reason: 'stale_session',
+      type: 'committed', operationId: operation('write-a'), domain: 'lesson_progress',
     });
-    expect(harness.localStore.committed).toHaveLength(0);
+    expect(harness.localStore.committed).toEqual([captured]);
   });
 
   test('delete clears local data synchronously before any awaited remote call', async () => {
@@ -919,12 +922,15 @@ describe('Account Authority 2.0 FIFO runtime', () => {
 
     await harness.runtime.signIn(operation('sign-in-b'));
     await harness.runtime.signIn(operation('sign-in-a-again'));
+    // AA S4b: старая запись A зафиксирована при уходе с A (в старом поколении);
+    // в новое поколение A она не попадает повторно.
+    expect(harness.localStore.committed).toEqual([captured]);
     const result = await harness.runtime.commitPreservedWrite(captured);
 
     expect(result).toEqual({
-      type: 'rejected', operationId: operation('old-write-a'), reason: 'stale_generation',
+      type: 'committed', operationId: operation('old-write-a'), domain: 'lesson_progress',
     });
-    expect(harness.localStore.committed).toHaveLength(0);
+    expect(harness.localStore.committed).toEqual([captured]);
   });
 
   test('restart preserves the ABA generation fence before resuming A', async () => {

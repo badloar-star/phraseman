@@ -50,7 +50,13 @@ export type DurableSlotList<T> = Readonly<{
   /** Записей, которые не удалось прочитать (остаются в индексе). */
   unreadable(): number;
   find(key: string): T | null;
-  add(value: T): void;
+  /**
+   * `overCapacity` (S4b раунд 2, L-3): перенос обязательств из старого формата —
+   * ёмкость `max` не применяется, физический потолок индекса — применяется.
+   */
+  add(value: T, options?: Readonly<{ overCapacity?: boolean }>): void;
+  /** Физический потолок индекса (номеров слотов), который не переходит даже перенос. */
+  indexLimit(): number;
   replace(value: T): void;
   remove(key: string): void;
 }>;
@@ -248,16 +254,18 @@ export function createDurableSlotList<T>(input: Readonly<{
   return Object.freeze({
     values: () => Object.freeze(index.slots.filter((slot) => items.has(slot)).map((slot) => items.get(slot) as T)),
     size: () => items.size,
+    indexLimit: () => indexBound,
     unreadable: () => index.slots.filter((slot) => !items.has(slot)).length,
     find: (key: string) => {
       const slot = slotOf(key);
       return slot === null ? null : items.get(slot) ?? null;
     },
-    add: (value: T) => {
+    add: (value: T, options?: Readonly<{ overCapacity?: boolean }>) => {
       if (slotOf(input.keyOf(value)) !== null) throw new Error(input.invalidCode);
-      if (items.size >= input.max || index.slots.length >= indexBound) {
+      const capacityFull = options?.overCapacity !== true && items.size >= input.max;
+      if (capacityFull || index.slots.length >= indexBound) {
         log.warn(`[AA-S4] ${input.label} full`, {
-          reason: items.size >= input.max ? 'queue_full' : 'unreadable_bound', limit: input.max,
+          reason: capacityFull ? 'queue_full' : 'index_bound', limit: input.max,
         });
         throw new Error(input.fullCode);
       }

@@ -57,6 +57,11 @@ export interface AccountAuthorityLeasePort {
     firebaseAuthUid: FirebaseAuthUid;
     deviceId: DeviceId;
     operationId: OperationId;
+    /**
+     * AA S4b: явный вход человека (`sign_in`) может забрать аренду у другого
+     * устройства; продление (`resume`) — никогда: отказ = вытеснение.
+     */
+    intent?: 'sign_in' | 'resume';
   }>): Promise<AccountAuthorityLease>;
   release(request: Readonly<{
     accountId: AccountId;
@@ -117,6 +122,11 @@ type QueueItem = Readonly<{
 }>;
 
 const MAX_COMPLETED_OPERATION_RECEIPTS = 256;
+/** AA S4b: столько захваченных, ещё не зафиксированных записей помнит runtime. */
+const MAX_CAPTURED_PRESERVED_WRITES = 256;
+/** AA S4b: коды транспорта (см. account_authority_failure_policy / lease_transport). */
+const LEASE_EVICTED_CODE = 'account_authority_lease_evicted';
+const LEASE_UNAVAILABLE_CODE = 'account_authority_lease_unavailable';
 const MAX_PENDING_DESTRUCTIVE_OPERATIONS = 256;
 
 function sameScope(left: AccountAuthorityLocalScope, right: AccountAuthorityLocalScope): boolean {
@@ -244,6 +254,10 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
   private readonly pendingSignOuts = new Map<string, PendingLocalTransition>();
   private readonly pendingDeletes = new Map<string, PendingLocalTransition & { owner: OwnedSession }>();
   private readonly pendingRevocations = new Map<string, PendingRevocation>();
+  // AA S4b: записи сохранённых доменов, захваченные до перехода (вытеснение,
+  // выход, смена аккаунта), фиксируются в области ДО её закрытия.
+  private readonly capturedWrites = new Map<string, AccountAuthorityPreservedWrite>();
+  private readonly flushedWrites = new Map<string, AccountAuthorityResult>();
   private readonly log: AccountAuthorityLogger;
 
   constructor(input: Readonly<{
@@ -305,12 +319,18 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           previousOwner,
         });
       }
-      return this.establishLease(providerResult.firebaseAuthUid, operationId);
+      return this.establishLease(providerResult.firebaseAuthUid, operationId, 'sign_in');
     });
   }
 
   resume(operationId: OperationId): Promise<AccountAuthorityResult> {
     return this.runOperation('resume', operationId, async () => {
+      // зачем (AA S4b): после вытеснения продлевать нечего — сеть не дёргаем;
+      // вернуть аккаунт на это устройство может только явный вход человека.
+      if (this.state.phase === 'device_taken_over') {
+        this.log.info('[AA-S4] resume skipped', { reason: 'device_taken_over' });
+        return freezeAccountAuthorityResult({ type: 'cancelled', reason: 'provider_cancelled' });
+      }
       this.beginAuthentication(operationId);
       const previousOwner = ownedSession(this.state);
       let firebaseAuthUid: FirebaseAuthUid | null;
@@ -322,7 +342,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       }
       this.log.info('resume current_identity', { present: firebaseAuthUid !== null });
       if (firebaseAuthUid === null) return this.cancelAuthentication(operationId);
-      return this.establishLease(firebaseAuthUid, operationId);
+      return this.establishLease(firebaseAuthUid, operationId, 'resume');
     });
   }
 
@@ -421,6 +441,8 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         this.state.generation.value === pending.expectedGeneration.value
         && (pending.owner === null || stateOwnsSession(this.state, pending.owner))
       ) {
+        // AA S4b: запись урока/карточек, сделанная до выхода, фиксируется до закрытия области.
+        if (pending.owner !== null) await this.flushCapturedWrites(pending.owner, 'sign_out');
         const reduction = reduceAccountAuthorityState(this.state, { type: 'signed_out' });
         this.commitState(reduction.state);
       } else if (
@@ -527,6 +549,8 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         this.state.generation.value === pending.expectedGeneration.value
         && stateOwnsSession(this.state, pending.owner)
       ) {
+        // AA S4b: удаление стирает данные аккаунта — его незафиксированные записи не нужны.
+        this.discardCapturedWrites(pending.owner, 'delete');
         const reduction = reduceAccountAuthorityState(this.state, { type: 'local_deleted' });
         this.commitState(reduction.state);
       } else if (
@@ -651,6 +675,8 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           this.log.warn('revoke owner_missing', { hasOwner: owner !== null, resultType: reduction.result.type });
           throw new Error('account_authority_revocation_owner_missing');
         }
+        // AA S4b: вытеснение не теряет запись, сделанную до него.
+        await this.flushCapturedWrites(owner, 'revoke');
         this.commitState(reduction.state);
         pending = Object.freeze({ owner, result: reduction.result });
         this.admitPending(this.pendingRevocations, key, pending);
@@ -716,17 +742,35 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     domain: PreservedDomain;
   }>): AccountAuthorityPreservedWrite {
     if (this.state.phase !== 'authenticated') throw new Error('account_authority_not_authenticated');
-    return Object.freeze({
+    const write: AccountAuthorityPreservedWrite = Object.freeze({
       operationId: input.operationId,
       accountId: this.state.accountId,
       sessionId: this.state.sessionId,
       expectedGeneration: this.state.generation,
       domain: input.domain,
     });
+    // зачем (AA S4b): захваченная запись запоминается до фиксации — если до неё
+    // случится вытеснение/выход/смена, переход сам зафиксирует её в области.
+    this.capturedWrites.set(write.operationId.value, write);
+    while (this.capturedWrites.size > MAX_CAPTURED_PRESERVED_WRITES) {
+      const oldest = this.capturedWrites.keys().next().value as string | undefined;
+      if (oldest === undefined) break;
+      this.capturedWrites.delete(oldest);
+      this.log.warn('[AA-S4] preserved capture_evicted', { reason: 'capacity', limit: MAX_CAPTURED_PRESERVED_WRITES });
+    }
+    return write;
   }
 
   commitPreservedWrite(write: AccountAuthorityPreservedWrite): Promise<AccountAuthorityResult> {
+    const flushed = this.flushedWrites.get(write.operationId.value);
+    if (flushed !== undefined) {
+      // Уже зафиксирована переходом (вытеснение/выход/смена) — идемпотентно «committed».
+      this.flushedWrites.delete(write.operationId.value);
+      this.log.info('[AA-S4] preserved commit_already_flushed', { kind: 'commit' });
+      return Promise.resolve(flushed);
+    }
     return this.runOperation('commit', write.operationId, async () => {
+      this.capturedWrites.delete(write.operationId.value);
       const result = evaluatePreservedDomainCommit(this.state, {
         type: 'commit_preserved_domain',
         ...write,
@@ -735,6 +779,88 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       await this.localStore.commitPreservedWrite(write);
       return result;
     });
+  }
+
+  /**
+   * AA S4b: фиксирует в ещё открытой области владельца все захваченные им
+   * записи. Зовётся переходом ДО смены поколения (иначе забор записи их
+   * отвергнет). Сбой одной записи не останавливает переход — он в логе.
+   */
+  private async flushCapturedWrites(owner: OwnedSession, reason: 'revoke' | 'sign_out' | 'evicted' | 'switch'): Promise<void> {
+    const writes = [...this.capturedWrites.values()].filter((write) => (
+      write.accountId.value === owner.accountId.value
+      && write.sessionId.value === owner.sessionId.value
+      && write.expectedGeneration.value === this.state.generation.value
+    ));
+    if (writes.length === 0) {
+      this.log.info('[AA-S4] preserved flush_idle', { reason });
+      return;
+    }
+    let committed = 0;
+    for (const write of writes) {
+      this.capturedWrites.delete(write.operationId.value);
+      try {
+        if (this.localStore.getOperationKind(write.operationId) === null) {
+          this.localStore.reserveOperation(write.operationId, 'commit');
+        }
+        await this.localStore.commitPreservedWrite(write);
+        const result = freezeAccountAuthorityResult({
+          type: 'committed', operationId: write.operationId, domain: write.domain,
+        });
+        this.flushedWrites.set(write.operationId.value, result);
+        while (this.flushedWrites.size > MAX_CAPTURED_PRESERVED_WRITES) {
+          const oldest = this.flushedWrites.keys().next().value as string | undefined;
+          if (oldest === undefined) break;
+          this.flushedWrites.delete(oldest);
+        }
+        committed += 1;
+      } catch (error) {
+        this.log.warn('[AA-S4] preserved flush_failed', errorFields(error, { reason }));
+      }
+    }
+    this.log.info('[AA-S4] preserved flushed', { reason, committed, total: writes.length });
+  }
+
+  private discardCapturedWrites(owner: OwnedSession, reason: 'delete'): void {
+    let discarded = 0;
+    for (const [key, write] of this.capturedWrites) {
+      if (write.accountId.value === owner.accountId.value && write.sessionId.value === owner.sessionId.value) {
+        this.capturedWrites.delete(key);
+        discarded += 1;
+      }
+    }
+    this.log.info('[AA-S4] preserved discarded', { reason, discarded });
+  }
+
+  /**
+   * AA S4b: продление нашей аренды отклонено — её забрало другое устройство.
+   * Записи владельца фиксируются, область закрывается, состояние —
+   * device_taken_over. Из провайдера НЕ выходим и аренду НЕ отпускаем: она не
+   * наша, а человек может осознанно войти снова.
+   */
+  private async evictAfterRenewalRefused(
+    operationId: OperationId,
+    owner: OwnedSession,
+  ): Promise<AccountAuthorityResult> {
+    const reduction = reduceAccountAuthorityState(this.state, {
+      type: 'device_taken_over',
+      revokedSessionId: owner.sessionId,
+      expectedGeneration: this.state.generation,
+    });
+    if (!reduction.result || reduction.result.type !== 'device_taken_over') {
+      this.log.warn('[AA-S4] evict ignored', { reason: 'reducer_no_result', phase: this.state.phase });
+      throw new Error(LEASE_EVICTED_CODE);
+    }
+    await this.flushCapturedWrites(owner, 'evicted');
+    this.commitState(reduction.state);
+    try {
+      await this.closeOwnedScope(owner);
+    } catch (error) {
+      this.log.warn('[AA-S4] evict close_failed', errorFields(error));
+      throw error;
+    }
+    this.log.info('[AA-S4] evicted', { resultType: reduction.result.type, generation: reduction.result.generation.value });
+    return reduction.result;
   }
 
   // зачем (AA S1): reducer чистый и не логирует — переход пишет его драйвер
@@ -785,6 +911,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
   private async establishLease(
     firebaseAuthUid: FirebaseAuthUid,
     operationId: OperationId,
+    mode: 'sign_in' | 'resume',
   ): Promise<AccountAuthorityResult> {
     if (this.state.phase !== 'authenticating') {
       this.log.warn('lease establish_rejected', { reason: 'attempt_not_active', phase: this.state.phase });
@@ -798,9 +925,38 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         firebaseAuthUid,
         deviceId: this.deviceId,
         operationId,
+        intent: mode,
       });
     } catch (error) {
       this.log.warn('lease establish_acquire_failed', errorFields(error));
+      const code = accountAuthorityErrorCode(error);
+      // AA S4b: аренду забрали — вытеснение (записи сохраняются), а не «ошибка входа».
+      if (code === LEASE_EVICTED_CODE && previousOwner !== null) {
+        this.log.warn('[AA-S4] lease establish_evicted', { kind: mode });
+        return this.evictAfterRenewalRefused(operationId, previousOwner);
+      }
+      // Холодный старт после вытеснения (открытой области ещё нет): то же
+      // состояние device_taken_over, без выхода из провайдера и без сети дальше.
+      if (code === LEASE_EVICTED_CODE && mode === 'resume') {
+        const generation = this.state.generation;
+        this.commitState(freezeAccountAuthorityState({ phase: 'device_taken_over', deviceId: this.deviceId, generation }));
+        this.log.warn('[AA-S4] lease establish_evicted_cold', { kind: mode });
+        return freezeAccountAuthorityResult({ type: 'device_taken_over', generation });
+      }
+      // AA S4b: временный сбой сети при продлении живой сессии — НЕ вытеснение и
+      // не выход: сессия остаётся, следующий повод (foreground) повторит.
+      if (code === LEASE_UNAVAILABLE_CODE && mode === 'resume' && previousOwner !== null) {
+        const restored = reduceAccountAuthorityState(this.state, { type: 'provider_cancelled', attemptId: operationId }).state;
+        this.commitState(restored);
+        this.log.warn('[AA-S4] resume offline_kept_session', { phase: restored.phase });
+        if (restored.phase !== 'authenticated') throw error;
+        return freezeAccountAuthorityResult({
+          type: 'authenticated',
+          accountId: restored.accountId,
+          sessionId: restored.sessionId,
+          generation: restored.generation,
+        });
+      }
       return this.failClosedAuthentication({ error, operationId, previousOwner });
     }
     const reduction = reduceAccountAuthorityState(this.state, {
@@ -818,6 +974,10 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       generation: reduction.result.generation,
     });
     try {
+      // AA S4b: смена аккаунта — записи прежнего владельца фиксируются до смены поколения.
+      if (previousOwner !== null && !sameOwner(previousOwner, targetScope)) {
+        await this.flushCapturedWrites(previousOwner, 'switch');
+      }
       const durableGeneration = this.localStore.advanceAuthorityGeneration(targetScope.generation);
       if (durableGeneration.value > targetScope.generation.value) {
         this.log.warn('lease establish_generation_regression', {

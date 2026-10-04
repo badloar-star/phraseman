@@ -1421,11 +1421,12 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   courseIdentityCopy: { flex: 1 },
+  // зачем (D145, 04.10): мелкие надписи карты 9–11 → 13 (шкала 16/13); разрядку капса уменьшили, чтобы строки не росли.
   eyebrow: {
     color: "#7E8A99",
-    fontSize: 10.5,
+    fontSize: 13,
     fontWeight: "900",
-    letterSpacing: 1.8,
+    letterSpacing: 0.6,
   },
   title: {
     color: "#F7F9FB",
@@ -1458,9 +1459,9 @@ const styles = StyleSheet.create({
   returnRewardCopy: { flex: 1 },
   returnRewardEyebrow: {
     color: "#C7B777",
-    fontSize: 9.5,
-    lineHeight: 14,
-    letterSpacing: 1.25,
+    fontSize: 13,
+    lineHeight: 16,
+    letterSpacing: 0.5,
     fontWeight: "900",
   },
   returnRewardTitle: {
@@ -1472,8 +1473,8 @@ const styles = StyleSheet.create({
   },
   returnRewardNote: {
     color: "#9F956F",
-    fontSize: 11,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: "700",
     marginTop: 1,
   },
@@ -1501,12 +1502,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
   },
-  chapterProgressText: { color: "#F2DF9A", fontSize: 11, fontWeight: "900" },
+  chapterProgressText: { color: "#F2DF9A", fontSize: 13, fontWeight: "900" },
   chapterEyebrow: {
-    fontSize: 11,
+    fontSize: 13,
     lineHeight: 16,
     fontWeight: "900",
-    letterSpacing: 1.7,
+    letterSpacing: 0.6,
   },
   chapterTitle: {
     color: "#F7F9FB",
@@ -1537,9 +1538,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 5,
-    fontSize: 10.5,
+    fontSize: 13,
     fontWeight: "800",
-    letterSpacing: 1.6,
+    letterSpacing: 0.6,
     marginTop: 10,
     marginBottom: 2,
   },
@@ -1572,7 +1573,7 @@ const styles = StyleSheet.create({
     borderColor: "#8BA2FF",
   },
   nodeOrderBadgeCurrent: { backgroundColor: "#17120A", borderColor: "#FFE28A" },
-  nodeOrderText: { color: "#F7F9FB", fontSize: 9, fontWeight: "900" },
+  nodeOrderText: { color: "#F7F9FB", fontSize: 13, fontWeight: "900" },
   nodeOrderTextCurrent: { color: "#FFE28A" },
   halo: { position: "absolute", backgroundColor: "#F5C84C" },
   futureNodeLane: {
@@ -1621,14 +1622,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#3B4653",
   },
-  episodeNumber: { color: "#A3ADBA", fontSize: 9, fontWeight: "900" },
+  episodeNumber: { color: "#A3ADBA", fontSize: 13, fontWeight: "900" },
   futureNodeLabel: { position: "absolute", width: 150 },
   futureNodeLabelLeft: { right: 144, alignItems: "flex-end" },
   futureNodeLabelRight: { left: 144, alignItems: "flex-start" },
   futureNodeEyebrow: {
-    fontSize: 9.5,
-    lineHeight: 14,
-    letterSpacing: 1.2,
+    fontSize: 13,
+    lineHeight: 16,
+    letterSpacing: 0.5,
     fontWeight: "900",
   },
   futureNodeTitle: {
@@ -1699,5 +1700,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 4,
   },
-  sheetSkipText: { fontWeight: "700", fontSize: 14 },
+  sheetSkipText: { fontWeight: "700", fontSize: 13 },
 });

@@ -10,26 +10,14 @@ const audit = JSON.parse(
   reward: number;
   group: string;
 }>;
-const batch = JSON.parse(
-  fs.readFileSync(path.join(ROOT, 'replies_batch_2026-07-10.json'), 'utf8'),
-) as Array<{
-  reportId: string;
-  resolution: string;
-  shards: number;
-  rewardGroup: string;
-}>;
-const finalBatch = JSON.parse(
-  fs.readFileSync(path.join(ROOT, 'replies_batch_2026-07-10_final.json'), 'utf8'),
-) as typeof batch;
+// зачем (04.10): разовые файлы июльской раздачи ответов — replies_batch_2026-07-10.json, replies_batch_2026-07-10_final.json и
+// scripts/build_user_report_audit_2026-07-10.mjs — удалены при сводной чистке корня репозитория (68f4ef973, 15.08); в них же были награды
+// осколками (осколки убраны в 2.0). Тест падал на чтении отсутствующего файла ещё до первой проверки. Остаётся то, что реально хранится:
+// итоговый аудит (JSON и Markdown) — все 48 обращений в финальном состоянии, нерешённых нет.
 const markdownAudit = fs.readFileSync(
   path.join(ROOT, 'docs', 'reports', 'user_error_reports_audit_2026-07-10.md'),
   'utf8',
 );
-const staleBuilder = fs.readFileSync(
-  path.join(ROOT, 'scripts', 'build_user_report_audit_2026-07-10.mjs'),
-  'utf8',
-);
-
 const FINAL_VERDICTS = new Set([
   'by_design',
   'confirmed_fixed',
@@ -45,23 +33,8 @@ describe('user report final closure', () => {
     expect(audit.filter((row) => !FINAL_VERDICTS.has(row.verdict))).toEqual([]);
   });
 
-  it('keeps prepared admin replies aligned with the final audit decision', () => {
-    expect(batch).toHaveLength(48);
-    const batchById = new Map(batch.map((row) => [row.reportId, row]));
-
-    for (const row of audit) {
-      expect(batchById.get(row.reportId)).toMatchObject({
-        resolution: row.verdict,
-        shards: row.reward,
-        rewardGroup: row.group,
-      });
-    }
-  });
-
   it('keeps every published audit artifact synchronized and UTF-8 safe', () => {
-    expect(finalBatch).toEqual(batch);
     expect(markdownAudit).toContain('0 unresolved reports');
     expect(markdownAudit).not.toMatch(/confirmed_investigating|content_review|\?{3,}/u);
-    expect(staleBuilder).toContain("await import('./sync_user_report_support_copy.mjs')");
   });
 });

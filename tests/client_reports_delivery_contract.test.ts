@@ -33,7 +33,9 @@ describe('client report delivery contract', () => {
     expect(source.indexOf('setSent(true);')).toBeLessThan(source.indexOf('void (async () =>'));
     expect(source).toContain('Отправляем в фоне');
     expect(source).toContain("onPress={() => setVisible(false)}");
-    expect(source.indexOf("onSuccess?.(10);")).toBeGreaterThan(source.indexOf("if (result === 'failed')"));
+    // зачем (D02/D70, 2.0): осколки убраны — отчёт об ошибке больше не награждается (раньше успешная отправка вызывала onSuccess?.(10) ровно
+    // на 10 осколков, строка стояла ПОСЛЕ ветки отказа). Охраняем обратное: награды за отчёт в окне нет совсем.
+    expect(source).not.toContain('onSuccess');
   });
 
   it('shows a retry state when lesson bug report delivery fails', () => {
@@ -47,10 +49,16 @@ describe('client report delivery contract', () => {
   it('offers a typed transport override while preserving the standard flag UX for Spire', () => {
     const button = read('components/ReportErrorButton.tsx');
     const wrapper = read('modules/spire/SpireTaskReportButton.tsx');
+    const stepScreen = read('components/spire/SpireStepScreen.tsx');
     expect(button).toContain('submitOverride?: ReportErrorSubmitOverride');
     expect(button).toContain('result = await submitOverride({ comment: optimisticComment })');
     expect(wrapper).toContain('variant="icon-flag"');
     expect(wrapper).toContain('buildSpireTaskReportSubmission');
     expect(wrapper).not.toContain('router.');
+    expect(stepScreen).toContain('<SpireTaskReportButton');
+    expect(stepScreen).toContain('stableUid: uid');
+    expect(stepScreen).toContain('studyTarget: reportableTarget');
+    expect(stepScreen).toContain("studyTarget === 'it'");
+    expect(stepScreen).toContain('removeFromRemainingRun=');
   });
 });

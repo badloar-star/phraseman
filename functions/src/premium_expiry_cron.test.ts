@@ -41,18 +41,11 @@ describe('premium_expiry_cron — снимаем ТОЛЬКО просрочен
       expect(d!.patch.premium_expiry).toBe(String(RC_DEAD));
       expect(d!.reasons).toEqual(['store_rc_expired']);
     });
-    it('MAX monthly follows the same recurring expiry lifecycle', () => {
+    // Владелец 04.10 «МАКС ВЫЧИСТИТЬ»: MAX выведен из доступа (premium_status: MAX_TIER_PLANS = []) — крон его не ведёт.
+    it('retired MAX plan is not a store subscription — the cron leaves it alone', () => {
       expect(planExpiryDeactivation(
-        { premium_plan: 'max_monthly', premium_expiry: '0', premium_rc_expiry_ms: String(FUTURE) }, NOW,
-      )).toBeNull();
-
-      const expired = planExpiryDeactivation(
         { premium_plan: 'max_monthly', premium_expiry: '0', premium_rc_expiry_ms: String(RC_DEAD) }, NOW,
-      );
-      expect(expired).toMatchObject({
-        patch: { premium_plan: '', premium_expiry: String(RC_DEAD) },
-        reasons: ['store_rc_expired'],
-      });
+      )).toBeNull();
     });
     it('lifetime remains non-expiring', () => {
       expect(planExpiryDeactivation(

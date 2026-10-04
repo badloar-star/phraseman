@@ -189,6 +189,8 @@ function createRenderHarness(source, expose, { themeId = 'graphite' } = {}) {
     '../community_packs/localAuthorPacks': { isLocalAuthorPackId: id => id.startsWith('local:') },
     './packMarketplaceIcons': { bundledPackTilePng: () => 'legacy-png', packTileImageForPack: () => 'legacy-art' },
     '../community_packs/CommunityPackSocialBar': { __esModule: true, default: host('CommunityPackSocialBar') },
+    // зачем (D158, 04.10): секция использует общий useLoadGate; здесь он не исчерпан — рисуется скелетон, как раньше.
+    '../use_load_gate': { useLoadGate: () => ({ exhausted: false, retryNow: () => {} }) },
   };
   const output = ts.transpileModule(source, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.React, esModuleInterop: true },

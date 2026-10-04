@@ -1,12 +1,13 @@
 /** Три лучшие реальные UGC-набора на хабе; каталог и доступ не меняются. */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { type ComponentProps, useEffect, useMemo, useRef } from 'react';
+import React, { type ComponentProps, useCallback, useEffect, useMemo } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useLoadGate } from '../use_load_gate';
 import { packCategoryIonIcon, packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
@@ -128,27 +129,25 @@ function CommunityHighlightRow({ pack, lang, owned, opening, disabled, onOpen }:
   );
 }
 
-const SILENT_RETRY_MS = 20_000;
-const SILENT_RETRY_MAX = 5;
-
-/** зачем (владелец 01.10): пустой каталог не показывает ошибку и кнопку «Повторить» — докачиваем молча, до 5 раз по 20 с. */
+/**
+ * зачем (владелец 01.10 + D158 / PM-214): пустой каталог докачиваем молча, но не бесконечно — общий
+ * useLoadGate (потолок 12 с, паузы 1/3/8 с), затем в секции «Сейчас недоступно» + «Попробовать снова».
+ */
 function useSilentCatalogRetry(empty: boolean, loading: boolean, onRetry?: () => void) {
-  const attempts = useRef(0);
+  const noRetry = empty && !onRetry;
   useEffect(() => {
-    if (!empty) { attempts.current = 0; return undefined; }
-    if (!onRetry) { console.warn('[FC-DECKS] top community: тихий повтор пропущен — нет onRetry'); return undefined; }
-    if (loading) return undefined; // идёт обычная загрузка, не дублируем
-    if (attempts.current >= SILENT_RETRY_MAX) {
-      console.warn('[FC-DECKS] top community: лимит тихих повторов исчерпан', { attempts: attempts.current });
-      return undefined;
-    }
-    const timer = setTimeout(() => {
-      attempts.current += 1;
-      console.warn('[FC-DECKS] top community: тихий повтор каталога', { attempt: attempts.current });
-      onRetry();
-    }, SILENT_RETRY_MS);
-    return () => clearTimeout(timer);
-  }, [empty, loading, onRetry]);
+    if (noRetry) console.warn('[FC-DECKS] top community: тихий повтор пропущен — нет onRetry');
+  }, [noRetry]);
+  const retry = useCallback(() => {
+    console.warn('[FC-DECKS] top community: тихий повтор каталога');
+    onRetry?.();
+  }, [onRetry]);
+  return useLoadGate({
+    id: 'fc-top-community',
+    status: !empty ? 'ready' : loading ? 'loading' : 'error',
+    retry,
+    enabled: Boolean(onRetry),
+  });
 }
 
 export type SavedTopCommunityPacksProps = {
@@ -182,7 +181,7 @@ export default function SavedTopCommunityPacks({
   loading = false,
   onRetry,
 }: SavedTopCommunityPacksProps) {
-  useSilentCatalogRetry(catalog.length === 0, loading, onRetry);
+  const catalogGate = useSilentCatalogRetry(catalog.length === 0, loading, onRetry);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN), [catalog]);
@@ -229,6 +228,24 @@ export default function SavedTopCommunityPacks({
             />
           ))}
         </ScrollView>
+      ) : catalogGate.exhausted ? (
+        <View testID="saved-top-community-unavailable" style={styles.unavailable}>
+          <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.text }]}>{triLang(lang, {
+            ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+            'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+          })}</Text>
+          <Pressable
+            testID="saved-top-community-try-again"
+            accessibilityRole="button"
+            onPress={() => { hapticTap(); catalogGate.retryNow('tap'); }}
+            style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+          >
+            <Text style={[styles.unavailableActionLabel, { color: g.text }]}>{triLang(lang, {
+              ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+              'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+            })}</Text>
+          </Pressable>
+        </View>
       ) : (
         /* зачем (владелец 01.10): ни «Загружаем…», ни «Наборы сообщества недоступны», ни «Повторить» —
            пока в каталоге пусто, секция показывает скелетон ТОЙ ЖЕ геометрии (без текста и крутилки),
@@ -260,6 +277,11 @@ const styles = StyleSheet.create({
   seeAll: { minHeight: 44, maxWidth: '42%', minWidth: 44, flexShrink: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 3 },
   seeAllText: { minWidth: 0, flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'right' },
   rail: { flexDirection: 'row', gap: 10, paddingBottom: 4 },
+  // D158: та же высота, что у скелетона секции (обложка 112 + две строки) — экран не прыгает.
+  unavailable: { minHeight: 144, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 4 },
+  unavailableTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  unavailableAction: { minHeight: 44, paddingHorizontal: 20, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  unavailableActionLabel: { fontSize: 16, fontWeight: '600' },
   highlightRow: { width: 112 },
   cover: { width: 112, height: 112, borderRadius: 12, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   opening: { position: 'absolute', alignSelf: 'center' },

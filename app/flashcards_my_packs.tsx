@@ -52,6 +52,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
+import { useLoadGate } from './use_load_gate';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
@@ -517,23 +518,18 @@ export default function FlashcardsMyPacksScreen() {
     }, [loadMine, reloadTick]),
   );
 
-  // зачем (владелец 01.10): экрана ошибки «Не удалось загрузить наборы» и кнопки «Повторить» больше нет.
-  // Пока кэш/снимок показывает наборы, а сеть не ответила — молча перезапрашиваем (до 5 раз по 20 с).
-  const silentRetryRef = useRef(0);
-  useEffect(() => {
-    if (loadStatus === 'ready') { silentRetryRef.current = 0; return undefined; }
-    if (loadStatus === 'loading') return undefined;
-    if (silentRetryRef.current >= 5) {
-      console.warn('[FC-DECKS] my packs: тихие повторы исчерпаны', { loadStatus });
-      return undefined;
-    }
-    const timer = setTimeout(() => {
-      silentRetryRef.current += 1;
-      console.warn('[FC-DECKS] my packs: тихий повтор', { attempt: silentRetryRef.current, loadStatus });
-      setReloadTick((value) => value + 1);
-    }, 20_000);
-    return () => clearTimeout(timer);
+  // зачем (владелец 01.10 + D158 / PM-214): экрана ошибки нет — пока кэш/снимок показывает наборы, а сеть
+  // не ответила, молча перезапрашиваем. Но не бесконечно: общий useLoadGate (потолок 12 с, паузы 1/3/8 с);
+  // если показать нечего — «Сейчас недоступно» + «Попробовать снова». Повтор → loading (фокус-загрузчик).
+  const retryMyPacks = useCallback(() => {
+    console.warn('[FC-DECKS] my packs: тихий повтор', { loadStatus });
+    setReloadTick((value) => value + 1);
   }, [loadStatus]);
+  const myPacksGate = useLoadGate({
+    id: 'fc-my-packs',
+    status: loadStatus === 'ready' ? 'ready' : loadStatus === 'loading' ? 'loading' : 'error',
+    retry: retryMyPacks,
+  });
 
   // `/flashcards` теперь единый хаб: из библиотеки возвращаемся в него, а уже
   // стрелка хаба выводит на главную.
@@ -1089,7 +1085,25 @@ export default function FlashcardsMyPacksScreen() {
             {packCount === 0 ? (
               <View style={{ marginTop: 24, alignItems: 'center', gap: 14, padding: 20, borderRadius: 24, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }}>
                 <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                {loadStatus !== 'ready' ? (
+                {loadStatus !== 'ready' && myPacksGate.exhausted ? (
+                  <View testID="fc-my-packs-unavailable" style={{ alignSelf: 'stretch', alignItems: 'center', gap: 12 }}>
+                    <Text accessibilityRole="header" style={{ color: g.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>{triLang(lang, {
+                      ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+                      'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+                    })}</Text>
+                    <Pressable
+                      testID="fc-my-packs-try-again"
+                      accessibilityRole="button"
+                      onPress={() => { void hapticTap(); myPacksGate.retryNow('tap'); }}
+                      style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 20, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 })}
+                    >
+                      <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>{triLang(lang, {
+                        ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+                        'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+                      })}</Text>
+                    </Pressable>
+                  </View>
+                ) : loadStatus !== 'ready' ? (
                   <View testID="fc-my-packs-loading" style={{ alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-between' }}>
                     {[0, 1, 2].map((index) => <View key={index} style={{ width: tileW * 0.78, height: tileW * 0.78, borderRadius: 18, backgroundColor: g.opaqueControl }} />)}
                   </View>

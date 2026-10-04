@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useLoadGate } from '../use_load_gate';
 
 type Props = {
   lang: Lang;
@@ -42,34 +43,41 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
   </View>;
 }
 
-const SILENT_RETRY_MS = 20_000;
-const SILENT_RETRY_MAX = 5;
-let silentAttempts = 0;
-let silentLastAt = 0;
-
-// зачем (владелец 01.10): экрана ошибки загрузки карточек больше нет. При ошибке показываем
-// скелетон той же геометрии и молча перезапрашиваем (до 5 раз по 20 с). Счётчик модульный, потому что
-// экран размонтируется на время самой загрузки и локальный счётчик сбрасывался бы каждый круг.
+// зачем (владелец 01.10 + D158 / PM-214): экрана ошибки загрузки нет — при сбое скелетон той же геометрии
+// и тихий повтор, но не бесконечный: общий useLoadGate (паузы 1/3/8 с), затем «Сейчас недоступно» +
+// «Попробовать снова». Счётчик живёт между монтированиями (persistAcrossMounts): экран размонтируется на
+// время самой загрузки, и локальный счётчик сбрасывался бы каждый круг.
 export function SavedCollectionState(props: Props) {
   const { lang, loadError, onRetry } = props;
-  useEffect(() => {
-    if (!loadError) { silentAttempts = 0; return undefined; }
-    if (Date.now() - silentLastAt > 5 * 60_000) silentAttempts = 0;
-    if (silentAttempts >= SILENT_RETRY_MAX) {
-      console.warn('[FC-SAVED] тихие повторы исчерпаны', { attempts: silentAttempts });
-      return undefined;
-    }
-    const timer = setTimeout(() => {
-      silentAttempts += 1;
-      silentLastAt = Date.now();
-      console.warn('[FC-SAVED] тихий повтор загрузки карточек', { attempt: silentAttempts });
-      try { void Promise.resolve(onRetry()).catch((e) => console.warn('[FC-SAVED] повтор отклонён', e)); }
-      catch (e) { console.warn('[FC-SAVED] повтор упал', e); }
-    }, SILENT_RETRY_MS);
-    return () => clearTimeout(timer);
-  }, [loadError, onRetry]);
+  const retry = useCallback(() => {
+    console.warn('[FC-SAVED] тихий повтор загрузки карточек');
+    try { void Promise.resolve(onRetry()).catch((e) => console.warn('[FC-SAVED] повтор отклонён', e)); }
+    catch (e) { console.warn('[FC-SAVED] повтор упал', e); }
+  }, [onRetry]);
+  const gate = useLoadGate({ id: 'fc-saved', status: loadError ? 'error' : 'ready', retry, persistAcrossMounts: true });
+  if (loadError && gate.exhausted) return <SavedCollectionUnavailable lang={lang} onRetry={() => gate.retryNow('tap')} />;
   if (loadError) return <SavedCollectionLoading lang={lang} />;
   return <SavedCollectionEmpty {...props} />;
+}
+
+function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; onRetry: () => void }>) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const title = triLang(lang, {
+    ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+    'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+  });
+  const action = triLang(lang, {
+    ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+    'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+  });
+  return <View testID="fc-saved-unavailable" style={styles.state}>
+    <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+    <Pressable testID="fc-saved-try-again" accessibilityRole="button" accessibilityLabel={action} onPress={onRetry}
+      style={({ pressed }) => [styles.action, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+      <Text style={[styles.actionText, { color: g.text }]}>{action}</Text>
+    </Pressable>
+  </View>;
 }
 
 function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {

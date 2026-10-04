@@ -67,7 +67,7 @@
 <body>
 <div class="page">
   <h1 class="page-h1">Мои ошибки — «звание и лестница» на вкладке «Исправлены»</h1>
-  <p class="page-lead">Предложение к эталону «Панель»: полоса со званием, прогрессом до следующего и лестницей остаётся (решение владельца 14.09) и рисуется в языке «Панели». Три кадра: список с полосой, лестница ниже, пустое «ещё нет исправленных» (полосы нет).</p>
+  <p class="page-lead">Предложение к эталону «Панель»: полоса со званием, прогрессом до следующего и лестницей остаётся (решение владельца 14.09) и рисуется в языке «Панели». Четыре кадра: список с полосой, лестница ниже, пустое «ещё нет исправленных» (полосы нет) и итог отработки со строками монет, серии и звания (в закреплённом итоге их нет — решение владельца 04.10: монеты видны в итоге, звания остаются).</p>
   <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
 </div>
@@ -89,7 +89,11 @@ const rowsDone = [['Would rather', 'Лучше бы', 3], ['Ready', 'Готов'
 const s1 = () => phone(`${head}${shelf}${chips(0)}<div class="panel">${rowsDone.slice(0, 2).map((r) => prow(...r)).join('')}</div>`, { fixed: '' });
 const s2 = () => phone(`<div style="height:22px"></div><div class="panel" style="margin-top:0">${rung('Внимательный', 5, 1)}${rung('Корректор', 15, 1)}${rung('Редактор', 40, 0)}${rung('Мастер', 100, 0)}</div>${chips(0)}<div class="panel">${rowsDone.map((r) => prow(...r)).join('')}</div>`, { fixed: '' });
 const s3 = () => phone(`${head.replace('Исправлены · 38', 'Исправлены · 0')}<div class="fchips"><span class="on">Все 0</span></div><div class="panel"><div class="pr" style="justify-content:center"><div class="sec2" style="font-size:16px">Здесь пока пусто</div></div></div>`, { fixed: '' });
-document.getElementById('root').innerHTML = block('shelf', 'Вкладка «Исправлены»', 'Полоса со званием над лентами-фильтрами; лестница — отдельная панель ниже по прокрутке.', [col('Со званием', s1()), col('Лестница ниже', s2()), col('Пока ничего не исправлено', s3())]);
+const ring = (p) => { const r = 100, S = 236, c = 2 * Math.PI * r; return `<svg viewBox="0 0 ${S} ${S}"><circle cx="118" cy="118" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="16"/><circle cx="118" cy="118" r="${r}" fill="none" stroke="var(--acc)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${c * p} ${c}" transform="rotate(-90 118 118)"/></svg>`; };
+const cnt = (t, n) => `<div class="pr"><span>${t}</span><b style="margin-left:auto;font-size:22px">${n}</b></div>`;
+// зачем (решение владельца 04.10: монеты видны в итоге, звания остаются): итог отработки с тремя строками сверх эталона — монеты, серия исправлений, новое звание.
+const s4 = () => phone(`<div class="topbar"><span class="rb t">${icon('close', 's20')}</span></div><div class="ringw" style="position:relative;width:236px;height:236px;margin:14px auto 0">${ring(0.75)}<div class="c" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:58px;line-height:60px;font-weight:800;letter-spacing:-1.5px">9/12</div><div class="sec2" style="font-size:15px;margin-top:2px">верно</div></div></div><div class="panel" style="margin-top:22px">${cnt('Исправлено совсем', 2)}${cnt('Ближе к исправлению', 7)}${cnt('Ещё повторить', 3)}${cnt('Монеты', '+35')}${cnt('Серия исправлений', '4 дня')}${cnt('Новое звание', 'Корректор')}</div><div style="font-size:15px;color:var(--sec);font-weight:600;margin:20px 0 8px">Исправлено</div><div class="panel">${prow('Would rather', 'Лучше бы', 3)}</div>`, { fixed: bot(cta('Готово')) });
+document.getElementById('root').innerHTML = block('shelf', 'Вкладка «Исправлены»', 'Полоса со званием над лентами-фильтрами; лестница — отдельная панель ниже по прокрутке.', [col('Со званием', s1()), col('Лестница ниже', s2()), col('Пока ничего не исправлено', s3()), col('Итог отработки: монеты, серия, звание', s4())]);
 K.init();
 const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'], ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
 let theme = 0;

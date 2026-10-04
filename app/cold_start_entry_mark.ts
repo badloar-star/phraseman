@@ -1,17 +1,87 @@
 /**
- * Самая ранняя отметка JS-старта для [COLD-START].
+ * Самая ранняя отметка JS-старта для [COLD-START] + (только дев) цена исполнения модулей.
  *
  * зачем (координатор 04.10, холодный старт п.1, «сперва логи»): BOOT_T0 в _layout ставится уже ПОСЛЕ всех
  * статических импортов корня, а performance.now в RN — общие часы, не время от старта процесса. Поэтому
  * цену графа импортов (в т.ч. модальных хостов) было не видно. Этот модуль импортируется ПЕРВЫМ в index.js
  * и запоминает время входа; _layout пишет layout.module_imports:done с entryToImportsMs.
+ *
+ * Замер «после» показал ~6 с импортов корня (дев). Чтобы понять, ЧТО в них тяжёлое, в дев-сборке ставим
+ * хук Systrace рантайма Metro: он зовётся на каждом первом require модуля (metro-runtime require.js,
+ * global.__SYSTRACE). Копим «своё» время модуля (без вложенных require) и полное; отчёт — топ модулей.
+ * В релизе хука нет: __SYSTRACE не трогаем, отчёт пустой.
  */
-const holder = globalThis as { __phrasemanEntryEpochMs?: number };
+const holder = globalThis as {
+  __phrasemanEntryEpochMs?: number;
+  __DEV__?: boolean;
+  __SYSTRACE?: { beginEvent?: (name?: string) => void; endEvent?: () => void };
+};
 if (typeof holder.__phrasemanEntryEpochMs !== 'number') holder.__phrasemanEntryEpochMs = Date.now();
 
 export function msSinceJsEntry(): number {
   const entry = holder.__phrasemanEntryEpochMs;
   return typeof entry === 'number' ? Date.now() - entry : -1;
+}
+
+type Frame = { name: string; startedAt: number; childMs: number };
+const moduleSelfMs = new Map<string, number>();
+const moduleTotalMs = new Map<string, number>();
+const frames: Frame[] = [];
+let moduleCount = 0;
+let tracing = false;
+
+function shortName(raw: string): string {
+  const name = raw.startsWith('JS_require_') ? raw.slice('JS_require_'.length) : raw;
+  return name.replace(/\\/g, '/').replace(/^.*?\/(app|components|modules|hooks|constants|node_modules)\//, '$1/');
+}
+
+if (holder.__DEV__ === true) {
+  const previous = holder.__SYSTRACE;
+  tracing = true;
+  holder.__SYSTRACE = {
+    beginEvent: (name?: string) => {
+      previous?.beginEvent?.(name);
+      if (!tracing || typeof name !== 'string' || !name.startsWith('JS_require_')) return;
+      frames.push({ name: shortName(name), startedAt: Date.now(), childMs: 0 });
+    },
+    endEvent: () => {
+      previous?.endEvent?.();
+      if (!tracing) return;
+      const frame = frames.pop();
+      if (!frame) return;
+      const totalMs = Date.now() - frame.startedAt;
+      moduleCount += 1;
+      moduleTotalMs.set(frame.name, totalMs);
+      moduleSelfMs.set(frame.name, Math.max(0, totalMs - frame.childMs));
+      const parent = frames[frames.length - 1];
+      if (parent) parent.childMs += totalMs;
+    },
+  };
+}
+
+/**
+ * Дев: топ модулей по «своему» времени и по полному (с вложенными) — срез с прошлого вызова.
+ * Срезы: layout.module_imports:done (граф корня) и кадр Главной (всё, что исполнилось до него, в т.ч.
+ * ленивый чанк Главной). stop=true выключает трассировку.
+ */
+export function takeModuleEvalReport(
+  top = 15,
+  options: Readonly<{ stop?: boolean }> = {},
+): Readonly<{ modules: number; selfSumMs: number; self: string; total: string }> | null {
+  if (!tracing) return null;
+  const fmt = (map: Map<string, number>) => [...map.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, top)
+    .map(([name, ms]) => `${ms}ms ${name}`)
+    .join(' | ');
+  let selfSumMs = 0;
+  moduleSelfMs.forEach((ms) => { selfSumMs += ms; });
+  const report = { modules: moduleCount, selfSumMs, self: fmt(moduleSelfMs), total: fmt(moduleTotalMs) };
+  moduleSelfMs.clear();
+  moduleTotalMs.clear();
+  moduleCount = 0;
+  if (options.stop) tracing = false;
+  return report;
 }
 
 /* expo-router: keep this utility from being treated as a screen */

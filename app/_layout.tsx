@@ -188,7 +188,8 @@ import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
 import { coldStartMark, coldStartStep } from './cold_start_trace';
-import { msSinceJsEntry } from './cold_start_entry_mark'; // зачем: §80 — [COLD-START] от старта процесса
+import { msSinceJsEntry, takeModuleEvalReport } from './cold_start_entry_mark';
+import { whenHomePainted } from './home_paint_marker'; // зачем: §80 — [COLD-START] от старта процесса
 import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
@@ -306,6 +307,14 @@ installPhoneStateProductionRuntime();
 // зачем (координатор 04.10, холодный старт п.1, «сперва логи»): статические import исполняются до этой
 // строки — proc= здесь = цена всего графа импортов корня (включая модальные хосты), до первого рендера.
 coldStartMark('layout.module_imports:done', '_layout', { entryToImportsMs: msSinceJsEntry() });
+// зачем (координатор 04.10, п.1): ~6 с импортов корня в деве — какие модули тяжёлые (только дев, один раз).
+{
+  const moduleReport = takeModuleEvalReport();
+  if (moduleReport) {
+    coldStartMark('layout.module_eval:self_top', '_layout', { modules: moduleReport.modules, selfSumMs: moduleReport.selfSumMs, top: moduleReport.self });
+    coldStartMark('layout.module_eval:total_top', '_layout', { top: moduleReport.total });
+  }
+}
 
 const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;
 const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
@@ -2429,8 +2438,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // готовит их байты в 4 потока — 8,1/12,6/8,1 с на JS-потоке ровно поверх первого кадра Главной (корень
       // молчал 4,3 с после setReady). Занятию посев заранее не нужен — оно готовит свою озвучку само по
       // запросу, — поэтому посев идёт после первого кадра Главной.
-      runAfterHomeFirstFrame('v2_audio_seed', () => {
-        const endAudioSeedStep = coldStartStep('after_home.v2_audio_seed', '_layout');
+      // Замер «после» (04.10): событие оболочки вкладок отпускало посев на 1–5 с РАНЬШЕ настоящего кадра ленивой
+      // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
+      runAfterHomeFirstFrame('v2_audio_seed', () => whenHomePainted(15_000).then((paintWait) => {
+        const endAudioSeedStep = coldStartStep(`after_home.v2_audio_seed[${paintWait}]`, '_layout');
         return seedLearningV2BootstrapAudioCacheV1().catch((error) => {
           if (__DEV__) {
             console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
@@ -2438,7 +2449,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
           return 'failed' as const;
         }).then((outcome) => endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok'));
-      });
+      }));
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');

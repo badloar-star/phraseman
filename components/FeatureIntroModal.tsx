@@ -223,7 +223,8 @@ function FeatureIntroModal({
       {({ requestDismiss }) => <>
       <ScrollView style={{ flexShrink: 1 }} contentContainerStyle={{ paddingBottom: 4 }} bounces={false}>
         {showScene && sceneName ? (
-          <View style={styles.sceneRow}>
+          // зачем (координатор 04.10): нижние 12 % сцены пустые — подтягиваем заголовок на них, отступ как у значка.
+          <View style={[styles.sceneRow, { marginBottom: 4 - Math.round(sceneH * 0.12) }]}>
             <ThemedArt name={sceneName} width={sceneW} height={sceneH} testID={`${testIdPrefix}-scene`} />
           </View>
         ) : stageFamily ? <FeatureIntroStage family={stageFamily} art={art} /> : <View style={styles.iconRow}><IconStage icon={icon} /></View>}

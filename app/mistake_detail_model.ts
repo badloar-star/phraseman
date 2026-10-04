@@ -1,6 +1,7 @@
 import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
-import { MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
+import { independentProductionModeCount, MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
+import { mistakeExerciseCapabilitiesFor } from '../modules/mistake-practice/capabilities';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practice_insights';
 
@@ -40,6 +41,8 @@ export interface MistakeDetail {
   readonly qualifyingDays: number;
   /** Сколько разных режимов уже зачтено (нужно 2 из 3 дней). */
   readonly qualifyingModes: number;
+  /** Сколько разных способов ответа нужно этой ошибке: 2, если доступна речь, иначе 1 (как в проекции, bc60bac61). */
+  readonly requiredModes: 1 | 2;
   readonly ready: boolean;
   readonly dueAtMs: number;
   readonly correctedAtMs: number | null;
@@ -114,6 +117,8 @@ export function buildMistakeDetail(
     captureCount: item.captureCount,
     qualifyingDays: Math.min(3, item.qualifyingDays.length),
     qualifyingModes: new Set(item.qualifyingModes).size,
+    // зачем (§130, 04.10): тот же расчёт, что в projection.ts — экран не должен требовать голос там, где его нет.
+    requiredModes: independentProductionModeCount({ facet: item.facet, capabilities: mistakeExerciseCapabilitiesFor(item) }) >= 2 ? 2 : 1,
     ready: item.status === 'active' && item.dueAtMs <= nowMs,
     dueAtMs: item.dueAtMs,
     correctedAtMs: item.correctedAtMs,

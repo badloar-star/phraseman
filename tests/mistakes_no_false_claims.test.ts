@@ -46,7 +46,10 @@ describe('mistakes section never claims more than the data says', () => {
   test('the detail card drops the plural-less noun and hints about modes only when relevant', () => {
     const detail = read('app/mistake_detail.tsx');
     expect(detail).not.toContain('{copy.misses}');
-    expect(detail).toContain('detail.qualifyingDays > 0 && detail.qualifyingModes < 2');
+    // зачем (§130, 04.10): вместо «нужен другой режим» — правило словами; голос упоминается только когда
+    // для этой ошибки он возможен (requiredModes из того же расчёта, что проекция bc60bac61).
+    expect(detail).toContain('ruleCopyFor(lang, detail.requiredModes)');
+    expect(detail).toContain("requiredModes === 2");
   });
 
   test('the verdict promises exactly what the rule requires', () => {

@@ -446,9 +446,16 @@ export default function FlashcardsSpeakingSession() {
         await speakingRefundInFlightRef.current.catch((refundError: unknown) => { console.warn('[FC-SPEAKING] refund:await — прежний возврат не удался (продолжаем)', refundError); });
       }
       if (cancelled) { gateLog('exit:cancelled_before_load'); return; }
+      // зачем (Дизайн 04.10, эмулятор 2/2): между start:begin и сторожем 20 с не было ни строки — висит эта загрузка;
+      // каждая половина пишет своё завершение, чтобы знать, ЧТО именно не отвечает.
+      gateLog('load:begin', { decks: deckRefs.length });
       const [loadedPool, rawPrefs] = await Promise.all([
-        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.loadDeckCardsMulti', [])),
-        AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.getItem', null)),
+        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget })
+          .catch(noteSwallowedAs('flashcards_speaking_session:useEffect.loadDeckCardsMulti', []))
+          .then((cards) => { gateLog('load:cards_done', { cards: cards.length }); return cards; }),
+        AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY)
+          .catch(noteSwallowedAs('flashcards_speaking_session:useEffect.getItem', null))
+          .then((value) => { gateLog('load:prefs_done', { found: value !== null }); return value; }),
       ]);
       if (cancelled) { gateLog('exit:cancelled_after_load', { pool: loadedPool.length }); return; }
       gateLog('load:done', { pool: loadedPool.length });

@@ -230,12 +230,20 @@ async function loadPackDeckCards(
     const local = (await loadLocalAuthorPacks().catch((swallowedError: unknown) => { noteSwallowed('deck_sources:promise_1', swallowedError); return []; })).find((p) => p.id === packId);
     return local ? deckCardsFromCardItems(localAuthorPackCardItems(local), lang) : [];
   }
+  // зачем (Дизайн 04.10: «Устно» висит после start:begin, ни строки 20 с): каждый await этого пути пишет
+  // свой шаг и время — динамические импорты в отладке тянут код с Metro, чтение копии идёт через хранилище.
+  const packTraceStartedAt = Date.now();
+  const packTrace = (step: string, extra: Record<string, unknown> = {}): void => {
+    console.log(`[FC-DECKS] pack:${packId} ${step}`, JSON.stringify({ ms: Date.now() - packTraceStartedAt, ...extra }));
+  };
+  packTrace('import_marketplace:begin');
   // Динамический импорт: marketplace тянет бандлы паков — не грузим их для saved/custom.
   const {
     bundledPacksForOwned,
     buildMarketplaceOwnedCards,
     loadBuiltMarketplaceCardsCache,
   } = await import('./marketplace');
+  packTrace('import_marketplace:done');
   const bundled = bundledPacksForOwned([packId]);
   if (bundled.length > 0) {
     return deckCardsFromCardItems(buildMarketplaceOwnedCards(bundled), lang);
@@ -256,8 +264,11 @@ async function loadPackDeckCards(
    * 2) сеть ограничена по времени и ДОГОНЯЕТ фоном, обновляя копию;
    * 3) без копии — сеть с таймаутом, затем офлайн-кэш маркета.
    */
+  packTrace('import_firestore:begin');
   const { fetchCommunityPackCards } = await import('../community_packs/communityFirestore');
+  packTrace('import_firestore:done');
   const persisted = await readPersistedCommunityPackCards(packId);
+  packTrace('persisted_read:done', { cards: persisted?.length ?? 0 });
   if (persisted && persisted.length > 0) {
     console.log(`[FC-DECKS] pack:${packId} из локальной копии (${persisted.length} карт.), сеть догоняет фоном`);
     void refreshPersistedCommunityPackCards(packId, fetchCommunityPackCards);

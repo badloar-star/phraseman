@@ -3,6 +3,7 @@ import { StyleSheet, useWindowDimensions, View, type StyleProp, type ViewStyle }
 
 import {
   speakingInlineMetrics,
+  speakingInlineSlotAlign,
   type SpeakingInlineMetrics,
   type SpeakingInlineVariant,
 } from '../app/speaking_inline_layout';
@@ -30,7 +31,7 @@ function SpeakingInlineSlot({ children, style, variant = 'trainer' }: SpeakingIn
       <View
         testID="speaking-inline-slot"
         pointerEvents="box-none"
-        style={[styles.slot, { minHeight: metrics.slotHeight }, style]}
+        style={[styles.slot, { minHeight: metrics.slotHeight, justifyContent: speakingInlineSlotAlign(height, variant) }, style]}
       >
         {children}
       </View>

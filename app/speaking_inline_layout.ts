@@ -33,6 +33,18 @@ export function speakingInlineMetrics(
   };
 }
 
+/**
+ * зачем (§126, 04.10): в «Устно» на коротком экране (450×800 dp) прокрутка показывала от слота ~133 из 167 dp,
+ * и низ карточки речи, стоявшей по центру слота, срезался. На экранах ниже эталона тренажёр прижимает карточку
+ * к верху слота; на эталоне и в уроке (у него свой компактный слот) — по центру, как утверждено.
+ */
+export function speakingInlineSlotAlign(
+  viewportHeight: number,
+  variant: SpeakingInlineVariant,
+): 'flex-start' | 'center' {
+  return variant === 'trainer' && viewportHeight < REFERENCE_HEIGHT ? 'flex-start' : 'center';
+}
+
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {
   return null;

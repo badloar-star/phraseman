@@ -221,7 +221,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       // зачем (04.10, §126 «строка микрофона прыгает»): в inline-карточке место под эквалайзер/спиннер держится
       // всегда (VOICE_EQUALIZER_ROW_H) — только раскладка; запись/удержание/оценка не тронуты.
       panel: '19441b78ec7aa496b56aee1bc2bc24e245ac108acaeed56d140c0aaaac68a04d',
-      slot: 'ef4f0bab5e4bd50af4c9855af1e24e2084bc1b04756de016e368cbd2bd071ae7',
+      // зачем (04.10, §126 срез карточки речи): на коротких экранах тренажёр прижимает карточку к верху слота
+      // (speakingInlineSlotAlign) — только выравнивание; геометрия слота и логика записи не тронуты.
+      slot: 'd4c0d899ecf038075486d4c24d5225dd831ac0e0ddef0fa8b3783eebab382c93',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',
     },

@@ -4,6 +4,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import * as logger from 'firebase-functions/logger';
 import { isStorePremiumActive } from './premium_status';
 import {
   applyVerifiedPremiumSubscriptionEvent,
@@ -381,7 +382,12 @@ async function reconcileMine(
       source: 'revenuecat_v2',
     };
   } catch (error) {
-    await finishReservation(db, stableUid, Date.now(), 'error', scope).catch(() => undefined);
+    // зачем (§126, 04.10): немой catch прятал отказ закрытия резервации — причина обязана быть в журнале.
+    await finishReservation(db, stableUid, Date.now(), 'error', scope).catch((finishError: unknown) => {
+      logger.warn('[RC-RECONCILE] finishReservation(error) failed', JSON.stringify({
+        scope, error: String((finishError as Error)?.message ?? finishError).slice(0, 200),
+      }));
+    });
     throw error;
   }
 }
@@ -405,7 +411,13 @@ export const revenueCatPremiumReconcileMine = onCall({
   if (!secret) throw new HttpsError('failed-precondition', 'revenuecat_reconcile_unconfigured');
   try {
     return await reconcileMine(db, stableUid, authUid, secret, Date.now(), fetch, 'premium');
-  } catch {
+  } catch (error) {
+    // зачем (§126, 04.10): клиент видит только «unavailable»; настоящая причина (RevenueCat HTTP,
+    // неподтверждённая линия оплаты, резервация) обязана быть в журнале функции. Секрет не печатаем.
+    logger.warn('[RC-RECONCILE] reconcileMine failed', JSON.stringify({
+      authUidPrefix: authUid.slice(0, 6),
+      error: String((error as Error)?.message ?? error).slice(0, 200),
+    }));
     throw new HttpsError('unavailable', 'revenuecat_reconcile_unavailable');
   }
 });

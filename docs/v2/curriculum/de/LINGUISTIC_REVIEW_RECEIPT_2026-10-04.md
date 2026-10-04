@@ -2,11 +2,12 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` through `de_l28` closure across cumulative
-Stages A–D already recorded below, plus L27 and L28 Stage A (Task 4 authority
-repair) and Stage B (Task 5 chapter blueprint plus fail-closed chapter gate).
+**Scope:** the bounded `de_l24` through `de_l29` closure across cumulative
+Stages A–D already recorded below, plus L27, L28 and L29 Stage A (Task 4
+authority repair) and Stage B (Task 5 chapter blueprint plus fail-closed
+chapter gate).
 **Mode:** fresh independent read-only reviews after each GREEN. Cumulative
-Stages B–D and L27/L28 Stage B used exact-spec and native-German semantic
+Stages B–D and L27/L28/L29 Stage B used exact-spec and native-German semantic
 judges. No reviewer authored or mutated the reviewed files.
 **Reviewed commits:** cumulative Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
@@ -16,7 +17,9 @@ judges. No reviewer authored or mutated the reviewed files.
 `8a02c929f11c91dcc4ad234b988f8c0b157cd2b0`; L27 Stage B
 `079b54138296271cbec921b200cd4176b951cb4b`; L28 Stage A
 `ce23e30d42ce91acee65de53b488070e40e3c68e`; L28 Stage B
-`3963b8d16a6c3872a671d2801594f1b513432c20`.
+`3963b8d16a6c3872a671d2801594f1b513432c20`; L29 Stage A
+`9b3de41e021f87969eef9c820b42c091d8859d3b`; L29 Stage B
+`f4d8b0b5cf8074b72b766d9c85ceec4f6da62241`.
 
 ## Stable authority identities
 
@@ -285,6 +288,87 @@ repair; the writer acknowledged `ACK_AMENDED_PASS_L28_CONTENT_1`. The final
 reviewers acknowledged `ACK_L28_FINAL_REVIEW_3105c008`. Fresh final exact-spec
 and native-German reviews both returned `PASS`, with `P0=0`, `P1=0`, `P2=0`.
 
+## L29 Stage A — repaired Task 4 authority boundary
+
+| Reviewed artifact                                                | SHA-256                                                            |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/lesson_blueprints_de_v1.json` | `0FA844EE3291A36B659C4A8043913B4DD649CB6D4367BBECF36247B8830A33D0` |
+| `tests/learning_v2_de_lesson_boundaries_gate.ts`                 | `376E55DA68A9C6E662401DF0FF6C27D8D6130DAFF71362398ABAA45D6475D7BA` |
+
+The canonical Task 4 `de_l29` object SHA-256 is
+`414E499F0FF839D80CA6DF6AF2A29C3A1F7E3B9EC133B2F8AA1549FED5207295`.
+Its exact ordered L13/L12/L22/L28 recall-authority SHA-256 is
+`9132D6885FC12DD807B12CF537F6E19B8A9C328E2A4C9093B5D08E9EB9433124`;
+its exact CASE/ADP/NP/CEFR evidence-array SHA-256 is
+`B05EECA3CE0F6992804F7EDF96532D28DDF23B6453A9C4E75259C1A58700EE7E`.
+The complete lesson file contains 143,724 bytes and the Task 4 gate contains
+80,078 bytes.
+
+Stage A repaired two fail-closed authority gaps before Task 5: the extended
+L12 two-object construct now has an exact recall row preserving dative
+recipient versus accusative transferred entity, and C04's future
+preposition-plus-Genitiv outcome now carries `DE-GRM-ADP-001` alongside the
+case, nominal-group and CEFR evidence. Fresh exact-spec and native/adversarial
+reviews both returned `PASS`, with `P0=0`, `P1=0`, `P2=0`.
+
+The source selection was tightened rather than broadened. An initial
+memory-level candidate, `wegen eines Unfalls`, was rejected because its exact
+IDS page was not the bound ledger URL. The final production frame is the
+verbatim `wegen des Regens` from the already approved
+`DE-GRM-ADP-001` page. That source also attests colloquial
+`wegen dem Regen`; L29 therefore produces only the bounded written Genitiv
+frame but does not declare the Dative variant universally ungrammatical.
+
+## L29 Stage B — closed Task 5 L29 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `3DF05F1E301BA8CB05246BE9A2FC8FFCFED4FE61ED4B5A688679FD3845904F81` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `F9478F9C7A0E074FC3C0CD50439A9716B33917E6E4A2070F81AA1238F47DD37A` |
+
+The final canonical Task 5 `de_l29` object SHA-256 is
+`1D1A460ED69D0D12E016E8768365CC09860722D01610CD4C42732C89682CB889`.
+Its compact canonical serialization contains 32,439 characters and 32,489
+UTF-8 bytes. The reviewed standalone Prettier transport is
+`3187149066BB5529F62524A41F3A17D9BF4B0B513E1CB74BE835F2BA3A8CD05F`,
+with 44,906 characters and 44,956 UTF-8 bytes. The final chapter file contains
+1,170,428 bytes and the final gate contains 752,492 bytes.
+
+The component identities are pinned: grammar boundary
+`0B2CA79A738FF6BD8BA7E5FFF88616632FFF4D536827C2CB1297B18343ED6B68`,
+packet IDs `536DE44247C2169C9A127E9CDBFEE62E39F67282223791CD53D7FC5EAD5B4B96`,
+lexical packages
+`08E763B5E1FFD46414A06FB98B7E9CECC53A19736EC211364C54DF38ED45C971`,
+recall schedule
+`A9F35BA79741C0FA1A8E025C952EE0D4C4DCADF4DAB2B3FC69DFD293B19BC04A`
+and lifecycle anchors
+`A6FE63947BE9944813FD5D6A6BDF272688E28C7159C135BBEB38C78BD1899075`.
+
+The materialized lesson contains exactly seven chapters, 56 packet IDs and 14
+planned lexical senses. It permits only five closed nominal Genitiv wholes,
+the single approved `wegen des Regens` frame, the established L12 two-object
+contrast, one already licensed neuter-nominative relative mapping and selected
+`sah`. It preserves exact L13/L12/L22/L28 recall, support fading, changed
+contexts and final independent transfer at `de_l29_c07_s56`. Its six local
+lifecycle anchors include the required delayed L28 broader-narrative anchor at
+`de_l29_c07_s49`.
+
+The first prose-only Task 5 authorization was correctly blocked by the sole
+writer because it lacked complete machine-reconstructable chapter JSON, gate
+code and target identities. It was superseded, not patched by assumption.
+`AMENDED_PASS_L29_TASK5_EXACT_TRANSPORT` supplied exact full target candidates,
+component/file hashes and 117 isolated hostile mutations. During temp decode,
+the generic gate exposed a missing delayed anchor as
+`task3_lifecycle_anchors_mismatch:expected=269:actual=268`; the exact transport
+was repaired with the L28 delayed anchor at `de_l29_c07_s49`, rerun to GREEN
+and acknowledged as
+`ACK_L29_TASK5_EXACT_TRANSPORT_1d1a460e_f9478f9c_117`. The final committed
+bytes exactly match those reviewed identities.
+
+Fresh final exact-spec and native-German adversarial reviews both returned
+`PASS`, with `P0=0`, `P1=0`, `P2=0`. No reviewer authored or mutated the
+reviewed files.
+
 ## Hostile and deterministic evidence
 
 - All 52 ordered L24 hostile mutations fail closed with their dedicated
@@ -409,6 +493,39 @@ session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
   this cumulative receipt's final SHA-256; at that point it must report
   `PASS (31/31)`.
 
+## L29 hostile and deterministic evidence
+
+- All 117 ordered L29 hostile mutations fail closed with their exact dedicated
+  diagnostics. They cover Task 4 recall/evidence authority, identity and set
+  drift, lifecycle/registry anchors, recall/future probes, situations, support
+  fading, evidence packets, lexical packages and utility, all seven required
+  chapter semantics, the bounded nominal inventory, the exact approved
+  preposition frame, colloquial-Dative overreach, paradigms and formation
+  rules, genitive pronouns/relatives, proper-name/plural/postposed Genitiv,
+  unselected relative and Präteritum forms, modal Perfekt, register-repair
+  mediation, legal overclaim, unlabelled DACH production, Task 6, RU/UK,
+  release, audio, mockup and English-contour contamination.
+- L29 focused chapter gate: `PASS (de_l29; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-29 chapter gate: `PASS (prefix 29; 203 chapters; 1624 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L28 focused and prefix-28 regression gates: `PASS` (7/56 and 196/1568).
+- The unscoped Task 5 gate remains the required incompleteness signal with exit
+  1 and exact error
+  `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;29/32 lessons;203/224 chapters`.
+- Task 4 lesson-boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32
+session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
+- Research-authority gate: `PASS (53 claims)`.
+- Grammar-graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
+- Current one-phrase interaction gate: `PASS (72/72)`.
+- Schema and owner-decision gates: `PASS`.
+- Prettier, ESLint and scoped two-file diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite is valid only after the manifest replaces
+  its single receipt digest with this cumulative receipt's final SHA-256; source
+  document and requirement counts remain exactly 52 and 102, and no receipt ↔
+  manifest identity cycle is introduced. At that point the suite must report
+  `PASS (31/31)`.
+
 ## Identity-cycle boundary
 
 This receipt deliberately excludes
@@ -421,10 +538,10 @@ weakens the separate recenter hash gate or handover obligation.
 
 ## Closed boundary and next authorized step
 
-- `de_l24` through `de_l28` are closed for Task 5 at the reviewed commits
+- `de_l24` through `de_l29` are closed for Task 5 at the reviewed commits
   above; their applicable Task 4 identities remain pinned by the fail-closed gate.
 - The next exact grammar-first blueprint task is a fresh instruction reread and
-  content-addressed guardian for `de_l29`, followed by one bounded lesson and
+  content-addressed guardian for `de_l30`, followed by one bounded lesson and
   both independent final reviews.
 - Task 6 lexical reconciliation remains mandatory before exact learner-facing
   packet authoring.
@@ -434,6 +551,6 @@ weakens the separate recenter hash gate or handover obligation.
 - This receipt authorizes no English-contour change, deploy, push, production
   write or release action.
 
-Any byte change in a reviewed cumulative Stage A–D, L27 Stage A/B or L28 Stage
-A/B identity invalidates the corresponding verdict and requires fresh
-independent review.
+Any byte change in a reviewed cumulative Stage A–D, L27 Stage A/B, L28 Stage
+A/B or L29 Stage A/B identity invalidates the corresponding verdict and
+requires fresh independent review.

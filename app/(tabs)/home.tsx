@@ -1974,9 +1974,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             })
             : lastLessonName;
         // зачем (ассеты 2.0, 04.10): реестр отдаёт новый предмет, а пока его нет — прежнюю картинку этого места.
+        // Владелец 04.10 про today.webp: «ЭТО ДЛЯ ПОСЛЕДНЕГО УРОКА» — блокнот с галочкой, когда последний урок пройден
+        // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
+        const lastLessonCompleted = (lastLesson?.progress ?? 0) >= 45;
         const priorityCardImage = priorityCardShowsMistakes
             ? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))
-            : (resolveThemedArt('continue', homeArtTone).base ?? lastLessonImage);
+            : (resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage);
         // зачем (владелец 2026-09-21): жест работает при ЛЮБОМ числе ошибок от
         // одной — прежнее ограничение «только 1..9» снято. Переворачивать не на
         // что лишь когда ошибок нет совсем.
@@ -2230,7 +2233,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
                 total={priorityCardShowsMistakes ? Math.max(1, mistakeActiveCount) : 50}
                 art={priorityCardImage}
-                artWide={!priorityCardShowsMistakes}
+                artWide={!priorityCardShowsMistakes && !lastLessonCompleted}
                 badge={!priorityCardShowsMistakes && lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
                 accessibilityLabel={priorityCardShowsMistakes ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}` : `${s.home.continueBtn}: ${lastLessonName}`}
                 onLongPress={priorityCardLongPressEnabled ? handleHomeLearningPriorityCardLongPress : undefined}

@@ -47,7 +47,7 @@ describe('Home per-theme artwork contract', () => {
     // «Мои ошибки», и в разметку арт идёт через priorityCardImage. Намерение
     // прежнее — арт последнего урока берётся из подготовленного набора темы.
     expect(home).toContain("? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))");
-    expect(home).toContain(": (resolveThemedArt('continue', homeArtTone).base ?? lastLessonImage);");
+    expect(home).toContain(": (resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage);");
     expect(home).toContain('art={priorityCardImage}');
     expect(phrase).toContain('getHomeSupportingArt(themeMode).phraseOfDay');
   });

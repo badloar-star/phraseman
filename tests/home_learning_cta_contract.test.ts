@@ -31,7 +31,7 @@ describe('home learning CTA contract', () => {
     expect(source).toContain('const priorityCardImage = priorityCardShowsMistakes');
     // 04.10 (владелец: «первые ассеты готовы, вшивай»): новый предмет 2.0 из реестра, прежняя картинка — запасная.
     expect(source).toContain("? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))");
-    expect(source).toContain(": (resolveThemedArt('continue', homeArtTone).base ?? lastLessonImage);");
+    expect(source).toContain(": (resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage);");
     expect(cardSource).toContain('art={priorityCardImage}');
     expect(cardSource).not.toContain('menuImages.lesson');
 

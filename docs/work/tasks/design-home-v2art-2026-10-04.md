@@ -2,6 +2,7 @@
 
 Governance-ID: TG-D3C2F85C7735
 Governance-ID: TG-0481C5FDEF7A
+Governance-ID: TG-E00D06F6E17D
 Status: In progress
 Owner: сессия «2 · Дизайн»; приказ владельца через координатора 04.10 «первые ассеты готовы, вшивай»
 Related epic/enabler: ТЕМЫ 2.0, ASSETS_V2_PROMPTS.md

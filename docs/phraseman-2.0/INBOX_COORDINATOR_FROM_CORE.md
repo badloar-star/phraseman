@@ -1837,3 +1837,24 @@ await writeStoredItem(key, value); await removeStoredItem(key);      // снач
 peekStoredItem(key); // синхронно: string | null | undefined (undefined = снапшот не знает)
 ```
 Гарантии: ЛЮБАЯ запись через AsyncStorage (setItem/multiSet/multiMerge/removeItem/multiRemove/mergeItem/clear — даже мимо снапшота) выбрасывает ключ из памяти на старте и на финише записи; пока по ключу идёт запись, чтение идёт в хранилище; чтение, начатое до записи, не может сохранить устаревший результат. Пока охрана не поставлена (тесты без неё) снапшот прозрачен и ничего не держит. Деньги (`level_spin_star_*`, `practice_rune_journal_v1:`, `paid_level_spin*`, `energy_*`, `client_shard_operation*`, `*operation_ledger*`) в память НЕ кладутся (SNAPSHOT_DENY_PATTERNS). Значения > 256 КБ не запоминаются. Логи: `[SNAPSHOT-RT]` (miss/hydrate/bypass/каждый catch, итог через 20 с). Для `stable_auth_link_cache_v1` (×14 за старт, 1.0 с суммарно): заменить `AsyncStorage.getItem(STABLE_AUTH_LINK_CACHE_KEY)` на `readStoredItem(...)`, setItem/removeItem оставить как есть (они сами сбросят ключ).
+
+## §126 (координатор) — 2026-10-04 02:30Z: разбор обращений пользователей (Firebase, только чтение) → задачи
+Полный отчёт (с черновиками ответов, вне репо): `<scratch координатора>/reports/USER_REPORTS_TRIAGE.md` — сессиям пересылаю нужные куски. Вывод: свежие деплои 01–03.10 ничего не сломали (8 функций, которые зовёт 1.6.19, без изменений ответов). Найдены СТАРЫЕ серверные поломки.
+**Ядро:**
+1. 🔴 `revenueCatPremiumReconcileMine` — 401 на 100% вызовов (≥05.09): у Cloud Run сервиса нет `allUsers → roles/run.invoker` (у соседей есть). Восстановление Plus из приложения мёртво, работает только вебхук. Сделать: только чтением подтвердить (политика, код functions/src/revenuecat_reconcile.ts:389 совместим с клиентом 1.6.19 app/revenuecat_projection_sync.ts:51,72), подготовить починку — переразвёртывание именованной функции (координатор) — и список пострадавших (оплата есть, Plus нет). Само включение — после «да» владельца (деньги/доступ).
+2. 🟡 `explainMistake` 503 ~25% (валидатор 3 раза бракует ответ модели, ~7 с, 3 платных запроса впустую) — сперва логи, что не прошло валидацию.
+3. 🟡 `[ATTEMPTS-RESET]` подарок «защита от трёх попыток» падает (inventory_negative / consume_invalid) — если механика в 2.0, чинить.
+4. 🟡 Покупка за жемчуг вешает приложение (набор/аура) — логи; проверить, жив ли путь после D139.
+5. 🟡 «Мои ошибки» не открываются (гипотеза mistake_practice_events_corrupt → экран закрывается без восстановления) — логи.
+6. 🟡 Голосовая проверка слишком мягкая (trust/believe, it/that, scare/afraid; урок 2); Huawei без Google — распознавание не слышит.
+7. 🟡 `practice_runes: level_spin_star_operation_corrupt` ×26 у одного устройства на 1.6.24 — блокер 2.0.
+8. 🟡 Уроки 1–8: видимый текст в `app/lesson_data_1_8_phrases_es.gen.ts` разошёлся с `..._source.ts` — выяснить, что реально попадает в урок, и пересобрать .gen, иначе правки контента не дойдут.
+9. 🟢 mistakePracticeSyncEvents 400 ~20%; progressSubmitEvent 400 (2–3 устройства); видео гаснет через 5 мин и не помнит позицию; репорты с platform 'unknown'; набор «Family» не звучит.
+**App Check:**
+1. 🔴 1.6.24: пачка `ReferenceError … doesn't exist` (buildTodayTasksPlaceholder, ENABLE_DEV_TOOLS, triLang, LOW_CHARGE_SHARE, glass, SETTINGS_GROUP_MARGIN) в app_errors — блокер 2.0: найти, откуда (скорее всего остатки удалённого/порядок импортов), сторож.
+2. 🔴 Урок закрывается после 2–6 верных ответов и уходит на главную (iPhone iOS 26.7, Plus, 03.10 трижды) — сперва логи: все выходы из урока в app/lesson1.tsx (navigateUpFromLessonScreen, dismissEnergyModal, handleLessonHeaderBack) и router.replace('/(tabs)/home') в app/_layout.tsx (~1594, 2694, 2893) с причиной.
+3. 🟡 «Мои ошибки» 15–18 с на ответ в 1.6.19: запись журнала (mergeMistakeEvents/persistMistakeEventJournal) на пути ответа — вердикт сразу, журнал фоном.
+4. 🟢 Озвучка слов урока 9 заикается.
+**AccountV2:** (в S2b) не привязывается Google после смены аккаунта в телефоне, два аккаунта и оплата на одном; уровень 13↔12 и дни 155↔52 после перезапуска (два профиля).
+**Дизайн:** объяснить экран серии и «пари»; правило счётчика ошибок («17 не уменьшается»); строка микрофона прыгает в «Моих ошибках»; «Применить» ауры без отклика. **Контент EN (не Codex) — тоже «Дизайн»:** lesson5_phrase_8 + «Do you often travel?» (`_source.ts:2692`); lesson21_phrase_29 + «Did anyone take my phone?» (`lesson_data_17_24.ts:6706`); lesson19_phrase_6 «на рабочем столе» → «на столе» (`:2146`); lesson4_phrase_32 убрать омофон waist из отвлекающих (`_source.ts:2328`); теория: enjoy/like/love, learn/study (у.22), артикли (у.8, 14), «I saw him leave» (у.32). Уроки 1–8 — только после выяснения .gen (Ядро п.8).
+**Владелец (утром):** «да/нет» на починку Plus; текст про Арену; награды за репорты — только монеты (D109), scripts/reply_to_reports.mjs выдаёт спины/руны/жемчуг — не запускать до правки.

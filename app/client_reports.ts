@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { withCallableTimeout } from './callable_timeout';
 
@@ -66,7 +67,9 @@ export async function submitClientReport(
   // не должна крутить спиннер больше минуты.
   const request: SubmitClientReportRequest = {
     kind,
-    payload,
+    // зачем (§126 п.9): часть отчётов (error_report шлёт deviceOS) приходила без platform → 'unknown'
+    // в админке. Одна общая точка: platform добавляется, если вызывающий не задал своё.
+    payload: typeof payload.platform === 'string' && payload.platform ? payload : { ...payload, platform: Platform.OS },
     ...(options.expectedStableUid ? { expectedStableUid: options.expectedStableUid } : {}),
     ...(options.idempotencyKey ? { idempotencyKey: options.idempotencyKey } : {}),
   };

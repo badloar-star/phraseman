@@ -244,7 +244,8 @@ function baseDoc(payload: Record<string, unknown>, stableUid: string, authUid: s
   return {
     uid: stableUid,
     authUid,
-    platform: text(payload.platform, 40) || 'unknown',
+    // зачем (§126 п.9): error_report старых клиентов шлёт платформу как deviceOS — берём её, а не 'unknown'.
+    platform: text(payload.platform, 40) || text(payload.deviceOS, 40) || 'unknown',
     appVersion: text(payload.appVersion, 80) || 'unknown',
     buildNumber: nullableText(payload.buildNumber, 80),
     createdAt: new Date(now).toISOString(),

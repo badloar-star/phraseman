@@ -40,11 +40,11 @@ describe('client reports cache', () => {
     expect(mockCallableInvoker).toHaveBeenCalledTimes(2);
     expect(mockCallableInvoker).toHaveBeenNthCalledWith(1, {
       kind: 'app_error',
-      payload: { n: 1 },
+      payload: { n: 1, platform: 'ios' }, // зачем (§126 п.9): общая точка добавляет platform
     });
     expect(mockCallableInvoker).toHaveBeenNthCalledWith(2, {
       kind: 'app_activity',
-      payload: { n: 2 },
+      payload: { n: 2, platform: 'ios' },
     });
 
     await expect(submitClientReport('error_report', { n: 3 })).resolves.toEqual({
@@ -67,7 +67,7 @@ describe('client reports cache', () => {
 
     expect(mockCallableInvoker).toHaveBeenCalledWith({
       kind: 'error_report',
-      payload: { comment: 'Detailed problem' },
+      payload: { comment: 'Detailed problem', platform: 'ios' },
       expectedStableUid: 'stable-owner',
       idempotencyKey: 'support_123_retry',
     });

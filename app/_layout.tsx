@@ -187,7 +187,7 @@ import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifec
 import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
-import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
+import { coldStartMark, coldStartStep } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
 import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
@@ -302,6 +302,9 @@ LogBox.ignoreLogs([
 // (одна строка итога console.warn, живёт и в release). Временное — убрать после выноса тяжёлого.
 installColdStartIoTrace();
 installPhoneStateProductionRuntime();
+// зачем (координатор 04.10, холодный старт п.1, «сперва логи»): статические import исполняются до этой
+// строки — proc= здесь = цена всего графа импортов корня (включая модальные хосты), до первого рендера.
+coldStartMark('layout.module_imports:done', '_layout');
 
 const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;
 const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
@@ -1900,8 +1903,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
       if (!contentDeliveryMigrationPromise) {
         contentDeliveryMigrationPromise = (async () => {
+          // зачем (холодный старт п.2, «сперва логи»): видно, сколько миграция ждёт облако и сколько работает сама.
+          const endWaitStep = coldStartStep('content_migration.wait_cloud', '_layout');
           if (after) await after.catch(noteSwallowedHandler('_layout:runContentDeliveryMigration.after'));
+          endWaitStep(after ? 'ok' : 'no_wait');
+          const endApplyStep = coldStartStep('content_migration.apply', '_layout');
           await applyContentDeliveryMigration().catch(noteSwallowedHandler('_layout:runContentDeliveryMigration.applyContentDeliveryMigration'));
+          endApplyStep();
         })();
       }
       return contentDeliveryMigrationPromise;
@@ -2405,16 +2413,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       const iconFontsReady = preloadVectorIconFonts();
       void iconFontsReady.catch(noteSwallowedHandler('_layout:bootstrap.iconFontsReady'));
-      void preloadPrimaryTabImages().catch(noteSwallowedHandler('_layout:bootstrap.preloadPrimaryTabImages'));
+      // зачем (холодный старт п.2, «сперва логи»): сколько фоновые работы до setReady делят JS-поток и диск
+      // с первым кадром — по этим цифрам решаем, что переносить в runAfterHomeFirstFrame.
+      const endPrimaryImagesStep = coldStartStep('pre_ready.primary_tab_images', '_layout');
+      void preloadPrimaryTabImages()
+        .then(() => endPrimaryImagesStep(), (error: unknown) => {
+          endPrimaryImagesStep('failed');
+          noteSwallowedHandler('_layout:bootstrap.preloadPrimaryTabImages')(error);
+        });
       // Немой catch запрещён: если посев озвучки падает или висит, занятия
       // молча остаются без звука, и узнать об этом неоткуда (владелец 21.09 —
       // прогрев занятия 2 не давал ни готовности, ни ошибки).
+      const endAudioSeedStep = coldStartStep('pre_ready.v2_audio_seed', '_layout');
       void seedLearningV2BootstrapAudioCacheV1().catch((error) => {
         if (__DEV__) {
           console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
         }
         DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
-      });
+        return 'failed' as const;
+      }).then((outcome) => endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok'));
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');

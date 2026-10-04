@@ -240,7 +240,10 @@
     "asc:iap-images": "node ./scripts/resize-apple-subscription-review-screenshot.mjs",
     "postinstall": "patch-package",
     "eas-build-pre-install": "node scripts/eas_ios_development_entitlements.mjs",
-    "eas-build-post-install": "npm run release:keys && node scripts/eas_production_version_gate.mjs && node scripts/learning_v2_audio_coverage_gate.mjs"
+    "eas-build-post-install": "npm run release:keys && node scripts/eas_production_version_gate.mjs && node scripts/learning_v2_audio_coverage_gate.mjs && node scripts/visual_parity_gate.mjs",
+    "parity:gate": "node scripts/visual_parity_gate.mjs",
+    "parity:build": "node scripts/visual_parity_build.mjs",
+    "parity:shot": "node scripts/parity_shot.mjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

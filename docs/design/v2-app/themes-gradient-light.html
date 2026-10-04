@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Светлые градиентные темы</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10): «ВСЕ СВЕТЛИЕ ТОЖЕ МАКЕТ ДЕЛАЙ» — светлое оформление для 10
+     градиентных тем. Три разных подхода на тех же настоящих экранах, что и тёмный макет
+     themes-gradient.html; ползунок насыщенности и выбор темы общие для всех трёх. */
+  .ctl { position: sticky; top: 0; z-index: 50; background: rgba(5,5,6,.92); backdrop-filter: blur(14px);
+    padding: 16px 0 18px; margin-top: 18px; border-bottom: 1px solid var(--line); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 7px 12px 7px 8px; border-radius: 999px;
+    background: #161618; border: 1px solid var(--line); color: var(--sec); cursor: pointer; user-select: none; }
+  .chip.on { color: #fff; border-color: rgba(255,255,255,.4); background: #222224; }
+  .sw { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+  .sl { display: flex; align-items: center; gap: 16px; margin-top: 16px; max-width: 640px; }
+  .sl span { font-size: 14px; color: var(--sec); white-space: nowrap; }
+  .sl b { font-size: 15px; min-width: 44px; text-align: right; }
+  input[type=range] { flex: 1; accent-color: #fff; height: 28px; }
+
+  /* ---------- общее светлое ---------- */
+  .ph.lt { --text: #111114; --sec: #5C5C63; --muted: #86868C; --line: rgba(0,0,0,.08); --line-2: rgba(0,0,0,.12);
+    --outline: rgba(0,0,0,.22); --control: #ECECEF; --track: #E2E2E6; color: var(--text);
+    box-shadow: 0 0 0 9px #161618, 0 0 0 10px #2A2A2C, 0 30px 80px rgba(0,0,0,.6); }
+  .ph.lt .sb { color: #111114; background: linear-gradient(var(--sbg) 62%, transparent); }
+  .ph.lt .sb .bat { border-color: rgba(0,0,0,.85); } .ph.lt .sb .bat::after { background: #111; }
+  .ph.lt .hi { background: #111114; }
+  .ph.lt :where(.card, .rb, .pill, .cntp, .tile, .opt, .qc)::after { background: none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(0,0,0,.035); }
+  .ph.lt .rb { background: #FFFFFF; border-color: rgba(0,0,0,.06); color: #111114; }
+  .ph.lt .pill, .ph.lt .cntp { background: #FFFFFF; color: #111114; }
+  .ph.lt .opt { border-color: var(--outline); background: rgba(255,255,255,.7); }
+  .ph.lt .qc { background: #FFFFFF; border-color: rgba(0,0,0,.05); }
+  .ph.lt .trk { background: var(--track); }
+  .ph.lt .trk.dot > i { background: #111; }
+  .ph.lt .cta { color: #FFFFFF; background-image: none !important; box-shadow: 0 10px 24px -12px rgba(0,0,0,.35) !important; }
+  .glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; transition: opacity .12s linear; }
+
+  /* ---------- A · Утро: почти белый фон, мягкие пятна, «чернильная» кнопка темнеет в цвет темы ---------- */
+  .ph.vA { --sbg: #F4F4F6; background: #F4F4F6 !important; }
+  .ph.vA .card, .ph.vA .card.c2 { background: color-mix(in srgb, var(--acc) calc(var(--k) * 8%), rgba(255,255,255,.88)) !important;
+    border-color: color-mix(in srgb, var(--ga) calc(var(--k) * 25%), rgba(0,0,0,.06)) !important; box-shadow: 0 8px 22px -14px rgba(0,0,0,.25); }
+  .ph.vA .cta { background: color-mix(in srgb, var(--deep) calc(var(--k) * 100%), #1C1C1F) !important; }
+  .ph.vA .trk > i { background: color-mix(in srgb, var(--deep) calc(var(--k) * 100%), #1C1C1F) !important; }
+  .ph.vA .tile { background: color-mix(in srgb, var(--acc) calc(var(--k) * 34%), #ECECEF) !important; color: color-mix(in srgb, var(--deep) calc(var(--k) * 100%), #111114); }
+
+  /* ---------- B · Пастель: весь фон — лёгкая заливка двумя цветами темы, белые карточки ---------- */
+  .ph.vB { --sbg: color-mix(in srgb, var(--ga) calc(var(--k) * 20%), #F6F6F8);
+    background: linear-gradient(165deg, color-mix(in srgb, var(--ga) calc(var(--k) * 22%), #F6F6F8) 0%,
+      color-mix(in srgb, var(--gb) calc(var(--k) * 20%), #F6F6F8) 100%) !important; }
+  .ph.vB .card, .ph.vB .card.c2 { background: #FFFFFF !important; border-color: transparent !important; box-shadow: 0 10px 26px -16px rgba(0,0,0,.28); }
+  .ph.vB .cta { background: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #1C1C1F) !important;
+    color: var(--bInk) !important; }
+  .ph.vB .trk > i { background: color-mix(in srgb, var(--deep) calc(var(--k) * 100%), #1C1C1F) !important; }
+  .ph.vB .tile { background: color-mix(in srgb, var(--acc) calc(var(--k) * 40%), #F0F0F3) !important; }
+
+  /* ---------- C · Акварель: сильные пятна, матовое стекло карточек ---------- */
+  .ph.vC { --sbg: #FAFAFB; background: #FAFAFB !important; }
+  .ph.vC .card, .ph.vC .card.c2 { background: rgba(255,255,255,.58) !important; border-color: rgba(255,255,255,.75) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%); box-shadow: 0 10px 28px -16px rgba(0,0,0,.22); }
+  .ph.vC .cta { background: color-mix(in srgb, var(--deepB) calc(var(--k) * 100%), #1C1C1F) !important; }
+  .ph.vC .trk > i { background: color-mix(in srgb, var(--deepB) calc(var(--k) * 100%), #1C1C1F) !important; }
+  .ph.vC .tile { background: rgba(255,255,255,.7) !important; color: color-mix(in srgb, var(--deepB) calc(var(--k) * 100%), #111114); }
+  .ph.vC .opt { background: rgba(255,255,255,.55); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Светлые градиентные темы</h1>
+  <p class="page-lead">Те же экраны и 10 тем, что в тёмном макете. Три разных подхода к светлому — выберите букву. Тема и ползунок вверху управляют всеми тремя сразу. Слева на ползунке — почти чистый светлый графит, справа — цвет на полную.</p>
+  <div class="ctl">
+    <div class="chips" id="chips"></div>
+    <div class="sl"><span>Насыщенность</span><input id="k" type="range" min="0" max="100" step="1" value="60"><b id="kv">60%</b></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, energy } = K;
+const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
+
+// Те же темы, что в themes-gradient.html: g1/g2 — пятна, acc — акцент, on — текст на акценте.
+const THEMES = [
+  ['Графит', null, null, '#F2F1F6', '#0B0C0E'],
+  ['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'],
+  ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'],
+  ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'],
+  ['Шампань', '#F0BE78', '#E68296', '#F3D39A', '#3A2608'],
+  ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'],
+  ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A'],
+  ['Лёд', '#96DCFF', '#78A0FF', '#BFE6FF', '#0A2A44'],
+  ['Коралл', '#FF645A', '#FFA046', '#FFB0A0', '#4A0F0A'],
+  ['Сирень', '#A78BFA', '#60A5FA', '#D4C8FF', '#24164A'],
+];
+let cur = 1;
+
+const packRow = (t, a, n) => `<div class="card t"><div class="row" style="min-height:74px"><div class="tx"><div class="tt">${t}</div><div class="st" style="font-size:16px">${a}</div></div><span class="cntp">${n}</span>${ch}</div></div>`;
+const myRow = (ic, t, s) => `<div class="card t"><div class="row"><div class="tile">${icon(ic, 's20')}</div><div class="tx"><div class="tt">${t}</div><div class="st">${s}</div></div>${ch}</div></div>`;
+const cardsHub = () => phone(`
+  <div class="topbar" style="margin-top:0"><span class="rb t">${icon('arrowL', 's20')}</span><span class="rb t">${icon('plus', 's20')}</span></div>
+  <div class="lt"><div class="ti">Карточки</div><div class="su">Учите слова и фразы эффективнее</div></div>
+  <div class="sec" style="margin-top:34px"><div class="ti">Лучшее у сообщества</div></div>
+  <div class="stack">${packRow('Family', 'Лидия', 20)}${packRow('B2 глаголы', 'Ирина', 49)}</div>
+  <div class="divider"></div>
+  <div class="stack">${myRow('bookmark', 'Сохранённые', 'Личная коллекция')}${myRow('layers', 'Мои наборы', 'Созданные и добавленные')}</div>
+  <div class="cta t" style="margin-top:22px">Тренироваться с карточками<span class="ar">${icon('arrowR', 's20')}</span></div>`, { time: '9:41' });
+const cat = (ic, t, s, n, p) => `<div class="card c2 t" style="padding:16px 16px 18px"><div class="flex" style="gap:12px"><div class="tile t55" style="margin-right:10px">${icon(ic, 's26')}</div><div class="grow"><div style="font-size:19px;line-height:24px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:6px">${s}</div></div><span class="frac"><b>${p}</b><span>/${n}</span></span>${ch}</div><div class="trk dot" style="margin:18px 4px 0"><i style="width:${Math.round(p / n * 100)}%"></i></div></div>`;
+const dialogsHub = () => phone(`
+  <div class="flex" style="align-items:flex-start;margin-top:22px"><div class="grow"><div style="font-size:40px;line-height:46px;font-weight:700;letter-spacing:-.6px">Диалоги</div><div style="font-size:16px;color:var(--sec);margin-top:8px">Практикуйте язык в жизненных ситуациях</div></div>${energy(5)}</div>
+  <div class="stack g13" style="margin-top:32px">${cat('cupF', 'Каждый день', 'Просьбы, советы и мелочи дня', 11, 4)}${cat('planeF', 'Путешествия', 'В поездках и на отдыхе', 8, 2)}${cat('peopleF', 'Общение', 'Знакомства и разговоры', 13, 7)}${cat('docF', 'Дела', 'Работа, учёба и важные дела', 19, 1)}</div>`, { time: '9:41', inStyle: 'padding-left:16px;padding-right:16px' });
+const blitz = () => phone(`
+  <div class="flex" style="gap:8px;margin-top:16px"><span class="rb l t" style="margin-right:17px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">Блиц</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Family</div></div></div>
+  <div class="trk" style="margin-top:22px;height:6px"><i style="width:45%"></i></div>
+  <div class="qc" style="margin-top:38px"><div class="k">Выбери перевод</div><div class="q">Hire, fire, quit</div></div>
+  <div class="stack g13" style="margin-top:23px"><div class="opt t">Нанимать, увольнять, уходить</div><div class="opt t">Складывать, сгибать</div><div class="opt t">Обманывать, изменять</div></div>
+  <div class="cta t" style="margin-top:28px">Дальше</div>`, { time: '9:41' });
+
+const VARIANTS = [
+  ['vA', 'A · Утро', 'Почти белый фон, мягкие пятна темы (до 40 %). Карточки — белое стекло с лёгким отливом, кромка в тон. Кнопка и полоски «чернильные» и с ползунком темнеют в глубокий тон темы — белый текст читается всегда.'],
+  ['vB', 'B · Пастель', 'Весь фон — лёгкая заливка двумя цветами темы по диагонали, карточки сплошные белые на тени. Кнопка — пастельный акцент темы с её тёмным текстом, как в тёмном макете.'],
+  ['vC', 'C · Акварель', 'Самые яркие пятна (до 60 %) и матовое стекло карточек: цвет просвечивает сквозь них. Кнопка темнеет во второй цвет темы.'],
+];
+document.getElementById('root').innerHTML = VARIANTS.map(([v, title, lead]) =>
+  block(v, title, lead, [col('Карточки', cardsHub()), col('Диалоги', dialogsHub()), col('Блиц', blitz())]).replace(/class="ph"/g, `class="ph lt ${v}"`),
+).join('');
+K.init();
+
+const phones = [...document.querySelectorAll('.ph')];
+phones.forEach((p) => { const g = document.createElement('div'); g.className = 'glow'; p.prepend(g); });
+
+/** Глубокий тон цвета для кнопки на светлом: белый текст должен читаться (≈ 55 % цвета + чёрный). */
+const deep = (hex) => `color-mix(in srgb, ${hex} 52%, #000000)`;
+const rgbOf = (h) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mixHex = (a, b, t) => '#' + rgbOf(a).map((x, i) => Math.round(x + (rgbOf(b)[i] - x) * t).toString(16).padStart(2, '0')).join('');
+const lum = (h) => { const [r, g, b] = rgbOf(h).map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+const pickInk = (bg, dark) => (ratio('#FFFFFF', bg) >= ratio(dark, bg) ? '#FFFFFF' : dark);
+
+function apply() {
+  const k = document.getElementById('k').value / 100;
+  document.getElementById('kv').textContent = Math.round(k * 100) + '%';
+  const [, g1, g2, acc, on] = THEMES[cur];
+  const root = document.documentElement.style;
+  root.setProperty('--k', g1 ? k : 0);
+  root.setProperty('--acc', acc);
+  root.setProperty('--on', on);
+  root.setProperty('--ga', g1 || '#9A9AA0');
+  root.setProperty('--gb', g2 || '#9A9AA0');
+  root.setProperty('--deep', g1 ? deep(g1) : '#1C1C1F');
+  root.setProperty('--deepB', g2 ? deep(g2) : '#1C1C1F');
+  // зачем: в «Пастели» кнопка светлеет от почти чёрной к пастели — текст берём тот, что
+  // контрастнее на ТЕКУЩЕМ цвете кнопки (белый или тёмный тон темы), без серой середины.
+  root.setProperty('--bInk', g1 ? pickInk(mixHex('#1C1C1F', acc, k), on) : '#FFFFFF');
+  phones.forEach((p) => {
+    const gl = p.querySelector('.glow');
+    const vC = p.classList.contains('vC');
+    const vA = p.classList.contains('vA');
+    gl.style.background = g1 && (vA || vC)
+      ? `radial-gradient(120% 55% at 10% 0%, ${g1}, transparent 62%), radial-gradient(100% 55% at 100% 45%, ${g2}, transparent 66%), radial-gradient(90% 40% at 30% 105%, ${g1}, transparent 70%)`
+      : 'none';
+    gl.style.opacity = !g1 ? 0 : vC ? (0.12 + k * 0.48).toFixed(3) : (0.06 + k * 0.34).toFixed(3);
+  });
+}
+const chips = document.getElementById('chips');
+THEMES.forEach(([n, g1, g2], i) => {
+  const c = document.createElement('div');
+  c.className = 'chip' + (i === cur ? ' on' : '');
+  c.innerHTML = `<span class="sw" style="background:${g1 ? `linear-gradient(135deg, ${g1}, ${g2})` : '#2A2A2C'}"></span>${n}`;
+  c.onclick = () => { cur = i; [...chips.children].forEach((x, j) => x.classList.toggle('on', j === i)); apply(); };
+  chips.appendChild(c);
+});
+document.getElementById('k').addEventListener('input', apply);
+apply();
+</script>
+</body>
+</html>

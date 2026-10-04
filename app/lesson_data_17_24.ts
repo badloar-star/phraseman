@@ -553,6 +553,8 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson17_phrase_28',
     english: "I am not looking for problems",
+    // зачем (§126, жалоба про артикли 04.10): по русскому определённость не выводится — оба артикля верны, ответ не должен считаться ошибкой.
+    alternatives: ["I am not looking for a problem", "I am not looking for trouble"],
     russian: "Я не ищу проблем",
     ukrainian: "Я не шукаю проблеми",
     spanish: "No estoy buscando problemas.",
@@ -1966,6 +1968,8 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson18_phrase_48',
     english: "Let's clean up the room",
+    // зачем (§126, жалоба «Let us — при чём здесь us?» 04.10): Let us — полная форма того же Let's, верный вариант не может быть «ошибкой».
+    alternatives: ["Let us clean up the room", "Let's clean the room"],
     russian: "Давайте уберём комнату",
     ukrainian: "Давайте приберемо кімнату",
     spanish: "Limpiemos la habitación.",
@@ -1976,7 +1980,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
       { text: '.', correct: '.', distractors: [',', '?', '!', ';', ':'], category: 'puntuacion' },
     ],
     wordsEn: [
-      { text: "Let\'s", correct: "Let\'s", distractors: ['Lets', 'Let us', 'Let', 'Make', 'Get'], category: 'exhortativo' },
+      { text: "Let\'s", correct: "Let\'s", distractors: ['Lets', 'Leave', 'Let', 'Make', 'Get'], category: 'exhortativo' },
       { text: 'clean', correct: 'clean', distractors: ['wait', 'help', 'call', 'check', 'send'], category: 'imperativo' },
       { text: 'up', correct: 'up', distractors: ['on', 'off', 'back', 'out', 'in'], category: 'phrasal_particle' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'my'], category: 'articulo' },
@@ -3482,6 +3486,8 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson20_phrase_14',
     english: "She wrote a letter.",
+    // зачем (§126, жалоба про артикли 04.10): по русскому определённость не выводится — оба артикля верны, ответ не должен считаться ошибкой.
+    alternatives: ["She wrote the letter."],
     russian: "Она написала письмо.",
     ukrainian: "Вона написала листа.",
     spanish: "Ella escribió una carta.",
@@ -5417,6 +5423,8 @@ export const LESSON_24_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson24_phrase_13',
     english: 'He has already sent the letter',
+    // зачем (§126, жалоба про артикли 04.10): по русскому определённость не выводится — оба артикля верны, ответ не должен считаться ошибкой.
+    alternatives: ["He has already sent a letter"],
     russian: 'Он уже отправил письмо',
     ukrainian: 'Він вже надіслав листа',
     spanish: 'Él ya ha enviado la carta',

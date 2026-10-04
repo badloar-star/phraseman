@@ -45,6 +45,14 @@ export const LESSON7_THEORY: { titleRu: string; titleUk: string; titleEs: string
           uk: 'have - для I, you, we, they. has - для he, she, it.',
           es: 'have - para I, you, we, they. has - para he, she, it.',
         },
+        // зачем (§126, жалобы «путаюсь в артиклях», «когда ставим the» 04.10): здесь артикли впервые идут массово
+        // (26 фраз из 50), а объяснение было только в уроке 20. Коротко и без терминов — подробно в уроке 20.
+        {
+          kind: 'tip',
+          ru: 'Перед предметом обычно стоит a или the. A — какой-то один, говорим о нём впервые: I have a car. The — тот самый, понятно какой: The car is new. Подробно — в уроке 20.',
+          uk: 'Перед предметом зазвичай стоїть a або the. A — якийсь один, говоримо про нього вперше: I have a car. The — той самий, зрозуміло який: The car is new. Докладно — в уроці 20.',
+          es: 'Delante de una cosa suele ir a o the. A — una cualquiera, la mencionamos por primera vez: I have a car. The — esa en concreto, ya se sabe cuál: The car is new. En detalle, en la lección 20.',
+        },
       ],
     },
 

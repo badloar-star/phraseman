@@ -28,6 +28,7 @@ import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { StreakChainIcon } from '../components/StreakChainIcon';
 import { StreakFlameFill } from '../components/streak/StreakFlameFill';
+import { StreakRuleExplainer } from '../components/streak/StreakRuleExplainer';
 import StreakStagesModal from '../components/streak/StreakStagesModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -2282,6 +2283,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     onFreezeStreak={handleFreezeStreak}
                   />
                 </Reanimated.View>
+                {/* зачем (§126/§137): одноразовое объяснение, как считается серия — сразу под самой серией. */}
+                <StreakRuleExplainer lang={lang} />
 
                 {/* зачем (владелец, 2026-09-13): обычному аккаунту свободны уровень, опыт,
                     серия и последние достижения — они идут первыми у всех, одна иерархия

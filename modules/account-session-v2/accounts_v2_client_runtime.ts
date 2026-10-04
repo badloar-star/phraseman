@@ -47,7 +47,11 @@ import {
 } from '../account-authority-v2/account_authority_bootstrap_contract';
 import { createAccountAuthorityProductionBootstrapIfPossible } from './account_authority_production_adapter';
 import {
+  ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH,
   accountAuthorityRemoteDeleteQueueState,
+  deferAccountAuthorityDeleteProviderSignOut,
+  isAccountAuthorityDeleteProviderSignOutDeferred,
+  releaseAccountAuthorityDeleteProviderSignOutDeferral,
   resolveAccountAuthorityRemoteDeleteByLegacy,
   type RemoteDeleteQueueState,
 } from '../account-authority-v2/account_authority_remote_delete_queue';
@@ -241,7 +245,14 @@ const ACCOUNT_AUTHORITY_PROVIDER_PORT: AccountAuthorityProviderPort = Object.fre
     const uid = currentAuthUid();
     return uid === null ? null : parseFirebaseAuthUid(uid);
   },
-  signOut: async () => {
+  signOut: async ({ operationId }: Readonly<{ operationId: OperationId }>) => {
+    // зачем (AA S5, D-AA5): при главном пути «старое удаление» выход из провайдера
+    // делает старый поток ПОСЛЕ подтверждения сервера — иначе его задача удаления
+    // уходит без входа и полное стирание не начинается.
+    if (isAccountAuthorityDeleteProviderSignOutDeferred(operationId.value)) {
+      AUTHORITY_LOG.info('[AA-S5] delete provider_sign_out_deferred', { reason: 'legacy_primary' });
+      return;
+    }
     const bootstrap = accountAuthorityBootstrap.requireInstalled();
     await bootstrap.providerSignOut();
   },
@@ -333,7 +344,15 @@ export function runAccountAuthorityDeleteTransition(): Promise<AccountAuthorityD
   AUTHORITY_LOG.info('[AA-S4] wiring delete_start');
   const task = (async (): Promise<AccountAuthorityDeleteOutcome> => {
     const operationId = newAccountAuthorityOperationId('delete');
-    const result = await getAccountAuthorityRuntime().deleteAccount(operationId);
+    const legacyPrimary = ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH === 'legacy_primary';
+    AUTHORITY_LOG.info('[AA-S5] wiring delete_server_path', { reason: ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH });
+    if (legacyPrimary) deferAccountAuthorityDeleteProviderSignOut(operationId.value);
+    let result: Awaited<ReturnType<AccountAuthorityRuntime['deleteAccount']>>;
+    try {
+      result = await getAccountAuthorityRuntime().deleteAccount(operationId);
+    } finally {
+      releaseAccountAuthorityDeleteProviderSignOutDeferral(operationId.value);
+    }
     if (result.type !== 'local_deleted') {
       AUTHORITY_LOG.warn('[AA-S4] wiring delete_unexpected_result', { resultType: result.type });
       throw new Error('account_authority_delete_result_unexpected');

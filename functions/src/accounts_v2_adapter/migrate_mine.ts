@@ -12,6 +12,7 @@ import {
   runMigrationDryRun,
   type MigrationReport,
 } from '../accounts_v2_migration/dry_run';
+import { PRESERVED_DOMAIN_MIGRATION_POLICY } from '../accounts_v2_migration/preserved_domains';
 import { finalError, rateLimitedError, reauthError, retryableError } from './errors';
 import { accountsV2MetaPath, accountsV2UidPathSafe, applyBatchInFirestore } from './firestore_port';
 
@@ -157,6 +158,27 @@ export function toPlainLegacyValue(value: unknown, depth = 0): unknown {
   return null;
 }
 
+/** AA S5: код HOLD, если план несёт тип вне политики сохраняемых доменов. */
+export const ACCOUNTS_V2_MIGRATION_NON_PRESERVED_HOLD = 'non_preserved_entity_type';
+
+/**
+ * AA S5: типы операций плана, которых НЕТ в политике сохраняемых доменов
+ * (preserved_domains.ts). Пусто — план несёт только уроки/карточки/библиотеку.
+ * зачем: Account Authority 2.0 переносит ТОЛЬКО сохраняемые домены; сейчас
+ * типы V2 совпадают с политикой, сторож держит это при будущих правках ядра.
+ */
+export function nonPreservedEntityTypes(batches: readonly ValidatedBatch[]): string[] {
+  const carried: ReadonlySet<string> = new Set(PRESERVED_DOMAIN_MIGRATION_POLICY.carriedEntityTypes);
+  const foreign = new Set<string>();
+  for (const batch of batches) {
+    for (const owned of batch.operations) {
+      const type: unknown = owned.operation?.entityType;
+      if (typeof type !== 'string' || !carried.has(type)) foreign.add(typeof type === 'string' ? type : 'invalid'); // guard-ok: Set в памяти
+    }
+  }
+  return [...foreign].sort();
+}
+
 function holdReasonsOf(report: MigrationReport): string[] {
   const reasons = new Set<string>();
   for (const entry of report.held) reasons.add(entry.reason); // guard-ok: Set в памяти
@@ -289,6 +311,13 @@ async function runMigration(
   const { report, batches } = result;
   if (report.status !== 'ready' || report.applyAllowed !== true) {
     return writeHold(port, uid, tag, nowMs, holdReasonsOf(report), legacy.found);
+  }
+  // зачем (AA S5): переносятся только сохраняемые домены Account Authority —
+  // чужой тип в плане = HOLD до применения, в V2 ничего не пишется.
+  const foreignTypes = nonPreservedEntityTypes(batches);
+  if (foreignTypes.length > 0) {
+    console.warn(`[AA-S5] migrate hold reason=${ACCOUNTS_V2_MIGRATION_NON_PRESERVED_HOLD} types=${foreignTypes.join('|')} uid=${tag}`);
+    return writeHold(port, uid, tag, nowMs, [ACCOUNTS_V2_MIGRATION_NON_PRESERVED_HOLD], legacy.found);
   }
   // зачем: продолжение partial допустимо, только если план тот же (иначе — с начала, повтор = duplicate).
   const start = gate.opsSha256 === report.operations.sha256 ? Math.min(gate.resumeFrom, batches.length) : 0;

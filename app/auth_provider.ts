@@ -3896,6 +3896,11 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
           ({ operationId }) => resolveAccountAuthorityDeletionByLegacyIfEnabled(operationId),
           (e: unknown) => console.warn(`[AA-S4] delete:legacy_proof_skipped reason=${String((e as any)?.message ?? e).slice(0, 80)}`),
         );
+      } else if (authorityDeletion !== null) {
+        // зачем (AA S5, D-AA5): главный серверный путь при cutover — это старое
+        // удаление; без его server_enqueued запись AA остаётся «ждёт старое
+        // удаление» (delete_begin не шлётся), повтор — замок старого потока.
+        console.warn(`[AA-S5] delete:aa_awaiting_legacy reason=legacy_not_enqueued ok=${result.ok}`);
       }
       // зачем (владелец, 2026-09-13): ИМЕННО ЗДЕСЬ терялось удаление аккаунта.
       // UI показывает «удалено» сразу после локальной фазы, а исход серверной

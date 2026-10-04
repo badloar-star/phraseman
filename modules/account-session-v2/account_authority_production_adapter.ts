@@ -42,7 +42,9 @@ import {
 import type { SessionFence } from './account_session';
 import { createDurableSlotList } from '../account-authority-v2/account_authority_durable_slots';
 import {
+  ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH,
   createLocalFirstDeleteLease,
+  type AccountAuthorityServerDeletePath,
   type InterruptedDelete,
 } from '../account-authority-v2/account_authority_remote_delete_queue';
 import {
@@ -123,6 +125,8 @@ export type AccountAuthorityProductionAdapterDependencies = Readonly<{
   remoteDeleteFirstSendDeadlineMs?: number;
   /** S4a раунд 4: часы очереди серверного удаления (тесты подменяют). */
   remoteDeleteNowMs?: () => number;
+  /** AA S5 (D-AA5): кто ведёт серверное удаление; не задан — 'authority' (путь S4a). */
+  remoteDeleteServerPath?: AccountAuthorityServerDeletePath;
   secureStore: AccountAuthoritySecureStorePort;
   createStorageAdapter(): ScopeStorageAdapter | null;
   randomInstallationId(): Promise<string>;
@@ -1312,6 +1316,7 @@ export async function createAccountAuthorityProductionBootstrap(
     reportCritical: dependencies.reportCritical,
     firstSendDeadlineMs: dependencies.remoteDeleteFirstSendDeadlineMs,
     nowMs: dependencies.remoteDeleteNowMs,
+    serverDeletePath: dependencies.remoteDeleteServerPath,
   });
   const bootstrap = Object.freeze({
     deviceId,
@@ -1351,6 +1356,8 @@ function productionDependencies(): AccountAuthorityProductionAdapterDependencies
       const auth = require('@react-native-firebase/auth').default();
       await auth.signOut();
     },
+    // AA S5 (D-AA5): при cutover полное серверное удаление ведёт старый поток.
+    remoteDeleteServerPath: ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH,
     // S4a раунд 3: «удаление не завершено» — в журнал, который переживает перезапуск.
     reportCritical: (event: string, code: string) => {
       // eslint-disable-next-line @typescript-eslint/no-require-imports

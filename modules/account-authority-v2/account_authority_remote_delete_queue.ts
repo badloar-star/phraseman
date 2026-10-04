@@ -40,7 +40,45 @@ import type { AccountAuthorityLeasePort } from './account_authority_runtime';
  * входе; бюджет попыток тратят только временные сетевые сбои.
  */
 
-export type RemoteDeleteState = 'pending' | 'needs_sign_in' | 'needs_check' | 'not_completed';
+export type RemoteDeleteState = 'pending' | 'needs_sign_in' | 'needs_check' | 'not_completed' | 'awaiting_legacy';
+
+/*
+ * AA S5 (D-AA5, на подтверждение координатору): кто ведёт СЕРВЕРНОЕ удаление.
+ *   'authority'      — эта очередь сама шлёт `delete_begin` (путь S4a);
+ *   'legacy_primary' — главный путь — старое удаление (`account_delete`: полное
+ *     стирание всех доменов, включая стадию account_authority_purge). Очередь
+ *     только помнит операцию (`awaiting_legacy`) до доказательства старым
+ *     удалением; `delete_begin` НЕ отправляется ни из потока удаления, ни на
+ *     старте, ни при входе.
+ * зачем: при cutover оба удаления шли параллельно — AA стирал Auth и выходил из
+ * провайдера через ≤5 с, пока старый поток ещё ждал постановку своей задачи
+ * (она требует входа) → полное стирание могло не начаться (дыра), и на одно
+ * действие было два серверных удаления (двойная работа).
+ */
+export type AccountAuthorityServerDeletePath = 'authority' | 'legacy_primary';
+
+/** AA S5 (D-AA5): путь серверного удаления в боевой сборке (тесты S4a держат 'authority'). */
+export const ACCOUNT_AUTHORITY_PRODUCTION_SERVER_DELETE_PATH: AccountAuthorityServerDeletePath = 'legacy_primary';
+
+/*
+ * AA S5 (D-AA5): операции удаления, для которых выход из провайдера делает
+ * СТАРЫЙ поток. зачем: старое удаление держит вход до подтверждения сервера
+ * (без входа его задачу не поставить); выход AA раньше этого и был дырой.
+ * Только память процесса: runtime выходит из провайдера в том же удалении.
+ */
+const providerSignOutDeferredDeletes = new Set<string>();
+
+export function deferAccountAuthorityDeleteProviderSignOut(operationId: string): void {
+  providerSignOutDeferredDeletes.add(parseOperationId(operationId).value);
+}
+
+export function releaseAccountAuthorityDeleteProviderSignOutDeferral(operationId: string): void {
+  providerSignOutDeferredDeletes.delete(operationId);
+}
+
+export function isAccountAuthorityDeleteProviderSignOutDeferred(operationId: string): boolean {
+  return providerSignOutDeferredDeletes.has(operationId);
+}
 
 export type RemoteDeleteEntry = Readonly<{
   operationId: string;
@@ -65,6 +103,8 @@ export type RemoteDeleteQueueState = Readonly<{
   notCompleted: number;
   /** Записи, которые не прочитались (остаются в очереди, читаются на каждом старте). */
   unreadable: number;
+  /** AA S5: ждут доказательства старым удалением (главный путь legacy_primary). */
+  awaitingLegacy: number;
 }>;
 
 export const REMOTE_DELETE_QUEUE_PREFIX = 'phraseman.account_authority.remote_delete.v2';
@@ -83,7 +123,7 @@ export function remoteDeleteCheckDelayMs(holdChecks: number): number {
   return Math.min(REMOTE_DELETE_CHECK_BASE_MS * 2 ** exponent, REMOTE_DELETE_CHECK_MAX_MS);
 }
 
-const STATES: ReadonlySet<string> = new Set(['pending', 'needs_sign_in', 'needs_check', 'not_completed']);
+const STATES: ReadonlySet<string> = new Set(['pending', 'needs_sign_in', 'needs_check', 'not_completed', 'awaiting_legacy']);
 
 /** Окончательные исходы — запись снимается: данные AA на сервере удалены/будут удалены. */
 const PROOF_CODES: ReadonlyMap<string, string> = new Map([
@@ -167,9 +207,16 @@ export function createLocalFirstDeleteLease(input: Readonly<{
   firstSendDeadlineMs?: number;
   /** Часы (тесты подменяют). */
   nowMs?: () => number;
+  /** AA S5 (D-AA5): кто ведёт серверное удаление; по умолчанию — 'authority' (путь S4a). */
+  serverDeletePath?: AccountAuthorityServerDeletePath;
 }>): AccountAuthorityLeasePort {
   const { log } = input;
   const nowMs = input.nowMs ?? (() => Date.now());
+  const serverDeletePath: AccountAuthorityServerDeletePath = input.serverDeletePath === 'legacy_primary'
+    ? 'legacy_primary'
+    : 'authority';
+  const newEntryState: RemoteDeleteState = serverDeletePath === 'legacy_primary' ? 'awaiting_legacy' : 'pending';
+  log.info('[AA-S5] remote_delete path', { reason: serverDeletePath });
   const queue: DurableSlotList<RemoteDeleteEntry> = createDurableSlotList({
     secureStore: input.secureStore,
     options: input.secureOptions,
@@ -207,9 +254,10 @@ export function createLocalFirstDeleteLease(input: Readonly<{
       return;
     }
     queue.add(Object.freeze({
-      ...entry, attempts: 0, state: 'pending' as const, enqueuedAtMs: nowMs(), holdChecks: 0, nextCheckAtMs: 0,
+      ...entry, attempts: 0, state: newEntryState, enqueuedAtMs: nowMs(), holdChecks: 0, nextCheckAtMs: 0,
     }));
     log.info('[AA-S4] remote_delete enqueue', { source, result: 'queued', pending: queue.size() });
+    if (newEntryState === 'awaiting_legacy') log.info('[AA-S5] remote_delete awaiting_legacy', { source });
   };
   const forgetBinding = async (owner: Readonly<{ accountId: AccountId; sessionId: SessionId }>): Promise<void> => {
     try {
@@ -303,6 +351,9 @@ export function createLocalFirstDeleteLease(input: Readonly<{
     return now < entry.enqueuedAtMs || entry.nextCheckAtMs - now > REMOTE_DELETE_CHECK_MAX_MS;
   };
   const eligible = (entry: RemoteDeleteEntry, trigger: Trigger): boolean => {
+    // AA S5 (D-AA5): запись старого пути не отправляется НИКОГДА — даже при входе
+    // этого аккаунта (delete_begin стёр бы Auth, а полное стирание ведёт старое удаление).
+    if (entry.state === 'awaiting_legacy') return false;
     if (trigger.source === 'acquire') return entry.accountId === trigger.accountId;
     if (entry.state === 'pending') return true;
     if (entry.state !== 'needs_check') return false;
@@ -323,7 +374,7 @@ export function createLocalFirstDeleteLease(input: Readonly<{
       // Раунд 5 (LOW-3): по сроку снимаются только «нужен вход»/«нужна проверка».
       // not_completed — сервер точно не удалил: держим до входа этим аккаунтом
       // или доказательства старым удалением; pending — свой бюджет попыток.
-      if (entry.state !== 'needs_sign_in' && entry.state !== 'needs_check') continue;
+      if (entry.state !== 'needs_sign_in' && entry.state !== 'needs_check' && entry.state !== 'awaiting_legacy') continue;
       // Часы назад (now < enqueuedAtMs) дают отрицательный возраст — по сроку не снимаем.
       if (nowMs() - entry.enqueuedAtMs < REMOTE_DELETE_HOLD_TTL_MS) continue;
       critical('remote_delete hold_expired', `state_${entry.state}`);
@@ -391,6 +442,7 @@ export function createLocalFirstDeleteLease(input: Readonly<{
         needsCheck: count('needs_check'),
         notCompleted: count('not_completed'),
         unreadable: queue.unreadable(),
+        awaitingLegacy: count('awaiting_legacy'),
       });
     },
     resolveByLegacyDeletion: (operationId: string): boolean => {
@@ -422,6 +474,11 @@ export function createLocalFirstDeleteLease(input: Readonly<{
         accountId: parseAccountId(request.accountId.value).value,
         sessionId: parseSessionId(request.sessionId.value).value,
       }, 'request');
+      if (serverDeletePath === 'legacy_primary') {
+        // AA S5 (D-AA5): серверное удаление ведёт старый поток — сеть здесь не нужна.
+        log.info('[AA-S5] remote_delete first_send', { result: 'skipped_legacy_primary', pending: queue.size() });
+        return;
+      }
       let timer: ReturnType<typeof setTimeout> | null = null;
       const deadline = new Promise<'deadline'>((resolve) => {
         timer = setTimeout(() => resolve('deadline'), firstSendDeadlineMs);

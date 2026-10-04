@@ -877,7 +877,11 @@ function publishProjection(token: AccountGenerationToken, projection: LevelSpinS
 }
 
 async function storedOperationsForOwner(ownerStableId: string): Promise<readonly LocalRuneOperation[]> {
+  // зачем (замер №9): полный обход ключей хранилища на каждом восстановлении — подозреваемый в 4 с на холодном
+  // старте. Пишем цену обхода, чтений и проверки отпечатков, только если весь кусок дольше 500 мс.
+  const loadStartedAt = Date.now();
   const allKeys = await AsyncStorage.getAllKeys();
+  const scanMs = Date.now() - loadStartedAt;
   if (allKeys.length > 524_288) throw new Error('level_spin_star_storage_scan_too_large');
   const prefix = `level_spin_star_operation_v1:${encodeURIComponent(ownerStableId)}:`;
   const journalPrefix = `practice_rune_journal_v1:${encodeURIComponent(ownerStableId)}:`;
@@ -895,6 +899,7 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
     AsyncStorage.multiGet(journalKeys),
     AsyncStorage.multiGet(paidEnvelopeKeys),
   ]);
+  const readsMs = Date.now() - loadStartedAt - scanMs;
   const result: LocalRuneOperation[] = [];
   for (const [, raw] of rows) {
     if (raw === null) continue;
@@ -934,6 +939,19 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
     }
     unique.set(operation.operationId, operation);
   }
+  const totalLoadMs = Date.now() - loadStartedAt;
+  if (totalLoadMs >= 500) {
+    console.warn('[COIN-RECOVER] stored_ops', JSON.stringify({
+      totalMs: totalLoadMs,
+      scanMs,
+      readsMs,
+      verifyMs: totalLoadMs - scanMs - readsMs,
+      allKeys: allKeys.length,
+      operations: keys.length,
+      journal: journalKeys.length,
+      paidEnvelopes: paidEnvelopeKeys.length,
+    }));
+  }
   return Object.freeze([...unique.values()]);
 }
 
@@ -969,12 +987,16 @@ async function recoverProjection(
   };
   return withAccountTransitionLock(async (lease) => {
     recoverStage('account_lock_wait');
+    // зачем (замер №9: этот шаг 3,7–4,4 с на холодном старте против 435 мс на тёплом): два куска идут
+    // параллельно — какой из них тянет, видно только раздельным замером.
+    const parallelStartedAt = Date.now();
     const [phoneState, storedOperations] = await Promise.all([
       readPhoneStateStarCreditState({
         expectedOwnerStableId: ownerStableId,
         expectedAccountGeneration: token.generation,
-      }),
-      storedOperationsForOwner(ownerStableId),
+      }).then((value) => { recoverStages.part_phone_state = Date.now() - parallelStartedAt; return value; }),
+      storedOperationsForOwner(ownerStableId)
+        .then((value) => { recoverStages.part_stored_ops = Date.now() - parallelStartedAt; return value; }),
     ]);
     recoverStage('phone_state_and_stored_ops');
     recoverCounts.phoneCredits = phoneState.credits.length;

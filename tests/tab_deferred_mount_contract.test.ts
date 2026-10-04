@@ -45,7 +45,8 @@ describe('tab background pre-mount contract', () => {
   it('does not mount every tab on the initial render', () => {
     const source = readLayout();
 
-    expect(source).toContain('return new Set<number>([0, initial]);');
+    // зачем (04.10): набор смонтированных вкладок теперь задаётся прямо в useState (initialTabIdx).
+    expect(source).toMatch(/new Set<number>\(\[0, initial(?:TabIdx)?\]\)/);
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;');
   });
 
@@ -74,6 +75,7 @@ describe('tab background pre-mount contract', () => {
     expect(source).toContain('const scoresLoadRef = useRef<{');
     expect(source).toContain('if (isRetainedTab) return;');
     expect(source).toContain('if (!lessonsTabVisible) return;');
-    expect(source).toContain('[focusTick, isRetainedTab, lessonsTabVisible, loadScores]');
+    // зачем (04.10): в зависимости добавилась page (постраничный список) — суть та же.
+    expect(source).toContain('[focusTick, isRetainedTab, lessonsTabVisible, loadScores');
   });
 });

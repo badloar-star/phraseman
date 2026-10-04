@@ -46,7 +46,9 @@ describe('retained tabs runtime work contract', () => {
     // handoff must therefore request the initial data load.
     expect(source).toContain('const homeDataDirtyRef = useRef(true);');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
-    expect(source).toContain('shardsDirtyRef.current = true;');
+    // зачем (04.10): осколки с Главной удалены (Q92) вместе с shardsDirtyRef — отложенная работа держится на
+    // homeDataDirtyRef (проверки выше и ниже).
+    expect(source).not.toContain('shardsDirtyRef');
     // зачем (Q92, 01.10): всплывающий бонус «+N» осколков и его анимации с Главной удалены.
     expect(source).not.toContain('shardsBonusAnim');
     expect(source).not.toContain('shardsAnim');

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Platform, StyleSheet, Text, View } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -19,7 +19,6 @@ import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { BlurView } from 'expo-blur';
 
 /** Минимальный отступ сверху — прежнее поведение на экранах без выреза. */
 const TOAST_TOP_MIN = 60;
@@ -37,15 +36,18 @@ interface Props {
 
 /** Иконка и акцент тона — раньше `type` не влиял на вид (`void type`), баннер про
  * потерянного друга и обычную инфо-подсказку выглядели одинаково. */
+// зачем (overlays-runtime OR-TOAST-INGAME-INFO / -ERROR): значок в плитке — «чат» для информации, «крестик» для ошибки.
 const TONE_ICON: Record<'error' | 'info', keyof typeof Ionicons.glyphMap> = {
-  error: 'alert-circle',
-  info: 'information-circle',
+  error: 'close',
+  info: 'chatbubble-outline',
 };
 
 /** Local passive material; callers, timers, and tone semantics remain unchanged. */
 function inGameToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
   return {
-    scrim: 'rgba(8,10,14,0.76)',
+    // `.or-toast`: сплошная графитовая подложка (var(--control)) — контраст не зависит от экрана под тостом.
+    surface: glass.opaqueControl,
+    tile: glass.opaqueCard,
     sheenColors: [glass.lightTint, 'transparent'] as [string, string],
     accent: glass.cta,
     accentSoft: glass.selected,
@@ -54,7 +56,7 @@ function inGameToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
     body: glass.secondary,
     closeBg: glass.selected,
     shadowColor: glass.bg,
-    radius: 16,
+    radius: 19,
   };
 }
 
@@ -62,15 +64,7 @@ function inGameToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
 function InGameToastSurface({ chrome }: { chrome: ReturnType<typeof inGameToastGlassChrome> }) {
   return (
     <>
-      <BlurView
-        pointerEvents="none"
-        intensity={Platform.OS === 'android' ? 8 : 12}
-        blurReductionFactor={4}
-        experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
-        tint="systemUltraThinMaterialDark"
-        style={StyleSheet.absoluteFillObject}
-      />
-      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: chrome.scrim }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: chrome.surface }]} />
       <LinearGradient
         pointerEvents="none"
         colors={chrome.sheenColors}
@@ -98,7 +92,6 @@ function InGameToastHybrid({
   onHide: () => void;
   chrome: ReturnType<typeof inGameToastGlassChrome>;
 }) {
-  const { f } = useTheme();
   // зачем: тост висел на жёстком top:60 и на Android с вырезом/высоким статус-баром
   // уезжал под системную панель («вылазит за рамки экрана», замечание владельца).
   // Отступ берём от безопасной зоны, минимум сохраняем прежним.
@@ -156,8 +149,10 @@ function InGameToastHybrid({
     <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor, borderColor: chrome.border }, cardStyle]}>
       <InGameToastSurface chrome={chrome} />
       <View style={styles.hybridRow}>
-        <Ionicons name={icon} size={18} color={chrome.accent} />
-        <Text style={{ flex: 1, color: chrome.title, fontSize: f.body, fontWeight: '700', textAlign: 'left' }}>
+        <View style={[styles.tile, { backgroundColor: chrome.tile }]}>
+          <Ionicons name={icon} size={20} color={chrome.title} />
+        </View>
+        <Text style={[styles.copy, { color: chrome.title }]}>
           {message}
         </Text>
       </View>
@@ -167,7 +162,7 @@ function InGameToastHybrid({
 }
 
 function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVariant = 'hybrid' }: Props) {
-  const { f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
   const isHybrid = motionVariant === 'hybrid';
   // зачем: тот же фикс безопасной зоны, что в гибриде — жёсткий top:60 уводил
@@ -223,8 +218,10 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
     >
       <InGameToastSurface chrome={chrome} />
       <View style={styles.classicRow}>
-        <Ionicons name={icon} size={18} color={chrome.accent} />
-        <Text style={{ flex: 1, color: chrome.title, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+        <View style={[styles.tile, { backgroundColor: chrome.tile }]}>
+          <Ionicons name={icon} size={20} color={chrome.title} />
+        </View>
+        <Text style={[styles.copy, { color: chrome.title }]}>
           {message}
         </Text>
       </View>
@@ -236,18 +233,21 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
 export default memo(InGameToast);
 
 const styles = StyleSheet.create({
+  // `.or-toast`: 14 от краёв, высота 58, поля 12/14, радиус 19, зазор 11.
   toastAnchor: {
     position: 'absolute',
-    left: 24,
-    right: 24,
+    left: 14,
+    right: 14,
     zIndex: 999999,
   },
   toastCard: {
-    borderRadius: 16,
+    borderRadius: 19,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
-    paddingVertical: 14,
-    paddingHorizontal: 20,
+    minHeight: 58,
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 14,
     // зачем: фон тоста приходит из темы, поэтому Android рисовал квадрат
     // вокруг скругления 16 (elevation 28 делал его особенно заметным).
     shadowOpacity: 0.25,
@@ -257,12 +257,14 @@ const styles = StyleSheet.create({
   classicRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
+    gap: 11,
   },
   hybridRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 11,
   },
+  tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  // `.or-toast-copy` 13/18/680 — цвет текста задаётся ниже через стиль строки.
+  copy: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },
 });

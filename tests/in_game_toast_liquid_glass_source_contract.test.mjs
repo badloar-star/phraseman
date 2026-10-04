@@ -23,25 +23,17 @@ function luminance(hex) {
   return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
 }
 
-test('InGameToast keeps wrapped error text contrast-safe over a bright underlying screen in all 13 Liquid themes', () => {
-  const brightBackdrop = '#FFFFFF';
-  const themeIds = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
-  const scrim = [8, 10, 14];
-  const alpha = 0.76;
-  const composite = scrim.map(channel => Math.round(channel * alpha + 255 * (1 - alpha)));
-  const compositedHex = `#${composite.map(channel => channel.toString(16).padStart(2, '0')).join('')}`;
-  const contrast = (luminance('#FFFFFF') + 0.05) / (luminance(compositedHex) + 0.05);
-  assert.equal(luminance(brightBackdrop), 1, 'test exercises the brightest possible underlying surface');
-  assert.equal(themeIds.length, 13, 'every approved Liquid Glass theme is covered');
-  assert.ok(themeIds.every(() => contrast >= 4.5), `white text contrast is ${contrast.toFixed(2)}:1 over the translucent substrate`);
-  assert.ok(toast.includes("scrim: 'rgba(8,10,14,0.76)'"), 'every Liquid theme supplies the same contrast-safe translucent scrim');
-  assert.ok((toast.match(/<InGameToastSurface chrome=\{chrome\} \/>/g) ?? []).length === 2, 'hybrid and classic cards share the contrast-safe material');
-  assert.ok((toast.match(/color: chrome\.title, fontSize: f\.body, fontWeight: '700'/g) ?? []).length === 2, 'both error/info message text blocks remain real wrapping text');
-
+// 04.10 (overlays-runtime OR-TOAST-INGAME-*): материал — сплошной графит темы (`.or-toast` var(--control)),
+// поэтому контраст не зависит от экрана под тостом; размытие и полупрозрачная подложка убраны.
+test('InGameToast follows the OR-TOAST frame: solid surface, 41 tile, 13/18 copy, 58 high, radius 19', () => {
   const surface = toast.slice(toast.indexOf('function InGameToastSurface'), toast.indexOf('/** зачем: гибрид'));
-  const blurIndex = surface.indexOf('<BlurView');
-  const scrimIndex = surface.indexOf('backgroundColor: chrome.scrim');
-  const sheenIndex = surface.indexOf('colors={chrome.sheenColors}');
-  assert.ok(blurIndex >= 0 && blurIndex < scrimIndex && scrimIndex < sheenIndex, 'material layers are blur → translucent scrim → sheen');
-  assert.ok(!surface.includes('glass.bgBottom'), 'the final sheen has no opaque Liquid Glass stop');
+  assert.ok(!toast.includes('<BlurView'), 'no realtime blur under a solid surface');
+  assert.ok(surface.includes('backgroundColor: chrome.surface'), 'solid surface layer');
+  assert.ok(toast.includes('surface: glass.opaqueControl'), 'surface comes from the active theme');
+  assert.ok(surface.indexOf('backgroundColor: chrome.surface') < surface.indexOf('colors={chrome.sheenColors}'), 'surface → sheen');
+  assert.ok((toast.match(/<Text style=\{\[styles\.copy, \{ color: chrome\.title \}\]\}>/g) ?? []).length === 2, 'both cards render real wrapping copy in the title colour');
+  assert.ok(toast.includes("copy: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' }"));
+  assert.ok(toast.includes('tile: { width: 41, height: 41, borderRadius: 10'));
+  assert.ok(toast.includes('minHeight: 58') && toast.includes('borderRadius: 19'));
+  assert.ok(toast.includes("error: 'close'") && toast.includes("info: 'chatbubble-outline'"));
 });

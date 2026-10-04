@@ -780,6 +780,7 @@ export default function FlashcardsRecallSession() {
       </View>
       <View style={styles.headerRow}>
         <PracticeBackButton
+          large
           glass={recallGlass}
           color={t.textPrimary}
           onPress={leave}

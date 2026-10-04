@@ -3774,6 +3774,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <View style={[styles.trueFalseRoot, { paddingHorizontal: ds.spacing.lg, paddingBottom: Math.max(14, bottomInset + 10) }]}>
         <View testID="flashcards-truefalse-header" style={styles.trueFalseHeader}>
           <PracticeBackButton
+            large
             glass={swipeGlass}
             color={t.textPrimary}
             onPress={exitTraining}
@@ -4611,11 +4612,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
   },
+  // зачем (practice.html `.hd`): «назад» 48, шапка 16 от верха (10 у корня + 6).
   trueFalseHeader: {
     minHeight: 52,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    marginTop: 6,
   },
   trueFalseHeaderCopy: {
     flex: 1,

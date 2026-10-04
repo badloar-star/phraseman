@@ -1366,13 +1366,16 @@ export default function FlashcardsSpeakingSession() {
       {/* зачем (PM-130, как Блиц PM-129): монеты — плашкой в шапке после сердец; кнопка выбора
           наборов ушла (наборы выбираются на экране настройки, D152), и место в ряду освободилось. */}
     <View style={styles.headerRow}>
+      <View style={{ marginRight: 6 }}>
       <PracticeBackButton
+        large
         glass={speakingGlass}
         color={t.textPrimary}
         onPress={interactive ? leave : undefined}
         testID={interactive ? 'fc-speak-back' : undefined}
         accessibilityLabel={labels.back}
       />
+      </View>
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title}>
         {interactive ? (
           <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
@@ -1382,7 +1385,7 @@ export default function FlashcardsSpeakingSession() {
           <View style={{ marginTop: 4 }}><SkeletonBlock width={120} height={f.caption} /></View>
         )}
       </PracticeHeaderTitle>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <SessionAttemptsHud
           remaining={attempts.state.remainingAttempts}
           locale={lang}
@@ -1823,20 +1826,22 @@ RU: ${card.translation}`}
 }
 
 const styles = StyleSheet.create({
+  // зачем (practice.html `.hd`): поле 20, шапка 16 от верха, промежутки 6. Состав шапки — решение владельца 04.10.
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    gap: 6,
+    paddingHorizontal: 20,
+    paddingTop: 16,
   },
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },
-  progressRow: { minHeight: 22, marginTop: 12, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  progressRow: { minHeight: 22, marginTop: 14, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   progressLabel: { fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }, // зачем: шкала D145 (16/13)
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
-  cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },
+  // зачем (practice.html `.qc.sp` margin-top 34): карточка сверху под строкой прогресса, не по центру.
+  cardArea: { flexGrow: 1, justifyContent: 'flex-start', paddingHorizontal: 20, paddingTop: 34 },
   cardFace: { alignItems: 'center', width: '100%' },
   spokenRow: {
     flexDirection: 'row',

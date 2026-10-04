@@ -40,6 +40,9 @@ const STATIC_CACHE_KEYS = [
   // Рейтинги/арена/клуб: снапшоты, которые перезапрашиваются с сервера.
   // Пары «снапшот + метка обновления» — см. правило 3 в шапке файла.
   'global_lb_cache_v4',
+  // Перцентили рейтинга (leaderboard_stats.ts удалён 04.10, PM-252) — стереть остатки.
+  'leaderboard_stats_cache_v2',
+  'leaderboard_stats_absent_v1',
   'leaderboard_cache_v1',
   'arena_top100_snapshot_v8',
   'arena_top100_remote_at_v1',

@@ -72,7 +72,6 @@ const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/activity_365_analytics.ts': ['devSeedActivity365Scenario'],
   'app/app_messages.ts': ['seedLocalVipSurveyTestMessage'],
   'app/intro_full_access.ts': ['resetIntroFullAccessForAdmin'],
-  'app/leaderboard_stats.ts': ['injectMockLeaderboardStats', 'clearMockLeaderboardStats'],
   'app/lifetime_profile_stats.ts': ['devSeedLifetimeStatsScenario'],
   'app/platform_ui_preview.ts': ['setPlatformUiPreviewMode', 'usePlatformUiPreviewMode'],
   'app/premium_trial_eligibility.ts': ['resetTrialCooldownForTesting', 'getTrialStatusLineForTesters'],

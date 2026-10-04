@@ -17,14 +17,23 @@ describe('removed Candy Blue theme contract', () => {
     expect(labels).not.toMatch(/Кенди Блу|Кенді Блу|Azul caramelo|Azul candy|Xanh kẹo|Biru permen|Şeker mavisi|Cukrowy błękit/);
   });
 
+  // зачем (темы 2.0, сессия «ТЕМЫ 2.0», 04.10): раньше ThemeContext перечислял удалённые темы
+  // поимённо; теперь миграция общая — ЛЮБОЕ старое значение app_theme кроме 'dark' перезаписывается
+  // в Графит, неизвестный id темы → graphite. Гарантия та же, проверяется поведением, а не строкой.
   it('migrates existing Candy Blue selections to the current default theme', () => {
     const source = read('components/ThemeContext.tsx');
-    const cycleLine = source.split('\n').find(line => line.startsWith('const CYCLE:')) ?? '';
-    const premiumLine = source.split('\n').find(line => line.startsWith('const PREMIUM_ONLY_THEMES:')) ?? '';
+    const { themeAccessTier, isThemeUnlockedFor } = require('../app/theme_access_policy');
+    const { resolveLiquidGlassTheme, LIQUID_GLASS_THEME_IDS } = require('../constants/liquidGlassThemePalette');
+    const { THEME_DISPLAY_NAMES } = require('../app/theme_display_names');
 
-    expect(cycleLine).not.toContain('candyBlue');
-    expect(premiumLine).not.toContain('candyBlue');
-    expect(source).toContain("'candyBlue'");
+    expect(themeAccessTier('candyBlue')).toBe('unavailable');
+    expect(isThemeUnlockedFor('candyBlue', { hasPremium: true, ownedThemeModes: ['candyBlue'], isGoldUnlocked: true, grandfatheredModes: ['candyBlue'], devUnlockAll: true })).toBe(false);
+    expect(resolveLiquidGlassTheme('candyBlue')).toBe('graphite');
+    expect(LIQUID_GLASS_THEME_IDS).not.toContain('candyBlue');
+    expect(THEME_DISPLAY_NAMES).not.toHaveProperty('candyBlue');
+    // Общая перезапись сохранённого старого выбора в Графит.
+    expect(source).toContain("if (themeStr !== LEGACY_GRAPHITE_THEME_MODE) {");
+    expect(source).toContain("AsyncStorage.setItem('app_theme', LEGACY_GRAPHITE_THEME_MODE)");
     expect(source).not.toContain("migrated === 'candyBlue'");
   });
 });

@@ -10,10 +10,23 @@ const THEME_CONTEXT_SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'Them
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 describe('settings planned locale runtime copy', () => {
+  // зачем (темы 2.0, сессия «ТЕМЫ 2.0», 04.10): названия тем переехали из settings.tsx в ОДИН
+  // общий словарь app/theme_display_names.ts (копии названий уже разъезжались). Смысл стража
+  // прежний и строже: у КАЖДОЙ действующей темы — явное имя на КАЖДОМ языке интерфейса, без подстановки.
   it('uses explicit theme labels for every interface language', () => {
-    expect(SETTINGS_SOURCE).toContain('const names: Record<string, Record<Lang, string>>');
-    expect(SETTINGS_SOURCE).toContain("dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta'");
-    expect(SETTINGS_SOURCE).toContain('return entry[lang];');
+    const { THEME_DISPLAY_NAMES } = require('../app/theme_display_names');
+    const { LIQUID_GLASS_THEME_IDS } = require('../constants/liquidGlassThemePalette');
+    const { INTERFACE_LANGS } = require('../constants/i18n');
+    expect(SETTINGS_SOURCE).toContain("import { themeDisplayName } from '../theme_display_names'");
+    expect(SETTINGS_SOURCE).toContain('themeDisplayName(liquidGlassThemeId, lang)');
+    expect(SETTINGS_SOURCE).not.toMatch(/graphite: \{ ru: '/);
+    for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
+      const names = THEME_DISPLAY_NAMES[id] as Record<string, string | undefined> | undefined;
+      expect(names).toBeDefined();
+      for (const lang of INTERFACE_LANGS as readonly string[]) {
+        expect([id, lang, names?.[lang]?.trim() || null]).toEqual([id, lang, expect.any(String)]);
+      }
+    }
     expect(SETTINGS_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
   });
 

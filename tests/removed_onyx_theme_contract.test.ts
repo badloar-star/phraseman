@@ -17,14 +17,23 @@ describe('removed Onyx theme contract', () => {
     expect(labels).not.toMatch(/Оникс|Онікс|Onyx|Ónix|Ônix|Oniks|Onyks/);
   });
 
+  // зачем (темы 2.0, сессия «ТЕМЫ 2.0», 04.10): раньше ThemeContext перечислял удалённые темы
+  // поимённо; теперь миграция общая — ЛЮБОЕ старое значение app_theme кроме 'dark' перезаписывается
+  // в Графит, неизвестный id темы → graphite. Гарантия та же, проверяется поведением, а не строкой.
   it('migrates existing Onyx selections to the current default theme', () => {
     const source = read('components/ThemeContext.tsx');
-    const cycleLine = source.split('\n').find(line => line.startsWith('const CYCLE:')) ?? '';
-    const premiumLine = source.split('\n').find(line => line.startsWith('const PREMIUM_ONLY_THEMES:')) ?? '';
+    const { themeAccessTier, isThemeUnlockedFor } = require('../app/theme_access_policy');
+    const { resolveLiquidGlassTheme, LIQUID_GLASS_THEME_IDS } = require('../constants/liquidGlassThemePalette');
+    const { THEME_DISPLAY_NAMES } = require('../app/theme_display_names');
 
-    expect(cycleLine).not.toContain('minimalDark');
-    expect(premiumLine).not.toContain('minimalDark');
-    expect(source).toContain("'minimalDark'");
+    expect(themeAccessTier('minimalDark')).toBe('unavailable');
+    expect(isThemeUnlockedFor('minimalDark', { hasPremium: true, ownedThemeModes: ['minimalDark'], isGoldUnlocked: true, grandfatheredModes: ['minimalDark'], devUnlockAll: true })).toBe(false);
+    expect(resolveLiquidGlassTheme('minimalDark')).toBe('graphite');
+    expect(LIQUID_GLASS_THEME_IDS).not.toContain('minimalDark');
+    expect(THEME_DISPLAY_NAMES).not.toHaveProperty('minimalDark');
+    // Общая перезапись сохранённого старого выбора в Графит.
+    expect(source).toContain("if (themeStr !== LEGACY_GRAPHITE_THEME_MODE) {");
+    expect(source).toContain("AsyncStorage.setItem('app_theme', LEGACY_GRAPHITE_THEME_MODE)");
     expect(source).not.toContain("migrated === 'minimalDark'");
   });
 });

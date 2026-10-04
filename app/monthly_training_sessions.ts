@@ -72,6 +72,11 @@ function result(status: MonthlyTrainingSessionStatus, used = 0, window?: Monthly
   });
 }
 
+/** зачем (находка DQA 04.10: после Блица остаток «28 из 30» не изменился): сперва логи всей цепочки лимита. */
+function blitzLimitTrace(step: string, data: Record<string, unknown>): void {
+  console.log('[BLITZ-LIMIT]', step, JSON.stringify(data)); // guard-ok: по строке на открытие экрана/старт тренировки
+}
+
 function validToken(deps: Dependencies, token: AccountGenerationToken): token is AccountGenerationToken & { stableId: string } {
   return token.phase === 'active'
     && typeof token.stableId === 'string'
@@ -155,12 +160,16 @@ async function serialize<T>(key: string, work: () => Promise<T>): Promise<T> {
 export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
   return Object.freeze({
     async preview(input: PreviewInput): Promise<MonthlyTrainingSessionQuotaResult> {
-      if (!validToken(deps, input.token)) return result('stale_account');
+      if (!validToken(deps, input.token)) {
+        blitzLimitTrace('preview:stale_account', { phase: input.token.phase });
+        return result('stale_account');
+      }
       let window: MonthlyWindow;
       try {
         window = resolveMonthlyTrainingSessionWindow(deps.now(), deps.timeZone());
         const stored = normalizeStored(await deps.storage.getItem(storageKey(input.token.stableId)), window.period);
         if (!deps.isCurrentAccount(input.token)) return result('stale_account');
+        blitzLimitTrace('preview:read', { source: 'disk', period: window.period, used: stored.starts.length, premium: input.hasPremiumAccess === true });
         if (input.hasPremiumAccess === true) return result('allowed', stored.starts.length, window, 'idempotent');
         return result(stored.starts.length >= MONTHLY_TRAINING_SESSION_LIMIT ? 'exhausted' : 'allowed', stored.starts.length, window);
       } catch (error) {
@@ -182,16 +191,23 @@ export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
           window = resolveMonthlyTrainingSessionWindow(deps.now(), deps.timeZone());
           const stored = normalizeStored(await deps.storage.getItem(key), window.period);
           if (!deps.isCurrentAccount(input.token)) return result('stale_account');
-          if (input.hasPremiumAccess === true) return result('allowed', stored.starts.length, window, 'idempotent');
+          const trace = { mode: input.mode, receipt: input.receiptId.slice(0, 12), period: window.period, usedBefore: stored.starts.length, premium: input.hasPremiumAccess === true };
+          if (input.hasPremiumAccess === true) {
+            blitzLimitTrace('consume:skip premium', trace);
+            return result('allowed', stored.starts.length, window, 'idempotent');
+          }
           if (stored.starts.includes(input.receiptId)) {
+            blitzLimitTrace('consume:skip receipt_already_counted', trace);
             return result('allowed', stored.starts.length, window, 'idempotent');
           }
           if (stored.starts.length >= MONTHLY_TRAINING_SESSION_LIMIT) {
+            blitzLimitTrace('consume:exhausted', trace);
             return result('exhausted', stored.starts.length, window);
           }
           const next = Object.freeze({ version: 1 as const, period: window.period, starts: [...stored.starts, input.receiptId] });
           await deps.storage.setItem(key, JSON.stringify(next));
           if (!deps.isCurrentAccount(input.token)) return result('stale_account');
+          blitzLimitTrace('consume:written', { ...trace, usedAfter: next.starts.length, target: 'disk' });
           return result('allowed', next.starts.length, window);
         } catch (error) {
           // зачем: запрет немого catch — счётчик не записался, тренировку всё равно пускаем.

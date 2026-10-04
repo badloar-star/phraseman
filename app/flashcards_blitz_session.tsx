@@ -643,6 +643,15 @@ export default function FlashcardsBlitzSession() {
         setEnergyGate('denied');
         return;
       }
+      // зачем (находка DQA 04.10, «28 из 30» до и после раунда): списание идёт ТОЛЬКО для записи в фазе prepared;
+      // подхваченная запись прошлого раунда (уже committed) списывает ноль — лог показывает, какая ветка сработала.
+      console.log('[BLITZ-LIMIT] blitz:quota_branch', JSON.stringify({
+        phase: pendingRecord.phase,
+        receipt: String(pendingRecord.receiptId ?? '').slice(0, 12),
+        willConsume: pendingRecord.phase === 'prepared',
+        premium: hasPremiumAccess,
+        accessResolved,
+      })); // guard-ok: одна строка на старт раунда
       if (pendingRecord.phase === 'prepared') {
         gateLog('quota:await');
         const quotaResult = await consumeMonthlyTrainingSession({
@@ -653,6 +662,7 @@ export default function FlashcardsBlitzSession() {
           mode: 'blitz',
         });
         gateLog('quota:done', { status: quotaResult.status });
+        console.log('[BLITZ-LIMIT] blitz:quota_result', JSON.stringify({ status: quotaResult.status, used: quotaResult.used, limit: quotaResult.limit, bypass: quotaResult.bypass })); // guard-ok: одна строка на старт раунда
         if (quotaResult.status === 'allowed') {
           const marked = await markFlashcardTrainingQuotaCommitted(
             pendingAccount,

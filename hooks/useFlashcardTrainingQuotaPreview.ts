@@ -26,11 +26,15 @@ export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaR
   const [result, setResult] = useState<MonthlyTrainingSessionQuotaResult>(WAITING);
 
   useEffect(() => subscribeAccountGeneration(setToken).remove, []);
-  const refresh = useCallback(() => setRefreshRevision((current) => current + 1), []);
+  // зачем (находка DQA 04.10, «28 из 30» до и после Блица): лог показывает, перечитал ли экран остаток и по какому поводу.
+  const refresh = useCallback((reason: string) => {
+    console.log('[BLITZ-LIMIT] screen:refresh', JSON.stringify({ reason })); // guard-ok: фокус экрана/возврат в приложение
+    setRefreshRevision((current) => current + 1);
+  }, []);
   useFocusEffect(useCallback(() => {
-    refresh();
+    refresh('focus');
     const subscription = AppState.addEventListener('change', (nextState) => {
-      if (nextState === 'active') refresh();
+      if (nextState === 'active') refresh('app_active');
     });
     return () => subscription.remove();
   }, [refresh]));
@@ -39,6 +43,7 @@ export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaR
     setResult(WAITING);
     void previewMonthlyTrainingSessions({ token, hasPremiumAccess })
       .then((next) => {
+        console.log('[BLITZ-LIMIT] screen:read', JSON.stringify({ status: next.status, used: next.used, limit: next.limit, bypass: next.bypass, applied: !cancelled })); // guard-ok: по строке на обновление экрана
         if (!cancelled) setResult(next);
       })
       .catch((error: unknown) => {
@@ -52,7 +57,7 @@ export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaR
     if (!Number.isFinite(result.resetAt) || result.resetAt === null || result.resetAt <= Date.now()) {
       return undefined;
     }
-    const timeout = setTimeout(refresh, result.resetAt - Date.now());
+    const timeout = setTimeout(() => refresh('month_reset'), result.resetAt - Date.now());
     return () => clearTimeout(timeout);
   }, [refresh, result.resetAt]);
   return result;

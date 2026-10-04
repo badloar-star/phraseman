@@ -32,3 +32,7 @@ Open http://127.0.0.1:8765/mistakes-concepts.html, switch themes, run the overla
 ## Rollback
 
 Delete the page.
+
+## Update (owner chose variant B "Panel")
+
+The full section is built in docs/design/v2-app/mistakes-panel.html (20 screens); the index links point to it. mistakes-section.html (Cards-like attempt) is superseded.

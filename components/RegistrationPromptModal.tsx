@@ -568,7 +568,8 @@ function RegistrationPromptModal({
 
   const finalTitle = title ?? defaultTitle;
   const finalSubtitle = subtitle ?? defaultSubtitle;
-  const titleLineHeight = Math.round(f.h1 * 1.12);
+  // зачем (overlay.css `.ov-title` 25/31): заголовок окна входа фиксированного кегля, как в макете.
+  const titleLineHeight = 31;
   const bodyLineHeight = Math.round(f.body * 1.32);
   const captionLineHeight = Math.max(18, Math.round(f.caption * 1.4));
   const cardMaxHeight = Math.max(280, viewportHeight - 64 - keyboardInset);
@@ -1462,7 +1463,7 @@ function RegistrationPromptModal({
               <StreakChainIcon themeMode={themeMode} streakDays={streakDays} size={30} />
             </View>
             <View style={styles.headerTextCol}>
-              <Text style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: titleLineHeight }]} numberOfLines={2}>
+              <Text style={[styles.title, { color: glass.text, fontSize: 25, lineHeight: titleLineHeight }]} numberOfLines={2}>
                 {finalTitle}
               </Text>
               <Text style={[styles.daysLine, { color: glass.secondary, fontSize: f.caption }]} numberOfLines={2}>
@@ -2041,7 +2042,8 @@ function RegistrationPromptModal({
 
           {/* Строка доверия со щитом */}
           <Animated.View style={[styles.shieldRow, rise4]}>
-            <Ionicons name="shield-checkmark" size={13} color={glass.secondary} />
+            {/* зачем (`.ov-trust`): у строки доверия замок, как в макете. */}
+            <Ionicons name="lock-closed" size={15} color={glass.mutedText} />
             <Text style={[styles.shieldText, { color: glass.mutedText, fontSize: f.caption, lineHeight: captionLineHeight }]}>
               {labelShield}
             </Text>
@@ -2160,10 +2162,11 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingRight: 30,
   },
+  // зачем (overlays.html `.tile.t55`): плитка 55, радиус 14.
   streakBadge: {
-    width: 46,
-    height: 46,
-    borderRadius: 15,
+    width: 55,
+    height: 55,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },

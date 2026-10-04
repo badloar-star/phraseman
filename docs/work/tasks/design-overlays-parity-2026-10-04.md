@@ -1,6 +1,7 @@
 # Task packet: «Окна» по overlays*.html — сверка кода с CSS макета до съёмки сессией 6
 
 Governance-ID: TG-F398C78C8ACD
+Governance-ID: TG-A0789428BF0E
 Status: In progress
 Owner: сессия «2 · Дизайн» (контур 2), поручение координатора 04.10
 Related epic/enabler: гейт «приложение = макет»
@@ -12,7 +13,7 @@ Related epic/enabler: гейт «приложение = макет»
 
 ## Scope
 
-In scope: `components/FeatureIntroModal.tsx` (вступления OV-INTRO-*), далее по кадрам overlays.
+In scope: `components/FeatureIntroModal.tsx` (вступления OV-INTRO-*), `components/RegistrationPromptModal.tsx` (только вид шапки, OV-AUTH-*), далее по кадрам overlays.
 Out of scope: `components/ActionToast.tsx` (в чужой работе), логика показа окон, общий каркас шторки HybridSheetShell.
 
 ## Architecture

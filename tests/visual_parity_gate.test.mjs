@@ -113,7 +113,9 @@ test('реестр: уникальные id, допустимые статусы
   for (const row of registry.rows) assert.ok(registry.statuses.includes(row.status), `${row.id}: статус ${row.status}`);
   assert.deepEqual(missingMatrixRows(registry, parseMatrix(matrixText)), []);
   assert.ok(registry.rows.filter((row) => row.source === 'STATE_CHECKLIST').length >= 758);
-  assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-v2-')).length, 17);
+  // зачем (владелец 04.10, «новый макет = эталон»): эталон «Моих ошибок» — mistakes-panel (MISTAKES_LOCKED); строки mistakes-v2 ушли законно (66bb7b933).
+  assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-v2-')).length, 0);
+  assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-panel-')).length, 20);
   assert.equal(registry.rows.filter((row) => row.id.startsWith('themes-gradient-')).length, 3);
   assert.ok(registry.rows.filter((row) => row.id.startsWith('cards-v2-')).length >= 40, 'макет cards-v2 (04.10) должен быть в реестре');
 });

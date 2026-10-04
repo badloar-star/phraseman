@@ -96,7 +96,9 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
 /** Local-only passive chrome: actions keep their legacy color and touch contract. */
 function actionToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
   return {
-    cardColors: [glass.card, glass.sheet, glass.bgBottom] as [string, string, string],
+    // зачем (overlays.html `.ov-action-toast`, кадры 48–57): сплошная графитовая карточка (#242529) с тонкой
+    // кромкой; планка тона — светлая (#d9dbe1), значок и подпись тона — цветом текста, сообщение — вторичным.
+    cardColors: [glass.card, glass.opaqueControl, glass.opaqueControl] as [string, string, string],
     accent: glass.cta,
     accentSoft: glass.selected,
     border: glass.glassEdge,
@@ -104,7 +106,7 @@ function actionToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
     body: glass.secondary,
     closeBg: glass.selected,
     shadowColor: glass.bg,
-    radius: 18,
+    radius: 20,
   };
 }
 
@@ -217,13 +219,13 @@ function ActionToastHybridCard({
             iconStyle,
           ]}
         >
-          <Ionicons name={icon} size={21} color={chrome.accent} />
+          <Ionicons name={icon} size={20} color={chrome.title} />
         </Reanimated.View>
         <View style={styles.copy}>
-          <Text style={[styles.label, { color: chrome.accent }]}>
+          <Text style={[styles.label, { color: chrome.title }]}>
             {toneLabel}
           </Text>
-          <Text style={[styles.message, { color: chrome.title }]}>
+          <Text style={[styles.message, { color: chrome.body }]}>
             {message}
           </Text>
         </View>
@@ -253,7 +255,7 @@ function toastKey(p: ToastPayload): string {
 
 function ActionToast() {
   const { lang } = useLang();
-  const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
@@ -493,7 +495,6 @@ function ActionToast() {
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
   const actionToastGlass = liquidGlassTokens(liquidGlassThemeId);
-  const actionToastLegacyChrome = themedToastChrome(themeMode, t);
   const chrome = actionToastGlassChrome(actionToastGlass);
   const isHybrid = toast.motionVariant !== 'classic';
   // Действие есть только у классической карточки: гибридная — чисто
@@ -559,13 +560,13 @@ function ActionToast() {
               },
             ]}
           >
-            <Ionicons name={tone.icon} size={21} color={chrome.accent} />
+            <Ionicons name={tone.icon} size={20} color={chrome.title} />
           </View>
           <View style={styles.copy}>
-            <Text style={[styles.label, { color: chrome.accent }]}>
+            <Text style={[styles.label, { color: chrome.title }]}>
               {toneLabel}
             </Text>
-            <Text style={[styles.message, { color: chrome.title }]}>
+            <Text style={[styles.message, { color: chrome.body }]}>
               {message}
             </Text>
           </View>
@@ -578,13 +579,13 @@ function ActionToast() {
               style={({ pressed }) => [
                 styles.actionButton,
                 {
-                  backgroundColor: actionToastLegacyChrome.closeBg,
+                  backgroundColor: chrome.closeBg,
                   transform: [{ scale: pressed ? 0.94 : 1 }],
                 },
               ]}
               testID="action-toast-action"
             >
-              <Text style={[styles.actionLabel, { color: actionToastLegacyChrome.accent }]}>{actionLabel}</Text>
+              <Text style={[styles.actionLabel, { color: chrome.title }]}>{actionLabel}</Text>
             </Pressable>
           ) : null}
         </LinearGradient>
@@ -618,11 +619,12 @@ const styles = StyleSheet.create({
   toast: {
     width: '100%',
     maxWidth: 560,
-    minHeight: 66,
-    borderRadius: 16,
+    // `.ov-action-toast`: высота 76, поля 12/14, зазор 12.
+    minHeight: 76,
+    borderRadius: 20,
     paddingVertical: 12,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: 14,
+    paddingRight: 14,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -632,18 +634,16 @@ const styles = StyleSheet.create({
     // квадрат вокруг радиуса 16.
     ...noAndroidOutline,
   },
+  // `.rail`: планка 3 во всю высоту содержимого, скругление 3 — первым элементом ряда.
   accentRail: {
-    position: 'absolute',
-    left: 0,
-    top: 11,
-    bottom: 11,
+    alignSelf: 'stretch',
     width: 3,
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
+    borderRadius: 3,
   },
+  // `.tile.t44`: плитка значка 44.
   iconBadge: {
-    width: 38,
-    height: 38,
+    width: 44,
+    height: 44,
     borderRadius: 12,
     borderWidth: 0,
     alignItems: 'center',
@@ -652,27 +652,33 @@ const styles = StyleSheet.create({
   copy: {
     flex: 1,
     minWidth: 0,
-    gap: 2,
+    gap: 3,
   },
+  // `.tone` 12/760 капсом, разрядка .5 — шкала D145: 13.
   label: {
     fontSize: 13,
-    fontWeight: '700',
-    letterSpacing: 0,
+    lineHeight: 16,
+    fontWeight: '800',
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
   },
+  // `.message` 14/18 вторичным — шкала D145: 16/22.
   message: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: '700',
+    fontWeight: '400',
     letterSpacing: 0,
   },
   // Кнопка действия: зона тапа 44×… по вертикали набирается padding 12 + текст,
   // плюс hitSlop 8 — комфортно для пальца, но карточку не раздувает.
+  // `.ov-toast-action`: капсула 36, радиус 18, поля 12.
   actionButton: {
     flexShrink: 0,
     marginLeft: 10,
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    paddingVertical: 12,
+    minHeight: 36,
+    borderRadius: 18,
+    paddingHorizontal: 12,
+    justifyContent: 'center',
   },
   actionLabel: {
     fontSize: 13,

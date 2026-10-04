@@ -1,7 +1,7 @@
 {
   "schemaVersion": "visual-parity.v1",
   "rule": "CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»: релиз запрещён, пока каждая строка не match (склейка + ревью координатора, анимации записаны).",
-  "generatedAt": "2026-10-04T10:29:09.360Z",
+  "generatedAt": "2026-10-04T11:41:28.032Z",
   "matrix": "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md",
   "mockupServer": "http://127.0.0.1:8765",
   "statuses": [
@@ -22675,47 +22675,22 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-001",
+      "id": "cards-section-001",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 1,
-        "label": "Хаб",
+        "label": "Хаб — вариант А",
         "mapping": "by_construction"
       },
-      "screen": "Хаб",
-      "state": "Хаб",
-      "code": [],
-      "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
-      "anim_evidence": null,
-      "anim_evidence_at": null,
-      "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
-    },
-    {
-      "id": "cards-v2-002",
-      "source": "MOCKUP_2026-10-04",
-      "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 2,
-        "label": "Хаб — загрузка сообщества",
-        "mapping": "by_construction"
-      },
-      "screen": "Хаб — загрузка сообщества",
-      "state": "Хаб — загрузка сообщества",
+      "screen": "Хаб — вариант А",
+      "state": "Хаб — вариант А",
       "code": [],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
-        "sh 1.4s linear infinite"
+        "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)",
+        "gfloat 5s ease-in-out infinite"
       ],
       "evidence": null,
       "evidence_at": null,
@@ -22729,20 +22704,22 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-003",
+      "id": "cards-section-002",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 3,
-        "label": "Хаб — новичок, своих карточек нет",
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 2,
+        "label": "Хаб — загрузка сообщества",
         "mapping": "by_construction"
       },
-      "screen": "Хаб — новичок, своих карточек нет",
-      "state": "Хаб — новичок, своих карточек нет",
+      "screen": "Хаб — загрузка сообщества",
+      "state": "Хаб — загрузка сообщества",
       "code": [],
       "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
+      "has_animation": true,
+      "anim_notes": [
+        "gfloat 5s ease-in-out infinite"
+      ],
       "evidence": null,
       "evidence_at": null,
       "evidence_sha256": null,
@@ -22755,11 +22732,68 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-004",
+      "id": "cards-section-003",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 3,
+        "label": "Хаб — новичок, своих карточек нет",
+        "mapping": "by_construction"
+      },
+      "screen": "Хаб — новичок, своих карточек нет",
+      "state": "Хаб — новичок, своих карточек нет",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-004",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 4,
+        "label": "Хаб — лимит исчерпан (Free)",
+        "mapping": "by_construction"
+      },
+      "screen": "Хаб — лимит исчерпан (Free)",
+      "state": "Хаб — лимит исчерпан (Free)",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)",
+        "gfloat 5s ease-in-out infinite"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-005",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 5,
         "label": "Список",
         "mapping": "by_construction"
       },
@@ -22781,11 +22815,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-005",
+      "id": "cards-section-006",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 5,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 6,
         "label": "Поиск",
         "mapping": "by_construction"
       },
@@ -22809,11 +22843,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-006",
+      "id": "cards-section-007",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 6,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 7,
         "label": "Пусто",
         "mapping": "by_construction"
       },
@@ -22835,11 +22869,37 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-007",
+      "id": "cards-section-008",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 7,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 8,
+        "label": "Карточки меняют размер и форму",
+        "mapping": "by_construction"
+      },
+      "screen": "Карточки меняют размер и форму",
+      "state": "Карточки меняют размер и форму",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-009",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 9,
         "label": "Список",
         "mapping": "by_construction"
       },
@@ -22861,11 +22921,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-008",
+      "id": "cards-section-010",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 8,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 10,
         "label": "Действия с набором",
         "mapping": "by_construction"
       },
@@ -22887,11 +22947,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-009",
+      "id": "cards-section-011",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 9,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 11,
         "label": "Пусто",
         "mapping": "by_construction"
       },
@@ -22913,11 +22973,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-010",
+      "id": "cards-section-012",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 10,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 12,
         "label": "Свой набор",
         "mapping": "by_construction"
       },
@@ -22939,11 +22999,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-011",
+      "id": "cards-section-013",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 11,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 13,
         "label": "Чужой — до добавления",
         "mapping": "by_construction"
       },
@@ -22965,11 +23025,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-012",
+      "id": "cards-section-014",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 12,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 14,
         "label": "Чужой — добавлен, лайк",
         "mapping": "by_construction"
       },
@@ -22991,11 +23051,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-013",
+      "id": "cards-section-015",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 13,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 15,
         "label": "Карточка удалена — «Вернуть»",
         "mapping": "by_construction"
       },
@@ -23017,11 +23077,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-014",
+      "id": "cards-section-016",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 14,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 16,
         "label": "Своя карточка",
         "mapping": "by_construction"
       },
@@ -23029,8 +23089,10 @@
       "state": "Своя карточка",
       "code": [],
       "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
+      "has_animation": true,
+      "anim_notes": [
+        "unfold 0.76s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
       "evidence": null,
       "evidence_at": null,
       "evidence_sha256": null,
@@ -23043,11 +23105,39 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-015",
+      "id": "cards-section-017",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 15,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 17,
+        "label": "Карточка — оборот",
+        "mapping": "by_construction"
+      },
+      "screen": "Карточка — оборот",
+      "state": "Карточка — оборот",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "unfold 0.76s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-018",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 18,
         "label": "Карточка из чужого набора",
         "mapping": "by_construction"
       },
@@ -23055,8 +23145,10 @@
       "state": "Карточка из чужого набора",
       "code": [],
       "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
+      "has_animation": true,
+      "anim_notes": [
+        "unfold 0.76s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
       "evidence": null,
       "evidence_at": null,
       "evidence_sha256": null,
@@ -23069,11 +23161,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-016",
+      "id": "cards-section-019",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 16,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 19,
         "label": "Новый набор",
         "mapping": "by_construction"
       },
@@ -23097,11 +23189,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-017",
+      "id": "cards-section-020",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 17,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 20,
         "label": "Новая карточка",
         "mapping": "by_construction"
       },
@@ -23125,11 +23217,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-018",
+      "id": "cards-section-021",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 18,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 21,
         "label": "Изменить набор",
         "mapping": "by_construction"
       },
@@ -23151,11 +23243,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-019",
+      "id": "cards-section-022",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 19,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 22,
         "label": "Каталог",
         "mapping": "by_construction"
       },
@@ -23177,11 +23269,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-020",
+      "id": "cards-section-023",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 20,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 23,
         "label": "Ничего не найдено",
         "mapping": "by_construction"
       },
@@ -23205,11 +23297,227 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-021",
+      "id": "cards-section-024",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 21,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 24,
+        "label": "Список наборов",
+        "mapping": "by_construction"
+      },
+      "screen": "Список наборов",
+      "state": "Список наборов",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-025",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 25,
+        "label": "Поиск",
+        "mapping": "by_construction"
+      },
+      "screen": "Поиск",
+      "state": "Поиск",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "blink 1.05s steps(2) infinite"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-026",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 26,
+        "label": "Загрузка",
+        "mapping": "by_construction"
+      },
+      "screen": "Загрузка",
+      "state": "Загрузка",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "sh 1.4s linear infinite"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-027",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 27,
+        "label": "Пока пусто",
+        "mapping": "by_construction"
+      },
+      "screen": "Пока пусто",
+      "state": "Пока пусто",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-028",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 28,
+        "label": "Ничего не нашли",
+        "mapping": "by_construction"
+      },
+      "screen": "Ничего не нашли",
+      "state": "Ничего не нашли",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": true,
+      "anim_notes": [
+        "blink 1.05s steps(2) infinite"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-029",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 29,
+        "label": "Сейчас недоступно",
+        "mapping": "by_construction"
+      },
+      "screen": "Сейчас недоступно",
+      "state": "Сейчас недоступно",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-030",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 30,
+        "label": "Набор из видео",
+        "mapping": "by_construction"
+      },
+      "screen": "Набор из видео",
+      "state": "Набор из видео",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-031",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 31,
+        "label": "Набор из видео — уже у вас",
+        "mapping": "by_construction"
+      },
+      "screen": "Набор из видео — уже у вас",
+      "state": "Набор из видео — уже у вас",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "cards-section-032",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 32,
         "label": "Режим тренировки",
         "mapping": "by_construction"
       },
@@ -23231,11 +23539,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-022",
+      "id": "cards-section-033",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 22,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 33,
         "label": "Блиц",
         "mapping": "by_construction"
       },
@@ -23257,11 +23565,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-023",
+      "id": "cards-section-034",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 23,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 34,
         "label": "Устно",
         "mapping": "by_construction"
       },
@@ -23283,11 +23591,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-024",
+      "id": "cards-section-035",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 24,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 35,
         "label": "Правда / ложь",
         "mapping": "by_construction"
       },
@@ -23309,11 +23617,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-025",
+      "id": "cards-section-036",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 25,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 36,
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
       },
@@ -23335,11 +23643,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-026",
+      "id": "cards-section-037",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 26,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 37,
         "label": "Мало карточек",
         "mapping": "by_construction"
       },
@@ -23361,11 +23669,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-027",
+      "id": "cards-section-038",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 27,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 38,
         "label": "Карточек нет",
         "mapping": "by_construction"
       },
@@ -23387,11 +23695,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-028",
+      "id": "cards-section-039",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 28,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 39,
         "label": "Блиц",
         "mapping": "by_construction"
       },
@@ -23413,11 +23721,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-029",
+      "id": "cards-section-040",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 29,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 40,
         "label": "Устно — ожидание",
         "mapping": "by_construction"
       },
@@ -23439,11 +23747,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-030",
+      "id": "cards-section-041",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 30,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 41,
         "label": "Устно — запись",
         "mapping": "by_construction"
       },
@@ -23469,11 +23777,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-031",
+      "id": "cards-section-042",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 31,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 42,
         "label": "Правда / ложь",
         "mapping": "by_construction"
       },
@@ -23495,11 +23803,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-032",
+      "id": "cards-section-043",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 32,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 43,
         "label": "Вспомни и напиши",
         "mapping": "by_construction"
       },
@@ -23523,11 +23831,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-033",
+      "id": "cards-section-044",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 33,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 44,
         "label": "Блиц — верно",
         "mapping": "by_construction"
       },
@@ -23549,11 +23857,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-034",
+      "id": "cards-section-045",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 34,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 45,
         "label": "Блиц — неверно, минус жизнь",
         "mapping": "by_construction"
       },
@@ -23575,11 +23883,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-035",
+      "id": "cards-section-046",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 35,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 46,
         "label": "Устно — верно",
         "mapping": "by_construction"
       },
@@ -23601,11 +23909,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-036",
+      "id": "cards-section-047",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 36,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 47,
         "label": "Устно — не так",
         "mapping": "by_construction"
       },
@@ -23627,11 +23935,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-037",
+      "id": "cards-section-048",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 37,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 48,
         "label": "Правда / ложь — верно",
         "mapping": "by_construction"
       },
@@ -23653,11 +23961,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-038",
+      "id": "cards-section-049",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 38,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 49,
         "label": "Правда / ложь — неверно",
         "mapping": "by_construction"
       },
@@ -23679,11 +23987,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-039",
+      "id": "cards-section-050",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 39,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 50,
         "label": "Напиши — верно",
         "mapping": "by_construction"
       },
@@ -23705,11 +24013,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-040",
+      "id": "cards-section-051",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 40,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 51,
         "label": "Напиши — опечатка",
         "mapping": "by_construction"
       },
@@ -23731,11 +24039,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-041",
+      "id": "cards-section-052",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 41,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 52,
         "label": "Напиши — неверно",
         "mapping": "by_construction"
       },
@@ -23757,11 +24065,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-042",
+      "id": "cards-section-053",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 42,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 53,
         "label": "Итог с ошибками",
         "mapping": "by_construction"
       },
@@ -23783,11 +24091,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-043",
+      "id": "cards-section-054",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 43,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 54,
         "label": "Итог Блица",
         "mapping": "by_construction"
       },
@@ -23809,11 +24117,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-044",
+      "id": "cards-section-055",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 44,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 55,
         "label": "Без ошибок",
         "mapping": "by_construction"
       },
@@ -23835,11 +24143,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-045",
+      "id": "cards-section-056",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 45,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 56,
         "label": "Лимит исчерпан (Free)",
         "mapping": "by_construction"
       },
@@ -23861,11 +24169,11 @@
       "reviewed_at": null
     },
     {
-      "id": "cards-v2-046",
+      "id": "cards-section-057",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 46,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 57,
         "label": "Нет сети и кэша",
         "mapping": "by_construction"
       },

@@ -543,10 +543,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       if (withHaptic) hapticTap();
       const limitShown = await hasShownAiMistakeLimitNoticeToday().catch(noteSwallowedAs('use_mistake_explain:promise_1', false));
       if (!isCurrentRequest()) {
+        console.log(`[MISTAKE-EXPLAIN] explain:stale_before_call phrase=${phraseId}`); // guard-ok: ранний выход
         releaseInFlight();
         return;
       }
       if (limitShown) {
+        // зачем: лимит дня уже показан — разбор прячется без запроса; без лога это выглядит как «ИИ молчит».
+        console.log(`[MISTAKE-EXPLAIN] explain:hidden reason=daily_limit_notice_shown phrase=${phraseId}`); // guard-ok: ранний выход
         setAiMistakeState('hidden');
         setAiMistakeText(null);
         releaseInFlight();
@@ -734,8 +737,18 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   openEli5Ref.current = (backgroundRetry = false) => { void openEli5(backgroundRetry); };
 
   useEffect(() => {
-    if (!active || netStatus !== 'online' || aiMistakeState !== 'idle') return;
-    if (!isAiExplainConsentHydrated()) return;
+    // зачем (координатор 04.10, «Почему» почти всегда общая фраза; «сперва логи»): каждый выход
+    // автозагрузки пишет, ЧТО её остановило — иначе «ИИ не ответил» неотличимо от «запроса не было».
+    if (!active || netStatus !== 'online' || aiMistakeState !== 'idle') {
+      if (active) {
+        console.log(`[MISTAKE-EXPLAIN] autoload:skip net=${netStatus} state=${aiMistakeState} phrase=${phraseKey}`); // guard-ok: ранний выход
+      }
+      return;
+    }
+    if (!isAiExplainConsentHydrated()) {
+      console.log(`[MISTAKE-EXPLAIN] autoload:skip reason=consent_not_hydrated phrase=${phraseKey}`); // guard-ok: ранний выход
+      return;
+    }
     if (!hasAiExplainConsentDecision()) {
       setConsentGateVisible(true);
       return;
@@ -755,7 +768,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     if (hasPremiumAccess && freeExplainsLeft <= 0) {
       console.log(`[MISTAKE-EXPLAIN] autoload:plus_bypass freeLeft=${freeExplainsLeft} phrase=${phraseKey}`); // guard-ok: ветка Plus без лимита
     }
-    if (!isAiExplainConsentGranted()) return;
+    if (!isAiExplainConsentGranted()) {
+      console.log(`[MISTAKE-EXPLAIN] autoload:skip reason=consent_denied phrase=${phraseKey}`); // guard-ok: ранний выход
+      return;
+    }
+    console.log(`[MISTAKE-EXPLAIN] autoload:request freeLeft=${freeExplainsLeft} premium=${hasPremiumAccess} phrase=${phraseKey}`); // guard-ok
     void explain(false);
   }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick, hasPremiumAccess, freeExplainsLeft, paidUnlockedForPhrase]);
 

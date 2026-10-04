@@ -251,7 +251,13 @@ export default function MistakeDetailScreen() {
                   </>
                 ) : (
                   <Panel g={g} style={styles.panelGap}>
-                    <Pressable testID="mistake-detail-why" accessibilityRole="button" accessibilityState={{ expanded: whyOpen }} onPress={() => { hapticTap(); setWhyOpen((value) => !value); }} style={({ pressed }) => [styles.whyRow, pressed && styles.pressed]}>
+                    <Pressable testID="mistake-detail-why" accessibilityRole="button" accessibilityState={{ expanded: whyOpen }} onPress={() => {
+                      hapticTap();
+                      // зачем (координатор 04.10, «Почему» = общая фраза): здесь разбор ИИ не запрашивается —
+                      // текст статический по типу ошибки. Лог фиксирует источник, чтобы это было видно в журнале.
+                      if (!whyOpen) console.log(`[MISTAKE-EXPLAIN] detail:why_static facet=${detail.facet} ai=not_requested`); // guard-ok
+                      setWhyOpen((value) => !value);
+                    }} style={({ pressed }) => [styles.whyRow, pressed && styles.pressed]}>
                       <Text style={[styles.whyTitle, { color: g.text }]}>{copy.why}</Text>
                       <Ionicons name={whyOpen ? 'chevron-down' : 'chevron-forward'} size={18} color={g.secondary} />
                     </Pressable>

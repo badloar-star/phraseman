@@ -522,7 +522,8 @@ function buildEli5Messages(payload: ExplainMistakePayload): Array<{ role: 'syste
     {
       role: 'user',
       content:
-        `The child was building this ${targetName} phrase: "${payload.studyTarget}"\n` +
+        // зачем (04.10): здесь стоял payload.studyTarget — модель получала «phrase: "en"» вместо самой фразы.
+        `The child was building this ${targetName} phrase: "${payload.targetAnswer}"\n` +
         (payload.prompt ? `The task they saw: ${payload.prompt}\n` : '') +
         (payload.phraseMeaning ? `What it means: ${payload.phraseMeaning}\n` : '') +
         `LEARNER_ANSWER: ${payload.userAnswer}\n` +

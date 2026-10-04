@@ -1,7 +1,7 @@
 # Task packet: «Ещё N» — повтор неверно отвеченных ошибок этой сессии
 
-Governance-ID: TG-1977E6239663
-Status: Done — mistakeIds в сборке и подготовке, разбор маршрута, логи [MISTAKE-RETRY], тесты
+Governance-ID: TG-221B7F5E5534
+Status: Done — mistakeIds, разбор маршрута, логи [MISTAKE-RETRY]; при mistakeIds pool игнорируется
 Owner: сессия 1 · ЯДРО (срочная задача координатора, 04.10; кнопку подключает сессия 3)
 Related epic/enabler: Мои ошибки 2.0, эталон docs/design/v2-app/mistakes-panel.html (кадр result)
 

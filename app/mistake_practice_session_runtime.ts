@@ -65,7 +65,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     ? await loadMistakePracticeSession(input)
     : null;
   accountFence.assertCurrent();
-  const requestedPool: MistakePracticePool = input.pool ?? 'active';
+  // «Ещё N» (mistakeIds) — всегда обычная отработка, pool игнорируется (см. session.ts).
+  const requestedPool: MistakePracticePool = (input.mistakeIds?.length ?? 0) > 0 ? 'active' : input.pool ?? 'active';
   const restoredPool: MistakePracticePool = restored?.pool ?? 'active';
   // зачем (повтор исправленных, 04.10): в повторе очередь из исправленных, а ошибка в повторе
   // возвращает ошибку в активные и её переспрашивают — обе стадии законны. Обычная сессия — только активные.
@@ -149,7 +150,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     nowMs: input.nowMs ?? Date.now(),
     focusMistakeId: input.focusMistakeId,
     facets: input.facets,
-    pool: input.pool,
+    pool: requestedPool,
     mistakeIds: input.mistakeIds,
   });
   const deferSave = input.persistSession && input.deferNewSessionSave === true;

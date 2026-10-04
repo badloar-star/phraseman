@@ -49,11 +49,16 @@ describe('«Ещё N»: сужение сессии до неверных', () =
     expect(ids(retry)).toEqual([ITEMS[1]!.mistakeId, ITEMS[3]!.mistakeId]);
   });
 
-  test('id не из pool отбрасываются (исправленная в обычной сессии, активная в повторе)', () => {
+  test('id не из обычной отработки отбрасываются (исправленная ошибка)', () => {
     const active = buildMistakePracticeSession({ ...BASE, mistakeIds: [ITEMS[0]!.mistakeId, ITEMS[4]!.mistakeId] });
     expect(ids(active)).toEqual([ITEMS[0]!.mistakeId]);
-    const review = buildMistakePracticeSession({ ...BASE, pool: 'corrected', mistakeIds: [ITEMS[0]!.mistakeId, ITEMS[4]!.mistakeId] });
-    expect(ids(review)).toEqual([ITEMS[4]!.mistakeId]);
+  });
+
+  test("с mistakeIds pool игнорируется: «Ещё N» после повтора исправленных берёт вернувшиеся в активные", () => {
+    const afterReview = buildMistakePracticeSession({ ...BASE, pool: 'corrected', mistakeIds: [ITEMS[0]!.mistakeId, ITEMS[4]!.mistakeId] });
+    expect(ids(afterReview)).toEqual([ITEMS[0]!.mistakeId]);
+    expect(afterReview).not.toHaveProperty('pool');
+    expect(afterReview).toEqual(buildMistakePracticeSession({ ...BASE, mistakeIds: [ITEMS[0]!.mistakeId, ITEMS[4]!.mistakeId] }));
   });
 
   test('ни одного готового — прежняя ошибка', () => {

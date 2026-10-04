@@ -153,8 +153,10 @@ export function buildMistakePracticeSession(input: {
   const facetFiltered = input.facets && input.facets.length > 0
     ? input.items.filter((item) => input.facets!.includes(item.facet))
     : input.items;
-  const pool: MistakePracticePool = input.pool ?? 'active';
   const retryIds = input.mistakeIds && input.mistakeIds.length > 0 ? new Set(input.mistakeIds) : null;
+  // зачем (координатор 04.10): «Ещё N» — это всегда обычная отработка. После повтора исправленных
+  // неверно отвеченные уже стали активными, и pool 'corrected' отсеял бы их все до отказа.
+  const pool: MistakePracticePool = retryIds ? 'active' : input.pool ?? 'active';
   const idFiltered = retryIds ? facetFiltered.filter((item) => retryIds.has(item.mistakeId)) : facetFiltered;
   const candidates = focusMistakeId
     ? idFiltered.filter((item) => item.mistakeId === focusMistakeId)

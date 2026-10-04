@@ -123,20 +123,20 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             <LinearGradient colors={[glass.selected, 'transparent']} start={{ x:0.04, y:0 }} end={{ x:0.9, y:1 }} style={{ position:'absolute', inset:0 }}/>
           </View>
           <ScrollView nestedScrollEnabled style={{ flexShrink:1, minHeight:0 }} contentContainerStyle={{ flexGrow:1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} bounces={false}>
-            <View style={{ paddingHorizontal:18, paddingTop:20, paddingBottom:14, alignItems:'center' }}>
+            <View style={{ paddingHorizontal:21, paddingTop:21, paddingBottom:18, alignItems:'center' }}>
               <Text style={{ color:glass.text, fontSize:TIME_MODAL_TITLE_SIZE, lineHeight:31, fontWeight:'700', textAlign:'center' }}>{timeTitle}</Text>
             </View>
-            <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:12, paddingHorizontal:10, backgroundColor:glass.opaqueControl }}>
+            <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:18, paddingHorizontal:28, backgroundColor:glass.opaqueControl }}>
               <SimplePicker values={HOURS}   value={h} onChange={setH}/>
-              <Text style={{ color:glass.text, fontSize:30, fontWeight:'400', marginHorizontal:2 }}>:</Text>
+              <Text style={{ color:glass.text, fontSize:30, fontWeight:'300', width:28, textAlign:'center' }}>:</Text>
               <SimplePicker values={MINUTES} value={m} onChange={setM}/>
             </View>
           </ScrollView>
-          <View style={{ flexDirection:'row', gap:10, padding:14 }}>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:52, borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass.glassEdge }} onPress={onCancel}>
-              <Text style={{ color:glass.text, fontSize:16, fontWeight:'400' }}>{cancelLabel}</Text>
+          <View style={{ flexDirection:'row', gap:10, paddingHorizontal:21, paddingTop:16, paddingBottom:21 }}>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass.glassEdge }} onPress={onCancel}>
+              <Text style={{ color:glass.text, fontSize:16, fontWeight:'700' }}>{cancelLabel}</Text>
             </DuoPressable>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:52, borderRadius:24, backgroundColor:glass.accent }} onPress={() => onConfirm(h, m)}>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.accent }} onPress={() => onConfirm(h, m)}>
               <Text style={{ color:glass.accentInk, fontSize:16, fontWeight:'700' }}>OK</Text>
             </DuoPressable>
           </View>

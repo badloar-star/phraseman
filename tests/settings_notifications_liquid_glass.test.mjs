@@ -40,7 +40,8 @@ function findArrowContaining(fragment) {
 const protectedHashes = {
   SimplePicker: 'c09930bd91831d761d027dedc87b5c960643114427a0b9fbe54d67d34684b23b',
   // зачем (темы 2.0): кнопка OK модалки — роли цвета темы accent/accentInk (в «Спокойно» = cta/ctaInk).
-  TimeModal: '20b0d43d0d427d055bcafe140f5c2b7759ca4e7f7868b62a755b212d30c43bbd',
+  // 04.10: OM-TIME — кнопки 48, «Отмена» 700, двоеточие 300, поля панели колёс 18/28.
+  TimeModal: 'fe49639d447ed5e79dc1c79bb17479a3be7de955d0e5c13fe1498fda0df8473c',
   scheduleTime: 'ba0a7abb3016f9ad6d07373ff26b07a699ca06431ef0ddcfff3268319f36cce1',
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',
@@ -113,7 +114,8 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   for (const side of ['Top', 'Bottom', 'Left', 'Right']) assert.match(source, new RegExp(`padding${side}:\\s*insets\\.${side.toLowerCase()}`));
   assert.match(source, /useStableSafeAreaInsets\(\)/);
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.match(source, /style=\{\{ width: 48, height: 48,[^}]*marginTop: 4 \}\}/);
+  // 04.10 (profile.html `.rb.bare`): «назад» — голый шеврон, область нажатия 48×44.
+  assert.match(source, /style=\{\{ width: 48, height: 44,[^}]*marginTop: 4 \}\}/);
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*marginTop:\s*10/);
   assert.match(source, /const statusCardStyle[^;]*paddingVertical:\s*14[^;]*paddingHorizontal:\s*16[^;]*alignItems:\s*'flex-start'/s);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*fontWeight:\s*'700'/);

@@ -605,7 +605,7 @@
 | 3 | Текущий runtime-вход | settings context | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
 | 4 | Текущий runtime-вход | lesson complete context | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
 | 5 | Текущий runtime-вход | onboarding overlay context | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
-| 6 | Текущий runtime-вход | SaveProgressBanner / home context | 🏠 | `components/SaveProgressBanner.tsx` (2aad7267a, +правки в дереве) — баннер Главной — принадлежит Главной, зелёный t.correct |
+| 6 | Текущий runtime-вход | SaveProgressBanner / home context | ➖ | баннер удалён целиком (7e1d725e0, решение координатора §46 Q92): привязка аккаунта живёт в Настройках → «Аккаунт · Не привязан» → /account_details; переносить нечего — [04.10 «Дизайн»] |
 | 7 | Текущий runtime-вход | provider busy | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
 | 8 | Текущий runtime-вход | provider slow · safe close | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
 | 9 | Текущий runtime-вход | no provider | ✅ | `components/RegistrationPromptModal.tsx` (7556af3e8) — окно регистрации/входа на LG (7556af3e8); все контексты в одном компоненте |
@@ -671,7 +671,7 @@
 | 7 | Энергия | full · no hidden reserve | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
 | 8 | Энергия | Plus · unlimited presentation | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
 | 9 | Энергия | Home-positioned variant | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
-| 10 | Сохранить путь | Home banner only | 🏠 | `components/SaveProgressBanner.tsx` (2aad7267a, +правки в дереве) — баннер «Сохранить путь» на Главной, зелёный t.correct |
+| 10 | Сохранить путь | Home banner only | ➖ | баннер удалён целиком (7e1d725e0, решение координатора §46 Q92): привязка аккаунта живёт в Настройках → «Аккаунт · Не привязан» → /account_details; переносить нечего — [04.10 «Дизайн»] |
 | 11 | Промо магазина | store promo present · placeholders only | ✅ | `components/paywall/PaywallPromoBanner.tsx` (3587edede, +правки в дереве) — промо магазина без LG-токенов — [30.09 перенос] PaywallPromoBanner: стеклянная плашка на токенах темы (см. paywalls #18) |
 | 12 | Промо магазина | promo null · banner absent | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — при promo=null баннер не рисуется |
 | 13 | Реферальный доступ закончился | historical access ended · compatibility notice | ✅ | `app/referral_access_ended_modal.tsx` (e8a8c8220) — уведомление об окончании доступа на LG (e8a8c8220) |
@@ -887,14 +887,14 @@
 | paywall-review.html | 1 | 1 | 0 | 0 | 0 | 0 |
 | paywalls.html | 25 | 25 | 0 | 0 | 0 | 0 |
 | system.html | 22 | 22 | 0 | 0 | 0 | 0 |
-| overlays.html | 57 | 56 | 0 | 0 | 1 | 0 |
-| overlays-more.html | 33 | 32 | 0 | 0 | 1 | 0 |
+| overlays.html | 57 | 56 | 0 | 0 | 0 | 1 |
+| overlays-more.html | 33 | 32 | 0 | 0 | 0 | 1 |
 | overlays-runtime.html | 44 | 43 | 0 | 0 | 0 | 1 |
 | overlays-players.html | 7 | 7 | 0 | 0 | 0 | 0 |
 | overlays-campaigns.html | 38 | 38 | 0 | 0 | 0 | 0 |
 | overlays-specialist.html | 38 | 38 | 0 | 0 | 0 | 0 |
 | themes.html | 19 | 19 | 0 | 0 | 0 | 0 |
-| **Итого** | **758** | **746** | **0** | **0** | **8** | **4** |
+| **Итого** | **758** | **746** | **0** | **0** | **6** | **6** |
 
 <details><summary>Итог на 30.09 (устарел, сохранён для истории)</summary>
 

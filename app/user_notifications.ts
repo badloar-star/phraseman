@@ -288,6 +288,7 @@ function normalizeNotification(id: string, data: Record<string, unknown>): UserN
 
 const cachedMemoryByOwner = new Map<string, UserNotification[]>();
 const refreshInFlightByOwner = new Map<string, Promise<UserNotification[]>>();
+const cacheReadInFlightByOwner = new Map<string, Promise<UserNotification[]>>();
 const locallyReadIdsByOwner = new Map<string, Set<string>>();
 const locallyDeletedIdsByOwner = new Map<string, Set<string>>();
 let legacyCacheCleanupStarted = false;
@@ -369,6 +370,18 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
   if (!ownerUid) return [];
   const memory = cachedMemoryByOwner.get(ownerUid);
   if (memory) return memory;
+  // зачем (fin7, 04.10): на старте кэш уведомлений читался 6 раз подряд (колокольчик, точка вкладки «Сообщество» и др. ждут владельца
+  // раньше, чем появится копия в памяти) — шесть вызовов в очереди хранилища вместо одного. Один общий проход на владельца.
+  const inFlight = cacheReadInFlightByOwner.get(ownerUid);
+  if (inFlight) return inFlight;
+  const read = readCachedUserNotificationsFromStorage(ownerUid).finally(() => {
+    if (cacheReadInFlightByOwner.get(ownerUid) === read) cacheReadInFlightByOwner.delete(ownerUid);
+  });
+  cacheReadInFlightByOwner.set(ownerUid, read);
+  return read;
+}
+
+async function readCachedUserNotificationsFromStorage(ownerUid: string): Promise<UserNotification[]> {
   try {
     const raw = await AsyncStorage.getItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid));
     if (!raw) return [];

@@ -126,6 +126,22 @@ describe('notification cache account isolation', () => {
     expect(mockGetCountByUid['stable-C']).toBe(1);
   });
 
+  // зачем (fin7, 04.10): на старте кэш уведомлений читали 6 раз подряд — теперь одновременные чтения одного владельца делят одну запись очереди хранилища.
+  it('reads the stored notification cache once for simultaneous callers of one owner', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-D');
+    storage['user_notifications_cache_v2:stable-D'] = JSON.stringify([
+      { id: 'cached-D', type: 'report_reply', text: 'cached', read: false, createdAt: 300 },
+    ]);
+    (AsyncStorage.getItem as jest.Mock).mockClear();
+
+    const results = await Promise.all([1, 2, 3, 4, 5].map(() => readCachedUserNotifications()));
+
+    const cacheReads = (AsyncStorage.getItem as jest.Mock).mock.calls
+      .filter(([key]) => String(key).startsWith('user_notifications_cache_v2:'));
+    expect(cacheReads).toHaveLength(1);
+    for (const list of results) expect(list).toEqual([expect.objectContaining({ id: 'cached-D' })]);
+  });
+
   it('normalizes report reply coin rewards while accepting legacy shard payloads', async () => {
     (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-coins');
     mockDocsByUid['stable-coins'] = [

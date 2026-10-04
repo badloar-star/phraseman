@@ -3,6 +3,7 @@ import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   buildMistakePracticeSession,
   type MistakePracticeLength,
+  type MistakePracticePool,
   type MistakePracticeSession,
 } from '../modules/mistake-practice/session';
 import {
@@ -36,6 +37,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   focusMistakeId?: string;
   /** Сузить НОВУЮ сессию до типов ошибок (окно «Перед отработкой»); без параметра — как раньше. Сохранённая сессия возобновляется как есть. */
   facets?: readonly MistakeFacet[];
+  /** зачем (владелец 04.10): 'corrected' — повтор исправленных для закрепления; без параметра — как раньше. */
+  pool?: MistakePracticePool;
   storage?: MistakePracticeStorage;
   nowMs?: number;
 }>, dependencies: MutableMistakeContentDependencies = {}): Promise<Readonly<{
@@ -60,9 +63,16 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     ? await loadMistakePracticeSession(input)
     : null;
   accountFence.assertCurrent();
-  const restoredStillAvailable = restored?.queue.slice(restored.cursor).every((entry) => {
+  const requestedPool: MistakePracticePool = input.pool ?? 'active';
+  const restoredPool: MistakePracticePool = restored?.pool ?? 'active';
+  // зачем (повтор исправленных, 04.10): в повторе очередь из исправленных, а ошибка в повторе
+  // возвращает ошибку в активные и её переспрашивают — обе стадии законны. Обычная сессия — только активные.
+  const restoredStillAvailable = restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
     const item = projection.items.get(entry.mistakeId);
-    return item?.cycleId === entry.cycleId && item.status === 'active';
+    if (item?.cycleId !== entry.cycleId) return false;
+    return restoredPool === 'corrected'
+      ? item.status === 'corrected' || item.status === 'active'
+      : item.status === 'active';
   }) === true;
   // зачем (баг владельца 2026-09-14 «сразу 10/10»): решение возобновить или
   // построить сессию заново раньше принималось молча, и понять со слов
@@ -75,6 +85,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     lessonId: input.lessonId ?? null,
     focusMistakeId: input.focusMistakeId ?? null,
     facets: input.facets ?? null,
+    requestedPool,
+    restoredPool: restored ? restoredPool : null,
     projectionItems: projection.items.size,
     unavailableCount: reconciled.unavailableCount,
     restoredFound: restored !== null,
@@ -102,7 +114,9 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     console.log('[MISTAKE-PRACTICE-PREPARE] dropping stored session', JSON.stringify({
       reason: restored.cursor >= restored.queue.length
         ? 'already_finished'
-        : 'queue_items_no_longer_active',
+        : restoredPool !== requestedPool
+          ? `pool_mismatch:${restoredPool}->${requestedPool}`
+          : 'queue_items_no_longer_active',
       cursor: restored.cursor,
       queueLength: restored.queue.length,
     }));
@@ -118,6 +132,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     nowMs: input.nowMs ?? Date.now(),
     focusMistakeId: input.focusMistakeId,
     facets: input.facets,
+    pool: input.pool,
   });
   const deferSave = input.persistSession && input.deferNewSessionSave === true;
   if (input.persistSession && !deferSave) {

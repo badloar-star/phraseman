@@ -379,6 +379,8 @@ function MistakePracticeSessionScreen() {
     focusMistakeId?: string;
     /** Группа типов из окна «Перед отработкой» хаба (meaning / grammar / sound); без параметра — все. */
     facetGroup?: string;
+    /** 'corrected' — «Повторить исправленные» (владелец 04.10); без параметра — обычная отработка. */
+    pool?: string;
     returnTo?: string;
     maxReviewSessionId?: string;
     devRunesSeed?: string | string[];
@@ -427,8 +429,11 @@ function MistakePracticeSessionScreen() {
   // ошибок (новый набор актуальных ошибок каждый раз) — «повторное прохождение»
   // здесь концептуально не применимо, поэтому completionOrdinal фиксирован.
   // enabled=false, пока session ещё не гидрирован (sessionId недоступен).
+  // зачем (владелец 04.10, «Повторить исправленные»): повтор собирается из исправленных ошибок и платит 1 монету за верный ответ.
+  const reviewPool = params.pool === 'corrected' ? 'corrected' as const : undefined;
   const practiceRunes = usePracticeRunes({
     activity: 'mistake_practice',
+    repeatPriceOnly: reviewPool === 'corrected',
     sessionKey: session?.sessionId ?? '',
     completionOrdinal: 1,
     enabled: session !== null,
@@ -552,6 +557,7 @@ function MistakePracticeSessionScreen() {
         lessonId: params.lessonId,
         focusMistakeId: focusedMistakeId,
         facets: facetsFromParam(params.facetGroup),
+        pool: reviewPool,
       });
       if (!cancelled && prepareStageRef.current === 'abandoned') {
         console.warn('[MISTAKES-GATE] session:prepare:late_after_ceiling → ignored', JSON.stringify({ resumed: prepared.resumed })); // guard-ok
@@ -560,7 +566,7 @@ function MistakePracticeSessionScreen() {
       if (!cancelled) prepareStageRef.current = 'confirming';
       if (!cancelled) {
         // зачем (владелец 2026-09-14): короткие наборы (1-4 ошибки) без энергии,
-        // от 5 - как раньше 10 ⚡ один раз при старте.
+        // от 5 — 1 ⚡ один раз при старте (ENERGY_SESSION_COST, app/energy_contract.ts); повтор исправленных стоит столько же.
         const costsEnergy = mistakePracticeSessionCostsEnergy(prepared.session.initialCount);
         console.log('[MISTAKES-GATE] session:energy', JSON.stringify({ // guard-ok: ветвление энергии (правило «сперва логи»)
           resumed: prepared.resumed, initialCount: prepared.session.initialCount, costsEnergy,
@@ -638,7 +644,7 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, reviewPool, requestedLength, router, studyTarget]);
 
   // зачем (D158): подготовка, не ответившая ни успехом, ни ошибкой, не держит экран вечно.
   useEffect(() => {
@@ -758,7 +764,7 @@ function MistakePracticeSessionScreen() {
         if (awarded > 0) runeFlight.fly(awarded);
       }
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
-      // ошибок платятся 10 ⚡ один раз при старте сессии (эффект подготовки выше).
+      // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
         setWrongAnswers((value) => value + 1);
       }
@@ -784,6 +790,8 @@ function MistakePracticeSessionScreen() {
           support: modeDefinition.support,
           exerciseId: entry.exercise.exerciseId,
           sessionId: session.sessionId,
+          // зачем (владелец 04.10): ответ в повторе исправленной — журнал знает, что это закрепление (projection.ts).
+          ...(session.pool === 'corrected' ? { review: true } : {}),
         },
       };
       // зачем (§126): вердикт не ждёт запись — событие сразу в журнал в памяти, запись фоном (очередь, повтор, лог)
@@ -942,10 +950,10 @@ function MistakePracticeSessionScreen() {
             studyTarget,
           }),
         );
-        if (persistSession) void clearMistakePracticeSession({ accountScope, studyTarget });
+        if (persistSession) void clearMistakePracticeSession({ accountScope, studyTarget, pool: reviewPool });
       }
     }
-  }, [accountScope, entrySource, params.planDayIndex, params.planId, params.planInstanceId, params.planTaskId, pendingSession, persistSession, studyTarget, wrongAnswers]);
+  }, [accountScope, entrySource, params.planDayIndex, params.planId, params.planInstanceId, params.planTaskId, pendingSession, persistSession, reviewPool, studyTarget, wrongAnswers]);
 
   const onSpeechStatus = useCallback((status: SpeakingPanelStatus) => {
     if (status === 'denied' || status === 'unavailable' || status === 'no_speech' || status === 'stalled') {
@@ -1109,10 +1117,10 @@ function MistakePracticeSessionScreen() {
       // зачем (22.09): без этого сохранённая сессия испанского/немецкого не
       // очищалась и всплывала снова. Язык вне курса отсечён на входе в экран.
       if (persistSession && accountScope) {
-        void clearMistakePracticeSession({ accountScope, studyTarget });
+        void clearMistakePracticeSession({ accountScope, studyTarget, pool: reviewPool });
       }
     }
-  }, [accountScope, hiddenUndo, persistSession, studyTarget]);
+  }, [accountScope, hiddenUndo, persistSession, reviewPool, studyTarget]);
 
   if (loading) {
     return <MistakePracticeScreenFrame><MistakePracticeLoadingSkeleton /></MistakePracticeScreenFrame>;

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
 import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
-import type { MistakePracticeSession } from '../modules/mistake-practice/session';
+import type { MistakePracticePool, MistakePracticeSession } from '../modules/mistake-practice/session';
 import type { MistakePracticeStorage } from './mistake_practice_store';
 import { mistakePracticeSessionKey } from './target_storage_keys';
 import {
@@ -14,7 +14,19 @@ type Scope = {
   accountScope: string;
   studyTarget: MistakeStudyTarget;
   storage?: MistakePracticeStorage;
+  /** Какую сохранённую сессию читать/стирать; без параметра — обычную отработку. */
+  pool?: MistakePracticePool;
 };
+
+/**
+ * зачем (владелец 04.10, «Повторить исправленные»): у повтора своё место хранения. Иначе запуск
+ * повтора стирал бы оплаченную незаконченную обычную отработку (одно место на двоих).
+ * Ключ того же владельца и языка — стирание при смене аккаунта покрывает его так же.
+ */
+function sessionStorageKey(accountScope: string, studyTarget: MistakeStudyTarget, pool: MistakePracticePool | undefined): string {
+  const base = mistakePracticeSessionKey(accountScope, studyTarget);
+  return pool === 'corrected' ? `${base}::review` : base;
+}
 
 // PHONE_STATE_DEVICE_ONLY_MISTAKE_SESSION: cursor/audio/UI resume state is
 // intentionally not portable. Immutable mistake facts use the practice journal.
@@ -73,7 +85,7 @@ export async function saveMistakePracticeSession(
       throw new Error('stale_account_generation');
     }
     await storage.setItem(
-      mistakePracticeSessionKey(input.accountScope, input.studyTarget),
+      sessionStorageKey(input.accountScope, input.studyTarget, input.session.pool),
       canonicalJsonV1(envelope),
     );
     if (generation.phase !== 'uninitialized' && !isCurrentAccountGeneration(generation, input.accountScope)) {
@@ -87,7 +99,7 @@ export async function loadMistakePracticeSession(
 ): Promise<MistakePracticeSession | null> {
   const storage = input.storage ?? AsyncStorage;
   const accountFence = captureMistakePracticeSessionAccountFence(input.accountScope);
-  const raw = await storage.getItem(mistakePracticeSessionKey(input.accountScope, input.studyTarget));
+  const raw = await storage.getItem(sessionStorageKey(input.accountScope, input.studyTarget, input.pool));
   accountFence.assertCurrent();
   if (!raw) return null;
   try {
@@ -100,7 +112,9 @@ export async function loadMistakePracticeSession(
     ) return null;
     accountFence.assertCurrent();
     return envelope.session;
-  } catch {
+  } catch (error) {
+    // guard-ok: битая запись = сессии нет, начнём новую; причину пишем (запрет немого catch).
+    console.warn('[MISTAKE-PRACTICE-PREPARE] stored session unreadable → ignored', error instanceof Error ? error.message : String(error));
     return null;
   }
 }
@@ -112,6 +126,6 @@ export async function clearMistakePracticeSession(input: Scope): Promise<void> {
     if (generation.phase !== 'uninitialized' && !isCurrentAccountGeneration(generation, input.accountScope)) {
       throw new Error('stale_account_generation');
     }
-    await storage.removeItem(mistakePracticeSessionKey(input.accountScope, input.studyTarget));
+    await storage.removeItem(sessionStorageKey(input.accountScope, input.studyTarget, input.pool));
   });
 }

@@ -59,6 +59,11 @@ export type UsePracticeRunesInput = Readonly<{
   sessionKey: string;
   /** Порядковый номер прохождения ЭТОЙ сессии — растёт при каждом новом заходе. */
   completionOrdinal: number;
+  /**
+   * зачем (владелец 04.10, повтор исправленных): платить ценой повтора (1 за элемент) даже в первом
+   * проходе сессии — закрепление уже выученного не должно стать фермой монет. Без флага — как раньше.
+   */
+  repeatPriceOnly?: boolean;
   /** false отключает хук целиком (превью/сандбокс без записи прогресса). */
   enabled?: boolean;
   /**
@@ -272,7 +277,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       // carries its committed ordinal when the marker trails by more than one.
       const settledCount = Math.max(markerCount, committedOrdinal, accumulatorHighWater);
       settledCountRef.current = settledCount;
-      const firstCompletion = settledCount === 0;
+      const firstCompletion = input.repeatPriceOnly === true ? false : settledCount === 0;
       // зачем (владелец, 2026-08-28, «анимация полёта в уроках не появилась»):
       // зачтённая копилка прошлого прохода (pendingRunes 0 при непустом списке
       // оплаченных) раньше восстанавливалась КАК ЕСТЬ — каждый элемент значился

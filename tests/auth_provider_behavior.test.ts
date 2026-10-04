@@ -1052,6 +1052,32 @@ test('processed cloud document still permits upload when newer local progress ne
   expect(emitAppEvent).toHaveBeenCalledWith('cloud_profile_hydrated');
 });
 
+// зачем (PM-289, D70/D84): жемчуг удалён в 2.0 — вход больше не открывает его журнал
+// (минус шаг и до двух чтений Firestore на первом входе с устройства). Страж: шаг не
+// вернётся незаметно, а на его месте остаётся лог [AUTH-SHARDS] ровно один раз за вход.
+test('sign-in background refresh no longer loads the retired pearl journal (PM-289)', async () => {
+  restoreFromCloudDetailed.mockResolvedValueOnce('restored');
+  const logSpy = jest.spyOn(console, 'log');
+  try {
+    const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' });
+    const result = await signInWithProvider('google');
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    expect(['created_new', 'linked_existing']).toContain(result.result);
+    // Фон дошёл до конца цепочки (иначе «не вызван» ничего бы не доказывал).
+    expect(syncToCloud).toHaveBeenCalledTimes(1);
+    expect(mockLoadShardsFromCloud).not.toHaveBeenCalled();
+    const shardLines = logSpy.mock.calls
+      .map((args) => String(args[0]))
+      .filter((line) => line.startsWith('[AUTH-SHARDS]'));
+    expect(shardLines).toHaveLength(1);
+    expect(shardLines[0]).toContain('шаг шардов снят');
+    expect(logSpy.mock.calls.some((args) => String(args[0]).includes(':loadShards '))).toBe(false);
+  } finally {
+    logSpy.mockRestore();
+  }
+});
+
 test('concurrent taps share one provider sign-in instead of starting overlapping identity mutations', async () => {
   let releaseGoogle!: (value: any) => void;
   googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { releaseGoogle = resolve; }));

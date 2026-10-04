@@ -136,7 +136,6 @@ import {
 } from './premium_guard';
 import {
   forceSyncShardsToCloud,
-  loadShardsFromCloud,
   preparePendingShardDeltasForAccountSwitch,
 } from './shards_system';
 import {
@@ -3228,8 +3227,11 @@ function scheduleSameStablePostAuthRefresh(
       withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage),
     )) ?? 'failed';
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_restore`); return; }
-    await step('loadShards', () => loadShardsFromCloud(isCurrent));
-    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_shards`); return; }
+    // зачем (PM-289, D70/D84/D103): жемчуг удалён в 2.0 без компенсации — баланс нигде
+    // не показывается и не тратится, начислений (в т.ч. оплаченных пакетов) больше нет.
+    // Открытие его журнала на входе было лишним шагом фона (до двух чтений Firestore
+    // на первом входе с устройства). Журнал client_shard_operation_ledger не тронут.
+    console.log(`[AUTH-SHARDS] шаг шардов снят stage=${stage}`);
     await step('switchBackup', () => tryRestoreAccountSwitchBackup(stage, isCurrent));
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_backup`); return; }
     await step('markOnboarded', () => markOnboardedAfterSignIn(isCurrent));
@@ -4047,18 +4049,15 @@ async function finishAccountDeletion(
 ): Promise<DeleteAccountResult> {
   const {
     pendingDeleteLock,
-    pendingDeleteStableId,
     cloudDeleteEnqueueOperation,
     requiresDurableServerDeletion,
   } = prepared;
     let localExitLock = pendingDeleteLock;
-    if (pendingDeleteStableId) {
-      await import('./shards_pending_grants')
-        .then(({ removePendingShardGrantsForAccount }) => (
-          removePendingShardGrantsForAccount(pendingDeleteStableId)
-        ))
-        .catch(swallowAuthAs('[AUTH-DELETE]', 'remove_pending_shard_grants', undefined));
-    }
+    // зачем (PM-289, D70/D139): отдельный снос ключей pending_shard_grants_* снят —
+    // сюда доходим только после проверенного AsyncStorage.clear() в
+    // prepareAccountDeletion (verifyPostDeleteLocalWipe), который уже стёр эти ключи;
+    // повторный вызов лишь писал и тут же удалял маркер очистки поверх чистого хранилища.
+    console.log('[AUTH-SHARDS] delete: снос pending_shard_grants снят (покрыт локальной очисткой)');
     // зачем: удаление аккаунта не трогало уведомления вовсе — cancelAllNotifications
     // вызывался ТОЛЬКО из тумблера в настройках. В результате запланированные локальные
     // напоминания (ежедневное, streak-warning, recap, upsell) оставались на устройстве

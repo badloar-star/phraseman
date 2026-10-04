@@ -8,7 +8,9 @@ const backupSource = fs.readFileSync(path.join(__dirname, '../app/account_switch
 describe('post-auth stale generation guards', () => {
   test('network helpers receive a generation guard instead of holding a transition lock', () => {
     expect(authSource).not.toContain('runAfterRestoreWithAccountMutationLock(');
-    expect(authSource).toContain('loadShardsFromCloud(isCurrent)');
+    // зачем (PM-289): шаг жемчуга снят со входа (D70/D84) — вернуть его нельзя молча.
+    expect(authSource).not.toContain('loadShardsFromCloud');
+    expect(authSource).toContain('[AUTH-SHARDS] шаг шардов снят');
     expect(authSource).toContain('tryRestoreAccountSwitchBackup(stage, isCurrent)');
     expect(authSource).toContain('syncRevenueCatAfterAuthLink(isCurrent)');
   });

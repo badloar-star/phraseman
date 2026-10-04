@@ -223,7 +223,9 @@ describe('Economy Constitution — client authority is a permanent source contra
     ]) expect(legacyDailyPathKeys).toContain(`'${prefix}'`);
     expect(cloudSync).toContain('...RETIRED_GIFTS_TO_COINS_ACCOUNT_LOCAL_PREFIXES');
     expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');
-    expect(cloudSync).toContain("if (finalResidue.length > 0) throw new Error('account_wipe_incomplete')");
+    // зачем (AA S2c): блок при остатке после стирания теперь пишет лог [ACC-SWITCH-WIPE] перед throw —
+    // сторожим смысл (остаток → отказ account_wipe_incomplete), а не однострочную форму.
+    expect(cloudSync).toMatch(/if \(finalResidue\.length > 0\) \{[\s\S]{0,400}?throw new Error\('account_wipe_incomplete'\);\s*\}/);
   });
 
   test('Spin star persistence overlays unacked composites and accepts only newer server revisions', () => {

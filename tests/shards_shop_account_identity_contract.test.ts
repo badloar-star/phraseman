@@ -39,7 +39,17 @@ describe('shards store purchase account boundary', () => {
     expect(pending).not.toContain('resumePendingShardGrants');
   });
 
-  it('removes the scoped journal during account deletion', () => {
-    expect(auth).toContain('removePendingShardGrantsForAccount(pendingDeleteStableId)');
+  // зачем (PM-289): отдельный снос снят — ключи pending_shard_grants_* стирает
+  // проверенный AsyncStorage.clear() быстрой фазы удаления (verifyPostDeleteLocalWipe),
+  // а префиксы остаются в списке ключей аккаунта cloud_sync.
+  it('account deletion relies on the verified local wipe, not a separate pending-grants cleanup', () => {
+    expect(auth).not.toContain('removePendingShardGrantsForAccount');
+    expect(auth).not.toContain("import('./shards_pending_grants')");
+    expect(auth).toContain('await AsyncStorage.clear();');
+    expect(auth).toContain('remainingKeys.every((key) => key === ACCOUNT_DELETE_PENDING_AUTH_KEY)');
+    const cloudSync = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
+    expect(cloudSync).toContain("'pending_shard_grants_v2:'");
+    expect(cloudSync).toContain("'pending_shard_grants_quarantine_v1:'");
+    expect(cloudSync).toContain("'pending_shard_grants_recovery_needed_v1:'");
   });
 });

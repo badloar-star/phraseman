@@ -1010,8 +1010,11 @@ export async function reconcileFlashcardTrainingPendingGrant(
 ): Promise<FlashcardTrainingPendingGrantReadResult> {
   // зачем ([FC-PENDING-GRANT], 03.10): «Блиц» висел на каркасе без единой строки в журнале —
   // сверка возвращала ответ, по которому экран молча выходил. Печатаем каждое ветвление.
+  // зачем (Дизайн 04.10): на слабом телефоне initial_found → final занимало 8 с, но без времени шагов не видно,
+  // какое чтение/запись тормозит. Каждая строка несёт ms от начала сверки.
+  const reconcileStartedAt = Date.now();
   const trace = (step: string, data: Record<string, unknown>): void => {
-    console.log(`[FC-PENDING-GRANT] reconcile:${step}`, JSON.stringify({ mode: scope.mode, deckKeys: scope.deckKeys, ...data }));
+    console.log(`[FC-PENDING-GRANT] reconcile:${step}`, JSON.stringify({ ms: Date.now() - reconcileStartedAt, mode: scope.mode, deckKeys: scope.deckKeys, ...data }));
   };
   const initial = await readFlashcardTrainingPendingGrant(account, scope);
   if (initial.status !== 'found') {
@@ -1056,6 +1059,7 @@ export async function reconcileFlashcardTrainingPendingGrant(
     if (rotated.status !== 'found') return rotated;
   } else if (energyRead.status === 'charged' && initial.record.energyState !== 'charged') {
     await setEnergyState(account, initial.record.fingerprint, 'charged', nowMs);
+    trace('energy_state_set_charged', {});
   } else if (
     (energyRead.status === 'missing' || energyRead.status === 'prepared')
     && (initial.record.energyState === 'charged' || initial.record.energyState === 'refund_in_progress')
@@ -1066,6 +1070,7 @@ export async function reconcileFlashcardTrainingPendingGrant(
     const receipt = quotaRead.receipts.find((item) => item.receiptId === initial.record.receiptId);
     if (receipt) {
       await markFlashcardTrainingQuotaCommitted(account, initial.record.fingerprint, nowMs, receipt.resetAt);
+      trace('quota_marked_committed', { receiptId: receipt.receiptId });
     }
   }
   const final = await readFlashcardTrainingPendingGrant(account, scope);

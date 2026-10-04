@@ -24,3 +24,6 @@ gateLog ставит stepAtRef = Date.now(). Сторож: таймер на о�
 
 ## Rollback
 Откат коммита.
+
+## Сверка гранта 8 с — сперва логи (04.10)
+- reconcileFlashcardTrainingPendingGrant: каждая строка [FC-PENDING-GRANT] reconcile:* несёт ms от начала; добавлены строки после записи energyState=charged и отметки квоты. Поведение то же. Дальше — по строкам с телефона «Дизайна».

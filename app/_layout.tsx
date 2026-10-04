@@ -425,6 +425,9 @@ const FIRST_CONTENT_READY_FALLBACK_MS = 400;
  * зачем (владелец, 2026-09-21): см. развёрнутый комментарий у самого fallback
  * ниже — это был единственный флаг гейта вообще без потолка. */
 const HOME_SCREEN_READY_FALLBACK_MS = 550;
+// Пауза после кадра Главной и снятия сплеша перед установкой планировщика отправки завершений Learning V2
+// (его первый проход берёт замок аккаунта; пакет 00:30 — 3,4 с на старте).
+const LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS = 6_000;
 /** Потолок ожидания кадра Главной перед bootstrap phone-state (см. homePaintedForPhoneState). */
 const PHONE_STATE_BOOTSTRAP_FALLBACK_MS = 8_000;
 /**
@@ -885,15 +888,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // Load the completion transport only after the root has committed. This
     // installs its lifecycle/connectivity scheduler on every app launch without
     // adding the heavy sync module to the synchronous first-frame bundle.
+    // зачем (координатор 05.10, пакет 00:30): первый проход планировщика сразу брал замок аккаунта под курсор
+    // повтора (persist держал его 3,4 с), и за ним стояли кошелёк и курс — как раз на старте. Отправка завершённых
+    // занятий фоновая и офлайн-устойчивая: ставим планировщик после кадра Главной и снятия сплеша, плюс пауза.
+    // Если человек раньше откроет занятие, экран сессии поставит планировщик сам (enterInteractiveSurface).
     let cancelled = false;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void import('./learning_v2_completion_background_scheduler').then((scheduler) => {
-        if (!cancelled) scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
-      }).catch(noteSwallowedHandler('_layout:useEffect.call_3'));
-    });
+    const cancelDeferred = runAfterHomeFirstFrame('lv2_completion_scheduler_install', () => new Promise<void>((resolve) => {
+      setTimeout(resolve, LV2_COMPLETION_SCHEDULER_INSTALL_DELAY_MS);
+    }).then(() => (cancelled ? undefined : import('./learning_v2_completion_background_scheduler')))
+      .then((scheduler) => {
+        if (cancelled || !scheduler) {
+          console.log('[FIRST-FRAME] lv2_completion_scheduler_install: skip — эффект снят до установки');
+          return;
+        }
+        scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
+      })
+      .catch(noteSwallowedHandler('_layout:useEffect.call_3')));
     return () => {
       cancelled = true;
-      task.cancel();
+      cancelDeferred();
     };
   }, []);
 

@@ -15,6 +15,9 @@ Owner: сессия 1 · ЯДРО (координатор 05.10, пакет за
 app/learning_v2_completion_retry_cursor.ts — только диагностика: [LV2-RETRY-CURSOR] slow {op, totalMs, stages}
 внутри withExactActiveScope и шагов persist/load/clear, пишется только если дольше 300 мс. Поведение не меняется.
 
+Пункт (б) («ок» координатора 05.10): установка планировщика отправки завершений (app/_layout.tsx) — через
+runAfterHomeFirstFrame + пауза 6 с, вместо runAfterInteractions сразу после корня. Пункт (а) — после замера.
+
 ## Architecture
 
 Автор файлов — сессии Claude (не Codex): 4792f3e59, 519de9ff0, 15ab53c96.

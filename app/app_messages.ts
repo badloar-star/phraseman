@@ -1,3 +1,4 @@
+import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
@@ -1403,7 +1404,8 @@ async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
   const ownerUid = await getAppMessagesOwnerUid();
   if (!ownerUid) return { messages: [], unreadCount: 0 };
   try {
-    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid));
+    // зачем (§122, замер 04.10): кэш читается несколько раз за старт — через снапшот: хранилище один раз
+    const raw = await readStoredItem(appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid));
     if (!raw) return { messages: [], unreadCount: 0 };
     const parsed = JSON.parse(raw) as AppMessagesSnapshot;
     if (!Array.isArray(parsed.messages)) return { messages: [], unreadCount: 0 };
@@ -1444,10 +1446,15 @@ async function writeCachedSnapshot(
   const ownerUid = await getAppMessagesOwnerUid();
   if (!ownerUid || (expectedOwnerUid && ownerUid !== expectedOwnerUid)) return;
   try {
-    await AsyncStorage.setItem(
-      appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid),
-      JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot)),
-    );
+    const cacheKey = appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid);
+    const next = JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot));
+    // зачем (замер холодного старта 04.10: запись app_messages_cache 2,9 с в очереди): кэш пишется после каждого обновления с сервера,
+    // а сообщения чаще всего те же — одинаковый снимок не пишем.
+    if (await readStoredItem(cacheKey) === next) {
+      console.warn(`[APP-MESSAGES-CACHE] write:skipped unchanged bytes=${next.length}`);
+      return;
+    }
+    await AsyncStorage.setItem(cacheKey, next);
   } catch (e) {
       // Cache is a comfort feature only.
       DebugLogger.error('app_messages:ownerUid', e instanceof Error ? e : new Error(String(e)), 'warning');

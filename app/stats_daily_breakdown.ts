@@ -82,8 +82,10 @@ export async function reconcileStatsDailyBreakdownWithCloud(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<string> {
   let local: Store = {};
+  let storedRaw: string | null = null;
   try {
     const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
+    storedRaw = typeof raw === 'string' ? raw : null;
     local = parseStore(raw);
   } catch {
     local = {};
@@ -91,6 +93,12 @@ export async function reconcileStatsDailyBreakdownWithCloud(
   const remote = parseStore(cloudRaw);
   const merged = pruneStore(mergeDailyBreakdownStores(local, remote));
   const str = JSON.stringify(merged);
+  // зачем (замер холодного старта 04.10: запись stats_daily_breakdown 3 с в очереди, два раза за старт, в том числе для языка, которым
+  // человек не пользуется): объединение с облаком чаще всего ничего не меняет — тогда пишем НЕ ТО ЖЕ САМОЕ. Результат и возврат прежние.
+  if (storedRaw === str) {
+    console.warn(`[STATS-RECONCILE] write:skipped unchanged target=${String(studyTarget)} bytes=${str.length}`);
+    return str;
+  }
   try {
     await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), str);
   } catch (e) {

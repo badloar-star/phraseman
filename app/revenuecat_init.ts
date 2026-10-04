@@ -208,20 +208,51 @@ async function awaitSharedIdentitySync(shared: Promise<boolean>, callerIsCurrent
   return true;
 }
 
+/**
+ * зачем (Блиц 04.10, accessResolved ~94 с на эмуляторе — «сперва логи»): нативные вызовы RevenueCat
+ * (isConfigured/getAppUserID/logIn/setAttributes) идут без потолка. Медленная синхронизация (> 1,5 с)
+ * пишет одну строку с длительностью каждого вызова.
+ */
 async function syncRevenueCatIdentityOnce(callerIsCurrent?: () => boolean): Promise<boolean> {
+  const startedAt = Date.now();
+  const steps: Record<string, number> = {};
+  let stepAt = startedAt;
+  const mark = (name: string): void => {
+    const now = Date.now();
+    steps[name] = now - stepAt;
+    stepAt = now;
+  };
+  let result = false;
+  try {
+    result = await syncRevenueCatIdentityOnceTraced(callerIsCurrent, mark);
+    return result;
+  } finally {
+    const totalMs = Date.now() - startedAt;
+    if (totalMs > 1500) console.warn('[RC-IDENTITY] sync:slow', JSON.stringify({ totalMs, result, steps }));
+  }
+}
+
+async function syncRevenueCatIdentityOnceTraced(
+  callerIsCurrent: (() => boolean) | undefined,
+  mark: (name: string) => void,
+): Promise<boolean> {
   const syncAccount = captureAccountGeneration();
   const isCurrent = () => (
     (callerIsCurrent?.() ?? true) && isCurrentAccountGeneration(syncAccount)
   );
   if (IS_EXPO_GO) return false;
-  if (!(await Purchases.isConfigured().catch(rcFallback('isConfigured_3', false)))) return false;
+  const configured = await Purchases.isConfigured().catch(rcFallback('isConfigured_3', false));
+  mark('is_configured');
+  if (!configured) return false;
   if (!isCurrent()) return false;
 
   const canonicalUserId = await getCanonicalUserId().catch(rcFallback('getCanonicalUserId_4', null));
+  mark('canonical_user_id');
   if (!isCurrent()) return false;
   if (!canonicalUserId) return false;
 
   const currentAppUserId = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_5', ''));
+  mark('get_app_user_id');
   if (!isCurrent()) return false;
   if (!currentAppUserId) return false;
   const now = Date.now();
@@ -242,6 +273,7 @@ async function syncRevenueCatIdentityOnce(callerIsCurrent?: () => boolean): Prom
   if (currentAppUserId !== canonicalUserId) {
     if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(rcFallback('logIn_6', null));
+    mark(`log_in:${loginResult ? 'ok' : 'null'}`);
     if (!isCurrent() || !loginResult) return false;
     loginCustomerInfo = loginResult.customerInfo ?? null;
   }
@@ -249,6 +281,7 @@ async function syncRevenueCatIdentityOnce(callerIsCurrent?: () => boolean): Prom
   // logIn resolving is not proof that the SDK actually moved from A to B.
   // Verify the SDK identity before attributes, CustomerInfo, or local persistence.
   const verifiedAppUserId = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_7', ''));
+  mark('verify_app_user_id');
   if (!isCurrent() || verifiedAppUserId !== canonicalUserId) return false;
 
   const attributes: Record<string, string> = { phraseman_uid: canonicalUserId };
@@ -257,6 +290,7 @@ async function syncRevenueCatIdentityOnce(callerIsCurrent?: () => boolean): Prom
   }
   if (!isCurrent()) return false;
   await Purchases.setAttributes(attributes).catch(swallowError('revenuecat_init:setAttributes_8'));
+  mark('set_attributes');
   if (!isCurrent()) return false;
 
   if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo)) {

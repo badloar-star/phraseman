@@ -145,6 +145,19 @@ export function releaseStorageLock(): void {
  * Вызов БЕЗ аренды ведёт себя ровно как раньше, поэтому сотни существующих
  * точек вызова не затронуты.
  */
+
+/**
+ * зачем (Блиц 04.10: prepare ~33 с, энергия ~39 с — очередь за замками; «сперва логи»): без держателя
+ * в логе не видно, ЧТО держит замок минутами. В dev берём 3 кадра стека вызова (в релизе — только числа).
+ */
+function lockCallerTag(): string {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return 'n/a';
+  const stack = new Error().stack ?? '';
+  return stack.split('\n').slice(3, 6).map((line) => line.trim()).join(' <- ').slice(0, 300);
+}
+
+const STORAGE_LOCK_SLOW_HOLD_MS = 5000;
+
 export async function withStorageLock<T>(
   fn: (lease: StorageLockLease) => Promise<T>,
   inheritedLease?: StorageLockLease,
@@ -152,13 +165,18 @@ export async function withStorageLock<T>(
   if (inheritedLease && activeStorageLockLeases.has(inheritedLease)) {
     return fn(inheritedLease);
   }
+  const caller = lockCallerTag();
   await acquireStorageLock();
   const lease = Object.freeze({}) as unknown as StorageLockLease;
   activeStorageLockLeases.add(lease);
   const heldAt = Date.now();
   try { return await fn(lease); }
   finally {
-    noteHold(Date.now() - heldAt);
+    const heldMs = Date.now() - heldAt;
+    noteHold(heldMs);
+    if (heldMs > STORAGE_LOCK_SLOW_HOLD_MS) {
+      console.warn('[STORAGE-MUTEX] hold_exceeded', JSON.stringify({ heldMs, caller }));
+    }
     activeStorageLockLeases.delete(lease);
     releaseStorageLock();
   }

@@ -608,8 +608,37 @@ export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): P
   return finish(vipState.active);
 }
 
+/**
+ * зачем (Блиц 04.10, accessResolved ~94 с на эмуляторе — «сперва логи»): у бесплатного аккаунта эта
+ * проверка идёт до облака (подарок loyalty, cloud refresh/restore) без потолка. Медленный вызов
+ * (> 1,5 с) пишет одну строку с длительностью каждого шага — по ней видно, какой шаг держит.
+ */
 export async function getVerifiedPremiumAccessStatus(
   options?: PremiumLeaseReadOptions,
+): Promise<boolean> {
+  const startedAt = Date.now();
+  const steps: Record<string, number> = {};
+  let stepAt = startedAt;
+  const mark = (name: string): void => {
+    const now = Date.now();
+    steps[name] = now - stepAt;
+    stepAt = now;
+  };
+  let result = false;
+  try {
+    result = await getVerifiedPremiumAccessStatusTraced(options, mark);
+    return result;
+  } finally {
+    const totalMs = Date.now() - startedAt;
+    if (totalMs > 1500) {
+      console.warn('[PREMIUM-GUARD-STEP] access_status:slow', JSON.stringify({ totalMs, result, steps }));
+    }
+  }
+}
+
+async function getVerifiedPremiumAccessStatusTraced(
+  options: PremiumLeaseReadOptions | undefined,
+  mark: (name: string) => void,
 ): Promise<boolean> {
   const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -620,6 +649,7 @@ export async function getVerifiedPremiumAccessStatus(
   // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
   // и до любого облачного обновления.
   const { noPremium: noPremiumAccess } = await readTesterFlags();
+  mark('tester_flags');
   if (!accountGenerationIsCurrent(generation)) return false;
   if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
 
@@ -632,7 +662,9 @@ export async function getVerifiedPremiumAccessStatus(
     return _cachedAccessResult;
   }
 
-  if (await isTesterNoLimitsActive()) {
+  const testerNoLimits = await isTesterNoLimitsActive();
+  mark('tester_no_limits');
+  if (testerNoLimits) {
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
@@ -641,15 +673,19 @@ export async function getVerifiedPremiumAccessStatus(
     getVerifiedRealPremiumStatus(options).catch(noteSwallowedAs('premium_guard:promise_11', false)),
     getVerifiedVipStatus(options).catch(noteSwallowedAs('premium_guard:promise_12', false)),
   ]);
+  mark('verified_local');
   if (!accountGenerationIsCurrent(generation)) return false;
   if (realPremium || vip) return finish(true);
 
-  if (await isIntroFullAccessActive().catch(noteSwallowedAs('premium_guard:promise_13', false))) {
+  const introActive = await isIntroFullAccessActive().catch(noteSwallowedAs('premium_guard:promise_13', false));
+  mark('intro');
+  if (introActive) {
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
 
   const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(noteSwallowedAs('premium_guard:promise_14', null));
+  mark('loyalty_gift_cloud');
   if (!accountGenerationIsCurrent(generation)) return false;
   if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
     return finish(true);
@@ -657,6 +693,7 @@ export async function getVerifiedPremiumAccessStatus(
 
   if (options?.allowCloudRefresh === false) return finish(false);
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
+  mark(`cloud_refresh:${String(cloudRefreshed)}`);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (cloudRefreshed) {
     invalidatePremiumCache();

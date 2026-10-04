@@ -170,6 +170,20 @@ export async function withRestoreApplicationLock<T>(work: () => Promise<T>): Pro
   }
 }
 
+
+/**
+ * зачем (Блиц 04.10: prepare ~33 с, энергия ~39 с — очередь за замками; «сперва логи»): без держателя
+ * в логе не видно, ЧТО держит замок минутами. В dev берём 3 кадра стека вызова (в релизе — только числа).
+ */
+function lockCallerTag(): string {
+  if (typeof __DEV__ === 'undefined' || !__DEV__) return 'n/a';
+  const stack = new Error().stack ?? '';
+  return stack.split('\n').slice(3, 6).map((line) => line.trim()).join(' <- ').slice(0, 300);
+}
+
+const ACCOUNT_LOCK_SLOW_WAIT_MS = 2000;
+const ACCOUNT_LOCK_SLOW_HOLD_MS = 5000;
+
 /** Serializes account-level storage commits with wipe/hydration boundaries. */
 export async function withAccountTransitionLock<T>(
   work: (lease: AccountTransitionLockLease) => Promise<T>,
@@ -181,12 +195,23 @@ export async function withAccountTransitionLock<T>(
   const previous = accountTransitionLockTail;
   let release!: () => void;
   accountTransitionLockTail = new Promise<void>((resolve) => { release = resolve; });
+  const queuedAt = Date.now();
+  const caller = lockCallerTag();
   await previous;
+  const waitedMs = Date.now() - queuedAt;
+  if (waitedMs > ACCOUNT_LOCK_SLOW_WAIT_MS) {
+    console.warn('[ACCOUNT-LOCK] wait_exceeded', JSON.stringify({ waitedMs, caller }));
+  }
   const lease = Object.freeze({}) as AccountTransitionLockLease;
   activeAccountTransitionLockLeases.add(lease);
+  const heldAt = Date.now();
   try {
     return await work(lease);
   } finally {
+    const heldMs = Date.now() - heldAt;
+    if (heldMs > ACCOUNT_LOCK_SLOW_HOLD_MS) {
+      console.warn('[ACCOUNT-LOCK] hold_exceeded', JSON.stringify({ heldMs, caller }));
+    }
     activeAccountTransitionLockLeases.delete(lease);
     release();
   }

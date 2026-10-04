@@ -3541,7 +3541,23 @@ export default function LessonsTab({
         // ReferenceError на каждом рендере экрана уроков. Класс бага «const выше
         // объявления» (21.09) — tsc ловит его только как TS2448/TS2454, поэтому
         // держать объявление выше ВСЕХ хуков, которые упоминают его в deps.
-        showLearningV2DenialHint(triLang(lang, {
+        // зачем (инцидент 04.10, D158): урок 1 «молча» не открывался — подсказка «Проверь связь» вводила в заблуждение, потому что у
+        // английских занятий сети в подготовке нет вовсе (материал из бандла): отказ значит «нет локального материала», а не «нет связи».
+        // Причина пишется в лог ([V2-LAUNCH]) на каждом отказе, текст честный: «Сейчас недоступно» и приглашение попробовать снова.
+        const prepareFailureReason = error instanceof Error ? error.message : String(error);
+        const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable";
+        console.warn(`[V2-LAUNCH] prepare_failed session=${sessionId} reason=${prepareFailureReason} bundledUnavailable=${bundledUnavailable ? "yes" : "no"} hint=${bundledUnavailable ? "unavailable_now" : "check_connection"}`);
+        showLearningV2DenialHint(bundledUnavailable ? triLang(lang, {
+          ru: "Сейчас недоступно. Попробуй снова чуть позже",
+          en: "Not available right now. Please try again a little later",
+          uk: "Зараз недоступно. Спробуй ще раз трохи пізніше",
+          es: "No disponible ahora. Inténtalo de nuevo un poco más tarde",
+          "pt-BR": "Indisponível agora. Tente de novo daqui a pouco",
+          vi: "Hiện chưa dùng được. Hãy thử lại sau ít phút",
+          id: "Belum tersedia sekarang. Coba lagi sebentar lagi",
+          tr: "Şu anda kullanılamıyor. Biraz sonra tekrar dene",
+          pl: "Chwilowo niedostępne. Spróbuj ponownie za chwilę",
+        }) : triLang(lang, {
           ru: "Занятие не подготовилось. Проверь связь и попробуй ещё раз",
           en: "The session didn't load. Check your connection and try again",
           uk: "Заняття не підготувалося. Перевір зв'язок і спробуй ще раз",

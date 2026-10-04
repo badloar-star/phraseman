@@ -36,7 +36,11 @@ function fileInput(
   voiceId: LearningV2CourseSessionAudioVoiceIdV1,
 ): LearningV2CourseSessionAudioFileInputV1 {
   const entry = factoryAudioTables().entryByCoordinate.get(`${transcript}\u0000${voiceId}`);
-  if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
+  if (!entry) {
+    // зачем (инцидент 04.10): какой именно текст/голос не нашёлся в таблице озвучки — без этого отказ сессии не диагностируется.
+    console.warn(`[V2-BUNDLED] audio_entry_missing voice=${voiceId} transcript=${JSON.stringify(transcript.slice(0, 120))}`);
+    throw new Error("learning_v2_factory_production_audio_missing");
+  }
   return Object.freeze({
     voiceId,
     objectPath: [
@@ -149,7 +153,11 @@ export function buildLearningV2FactoryBundledAudioChildV1(
       }),
     });
   } catch (error) {
-    if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") return null;
+    if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") {
+      // зачем (инцидент 04.10): отказ из-за отсутствия записи в таблице озвучки был немым — теперь [V2-BUNDLED] пишет, что именно не нашли.
+      console.warn(`[V2-BUNDLED] audio_child_null reason=${error.message} audioInteractions=${audioInteractions.length}`);
+      return null;
+    }
     throw error;
   }
 }

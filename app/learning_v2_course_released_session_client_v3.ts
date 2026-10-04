@@ -842,7 +842,12 @@ export function bundledLearningV2CourseSessionMaterialV3(
       sessionOrdinal: locator.sessionOrdinal,
       interfaceLocale: requestedLocale,
     });
-    if (!factory) return null;
+    // зачем (инцидент 04.10: урок 1, занятие 1 не открывается, learning_v2_factory_session_unavailable): раньше оба `return null` были
+    // немыми — по логу нельзя было понять, где именно отказ. Теперь [V2-BUNDLED] пишет шаг и причину.
+    if (!factory) {
+      console.warn(`[V2-BUNDLED] null step=factory_native_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} locale=${requestedLocale}`);
+      return null;
+    }
     const courseSessionId = factory.courseSessionId;
     const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
     const releaseId = "factory-native-v1";
@@ -862,7 +867,10 @@ export function bundledLearningV2CourseSessionMaterialV3(
     const audioChild = buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
     // A released session without a complete four-voice audio child is not a
     // valid release. Never silently replace published speech with OS TTS.
-    if (!audioChild) return null;
+    if (!audioChild) {
+      console.warn(`[V2-BUNDLED] null step=audio_child lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} interactions=${factory.learnerChild.interactions.length} audioInteractions=${factory.learnerChild.interactions.filter((interaction) => interaction.audioTargetIds.length > 0).length}`);
+      return null;
+    }
     const audioFingerprint = audioChild.audioFingerprint;
     return Object.freeze({
       releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,

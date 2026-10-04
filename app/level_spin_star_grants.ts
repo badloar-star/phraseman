@@ -950,7 +950,25 @@ async function recoverProjection(
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
     throw new Error('level_spin_star_identity_changed');
   }
+  // зачем (координатор 04.10, замер №8, «сперва логи»): восстановление проекции кошелька держало замок аккаунта
+  // ~5,2 с на старте, а за ним стояли курс Learning V2 и чтения монет (Блиц). Какой шаг стоит 5 с — по коду не
+  // видно: трасса шагов + счётчики, пишется только если всё дольше 500 мс (частые чтения баланса не шумят).
+  const recoverStartedAt = Date.now();
+  const recoverStages: Record<string, number> = {};
+  const recoverCounts: Record<string, number> = {};
+  let recoverStageAt = recoverStartedAt;
+  const recoverStage = (name: string) => {
+    const now = Date.now();
+    recoverStages[name] = now - recoverStageAt;
+    recoverStageAt = now;
+  };
+  const logRecoverIfSlow = (outcome: string) => {
+    const totalMs = Date.now() - recoverStartedAt;
+    if (totalMs < 500) return;
+    console.warn('[COIN-RECOVER] slow', JSON.stringify({ outcome, totalMs, stages: recoverStages, counts: recoverCounts }));
+  };
   return withAccountTransitionLock(async (lease) => {
+    recoverStage('account_lock_wait');
     const [phoneState, storedOperations] = await Promise.all([
       readPhoneStateStarCreditState({
         expectedOwnerStableId: ownerStableId,
@@ -958,9 +976,13 @@ async function recoverProjection(
       }),
       storedOperationsForOwner(ownerStableId),
     ]);
+    recoverStage('phone_state_and_stored_ops');
+    recoverCounts.phoneCredits = phoneState.credits.length;
+    recoverCounts.storedOperations = storedOperations.length;
     for (const operation of phoneState.credits) {
       if (!await hasValidFingerprint(operation)) throw new Error('level_spin_star_phone_state_corrupt');
     }
+    recoverStage('phone_credit_fingerprints');
     const phoneStateAcknowledgements = phoneState.acknowledgements.map((candidate) => {
       const acknowledgement = parseLevelSpinStarCreditAckExactResult(candidate);
       if (!acknowledgement || acknowledgement.ownerStableId !== ownerStableId) {
@@ -970,6 +992,7 @@ async function recoverProjection(
     });
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     return withStorageLock(async () => {
+    recoverStage('storage_lock_wait');
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     const [projectionRaw, outboxRaw, preparedRaw] = await Promise.all([
       AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
@@ -990,10 +1013,14 @@ async function recoverProjection(
         phoneAcks: phoneStateAcknowledgements.length,
       }));
     }
+    recoverStage('storage_reads');
+    recoverCounts.projectionBytes = projectionRaw?.length ?? 0;
     const prepared = parsePrepared(preparedRaw, ownerStableId);
+    recoverCounts.prepared = prepared.length;
     for (const operation of prepared) {
       if (!await hasValidLocalRuneFingerprint(operation)) throw new Error('level_spin_star_prepared_corrupt');
     }
+    recoverStage('prepared_fingerprints');
     const preparedPracticeOperations = prepared.filter((operation): operation is PracticeRuneOperation => (
       operation.schemaVersion === 'client-practice-rune-operation.v1'
     ));
@@ -1017,10 +1044,12 @@ async function recoverProjection(
       }
       existingPracticeJournals.set(entry.operation.operationId, entry);
     }
+    recoverStage('practice_journal_reads');
     let projection = observeCurrentSnapshot(withOperations(
       parseProjection(projectionRaw, ownerStableId),
       [...storedOperations, ...phoneState.credits],
     ));
+    recoverCounts.projectionOperations = projection.operations.length;
     const recoveredPracticeJournalWrites: [string, string][] = [];
     for (const operation of prepared) {
       if (operation.schemaVersion === 'client-practice-rune-operation.v1'
@@ -1142,6 +1171,8 @@ async function recoverProjection(
       )),
       ...staleSpendOperations,
     ];
+    recoverStage('compute_projection');
+    recoverCounts.compacted = compactedOperations.length;
     if (compactedOperations.length > 0) {
       const compactedOperationIds = new Set(compactedOperations.map((operation) => operation.operationId));
       if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
@@ -1171,8 +1202,12 @@ async function recoverProjection(
         JSON.stringify(operation),
       ] as [string, string]),
     ];
+    recoverStage('compaction');
+    recoverCounts.writes = writes.length;
+    recoverCounts.writeBytes = writes.reduce((sum, [, value]) => sum + value.length, 0);
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.multiSet(writes);
+    recoverStage('multi_set');
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     // зачем ([COLD-START-IO], store-release, слабый профиль, 02.10): очистка подготовленных операций
     // писалась на КАЖДОМ восстановлении, даже когда список и так пуст — 5 записей за старт, до 4,2 с
@@ -1182,6 +1217,8 @@ async function recoverProjection(
     } else {
       console.log(`[LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=${preparedRaw === null ? 'null' : '[]'})`);
     }
+    recoverStage('prepared_clear');
+    logRecoverIfSlow('ok');
     return projection;
     }, storageLockLease);
   }, accountTransitionLockLease);

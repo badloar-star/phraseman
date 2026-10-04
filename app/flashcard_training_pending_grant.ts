@@ -1304,7 +1304,9 @@ export async function acknowledgeAndClearFlashcardTrainingPendingGrant(
   let acknowledged = false;
   try {
     acknowledged = await acknowledgeEnergy(found.record.energyOperationId);
-  } catch {
+  } catch (error) {
+    // зачем: запрет немого catch — неподтверждённая энергия оставляет запись, и это должно быть видно.
+    console.warn('[FC-PENDING-GRANT] ack:energy_ack_threw', error instanceof Error ? error.message : String(error));
     acknowledged = false;
   }
   if (!acknowledged) return { status: 'ack_failed' };

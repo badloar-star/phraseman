@@ -26,6 +26,8 @@ export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaR
   const [result, setResult] = useState<MonthlyTrainingSessionQuotaResult>(WAITING);
 
   useEffect(() => subscribeAccountGeneration(setToken).remove, []);
+  // Смена аккаунта — единственный случай, когда прежний остаток показывать нельзя (он чужой).
+  useEffect(() => { setResult(WAITING); }, [token]);
   // зачем (находка DQA 04.10, «28 из 30» до и после Блица): лог показывает, перечитал ли экран остаток и по какому поводу.
   const refresh = useCallback((reason: string) => {
     console.log('[BLITZ-LIMIT] screen:refresh', JSON.stringify({ reason })); // guard-ok: фокус экрана/возврат в приложение
@@ -40,7 +42,8 @@ export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaR
   }, [refresh]));
   useEffect(() => {
     let cancelled = false;
-    setResult(WAITING);
+    // зачем (правило «каждый раздел открывается мгновенно», 04.10): обновление по фокусу не сбрасывает показанный
+    // остаток в «waiting» — счётчик мигал. Прежнее значение держится до нового; WAITING остаётся только первым кадром.
     void previewMonthlyTrainingSessions({ token, hasPremiumAccess })
       .then((next) => {
         console.log('[BLITZ-LIMIT] screen:read', JSON.stringify({ status: next.status, used: next.used, limit: next.limit, bypass: next.bypass, applied: !cancelled })); // guard-ok: по строке на обновление экрана

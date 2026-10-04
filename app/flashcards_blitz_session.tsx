@@ -873,6 +873,9 @@ export default function FlashcardsBlitzSession() {
           pending.record.fingerprint,
           pending.record.energyState === 'charged' ? acknowledgeSessionStart : async () => true,
         );
+        // зачем (Блиц «28 из 30», 04.10): неочищенная запись наследуется следующим раундом с той же квитанцией —
+        // результат очистки больше не игнорируется молча.
+        console.log('[BLITZ-LIMIT] blitz:clear_result', JSON.stringify({ status: cleared.status, reason: 'reason' in cleared ? String(cleared.reason) : null, receipt: String(pending.record.receiptId ?? '').slice(0, 12) })); // guard-ok: одна строка на старт раунда
         if (cleared.status === 'cleared') {
           blitzPendingGrantRef.current = null;
           blitzSpentOperationRef.current = null;

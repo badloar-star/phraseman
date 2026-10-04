@@ -144,6 +144,27 @@ const STUDY_TARGET_FLAG: Partial<Record<StudyTarget, number>> = {
   it: require('../../assets/images/language_flags/language_it.webp'),
 };
 
+// зачем (PM-214, §141 B; владелец: «открывается мгновенно»): строка аккаунта и тумблер напоминаний раньше рисовались пустыми и «прыгали»
+// после загрузки (linkedAuth — сеть/Firestore, настройки уведомлений — диск после первого кадра). Последние известные значения держим в памяти
+// процесса по stableId: следующий вход на вкладку начинается сразу с них, а настоящие данные подтягиваются фоном и заменяют снимок.
+// Другой аккаунт снимок не увидит (ключ — владелец); связка/отвязка входа сбрасывает его (auth_provider_linked).
+type SettingsPeek = { owner: string; linkedAuth: LinkedAuth | null | undefined; notifEnabled: boolean | undefined; notifHour: number | undefined };
+let settingsPeek: SettingsPeek | null = null;
+function readSettingsPeek(): SettingsPeek | null {
+  const owner = peekStableId();
+  const hit = owner && settingsPeek && settingsPeek.owner === owner ? settingsPeek : null;
+  console.log(`[SETTINGS-PEEK] read owner=${owner ? 'set' : 'none'} hit=${hit ? 'yes' : 'no'} auth=${hit?.linkedAuth === undefined ? 'unknown' : hit.linkedAuth ? 'linked' : 'none'} notif=${hit?.notifEnabled ?? 'unknown'}`);
+  return hit;
+}
+function writeSettingsPeek(patch: Partial<Omit<SettingsPeek, 'owner'>>): void {
+  const owner = peekStableId();
+  if (!owner) {
+    console.warn('[SETTINGS-PEEK] write skipped reason=no_stable_id');
+    return;
+  }
+  settingsPeek = { owner, linkedAuth: undefined, notifEnabled: undefined, notifHour: undefined, ...(settingsPeek?.owner === owner ? settingsPeek : {}), ...patch };
+}
+
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
@@ -153,14 +174,17 @@ export default function SettingsMain() {
   const glass = liquidGlassTokens(liquidGlassThemeId);
   // зачем: нативные Alert.alert заменены стеклянными окнами (тот же текст/кнопки/обработчики)
   const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
-  const [notifEnabled, setNotifEnabled] = React.useState(false);
-  const [notifHour,    setNotifHour]    = React.useState(19);
+  const [notifEnabled, setNotifEnabled] = React.useState(() => readSettingsPeek()?.notifEnabled ?? false);
+  const [notifHour,    setNotifHour]    = React.useState(() => readSettingsPeek()?.notifHour ?? 19);
 
   React.useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
       loadNotificationSettings().then(s => {
         setNotifEnabled(s.enabled);
         setNotifHour(s.hour);
+        writeSettingsPeek({ notifEnabled: s.enabled, notifHour: s.hour });
+      }).catch((error: unknown) => {
+        console.warn(`[SETTINGS-PEEK] notif_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
       });
     });
     return () => task.cancel();
@@ -246,8 +270,10 @@ export default function SettingsMain() {
     // переключатель включённым, ничего не запланировав.
     const previous = notifEnabled;
     setNotifEnabled(val);
+    writeSettingsPeek({ notifEnabled: val });
     const revert = (error: unknown) => {
       setNotifEnabled(previous);
+      writeSettingsPeek({ notifEnabled: previous });
       DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
       emitAppEvent('action_toast', {
         type: 'error',
@@ -422,9 +448,10 @@ export default function SettingsMain() {
   const settingsReferralDrainVisible = settingsReferralSurface.drainVisible;
   const settingsReferralRowVisible = settingsReferralSurface.marketingVisible
     || settingsReferralDrainVisible;
-  const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
+  const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(() => readSettingsPeek()?.linkedAuth ?? null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
-  const [authReady, setAuthReady] = useState(false);
+  // зачем: со снимком строка аккаунта уже известна — «готовность» не ждёт сети; обновление всё равно идёт фоном (linkedAuthDirtyRef = true).
+  const [authReady, setAuthReady] = useState(() => readSettingsPeek()?.linkedAuth !== undefined);
   const linkedAuthDirtyRef = useRef(true);
   const linkedAuthGenerationRef = useRef(0);
   const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
@@ -640,10 +667,16 @@ export default function SettingsMain() {
     const generation = linkedAuthGenerationRef.current;
     const task = getLinkedAuthInfo()
       .then((info) => {
-        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setLinkedAuth(info);
+        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) {
+          setLinkedAuth(info);
+          writeSettingsPeek({ linkedAuth: info });
+        }
       })
-      .catch(() => {
-        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setLinkedAuth(null);
+      .catch((error: unknown) => {
+        // зачем: не немой catch — причина видна; снимок НЕ перезаписываем (ошибка сети не должна стирать последнее известное значение).
+        console.warn(`[SETTINGS-PEEK] linked_auth_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
+        // зачем: при наличии снимка сбой сети не должен стирать уже показанную строку аккаунта.
+        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current && settingsPeek?.linkedAuth === undefined) setLinkedAuth(null);
       })
       .finally(() => {
         if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setAuthReady(true);
@@ -671,6 +704,7 @@ export default function SettingsMain() {
 
   useEffect(() => {
     const sub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
+      settingsPeek = null; // зачем: связка/отвязка входа меняет строку аккаунта — устаревший снимок показывать нельзя.
       linkedAuthGenerationRef.current += 1;
       linkedAuthDirtyRef.current = true;
       void refreshLinkedAuth();
@@ -1649,6 +1683,7 @@ export default function SettingsMain() {
                     showAccountSwitchStillRunning();
                   };
                   setSwitchAccountStage('wiping');
+                  settingsPeek = null; // зачем: выход/смена аккаунта — снимок строки аккаунта и напоминаний больше не актуален.
                   const res = await awaitWithStillRunningNotice(signOutAndWipeForAccountSwitch(), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);
                   setSwitchAccountStage('idle');
                   // Общий forced-путь «Сменить без сохранения» для всех блокировок

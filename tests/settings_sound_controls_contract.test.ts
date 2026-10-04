@@ -13,11 +13,12 @@ describe('main Settings sound controls', () => {
 
     expect(start).toBeGreaterThan(-1);
     expect(end).toBeGreaterThan(start);
-    expect(block).toContain("L('Звук'");
+    // 04.10 (Настройки A, решение (б)): звук — строками внутри группы «Обучение», без своего заголовка и без подписей.
+    expect(block).not.toContain("L('Звук'");
     expect(block).toContain('uiSoundsLabel(lang)');
-    expect(block).toContain('uiSoundsSub(lang)');
     expect(block).toContain('voiceOutLabel(lang)');
-    expect(block).toContain('voiceOutSub(lang)');
+    expect(block).not.toContain('uiSoundsSub(lang)');
+    expect(block).not.toContain('voiceOutSub(lang)');
     expect(block.match(/<CustomSwitch/g)).toHaveLength(2);
     expect(block).toContain('testID="settings-ui-sounds-switch"');
     expect(block).toContain('testID="settings-voice-out-switch"');

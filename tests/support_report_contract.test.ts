@@ -18,7 +18,8 @@ describe('in-app support report contract', () => {
     expect(screen).toContain("dataId: 'settings_support_request'");
     // зачем (PhraseMan 2.0): XP удалён — флага награды за отправку больше нет.
     expect(screen).not.toContain('awardSubmissionXp');
-    expect(screen).toContain('очень приятный бонус');
+    // 04.10 (profile.html PRF-09, abc8be429): длинный абзац с обещанием бонуса под подзаголовком убран по макету.
+    expect(screen).not.toContain('очень приятный бонус');
     expect(screen).not.toMatch(/ник|nickname|данные аккаунта|версия добавляется автоматически/i);
     expect(screen).not.toContain('Повторная отправка не создаст дубль во время обработки.');
   });

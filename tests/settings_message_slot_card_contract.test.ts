@@ -15,7 +15,9 @@ describe('settings message slot card', () => {
     expect(card).toContain('Твой выбор сохранён');
     expect(card).not.toContain('Ð’Ð°Ñˆ');
     expect(settings).toContain('flushSettingsPollVotes(settingsMessageOwner)');
-    expect(settings.indexOf('settings-message-slot-top')).toBeGreaterThan(settings.indexOf('settings-plus-row'));
-    expect(settings.indexOf('settings-message-slot-bottom')).toBeLessThan(settings.indexOf('PHRASEMAN'));
+    // 04.10 (Настройки A): верхний слот — после группы «Профиль», нижний — после «Помощи», перед подвалом.
+    expect(settings.indexOf('settings-message-slot-top')).toBeGreaterThan(settings.indexOf('settings-study-language-row'));
+    expect(settings.indexOf('settings-message-slot-bottom')).toBeGreaterThan(settings.indexOf('settings-rate-app-row'));
+    expect(settings.indexOf('settings-message-slot-bottom')).toBeLessThan(settings.indexOf('settings-dev-hub-button'));
   });
 });

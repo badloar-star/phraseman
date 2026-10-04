@@ -307,6 +307,17 @@ installPhoneStateProductionRuntime();
 // зачем (координатор 04.10, холодный старт п.1, «сперва логи»): статические import исполняются до этой
 // строки — proc= здесь = цена всего графа импортов корня (включая модальные хосты), до первого рендера.
 coldStartMark('layout.module_imports:done', '_layout', { entryToImportsMs: msSinceJsEntry() });
+// зачем (координатор 04.10, замер №4): посев озвучки, отпущенный кадром Главной, занимал поток раньше, чем
+// корень успевал снять сплеш — сплеш висел ещё ~3 с поверх нарисованной Главной. Тяжёлая фоновая работа
+// ждёт и кадр Главной, и снятие сплеша.
+let resolveNativeSplashHidden: () => void = () => {};
+const nativeSplashHidden = new Promise<void>((resolve) => { resolveNativeSplashHidden = resolve; });
+function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
+  return Promise.race([
+    nativeSplashHidden.then(() => 'hidden' as const),
+    new Promise<'ceiling'>((resolve) => setTimeout(() => resolve('ceiling'), ceilingMs)),
+  ]);
+}
 // зачем (координатор 04.10, п.1): ~6 с импортов корня в деве — какие модули тяжёлые (только дев, один раз).
 {
   const moduleReport = takeModuleEvalReport();
@@ -1591,6 +1602,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (!nativeSplashCanHide) return;
     bootMark('SplashScreen.hideAsync() — сплеш скрыт');
     void SplashScreen.hideAsync();
+    resolveNativeSplashHidden();
   }, [nativeSplashCanHide]);
 
   useEffect(() => {
@@ -2440,8 +2452,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // запросу, — поэтому посев идёт после первого кадра Главной.
       // Замер «после» (04.10): событие оболочки вкладок отпускало посев на 1–5 с РАНЬШЕ настоящего кадра ленивой
       // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
-      runAfterHomeFirstFrame('v2_audio_seed', () => whenHomePainted(15_000).then((paintWait) => {
-        const endAudioSeedStep = coldStartStep(`after_home.v2_audio_seed[${paintWait}]`, '_layout');
+      runAfterHomeFirstFrame('v2_audio_seed', () => Promise.all([
+        whenHomePainted(15_000),
+        whenNativeSplashHidden(15_000),
+      ]).then(([paintWait, splashWait]) => {
+        const endAudioSeedStep = coldStartStep(`after_home.v2_audio_seed[${paintWait},${splashWait}]`, '_layout');
         return seedLearningV2BootstrapAudioCacheV1().catch((error) => {
           if (__DEV__) {
             console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));

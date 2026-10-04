@@ -33,14 +33,26 @@ export interface LearningV2CourseLocalProgressStorageV1 {
 }
 
 const HASH_RE = /^[a-f0-9]{64}$/u;
-const orderedSessionIds = Object.freeze(
-  buildLearningV2CourseTopologyV1().lessons.flatMap((lesson) =>
-    lesson.sessions.map((session) => session.sessionId),
-  ),
-);
-const sessionIndex = new Map(
-  orderedSessionIds.map((sessionId, index) => [sessionId, index]),
-);
+// зачем (04.10, холодный старт): порядок сессий и индекс строятся при первом обращении, не при импорте —
+// модуль в графе корня, а топология курса стоила ~0,95 с на старте (дев).
+let orderedSessionIdsCache: readonly string[] | null = null;
+let sessionIndexCache: Map<string, number> | null = null;
+function orderedSessionIds(): readonly string[] {
+  if (!orderedSessionIdsCache) {
+    orderedSessionIdsCache = Object.freeze(
+      buildLearningV2CourseTopologyV1().lessons.flatMap((lesson) =>
+        lesson.sessions.map((session) => session.sessionId),
+      ),
+    );
+  }
+  return orderedSessionIdsCache;
+}
+function sessionIndex(): Map<string, number> {
+  if (!sessionIndexCache) {
+    sessionIndexCache = new Map(orderedSessionIds().map((sessionId, index) => [sessionId, index]));
+  }
+  return sessionIndexCache;
+}
 
 function fail(): never {
   throw new Error("learning_v2_course_local_progress_invalid");
@@ -59,7 +71,7 @@ function build(
     !HASH_RE.test(accountScopeHash) ||
     completedSessionIds.length > LEARNING_V2_COURSE_SESSION_COUNT_V1 ||
     completedSessionIds.some(
-      (sessionId, index) => orderedSessionIds[index] !== sessionId,
+      (sessionId, index) => orderedSessionIds()[index] !== sessionId,
     )
   )
     fail();
@@ -67,7 +79,7 @@ function build(
     schemaVersion: LEARNING_V2_COURSE_LOCAL_PROGRESS_SCHEMA_V1,
     accountScopeHash,
     completedSessionIds: Object.freeze([...completedSessionIds]),
-    currentSessionId: orderedSessionIds[completedSessionIds.length] ?? null,
+    currentSessionId: orderedSessionIds()[completedSessionIds.length] ?? null,
     revision: completedSessionIds.length,
     progressionAuthority: "local_completed_session_sequence_only" as const,
     serverUnlockAuthority: "none" as const,
@@ -169,7 +181,7 @@ export function createLearningV2CourseLocalProgressStoreV1(
           }
         }
         if (current.accountScopeHash !== accountScopeHash) fail();
-        const index = sessionIndex.get(courseSessionId);
+        const index = sessionIndex().get(courseSessionId);
         if (index === undefined) fail();
         if (index < current.completedSessionIds.length) return current;
         if (index !== current.completedSessionIds.length) fail();

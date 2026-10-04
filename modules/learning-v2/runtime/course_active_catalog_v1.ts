@@ -90,7 +90,8 @@ const HASH_RE = /^[a-f0-9]{64}$/u;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:\-]{0,159}$/u;
 const RESERVED = new Set(['__proto__', 'prototype', 'constructor']);
 const handles = new WeakSet<object>();
-const topology = buildLearningV2CourseTopologyV1();
+// зачем (04.10, холодный старт): топология — при первом вызове (мемоизирована), не при импорте модуля.
+const courseTopology = () => buildLearningV2CourseTopologyV1();
 
 const ROOT_KEYS = Object.freeze([
   'schemaVersion',
@@ -209,12 +210,12 @@ function build(input: MaterializeInput): LearningV2ActiveCourseCatalogV1 {
     fail();
   const releaseId = exactId(input.releaseId);
   const lessons = input.indexes.map((index, lessonIndex) => {
-    const expectedLesson = topology.lessons[lessonIndex];
+    const expectedLesson = courseTopology().lessons[lessonIndex];
     if (
       !expectedLesson ||
       !isLearningV2CourseLessonReleaseIndexV1(index) ||
       index.releaseId !== releaseId ||
-      index.topologyFingerprint !== topology.topologyFingerprint ||
+      index.topologyFingerprint !== courseTopology().topologyFingerprint ||
       index.lessonOrdinal !== expectedLesson.lessonOrdinal ||
       index.lessonId !== expectedLesson.lessonId
     )
@@ -266,8 +267,8 @@ function build(input: MaterializeInput): LearningV2ActiveCourseCatalogV1 {
     fail();
   const body = {
     schemaVersion: LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
-    topologySchemaVersion: topology.schemaVersion,
-    topologyFingerprint: topology.topologyFingerprint,
+    topologySchemaVersion: courseTopology().schemaVersion,
+    topologyFingerprint: courseTopology().topologyFingerprint,
     environment: input.environment,
     releaseId,
     activeRootFingerprint: exactHash(input.activeRootFingerprint),
@@ -333,7 +334,7 @@ export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readon
 }>): LearningV2ActiveCourseCatalogV1 {
   if (!LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale) || input.lessons.length < 1 || input.lessons.length > 32) fail();
   const lessons = input.lessons.map((lesson, lessonIndex) => {
-    const expectedLesson = topology.lessons[lessonIndex];
+    const expectedLesson = courseTopology().lessons[lessonIndex];
     if (!expectedLesson || lesson.sessions.length < 1 || lesson.sessions.length > LEARNING_V2_LESSON_SESSION_COUNT_V1) fail();
     const sessions = lesson.sessions.map((session, sessionIndex) => {
       const expected = expectedLesson.sessions[sessionIndex];
@@ -364,8 +365,8 @@ export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readon
   const lessonIndexAggregate = hashCanonicalBody(lessons.map((lesson) => ({ lessonOrdinal: lesson.lessonOrdinal, value: lesson.lessonIndexFingerprint })));
   const body = {
     schemaVersion: LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
-    topologySchemaVersion: topology.schemaVersion,
-    topologyFingerprint: topology.topologyFingerprint,
+    topologySchemaVersion: courseTopology().schemaVersion,
+    topologyFingerprint: courseTopology().topologyFingerprint,
     environment: input.environment,
     releaseId: 'factory-native-v1',
     activeRootFingerprint: exactHash(input.activeRootFingerprint),
@@ -413,7 +414,7 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
     const sessions = lesson.sessions.map((session, sessionIndex) => {
       if (!record(session)) fail();
       exactKeys(session, SESSION_KEYS);
-      const expected = topology.lessons[lessonIndex]?.sessions[sessionIndex];
+      const expected = courseTopology().lessons[lessonIndex]?.sessions[sessionIndex];
       if (
         !expected ||
         session.courseSessionId !== expected.sessionId ||
@@ -435,7 +436,7 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
         packageFingerprint: exactHash(session.packageFingerprint),
       });
     });
-    const expectedLesson = topology.lessons[lessonIndex];
+    const expectedLesson = courseTopology().lessons[lessonIndex];
     if (
       !expectedLesson ||
       lesson.lessonId !== expectedLesson.lessonId ||
@@ -488,8 +489,8 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
     fail();
   const body = {
     schemaVersion: LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
-    topologySchemaVersion: topology.schemaVersion,
-    topologyFingerprint: topology.topologyFingerprint,
+    topologySchemaVersion: courseTopology().schemaVersion,
+    topologyFingerprint: courseTopology().topologyFingerprint,
     environment: value.environment as LearningV2ActiveCourseCatalogV1['environment'],
     releaseId: exactId(value.releaseId),
     activeRootFingerprint: exactHash(value.activeRootFingerprint),

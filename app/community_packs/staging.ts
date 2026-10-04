@@ -61,6 +61,9 @@ export async function stageCommunityPackCardsForNavigation(
   const key = scopedPackKey(packId, studyTarget);
   const target = storageStudyTarget(studyTarget);
   const memo = communityPackCardsMemo.get(key);
+  // зачем (координатор 04.10, «набор открывается 138 с»): сперва логи — откуда берутся карточки и сколько это длится.
+  const t0 = Date.now();
+  console.log(`[PACK-OPEN] stage:start packId=${packId} key=${key} memo=${memo ? memo.length : 'нет'} local=${isLocalAuthorPackId(packId)} meta=${packMeta ? 'есть' : 'нет'}`);
   stagedCommunityPackMarketCards = memo && memo.length > 0 ? { key, cards: memo } : null;
   stagedCommunityPackMeta = packMeta ? { key, pack: packMeta } : null;
   stagedNavigationPack = { key, packId, target };
@@ -69,13 +72,18 @@ export async function stageCommunityPackCardsForNavigation(
     // ответ обновляет кэш для следующего входа и текущий staging без блокировки.
     const refresh = fetchCommunityPackCards(packId, studyTarget)
       .then((next) => {
+        console.log(`[PACK-OPEN] refresh:done packId=${packId} cards=${next.length} ms=${Date.now() - t0}`);
         if (next.length === 0) return memo;
         rememberCommunityPackCards(key, next);
         if (stagedNavigationPack?.key === key) stagedCommunityPackMarketCards = { key, cards: next };
         return next;
       })
-      .catch(() => memo);
+      .catch((refreshError: unknown) => {
+        console.warn(`[PACK-OPEN] refresh:failed packId=${packId} ms=${Date.now() - t0}`, refreshError instanceof Error ? refreshError.message : String(refreshError));
+        return memo;
+      });
     pendingStagedFetch = { key, cards: refresh };
+    console.log(`[PACK-OPEN] stage:memo-hit packId=${packId} cards=${memo.length} ms=${Date.now() - t0} (фоновое обновление запущено)`);
     return memo;
   }
 
@@ -83,11 +91,14 @@ export async function stageCommunityPackCardsForNavigation(
     if (isLocalAuthorPackId(packId)) {
       const localPacks = await loadLocalAuthorPacks(studyTarget);
       const localPack = localPacks.find((candidate) => candidate.id === packId);
+      console.log(`[PACK-OPEN] local:lookup packId=${packId} found=${!!localPack} ms=${Date.now() - t0}`);
       if (localPack) return localAuthorPackCardItems(localPack);
     }
+    console.log(`[PACK-OPEN] net:fetch:start packId=${packId} ms=${Date.now() - t0}`);
     return fetchCommunityPackCards(packId, studyTarget);
   })()
     .then((next) => {
+      console.log(`[PACK-OPEN] fetch:done packId=${packId} cards=${next.length} ms=${Date.now() - t0}`);
       if (next.length === 0) return next;
       rememberCommunityPackCards(key, next);
       // Гонка: пока грузили, пользователь мог уйти в другой набор —
@@ -98,6 +109,7 @@ export async function stageCommunityPackCardsForNavigation(
     .catch((swallowedError: unknown): CardItem[] => { noteSwallowed('staging:promise_1', swallowedError); return []; });
   pendingStagedFetch = { key, cards };
   const result = await cards;
+  console.log(`[PACK-OPEN] stage:end packId=${packId} cards=${result.length} ms=${Date.now() - t0}`);
   if (result.length === 0 && stagedNavigationPack?.key === key) {
     // Не оставляем неудачный preload как ложное доказательство доступа для guard.
     stagedCommunityPackMarketCards = null;

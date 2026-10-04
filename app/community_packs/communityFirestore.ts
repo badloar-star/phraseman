@@ -708,14 +708,21 @@ export async function fetchCommunityPackCards(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<CardItem[]> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
+  // зачем: [PACK-OPEN] — каждый ранний выход и время чтения документа (набор открывался 138 с, причина неизвестна)
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log(`[PACK-OPEN] cards:skip packId=${packId} expoGo=${IS_EXPO_GO} cloudSync=${CLOUD_SYNC_ENABLED}`);
+    return [];
+  }
+  const tRead = Date.now();
   try {
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
+    console.log(`[PACK-OPEN] cards:doc packId=${packId} exists=${snap.exists} ms=${Date.now() - tRead}`);
     if (!snap.exists) return [];
     const d = snap.data() as Record<string, unknown> | undefined;
-    if (!d) return [];
-    if (!communityPackDocMatchesStudyTarget(d, studyTarget)) return [];
+    if (!d) { console.log(`[PACK-OPEN] cards:no_data packId=${packId}`); return []; }
+    if (!communityPackDocMatchesStudyTarget(d, studyTarget)) { console.log(`[PACK-OPEN] cards:target_mismatch packId=${packId}`); return []; }
     const st = String(d.listingStatus ?? '');
+    console.log(`[PACK-OPEN] cards:status packId=${packId} listingStatus=${st} rawCards=${Array.isArray(d.cards) ? d.cards.length : typeof d.cards}`);
     if (st === 'published' || st === 'update_pending' || st === 'admin_revision_required') {
       return communityPackCardsToCardItems(packId, d.cards, communityPackDocLanguage(d));
     }
@@ -736,6 +743,7 @@ export async function fetchCommunityPackCards(
         return [];
       }
     }
+    console.log(`[PACK-OPEN] cards:status_unreadable packId=${packId} listingStatus=${st}`);
     return [];
   } catch (e) {
     // зачем логируем (аудит 17.09.2026): человек открывал добавленный набор и

@@ -1,6 +1,7 @@
 # Task packet: Account Authority 2.0 — этап S1e-2: хвосты ревью S1e (c0333fe6d)
 
 Governance-ID: TG-AE5B3C60DE73
+Governance-ID: TG-82054C0456F4
 Status: Planned
 Owner: Claude session (Account Authority 2.0)
 

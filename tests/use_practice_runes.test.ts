@@ -67,15 +67,18 @@ afterEach(async () => {
   jest.useRealTimers();
 });
 
-test('Sunday practice displays and animates doubled runes while keeping the base accumulator immutable', async () => {
-  nowMs = Date.UTC(2026, 8, 20, 12, 0, 0); // Sunday UTC.
+// зачем (D147, владелец 01.10): «Супер-воскресенье» снято — новые начисления НЕ удваиваются, счётчик практики в воскресенье показывает обычные 3,
+// а не 6. Прежний тест требовал удвоения («doubled runes», 6) и краснел после снятия, хотя хук ведёт себя по новому правилу. Удвоение осталось
+// только в расчёте старых квитанций (до SUPER_SUNDAY_RETIRED_AT_MS) — чтобы повтор старой выдачи дал прежнюю сумму; хук его не знает.
+test('Sunday practice after the D147 retirement shows and settles ordinary runes', async () => {
+  nowMs = Date.UTC(2026, 9, 4, 12, 0, 0); // воскресенье UTC, уже после снятия удвоения
   const hook = await renderHook(() => usePracticeRunes({
-    activity: 'lesson', sessionKey: 'sunday-visible-runes', completionOrdinal: 1,
+    activity: 'lesson', sessionKey: 'sunday-retired-runes', completionOrdinal: 1,
   }));
   await waitFor(() => expect(hook.result.current.hydrating).toBe(false));
 
-  await act(() => { expect(hook.result.current.onCorrectAnswer('cell-1', 1)).toBe(6); });
-  expect(hook.result.current.runes).toBe(6);
+  await act(() => { expect(hook.result.current.onCorrectAnswer('cell-1', 1)).toBe(3); });
+  expect(hook.result.current.runes).toBe(3);
 
   await act(async () => { await hook.result.current.settle(); });
   expect(settlement.markPracticeRuneSettlementPending).toHaveBeenCalledWith(
@@ -90,14 +93,15 @@ test('Sunday practice displays and animates doubled runes while keeping the base
   );
 });
 
-test('re-projects a mounted practice counter at every Sunday promotion boundary', async () => {
+// зачем (D147): раньше смонтированный счётчик пересчитывался на границах воскресенья (3 → 6 → 3). После снятия удвоения границы не меняют сумму.
+test('a mounted practice counter does not change at the Sunday boundaries after the D147 retirement', async () => {
   jest.useFakeTimers();
-  const monday = Date.UTC(2026, 8, 21, 12, 0, 0);
-  const sunday = Date.UTC(2026, 8, 27, 0, 0, 0);
-  const followingMonday = Date.UTC(2026, 8, 28, 0, 0, 0);
+  const monday = Date.UTC(2026, 9, 5, 12, 0, 0);
+  const sunday = Date.UTC(2026, 9, 11, 0, 0, 0);
+  const followingMonday = Date.UTC(2026, 9, 12, 0, 0, 0);
   nowMs = monday;
   const hook = await renderHook(() => usePracticeRunes({
-    activity: 'lesson', sessionKey: 'sunday-boundary-runes', completionOrdinal: 1,
+    activity: 'lesson', sessionKey: 'sunday-boundary-retired-runes', completionOrdinal: 1,
   }));
   await waitFor(() => expect(hook.result.current.hydrating).toBe(false));
   await act(() => { expect(hook.result.current.onCorrectAnswer('cell-1', 1)).toBe(3); });
@@ -105,7 +109,7 @@ test('re-projects a mounted practice counter at every Sunday promotion boundary'
 
   nowMs = sunday;
   await act(async () => { jest.advanceTimersByTime(sunday - monday); });
-  expect(hook.result.current.runes).toBe(6);
+  expect(hook.result.current.runes).toBe(3);
 
   nowMs = followingMonday;
   await act(async () => { jest.advanceTimersByTime(followingMonday - sunday); });

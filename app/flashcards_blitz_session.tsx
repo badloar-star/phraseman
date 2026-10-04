@@ -100,6 +100,8 @@ import {
   markFlashcardTrainingQuotaCommitted,
   prepareFlashcardTrainingPendingGrant,
   reconcileFlashcardTrainingPendingGrant,
+  claimFlashcardTrainingRoundStart,
+  logFlashcardTrainingRoundClear,
   resolveFlashcardTrainingPendingGrantAccount,
   type FlashcardTrainingPendingGrantRecord,
 } from './flashcard_training_pending_grant';
@@ -585,6 +587,14 @@ export default function FlashcardsBlitzSession() {
       // каркасе. Любой исход обязан выводить из 'checking': уводим в catch → существующий fail-open.
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      // зачем (лимит тренировок 04.10): без claim старта переходы фаз отвечают claim_required — запись не очищается,
+      // и следующий раунд на той же колоде наследует квитанцию первого: месячный лимит не списывался.
+      pendingRecord = await claimFlashcardTrainingRoundStart({
+        account: pendingAccount,
+        record: pendingRecord,
+        mode: 'blitz',
+        currentAttemptId: `${feedbackAttemptId}:${roundId}`,
+      });
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const manifestPayload = pendingRecord.manifest.payload as { orderedCardIds?: unknown };
       // зачем: пул для отвлекающих вариантов восстанавливается из той же очереди раунда.
@@ -862,9 +872,13 @@ export default function FlashcardsBlitzSession() {
     }, 200);
 
     const pending = blitzPendingGrantRef.current;
-    if (pending) {
+    // зачем (Блиц «28 из 30», 04.10): неочищенная запись наследуется следующим раундом — исход очистки пишется
+    // на КАЖДОЙ ветке, включая «блок не выполнен» и исключение (раньше void-блок без catch терял ошибку молча).
+    if (!pending) {
+      logFlashcardTrainingRoundClear('blitz', null, null, 'no_pending_record');
+    } else {
       void (async () => {
-        await markFlashcardTrainingPendingGrantPlayable(
+        const playable = await markFlashcardTrainingPendingGrantPlayable(
           pending.account,
           pending.record.fingerprint,
         );
@@ -873,14 +887,14 @@ export default function FlashcardsBlitzSession() {
           pending.record.fingerprint,
           pending.record.energyState === 'charged' ? acknowledgeSessionStart : async () => true,
         );
-        // зачем (Блиц «28 из 30», 04.10): неочищенная запись наследуется следующим раундом с той же квитанцией —
-        // результат очистки больше не игнорируется молча.
-        console.log('[BLITZ-LIMIT] blitz:clear_result', JSON.stringify({ status: cleared.status, reason: 'reason' in cleared ? String(cleared.reason) : null, receipt: String(pending.record.receiptId ?? '').slice(0, 12) })); // guard-ok: одна строка на старт раунда
+        logFlashcardTrainingRoundClear('blitz', playable, cleared);
         if (cleared.status === 'cleared') {
           blitzPendingGrantRef.current = null;
           blitzSpentOperationRef.current = null;
         }
-      })();
+      })().catch((error: unknown) => {
+        logFlashcardTrainingRoundClear('blitz', null, null, `threw:${error instanceof Error ? error.message : String(error)}`);
+      });
     }
 
     return () => {

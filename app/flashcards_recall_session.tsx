@@ -50,6 +50,8 @@ import {
   markFlashcardTrainingQuotaCommitted,
   prepareFlashcardTrainingPendingGrant,
   reconcileFlashcardTrainingPendingGrant,
+  claimFlashcardTrainingRoundStart,
+  logFlashcardTrainingRoundClear,
   resolveFlashcardTrainingPendingGrantAccount,
   type FlashcardTrainingPendingGrantRecord,
 } from './flashcard_training_pending_grant';
@@ -366,6 +368,14 @@ export default function FlashcardsRecallSession() {
       // давал немой return и вечный каркас. Уводим в catch → существующий fail-open (локальный старт).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      // зачем (лимит тренировок 04.10): без claim старта переходы фаз отвечают claim_required — запись не очищается,
+      // и следующий раунд на той же колоде наследует квитанцию первого: месячный лимит не списывался.
+      pendingRecord = await claimFlashcardTrainingRoundStart({
+        account: pendingAccount,
+        record: pendingRecord,
+        mode: 'recall',
+        currentAttemptId: attemptSessionId,
+      });
       recallPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const restoredRound = restoreManifestCards<DeckCard>(
         (pendingRecord.manifest.payload as { orderedCardIds?: unknown }).orderedCardIds,
@@ -450,7 +460,7 @@ export default function FlashcardsRecallSession() {
       if (cancelled || !recallMountedRef.current || recallExplicitlyAbandonedRef.current) return;
       resetRound(restoredRound, true);
       setLoading(false);
-      await markFlashcardTrainingPendingGrantPlayable(
+      const playable = await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,
         pendingRecord.fingerprint,
       );
@@ -459,6 +469,7 @@ export default function FlashcardsRecallSession() {
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
       );
+      logFlashcardTrainingRoundClear('recall', playable, cleared);
       if (cleared.status === 'cleared') recallPendingGrantRef.current = null;
     })().catch(async (error) => {
       console.warn('[FC-RECALL] deck load failed', String((error as Error)?.message ?? error));

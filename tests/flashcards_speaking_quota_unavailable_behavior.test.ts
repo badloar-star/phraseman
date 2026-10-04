@@ -75,6 +75,12 @@ jest.mock('../app/flashcard_training_pending_grant', () => ({
     };
     return { status: 'prepared', record: mockPendingRecord };
   },
+  // зачем (лимит тренировок 04.10): экраны делают claim старта через помощник модуля.
+  claimFlashcardTrainingRoundStart: async (input: any) => {
+    if (mockPendingRecord) mockPendingRecord = { ...mockPendingRecord, startInProgress: mockPendingRecord.startInProgress ?? { claimId: 'test-claim' } };
+    return mockPendingRecord ?? input.record;
+  },
+  logFlashcardTrainingRoundClear: () => undefined,
   reconcileFlashcardTrainingPendingGrant: async () => mockPendingRecord
     ? { status: 'found', record: mockPendingRecord }
     : { status: 'missing' },

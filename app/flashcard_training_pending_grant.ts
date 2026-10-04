@@ -762,6 +762,64 @@ export async function claimFlashcardTrainingPendingGrantStart(
   return result as Awaited<ReturnType<typeof claimFlashcardTrainingPendingGrantStart>>;
 }
 
+/**
+ * Claim старта раунда тренировки + лог. Без claim переходы фаз отвечают claim_required: запись навсегда остаётся
+ * prepared, не очищается, и следующий раунд на той же колоде наследует её квитанцию — месячный лимит не списывается.
+ * зачем (Блиц «28 из 30», эмулятор 04.10): Блиц, «Вспомни» и «Устно» claim не делали (делал только свайп).
+ * Ошибка → `pending_grant_claim_<status>` → существующий fail-open экрана.
+ */
+export async function claimFlashcardTrainingRoundStart(input: Readonly<{
+  account: FlashcardTrainingPendingGrantAccount;
+  record: FlashcardTrainingPendingGrantRecord;
+  mode: FlashcardTrainingPendingGrantMode;
+  currentAttemptId: string;
+}>): Promise<FlashcardTrainingPendingGrantRecord> {
+  const { account, record, mode, currentAttemptId } = input;
+  const inherited = record.attemptId !== currentAttemptId;
+  if (inherited && record.phase === 'prepared') {
+    // Запись прошлого раунда, застрявшая без claim (до починки 04.10). Миграции нет — отомрёт по TTL; здесь пройдёт цепочку.
+    console.warn('[BLITZ-LIMIT] stale_prepared', JSON.stringify({
+      mode,
+      receipt: record.receiptId.slice(0, 24),
+      ageMs: Math.max(0, Date.now() - record.preparedAtMs),
+      claimed: Boolean(record.startInProgress),
+    }));
+  }
+  const claimed = await claimFlashcardTrainingPendingGrantStart(
+    account,
+    record.fingerprint,
+    record.receiptId,
+    `${mode}-start:${currentAttemptId}`.slice(0, 180).replace(/[^A-Za-z0-9_.:@/-]/g, '_'),
+  );
+  console.log('[BLITZ-LIMIT] claim', JSON.stringify({
+    mode,
+    status: claimed.status,
+    reason: 'reason' in claimed ? claimed.reason : null,
+    phase: 'record' in claimed ? claimed.record.phase : record.phase,
+    inherited,
+  }));
+  if (claimed.status !== 'claimed' && claimed.status !== 'reused') {
+    throw new Error(`pending_grant_claim_${claimed.status}`);
+  }
+  return claimed.record;
+}
+
+/** Лог исхода «играбельно + очистка» раунда тренировки (каждая ветка — со статусом и причиной). */
+export function logFlashcardTrainingRoundClear(
+  mode: FlashcardTrainingPendingGrantMode,
+  playable: Readonly<{ status: string; reason?: unknown }> | null,
+  cleared: Readonly<{ status: string; reason?: unknown }> | null,
+  skippedReason: string | null = null,
+): void {
+  console.log('[BLITZ-LIMIT] clear_result', JSON.stringify({
+    mode,
+    playable: playable?.status ?? null,
+    cleared: cleared?.status ?? null,
+    reason: (cleared && 'reason' in cleared ? String(cleared.reason) : null) ?? (playable && 'reason' in playable ? String(playable.reason) : null),
+    skipped: skippedReason,
+  }));
+}
+
 async function transition(
   account: FlashcardTrainingPendingGrantAccount,
   fingerprint: string,
@@ -1109,7 +1167,9 @@ export async function abandonFlashcardTrainingPendingGrant(
     await refundEnergy(claim.operationId, reason);
     await setEnergyState(account, fingerprint, 'refunded', nowMs);
     return { status: 'refunded' };
-  } catch {
+  } catch (error) {
+    // зачем: запрет немого catch — возврат энергии не прошёл, запись вернётся в charged для повтора.
+    console.warn('[FC-PENDING-GRANT] abandon:refund_failed', JSON.stringify({ reason, error: error instanceof Error ? error.message : String(error) }));
     await setEnergyState(account, fingerprint, 'charged', nowMs);
     return { status: 'unavailable', reason: 'refund_failed' };
   }

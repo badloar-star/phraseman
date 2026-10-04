@@ -82,7 +82,7 @@ test('round 1 is prepared and consumes the monthly allowance', async () => {
   expect(blitzWillConsume(first.record.phase)).toBe(true);
 });
 
-test('Blitz never claims the start: the record stays prepared, round 2 reuses round 1 receipt and the monthly count does not move', async () => {
+test('without a start claim (builds before the 04.10 fix): the record stays prepared, round 2 reuses round 1 receipt and the monthly count does not move', async () => {
   // Монетный счётчик — настоящий модуль лимита на памяти.
   const quotaMemory = new Map<string, string>();
   const quota = createMonthlyTrainingSessionAccess({
@@ -101,7 +101,7 @@ test('Blitz never claims the start: the record stays prepared, round 2 reuses ro
   const firstQuota = await quota.consume({ token, receiptId: first.record.receiptId, mode: 'blitz' });
   expect(firstQuota.used).toBe(1);
 
-  // Как в flashcards_blitz_session.tsx: без claimFlashcardTrainingPendingGrantStart переходы фаз отвергаются…
+  // Как делали Блиц/«Вспомни»/«Устно» до починки 04.10 (см. flashcard_training_round_claim.test.ts): без claim переходы отвергаются…
   expect((await markFlashcardTrainingQuotaCommitted(account, first.record.fingerprint, 150, null)).status).toBe('claim_required');
   expect((await markFlashcardTrainingPendingGrantPlayable(account, first.record.fingerprint, 160)).status).toBe('claim_required');
   // …и очистка при старте раунда запись не удаляет (Блиц игнорирует этот статус).

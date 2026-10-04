@@ -116,6 +116,8 @@ import {
   markFlashcardTrainingQuotaCommitted,
   prepareFlashcardTrainingPendingGrant,
   reconcileFlashcardTrainingPendingGrant,
+  claimFlashcardTrainingRoundStart,
+  logFlashcardTrainingRoundClear,
   resolveFlashcardTrainingPendingGrantAccount,
   type FlashcardTrainingPendingGrantRecord,
 } from './flashcard_training_pending_grant';
@@ -538,6 +540,14 @@ export default function FlashcardsSpeakingSession() {
       // Уводим в catch → существующий fail-open (локальный старт).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      // зачем (лимит тренировок 04.10): без claim старта переходы фаз отвечают claim_required — запись не очищается,
+      // и следующий раунд на той же колоде наследует квитанцию первого: месячный лимит не списывался.
+      pendingRecord = await claimFlashcardTrainingRoundStart({
+        account: pendingAccount,
+        record: pendingRecord,
+        mode: 'speaking',
+        currentAttemptId: attemptSessionId,
+      });
       speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       // зачем: восстановление — из ВСЕГО озвучиваемого пула (запись могла быть reused от прежней попытки
       // с другим срезом sessionSize); коллизия отпечатков / нехватка карточек → pending_grant_* → fail-open.
@@ -656,7 +666,7 @@ export default function FlashcardsSpeakingSession() {
       setQuotaSessionAuthorized(true);
       setSession(initialSpeakingState(restoredCards));
       setLoading(false);
-      await markFlashcardTrainingPendingGrantPlayable(
+      const playable = await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,
         pendingRecord.fingerprint,
       );
@@ -665,6 +675,7 @@ export default function FlashcardsSpeakingSession() {
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
       );
+      logFlashcardTrainingRoundClear('speaking', playable, cleared);
       if (cleared.status === 'cleared') {
         speakingPendingGrantRef.current = null;
         speakingEntryChargedRef.current = false;

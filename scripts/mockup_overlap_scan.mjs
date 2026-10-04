@@ -23,7 +23,7 @@ const LOG = '[OVERLAP-SCAN]';
 const SKIP_PAGES = new Set(['index', 'etalon', 'nul']);
 
 export const SCAN_SOURCE = `(() => {
-  const IGNORE = '.sheet, .dim, .toast, .modal, .bot, .sb, .hi, .caret, .mk, [data-sheet], [data-dim], .plus10, .fab, .lbl';
+  const IGNORE = '.sheet, .dim, .toast, .modal, .bot, .sb, .hi, .caret, .mk, [data-sheet], [data-dim], .plus10, .fab, .lbl, .face.back';
   const visible = (el, r) => r.width >= 2 && r.height >= 2 && getComputedStyle(el).visibility !== 'hidden' && getComputedStyle(el).opacity !== '0';
   const out = [];
   document.querySelectorAll('.col').forEach((col, index) => {
@@ -33,11 +33,30 @@ export const SCAN_SOURCE = `(() => {
     const leaves = [];
     for (const el of ph.querySelectorAll('.scr *')) {
       if (el.closest(IGNORE)) continue;
+      // зачем: грани переворачиваемых карточек (backface-visibility:hidden) лежат друг на друге по построению — их не сканируем (известное слепое пятно)
+      let flipped = false;
+      for (let a = el; a && a !== ph; a = a.parentElement) { if (getComputedStyle(a).backfaceVisibility === 'hidden') { flipped = true; break; } }
+      if (flipped) continue;
       const own = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 0);
       const isIcon = el.tagName.toLowerCase() === 'svg' && el.classList.contains('i');
       if (!own && !isIcon) continue;
-      const r = el.getBoundingClientRect();
+      let r = el.getBoundingClientRect();
       if (!visible(el, r)) continue;
+      // зачем: у блочного элемента рамка тянется на всю ширину, а видимый текст короче — для текста берём рамку самих строк (Range), иначе ложные срабатывания
+      if (own) {
+        // только собственные текстовые узлы (потомки-значки в рамку текста не входят)
+        const rects = [];
+        for (const node of el.childNodes) {
+          if (node.nodeType !== 3 || !node.textContent.trim()) continue;
+          const range = document.createRange(); range.selectNodeContents(node);
+          rects.push(...[...range.getClientRects()].filter((q) => q.width > 1 && q.height > 1));
+        }
+        if (rects.length) {
+          const left = Math.min(...rects.map((q) => q.left)); const top = Math.min(...rects.map((q) => q.top));
+          const right = Math.max(...rects.map((q) => q.right)); const bottom = Math.max(...rects.map((q) => q.bottom));
+          r = { left, top, right, bottom, width: right - left, height: bottom - top };
+        }
+      }
       // за пределами экрана телефона (прокрутка) не считаем
       if (r.bottom < box.top || r.top > box.bottom || r.right < box.left || r.left > box.right) continue;
       leaves.push({ el, r, text: own ? el.textContent.trim().slice(0, 40) : '(значок)' });

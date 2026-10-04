@@ -11704,7 +11704,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
   <div class="tab" onclick="switchTab('video-phrases')" title="Видео: каталог, AI-импорт фраз, проверка и публикация">▶ Видео</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
-  <div class="tab" onclick="switchTab('arena-content')" title="Проверка ES, FR и DE пулов, ручная сборка недельных пакетов и снятие заданий Spire">Контент Spire</div>
+  <div class="tab" onclick="switchTab('arena-content')" title="Проверка EN, ES, FR, DE и IT пулов, ручная сборка недельных пакетов и снятие заданий Spire">Контент Spire</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -15758,16 +15758,18 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="pm-v4-section-header" data-pm-v4-header="arena-content">
     <div class="pm-v4-section-heading">
       <h2 class="pm-v4-section-title">Контент Spire</h2>
-      <div class="pm-v4-section-sub">Задания для игроков в «Шпиле» на испанском, французском и немецком.</div>
+      <div class="pm-v4-section-sub">Задания для игроков в «Шпиле» на английском, испанском, французском, немецком и итальянском.</div>
     </div>
   </div>
   <div class="arena-content-shell">
     <div class="arena-content-toolbar">
       <label class="arena-content-field" for="arena-content-target">Для какого языка готовим задания?
         <select id="arena-content-target" onchange="changeSpireContentTarget()" title="Выберите язык, который будет учить игрок">
+          <option value="en">Английский</option>
           <option value="es">Испанский</option>
           <option value="fr">Французский</option>
           <option value="de">Немецкий</option>
+          <option value="it">Итальянский</option>
         </select>
       </label>
     </div>
@@ -15788,7 +15790,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     </section>
     <section class="spire-admin-section" aria-labelledby="spire-admin-build-title">
       <div class="spire-admin-section-head"><div><h3 id="spire-admin-build-title" class="spire-admin-section-title">Подготовить задания для Шпиля</h3><p class="spire-admin-section-copy">Соберёт недельный набор для выбранного языка.</p></div></div>
-      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>будет готов набор для всех 12 этажей Шпиля. Сам язык не включится.</span></div>
+      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>будет готов набор для всех 15 этажей Шпиля. Сам язык не включится.</span></div>
       <div class="arena-content-actions"><button type="button" id="spire-admin-build" class="spire-admin-primary" onclick="buildSpireLanguagePack()">Подготовить задания для Шпиля</button></div>
       <div id="spire-admin-build-status" class="spire-admin-status" role="status" aria-live="polite">Пока ничего не запускалось.</div>
     </section>
@@ -22155,7 +22157,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   };
 
-  const ARENA_CONTENT_TARGET_LABELS = Object.freeze({ es:'Испанский', fr:'Французский', de:'Немецкий' });
+  const ARENA_CONTENT_TARGET_LABELS = Object.freeze({ en:'Английский', es:'Испанский', fr:'Французский', de:'Немецкий', it:'Итальянский' });
   window._arenaContentStatus = null;
   window._spireTaskFlagsByTarget = Object.create(null);
   window._spireTaskReportsByTarget = Object.create(null);
@@ -22229,8 +22231,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const prepared = Number(row.generatedTaskCount) || 0;
     const required = Number(row.requiredTaskCount) || 0;
     const complete = required > 0 && prepared >= required;
-    arenaContentSetText('arena-content-status', complete
-      ? `${ARENA_CONTENT_TARGET_LABELS[target]}: подготовлено ${prepared} заданий. Язык пока не включён для игроков.`
+    const released = row.releaseEligible === true && row.reviewReadiness === 'PASS' && row.publicationDecision === 'PASS';
+    arenaContentSetText('arena-content-status', released
+      ? `${ARENA_CONTENT_TARGET_LABELS[target]}: ${prepared} заданий проверены и готовы для новых наборов Шпиля.`
+      : complete
+      ? `${ARENA_CONTENT_TARGET_LABELS[target]}: подготовлено ${prepared} заданий. Нужна проверка качества перед выпуском.`
       : `${ARENA_CONTENT_TARGET_LABELS[target]}: подготовлено ${prepared} из ${required} заданий. Набор ещё не полон.`);
   };
 

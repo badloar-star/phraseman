@@ -3,305 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Видео — три концепции</title>
+<title>Видео — три простых варианта</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="cards-glass.css">
 <style>
-  /* зачем (владелец 04.10: раздел «Видео» не должен повторять ни «Карточки», ни «Мои ошибки»): три концепции с разным ЯЗЫКОМ интерфейса.
-     Общее с приложением — только тёмная тема, цвет темы (аврора, акцентная кнопка) и Inter. Тексты и состав экранов — из video.html и макетов избранного/«Из видео». */
+  /* зачем (владелец 04.10: «юзер-френдли», «не понятно что за экран», «чем варианты отличаются», «слишком мудрёно»):
+     три ПРИВЫЧНЫХ варианта. Над каждым телефоном — крупная подпись простыми словами, над вариантом — одна строка «чем отличается». Содержимое — из video.html. */
   .scr > .in { min-height: 100%; }
-  .acc { color: var(--acc); }
-  .sec2 { color: var(--sec); }
-  .tx2 { color: #E2E2E6; }
-  .flex2 { display: flex; align-items: center; }
-
-  /* ---- общий «постер» ролика: цвет темы вместо серой заглушки ---- */
-  .pst { position: relative; overflow: hidden; flex: none; border-radius: 14px;
-    background: radial-gradient(70% 100% at 88% 8%, color-mix(in srgb, var(--g2) 62%, #08080b), transparent 72%), linear-gradient(var(--a, 150deg), color-mix(in srgb, var(--g1) 52%, #0a0a0d), color-mix(in srgb, var(--g2) 30%, #09090c)); }
-  .pst .cap { position: absolute; left: 14px; top: 12px; right: 56px; font-size: 20px; line-height: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: -.3px; text-shadow: 0 1px 10px rgba(0,0,0,.5); }
-  .pst.sm .cap { font-size: 12px; line-height: 13px; left: 9px; top: 8px; right: 9px; }
-  .pst .du { position: absolute; right: 8px; bottom: 8px; height: 22px; padding: 0 7px; border-radius: 7px; background: rgba(0,0,0,.7); font-size: 12px; font-weight: 700; display: flex; align-items: center; }
-  .pst .pl { position: absolute; left: 12px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.45); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; }
-  .pst.sm .pl { width: 26px; height: 26px; left: 7px; bottom: 6px; }
-  .pst.xs .pl { display: none; }
-  .pst .badge { position: absolute; left: 12px; top: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 11px; border-radius: 14px; background: rgba(0,0,0,.55); font-size: 13px; font-weight: 700; }
-
-  /* ---- общие мелочи: канал, язык, плеер ---- */
-  .chb { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px 0 7px; border-radius: 23px; background: rgba(0,0,0,.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); font-size: 16px; font-weight: 700; flex: none; }
-  .chav { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 60%, #222), color-mix(in srgb, var(--g2) 40%, #111)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex: none; }
-  .ud { width: 8px; height: 8px; border-radius: 50%; background: #fff; }
-  .lg { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 12px 0 12px; border-radius: 23px; background: rgba(0,0,0,.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); font-size: 15px; font-weight: 700; flex: none; }
-  .lg img { width: 24px; height: 15px; border-radius: 3px; object-fit: cover; display: block; }
-  .cb { height: 48px; width: auto; padding: 0 22px; border-radius: 24px; font-size: 16px; display: inline-flex; }
-  .vid { margin: 0 -20px; position: relative; aspect-ratio: 16 / 9; }
-  .vid .pst { position: absolute; inset: 0; border-radius: 0; }
-  .vid .pst .cap { font-size: 34px; line-height: 34px; left: 20px; top: 22px; right: 80px; }
-  .vid .x { position: absolute; right: 12px; top: 12px; z-index: 2; background: rgba(0,0,0,.5) !important; }
-  .vid .bar { position: absolute; left: 16px; right: 16px; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .vid .bar .trk { flex: 1; height: 4px; }
-  .bm { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--sec); flex: none; }
-  .bm.on { color: var(--acc); }
-  .vt { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; }
-  .vm { font-size: 15px; color: var(--sec); margin-top: 4px; }
-
-  /* =========== 1 · АФИША: постер на весь экран, текст крупно, списки без контейнеров =========== */
-  .c1h { margin: -52px -20px 0; height: 420px; position: relative; }
-  .c1h .pst { position: absolute; inset: 0; border-radius: 0; -webkit-mask-image: linear-gradient(#000 52%, transparent 96%); mask-image: linear-gradient(#000 52%, transparent 96%); }
-  .c1h .pst .cap { font-size: 42px; line-height: 42px; left: 22px; top: 106px; right: 22px; letter-spacing: -1.4px; }
-    .c1h .top { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 3; display: flex; justify-content: space-between; align-items: center; }
-  .c1h .info { position: absolute; left: 20px; right: 20px; bottom: 6px; z-index: 3; }
-  .c1h .st { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--acc); }
-  .c1h .tt { font-size: 30px; line-height: 35px; font-weight: 800; letter-spacing: -.6px; margin: 8px 0 14px; }
-  .tx3 { display: flex; gap: 26px; margin-top: 8px; }
-  .tx3 span { position: relative; height: 44px; line-height: 44px; font-size: 17px; font-weight: 600; color: var(--sec); }
-  .tx3 span.on { color: #fff; }
-  .tx3 span.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 2px; background: var(--acc); }
-  .h1s { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.5px; margin: 22px 0 6px; }
-  .r1 { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
-  .r1 + .r1 { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
-  .r1 .tx { flex: 1; min-width: 0; }
-  .r1 .tt { font-size: 18px; line-height: 23px; font-weight: 700; }
-  .r1.last { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); padding: 0; min-height: 60px; }
-  .kl { display: grid; grid-template-columns: 52px 1fr 44px; align-items: center; padding: 8px 0; opacity: .6; }
-  .kl .tm { font-size: 14px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
-  .kl .en { font-size: 22px; line-height: 26px; font-weight: 700; letter-spacing: -.3px; }
-  .kl .ru { font-size: 15px; line-height: 19px; color: #C4C4C8; }
-  .kl.cur { opacity: 1; padding: 14px 0; }
-  .kl.cur .tm { color: var(--acc); }
-  .kl.cur .en { font-size: 34px; line-height: 38px; letter-spacing: -.8px; }
-  .kl.cur .ru { font-size: 18px; line-height: 24px; color: #E2E2E6; margin-top: 2px; }
-  .kl.cur .bm { color: #fff; }
-  .pk1 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 30px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 40%); }
-  .pk1 .in2 { display: flex; align-items: center; gap: 12px; }
-  .pk1 img { width: 52px; height: 42px; object-fit: contain; flex: none; }
-  .pk1 .tx { flex: 1; min-width: 0; }
-  .pk1 .a { font-size: 16px; line-height: 20px; font-weight: 700; } .pk1 .b { font-size: 14px; color: var(--sec); margin-top: 1px; }
-  .toc { margin-top: 10px; }
-  .toc > div { display: flex; align-items: baseline; gap: 10px; padding: 14px 0; }
-  .toc .e { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.3px; }
-  .toc .ld { flex: 1; min-width: 12px; height: 0; box-shadow: 0 1px 0 rgba(255,255,255,.2); transform: translateY(-4px); }
-  .toc .m { font-size: 16px; color: var(--sec); font-variant-numeric: tabular-nums; }
-  .toc .r { font-size: 15px; color: var(--sec); margin-top: 1px; }
-  .sect { font-size: 15px; font-weight: 600; color: var(--sec); }
-  .big { font-size: 60px; line-height: 62px; font-weight: 800; letter-spacing: -2px; }
-
-  /* =========== 2 · РЕЛЬСЫ: каналы-кружки, горизонтальные ряды постеров, «сейчас» по центру =========== */
-  .stor { display: flex; gap: 22px; margin-top: 16px; }
-  .stor > div { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 112px; font-size: 14px; font-weight: 600; text-align: center; }
-  .stor .ring { width: 68px; height: 68px; border-radius: 50%; padding: 3px; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
-  .stor .ring.on { box-shadow: 0 0 0 3px var(--acc); }
-  .stor .ring .chav { width: 56px; height: 56px; font-size: 18px; }
-  .stor .ring .ud { position: absolute; right: 2px; top: 2px; box-shadow: 0 0 0 3px #0C0C0D; }
-  .seg { display: flex; gap: 4px; margin-top: 16px; padding: 4px; border-radius: 24px; background: rgba(255,255,255,.07); }
-  .seg span { flex: 1; height: 44px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--sec); }
-  .seg span.on { background: var(--acc); color: var(--on); }
-  .h2s { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; margin: 20px 0 12px; display: flex; justify-content: space-between; align-items: center; }
-  .prem { height: 250px; border-radius: 26px; position: relative; }
-  .prem .pst { position: absolute; inset: 0; border-radius: 26px; }
-  .prem .pst .cap { font-size: 34px; line-height: 34px; top: 56px; left: 20px; right: 20px; letter-spacing: -.8px; }
-  .prem .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.72)); border-radius: 0 0 26px 26px; }
-  .prem .low { position: absolute; left: 20px; right: 14px; bottom: 14px; z-index: 3; display: flex; align-items: center; gap: 12px; }
-  .prem .low .tx { flex: 1; min-width: 0; font-size: 18px; line-height: 22px; font-weight: 700; }
-  .prem .low .tx span { display: block; font-size: 14px; font-weight: 500; color: #D6D6DA; margin-top: 3px; }
-  .rail { display: flex; gap: 14px; margin-right: -20px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 64px), transparent); }
-  .rail > div { width: 200px; flex: none; }
-  .rail .pst { height: 112px; border-radius: 20px; }
-  .rail .pst .cap { font-size: 20px; line-height: 21px; }
-  .rail .nm { font-size: 15px; line-height: 20px; font-weight: 600; margin-top: 10px; height: 40px; overflow: hidden; }
-  .link2 { display: flex; align-items: center; gap: 14px; min-height: 60px; margin-top: 8px; padding: 0 16px; border-radius: 20px; background: rgba(255,255,255,.06); font-size: 17px; font-weight: 700; }
-  .link2 .g { margin-left: auto; color: var(--sec); }
-  .scrub { position: relative; height: 40px; margin-top: 8px; }
-  .scrub .l { position: absolute; left: 0; right: 0; top: 17px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); }
-  .scrub .l i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--acc); }
-  .scrub .mk { position: absolute; top: 14px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px #0C0C0D; }
-  .scrub .mk.p { background: #0C0C0D; box-shadow: 0 0 0 2px var(--acc); }
-  .scrub .mk.c { top: 10px; width: 20px; height: 20px; margin-left: -10px; background: var(--acc); box-shadow: 0 0 0 4px color-mix(in srgb, var(--acc) 35%, transparent); }
-  .tm2 { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
-  .now { margin-top: 22px; padding: 30px 22px 26px; border-radius: 30px; text-align: center; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 30%, rgba(24,24,30,.7)), rgba(14,14,18,.72) 62%, color-mix(in srgb, var(--g2) 22%, rgba(14,14,18,.72))); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
-  .now .en { font-size: 46px; line-height: 50px; font-weight: 800; letter-spacing: -1.2px; margin-top: 4px; }
-  .now .ru { font-size: 22px; line-height: 28px; color: #E2E2E6; margin-top: 4px; }
-  .now .row2 { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
-  .pch { width: 158px; flex: none; padding: 16px 16px 18px; border-radius: 20px; background: rgba(255,255,255,.07); }
-  .pch.on { background: color-mix(in srgb, var(--acc) 22%, rgba(255,255,255,.06)); }
-  .pch .a { font-size: 13px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
-  .pch .b { font-size: 18px; line-height: 22px; font-weight: 700; margin-top: 4px; }
-  .pch .c { font-size: 14px; line-height: 18px; color: #C4C4C8; margin-top: 2px; }
-  .cen { text-align: center; }
-  .halo { position: relative; width: 280px; height: 240px; margin: 26px auto 0; display: flex; align-items: center; justify-content: center; }
-  .halo::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--g1) 55%, transparent), transparent); }
-  .halo img { position: relative; width: 240px; }
-  .src { display: flex; align-items: center; gap: 14px; margin-top: 30px; }
-  .src .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 21px; font-weight: 700; }
-
-  /* =========== 3 · ТАЙМЛАЙН: вертикальная нить — по датам, по таймкодам, по фразам набора; вкладки внизу =========== */
-  .tlr { position: relative; padding-left: 32px; margin-top: 18px; }
-  .tlr::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 0; width: 2px; background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.08)); }
-  .nd { position: relative; padding-bottom: 18px; }
-  .nd::before { content: ""; position: absolute; left: -32px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #0C0C0D; box-shadow: inset 0 0 0 2px rgba(255,255,255,.4); }
-  .nd.hot::before { background: var(--acc); box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 30%, transparent); }
-  .nd.past::before { background: rgba(255,255,255,.4); box-shadow: none; }
-  .nd .when { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--sec); margin-bottom: 8px; }
-  .nd.hot .when { color: var(--acc); }
-  .nd .vv { display: flex; gap: 14px; align-items: center; }
-  .nd .vv .tx { flex: 1; min-width: 0; }
-  .nd .vv .tt { font-size: 17px; line-height: 22px; font-weight: 700; }
-  .nd .vv .mt { font-size: 14px; color: var(--sec); margin-top: 4px; }
-  .dock { position: absolute; left: 20px; right: 20px; bottom: 30px; z-index: 30; height: 60px; padding: 4px; border-radius: 30px; display: flex; gap: 4px; background: rgba(28,28,34,.92); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 18px 40px -12px rgba(0,0,0,.8); }
-  .dock span { flex: 1; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--sec); }
-  .dock span.on { background: rgba(255,255,255,.14); color: #fff; }
-  .vid.r { border-radius: 0 0 30px 30px; overflow: hidden; }
-  .nd .tm { display: inline-block; width: 46px; font-size: 14px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
-  .nd .ru { padding-left: 46px; }
-  .nd .cardc .ru { padding-left: 0; }
-  .nd .en { font-size: 19px; line-height: 24px; font-weight: 700; }
-  .nd .ru { font-size: 15px; line-height: 20px; color: #B4B4B8; }
-  .nd.pn { padding-bottom: 12px; }
-  .nd.cur::before { background: var(--acc); box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 30%, transparent); }
-  .nd .cardc { margin: -6px 0 6px; padding: 14px 18px 18px; border-radius: 24px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 30%, rgba(24,24,30,.7)), rgba(14,14,18,.74) 62%, color-mix(in srgb, var(--g2) 22%, rgba(14,14,18,.74))); box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); }
-  .nd .cardc .en { font-size: 30px; line-height: 34px; font-weight: 800; letter-spacing: -.6px; }
-  .nd .cardc .ru { font-size: 18px; line-height: 24px; color: #E2E2E6; margin-top: 2px; }
-  .nd .cardc .dd { font-size: 16px; line-height: 23px; color: #E2E2E6; margin-top: 12px; padding-top: 12px; box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
-  .nd.end::before { border-radius: 6px; }
-  .hd3 { display: flex; gap: 16px; align-items: center; margin-top: 12px; }
-  .hd3 img { width: 104px; flex: none; }
-  .tst { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 60; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 12px 18px; border-radius: 20px; font-size: 16px; line-height: 21px; font-weight: 600; background: rgba(36,36,42,.96); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 16px 36px rgba(0,0,0,.55); }
-  .ghb { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; width: 100%; font-size: 17px; font-weight: 700; color: #fff; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.2)); }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 40%); }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); }
+  .tabs { display: flex; gap: 22px; margin-top: 14px; box-shadow: inset 0 -1px 0 rgba(255,255,255,.1); }
+  .tabs span { padding: 10px 0 12px; font-size: 17px; font-weight: 600; color: var(--sec); } .tabs span.on { color: #fff; box-shadow: inset 0 -3px 0 var(--acc); }
+  .seg { display: flex; gap: 6px; margin-top: 14px; padding: 4px; border-radius: 16px; background: rgba(255,255,255,.07); }
+  .seg span { flex: 1; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--sec); } .seg span.on { background: var(--acc); color: var(--on); }
+  .th { position: relative; border-radius: 14px; background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #0c0c10), color-mix(in srgb, var(--g2) 42%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); overflow: hidden; flex: none; }
+  .th .cap { position: absolute; left: 10px; top: 8px; right: 10px; font-weight: 800; text-transform: uppercase; line-height: 1.05; letter-spacing: -.3px; }
+  .th .pl { position: absolute; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; left: 50%; top: 50%; margin: -19px 0 0 -19px; }
+  .th .du { position: absolute; right: 7px; bottom: 7px; height: 22px; padding: 0 7px; border-radius: 7px; background: rgba(0,0,0,.7); font-size: 12px; font-weight: 700; display: flex; align-items: center; }
+  .vr { display: flex; gap: 14px; align-items: center; padding: 10px 0; } .vr + .vr { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .vr .t { font-size: 17px; line-height: 22px; font-weight: 700; } .vr .m { font-size: 14px; color: var(--sec); margin-top: 4px; }
+  .ph1 { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 6px 0; } .ph1 + .ph1 { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .ph1 .tm { width: 48px; font-size: 14px; color: var(--sec); font-variant-numeric: tabular-nums; } .ph1 .w { font-size: 19px; font-weight: 700; } .ph1 .r { font-size: 15px; color: var(--sec); margin-top: 2px; }
+  .ph1 .sv { margin-left: auto; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.09); display: flex; align-items: center; justify-content: center; flex: none; }
+  .ph1.cur .w { color: var(--acc); }
+  .hint2 { font-size: 16px; color: var(--sec); margin: 18px 0 4px; font-weight: 600; }
+  .bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); margin-top: 12px; position: relative; } .bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 26%; border-radius: 3px; background: var(--acc); }
+  .lang { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 20px; background: rgba(255,255,255,.09); font-size: 15px; font-weight: 700; }
+  .hrow { display: flex; gap: 12px; overflow: hidden; margin-top: 12px; margin-right: -20px; } .hrow > div { flex: none; width: 168px; } .hrow .tt { font-size: 15px; line-height: 19px; font-weight: 700; margin-top: 8px; }
   .chip.on { background: #222224; }
+  .note { position: absolute; left: 12px; top: 6px; font-size: 12px; font-weight: 700; color: #fff; opacity: .0; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Видео — три концепции</h1>
-  <p class="page-lead">Все три нарочно непохожи на «Карточки» и «Мои ошибки»: нет стопки-героя, плиток 2×2, сетки стеклянных карточек, кольца прогресса и панели ответов внизу. Общее с приложением — тёмная тема, цвет темы и акцентная кнопка. Тексты и состав экранов взяты из макетов «Видео», «Избранное» и «Из видео». В каждой по четыре ключевых экрана: главная канала с премьерой, ролик с фразами по таймкодам, набор к ролику, фраза подробно. Выберите одну — построю весь раздел в этом языке.</p>
-  <div class="page-nav"><a href="#c1">1 · Афиша</a><a href="#c2">2 · Рельсы</a><a href="#c3">3 · Таймлайн</a></div>
+  <h1 class="page-h1">Видео — три простых варианта</h1>
+  <p class="page-lead">Ниже три варианта раздела «Видео». Над каждым вариантом — одна строка о том, чем он отличается. Над каждым экраном — подпись, что это за экран. В каждом варианте одни и те же четыре экрана: 1 — список видео, 2 — ролик с фразами, 3 — набор из ролика, 4 — одна фраза.</p>
+  <div class="page-nav"><a href="#c1">Вариант 1</a><a href="#c2">Вариант 2</a><a href="#c3">Вариант 3</a></div>
   <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
 <script>
 (() => {
-const { icon, phone, col, block, sheet } = K;
-const A = 'assets/';
-const PEARL = `${A}community_26_ocean_pearl_fan.webp`;
-const cta = (t, x = '', c = '') => `<div class="ac-cta t ${c}"${x}>${t}</div>`;
-const VIDS = [['Catch<br>a flight', '30 фраз для поездки за границу', '12:34', '2 дня назад · 4,1 тыс.', 150], ['How’s it<br>going?', 'Small talk без неловкости', '8:02', 'неделю назад · 2,7 тыс.', 205], ['Get over<br>it', 'Фразовые глаголы с get', '10:51', '2 недели назад · 9,8 тыс.', 120], ['For here<br>or to go?', 'Как заказать кофе и не покраснеть', '6:15', 'месяц назад · 12 тыс.', 250]];
+const { icon, phone, col, block } = K;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const th = (w, h, cap, du, capsz = 18, pl = true) => `<div class="th" style="width:${w}px;height:${h}px"><span class="cap" style="font-size:${capsz}px">${cap}</span>${pl ? `<span class="pl"${w < 200 ? ' style="left:8px;top:auto;bottom:7px;margin:0;width:28px;height:28px"' : ''}>${icon('play', 's16')}</span>` : ''}${du ? `<span class="du">${du}</span>` : ''}</div>`;
+const V = [['30 фраз для поездки за границу', '2 дня назад · 4,1 тыс.', 'Catch<br>a flight', '12:34'], ['Small talk без неловкости', 'неделю назад · 2,7 тыс.', 'How’s it<br>going?', '8:02'], ['Фразовые глаголы с get', '2 недели назад · 9,8 тыс.', 'Get over<br>it', '10:51']];
 const PH = [['0:42', 'Catch a flight', 'успеть на рейс'], ['1:15', 'Boarding pass', 'посадочный талон'], ['2:03', 'Window or aisle?', 'у окна или у прохода?'], ['3:26', 'Carry-on', 'ручная кладь'], ['4:10', 'Layover', 'пересадка'], ['5:02', 'Jet lag', 'смена часовых поясов']];
-const DETAIL = 'Сумка, которую берёшь с собой в салон самолёта. «Is this OK as a carry-on?» — «Это можно взять в салон?»';
+const lang = `<span class="lang">EN${icon('down', 's16')}</span>`;
+const head = (t = 'Видео') => `<div class="flex" style="justify-content:space-between;align-items:center;margin-top:6px"><div style="font-size:32px;line-height:38px;font-weight:700;letter-spacing:-.5px">${t}</div>${lang}</div>`;
+const back = (r = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${r}</div></div>`;
+const sv = (on) => `<span class="sv"><span class="${on ? 'acc' : ''}">${icon(on ? 'check' : 'bookmark', 's20')}</span></span>`;
+const phr = (cur) => PH.map(([tm, w, r], i) => `<div class="ph1${cur === i ? ' cur' : ''}"><span class="tm">${tm}</span><div><div class="w">${w}</div><div class="r">${r}</div></div>${sv(0)}</div>`).join('');
 
-// постер: i — номер ролика, cls — sm/xs, du — показывать длительность
-const th = (i, cls = '', du = true, st = '') => { const v = VIDS[i]; const s = cls.includes('sm') ? 's16' : 's20'; return `<div class="pst ${cls}" style="--a:${v[4]}deg;${st}"><span class="cap">${v[0]}</span><span class="pl">${icon('play', s)}</span>${du ? `<span class="du">${v[2]}</span>` : ''}</div>`; };
-const lang = `<span class="lg t"><img src="${A}language_en.webp" alt="">EN${icon('down', 's16')}</span>`;
-const chan = (dot = true) => `<span class="chb t"><span class="chav">PE</span>Phraseman English${icon('down', 's16')}${dot ? '<span class="ud"></span>' : ''}</span>`;
-const back = (r = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span>${r}</div>`;
-const player = (t, pct, bar = true) => `<div class="vid"><div class="pst" style="--a:150deg"><span class="cap">Catch<br>a flight</span></div><span class="rb t x" title="Закрыть видео">${icon('close', 's16')}</span>${bar ? `<div class="bar"><span>${t}</span><div class="trk"><i style="width:${pct}%"></i></div><span>12:34</span></div>` : ''}</div>`;
-const P = (body, fixed = '', overlay = '') => phone(body, { time: '12:52', fixed, overlay });
+// ---------------- ВАРИАНТ 1: Список (как привычный каталог) ----------------
+const a1 = () => phone(`${head()}<div class="tabs"><span class="on">Главная</span><span>Все видео</span><span>Плейлисты</span></div>
+  <div class="hint2">Скоро премьера · завтра в 19:00</div>
+  <div class="vr"><div>${th(150, 84, 'Sorry<br>to bother<br>you', '', 15, false)}</div><div><div class="t">15 вежливых фраз для работы</div><div style="margin-top:10px">${cta('Напомнить', ' style="height:40px;font-size:15px;width:auto;padding:0 18px"')}</div></div></div>
+  <div class="hint2">Новые видео</div>${V.map(([t, m, c, d]) => `<div class="vr">${th(150, 84, c, d, 15)}<div><div class="t">${t}</div><div class="m">${m}</div></div></div>`).join('')}`);
+const a2 = () => phone(`${back()}${th(390, 220, 'Catch<br>a flight', '12:34', 30).replace('width:390px', 'width:100%')}<div class="bar"><i></i></div>
+  <div style="font-size:21px;line-height:27px;font-weight:700;margin-top:16px">30 фраз для поездки за границу</div><div class="hint2" style="margin-top:6px">Фразы из видео · нажми закладку, чтобы сохранить</div>${phr(3)}`);
+const a3 = () => phone(`${back()}<div style="font-size:30px;line-height:36px;font-weight:700;margin-top:14px">30 фраз для поездки</div><div class="sec2" style="font-size:17px;margin-top:6px">30 карточек · 118 добавили</div><div class="hint2">Что в наборе</div>${PH.map(([tm, w, r]) => `<div class="ph1"><div><div class="w">${w}</div><div class="r">${r}</div></div></div>`).join('')}`, { fixed: bot(cta('Добавить себе')) });
+const a4 = () => phone(`${back()}<div style="margin-top:16px">${th(390, 190, 'Catch<br>a flight', '3:26', 26).replace('width:390px', 'width:100%')}</div><div class="hint2" style="margin-top:22px">Фраза из видео · 3:26</div><div style="font-size:44px;line-height:48px;font-weight:700;letter-spacing:-1px">Carry-on</div><div style="font-size:24px;margin-top:8px">Ручная кладь</div><div class="sec2" style="font-size:18px;line-height:26px;margin-top:20px">Сумка, которую берёшь с собой в салон самолёта. «Is this OK as a carry-on?» — «Это можно взять в салон?»</div>`, { fixed: bot(cta(`${icon('bookmark', 's20')} Сохранить фразу`)) });
 
-// ================= 1. АФИША =================
-const a1 = () => P(`<div class="c1h"><div class="pst" style="--a:160deg"><span class="cap">Sorry<br>to bother you</span></div>
-    <div class="top">${chan()}${lang}</div>
-    <div class="info"><div class="st">${icon('flag', 's18')}Скоро премьера · Завтра в 19:00</div><div class="tt">15 вежливых фраз для работы</div>${cta(icon('flag', 's18') + 'Напомнить', '', 'cb')}</div></div>
-  <div class="tx3"><span class="on">Главная</span><span>Все видео</span><span>Плейлисты</span></div>
-  <div class="h1s">Новые видео</div>
-  ${[0, 1, 2].map((i) => `<div class="r1 t"><div class="tx"><div class="tt">${VIDS[i][1]}</div><div class="vm">${VIDS[i][3]}</div></div>${th(i, 'sm xs', true, 'width:128px;height:72px')}</div>`).join('')}
-  <div class="r1 last t"><span class="sec2">${icon('layers', 's20')}</span><div class="tx" style="font-size:17px;font-weight:700">Наборы из видео</div><span class="sec2">${icon('fwd', 's20')}</span></div>`);
+// ---------------- ВАРИАНТ 2: Витрина (большая премьера и ленты) ----------------
+const b1 = () => phone(`${head()}<div style="margin-top:14px">${th(390, 210, 'Sorry<br>to bother<br>you', '', 28, false).replace('width:390px', 'width:100%')}</div>
+  <div class="hint2" style="margin-top:12px">Скоро премьера · завтра в 19:00</div><div style="font-size:21px;font-weight:700">15 вежливых фраз для работы</div><div style="margin-top:12px">${cta('Напомнить', ' style="height:44px;font-size:16px"')}</div>
+  <div class="hint2" style="margin-top:22px">Новые видео</div><div class="hrow">${V.map(([t, m, c, d]) => `<div>${th(168, 96, c, d, 14)}<div class="tt">${t}</div></div>`).join('')}</div>`);
+const b2 = () => phone(`${back()}${th(390, 200, 'Catch<br>a flight', '12:34', 28).replace('width:390px', 'width:100%')}<div class="bar"><i></i></div>
+  <div style="font-size:20px;line-height:26px;font-weight:700;margin-top:14px">30 фраз для поездки за границу</div>
+  <div class="hint2" style="margin-top:14px">Сейчас в видео · 3:26</div><div style="font-size:34px;font-weight:700;letter-spacing:-.6px">Carry-on</div><div style="font-size:19px;margin-top:2px" class="sec2">ручная кладь</div><div style="margin-top:14px">${cta(`${icon('bookmark', 's20')} Сохранить`, ' style="height:48px;font-size:16px"')}</div>
+  <div class="hint2" style="margin-top:20px">Другие фразы</div><div class="hrow">${PH.filter((_, i) => i !== 3).map(([tm, w, r]) => `<div style="width:150px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07)"><div class="sec2" style="font-size:13px">${tm}</div><div style="font-size:17px;font-weight:700;margin-top:4px">${w}</div><div class="sec2" style="font-size:14px;margin-top:2px">${r}</div></div>`).join('')}</div>`);
+const b3 = () => phone(`${back()}<div style="text-align:center;margin-top:12px"><div style="display:inline-block">${th(210, 118, 'Catch<br>a flight', '12:34', 20, false)}</div><div style="font-size:28px;line-height:34px;font-weight:700;margin-top:18px">30 фраз для поездки</div><div class="sec2" style="font-size:17px;margin-top:6px">30 карточек · 118 добавили</div></div><div style="margin-top:20px">${cta('Добавить себе')}</div><div class="hint2">Фразы из видео</div>${PH.slice(0, 4).map(([tm, w, r]) => `<div class="ph1"><div><div class="w">${w}</div><div class="r">${r}</div></div><span class="tm" style="margin-left:auto;text-align:right">${tm}</span></div>`).join('')}`);
+const b4 = () => phone(`${back()}<div style="margin-top:34px;text-align:center"><div class="hint2">Фраза из видео · 3:26</div><div style="font-size:50px;line-height:54px;font-weight:700;letter-spacing:-1.2px;margin-top:8px">Carry-on</div><div style="font-size:26px;margin-top:10px">Ручная кладь</div></div><div class="sec2" style="font-size:18px;line-height:26px;margin-top:30px;text-align:center">Сумка, которую берёшь с собой в салон самолёта. «Is this OK as a carry-on?» — «Это можно взять в салон?»</div>`, { fixed: bot(`<div style="display:flex;gap:10px"><div class="ac-cta" style="flex:1;width:auto">Сохранить фразу</div></div>`) });
 
-const kl = (i, cur, saved) => { const [tm, en, ru] = PH[i]; return `<div class="kl t${cur ? ' cur' : ''}"><span class="tm">${tm}</span><div><div class="en">${en}</div><div class="ru">${ru}</div></div><span class="bm${saved ? ' on' : ''}">${icon('bookmark', 's20')}</span></div>`; };
-const a2 = () => P(`${player('3:31', 28)}
-  <div class="vt" style="margin-top:16px;font-size:21px;line-height:26px">30 фраз для поездки за границу</div><div class="vm" style="font-size:14px">Phraseman English · 2 дня назад · 4,1 тыс.</div>
-  <div class="flex2" style="justify-content:space-between;margin:14px 0 2px"><div style="font-size:20px;font-weight:700">Фразы из видео <span class="sec2" style="margin-left:6px">${PH.length}</span></div></div>
-  ${PH.map((_, i) => kl(i, i === 3, false)).join('')}`,
-  `<div class="pk1"><div class="in2"><span class="gtile" style="width:44px;height:44px;border-radius:13px;flex:none">${icon('layers', 's20')}</span><div class="tx"><div class="a">30 фраз для поездки</div><div class="b">Набор к ролику</div></div>${cta('Добавить себе', '', 'cb')}</div></div>`);
+// ---------------- ВАРИАНТ 3: Крупная лента (по одному ролику на строку, действие всегда внизу) ----------------
+const c1 = () => phone(`${head()}<div class="seg"><span class="on">Главная</span><span>Все видео</span><span>Плейлисты</span></div>
+  ${V.map(([t, m, c, d]) => `<div style="margin-top:16px">${th(390, 170, c, d, 24).replace('width:390px', 'width:100%')}<div style="font-size:18px;line-height:23px;font-weight:700;margin-top:10px">${t}</div><div class="sec2" style="font-size:14px;margin-top:3px">${m}</div></div>`).join('')}`);
+const c2 = () => phone(`${back()}${th(390, 200, 'Catch<br>a flight', '12:34', 28).replace('width:390px', 'width:100%')}<div class="bar"><i></i></div>
+  <div style="font-size:20px;line-height:26px;font-weight:700;margin-top:14px">30 фраз для поездки за границу</div><div class="hint2" style="margin-top:12px">Фразы из видео</div>${PH.slice(0, 5).map(([tm, w, r], i) => `<div class="ph1${i === 3 ? ' cur' : ''}"><span class="tm">${tm}</span><div><div class="w">${w}</div><div class="r">${r}</div></div></div>`).join('')}`, { fixed: bot(`<div style="display:flex;gap:10px"><div class="ac-cta" style="flex:1;width:auto">Сохранить фразу · Carry-on</div></div>`) });
+const c3 = () => phone(`${back()}<div style="font-size:30px;line-height:36px;font-weight:700;margin-top:14px">30 фраз для поездки</div><div class="sec2" style="font-size:17px;margin-top:6px">30 карточек · 118 добавили</div><div class="hint2">Первые фразы</div>${PH.map(([tm, w, r]) => `<div class="ph1"><div><div class="w">${w}</div><div class="r">${r}</div></div></div>`).join('')}`, { fixed: bot(cta('Добавить себе')) });
+const c4 = () => phone(`${back()}<div style="margin-top:14px">${th(390, 170, 'Catch<br>a flight', '3:26', 26).replace('width:390px', 'width:100%')}</div><div style="font-size:42px;line-height:46px;font-weight:700;letter-spacing:-1px;margin-top:22px">Carry-on</div><div style="font-size:22px;margin-top:6px">Ручная кладь</div><div class="sec2" style="font-size:17px;line-height:25px;margin-top:16px">Сумка, которую берёшь с собой в салон самолёта. «Is this OK as a carry-on?» — «Это можно взять в салон?»</div>`, { fixed: bot(cta(`${icon('bookmark', 's20')} Сохранить фразу`)) });
 
-const a3 = () => P(`${back(`<span class="rb t">${icon('dotsH', 's20')}</span>`)}
-  <div style="display:flex;gap:10px;align-items:center;margin-top:22px"><div style="flex:1"><div class="sec2" style="font-size:17px;font-weight:600">Набор к ролику</div><div class="big" style="font-size:46px;line-height:48px;letter-spacing:-1.4px;margin-top:8px">30 фраз для поездки</div></div></div>
-  <div style="font-size:17px;color:var(--sec);margin-top:14px">30 карточек · 118 добавили</div>
-  <div class="sect" style="margin-top:34px">Фразы из видео</div>
-  <div class="toc">${PH.map(([tm, en, ru]) => `<div><div><div class="e">${en}</div><div class="r">${ru}</div></div><i class="ld"></i><span class="m">${tm}</span></div>`).join('')}</div>
-  <div class="sec2" style="font-size:16px;margin-top:6px">и ещё 24 фразы</div>`,
-  `<div class="pk1">${cta('Добавить себе ' + icon('plus', 's18'))}</div>`);
-
-const a4 = () => P(`${back()}
-  <div style="margin:20px 0 0">${th(0, '', true, 'height:176px;border-radius:22px').replace('12:34', '3:26')}</div>
-  <div class="acc" style="font-size:17px;font-weight:600;margin-top:22px">Фраза · 3:26</div>
-  <div class="big" style="margin-top:8px;font-size:68px;line-height:70px">Carry-on</div>
-  <div class="sect" style="margin-top:44px">Перевод</div><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.6px;margin-top:8px">Ручная кладь</div>
-  <div style="box-shadow:inset 0 1px 0 rgba(255,255,255,.1);margin-top:26px"></div>
-  <div class="sect" style="margin-top:28px">Подробно</div><div class="tx2" style="font-size:21px;line-height:31px;margin-top:10px">${DETAIL}</div>`,
-  `<div class="pk1">${cta(icon('bookmark', 's18') + 'Сохранить фразу')}</div>`);
-
-// ================= 2. РЕЛЬСЫ =================
-const b1 = () => P(`<div class="flex2" style="justify-content:space-between;margin-top:6px"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Видео</div>${lang}</div>
-  <div class="stor"><div class="t"><span class="ring on"><span class="chav">PE</span><span class="ud"></span></span>Phraseman English</div><div class="t"><span class="ring"><span class="chav">PL</span></span>Professor Lingman</div></div>
-  <div class="seg"><span class="on t">Главная</span><span class="t">Все видео</span><span class="t">Плейлисты</span></div>
-  <div class="h2s">Премьера</div>
-  <div class="prem"><div class="pst" style="--a:160deg"><span class="badge">${icon('flag', 's16')}Скоро премьера</span><span class="cap">Sorry<br>to bother you</span></div><div class="fade"></div>
-    <div class="low"><div class="tx">15 вежливых фраз для работы<span>Завтра в 19:00</span></div>${cta(icon('flag', 's18') + 'Напомнить', '', 'cb')}</div></div>
-  <div class="h2s">Новые видео</div>
-  <div class="rail">${VIDS.map((v, i) => `<div class="t">${th(i)}<div class="nm">${v[1]}</div></div>`).join('')}</div>
-  <div class="link2 t"><span class="sec2">${icon('layers', 's20')}</span>Наборы из видео<span class="g">${icon('fwd', 's20')}</span></div>`);
-
-const b2 = () => P(`${player('3:31', 28, false)}
-  <div class="scrub"><div class="l"><i style="width:28%"></i></div>${[[5.6, 'p'], [10, 'p'], [16.3, 'p'], [27.3, 'c'], [33.2, ''], [40, '']].map(([x, c]) => `<span class="mk ${c}" style="left:${x}%"></span>`).join('')}</div>
-  <div class="tm2"><span>3:31</span><span>12:34</span></div>
-  <div class="now"><div class="acc" style="font-size:17px;font-weight:600">3:26</div><div class="en">Carry-on</div><div class="ru">ручная кладь</div>
-    <div class="row2"><span class="rb l t" style="width:52px;height:52px">${icon('bookmark', 's20')}</span></div></div>
-  <div class="h2s" style="margin-top:22px">Фразы из видео<span class="sec2" style="font-size:17px;font-weight:600">${PH.length}</span></div>
-  <div class="rail" style="gap:10px">${PH.map(([tm, en, ru], i) => `<div class="pch t${i === 3 ? ' on' : ''}"><div class="a">${tm}</div><div class="b">${en}</div><div class="c">${ru}</div></div>`).join('')}</div>
-  <div class="link2 t" style="margin-top:20px"><span class="gtile" style="width:44px;height:44px;border-radius:13px;flex:none">${icon('layers', 's20')}</span><div><div style="font-size:16px">Набор к ролику</div><div style="font-size:14px;color:var(--sec);font-weight:500">30 фраз для поездки</div></div><span class="g">${icon('fwd', 's20')}</span></div>`);
-
-const b3 = () => P(`${back(`<span class="rb t">${icon('dotsH', 's20')}</span>`)}
-  <div class="halo"><span class="gtile" style="width:132px;height:132px;border-radius:40px">${icon('layers', 's32')}</span></div>
-  <div class="cen"><div class="sec2" style="font-size:17px;font-weight:600;margin-top:16px">Набор к ролику</div><div style="font-size:36px;line-height:42px;font-weight:800;letter-spacing:-.8px;margin-top:6px">30 фраз для поездки</div><div style="font-size:17px;color:var(--sec);margin-top:10px">30 карточек · 118 добавили</div></div>
-  <div style="margin-top:26px">${cta('Добавить себе ' + icon('plus', 's18'))}</div>
-  <div class="h2s" style="margin-top:30px">Фразы из видео</div>
-  <div class="rail" style="gap:10px">${PH.map(([tm, en, ru]) => `<div class="pch"><div class="a">${tm}</div><div class="b">${en}</div><div class="c">${ru}</div></div>`).join('')}</div>
-  <div class="src t">${th(0, 'sm xs', true, 'width:128px;height:72px')}<div class="tx">30 фраз для поездки за границу<div class="vm" style="font-size:14px;font-weight:500">Phraseman English</div></div></div>`);
-
-const b4 = () => P(`${player('3:31', 28, false)}
-  <div class="vt" style="margin-top:16px;font-size:21px;line-height:26px">30 фраз для поездки за границу</div><div class="vm" style="font-size:14px">Phraseman English · 2 дня назад · 4,1 тыс.</div>
-  <div class="scrub" style="margin-top:6px"><div class="l"><i style="width:28%"></i></div>${[[5.6, 'p'], [10, 'p'], [16.3, 'p'], [27.3, 'c'], [33.2, ''], [40, '']].map(([x, c]) => `<span class="mk ${c}" style="left:${x}%"></span>`).join('')}</div>
-  <div class="now"><div class="acc" style="font-size:17px;font-weight:600">3:26</div><div class="en">Carry-on</div><div class="ru">ручная кладь</div></div>`,
-  '',
-  sheet('ps', `<div class="cen" style="padding:0 4px"><div class="acc" style="font-size:17px;font-weight:600">Фраза · 3:26</div><div style="font-size:42px;line-height:46px;font-weight:800;letter-spacing:-1px;margin-top:6px">Carry-on</div><div style="font-size:24px;line-height:30px;margin-top:8px">Ручная кладь</div></div>
-  <div class="tx2" style="font-size:17px;line-height:25px;margin:20px 6px 0;text-align:center">${DETAIL}</div>
-  <div style="margin-top:22px">${cta(icon('bookmark', 's18') + 'Сохранить фразу')}</div>`, true));
-
-// ================= 3. ТАЙМЛАЙН =================
-const dock = (on) => `<div class="dock">${['Главная', 'Все видео', 'Плейлисты'].map((t, i) => `<span class="t${i === on ? ' on' : ''}">${t}</span>`).join('')}</div>`;
-const c1 = () => P(`<div class="flex2" style="justify-content:space-between;margin-top:6px"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Видео</div>${lang}</div>
-  <div style="margin-top:14px">${chan()}</div>
-  <div class="tlr">
-    <div class="nd hot"><div class="when">Скоро премьера · Завтра в 19:00</div><div class="pst" style="--a:160deg;height:150px;border-radius:22px"><span class="cap" style="font-size:30px;line-height:30px;top:30px;left:20px">Sorry<br>to bother you</span></div>
-      <div style="font-size:19px;line-height:24px;font-weight:700;margin:10px 0 10px">15 вежливых фраз для работы</div>${cta(icon('flag', 's18') + 'Напомнить', '', 'cb')}</div>
-    ${[0, 1, 2].map((i) => `<div class="nd"><div class="when">${VIDS[i][3].split(' · ')[0]}</div><div class="vv t">${th(i, 'sm xs', true, 'width:128px;height:72px')}<div class="tx"><div class="tt">${VIDS[i][1]}</div><div class="mt">${VIDS[i][3].split(' · ')[1]}</div></div></div></div>`).join('')}
-  </div>`, dock(0));
-
-const nodes = (cur, saved) => PH.map(([tm, en, ru], i) => {
-  if (i === cur) return `<div class="nd cur"><div class="cardc"><div class="acc" style="font-size:14px;font-weight:600">${tm}</div><div class="flex2" style="justify-content:space-between;gap:8px"><div class="en">${en}</div><span class="bm${saved ? ' on' : ''}" style="margin:-6px -8px -6px 0">${icon('bookmark', 's20')}</span></div><div class="ru">${ru}</div>${saved === undefined ? '' : `<div class="dd">${DETAIL}</div><div style="margin-top:14px">${saved ? `<div class="ghb t">${icon('check', 's18')}Фраза сохранена</div>` : cta(icon('bookmark', 's18') + 'Сохранить фразу')}</div>`}</div></div>`;
-  return `<div class="nd pn${i < cur ? ' past' : ''}"><div class="en"><span class="tm">${tm}</span>${en}</div><div class="ru">${ru}</div></div>`;
-}).join('');
-const c2 = () => P(`<div class="vid r" style="margin-top:0">${'<div class="pst" style="--a:150deg"><span class="cap">Catch<br>a flight</span></div>'}<span class="rb t x">${icon('close', 's16')}</span><div class="bar"><span>3:31</span><div class="trk"><i style="width:28%"></i></div><span>12:34</span></div></div>
-  <div class="vt" style="margin-top:14px;font-size:21px;line-height:26px">30 фраз для поездки за границу</div>
-  <div class="flex2" style="justify-content:space-between;margin-top:14px"><div style="font-size:19px;font-weight:700">Фразы из видео <span class="sec2" style="margin-left:6px">${PH.length}</span></div></div>
-  <div class="tlr" style="margin-top:10px">${nodes(3)}
-  <div class="nd end" style="padding-bottom:0"><div class="hd3 t" style="margin-top:0"><span class="gtile" style="width:44px;height:44px;border-radius:13px;flex:none">${icon('layers', 's20')}</span><div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:700">Набор к ролику</div><div class="vm" style="font-size:14px;margin-top:2px">30 фраз для поездки</div></div></div></div></div>`);
-
-const c3 = () => P(`${back(`<span class="rb t">${icon('dotsH', 's20')}</span>`)}
-  <div class="hd3" style="margin-top:20px"><span class="gtile" style="width:44px;height:44px;border-radius:13px;flex:none">${icon('layers', 's20')}</span><div><div class="sec2" style="font-size:16px;font-weight:600">Набор к ролику</div><div style="font-size:30px;line-height:35px;font-weight:800;letter-spacing:-.6px;margin-top:4px">30 фраз для поездки</div></div></div>
-  <div style="font-size:17px;color:var(--sec);margin-top:14px">30 карточек · 118 добавили</div>
-  <div style="margin-top:18px"><div class="ghb t">${icon('check', 's18')}В моих наборах</div></div>
-  <div class="sect" style="margin-top:30px">Фразы из видео</div>
-  <div class="tlr" style="margin-top:12px">${PH.map(([tm, en, ru]) => `<div class="nd pn past"><div class="en"><span class="tm">${tm}</span>${en}</div><div class="ru">${ru}</div></div>`).join('')}
-    <div class="nd pn end" style="padding-bottom:0"><div class="en sec2" style="font-size:17px">и ещё 24 фразы</div></div></div>`,
-  '', `<div class="tst">${icon('check', 's20')}Набор добавлен в «Мои наборы»</div>`);
-
-const c4 = () => P(`<div class="vid r" style="margin-top:0"><div class="pst" style="--a:150deg"><span class="cap">Catch<br>a flight</span></div><span class="rb t x">${icon('close', 's16')}</span><div class="bar"><span>3:26</span><div class="trk"><i style="width:27%"></i></div><span>12:34</span></div></div>
-  <div class="tlr" style="margin-top:20px">${nodes(3, true)}</div>`);
-
+const L = ['1 · Список видео: выбираешь ролик', '2 · Ролик: фразы по времени', '3 · Набор из ролика: добавить себе', '4 · Одна фраза подробно'];
 document.getElementById('root').innerHTML =
-  block('c1', '1 · Афиша', 'Постер премьеры на весь экран, дальше крупный текст и тонкие линии — почти без контейнеров. Во время ролика фразы идут как субтитры: текущая крупно, остальные приглушены; набор — оглавление с таймкодами.', [col('Главная', a1()), col('Ролик · фразы по таймкодам', a2()), col('Набор к ролику', a3()), col('Фраза подробно', a4())]) +
-  block('c2', '2 · Рельсы', 'Каналы — кружки, вкладки — переключатель, ролики — горизонтальные ряды постеров. Во время ролика на шкале видны отметки фраз, «сейчас» — по центру, остальные фразы листаются вбок; набор — обложка по центру.', [col('Главная', b1()), col('Ролик · фразы по таймкодам', b2()), col('Набор к ролику', b3()), col('Фраза подробно', b4())]) +
-  block('c3', '3 · Таймлайн', 'Через весь раздел идёт одна вертикальная нить: на главной это дата выхода, в ролике — таймкоды фраз, в наборе — состав. Вкладки собраны в плавающую панель внизу, фраза раскрывается прямо на нити.', [col('Главная', c1()), col('Ролик · фразы по таймкодам', c2()), col('Набор добавлен', c3()), col('Фраза сохранена', c4())]);
+  block('c1', 'Вариант 1 · Список', 'Чем отличается: привычный список, как в любом каталоге видео. Вкладки сверху, превью слева, название справа. Самый простой и знакомый.', [col(L[0], a1()), col(L[1], a2()), col(L[2], a3()), col(L[3], a4())]) +
+  block('c2', 'Вариант 2 · Витрина', 'Чем отличается: сверху большая премьера, ниже ленты роликов, которые листаются вбок. Больше картинки, меньше текста.', [col(L[0], b1()), col(L[1], b2()), col(L[2], b3()), col(L[3], b4())]) +
+  block('c3', 'Вариант 3 · Крупная лента', 'Чем отличается: каждый ролик — крупная картинка на всю ширину, а главная кнопка («Сохранить», «Добавить себе») всегда лежит внизу экрана под большим пальцем.', [col(L[0], c1()), col(L[1], c2()), col(L[2], c3()), col(L[3], c4())]);
 K.init();
 const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
   ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];

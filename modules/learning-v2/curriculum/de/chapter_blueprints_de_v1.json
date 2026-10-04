@@ -24009,6 +24009,871 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l28",
+      "lessonOrdinal": 28,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_spoken_preterite_island_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1"
+        ],
+        "noExpansion": "Permit only the controlled selected narrative Präteritum forms kam ... an for the known verb ankommen, fuhr ... ab for the known verb abfahren, sah, blieb and bemerkte; the already established spoken island war, hatte and selected modal Präteritum forms; the already verified Perfekt contrasts ist angekommen, ist abgefahren, hat ... bezahlt and hat ... gemacht; and the established deshalb-plus-V2 versus weil-plus-complete-verb-final topology. Treat every selected narrative form as a bounded lexical-narrative choice, not as evidence for an exhaustive weak-or-strong Präteritum paradigm or a universal formation rule. No absolute speech-versus-writing tense split is licensed. Do not introduce another narrative Präteritum form, a person-number paradigm, a regular-or-irregular formation algorithm, Plusquamperfekt, Konjunktiv, a new Perfekt auxiliary class or participle, participle guessing, passive, werden-plus-infinitive, a new relative form, a new connector, a new case or preposition relation, functional Genitiv, modal Perfekt, Task 6 lexical adjudication, learner-facing RU or UK content, release, audio, mockup, or English-contour reuse."
+      },
+      "chapters": [
+        {
+          "id": "de_l28_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l28_ch01",
+          "lessonOutcome": "recognise selected narrative Präteritum forms in a clear account",
+          "packetIds": [
+            "de_l28_c01_s01",
+            "de_l28_c01_s02",
+            "de_l28_c01_s03",
+            "de_l28_c01_s04",
+            "de_l28_c01_s05",
+            "de_l28_c01_s06",
+            "de_l28_c01_s07",
+            "de_l28_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "railway-delay-incident-note",
+            "participants": "community-volunteer-and-travel-adviser",
+            "goal": "recognize-the-selected-kam-an-and-sah-forms-in-a-clear-past-account",
+            "contextSignature": "railway-incident-selected-preterite-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Formhinweis: ankommen → kam ... an. sehen → sah. Der Helfer kam am Bahnhof an. Dann sah er das Warnschild.",
+            "exit": "Der Helfer kam am Bahnhof an. Dann sah er das Warnschild.",
+            "independentEvidenceByPacketId": "de_l28_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "introduction",
+              "packetId": "de_l28_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l28_c01_s03", "de_l28_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l28_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c01_sehen_v1",
+                "semanticIdentity": "sehen|perceive one visible sign during a past incident",
+                "lemmaOrExpression": "sehen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "sehen",
+                  "valencyFrame": "transitive visual-perception frame selecting one explicit accusative sign",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "perceive one visible sign during a past incident",
+                "communicativeUse": "Der Helfer kam am Bahnhof an. Dann sah er das Warnschild.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch01",
+                  "checkpointPacketId": "de_l28_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-the-selected-kam-an-and-sah-forms-in-a-different-clear-account",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l28_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l28_c01_warnschild_v1",
+                "semanticIdentity": "warnschild|warning sign seen during a past travel incident",
+                "lemmaOrExpression": "Warnschild",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Warnschild",
+                  "plural": "Warnschilder"
+                },
+                "nounPackageIdentity": "das|warnschild|warnschilder",
+                "verbPackage": null,
+                "senseGloss": "warning sign seen during a past travel incident",
+                "communicativeUse": "Der Helfer kam am Bahnhof an. Dann sah er das Warnschild.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch01",
+                  "checkpointPacketId": "de_l28_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "ferry-terminal-incident-summary",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l28_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "ferry-terminal-incident-summary",
+              "participants": "passenger-and-information-agent",
+              "goal": "independently-recognize-the-selected-kam-an-and-sah-forms-in-a-different-clear-account",
+              "contextSignature": "ferry-terminal-selected-preterite-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c06", "de_l16_c07"],
+            "targetsFutureChapterIds": ["de_l28_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s49"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l28_ch02",
+          "lessonOutcome": "contrast the narrative set with known Perfekt and spoken past forms",
+          "packetIds": [
+            "de_l28_c02_s09",
+            "de_l28_c02_s10",
+            "de_l28_c02_s11",
+            "de_l28_c02_s12",
+            "de_l28_c02_s13",
+            "de_l28_c02_s14",
+            "de_l28_c02_s15",
+            "de_l28_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "community-newsletter-story-review",
+            "participants": "newsletter-editor-and-volunteer-writer",
+            "goal": "contrast-selected-narrative-preterite-with-known-perfekt-and-spoken-past-forms",
+            "contextSignature": "community-newsletter-past-register-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Im Bericht steht: Der Helfer kam am Bahnhof an. Im Gespräch: Der Helfer ist am Bahnhof angekommen. Beide Formen können passen; daraus folgt kein absolutes Schrift-gegen-Sprache-Gesetz.",
+            "exit": "Der Helfer kam am Bahnhof an. Der Helfer ist am Bahnhof angekommen. Beide Formen können passen. Daraus folgt kein absolutes Schrift-gegen-Sprache-Gesetz.",
+            "independentEvidenceByPacketId": "de_l28_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "guided",
+              "packetId": "de_l28_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l28_c02_s11", "de_l28_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l28_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c02_bericht_v1",
+                "semanticIdentity": "bericht|account used to contrast one selected narrative form with a known perfekt form",
+                "lemmaOrExpression": "Bericht",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Bericht",
+                  "plural": "Berichte"
+                },
+                "nounPackageIdentity": "der|bericht|berichte",
+                "verbPackage": null,
+                "senseGloss": "account used to contrast one selected narrative form with a known Perfekt form",
+                "communicativeUse": "Im Bericht steht: Der Helfer kam am Bahnhof an. Im Gespräch: Der Helfer ist am Bahnhof angekommen. Beide Formen können passen; daraus folgt kein absolutes Schrift-gegen-Sprache-Gesetz.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch02",
+                  "checkpointPacketId": "de_l28_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-contrast-the-selected-narrative-form-with-known-perfekt-and-spoken-past-forms",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l28_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "travel-club-trip-report-review",
+              "participants": "trip-organiser-and-participant",
+              "goal": "independently-contrast-the-selected-narrative-form-with-known-perfekt-and-spoken-past-forms",
+              "contextSignature": "travel-club-past-register-contrast-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c01", "de_l28_c01"],
+            "targetsFutureChapterIds": ["de_l28_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s50"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l28_ch03",
+          "lessonOutcome": "sequence two past events with a controlled narrative form",
+          "packetIds": [
+            "de_l28_c03_s17",
+            "de_l28_c03_s18",
+            "de_l28_c03_s19",
+            "de_l28_c03_s20",
+            "de_l28_c03_s21",
+            "de_l28_c03_s22",
+            "de_l28_c03_s23",
+            "de_l28_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "rail-platform-event-sequencing",
+            "participants": "traveller-and-station-helper",
+            "goal": "sequence-the-train-departure-and-the-helpers-remaining-with-controlled-narrative-forms",
+            "contextSignature": "rail-platform-two-event-narrative-sequence"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ereignis 1: Der Zug fuhr ab. Ereignis 2: Der Helfer blieb am Gleis. Zuerst fuhr der Zug ab. Dann blieb der Helfer am Gleis.",
+            "exit": "Zuerst fuhr der Zug ab. Dann blieb der Helfer am Gleis.",
+            "independentEvidenceByPacketId": "de_l28_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "retrieval",
+              "packetId": "de_l28_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l28_c03_s19", "de_l28_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l28_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c03_bleiben_v1",
+                "semanticIdentity": "bleiben|remain at one stated place after an earlier event",
+                "lemmaOrExpression": "bleiben",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bleiben",
+                  "valencyFrame": "intransitive remaining-at-place frame with one stated location",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "sein"
+                },
+                "senseGloss": "remain at one stated place after an earlier event",
+                "communicativeUse": "Zuerst fuhr der Zug ab. Dann blieb der Helfer am Gleis.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch03",
+                  "checkpointPacketId": "de_l28_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sequence-two-past-events-with-the-controlled-narrative-set",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l28_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "bus-terminal-connection-retelling",
+              "participants": "passenger-and-route-helper",
+              "goal": "independently-sequence-two-past-events-with-the-controlled-narrative-set",
+              "contextSignature": "bus-terminal-two-event-sequence-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c07", "de_l28_c02"],
+            "targetsFutureChapterIds": ["de_l28_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l28_ch04",
+          "lessonOutcome": "describe a participant state and action in one account",
+          "packetIds": [
+            "de_l28_c04_s25",
+            "de_l28_c04_s26",
+            "de_l28_c04_s27",
+            "de_l28_c04_s28",
+            "de_l28_c04_s29",
+            "de_l28_c04_s30",
+            "de_l28_c04_s31",
+            "de_l28_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "witness-account-state-action",
+            "participants": "witness-and-community-coordinator",
+            "goal": "describe-one-participant-state-and-one-observed-action-in-the-account",
+            "contextSignature": "witness-state-action-narrative"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Zustand: Der Helfer hatte ein Problem. Handlung: Dann bemerkte er den Aushang. Der Helfer hatte ein Problem. Dann bemerkte er den Aushang.",
+            "exit": "Der Helfer hatte ein Problem. Dann bemerkte er den Aushang.",
+            "independentEvidenceByPacketId": "de_l28_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "production",
+              "packetId": "de_l28_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l28_c04_s27", "de_l28_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l28_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c04_bemerken_v1",
+                "semanticIdentity": "bemerken|notice one visible information source during an account",
+                "lemmaOrExpression": "bemerken",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bemerken",
+                  "valencyFrame": "transitive noticing frame selecting one explicit accusative information source",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "notice one visible information source during an account",
+                "communicativeUse": "Der Helfer hatte ein Problem. Dann bemerkte er den Aushang.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch04",
+                  "checkpointPacketId": "de_l28_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-describe-a-participant-state-and-an-observed-action",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l28_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l28_c04_aushang_v1",
+                "semanticIdentity": "aushang|posted notice observed during the incident",
+                "lemmaOrExpression": "Aushang",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Aushang",
+                  "plural": "Aushänge"
+                },
+                "nounPackageIdentity": "der|aushang|aushange",
+                "verbPackage": null,
+                "senseGloss": "posted notice observed during the incident",
+                "communicativeUse": "Der Helfer hatte ein Problem. Dann bemerkte er den Aushang.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch04",
+                  "checkpointPacketId": "de_l28_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "museum-incident-note",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l28_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "museum-incident-note",
+              "participants": "visitor-and-security-worker",
+              "goal": "independently-describe-a-participant-state-and-an-observed-action",
+              "contextSignature": "museum-state-action-narrative-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c04", "de_l28_c03"],
+            "targetsFutureChapterIds": ["de_l28_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l28_ch05",
+          "lessonOutcome": "answer follow-up questions about cause and result",
+          "packetIds": [
+            "de_l28_c05_s33",
+            "de_l28_c05_s34",
+            "de_l28_c05_s35",
+            "de_l28_c05_s36",
+            "de_l28_c05_s37",
+            "de_l28_c05_s38",
+            "de_l28_c05_s39",
+            "de_l28_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "journey-incident-follow-up",
+            "participants": "traveller-and-service-agent",
+            "goal": "answer-follow-up-questions-about-the-cause-and-result-of-the-incident",
+            "contextSignature": "journey-incident-cause-result-follow-up"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Warum blieb der Helfer am Gleis? Was war die Folge? Er blieb am Gleis, weil der Zug schon weg war. Deshalb musste er ein Taxi nehmen. Die Folge war klar.",
+            "exit": "Er blieb am Gleis, weil der Zug schon weg war. Deshalb musste er ein Taxi nehmen.",
+            "independentEvidenceByPacketId": "de_l28_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l28_c05_s35", "de_l28_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l28_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c05_folge_v1",
+                "semanticIdentity": "folge|result identified after the cause in a past incident",
+                "lemmaOrExpression": "Folge",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Folge",
+                  "plural": "Folgen"
+                },
+                "nounPackageIdentity": "die|folge|folgen",
+                "verbPackage": null,
+                "senseGloss": "result identified after the cause in a past incident",
+                "communicativeUse": "Er blieb am Gleis, weil der Zug schon weg war. Deshalb musste er ein Taxi nehmen. Die Folge war klar.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch05",
+                  "checkpointPacketId": "de_l28_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-answer-a-follow-up-about-cause-and-result",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l28_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-event-delay-interview",
+              "participants": "event-helper-and-organiser",
+              "goal": "independently-answer-a-follow-up-about-cause-and-result",
+              "contextSignature": "community-event-cause-result-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l18_c07", "de_l28_c04"],
+            "targetsFutureChapterIds": ["de_l28_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l28_ch06",
+          "lessonOutcome": "repair an unsupported tense or register generalisation",
+          "packetIds": [
+            "de_l28_c06_s41",
+            "de_l28_c06_s42",
+            "de_l28_c06_s43",
+            "de_l28_c06_s44",
+            "de_l28_c06_s45",
+            "de_l28_c06_s46",
+            "de_l28_c06_s47",
+            "de_l28_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "story-draft-register-repair",
+            "participants": "volunteer-writer-and-language-mentor",
+            "goal": "repair-an-unsupported-absolute-tense-or-register-generalisation",
+            "contextSignature": "story-draft-tense-register-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Unbegründete Regel: Im Gespräch ist nur Perfekt richtig, im Bericht nur Präteritum. Reparatur: Perfekt ist im Gespräch häufig, aber das ist kein absolutes Gesetz. In dieser Fassung passt „Der Helfer kam an“. „Der Helfer ist angekommen“ bleibt ebenfalls möglich.",
+            "exit": "Perfekt ist im Gespräch häufig, aber das ist kein absolutes Gesetz. „Der Helfer kam an“ und „Der Helfer ist angekommen“ können beide passen.",
+            "independentEvidenceByPacketId": "de_l28_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "transfer",
+              "packetId": "de_l28_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l28_c06_s43", "de_l28_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l28_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c06_fassung_v1",
+                "semanticIdentity": "fassung|version of an account whose unsupported tense generalisation is repaired",
+                "lemmaOrExpression": "Fassung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Fassung",
+                  "plural": "Fassungen"
+                },
+                "nounPackageIdentity": "die|fassung|fassungen",
+                "verbPackage": null,
+                "senseGloss": "version of an account whose unsupported tense generalisation is repaired",
+                "communicativeUse": "Unbegründete Regel: Im Gespräch ist nur Perfekt richtig, im Bericht nur Präteritum. Reparatur: Perfekt ist im Gespräch häufig, aber das ist kein absolutes Gesetz. In dieser Fassung passt „Der Helfer kam an“. „Der Helfer ist angekommen“ bleibt ebenfalls möglich.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch06",
+                  "checkpointPacketId": "de_l28_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-an-unsupported-tense-or-register-generalisation",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l28_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "travel-blog-draft-review",
+              "participants": "traveller-and-editor",
+              "goal": "independently-repair-an-unsupported-tense-or-register-generalisation",
+              "contextSignature": "travel-blog-register-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c06", "de_l28_c05"],
+            "targetsFutureChapterIds": ["de_l28_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l28_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l28_ch07",
+          "lessonOutcome": "transfer connected narration to an unfamiliar familiar-domain event",
+          "packetIds": [
+            "de_l28_c07_s49",
+            "de_l28_c07_s50",
+            "de_l28_c07_s51",
+            "de_l28_c07_s52",
+            "de_l28_c07_s53",
+            "de_l28_c07_s54",
+            "de_l28_c07_s55",
+            "de_l28_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_connector_topology_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "situation": {
+            "setting": "neighbourhood-event-incident-handover",
+            "participants": "event-helper-and-new-volunteer",
+            "goal": "tell-a-connected-account-to-a-new-listener-and-answer-cause-and-result-questions",
+            "contextSignature": "neighbourhood-event-connected-narration-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Das Nachbarschaftsfest war am Abend. Die Helferin kam am Eingang an. Sie sah das Warnschild und blieb dort, weil am Eingang ein Problem war. Deshalb bemerkte sie den Ausgang. Ein neuer Zuhörer fragt getrennt nach dem Grund und der Folge.",
+            "exit": "Das Nachbarschaftsfest war am Abend. Die Helferin kam am Eingang an. Sie sah das Warnschild und blieb dort, weil am Eingang ein Problem war. Deshalb bemerkte sie den Ausgang.",
+            "independentEvidenceByPacketId": "de_l28_c07_s56"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": [
+            "de_l28_c07_s51",
+            "de_l28_c07_s52",
+            "de_l28_c07_s53",
+            "de_l28_c07_s54",
+            "de_l28_c07_s55",
+            "de_l28_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l28_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_broader_narrative_preterite_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_connector_topology_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l28_c07_nachbarschaftsfest_v1",
+                "semanticIdentity": "nachbarschaftsfest|neighbourhood event used for changed context connected narration",
+                "lemmaOrExpression": "Nachbarschaftsfest",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Nachbarschaftsfest",
+                  "plural": "Nachbarschaftsfeste"
+                },
+                "nounPackageIdentity": "das|nachbarschaftsfest|nachbarschaftsfeste",
+                "verbPackage": null,
+                "senseGloss": "neighbourhood event used for changed-context connected narration",
+                "communicativeUse": "Das Nachbarschaftsfest war am Abend. Die Helferin kam am Eingang an. Sie sah das Warnschild und blieb dort, weil am Eingang ein Problem war. Deshalb bemerkte sie den Ausgang.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l28_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l28_ch07",
+                  "checkpointPacketId": "de_l28_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_broader_narrative_preterite_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_connector_topology_contrast_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-tell-a-different-familiar-domain-incident-and-answer-cause-and-result-questions",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l28_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-club-event-incident-briefing",
+              "participants": "club-helper-and-new-coordinator",
+              "goal": "independently-tell-a-different-familiar-domain-incident-and-answer-cause-and-result-questions",
+              "contextSignature": "sports-club-connected-narration-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l28_c05", "de_l28_c06"],
+            "targetsFutureChapterIds": ["de_l29_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l29_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

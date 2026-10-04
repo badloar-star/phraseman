@@ -12179,6 +12179,377 @@ function validateL27SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l27_semantic_contract_invalid:identity");
 }
 
+const L28_CONTRACT_HASH =
+  "3105c00880c7ec7bfec15d6d0d62ee7a6508a941b88015d08f0b7edf2d9da1b5";
+const L28_PLAN_HASH =
+  "bbed0011f3a848a569cf608a0de706d82a5503b0a137235d60dbddf412bc8328";
+const L28_BOUNDARY_HASH =
+  "767f049902a83f16904179fc7af81f6095bb596670b610fdbaf364dc975a5d79";
+const L28_PACKET_HASH =
+  "90a77d162a565b5e1e058e4d3cd9fac37370e1225c9f257ed88a81b5d1b4a977";
+const L28_LEXICAL_HASH =
+  "e59121f8a6139b16a36de17a536a638226dec70f126248f497d4c6da1e7e4f9d";
+const L28_RECALL_HASH =
+  "f91e45cd83e039b856e62f150fbeca3f00ca819cacdaa88a99d96e64dc93fe83";
+const L28_LIFECYCLE_HASH =
+  "fb4060a3564661407bdd9c4489f5350837c528a5fcf0c8f6fce07628e622de6d";
+
+function validateL28SemanticContract(
+  raw: R,
+  plan: Boundary,
+  grammarOverride?: readonly Grammar[],
+): void {
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+      (x) => x.lessonId === "de_l28",
+    ) as R,
+    lesson = (raw.lessons as R[]).find((x) => x.lessonId === "de_l28") as R;
+  if (!expected || l23Hash(expected) !== L28_CONTRACT_HASH)
+    throw new Error("l28_semantic_contract_invalid:identity");
+  const requiredPlanRecall = [
+    {
+      fromLessonId: "de_l16",
+      constructIds: [
+        "de_gc_spoken_preterite_island_v1",
+        "de_gc_perfekt_sein_classes_v1",
+      ],
+      responsibility:
+        "contrast bounded spoken forms and completed events with the selected narrative register",
+    },
+    {
+      fromLessonId: "de_l15",
+      constructIds: ["de_gc_perfekt_haben_classes_v1"],
+      responsibility:
+        "retrieve verified haben-class completed-event brackets for contrast with the selected narrative set",
+    },
+    {
+      fromLessonId: "de_l18",
+      constructIds: ["de_gc_connector_topology_contrast_v1"],
+      responsibility:
+        "retrieve the established connector-topology contrast while sequencing cause and result in a connected account",
+    },
+  ];
+  if (
+    JSON.stringify(plan.crossLessonRecall) !==
+    JSON.stringify(requiredPlanRecall)
+  )
+    throw new Error("l28_plan_recall_authority_invalid");
+  if (l23Hash(plan as unknown as R) !== L28_PLAN_HASH)
+    throw new Error("l28_plan_recall_authority_invalid");
+  if (!lesson) throw new Error("l28_semantic_contract_invalid:identity");
+  const chapters = lesson.chapters as R[],
+    expectedChapters = expected.chapters as R[];
+  if (
+    lesson.lessonId !== "de_l28" ||
+    lesson.lessonOrdinal !== 28 ||
+    chapters.length !== 7 ||
+    chapters.some((chapter, index) => {
+      const expectedChapter = expectedChapters[index];
+      return (
+        !expectedChapter ||
+        chapter.id !== expectedChapter.id ||
+        chapter.ordinal !== expectedChapter.ordinal ||
+        chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+        chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+        JSON.stringify(chapter.packetIds) !==
+          JSON.stringify(expectedChapter.packetIds)
+      );
+    }) ||
+    l23Hash(chapters.flatMap((chapter) => chapter.packetIds as string[])) !==
+      L28_PACKET_HASH
+  )
+    throw new Error("l28_semantic_contract_invalid:identity");
+  if (
+    (lesson.grammarBoundary as R).noExpansion !==
+    (expected.grammarBoundary as R).noExpansion
+  )
+    throw new Error("l28_semantic_contract_invalid:no_expansion");
+  const allowed = [
+      "de_gc_broader_narrative_preterite_v1",
+      "de_gc_spoken_preterite_island_v1",
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_perfekt_haben_classes_v1",
+      "de_gc_perfekt_sein_classes_v1",
+    ],
+    finalAllowed = allowed.slice(0, 3),
+    prohibited = [
+      "de_gc_limited_functional_genitive_v1",
+      "de_gc_limited_modal_perfekt_v1",
+    ];
+  if (
+    JSON.stringify((lesson.grammarBoundary as R).allowedConstructIds) !==
+      JSON.stringify(allowed) ||
+    JSON.stringify((lesson.grammarBoundary as R).prohibitedConstructIds) !==
+      JSON.stringify(prohibited) ||
+    chapters
+      .slice(0, 6)
+      .some(
+        (chapter) =>
+          JSON.stringify(chapter.allowedConstructIds) !==
+            JSON.stringify(allowed) ||
+          JSON.stringify((chapter.checkpoint as R).integratedConstructIds) !==
+            JSON.stringify(allowed) ||
+          JSON.stringify(chapter.prohibitedConstructIds) !==
+            JSON.stringify(prohibited),
+      ) ||
+    JSON.stringify(chapters[6].prohibitedConstructIds) !==
+      JSON.stringify(prohibited)
+  )
+    throw new Error("l28_semantic_contract_invalid:sets");
+  if (l23Hash(lesson.grammarBoundary) !== L28_BOUNDARY_HASH)
+    throw new Error("l28_semantic_contract_invalid:identity");
+  if (
+    JSON.stringify(chapters[6].allowedConstructIds) !==
+      JSON.stringify(finalAllowed) ||
+    JSON.stringify((chapters[6].checkpoint as R).integratedConstructIds) !==
+      JSON.stringify(finalAllowed)
+  )
+    throw new Error("l28_c07_final_transfer");
+  const anchors = chapters.flatMap(
+    (chapter) => chapter.lifecycleAnchors as R[],
+  );
+  if (
+    l23Hash(anchors) !== L28_LIFECYCLE_HASH ||
+    JSON.stringify(anchors) !==
+      JSON.stringify(
+        expectedChapters.flatMap((chapter) => chapter.lifecycleAnchors as R[]),
+      )
+  )
+    throw new Error("l28_lifecycle_anchor_invalid");
+  const grammar = grammarOverride ?? (json(GRAMMAR) as Grammar[]),
+    construct = grammar.find(
+      (value) => value.id === "de_gc_broader_narrative_preterite_v1",
+    );
+  if (
+    !construct ||
+    JSON.stringify([
+      construct.firstIntroductionPacketId,
+      ...construct.guidedTargetPacketIds,
+      ...construct.retrievalTargetPacketIds,
+      ...construct.productionTargetPacketIds,
+      ...construct.transferTargetPacketIds,
+      ...construct.delayedTargetPacketIds,
+    ]) !==
+      JSON.stringify([
+        "de_l28_c01_s01",
+        "de_l28_c02_s09",
+        "de_l28_c03_s17",
+        "de_l28_c04_s25",
+        "de_l28_c06_s41",
+        "de_l29_c07_s49",
+      ])
+  )
+    throw new Error("l28_registry_anchor_mismatch");
+  const expectedRetrievals = [
+    ["de_l16_c06", "de_l16_c07"],
+    ["de_l16_c01", "de_l28_c01"],
+    ["de_l15_c07", "de_l28_c02"],
+    ["de_l16_c04", "de_l28_c03"],
+    ["de_l18_c07", "de_l28_c04"],
+    ["de_l16_c06", "de_l28_c05"],
+    ["de_l28_c05", "de_l28_c06"],
+  ];
+  if (
+    chapters.some((chapter, index) => {
+      const recall = chapter.recallSchedule as R;
+      return (
+        recall.entryException !== null ||
+        JSON.stringify(recall.retrievesFromChapterIds) !==
+          JSON.stringify(expectedRetrievals[index])
+      );
+    })
+  )
+    throw new Error("l28_recall_provenance_invalid");
+  if (
+    chapters.some((chapter, index) => {
+      const recall = chapter.recallSchedule as R,
+        probe = recall.futureDelayedProbe as R,
+        expectedRecall = expectedChapters[index].recallSchedule as R;
+      return (
+        JSON.stringify(recall.targetsFutureChapterIds) !==
+          JSON.stringify(expectedRecall.targetsFutureChapterIds) ||
+        probe.kind !== "COURSE_PACKET" ||
+        !/^de_l29_c07_s(?:49|50|51|52|53|54|55)$/u.test(String(probe.packetId))
+      );
+    }) ||
+    l23Hash(chapters.map((chapter) => chapter.recallSchedule)) !==
+      L28_RECALL_HASH
+  )
+    throw new Error("l28_final_followup_boundary_invalid");
+  if (
+    chapters.some((chapter, index) => {
+      const a = chapter.situation as R,
+        b = expectedChapters[index].situation as R,
+        c = (chapter.checkpoint as R).newSituation as R,
+        d = (expectedChapters[index].checkpoint as R).newSituation as R;
+      const changed = ["setting", "participants", "goal"].filter(
+        (key) => a[key] !== c[key],
+      ).length;
+      return (
+        JSON.stringify(a) !== JSON.stringify(b) ||
+        JSON.stringify(c) !== JSON.stringify(d) ||
+        changed < 2
+      );
+    }) ||
+    new Set(
+      chapters.flatMap((chapter) => [
+        (chapter.situation as R).contextSignature,
+        ((chapter.checkpoint as R).newSituation as R).contextSignature,
+      ]),
+    ).size !== 14
+  )
+    throw new Error("l28_semantic_contract_invalid:situations");
+  if (
+    chapters.some((chapter, index) => {
+      const fading = chapter.supportFading as R,
+        expectedFading = expectedChapters[index].supportFading as R;
+      return (
+        fading.entryLevel !== expectedFading.entryLevel ||
+        fading.exitLevel !== expectedFading.exitLevel ||
+        Number(fading.exitLevel) >= Number(fading.entryLevel) ||
+        fading.independentEvidenceByPacketId !==
+          (chapter.packetIds as string[])[7]
+      );
+    })
+  )
+    throw new Error("l28_semantic_contract_invalid:support_fading");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.chapterEvidencePacketIds) !==
+        JSON.stringify(expectedChapters[index].chapterEvidencePacketIds),
+    )
+  )
+    throw new Error("l28_semantic_contract_invalid:evidence");
+  const lexical = chapters.flatMap(
+      (chapter) => (chapter.checkpoint as R).plannedNewLexicalSenses as R[],
+    ),
+    expectedLexical = expectedChapters.flatMap(
+      (chapter) => (chapter.checkpoint as R).plannedNewLexicalSenses as R[],
+    );
+  const lexicalCore = (value: R): R => {
+    const copy = clone(value);
+    delete copy.utilityProof;
+    delete copy.communicativeUse;
+    return copy;
+  };
+  if (
+    lexical.length !== expectedLexical.length ||
+    lexical.some(
+      (value, index) =>
+        JSON.stringify(lexicalCore(value)) !==
+        JSON.stringify(lexicalCore(expectedLexical[index])),
+    )
+  )
+    throw new Error("l28_semantic_contract_invalid:lexical_packages");
+  const surfaces = chapters.map((chapter) => {
+      const fading = chapter.supportFading as R;
+      return [
+        String(fading.entry),
+        String(fading.exit),
+        ...((chapter.checkpoint as R).plannedNewLexicalSenses as R[]).map(
+          (value) => String(value.communicativeUse),
+        ),
+      ];
+    }),
+    surface = (index: number) => surfaces[index].join(" "),
+    pedagogic = surfaces.flat().join(" "),
+    meta = JSON.stringify(lesson).replaceAll(
+      String((expected.grammarBoundary as R).noExpansion),
+      "",
+    );
+  if (!/kam am Bahnhof an/iu.test(surface(0)) || !/sah/iu.test(surface(0)))
+    throw new Error("l28_selected_form_inventory_invalid");
+  if (
+    !/kam am Bahnhof an/iu.test(surface(1)) ||
+    !/ist am Bahnhof angekommen/iu.test(surface(1))
+  )
+    throw new Error("l28_register_contrast_invalid");
+  if (
+    !/Zuerst/iu.test(surface(2)) ||
+    !/Dann/iu.test(surface(2)) ||
+    !/fuhr ab/iu.test(surface(2)) ||
+    !/blieb/iu.test(surface(2))
+  )
+    throw new Error("l28_event_sequence_invalid");
+  if (!/hatte ein Problem/iu.test(surface(3)) || !/bemerkte/iu.test(surface(3)))
+    throw new Error("l28_state_action_invalid");
+  if (
+    !/weil der Zug schon weg war/iu.test(surface(4)) ||
+    !/Deshalb musste/iu.test(surface(4))
+  )
+    throw new Error("l28_cause_result_invalid");
+  if (
+    !/Unbegründete Regel/iu.test(surface(5)) ||
+    !/kein absolutes Gesetz/iu.test(surface(5))
+  )
+    throw new Error("l28_register_repair_invalid");
+  if (
+    !/Das Nachbarschaftsfest war/iu.test(surface(6)) ||
+    !/weil am Eingang ein Problem war/iu.test(surface(6)) ||
+    !/Deshalb bemerkte/iu.test(surface(6)) ||
+    !String((chapters[6].supportFading as R).entry).includes(
+      "Ein neuer Zuhörer fragt getrennt nach dem Grund und der Folge.",
+    )
+  )
+    throw new Error("l28_c07_final_transfer");
+  if (/\b(?:folgte|ging|brauchte|schrieb)\b/iu.test(pedagogic))
+    throw new Error("l28_unselected_preterite_form_leak");
+  if (/fullParadigmProbe/iu.test(meta))
+    throw new Error("l28_exhaustive_paradigm_leak");
+  if (/personNumberParadigmProbe/iu.test(meta))
+    throw new Error("l28_person_number_paradigm_leak");
+  if (/formationAlgorithmProbe/iu.test(meta))
+    throw new Error("l28_formation_rule_leak");
+  if (/absoluteRegisterRuleProbe/iu.test(meta))
+    throw new Error("l28_absolute_register_rule_leak");
+  if (/plusquamperfektProbe|konjunktivProbe/iu.test(meta))
+    throw new Error("l28_plusquamperfekt_or_konjunktiv_leak");
+  const leakChecks: readonly [RegExp, string][] = [
+    [
+      /newPerfektClassProbe|newParticipleProbe/iu,
+      "l28_new_perfekt_class_or_participle_leak",
+    ],
+    [/passiveProbe|futureProbe/iu, "l28_passive_or_future_leak"],
+    [/relativeScopeProbe/iu, "l28_relative_scope_leak"],
+    [/newConnectorProbe/iu, "l28_new_connector_leak"],
+    [/newCasePrepositionProbe/iu, "l28_new_case_preposition_relation_leak"],
+    [/functionalGenitiveProbe/iu, "l28_functional_genitive_leak"],
+    [/modalPerfektProbe/iu, "l28_modal_perfekt_leak"],
+    [/l29Probe|task6Probe/iu, "l28_l29_or_task6_leak"],
+    [/learnerArtifactsAuthorized|"ru"|"uk"/iu, "l28_learner_surface_leak"],
+    [
+      /releaseProjection|audioTranscript|mockupPath/iu,
+      "l28_release_surface_leak",
+    ],
+    [/englishContourProbe/iu, "l28_english_contour_leak"],
+  ];
+  for (const [pattern, diagnostic] of leakChecks)
+    if (pattern.test(meta)) throw new Error(diagnostic);
+  if (
+    lexical.some((value, index) => {
+      const proof = value.utilityProof as R,
+        expectedProof = expectedLexical[index].utilityProof as R;
+      return (
+        value.communicativeUse !== expectedLexical[index].communicativeUse ||
+        proof.facetValue !== expectedProof.facetValue
+      );
+    })
+  )
+    throw new Error("l28_checkpoint_lexical_alignment_invalid");
+  if (
+    lexical.some(
+      (value, index) =>
+        JSON.stringify(value.utilityProof) !==
+        JSON.stringify(expectedLexical[index].utilityProof),
+    )
+  )
+    throw new Error("l28_semantic_contract_invalid:lexical_utility");
+  if (l23Hash(lexical) !== L28_LEXICAL_HASH)
+    throw new Error("l28_semantic_contract_invalid:lexical_packages");
+  if (l23Hash(lesson) !== L28_CONTRACT_HASH)
+    throw new Error("l28_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -12322,6 +12693,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l27")
   )
     validateL27SemanticContract(raw, l27Plan);
+  const l28Plan = source.get("de_l28");
+  if (
+    l28Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l28")
+  )
+    validateL28SemanticContract(raw, l28Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -17557,6 +17934,575 @@ function fixtures(): void {
     "l27_final_negotiation_boundary_leak",
   ); // 72
 
+  // L28 hostile corpus: one isolated mutation per guardian requirement.
+  const l28 = (raw: R) =>
+    (raw.lessons as R[]).find((value) => value.lessonId === "de_l28") as R;
+  type L28Mutation = (raw: R, plan: R, grammar: R[], lesson: R) => void;
+  const expectL28 = (mutate: L28Mutation, diagnostic: string): void => {
+    const raw = clone(json(FILE)) as R,
+      plan = clone(
+        (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+          (value) => value.id === "de_l28",
+        ),
+      ) as R,
+      grammar = clone(json(GRAMMAR)) as R[],
+      lesson = l28(raw);
+    mutate(raw, plan, grammar, lesson);
+    let thrown: unknown;
+    try {
+      validateL28SemanticContract(
+        raw,
+        plan as Boundary,
+        grammar as unknown as Grammar[],
+      );
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, "expected_error:" + diagnostic);
+    assert.equal(thrown.message, diagnostic);
+  };
+  const planDiagnostic = "l28_plan_recall_authority_invalid";
+  const planCases: L28Mutation[] = [
+    (_r, p) => (p.crossLessonRecall as R[]).splice(0, 1), // H01
+    (_r, p) =>
+      (((p.crossLessonRecall as R[])[0].constructIds as string[])[0] = "x"), // H02
+    (_r, p) => ((p.crossLessonRecall as R[])[0].fromLessonId = "de_l17"), // H03
+    (_r, p) => ((p.crossLessonRecall as R[])[0].responsibility = "x"), // H04
+    (_r, p) => (p.crossLessonRecall as R[]).splice(1, 1), // H05
+    (_r, p) => ((p.crossLessonRecall as R[])[1].responsibility = "x"), // H06
+    (_r, p) => (p.crossLessonRecall as R[]).splice(2, 1), // H07
+    (_r, p) => ((p.crossLessonRecall as R[])[2].responsibility = "x"), // H08
+    (_r, p) =>
+      (p.crossLessonRecall as R[]).push({
+        fromLessonId: "de_l01",
+        constructIds: ["x"],
+        responsibility: "x",
+      }), // H09
+    (_r, p) => (p.crossLessonRecall as R[]).reverse(), // H10
+  ];
+  for (const mutate of planCases) expectL28(mutate, planDiagnostic);
+  const canonicalL28Plan = clone(
+    (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+      (value) => value.id === "de_l28",
+    ),
+  ) as Boundary;
+  assert.equal(recallSourceAllowed(16, 6, 28, 1, canonicalL28Plan), true);
+  assert.equal(recallSourceAllowed(15, 7, 28, 3, canonicalL28Plan), true);
+  assert.equal(recallSourceAllowed(18, 7, 28, 5, canonicalL28Plan), true);
+  const absentL28Plan = clone(canonicalL28Plan) as Boundary;
+  absentL28Plan.crossLessonRecall = [];
+  // L15/L16 are also prerequisites; L18 is authorized only by the exact recall row.
+  assert.equal(recallSourceAllowed(16, 6, 28, 1, absentL28Plan), true);
+  assert.equal(recallSourceAllowed(15, 7, 28, 3, absentL28Plan), true);
+  assert.equal(recallSourceAllowed(18, 7, 28, 5, absentL28Plan), false);
+
+  const cases: [string, L28Mutation][] = [];
+  const add = (diagnostic: string, mutate: L28Mutation): void => {
+    cases.push([diagnostic, mutate]);
+  };
+  const identity = "l28_semantic_contract_invalid:identity";
+  add(identity, (_r, _p, _g, lesson) => (lesson.lessonId = "de_l29")); // H11
+  add(identity, (_r, _p, _g, lesson) => (lesson.lessonOrdinal = 29)); // H12
+  add(identity, (_r, _p, _g, lesson) => (lesson.chapters as R[]).pop()); // H13
+  add(identity, (_r, _p, _g, lesson) => ((lesson.chapters as R[])[0].id = "x")); // H14
+  add(
+    identity,
+    (_r, _p, _g, lesson) => ((lesson.chapters as R[])[0].ordinal = 2),
+  ); // H15
+  add(
+    identity,
+    (_r, _p, _g, lesson) => ((lesson.chapters as R[])[0].lessonOutcomeId = "x"),
+  ); // H16
+  add(
+    identity,
+    (_r, _p, _g, lesson) => ((lesson.chapters as R[])[0].lessonOutcome = "x"),
+  ); // H17
+  add(identity, (_r, _p, _g, lesson) =>
+    ((lesson.chapters as R[])[0].packetIds as string[]).pop(),
+  ); // H18
+  add(identity, (_r, _p, _g, lesson) => {
+    const ids = (lesson.chapters as R[])[0].packetIds as string[];
+    ids[1] = ids[0];
+  }); // H19
+  add(
+    identity,
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].packetIds as string[])[0] =
+        "de_l27_c01_s01"),
+  ); // H20
+  add(
+    "l28_semantic_contract_invalid:no_expansion",
+    (_r, _p, _g, lesson) => ((lesson.grammarBoundary as R).noExpansion = "x"),
+  ); // H21
+  add("l28_semantic_contract_invalid:sets", (_r, _p, _g, lesson) =>
+    ((lesson.grammarBoundary as R).allowedConstructIds as string[]).pop(),
+  ); // H22
+  add("l28_semantic_contract_invalid:sets", (_r, _p, _g, lesson) =>
+    ((lesson.grammarBoundary as R).allowedConstructIds as string[]).reverse(),
+  ); // H23
+  add("l28_semantic_contract_invalid:sets", (_r, _p, _g, lesson) =>
+    ((lesson.grammarBoundary as R).allowedConstructIds as string[]).push("x"),
+  ); // H24
+  add("l28_semantic_contract_invalid:sets", (_r, _p, _g, lesson) =>
+    ((lesson.grammarBoundary as R).prohibitedConstructIds as string[]).pop(),
+  ); // H25
+  add(
+    "l28_semantic_contract_invalid:sets",
+    (_r, _p, _g, lesson) =>
+      (((lesson.grammarBoundary as R).prohibitedConstructIds as string[])[0] =
+        "x"),
+  ); // H26
+  add("l28_semantic_contract_invalid:sets", (_r, _p, _g, lesson) =>
+    ((lesson.chapters as R[])[0].allowedConstructIds as string[]).pop(),
+  ); // H27
+  add(
+    "l28_semantic_contract_invalid:sets",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].prohibitedConstructIds as string[])[0] =
+        "x"),
+  ); // H28
+  add(
+    "l28_c07_final_transfer",
+    (_r, _p, _g, lesson) =>
+      ((lesson.chapters as R[])[6].allowedConstructIds = [
+        ...((lesson.grammarBoundary as R).allowedConstructIds as string[]),
+      ]),
+  ); // H29
+  add("l28_c07_final_transfer", (_r, _p, _g, lesson) =>
+    (
+      ((lesson.chapters as R[])[6].checkpoint as R)
+        .integratedConstructIds as string[]
+    ).push("de_gc_perfekt_haben_classes_v1"),
+  ); // H30
+  add(
+    "l28_lifecycle_anchor_invalid",
+    (_r, _p, _g, lesson) => ((lesson.chapters as R[])[0].lifecycleAnchors = []),
+  ); // H31
+  add(
+    "l28_lifecycle_anchor_invalid",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[1].lifecycleAnchors as R[])[0].packetId =
+        "de_l28_c02_s10"),
+  ); // H32
+  add(
+    "l28_lifecycle_anchor_invalid",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[2].lifecycleAnchors as R[])[0].stage =
+        "guided"),
+  ); // H33
+  add(
+    "l28_lifecycle_anchor_invalid",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[3].lifecycleAnchors as R[])[0].packetId =
+        "de_l28_c04_s26"),
+  ); // H34
+  add(
+    "l28_lifecycle_anchor_invalid",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[5].lifecycleAnchors as R[])[0].packetId =
+        "de_l28_c06_s42"),
+  ); // H35
+  add("l28_lifecycle_anchor_invalid", (_r, _p, _g, lesson) =>
+    ((lesson.chapters as R[])[6].lifecycleAnchors as R[]).push({
+      constructId: "de_gc_broader_narrative_preterite_v1",
+      stage: "transfer",
+      packetId: "de_l28_c07_s49",
+    }),
+  ); // H36
+  add("l28_lifecycle_anchor_invalid", (_r, _p, _g, lesson) =>
+    ((lesson.chapters as R[])[6].lifecycleAnchors as R[]).push({
+      constructId: "de_gc_broader_narrative_preterite_v1",
+      stage: "delayed",
+      packetId: "de_l28_c07_s55",
+    }),
+  ); // H37
+  add("l28_registry_anchor_mismatch", (_r, _p, grammar) => {
+    const row = grammar.find(
+      (value) => value.id === "de_gc_broader_narrative_preterite_v1",
+    ) as R;
+    row.firstIntroductionPacketId = "x";
+  }); // H38
+  add("l28_registry_anchor_mismatch", (_r, _p, grammar) => {
+    const row = grammar.find(
+      (value) => value.id === "de_gc_broader_narrative_preterite_v1",
+    ) as R;
+    (row.delayedTargetPacketIds as string[])[0] = "x";
+  }); // H39
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[0].recallSchedule as R
+      ).retrievesFromChapterIds = ["de_l28_c02"]),
+  ); // H40
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[0].recallSchedule as R
+      ).retrievesFromChapterIds = []),
+  ); // H41
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[2].recallSchedule as R
+      ).retrievesFromChapterIds = ["de_l28_c02"]),
+  ); // H42
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[4].recallSchedule as R
+      ).retrievesFromChapterIds = ["de_l28_c04"]),
+  ); // H43
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[5].recallSchedule as R
+      ).retrievesFromChapterIds = ["de_l28_c07"]),
+  ); // H44
+  add(
+    "l28_recall_provenance_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[6].recallSchedule as R
+      ).retrievesFromChapterIds = ["de_l29_c01"]),
+  ); // H45
+  add(
+    "l28_final_followup_boundary_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[0].recallSchedule as R
+      ).targetsFutureChapterIds = ["de_l28_c07"]),
+  ); // H46
+  add(
+    "l28_final_followup_boundary_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        ((lesson.chapters as R[])[0].recallSchedule as R)
+          .futureDelayedProbe as R
+      ).kind = "POST_COURSE_REVIEW_OWNER"),
+  ); // H47
+  add(
+    "l28_final_followup_boundary_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        ((lesson.chapters as R[])[0].recallSchedule as R)
+          .futureDelayedProbe as R
+      ).packetId = "de_l29_c07_s56"),
+  ); // H48
+  add(
+    "l28_semantic_contract_invalid:situations",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].situation as R).setting = "x"),
+  ); // H49
+  add(
+    "l28_semantic_contract_invalid:situations",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].situation as R).participants = "x"),
+  ); // H50
+  add(
+    "l28_semantic_contract_invalid:situations",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].situation as R).goal = "x"),
+  ); // H51
+  add(
+    "l28_semantic_contract_invalid:situations",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[1].situation as R).contextSignature = (
+        (lesson.chapters as R[])[0].situation as R
+      ).contextSignature),
+  ); // H52
+  add("l28_semantic_contract_invalid:situations", (_r, _p, _g, lesson) => {
+    const chapter = (lesson.chapters as R[])[0],
+      current = chapter.situation as R,
+      next = (chapter.checkpoint as R).newSituation as R;
+    next.setting = "one-new-setting";
+    next.participants = current.participants;
+    next.goal = current.goal;
+  }); // H53
+  add(
+    "l28_semantic_contract_invalid:support_fading",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].supportFading as R).entryLevel = 4),
+  ); // H54
+  add(
+    "l28_semantic_contract_invalid:support_fading",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].supportFading as R).exitLevel = 1),
+  ); // H55
+  add(
+    "l28_semantic_contract_invalid:support_fading",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].supportFading as R).exitLevel = 5),
+  ); // H56
+  add(
+    "l28_semantic_contract_invalid:support_fading",
+    (_r, _p, _g, lesson) =>
+      ((
+        (lesson.chapters as R[])[0].supportFading as R
+      ).independentEvidenceByPacketId = "de_l28_c01_s07"),
+  ); // H57
+  add(
+    "l28_semantic_contract_invalid:evidence",
+    (_r, _p, _g, lesson) =>
+      ((lesson.chapters as R[])[0].chapterEvidencePacketIds = []),
+  ); // H58
+  add(
+    "l28_semantic_contract_invalid:evidence",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].chapterEvidencePacketIds as string[])[0] =
+        "de_l28_c02_s11"),
+  ); // H59
+  add("l28_semantic_contract_invalid:evidence", (_r, _p, _g, lesson) =>
+    ((lesson.chapters as R[])[6].chapterEvidencePacketIds as string[]).pop(),
+  ); // H60
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) =>
+      (((lesson.chapters as R[])[0].checkpoint as R).plannedNewLexicalSenses =
+        []),
+  ); // H61
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const senses = ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[],
+        extra = clone(senses[0]);
+      extra.id = "de_lex_plan_l28_c01_extra_v1";
+      extra.semanticIdentity = "extra|extra";
+      extra.lemmaOrExpression = "extra";
+      senses.push(extra);
+    },
+  ); // H62
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) =>
+      ((
+        (
+          ((lesson.chapters as R[])[0].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0] as R
+      ).id = "x"),
+  ); // H63
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const senses = ((lesson.chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[];
+      senses[1].semanticIdentity = senses[0].semanticIdentity;
+    },
+  ); // H64
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const sense = (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[1];
+      (sense.nounPackage as R).article = "die";
+    },
+  ); // H65
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const sense = (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[1];
+      (sense.nounPackage as R).plural = "x";
+    },
+  ); // H66
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const sense = (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0];
+      (sense.verbPackage as R).perfectAuxiliary = "sein";
+    },
+  ); // H67
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const sense = (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0];
+      (sense.verbPackage as R).valencyFrame = "x";
+    },
+  ); // H68
+  add(
+    "l28_semantic_contract_invalid:lexical_packages",
+    (_r, _p, _g, lesson) => {
+      const sense = (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0];
+      sense.contrastsWithSenseId = "x";
+      sense.contrastEvidence = "x";
+    },
+  ); // H69
+  add(
+    "l28_checkpoint_lexical_alignment_invalid",
+    (_r, _p, _g, lesson) =>
+      ((
+        (
+          ((lesson.chapters as R[])[0].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0] as R
+      ).communicativeUse = "unrelated"),
+  ); // H70
+  add("l28_checkpoint_lexical_alignment_invalid", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    proof.facetValue = "x";
+  }); // H71
+  add("l28_semantic_contract_invalid:lexical_utility", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    proof.chapterOutcomeId = "x";
+  }); // H72
+  add("l28_semantic_contract_invalid:lexical_utility", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    proof.checkpointPacketId = "x";
+  }); // H73
+  add("l28_semantic_contract_invalid:lexical_utility", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    (proof.integratedConstructIds as string[]).pop();
+  }); // H74
+  add("l28_semantic_contract_invalid:lexical_utility", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    (proof.plannedUsePacketIds as string[]).push("de_l28_c01_s07");
+  }); // H75
+  add("l28_semantic_contract_invalid:lexical_utility", (_r, _p, _g, lesson) => {
+    const proof = (
+      (
+        ((lesson.chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).utilityProof as R;
+    proof.necessityClass = "TRANSFER_UNAVAILABLE";
+  }); // H76
+  const setSurfaces = (lesson: R, index: number, value: string): void => {
+    const chapter = (lesson.chapters as R[])[index],
+      fading = chapter.supportFading as R;
+    fading.entry = value;
+    fading.exit = value;
+    for (const sense of (chapter.checkpoint as R)
+      .plannedNewLexicalSenses as R[])
+      sense.communicativeUse = value;
+  };
+  add("l28_selected_form_inventory_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(lesson, 0, "Formhinweis."),
+  ); // H77
+  add("l28_register_contrast_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(
+      lesson,
+      1,
+      "Der Helfer kam am Bahnhof an. Beide Formen können passen.",
+    ),
+  ); // H78
+  add("l28_event_sequence_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(lesson, 2, "Der Zug fuhr ab. Der Helfer blieb am Gleis."),
+  ); // H79
+  add("l28_state_action_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(lesson, 3, "Der Helfer hatte ein Problem."),
+  ); // H80
+  add("l28_cause_result_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(lesson, 4, "Der Helfer blieb am Gleis. Die Folge war klar."),
+  ); // H81
+  add("l28_register_repair_invalid", (_r, _p, _g, lesson) =>
+    setSurfaces(
+      lesson,
+      5,
+      "Unbegründete Regel: Im Gespräch ist nur Perfekt richtig, im Bericht nur Präteritum.",
+    ),
+  ); // H82
+  add("l28_c07_final_transfer", (_r, _p, _g, lesson) =>
+    setSurfaces(
+      lesson,
+      6,
+      "Das Nachbarschaftsfest war am Abend. Die Helferin kam am Eingang an. Sie sah das Warnschild und blieb dort, weil am Eingang ein Problem war. Deshalb bemerkte sie den Ausgang.",
+    ),
+  ); // H83
+  add("l28_unselected_preterite_form_leak", (_r, _p, _g, lesson) => {
+    const fading = (lesson.chapters as R[])[0].supportFading as R;
+    fading.entry = String(fading.entry) + " Was folgte daraus?";
+  }); // H84a
+  add("l28_unselected_preterite_form_leak", (_r, _p, _g, lesson) => {
+    const fading = (lesson.chapters as R[])[0].supportFading as R;
+    fading.entry = String(fading.entry) + " Er ging.";
+  }); // H84b
+  add("l28_unselected_preterite_form_leak", (_r, _p, _g, lesson) => {
+    const fading = (lesson.chapters as R[])[0].supportFading as R;
+    fading.entry = String(fading.entry) + " Er brauchte Hilfe.";
+  }); // H84c
+  add("l28_unselected_preterite_form_leak", (_r, _p, _g, lesson) => {
+    const fading = (lesson.chapters as R[])[0].supportFading as R;
+    fading.entry = String(fading.entry) + " Er schrieb.";
+  }); // H84d
+  const markerCases: [string, string][] = [
+    ["fullParadigmProbe", "l28_exhaustive_paradigm_leak"], // H85
+    ["personNumberParadigmProbe", "l28_person_number_paradigm_leak"], // H86
+    ["formationAlgorithmProbe", "l28_formation_rule_leak"], // H87
+    ["absoluteRegisterRuleProbe", "l28_absolute_register_rule_leak"], // H88
+    ["plusquamperfektProbe", "l28_plusquamperfekt_or_konjunktiv_leak"], // H89a
+    ["konjunktivProbe", "l28_plusquamperfekt_or_konjunktiv_leak"], // H89b
+    ["newPerfektClassProbe", "l28_new_perfekt_class_or_participle_leak"], // H90a
+    ["newParticipleProbe", "l28_new_perfekt_class_or_participle_leak"], // H90b
+    ["passiveProbe", "l28_passive_or_future_leak"], // H90c
+    ["futureProbe", "l28_passive_or_future_leak"], // H90d
+    ["relativeScopeProbe", "l28_relative_scope_leak"], // H90e
+    ["newConnectorProbe", "l28_new_connector_leak"], // H90f
+    ["newCasePrepositionProbe", "l28_new_case_preposition_relation_leak"], // H90g
+    ["functionalGenitiveProbe", "l28_functional_genitive_leak"], // H90h
+    ["modalPerfektProbe", "l28_modal_perfekt_leak"], // H90i
+    ["l29Probe", "l28_l29_or_task6_leak"], // H90j
+    ["task6Probe", "l28_l29_or_task6_leak"], // H90k
+    ["learnerArtifactsAuthorized", "l28_learner_surface_leak"], // H90l
+    ["releaseProjection", "l28_release_surface_leak"], // H90m
+    ["audioTranscript", "l28_release_surface_leak"], // H90n
+    ["mockupPath", "l28_release_surface_leak"], // H90o
+    ["englishContourProbe", "l28_english_contour_leak"], // H90p
+  ];
+  for (const [field, diagnostic] of markerCases)
+    add(diagnostic, (_r, _p, _g, lesson) => {
+      lesson[field] = true;
+    });
+  add("l28_learner_surface_leak", (_r, _p, _g, lesson) => {
+    lesson.ru = { prompt: "x" };
+  }); // H90q
+  add("l28_learner_surface_leak", (_r, _p, _g, lesson) => {
+    lesson.uk = { prompt: "x" };
+  }); // H90r
+  for (const [diagnostic, mutate] of cases) expectL28(mutate, diagnostic);
   const prematureL23 = clone(json(FILE)) as R;
   prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);
   assert.throws(() => {

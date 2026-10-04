@@ -45,18 +45,43 @@ function isValidPastDayKey(key: string, todayKey: string): boolean {
   return Number.isFinite(date.getTime()) && dayKey(date) === key;
 }
 
+/** Локальный календарный день устройства (как у счётчика серии), а не UTC-день. */
+function localDayKey(date: Date): string {
+  const pad = (n: number): string => String(n).padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+/**
+ * Дни, которые подразумевает счётчик серии: N дней, заканчивая последним засчитанным днём.
+ * Серия «жива», только если последний засчитанный день — сегодня или вчера (иначе счётчик уже обнулён/под угрозой и отметок не ставим).
+ */
+export function streakImpliedDayKeys(currentStreak: number, lastActiveDay: string | null, todayKey: string): string[] {
+  const streak = Math.min(safeCount(currentStreak), 60);
+  if (streak <= 0 || !lastActiveDay || !DATE_KEY.test(lastActiveDay) || lastActiveDay > todayKey) return [];
+  const lastMs = Date.parse(`${lastActiveDay}T12:00:00.000Z`);
+  const todayMs = Date.parse(`${todayKey}T12:00:00.000Z`);
+  if (!Number.isFinite(lastMs) || !Number.isFinite(todayMs) || todayMs - lastMs > DAY_MS) return [];
+  const out: string[] = [];
+  for (let i = 0; i < streak; i += 1) out.push(dayKey(new Date(lastMs - i * DAY_MS)));
+  return out;
+}
+
 export function buildStatsActivityRows(
   streakHistory: Record<string, unknown>,
   foregroundMsByDate: Record<string, number>,
   currentStreak: number,
   now = new Date(),
+  lastActiveDay: string | null = null,
 ): StatsActivityRows {
-  const today = new Date(now);
-  today.setUTCHours(12, 0, 0, 0);
-  const todayKey = dayKey(today);
-  const activeKeys = Object.keys(foregroundMsByDate)
-    .filter((key) => isValidPastDayKey(key, todayKey) && safeCount(foregroundMsByDate[key]) >= MIN_ACTIVE_MS)
-    .sort();
+  // зачем (жалоба «серия висит», 04.10): «сегодня» считалось по UTC, а счётчик серии — по локальному дню; кроме того отметки недели брались ТОЛЬКО
+  // из времени в приложении (≥ 60 с), поэтому при серии 8 и засчитанном сегодня Сб/Вс могли быть пустыми. Теперь день — локальный,
+  // а дни, которые подразумевает счётчик (последние min(N,7) до последнего засчитанного дня), отмечены в любом случае.
+  const todayKey = localDayKey(now);
+  const today = new Date(`${todayKey}T12:00:00.000Z`);
+  const timeKeys = Object.keys(foregroundMsByDate)
+    .filter((key) => isValidPastDayKey(key, todayKey) && safeCount(foregroundMsByDate[key]) >= MIN_ACTIVE_MS);
+  const impliedKeys = streakImpliedDayKeys(currentStreak, lastActiveDay, todayKey).filter((key) => isValidPastDayKey(key, todayKey));
+  const activeKeys = [...new Set([...timeKeys, ...impliedKeys])].sort();
   const activeSet = new Set(activeKeys);
 
   const makeDay = (date: string): StatsActivityDay => ({

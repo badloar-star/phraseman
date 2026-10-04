@@ -36,6 +36,7 @@ import { commitPremiumFreeFreeze } from './economy/premium_free_freeze';
 import { DebugLogger } from './debug-logger';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
 import { actionToastTri, emitAppEvent } from './events';
+import { getLocalDayKey } from './local_date';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
@@ -325,7 +326,9 @@ function humanMinutes(minutes: number, lang: Lang): string {
     });
 }
 function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], totalStreak: number, lang: Lang): LearningCoachMetrics {
-    const todayStr = toDateStr(new Date());
+    // зачем (жалоба «серия висит», 04.10): «сегодня» и даты недели — по ЛОКАЛЬНОМУ дню устройства, как у счётчика серии и у строк statsCache
+    // (modules/stats_activity_rows.ts); UTC-день расходился с ними вечером/ночью в поясах UTC+N.
+    const todayStr = getLocalDayKey();
     const timeByDate = new Map(timeRows.map((d) => [d.date, d]));
     const sourceDays = dayRows.length > 0 ? dayRows : getLast14().map((date) => {
         const d = new Date(`${date}T12:00:00`);
@@ -346,7 +349,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         const cursor = new Date(`${todayStr}T12:00:00`);
         cursor.setDate(cursor.getDate() - 6);
         for (let i = 0; i < 7; i++) {
-            weekDates.push(toDateStr(cursor));
+            weekDates.push(getLocalDayKey(cursor));
             cursor.setDate(cursor.getDate() + 1);
         }
     }
@@ -355,7 +358,8 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         const cal = new Date(`${date}T12:00:00`);
         const studyMs = timeByDate.get(date)?.ms ?? 0;
         const minutes = minutesFromMs(studyMs);
-        const active = studyMs >= 60000;
+        // зачем: отметка дня — из строк статистики (время ≥ 60 с ИЛИ день подразумевается счётчиком серии), а не только из времени.
+        const active = known?.active === true || studyMs >= 60000;
         return {
             date,
             shortLabel: known?.shortLabel ?? weekWdays[cal.getDay()],

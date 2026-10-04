@@ -183,6 +183,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     hadPrem,
     name,
     fgDaily,
+    lastActiveRaw,
   ] = await Promise.all([
     AsyncStorage.getItem('streak_count'),
     AsyncStorage.getItem('daily_stats'),
@@ -191,11 +192,20 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     AsyncStorage.getItem('had_premium_ever'),
     AsyncStorage.getItem('user_name'),
     getForegroundDailyMsMap(),
+    AsyncStorage.getItem('last_active_date'),
   ]);
 
   const statsMap: Record<string, unknown> = statsRaw ? JSON.parse(statsRaw) : {};
   const currentStreak = Math.max(0, parseInt(streakVal || '0', 10) || 0);
-  const activityRows = buildStatsActivityRows(statsMap, fgDaily, currentStreak);
+  const activityRows = buildStatsActivityRows(statsMap, fgDaily, currentStreak, new Date(), lastActiveRaw);
+  // зачем (жалоба «серия висит», 04.10; СПЕРВА ЛОГИ): откуда берутся отметки недели — счётчик, последний засчитанный день, локальный и UTC-день,
+  // смещение пояса, время в приложении и итоговая отметка по каждому из последних 7 дней. Оставить: строка одна на пересчёт статистики.
+  {
+    const nowForLog = new Date();
+    const last7 = (activityRows as { days: Array<{ date: string; active: boolean }> }).days.slice(-7)
+      .map((d) => `${d.date}:${d.active ? 1 : 0}:${Math.round((fgDaily[d.date] ?? 0) / 1000)}s`).join(' ');
+    console.log(`[STREAK-WEEK] stats:marks streak=${currentStreak} lastActive=${String(lastActiveRaw)} localDay=${streakFreezeDateKey()} utcDay=${nowForLog.toISOString().slice(0, 10)} tzOffsetMin=${nowForLog.getTimezoneOffset()} last7=${last7}`);
+  }
   // зачем (баг 01.10): временная трассировка — что показывает «Твои результаты» и откуда (AsyncStorage streak_count vs дни активности).
   console.log(`[STREAK] stats:read streak_count=${String(streakVal)} -> ${currentStreak} best=${String((activityRows as { bestStreak?: number }).bestStreak)} activeDays=${Object.keys(statsMap).length}`);
 

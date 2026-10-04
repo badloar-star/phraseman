@@ -456,9 +456,19 @@ export default function FlashcardsTrainingSetupScreen() {
 
   // The setup route is retained under the training route. Release the lock only
   // when this screen is focused again, never in the same turn as router.push.
+  // зачем (ядро, ревью 62853031e): отложенный тап не должен пережить уход с экрана — иначе после догрузки router.push уйдёт с невидимого экрана.
+  const pendingStartRef = useRef(false);
+  const [startQueued, setStartQueued] = useState(false);
+  const cancelQueuedStart = useCallback((reason: string) => {
+    if (!pendingStartRef.current) return;
+    pendingStartRef.current = false;
+    setStartQueued(false);
+    console.log('[FC-TRAIN-ENTRY] setup:start-queued → cancel', JSON.stringify({ reason }));
+  }, []);
   useFocusEffect(useCallback(() => {
     resetStartLock();
-  }, [resetStartLock]));
+    return () => cancelQueuedStart('blur');
+  }, [cancelQueuedStart, resetStartLock]));
 
   const leave = useCallback(() => {
     safeRouterBack(router, '/flashcards' as never);
@@ -466,7 +476,6 @@ export default function FlashcardsTrainingSetupScreen() {
 
   // зачем (координатор 04.10, «первый тап «Начать» молчит, сработал только второй»; логов на тап не было): сперва трассировка каждого выхода;
   // Optimistic UI — тап, пока наборы ещё грузятся, запоминается и сам срабатывает, когда экран готов (а не пропадает).
-  const pendingStartRef = useRef(false);
   const startTraining = useCallback(async () => {
     const state = { canStart, starting, inFlight: startInFlightRef.current, mode: mode ?? null, loadState, cardCount: summary.cardCount, quotaStatus: quotaPreview.status, blitzHasEnoughCards };
     console.log('[FC-TRAIN-ENTRY] setup:start-tap', JSON.stringify(state));
@@ -475,6 +484,7 @@ export default function FlashcardsTrainingSetupScreen() {
     if (!canStart) {
       if (loadState === 'loading') {
         pendingStartRef.current = true;
+        setStartQueued(true);
         console.log('[FC-TRAIN-ENTRY] setup:start-queued — наборы грузятся, запуск сам, когда будет готово');
       } else {
         console.log('[FC-TRAIN-ENTRY] setup:start-exit cannot_start', JSON.stringify(state));
@@ -482,6 +492,7 @@ export default function FlashcardsTrainingSetupScreen() {
       return;
     }
     pendingStartRef.current = false;
+    setStartQueued(false);
     const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId });
     if (!route) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_route', JSON.stringify({ mode, selectedDecks: selectedDeckIds.length })); return; }
     console.log('[FC-TRAIN-ENTRY] setup:push', JSON.stringify({ pathname: route.pathname, params: route.params }));
@@ -503,10 +514,15 @@ export default function FlashcardsTrainingSetupScreen() {
   }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, summary.cardCount]);
 
   useEffect(() => {
-    if (!pendingStartRef.current || !canStart) return;
-    console.log('[FC-TRAIN-ENTRY] setup:start-queued → fire');
-    void startTraining();
-  }, [canStart, startTraining]);
+    if (!pendingStartRef.current) return;
+    if (canStart) {
+      console.log('[FC-TRAIN-ENTRY] setup:start-queued → fire');
+      void startTraining();
+      return;
+    }
+    // загрузка закончилась, а старт невозможен (нет карточек, мало для блица, лимит) — очередь не «залипает»
+    if (loadState !== 'loading') cancelQueuedStart(`not_startable loadState=${loadState} cardCount=${summary.cardCount} quota=${quotaPreview.status}`);
+  }, [canStart, cancelQueuedStart, loadState, quotaPreview.status, startTraining, summary.cardCount]);
 
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
@@ -588,7 +604,9 @@ export default function FlashcardsTrainingSetupScreen() {
       }
       : null;
   const sessionCount = sizeOptions ? (sizeId === 'all' ? summary.cardCount : Math.min(Number(sizeId) || 0, summary.cardCount)) : 0;
-  const startLabel = sizeOptions && sessionCount > 0 ? `${copy.start} · ${sessionCount}` : copy.start;
+  const baseStartLabel = sizeOptions && sessionCount > 0 ? `${copy.start} · ${sessionCount}` : copy.start;
+  // зачем (ядро): пока тап в очереди, кнопка показывает «Начать…» — видно, что тап принят, и не хочется тапать снова
+  const startLabel = startQueued ? `${baseStartLabel}…` : baseStartLabel;
   const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'exhausted' | 'invalid' = !mode
     ? 'invalid'
     : quotaPreview.status === 'exhausted'

@@ -35,7 +35,7 @@ const PROTECTED_RUNTIME = {
   // зачем (владелец 04.10, cards-section): startTraining передаёт размер сессии («Карточек 10 / 20 / Все») в маршрут — осознанная правка базовой линии
   // зачем (ядро 04.10): блиц `sec` 30/60/90, recall `dir`, правда/ложь `size` — сознательная правка базовой линии (новое состояние secId/dirId и аргументы маршрута)
   // зачем (координатор 04.10): трассировка [FC-TRAIN-ENTRY] на каждом выходе тапа «Начать» + тап во время загрузки запоминается и срабатывает сам — сознательная правка базовой линии
-  hash: 'ff9d83c6d9fd284377b118eb5518b478f839478e0f2a68a91946145a80becb10',
+  hash: '1c8bf2d1561b51f854911b1b8579047a2ec17faac4f8333bd9a2770eba02acdf',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);

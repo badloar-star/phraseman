@@ -9,7 +9,10 @@ import {
   type FirebaseAuthUid,
 } from '../modules/account-authority-v2/account_authority_ids';
 import { createDurableSlotList } from '../modules/account-authority-v2/account_authority_durable_slots';
-import type { AccountAuthorityInstallationBindingPort } from '../modules/account-authority-v2/account_authority_lease_transport';
+import {
+  createAccountAuthorityFirebaseLeasePort,
+  type AccountAuthorityInstallationBindingPort,
+} from '../modules/account-authority-v2/account_authority_lease_transport';
 import {
   accountAuthorityRemoteDeleteQueueState,
 } from '../modules/account-authority-v2/account_authority_remote_delete_queue';
@@ -65,7 +68,7 @@ function secureStore(): Secure {
   };
 }
 
-type Mode = 'online' | 'evicted' | 'offline';
+type Mode = 'online' | 'evicted' | 'offline' | 'server_failed' | 'revoked';
 
 /**
  * Фейковый сервер аренды, как настоящий: продление того же аккаунта с того же
@@ -82,6 +85,7 @@ function fakeServer() {
     intents: [] as string[],
     sessions: 0,
     takenOver: false,
+    revokedCode: 'account_authority_lease_binding_rejected',
     current: new Map<string, string>(),
   };
   const accountFor = (uid: FirebaseAuthUid) => (uid.value === 'firebase-user-b' ? ACCOUNT_B : ACCOUNT_A);
@@ -91,6 +95,8 @@ function fakeServer() {
       state.intents.push(request.intent ?? 'none');
       if (state.mode === 'evicted') throw new Error('account_authority_lease_evicted');
       if (state.mode === 'offline') throw new Error('account_authority_lease_unavailable');
+      if (state.mode === 'server_failed') throw new Error('account_authority_lease_server_failed');
+      if (state.mode === 'revoked') throw new Error(state.revokedCode);
       const account = accountFor(request.firebaseAuthUid);
       let session = state.current.get(account);
       if (session === undefined || state.takenOver) {
@@ -469,6 +475,131 @@ describe('AA-S6 убийцы выживших мутантов: очередь �
     await env.bootstrap.lease.deleteAccount(request);
     await expect(env.bootstrap.lease.deleteAccount(request)).resolves.toBeUndefined();
     expect(accountAuthorityRemoteDeleteQueueState()).toMatchObject({ total: 1 });
+  });
+});
+
+describe('AA-S6b LOW-1: окончательный отказ ≠ «нет сети»', () => {
+  const binding: AccountAuthorityInstallationBindingPort = {
+    obtain: async () => Object.freeze({ bindingToken: 'token-a', deviceBindingId: parseDeviceId('server-device-a') }),
+    readPersistedForLease: async () => null,
+    rotate: async () => { throw new Error('not_used'); },
+    reset: async () => undefined,
+    resetForLease: async () => undefined,
+  };
+  const port = (invoke: () => Promise<unknown>) => createAccountAuthorityFirebaseLeasePort({
+    invoke,
+    revisionStore: {
+      read: async () => 3, write: async () => undefined, readLease: async () => null,
+      bindLease: async () => undefined, writeLease: async () => undefined,
+    },
+    installationBinding: binding,
+    retry: { sleep: async () => undefined, maxAttempts: 1 },
+  });
+  const request = {
+    firebaseAuthUid: parseFirebaseAuthUid('firebase-user-a'),
+    deviceId: parseDeviceId('device-a'),
+    operationId: op('acquire-low1'),
+    intent: 'resume' as const,
+  };
+
+  test.each([
+    ['internal', 'account_authority_lease_server_failed'],
+    ['permission-denied', 'account_authority_lease_server_failed'],
+    ['unavailable', 'account_authority_lease_unavailable'],
+    ['network-request-failed', 'account_authority_lease_unavailable'],
+  ])('транспорт: код %s → %s', async (code, expected) => {
+    const invoke = jest.fn(async () => { throw Object.assign(new Error('x'), { code: `functions/${code}` }); });
+    await expect(port(invoke).acquire(request)).rejects.toThrow(expected);
+  });
+
+  test('транспорт: локальная поломка → local_failed (не «нет сети»)', async () => {
+    const invoke = jest.fn(async () => { throw new Error('account_authority_lease_revision_unavailable'); });
+    await expect(port(invoke).acquire(request)).rejects.toThrow('account_authority_lease_local_failed');
+  });
+
+  // S6b раунд 2 (ревью HIGH): выход из провайдера на продлении — ТОЛЬКО при
+  // доказанном отзыве доступа; сбой сервера / нераспознанный код (iOS «нет
+  // интернета» = unknown) вход сохраняет.
+  test('runtime: сбой сервера при продлении живой сессии — сессия остаётся, выхода нет', async () => {
+    const env = await setup();
+    await env.runtime.signIn(op('sign-in-a'));
+    env.server.state.mode = 'server_failed';
+    const result = await env.runtime.resume(op('resume-server-failed'));
+    expect(result.type).toBe('authenticated');
+    expect(env.events).not.toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S4] resume offline_kept_session'))).toBe(true);
+  });
+
+  test('runtime: сбой сервера на холодном старте — вход Firebase сохранён (как D1)', async () => {
+    const env = await setup();
+    env.server.state.mode = 'server_failed';
+    const result = await env.runtime.resume(op('cold-server-failed'));
+    expect(result.type).toBe('cancelled');
+    expect(env.events).not.toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S6] resume offline_cold_kept_provider'))).toBe(true);
+  });
+
+  test('runtime: доказанный отзыв доступа на продлении — закрыто (выход из провайдера)', async () => {
+    const env = await setup();
+    await env.runtime.signIn(op('sign-in-a'));
+    env.server.state.mode = 'revoked';
+    await expect(env.runtime.resume(op('resume-revoked'))).rejects.toThrow('account_authority_lease_binding_rejected');
+    expect(env.runtime.getState().phase).toBe('signed_out');
+    expect(env.events).toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S6] lease establish_final_failure'))).toBe(true);
+  });
+
+  test('runtime: доказанный отзыв доступа на холодном старте — закрыто, без ветки D1', async () => {
+    const env = await setup();
+    env.server.state.mode = 'revoked';
+    await expect(env.runtime.resume(op('cold-revoked'))).rejects.toThrow('account_authority_lease_binding_rejected');
+    expect(env.events).toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S6] resume offline_cold_kept_provider'))).toBe(false);
+  });
+
+  // S6b раунд 3 (ревью M-1): КАЖДЫЙ код доказательства отзыва поштучно — иначе
+  // выпавший из списка код (например, «аккаунт удаляется» с другого устройства)
+  // оставил бы область удалённого аккаунта открытой.
+  const REVOCATION_CODES = [
+    'account_authority_lease_unauthenticated',
+    'account_authority_lease_binding_rejected',
+    'account_authority_lease_deletion_pending',
+    'account_authority_lease_identity_unresolved',
+    'account_authority_lease_provider_rejected',
+  ] as const;
+
+  test.each(REVOCATION_CODES)('отзыв %s при живой сессии — выход из провайдера, область закрыта', async (code) => {
+    const env = await setup();
+    await env.runtime.signIn(op('sign-in-a'));
+    env.server.state.mode = 'revoked';
+    env.server.state.revokedCode = code;
+    await expect(env.runtime.resume(op(`resume-${code}`))).rejects.toThrow(code);
+    expect(env.runtime.getState().phase).toBe('signed_out');
+    expect(env.events).toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S4] resume offline_kept_session'))).toBe(false);
+  });
+
+  test.each(REVOCATION_CODES)('отзыв %s на холодном старте — выход из провайдера, без ветки D1', async (code) => {
+    const env = await setup();
+    env.server.state.mode = 'revoked';
+    env.server.state.revokedCode = code;
+    await expect(env.runtime.resume(op(`cold-${code}`))).rejects.toThrow(code);
+    expect(env.events).toContain('provider_sign_out');
+    expect(env.lines.some((line) => line.startsWith('[AA-S6] resume offline_cold_kept_provider'))).toBe(false);
+  });
+
+  test('сторож: список доказательств отзыва в runtime совпадает с ожидаемым', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'modules', 'account-authority-v2', 'account_authority_runtime.ts'), 'utf8');
+    const start = source.indexOf('const LEASE_REVOCATION_PROOF_CODES');
+    expect(start).toBeGreaterThan(-1);
+    const block = source.slice(start, source.indexOf(']);', start));
+    const listed = [...block.matchAll(/'(account_authority_lease_[a-z_]+)'/g)].map((match) => match[1]).sort();
+    expect(listed).toEqual([...REVOCATION_CODES].sort());
+  });
+
+  test('транспорт: iOS «нет интернета» приходит как functions/unknown → не доказательство отзыва', async () => {
+    const invoke = jest.fn(async () => { throw Object.assign(new Error('x'), { code: 'functions/unknown' }); });
+    await expect(port(invoke).acquire(request)).rejects.toThrow('account_authority_lease_server_failed');
   });
 });
 

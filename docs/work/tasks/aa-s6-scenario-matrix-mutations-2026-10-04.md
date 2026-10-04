@@ -7,6 +7,10 @@ Governance-ID: TG-6CD0557BF523
 Governance-ID: TG-CF4D50F68C07
 Governance-ID: TG-5FC7DD972BF7
 Governance-ID: TG-090AB34135FE
+Governance-ID: TG-EE605EF227F7
+Governance-ID: TG-572386DD3EC0
+Governance-ID: TG-B239B6849DA6
+Governance-ID: TG-1CEABDCAF307
 Status: Planned
 Owner: Claude session 5 · АВТОРИЗАЦИЯ (Account Authority 2.0)
 Related epic/enabler: docs/superpowers/plans/2026-10-01-account-authority-2-0.md, строка S6 (≈248); зависит от S4 (1d76be137, 12829ccbd), S5 (52dbac239)
@@ -71,3 +75,33 @@ git revert тестов; код не меняется (кроме найденн
 ## S6a — security-ревью APPROVE (2026-10-04); коммит S6a
 - D1 (M07, офлайн холодный старт не выходит из провайдера) и D2 (M06, сдвиг поколения при холодном вытеснении) — APPROVE; мутации D1/D2 убиты. Матрица: клиент 20/20, сервер 13/13; соседи AA зелёные.
 - В S6b: LOW-1 ревью — отделить окончательный отказ сервера (`server_error`/`unknown`/`local_failure` — сейчас по умолчанию `lease_unavailable` в `finalFailureCode`/`mapFailure`) от «нет сети», чтобы D1 срабатывал только на сетевых/временных сбоях; оставшиеся мутации (RT10, Q6, Q8, DS/LC/DC/IB ~20); раздел «Итог исполнителя S6».
+
+## Итог S6b (2026-10-04, координирующая сессия 5 + исполнитель)
+- **LOW-1:** `account_authority_lease_unavailable` больше не значение по умолчанию в `finalFailureCode`/`mapFailure` (account_authority_lease_transport.ts): `local_failure` → `account_authority_lease_local_failed`, окончательные `server_error`/`unknown` → `account_authority_lease_server_failed`; офлайн-ветки runtime (D1, S4b «сеть при живой сессии») — только на настоящую сеть. Лог `[AA-S6] lease establish_final_failure`.
+- **Коды слотов SecureStore:** внутренние ошибки `slot_missing`/`slot_invalid`/`index_invalid` логировались в тревогу как `other` (безопасный логгер пропускает только `account_authority_*`) → переименованы в `account_authority_slot_missing`/`_slot_invalid`/`_slot_index_invalid`; два старых теста s4a закрепляли `other` — ожидания ужесточены до настоящей причины.
+- **Мутации S6 (ручные, по одной, восстановление + cmp=True после каждой):**
+
+| Модуль | Всего | Убито | Эквивалентно (довод) |
+|---|---|---|---|
+| reducer RD1–8 | 8 | 8 | — |
+| failure_policy FP | 10 | 10 | — |
+| runtime RT1–12 | 12 | 10 | RT1 (совпадение поколения ⇒ совпадение сессии), RT9 (отбрасывание несфиксированных записей — только память процесса) |
+| remote_delete_queue Q1–8 | 8 | 8 | — |
+| lease_transport TR1–3 | 3 | 3 | — |
+| durable_slots DS1–8 | 8 | 8 | — |
+| lease_contract LC1–12 | 12 | 12 | (LC12 убит тестом на несогласованное состояние) |
+| delete_contract DC1–12 | 12 | 11 | DC2 (исчерпывающая неудача сразу ставит identity_release_failed — граница захвата при согласованном состоянии недостижима) |
+| installation_binding IB1–10 | 10 | 10 | — |
+| **Итого** | **83** | **80** | **3** → **100% неэквивалентных убито** |
+
+- Новые тесты-убийцы: `tests/aa_s6_durable_slots_kills.test.ts` (DS1/4/8), `functions/src/account_authority/aa_s6b_lease_contract_kills.test.ts` (LC1/4/5/8/9/12), `functions/src/account_authority/aa_s6b_delete_contract_kills.test.ts` (DC3/6/7/10, в т.ч. отказ удаления при несовпадении личности с арендой).
+- Соседи после S6b зелёные: s4a 35, s4b 19, s5 13, матрица 27/13, transport 18, s2b 41, runtime 51, app_integration 18, logging_guard 10; сервер lease_contract 16, delete_contract 19.
+- Эталон: `.tmp_aa_s6_backup/s6b_after/`. Полная проверка типов не запускалась (запрещена координатором до его команды).
+
+## S6b раунд 2 — по ревью HIGH (выход только при доказанном отзыве)
+- `account_authority_runtime.ts`: `LEASE_REVOCATION_PROOF_CODES` = unauthenticated / binding_rejected / deletion_pending / identity_unresolved / provider_rejected. На `resume` любой другой код (сеть, server_failed, local_failed, unknown — на iOS «нет интернета», disabled — откат rollout, invalid) НЕ выводит из провайдера: холодный старт → ветка D1 (cancelled, вход сохранён), живая сессия → ветка S4b (сессия остаётся). Явный вход (`sign_in`) — прежняя логика. Логи с кодом и признаком `network`/`revoked`.
+- Тесты матрицы: сбой сервера на продлении/холодном старте — вход сохранён; доказанный отзыв (`revoked` → binding_rejected) — выход; iOS `functions/unknown` не доказательство. Матрица 30/30, соседи зелёные. Мутации R2a (старое правило) и R2b (никогда не отозван) — убиты.
+
+## S6b раунд 3 — ревью APPROVE; M-1 закрыт
+- Поштучно на каждый из 5 кодов отзыва (живая сессия и холодный старт) — выход из провайдера, область закрыта; сторож «список в runtime == ожидаемый». Мутация ревьюера (убрать deletion_pending) — убита (3 failed). Матрица 41/41.
+- LOW-1 (условие на будущее): если включат путь удаления `authority` (сейчас D-AA5 — старое удаление), транспорт должен передавать `account_lifecycle_blocked` отдельным кодом, а runtime — закрывать область (как при вытеснении, без выхода из провайдера); сейчас этот отказ схлопнут в `lease_rejected` и при живой сессии держит область до `unauthenticated`/`binding_rejected`.

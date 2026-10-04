@@ -78,9 +78,9 @@ function utf8Bytes(value: string): number {
 
 function slotNumbers(value: unknown, next: number): number[] {
   if (!Array.isArray(value) || !value.every((slot) => Number.isSafeInteger(slot) && slot >= 0 && slot < next)) {
-    throw new Error('index_invalid');
+    throw new Error('account_authority_slot_index_invalid');
   }
-  if (new Set(value).size !== value.length) throw new Error('index_invalid');
+  if (new Set(value).size !== value.length) throw new Error('account_authority_slot_index_invalid');
   return [...(value as number[])];
 }
 
@@ -138,13 +138,13 @@ export function createDurableSlotList<T>(input: Readonly<{
     try {
       const parsed: unknown = JSON.parse(rawIndex);
       if (!isRecord(parsed) || parsed.schemaVersion !== input.schema || !Number.isSafeInteger(parsed.next) || (parsed.next as number) < 0) {
-        throw new Error('index_invalid');
+        throw new Error('account_authority_slot_index_invalid');
       }
       const next = parsed.next as number;
       const slots = slotNumbers(parsed.slots, next);
       const trash = slotNumbers(parsed.trash, next);
       if (slots.length > indexBound || trash.length > MAX_TRASH || slots.some((slot) => trash.includes(slot))) {
-        throw new Error('index_invalid');
+        throw new Error('account_authority_slot_index_invalid');
       }
       index = Object.freeze({ next, slots: Object.freeze(slots), trash: Object.freeze(trash) });
     } catch (error) {
@@ -165,9 +165,9 @@ export function createDurableSlotList<T>(input: Readonly<{
   for (const slot of index.slots) {
     try {
       const raw = secureStore.getItem(slotKey(slot), options);
-      if (raw === null) throw new Error('slot_missing');
+      if (raw === null) throw new Error('account_authority_slot_missing');
       const parsed: unknown = JSON.parse(raw);
-      if (!isRecord(parsed) || parsed.schemaVersion !== input.schema || parsed.slot !== slot) throw new Error('slot_invalid');
+      if (!isRecord(parsed) || parsed.schemaVersion !== input.schema || parsed.slot !== slot) throw new Error('account_authority_slot_invalid');
       const value = input.parse(parsed.value);
       const key = input.keyOf(value);
       const earlier = slotByKey.get(key);

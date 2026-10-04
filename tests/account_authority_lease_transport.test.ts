@@ -549,7 +549,7 @@ describe('Account Authority Firebase lease transport', () => {
       firebaseAuthUid: parseFirebaseAuthUid('firebase-client-a'),
       deviceId: parseDeviceId('device-client-a'),
       operationId: parseOperationId('operation-client-a'),
-    })).rejects.toThrow('account_authority_lease_unavailable');
+    })).rejects.toThrow('account_authority_lease_local_failed');
     expect(invoke).not.toHaveBeenCalled();
   });
 });

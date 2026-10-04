@@ -298,7 +298,13 @@ function finalFailureCode(reason: AccountAuthorityFinalReason): string {
       return 'account_authority_lease_provider_rejected';
     case 'disabled': return 'account_authority_lease_disabled';
     case 'request_invalid': return 'account_authority_lease_request_invalid';
-    default: return 'account_authority_lease_unavailable';
+    // зачем (AA S6b, LOW-1 ревью): окончательный отказ сервера и локальная
+    // поломка больше НЕ выдаются за «нет сети» (`lease_unavailable`): иначе
+    // офлайн-ветки runtime (D1, S4b) сохраняли вход при настоящем отказе.
+    case 'local_failure': return 'account_authority_lease_local_failed';
+    case 'server_error':
+    case 'unknown':
+    default: return 'account_authority_lease_server_failed';
   }
 }
 
@@ -308,7 +314,8 @@ function mapFailure(error: unknown, failure: AccountAuthorityFailureClass): Erro
     case 'unauthenticated': return new Error('account_authority_lease_unauthenticated');
     case 'final': return new Error(finalFailureCode(failure.reason));
     case 'contract_rejected': return new Error('account_authority_lease_rejected');
-    default: return new Error('account_authority_lease_unavailable');
+    // Только временный сбой (сеть, сервер недоступен, троттлинг) — «нет сети».
+    case 'retryable': return new Error('account_authority_lease_unavailable');
   }
 }
 

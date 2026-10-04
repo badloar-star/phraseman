@@ -458,7 +458,7 @@ describe('AA S4a: удаление local-first', () => {
     env.secure.raw.delete(slotKey);
     const broken = await setup(env.server, env.secure, env.storage, undefined, critical);
     expect(broken.bootstrap.localStore.getOpenScope()).toBeNull();
-    expect(critical).toContain('aa_s4:remote_delete slot_unreadable other');
+    expect(critical).toContain('aa_s4:remote_delete slot_unreadable account_authority_slot_missing');
     expect(accountAuthorityRemoteDeleteQueueState()).toMatchObject({ total: 0, unreadable: 1 });
     env.secure.raw.set(slotKey, saved);
     await setup(env.server, env.secure, env.storage, undefined, critical);
@@ -720,7 +720,7 @@ describe('AA S4a: удаление local-first', () => {
     await expect(createAccountAuthorityProductionBootstrap(dependencies({
       secure, storage: new MemoryScopeStorageAdapter(), server: fakeServer(), critical,
     }))).rejects.toThrow('account_authority_local_erase_queue_invalid');
-    expect(critical).toEqual(['aa_s4:local_erase index_invalid other']);
+    expect(critical).toEqual(['aa_s4:local_erase index_invalid account_authority_slot_index_invalid']);
     expect(accountAuthorityGeneration(0).value).toBe(0);
   });
 });

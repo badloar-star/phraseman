@@ -127,6 +127,20 @@ const MAX_CAPTURED_PRESERVED_WRITES = 256;
 /** AA S4b: коды транспорта (см. account_authority_failure_policy / lease_transport). */
 const LEASE_EVICTED_CODE = 'account_authority_lease_evicted';
 const LEASE_UNAVAILABLE_CODE = 'account_authority_lease_unavailable';
+/**
+ * зачем (AA S6b, ревью HIGH): на продлении (resume) выходим из провайдера ТОЛЬКО
+ * при доказанном отзыве доступа. Всё прочее — сеть, сбой сервера, локальная
+ * поломка, нераспознанный код (на iOS «нет интернета» приходит как `unknown`),
+ * выключенный на сервере rollout — оставляет вход и ждёт следующего повода:
+ * иначе флап сети или откат rollout разом разлогинил бы людей.
+ */
+const LEASE_REVOCATION_PROOF_CODES: ReadonlySet<string> = new Set([
+  'account_authority_lease_unauthenticated',
+  'account_authority_lease_binding_rejected',
+  'account_authority_lease_deletion_pending',
+  'account_authority_lease_identity_unresolved',
+  'account_authority_lease_provider_rejected',
+]);
 const MAX_PENDING_DESTRUCTIVE_OPERATIONS = 256;
 
 function sameScope(left: AccountAuthorityLocalScope, right: AccountAuthorityLocalScope): boolean {
@@ -952,10 +966,14 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       // повод выходить из провайдера (раньше failClosed выходил, и человек терял
       // вход на каждом офлайн-запуске). Область не открывается до сети;
       // следующий повод (возврат из фона, R1) повторит продление.
-      if (code === LEASE_UNAVAILABLE_CODE && mode === 'resume' && previousOwner === null) {
+      // S6b: не только «нет сети» — любой код без доказательства отзыва доступа.
+      const revoked = LEASE_REVOCATION_PROOF_CODES.has(code);
+      if (!revoked && mode === 'resume' && previousOwner === null) {
         const reduction = reduceAccountAuthorityState(this.state, { type: 'provider_cancelled', attemptId: operationId });
         this.commitState(reduction.state);
-        this.log.warn('[AA-S6] resume offline_cold_kept_provider', { phase: reduction.state.phase });
+        this.log.warn('[AA-S6] resume offline_cold_kept_provider', {
+          phase: reduction.state.phase, code, network: code === LEASE_UNAVAILABLE_CODE ? 'yes' : 'no',
+        });
         if (!reduction.result) {
           this.log.warn('[AA-S6] resume offline_cold_result_missing', { phase: this.state.phase });
           throw error;
@@ -964,10 +982,12 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       }
       // AA S4b: временный сбой сети при продлении живой сессии — НЕ вытеснение и
       // не выход: сессия остаётся, следующий повод (foreground) повторит.
-      if (code === LEASE_UNAVAILABLE_CODE && mode === 'resume' && previousOwner !== null) {
+      if (!revoked && mode === 'resume' && previousOwner !== null) {
         const restored = reduceAccountAuthorityState(this.state, { type: 'provider_cancelled', attemptId: operationId }).state;
         this.commitState(restored);
-        this.log.warn('[AA-S4] resume offline_kept_session', { phase: restored.phase });
+        this.log.warn('[AA-S4] resume offline_kept_session', {
+          phase: restored.phase, code, network: code === LEASE_UNAVAILABLE_CODE ? 'yes' : 'no',
+        });
         if (restored.phase !== 'authenticated') throw error;
         return freezeAccountAuthorityResult({
           type: 'authenticated',
@@ -976,6 +996,9 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           generation: restored.generation,
         });
       }
+      // AA S6b: явный вход (sign_in) с отказом или доказанный отзыв доступа на
+      // продлении — вход закрывается по прежней логике.
+      this.log.warn('[AA-S6] lease establish_final_failure', { kind: mode, code, revoked: revoked ? 'yes' : 'no' });
       return this.failClosedAuthentication({ error, operationId, previousOwner });
     }
     const reduction = reduceAccountAuthorityState(this.state, {

@@ -385,6 +385,11 @@ const APP_FONT_WAIT_MAX_MS = 1000;
 // стартовые пути остаются мгновенными, троттлится ТОЛЬКО foreground-страховка.
 const FOREGROUND_FLUSH_MIN_MS = 15_000;
 const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
+// зачем (PM-252 п.3, координатор 04.10): сообщения приложения читались принудительно на КАЖДОМ возврате
+// (до 240 документов). Принудительно — только при входе (первый раз за запуск для аккаунта), дальше кэш
+// и сеть не чаще раза в 6 часов.
+const APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS = 6 * 60 * 60_000;
+const appMessagesForcedForStableIds = new Set<string>();
 /** зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ»): 900 мс этого потолка
  * съедали почти весь бюджет входа в одиночку, а следом ещё ждал homeScreenReady.
  * Событие от Главной приходит раньше на здоровом старте — fallback нужен только
@@ -1219,7 +1224,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     const token = accountGeneration;
     let cancelled = false;
-    void refreshAppMessagesSnapshotOnce({ force: true })
+    const forcedKey = token.stableId ?? '';
+    const isLoginRefresh = !appMessagesForcedForStableIds.has(forcedKey);
+    if (isLoginRefresh) appMessagesForcedForStableIds.add(forcedKey);
+    console.log('[APP-MESSAGES-REFRESH]', JSON.stringify({
+      mode: isLoginRefresh ? 'login_force' : 'foreground_interval',
+      minIntervalMs: isLoginRefresh ? 0 : APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS,
+    }));
+    void refreshAppMessagesSnapshotOnce(isLoginRefresh
+      ? { force: true }
+      : { minIntervalMs: APP_MESSAGES_FOREGROUND_MIN_INTERVAL_MS })
       .then((snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));

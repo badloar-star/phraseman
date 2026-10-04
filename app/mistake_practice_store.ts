@@ -232,6 +232,14 @@ async function loadMistakeEventJournalFresh(
     : readStoredItem;
   const raw = await getRaw(mistakePracticeEventsKey(accountScope, input.studyTarget));
   if (!raw) return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
+  // зачем (§126 п.5, 04.10): «Мои ошибки» не открывались с mistake_practice_events_corrupt, но восемь проверок
+  // бросали одну и ту же ошибку молча — неизвестно, какая сработала и не виноват ли снапшот чтения (§122).
+  const readSource = getRaw === readStoredItem ? 'snapshot' : 'storage';
+  function corruptJournal(reason: string, detail: Record<string, unknown> = {}): never {
+    console.warn('[MISTAKE-JOURNAL] corrupt', JSON.stringify({ reason, studyTarget: input.studyTarget, readSource, ...detail }));
+    throw new Error('mistake_practice_events_corrupt');
+  }
+  const short = (id: unknown): string => String(id ?? '').slice(0, 8);
   let rootCandidate: unknown;
   try { rootCandidate = JSON.parse(raw); } catch (e) {
       // v1 parser reports canonical error
@@ -245,24 +253,31 @@ async function loadMistakeEventJournalFresh(
     if (root.accountScope !== accountScope || root.studyTarget !== input.studyTarget ||
       !Number.isSafeInteger(root.eventCount) || Number(root.eventCount) < 0 ||
       (root.headPageId !== null && (typeof root.headPageId !== 'string' || !/^[a-f0-9]{64}$/.test(root.headPageId)))) {
-      throw new Error('mistake_practice_events_corrupt');
+      corruptJournal('root_invalid', {
+        scopeMatches: root.accountScope === accountScope, targetMatches: root.studyTarget === input.studyTarget,
+        eventCount: root.eventCount ?? null, headPage: short(root.headPageId),
+      });
     }
     const reversedPages: JournalManifestPageV1[] = [];
     const visited = new Set<string>();
     let pageId = root.headPageId;
     while (pageId) {
-      if (visited.has(pageId) || visited.size > 10_000) throw new Error('mistake_practice_events_corrupt');
+      if (visited.has(pageId) || visited.size > 10_000) corruptJournal('page_cycle', { page: short(pageId), visited: visited.size });
       visited.add(pageId);
       const pageRaw = await getRaw(mistakePracticeManifestPageKey(accountScope, input.studyTarget, pageId));
-      if (!pageRaw) throw new Error('mistake_practice_events_corrupt');
+      if (!pageRaw) corruptJournal('page_missing', { page: short(pageId), pagesRead: visited.size });
       let page: JournalManifestPageV1;
-      try { page = JSON.parse(pageRaw) as JournalManifestPageV1; } catch { throw new Error('mistake_practice_events_corrupt'); }
+      try { page = JSON.parse(pageRaw as string) as JournalManifestPageV1; } catch { corruptJournal('page_parse', { page: short(pageId), length: (pageRaw as string).length }); }
       if (sha256Utf8(canonicalJsonV1(page)) !== pageId || page.version !== 1 ||
         page.accountScope !== accountScope || page.studyTarget !== input.studyTarget ||
         !Array.isArray(page.chunkIds) || page.chunkIds.length > MANIFEST_PAGE_CHUNKS ||
         !page.chunkIds.every((id) => typeof id === 'string' && /^[a-f0-9]{64}$/.test(id)) ||
         (page.previousPageId !== null && !/^[a-f0-9]{64}$/.test(page.previousPageId))) {
-        throw new Error('mistake_practice_events_corrupt');
+        corruptJournal('page_invalid', {
+          page: short(pageId), hashMatches: sha256Utf8(canonicalJsonV1(page)) === pageId, version: page.version ?? null,
+          scopeMatches: page.accountScope === accountScope, targetMatches: page.studyTarget === input.studyTarget,
+          chunks: Array.isArray(page.chunkIds) ? page.chunkIds.length : null,
+        });
       }
       reversedPages.push(page);
       pageId = page.previousPageId;
@@ -271,11 +286,14 @@ async function loadMistakeEventJournalFresh(
     for (const page of reversedPages.reverse()) {
       for (const chunkId of page.chunkIds) {
         const chunkRaw = await getRaw(mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId));
-        if (!chunkRaw || sha256Utf8(chunkRaw) !== chunkId) throw new Error('mistake_practice_events_corrupt');
+        if (!chunkRaw) corruptJournal('chunk_missing', { chunk: short(chunkId), page: short(page.previousPageId) });
+        if (sha256Utf8(chunkRaw as string) !== chunkId) corruptJournal('chunk_hash', { chunk: short(chunkId), length: (chunkRaw as string).length });
         journal = mergeMistakeEventJournals(journal, parseMistakeEventJournal(chunkRaw));
       }
     }
-    if (journal.events.length !== root.eventCount) throw new Error('mistake_practice_events_corrupt');
+    if (journal.events.length !== root.eventCount) {
+      corruptJournal('event_count_mismatch', { expected: root.eventCount, actual: journal.events.length, pages: reversedPages.length });
+    }
     return mergePhoneStateJournal(journal);
   }
   const parsed = parseMistakeEventJournal(raw);

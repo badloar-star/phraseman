@@ -35,14 +35,6 @@ function hasMeaningfulPlan(plan: string): boolean {
   return plan !== '' && plan !== 'null' && plan !== 'undefined';
 }
 
-/** Retired compatibility export. MAX receipts no longer grant any access. */
-export const MAX_TIER_PLANS: readonly string[] = [];
-
-function isMaxTierPlan(plan: string): boolean {
-  void plan;
-  return false;
-}
-
 function isStorePremiumPlan(plan: string): boolean {
   // 'lifetime' — non-consumable «навсегда»: premium_expiry='0' (бессрочный).
   // Без этой ветки сервер счёл бы синхронизированный premium_plan='lifetime'
@@ -361,21 +353,6 @@ export function isLifetimePlanActive(progress: ProgressLike, now: number = Date.
 }
 
 /**
- * Активен ли тир MAX (голосовой учитель) — отдельная подписка поверх Плюс/Про.
- *
- * зачем (владелец 2026-08-23): до этого access:'max' выдавался ВСЕМ безусловно,
- * то есть звонки не гейтились вовсе и один человек мог нажечь ~$173/мес.
- * Теперь минуты разделены по тирам: free — пробник, Плюс/Про — малый пакет,
- * MAX — большой. Проверка идёт по тому же store-контракту, что и премиум:
- * план + живой срок из вебхука RevenueCat.
- */
-export function isMaxTierActive(progress: ProgressLike, now: number = Date.now()): boolean {
-  const data = progress ?? {};
-  const plan = cleanPlan(data.premium_plan);
-  return isMaxTierPlan(plan) && isStorePremiumActive(progress, now);
-}
-
-/**
  * Серверная резолюция Pro-плана: читает users/{stableUid}.progress (с тем же обходом
  * auth_links / firebaseAuthUid, что и resolvePremiumAccess) и возвращает, активна ли
  * покупка «Навсегда». Источник правды — сервер, тело запроса не доверяем.
@@ -421,63 +398,6 @@ export async function resolveIsLifetimePlan(
       }
     }));
     if (lifetimeActive) return true;
-  }
-
-  return false;
-}
-
-/**
- * Серверная резолюция тира MAX: тот же обход идентичностей, что и у премиума
- * (auth_links / firebaseAuthUid / canonicalStableId), чтобы подписка не терялась
- * после смены устройства или слияния аккаунтов.
- *
- * зачем отдельной функцией: minutes-квоты MAX (120/мес) выдаются только по этому
- * признаку. Тело запроса не доверяем — источник правды всегда сервер.
- */
-export async function resolveIsMaxTier(
-  db: FirebaseFirestore.Firestore,
-  stableUid: string,
-  now: number = Date.now(),
-  authUid?: string,
-): Promise<boolean> {
-  const candidates = new Set<string>();
-  const add = (value: unknown) => {
-    const id = cleanStr(value);
-    if (id) candidates.add(id);
-  };
-
-  add(stableUid);
-  add(authUid);
-
-  if (authUid) {
-    const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(swallowed('premium_status:db.collection(auth_links).doc(authUid).get()', null)),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(swallowed('premium_status:ere(firebaseAuthUid, ==, authUid).limit(5).get()', null)),
-    ]);
-    add(linkSnap?.data()?.stable_id);
-    byAuth?.docs.forEach((doc) => add(doc.id));
-  }
-
-  const checked = new Set<string>();
-  for (;;) {
-    const ids = [...candidates].filter((id) => !checked.has(id));
-    if (ids.length === 0) break;
-    let maxActive = false;
-    await Promise.all(ids.map(async (id) => {
-      checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(swallowed('premium_status:db.collection(users).doc(id).get()', null));
-      if (!snap?.exists) return;
-      const data = snap.data() ?? {};
-      add(data.canonicalStableId);
-      const progress = (data.progress ?? {}) as Record<string, unknown>;
-      // Hidden documents are historical aliases, never entitlement authorities.
-      // Otherwise a stale MAX snapshot on an alias can resurrect the tier after
-      // the visible canonical account was downgraded, expired, or revoked.
-      if (data.identityHidden !== true && isMaxTierActive(progress, now)) {
-        maxActive = true;
-      }
-    }));
-    if (maxActive) return true;
   }
 
   return false;

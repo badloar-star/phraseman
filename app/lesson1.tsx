@@ -146,6 +146,7 @@ import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
+import { traceLessonExit } from './lesson_exit_trace';
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -2483,6 +2484,7 @@ function LessonScreen() {
    * которым пользуется весь остальной код.
    */
   const navigateUpFromLessonScreen = useCallback(() => {
+    traceLessonExit('navigateUp:enter', { lessonId, from: String(from), canGoBack: router.canGoBack(), branch: from === 'lesson_menu' ? 'to_menu' : (router.canGoBack() ? 'back_home_has_history' : 'back_home_empty_stack') });
     if (from === 'lesson_menu') {
       const popToMenu = () => {
         if (router.canGoBack()) {
@@ -2524,8 +2526,15 @@ function LessonScreen() {
   }, []);
 
   const handleLessonHeaderBack = useCallback(() => {
-    if (lessonExitInFlightRef.current) return;
-    if (!beginLessonExit()) return;
+    if (lessonExitInFlightRef.current) {
+      traceLessonExit('headerBack:ignored', { lessonId, cellIndex, exitInFlight: true });
+      return;
+    }
+    if (!beginLessonExit()) {
+      traceLessonExit('headerBack:ignored', { lessonId, cellIndex, beginLessonExit: false });
+      return;
+    }
+    traceLessonExit('headerBack:exit', { lessonId, cellIndex, effectiveTotal });
     const attempt = lessonAnalyticsAttemptRef.current!;
     if (markLessonAttemptTerminal(attempt, 'abandon')) {
       logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
@@ -2547,11 +2556,26 @@ function LessonScreen() {
   }, []);
 
   const dismissEnergyModal = useCallback(() => {
-    if (lessonExitInFlightRef.current) return;
-    if (!beginLessonExit()) return;
+    if (lessonExitInFlightRef.current) {
+      traceLessonExit('energyModal:ignored', { lessonId, exitInFlight: true });
+      return;
+    }
+    if (!beginLessonExit()) {
+      traceLessonExit('energyModal:ignored', { lessonId, beginLessonExit: false });
+      return;
+    }
+    traceLessonExit('energyModal:exit', { lessonId, cellIndex });
     resetNoEnergyModal();
     navigateUpFromLessonScreen();
-  }, [beginLessonExit, navigateUpFromLessonScreen, resetNoEnergyModal]);
+  }, [beginLessonExit, navigateUpFromLessonScreen, resetNoEnergyModal, lessonId, cellIndex]);
+
+  // зачем (§126): размонтирование урока без парной записи headerBack/energyModal/navigateUp = выход по внешней причине
+  // (router.replace из корневого лейаута, сброс навигации). Состояние держим в ref, чтобы запись на размонтировании была свежей.
+  const lessonExitSnapshotRef = useRef({ lessonId, cellIndex, status: String(status) });
+  lessonExitSnapshotRef.current = { lessonId, cellIndex, status: String(status) };
+  useEffect(() => () => {
+    traceLessonExit('unmount', { ...lessonExitSnapshotRef.current, exitInFlight: lessonExitInFlightRef.current });
+  }, []);
 
   // Android: системный «Назад» = тот же выход, что и кнопка (без дублей в стеке).
   useEffect(() => {

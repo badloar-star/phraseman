@@ -63,6 +63,19 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
   );
 });
 
+/** Плоская поверхность без тени и нажатия (`.field`, `.seg3`): заливка 150° из цветов темы, блик, кромка. */
+export const KitSurface = memo(function KitSurface({ g, children, radius = 14, style }: Readonly<{ g: GlassTokens; children?: React.ReactNode; radius?: number; style?: StyleProp<ViewStyle> }>) {
+  const [a, b] = themePair(g);
+  const colors = [`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`] as const;
+  return (
+    <View style={[{ borderRadius: radius }, style]}>
+      <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />
+      {children}
+      <Sheen radius={radius} />
+    </View>
+  );
+});
+
 /** «.tile» макета 41×41 r10: градиент 145° из цветов темы, блик, кромка, иконка 20. */
 export const KitIconTile = memo(function KitIconTile({ g, icon }: Readonly<{ g: GlassTokens; icon: keyof typeof Ionicons.glyphMap }>) {
   const [a, b] = themePair(g);

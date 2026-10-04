@@ -2143,8 +2143,11 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson19_phrase_6',
     english: "The tickets are on the desk",
-    russian: "Билеты на рабочем столе",
-    ukrainian: "Квитки на робочому столі",
+    // зачем (§126, жалоба 04.10): «на рабочем столе» звучит как экран компьютера; «на столе» — живая фраза.
+    // Раз «стол» теперь допускает и table — table принимается как ответ и убран из отвлекающих.
+    alternatives: ["The tickets are on the table"],
+    russian: "Билеты на столе",
+    ukrainian: "Квитки на столі",
     spanish: "Las entradas están en el escritorio.",
     words: [
       { text: 'Las', correct: 'Las', distractors: ['Los', 'El', 'La', 'Un', 'Una'], category: 'articulo' },
@@ -2152,7 +2155,7 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
       { text: 'están', correct: 'están', distractors: ['es', 'está', 'son', 'estaba', 'fueron'], category: 'verbo' },
       { text: 'en', correct: 'en', distractors: ['debajo de', 'cerca de', 'dentro de', 'al lado de', 'detrás de'], category: 'preposicion' },
       { text: 'el', correct: 'el', distractors: ['la', 'los', 'las', 'un', 'una'], category: 'articulo' },
-      { text: 'escritorio', correct: 'escritorio', distractors: ['silla', 'puerta', 'cama', 'casa', 'mesa'], category: 'sustantivo' },
+      { text: 'escritorio', correct: 'escritorio', distractors: ['silla', 'puerta', 'cama', 'casa', 'pared'], category: 'sustantivo' },
       { text: '.', correct: '.', distractors: [',', '?', '!', ';', ':'], category: 'puntuacion' },
     ],
     wordsEn: [
@@ -2161,7 +2164,7 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
       { text: 'are', correct: 'are', distractors: ['was', 'were', 'be', 'am', 'been'], category: 'verbo' },
       { text: 'on', correct: 'on', distractors: ['in', 'under', 'near', 'inside', 'behind'], category: 'preposicion' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'my'], category: 'articulo' },
-      { text: 'desk', correct: 'desk', distractors: ['chair', 'door', 'bed', 'house', 'table'], category: 'sustantivo' },
+      { text: 'desk', correct: 'desk', distractors: ['chair', 'door', 'bed', 'house', 'wall'], category: 'sustantivo' },
     ],
   },
   {
@@ -6703,7 +6706,9 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_29',
     english: "Did someone take my phone?",
-    alternatives: ["Did somebody take my phone?"],
+    // зачем (§126, жалоба 04.10): в вопросе anyone так же естественно, как someone — ответ засчитывается,
+    // а синонимы (somebody/anyone) убраны из отвлекающих: верный вариант не может быть «ошибкой».
+    alternatives: ["Did somebody take my phone?", "Did anyone take my phone?", "Did anybody take my phone?"],
     russian: "Кто-то взял мой телефон?",
     ukrainian: "Хтось взяв мій телефон?",
     spanish: "¿Alguien tomó mi teléfono?",
@@ -6715,7 +6720,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: "Did", correct: "Did", distractors: ["Do", "Does", "Was", "Were", "Has"] },
-      { text: "someone", correct: "someone", distractors: ["somebody", "anyone", "nobody", "everyone", "something"] },
+      { text: "someone", correct: "someone", distractors: ["somewhere", "anywhere", "nobody", "everyone", "something"] },
       { text: "take", correct: "take", distractors: ["took", "taking", "takes", "got", "grab"] },
       { text: "my", correct: "my", distractors: ["your", "his", "her", "our", "their"] },
       { text: "phone?", correct: "phone?", distractors: ["bag?", "key?", "book?", "paper?", "gift?"] },

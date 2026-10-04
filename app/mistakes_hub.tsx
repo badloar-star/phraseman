@@ -317,7 +317,9 @@ export default function MistakesHubScreen() {
         </ScrollView>
 
         {loaded && readyCount > 0 ? (
-          <View style={styles.dock}>
+          // зачем (сверка с results.html, 04.10): у нижней панели не было подложки — текст списка просвечивал между
+          // выбором длины и кнопкой; панель теперь на сплошном фоне экрана во всю ширину.
+          <View style={[styles.dock, { backgroundColor: g.bg }]}>
             {showSegments ? (
               <View style={[styles.segment, { backgroundColor: g.opaqueCard }]}>
                 {options.map((option) => {
@@ -367,7 +369,8 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 8 },
   iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
-  content: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 160, gap: 12 },
+  // зачем: отступ под нижнюю панель (выбор длины + кнопка ≈ 210) — последняя строка списка не уходит под кнопку.
+  content: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 250, gap: 12 },
   pillRow: { flexDirection: 'row', gap: 8, minHeight: 36 },
   pill: { height: 36, borderRadius: 18, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillNum: { fontWeight: '900', fontVariant: ['tabular-nums'] },
@@ -391,7 +394,7 @@ const styles = StyleSheet.create({
   emptyIcon: { width: 72, height: 72, borderRadius: 26, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
   emptyTitle: { fontWeight: '900', textAlign: 'center' },
   secondary: { minHeight: 52, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
-  dock: { position: 'absolute', left: 16, right: 16, bottom: 22, gap: 10 },
+  dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 22, gap: 10 },
   segment: { flexDirection: 'row', gap: 6, padding: 5, borderRadius: 18 },
   segmentItem: { flex: 1, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   startWrap: { position: 'relative' },

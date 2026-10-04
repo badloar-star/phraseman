@@ -36,7 +36,8 @@
   /* поля формы */
   .flab { font-size: 13px; font-weight: 600; color: var(--sec); margin: 0 4px 8px; }
   .field { border-radius: 14px; background: #161618; border: 1px solid var(--line-2); min-height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 18px; }
-  .field.ph { color: var(--muted); }
+  /* зачем: класс .ph занят телефоном в kit.css — пустое поле раздувалось до 430×932 */
+  .field.fph { color: var(--muted); }
   .field.ok { border-color: rgba(111,208,140,.45); background: rgba(111,208,140,.08); }
   .field.no { border-color: rgba(242,118,107,.45); background: rgba(242,118,107,.08); }
 
@@ -70,14 +71,7 @@
   .wave { display: flex; gap: 4px; align-items: center; justify-content: center; height: 44px; margin-top: 30px; }
   .wave i { width: 4px; border-radius: 2px; background: #E9E9EB; height: var(--h); animation: wv 900ms ease-in-out infinite alternate; animation-delay: var(--d); }
   @keyframes wv { to { transform: scaleY(.45); } }
-  .heard { text-align: center; font-size: 22px; line-height: 30px; font-weight: 600; margin-top: 26px; min-height: 30px; }
-  .tfwrap { position: relative; margin-top: 34px; }
-  .tfwrap .peek { position: absolute; left: 16px; right: 16px; bottom: -12px; height: 60px; border-radius: 16px; background: #111113; border: 1px solid var(--line); z-index: -1; }
-  .tfc { min-height: 260px; }
-  .tfc .ln { width: 44px; height: 1px; background: var(--line-2); margin: 22px auto; }
-  .tfc .tr { font-size: 22px; line-height: 28px; font-weight: 600; color: #DADADC; }
-  .tfc.ok { border-color: rgba(111,208,140,.45); }
-  .tfc.no { border-color: rgba(242,118,107,.45); }
+  .heard { text-align: center; font-size: 22px; line-height: 30px; font-weight: 600; margin-top: 42px; min-height: 30px; }
   .tfb { display: flex; justify-content: center; gap: 56px; margin-top: 48px; }
   .tfb .b { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--sec); font-size: 15px; font-weight: 600; }
   .tfb .rb { width: 76px; height: 76px; }
@@ -101,6 +95,9 @@
   .stats span { display: block; font-size: 14px; color: var(--sec); margin-top: 2px; }
 
   /* пустые состояния: значок в плитке, заголовок, одна строка, одна кнопка — по центру */
+  /* зачем (владелец 04.10: «такого нигде не должно быть»): .in в kit.css имеет will-change:transform и поэтому становится опорным блоком для абсолютных
+     потомков; при коротком содержимом «50%» считалось от высоты шапки и пустое состояние налезало на поиск и фильтры. Растягиваем .in на весь экран телефона. */
+  .scr > .in { min-height: 100%; }
   .empty { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-46%); text-align: center; padding: 0 40px; }
   .empty .tile { margin: 0 auto; color: #E9E9EB; }
   .empty .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 22px; letter-spacing: -.2px; }
@@ -118,6 +115,98 @@
   @keyframes sh { to { background-position: -200% 0; } }
   .menu .card + .card { margin-top: 9px; }
   .menu .tt.mut { color: #D0D0D2; }
+
+  /* =====================================================================
+     УЧЕБНАЯ КАРТОЧКА (владелец 04.10): «карточки должны быть чуть более напоминать
+     форму карточек и быть анимированными с разворотом».
+     зачем: слово/фраза — это физическая флеш-карта: вертикальная 3:4, стопка под ней,
+     тонкая кромка 1px, блик стекла из kit.css. Лицо — EN + слово + озвучка, оборот —
+     перевод и пример. Только графит/белый/серый, анимации — только transform/opacity.
+     ===================================================================== */
+  :root { --fc-ease: cubic-bezier(.2,.8,.2,1); --fc-flip: 560ms; --fc-r: 22px; }
+  .fc-lang { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; background: rgba(255,255,255,.06); font-size: 11.5px; font-weight: 700; letter-spacing: 2px; color: var(--sec); }
+
+  /* крупная карточка с разворотом: wrap (стопка, нажатие .t) → mv (смахивание) → lift (подъём, перспектива) → in (поворот) */
+  .fc-wrap { position: relative; width: var(--w); height: var(--h); margin: 0 auto; flex: none; }
+  .fc-u { position: absolute; inset: 0; transform-origin: 50% 100%; border-radius: var(--fc-r); background: linear-gradient(160deg, #19191B, #111113); border: 1px solid rgba(255,255,255,.07); }
+  .fc-u.u1 { transform: translateY(11px) scale(.94); opacity: .9; }
+  .fc-u.u2 { transform: translateY(21px) scale(.88); opacity: .5; }
+  .fc-mv { position: absolute; inset: 0; }
+  .fc-lift { position: absolute; inset: 0; perspective: 1200px; }
+  .fc-sh { position: absolute; left: 7%; right: 7%; top: 14%; bottom: 0; border-radius: var(--fc-r); box-shadow: 0 26px 44px -14px rgba(0,0,0,.85); }
+  .fc-in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform var(--fc-flip) var(--fc-ease); }
+  .fc-wrap.is-back .fc-in { transform: rotateY(180deg); }
+  .fc-side { position: absolute; inset: 0; border-radius: var(--fc-r); -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    border: 1px solid rgba(255,255,255,.10); background: linear-gradient(160deg, #222224 0%, #18181A 52%, #131315 100%); box-shadow: var(--lg-rim);
+    display: flex; flex-direction: column; padding: 16px 18px 18px; text-align: center; isolation: isolate; }
+  .fc-side::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--lg-sheen); pointer-events: none; z-index: -1; }
+  .fc-back { transform: rotateY(180deg); background: linear-gradient(160deg, #1D1D1F 0%, #161618 55%, #111113 100%); }
+  .fc-top { display: flex; align-items: center; justify-content: space-between; color: var(--muted); }
+  .fc-mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; }
+  .fc-k { font-size: 15px; line-height: 20px; color: var(--sec); margin-bottom: 14px; }
+  .fc-w { font-size: var(--fs); line-height: 1.18; font-weight: 700; letter-spacing: -.4px; }
+  .fc-sub { font-size: 15px; color: var(--sec); margin-top: 8px; }
+  .fc-ln { width: 44px; height: 1px; background: var(--line-2); margin: 18px auto; }
+  .fc-tr { font-size: 21px; line-height: 27px; font-weight: 600; color: #DADADC; }
+  .fc-ex { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); width: 100%; }
+  .fc-ex .e { font-size: 16px; line-height: 22px; margin-top: 8px; }
+  .fc-ex .et { font-size: 14px; line-height: 20px; color: var(--sec); margin-top: 3px; }
+  .fc-bot { display: flex; justify-content: center; min-height: 44px; align-items: flex-end; }
+  .fc-bot .rb { width: 44px; height: 44px; background: #262628; }
+  .fc-wrap.sm .fc-side { padding: 12px 12px 12px; }
+  .fc-wrap.sm .fc-bot { min-height: 32px; }
+  .fc-wrap.sm .fc-bot .rb { width: 32px; height: 32px; }
+  .fc-wrap.sm .fc-u.u1 { transform: translateY(8px) scale(.94); }
+  .fc-wrap.sm .fc-u.u2 { transform: translateY(15px) scale(.88); }
+  .fc-wrap.ok .fc-front { border-color: rgba(111,208,140,.45); }
+  .fc-wrap.no .fc-front { border-color: rgba(242,118,107,.45); }
+  /* подъём в момент разворота (scale 1.03 на ребре) и тень, которая сжимается и уходит с наклоном */
+  .fc-lift.lift { animation: fcLift var(--fc-flip) ease-in-out; }
+  .fc-lift.lift .fc-sh { animation: fcShade var(--fc-flip) ease-in-out; }
+  @keyframes fcLift { 0%, 100% { transform: none; } 30% { transform: scale(1.03); } }
+  @keyframes fcShade { 0%, 100% { transform: none; opacity: 1; } 30% { transform: translate(-8px, 12px) scale(.84, .94); opacity: .4; } }
+  /* смахивание и новая карточка из стопки */
+  .fc-mv.out-r, .fc-mv.out-l { transition: transform 420ms cubic-bezier(.4,0,.7,.4), opacity 360ms ease-in; opacity: 0; }
+  .fc-mv.out-r { transform: translateX(135%) rotate(16deg); }
+  .fc-mv.out-l { transform: translateX(-135%) rotate(-16deg); }
+  .fc-wrap.snap .fc-in { transition: none; }
+  .fc-wrap.deal .fc-mv { animation: fcDeal 380ms var(--fc-ease) both; }
+  .fc-wrap.deal .fc-u.u1 { animation: fcU1 380ms var(--fc-ease) both; }
+  .fc-wrap.deal .fc-u.u2 { animation: fcU2 380ms var(--fc-ease) both; }
+  @keyframes fcDeal { from { transform: translateY(11px) scale(.96); opacity: .4; } to { transform: none; opacity: 1; } }
+  @keyframes fcU1 { from { transform: translateY(21px) scale(.88); opacity: .5; } }
+  @keyframes fcU2 { from { transform: translateY(28px) scale(.82); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .fc-in { transition-duration: 1ms; }
+    .fc-lift.lift, .fc-lift.lift .fc-sh, .fc-wrap.deal .fc-mv, .fc-wrap.deal .fc-u { animation: none; }
+  }
+
+  /* мини-карточки списка: та же форма и кромка, без разворота */
+  .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; padding-bottom: 6px; }
+  .mc { position: relative; aspect-ratio: 5 / 6; }
+  .mc::before { content: ""; position: absolute; left: 10px; right: 10px; bottom: -6px; height: 50%; border-radius: 18px; background: #121214; border: 1px solid rgba(255,255,255,.06); }
+  .mc-f { position: absolute; inset: 0; border-radius: 20px; border: 1px solid rgba(255,255,255,.10); isolation: isolate; overflow: hidden;
+    background: linear-gradient(160deg, #202022 0%, #171719 58%, #131315 100%); box-shadow: var(--lg-rim), 0 14px 26px -16px rgba(0,0,0,.85);
+    display: flex; flex-direction: column; align-items: center; padding: 12px 12px 12px; text-align: center; transition: transform 220ms var(--fc-ease); }
+  .mc-f::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--lg-sheen); pointer-events: none; z-index: -1; }
+  .mc-f .fc-lang { align-self: flex-start; height: 22px; padding: 0 8px; font-size: 10.5px; }
+  .mc-w { margin-top: auto; font-size: 19px; line-height: 23px; font-weight: 700; letter-spacing: -.2px; }
+  .mc-tr { font-size: 14px; line-height: 18px; color: var(--sec); margin-top: 6px; }
+  .mc-b { margin-top: auto; padding-top: 8px; display: flex; color: var(--sec); }
+  .mc-b .rb { width: 32px; height: 32px; }
+  .mc:hover .mc-f { transform: translateY(-2px); }
+  .mc.add::before { display: none; }
+  .mc.add .mc-f { background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); box-shadow: none; justify-content: center; gap: 12px; font-size: 15px; font-weight: 600; color: #DADADC; }
+
+  /* превью на хабе: веер из трёх карточек */
+  .hp { position: relative; width: 74px; height: 96px; flex: none; margin: -4px 6px -4px 0; }
+  .hp > span { position: absolute; inset: 0; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); background: linear-gradient(160deg, #262628, #18181A); transition: transform 320ms var(--fc-ease); }
+  .hp > .a { transform: rotate(-10deg) translate(-7px, 3px); opacity: .5; }
+  .hp > .b { transform: rotate(7deg) translate(6px, 2px); opacity: .78; }
+  .hp > .c { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: var(--lg-rim), 0 12px 22px -10px rgba(0,0,0,.85); font-size: 13px; line-height: 15px; font-weight: 700; }
+  .hp > .c .fc-lang { height: 18px; padding: 0 7px; font-size: 9px; letter-spacing: 1.5px; }
+  .card:hover .hp > .a { transform: rotate(-15deg) translate(-11px, 4px); }
+  .card:hover .hp > .b { transform: rotate(11deg) translate(10px, 2px); }
 </style>
 </head>
 <body>
@@ -169,10 +258,25 @@ const COMMUNITY = () => packRow('Family', 'Лидия', meta(4, 9), 20) + packRo
 const myRow = (ic, t, n) => `<div class="card t"><div class="row"><div class="tile">${ic}</div><div class="tx"><div class="tt">${t}</div></div><span class="cntp">${n}</span>${ch}</div></div>`;
 // строка слова: слово, перевод, озвучка
 const wordRow = (w, tr, o = {}) => `<div class="card t"><div class="row" style="min-height:68px"><div class="tx"><div class="tt m">${w}</div><div class="st">${tr}</div></div>${o.right || volBtn}</div></div>`;
-// крупная карточка в наборе — эталон «B2 глаголы» + перевод
-const word = (w, tr, open = '') => `<div class="card t"${open ? ` data-open="${open}"` : ''} style="border-radius:16px;min-height:96px;display:flex;align-items:center;gap:18px;padding:14px 20px 14px 14px">
-  <span class="rb" style="width:40px;height:40px;background:#262628;border:none">${icon('vol', 's18')}</span>
-  <div class="grow"><div style="font-size:24px;line-height:30px;font-weight:600">${w}</div><div style="font-size:16px;color:var(--sec);margin-top:3px">${tr}</div></div></div>`;
+// зачем (владелец 04.10): слова — это учебные карточки, а не строки списка.
+// Мини-карточка списка: та же форма и кромка, что у крупной, но без разворота
+// (в длинном списке разворот мешает листать); тап открывает шторку карточки.
+const mcCard = (w, tr, o = {}) => `<div class="mc t"${o.open ? ` data-open="${o.open}"` : ''}><div class="mc-f"><span class="fc-lang">EN</span><div class="mc-w">${w}</div><div class="mc-tr">${tr}</div><div class="mc-b">${o.btm || `<span class="rb fill t">${icon('vol', 's16')}</span>`}</div></div></div>`;
+const mcGrid = (html) => `<div class="mgrid">${html}</div>`;
+const mcAdd = `<div class="mc add t"><div class="mc-f"><div class="tile">${icon('plus', 's20')}</div>Добавить карточку</div></div>`;
+// карточка в наборе — теперь мини-карточка
+const word = (w, tr, open = '') => mcCard(w, tr, { open });
+
+// Крупная карточка с разворотом. Слои: стопка (u1/u2) → смахивание (mv) → подъём и перспектива (lift) → поворот (in).
+// side: { lang, k, w, sub, ln, tr, ex, exTr, vol }. vol:false — без озвучки (подсказка на русском).
+const fcSide = (s, cls) => `<div class="fc-side ${cls}"><div class="fc-top"><span class="fc-lang">${s.lang}</span>${li('refresh', 's16')}</div>
+  <div class="fc-mid">${s.k ? `<div class="fc-k">${s.k}</div>` : ''}<div class="fc-w">${s.w}</div>${s.sub ? `<div class="fc-sub">${s.sub}</div>` : ''}${s.tr ? `<div class="fc-ln"></div><div class="fc-tr">${s.tr}</div>` : ''}${s.ex ? `<div class="fc-ex"><div class="ov">Пример</div><div class="e">${s.ex}</div><div class="et">${s.exTr}</div></div>` : ''}</div>
+  <div class="fc-bot">${s.vol === false ? '' : `<span class="rb t" data-noflip>${icon('vol', 's18')}</span>`}</div></div>`;
+const fcCard = (o) => `<div class="fc-wrap t${o.cls ? ` ${o.cls}` : ''}" data-flip${o.deck ? ' data-deck' : ''} style="--w:${o.w}px;--h:${o.h}px;--fs:${o.fs || 30}px;${o.style || ''}">
+  <i class="fc-u u2"></i><i class="fc-u u1"></i>
+  <div class="fc-mv"><div class="fc-lift"><i class="fc-sh"></i><div class="fc-in">${fcSide(o.front, 'fc-front')}${fcSide(o.back, 'fc-back')}</div></div></div></div>`;
+// размеры: сессия 236×314 (3:4), шторка карточки 288×384, превью создания 150×200
+const SESS = { w: 236, h: 314, fs: 30 };
 
 // ---------- шторка выбора режима (короткие подписи 2–4 слова) ----------
 const mode = (ic, t, s, last) => `<div class="t" style="display:flex;align-items:center;gap:20px;padding:16px 4px;${last ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t57">${icon(ic, 's24')}</div><div class="grow"><div style="font-size:18px;line-height:23px;font-weight:700">${t}</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:3px">${s}</div></div>${ch}</div>`;
@@ -183,7 +287,8 @@ const modeInner = `<div class="flex" style="padding:0 4px"><div class="grow" sty
 // 1. ХАБ
 // =====================================================================
 const hubHero = (o = {}) => `<div class="card c2" style="margin-top:26px;padding:18px 18px 20px">
-  <div class="flex" style="gap:14px"><div class="tile t55">${li('cards', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div></div>
+  <div class="flex" style="gap:14px"><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div>
+    <div class="hp" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"><span class="fc-lang">EN</span>Pitch in</span></div></div>
   <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться'}${arr}</div></div>`;
 const hub = () => phone(`
   ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
@@ -224,7 +329,7 @@ const saved = () => phone(`
   ${topRow()}
   ${title('Сохранённые', '64 карточки')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}Поиск</div>
-  <div class="stack" style="margin-top:16px">${SAVED.map(([w, t]) => wordRow(w, t)).join('')}</div>`,
+  <div style="margin-top:18px">${mcGrid(SAVED.map(([w, t]) => mcCard(w, t)).join(''))}</div><div style="height:72px"></div>`,
   { fixed: bot(`<div class="cta t" data-open="mode">Тренировать${arr}</div>`), overlay: sheet('mode', modeInner) });
 
 const savedSearch = () => phone(`
@@ -232,7 +337,7 @@ const savedSearch = () => phone(`
   ${title('Сохранённые', '64 карточки')}
   <div class="srch" style="margin-top:22px">${icon('search', 's18')}<span class="v">dec<span class="caret"></span></span><span class="x">${icon('close', 's18')}</span></div>
   <div class="ov" style="margin:22px 4px 12px">Найдено · 2</div>
-  <div class="stack">${wordRow('Make a <u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">dec</u>ision', 'Принять решение')}${wordRow('<u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">Dec</u>line', 'Отклонять')}</div>`);
+  ${mcGrid(mcCard('Make a <u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">dec</u>ision', 'Принять решение') + mcCard('<u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">Dec</u>line', 'Отклонять'))}`);
 
 const savedEmpty = () => phone(`${topRow()}${title('Сохранённые')}
   ${empty(icon('bookmark', 's28'), 'Пока пусто', 'Сохраняйте слова в уроках', 'Найти наборы')}`);
@@ -269,18 +374,18 @@ const packView = (o) => `
   <div class="flex" style="margin-top:16px;justify-content:space-between;min-height:42px">${o.meta}${o.act}</div>
   <div class="divider" style="margin:22px 0 22px"></div>
   <div style="font-size:17px;font-weight:600;margin-bottom:14px">Карточки <span style="color:var(--muted);margin-left:8px">${o.n}</span></div>
-  <div class="stack g13">${o.words}</div>`;
+  ${mcGrid(o.words)}`;
 const badge = (ic, t) => `<span class="pill s" style="margin-left:auto;color:#DADADC;font-weight:600">${ic}${t}</span>`;
 const TRAVEL = () => word('Boarding pass', 'Посадочный талон', 'cs') + word('Layover', 'Пересадка', 'cs') + word('Check in', 'Зарегистрироваться', 'cs') + word('Carry-on', 'Ручная кладь', 'cs');
 const B2 = () => word('Lay', 'Класть') + word('Claim', 'Утверждать') + word('Convince', 'Убеждать') + word('Hire', 'Нанимать');
 
-// шторка карточки
+// шторка карточки: открытая карточка 3:4 со стопкой — лицо (EN, слово, транскрипция, озвучка), по тапу оборот (перевод, пример)
 const cardSheet = (o) => `
   <div class="ov" style="padding:0 4px">${o.ov}</div>
-  <div class="flex" style="padding:0 4px;margin-top:10px;align-items:flex-start"><div class="grow"><div style="font-size:32px;line-height:38px;font-weight:700;letter-spacing:-.4px">${o.w}</div><div style="font-size:16px;color:var(--sec);margin-top:6px">${o.ipa}</div></div><span class="rb t" style="width:48px;height:48px">${icon('vol', 's20')}</span></div>
-  <div style="font-size:21px;line-height:27px;font-weight:600;margin:18px 4px 0">${o.tr}</div>
-  <div class="note" style="margin-top:20px"><div class="flex" style="align-items:flex-start"><div class="grow"><div class="ov">Пример</div><div style="font-size:17px;line-height:23px;margin-top:10px">${o.ex}</div><div style="font-size:15px;line-height:21px;color:var(--sec);margin-top:4px">${o.exTr}</div></div><span class="rb fill t">${icon('vol', 's18')}</span></div></div>
-  <div style="margin-top:18px">${o.foot}</div>`;
+  ${fcCard({ w: 288, h: 384, fs: 34, style: 'margin-top:16px',
+    front: { lang: 'EN', w: o.w, sub: o.ipa },
+    back: { lang: 'RU', w: o.tr, ex: o.ex, exTr: o.exTr } })}
+  <div style="margin-top:38px">${o.foot}</div>`;
 const OWN_CARD = { ov: 'Travel', w: 'Boarding pass', ipa: '/ˈbɔːdɪŋ pɑːs/', tr: 'Посадочный талон', ex: 'Have your boarding pass ready.', exTr: 'Приготовьте посадочный талон.',
   foot: `<div class="acts"><div class="card t">${icon('edit', 's22')}Изменить</div><div class="card t">${li('bookmarkF', 's22')}Сохранено</div><div class="card t">${icon('trash', 's22')}Удалить</div></div>` };
 
@@ -312,7 +417,7 @@ const cardForeign = () => phone(`<div style="opacity:.3">${packView({ title: 'B2
 // 6. СОЗДАНИЕ И РЕДАКТИРОВАНИЕ
 // =====================================================================
 const formHead = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb t">${icon('close', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${t}</div>${right}</div>`;
-const fld = (lab, val, o = {}) => `<div style="margin-top:${o.mt ?? 22}px"><div class="flab">${lab}</div><div class="field${val ? '' : ' ph'}">${val || o.ph}${o.caret ? '<span class="caret"></span>' : ''}</div></div>`;
+const fld = (lab, val, o = {}) => `<div style="margin-top:${o.mt ?? 22}px"><div class="flab">${lab}</div><div class="field${val ? '' : ' fph'}">${val || o.ph}${o.caret ? '<span class="caret"></span>' : ''}</div></div>`;
 const vis = (on) => `<div style="margin-top:22px"><div class="flab">Кто видит</div><div class="seg3"><span class="t${on === 0 ? ' on' : ''}">${li('lock', 's16')}Только я</span><span class="t${on === 1 ? ' on' : ''}">${li('globe', 's16')}Все</span></div></div>`;
 
 const createNew = () => phone(`
@@ -320,26 +425,26 @@ const createNew = () => phone(`
   ${fld('Название', 'Travel', { caret: true, mt: 30 })}
   ${vis(0)}
   ${sec('Карточки', '', 0)}
-  <div class="card t" style="padding:0"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить карточку</div></div></div></div>`,
+  ${mcGrid(mcAdd)}`,
   { fixed: bot(`<div class="cta t">${icon('plus', 's20')}Первая карточка</div>`) });
 
 const addCard = () => phone(`<div style="opacity:.3">${formHead('Новый набор')}${fld('Название', 'Travel', { mt: 30 })}${vis(0)}</div>`, { overlay: sheet('ac', `
   <div class="flex" style="padding:0 4px"><div class="grow" style="font-size:22px;font-weight:700">Новая карточка</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
-  ${fld('Слово или фраза', 'Boarding pass', { mt: 20 })}
+  ${fcCard({ w: 150, h: 200, fs: 20, cls: 'sm', style: 'margin-top:18px;--fc-r:20px',
+    front: { lang: 'EN', w: 'Boarding pass' }, back: { lang: 'RU', w: 'Посадочный' } })}
+  ${fld('Слово или фраза', 'Boarding pass', { mt: 34 })}
   ${fld('Перевод', 'Посадочный<span class="caret"></span>', { mt: 16 })}
   <div class="chips" style="margin-top:10px;margin-right:0"><span class="chipbtn t">Посадочный талон</span><span class="chipbtn t">Билет на посадку</span></div>
   ${fld('Пример', '', { ph: 'Необязательно', mt: 16 })}
   <div class="flex" style="gap:10px;margin-top:24px"><div class="cta gh t" style="flex:1">Ещё одну</div><div class="cta t" style="flex:1">Добавить</div></div>`, true) });
 
-const editRow = (w, t) => wordRow(w, t, { right: `<span class="ch">${icon('dotsH', 's20')}</span>` });
+const editRow = (w, t) => mcCard(w, t, { btm: icon('dotsH', 's20') });
 const editSet = () => phone(`
   ${formHead('Изменить набор')}
   ${fld('Название', 'Phrasal verbs', { mt: 30 })}
   ${vis(1)}
   ${sec('Карточки', '', 18)}
-  <div class="stack">
-    <div class="card t"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить карточку</div></div></div></div>
-    ${editRow('Give up', 'Сдаваться')}${editRow('Look after', 'Присматривать')}${editRow('Turn down', 'Отклонять')}${editRow('Put off', 'Откладывать')}</div>`,
+  ${mcGrid(mcAdd + editRow('Give up', 'Сдаваться') + editRow('Look after', 'Присматривать') + editRow('Turn down', 'Отклонять') + editRow('Put off', 'Откладывать'))}<div style="height:72px"></div>`,
   { fixed: bot(`<div class="cta t">Сохранить</div>`) });
 
 // =====================================================================
@@ -410,8 +515,10 @@ const blitzScreen = (o = {}) => phone(`
   ${o.plus ? '<span class="plus10">+10</span>' : ''}
   ${prog(o.p ?? 62)}
   <div class="center" style="margin-top:14px"><span class="pill timer">${o.tm || '0:37'}</span></div>
-  <div class="qc" style="margin-top:30px"><div class="k">Выберите перевод</div><div class="q">Convince</div></div>
-  <div class="stack g13" style="margin-top:23px">${OPTS.map((t, i) => { const st = (o.st || {})[i] || ''; return `<div class="opt t ${st}">${t}${st === 'ok' ? `<span class="mk">${icon('check', 's20')}</span>` : st === 'no' ? `<span class="mk">${icon('close', 's20')}</span>` : ''}</div>`; }).join('')}</div>`);
+  ${fcCard({ w: 216, h: 288, fs: 30, deck: true, style: 'margin-top:24px',
+    front: { lang: 'EN', k: 'Выберите перевод', w: 'Convince' },
+    back: { lang: 'RU', w: 'Убеждать', ex: 'She convinced me to stay.', exTr: 'Она убедила меня остаться.', vol: false } })}
+  <div class="stack g13" style="margin-top:44px">${OPTS.map((t, i) => { const st = (o.st || {})[i] || ''; return `<div class="opt t ${st}" data-next="r">${t}${st === 'ok' ? `<span class="mk">${icon('check', 's20')}</span>` : st === 'no' ? `<span class="mk">${icon('close', 's20')}</span>` : ''}</div>`; }).join('')}</div>`);
 const blitzQ = () => blitzScreen();
 const blitzOk = () => blitzScreen({ s: 50, plus: true, st: { 0: 'ok', 1: 'fade', 2: 'fade', 3: 'fade' } });
 const blitzNo = () => blitzScreen({ h: 2, st: { 0: 'ok', 1: 'no', 2: 'fade', 3: 'fade' } });
@@ -424,12 +531,15 @@ const fbNo = (id, t, mine, right, btns) => sheet(id, `${fbHead(false, t)}<div cl
   <div class="flex" style="gap:10px;margin-top:20px">${btns || `<div class="cta t" style="flex:1">Дальше${arr}</div>`}</div>`, true);
 
 // Устно
-const SPEAK_Q = `<div class="qc" style="margin-top:34px"><div class="k">Скажите по-английски</div><div class="q">Я вам перезвоню</div></div>`;
+// карточка сессии: лицо — задание, оборот — ответ; тап переворачивает, следующее действие смахивает в сторону
+const SPEAK_Q = fcCard({ ...SESS, deck: true, style: 'margin-top:30px',
+  front: { lang: 'RU', k: 'Скажите по-английски', w: 'Я вам перезвоню', vol: false },
+  back: { lang: 'EN', w: 'I’ll get back to you' } });
 const wave = () => `<div class="wave">${Array.from({ length: 23 }, (_, i) => `<i style="--h:${8 + Math.round(30 * Math.abs(Math.sin(i * .8 + 1)))}px;--d:${(i % 5) * 120}ms"></i>`).join('')}</div>`;
 const speakWait = () => phone(`
   ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
-  <div class="center" style="margin-top:84px"><span class="mic t">${icon('mic', 's28')}</span><span class="micl">Удерживайте и говорите</span></div>`,
-  { fixed: bot(`<div class="cta gh t">Не могу говорить</div>`) });
+  <div class="center" style="margin-top:62px"><span class="mic t">${icon('mic', 's28')}</span><span class="micl">Удерживайте и говорите</span></div>`,
+  { fixed: bot(`<div class="cta gh t" data-next="l">Не могу говорить</div>`) });
 const speakRec = () => phone(`
   ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
   <div class="heard">I’ll get back<span class="caret"></span></div>
@@ -444,28 +554,32 @@ const speakNo = () => phone(`${sessHead('Устно', 'B2 глаголы', cnt(4
 // Правда / ложь
 const tfScreen = (o = {}) => phone(`
   ${sessHead('Правда / ложь', 'Family', cnt(6, 20))}${prog(30)}
-  <div class="tfwrap"><div class="peek"></div><div class="qc tfc ${o.res || ''}"><div class="k">Перевод верный?</div><div class="q">Stepmother</div><div class="ln"></div><div class="tr">${o.tr || 'Мачеха'}</div></div></div>
-  <div class="tfb"><span class="b t"><span class="rb${o.pick === 'no' ? ` ${o.res}` : ''}">${icon('close', 's28')}</span>Нет</span><span class="b t"><span class="rb${o.pick === 'yes' ? ` ${o.res}` : ''}">${icon('check', 's28')}</span>Да</span></div>`, { overlay: o.overlay || '' });
+  ${fcCard({ w: 276, h: 368, fs: 32, deck: true, cls: o.res || '', style: 'margin-top:30px',
+    front: { lang: 'EN', k: 'Перевод верный?', w: 'Stepmother', tr: o.tr || 'Мачеха' },
+    back: { lang: 'RU', w: 'Мачеха' } })}
+  <div class="tfb" style="margin-top:40px"><span class="b t" data-next="l"><span class="rb${o.pick === 'no' ? ` ${o.res}` : ''}">${icon('close', 's28')}</span>Нет</span><span class="b t" data-next="r"><span class="rb${o.pick === 'yes' ? ` ${o.res}` : ''}">${icon('check', 's28')}</span>Да</span></div>`, { overlay: o.overlay || '' });
 const tfQ = () => tfScreen();
 const tfOk = () => tfScreen({ pick: 'yes', res: 'ok', overlay: fbOk('to', 'Верно') });
 const tfNo = () => tfScreen({ tr: 'Племянница', pick: 'yes', res: 'no', overlay: fbNo('tn', 'Неверно', ansBox('no', 'Было', 'Племянница'), 'Stepmother — мачеха') });
 
 // Вспомни и напиши
-const keyb = () => `<div class="kb"><div class="bar"><span class="hint t">${li('bulb', 's18')}Подсказка</span><span class="cta sm t">Проверить</span></div>
+const keyb = () => `<div class="kb"><div class="bar"><span class="hint t">${li('bulb', 's18')}Подсказка</span><span class="cta sm t" data-next="r">Проверить</span></div>
   <div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div>
   <div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div>
   <div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div>
   <div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k w">↵</span></div></div>`;
-const RECALL_Q = `<div class="qc" style="margin-top:30px;min-height:140px"><div class="k">Напишите по-английски</div><div class="q">Принять решение</div></div>`;
+const RECALL_Q = fcCard({ ...SESS, deck: true, style: 'margin-top:26px',
+  front: { lang: 'RU', k: 'Напишите по-английски', w: 'Принять решение', vol: false },
+  back: { lang: 'EN', w: 'Make a decision' } });
 const recallQ = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
-  <div class="field" style="margin-top:20px">Make a deci<span class="caret"></span></div>`, { fixed: keyb() });
+  <div class="field" style="margin-top:38px">Make a deci<span class="caret"></span></div>`, { fixed: keyb() });
 const recallOk = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
-  <div class="field ok" style="margin-top:20px">Make a decision</div>`, { overlay: fbOk('ro', 'Верно') });
+  <div class="field ok" style="margin-top:38px">Make a decision</div>`, { overlay: fbOk('ro', 'Верно') });
 const recallAlmost = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
-  <div class="field" style="margin-top:20px">Make a desicion</div>`,
+  <div class="field" style="margin-top:38px">Make a desicion</div>`,
   { overlay: fbNo('ra', 'Почти — опечатка', ansBox('no keep', 'Вы написали', 'Make a de<span class="hl">si</span>cion'), 'Make a decision') });
 const recallNo = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
-  <div class="field no" style="margin-top:20px">Take a choice</div>`,
+  <div class="field no" style="margin-top:38px">Take a choice</div>`,
   { overlay: fbNo('rn', 'Неверно', ansBox('no', 'Вы написали', 'Take a choice'), 'Make a decision') });
 
 // =====================================================================
@@ -514,6 +628,48 @@ document.getElementById('root').innerHTML =
   block('end', 'Итог тренировки', '', [col('Итог с ошибками', resMix()), col('Итог Блица', resBlitz()), col('Без ошибок', resPerfect())]) +
   block('states', 'Лимит и сеть', '', [col('Лимит исчерпан (Free)', limitOut()), col('Нет сети и кэша', offline())]);
 K.init();
+
+// Разворот и смахивание карточек. Своя обёртка (IIFE) — без глобальных имён, обработчик .t из kit.js не трогаем:
+// он только ставит/снимает .down, а здесь — отдельный слушатель click.
+(() => {
+  const FLIP_MS = 560; // = --fc-flip
+  const OUT_MS = 420;  // смахивание
+  const DEAL_MS = 380; // новая карточка из стопки
+  const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+  const turn = (wrap) => {
+    if (wrap.dataset.busy) return;
+    wrap.classList.toggle('is-back');
+    const lift = wrap.querySelector('.fc-lift');
+    if (lift) { restart(lift, 'lift'); setTimeout(() => lift.classList.remove('lift'), FLIP_MS + 40); }
+  };
+  // зачем: в сессии следующее действие (вариант, Да/Нет, Проверить) уводит карточку в сторону,
+  // а из стопки поднимается новая — как настоящая колода. Контент макета тот же.
+  const dealNext = (wrap, dir) => {
+    const mv = wrap.querySelector('.fc-mv');
+    if (!mv || wrap.dataset.busy) return;
+    wrap.dataset.busy = '1';
+    mv.classList.add(dir === 'l' ? 'out-l' : 'out-r');
+    setTimeout(() => {
+      wrap.classList.add('snap');
+      wrap.classList.remove('is-back');
+      mv.classList.remove('out-l', 'out-r');
+      restart(wrap, 'deal');
+      setTimeout(() => { wrap.classList.remove('deal', 'snap'); delete wrap.dataset.busy; }, DEAL_MS + 20);
+    }, OUT_MS);
+  };
+  document.addEventListener('click', (e) => {
+    const nx = e.target.closest('[data-next]');
+    if (nx) {
+      const ph = nx.closest('.ph');
+      const deck = ph && ph.querySelector('.fc-wrap[data-deck]');
+      if (deck) dealNext(deck, nx.dataset.next);
+      return;
+    }
+    if (e.target.closest('[data-noflip]')) return; // озвучка не переворачивает
+    const wrap = e.target.closest('.fc-wrap[data-flip]');
+    if (wrap) turn(wrap);
+  });
+})();
 </script>
 </body>
 </html>

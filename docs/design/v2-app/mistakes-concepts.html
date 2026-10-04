@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мои ошибки — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: «раздел ошибки не надо повторять раздел карточки — сделать по-другому»): три концепции с другим ЯЗЫКОМ интерфейса.
+     Общее с приложением — только цвет темы (аврора, акцентная кнопка). Нет: стопки-героя, плиток 2×2, сетки карточек, переворота карточки. */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 40%); }
+  .center { text-align: center; }
+  .acc { color: var(--acc); }
+  .sec2 { color: var(--sec); }
+  .rd { color: #FF9C93; } .gr { color: #8DEBB0; }
+
+  /* ===== Концепция 1: ДНЕВНИК — только текст и тонкие линии, без контейнеров ===== */
+  .jh { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 18px; }
+  .jg { font-size: 15px; color: var(--sec); font-weight: 600; margin: 28px 0 4px; display: flex; justify-content: space-between; }
+  .jl { display: flex; gap: 16px; padding: 16px 0; position: relative; }
+  .jl + .jl { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .jl .dt { width: 10px; height: 10px; border-radius: 50%; margin-top: 9px; flex: none; background: rgba(255,255,255,.25); }
+  .jl .dt.h { background: #FF9C93; } .jl .dt.m { background: var(--acc); }
+  .jl .w { font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -.3px; }
+  .jl .t { font-size: 16px; color: var(--sec); margin-top: 2px; }
+  .jl .s { margin-left: auto; font-size: 14px; color: var(--sec); padding-top: 6px; white-space: nowrap; }
+  .arrow { display: inline-flex; align-items: center; gap: 10px; font-size: 26px; font-weight: 600; flex-wrap: wrap; }
+  .arrow s { color: #FF9C93; text-decoration-thickness: 2px; } .arrow b { color: #8DEBB0; }
+  .tl { position: relative; padding-left: 26px; margin-top: 8px; }
+  .tl::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 2px; background: rgba(255,255,255,.12); }
+  .tl .e { position: relative; padding: 10px 0; font-size: 17px; display: flex; justify-content: space-between; }
+  .tl .e::before { content: ""; position: absolute; left: -26px; top: 18px; width: 10px; height: 10px; border-radius: 50%; background: var(--acc); }
+  .tl .e.no::before { background: #FF9C93; }
+  .ol { margin-top: 26px; }
+  .ol .o { display: flex; gap: 18px; padding: 18px 0; font-size: 24px; font-weight: 600; letter-spacing: -.3px; }
+  .ol .o + .o { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .ol .o .n { width: 22px; color: var(--sec); font-weight: 500; }
+  .ol .o.no { color: #FF9C93; } .ol .o.no span:last-child { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .ol .o.ok { color: #8DEBB0; }
+  .ol .o.fd { opacity: .35; }
+  .thin { height: 3px; border-radius: 2px; background: rgba(255,255,255,.12); margin-top: 10px; } .thin i { display: block; height: 100%; border-radius: 2px; background: var(--acc); }
+
+  /* ===== Концепция 2: ПРИБОРНАЯ ПАНЕЛЬ — кольцо, фильтр-ленты, стакан ответов внизу ===== */
+  .ringw { position: relative; width: 236px; height: 236px; margin: 18px auto 0; }
+  .ringw svg { position: absolute; inset: 0; }
+  .ringw .c { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .legend { display: flex; justify-content: center; gap: 22px; margin-top: 14px; font-size: 15px; color: var(--sec); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+  .fchips { display: flex; gap: 8px; margin: 22px 0 6px; overflow: hidden; }
+  .fchips span { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; background: rgba(255,255,255,.07); color: var(--sec); }
+  .fchips span.on { background: var(--acc); color: var(--on); }
+  .panel { border-radius: 24px; padding: 4px 18px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 14%, rgba(24,24,30,.7)), rgba(14,14,18,.7)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+  .pr { display: flex; align-items: center; gap: 14px; min-height: 64px; }
+  .pr + .pr { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .pr .w { font-size: 18px; font-weight: 700; } .pr .t { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .mini { display: flex; gap: 4px; margin-left: auto; } .mini i { width: 14px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); } .mini i.on { background: var(--acc); }
+  .hero2 { margin: -8px -20px 0; padding: 70px 24px 28px; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 55%, #0b0b0f), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); border-radius: 0 0 36px 36px; }
+  .stat3 { display: flex; margin-top: 22px; } .stat3 > div { flex: 1; } .stat3 > div + div { box-shadow: inset 1px 0 0 rgba(255,255,255,.1); padding-left: 16px; }
+  .stat3 b { display: block; font-size: 26px; } .stat3 span { font-size: 13px; color: var(--sec); }
+  .tray { position: absolute; left: 0; right: 0; bottom: 0; z-index: 25; padding: 18px 16px 34px; border-radius: 30px 30px 0 0; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.96)), rgba(14,14,18,.97)); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+  .tray .g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tray .g > div { height: 62px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; background: rgba(255,255,255,.08); }
+  .tray .g > div.ok { background: rgba(111,208,140,.2); box-shadow: inset 0 0 0 1.5px rgba(111,208,140,.7); } .tray .g > div.no { background: rgba(242,118,107,.18); box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.7); }
+  .tmr { width: 74px; height: 74px; margin: 6px auto 0; position: relative; } .tmr svg { position: absolute; inset: 0; } .tmr b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+
+  /* ===== Концепция 3: КАРТА СЛАБЫХ МЕСТ — пятна разного размера, ответы-пилюли, цветовая заливка экрана ===== */
+  .map { position: relative; height: 330px; margin-top: 10px; }
+  .bub { position: absolute; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at 32% 28%, color-mix(in srgb, var(--g1) 70%, #fff 8%), color-mix(in srgb, var(--g2) 38%, #0a0a0d) 78%); box-shadow: inset 1px 2px 0 rgba(255,255,255,.3), 0 22px 40px -18px rgba(0,0,0,.8); }
+  .bub b { font-size: 34px; } .bub span { font-size: 14px; font-weight: 600; margin-top: 2px; }
+  .bub.sel { box-shadow: inset 1px 2px 0 rgba(255,255,255,.4), 0 0 0 3px var(--acc), 0 22px 40px -18px rgba(0,0,0,.8); }
+  .tline { display: flex; align-items: baseline; gap: 12px; padding: 13px 0; font-size: 20px; font-weight: 600; } .tline + .tline { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); } .tline small { font-size: 15px; color: var(--sec); font-weight: 400; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 20px -20px 0; }
+  .split > div { padding: 30px 22px 34px; min-height: 230px; }
+  .split .a { background: linear-gradient(160deg, rgba(242,118,107,.22), rgba(242,118,107,.04)); } .split .b { background: linear-gradient(160deg, rgba(111,208,140,.22), rgba(111,208,140,.04)); }
+  .split small { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .7; } .split p { font-size: 30px; line-height: 34px; font-weight: 700; margin-top: 12px; letter-spacing: -.5px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; padding: 0 8px; }
+  .pills span { height: 58px; padding: 0 26px; border-radius: 29px; display: inline-flex; align-items: center; font-size: 20px; font-weight: 600; background: rgba(255,255,255,.09); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.25); }
+  .wash { position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(242,118,107,.38), rgba(242,118,107,.06) 70%); }
+  .chip.on { background: #222224; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Мои ошибки — три концепции</h1>
+  <p class="page-lead">Все три нарочно непохожи на «Карточки»: нет стопки-героя, плиток 2×2, сетки карточек и переворота карточки. Общее с приложением — только цвет темы (аврора, акцентная кнопка). В каждой по четыре ключевых экрана: хаб, ошибка, вопрос отработки, неверный ответ. Выберите одну — построю весь раздел в этом языке.</p>
+  <div class="page-nav"><a href="#c1">1 · Дневник</a><a href="#c2">2 · Панель</a><a href="#c3">3 · Карта</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const bar = `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex"><span class="pill s">${icon('check', 's16')}38</span></div></div>`;
+const barX = (r = '') => `<div class="flex" style="gap:14px;margin-top:6px"><span class="rb t">${icon('close', 's20')}</span><div class="grow">${r}</div></div>`;
+
+// ================= 1. ДНЕВНИК =================
+const J = [['Сегодня', [['Grandchildren', 'Внуки', 'h', '0 из 3'], ['I have been', 'Я был', 'm', '1 из 3']]], ['Вчера', [['Ready', 'Готов', 'm', '2 из 3'], ['Although', 'Хотя', 'h', '0 из 3']]], ['На этой неделе', [['Make a decision', 'Принять решение', 'm', '1 из 3']]]];
+const j1 = () => phone(`${bar}<div class="jh">Ждут 12 ошибок.<br><span class="acc">Начните с двух сегодняшних.</span></div>
+  ${J.map(([g, ls]) => `<div class="jg"><span>${g}</span><span>${ls.length}</span></div>${ls.map(([w, t, d, s]) => `<div class="jl"><span class="dt ${d}"></span><div><div class="w">${w}</div><div class="t">${t}</div></div><span class="s">${s}</span></div>`).join('')}`).join('')}`, { fixed: bot(cta('Разобрать 12')) });
+const j2 = () => phone(`${bar.replace('<span class="pill s">' + icon('check', 's16') + '38</span>', '<span class="rb t">' + icon('dotsH', 's20') + '</span>')}
+  <div style="font-size:44px;line-height:48px;font-weight:700;letter-spacing:-1px;margin-top:22px">Grandchildren</div><div class="sec2" style="font-size:18px;margin-top:6px">/ˈɡræntʃɪldrən/ · значение · ×3</div>
+  <div class="arrow" style="margin-top:34px"><s>Дети</s> → <b>Внуки</b></div>
+  <div style="font-size:17px;line-height:25px;color:#E2E2E6;margin-top:18px"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.</div>
+  <div style="font-size:15px;color:var(--sec);font-weight:600;margin-top:30px">История</div>
+  <div class="tl"><div class="e no"><span>Карточки</span><span class="sec2">4 окт.</span></div><div class="e no"><span>Карточки</span><span class="sec2">3 окт.</span></div><div class="e no"><span>Урок 4</span><span class="sec2">3 окт.</span></div></div>`, { fixed: bot(cta('Отработать')) });
+const j3 = () => phone(`${barX('<div class="thin" style="margin-top:0"><i style="width:25%"></i></div>')}
+  <div class="sec2" style="font-size:17px;margin-top:40px">Как переводится</div><div style="font-size:48px;line-height:52px;font-weight:700;letter-spacing:-1.2px;margin-top:8px">Grandchildren</div>
+  <div class="ol">${['Внуки', 'Дети', 'Родители', 'Племянники'].map((o, i) => `<div class="o"><span class="n">${i + 1}</span><span>${o}</span></div>`).join('')}</div>`);
+const j4 = () => phone(`${barX('<div class="thin" style="margin-top:0"><i style="width:25%"></i></div>')}
+  <div class="sec2" style="font-size:17px;margin-top:40px">Как переводится</div><div style="font-size:48px;line-height:52px;font-weight:700;letter-spacing:-1.2px;margin-top:8px">Grandchildren</div>
+  <div class="ol"><div class="o ok"><span class="n">${icon('check', 's20')}</span><span>Внуки</span></div><div class="o no"><span class="n">${icon('close', 's20')}</span><span>Дети</span></div><div class="o fd"><span class="n">3</span><span>Родители</span></div><div class="o fd"><span class="n">4</span><span>Племянники</span></div></div>
+  <div style="font-size:16px;line-height:23px;color:#E2E2E6;margin-top:22px"><b>Grand-</b> добавляет поколение. Дети — это <b>children</b>.</div>`, { fixed: bot(`<div style="display:flex;gap:10px"><div class="ac-cta" style="flex:1;width:auto">Дальше</div></div>`) });
+
+// ================= 2. ПРИБОРНАЯ ПАНЕЛЬ =================
+const ring = (p) => { const r = 100, c = 2 * Math.PI * r; return `<svg viewBox="0 0 236 236"><circle cx="118" cy="118" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="16"/><circle cx="118" cy="118" r="${r}" fill="none" stroke="var(--acc)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${c * p} ${c}" transform="rotate(-90 118 118)"/></svg>`; };
+const p1 = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span></div><div class="lt"><div class="ti">Мои ошибки</div></div>
+  <div class="ringw">${ring(0.76)}<div class="c"><div style="font-size:60px;line-height:62px;font-weight:800;letter-spacing:-1.5px">76%</div><div class="sec2" style="font-size:15px;margin-top:2px">исправлено</div></div></div>
+  <div class="legend"><span><i style="background:var(--acc)"></i>38 исправлено</span><span><i style="background:rgba(255,255,255,.25)"></i>12 ждут</span></div>
+  <div class="fchips"><span class="on">Все 12</span><span>Значение 5</span><span>Грамматика 4</span><span>Произношение 3</span></div>
+  <div class="panel">${[['Grandchildren', 'Внуки', 0], ['I have been', 'Я был', 1], ['Ready', 'Готов', 2]].map(([w, t, n]) => `<div class="pr"><div><div class="w">${w}</div><div class="t">${t}</div></div><div class="mini">${[0, 1, 2].map((i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div></div>`).join('')}</div>`, { fixed: bot(cta('Отработать 12')) });
+const p2 = () => phone(`<div class="hero2"><div class="topbar" style="margin:-46px 0 14px"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div>
+  <div style="font-size:42px;line-height:46px;font-weight:700;letter-spacing:-1px">Grandchildren</div><div style="font-size:20px;margin-top:6px;opacity:.8">Внуки</div>
+  <div class="stat3"><div><b>×3</b><span>ошибки</span></div><div><b>0/3</b><span>исправление</span></div><div><b>4 окт.</b><span>последняя</span></div></div></div>
+  <div style="margin-top:22px" class="panel"><div class="pr"><span class="sec2" style="width:90px">Ваш ответ</span><span class="rd" style="font-size:20px;font-weight:700;text-decoration:line-through">Дети</span></div><div class="pr"><span class="sec2" style="width:90px">Правильно</span><span class="gr" style="font-size:20px;font-weight:700">Внуки</span></div></div>
+  <div class="panel" style="margin-top:12px"><div class="pr"><span style="font-size:17px;font-weight:700">Почему это ошибка</span><span style="margin-left:auto" class="sec2">${icon('fwd', 's18')}</span></div></div>`, { fixed: bot(cta('Отработать')) });
+const timer = `<div class="tmr"><svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="37" cy="37" r="32" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="130 201" transform="rotate(-90 37 37)"/></svg><b>0:13</b></div>`;
+const p3 = () => phone(`${barX('<div class="sec2" style="text-align:right;font-weight:600">3 / 12</div>')}${timer}
+  <div class="center" style="margin-top:34px"><div class="sec2" style="font-size:17px">Выберите перевод</div><div style="font-size:46px;line-height:52px;font-weight:700;letter-spacing:-1px;margin-top:10px">Grandchildren</div></div>`,
+  { fixed: `<div class="tray"><div class="g">${['Внуки', 'Дети', 'Родители', 'Племянники'].map((o) => `<div>${o}</div>`).join('')}</div></div>` });
+const p4 = () => phone(`${barX('<div class="sec2" style="text-align:right;font-weight:600">3 / 12</div>')}${timer}
+  <div class="center" style="margin-top:34px"><div class="sec2" style="font-size:17px">Выберите перевод</div><div style="font-size:46px;line-height:52px;font-weight:700;letter-spacing:-1px;margin-top:10px">Grandchildren</div></div>`,
+  { fixed: `<div class="tray"><div class="g" style="margin-bottom:14px"><div class="ok">Внуки</div><div class="no">Дети</div></div><div style="font-size:16px;line-height:23px;color:#E2E2E6;padding:2px 4px 16px"><b>Grand-</b> добавляет поколение. Дети — это <b>children</b>.</div><div class="ac-cta">Дальше</div></div>` });
+
+// ================= 3. КАРТА СЛАБЫХ МЕСТ =================
+const m1 = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex"><span class="pill s">${icon('check', 's16')}38</span></div></div><div class="lt"><div class="ti">Мои ошибки</div><div class="su">Где слабее всего</div></div>
+  <div class="map"><div class="bub sel" style="left:18px;top:10px;width:176px;height:176px"><b>5</b><span>Значение слов</span></div><div class="bub" style="right:10px;top:46px;width:148px;height:148px"><b>4</b><span>Грамматика</span></div><div class="bub" style="left:150px;top:196px;width:118px;height:118px"><b>3</b><span>Произношение</span></div></div>
+  <div style="margin-top:8px"><div class="tline">Grandchildren <small>Внуки</small></div><div class="tline">Although <small>Хотя</small></div></div>`, { fixed: bot(cta('Отработать · значение слов')) });
+const m2 = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div>
+  <div class="center" style="margin-top:34px"><div style="font-size:44px;line-height:48px;font-weight:700;letter-spacing:-1px">Grandchildren</div><div class="sec2" style="font-size:17px;margin-top:6px">/ˈɡræntʃɪldrən/ · ×3</div></div>
+  <div class="split"><div class="a"><small>Было</small><p><s>Дети</s></p></div><div class="b"><small>Стало</small><p>Внуки</p></div></div>
+  <div style="font-size:17px;line-height:25px;color:#E2E2E6;margin-top:22px"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.</div>`, { fixed: bot(cta('Отработать')) });
+const m3 = () => phone(`${barX('<div class="sec2" style="text-align:right;font-weight:600">3 / 12</div>')}
+  <div class="center" style="margin-top:96px"><div class="sec2" style="font-size:17px">Выберите перевод</div><div style="font-size:50px;line-height:56px;font-weight:700;letter-spacing:-1.2px;margin-top:12px">Grandchildren</div></div>`,
+  { fixed: `<div style="position:absolute;left:0;right:0;bottom:46px;z-index:25"><div class="pills">${['Внуки', 'Дети', 'Родители', 'Племянники'].map((o) => `<span>${o}</span>`).join('')}</div></div>` });
+const m4 = () => phone(`<div class="wash"></div><div style="position:relative;z-index:1">${barX('<div class="sec2" style="text-align:right;font-weight:600">3 / 12</div>')}
+  <div class="center" style="margin-top:70px"><div style="font-size:17px;opacity:.75">Grandchildren — это</div><div style="font-size:64px;line-height:68px;font-weight:800;letter-spacing:-1.8px;margin-top:12px" class="gr">Внуки</div><div style="font-size:24px;margin-top:18px" class="rd"><s>Дети</s></div>
+  <div style="font-size:16px;line-height:23px;color:#E2E2E6;margin:26px 12px 0"><b>Grand-</b> добавляет поколение. Дети — это <b>children</b>.</div></div></div>`, { fixed: bot(cta('Дальше')) });
+
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Дневник', 'Только текст и тонкие линии, без контейнеров. Ошибки идут по дням, исправление показано как «было → стало», ответы — нумерованные строки, неверный вариант зачёркнут прямо в списке.', [col('Хаб', j1()), col('Ошибка', j2()), col('Вопрос', j3()), col('Неверный ответ', j4())]) +
+  block('c2', '2 · Панель', 'Кольцо прогресса, ленты-фильтры по типам, одна панель-список. В отработке ответы живут в «стакане» внизу, под большим пальцем; разбор выезжает в нём же.', [col('Хаб', p1()), col('Ошибка', p2()), col('Вопрос', p3()), col('Неверный ответ', p4())]) +
+  block('c3', '3 · Карта слабых мест', 'Типы ошибок — пятна разного размера: чем больше пятно, тем больше ошибок. Ошибка показана половинками «было / стало». Ответы — пилюли, неверный ответ заливает экран цветом.', [col('Хаб', m1()), col('Ошибка', m2()), col('Вопрос', m3()), col('Неверный ответ', m4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

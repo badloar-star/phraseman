@@ -110,10 +110,7 @@ export type AppEventMap = {
   runes_balance_updated: { balance: number; delta: number };
   /** Durable foreground tracker flush; achievement evaluator reuses the same five-minute cadence. */
   foreground_usage_changed: { totalMs: number };
-  /** 48-год ваучер на безкоштовний паккарток виданий (з преміум-подарунка / broadcast) */
-  pack_trial_gift_set: undefined;
-  /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
-  pack_trial_gift_consumed: undefined;
+  // зачем (04.10): pack_trial_gift_set/consumed удалены — их слушал только снятый магазин жемчуга.
   // зачем: D70/D78 — energy_purchased_shards удалено вместе с дозаправкой энергии за жемчуг.
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };

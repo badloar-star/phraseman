@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { emitAppEvent } from '../events';
+// зачем (04.10, реестр событий): события pack_trial_gift_set/consumed слушал только магазин жемчуга
+// (app/shards_shop.tsx, снят в 2.0) — эмиты без слушателей убраны.
 import { flashcardsPackTrialGiftKey, type RuntimeStudyTarget } from '../target_storage_keys';
 import {
   captureAccountGeneration,
@@ -198,7 +199,6 @@ async function upsertVoucher(item: PackTrialState, token: AccountGenerationToken
     const previous = items.find((candidate) => candidate.localVoucherId === item.localVoucherId);
     const merged = previous ? { ...previous, ...item, claimBinding: item.claimBinding ?? previous.claimBinding } : item;
     await persistInventory([...items.filter((candidate) => candidate.localVoucherId !== item.localVoucherId), merged], token);
-    emitAppEvent('pack_trial_gift_set');
     return merged;
   });
 }
@@ -265,7 +265,6 @@ export async function setPackGiftTrial48hOnce(
     const markerKey = requireGiftAccountStorageKey(markerBaseKey, token);
     await AsyncStorage.multiSet([[inventoryKey, JSON.stringify(next)], [markerKey, item.localVoucherId]]);
     if (!isCurrentAccountGeneration(token, token.stableId)) throw new Error('pack_gift_account_changed');
-    emitAppEvent('pack_trial_gift_set');
     return item;
   });
 }
@@ -310,9 +309,7 @@ export async function reconcilePackGiftTrials(
       return !bindingIsMaterialized(item.claimBinding, materializedEntitlements);
     });
     const next = dedupeInventory([...retained, ...incoming]);
-    const changed = JSON.stringify(next) !== JSON.stringify(dedupeInventory(current));
     await persistInventory(next, token);
-    if (changed) emitAppEvent('pack_trial_gift_set');
   });
 }
 
@@ -355,7 +352,6 @@ export async function consumePackGiftTrial(voucher: string | PackTrialState | un
       : requested;
     if (!localVoucherId) return;
     await persistInventory(items.filter((item) => item.localVoucherId !== localVoucherId), token);
-    emitAppEvent('pack_trial_gift_consumed');
   });
 }
 

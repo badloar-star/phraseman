@@ -11,6 +11,13 @@ const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
   'bug_hunt_eligible_check',
   'lesson_replay_started',
   'season_pass_plus_changed',
+  // зачем (04.10, разбор по git): сигнал завершения облачного восстановления — контракт загрузки
+  // (boot_cloud_restore_contract, startup_cloud_identity_recovery). Единственный слушатель жил в
+  // hooks/use-streak-freeze-active.ts, удалённом как хук без вызовов (14d724030).
+  'cloud_profile_hydrated',
+  // Слушателя не было никогда (f5a01076d): точка расширения после свежей личности при удалении
+  // аккаунта (auth_provider, зона сессии 5), проверяется post_delete_fresh_identity_integration.
+  'post_delete_identity_ready',
 ]);
 
 const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
@@ -23,6 +30,8 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'premium_access_changed @ components/EnergyContext.tsx',
   'premium_activated @ components/EnergyContext.tsx',
   'premium_deactivated @ components/EnergyContext.tsx',
+  // зачем (04.10): энергия перечитывает лимиты при смене удалённого конфига (слушатель с 4792f3e59).
+  'remote_config_changed @ components/EnergyContext.tsx',
   'remote_config_changed @ app/(tabs)/settings.tsx',
   'vip_activated @ app/(tabs)/settings.tsx',
   'vip_activated @ components/EnergyContext.tsx',
@@ -44,6 +53,13 @@ const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   'compassBriefing',
   'matchFoundToast',
   'matchFoundToastScreen',
+  // зачем (04.10, разбор по git): ключи снятых в 2.0 поверхностей — владельцы удалены, ключ ждёт решения
+  // владельца об удалении из overlay_arbiter_core (в утреннем списке координатора).
+  'arenaOpponentFound', // Арена удалена (D83), тост находки соперника — b3fe5ef75 → снят в efe19ae9d
+  'coachToast', // хост коуч-тоста снят (b47eb0e01)
+  'friendGift', // подарок другу снят в снимке 2.0 (efe19ae9d)
+  'levelUp', // модалка уровня удалена, повышение играется на Главной (1b0ee9d52)
+  'streakRevive', // восстановление серии убрано (D107, a8abc1d85)
 ]);
 
 type SourceFile = {

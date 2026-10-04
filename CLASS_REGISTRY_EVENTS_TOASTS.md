@@ -333,6 +333,35 @@ Safe decision needed:
 
 - Keep the dormant hook documented until an owner approves either a cross-screen consumer or removal from the typed event contract.
 
+### Owner review: `cloud_profile_hydrated`
+
+Emitters:
+
+- `app/_layout.tsx` (boot cloud restore coordinator `onHydrated`, two paths), `app/auth_provider.ts` (restore after sign-in), `app/nickname_guard.ts`.
+
+Observed state (04.10, git history):
+
+- The only runtime listener lived in `hooks/use-streak-freeze-active.ts`; that hook had no callers and was deleted as dead code in 14d724030 (2026-10-03).
+- The signal itself is a boot contract: `tests/boot_cloud_restore_contract.test.ts`, `tests/startup_cloud_identity_recovery.test.ts`, `tests/nickname_guard_reconcile.test.ts`.
+
+Safe decision needed:
+
+- Whether any screen (e.g. Home) should refresh when the cloud profile lands after the first frame. Until then the event stays a documented emit-only hook.
+
+### Owner review: `post_delete_identity_ready`
+
+Emitter:
+
+- `app/auth_provider.ts`: after account deletion, once a fresh identity is ready (zone of the auth session).
+
+Observed state (04.10, git history):
+
+- No runtime listener ever existed (introduced in f5a01076d, 2026-08-29); `tests/post_delete_fresh_identity_integration.test.ts` verifies the emit order.
+
+Safe decision needed:
+
+- Keep as an extension point for post-delete flows, or remove together with the auth session owner.
+
 ## Existing tests and guardrails
 
 Directly relevant tests:

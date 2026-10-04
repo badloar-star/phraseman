@@ -24874,6 +24874,1060 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l29",
+      "lessonOrdinal": 29,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_staged_nominal_group_agreement_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_broader_narrative_preterite_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1"
+        ],
+        "noExpansion": "Permit only the closed nominal Genitiv wholes der Ausweis des Antragstellers, die Mitteilung der Beratungsstelle, die Rückseite des Formulars, die Nummer des Antrags and das neue Hinweisblatt der Beratungsstelle; the single approved preposition-plus-Genitiv whole wegen des Regens; the established two-object contrast Die Sachbearbeiterin gibt dem Antragsteller den Ausweis; the established neuter-nominative relative mapping instantiated only by das ... , das ...; and the selected narrative Präteritum form sah. Treat every selected form as a bounded lexical-document relationship, not as evidence for a productive Genitiv paradigm. IDS grammis attests both wegen des Regens and colloquial wegen dem Regen: L29 production is limited to wegen des Regens, while the Dative variant is neither a productive target nor universally ungrammatical. Do not introduce another nominal or prepositional Genitiv frame, an article/adjective/noun-ending table, a general -s/-es formation rule, a genitive pronoun, interrogative or relative form, a proper-name or plural Genitiv, postposed wegen, a von-equivalence doctrine, another preposition-case relation, another relative form, another narrative Präteritum form, passive, modal Perfekt, register-repair mediation, legal interpretation or certainty beyond the text, an unlabelled DACH production target, a claim that Genitiv is obsolete or generally B1-required, Task 6 lexical adjudication, learner-facing RU or UK content, release, audio, mockup, or English-contour reuse."
+      },
+      "chapters": [
+        {
+          "id": "de_l29_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l29_ch01",
+          "lessonOutcome": "recognise a bounded genitive relation in a familiar service document",
+          "packetIds": [
+            "de_l29_c01_s01",
+            "de_l29_c01_s02",
+            "de_l29_c01_s03",
+            "de_l29_c01_s04",
+            "de_l29_c01_s05",
+            "de_l29_c01_s06",
+            "de_l29_c01_s07",
+            "de_l29_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "municipal-service-counter-id-check",
+            "participants": "applicant-and-service-clerk",
+            "goal": "recognise-one-bounded-person-document-genitive",
+            "contextSignature": "municipal-counter-person-document-genitive-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Dokumentbeziehung: [der Ausweis] [des Antragstellers]. Lesen Sie beide Gruppen als eine Einheit: der Ausweis des Antragstellers.",
+            "exit": "Das ist der Ausweis des Antragstellers.",
+            "independentEvidenceByPacketId": "de_l29_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "introduction",
+              "packetId": "de_l29_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l29_c01_s03", "de_l29_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l29_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c01_antragsteller_v1",
+                "semanticIdentity": "antragsteller|person whose identity document is being checked",
+                "lemmaOrExpression": "Antragsteller",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Antragsteller",
+                  "plural": "Antragsteller"
+                },
+                "nounPackageIdentity": "der|antragsteller|antragsteller",
+                "verbPackage": null,
+                "senseGloss": "person whose identity document is being checked",
+                "communicativeUse": "Das ist der Ausweis des Antragstellers.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch01",
+                  "checkpointPacketId": "de_l29_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "resident-and-library-clerk",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l29_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c01_ausweis_v1",
+                "semanticIdentity": "ausweis|identity document related to an applicant",
+                "lemmaOrExpression": "Ausweis",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Ausweis",
+                  "plural": "Ausweise"
+                },
+                "nounPackageIdentity": "der|ausweis|ausweise",
+                "verbPackage": null,
+                "senseGloss": "identity document related to an applicant",
+                "communicativeUse": "Das ist der Ausweis des Antragstellers.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch01",
+                  "checkpointPacketId": "de_l29_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "library-membership-document-check",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c01_dokument_v1",
+                "semanticIdentity": "dokument|service document whose relationship must be identified",
+                "lemmaOrExpression": "Dokument",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Dokument",
+                  "plural": "Dokumente"
+                },
+                "nounPackageIdentity": "das|dokument|dokumente",
+                "verbPackage": null,
+                "senseGloss": "service document whose relationship must be identified",
+                "communicativeUse": "Das ist der Ausweis des Antragstellers.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch01",
+                  "checkpointPacketId": "de_l29_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "library-membership-document-check",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-membership-document-check",
+              "participants": "resident-and-library-clerk",
+              "goal": "independently-recognise-the-person-document-relation",
+              "contextSignature": "library-membership-genitive-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c06", "de_l13_c07"],
+            "targetsFutureChapterIds": ["de_l29_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s49"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l29_ch02",
+          "lessonOutcome": "distinguish ownership source and part-whole relations in the approved set",
+          "packetIds": [
+            "de_l29_c02_s09",
+            "de_l29_c02_s10",
+            "de_l29_c02_s11",
+            "de_l29_c02_s12",
+            "de_l29_c02_s13",
+            "de_l29_c02_s14",
+            "de_l29_c02_s15",
+            "de_l29_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "advice-centre-document-sorting-desk",
+            "participants": "new-resident-and-advice-centre-clerk",
+            "goal": "distinguish-person-source-and-part-relations",
+            "contextSignature": "advice-centre-three-genitive-relations"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Person und Dokument: der Ausweis des Antragstellers. Quelle: die Mitteilung der Beratungsstelle. Teil des Dokuments: die Rückseite des Formulars.",
+            "exit": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+            "independentEvidenceByPacketId": "de_l29_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "guided",
+              "packetId": "de_l29_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l29_c02_s11", "de_l29_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l29_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c02_mitteilung_v1",
+                "semanticIdentity": "mitteilung|written information from an institution",
+                "lemmaOrExpression": "Mitteilung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Mitteilung",
+                  "plural": "Mitteilungen"
+                },
+                "nounPackageIdentity": "die|mitteilung|mitteilungen",
+                "verbPackage": null,
+                "senseGloss": "written information from an institution",
+                "communicativeUse": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch02",
+                  "checkpointPacketId": "de_l29_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "neighbourhood-help-desk-document-sorting",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c02_s16"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c02_beratungsstelle_v1",
+                "semanticIdentity": "beratungsstelle|advice centre identified as a document source",
+                "lemmaOrExpression": "Beratungsstelle",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Beratungsstelle",
+                  "plural": "Beratungsstellen"
+                },
+                "nounPackageIdentity": "die|beratungsstelle|beratungsstellen",
+                "verbPackage": null,
+                "senseGloss": "advice centre identified as a document source",
+                "communicativeUse": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch02",
+                  "checkpointPacketId": "de_l29_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "neighbourhood-help-desk-document-sorting",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c02_s16"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c02_rueckseite_v1",
+                "semanticIdentity": "ruckseite|back side identified as part of a form",
+                "lemmaOrExpression": "Rückseite",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Rückseite",
+                  "plural": "Rückseiten"
+                },
+                "nounPackageIdentity": "die|ruckseite|ruckseiten",
+                "verbPackage": null,
+                "senseGloss": "back side identified as part of a form",
+                "communicativeUse": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch02",
+                  "checkpointPacketId": "de_l29_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "neighbourhood-help-desk-document-sorting",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c02_s16"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c02_quelle_v1",
+                "semanticIdentity": "quelle|source relation in a service document",
+                "lemmaOrExpression": "Quelle",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Quelle",
+                  "plural": "Quellen"
+                },
+                "nounPackageIdentity": "die|quelle|quellen",
+                "verbPackage": null,
+                "senseGloss": "source relation in a service document",
+                "communicativeUse": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch02",
+                  "checkpointPacketId": "de_l29_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sort-the-three-approved-relations",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l29_c02_s16"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c02_teil_v1",
+                "semanticIdentity": "teil|part whole relation in a service document",
+                "lemmaOrExpression": "Teil",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Teil",
+                  "plural": "Teile"
+                },
+                "nounPackageIdentity": "der|teil|teile",
+                "verbPackage": null,
+                "senseGloss": "part-whole relation in a service document",
+                "communicativeUse": "der Ausweis des Antragstellers; die Mitteilung der Beratungsstelle; die Rückseite des Formulars",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch02",
+                  "checkpointPacketId": "de_l29_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sort-the-three-approved-relations",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l29_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighbourhood-help-desk-document-sorting",
+              "participants": "volunteer-and-resident",
+              "goal": "independently-sort-the-three-approved-relations",
+              "contextSignature": "neighbourhood-help-three-relation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c02", "de_l29_c01"],
+            "targetsFutureChapterIds": ["de_l29_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s50"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l29_ch03",
+          "lessonOutcome": "retrieve one high-utility genitive nominal frame",
+          "packetIds": [
+            "de_l29_c03_s17",
+            "de_l29_c03_s18",
+            "de_l29_c03_s19",
+            "de_l29_c03_s20",
+            "de_l29_c03_s21",
+            "de_l29_c03_s22",
+            "de_l29_c03_s23",
+            "de_l29_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "online-application-reference-form",
+            "participants": "applicant-and-service-portal",
+            "goal": "retrieve-the-approved-application-number-frame",
+            "contextSignature": "application-number-genitive-retrieval"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Form: [die Nummer] [des Antrags]. Das Formular hat die Nummer des Antrags.",
+            "exit": "Das Formular hat die Nummer des Antrags.",
+            "independentEvidenceByPacketId": "de_l29_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "retrieval",
+              "packetId": "de_l29_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l29_c03_s19", "de_l29_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l29_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c03_nummer_v1",
+                "semanticIdentity": "nummer|reference number shown on an application form",
+                "lemmaOrExpression": "Nummer",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Nummer",
+                  "plural": "Nummern"
+                },
+                "nounPackageIdentity": "die|nummer|nummern",
+                "verbPackage": null,
+                "senseGloss": "reference number shown on an application form",
+                "communicativeUse": "Das Formular hat die Nummer des Antrags.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch03",
+                  "checkpointPacketId": "de_l29_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "housing-service-reference-slip",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c03_s24"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l29_c03_antrag_v1",
+                "semanticIdentity": "antrag|service application identified by its reference number",
+                "lemmaOrExpression": "Antrag",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Antrag",
+                  "plural": "Anträge"
+                },
+                "nounPackageIdentity": "der|antrag|antrage",
+                "verbPackage": null,
+                "senseGloss": "service application identified by its reference number",
+                "communicativeUse": "Das Formular hat die Nummer des Antrags.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch03",
+                  "checkpointPacketId": "de_l29_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "housing-service-reference-slip",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "housing-service-reference-slip",
+              "participants": "tenant-and-service-clerk",
+              "goal": "independently-retrieve-the-application-number-frame",
+              "contextSignature": "housing-reference-genitive-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c04", "de_l29_c02"],
+            "targetsFutureChapterIds": ["de_l29_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l29_ch04",
+          "lessonOutcome": "retrieve one approved preposition-genitive frame",
+          "packetIds": [
+            "de_l29_c04_s25",
+            "de_l29_c04_s26",
+            "de_l29_c04_s27",
+            "de_l29_c04_s28",
+            "de_l29_c04_s29",
+            "de_l29_c04_s30",
+            "de_l29_c04_s31",
+            "de_l29_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "pickup-service-weather-delay-notice",
+            "participants": "resident-and-pickup-service-agent",
+            "goal": "retrieve-the-approved-written-wegen-genitive-whole",
+            "contextSignature": "pickup-weather-wegen-genitive-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Für diesen schriftlichen Hinweis: wegen des Regens. Der Abholdienst kommt wegen des Regens später.",
+            "exit": "Der Abholdienst kommt wegen des Regens später.",
+            "independentEvidenceByPacketId": "de_l29_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "production",
+              "packetId": "de_l29_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l29_c04_s27", "de_l29_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l29_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c04_regen_v1",
+                "semanticIdentity": "regen|rain stated as the reason for a service delay",
+                "lemmaOrExpression": "Regen",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Regen",
+                  "plural": "Regen"
+                },
+                "nounPackageIdentity": "der|regen|regen",
+                "verbPackage": null,
+                "senseGloss": "rain stated as the reason for a service delay",
+                "communicativeUse": "Der Abholdienst kommt wegen des Regens später.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch04",
+                  "checkpointPacketId": "de_l29_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "community-delivery-weather-update",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l29_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-delivery-weather-update",
+              "participants": "volunteer-and-delivery-coordinator",
+              "goal": "independently-retrieve-the-exact-written-frame",
+              "contextSignature": "community-delivery-wegen-genitive-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l10_c01", "de_l29_c03"],
+            "targetsFutureChapterIds": ["de_l29_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l29_ch05",
+          "lessonOutcome": "explain a document relationship in simpler known language",
+          "packetIds": [
+            "de_l29_c05_s33",
+            "de_l29_c05_s34",
+            "de_l29_c05_s35",
+            "de_l29_c05_s36",
+            "de_l29_c05_s37",
+            "de_l29_c05_s38",
+            "de_l29_c05_s39",
+            "de_l29_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "new-resident-document-explanation",
+            "participants": "volunteer-and-new-resident",
+            "goal": "restate-two-document-relations-in-known-language",
+            "contextSignature": "plain-language-genitive-mediation"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Einfache Erklärung: „die Nummer des Antrags“ → Der Antrag hat eine Nummer. „die Mitteilung der Beratungsstelle“ → Die Mitteilung ist von der Beratungsstelle.",
+            "exit": "Der Antrag hat eine Nummer. Die Mitteilung ist von der Beratungsstelle.",
+            "independentEvidenceByPacketId": "de_l29_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l29_c05_s35", "de_l29_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l29_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c05_erklaerung_v1",
+                "semanticIdentity": "erklarung|plain language explanation of a document relation",
+                "lemmaOrExpression": "Erklärung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Erklärung",
+                  "plural": "Erklärungen"
+                },
+                "nounPackageIdentity": "die|erklarung|erklarungen",
+                "verbPackage": null,
+                "senseGloss": "plain-language explanation of a document relation",
+                "communicativeUse": "Der Antrag hat eine Nummer. Die Mitteilung ist von der Beratungsstelle.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch05",
+                  "checkpointPacketId": "de_l29_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-give-a-plain-language-explanation",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l29_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-form-help-table",
+              "participants": "helper-and-resident",
+              "goal": "independently-give-a-plain-language-explanation",
+              "contextSignature": "community-form-mediation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c06", "de_l29_c04"],
+            "targetsFutureChapterIds": ["de_l29_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l29_ch06",
+          "lessonOutcome": "repair case overgeneralisation in a bounded document frame",
+          "packetIds": [
+            "de_l29_c06_s41",
+            "de_l29_c06_s42",
+            "de_l29_c06_s43",
+            "de_l29_c06_s44",
+            "de_l29_c06_s45",
+            "de_l29_c06_s46",
+            "de_l29_c06_s47",
+            "de_l29_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "service-clerk-case-repair-workshop",
+            "participants": "trainee-clerk-and-coach",
+            "goal": "preserve-recipient-item-cases-versus-nominal-relation",
+            "contextSignature": "two-object-versus-genitive-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Fallvergleich: Die Sachbearbeiterin gibt dem Antragsteller den Ausweis. „dem Antragsteller“ ist der Empfänger; „den Ausweis“ ist das Dokument. Anders: Das Dokument ist der Ausweis des Antragstellers.",
+            "exit": "Die Sachbearbeiterin gibt dem Antragsteller den Ausweis. Das Dokument ist der Ausweis des Antragstellers.",
+            "independentEvidenceByPacketId": "de_l29_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "transfer",
+              "packetId": "de_l29_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l29_c06_s43", "de_l29_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l29_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c06_empfaenger_v1",
+                "semanticIdentity": "empfanger|recipient role contrasted with a genitive relation",
+                "lemmaOrExpression": "Empfänger",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Empfänger",
+                  "plural": "Empfänger"
+                },
+                "nounPackageIdentity": "der|empfanger|empfanger",
+                "verbPackage": null,
+                "senseGloss": "recipient role contrasted with a genitive relation",
+                "communicativeUse": "Die Sachbearbeiterin gibt dem Antragsteller den Ausweis. Das Dokument ist der Ausweis des Antragstellers.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch06",
+                  "checkpointPacketId": "de_l29_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-a-case-overgeneralisation",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l29_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "training-counter-role-label-correction",
+              "participants": "trainee-and-supervisor",
+              "goal": "independently-repair-a-case-overgeneralisation",
+              "contextSignature": "counter-role-genitive-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c06", "de_l29_c05"],
+            "targetsFutureChapterIds": ["de_l29_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l29_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l29_ch07",
+          "lessonOutcome": "transfer limited genitive interpretation to a new form or notice",
+          "packetIds": [
+            "de_l29_c07_s49",
+            "de_l29_c07_s50",
+            "de_l29_c07_s51",
+            "de_l29_c07_s52",
+            "de_l29_c07_s53",
+            "de_l29_c07_s54",
+            "de_l29_c07_s55",
+            "de_l29_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1"
+          ],
+          "situation": {
+            "setting": "unfamiliar-citizen-service-notice",
+            "participants": "resident-and-service-helper",
+            "goal": "explain-key-relations-in-a-new-notice",
+            "contextSignature": "citizen-service-genitive-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "[das neue Hinweisblatt] [der Beratungsstelle]; [die Nummer] [des Antrags]; [wegen des Regens]. Die Sachbearbeiterin sah das neue Hinweisblatt der Beratungsstelle, das die Nummer des Antrags hat. Der Abholdienst kommt wegen des Regens später.",
+            "exit": "Die Sachbearbeiterin sah das neue Hinweisblatt der Beratungsstelle, das die Nummer des Antrags hat. Der Abholdienst kommt wegen des Regens später.",
+            "independentEvidenceByPacketId": "de_l29_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_broader_narrative_preterite_v1",
+              "stage": "delayed",
+              "packetId": "de_l29_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l29_c07_s51",
+            "de_l29_c07_s52",
+            "de_l29_c07_s53",
+            "de_l29_c07_s54",
+            "de_l29_c07_s55",
+            "de_l29_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l29_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l29_c07_hinweisblatt_v1",
+                "semanticIdentity": "hinweisblatt|unfamiliar service notice used for independent transfer",
+                "lemmaOrExpression": "Hinweisblatt",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Hinweisblatt",
+                  "plural": "Hinweisblätter"
+                },
+                "nounPackageIdentity": "das|hinweisblatt|hinweisblatter",
+                "verbPackage": null,
+                "senseGloss": "unfamiliar service notice used for independent transfer",
+                "communicativeUse": "Die Sachbearbeiterin sah das neue Hinweisblatt der Beratungsstelle, das die Nummer des Antrags hat. Der Abholdienst kommt wegen des Regens später.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l29_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l29_ch07",
+                  "checkpointPacketId": "de_l29_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-the-notice-without-legal-overclaim",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l29_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "unfamiliar-community-pickup-notice",
+              "participants": "resident-and-community-coordinator",
+              "goal": "independently-explain-the-notice-without-legal-overclaim",
+              "contextSignature": "community-pickup-genitive-final-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l28_c07", "de_l29_c06"],
+            "targetsFutureChapterIds": ["de_l30_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l30_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

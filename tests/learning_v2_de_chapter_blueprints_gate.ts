@@ -12550,6 +12550,382 @@ function validateL28SemanticContract(
     throw new Error("l28_semantic_contract_invalid:identity");
 }
 
+const L29_CONTRACT_HASH =
+  "1d1a460ed69d0d12e016e8768365cc09860722d01610cd4c42732c89682cb889";
+const L29_PLAN_HASH =
+  "414e499f0ff839d80ca6df6af2a29c3a1f7e3b9ec133b2f8aa1549fed5207295";
+const L29_BOUNDARY_HASH =
+  "0b2ca79a738ff6bd8ba7e5fff88616632fff4d536827c2cb1297b18343ed6b68";
+const L29_PACKET_HASH =
+  "536de44247c2169c9a127e9cdbfee62e39f67282223791cd53d7fc5ead5b4b96";
+const L29_LEXICAL_HASH =
+  "08e763b5e1ffd46414a06fb98b7e9cecc53a19736ec211364c54df38ed45c971";
+const L29_RECALL_HASH =
+  "a9f35ba79741c0fa1a8e025c952ee0d4c4dcadf4dab2b3fc69dfd293b19bc04a";
+const L29_LIFECYCLE_HASH =
+  "a6fe63947be9944813fd5d6a6bdf272688e28c7159c135bbeb38c78bd1899075";
+
+function validateL29SemanticContract(
+  raw: R,
+  plan: Boundary,
+  grammarOverride?: readonly Grammar[],
+): void {
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+      (value) => value.lessonId === "de_l29",
+    ) as R,
+    lesson = (raw.lessons as R[]).find(
+      (value) => value.lessonId === "de_l29",
+    ) as R;
+  if (!expected || l23Hash(expected) !== L29_CONTRACT_HASH)
+    throw new Error("l29_semantic_contract_invalid:identity");
+  const requiredPlanRecall = [
+    {
+      fromLessonId: "de_l13",
+      constructIds: ["de_gc_staged_nominal_group_agreement_v1"],
+      responsibility:
+        "retain nominal-group cues while adding a bounded genitive relation",
+    },
+    {
+      fromLessonId: "de_l12",
+      constructIds: ["de_gc_two_object_case_contrast_v1"],
+      responsibility:
+        "retain the established dative-recipient and accusative-transferred-entity contrast while adding a bounded genitive relation",
+    },
+    {
+      fromLessonId: "de_l22",
+      constructIds: ["de_gc_relative_clause_gender_case_v1"],
+      responsibility:
+        "contrast clause-internal case with a nominal relationship",
+    },
+    {
+      fromLessonId: "de_l28",
+      constructIds: ["de_gc_broader_narrative_preterite_v1"],
+      responsibility:
+        "retrieve a bounded past account when explaining how a document situation arose",
+    },
+  ];
+  if (
+    JSON.stringify(plan.crossLessonRecall) !==
+      JSON.stringify(requiredPlanRecall) ||
+    l23Hash(plan as unknown as R) !== L29_PLAN_HASH
+  )
+    throw new Error("l29_plan_recall_authority_invalid");
+  if (!lesson) throw new Error("l29_semantic_contract_invalid:identity");
+  const chapters = lesson.chapters as R[],
+    expectedChapters = expected.chapters as R[];
+  if (
+    lesson.lessonId !== "de_l29" ||
+    lesson.lessonOrdinal !== 29 ||
+    chapters.length !== 7 ||
+    chapters.some((chapter, index) => {
+      const expectedChapter = expectedChapters[index];
+      return (
+        !expectedChapter ||
+        chapter.id !== expectedChapter.id ||
+        chapter.ordinal !== expectedChapter.ordinal ||
+        chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+        chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+        JSON.stringify(chapter.packetIds) !==
+          JSON.stringify(expectedChapter.packetIds)
+      );
+    }) ||
+    l23Hash(chapters.flatMap((chapter) => chapter.packetIds as string[])) !==
+      L29_PACKET_HASH
+  )
+    throw new Error("l29_semantic_contract_invalid:identity");
+  if (
+    (lesson.grammarBoundary as R).noExpansion !==
+    (expected.grammarBoundary as R).noExpansion
+  )
+    throw new Error("l29_semantic_contract_invalid:no_expansion");
+  const allowed = [
+      "de_gc_limited_functional_genitive_v1",
+      "de_gc_staged_nominal_group_agreement_v1",
+      "de_gc_two_object_case_contrast_v1",
+      "de_gc_relative_clause_gender_case_v1",
+      "de_gc_broader_narrative_preterite_v1",
+    ],
+    finalAllowed = [allowed[0], allowed[1], allowed[3], allowed[4]],
+    prohibited = [
+      "de_gc_limited_modal_perfekt_v1",
+      "de_gc_register_repair_mediation_v1",
+    ];
+  if (
+    JSON.stringify((lesson.grammarBoundary as R).allowedConstructIds) !==
+      JSON.stringify(allowed) ||
+    JSON.stringify((lesson.grammarBoundary as R).prohibitedConstructIds) !==
+      JSON.stringify(prohibited) ||
+    chapters
+      .slice(0, 6)
+      .some(
+        (chapter) =>
+          JSON.stringify(chapter.allowedConstructIds) !==
+            JSON.stringify(allowed) ||
+          JSON.stringify((chapter.checkpoint as R).integratedConstructIds) !==
+            JSON.stringify(allowed) ||
+          JSON.stringify(chapter.prohibitedConstructIds) !==
+            JSON.stringify(prohibited),
+      ) ||
+    JSON.stringify(chapters[6].prohibitedConstructIds) !==
+      JSON.stringify(prohibited)
+  )
+    throw new Error("l29_semantic_contract_invalid:sets");
+  if (l23Hash(lesson.grammarBoundary) !== L29_BOUNDARY_HASH)
+    throw new Error("l29_semantic_contract_invalid:identity");
+  if (
+    JSON.stringify(chapters[6].allowedConstructIds) !==
+      JSON.stringify(finalAllowed) ||
+    JSON.stringify((chapters[6].checkpoint as R).integratedConstructIds) !==
+      JSON.stringify(finalAllowed)
+  )
+    throw new Error("l29_c07_final_transfer");
+  const anchors = chapters.flatMap(
+    (chapter) => chapter.lifecycleAnchors as R[],
+  );
+  if (
+    l23Hash(anchors) !== L29_LIFECYCLE_HASH ||
+    JSON.stringify(anchors) !==
+      JSON.stringify(
+        expectedChapters.flatMap((chapter) => chapter.lifecycleAnchors as R[]),
+      )
+  )
+    throw new Error("l29_lifecycle_anchor_invalid");
+  const grammar = grammarOverride ?? (json(GRAMMAR) as Grammar[]),
+    construct = grammar.find(
+      (value) => value.id === "de_gc_limited_functional_genitive_v1",
+    );
+  if (
+    !construct ||
+    JSON.stringify([
+      construct.firstIntroductionPacketId,
+      ...construct.guidedTargetPacketIds,
+      ...construct.retrievalTargetPacketIds,
+      ...construct.productionTargetPacketIds,
+      ...construct.transferTargetPacketIds,
+      ...construct.delayedTargetPacketIds,
+    ]) !==
+      JSON.stringify([
+        "de_l29_c01_s01",
+        "de_l29_c02_s09",
+        "de_l29_c03_s17",
+        "de_l29_c04_s25",
+        "de_l29_c06_s41",
+        "de_l30_c07_s49",
+      ])
+  )
+    throw new Error("l29_registry_anchor_mismatch");
+  const expectedRetrievals = [
+    ["de_l13_c06", "de_l13_c07"],
+    ["de_l13_c02", "de_l29_c01"],
+    ["de_l13_c04", "de_l29_c02"],
+    ["de_l10_c01", "de_l29_c03"],
+    ["de_l22_c06", "de_l29_c04"],
+    ["de_l12_c06", "de_l29_c05"],
+    ["de_l28_c07", "de_l29_c06"],
+  ];
+  if (
+    chapters.some((chapter, index) => {
+      const recall = chapter.recallSchedule as R;
+      return (
+        recall.entryException !== null ||
+        JSON.stringify(recall.retrievesFromChapterIds) !==
+          JSON.stringify(expectedRetrievals[index])
+      );
+    })
+  )
+    throw new Error("l29_recall_provenance_invalid");
+  if (
+    chapters.some((chapter, index) => {
+      const recall = chapter.recallSchedule as R,
+        probe = recall.futureDelayedProbe as R,
+        expectedRecall = expectedChapters[index].recallSchedule as R;
+      return (
+        JSON.stringify(recall.targetsFutureChapterIds) !==
+          JSON.stringify(expectedRecall.targetsFutureChapterIds) ||
+        probe.kind !== "COURSE_PACKET" ||
+        !/^de_l30_c07_s(?:49|50|51|52|53|54|55)$/u.test(String(probe.packetId))
+      );
+    }) ||
+    l23Hash(chapters.map((chapter) => chapter.recallSchedule)) !==
+      L29_RECALL_HASH
+  )
+    throw new Error("l29_final_followup_boundary_invalid");
+  if (
+    chapters.some((chapter, index) => {
+      const a = chapter.situation as R,
+        b = expectedChapters[index].situation as R,
+        c = (chapter.checkpoint as R).newSituation as R,
+        d = (expectedChapters[index].checkpoint as R).newSituation as R,
+        changed = ["setting", "participants", "goal"].filter(
+          (key) => a[key] !== c[key],
+        ).length;
+      return (
+        JSON.stringify(a) !== JSON.stringify(b) ||
+        JSON.stringify(c) !== JSON.stringify(d) ||
+        changed < 2
+      );
+    }) ||
+    new Set(
+      chapters.flatMap((chapter) => [
+        (chapter.situation as R).contextSignature,
+        ((chapter.checkpoint as R).newSituation as R).contextSignature,
+      ]),
+    ).size !== 14
+  )
+    throw new Error("l29_semantic_contract_invalid:situations");
+  if (
+    chapters.some((chapter, index) => {
+      const fading = chapter.supportFading as R,
+        expectedFading = expectedChapters[index].supportFading as R;
+      return (
+        fading.entryLevel !== expectedFading.entryLevel ||
+        fading.exitLevel !== expectedFading.exitLevel ||
+        Number(fading.exitLevel) >= Number(fading.entryLevel) ||
+        fading.independentEvidenceByPacketId !==
+          (chapter.packetIds as string[])[7]
+      );
+    })
+  )
+    throw new Error("l29_semantic_contract_invalid:support_fading");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.chapterEvidencePacketIds) !==
+        JSON.stringify(expectedChapters[index].chapterEvidencePacketIds),
+    )
+  )
+    throw new Error("l29_semantic_contract_invalid:evidence");
+  const lexical = chapters.flatMap(
+      (chapter) => (chapter.checkpoint as R).plannedNewLexicalSenses as R[],
+    ),
+    expectedLexical = expectedChapters.flatMap(
+      (chapter) => (chapter.checkpoint as R).plannedNewLexicalSenses as R[],
+    ),
+    lexicalCore = (value: R): R => {
+      const copy = clone(value);
+      delete copy.utilityProof;
+      delete copy.communicativeUse;
+      return copy;
+    };
+  if (
+    lexical.length !== expectedLexical.length ||
+    lexical.some(
+      (value, index) =>
+        JSON.stringify(lexicalCore(value)) !==
+        JSON.stringify(lexicalCore(expectedLexical[index])),
+    )
+  )
+    throw new Error("l29_semantic_contract_invalid:lexical_packages");
+  const surfaces = chapters.map((chapter) => {
+      const fading = chapter.supportFading as R;
+      return [
+        String(fading.entry),
+        String(fading.exit),
+        ...((chapter.checkpoint as R).plannedNewLexicalSenses as R[]).map(
+          (value) => String(value.communicativeUse),
+        ),
+      ];
+    }),
+    surface = (index: number) => surfaces[index].join(" "),
+    meta = JSON.stringify(lesson).replaceAll(
+      String((expected.grammarBoundary as R).noExpansion),
+      "",
+    );
+  if (!/der Ausweis des Antragstellers/iu.test(surface(0)))
+    throw new Error("l29_nominal_frame_inventory_invalid");
+  if (
+    !/der Ausweis des Antragstellers/iu.test(surface(1)) ||
+    !/die Mitteilung der Beratungsstelle/iu.test(surface(1)) ||
+    !/die Rückseite des Formulars/iu.test(surface(1)) ||
+    !/Quelle/iu.test(surface(1)) ||
+    !/Teil/iu.test(surface(1))
+  )
+    throw new Error("l29_relation_contrast_invalid");
+  if (!/die Nummer des Antrags/iu.test(surface(2)))
+    throw new Error("l29_nominal_retrieval_invalid");
+  if (!/wegen des Regens/iu.test(surface(3)))
+    throw new Error("l29_preposition_frame_invalid");
+  if (
+    !/Der Antrag hat eine Nummer/iu.test(surface(4)) ||
+    !/Die Mitteilung ist von der Beratungsstelle/iu.test(surface(4))
+  )
+    throw new Error("l29_plain_language_mediation_invalid");
+  if (
+    !/gibt dem Antragsteller den Ausweis/iu.test(surface(5)) ||
+    !/der Ausweis des Antragstellers/iu.test(surface(5))
+  )
+    throw new Error("l29_case_repair_invalid");
+  if (
+    !/das neue Hinweisblatt der Beratungsstelle/iu.test(surface(6)) ||
+    !/das die Nummer des Antrags hat/iu.test(surface(6)) ||
+    !/sah/iu.test(surface(6)) ||
+    !/wegen des Regens/iu.test(surface(6))
+  )
+    throw new Error("l29_c07_final_transfer");
+  const leakChecks: readonly [RegExp, string][] = [
+    [/unapprovedNominalGenitiveProbe/iu, "l29_unapproved_genitive_frame_leak"],
+    [
+      /trotzGenitiveProbe|waehrendGenitiveProbe/iu,
+      "l29_new_preposition_case_relation_leak",
+    ],
+    [/articleTableProbe/iu, "l29_exhaustive_genitive_paradigm_leak"],
+    [/formationRuleProbe/iu, "l29_case_formation_rule_leak"],
+    [/dessenProbe|wessenProbe/iu, "l29_genitive_relative_or_pronoun_leak"],
+    [
+      /properNameGenitiveProbe|pluralGenitiveProbe/iu,
+      "l29_proper_name_or_plural_genitive_leak",
+    ],
+    [/postposedWegenProbe/iu, "l29_postposed_wegen_leak"],
+    [/productiveDativeWegenProbe/iu, "l29_colloquial_dative_productive_leak"],
+    [/universalDativeWrongClaimProbe/iu, "l29_wegen_register_claim_invalid"],
+    [
+      /obsoleteClaimProbe|b1RequiredClaimProbe/iu,
+      "l29_unqualified_obsolete_or_b1_claim",
+    ],
+    [/prepositionRelativeProbe/iu, "l29_new_relative_form_leak"],
+    [
+      /gingProbe|schriebProbe|wurdeProbe/iu,
+      "l29_unselected_preterite_form_leak",
+    ],
+    [/modalPerfektProbe/iu, "l29_modal_perfekt_leak"],
+    [/registerRepairMediationProbe/iu, "l29_register_repair_mediation_leak"],
+    [/legalCertaintyProbe/iu, "l29_legal_authority_claim_leak"],
+    [/unlabelledDachProbe/iu, "l29_dach_unlabelled_production_leak"],
+    [/task6Probe/iu, "l29_task6_or_learner_surface_leak"],
+    [/learnerRuProbe|learnerUkProbe/iu, "l29_task6_or_learner_surface_leak"],
+    [
+      /releaseProjection|audioTranscript|mockupPath/iu,
+      "l29_release_surface_leak",
+    ],
+    [/englishContourProbe/iu, "l29_english_contour_leak"],
+  ];
+  for (const [pattern, diagnostic] of leakChecks)
+    if (pattern.test(meta)) throw new Error(diagnostic);
+  if (
+    lexical.some((value, index) => {
+      const proof = value.utilityProof as R,
+        expectedProof = expectedLexical[index].utilityProof as R;
+      return (
+        value.communicativeUse !== expectedLexical[index].communicativeUse ||
+        proof.facetValue !== expectedProof.facetValue
+      );
+    })
+  )
+    throw new Error("l29_checkpoint_lexical_alignment_invalid");
+  if (
+    lexical.some(
+      (value, index) =>
+        JSON.stringify(value.utilityProof) !==
+        JSON.stringify(expectedLexical[index].utilityProof),
+    )
+  )
+    throw new Error("l29_semantic_contract_invalid:lexical_utility");
+  if (l23Hash(lexical) !== L29_LEXICAL_HASH)
+    throw new Error("l29_semantic_contract_invalid:lexical_packages");
+  if (l23Hash(lesson) !== L29_CONTRACT_HASH)
+    throw new Error("l29_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -12699,6 +13075,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l28")
   )
     validateL28SemanticContract(raw, l28Plan);
+  const l29Plan = source.get("de_l29");
+  if (
+    l29Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l29")
+  )
+    validateL29SemanticContract(raw, l29Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -18566,6 +18948,453 @@ function fixtures(): void {
     mismatchedFutureVerb.lexicalKind,
   );
 }
+
+function l29Fixtures(): void {
+  type M = (raw: R, plan: R, grammar: R[], lesson: R) => void;
+  const getLesson = (raw: R): R =>
+    (raw.lessons as R[]).find((value) => value.lessonId === "de_l29") as R;
+  const cases: readonly [string, M][] = (() => {
+    const result: [string, M][] = [],
+      add = (diagnostic: string, mutate: M): void => {
+        result.push([diagnostic, mutate]);
+      },
+      c = (lesson: R, index: number): R => (lesson.chapters as R[])[index],
+      sense = (lesson: R, chapter: number, index = 0): R =>
+        ((c(lesson, chapter).checkpoint as R).plannedNewLexicalSenses as R[])[
+          index
+        ] as R,
+      appendProbe = (lesson: R, field: string): void => {
+        lesson[field] = true;
+      },
+      replaceSurfaces = (
+        lesson: R,
+        chapter: number,
+        from: RegExp,
+        to: string,
+      ): void => {
+        const row = c(lesson, chapter),
+          fading = row.supportFading as R;
+        fading.entry = String(fading.entry).replace(from, to);
+        fading.exit = String(fading.exit).replace(from, to);
+        for (const value of (row.checkpoint as R)
+          .plannedNewLexicalSenses as R[])
+          value.communicativeUse = String(value.communicativeUse).replace(
+            from,
+            to,
+          );
+      };
+
+    const pd = "l29_plan_recall_authority_invalid";
+    add(pd, (_r, p) => (p.crossLessonRecall as R[]).splice(0, 1)); // H01
+    add(
+      pd,
+      (_r, p) =>
+        (((p.crossLessonRecall as R[])[0].constructIds as string[])[0] = "x"),
+    ); // H02
+    add(
+      pd,
+      (_r, p) => ((p.crossLessonRecall as R[])[0].fromLessonId = "de_l11"),
+    ); // H03
+    add(pd, (_r, p) => ((p.crossLessonRecall as R[])[0].responsibility = "x")); // H04
+    add(pd, (_r, p) => (p.crossLessonRecall as R[]).splice(1, 1)); // H05
+    add(pd, (_r, p) => ((p.crossLessonRecall as R[])[1].responsibility = "x")); // H06
+    add(pd, (_r, p) => (p.crossLessonRecall as R[]).splice(2, 1)); // H07
+    add(pd, (_r, p) => (p.crossLessonRecall as R[]).splice(3, 1)); // H08
+    add(pd, (_r, p) => (p.crossLessonRecall as R[]).reverse()); // H09
+    add(pd, (_r, p) => (p.evidenceIds as string[]).splice(1, 1)); // H10
+
+    const identity = "l29_semantic_contract_invalid:identity";
+    add(identity, (_r, _p, _g, l) => (l.lessonId = "de_l30")); // H11
+    add(identity, (_r, _p, _g, l) => (l.lessonOrdinal = 30)); // H12
+    add(identity, (_r, _p, _g, l) => (l.chapters as R[]).pop()); // H13
+    add(identity, (_r, _p, _g, l) => (c(l, 0).id = "x")); // H14
+    add(identity, (_r, _p, _g, l) => (c(l, 0).ordinal = 2)); // H15
+    add(identity, (_r, _p, _g, l) => (c(l, 0).lessonOutcomeId = "x")); // H16
+    add(identity, (_r, _p, _g, l) => (c(l, 0).lessonOutcome = "x")); // H17
+    add(identity, (_r, _p, _g, l) => (c(l, 0).packetIds as string[]).pop()); // H18
+    add(
+      identity,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).packetIds as string[])[1] = (
+          c(l, 0).packetIds as string[]
+        )[0]),
+    ); // H19
+    add(
+      identity,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).packetIds as string[])[0] = "de_l28_c01_s01"),
+    ); // H20
+    add(
+      "l29_semantic_contract_invalid:no_expansion",
+      (_r, _p, _g, l) => ((l.grammarBoundary as R).noExpansion = "x"),
+    ); // H21
+    add("l29_semantic_contract_invalid:sets", (_r, _p, _g, l) =>
+      ((l.grammarBoundary as R).allowedConstructIds as string[]).pop(),
+    ); // H22
+    add("l29_semantic_contract_invalid:sets", (_r, _p, _g, l) =>
+      ((l.grammarBoundary as R).allowedConstructIds as string[]).reverse(),
+    ); // H23
+    add("l29_semantic_contract_invalid:sets", (_r, _p, _g, l) =>
+      ((l.grammarBoundary as R).allowedConstructIds as string[]).push("x"),
+    ); // H24
+    add("l29_semantic_contract_invalid:sets", (_r, _p, _g, l) =>
+      ((l.grammarBoundary as R).prohibitedConstructIds as string[]).pop(),
+    ); // H25
+    add(
+      "l29_semantic_contract_invalid:sets",
+      (_r, _p, _g, l) =>
+        (((l.grammarBoundary as R).prohibitedConstructIds as string[])[0] =
+          "x"),
+    ); // H26
+    add("l29_semantic_contract_invalid:sets", (_r, _p, _g, l) =>
+      (c(l, 0).allowedConstructIds as string[]).pop(),
+    ); // H27
+    add(
+      "l29_semantic_contract_invalid:sets",
+      (_r, _p, _g, l) =>
+        ((c(l, 0).prohibitedConstructIds as string[])[0] = "x"),
+    ); // H28
+    add(
+      "l29_c07_final_transfer",
+      (_r, _p, _g, l) =>
+        (c(l, 6).allowedConstructIds = [
+          ...((l.grammarBoundary as R).allowedConstructIds as string[]),
+        ]),
+    ); // H29
+    add("l29_c07_final_transfer", (_r, _p, _g, l) =>
+      ((c(l, 6).checkpoint as R).integratedConstructIds as string[]).push(
+        "de_gc_two_object_case_contrast_v1",
+      ),
+    ); // H30
+
+    const life = "l29_lifecycle_anchor_invalid";
+    add(life, (_r, _p, _g, l) => (c(l, 0).lifecycleAnchors = [])); // H31
+    add(
+      life,
+      (_r, _p, _g, l) =>
+        ((c(l, 1).lifecycleAnchors as R[])[0].packetId = "de_l29_c02_s10"),
+    ); // H32
+    add(
+      life,
+      (_r, _p, _g, l) =>
+        ((c(l, 2).lifecycleAnchors as R[])[0].stage = "guided"),
+    ); // H33
+    add(
+      life,
+      (_r, _p, _g, l) =>
+        ((c(l, 3).lifecycleAnchors as R[])[0].packetId = "de_l29_c04_s26"),
+    ); // H34
+    add(
+      life,
+      (_r, _p, _g, l) =>
+        ((c(l, 5).lifecycleAnchors as R[])[0].packetId = "de_l29_c06_s42"),
+    ); // H35
+    add(
+      life,
+      (_r, _p, _g, l) =>
+        ((c(l, 6).lifecycleAnchors as R[])[0].packetId = "de_l29_c07_s55"),
+    ); // H36
+    add(
+      "l29_registry_anchor_mismatch",
+      (_r, _p, g) =>
+        ((
+          g.find((v) => v.id === "de_gc_limited_functional_genitive_v1") as R
+        ).firstIntroductionPacketId = "x"),
+    ); // H37
+    add(
+      "l29_registry_anchor_mismatch",
+      (_r, _p, g) =>
+        ((
+          (g.find((v) => v.id === "de_gc_limited_functional_genitive_v1") as R)
+            .delayedTargetPacketIds as string[]
+        )[0] = "x"),
+    ); // H38
+
+    const recall = "l29_recall_provenance_invalid";
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).recallSchedule as R).retrievesFromChapterIds = [
+          "de_l29_c02",
+        ]),
+    ); // H39
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).recallSchedule as R).retrievesFromChapterIds = []),
+    ); // H40
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 3).recallSchedule as R).retrievesFromChapterIds = [
+          "de_l29_c03",
+        ]),
+    ); // H41
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 4).recallSchedule as R).retrievesFromChapterIds = [
+          "de_l29_c04",
+        ]),
+    ); // H42
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 5).recallSchedule as R).retrievesFromChapterIds = [
+          "de_l29_c05",
+        ]),
+    ); // H43
+    add(
+      recall,
+      (_r, _p, _g, l) =>
+        ((c(l, 6).recallSchedule as R).retrievesFromChapterIds = [
+          "de_l29_c06",
+        ]),
+    ); // H44
+    const follow = "l29_final_followup_boundary_invalid";
+    add(
+      follow,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).recallSchedule as R).targetsFutureChapterIds = [
+          "de_l29_c07",
+        ]),
+    ); // H45
+    add(follow, (_r, _p, _g, l) => {
+      ((c(l, 0).recallSchedule as R).futureDelayedProbe as R).kind =
+        "POST_COURSE_REVIEW_OWNER";
+    }); // H46
+    add(follow, (_r, _p, _g, l) => {
+      ((c(l, 0).recallSchedule as R).futureDelayedProbe as R).packetId =
+        "de_l30_c07_s56";
+    }); // H47
+    add(
+      follow,
+      (_r, _p, _g, l) =>
+        ((c(l, 6).recallSchedule as R).targetsFutureChapterIds = [
+          "de_l29_c07",
+        ]),
+    ); // H48
+
+    const sit = "l29_semantic_contract_invalid:situations";
+    add(sit, (_r, _p, _g, l) => ((c(l, 0).situation as R).setting = "x")); // H49
+    add(sit, (_r, _p, _g, l) => ((c(l, 0).situation as R).participants = "x")); // H50
+    add(sit, (_r, _p, _g, l) => ((c(l, 0).situation as R).goal = "x")); // H51
+    add(
+      sit,
+      (_r, _p, _g, l) =>
+        ((c(l, 1).situation as R).contextSignature = (
+          c(l, 0).situation as R
+        ).contextSignature),
+    ); // H52
+    add(sit, (_r, _p, _g, l) => {
+      const a = c(l, 0).situation as R,
+        b = (c(l, 0).checkpoint as R).newSituation as R;
+      b.participants = a.participants;
+      b.goal = a.goal;
+    }); // H53
+    const fade = "l29_semantic_contract_invalid:support_fading";
+    add(fade, (_r, _p, _g, l) => ((c(l, 0).supportFading as R).entryLevel = 4)); // H54
+    add(fade, (_r, _p, _g, l) => ((c(l, 0).supportFading as R).exitLevel = 1)); // H55
+    add(fade, (_r, _p, _g, l) => ((c(l, 0).supportFading as R).exitLevel = 5)); // H56
+    add(
+      fade,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).supportFading as R).independentEvidenceByPacketId =
+          "de_l29_c01_s07"),
+    ); // H57
+    const evidence = "l29_semantic_contract_invalid:evidence";
+    add(evidence, (_r, _p, _g, l) => (c(l, 0).chapterEvidencePacketIds = [])); // H58
+    add(
+      evidence,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).chapterEvidencePacketIds as string[])[0] = "de_l29_c02_s11"),
+    ); // H59
+    add(evidence, (_r, _p, _g, l) =>
+      (c(l, 6).chapterEvidencePacketIds as string[]).pop(),
+    ); // H60
+
+    const lex = "l29_semantic_contract_invalid:lexical_packages";
+    add(
+      lex,
+      (_r, _p, _g, l) =>
+        ((c(l, 0).checkpoint as R).plannedNewLexicalSenses = []),
+    ); // H61
+    add(lex, (_r, _p, _g, l) => {
+      const s = (c(l, 1).checkpoint as R).plannedNewLexicalSenses as R[],
+        x = clone(s[0]);
+      x.id = "de_lex_plan_l29_c02_extra_v1";
+      x.semanticIdentity = "extra|extra";
+      x.lemmaOrExpression = "extra";
+      s.push(x);
+    }); // H62
+    add(lex, (_r, _p, _g, l) => (sense(l, 0).id = "x")); // H63
+    add(
+      lex,
+      (_r, _p, _g, l) =>
+        (sense(l, 0, 1).semanticIdentity = sense(l, 0).semanticIdentity),
+    ); // H64
+    add(
+      lex,
+      (_r, _p, _g, l) => ((sense(l, 0).nounPackage as R).article = "die"),
+    ); // H65
+    add(lex, (_r, _p, _g, l) => ((sense(l, 0).nounPackage as R).plural = "x")); // H66
+    add(lex, (_r, _p, _g, l) => (sense(l, 0).nounPackageIdentity = "x")); // H67
+    add(lex, (_r, _p, _g, l) => {
+      sense(l, 0).contrastsWithSenseId = "x";
+      sense(l, 0).contrastEvidence = "x";
+    }); // H68
+    add(
+      "l29_checkpoint_lexical_alignment_invalid",
+      (_r, _p, _g, l) => (sense(l, 0).communicativeUse = "unrelated"),
+    ); // H69
+    add(
+      "l29_checkpoint_lexical_alignment_invalid",
+      (_r, _p, _g, l) => ((sense(l, 0).utilityProof as R).facetValue = "x"),
+    ); // H70
+    const util = "l29_semantic_contract_invalid:lexical_utility";
+    add(
+      util,
+      (_r, _p, _g, l) =>
+        ((sense(l, 0).utilityProof as R).chapterOutcomeId = "x"),
+    ); // H71
+    add(
+      util,
+      (_r, _p, _g, l) =>
+        ((sense(l, 0).utilityProof as R).checkpointPacketId = "x"),
+    ); // H72
+    add(util, (_r, _p, _g, l) => {
+      (
+        (sense(l, 0).utilityProof as R).integratedConstructIds as string[]
+      ).pop();
+    }); // H73
+    add(util, (_r, _p, _g, l) => {
+      ((sense(l, 0).utilityProof as R).plannedUsePacketIds as string[]).push(
+        "de_l29_c01_s07",
+      );
+    }); // H74
+    add(
+      util,
+      (_r, _p, _g, l) =>
+        ((sense(l, 0).utilityProof as R).necessityClass =
+          "TRANSFER_UNAVAILABLE"),
+    ); // H75
+
+    add("l29_nominal_frame_inventory_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(
+        l,
+        0,
+        /der Ausweis des Antragstellers/giu,
+        "das Dokument",
+      ),
+    ); // H76
+    add("l29_relation_contrast_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 1, /Quelle/giu, "Besitz"),
+    ); // H77
+    add("l29_nominal_retrieval_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 2, /die Nummer des Antrags/giu, "die Nummer"),
+    ); // H78
+    add("l29_preposition_frame_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 3, /wegen des Regens/giu, "später"),
+    ); // H79
+    add("l29_preposition_frame_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 3, /wegen des Regens/giu, "wegen eines Unfalls"),
+    ); // H80
+    add("l29_plain_language_mediation_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 4, /Der Antrag hat eine Nummer\.?/giu, ""),
+    ); // H81
+    add("l29_plain_language_mediation_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(
+        l,
+        4,
+        /Die Mitteilung ist von der Beratungsstelle\.?/giu,
+        "",
+      ),
+    ); // H82
+    add("l29_case_repair_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(
+        l,
+        5,
+        /gibt dem Antragsteller den Ausweis/giu,
+        "gibt dem Ausweis den Antragsteller",
+      ),
+    ); // H83
+    add("l29_case_repair_invalid", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 5, /der Ausweis des Antragstellers/giu, "der Ausweis"),
+    ); // H84
+    add("l29_c07_final_transfer", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 6, /das neue Hinweisblatt/giu, "das Hinweisblatt"),
+    ); // H85
+    add("l29_c07_final_transfer", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 6, /, das die Nummer des Antrags hat/giu, ""),
+    ); // H86
+    add("l29_c07_final_transfer", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 6, /sah/giu, "sieht"),
+    ); // H87
+    add("l29_c07_final_transfer", (_r, _p, _g, l) =>
+      replaceSurfaces(l, 6, /wegen des Regens/giu, "bei dem Regen"),
+    ); // H88
+
+    const probes: readonly [string, string][] = [
+      ["unapprovedNominalGenitiveProbe", "l29_unapproved_genitive_frame_leak"], // H89
+      ["trotzGenitiveProbe", "l29_new_preposition_case_relation_leak"], // H90
+      ["waehrendGenitiveProbe", "l29_new_preposition_case_relation_leak"], // H91
+      ["articleTableProbe", "l29_exhaustive_genitive_paradigm_leak"], // H92
+      ["formationRuleProbe", "l29_case_formation_rule_leak"], // H93
+      ["dessenProbe", "l29_genitive_relative_or_pronoun_leak"], // H94
+      ["wessenProbe", "l29_genitive_relative_or_pronoun_leak"], // H95
+      ["properNameGenitiveProbe", "l29_proper_name_or_plural_genitive_leak"], // H96
+      ["pluralGenitiveProbe", "l29_proper_name_or_plural_genitive_leak"], // H97
+      ["postposedWegenProbe", "l29_postposed_wegen_leak"], // H98
+      ["productiveDativeWegenProbe", "l29_colloquial_dative_productive_leak"], // H99
+      ["universalDativeWrongClaimProbe", "l29_wegen_register_claim_invalid"], // H100
+      ["obsoleteClaimProbe", "l29_unqualified_obsolete_or_b1_claim"], // H101
+      ["b1RequiredClaimProbe", "l29_unqualified_obsolete_or_b1_claim"], // H102
+      ["prepositionRelativeProbe", "l29_new_relative_form_leak"], // H103
+      ["gingProbe", "l29_unselected_preterite_form_leak"], // H104
+      ["schriebProbe", "l29_unselected_preterite_form_leak"], // H105
+      ["wurdeProbe", "l29_unselected_preterite_form_leak"], // H106
+      ["modalPerfektProbe", "l29_modal_perfekt_leak"], // H107
+      ["registerRepairMediationProbe", "l29_register_repair_mediation_leak"], // H108
+      ["legalCertaintyProbe", "l29_legal_authority_claim_leak"], // H109
+      ["unlabelledDachProbe", "l29_dach_unlabelled_production_leak"], // H110
+      ["task6Probe", "l29_task6_or_learner_surface_leak"], // H111
+      ["learnerRuProbe", "l29_task6_or_learner_surface_leak"], // H112
+      ["learnerUkProbe", "l29_task6_or_learner_surface_leak"], // H113
+      ["releaseProjection", "l29_release_surface_leak"], // H114
+      ["audioTranscript", "l29_release_surface_leak"], // H115
+      ["mockupPath", "l29_release_surface_leak"], // H116
+      ["englishContourProbe", "l29_english_contour_leak"], // H117
+    ];
+    for (const [field, diagnostic] of probes)
+      add(diagnostic, (_r, _p, _g, l) => appendProbe(l, field));
+    return result;
+  })();
+  assert.equal(cases.length, 117, "l29_hostile_corpus_count");
+  for (const [diagnostic, mutate] of cases) {
+    const raw = clone(json(FILE)) as R,
+      plan = clone(
+        (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+          (value) => value.id === "de_l29",
+        ),
+      ) as R,
+      grammar = clone(json(GRAMMAR)) as R[],
+      lesson = getLesson(raw);
+    mutate(raw, plan, grammar, lesson);
+    let thrown: unknown;
+    try {
+      validateL29SemanticContract(
+        raw,
+        plan as unknown as Boundary,
+        grammar as unknown as Grammar[],
+      );
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, "expected_error:" + diagnostic);
+    assert.equal(thrown.message, diagnostic);
+  }
+}
+
 function scope(a: readonly string[]): {
   lesson: string | null;
   prefix: number | null;
@@ -18582,6 +19411,7 @@ function scope(a: readonly string[]): {
 const selected = scope(process.argv.slice(2)),
   result = validate(json(FILE));
 fixtures();
+l29Fixtures();
 if (selected.lesson) {
   if (!result.ids.has(selected.lesson))
     throw new Error(`requested_lesson_not_materialized:${selected.lesson}`);

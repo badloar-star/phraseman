@@ -40,6 +40,14 @@ describe('instant open batch', () => {
     expect(src).toContain('[blitzAccessGranted, contentLang, deckRefs, studyTarget, poolReloadRevision]');
   });
 
+  it('blitz deck picker takes the memory or disk snapshot on its first frame and loads fresh data in the background (DQA finding)', () => {
+    const src = read('app/flashcards_blitz_session.tsx');
+    expect(src).toContain('void hydrateFcDeckOptionsSnapshot();');
+    expect(src).toContain("let seeded = peekFcDeckOptions('blitz', lang, studyTarget);");
+    expect(src).toContain('[BLITZ-PICKER] first_list source=');
+    expect(src).toContain('[BLITZ-PICKER] refreshed decks=');
+  });
+
   it('explanation disk cache is moved into memory on touch and on open', () => {
     expect(read('app/explain_phrase_request.ts')).toContain('export async function prefillExplainResultFromDisk(');
     const button = read('components/ExplainButton.tsx');

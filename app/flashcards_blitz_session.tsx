@@ -80,7 +80,7 @@ import {
 } from './flashcards/blitz_logic';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
-import { loadAllFcDeckRefs, loadFcDeckOptions } from './flashcards/deck_options';
+import { hydrateFcDeckOptionsSnapshot, loadAllFcDeckRefs, loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
@@ -1078,16 +1078,41 @@ export default function FlashcardsBlitzSession() {
   // кнопка в шапке открывает тот же DeckPickerSheet, что у тренировки и
   // слушания: мультивыбор, счётчик выбранного, сохранение в fc_mode_prefs_v1.
   /** Список наборов грузим только при открытии шита — вход в блиц не платит. */
+  // зачем (находка DQA 04.10, правило «каждый раздел открывается мгновенно»): при входе в блиц ПО ССЫЛКЕ минуя хаб снимок наборов с диска не поднимался,
+  // и шит 4–8 с показывал заглушку списка. Теперь снимок поднимается при монтировании (фоном), а при открытии шита список берётся из памяти/диска
+  // на первом кадре; свежая загрузка идёт фоном и заменяет список только если он отличается. Заглушка — только при самом первом открытии без снимка.
+  useEffect(() => {
+    void hydrateFcDeckOptionsSnapshot();
+  }, []);
   useEffect(() => {
     if (!deckPickerOpen) return;
     let cancelled = false;
+    const openedAt = Date.now();
     void (async () => {
+      let source: 'memory' | 'disk' | 'network' = 'network';
+      let seeded = peekFcDeckOptions('blitz', lang, studyTarget);
+      if (seeded) {
+        source = 'memory';
+      } else {
+        await hydrateFcDeckOptionsSnapshot();
+        seeded = peekFcDeckOptions('blitz', lang, studyTarget);
+        if (seeded) source = 'disk';
+      }
+      if (seeded && seeded.length > 0 && !cancelled) {
+        setDeckOptions((current) => (sameDeckOptions(current, seeded as DeckSheetOption[]) ? current : (seeded as DeckSheetOption[])));
+        console.log(`[BLITZ-PICKER] first_list source=${source} decks=${seeded.length} msToFirstList=${Date.now() - openedAt}`);
+      }
       const [decks, preset] = await Promise.all([
         loadFcDeckOptions('blitz', lang, studyTarget).catch(noteSwallowedAs('flashcards_blitz_session:useEffect.loadFcDeckOptions', [])),
         getLastPreset('blitz').catch(noteSwallowedAs('flashcards_blitz_session:useEffect.getLastPreset', null)),
       ]);
       if (cancelled) return;
-      setDeckOptions(decks);
+      if (!seeded || seeded.length === 0) {
+        console.log(`[BLITZ-PICKER] first_list source=network decks=${decks.length} msToFirstList=${Date.now() - openedAt} — снимка не было (первое открытие)`);
+      } else {
+        console.log(`[BLITZ-PICKER] refreshed decks=${decks.length} changed=${!sameDeckOptions(seeded as DeckSheetOption[], decks)} totalMs=${Date.now() - openedAt}`);
+      }
+      setDeckOptions((current) => (sameDeckOptions(current, decks) ? current : decks));
       setDeckPreset(preset);
     })();
     return () => {

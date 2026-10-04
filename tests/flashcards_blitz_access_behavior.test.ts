@@ -174,6 +174,10 @@ jest.mock('../app/flashcards/deck_sources', () => ({
 jest.mock('../app/flashcards/deck_options', () => ({
   loadAllFcDeckRefs: (...args: unknown[]) => mockLoadDeckRefs(...args),
   loadFcDeckOptions: jest.fn(async () => []),
+  // зачем (04.10): блиц поднимает снимок наборов при монтировании и берёт первый кадр шита из него (находка DQA).
+  hydrateFcDeckOptionsSnapshot: jest.fn(async () => undefined),
+  peekFcDeckOptions: jest.fn(() => null),
+  sameDeckOptions: (a: unknown, b: unknown) => a === b,
 }));
 jest.mock('../app/flashcards/DeckPickerSheet', () => ({ __esModule: true, default: () => null }));
 jest.mock('../app/flashcards/deck_selection', () => ({

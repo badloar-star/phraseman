@@ -13,7 +13,7 @@ const compiled = ts.transpileModule(source.slice(start, end), {
 }).outputText;
 const mod = { exports: {} };
 Function('module', 'exports', compiled)(mod, mod.exports);
-const { streakFlameFillRatio, streakFlameHeat, mixThemeColors } = mod.exports;
+const { streakFlameFillRatio, streakFlameHeat, mixThemeColors, streakFlameCoreOpacity, streakFlameOuterMix } = mod.exports;
 
 test('A1: the flame outline fills in ten steps and stays full after day 10', () => {
   assert.equal(streakFlameFillRatio(0), 0);
@@ -27,6 +27,17 @@ test('A1: the flame outline fills in ten steps and stays full after day 10', () 
   assert.equal(streakFlameHeat(20), 0.5);
   assert.equal(streakFlameHeat(30), 1);
   assert.equal(streakFlameHeat(400), 1);
+});
+
+// зачем (владелец 04.10): мягкий разгор после 10 дней и в «Спокойно» — ядро от центра растёт 10→15→30,
+// а внешний огонь в «Спокойно» не доходит до чистого белого, чтобы ядро было видно.
+test('after day 10 the flame glows from the centre, visibly growing to day 30 (calm theme too)', () => {
+  assert.equal(streakFlameCoreOpacity(9), 0);
+  assert.equal(streakFlameCoreOpacity(10), 0);
+  assert.ok(streakFlameCoreOpacity(15) > 0 && streakFlameCoreOpacity(15) < streakFlameCoreOpacity(30));
+  assert.equal(streakFlameCoreOpacity(30), 1);
+  assert.ok(streakFlameOuterMix(30, true) < 1, 'calm outer flame stays below pure white so the core reads');
+  assert.ok(streakFlameOuterMix(30, true) > streakFlameOuterMix(10, true));
 });
 
 test('colors come from theme tokens and never invent a value', () => {

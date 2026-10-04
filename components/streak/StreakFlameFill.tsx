@@ -42,6 +42,23 @@ export function mixThemeColors(from: string, to: string, amount: number): string
   return `#${c.map((v) => v.toString(16).padStart(2, '0')).join('')}`;
 }
 
+/**
+ * «Разгор от центра» после 10 дней (владелец 04.10, PM-044): ядро огня — меньший огонь в центре, его
+ * заметность растёт от 0 (10 дней) к полной (30 дней). Нужен и в теме «Спокойно», где яркий конец
+ * совпадает с обычным белым: там внешний огонь не доходит до чистого белого, и светлое ядро видно.
+ */
+export function streakFlameCoreOpacity(days: number): number {
+  const heat = streakFlameHeat(days);
+  return heat <= 0 ? 0 : Math.round((0.35 + heat * 0.65) * 100) / 100;
+}
+
+/** Доля смеси «приглушённый → яркий» для внешнего огня; в «Спокойно» потолок ниже, чтобы ядро читалось. */
+export function streakFlameOuterMix(days: number, calm: boolean): number {
+  const fill = streakFlameFillRatio(days);
+  const heat = streakFlameHeat(days);
+  return calm ? 0.5 + fill * 0.15 + heat * 0.2 : 0.55 + fill * 0.25 + heat * 0.2;
+}
+
 type Props = Readonly<{
   streakDays: number;
   size: number;
@@ -53,10 +70,13 @@ function StreakFlameFillBase({ streakDays, size, inactive = false }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const fill = streakFlameFillRatio(streakDays);
-  const heat = streakFlameHeat(streakDays);
-  const vivid = g.level === 'accent' || g.level === 'max' ? g.accentBright : g.text;
+  const calm = !(g.level === 'accent' || g.level === 'max');
+  const vivid = calm ? g.text : g.accentBright;
   // Заливка: от приглушённого к яркому тону темы — по мере заполнения и «разогрева».
-  const fillColor = mixThemeColors(g.secondary, vivid, 0.55 + fill * 0.25 + heat * 0.2);
+  const fillColor = mixThemeColors(g.secondary, vivid, streakFlameOuterMix(streakDays, calm));
+  // зачем (владелец 04.10): после 10 дней огонь разгорается от центра — светлое ядро, статично.
+  const coreOpacity = inactive ? 0 : streakFlameCoreOpacity(streakDays);
+  const coreSize = Math.round(size * 0.5);
   const outlineColor = g.mutedText;
   const filledHeight = Math.round(size * fill);
   return (
@@ -70,6 +90,15 @@ function StreakFlameFillBase({ streakDays, size, inactive = false }: Props) {
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: filledHeight, overflow: 'hidden' }}>
           <Ionicons name="flame" size={size} color={fillColor} style={{ position: 'absolute', left: 0, bottom: 0 }} />
         </View>
+      ) : null}
+      {coreOpacity > 0 ? (
+        <Ionicons
+          testID="streak-flame-core"
+          name="flame"
+          size={coreSize}
+          color={g.text}
+          style={{ position: 'absolute', left: Math.round((size - coreSize) / 2), bottom: Math.round(size * 0.08), opacity: coreOpacity }}
+        />
       ) : null}
     </View>
   );

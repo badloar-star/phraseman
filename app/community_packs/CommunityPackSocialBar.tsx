@@ -510,18 +510,18 @@ export default function CommunityPackSocialBar({
   }
 
   if (isList) {
-    // зачем (packs-simple.html `.meta`): иконки 18, промежуток 18 между парами и 6 внутри; кегль 13 по D145 (макет 14).
+    // зачем (packs-simple.html `.meta`): иконки 18, промежуток 18 между парами и 5 внутри (packs-simple.html перебивает kit 6); кегль 13 по D145 (макет 14).
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18, marginTop: 4 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} />
           <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Ionicons name="people-outline" size={18} color={g.secondary} />
           <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
-        {renderCommentsCount(18, 13, 6)}
+        {renderCommentsCount(18, 13, 5)}
       </View>
     );
   }

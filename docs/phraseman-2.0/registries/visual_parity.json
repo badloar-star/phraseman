@@ -6018,7 +6018,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "ИСПРАВЛЕНО (477e09959), ждёт склейки: лишняя «Нашёл ошибку?» под советом при пустом поиске",
+        "Блок «Ничего не нашлось» сразу под полем, в макете ниже (~120px)",
+        "После холодного старта в пилюле монет «—» вместо баланса"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6111,7 +6115,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Карточка экзамена светлее остальных, плитка значка почти белая (в макете тон уроков, плитка тёмная)",
+        "«A2» без замка, в макете «A2 🔒»",
+        "«Почти — 0%» при нулевом прогрессе (логика)",
+        "После первого урока A2 список обрывается — пусто"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6142,7 +6151,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Free: «Экзамен A1 · Почти — 0%» вместо «Откроется с Plus» — расходится вид и логика"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6233,7 +6244,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Шторка снизу без значка, текст слева, «Закрыть» — тёмная строка со «›»; в макете окно по центру с круглой плиткой-замком и белой пилюлей «Закрыть»",
+        "Логика: урок «Входит в Plus», а Free видит «Ещё рано: пройди урок 5» вместо пейвола",
+        "Окно открывается ~2 с после нажатия"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6262,7 +6277,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Не снята: Free на первом уроке A2 видит «Ещё рано: пройди урок 8» вместо окна «Уровень пока закрыт»"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6291,7 +6308,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Отдельный полноэкранный экран «Финальная проверка A1» вместо окна по центру «Недоступно» с шапочкой и белой «Закрыть»",
+        "Открывается ~4 с после нажатия"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6319,7 +6339,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Шторка «Урок 4 входит в Plus» недостижима: Free видит «Ещё рано: пройди урок 3»",
+        "Склейка снята с полного пейвола («Смешать темы») — для сверки шторки не годится"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -24485,14 +24508,16 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/packs-simple-001.png",
-      "evidence_at": "2026-10-04T19:25:33.068Z",
-      "evidence_sha256": "59caccf97da6af7e212b49ae2a93971a128559d01cc9f5fbfcbf448baa129cca",
+      "evidence_at": "2026-10-04T20:11:11.553Z",
+      "evidence_sha256": "b9bf6a8abc7c3d3c21fc66ac857c4f8130e9c0f9471ffad2727848f7c7147ac8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
         "Карточки наборов светлее макета (тема)",
-        "Плашка «Топ» у всех наборов (данные топа)"
+        "Плашка «Топ» у всех наборов (данные топа)",
+        "Под экраном общая панель вкладок — в макете её нет; «Новые · + · Топ» из-за неё выше и наезжает на карточку (вопрос координатору)",
+        "По умолчанию выбран «Топ», в макете «Новые» (поведение — вопрос координатору)"
       ],
       "status": "pending",
       "reviewed_by": null,

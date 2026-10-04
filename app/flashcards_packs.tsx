@@ -37,6 +37,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -626,8 +627,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
           {/* зачем (владелец 04.10, packs-simple.html `.bar3`, «как на макете»): компактная плавающая пилюля по центру —
               «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
-              «+» по центру — круг 48 цвета темы. В `.bar3` НЕТ стекла kit.css и тени: только градиент .94
-              и кольцо inset 1px белое .08 (styles.bottomTabs). */}
+              «+» по центру — круг 48 цвета темы. kit.css даёт `.bar3` блик и кромку (::after), а тень --lg-drop
+              страница перебивает своим box-shadow: кольцо inset 1px белое .08 (styles.bottomTabs). */}
           <View style={styles.bottomTabs}>
             {/* зачем (`.bar3` background): почти непрозрачная пилюля (.94) — список под ней не просвечивает. */}
             <LinearGradient
@@ -637,6 +638,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               end={{ x: 0.75, y: 0.933 }}
               style={StyleSheet.absoluteFill}
             />
+            <KitGlassLayer radius={30} />
             <TouchableOpacity
               testID="flashcards-packs-sort-new"
               accessibilityRole="button"

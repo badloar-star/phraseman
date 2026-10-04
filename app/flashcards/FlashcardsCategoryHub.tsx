@@ -272,7 +272,7 @@ const rowStyles = StyleSheet.create({
   title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   topTag: { height: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
   topTagText: { fontSize: 13, lineHeight: 16, fontWeight: '700' }, // зачем: макет 12, D145 — 13
-  author: { fontSize: 16, lineHeight: 20, marginTop: 1 },
+  author: { fontSize: 16, lineHeight: 19, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
   pill: { minWidth: 33, height: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   pillText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
 });

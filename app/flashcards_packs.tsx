@@ -37,7 +37,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { KitGlassLayer, KIT_GLASS_DROP } from '../components/v2/KitLiquidGlass';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -627,8 +626,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
           {/* зачем (владелец 04.10, packs-simple.html `.bar3`, «как на макете»): компактная плавающая пилюля по центру —
               «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
-              «+» по центру — круг 48 цвета темы. Стекло kit.css (блик + кромка), тень --lg-drop. */}
-          <View style={[styles.bottomTabs, { boxShadow: KIT_GLASS_DROP }]}>
+              «+» по центру — круг 48 цвета темы. В `.bar3` НЕТ стекла kit.css и тени: только градиент .94
+              и кольцо inset 1px белое .08 (styles.bottomTabs). */}
+          <View style={styles.bottomTabs}>
             {/* зачем (`.bar3` background): почти непрозрачная пилюля (.94) — список под ней не просвечивает. */}
             <LinearGradient
               pointerEvents="none"
@@ -637,7 +637,6 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               end={{ x: 0.75, y: 0.933 }}
               style={StyleSheet.absoluteFill}
             />
-            <KitGlassLayer radius={30} />
             <TouchableOpacity
               testID="flashcards-packs-sort-new"
               accessibilityRole="button"
@@ -702,6 +701,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     overflow: 'hidden',
+    boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.08)' }],
   },
   bottomTab: {
     height: 44,

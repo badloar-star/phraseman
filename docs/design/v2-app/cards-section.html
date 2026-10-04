@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточки 2.0 — весь раздел (стекло и градиент)</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10): старый раздел «Карточки» — «мусор, не премиальный дизайн».
+     Новый полный макет раздела строго на наборе kit.css: графит, белый, серый, Inter, стекло.
+     Без длинных подписей, без текстов про лимиты над кнопкой, без серых немых кнопок.
+     Здесь только детали, собранные из токенов набора. */
+  .bot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 18px 20px 34px; background: linear-gradient(rgba(12,12,13,0), #0C0C0D 30%); }
+  .bot .two { display: flex; gap: 10px; }
+  .bot .two > * { flex: 1; }
+  .big { font-size: 64px; line-height: 70px; font-weight: 800; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+
+  /* поиск, чипы, сегменты */
+  .srch { display: flex; align-items: center; gap: 10px; height: 46px; border-radius: 23px; background: #161618; border: 1px solid var(--line); padding: 0 16px; color: var(--muted); font-size: 16px; }
+  .srch .v { color: var(--text); }
+  .srch .x { margin-left: auto; color: var(--sec); }
+  .caret { display: inline-block; width: 2px; height: 22px; background: #fff; margin-left: 1px; vertical-align: middle; border-radius: 1px; animation: blink 1.05s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .chips { display: flex; gap: 8px; overflow: hidden; margin-right: -20px; }
+  .chipbtn { height: 36px; padding: 0 16px; border-radius: 18px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: #161618; border: 1px solid var(--line); white-space: nowrap; flex: none; }
+  .chipbtn.on { color: var(--cta-ink); background: var(--cta); border-color: transparent; }
+  .seg3 { display: flex; padding: 4px; border-radius: 14px; background: #161618; border: 1px solid var(--line); }
+  .seg3 span { flex: 1; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .seg3 span.on { background: #2C2C2E; color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 4px 12px -6px rgba(0,0,0,.8); }
+
+  /* выбор наборов */
+  .chk { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--outline); flex: none; display: flex; align-items: center; justify-content: center; color: transparent; transition: background 200ms, border-color 200ms; }
+  .chk.on { background: var(--cta); border-color: transparent; color: var(--cta-ink); }
+  .card.sel { background: #1C1C1E; }
+
+  /* поля формы */
+  .flab { font-size: 13px; font-weight: 600; color: var(--sec); margin: 0 4px 8px; }
+  .field { border-radius: 14px; background: #161618; border: 1px solid var(--line-2); min-height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 18px; }
+  .field.ph { color: var(--muted); }
+  .field.ok { border-color: rgba(111,208,140,.45); background: rgba(111,208,140,.08); }
+  .field.no { border-color: rgba(242,118,107,.45); background: rgba(242,118,107,.08); }
+
+  /* ответы */
+  .ans { border-radius: 16px; padding: 16px 16px 16px 18px; display: flex; align-items: center; gap: 14px; }
+  .ans .k { font-size: 13px; font-weight: 600; color: var(--sec); }
+  .ans .v { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 4px; }
+  .ans.ok { background: rgba(111,208,140,.10); border: 1px solid rgba(111,208,140,.35); }
+  .ans.no { background: rgba(242,118,107,.10); border: 1px solid rgba(242,118,107,.35); }
+  .ans.no .v { color: #F7A39B; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .ans.no.keep .v { color: var(--text); text-decoration: none; }
+  .ans.ok .v { color: #A6E8B9; }
+  .hl { color: #F2766B; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .vk { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; }
+  .vk.ok { background: rgba(111,208,140,.16); color: var(--good); }
+  .vk.no { background: rgba(242,118,107,.16); color: var(--bad); }
+  .opt { position: relative; }
+  .opt .mk { position: absolute; right: 16px; top: 50%; margin-top: -10px; }
+  .opt.ok .mk { color: var(--good); } .opt.no .mk { color: var(--bad); }
+  .opt.fade { opacity: .38; }
+  .plus10 { position: absolute; right: 22px; top: 104px; font-size: 15px; font-weight: 700; color: var(--good); z-index: 5; }
+
+  /* сессия */
+  .hearts span { display: inline-flex; transition: opacity 300ms, transform 300ms; }
+  .hearts span.lost { opacity: .2; transform: scale(.85); }
+  .timer { height: 38px; background: #1F1F21; font-size: 18px; padding: 0 24px; }
+  .mic { width: 92px; height: 92px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 #fff, 0 14px 30px -12px rgba(0,0,0,.8); }
+  .mic.live { box-shadow: 0 0 0 12px rgba(255,255,255,.08), 0 0 0 26px rgba(255,255,255,.035); animation: ring 1.6s ease-in-out infinite; }
+  @keyframes ring { 50% { box-shadow: 0 0 0 16px rgba(255,255,255,.06), 0 0 0 34px rgba(255,255,255,.02); } }
+  .micl { display: block; color: var(--sec); margin-top: 16px; font-size: 15px; }
+  .wave { display: flex; gap: 4px; align-items: center; justify-content: center; height: 44px; margin-top: 30px; }
+  .wave i { width: 4px; border-radius: 2px; background: #E9E9EB; height: var(--h); animation: wv 900ms ease-in-out infinite alternate; animation-delay: var(--d); }
+  @keyframes wv { to { transform: scaleY(.45); } }
+  .heard { text-align: center; font-size: 22px; line-height: 30px; font-weight: 600; margin-top: 26px; min-height: 30px; }
+  .tfwrap { position: relative; margin-top: 34px; }
+  .tfwrap .peek { position: absolute; left: 16px; right: 16px; bottom: -12px; height: 60px; border-radius: 16px; background: #111113; border: 1px solid var(--line); z-index: -1; }
+  .tfc { min-height: 260px; }
+  .tfc .ln { width: 44px; height: 1px; background: var(--line-2); margin: 22px auto; }
+  .tfc .tr { font-size: 22px; line-height: 28px; font-weight: 600; color: #DADADC; }
+  .tfc.ok { border-color: rgba(111,208,140,.45); }
+  .tfc.no { border-color: rgba(242,118,107,.45); }
+  .tfb { display: flex; justify-content: center; gap: 56px; margin-top: 48px; }
+  .tfb .b { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--sec); font-size: 15px; font-weight: 600; }
+  .tfb .rb { width: 76px; height: 76px; }
+  .tfb .rb.ok { background: rgba(111,208,140,.16); color: var(--good); }
+  .tfb .rb.no { background: rgba(242,118,107,.16); color: var(--bad); }
+
+  /* клавиатура */
+  .kb { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: #1A1A1C; padding: 10px 4px 34px; border-top: 1px solid var(--line); }
+  .kb .bar { display: flex; align-items: center; justify-content: space-between; padding: 0 12px 6px; }
+  .kb .r { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+  .kb .k { width: 36px; height: 44px; border-radius: 6px; background: #3A3A3C; display: flex; align-items: center; justify-content: center; font-size: 19px; }
+  .kb .k.w { width: 50px; background: #2A2A2C; font-size: 16px; }
+  .kb .k.sp { width: 210px; font-size: 15px; color: var(--sec); }
+  .hint { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 19px; background: var(--control); font-size: 15px; font-weight: 600; color: #DADADC; }
+
+  /* итог */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 18px 8px; }
+  .stats > div { text-align: center; }
+  .stats > div + div { border-left: 1px solid var(--line); }
+  .stats b { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 22px; line-height: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stats span { display: block; font-size: 14px; color: var(--sec); margin-top: 2px; }
+
+  /* пустые состояния: значок в плитке, заголовок, одна строка, одна кнопка — по центру */
+  .empty { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-46%); text-align: center; padding: 0 40px; }
+  .empty .tile { margin: 0 auto; color: #E9E9EB; }
+  .empty .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 22px; letter-spacing: -.2px; }
+  .empty .l { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 8px; }
+  .empty .cta { display: inline-flex; width: auto; padding: 0 28px; margin-top: 26px; }
+
+  /* прочее */
+  .ava { width: 24px; height: 24px; border-radius: 50%; background: #2A2A2C; display: flex; align-items: center; justify-content: center; color: #8C8C90; flex: none; }
+  .note { border-radius: 16px; background: #202022; border: 1px solid var(--line); padding: 16px 16px 16px 18px; }
+  .acts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .acts .card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 86px; font-size: 15px; font-weight: 600; background: #202022; }
+  .toast { position: absolute; left: 16px; right: 16px; bottom: 40px; z-index: 60; border-radius: 18px; background: #262628; border: 1px solid var(--line-2); padding: 0 8px 0 18px; height: 58px; display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; box-shadow: 0 18px 40px -14px rgba(0,0,0,.9); }
+  .toast .u { margin-left: auto; height: 42px; padding: 0 16px; border-radius: 21px; display: inline-flex; align-items: center; color: var(--text); background: #343437; }
+  .skel { border-radius: 8px; background: linear-gradient(90deg, #1C1C1E 0%, #252527 50%, #1C1C1E 100%); background-size: 200% 100%; animation: sh 1.4s linear infinite; }
+  @keyframes sh { to { background-position: -200% 0; } }
+  .menu .card + .card { margin-top: 9px; }
+  .menu .tt.mut { color: #D0D0D2; }
+</style>
+<link rel="stylesheet" href="cards-glass.css">
+<link rel="stylesheet" href="cards-section.css">
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Карточки — все экраны, состояния и окна</h1>
+  <p class="page-lead">Раздел целиком в утверждённом стиле: карточка ровно как в зафиксированной галерее (стекло, градиент цвета темы внутри, переворот), хаб — вариант А без прокрутки, «Из видео» — равный раздел. Тема меняется чипами, масштаб карточек — ползунком.</p>
+  <div class="page-nav">
+    <a href="#hub">Хаб</a><a href="#saved">Сохранённые</a><a href="#zoom">Масштаб</a><a href="#mine">Мои наборы</a><a href="#pack">Набор</a><a href="#card">Карточка</a>
+    <a href="#edit">Создание</a><a href="#catalog">Сообщество</a><a href="#video">Из видео</a><a href="#modes">Режимы</a><a href="#setup">Настройка</a>
+    <a href="#run">Сессия</a><a href="#fb">Ответы</a><a href="#end">Итог</a><a href="#states">Лимит и сеть</a>
+  </div>
+  <div class="ctl"><div class="chips2" id="chips"></div>
+    <div class="sl"><span>Масштаб</span><input id="k" type="range" min="0" max="100" step="1" value="0"><b id="kv"></b></div>
+    <div class="btns"><button class="btn" id="b-intro">Проиграть появление</button><button class="btn" id="b-flip">Перевернуть все</button><button class="btn" id="b-auto">Автопоказ масштаба</button></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script src="cards-section-extra.js"></script>
+<script>
+const { icon, phone, col, block, sheet } = K;
+
+// ---------- локальные значки (контур 1.8, как в наборе) ----------
+const LP = {
+  cards: '<rect x="4" y="7.5" width="12" height="13" rx="2.5"/><path d="M8 4.5h9.5A2.5 2.5 0 0120 7v10"/>',
+  clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  bulb: '<path d="M9.5 18.5h5M10.5 21.5h3M12 3a6 6 0 014 10.4c-.7.7-1 1.4-1 2.6H9c0-1.2-.3-1.9-1-2.6A6 6 0 0112 3z"/>',
+  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/>',
+  globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.4 5.5 3.4 8.5s-1 5.9-3.4 8.5c-2.4-2.6-3.4-5.5-3.4-8.5s1-5.9 3.4-8.5z"/>',
+  share: '<path d="M12 4v11M7.5 8.5L12 4l4.5 4.5"/><path d="M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5"/>',
+  refresh: '<path d="M20 12a8 8 0 11-2.4-5.7"/><path d="M20 4v5h-5"/>',
+  bookmarkF: '<path d="M7 4h10v16l-5-3.6L7 20z" fill="currentColor"/>',
+};
+const li = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+
+// ---------- общие детали ----------
+const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
+const arr = `<span class="ar">${icon('arrowR', 's20')}</span>`;
+const bot = (html) => `<div class="bot">${html}</div>`;
+const two = (a, b) => `<div class="two">${a}${b}</div>`;
+// Лимит Free — только аккуратная пилюля в шапке, без текстов над кнопкой.
+const lim = (n) => `<span class="pill s">${li('cards', 's16')}${n}/3</span>`;
+const volBtn = `<span class="rb fill t">${icon('vol', 's18')}</span>`;
+const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
+const navHead = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${t}</div>${right}</div>`;
+const empty = (ic, h, l, btn, o = {}) => `<div class="empty"><div class="tile t61"${o.c ? ` style="color:${o.c}"` : ''}>${ic}</div><div class="h">${h}</div><div class="l">${l}</div><span class="cta t">${btn}</span></div>`;
+const sec = (t, ac = '', n = '') => `<div class="sec"><div class="ti">${t}${n !== '' ? `<span class="n">${n}</span>` : ''}</div>${ac ? `<div class="ac">${ac}</div>` : ''}</div>`;
+
+// строка набора — эталон хаба
+const meta = (h, p, c, liked) => `<span>${icon(liked ? 'heartF' : 'heart', 's18')}${h}</span><span>${icon('people', 's18')}${p}</span>${c ? `<span>${icon('chat', 's18')}${c}</span>` : ''}`;
+const packRow = (t, a, m, n, lvl) => `<div class="card t"><div class="row" style="min-height:74px"><div class="tx"><div class="tt">${t}</div><div class="st" style="font-size:16px">${a}</div><div class="meta">${m}</div></div>${lvl ? `<span class="lvl">${lvl}</span>` : ''}<span class="cntp">${n}</span>${ch}</div></div>`;
+const COMMUNITY = () => packRow('Family', 'Лидия', meta(4, 9), 20) + packRow('B2 глаголы', 'Ирина', meta(3, 11, 1), 49) + packRow('Антоніми дієслів', 'Natalia', meta(1, 2), 30);
+const myRow = (ic, t, n) => `<div class="card t"><div class="row"><div class="tile">${ic}</div><div class="tx"><div class="tt">${t}</div></div><span class="cntp">${n}</span>${ch}</div></div>`;
+// строка слова: слово, перевод, озвучка
+const wordRow = (w, tr, o = {}) => `<div class="card t"><div class="row" style="min-height:68px"><div class="tx"><div class="tt m">${w}</div><div class="st">${tr}</div></div>${o.right || volBtn}</div></div>`;
+// крупная карточка в наборе — эталон «B2 глаголы» + перевод
+const word = (w, tr, open = '') => cardS(w, tr, open, { lv: 'm' });
+
+// ---------- шторка выбора режима (короткие подписи 2–4 слова) ----------
+const mode = (ic, t, s, last) => `<div class="t" style="display:flex;align-items:center;gap:20px;padding:16px 4px;${last ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t57">${icon(ic, 's24')}</div><div class="grow"><div style="font-size:18px;line-height:23px;font-weight:700">${t}</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:3px">${s}</div></div>${ch}</div>`;
+const modeInner = `<div class="flex" style="padding:0 4px"><div class="grow" style="font-size:22px;line-height:28px;font-weight:700">Режим тренировки</div>${lim(2)}</div>
+  <div style="margin-top:10px">${mode('bolt', 'Блиц', 'Минута на скорость')}${mode('mic', 'Устно', 'Говорите вслух')}${mode('check', 'Правда / ложь', 'Верен ли перевод')}${mode('edit', 'Вспомни и напиши', 'Пишите по памяти', true)}</div>`;
+
+// =====================================================================
+// 1. ХАБ
+// =====================================================================
+const hubHero = (o = {}) => `<div class="card c2" style="margin-top:26px;padding:18px 18px 20px">
+  <div class="flex" style="gap:14px"><div class="tile t55">${li('cards', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div></div>
+  <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться'}${arr}</div></div>`;
+const hub = () => phone(`
+  ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${title('Карточки', 'Слова и фразы')}
+  ${hubHero()}
+  ${sec('Ваши карточки')}
+  <div class="stack">${myRow(icon('bookmark', 's20'), 'Сохранённые', 64)}${myRow(icon('layers', 's20'), 'Мои наборы', 4)}</div>
+  ${sec('Лучшее у сообщества', `Все ${icon('fwd', 's16')}`)}
+  <div class="stack">${COMMUNITY()}</div>
+  <div class="foot-brand">PhraseMan 2.0</div>`, { overlay: sheet('mode', modeInner) });
+
+const skRow = () => `<div class="card" style="padding:16px 18px;min-height:74px"><div class="skel" style="width:46%;height:16px"></div><div class="skel" style="width:28%;height:12px;margin-top:10px"></div><div class="skel" style="width:40%;height:12px;margin-top:10px"></div></div>`;
+const hubLoading = () => phone(`
+  ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${title('Карточки', 'Слова и фразы')}
+  ${hubHero()}
+  ${sec('Ваши карточки')}
+  <div class="stack">${myRow(icon('bookmark', 's20'), 'Сохранённые', 64)}${myRow(icon('layers', 's20'), 'Мои наборы', 4)}</div>
+  ${sec('Лучшее у сообщества')}
+  <div class="stack">${skRow()}${skRow()}${skRow()}</div>`);
+
+const hubNew = () => phone(`
+  ${topRow(`<span class="rb t">${icon('plus', 's20')}</span>`)}
+  ${title('Карточки', 'Слова и фразы')}
+  <div class="card c2" style="margin-top:26px;padding:22px 18px 20px">
+    <div class="flex" style="gap:14px"><div class="tile t55">${icon('people', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Начните с готового</div><div style="font-size:15px;color:var(--sec);margin-top:4px">Наборы сообщества</div></div></div>
+    <div class="cta t" style="margin-top:18px">Выбрать набор${arr}</div></div>
+  ${sec('Лучшее у сообщества', `Все ${icon('fwd', 's16')}`)}
+  <div class="stack">${COMMUNITY()}</div>
+  ${sec('Ваши карточки')}
+  <div class="stack">${myRow(icon('bookmark', 's20'), 'Сохранённые', 0)}${myRow(icon('layers', 's20'), 'Мои наборы', 0)}</div>`);
+
+// =====================================================================
+// 2. СОХРАНЁННЫЕ
+// =====================================================================
+const SAVED = [['Pitch in', 'Сброситься, помочь'], ['I’ll get back to you', 'Я вам перезвоню'], ['Grandchildren', 'Внуки'], ['Make a decision', 'Принять решение'], ['Although', 'Хотя'], ['Would rather', 'Лучше бы'], ['Boarding pass', 'Посадочный талон']];
+const saved = () => phone(`
+  ${topRow()}
+  ${title('Сохранённые', '64 карточки')}
+  <div class="srch" style="margin-top:22px">${icon('search', 's18')}Поиск</div>
+  <div style="margin-top:16px">${cardGrid(SAVED, 'm')}</div>`,
+  { fixed: bot(`<div class="cta t" data-open="mode">Тренировать${arr}</div>`), overlay: sheet('mode', modeInner) });
+
+const savedSearch = () => phone(`
+  ${topRow()}
+  ${title('Сохранённые', '64 карточки')}
+  <div class="srch" style="margin-top:22px">${icon('search', 's18')}<span class="v">dec<span class="caret"></span></span><span class="x">${icon('close', 's18')}</span></div>
+  <div class="ov" style="margin:22px 4px 12px">Найдено · 2</div>
+  <div class="stack">${cardL('Make a <u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">dec</u>ision', 'Принять решение')}${cardL('<u style="text-decoration:none;color:#fff;background:rgba(255,255,255,.12);border-radius:4px;padding:0 2px">Dec</u>line', 'Отклонять')}</div>`);
+
+const savedEmpty = () => phone(`${topRow()}${title('Сохранённые')}
+  ${empty(icon('bookmark', 's28'), 'Пока пусто', 'Сохраняйте слова в уроках', 'Найти наборы')}`);
+
+// =====================================================================
+// 3. МОИ НАБОРЫ
+// =====================================================================
+const setRow = (ic, t, s, n) => `<div class="card t"><div class="row"><div class="tile">${ic}</div><div class="tx"><div class="tt">${t}</div><div class="st">${s}</div></div><span class="cntp">${n}</span>${ch}</div></div>`;
+const MINE_OWN = () => setRow(icon('layers', 's20'), 'Travel', 'Только вы', 24) + setRow(icon('layers', 's20'), 'Phrasal verbs', 'В сообществе', 18);
+const MINE_ADDED = () => setRow(icon('people', 's20'), 'B2 глаголы', 'Ирина', 49) + setRow(icon('people', 's20'), 'Family', 'Лидия', 20);
+const mine = () => phone(`
+  ${topRow()}
+  ${title('Мои наборы', '4 набора')}
+  ${sec('Созданные', '', 2)}<div class="stack">${MINE_OWN()}</div>
+  ${sec('Добавленные', '', 2)}<div class="stack">${MINE_ADDED()}</div>`,
+  { fixed: bot(`<div class="cta t">${icon('plus', 's20')}Создать набор</div>`) });
+
+const mineEmpty = () => phone(`${topRow()}${title('Мои наборы')}
+  ${empty(icon('layers', 's28'), 'Наборов пока нет', 'Создайте свой первый', `${icon('plus', 's20')}Создать набор`)}`);
+
+const menuRow = (ic, t, mut) => `<div class="card t"><div class="row"><div class="tile">${ic}</div><div class="tx"><div class="tt${mut ? ' mut' : ''}">${t}</div></div></div></div>`;
+const mineMenu = () => phone(`<div style="opacity:.3">${topRow()}${title('Мои наборы', '4 набора')}<div class="stack" style="margin-top:30px">${MINE_OWN()}</div></div>`, { overlay: sheet('mm', `
+  <div class="flex" style="padding:0 4px 18px"><div class="grow"><div style="font-size:22px;font-weight:700">Travel</div><div style="font-size:15px;color:var(--sec);margin-top:4px">24 карточки</div></div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+  <div class="menu">${menuRow(icon('bolt', 's20'), 'Тренировать')}${menuRow(icon('edit', 's20'), 'Изменить')}${menuRow(li('share', 's20'), 'Открыть сообществу')}${menuRow(icon('trash', 's20'), 'Удалить набор', true)}</div>`, true) });
+
+// =====================================================================
+// 4. НАБОР — СВОЙ И ЧУЖОЙ
+// =====================================================================
+const ava = `<span class="ava">${icon('user', 's16')}</span>`;
+const packView = (o) => `
+  <div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span><span class="rb sq t">${icon('dotsV', 's18')}</span></div>
+  <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:18px;letter-spacing:-.4px">${o.title}</div>
+  <div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px">${ava}${o.author}${o.badge || ''}</div>
+  <div class="flex" style="margin-top:16px;justify-content:space-between;min-height:42px">${o.meta}${o.act}</div>
+  <div class="divider" style="margin:22px 0 22px"></div>
+  <div style="font-size:17px;font-weight:600;margin-bottom:14px">Карточки <span style="color:var(--muted);margin-left:8px">${o.n}</span></div>
+  <div class="cgrid m">${o.words}</div>`;
+const badge = (ic, t) => `<span class="pill s" style="margin-left:auto;color:#DADADC;font-weight:600">${ic}${t}</span>`;
+const TRAVEL = () => word('Boarding pass', 'Посадочный талон', 'cs') + word('Layover', 'Пересадка', 'cs') + word('Check in', 'Зарегистрироваться', 'cs') + word('Carry-on', 'Ручная кладь', 'cs');
+const B2 = () => word('Lay', 'Класть') + word('Claim', 'Утверждать') + word('Convince', 'Убеждать') + word('Hire', 'Нанимать');
+
+// шторка карточки
+const cardSheet = (o) => `
+  <div class="ov" style="padding:0 4px">${o.ov}</div>
+  <div style="margin-top:12px">${bigCard(o.w, o.ipa, o.tr, !!o.back)}</div>
+  <div class="note" style="margin-top:16px"><div class="ov">Пример</div><div style="font-size:17px;line-height:23px;margin-top:8px">${o.ex}</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.exTr}</div></div>
+  <div style="margin-top:16px">${o.foot}</div>`;
+const OWN_CARD = { ov: 'Travel', w: 'Boarding pass', ipa: '/ˈbɔːdɪŋ pɑːs/', tr: 'Посадочный талон', ex: 'Have your boarding pass ready.', exTr: 'Приготовьте посадочный талон.',
+  foot: `<div class="acts"><div class="card t">${icon('edit', 's22')}Изменить</div><div class="card t">${li('bookmarkF', 's22')}Сохранено</div><div class="card t">${icon('trash', 's22')}Удалить</div></div>` };
+
+const packOwn = () => phone(packView({ title: 'Travel', author: 'Вы', badge: badge(li('lock', 's16'), 'Только вы'),
+  meta: `<div class="cta sm gh t">${icon('plus', 's18')}Карточка</div>`, act: `<div class="cta sm t">Тренировать${icon('arrowR', 's18')}</div>`, n: 24, words: TRAVEL() }),
+  { overlay: sheet('cs', cardSheet(OWN_CARD)) });
+
+const packForeign = () => phone(packView({ title: 'B2 глаголы', author: 'Ирина', meta: `<div class="meta" style="margin:0;font-size:16px;gap:22px">${meta(3, 11, 1)}</div>`,
+  act: `<span class="cta sm t">Добавить себе ${icon('plus', 's18')}</span>`, n: 49, words: B2() }));
+
+const packAdded = () => phone(packView({ title: 'B2 глаголы', author: 'Ирина', badge: badge(icon('check', 's16'), 'У вас'),
+  meta: `<div class="meta" style="margin:0;font-size:16px;gap:22px"><span style="color:#fff">${icon('heartF', 's20')}4</span><span>${icon('people', 's20')}12</span><span>${icon('chat', 's20')}1</span></div>`,
+  act: `<span class="cta sm t">Тренировать${icon('arrowR', 's18')}</span>`, n: 49, words: B2() }));
+
+const packUndo = () => phone(packView({ title: 'Travel', author: 'Вы', badge: badge(li('lock', 's16'), 'Только вы'),
+  meta: `<div class="cta sm gh t">${icon('plus', 's18')}Карточка</div>`, act: `<div class="cta sm t">Тренировать${icon('arrowR', 's18')}</div>`, n: 23,
+  words: word('Boarding pass', 'Посадочный талон') + word('Check in', 'Зарегистрироваться') + word('Carry-on', 'Ручная кладь') + word('Gate', 'Выход на посадку') }),
+  { fixed: `<div class="toast">${icon('trash', 's18')}Карточка удалена<span class="u t">Вернуть</span></div>` });
+
+// =====================================================================
+// 5. КАРТОЧКА (ШТОРКА)
+// =====================================================================
+const cardOwn = () => phone(`<div style="opacity:.3">${packView({ title: 'Travel', author: 'Вы', meta: '', act: '', n: 24, words: TRAVEL() })}</div>`, { overlay: sheet('c1', cardSheet(OWN_CARD), true) });
+const cardForeign = () => phone(`<div style="opacity:.3">${packView({ title: 'B2 глаголы', author: 'Ирина', meta: '', act: '', n: 49, words: B2() })}</div>`, { overlay: sheet('c2', cardSheet({
+  ov: 'B2 глаголы · Ирина', w: 'Convince', ipa: '/kənˈvɪns/', tr: 'Убеждать', ex: 'She convinced me to stay.', exTr: 'Она убедила меня остаться.',
+  foot: `<div class="cta t">${icon('bookmark', 's20')}Сохранить</div>` }), true) });
+
+// =====================================================================
+// 6. СОЗДАНИЕ И РЕДАКТИРОВАНИЕ
+// =====================================================================
+const formHead = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb t">${icon('close', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${t}</div>${right}</div>`;
+const fld = (lab, val, o = {}) => `<div style="margin-top:${o.mt ?? 22}px"><div class="flab">${lab}</div><div class="field${val ? '' : ' ph'}">${val || o.ph}${o.caret ? '<span class="caret"></span>' : ''}</div></div>`;
+const vis = (on) => `<div style="margin-top:22px"><div class="flab">Кто видит</div><div class="seg3"><span class="t${on === 0 ? ' on' : ''}">${li('lock', 's16')}Только я</span><span class="t${on === 1 ? ' on' : ''}">${li('globe', 's16')}Все</span></div></div>`;
+
+const createNew = () => phone(`
+  ${formHead('Новый набор')}
+  ${fld('Название', 'Travel', { caret: true, mt: 30 })}
+  ${vis(0)}
+  ${sec('Карточки', '', 0)}
+  <div class="card t" style="padding:0"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить карточку</div></div></div></div>`,
+  { fixed: bot(`<div class="cta t">${icon('plus', 's20')}Первая карточка</div>`) });
+
+const addCard = () => phone(`<div style="opacity:.3">${formHead('Новый набор')}${fld('Название', 'Travel', { mt: 30 })}${vis(0)}</div>`, { overlay: sheet('ac', `
+  <div class="flex" style="padding:0 4px"><div class="grow" style="font-size:22px;font-weight:700">Новая карточка</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+  ${fld('Слово или фраза', 'Boarding pass', { mt: 20 })}
+  ${fld('Перевод', 'Посадочный<span class="caret"></span>', { mt: 16 })}
+  <div class="chips" style="margin-top:10px;margin-right:0"><span class="chipbtn t">Посадочный талон</span><span class="chipbtn t">Билет на посадку</span></div>
+  ${fld('Пример', '', { ph: 'Необязательно', mt: 16 })}
+  <div class="flex" style="gap:10px;margin-top:24px"><div class="cta gh t" style="flex:1">Ещё одну</div><div class="cta t" style="flex:1">Добавить</div></div>`, true) });
+
+const editRow = (w, t) => wordRow(w, t, { right: `<span class="ch">${icon('dotsH', 's20')}</span>` });
+const editSet = () => phone(`
+  ${formHead('Изменить набор')}
+  ${fld('Название', 'Phrasal verbs', { mt: 30 })}
+  ${vis(1)}
+  ${sec('Карточки', '', 18)}
+  <div class="stack">
+    <div class="card t"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить карточку</div></div></div></div>
+    ${editRow('Give up', 'Сдаваться')}${editRow('Look after', 'Присматривать')}${editRow('Turn down', 'Отклонять')}${editRow('Put off', 'Откладывать')}</div>`,
+  { fixed: bot(`<div class="cta t">Сохранить</div>`) });
+
+// =====================================================================
+// 7. КАТАЛОГ СООБЩЕСТВА
+// =====================================================================
+const chips = (on) => `<div class="chips" style="margin-top:14px">${['Популярные', 'Новые', 'A2', 'B1', 'B2', 'C1'].map((c, i) => `<span class="chipbtn t${i === on ? ' on' : ''}">${c}</span>`).join('')}</div>`;
+const catalog = () => phone(`
+  ${topRow()}
+  ${title('Сообщество', '1 240 наборов')}
+  <div class="srch" style="margin-top:22px">${icon('search', 's18')}Название или слово</div>
+  ${chips(0)}
+  <div class="stack" style="margin-top:18px">${packRow('Family', 'Лидия', meta(4, 9), 20, 'A2')}${packRow('B2 глаголы', 'Ирина', meta(3, 11, 1), 49, 'B2')}${packRow('Антоніми дієслів', 'Natalia', meta(1, 2), 30, 'B1')}${packRow('Phrasal verbs', 'Вы', meta(2, 5), 18, 'B1')}${packRow('Kitchen talk', 'Олег', meta(2, 4), 26, 'A2')}</div>`);
+
+const catalogNone = () => phone(`
+  ${topRow()}
+  ${title('Сообщество')}
+  <div class="srch" style="margin-top:22px">${icon('search', 's18')}<span class="v">idioms about rain<span class="caret"></span></span><span class="x">${icon('close', 's18')}</span></div>
+  ${chips(4)}
+  ${empty(icon('search', 's28'), 'Ничего не нашли', 'Попробуйте другое слово', 'Сбросить фильтры')}`);
+
+// =====================================================================
+// 8. ВЫБОР РЕЖИМА
+// =====================================================================
+const modeSheet = () => phone(`<div style="opacity:.3">${topRow()}${title('Карточки', 'Слова и фразы')}${hubHero()}</div>`, { overlay: sheet('m', modeInner, true) });
+
+// =====================================================================
+// 9. НАСТРОЙКА ПЕРЕД СТАРТОМ
+// =====================================================================
+const pl = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'карточка' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'карточки' : 'карточек');
+const SETS = [['bookmark', 'Сохранённые', 64], ['layers', 'Travel', 24], ['people', 'B2 глаголы', 49], ['people', 'Family', 20]];
+const pick = (sel, list = SETS) => `<div class="stack">${list.map(([ic, t, n]) => { const on = sel.includes(t); return `<div class="card t${on ? ' sel' : ''}"><div class="row"><div class="tile">${icon(ic, 's20')}</div><div class="tx"><div class="tt">${t}</div><div class="st">${n} ${pl(n)}</div></div><span class="chk${on ? ' on' : ''}">${icon('check', 's16')}</span></div></div>`; }).join('')}</div>`;
+const segc = (t, items, on) => `${sec(t)}<div class="seg3">${items.map((x, i) => `<span class="t${i === on ? ' on' : ''}">${x}</span>`).join('')}</div>`;
+const setup = (o) => phone(`
+  ${topRow(lim(o.lim ?? 2))}
+  ${title(o.t, o.su)}
+  ${sec('Наборы', o.total)}
+  ${pick(o.sel, o.list)}
+  ${o.extra || ''}`, { fixed: bot(`<div class="cta t">${o.btn}${arr}</div>`) });
+
+const setupBlitz = () => setup({ t: 'Блиц', su: 'Минута на скорость', sel: ['Сохранённые', 'B2 глаголы'], total: '113 выбрано', extra: segc('Время', ['30 с', '60 с', '90 с'], 1), btn: 'Начать' });
+const setupSpeak = () => setup({ t: 'Устно', su: 'Говорите вслух', sel: ['B2 глаголы'], total: '49 выбрано', extra: segc('Карточек', ['10', '20', 'Все'], 1), btn: 'Начать · 20' });
+const setupTf = () => setup({ t: 'Правда / ложь', su: 'Верен ли перевод', sel: ['Travel', 'Family'], total: '44 выбрано', extra: segc('Карточек', ['10', '20', 'Все'], 1), btn: 'Начать · 20' });
+const setupRecall = () => setup({ t: 'Вспомни и напиши', su: 'Пишите по памяти', sel: ['Сохранённые'], total: '64 выбрано', extra: segc('Карточек', ['10', '20', 'Все'], 0) + segc('Направление', ['RU → EN', 'EN → RU'], 0), btn: 'Начать · 10' });
+// Мало карточек: вместо серой кнопки — понятное следующее действие.
+const setupFew = () => phone(`
+  ${topRow(lim(2))}
+  ${title('Блиц', 'Минута на скорость')}
+  ${sec('Наборы', '3 из 4')}
+  ${pick(['Сохранённые'], [['bookmark', 'Сохранённые', 3]])}
+  <div class="card t" style="margin-top:9px"><div class="row"><div class="tile">${icon('plus', 's20')}</div><div class="tx"><div class="tt m">Добавить набор</div></div>${ch}</div></div>`,
+  { fixed: bot(`<div class="cta t">Найти наборы${arr}</div>`) });
+const setupEmpty = () => phone(`${topRow(lim(2))}${title('Устно', 'Говорите вслух')}
+  ${empty(icon('layers', 's28'), 'Пока нет карточек', 'Добавьте набор и начните', 'Найти наборы')}`);
+
+// =====================================================================
+// 10–11. СЕССИИ И ОТВЕТЫ
+// =====================================================================
+const sessHead = (t, s, right) => `<div class="flex" style="gap:12px;margin-top:6px"><span class="rb l t" style="margin-right:6px">${icon('close', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px;white-space:nowrap">${s}</div></div>${right}</div>`;
+const prog = (p) => `<div class="trk" style="margin-top:22px;height:6px"><i style="width:${p}%"></i></div>`;
+const cnt = (a, b) => `<span class="pill s" style="font-variant-numeric:tabular-nums">${a}/${b}</span>`;
+const hearts = (n) => `<span class="pill hearts" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span class="${i < n ? '' : 'lost'}">${icon('heartF', 's18')}</span>`).join('')}</span>`;
+const score = (n) => `<span class="pill" style="height:37px;padding:0 12px;gap:7px">${K.coinImg(5, 18)}${n}</span>`;
+
+// Блиц
+const OPTS = ['Убеждать', 'Утверждать', 'Нанимать', 'Класть'];
+const blitzScreen = (o = {}) => phone(`
+  ${sessHead('Блиц', 'B2 глаголы', hearts(o.h ?? 3) + score(o.s ?? 40))}
+  ${o.plus ? '<span class="plus10">+10</span>' : ''}
+  ${prog(o.p ?? 62)}
+  <div class="center" style="margin-top:14px"><span class="pill timer">${o.tm || '0:37'}</span></div>
+  <div class="qc" style="margin-top:30px"><div class="k">Выберите перевод</div><div class="q">Convince</div></div>
+  <div class="stack g13" style="margin-top:23px">${OPTS.map((t, i) => { const st = (o.st || {})[i] || ''; return `<div class="opt t ${st}">${t}${st === 'ok' ? `<span class="mk">${icon('check', 's20')}</span>` : st === 'no' ? `<span class="mk">${icon('close', 's20')}</span>` : ''}</div>`; }).join('')}</div>`);
+const blitzQ = () => blitzScreen();
+const blitzOk = () => blitzScreen({ s: 50, plus: true, st: { 0: 'ok', 1: 'fade', 2: 'fade', 3: 'fade' } });
+const blitzNo = () => blitzScreen({ h: 2, st: { 0: 'ok', 1: 'no', 2: 'fade', 3: 'fade' } });
+
+// Общая шторка ответа для Устно / Правда-ложь / Напиши
+const fbHead = (ok, t, right = '') => `<div class="flex" style="gap:14px"><span class="vk ${ok ? 'ok' : 'no'}">${icon(ok ? 'check' : 'close', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">${t}</div>${right}</div>`;
+const ansBox = (kind, k, v, vol = false) => `<div class="ans ${kind}"><div class="grow"><div class="k">${k}</div><div class="v">${v}</div></div>${vol ? volBtn : ''}</div>`;
+const fbOk = (id, t, v) => sheet(id, `${fbHead(true, t)}${v ? `<div class="stack g13" style="margin-top:18px">${ansBox('ok', 'Правильно', v, true)}</div>` : ''}<div class="cta t" style="margin-top:22px">Дальше${arr}</div>`, true);
+const fbNo = (id, t, mine, right, btns) => sheet(id, `${fbHead(false, t)}<div class="stack g13" style="margin-top:18px">${mine}${ansBox('ok', 'Правильно', right, true)}</div>
+  <div class="flex" style="gap:10px;margin-top:20px">${btns || `<div class="cta t" style="flex:1">Дальше${arr}</div>`}</div>`, true);
+
+// Устно
+const SPEAK_Q = `<div class="qc" style="margin-top:34px"><div class="k">Скажите по-английски</div><div class="q">Я вам перезвоню</div></div>`;
+const wave = () => `<div class="wave">${Array.from({ length: 23 }, (_, i) => `<i style="--h:${8 + Math.round(30 * Math.abs(Math.sin(i * .8 + 1)))}px;--d:${(i % 5) * 120}ms"></i>`).join('')}</div>`;
+const speakWait = () => phone(`
+  ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
+  <div class="center" style="margin-top:84px"><span class="mic t">${icon('mic', 's28')}</span><span class="micl">Удерживайте и говорите</span></div>`,
+  { fixed: bot(`<div class="cta gh t">Не могу говорить</div>`) });
+const speakRec = () => phone(`
+  ${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}
+  <div class="heard">I’ll get back<span class="caret"></span></div>
+  ${wave()}
+  <div class="center" style="margin-top:22px"><span class="mic live t">${icon('mic', 's28')}</span><span class="micl">Слушаю…</span></div>`);
+const speakOk = () => phone(`${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}<div class="heard" style="color:#A6E8B9">I’ll get back to you</div>`,
+  { overlay: fbOk('so', 'Верно') });
+const speakNo = () => phone(`${sessHead('Устно', 'B2 глаголы', cnt(4, 20))}${prog(20)}${SPEAK_Q}<div class="heard">I’ll get bag to you</div>`,
+  { overlay: fbNo('sn', 'Почти', ansBox('no keep', 'Услышали', 'I’ll get <span class="hl">bag</span> to you'), 'I’ll get back to you',
+    `<div class="cta gh t" style="flex:1">${icon('mic', 's18')}Ещё раз</div><div class="cta t" style="flex:1">Дальше</div>`) });
+
+// Правда / ложь
+const tfScreen = (o = {}) => phone(`
+  ${sessHead('Правда / ложь', 'Family', cnt(6, 20))}${prog(30)}
+  <div class="tfwrap"><div class="peek"></div><div class="qc tfc ${o.res || ''}"><div class="k">Перевод верный?</div><div class="q">Stepmother</div><div class="ln"></div><div class="tr">${o.tr || 'Мачеха'}</div></div></div>
+  <div class="tfb"><span class="b t"><span class="rb${o.pick === 'no' ? ` ${o.res}` : ''}">${icon('close', 's28')}</span>Нет</span><span class="b t"><span class="rb${o.pick === 'yes' ? ` ${o.res}` : ''}">${icon('check', 's28')}</span>Да</span></div>`, { overlay: o.overlay || '' });
+const tfQ = () => tfScreen();
+const tfOk = () => tfScreen({ pick: 'yes', res: 'ok', overlay: fbOk('to', 'Верно') });
+const tfNo = () => tfScreen({ tr: 'Племянница', pick: 'yes', res: 'no', overlay: fbNo('tn', 'Неверно', ansBox('no', 'Было', 'Племянница'), 'Stepmother — мачеха') });
+
+// Вспомни и напиши
+const keyb = () => `<div class="kb"><div class="bar"><span class="hint t">${li('bulb', 's18')}Подсказка</span><span class="cta sm t">Проверить</span></div>
+  <div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div>
+  <div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div>
+  <div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div>
+  <div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k w">↵</span></div></div>`;
+const RECALL_Q = `<div class="qc" style="margin-top:30px;min-height:140px"><div class="k">Напишите по-английски</div><div class="q">Принять решение</div></div>`;
+const recallQ = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
+  <div class="field" style="margin-top:20px">Make a deci<span class="caret"></span></div>`, { fixed: keyb() });
+const recallOk = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
+  <div class="field ok" style="margin-top:20px">Make a decision</div>`, { overlay: fbOk('ro', 'Верно') });
+const recallAlmost = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
+  <div class="field" style="margin-top:20px">Make a desicion</div>`,
+  { overlay: fbNo('ra', 'Почти — опечатка', ansBox('no keep', 'Вы написали', 'Make a de<span class="hl">si</span>cion'), 'Make a decision') });
+const recallNo = () => phone(`${sessHead('Вспомни и напиши', 'Сохранённые', cnt(9, 10))}${prog(85)}${RECALL_Q}
+  <div class="field no" style="margin-top:20px">Take a choice</div>`,
+  { overlay: fbNo('rn', 'Неверно', ansBox('no', 'Вы написали', 'Take a choice'), 'Make a decision') });
+
+// =====================================================================
+// 12. ИТОГ
+// =====================================================================
+const stats = (a, b, c) => `<div class="card c2 stats" style="margin-top:30px"><div><b>${a}</b><span>точность</span></div><div><b>${b}</b><span>время</span></div><div><b>${K.coinImg(5, 20)}+${c}</b><span>монет</span></div></div>`;
+const fixRow = (w, t) => wordRow(w, t);
+const result = (o) => phone(`
+  <div class="topbar"><span class="rb t">${icon('close', 's20')}</span>${K.coins(o.bal, { s: true })}</div>
+  <div class="center" style="margin-top:34px"><div class="ov">${o.ov}</div><div class="big" style="margin-top:14px">${o.big}</div><div style="font-size:17px;color:var(--sec);margin-top:4px">${o.sub}</div></div>
+  ${stats(o.acc, o.time, o.c)}
+  ${o.fix ? `${sec('Что исправить', '', o.fix.length)}<div class="stack">${o.fix.map(([w, t]) => fixRow(w, t)).join('')}</div>` : ''}`,
+  { fixed: bot(o.btns) });
+const resMix = () => result({ bal: 1252, ov: 'Правда / ложь · Family', big: '17/20', sub: 'верных ответов', acc: '85%', time: '2:40', c: 12,
+  fix: [['Stepmother', 'Мачеха'], ['In-laws', 'Родня супруга'], ['Niece', 'Племянница']], btns: two(`<div class="cta gh t">${li('refresh', 's18')}Ошибки · 3</div>`, `<div class="cta t">Готово</div>`) });
+const resBlitz = () => result({ bal: 1258, ov: 'Блиц · B2 глаголы', big: '140', sub: 'очков · рекорд 180', acc: '78%', time: '1:00', c: 14,
+  fix: [['Claim', 'Утверждать'], ['Lay', 'Класть']], btns: two(`<div class="cta gh t">${li('refresh', 's18')}Ещё раз</div>`, `<div class="cta t">Готово</div>`) });
+const resPerfect = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('close', 's20')}</span>${K.coins(1264, { s: true })}</div>
+  <div class="center" style="margin-top:90px"><div class="tile t61" style="margin:0 auto;color:var(--good)">${icon('check', 's28')}</div>
+    <div class="ov" style="margin-top:26px">Вспомни и напиши · Сохранённые</div><div class="big" style="margin-top:12px">10/10</div><div style="font-size:17px;color:var(--sec);margin-top:4px">Без единой ошибки</div></div>
+  ${stats('100%', '3:12', 15)}`, { fixed: bot(`<div class="cta t">Готово</div>`) });
+
+// =====================================================================
+// 13–14. ЛИМИТ И СЕТЬ
+// =====================================================================
+const limitOut = () => phone(`${topRow(lim(0))}${title('Блиц', 'Минута на скорость')}
+  ${empty(li('clock', 's28'), 'На сегодня всё', 'Новые тренировки — завтра', 'Листать карточки')}`);
+const offline = () => phone(`${topRow()}${title('Карточки')}
+  ${empty(icon('wifiOff', 's28'), 'Сейчас недоступно', 'Проверьте интернет', `${li('refresh', 's18')}Попробовать снова`, { c: 'var(--sec)' })}`);
+
+// =====================================================================
+document.getElementById('root').innerHTML =
+  block('hub', 'Хаб «Карточки»', 'Без прокрутки: стопка карточек, главная кнопка и четыре равных раздела (Сохранённые, Мои наборы, Из видео, Сообщество); лимит — пилюлей в шапке. Нажатие на стопку или кнопку открывает выбор режима.', [col('Хаб — вариант А', hubS()), col('Хаб — загрузка сообщества', hubLoadingS()), col('Хаб — новичок, своих карточек нет', hubNewS()), col('Хаб — лимит исчерпан (Free)', hubLimitS())]) +
+  block('saved', 'Сохранённые', '', [col('Список', saved()), col('Поиск', savedSearch()), col('Пусто', savedEmpty())]) +
+  block('zoom', 'Сохранённые — масштаб как в галерее', 'Ползунок вверху страницы, щипок двумя пальцами или Ctrl + колесо над экраном. Нажатие на карточку — переворот на перевод.', [col('Карточки меняют размер и форму', galleryPhoneS())]) +
+  block('mine', 'Мои наборы', '', [col('Список', mine()), col('Действия с набором', mineMenu()), col('Пусто', mineEmpty())]) +
+  block('pack', 'Набор открыт', 'Нажатие на карточку в своём наборе открывает шторку.', [col('Свой набор', packOwn()), col('Чужой — до добавления', packForeign()), col('Чужой — добавлен, лайк', packAdded()), col('Карточка удалена — «Вернуть»', packUndo())]) +
+  block('card', 'Карточка', '', [col('Своя карточка', cardOwn()), col('Карточка — оборот', cardBackS()), col('Карточка из чужого набора', cardForeign())]) +
+  block('edit', 'Создание и редактирование', '', [col('Новый набор', createNew()), col('Новая карточка', addCard()), col('Изменить набор', editSet())]) +
+  block('catalog', 'Сообщество', '', [col('Каталог', catalog()), col('Ничего не найдено', catalogNone())]) +
+  block('video', 'Из видео', 'Равный раздел: список наборов из роликов (кадр 16:9, число фраз, «Добавить»), поиск, загрузка, пусто, ничего не нашли, ошибка и открытый набор.', [col('Список наборов', vList()), col('Поиск', vSearch()), col('Загрузка', vLoading()), col('Пока пусто', vEmpty()), col('Ничего не нашли', vNone()), col('Сейчас недоступно', vError()), col('Набор из видео', vSet(false)), col('Набор из видео — уже у вас', vSet(true))]) +
+  block('modes', 'Выбор режима', '', [col('Режим тренировки', modeSheet())]) +
+  block('setup', 'Настройка перед стартом', 'Если старт невозможен — экран предлагает следующий шаг, а не серую кнопку.', [col('Блиц', setupBlitz()), col('Устно', setupSpeak()), col('Правда / ложь', setupTf()), col('Вспомни и напиши', setupRecall()), col('Мало карточек', setupFew()), col('Карточек нет', setupEmpty())]) +
+  block('run', 'Сессия', '', [col('Блиц', blitzQ()), col('Устно — ожидание', speakWait()), col('Устно — запись', speakRec()), col('Правда / ложь', tfQ()), col('Вспомни и напиши', recallQ())]) +
+  block('fb', 'Ответы', 'Блиц отвечает прямо на вариантах — без шторки, чтобы не терять темп.', [col('Блиц — верно', blitzOk()), col('Блиц — неверно, минус жизнь', blitzNo()), col('Устно — верно', speakOk()), col('Устно — не так', speakNo()),
+    col('Правда / ложь — верно', tfOk()), col('Правда / ложь — неверно', tfNo()), col('Напиши — верно', recallOk()), col('Напиши — опечатка', recallAlmost()), col('Напиши — неверно', recallNo())]) +
+  block('end', 'Итог тренировки', '', [col('Итог с ошибками', resMix()), col('Итог Блица', resBlitz()), col('Без ошибок', resPerfect())]) +
+  block('states', 'Лимит и сеть', '', [col('Лимит исчерпан (Free)', limitOut()), col('Нет сети и кэша', offline())]);
+K.init();
+</script>
+<script src="cards-section-zoom.js"></script>
+</body>
+</html>

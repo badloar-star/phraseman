@@ -25,7 +25,7 @@ interface ReferralHowSheetProps {
 }
 
 export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetProps) {
-  const { f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
@@ -62,25 +62,26 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
       title={L('Как это работает', 'Як це працює', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
       closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
-      <View style={{ gap: 14 }}>
-        {steps.map((s, i) => (
-          <View key={s.title} style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
-            <View style={{ width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.accent, marginTop: 1 }}>
-              <Text style={{ color: glass.accentInk, fontSize: f.label ?? 12, fontWeight: '700' }}>{i + 1}</Text>
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: glass.text, fontSize: f.body ?? 16, fontWeight: '700' }}>{s.title}</Text>
-              <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', marginTop: 2 }}>{s.text}</Text>
-            </View>
-          </View>
-        ))}
-        <View style={{ borderRadius: 14, padding: 12, gap: 6, backgroundColor: glass.selected }}>
-          {rules.map((r) => (
-            <View key={r} style={{ flexDirection: 'row', gap: 8 }}>
-              <Text style={{ color: glass.text, fontSize: f.sub ?? 13, fontWeight: '700' }}>•</Text>
-              <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', flex: 1 }}>{r}</Text>
+      {/* зачем (overlays-more OM-REFERRAL-HOW): `.om-steps` — шаги через 14, кружок 28 с цифрой,
+          название 16/700 и пояснение 13/18 (шкала D145); `.om-info` — плашка правил r16, 13/19. */}
+      <View style={{ marginTop: 4 }}>
+        <View style={{ gap: 14 }}>
+          {steps.map((s, i) => (
+            <View key={s.title} style={{ flexDirection: 'row', gap: 11, alignItems: 'flex-start' }}>
+              <View style={{ width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.accent }}>
+                <Text style={{ color: glass.accentInk, fontSize: 13, fontWeight: '700' }}>{i + 1}</Text>
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>{s.title}</Text>
+                <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '400', marginTop: 3 }}>{s.text}</Text>
+              </View>
             </View>
           ))}
+        </View>
+        <View testID="referral-how-rules" style={{ marginTop: 13, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 14, backgroundColor: glass.opaqueControl }}>
+          <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 19, fontWeight: '400' }}>
+            {rules.map((r) => `• ${r}`).join('\n')}
+          </Text>
         </View>
       </View>
     </ReferralSheetShell>

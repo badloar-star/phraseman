@@ -16,7 +16,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
-import DuoPressable from '../DuoPressable';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useRewardImpactHybrid } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 
@@ -29,7 +29,11 @@ interface ReferralFriendRewardHybridProps {
 }
 
 function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClose }: ReferralFriendRewardHybridProps) {
-  const { theme: t, f } = useTheme();
+  // зачем (overlays-more OM-REFERRAL-FRIEND-REWARD): движение гибрида владелец оставил (16.08),
+  // а вид — кадр макета: окно r26/p21 в материале темы, сцена 202×160 с ключом, заголовок 25/31,
+  // текст 16/22 (D145), кнопка 48/24. Свечение и кольца — нейтральным тоном темы, без цветного акцента.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const impact = useRewardImpactHybrid({ visible, rarity: 'rare', scope: 'referral-friend-reward-hybrid' });
 
   const handleClose = () => { void hapticTap(); onClose(); };
@@ -41,38 +45,38 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
         <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={ctaLabel} onPress={handleClose} />
 
         <View style={styles.stage} pointerEvents="box-none">
-          <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: `${t.accent}38` }, impact.styles.bloom]} />
+          <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: glass.selected }, impact.styles.bloom]} />
 
-          <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: t.accent }, impact.styles.card]} pointerEvents="box-none">
+          <Animated.View style={[styles.card, { backgroundColor: glass.opaqueSheet, shadowColor: '#000000' }, impact.styles.card]} pointerEvents="box-none">
             <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
-            <View style={styles.heroFrame}>
+            <View style={[styles.heroFrame, { backgroundColor: glass.selected }]}>
               <RewardImpactRings
                 show={impact.showRings}
                 dustCount={impact.dustCount}
-                color={t.accent}
+                color={glass.text}
                 ring0Style={impact.styles.ring0}
                 ring1Style={impact.styles.ring1}
               />
-              <Animated.View style={[styles.medallion, { backgroundColor: t.accentBg }, impact.styles.hero]}>
-                <Ionicons name="key" size={32} color={t.accent} />
+              <Animated.View style={[styles.medallion, impact.styles.hero]}>
+                <Ionicons name="key" size={48} color={glass.text} />
               </Animated.View>
             </View>
 
             <Animated.View style={impact.styles.text}>
-              <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
-              <Text style={[styles.subtitle, { color: t.textMuted, fontSize: f.sub }]}>{subtitle}</Text>
+              <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>{title}</Text>
+              <Text style={[styles.subtitle, { color: glass.secondary }]}>{subtitle}</Text>
             </Animated.View>
 
             <Animated.View style={[styles.ctaWrap, impact.styles.cta]}>
-              <DuoPressable
+              <Pressable
+                testID="referral-friend-reward-claim"
+                accessibilityRole="button"
                 accessibilityLabel={ctaLabel}
                 onPress={handleClose}
-                edgeColor={t.bgSurface2}
-                edgeHeight={4}
-                style={[styles.ctaBtn, { backgroundColor: t.accent }]}
+                style={({ pressed }) => [styles.ctaBtn, { backgroundColor: glass.accent, opacity: pressed ? 0.88 : 1 }]}
               >
-                <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
-              </DuoPressable>
+                <Text style={[styles.ctaText, { color: glass.accentInk }]}>{ctaLabel}</Text>
+              </Pressable>
             </Animated.View>
             </ScrollView>
           </Animated.View>
@@ -87,7 +91,7 @@ export default memo(ReferralFriendRewardHybrid);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   scrim: { backgroundColor: 'rgba(0,0,0,0.68)' },
-  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 24 },
+  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22, paddingVertical: 24 },
   scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
   scrollContent: { alignItems: 'center' },
   bloom: {
@@ -101,34 +105,33 @@ const styles = StyleSheet.create({
   card: {
     maxHeight: '100%',
     width: '100%',
-    maxWidth: 360,
-    borderRadius: 24,
-    paddingHorizontal: 22,
-    paddingTop: 26,
-    paddingBottom: 22,
+    maxWidth: 440,
+    borderRadius: 26,
+    padding: 21,
     alignItems: 'center',
     overflow: 'hidden',
-    shadowOpacity: 0.4,
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.38,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 12 },
   },
+  // `.om-art`: сцена 202×160, радиус 22, 14 от верха.
   heroFrame: {
-    width: 104,
-    height: 104,
+    width: 202,
+    height: 160,
+    marginTop: 14,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
   },
   medallion: {
     width: 72,
     height: 72,
-    borderRadius: 36,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: { fontWeight: '700', textAlign: 'center', marginBottom: 8 },
-  subtitle: { fontWeight: '400', lineHeight: 20, textAlign: 'center', marginBottom: 20 },
-  ctaWrap: { alignSelf: 'stretch' },
-  ctaBtn: { height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontWeight: '700' },
+  title: { marginTop: 7, fontSize: 25, lineHeight: 31, fontWeight: '800', textAlign: 'center' },
+  subtitle: { marginTop: 9, fontSize: 16, lineHeight: 22, fontWeight: '400', textAlign: 'center' },
+  ctaWrap: { alignSelf: 'stretch', marginTop: 18 },
+  ctaBtn: { minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });

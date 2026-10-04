@@ -1,7 +1,16 @@
 // зачем: это узкий versioned source payload первого настоящего V2-среза.
 // Он не копирует и не генерирует курс: связывает уже существующие данные Lesson 1
 // (фразы, интро, теория и слова) в один неизменяемый объект для compiler/runtime.
-import { LESSON_1_PHRASES } from '../../../app/lesson_data_1_8_phrases_source';
+import { LESSON_1_PHRASES as LESSON_1_PHRASES_GEN } from '../../../app/lesson_data_1_8_phrases_es.gen';
+import type { LessonPhrase } from '../../../app/lesson_data_types';
+
+// зачем (§136, 04.10): уроки берут фразы из .gen (единственный источник правды), а Learning V2 читал устаревший
+// _source — например, lesson1_phrase_15 «Вы опаздываете» вместо «Ты опаздываешь» в уроке. В .gen поле words —
+// испанские токены L2, английские лежат в wordsEn: Learning V2 (английский курс) берёт их.
+const LESSON_1_PHRASES: readonly LessonPhrase[] = LESSON_1_PHRASES_GEN.map((phrase) => ({
+  ...phrase,
+  words: phrase.wordsEn ?? phrase.words,
+}));
 import { LESSON_1_INTRO_SCREENS } from '../../../app/lesson_intro_screens_lesson1_v2';
 import {
   LESSON1_THEORY,

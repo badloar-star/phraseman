@@ -465,4 +465,11 @@ function main() {
   console.log('Wrote', OUT);
 }
 
+// зачем (§136, 04.10): .gen — единственный источник правды уроков; правки контента вносятся прямо в .gen.
+// _source устарел (в 1–8 расходится в 312/400 фраз, включая ручные правки ru/uk/en/es), и запуск
+// генератора молча откатил бы их. Запуск — только осознанно: PHRASEMAN_ALLOW_GEN_OVERWRITE=1.
+if (process.env.PHRASEMAN_ALLOW_GEN_OVERWRITE !== '1') {
+  console.error('[GEN-CANON] генератор заблокирован: .gen — канон (§136). Правки — прямо в .gen.');
+  process.exit(1);
+}
 main();

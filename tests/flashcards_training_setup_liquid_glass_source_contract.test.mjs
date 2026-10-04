@@ -33,7 +33,8 @@ const PROTECTED_RUNTIME = {
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
   // зачем (координатор 02.10, вариант В): открытие набора — тихие повторы + мягкая подсказка через stage_with_retry.
   // зачем (владелец 04.10, cards-section): startTraining передаёт размер сессии («Карточек 10 / 20 / Все») в маршрут — осознанная правка базовой линии
-  hash: '633d561e37ebe27f70a15005ea53d2aecf6d38ef54805fc22441fb026d655d11',
+  // зачем (ядро 04.10): блиц `sec` 30/60/90, recall `dir`, правда/ложь `size` — сознательная правка базовой линии (новое состояние secId/dirId и аргументы маршрута)
+  hash: '0218f3c39868ba89495e4322c56512606189fafda3a4d185bb5ffc0ebb91b883',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -362,9 +363,11 @@ test('setup screen delegates the view to TrainingSetupV2 and keeps the start/quo
   assert.doesNotMatch(view, /numberOfLines/);
 });
 
-test('session size is passed to speaking and recall routes only', () => {
+test('session size is passed to speaking, recall and truefalse routes; blitz gets sec, recall gets dir', () => {
   const entry = fs.readFileSync('app/flashcards/training_entry.ts', 'utf8');
   assert.match(entry, /size\?: string/);
   assert.match(entry, /size: size \|\| 'all'/);
-  assert.match(routeSource, /mode === 'speaking' \|\| mode === 'recall' \? sizeId : undefined/);
+  assert.match(routeSource, /mode === 'speaking' \|\| mode === 'recall' \|\| mode === 'truefalse' \? sizeId : undefined, \{ sec: secId, dir: dirId \}/);
+  assert.match(entry, /sec: extra\?\.sec \|\| '60'/);
+  assert.match(entry, /dir: extra\?\.dir \|\| 'to_target'/);
 });

@@ -26,7 +26,7 @@ describe('Cards whole-pack training entry', () => {
   test('blitz receives the normalized union of whole packs', () => {
     expect(buildCardsTrainingRoute('blitz', ['saved', 'pack:travel', 'saved'])).toEqual({
       pathname: '/flashcards_blitz_session',
-      params: { deck: 'saved,pack:travel' },
+      params: { deck: 'saved,pack:travel', sec: '60' },
     });
   });
 
@@ -40,15 +40,22 @@ describe('Cards whole-pack training entry', () => {
   test('true/false opens the dedicated presentation on the existing training controller', () => {
     expect(buildCardsTrainingRoute('truefalse', ['pack:one', 'pack:two'])).toEqual({
       pathname: '/flashcards_truefalse_session',
-      params: { deck: 'pack:one,pack:two', quick: '1' },
+      params: { deck: 'pack:one,pack:two', quick: '1', size: 'all' },
     });
   });
 
   test('recall opens the full-phrase writing session for the whole selected packs', () => {
     expect(buildCardsTrainingRoute('recall', ['saved', 'custom'])).toEqual({
       pathname: '/flashcards_recall_session',
-      params: { deck: 'saved,custom', size: 'all' },
+      params: { deck: 'saved,custom', size: 'all', dir: 'to_target' },
     });
+  });
+
+  // зачем: параметры режимов с экрана настройки (ядро 04.10) — блиц sec, правда/ложь size, recall dir.
+  test('setup params reach the session routes', () => {
+    expect(buildCardsTrainingRoute('blitz', ['saved'], undefined, { sec: '90' })?.params).toEqual({ deck: 'saved', sec: '90' });
+    expect(buildCardsTrainingRoute('truefalse', ['saved'], '10')?.params).toEqual({ deck: 'saved', quick: '1', size: '10' });
+    expect(buildCardsTrainingRoute('recall', ['saved'], '20', { dir: 'to_source' })?.params).toEqual({ deck: 'saved', size: '20', dir: 'to_source' });
   });
 
   // зачем (владелец 2026-09-14): механизм ежедневной практики удалён навсегда —

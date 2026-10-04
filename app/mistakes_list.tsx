@@ -10,10 +10,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { MP_COLORS } from '../components/mistakes-panel/panelPaint';
-import MistakeTitleShelf from '../components/mistake-practice/MistakeTitleShelf';
-import { buildMistakeRewardsSnapshot, type MistakeRewardsSnapshot } from '../modules/mistake-practice/rewards_model';
-import { loadMistakeEventJournal } from './mistake_practice_store';
-import { getStableId } from './stable_id';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -35,15 +31,15 @@ import { safeRouterBack } from './navigation_back';
 type Tab = 'waiting' | 'corrected';
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { title: 'Все ошибки', back: 'Назад', waiting: 'Ждут', corrected: 'Исправлены', all: 'Все', empty: 'Здесь пока пусто', practice: 'Отработать', search: 'Поиск', clear: 'Очистить' },
-  uk: { title: 'Усі помилки', back: 'Назад', waiting: 'Чекають', corrected: 'Виправлені', all: 'Усі', empty: 'Тут поки порожньо', practice: 'Відпрацювати', search: 'Пошук', clear: 'Очистити' },
-  en: { title: 'All mistakes', back: 'Back', waiting: 'Waiting', corrected: 'Fixed', all: 'All', empty: 'Nothing here yet', practice: 'Practise', search: 'Search', clear: 'Clear' },
-  es: { title: 'Todos los errores', back: 'Atrás', waiting: 'Esperan', corrected: 'Corregidos', all: 'Todos', empty: 'Aún no hay nada', practice: 'Practicar', search: 'Buscar', clear: 'Borrar' },
-  'pt-BR': { title: 'Todos os erros', back: 'Voltar', waiting: 'Esperam', corrected: 'Corrigidos', all: 'Todos', empty: 'Ainda não há nada', practice: 'Praticar', search: 'Buscar', clear: 'Limpar' },
-  vi: { title: 'Tất cả lỗi', back: 'Quay lại', waiting: 'Đang chờ', corrected: 'Đã sửa', all: 'Tất cả', empty: 'Chưa có gì ở đây', practice: 'Luyện', search: 'Tìm', clear: 'Xóa' },
-  id: { title: 'Semua kesalahan', back: 'Kembali', waiting: 'Menunggu', corrected: 'Diperbaiki', all: 'Semua', empty: 'Belum ada apa-apa', practice: 'Latih', search: 'Cari', clear: 'Hapus' },
-  tr: { title: 'Tüm hatalar', back: 'Geri', waiting: 'Bekleyen', corrected: 'Düzeltilen', all: 'Tümü', empty: 'Burası şimdilik boş', practice: 'Çalış', search: 'Ara', clear: 'Temizle' },
-  pl: { title: 'Wszystkie błędy', back: 'Wstecz', waiting: 'Czekają', corrected: 'Poprawione', all: 'Wszystkie', empty: 'Na razie pusto', practice: 'Przećwicz', search: 'Szukaj', clear: 'Wyczyść' },
+  ru: { title: 'Все ошибки', back: 'Назад', waiting: 'Ждут', corrected: 'Исправлены', all: 'Все', empty: 'Здесь пока пусто', practice: 'Отработать', repeatFixed: 'Повторить исправленные', search: 'Поиск', clear: 'Очистить' },
+  uk: { title: 'Усі помилки', back: 'Назад', waiting: 'Чекають', corrected: 'Виправлені', all: 'Усі', empty: 'Тут поки порожньо', practice: 'Відпрацювати', repeatFixed: 'Повторити виправлені', search: 'Пошук', clear: 'Очистити' },
+  en: { title: 'All mistakes', back: 'Back', waiting: 'Waiting', corrected: 'Fixed', all: 'All', empty: 'Nothing here yet', practice: 'Practise', repeatFixed: 'Review fixed mistakes', search: 'Search', clear: 'Clear' },
+  es: { title: 'Todos los errores', back: 'Atrás', waiting: 'Esperan', corrected: 'Corregidos', all: 'Todos', empty: 'Aún no hay nada', practice: 'Practicar', repeatFixed: 'Repasar los corregidos', search: 'Buscar', clear: 'Borrar' },
+  'pt-BR': { title: 'Todos os erros', back: 'Voltar', waiting: 'Esperam', corrected: 'Corrigidos', all: 'Todos', empty: 'Ainda não há nada', practice: 'Praticar', repeatFixed: 'Revisar os corrigidos', search: 'Buscar', clear: 'Limpar' },
+  vi: { title: 'Tất cả lỗi', back: 'Quay lại', waiting: 'Đang chờ', corrected: 'Đã sửa', all: 'Tất cả', empty: 'Chưa có gì ở đây', practice: 'Luyện', repeatFixed: 'Ôn lại lỗi đã sửa', search: 'Tìm', clear: 'Xóa' },
+  id: { title: 'Semua kesalahan', back: 'Kembali', waiting: 'Menunggu', corrected: 'Diperbaiki', all: 'Semua', empty: 'Belum ada apa-apa', practice: 'Latih', repeatFixed: 'Ulangi yang diperbaiki', search: 'Cari', clear: 'Hapus' },
+  tr: { title: 'Tüm hatalar', back: 'Geri', waiting: 'Bekleyen', corrected: 'Düzeltilen', all: 'Tümü', empty: 'Burası şimdilik boş', practice: 'Çalış', repeatFixed: 'Düzeltilenleri tekrarla', search: 'Ara', clear: 'Temizle' },
+  pl: { title: 'Wszystkie błędy', back: 'Wstecz', waiting: 'Czekają', corrected: 'Poprawione', all: 'Wszystkie', empty: 'Na razie pusto', practice: 'Przećwicz', repeatFixed: 'Powtórz poprawione', search: 'Szukaj', clear: 'Wyczyść' },
 });
 
 const PAGE = 40;
@@ -64,9 +60,6 @@ export default function MistakesListScreen() {
   const [limit, setLimit] = useState(PAGE);
   // зачем (аудит 04.10): первый кадр — из снимка хаба (если он есть для этого аккаунта/цели/языка), загрузка идёт фоном и заменяет строки.
   const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(() => peekMistakesHubSnapshot(target, lang)?.items ?? null);
-  // зачем (владелец 2026-09-14: «победы должны где-то храниться»): полка со званием и лестницей остаётся на вкладке «Исправлены»;
-  // в макете «Панель» её нет — решение владельца ждём, функцию не теряем.
-  const [rewards, setRewards] = useState<MistakeRewardsSnapshot | null>(null);
   const openingRef = useRef(false);
   const gate = useMistakePracticeStartGate('mistakes_hub_start');
 
@@ -75,11 +68,6 @@ export default function MistakesListScreen() {
     openingRef.current = false;
     void loadMistakePracticeHubSnapshot(target)
       .then((snapshot) => { if (!cancelled) setItems(snapshot.items); })
-      .then(async () => {
-        const accountScope = await getStableId();
-        const journal = await loadMistakeEventJournal({ accountScope, studyTarget: target });
-        if (!cancelled) setRewards(buildMistakeRewardsSnapshot(journal.events));
-      })
       .catch((error: unknown) => {
         // guard-ok: лог в catch обязателен
         console.warn('[MISTAKES-HUB] list:catch', error instanceof Error ? error.message : String(error));
@@ -105,6 +93,9 @@ export default function MistakesListScreen() {
     (group === 'all' || mistakeGroupOf(item.facet) === group)
     && (!needle || item.phrase.toLowerCase().includes(needle) || (item.meaning ?? '').toLowerCase().includes(needle))),
   [group, inTab, needle]);
+  // зачем (владелец 04.10, Ядро 76242ef31): «Повторить исправленные» — отработка из пула исправленных (pool=corrected); число — те же исправленные,
+  // что считает correctedMistakeCount(scheduler), берём из снимка хаба; при нуле кнопки нет. Цена: 1 ⚡ только от 5 ошибок, 1–4 бесплатно (решает экран сессии).
+  const correctedInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.status === 'corrected' && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
   const readyInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.ready && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
 
   // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор, а отработка одной ошибки запускается оттуда осознанной кнопкой.
@@ -130,6 +121,22 @@ export default function MistakesListScreen() {
     });
     router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { length: 'all' } : { length: 'all', facetGroup: group } } as never);
   }, [gate, group, readyInGroup, router, target]);
+
+  const startReview = useCallback(() => {
+    if (openingRef.current || correctedInGroup < 1) return;
+    hapticTap();
+    if (!gate.tryStartSession()) return;
+    openingRef.current = true;
+    trackMistakePracticeEvent('mistake_practice_setup_started', {
+      study_target: target,
+      entry_source: 'mistakes_list_review',
+      requested_length: 'all',
+      ready_count: correctedInGroup,
+      session_count: correctedInGroup,
+      costs_energy: correctedInGroup >= 5,
+    });
+    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', length: 'all' } : { pool: 'corrected', length: 'all', facetGroup: group } } as never);
+  }, [correctedInGroup, gate, group, router, target]);
 
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
@@ -196,7 +203,6 @@ export default function MistakesListScreen() {
             })}
           </View>
           <FilterChips g={g} chips={chips} activeId={group} onChange={(id) => { hapticTap(); setGroup(id as MistakeGroupFilter); setLimit(PAGE); }} testIDPrefix="mistakes-list-chip" />
-          {tab === 'corrected' ? <MistakeTitleShelf lang={lang} rewards={rewards} /> : null}
           <Panel g={g}>
             {items !== null && visible.length === 0 ? (
               <View style={styles.empty}><Text style={[styles.emptyText, { color: g.secondary }]}>{copy.empty}</Text></View>
@@ -221,6 +227,9 @@ export default function MistakesListScreen() {
             ))}
           </Panel>
         </ScrollView>
+        {tab === 'corrected' && correctedInGroup > 0 ? (
+          <PanelDock><PanelCta g={g} testID="mistakes-list-review" label={copy.repeatFixed} onPress={startReview} /></PanelDock>
+        ) : null}
         {tab === 'waiting' && readyInGroup > 0 ? (
           <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
         ) : null}

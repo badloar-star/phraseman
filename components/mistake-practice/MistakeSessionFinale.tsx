@@ -3,14 +3,9 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import AnimatedCountUpText from '../AnimatedCountUpText';
 import { triLang, type Lang } from '../../constants/i18n';
-import { pluralWord } from '../../constants/plural';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow } from '../mistakes-panel/PanelKit';
 import { RoundButton } from '../mistakes-panel/PracticeKit';
-import {
-  type MistakeRewardsSnapshot,
-  type MistakeTitleId,
-} from '../../modules/mistake-practice/rewards_model';
 
 /**
  * Итог отработки — «Итог отработки» макета «Панель» (docs/design/v2-app/mistakes-panel.html, вариант Б, одобрен владельцем 04.10).
@@ -32,28 +27,25 @@ type Props = {
   runes: number;
   /** Ошибки, ушедшие навсегда именно в этой сессии. */
   fixed: readonly MistakeFinaleFixed[];
-  rewards: MistakeRewardsSnapshot | null;
-  /** Звание, поднятое этой сессией (null — не поднялось). */
-  newTitle: MistakeTitleId | null;
   onDone: () => void;
   /** Повторить то, что не вышло: пока в продукте нет такой сессии — кнопка рисуется, только если экран передал действие. */
   onMore?: () => void;
 };
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { close: 'Закрыть', correct: 'верно', fixedFully: 'Исправлено совсем', closer: 'Ближе к исправлению', repeat: 'Ещё повторить', coins: 'Монеты', fixedSection: 'Исправлено', streak: 'Серия исправлений', days: { one: 'день', few: 'дня', many: 'дней' }, newTitle: 'Новое звание', titles: { attentive: 'Внимательный', proofreader: 'Корректор', editor: 'Редактор', master: 'Мастер' }, more: 'Ещё', finish: 'Готово' },
-  uk: { close: 'Закрити', correct: 'правильно', fixedFully: 'Виправлено остаточно', closer: 'Ближче до виправлення', repeat: 'Ще повторити', coins: 'Монети', fixedSection: 'Виправлено', streak: 'Серія виправлень', days: { one: 'день', few: 'дні', many: 'днів' }, newTitle: 'Нове звання', titles: { attentive: 'Уважний', proofreader: 'Коректор', editor: 'Редактор', master: 'Майстер' }, more: 'Ще', finish: 'Готово' },
-  en: { close: 'Close', correct: 'correct', fixedFully: 'Fixed for good', closer: 'Closer to fixed', repeat: 'Still to repeat', coins: 'Coins', fixedSection: 'Fixed', streak: 'Fixing streak', days: { one: 'day', few: 'days', many: 'days' }, newTitle: 'New title', titles: { attentive: 'Attentive', proofreader: 'Proofreader', editor: 'Editor', master: 'Master' }, more: 'More', finish: 'Done' },
-  es: { close: 'Cerrar', correct: 'correctas', fixedFully: 'Corregido para siempre', closer: 'Más cerca de corregir', repeat: 'Aún por repetir', coins: 'Monedas', fixedSection: 'Corregido', streak: 'Racha de correcciones', days: { one: 'día', few: 'días', many: 'días' }, newTitle: 'Nuevo título', titles: { attentive: 'Atento', proofreader: 'Corrector', editor: 'Editor', master: 'Maestro' }, more: 'Más', finish: 'Listo' },
-  'pt-BR': { close: 'Fechar', correct: 'corretas', fixedFully: 'Corrigido para sempre', closer: 'Mais perto de corrigir', repeat: 'Ainda a repetir', coins: 'Moedas', fixedSection: 'Corrigido', streak: 'Sequência de correções', days: { one: 'dia', few: 'dias', many: 'dias' }, newTitle: 'Novo título', titles: { attentive: 'Atento', proofreader: 'Revisor', editor: 'Editor', master: 'Mestre' }, more: 'Mais', finish: 'Pronto' },
-  vi: { close: 'Đóng', correct: 'đúng', fixedFully: 'Đã sửa hẳn', closer: 'Gần sửa xong', repeat: 'Còn phải lặp lại', coins: 'Xu', fixedSection: 'Đã sửa', streak: 'Chuỗi ngày sửa lỗi', days: { one: 'ngày', few: 'ngày', many: 'ngày' }, newTitle: 'Danh hiệu mới', titles: { attentive: 'Chăm chú', proofreader: 'Người soát lỗi', editor: 'Biên tập', master: 'Bậc thầy' }, more: 'Thêm', finish: 'Xong' },
-  id: { close: 'Tutup', correct: 'benar', fixedFully: 'Diperbaiki selamanya', closer: 'Mendekati diperbaiki', repeat: 'Masih diulang', coins: 'Koin', fixedSection: 'Diperbaiki', streak: 'Rentetan perbaikan', days: { one: 'hari', few: 'hari', many: 'hari' }, newTitle: 'Gelar baru', titles: { attentive: 'Teliti', proofreader: 'Korektor', editor: 'Editor', master: 'Master' }, more: 'Lagi', finish: 'Selesai' },
-  tr: { close: 'Kapat', correct: 'doğru', fixedFully: 'Kalıcı düzeldi', closer: 'Düzelmeye yakın', repeat: 'Hâlâ tekrar', coins: 'Jeton', fixedSection: 'Düzeltildi', streak: 'Düzeltme serisi', days: { one: 'gün', few: 'gün', many: 'gün' }, newTitle: 'Yeni unvan', titles: { attentive: 'Dikkatli', proofreader: 'Düzeltmen', editor: 'Editör', master: 'Usta' }, more: 'Daha', finish: 'Bitti' },
-  pl: { close: 'Zamknij', correct: 'dobrze', fixedFully: 'Poprawione na zawsze', closer: 'Bliżej poprawy', repeat: 'Jeszcze powtórzyć', coins: 'Monety', fixedSection: 'Poprawione', streak: 'Seria poprawek', days: { one: 'dzień', few: 'dni', many: 'dni' }, newTitle: 'Nowy tytuł', titles: { attentive: 'Uważny', proofreader: 'Korektor', editor: 'Redaktor', master: 'Mistrz' }, more: 'Jeszcze', finish: 'Gotowe' },
+  ru: { close: 'Закрыть', correct: 'верно', fixedFully: 'Исправлено совсем', closer: 'Ближе к исправлению', repeat: 'Ещё повторить', coins: 'Монеты', fixedSection: 'Исправлено', more: 'Ещё', finish: 'Готово' },
+  uk: { close: 'Закрити', correct: 'правильно', fixedFully: 'Виправлено остаточно', closer: 'Ближче до виправлення', repeat: 'Ще повторити', coins: 'Монети', fixedSection: 'Виправлено', more: 'Ще', finish: 'Готово' },
+  en: { close: 'Close', correct: 'correct', fixedFully: 'Fixed for good', closer: 'Closer to fixed', repeat: 'Still to repeat', coins: 'Coins', fixedSection: 'Fixed', more: 'More', finish: 'Done' },
+  es: { close: 'Cerrar', correct: 'correctas', fixedFully: 'Corregido para siempre', closer: 'Más cerca de corregir', repeat: 'Aún por repetir', coins: 'Monedas', fixedSection: 'Corregido', more: 'Más', finish: 'Listo' },
+  'pt-BR': { close: 'Fechar', correct: 'corretas', fixedFully: 'Corrigido para sempre', closer: 'Mais perto de corrigir', repeat: 'Ainda a repetir', coins: 'Moedas', fixedSection: 'Corrigido', more: 'Mais', finish: 'Pronto' },
+  vi: { close: 'Đóng', correct: 'đúng', fixedFully: 'Đã sửa hẳn', closer: 'Gần sửa xong', repeat: 'Còn phải lặp lại', coins: 'Xu', fixedSection: 'Đã sửa', more: 'Thêm', finish: 'Xong' },
+  id: { close: 'Tutup', correct: 'benar', fixedFully: 'Diperbaiki selamanya', closer: 'Mendekati diperbaiki', repeat: 'Masih diulang', coins: 'Koin', fixedSection: 'Diperbaiki', more: 'Lagi', finish: 'Selesai' },
+  tr: { close: 'Kapat', correct: 'doğru', fixedFully: 'Kalıcı düzeldi', closer: 'Düzelmeye yakın', repeat: 'Hâlâ tekrar', coins: 'Jeton', fixedSection: 'Düzeltildi', more: 'Daha', finish: 'Bitti' },
+  pl: { close: 'Zamknij', correct: 'dobrze', fixedFully: 'Poprawione na zawsze', closer: 'Bliżej poprawy', repeat: 'Jeszcze powtórzyć', coins: 'Monety', fixedSection: 'Poprawione', more: 'Jeszcze', finish: 'Gotowe' },
 });
 
 function MistakeSessionFinale({
-  lang, answered, total, wrong, runes, fixed, rewards, newTitle, onDone, onMore,
+  lang, answered, total, wrong, runes, fixed, onDone, onMore,
 }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -80,10 +72,8 @@ function MistakeSessionFinale({
           {count(copy.fixedFully, fixed.length, true)}
           {count(copy.closer, closer)}
           {count(copy.repeat, missed)}
-          {/* зачем (решение владельца 04.10): монеты видны в итоге; серия и звание остаются строками той же панели. */}
+          {/* зачем (владелец 04.10: «звание и серию убрать совсем»): в итоге остаются монеты; серии и звания нет. */}
           {count(copy.coins, <AnimatedCountUpText value={runes} style={[styles.num, { color: g.text }]} accessibilityLabel={`${runes} ${copy.coins}`} />)}
-          {rewards && rewards.streakDays > 0 ? count(copy.streak, `${rewards.streakDays} ${pluralWord(lang, rewards.streakDays, copy.days)}`) : null}
-          {newTitle ? count(copy.newTitle, copy.titles[newTitle]) : null}
         </Panel>
 
         {fixed.length > 0 ? (

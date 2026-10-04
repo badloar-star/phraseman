@@ -13,7 +13,6 @@ const code = (file) => read(file).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*
 const GLASS_FILES = [
   'app/dialogue_v2_completion.tsx',
   'components/mistake-practice/MistakeSessionFinale.tsx',
-  'components/mistake-practice/MistakeTitleShelf.tsx',
   'app/mistakes_hub.tsx',
   'app/mistakes_list.tsx',
   'app/mistake_detail.tsx',

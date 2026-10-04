@@ -33,16 +33,6 @@ describe('mistakes section never claims more than the data says', () => {
     expect(hub).not.toMatch(/\$\{sheetReady\} \$\{copy\.mistakes\}/);
   });
 
-  test('the streak and the title gap carry agreeing words too', () => {
-    const shelf = read('components/mistake-practice/MistakeTitleShelf.tsx');
-    expect(shelf).toContain('pluralWord(lang, rewards.streakDays, copy.days)');
-    expect(shelf).toContain('pluralWord(lang, rewards.nextTitle.remaining, copy.fixes)');
-    // Пустая полка не рисует крупный ноль и лестницу замков.
-    expect(shelf).toContain('rewards.corrected < 1) return null;');
-    const finale = read('components/mistake-practice/MistakeSessionFinale.tsx');
-    expect(finale).toContain('pluralWord(lang, rewards.streakDays, copy.days)');
-  });
-
   test('the detail card drops the plural-less noun and shows the rule only as three bars', () => {
     const detail = read('app/mistake_detail.tsx');
     expect(detail).not.toContain('{copy.misses}');

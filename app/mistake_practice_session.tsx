@@ -55,10 +55,9 @@ import {
   type MistakePracticeSession,
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
-import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
+import { appendMistakeEvent } from './mistake_practice_store';
 import { createMistakeAnswerJournal, type MistakeAnswerJournal } from './mistake_practice_answer_journal';
 import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
-import { buildMistakeRewardsSnapshot, titleFor, type MistakeRewardsSnapshot, type MistakeTitleId } from '../modules/mistake-practice/rewards_model';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -454,10 +453,6 @@ function MistakePracticeSessionScreen() {
   // зачем (макет финала А): фразы, ушедшие навсегда ИМЕННО в этой сессии —
   // они «уезжают» на полку в финале со штампом «Навсегда».
   const [fixedNow, setFixedNow] = useState<readonly MistakeFinaleFixed[]>([]);
-  const [rewardsSnapshot, setRewardsSnapshot] = useState<MistakeRewardsSnapshot | null>(null);
-  const fixedNowRef = useRef<readonly MistakeFinaleFixed[]>([]);
-  const [newTitle, setNewTitle] = useState<MistakeTitleId | null>(null);
-  useEffect(() => { fixedNowRef.current = fixedNow; }, [fixedNow]);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [hideConfirmVisible, setHideConfirmVisible] = useState(false);
   // зачем (макет «Панель»): меню «⋯» на экране задания (скрыть ошибку, сообщить об ошибке в задании), «Почему» в «стакане»,
@@ -926,21 +921,12 @@ function MistakePracticeSessionScreen() {
       // зачем (22.09): узкий список языков отнимал итоги серии у испанского и
       // немецкого. Язык вне курса уже отсечён на входе в экран.
       if (accountScope) {
-        // зачем (макет финала А): серия и звание считаются из журнала ПОСЛЕ
-        // того, как награды за исправления записаны — иначе сегодняшнее
-        // исправление не попало бы в свою же серию.
+        // зачем (владелец 04.10: звания и серию «убрать совсем»): итог показывает только числа сессии и монеты; награды за исправления
+        // по-прежнему дописываются ПОСЛЕ записи журнала (монеты за исправление догоняют фоном).
         void (answerJournalRef.current?.journal.whenIdle() ?? Promise.resolve())
           .then(() => flushPendingMistakeCorrectionRewards({ accountScope, studyTarget }))
-          .then(() => loadMistakeEventJournal({ accountScope, studyTarget: studyTarget as 'en' | 'fr' }))
-          .then((journal) => {
-            const snapshot = buildMistakeRewardsSnapshot(journal.events);
-            setRewardsSnapshot(snapshot);
-            // Звание «поднялось», если до этой сессии его ещё не было.
-            const before = titleFor(Math.max(0, snapshot.corrected - fixedNowRef.current.length));
-            if (snapshot.title && snapshot.title.id !== before?.id) setNewTitle(snapshot.title.id);
-          })
           .catch((error: unknown) => {
-            console.warn('[MISTAKES-REWARD] finale:catch — финал покажем без итогов серии', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+            console.warn('[MISTAKES-REWARD] finale:catch — монеты за исправление догонят при следующем запуске', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
           });
         void getMistakePracticeAchievementSnapshot(studyTarget).then((snapshot) =>
           checkAchievements({
@@ -1159,8 +1145,6 @@ function MistakePracticeSessionScreen() {
           wrong={wrongAnswers}
           runes={practiceRunes.runes}
           fixed={fixedNow}
-          rewards={rewardsSnapshot}
-          newTitle={newTitle}
           onDone={leavePractice}
         />
       </MistakePracticeScreenFrame>

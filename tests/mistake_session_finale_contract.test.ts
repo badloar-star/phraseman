@@ -24,18 +24,13 @@ describe('mistake session finale contract', () => {
     expect(screen).not.toContain("copy.sessionComplete}</Text>");
   });
 
-  test('rewards are computed after corrections are written, never before', () => {
-    // Иначе сегодняшнее исправление не попало бы в свою же серию.
+  test('coins for corrections are flushed after the journal is written, and no streak or title is computed', () => {
+    // Иначе награда за сегодняшнее исправление не догнала бы запись журнала.
     expect(screen).toContain('flushPendingMistakeCorrectionRewards({ accountScope, studyTarget })');
-    expect(screen).toContain('buildMistakeRewardsSnapshot(journal.events)');
-    // Цель недели удалена (владелец 2026-09-15) — ни блока, ни выдачи сундука.
-    expect(finale).not.toMatch(/weekGoal|MISTAKE_WEEK_GOAL/);
+    // Владелец 04.10: звания и серию «убрать совсем» — ни расчёта, ни показа; цель недели удалена ещё 2026-09-15.
+    expect(screen).not.toMatch(/buildMistakeRewardsSnapshot|titleFor\(|setNewTitle|rewardsSnapshot/);
+    expect(finale).not.toMatch(/streakDays|newTitle|weekGoal|MISTAKE_WEEK_GOAL/);
     expect(screen).not.toMatch(/grantMistakeWeekGoalReward|weekGoalReached/);
-  });
-
-  test('a new title is announced only when it really went up', () => {
-    expect(screen).toContain('titleFor(Math.max(0, snapshot.corrected - fixedNowRef.current.length))');
-    expect(screen).toContain("snapshot.title.id !== before?.id");
   });
 
   test('no outlines, no font shrinking, no full-screen spinner', () => {

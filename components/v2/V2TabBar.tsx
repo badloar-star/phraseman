@@ -267,7 +267,21 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     onPanResponderTerminate: () => endGesture(true),
   })).current;
 
-  const handleLayout = useCallback((e: LayoutChangeEvent) => setWidth(e.nativeEvent.layout.width), []);
+  // зачем (владелец 04.10: «на таббаре не должно быть обрезано ничего», скриншот капсулы):
+  // в коде у капсулы нет обрезающего родителя — СПЕРВА лог реальной геометрии, потом починка.
+  const handleLayout = useCallback((e: LayoutChangeEvent) => {
+    const { width: w, height: h } = e.nativeEvent.layout;
+    if (__DEV__) {
+      const slot = w > 0 ? (w - PAD * 2) / count : 0;
+      console.log('[TABBAR-CAP] layout', {
+        barW: w, barH: h, expectedH: V2_TAB_BAR_HEIGHT, count, slotW: slot,
+        capH: CAP_H, capTop: PAD, capBottomGap: h - PAD - CAP_H, capRadius: CAP_RADIUS,
+        iconSize: ICON_SIZE, activeIndex, capLeft: PAD + Math.max(0, activeIndex) * slot,
+        capRightEdge: PAD + (Math.max(0, activeIndex) + 1) * slot, barInnerRight: w - PAD,
+      });
+    }
+    setWidth(w);
+  }, [count, activeIndex]);
   const capScale = capLift.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
   const capBright = capLift.interpolate({ inputRange: [0, 1], outputRange: [0, 0.08] });
   const iconPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.88] });

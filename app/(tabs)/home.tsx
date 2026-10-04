@@ -2228,7 +2228,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             {priorityCardVisible || continueCardPending ? (
               <HomeV2ContinueCard
                 pending={!priorityCardVisible && continueCardPending}
-                overline={triLang(lang, { ru: 'Продолжить обучение', uk: 'Продовжити навчання', en: 'Continue learning', es: 'Seguir aprendiendo', 'pt-BR': 'Continuar aprendendo', vi: 'Tiếp tục học', id: 'Lanjutkan belajar', tr: 'Öğrenmeye devam et', pl: 'Kontynuuj naukę' }).toUpperCase()}
                 title={priorityCardTitle}
                 done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
                 total={priorityCardShowsMistakes ? Math.max(1, mistakeActiveCount) : 50}

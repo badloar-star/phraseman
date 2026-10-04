@@ -49,8 +49,11 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.match(continueCard, /art: \{[^}]*right: 0/);
 });
 
-test('phrase-of-day illustration is large and placed to the right of the copy', () => {
+// зачем (владелец 04.10, по скриншоту: «в два раза ниже»): карточка ≈ 80 вместо ≈ 150 —
+// арт 72 справа, кнопки столбиком рядом; текст по-прежнему не заходит под арт.
+test('phrase-of-day illustration is placed to the right of the copy in the compact card', () => {
   assert.match(dailyPhrase, /v2Art: \{[^}]*position: 'absolute'[^}]*right:/);
-  assert.match(dailyPhrase, /v2Art: \{[^}]*width: 1(?:1|2|3|4)\d/);
+  assert.match(dailyPhrase, /v2Art: \{[^}]*width: 72, height: 72/);
+  assert.match(dailyPhrase, /v2Card: \{\s*minHeight: 80,/);
   assert.match(dailyPhrase, /v2Copy: \{[^}]*paddingRight:/);
 });

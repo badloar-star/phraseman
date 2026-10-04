@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
@@ -10,8 +9,9 @@ import type { HomeFeatureTile } from './home_v2_types';
 
 /**
  * Три плитки новой Главной (референс 2.0): Уроки / Диалоги / Карточки.
- * Слева сверху — утверждённый арт, ниже название и полная подпись, справа
- * внизу — круглая стрелка.
+ * зачем (владелец 04.10, по скриншоту: «убери подтексты, убери стрелочки и сделай их
+ * не высокими, а равными, как квадраты»): плитка — квадрат, в ней только предмет и
+ * название. Подпись осталась в данных — её читает экранный диктор.
  */
 export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
   const p = useV2Palette();
@@ -34,15 +34,6 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
             <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
           </View>
           <Text style={[s.title, { color: p.text }]}>{tile.title}</Text>
-          {/* зачем (владелец 01.10: «expressões» рвалось посреди слова при шрифте 1.3): подпись
-              делила строку со стрелкой и получала ~58 pt. Теперь подпись — на всю ширину плитки,
-              стрелка — отдельной строкой справа, прижата к низу. */}
-          <Text style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
-          <View style={s.footer}>
-            <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
-              <Ionicons name="chevron-forward" size={16} color={p.text} />
-            </View>
-          </View>
         </V2Pressable>
       ))}
     </View>
@@ -52,19 +43,17 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
 const s = StyleSheet.create({
   row: { flexDirection: 'row', gap: V2.gapTight },
   tileSlot: { flex: 1 },
+  // Квадрат от ширины ячейки — первый кадр сразу финальной геометрии, без замеров.
   tile: {
-    flex: 1,
-    minHeight: 156,
+    aspectRatio: 1,
     borderRadius: V2.radius.tile,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     paddingHorizontal: 10,
     paddingBottom: 10,
     overflow: 'hidden',
   },
-  art: { height: 92, marginHorizontal: -10, marginBottom: 6, paddingLeft: 10, alignItems: 'flex-start', justifyContent: 'center' },
-  artImage: { width: 84, height: 84 },
+  // Предмет занимает всё место над названием и прижат влево, как раньше.
+  art: { flex: 1, marginHorizontal: -10, marginBottom: 4, paddingLeft: 10, paddingTop: 6, alignItems: 'flex-start', justifyContent: 'center' },
+  artImage: { width: '86%', height: '100%', maxWidth: 84, maxHeight: 84 },
   title: { ...V2_TYPE.headline },
-  footer: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto', paddingTop: 6 },
-  subtitle: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17, marginTop: 4 },
-  arrow: { width: 26, height: 26, borderRadius: 13, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center', marginRight: -2 }, // guard-ok: D43
 });

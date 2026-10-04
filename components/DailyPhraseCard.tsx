@@ -645,7 +645,11 @@ function DailyPhraseCard({
             {phraseCopy.literal ? (
               <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{phraseCopy.literal}</Text>
             ) : null}
-            <View style={styles.v2Actions}>
+          </View>
+          {/* зачем (владелец 04.10, по скриншоту: «в два раза ниже»): кнопки из отдельной
+              строки под текстом переехали столбиком к арту справа — высота ≈ 80 вместо ≈ 150,
+              ширина текста прежняя (фраза не начинает переноситься). */}
+          <View style={styles.v2Actions}>
               <Pressable
                 testID="home-v2-phrase-play"
                 hitSlop={6}
@@ -668,7 +672,6 @@ function DailyPhraseCard({
               >
                 <Ionicons name="star-outline" size={18} color={v2.iconTint} />
               </Pressable>
-            </View>
           </View>
         </Pressable>
         ) : (
@@ -1058,26 +1061,29 @@ export default memo(DailyPhraseCard);
 
 const styles = StyleSheet.create({
   // ── «Фраза дня» новой Главной: текст и действия слева, крупный арт справа.
+  // Высота ≈ 80 (владелец 04.10: «в два раза ниже»): три строки текста слева,
+  // кнопки столбиком и арт 72 справа — геометрия первого кадра сразу финальная.
   v2Card: {
-    minHeight: 150,
+    minHeight: 80,
     borderRadius: V2.radius.card,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    paddingVertical: 14,
+    alignItems: 'center',
+    paddingVertical: 10,
     paddingLeft: 14,
     paddingRight: 14,
     gap: 12,
     overflow: 'hidden',
   },
-  v2Art: { position: 'absolute', right: 10, top: 11, width: 124, height: 124 },
+  v2Art: { position: 'absolute', right: 8, top: 4, width: 72, height: 72 },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
   v2Copy: { flex: 1, minWidth: 0, paddingRight: 122 },
   v2Kicker: { ...V2_TYPE.overline },
-  v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 4 },
-  v2Translation: { ...V2_TYPE.body, marginTop: 2 },
-  v2Actions: { flexDirection: 'row', gap: 10, marginTop: 8 },
+  v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 2 },
+  v2Translation: { ...V2_TYPE.body, marginTop: 1 },
+  // Столбиком слева от арта: 2 × 34 + 6 = 74 — влезает в высоту карточки.
+  v2Actions: { position: 'absolute', right: 86, top: 0, bottom: 0, justifyContent: 'center', gap: 6 },
   v2Round: {
     width: 34,
     height: 34,

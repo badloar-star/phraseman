@@ -8,7 +8,6 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
 
 type Props = {
-  overline: string;
   title: string;
   done: number;
   total: number;
@@ -30,11 +29,13 @@ type Props = {
 };
 
 /**
- * «ПРОДОЛЖИТЬ ОБУЧЕНИЕ» новой Главной (референс 2.0): оверлайн, крупное
- * название, счётчик x / N и полоса прогресса, круглая стрелка; справа арт
- * из утверждённого ассета с плашкой номера урока.
+ * Карточка «продолжить» новой Главной: название, ниже полоса прогресса со счётчиком
+ * x / N и круглой стрелкой; справа арт из утверждённого ассета с плашкой номера урока.
+ * зачем (владелец 04.10, по скриншоту: «этот блок в два раза ниже, убери текст
+ * “Продолжить обучение”»): надписи-оверлайна нет, счётчик переехал в строку полосы —
+ * две строки вместо четырёх, высота 80 вместо ≈ 158.
  */
-export default function HomeV2ContinueCard({ overline, title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
+export default function HomeV2ContinueCard({ title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   const safeTotal = Math.max(1, total);
@@ -63,25 +64,23 @@ export default function HomeV2ContinueCard({ overline, title, done, total, art, 
         ) : null}
       </View>
       <View style={s.copy}>
-        <Text style={[s.overline, { color: p.textSecondary }]}>{overline}</Text>
         {pending ? (
-          <>
-            <View style={[s.titleBar, { backgroundColor: p.control }]} />
-            <View style={[s.counterBar, { backgroundColor: p.control }]} />
-          </>
+          <View style={[s.titleBar, { backgroundColor: p.control }]} />
         ) : (
-          <>
-            <Text testID="home-continue-lesson-title" style={[s.title, { color: p.text }]}>{title}</Text>
-            <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
-          </>
+          <Text testID="home-continue-lesson-title" style={[s.title, { color: p.text }]}>{title}</Text>
         )}
         <View style={s.progressRow}>
           <View style={[s.track, { backgroundColor: p.track }]}>
             {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
             {pending ? null : <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />}
           </View>
+          {pending ? (
+            <View style={[s.counterBar, { backgroundColor: p.control }]} />
+          ) : (
+            <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
+          )}
           <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
-            <Ionicons name="chevron-forward" size={18} color={p.text} />
+            <Ionicons name="chevron-forward" size={16} color={p.text} />
           </View>
         </View>
       </View>
@@ -91,18 +90,19 @@ export default function HomeV2ContinueCard({ overline, title, done, total, art, 
 
 const s = StyleSheet.create({
   card: {
-    minHeight: 96,
+    height: 80,
     borderRadius: V2.radius.card,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     overflow: 'hidden',
     flexDirection: 'row',
   },
-  art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '42%', opacity: 0.95, alignItems: 'flex-end', justifyContent: 'center' },
-  artImage: { width: 130, height: 130, marginRight: 6 },
+  art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '32%', opacity: 0.95, alignItems: 'flex-end', justifyContent: 'center' },
+  // Арт вписан в высоту карточки (80): не вылезает и не режется.
+  artImage: { width: 96, height: 76, marginRight: 8 },
   artPending: { opacity: 0.35 },
-  // Заготовки повторяют строки: заголовок 20 + отступ 6, счётчик 18 + отступ 6.
-  titleBar: { height: 14, width: '78%', borderRadius: 7, marginTop: 6 + 3, marginBottom: 3 },
-  counterBar: { height: 12, width: 56, borderRadius: 6, marginTop: 6 + 3, marginBottom: 3 },
+  // Заготовки повторяют строки: заголовок 20, счётчик — в строке полосы.
+  titleBar: { height: 14, width: '78%', borderRadius: 7, marginTop: 3, marginBottom: 3 },
+  counterBar: { height: 12, width: 40, borderRadius: 6 },
   badge: {
     position: 'absolute',
     right: 12,
@@ -116,12 +116,11 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   badgeText: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
-  copy: { flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: '43%' },
-  overline: { ...V2_TYPE.overline },
-  title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3, marginTop: 6 },
-  counter: { ...V2_TYPE.subtitle, marginTop: 6 },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 6 },
+  copy: { flex: 1, justifyContent: 'center', paddingVertical: 10, paddingLeft: 16, paddingRight: '34%' },
+  title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3 },
+  counter: { ...V2_TYPE.subtitle, fontVariant: ['tabular-nums'] },
+  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8 },
   track: { flex: 1, height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },
-  arrow: { width: 32, height: 32, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
+  arrow: { width: 28, height: 28, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
 });

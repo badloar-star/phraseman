@@ -102,10 +102,13 @@ const s = StyleSheet.create({
   card: {
     borderRadius: V2.radius.card,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
-    padding: 12,
+    // зачем (владелец 04.10, по скриншоту: «сделай контейнеры внутри шире»): боковой отступ блока
+    // 12 → 6 — строки задач шире на 12 px; заголовок сдвинут, чтобы стоять на прежней линии.
+    paddingHorizontal: 6,
+    paddingBottom: 6,
     paddingTop: 16,
   },
-  header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6, marginLeft: 6, marginBottom: 12 },
+  header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6, marginLeft: 12, marginBottom: 12 },
   list: { gap: 6 },
   row: {
     minHeight: 58,

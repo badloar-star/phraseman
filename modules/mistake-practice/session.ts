@@ -12,6 +12,7 @@ import {
 } from './exercise_mode_registry';
 import type { MistakeFacet } from './contracts';
 import type { MistakeProjectionItem } from './projection';
+import { mistakeExerciseCapabilitiesFor } from './capabilities';
 import { planFailureRequeue, selectMistakesForSession, type FailureRequeuePlan } from './scheduler';
 
 export type MistakePracticeLength = '5' | '10' | '15' | 'all';
@@ -88,15 +89,8 @@ const stageFor = (item: MistakeProjectionItem): MistakeExerciseSupport => {
   return 'production';
 };
 
-const capabilitiesFor = (item: MistakeProjectionItem): MistakeExerciseCapabilities => ({
-  hasMeaningDistractors: (item.distractors?.length ?? 0) > 0,
-  hasTokenDistractors: (item.distractors?.length ?? 0) > 0,
-  hasOddityCandidates: (item.distractors?.length ?? 0) > 0,
-  supportsTyping: true,
-  hasAudio: !!item.audioRef,
-  supportsSpeech: item.facet === 'pronunciation' || !!item.audioRef,
-  tokenCount: item.tokens?.length ?? item.canonicalTarget.split(/\s+/).length,
-});
+// зачем (04.10): расчёт вынесен в capabilities.ts — тот же нужен проекции (правило «ушла из счётчика»).
+const capabilitiesFor = (item: MistakeProjectionItem): MistakeExerciseCapabilities => mistakeExerciseCapabilitiesFor(item);
 
 const countFor = mistakePracticeSessionCount;
 

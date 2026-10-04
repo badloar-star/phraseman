@@ -5,8 +5,10 @@ import type {
 } from './contracts';
 import {
   MISTAKE_EXERCISE_MODE_REGISTRY,
+  independentProductionModeCount,
   type MistakeExerciseMode,
 } from './exercise_mode_registry';
+import { mistakeExerciseCapabilitiesFor } from './capabilities';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const LOCAL_DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -265,13 +267,26 @@ export function projectMistakes(
     current.dueAtMs = event.occurredAtMs
       + DAY_MS * Math.min(7, current.qualifyingDays.length);
 
+    // зачем (04.10, «17 не уменьшается»): второй режим требуется, только если он для этой ошибки возможен;
+    // иначе ошибка с единственным независимым режимом (печать) не уходила из счётчика никогда.
+    const requiredModes = Math.min(2, Math.max(1, independentProductionModeCount({
+      facet: current.facet,
+      capabilities: mistakeExerciseCapabilitiesFor(current),
+    })));
     if (
       current.qualifyingDays.length >= 3
-      && new Set(current.qualifyingModes).size >= 2
+      && new Set(current.qualifyingModes).size >= requiredModes
       && current.hasIndependentProduction
     ) {
       current.status = 'corrected';
       current.correctedAtMs = event.occurredAtMs;
+      // Проекция пересобирается из всего журнала при каждой загрузке — логируем только живое (свежее) исправление.
+      if (Date.now() - event.occurredAtMs < 10 * 60 * 1000) {
+        console.log('[MISTAKE-CORRECTED]', JSON.stringify({
+          facet: current.facet, requiredModes, modesSeen: new Set(current.qualifyingModes).size,
+          days: current.qualifyingDays.length,
+        }));
+      }
     }
   }
 

@@ -140,6 +140,23 @@ const supportRank: Readonly<Record<MistakeExerciseSupport, number>> = {
   production: 2,
 };
 
+/**
+ * Сколько независимых режимов (countsAsIndependentProduction) вообще возможно для этой ошибки на стадии
+ * production. зачем (04.10, «17 не уменьшается»): правило «ушла из счётчика» требовало 2 разных режима
+ * всегда, а для meaning / listening / missing_token (и form/word_order без аудио) возможна только печать.
+ */
+export function independentProductionModeCount(input: {
+  readonly facet: MistakeFacet;
+  readonly capabilities: MistakeExerciseCapabilities;
+}): number {
+  return Object.values(MISTAKE_EXERCISE_MODE_REGISTRY).filter((definition) =>
+    definition.countsAsIndependentProduction
+    && definition.support === 'production'
+    && definition.facets.includes(input.facet)
+    && definition.compatible(input.capabilities),
+  ).length;
+}
+
 export function compatibleMistakeExerciseModes(input: {
   readonly facet: MistakeFacet;
   readonly capabilities: MistakeExerciseCapabilities;

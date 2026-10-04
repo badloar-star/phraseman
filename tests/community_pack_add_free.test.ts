@@ -22,6 +22,7 @@ import {
   loadCommunityOwnedPackIds,
 } from '../app/community_packs/communityOwnedStorage';
 import type { FlashcardMarketPack } from '../app/flashcards/marketplace';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 const asyncStorageMock = AsyncStorage as unknown as { __reset: () => void };
 
@@ -50,7 +51,11 @@ function pack(p: Partial<FlashcardMarketPack>): FlashcardMarketPack {
 describe('добавление набора сообщества', () => {
   beforeEach(() => {
     asyncStorageMock.__reset();
+    // зачем (04.10): чтение своих наборов привязано к активному аккаунту (Account V2, 6G/7C) —
+    // без него load отдаёт [] с логом [PACKS-OWNED] load:stale account_phase_uninitialized.
+    beginAccountGeneration('owner-test');
   });
+  afterEach(() => __resetAccountGenerationForTests());
 
   test('первое нажатие добавляет набор, повторное — нет', async () => {
     expect(await addCommunityPackToLibrary(pack({}))).toBe('added');

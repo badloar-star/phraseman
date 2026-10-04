@@ -34,19 +34,28 @@ export async function loadCommunityOwnedPackIdsResult(
 ): Promise<CommunityOwnedPackIdsLoadResult> {
   const key = flashcardsCommunityOwnedPacksKey(studyTarget);
   const cacheKey = warmOwnedIdsKey(key, accountToken);
-  if (!cacheKey || !isCurrentAccountGeneration(accountToken)) return { ids: [], status: 'stale' };
+  if (!cacheKey || !isCurrentAccountGeneration(accountToken)) {
+    // зачем (сперва логи): немой отказ здесь выглядел как «своих наборов нет».
+    console.warn('[PACKS-OWNED] load:stale', JSON.stringify({ reason: !cacheKey ? `account_phase_${accountToken.phase}` : 'account_generation_changed', key }));
+    return { ids: [], status: 'stale' };
+  }
   try {
     const parsed = parseStrictArrayJson(
       await AsyncStorage.getItem(key),
       (value): value is string => typeof value === 'string',
     );
-    if (!isCurrentAccountGeneration(accountToken)) return { ids: [], status: 'stale' };
+    if (!isCurrentAccountGeneration(accountToken)) {
+      console.warn('[PACKS-OWNED] load:stale', JSON.stringify({ reason: 'account_generation_changed_after_read', key }));
+      return { ids: [], status: 'stale' };
+    }
     if (parsed.status === 'ready') {
       warmOwnedIdsByKey.set(cacheKey, parsed.items);
       return { ids: parsed.items, status: 'ready' };
     }
+    console.warn('[PACKS-OWNED] load:unreadable -> warm copy', JSON.stringify({ key, parseStatus: parsed.status }));
     return { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' };
-  } catch {
+  } catch (error) {
+    console.warn('[PACKS-OWNED] load:catch -> warm copy', JSON.stringify({ key }), error instanceof Error ? error.message : String(error));
     return isCurrentAccountGeneration(accountToken)
       ? { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' }
       : { ids: [], status: 'stale' };

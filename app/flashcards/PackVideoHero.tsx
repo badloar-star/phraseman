@@ -111,8 +111,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
         <Ionicons name="play" size={24} color="#FFFFFF" />
       </View>
 
-      <Text style={styles.caption}>{watchLabel}</Text>
-
+      {/* зачем: паритет с макетом video-packs-from-video-mockup.html кадр 2 — на кадре только круг «play», подписи нет. */}
       {duration ? (
         <View style={styles.duration} pointerEvents="none">
           <Text style={styles.durationText}>{duration}</Text>
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
   hero: {
     width: '100%',
     aspectRatio: 16 / 9,
-    borderRadius: 18,
+    borderRadius: 22,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
     alignItems: 'center',
@@ -138,22 +137,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(3,6,4,0.28)',
   },
   playBadge: {
-    width: 58,
-    height: 58,
-    borderRadius: 29,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: 'rgba(0,0,0,0.55)',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(255,255,255,0.25)',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  caption: {
-    position: 'absolute',
-    left: 12,
-    bottom: 10,
-    fontSize: 13,
-    fontWeight: '700',
-    color: 'rgba(255,255,255,0.92)',
   },
   duration: {
     position: 'absolute',

@@ -155,9 +155,9 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
         {!live && isCountdown && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={[styles.countdown, { color: g.secondary }]}>{countdown}</Text>}
         {live ? (
-          <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.accent }]}>
+          <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta }]}>
             <Ionicons name="play" size={18} color={g.ctaInk} />
-            <Text style={[styles.ctaText, { color: g.accentInk }]}>{copy.join}</Text>
+            <Text style={[styles.ctaText, { color: g.ctaInk }]}>{copy.join}</Text>
           </TouchableOpacity>
         ) : !isCountdown ? (
           <View testID="youtube-premiere-checking" accessibilityRole="button" accessibilityLabel={copy.checking} style={[styles.cta, styles.ctaGhost, { borderColor: g.glassEdge }]}>
@@ -165,7 +165,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
             <Text style={[styles.ctaText, { color: g.text }]}>{copy.checking}</Text>
           </View>
         ) : (
-          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? [styles.ctaGhost, { borderColor: g.glassEdge }] : { backgroundColor: g.accent }]}>
+          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? [styles.ctaGhost, { borderColor: g.glassEdge }] : { backgroundColor: g.cta }]}>
             <Ionicons name={reminded ? 'checkmark' : 'flag-outline'} size={18} color={reminded ? g.text : g.ctaInk} />
             <Text style={[styles.ctaText, { color: reminded ? g.text : g.ctaInk }]}>{reminded ? copy.reminded : copy.remind}</Text>
           </TouchableOpacity>

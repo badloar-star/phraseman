@@ -16,7 +16,8 @@ test('Video packs preserves real catalog, staging, sort, language and social act
 test('Video list and row use current translucent theme material with native diffusion', () => {
   for (const source of [screen, row]) {
     assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
-    assert.match(source, /dimezisBlurView/);
+    // зачем: строка набора — плоская (макет video-packs-from-video-mockup.html), блюр только у экрана; кромка — у обоих.
+    if (source === screen) assert.match(source, /dimezisBlurView/);
     assert.match(source, /g\.glassEdge/);
   }
   assert.match(screen, /colors=\{\[g\.bgTop, g\.bg, g\.bgBottom\]\}/);

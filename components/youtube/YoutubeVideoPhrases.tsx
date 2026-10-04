@@ -199,18 +199,19 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       accessibilityRole="button"
       accessibilityState={{ expanded: isExpanded }}
       onPress={toggle}
-      style={({ pressed }) => [styles.toggle, { backgroundColor: glass.opaqueCard, opacity: pressed ? 0.78 : 1 }]}
+      // зачем: паритет с макетом video.html — заголовок «Фразы из видео» это `.sec` без плашки (тон не заливаем).
+      style={({ pressed }) => [styles.toggle, { opacity: pressed ? 0.78 : 1 }]}
     >
       <Text style={[styles.title, { color: glass.text }]}>{copy.title}</Text>
       <Text style={[styles.count, { color: glass.mutedText }]}>{phrases.length}</Text>
-      <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={21} color={glass.secondary} />
+      <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={16} color={glass.secondary} />
     </Pressable>
-    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? glass.opaqueControl : glass.opaqueCard }]}>
+    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? glass.opaqueControl : 'transparent' }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => onPhrasePress(phrase, index)} onLongPress={() => setSelected(phrase)} accessibilityState={{ selected: index === activeIndex }} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
-        {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: glass.mutedText }]}>{formatTimecode(phrase.startSec)}</Text> : null}
+        {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: index === activeIndex ? glass.text : glass.secondary }]}>{formatTimecode(phrase.startSec)}</Text> : null}
         <View style={styles.rowCopy}><Text style={[styles.phrase, { color: glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
       </Pressable>
-      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: glass.opaqueControl, text: glass.text, muted: glass.secondary, accent: glass.lightTint }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
+      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: 'transparent', text: glass.secondary, muted: glass.secondary, accent: glass.text }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
     </View>)}
     <HybridSheetShell
       visible={!!selected}
@@ -241,7 +242,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
             onPress={() => void save(shown)}
             style={({ pressed }) => [
               styles.sheetCta,
-              { backgroundColor: selectedSaved ? glass.opaqueControl : glass.cta, opacity: pressed ? 0.82 : 1 },
+              selectedSaved ? { backgroundColor: 'transparent', borderWidth: 1, borderColor: glass.glassEdge } : { backgroundColor: glass.cta }, // guard-ok: `.cta.gh` макета — тонкий полупрозрачный контур
+              { opacity: pressed ? 0.82 : 1 },
             ]}
           >
             <Ionicons name={selectedSaved ? 'checkmark' : 'bookmark-outline'} size={20} color={selectedSaved ? glass.text : glass.ctaInk} />
@@ -264,13 +266,13 @@ function formatTimecode(totalSec: number): string {
 
 const styles = StyleSheet.create({
   block: { marginTop: 4, marginBottom: 16 },
-  toggle: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  title: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  count: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  row: { minHeight: 72, borderRadius: 18, paddingLeft: 16, paddingRight: 8, marginTop: 8, flexDirection: 'row', alignItems: 'center' },
+  toggle: { minHeight: 44, paddingHorizontal: 2, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  title: { fontSize: 18, lineHeight: 24, fontWeight: '700' },
+  count: { flex: 1, marginLeft: 0, fontSize: 18, lineHeight: 24, fontWeight: '600' },
+  row: { minHeight: 64, borderRadius: 14, paddingLeft: 12, paddingRight: 4, marginTop: 2, flexDirection: 'row', alignItems: 'center' },
   rowCopyPressable: { flex: 1, minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: 12 },
   rowCopy: { flex: 1, paddingVertical: 12, paddingRight: 8 },
-  rowSave: { transform: [{ translateY: 4 }] },
+  rowSave: { alignSelf: 'center' },
   time: { minWidth: 40, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   phrase: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   translation: { marginTop: 4, fontSize: 13, lineHeight: 18, fontWeight: '400' },
@@ -283,6 +285,6 @@ const styles = StyleSheet.create({
   label: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
   sheetTranslation: { fontSize: 16, lineHeight: 22, fontWeight: '400', marginTop: 8 },
   explanation: { fontSize: 16, lineHeight: 22, fontWeight: '400', marginTop: 8 },
-  sheetCta: { minHeight: 52, borderRadius: 16, marginTop: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  sheetCta: { minHeight: 52, borderRadius: 26, marginTop: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   sheetCtaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });

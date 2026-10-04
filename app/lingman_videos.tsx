@@ -158,6 +158,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
     savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
+    // зачем (паритет с макетом video.html «Ошибка»): текст и кнопка как на кадре; «потянуть вниз» повторяет загрузку.
+    catalogFailed: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', en: 'Couldn’t load the catalog. Pull down to retry.', es: 'No se pudo cargar el catálogo. Desliza hacia abajo para reintentar.', 'pt-BR': 'Não foi possível carregar o catálogo. Puxe para baixo para tentar de novo.', vi: 'Không tải được danh mục. Kéo xuống để thử lại.', id: 'Katalog gagal dimuat. Tarik ke bawah untuk mengulang.', tr: 'Katalog yüklenemedi. Tekrar denemek için aşağı çek.', pl: 'Nie udało się wczytać katalogu. Pociągnij w dół, aby ponowić.' }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
     unavailable: triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' }),
     tryAgain: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
     train: triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати фрази ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' }),
@@ -563,17 +566,24 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
         {catalogExhausted && !catalog && !snapshot ? (
-          <View testID="youtube-catalog-unavailable" style={styles.unavailable}>
-            <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.text }]}>{copy.unavailable}</Text>
+          <ScrollView
+            testID="youtube-catalog-unavailable"
+            decelerationRate="fast"
+            refreshControl={<HybridRefreshControl refreshing={false} onRefresh={() => retryCatalogAfterUnavailable('tap')} />}
+            contentContainerStyle={styles.unavailable}
+          >
+            <View style={[styles.unavailableTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="cloud-offline-outline" size={24} color={g.text} /></View>
+            <Text accessibilityRole="header" accessibilityLabel={copy.unavailable} style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.catalogFailed}</Text>
             <Pressable
               testID="youtube-catalog-try-again"
               accessibilityRole="button"
+              accessibilityLabel={copy.tryAgain}
               onPress={() => retryCatalogAfterUnavailable('tap')}
-              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
             >
-              <Text style={[styles.unavailableActionLabel, { color: g.text }]}>{copy.tryAgain}</Text>
+              <Text style={[styles.unavailableActionLabel, { color: g.ctaInk }]}>{copy.retry}</Text>
             </Pressable>
-          </View>
+          </ScrollView>
         ) : (visibleLoading || issue === 'error') && !catalog && !snapshot ? (
           <View testID="youtube-catalog-loading" style={styles.skeletons}>
             <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22} />
@@ -641,9 +651,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 }
 
 const styles = StyleSheet.create({
-  unavailable: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60, gap: 18 },
-  unavailableTitle: { fontSize: 20, fontWeight: '700', textAlign: 'center' },
-  unavailableAction: { minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  unavailable: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60 },
+  unavailableTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginBottom: 18 },
+  unavailableTitle: { fontSize: 16, lineHeight: 22, fontWeight: '400', textAlign: 'center' },
+  unavailableAction: { marginTop: 22, minHeight: 42, paddingHorizontal: 18, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   unavailableActionLabel: { fontSize: 16, fontWeight: '600' },
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
   list: { paddingBottom: 32 },

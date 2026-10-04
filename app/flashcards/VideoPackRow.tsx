@@ -10,12 +10,9 @@
  * Три разные цели тапа: кадр → ролик, строка → набор, кнопка → добавить себе.
  * Поэтому кадр и кнопка — отдельные Pressable поверх строки, а не её части.
  */
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
-import { ActivityIndicator, Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from '../../components/SafeLinearGradient';
+import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -121,11 +118,9 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
   return (
     <View
       testID={`video-pack-row-${pack.id}`}
-      style={[styles.row, { backgroundColor: g.card, borderColor: g.glassEdge, opacity: disabled ? 0.55 : 1 }]}
+      // зачем: паритет с макетом video-packs-from-video-mockup.html (D131) — строка без плашки, только тонкая линия снизу (`.item`).
+      style={[styles.row, { borderBottomColor: g.glassEdge, opacity: disabled ? 0.55 : 1 }]}
     >
-      <BlurView pointerEvents="none" intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-      <LinearGradient pointerEvents="none" colors={[g.selected, 'transparent']} style={StyleSheet.absoluteFill} />
-      <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: g.glassEdge }} />
       {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
       <Pressable
         testID={`video-pack-play-${pack.id}`}
@@ -155,13 +150,9 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
           />
         ) : null}
 
-        <View style={[styles.playBadge, { backgroundColor: g.opaqueControl }]}>
-          <Ionicons name="play" size={11} color={g.text} />
-        </View>
-
         {duration ? (
-          <View style={[styles.duration, { backgroundColor: g.sheet }]} pointerEvents="none">
-            <Text style={[styles.durationText, { color: g.text }]}>{duration}</Text>
+          <View style={styles.duration} pointerEvents="none">
+            <Text style={styles.durationText}>{duration}</Text>
           </View>
         ) : null}
 
@@ -218,10 +209,9 @@ export default React.memo(VideoPackRowBase, (prev, next) => (
 const styles = StyleSheet.create({
   row: {
     minHeight: 87,
-    borderRadius: 16,
-    borderWidth: 1,
+    borderBottomWidth: 1, // guard-ok: тонкая разделительная линия строки, как `.item` макета
     overflow: 'hidden',
-    padding: 12,
+    paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
@@ -234,24 +224,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  playBadge: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   duration: {
     position: 'absolute',
-    right: 4,
-    bottom: 4,
+    right: 5,
+    bottom: 5,
     borderRadius: 6,
     paddingHorizontal: 5,
     paddingVertical: 1,
+    backgroundColor: 'rgba(0,0,0,0.72)',
   },
-  durationText: { fontSize: 13, fontWeight: '700' },
+  durationText: { fontSize: 13, fontWeight: '700', color: '#FFFFFF' },
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
   social: { marginTop: 7 },
 });

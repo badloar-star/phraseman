@@ -475,16 +475,17 @@ export default function FlashcardsVideoPacksScreen() {
                 скриншотом «Мои наборы»): кнопка языка стоит В ШАПКЕ СПРАВА, на
                 одной линии со стрелкой «назад», а название раздела — ниже.
                 Здесь повторена ровно та же раскладка, чтобы экраны не спорили. */}
-            <View style={{ flex: 1 }} />
+            {/* зачем: паритет с макетом video-packs-from-video-mockup.html — заголовок на одной линии с «назад», язык ниже. */}
+            <Text
+              accessibilityRole="header"
+              style={[styles.screenTitle, { color: g.text }]}
+            >
+              {copy.title}
+            </Text>
+          </View>
+          <View style={styles.langRow}>
             <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
           </View>
-
-          <Text
-            accessibilityRole="header"
-            style={[styles.screenTitle, { color: g.text }]}
-          >
-            {copy.title}
-          </Text>
           {visible.length > 0 ? (
             <Text testID="fc-video-packs-summary" style={[styles.summary, { color: g.secondary }]}>
               {triLang(lang, {
@@ -565,8 +566,7 @@ export default function FlashcardsVideoPacksScreen() {
              */
             <View style={styles.listContent}>
               {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                <View key={`sk${i}`} style={[styles.skeletonRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-                  <VideoGlass tint={g.selected} edge={g.glassEdge} />
+                <View key={`sk${i}`} style={[styles.skeletonRow, { borderBottomColor: g.glassEdge }]}>
                   <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
                   <View style={styles.skeletonLines}>
                     <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '82%' }]} />
@@ -617,15 +617,17 @@ export default function FlashcardsVideoPacksScreen() {
 }
 
 function RowGap() {
-  return <View style={{ height: 8 }} />;
+  // зачем: строки плоские, разделитель — линия внутри строки (макет video-packs-from-video-mockup.html).
+  return null;
 }
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
   header: { minHeight: 60, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 10 },
   headerBtn: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  screenTitle: { paddingHorizontal: 16, marginTop: 4, paddingBottom: 12, fontSize: 34, lineHeight: 40, fontWeight: '800' },
-  summary: { paddingHorizontal: 16, marginTop: -4, paddingBottom: 12, fontSize: 16, lineHeight: 21, fontWeight: '400' },
+  screenTitle: { flex: 1, minWidth: 0, fontSize: 32, lineHeight: 38, fontWeight: '800', letterSpacing: -0.5 },
+  langRow: { paddingHorizontal: 16, paddingTop: 6, paddingBottom: 12, flexDirection: 'row' },
+  summary: { paddingHorizontal: 16, paddingBottom: 12, fontSize: 16, lineHeight: 21, fontWeight: '400' },
   searchRow: { marginHorizontal: 16, height: 46, borderWidth: 1, overflow: 'hidden', borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 9, paddingHorizontal: 13 },
   searchInput: { flex: 1, padding: 0, fontWeight: '600' },
   sorts: { flexDirection: 'row', gap: 8, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 },
@@ -633,7 +635,7 @@ const styles = StyleSheet.create({
   listContent: { paddingHorizontal: 16, paddingBottom: 32 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60 },
   /** Геометрия скелета = геометрия строки (87 / превью 112×63) — без прыжка. */
-  skeletonRow: { minHeight: 87, borderRadius: 16, borderWidth: 1, overflow: 'hidden', padding: 12, flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 8 },
+  skeletonRow: { minHeight: 87, borderBottomWidth: 1, overflow: 'hidden', paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 }, // guard-ok: линия строки, как `.item` макета
   skeletonThumb: { width: 112, height: 63, borderRadius: 12 },
   skeletonLines: { flex: 1 },
   skeletonLine: { height: 13, borderRadius: 5 },

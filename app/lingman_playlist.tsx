@@ -99,7 +99,7 @@ export default function LingmanPlaylistScreen() {
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
             {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: g.secondary }]} />}
-            {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.accent }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.accentInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
+            {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.cta }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.ctaInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
             <View style={styles.videoList}>{videos.length ? videos.map((video) => (
               <YoutubeVideoCard
                 key={video.id}
@@ -126,7 +126,8 @@ export default function LingmanPlaylistScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 16, paddingTop: 12 },
+  // зачем: паритет с макетом video.html — поля экрана 20 (`--pad`), как у вкладки «Видео».
+  container: { flex: 1, paddingHorizontal: 20, paddingTop: 12 },
   topbar: { height: 44, flexDirection: 'row', alignItems: 'center' },
   back: { width: 44, height: 44, borderRadius: 22, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка круглой кнопки, как `.rb` макета
   loading: { gap: 14, marginTop: 14 },

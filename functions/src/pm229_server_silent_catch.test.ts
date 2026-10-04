@@ -27,7 +27,6 @@ const BASELINE: Record<string, number> = {
   'admin_push_jobs.ts': 2,
   'admin_user_profile.ts': 2,
   'app_messages.ts': 1,
-  'auth_merge.ts': 1,
   'content_factory/artifact_edit.ts': 1,
   'content_factory/v2_firebase_repository_persistence_v1.ts': 1,
   'content_studio/firestore_authoring_store.ts': 1,
@@ -55,11 +54,8 @@ const BASELINE: Record<string, number> = {
   'premium_dialog.ts': 5,
   'premium_dialog_review.ts': 1,
   'premium_dialog_stream.ts': 1,
-  'progress_events.ts': 1,
   'report_replies.ts': 1,
-  'revenuecat_reconcile.ts': 1,
-  'stats_insights.ts': 1,
-  'weekly_review.ts': 5,
+  // stats_insights.ts (1) и weekly_review.ts (5) удалены 04.10 (PM-221) — их немые catch ушли вместе с кодом.
 };
 
 // Существенные файлы (покупки, удаление, поддержка, личность): немых catch быть не должно вообще.

@@ -2,7 +2,7 @@
 
 Сгенерировано `node scripts/pm221_server_domain_map.mjs` (детерминированно: без даты и без обращения к сети).
 
-Всего серверных точек (callable/http/schedule/trigger) из атласа: **482**. Имён с живым экспортом в `functions/src/index.ts`: 422.
+Всего серверных точек (callable/http/schedule/trigger) из атласа: **480**. Имён с живым экспортом в `functions/src/index.ts`: 422.
 
 ## Сводка по доменам
 
@@ -16,12 +16,12 @@
 | notifications | 45 | 44 | 0 | 0 | 1 | 0 |
 | sync/progress | 6 | 6 | 0 | 0 | 0 | 0 |
 | admin | 48 | 48 | 0 | 0 | 0 | 0 |
-| ai/audio | 44 | 25 | 0 | 17 | 0 | 2 |
+| ai/audio | 42 | 25 | 0 | 17 | 0 | 0 |
 | learning-v2 | 83 | 55 | 28 | 0 | 0 | 0 |
 | social/friends | 52 | 52 | 0 | 0 | 0 | 0 |
 | spire/arena | 42 | 22 | 0 | 20 | 0 | 0 |
 | retired-tombstone | 3 | 0 | 0 | 3 | 0 | 0 |
-| **Итого** | **482** | **411** | **28** | **40** | **1** | **2** |
+| **Итого** | **480** | **411** | **28** | **40** | **1** | **0** |
 
 ## Владельцы и коллекции доменов
 
@@ -55,8 +55,6 @@
 
 | Функция | Тип | Домен | Файл | Причина |
 |---|---|---|---|---|
-| statsInsightsGenerate | callable | ai/audio | functions/src/stats_insights.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
-| weeklyReviewGenerate | callable | ai/audio | functions/src/weekly_review.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
 
 ## В облаке, но нет в коде (сверка PM-007): 111
 
@@ -478,10 +476,8 @@
 | openAiDialogModelConfig | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/openai_dialog_model_config.ts:159 |
 | openAiDialogQuotaConfig | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/openai_dialog_model_config.ts:200 |
 | openAiJobsConfig | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/openai_jobs_config.ts:252 |
-| statsInsightsGenerate | callable | ai/audio | ИИ-заметки к статистике и ИИ-разбор ошибок для Plus (OpenAI) | needs-owner-decision | нет | functions/src/stats_insights.ts:496 |
 | submitMaxVoiceFeedback | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_feedback.ts:71 |
 | voiceMinuteDevGrant | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/voice_minutes_dev_grant.ts:59 |
-| weeklyReviewGenerate | callable | ai/audio | ИИ-заметки к статистике и ИИ-разбор ошибок для Plus (OpenAI) | needs-owner-decision | нет | functions/src/weekly_review.ts:847 |
 | adminActivateCourseRelease | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/language_release.ts:51 |
 | adminApproveLearningV2CourseWave | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/content_factory/learning_v2_course_shard_background.ts:301 |
 | adminApproveV2EpisodeRevision | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | dormant | нет | functions/src/admin_content_studio_callables.ts:209 |

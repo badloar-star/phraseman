@@ -2368,14 +2368,21 @@ function isDictionaryWordAllowed(word: Word): boolean {
   return true;
 }
 
-const WORDS_BY_LESSON_FOR_BANK = buildWordsByLessonForBank(WORDS_BY_LESSON);
+// зачем (координатор 04.10, холодный старт; замер модулей №3): сборка банка по всем урокам стоила ~0,8 с
+// при ИМПОРТЕ — а модуль тянет вкладка «Уроки» в графе корня. Строим при первом обращении к словарю.
+let wordsByLessonForBankCache: Record<number, Word[]> | null = null;
+function wordsByLessonForBank(): Record<number, Word[]> {
+  if (!wordsByLessonForBankCache) wordsByLessonForBankCache = buildWordsByLessonForBank(WORDS_BY_LESSON);
+  return wordsByLessonForBankCache;
+}
 
 /**
  * Слова урока для словаря и тренажёра: без `irregular_verbs` (отдельный экран «Неправильные глаголы»)
  * и без дублей he/she/it (…s / …es), если в том же уроке уже есть соответствующая лемма.
  */
 export function lessonWordBank(lessonId: number): Word[] {
-  const raw = WORDS_BY_LESSON_FOR_BANK[lessonId] ?? WORDS_BY_LESSON_FOR_BANK[1]!;
+  const bank = wordsByLessonForBank();
+  const raw = bank[lessonId] ?? bank[1]!;
   const noIrreg = raw.filter((w) => w.pos !== 'irregular_verbs' && isDictionaryWordAllowed(w));
   const ens = new Set(noIrreg.map((w) => w.en.toLowerCase()));
   return noIrreg.filter((w) => {

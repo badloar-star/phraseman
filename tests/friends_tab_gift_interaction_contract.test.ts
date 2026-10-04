@@ -48,7 +48,8 @@ describe('friends tab gift interaction contract', () => {
 
   it('keeps every sheet action on the established friend handlers', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', "{friendsTogetherPolicy.enabled && levelUpModal");
+    // зачем: окно «уровень дружбы вырос» убрано (61830d835, Q6, D09/D78) — шторка друга теперь заканчивается перед блоком dev-инструментов.
+    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', '{ENABLE_DEV_TOOLS && (');
 
     expect(source).not.toContain('openGiftPicker(action.profile);');
     expect(sheet).toContain('handleHighFive(friendProfile)');
@@ -85,7 +86,7 @@ describe('friends tab gift interaction contract', () => {
 
   it('transitions delete and duel only after the details sheet has closed its modal guard', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', "{friendsTogetherPolicy.enabled && levelUpModal");
+    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', '{ENABLE_DEV_TOOLS && (');
 
     expect(source).toContain('const [pendingTogetherSheetAction, setPendingTogetherSheetAction]');
     expect(source).toContain('const action = pendingTogetherSheetAction;');

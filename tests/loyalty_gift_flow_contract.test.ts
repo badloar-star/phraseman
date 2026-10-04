@@ -1,31 +1,24 @@
 import fs from 'fs';
 import path from 'path';
 
-const layoutSource = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-const loyaltyGiftSource = fs.readFileSync(path.join(process.cwd(), 'app', 'loyalty_gift.ts'), 'utf8');
-const modalSource = fs.readFileSync(path.join(process.cwd(), 'components', 'LoyaltyGiftModal.tsx'), 'utf8');
+// зачем: подарок лояльности «3 дня» убран вместе со всей системой подарков (D09 OWNER_FINAL: «подарки, спины, сундуки, бонусы
+// убрать»); app/loyalty_gift.ts и components/LoyaltyGiftModal.tsx удалены коммитом 285ac732c. Прежний тест читал эти файлы и
+// падал ENOENT. Теперь сторож проверяет ОТСУТСТВИЕ: подарок не должен вернуться в корневой поток незаметно — возврат потребует
+// осознанно переписать этот тест вместе с решением владельца.
+const root = process.cwd();
+const exists = (...parts: string[]) => fs.existsSync(path.join(root, ...parts));
 
-describe('loyalty gift 3-day flow contract', () => {
-  it('keeps the 3-day loyalty gift offer disabled in the root flow', () => {
-    expect(layoutSource).toContain('const LOYALTY_UPDATE_MODAL_ENABLED = false;');
-    expect(layoutSource).toContain('if (!LOYALTY_UPDATE_MODAL_ENABLED) return;');
+describe('loyalty gift 3-day flow stays removed', () => {
+  it('has no loyalty gift source or modal in the tree (removed in 285ac732c)', () => {
+    expect(exists('app', 'loyalty_gift.ts')).toBe(false);
+    expect(exists('components', 'LoyaltyGiftModal.tsx')).toBe(false);
   });
 
-  it('claims the gift through startLoyaltyGift and refreshes premium access immediately', () => {
-    expect(layoutSource).toContain('const claimLoyaltyGift = useCallback');
-    expect(layoutSource).toContain('await startLoyaltyGift(Date.now(), lang)');
-    expect(layoutSource).toContain("emitAppEvent('loyalty_gift_changed')");
-    expect(layoutSource).toContain("onAppEvent('loyalty_gift_changed'");
-  });
-
-  it('mirrors the loyalty gift to cloud fields used by server premium checks', () => {
-    expect(loyaltyGiftSource).toContain("readGiftAccessFromCloud('loyalty')");
-    expect(loyaltyGiftSource).toContain("persistGiftAccessOnCloud('loyalty', nowMs, endsAt)");
-  });
-
-  it('offers exactly a 3-day full-access gift in the user-facing modal copy', () => {
-    expect(modalSource).toContain('Держи 3 дня');
-    expect(modalSource).toContain('Забрать 3 дня');
-    expect(modalSource).toContain('ничего не спишется, подписка не включится');
+  it('has no loyalty gift offer or claim in the root layout', () => {
+    const layoutSource = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
+    expect(layoutSource).not.toContain('LOYALTY_UPDATE_MODAL_ENABLED');
+    expect(layoutSource).not.toContain('startLoyaltyGift');
+    expect(layoutSource).not.toContain('loyalty_gift_changed');
+    expect(layoutSource).not.toContain('LoyaltyGiftModal');
   });
 });

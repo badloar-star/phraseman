@@ -1,3 +1,4 @@
+// зачем: бонусная энергия снята (D07/D09, ENERGY_BONUS_CAPACITY_LIMIT = 0, 00d854736) — после миграции схемы v2 любое количество читается как 0; ожидания 60/200 описывали живой бонус и устарели.
 import assert from 'node:assert/strict';
 
 import { parseBonusEnergyStorageValue } from '../app/spin_gift_storage_integrity';
@@ -10,7 +11,7 @@ assert.deepEqual(
   {
     status: 'valid',
     migrated: true,
-    value: { schemaVersion: 2, amount: 60, capacity: 60, expiresAt: EXPIRES_AT },
+    value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: EXPIRES_AT },
   },
 );
 assert.deepEqual(
@@ -23,7 +24,7 @@ assert.deepEqual(
   {
     status: 'valid',
     migrated: false,
-    value: { schemaVersion: 2, amount: 60, capacity: 60, expiresAt: EXPIRES_AT },
+    value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: EXPIRES_AT },
   },
 );
 assert.deepEqual(
@@ -31,7 +32,7 @@ assert.deepEqual(
   {
     status: 'valid',
     migrated: true,
-    value: { schemaVersion: 2, amount: 200, capacity: 200, expiresAt: EXPIRES_AT },
+    value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: EXPIRES_AT },
   },
 );
 

@@ -30,12 +30,19 @@ type LockHolder = { tag: string; since: number };
 let currentHolder: LockHolder | null = null;
 
 /** Короткая метка вызывающего (кадр стека за пределами этого модуля): достаточно, чтобы по source map найти владельца замка. */
+let holderTagFailureLogged = false;
+
 function captureHolderTag(): string {
   try {
     const frames = (new Error().stack ?? '').split('\n').slice(1).map((line) => line.trim());
     const outside = frames.find((line) => line.length > 0 && !line.includes('storage_mutex') && !line.includes('acquireStorageLock') && !line.includes('withStorageLock'));
     return (outside ?? frames[0] ?? 'unknown').slice(0, 160);
-  } catch {
+  } catch (error) {
+    // зачем: не немой catch (ревью PM-215) — но замок берётся на каждой операции хранилища, поэтому причина пишется один раз за процесс.
+    if (!holderTagFailureLogged) {
+      holderTagFailureLogged = true;
+      console.warn(`[STORAGE-MUTEX] holder_tag_failed reason=${error instanceof Error ? error.message : String(error)}`);
+    }
     return 'unknown';
   }
 }

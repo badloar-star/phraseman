@@ -28,14 +28,18 @@ describe('spin/gift storage integrity', () => {
 
   test('classifies bonus energy without silently repairing corruption', () => {
     expect(parseBonusEnergyStorageValue(null, 1_000)).toEqual({ status: 'absent' });
+    // зачем: бонусная энергия снята решениями владельца D07/D09 («никаких бонусов cap/rate», подарки/спины/сундуки убрать);
+    // ENERGY_BONUS_CAPACITY_LIMIT = 0 (app/energy_contract.ts, с 00d854736, 30.09), поэтому старые записи читаются как
+    // миграция схемы v2 с НУЛЁМ — это намеренно, не потеря: прежние ожидания (amount 3 / capacity 3) описывали живой бонус.
+    // Статус и срок сохраняются, формат помечается migrated + schemaVersion 2; порча по-прежнему malformed.
     expect(parseBonusEnergyStorageValue('{"amount":3,"expiresAt":2000}', 1_000)).toEqual({
-      status: 'valid', value: { amount: 3, capacity: 3, expiresAt: 2_000 },
+      status: 'valid', migrated: true, value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: 2_000 },
     });
     expect(parseBonusEnergyStorageValue('{"amount":3,"expiresAt":999}', 1_000)).toEqual({
-      status: 'expired', value: { amount: 3, capacity: 3, expiresAt: 999 },
+      status: 'expired', migrated: true, value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: 999 },
     });
     expect(parseBonusEnergyStorageValue('{"amount":0,"capacity":3,"expiresAt":2000}', 1_000)).toEqual({
-      status: 'valid', value: { amount: 0, capacity: 3, expiresAt: 2_000 },
+      status: 'valid', migrated: true, value: { schemaVersion: 2, amount: 0, capacity: 0, expiresAt: 2_000 },
     });
     expect(parseBonusEnergyStorageValue('{"amount":0,"expiresAt":2000}', 1_000)).toEqual({ status: 'malformed' });
     expect(parseBonusEnergyStorageValue('{"amount":"3","expiresAt":2000}', 1_000)).toEqual({ status: 'malformed' });

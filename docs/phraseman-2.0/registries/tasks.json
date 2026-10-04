@@ -9448,7 +9448,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -9479,23 +9479,28 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "952b3121f",
     "owner": "Claude Sonnet 5.5 (сессия «App Check»), по ревизии реестра координатора 2026-10-03",
-    "reviewer": null,
+    "reviewer": "независимый рецензент координатора (opus), 04.10: reports/REVIEW_PM170_239_205.md",
     "evidence": [
       "952b3121f: удалены claims_client, награды уровней «Вместе», callable friendsTogetherClaimLevel и правило friends_chest_claims в коде; friendsNudge/друзья не зависят от наград; friends_together_days 22/22, functions friends_together+core 43/43, проба pm170_friend_rewards_removed PASS",
       "2026-10-03 source-level: в functions/src нет ни одного экспортируемого onCall/onSchedule/onDocument про friend quest/chest/gifts — остались friendLikeActivity/friendUnlikeActivity, friendBlockUser/friendUnblockUser, friendEnsureMyCode, friendLookupUser, friendsGetProfiles, friendsNudge (без наград); account_delete чистит только СТАРЫЕ данные подарков (friend_gift_history и др.) — это совместимость, не задача; 952b3121f удалил claims_client, callable friendsTogetherClaimLevel и правило friends_chest_claims; tests/pm170_friend_rewards_removed.probe PASS, functions friends_together+friend_block 47/47. Снятие уже выложенных облачных функций — по плану PM-222/D91 (выкладка владельца); критерий принят на уровне исходников"
     ],
     "notes": [
       "2026-10-01: A2 NOT_MET (владелец при деплое): friendsTogetherClaimLevel в облаке вызывает 1.6.24 — удалять только после min_app_version ≥ 2.0 (DEPLOY_NOW Шаг 2)",
-      "2026-10-03 ревизия реестра (координатор): PM-170 → review; все критерии с evidence, облачное удаление — отдельным шагом D91"
+      "2026-10-03 ревизия реестра (координатор): PM-170 → review; все критерии с evidence, облачное удаление — отдельным шагом D91",
+      "2026-10-04: рецензент APPROVE_WITH_OWNER_GATE — по коду готово. ХВОСТ ВЛАДЕЛЬЦУ после min_app_version >= 2.0: удалить в облаке friendsTogetherClaimLevel, friendClaimQuestReward, friendGetActiveQuest, friendsClaimWeeklyChest, friendConsumeChainShield, seasonSendFriendShield."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "n/a: коммит не трогает экраны (рецензент и координатор, 04.10)"
+    },
+    "actual_model": "sonnet-5.5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-171",
@@ -11403,7 +11408,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11412,10 +11417,11 @@
       {
         "id": "PM-205-A1",
         "text": "Удалены manifests, seeds, background prefetch и облачные файлы только после проверки клиентов/allowlist",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
           "2026-10-01 NOT_MET. Найдено: скачивание озвучки V2 (D47) снято только у вызова — app/learning-v2/lesson/[id].tsx:852 (комментарий), но мёртвая цепочка осталась: app/learning_v2_activity_audio_preload_v1.ts (463 строки, preloadCurrent… нигде не вызывается) + app/learning_v2_activity_audio_transport_v1.ts (257 строк, прямой GET firebasestorage) + хук app/use_learning_v2_activity_audio_session_v1.ts, который подключён в app/learning-v2/session/[id].tsx:408 и всегда отдаёт status unavailable. Удаление затрагивает 9 тестов/проб (learning_v2_activity_audio_preload_v1, _transport_v1, auxiliary_session_mount, course_session_audio_preload, factory_production_audio_contract, remote_audio_pack_contract, session1 gate, pm212, pm229) — отдельный срез.",
-          "Облачные файлы озвучки в Storage — удалять только владельцу после allowlist «наш голос» (D18/D47); прод этой сессии запрещён."
+          "Облачные файлы озвучки в Storage — удалять только владельцу после allowlist «наш голос» (D18/D47); прод этой сессии запрещён.",
+          "2026-10-04: клиентская часть A1 принята рецензентом (reports/REVIEW_PM170_239_205.md); облачные файлы — хвост владельца после min_app_version >= 2.0 и allowlist PM-204"
         ]
       }
     ],
@@ -11428,24 +11434,27 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "048584a5b",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "agent-reviewer (Sonnet), пачка 9",
+    "reviewer": "независимый рецензент координатора (opus), 04.10: reports/REVIEW_PM170_239_205.md",
     "evidence": [
       "commits 219d80a72 3e19b799c cd7a90984",
-      "085bfc5ff, 8fcc7cf2e, 048584a5b: удалена мёртвая цепочка скачивания озвучки V2 (прогрев, транспорт, хуки сессии, фоновая закачка, audio_plan); сторож learning_v2_no_audio_download_guard 15/15; perf_freeze 12/12, layout_stability 15/15; PM-210/212/229/206 PASS; typecheck 0"
+      "085bfc5ff, 8fcc7cf2e, 048584a5b: удалена мёртвая цепочка скачивания озвучки V2 (прогрев, транспорт, хуки сессии, фоновая закачка, audio_plan); сторож learning_v2_no_audio_download_guard 15/15; perf_freeze 12/12, layout_stability 15/15; PM-210/212/229/206 PASS; typecheck 0",
+      "2026-10-04: клиентская часть A1 принята рецензентом (reports/REVIEW_PM170_239_205.md); облачные файлы — хвост владельца после min_app_version >= 2.0 и allowlist PM-204"
     ],
     "notes": [
       "D47: скачивание озвучки V2 удалено, V2 на TTS; D48: V1 текущий+следующий урок заранее",
       "2026-10-01 пачка 9: A1 NOT_MET подтверждено на HEAD — app/learning_v2_activity_audio_preload_v1.ts, learning_v2_activity_audio_transport_v1.ts, use_learning_v2_activity_audio_session_v1.ts на месте (мёртвая цепочка D47), удаление затрагивает 9 тестов/проб — отдельный срез ядра; облачные файлы — владельцу.",
-      "2026-10-01 доделано по замечанию пачки 9. A1 NOT_MET (владелец): облачные файлы озвучки в Storage удаляет только владелец после allowlist «наш голос» (D18/D47). Стартовый пакет и файлы озвучки в сборке оставлены по D47."
+      "2026-10-01 доделано по замечанию пачки 9. A1 NOT_MET (владелец): облачные файлы озвучки в Storage удаляет только владелец после allowlist «наш голос» (D18/D47). Стартовый пакет и файлы озвучки в сборке оставлены по D47.",
+      "2026-10-04: прежний CHANGES_REQUIRED снят независимым рецензентом (APPROVE_WITH_OWNER_GATE) — клиентская цепочка скачивания удалена (файлов нет на HEAD, сторож learning_v2_no_audio_download_guard 15/15, android_bundle_hygiene 10/10). ХВОСТ ВЛАДЕЛЬЦУ: удалить облачные файлы озвучки V2 после min_app_version >= 2.0 и сверки с allowlist PM-204."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "CHANGES_REQUIRED",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "n/a: клиентская часть удаляет невидимый код загрузки озвучки, видимых изменений нет (04.10)"
     },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -13369,7 +13378,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13401,19 +13410,25 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "705720819",
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "независимый рецензент координатора (opus), 04.10: reports/REVIEW_PM170_239_205.md",
     "evidence": [
       "705720819: evidence/PM-239_branches_inventory_2026-10-02.md — 291 локальная + 54 remote ветки, 22 worktree, 228 refs с уникальными коммитами, 34 PR; по каждой ветке SHA, ahead/behind, PR, путь worktree; только чтение"
     ],
-    "notes": [],
+    "notes": [
+      "2026-10-04: рецензент APPROVE, закрыто. Перед удалением веток (PM-241/242) опись переснять: на 04.10 уже 292 ветки / 25 worktree."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "n/a: инвентаризация только чтение, решение координатора 04.10 (INBOX §140)"
+    },
+    "actual_model": "sonnet-5.5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-240",

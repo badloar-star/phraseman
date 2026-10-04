@@ -54,3 +54,6 @@ Governance-ID: TG-D64A3791D1A1
 
 Governance-ID: TG-8BA51DC640FB
 (ореол текста в каталоге наборов — FlashcardsCategoryHub.tsx; сторож community_liquid обновлён)
+
+Governance-ID: TG-02F41E43283D
+(Наборы: нижняя панель по .bar3 и порядок лупа/EN — app/flashcards_packs.tsx; сборка 500 по уроку 4 — не моя)

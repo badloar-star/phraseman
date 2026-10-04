@@ -45,6 +45,7 @@ import {
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
 import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
+import { createMistakeAnswerJournal, type MistakeAnswerJournal } from './mistake_practice_answer_journal';
 import MistakeVerdictPanel from '../components/mistake-practice/MistakeVerdictPanel';
 import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
 import { buildMistakeRewardsSnapshot, titleFor, type MistakeRewardsSnapshot, type MistakeTitleId } from '../modules/mistake-practice/rewards_model';
@@ -447,6 +448,15 @@ function MistakePracticeSessionScreen() {
   const analyticsSessionRef = useRef<MistakePracticeSession | null>(null);
   const analyticsCompletedRef = useRef(false);
   const submissionLatchRef = useRef(false);
+  // зачем (§126, «Мои ошибки» 15–18 с на ответ): журнал ответов живёт в памяти, запись — фоном по очереди (см. модуль)
+  const answerJournalRef = useRef<{ key: string; journal: MistakeAnswerJournal } | null>(null);
+  const getAnswerJournal = useCallback((scope: string, target: 'en' | 'fr'): MistakeAnswerJournal => {
+    const key = `${scope}:${target}`;
+    if (answerJournalRef.current?.key !== key) {
+      answerJournalRef.current = { key, journal: createMistakeAnswerJournal({ accountScope: scope, studyTarget: target }) };
+    }
+    return answerJournalRef.current.journal;
+  }, []);
   const attempts = useSessionAttempts({
     token: accountToken,
     sessionId: `mistake-practice:${session?.sessionId ?? attemptSessionId}`,
@@ -718,10 +728,8 @@ function MistakePracticeSessionScreen() {
       const occurredAtMs = Date.now();
       const modeDefinition = MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode];
       const independent = modeDefinition.countsAsIndependentProduction;
-      const journalBefore = await loadMistakeEventJournal({
-        accountScope,
-        studyTarget: studyTarget as 'en' | 'fr',
-      });
+      const answerJournal = getAnswerJournal(accountScope, studyTarget as 'en' | 'fr');
+      const journalBefore = await answerJournal.current();
       const beforeStatus = projectMistakes(journalBefore.events).items.get(entry.mistakeId)?.status ?? 'active';
       const eventId = `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({ attemptId, type: 'practice_answered' }))}`;
       const event: MistakeEvent = {
@@ -741,7 +749,9 @@ function MistakePracticeSessionScreen() {
           sessionId: session.sessionId,
         },
       };
-      const write = await appendMistakeEvent({ accountScope, studyTarget: studyTarget as 'en' | 'fr', event });
+      // зачем (§126): вердикт не ждёт запись — событие сразу в журнал в памяти, запись фоном (очередь, повтор, лог)
+      const recorded = answerJournal.record(event);
+      const write = { journal: recorded.journal };
       trackMistakePracticeEvent('mistake_practice_answered', {
         study_target: studyTarget,
         entry_source: entrySource,
@@ -752,7 +762,9 @@ function MistakePracticeSessionScreen() {
         attempt_number: session.answeredAttemptIds.length + 1,
       });
       const afterStatus = projectMistakes(write.journal.events).items.get(entry.mistakeId)?.status ?? beforeStatus;
-      void settleMistakePracticeAnswerRewards({
+      void recorded.done.then((written) => {
+        if (!written) throw new Error('mistake_journal_write_failed');
+        return settleMistakePracticeAnswerRewards({
         accountScope,
         studyTarget: studyTarget as 'en' | 'fr',
         mistakeId: entry.mistakeId,
@@ -763,6 +775,7 @@ function MistakePracticeSessionScreen() {
         support: modeDefinition.support,
         beforeStatus,
         afterStatus,
+      });
       }).then((reward) => {
         if (reward.starGranted) {
           setEarnedStars((value) => value + 1);
@@ -794,10 +807,13 @@ function MistakePracticeSessionScreen() {
         }));
       });
       if (persistSession) {
-        await saveMistakePracticeSession({
+        // сессия сохраняется после журнала, тоже фоном: порядок «сначала свидетельство, потом курсор» сохранён
+        void recorded.done.then(() => saveMistakePracticeSession({
           accountScope,
           studyTarget: studyTarget as 'en' | 'fr',
           session: result.session,
+        })).catch((error: unknown) => {
+          console.warn('[MISTAKES-GATE] session:save:catch', error instanceof Error ? error.message : String(error));
         });
       }
       setPendingSession(result.session);
@@ -836,7 +852,7 @@ function MistakePracticeSessionScreen() {
       submissionLatchRef.current = false;
       setSubmitting(false);
     }
-  }, [accountScope, copy, entry, entrySource, feedback, persistSession, session, studyTarget, submitting, attempts.registerVerdict]);
+  }, [accountScope, copy, entry, entrySource, feedback, getAnswerJournal, persistSession, session, studyTarget, submitting, attempts.registerVerdict]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!pendingSession) return;
@@ -864,7 +880,8 @@ function MistakePracticeSessionScreen() {
         // зачем (макет финала А): серия и звание считаются из журнала ПОСЛЕ
         // того, как награды за исправления записаны — иначе сегодняшнее
         // исправление не попало бы в свою же серию.
-        void flushPendingMistakeCorrectionRewards({ accountScope, studyTarget })
+        void (answerJournalRef.current?.journal.whenIdle() ?? Promise.resolve())
+          .then(() => flushPendingMistakeCorrectionRewards({ accountScope, studyTarget }))
           .then(() => loadMistakeEventJournal({ accountScope, studyTarget: studyTarget as 'en' | 'fr' }))
           .then((journal) => {
             const snapshot = buildMistakeRewardsSnapshot(journal.events);
@@ -944,6 +961,7 @@ function MistakePracticeSessionScreen() {
         sessionId: session.sessionId,
         type: 'hidden',
       }))}`;
+      await answerJournalRef.current?.journal.whenIdle();
       await appendMistakeEvent({
         accountScope,
         studyTarget: studyTarget as 'en' | 'fr',
@@ -957,6 +975,7 @@ function MistakePracticeSessionScreen() {
           payload: { sessionId: session.sessionId },
         },
       });
+      answerJournalRef.current?.journal.invalidate();
       trackMistakePracticeEvent('mistake_practice_hidden', {
         study_target: studyTarget,
         entry_source: entrySource,
@@ -985,6 +1004,7 @@ function MistakePracticeSessionScreen() {
     submissionLatchRef.current = true;
     try {
       const occurredAtMs = Date.now();
+      await answerJournalRef.current?.journal.whenIdle();
       await appendMistakeEvent({
         accountScope,
         studyTarget: studyTarget as 'en' | 'fr',
@@ -1001,6 +1021,7 @@ function MistakePracticeSessionScreen() {
           payload: { hiddenEventId: hiddenUndo.hiddenEventId },
         },
       });
+      answerJournalRef.current?.journal.invalidate();
       trackMistakePracticeEvent('mistake_practice_restored', {
         study_target: studyTarget,
         entry_source: entrySource,

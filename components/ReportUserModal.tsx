@@ -29,7 +29,7 @@ interface Props {
 }
 
 function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'hybrid', reportedProfileText = '' }: Props) {
-  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
@@ -175,18 +175,22 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
 
   const panelContent = (
     <View style={{
+      // зачем (overlay.css `.ov-modal`): радиус 26, поля 22, окно во всю ширину с отступами 22 от краёв.
       backgroundColor: glass.opaqueSheet,
-      borderRadius: 24,
-      padding: 24,
+      borderRadius: 26,
+      padding: 22,
       width: '100%',
-      maxWidth: 320,
+      maxWidth: 440,
       alignItems: 'center',
       overflow: 'hidden',
     }}>
-      <Ionicons name="flag-outline" size={28} color={t.wrong} style={{ marginBottom: 12 }} />
+      {/* зачем (`.ov-stage.ov-stage-small`): значок в плитке 76/24 светлым тоном; после отправки — галочка. */}
+      <View style={{ width: 76, height: 76, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, marginTop: 4, marginBottom: 18 }}>
+        <Ionicons name={done ? 'checkmark' : 'flag-outline'} size={28} color={glass.text} />
+      </View>
 
       {done ? (
-        <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
+        <Text style={{ color: glass.text, fontSize: 25, lineHeight: 31, fontWeight: '800', textAlign: 'center' }}>
           {tx.sent}
         </Text>
       ) : (
@@ -199,8 +203,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               provenance="authored"
               style={{
                 color: glass.text,
-                fontSize: f.h3,
-                fontWeight: '700',
+                // зачем (`.ov-title`): 25/31.
+                fontSize: 25,
+                lineHeight: 31,
+                fontWeight: '800',
                 marginBottom: 6,
                 textAlign: 'center',
                 alignSelf: 'stretch',
@@ -310,7 +316,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             закрытие по тапу мимо формы. */}
         <ScrollView decelerationRate="fast"
           style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.53)' }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 18, paddingVertical: 18 }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 22, paddingVertical: 18 }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >

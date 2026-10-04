@@ -19,7 +19,9 @@ describe('flashcard training feedback layout', () => {
   });
 
   it('briefly reminds the correct translation after a correct “Неверно” answer', () => {
-    expect(source).toContain('if (!saysMatch) {');
+    // зачем (17fbb3d32, 30.09 → сторож обновлён 04.10): в Блице верный ответ показывает
+    // свою карточку разбора (deferCorrectAdvance), там всплывающее напоминание дублировало бы её.
+    expect(source).toContain('if (!saysMatch && !deferCorrectAdvance) {');
     expect(source).toContain('showCorrectTranslationReminder(prompt);');
     expect(source).toContain('testID="flashcards-correct-translation-reminder"');
     expect(source).toContain('pointerEvents="none"');

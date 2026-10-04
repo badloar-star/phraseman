@@ -83,16 +83,26 @@ describe('reported user UI regressions', () => {
     expect(finish).not.toContain('flyOpacity.setValue');
     expect(finish).not.toContain('position.setValue');
 
+    // зачем (2026-09-30 → сторож обновлён 04.10): защита переехала ещё раз. Вместо
+    // «погасить анимацию и вернуть opacity=1» у каждой карточки теперь СВОИ значения
+    // (cardAnim по ключу карточки): новая рождается с opacity 1, а запоздалый fade
+    // пишет в значения уже снятой карточки. Сторожим именно это: свежие значения на
+    // карточку + глушение анимаций предыдущей в useLayoutEffect до смены ссылки.
+    const animStart = flashcardsSwipeSource.indexOf('const cardAnim = useMemo(');
+    const anim = flashcardsSwipeSource.slice(animStart, flashcardsSwipeSource.indexOf('[cardAnimKey],', animStart));
+    expect(animStart).toBeGreaterThanOrEqual(0);
+    expect(anim).toContain('flyOpacity: new Animated.Value(1),');
+
     const effectStart = flashcardsSwipeSource.indexOf('useLayoutEffect(() => {');
     const effect = flashcardsSwipeSource.slice(
       effectStart,
       flashcardsSwipeSource.indexOf('}, [', effectStart),
     );
-    const stop = effect.indexOf('flyOpacity.stopAnimation();');
-    const restore = effect.indexOf('flyOpacity.setValue(1);');
+    const stop = effect.indexOf('previous.flyOpacity.stopAnimation();');
+    const swap = effect.indexOf('previousCardAnimRef.current = cardAnim;');
 
     expect(effectStart).toBeGreaterThanOrEqual(0);
     expect(stop).toBeGreaterThanOrEqual(0);
-    expect(restore).toBeGreaterThan(stop);
+    expect(swap).toBeGreaterThan(stop);
   });
 });

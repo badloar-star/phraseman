@@ -81,3 +81,11 @@ Memory Compression  3612  776
 
 
 ```
+
+## 04.10 18:53 — Блиц после 868ef2e96: холодный прогон (бесплатный аккаунт)
+Reload из меню → Главная через 59 с → деплинк Блица → через 30 с «Тренировка не открылась».
+- [PREMIUM-RESOLVE] reload:done за 7845 мс (identity_sync 3536, verified_cloud 1868, tester_flags 1389).
+- start:wait access=true loading=true pool=0 — **пул карточек не загрузился вообще**: ни pool:loaded, ни pool:cancelled за 30 с; watchdog:show_retry_pool.
+- [FC-TRAIN-ENTRY] bootstrap:skip (homePainted=false) → bootstrap:start.
+Полный вывод: evidence/parity/BLITZ_cold_run_1853.log. Повтор «Попробовать снова» не сделала — эмулятор пропал (5-й раз, ~18:56).
+⚠ В 18:55 буфер logcat оказался пуст — его очистил кто-то другой (ещё одна сессия на эмуляторе?).

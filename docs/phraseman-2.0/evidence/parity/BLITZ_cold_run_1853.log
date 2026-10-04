@@ -1,0 +1,6 @@
+10-04 18:53:26.098  1901  6343 I ReactNativeJS: [FC-TRAIN-ENTRY] bootstrap:skip — ready=false, firstContentReady=false, homePainted=false
+10-04 18:53:29.755  1901  6343 I ReactNativeJS: [FC-TRAIN-ENTRY] bootstrap:start stableId=b5e09aea-0f75-4fb0-a5c3-04f5789789a2 generation=1
+10-04 18:53:37.050  1901  6343 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:done', '{"epoch":1,"totalMs":7845,"steps":{"identity_sync:true":3536,"dev_override":558,"verified_local":492,"verified_cloud:false":1868,"tester_flags":1389,"intro_state":0},"access":false}'
+10-04 18:53:38.714  1901  6343 I ReactNativeJS: [FC-BLITZ-GATE] start:wait access=true loading=true pool=0 round=0
+10-04 18:54:08.529  1901  6343 W ReactNativeJS: '[FC-BLITZ-GATE] watchdog:stuck_on_skeleton', '{"access":true,"loading":true,"energyGate":"checking","pool":0,"round":0,"step":"idle","latch":null,"hasRun":false,"mounted":true,"abandoned":false}'
+10-04 18:54:08.530  1901  6343 W ReactNativeJS: '[FC-BLITZ-GATE] watchdog:show_retry_pool', '{"step":"idle","pool":0,"round":0}'

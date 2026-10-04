@@ -1,0 +1,48 @@
+/**
+ * §139 (04.10): два быстрых тапа на пейволе Plus → один вызов. Замок обязан быть ref и ставиться
+ * СИНХРОННО до первого await: state обновится только после кадра, и второй тап его не увидит.
+ */
+const fs = require('fs');
+const path = require('path');
+
+const src: string = fs.readFileSync(path.join(__dirname, '..', 'app', 'paywall_purchase.ts'), 'utf8');
+
+function bodyOf(name: string): string {
+  const start = src.indexOf(`const ${name} = useCallback(`);
+  expect(start).toBeGreaterThan(-1);
+  const next = src.indexOf('}, [', start);
+  return src.slice(start, next);
+}
+
+test.each([
+  ['handlePurchase', "operationRef.current = 'purchase';"],
+  ['handleRestore', "operationRef.current = 'restore';"],
+])('%s: ref lock is checked first and taken before any await', (name, take) => {
+  const body = bodyOf(name);
+  const check = body.indexOf('if (operationRef.current) return;');
+  const set = body.indexOf(take);
+  const firstAwait = body.indexOf('await ');
+  expect(check).toBeGreaterThan(-1);
+  expect(set).toBeGreaterThan(check);
+  expect(firstAwait === -1 || set < firstAwait).toBe(true);
+  expect(body).not.toMatch(/\bawait\b[\s\S]*?operationRef\.current = '(purchase|restore)'/);
+});
+
+test('both operations release the lock in finally', () => {
+  expect(src.match(/finally \{\s*operationRef\.current = null;/g)?.length).toBe(2);
+});
+
+test('doClose ignores a repeated tap within the close lock window', () => {
+  const body = bodyOf('doClose');
+  const guard = body.indexOf('if (nowMs < closeLockUntilRef.current)');
+  const take = body.indexOf('closeLockUntilRef.current = nowMs + PAYWALL_CLOSE_LOCK_MS;');
+  const event = body.indexOf("void trackEvent('paywall_close'");
+  expect(guard).toBeGreaterThan(-1);
+  expect(take).toBeGreaterThan(guard);
+  expect(event).toBeGreaterThan(take);
+});
+
+test('exit-offer read failure is logged, not swallowed silently', () => {
+  expect(src).not.toContain('} catch { /* при сбое чтения');
+  expect(src).toContain('exit-оффер: чтение «уже видели» упало');
+});

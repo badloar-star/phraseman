@@ -1289,7 +1289,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
+  // зачем (§139, 04.10): два быстрых тапа «закрыть» в одном кадре слали paywall_close дважды и дважды
+  // уводили назад по стеку (выбивало на экран раньше). Окно, а не вечный замок: в онбординге пейвол
+  // остаётся смонтированным под оверлеем, и будущее закрытие не должно блокироваться.
+  const PAYWALL_CLOSE_LOCK_MS = 800;
+  const closeLockUntilRef = useRef(0);
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
+    const nowMs = Date.now();
+    if (nowMs < closeLockUntilRef.current) {
+      DebugLogger.info('[PAYWALL]', `закрытие проигнорировано: повторный тап (reason=${reason}, lockLeftMs=${closeLockUntilRef.current - nowMs})`);
+      return;
+    }
+    closeLockUntilRef.current = nowMs + PAYWALL_CLOSE_LOCK_MS;
     void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(swallowError('paywall_purchase:schedulePaywallAbandoned'));
@@ -1370,7 +1381,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           // В dev-форсе кулдаун-ключ игнорируем — пусть показывается каждый раз.
           if (seen === '1' && !devForceTrial) { doClose(reason); return; }
           if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(swallowError('paywall_purchase:exit_trial_offer_seen'));
-        } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
+        } catch (error: unknown) {
+          // При сбое чтения — просто закрываем без оффера (причину пишем, catch не немой).
+          DebugLogger.info('[PAYWALL]', `exit-оффер: чтение «уже видели» упало — закрываем без оффера: ${error instanceof Error ? error.message : String(error)}`);
+          doClose(reason);
+          return;
+        }
         void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
         const days = trialDays;
         if (!days) { doClose(reason); return; }

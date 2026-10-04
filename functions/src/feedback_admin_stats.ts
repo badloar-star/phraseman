@@ -11,7 +11,7 @@ import {
 import {
   VOICE_FEEDBACK_COLLECTION,
   sanitizeVoiceFeedbackRating,
-} from './max_voice_feedback';
+} from './voice_feedback_archive';
 import {
   aggregateAdminFeedback,
   parseAdminFeedbackFilters,

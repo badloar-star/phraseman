@@ -23,7 +23,7 @@ import {
   FEEDBACK_KINDS,
   type FeedbackKind,
 } from './feedback_entries';
-import { VOICE_FEEDBACK_COLLECTION } from './max_voice_feedback';
+import { VOICE_FEEDBACK_COLLECTION } from './voice_feedback_archive';
 import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';

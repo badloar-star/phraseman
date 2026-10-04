@@ -17,9 +17,6 @@ Object.assign(mockFirestore, { FieldValue: { serverTimestamp: mockServerTimestam
 const mockResolveStableUidForAuth = jest.fn();
 const mockResolveConfiguredDialogModel = jest.fn();
 const mockModelSupportsJsonObject = jest.fn();
-const mockApplyTutorMemoryUpdate = jest.fn();
-const mockReviewVoiceSafety = jest.fn();
-const mockSanitizeClientSafetyFlags = jest.fn();
 const mockEnforceRateLimit = jest.fn();
 const mockResolvePremiumAccess = jest.fn();
 const mockResolveRemoteBool = jest.fn();
@@ -48,14 +45,6 @@ jest.mock('./auth_identity', () => ({ resolveStableUidForAuth: mockResolveStable
 jest.mock('./openai_dialog_model_config', () => ({
   resolveConfiguredDialogModel: mockResolveConfiguredDialogModel,
   modelSupportsJsonObject: mockModelSupportsJsonObject,
-}));
-jest.mock('./max_voice_tutor_memory', () => ({
-  applyTutorMemoryUpdate: mockApplyTutorMemoryUpdate,
-  sanitizeTutorSessionId: (value: unknown) => (typeof value === 'string' ? value.trim() : ''),
-}));
-jest.mock('./max_voice_safety', () => ({
-  reviewVoiceSafety: mockReviewVoiceSafety,
-  sanitizeClientSafetyFlags: mockSanitizeClientSafetyFlags,
 }));
 jest.mock('./premium_dialog', () => ({
   enforceRateLimit: mockEnforceRateLimit,
@@ -293,8 +282,10 @@ describe('asReviewMode', () => {
     expect(asReviewMode(42)).toBe('text');
   });
 
-  it('recognizes voice', () => {
-    expect(asReviewMode('voice')).toBe('voice');
+  // Владелец 04.10 «вычистить весь MAX»: режимы звонка MAX сводятся к обычному текстовому разбору.
+  it('coerces retired MAX modes (voice, tutor) to text', () => {
+    expect(asReviewMode('voice')).toBe('text');
+    expect(asReviewMode('tutor')).toBe('text');
   });
 });
 
@@ -418,10 +409,6 @@ describe('buildReviewSystemPrompt mode awareness', () => {
 // ── Учитель (mode 'tutor', вариант A — владелец 2026-08-16) ──────────────────
 
 describe("mode 'tutor' — разбор урока с учителем и память", () => {
-  it("asReviewMode принимает 'tutor'", () => {
-    expect(asReviewMode('tutor')).toBe('tutor');
-  });
-
   it('промпт учителя: судить только английские попытки, извлечь память (facts/recurringErrors/resolvedErrors), polish тоже есть', () => {
     const prompt = buildReviewSystemPrompt('A1', 'Russian', '', 'en', 'tutor');
     expect(prompt).toContain('LESSON with the learner\'s personal teacher');
@@ -461,15 +448,7 @@ describe('tutor deterministic evidence durability', () => {
     mockResolveStableUidForAuth.mockResolvedValue('stable-1');
     mockResolveConfiguredDialogModel.mockResolvedValue('gpt-test');
     mockModelSupportsJsonObject.mockReturnValue(true);
-    mockReviewVoiceSafety.mockResolvedValue({ categories: [] });
-    mockSanitizeClientSafetyFlags.mockReturnValue([]);
     mockEnforceRateLimit.mockResolvedValue(undefined);
-    mockApplyTutorMemoryUpdate.mockResolvedValue({
-      callCount: 1,
-      homework: ['How are you?'],
-      nextTopic: 'greetings',
-      goalMastery: {},
-    });
   });
 
   it('rejects an unsafe study target before identity, evidence, rate-limit, or provider work', async () => {
@@ -490,105 +469,7 @@ describe('tutor deterministic evidence durability', () => {
     });
 
     expect(mockResolveStableUidForAuth).not.toHaveBeenCalled();
-    expect(mockApplyTutorMemoryUpdate).not.toHaveBeenCalled();
     expect(mockEnforceRateLimit).not.toHaveBeenCalled();
-    expect(fetchMock).not.toHaveBeenCalled();
-  });
-
-  it('awaits tutor evidence persistence before a provider failure can abort the callable', async () => {
-    const fetchMock = jest.fn().mockResolvedValue({
-      ok: false,
-      status: 503,
-      text: async () => 'provider unavailable',
-    });
-    global.fetch = fetchMock as typeof fetch;
-    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
-
-    await expect(handler({
-      auth: { uid: 'auth-1' },
-      data: {
-        studyTarget: 'en',
-        mode: 'tutor',
-        sessionId: ' session-1 ',
-        history: [{ role: 'user', content: 'Hello' }],
-        homework: ['How are you?'],
-        nextTopic: 'greetings',
-        languagePreference: 'more_target',
-        phraseResults: [{ text: 'Hello', result: 'pass' }],
-        sceneOutcome: 'done',
-        goalProgress: { goalId: 'a1_greet', mastery: 1 },
-      },
-    })).rejects.toMatchObject({ code: 'unavailable' });
-
-    expect(mockApplyTutorMemoryUpdate).toHaveBeenCalledTimes(1);
-    expect(mockApplyTutorMemoryUpdate.mock.calls[0][3]).toMatchObject({
-      sessionId: ' session-1 ',
-      homework: ['How are you?'],
-      nextTopic: 'greetings',
-      languagePreference: 'more_target',
-      phraseResults: [{ text: 'Hello', result: 'pass' }],
-      sceneOutcome: 'done',
-      goalProgress: { goalId: 'a1_greet', mastery: 1 },
-    });
-    expect(mockApplyTutorMemoryUpdate.mock.invocationCallOrder[0]).toBeLessThan(fetchMock.mock.invocationCallOrder[0]);
-  });
-
-  it('commits and acknowledges tutor evidence even when speech recognition produced no learner turn', async () => {
-    const fetchMock = jest.fn();
-    global.fetch = fetchMock as typeof fetch;
-    mockApplyTutorMemoryUpdate.mockResolvedValueOnce({
-      callCount: 2,
-      homework: ['How are you?'],
-      nextTopic: 'greetings',
-      goalMastery: { a1_greet: 2 },
-    });
-    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<any>;
-
-    const response = await handler({
-      auth: { uid: 'auth-1' },
-      data: {
-        studyTarget: 'en',
-        mode: 'tutor',
-        sessionId: 'session-no-asr',
-        history: [{ role: 'assistant', content: 'See you tomorrow.' }],
-        homework: ['How are you?'],
-        nextTopic: 'greetings',
-        goalProgress: { goalId: 'a1_greet', mastery: 2 },
-      },
-    });
-
-    expect(mockApplyTutorMemoryUpdate).toHaveBeenCalledTimes(1);
-    expect(fetchMock).not.toHaveBeenCalled();
-    expect(mockEnforceRateLimit).not.toHaveBeenCalled();
-    expect(response).toMatchObject({
-      ok: true,
-      praise: '',
-      corrections: [],
-      tip: '',
-      tutorMemory: {
-        callCount: 2,
-        acceptedGoalProgress: { goalId: 'a1_greet', mastery: 2 },
-      },
-    });
-  });
-
-  it('does not return a false acknowledgement when tutor evidence persistence fails', async () => {
-    const fetchMock = jest.fn();
-    global.fetch = fetchMock as typeof fetch;
-    mockApplyTutorMemoryUpdate.mockRejectedValueOnce(new Error('firestore unavailable'));
-    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
-
-    await expect(handler({
-      auth: { uid: 'auth-1' },
-      data: {
-        studyTarget: 'en',
-        mode: 'tutor',
-        sessionId: 'session-db-fail',
-        history: [{ role: 'assistant', content: 'Goodbye.' }],
-        homework: ['How are you?'],
-        phraseResults: [{ text: 'How are you?', result: 'pass' }],
-      },
-    })).rejects.toThrow('firestore unavailable');
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
@@ -598,57 +479,8 @@ describe('tutor deterministic evidence durability', () => {
       auth: { uid: 'auth-1' },
       data: { studyTarget: 'en', mode: 'voice', history: [{ role: 'assistant', content: 'Hello' }] },
     })).rejects.toMatchObject({ code: 'invalid-argument' });
-    expect(mockApplyTutorMemoryUpdate).not.toHaveBeenCalled();
   });
 
-  it('uses one trusted operation start for both target-scoped tutor memory writes', async () => {
-    const billingSet = jest.fn().mockResolvedValue(undefined);
-    mockFirestore.mockReturnValue({
-      collection: jest.fn(() => ({ doc: jest.fn(() => ({ set: billingSet })) })),
-    });
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        choices: [{
-          message: {
-            content: JSON.stringify({
-              praise: 'Gut gemacht.',
-              assessment: 'Ich habe verstanden, dass du Kaffee möchtest.',
-              evidence: [{ learnerTurn: 'Ich will Kaffee.', note: 'Deine Absicht war klar.' }],
-              corrections: [{
-                original: 'Ich will Kaffee.',
-                corrected: 'Ich möchte einen Kaffee.',
-                note: 'Höflicher formuliert.',
-              }],
-              tip: 'Weiter so.',
-              memory: { facts: [], recurringErrors: [], resolvedErrors: [] },
-            }),
-          },
-        }],
-        usage: { prompt_tokens: 10, completion_tokens: 5, total_tokens: 15 },
-      }),
-    }) as typeof fetch;
-    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
-
-    await expect(handler({
-      auth: { uid: 'auth-1' },
-      data: {
-        studyTarget: 'de',
-        mode: 'tutor',
-        sessionId: 'session-de-1',
-        history: [{ role: 'user', content: 'Ich will Kaffee.' }],
-        homework: ['Ich möchte einen Kaffee.'],
-      },
-    })).resolves.toMatchObject({ ok: true });
-
-    expect(mockApplyTutorMemoryUpdate).toHaveBeenCalledTimes(2);
-    const firstOptions = mockApplyTutorMemoryUpdate.mock.calls[0][4];
-    const secondOptions = mockApplyTutorMemoryUpdate.mock.calls[1][4];
-    expect(firstOptions).toMatchObject({ strict: true, studyTarget: 'de' });
-    expect(secondOptions).toMatchObject({ strict: true, studyTarget: 'de' });
-    expect(firstOptions.operationStartedAtMs).toEqual(expect.any(Number));
-    expect(secondOptions.operationStartedAtMs).toBe(firstOptions.operationStartedAtMs);
-  });
 });
 
 describe('Dialogue V2 completion callable boundary', () => {

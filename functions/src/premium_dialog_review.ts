@@ -5,13 +5,6 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
-import {
-  applyTutorMemoryUpdate,
-  sanitizeTutorSessionId,
-  type TutorMemory,
-  type TutorMemoryUpdate,
-} from './max_voice_tutor_memory';
-import { reviewVoiceSafety, sanitizeClientSafetyFlags } from './max_voice_safety';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
 import {
   assertDialogueStudyLanguage,
@@ -291,7 +284,12 @@ export type DialogReviewMode = 'text' | 'voice' | 'tutor';
 /** Неизвестное/отсутствующее значение ⇒ 'text' — обратная совместимость со старыми клиентами. */
 export function asReviewMode(value: unknown): DialogReviewMode {
   const m = text(value, 8);
-  return m === 'voice' || m === 'tutor' ? m : 'text';
+  // зачем (владелец 04.10, «вычистить весь MAX»): режимы voice/tutor были только у звонка MAX (клиент удалён,
+  // вызовов с 04.09 нет). Старый клиент, приславший их, получает обычный текстовый разбор, причина — в лог.
+  if (m === 'voice' || m === 'tutor') {
+    console.warn('[DIALOG-REVIEW] retired MAX mode coerced to text', JSON.stringify({ mode: m }));
+  }
+  return 'text';
 }
 
 function sanitizeReviewHistory(value: unknown): ChatTurn[] {
@@ -540,59 +538,6 @@ export function hasGroundedCompletionAssessment(review: DialogReviewResult): boo
   return Boolean(review.assessment?.trim() && (review.evidence?.length ?? 0) > 0);
 }
 
-/** Клиентские итоги урока не зависят от ответа провайдера и сохраняются первыми. */
-function buildTutorEvidenceUpdate(data: DialogReviewRequest, cefr: string, nowMs: number): TutorMemoryUpdate {
-  const list = (v: unknown, max: number): string[] =>
-    Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
-  return {
-    sessionId: data.sessionId,
-    enforceHomeworkEvidence: true,
-    homework: list(data.homework, 3),
-    nextTopic: text(data.nextTopic, 140),
-    cefr,
-    // 'default' → сброс на политику уровня; пусто/нет поля → предпочтение не трогаем.
-    languagePreference: text(data.languagePreference, 16) === '' ? undefined : text(data.languagePreference, 16),
-    phraseResults: Array.isArray(data.phraseResults)
-      ? data.phraseResults.slice(0, 12).map((r) => {
-          const item = (r ?? {}) as Record<string, unknown>;
-          const raw = text(item.result, 16);
-          const result = (raw === 'pass' || raw === 'needs_work' || raw === 'uncertain' || raw === 'invalid'
-            ? raw
-            : typeof item.ok === 'boolean'
-              ? (item.ok ? 'pass' : 'needs_work')
-              : 'invalid') as 'pass' | 'needs_work' | 'uncertain' | 'invalid';
-          return { text: text(item.text, 140), result };
-        }).filter((r) => r.text !== '')
-      : [],
-    sceneOutcome: text(data.sceneOutcome, 12),
-    goalProgress: data.goalProgress && typeof data.goalProgress === 'object'
-      ? {
-          goalId: (data.goalProgress as Record<string, unknown>).goalId,
-          mastery: (data.goalProgress as Record<string, unknown>).mastery,
-          evidence: (data.goalProgress as Record<string, unknown>).evidence,
-          sceneId: (data.goalProgress as Record<string, unknown>).sceneId,
-        }
-      : null,
-    nowMs,
-  };
-}
-
-function tutorMemoryProjection(memory: TutorMemory, data: DialogReviewRequest) {
-  const requested = data.goalProgress && typeof data.goalProgress === 'object'
-    ? data.goalProgress as Record<string, unknown>
-    : null;
-  const goalId = text(requested?.goalId, 40);
-  const acceptedGoalProgress = goalId
-    ? { goalId, mastery: memory.goalMastery[goalId] ?? 0 }
-    : undefined;
-  return {
-    callCount: memory.callCount,
-    homework: memory.homework,
-    nextTopic: memory.nextTopic,
-    ...(acceptedGoalProgress ? { acceptedGoalProgress } : {}),
-  };
-}
-
 export const premiumDialogReview = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
@@ -681,14 +626,13 @@ export const premiumDialogReview = onCall({
   const history = sanitizeReviewHistory(data.history);
   const learnerTurns = history.filter((t) => t.role === 'user');
   const mode = asReviewMode(data.mode);
-  if (learnerTurns.length === 0 && mode !== 'tutor') {
+  if (learnerTurns.length === 0) {
     console.warn('premium_dialog_review rejected', { reason: 'history_required' });
     throw new HttpsError('invalid-argument', 'history_required');
   }
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
-  // Для text/voice сохраняем прежний fail-fast до любых Firestore-действий.
-  if (!apiKey && mode !== 'tutor') {
+  if (!apiKey) {
     console.error('premium_dialog_review rejected', { reason: 'openai_key_missing' });
     throw new HttpsError('failed-precondition', 'openai_key_missing');
   }
@@ -697,29 +641,6 @@ export const premiumDialogReview = onCall({
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
   const cefr = asCefr(data.cefr);
-  const tutorEvidenceNowMs = Date.now();
-  const tutorEvidence = mode === 'tutor' ? buildTutorEvidenceUpdate(data, cefr, tutorEvidenceNowMs) : undefined;
-
-  // Детерминированные итоги уже известны клиенту: пишем и дожидаемся транзакции
-  // ДО rate-limit/model/fetch, чтобы сбой API не стирал домашку и прогресс урока.
-  const tutorEvidenceMemory = tutorEvidence
-    ? await applyTutorMemoryUpdate(db, authUid, stableUid, tutorEvidence, { strict: true, studyTarget, operationStartedAtMs })
-    : undefined;
-
-  if (learnerTurns.length === 0 && tutorEvidenceMemory) {
-    return {
-      ok: true,
-      praise: '',
-      corrections: [],
-      tip: '',
-      tutorMemory: tutorMemoryProjection(tutorEvidenceMemory, data),
-    };
-  }
-
-  if (!apiKey) {
-    console.error('premium_dialog_review rejected', { reason: 'openai_key_missing' });
-    throw new HttpsError('failed-precondition', 'openai_key_missing');
-  }
 
   // зачем: аудит безопасности 2026-08-22 — разбор диалога (заведомо платный
   // OpenAI-вызов ниже) вызывается напрямую в обход premiumDialogSend и раньше
@@ -763,20 +684,6 @@ export const premiumDialogReview = onCall({
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
   const useJsonFormat = modelSupportsJsonObject(dialogModel);
 
-  // MAX safety-проверка использует транскрипт только во время текущего разбора.
-  // Оператор получает обезличенную категорию; текст, UID и session не сохраняются
-  // и не отправляются. Проверка идёт параллельно и никогда не роняет разбор.
-  const safetyPromise = mode === 'voice' || mode === 'tutor'
-    ? reviewVoiceSafety({
-        apiKey,
-        authUid,
-        stableUid,
-        mode: mode === 'tutor' ? 'voice_tutor' : 'voice_call',
-        history,
-        clientFlags: sanitizeClientSafetyFlags(data.safetyFlags),
-        sessionId: text(data.sessionId, 80) || undefined,
-      })
-    : Promise.resolve({ categories: [] });
 
   // Разбор и сейфти-журнал идут параллельно; журнал ДОЛЖЕН дописаться даже
   // если провайдер разбора упал (иначе Cloud Functions обрежет фоновую запись).
@@ -848,7 +755,7 @@ export const premiumDialogReview = onCall({
     }
     return { json, review };
   };
-  const [, reviewSettled] = await Promise.allSettled([safetyPromise, runReview()]);
+  const [reviewSettled] = await Promise.allSettled([runReview()]);
   if (reviewSettled.status === 'rejected') {
     // Разбора нет → Free-кредит дня возвращаем (как у explain/mistake).
     if (freeReviewReservation) {
@@ -895,29 +802,6 @@ export const premiumDialogReview = onCall({
     }));
   });
 
-  // Учитель: обновить память между уроками (домашка/тема — от клиента, из
-  // инструментов учителя; факты/ошибки — из разбора). Ошибка записи — не
-  // причина ронять разбор.
-  let tutorMemoryOut: ReturnType<typeof tutorMemoryProjection> | undefined;
-  if (tutorEvidence) {
-    const reviewMemory = {
-      facts: review.memory?.facts ?? [],
-      recurringErrors: review.memory?.recurringErrors ?? [],
-      resolvedErrors: review.memory?.resolvedErrors ?? [],
-    };
-    // С sessionId повторяем полную запись: транзакция либо увидит первый этап и
-    // возьмёт только review-поля, либо восстановит весь урок, если первая запись
-    // не удалась. Legacy-клиент без id использует явный reviewOnly, чтобы не
-    // превратить один урок в два.
-    const next = await applyTutorMemoryUpdate(db, authUid, stableUid, {
-      ...(sanitizeTutorSessionId(data.sessionId)
-        ? tutorEvidence
-        : { reviewOnly: true, nowMs: tutorEvidenceNowMs }),
-      ...reviewMemory,
-    }, { strict: true, studyTarget, operationStartedAtMs });
-    tutorMemoryOut = tutorMemoryProjection(next, data);
-  }
-
   // Память — внутренняя кухня учителя: клиенту она не нужна и не уходит.
   const { memory: _memory, ...publicReview } = review;
 
@@ -948,5 +832,5 @@ export const premiumDialogReview = onCall({
     };
   }
 
-  return { ok: true, ...publicReview, ...(tutorMemoryOut ? { tutorMemory: tutorMemoryOut } : {}) };
+  return { ok: true, ...publicReview };
 });

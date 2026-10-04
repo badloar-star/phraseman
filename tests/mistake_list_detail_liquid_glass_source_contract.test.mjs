@@ -19,5 +19,7 @@ test('list and detail keep their live navigation and training entry points', () 
   assert.match(list, /pathname: '\/mistake_detail'/);
   assert.match(detail, /pathname: '\/mistake_practice_session'/);
   assert.match(detail, /focusMistakeId: detail\.mistakeId/);
-  assert.match(detail, /edges=\{\['top', 'left', 'right'\]\}/);
+  // 04.10 (макет «Панель»): шапка карточки идёт цветом под строку состояния, поэтому верхний отступ считает сам экран (insets.top).
+  assert.match(detail, /edges=\{\['left', 'right'\]\}/);
+  assert.match(detail, /insets\.top/);
 });

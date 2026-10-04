@@ -85,10 +85,10 @@ describe('mistake detail model', () => {
     expect(read('app/_layout.tsx')).toContain('<Stack.Screen name="mistake_detail" />');
     expect(read('app/mistakes_list.tsx')).toContain("pathname: '/mistake_detail'");
     expect(screen).toContain('focusMistakeId: detail.mistakeId');
-    expect(screen).toContain('SkeletonBlock');
     expect(screen).not.toMatch(/ActivityIndicator/);
     expect(screen).not.toMatch(/borderWidth|borderColor/);
-    // Блок «твои ответы» из макета не строим: таких данных в журнале нет.
-    expect(read('app/mistake_detail_model.ts')).toContain('журнал НЕ хранит ответ ученика');
+    // 04.10 (макет «Панель», строка «Ваш ответ»): ответ ученика журнал хранит с 21.09 (given) — показываем его, а у старых записей без ответа строку не рисуем.
+    expect(read('app/mistake_detail_model.ts')).toContain('given: item.given ?? null');
+    expect(screen).toContain('detail.given ?'); 
   });
 });

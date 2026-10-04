@@ -8,11 +8,8 @@ import { mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practi
  * Карточка одной ошибки (макет Б): хроника попыток, сколько осталось до
  * «исправлено», похожие фразы, которые человек уже победил.
  *
- * ВАЖНО про данные: журнал НЕ хранит ответ ученика — только факт промаха, тип
- * ошибки, источник и режим. Поэтому блок «твои ответы» из макета здесь не
- * строится: показать вместо реальных ответов выдумку хуже, чем не показать
- * ничего. Если владелец захочет его — нужно отдельное решение о хранении
- * ответов (это новые данные, с приватностью и объёмом).
+ * Про данные: ответ ученика журнал хранит с 21.09 (поле given, до 200 знаков, синхронизируется вместе с событием). Его показывает строка
+ * «Ваш ответ» макета «Панель»; у старых записей без ответа строка не рисуется — выдумывать ответ нельзя.
  */
 
 export type MistakeTimelineKind = 'captured' | 'practice_wrong' | 'practice_right' | 'corrected' | 'hidden' | 'restored';
@@ -46,6 +43,12 @@ export interface MistakeDetail {
   readonly dueAtMs: number;
   readonly correctedAtMs: number | null;
   readonly audioRef: string | null;
+  /** Что ответил ученик при последней ошибке (строка «Ваш ответ» макета); null — старая запись без ответа. */
+  readonly given: string | null;
+  /** Когда ошиблись в последний раз (колонка «последняя» макета). */
+  readonly lastCapturedAtMs: number;
+  /** Была ли уже хоть одна отработка: без неё карточка показывает «Почему это ошибка», с ней — шаги и историю. */
+  readonly hasPractice: boolean;
   readonly timeline: readonly MistakeTimelineEntry[];
   /** Фразы того же типа, уже исправленные навсегда — опора на свой опыт. */
   readonly solvedNeighbours: readonly Readonly<{ phrase: string; correctedAtMs: number | null }>[];
@@ -122,6 +125,9 @@ export function buildMistakeDetail(
     dueAtMs: item.dueAtMs,
     correctedAtMs: item.correctedAtMs,
     audioRef: item.audioRef ?? null,
+    given: item.given ?? null,
+    lastCapturedAtMs: [...timeline].reverse().find((entry) => entry.kind === 'captured')?.atMs ?? item.firstCapturedAtMs,
+    hasPractice: timeline.some((entry) => entry.kind === 'practice_right' || entry.kind === 'practice_wrong'),
     // Хроника с конца: последние события важнее первых.
     timeline: Object.freeze(timeline.slice(-MAX_TIMELINE)),
     solvedNeighbours: Object.freeze(solvedNeighbours),

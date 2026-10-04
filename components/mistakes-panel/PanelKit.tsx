@@ -120,8 +120,8 @@ export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, firs
     <>
       {first ? null : <View pointerEvents="none" style={styles.rowLine} />}
       <View style={styles.rowText}>
-        <Text style={[styles.rowTitle, { color: danger ? MP_COLORS.bad : g.text }]} numberOfLines={1}>{title}</Text>
-        {subtitle ? <Text style={[styles.rowSub, { color: g.secondary }]} numberOfLines={1}>{subtitle}</Text> : null}
+        <Text style={[styles.rowTitle, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
+        {subtitle ? <Text style={[styles.rowSub, { color: g.secondary }]}>{subtitle}</Text> : null}
       </View>
       {right}
     </>

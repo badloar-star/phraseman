@@ -46,6 +46,12 @@ interface Props {
   textColor?: string;
   /** Typed transport override for a content surface with stronger server semantics. */
   submitOverride?: ReportErrorSubmitOverride;
+  /**
+   * зачем (макет «Панель», меню карточки ошибки: пункт «Сообщить о неточности»): открыть ту же форму из чужой кнопки.
+   * Экран кладёт сюда ref и вызывает openRef.current?.(); сама кнопка при hideTrigger не рисуется, форма остаётся прежней.
+   */
+  openRef?: React.MutableRefObject<(() => void) | null>;
+  hideTrigger?: boolean;
 }
 
 type ReportErrorCategory = {
@@ -139,6 +145,8 @@ function ReportErrorButton({
   testID,
   textColor,
   submitOverride,
+  openRef,
+  hideTrigger,
 }: Props) {
   // зачем: форма «сообщить об ошибке» (~30 экранов) — Liquid Glass по макету overlays-campaigns OS-ERROR-REPORT-*.
   const { theme: t, f, liquidGlassThemeId } = useTheme();
@@ -162,6 +170,8 @@ function ReportErrorButton({
     setFailed(false);
     setVisible(true);
   };
+
+  if (openRef) openRef.current = handleOpen;
 
   const commentTrimmed = comment.trim();
   const commentOk = commentTrimmed.length >= ERROR_REPORT_COMMENT_MIN_LEN;
@@ -262,6 +272,7 @@ function ReportErrorButton({
 
   return (
     <>
+      {hideTrigger ? null : (
       <TouchableOpacity
         testID={testID}
         onPress={handleOpen}
@@ -291,6 +302,7 @@ function ReportErrorButton({
           </Text>
         )}
       </TouchableOpacity>
+      )}
 
       <Modal visible={visible} transparent animationType="fade" onRequestClose={() => setVisible(false)}>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>

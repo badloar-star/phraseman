@@ -27,9 +27,11 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).not.toMatch(/messageRowActions:[\s\S]*?paddingLeft: 16[\s\S]*?messageRowCta:/);
   });
 
-  it('opens the Firestore subscription while either the standalone or embedded surface is visible', () => {
-    expect(inboxSource).toContain('if (!runtimeActive || !effectiveVisible) return;');
-    expect(inboxSource).toContain('subscribeUserAppMessages');
+  // 04.10: живая подписка снята в 95eec1717 (01.08) ради экономии чтений; замена — кэш сразу + свежее разовое
+  // чтение при открытии центра (minIntervalMs: 0). «Центр без подписки» закреплён и в background_refresh_contract.
+  it('opening either surface reads cache first, then a fresh one-shot read without a live subscription', () => {
+    expect(inboxSource).not.toContain('subscribeUserAppMessages');
+    expect(inboxSource).toContain('minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     expect(inboxSource).toContain('}, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);');
   });
 
@@ -38,11 +40,12 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).toContain("state === 'active'");
     expect(inboxSource).toContain('readCachedAppMessagesSnapshot');
     expect(inboxSource).toContain('refreshAppMessagesSnapshotOnce');
-    expect(inboxSource).toContain('if (!runtimeActive || effectiveVisible) return;');
+    expect(inboxSource).toContain('if (!runtimeActive) return;');
   });
 
   it('claims report-reply rewards optimistically without a visible network wait', () => {
-    expect(inboxSource).toContain('claimReportReplyShardsOptimistically');
+    // 04.10: осколки → монеты (D70/D104, 53063c465) — та же оптимистичная функция под новым именем.
+    expect(inboxSource).toContain('claimReportReplyCoinsOptimistically');
     expect(inboxSource).toContain('optimisticReportClaimIdsRef');
     expect(inboxSource).toContain('markReplyClaimedLocally(message.id);');
     expect(inboxSource).not.toContain('await claimReportReplyShards');

@@ -51,6 +51,7 @@ describe('app messages background refresh contract', () => {
     expect(appMessagesSource).toContain('pendingClaims.map((claim) => claim.messageId)');
     expect(appMessagesSource).toContain('export async function resumePendingReportReplyShardClaims');
     expect(cloudSyncSource).toContain("import { resumePendingReportReplyShardClaims } from './app_messages';");
-    expect(cloudSyncSource).toContain('await resumePendingReportReplyShardClaims().catch(() => {});');
+    // 04.10: немой catch заменён записью причины (PM-229) — возобновление зачислений на месте.
+    expect(cloudSyncSource).toContain("await resumePendingReportReplyShardClaims().catch(swallowError('cloud_sync:doSyncToCloud'));");
   });
 });

@@ -35,7 +35,7 @@ import {
 } from '../modules/mistake-practice/voice_verdict';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
 import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
-import { projectMistakes } from '../modules/mistake-practice/projection';
+import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
@@ -91,7 +91,7 @@ type Feedback = {
    */
   userAnswer: string;
   /** Цепочка «3 верных дня в 2 режимах» из проекции — правило стало видимым. */
-  chain: { days: number; modes: number; gainedToday: boolean; corrected: boolean } | null;
+  chain: { days: number; modes: number; requiredModes: 1 | 2; gainedToday: boolean; corrected: boolean } | null;
 };
 
 const localDay = (atMs: number): string => {
@@ -832,6 +832,8 @@ function MistakePracticeSessionScreen() {
           // зачем (аудит 2026-09-15): без числа режимов панель обещала «ещё один
           // день в другом режиме» там, где нужно два дня или режим уже второй.
           modes: new Set(afterItem.qualifyingModes).size,
+          // зачем (§130): второй режим обещаем только там, где он для этой ошибки возможен (как в правиле).
+          requiredModes: requiredModesForMistake(afterItem),
           gainedToday: true,
           corrected: afterStatus === 'corrected',
         }

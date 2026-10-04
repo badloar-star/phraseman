@@ -29,6 +29,11 @@ export type MistakeVerdictChain = Readonly<{
    * второй режим уже был. Правило: 3 дня И 2 разных режима (projection.ts).
    */
   modes: number;
+  /**
+   * Сколько разных режимов нужно этой ошибке (1 или 2) — тот же расчёт, что в правиле (requiredModesForMistake).
+   * зачем (§130): без него панель обещала «другой режим» и там, где второй режим невозможен.
+   */
+  requiredModes: 1 | 2;
   /** Этот ответ добавил новый день в цепочку. */
   gainedToday: boolean;
   /** Ошибка закрыта навсегда. */
@@ -180,10 +185,10 @@ function MistakeVerdictPanel({
           <Text style={[styles.chainText, { color: g.text, fontSize: f.sub }]}>
             {chain.corrected
               ? copy.done
-              // Правило: 3 дня И 2 разных режима. Говорим ровно то, чего не хватает.
+              // Правило: 3 дня И нужное число режимов (1 или 2). Говорим ровно то, чего не хватает.
               : chain.days <= 1
                 ? copy.oneMoreTwoDays
-                : chain.modes < 2
+                : chain.modes < chain.requiredModes
                   ? copy.oneMoreOtherMode
                   : copy.oneMoreAnyMode}
           </Text>

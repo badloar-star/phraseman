@@ -8,7 +8,7 @@ import {
   independentProductionModeCount,
   type MistakeExerciseMode,
 } from './exercise_mode_registry';
-import { mistakeExerciseCapabilitiesFor } from './capabilities';
+import { mistakeExerciseCapabilitiesFor, type MistakeCapabilitySource } from './capabilities';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const LOCAL_DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -173,6 +173,17 @@ function freezeItem(item: MutableProjectionItem): MistakeProjectionItem {
   });
 }
 
+/**
+ * Сколько РАЗНЫХ режимов нужно, чтобы ошибка ушла: 2, если для неё возможен второй независимый режим, иначе 1.
+ * зачем (§130, 04.10): единственное место расчёта — правило, панель итога и карточка ошибки говорят одно и то же.
+ */
+export function requiredModesForMistake(item: MistakeCapabilitySource): 1 | 2 {
+  return independentProductionModeCount({
+    facet: item.facet,
+    capabilities: mistakeExerciseCapabilitiesFor(item),
+  }) >= 2 ? 2 : 1;
+}
+
 export function projectMistakes(
   inputEvents: readonly MistakeEvent[],
 ): MistakeProjection {
@@ -269,10 +280,7 @@ export function projectMistakes(
 
     // зачем (04.10, «17 не уменьшается»): второй режим требуется, только если он для этой ошибки возможен;
     // иначе ошибка с единственным независимым режимом (печать) не уходила из счётчика никогда.
-    const requiredModes = Math.min(2, Math.max(1, independentProductionModeCount({
-      facet: current.facet,
-      capabilities: mistakeExerciseCapabilitiesFor(current),
-    })));
+    const requiredModes = requiredModesForMistake(current);
     if (
       current.qualifyingDays.length >= 3
       && new Set(current.qualifyingModes).size >= requiredModes

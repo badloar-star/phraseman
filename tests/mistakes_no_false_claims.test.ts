@@ -58,11 +58,15 @@ describe('mistakes section never claims more than the data says', () => {
     expect(panel).toContain('oneMoreOtherMode');
     expect(panel).toContain('oneMoreAnyMode');
     expect(panel).toContain('chain.days <= 1');
-    expect(panel).toContain('chain.modes < 2');
+    // §130: «другой режим» — только если второй режим этой ошибке нужен и возможен.
+    expect(panel).toContain('chain.modes < chain.requiredModes');
+    expect(panel).not.toContain('chain.modes < 2');
+    expect(panel).toContain('requiredModes: 1 | 2;');
     // Панель обязана ЗНАТЬ число режимов, иначе не может сказать правду.
     expect(panel).toContain('modes: number;');
     const screen = read('app/mistake_practice_session.tsx');
     expect(screen).toContain('modes: new Set(afterItem.qualifyingModes).size');
+    expect(screen).toContain('requiredModes: requiredModesForMistake(afterItem)');
     // И не делит на ноль в шапке прогресса.
     expect(screen).toContain('session.initialCount > 0 ? Math.min(100');
   });

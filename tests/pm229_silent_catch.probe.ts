@@ -23,12 +23,12 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 
 // Ключ — файл, значение — сколько немых обработчиков разрешено (долг).
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину.
+// База на 04.10: 37 (было 42 → 41 → 37): statsCache, mistake_practice_answer_journal, flashcards_speaking_session пишут причину.
 const BASELINE: Record<string, number> = {
   'app/account_switch_quarantine.ts': 3,
   'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
-  'app/auth_provider.ts': 26,
+  'app/auth_provider.ts': 25, // 04.10: 26 → 25 (запись в HEAD уже была устаревшей)
   'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
-  'app/statsCache.ts': 3,
   'modules/phone-state/keyed_exclusive_transaction.ts': 1,
   'modules/account-session-v2/account_detach_latch.ts': 1, // E22 2026-10-01: намеренный разрыв цепочки очереди (tail = next.catch(...))
 };

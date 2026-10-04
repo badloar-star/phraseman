@@ -307,7 +307,8 @@ export default function FlashcardsSpeakingSession() {
     });
     speakingRefundInFlightRef.current = pending;
     // зачем: await стартового эффекта на этот промис не должен ронять вход, а производная цепочка — быть unhandled.
-    void pending.catch(() => undefined).finally(() => {
+    // зачем (PM-229): причина уже залогирована выше ([FC-SPEAKING] refundSpeakEnergy), здесь только фиксируем, что отказ дошёл до производной цепочки.
+    void pending.catch((error: unknown) => { console.warn('[FC-SPEAKING] refund: отказ дошёл до производной цепочки (вход не роняем)', error); }).finally(() => {
       if (speakingRefundInFlightRef.current === pending) speakingRefundInFlightRef.current = null;
     });
     return pending;

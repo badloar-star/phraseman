@@ -61,7 +61,8 @@ export function createMistakeAnswerJournal(
   let unsaved: MistakeEvent[] = [];
 
   const whenIdle = async (): Promise<void> => {
-    await queue.catch(() => undefined);
+    // зачем (PM-229): запись сама ловит свои ошибки, поэтому очередь не должна отклоняться; если всё же отклонилась — пишем причину, а не глотаем.
+    await queue.catch((error: unknown) => { console.warn(`${TAG} journal:queue:rejected where=whenIdle`, errorText(error)); });
   };
 
   const current = async (): Promise<MistakeEventJournal> => {
@@ -106,7 +107,7 @@ export function createMistakeAnswerJournal(
     });
     memory = journal;
     unsaved = [...unsaved, event];
-    const done = queue.catch(() => undefined).then(async () => {
+    const done = queue.catch((error: unknown) => { console.warn(`${TAG} journal:queue:rejected where=append`, errorText(error)); }).then(async () => {
       const toWrite = unsaved;
       // события, поставленные подряд, уходят одной записью (порядок сохранён); пустой хвост очереди ничего не пишет
       if (toWrite.length === 0) return true;

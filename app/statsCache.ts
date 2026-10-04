@@ -206,7 +206,11 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   // зачем (PM-289, D70): баланс жемчуга статистике больше не нужен — валюта удалена.
   const [{ willLose }, mistakePracticeDue] = await Promise.all([
     checkStreakLossPending(),
-    getMistakePracticeReadyCount(target).catch(() => 0),
+    // зачем (PM-229): отказ чтения счётчика «Мои ошибки» не должен молча превращаться в 0 — пишем причину, значение по умолчанию прежнее.
+    getMistakePracticeReadyCount(target).catch((error: unknown) => {
+      console.warn('[STATS-CACHE] mistakes ready count read failed — 0', error instanceof Error ? error.message : String(error));
+      return 0;
+    }),
   ]);
 
   return normalizeStatsCache({

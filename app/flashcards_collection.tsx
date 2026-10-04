@@ -809,8 +809,12 @@ export default function FlashcardsScreen() {
     [lang],
   );
   const onSpeakCb = useCallback(
-    (text: string, opts?: SpeakOpts) => speakAudio(text, undefined, opts),
-    [speakAudio],
+    (text: string, opts?: SpeakOpts) => {
+      // зачем («Family», 04.10): жалоба «Не воспроизводится запись» со страницы набора — видно, какой набор и язык запросили озвучку.
+      console.log('[PACK-AUDIO] tap', JSON.stringify({ pack: packDeeplink ?? null, cat: activeCat, chars: text?.trim().length ?? 0, language: opts?.language ?? null, cardAudio: !!opts?.cardAudio }));
+      speakAudio(text, undefined, opts);
+    },
+    [speakAudio, packDeeplink, activeCat],
   );
   const openPremiumLimit = useCallback(() => {
     router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'flashcards_collection', saved: String(savedCards.length) } } as any);

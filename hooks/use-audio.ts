@@ -195,13 +195,20 @@ export function useAudio() {
 
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
     const normalized = text?.trim();
-    if (!normalized) return;
+    // зачем («Family», 04.10: «Не воспроизводится запись» со страницы набора): сперва логи — каждый немой ранний выход speak пишет причину.
+    if (!normalized) {
+      console.warn('[PACK-AUDIO] speak:skip empty_text', JSON.stringify({ cardAudio: !!opts?.cardAudio, language: opts?.language ?? null }));
+      return;
+    }
     if (opts?.language?.trim().toLowerCase() === SILENT_SPEECH_LANGUAGE) {
       console.log(`[PACK-LANG] speak:skip language="${SILENT_SPEECH_LANGUAGE}" — карточка набора без языка не озвучивается`);
       return;
     }
     const voicePolicyToken = voicePlaybackPolicy.captureStart();
-    if (voicePolicyToken === null) return;
+    if (voicePolicyToken === null) {
+      console.warn('[PACK-AUDIO] speak:skip voice_disabled — тумблер «Озвучивание» выключен', JSON.stringify({ cardAudio: !!opts?.cardAudio, chars: normalized.length }));
+      return;
+    }
 
     const spokenText = opts?.speechText?.trim() || normalized;
 
@@ -249,6 +256,7 @@ export function useAudio() {
     // text, the language is English (clips are EN-only), and the caller did not
     // force a specific system voice. Falls back to expo-speech on any miss/error.
     if (opts?.strictVoice && !requestedVoice) {
+      console.warn('[PACK-AUDIO] speak:skip strict_voice_missing', JSON.stringify({ language }));
       opts.onError?.(new Error('strict_dialogue_voice_missing'));
       return;
     }
@@ -257,6 +265,9 @@ export function useAudio() {
     // зачем: D128 — карточка звучит клипом OpenAI своего языка. Английская
     // карточка с явно выбранным системным голосом уважает выбор пользователя.
     const cardLanguage: CardTtsLanguage | null = opts?.cardAudio ? cardTtsLanguageFromSpeechLocale(language) : null;
+    if (opts?.cardAudio) {
+      console.log('[PACK-AUDIO] speak:route', JSON.stringify({ language, cardLanguage, requestedVoice: requestedVoice || null, path: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_clip' : 'default_voice' }));
+    }
     if (cardLanguage && !(cardLanguage === 'en' && requestedVoice)) {
       void playCardAudio(cardLanguage);
       return;

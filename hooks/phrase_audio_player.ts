@@ -441,7 +441,10 @@ async function playResolvedClip(
   requireCached: boolean,
 ): Promise<boolean> {
   const voicePolicyToken = voicePlaybackPolicy.captureStart();
-  if (voicePolicyToken === null) return false;
+  if (voicePolicyToken === null) {
+    console.warn('[PACK-AUDIO] clip:skip voice_disabled', JSON.stringify({ key, requireCached }));
+    return false;
+  }
 
   // Claim this playback: stop whatever was playing and capture the new token.
   stopPhraseAudio();
@@ -457,6 +460,7 @@ async function playResolvedClip(
   }
   // зачем: последний рубеж перед стримом с URL. Отдаём фразу системному TTS
   // только при подтверждённом офлайне; на 'unknown' пробуем сыграть клип.
+  if (!cachedUri && getNetStatus() === 'offline') console.warn('[PACK-AUDIO] clip:skip offline_not_cached', JSON.stringify({ key }));
   if (!cachedUri && getNetStatus() === 'offline') return false;
   const source: string = cachedUri ?? url;
 

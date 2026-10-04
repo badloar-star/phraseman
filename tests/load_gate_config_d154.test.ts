@@ -58,3 +58,14 @@ test('stats screen: no eternal skeleton — ceiling and failure end in calm «С
   // Немые catch в кэше статистики не возвращаются.
   expect(read('app/statsCache.ts')).not.toMatch(/\.catch\(\(\) => \{\}\)/);
 });
+
+test('training setup: shared gate, calm «Сейчас недоступно», no 5×20 s eternal deck skeleton', () => {
+  const src = read('app/flashcards_training_setup.tsx');
+  expect(src).toContain("from './load_gate_config'");
+  expect(src).toContain('loadGateBackoffMs(silentRetryRef.current + 1)');
+  expect(src).toContain('testID="fc-training-setup-unavailable"');
+  expect(src).toContain('testID="fc-training-setup-try-again"');
+  expect(src).toContain("AppState.addEventListener('change'");
+  expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
+  expect(src).not.toContain('}, 20_000);');
+});

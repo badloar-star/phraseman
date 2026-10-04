@@ -26,11 +26,13 @@ const PROTECTED_FILES = new Map([
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
 ]);
 const PROTECTED_RUNTIME = {
-  count: 22,
+  // зачем (D158 / PM-214, 04.10): вечный скелетон наборов запрещён — повторы 1/3/8 с, «Сейчас недоступно»,
+  // автоповтор при возврате в приложение и сторож потолка загрузки (+2 useEffect).
+  count: 24,
   // зачем (владелец 01.10): без экрана ошибки — loadDecks не стирает показанные наборы при сбое, плюс тихий повтор (+1 useEffect).
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
   // зачем (координатор 02.10, вариант В): открытие набора — тихие повторы + мягкая подсказка через stage_with_retry.
-  hash: 'bdd5b192ab33f3b25abc7acd57161fc71fbed5b2d46a1b7cd2783b0a009a9859',
+  hash: 'b33d85ec57cb5c85375f2f03701aba78d83119fcf4a24005db3518b23fd2ebff',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -199,7 +201,7 @@ function createRouteHarness({
   const modules = {
     react: { __esModule: true, default: hooks.React, ...hooks.React },
     'react-native': {
-      ActivityIndicator: 'ActivityIndicator', Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar', Text: 'Text', View: 'View',
+      ActivityIndicator: 'ActivityIndicator', AppState: { addEventListener: () => ({ remove: () => {} }) }, Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar', Text: 'Text', View: 'View',
       StyleSheet: { create: value => value, absoluteFill: { position: 'absolute', inset: 0 } },
     },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
@@ -263,9 +265,12 @@ function createRouteHarness({
     '../hooks/useFlashcardTrainingQuotaPreview': { useFlashcardTrainingQuotaPreview: () => ({ status: quotaStatus, limit: 30, used: 2 }) },
     './navigation_back': { safeRouterBack: (...args) => calls.back.push(args) },
     './stable_safe_area_metrics': { useStableSafeAreaInsets: () => insets },
+    './load_gate_config': { LOAD_GATE_TOTAL_MS: 12_000, loadGateBackoffMs: (n) => (n >= 1 && n <= 3 ? [1000, 3000, 8000][n - 1] : null) },
+    './swallow_log': { noteSwallowedAs: (_tag, fallback) => () => fallback },
   };
   const module = { exports: {} };
-  const wrapper = vm.runInNewContext(`(function(require,module,exports){${transpile(ROUTE_PATH, candidate)}\n})`);
+  // зачем (D158): сторож потолка ставит таймер; в песочнице таймеры пустые — рендер детерминирован.
+  const wrapper = vm.runInNewContext(`(function(require,module,exports){${transpile(ROUTE_PATH, candidate)}\n})`, { console, setTimeout: () => 0, clearTimeout: () => {} });
   wrapper(name => {
     if (!(name in modules)) throw new Error(`unexpected route dependency ${name}`);
     return modules[name];

@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, AppState, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import ContentWrap from '../components/ContentWrap';
 import MonthlyTrainingSessionIndicator from '../components/MonthlyTrainingSessionIndicator';
@@ -56,6 +56,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQuotaPreview';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LoadState = 'loading' | 'ready' | 'error';
@@ -297,21 +298,56 @@ export default function FlashcardsTrainingSetupScreen() {
     }
   }, [lang, mode, studyTarget]);
 
+  // зачем (D158 / PM-214, 04.10): было 5 тихих повторов по 20 с, затем вечный скелетон наборов и
+  // заблокированный старт всех четырёх тренировок. Теперь как во «Вспомни»: 3 повтора ~1/3/8 с
+  // (app/load_gate_config.ts), затем «Сейчас недоступно» + тихая «Попробовать снова»; при возврате
+  // в приложение повтор идёт сам.
   const silentRetryRef = useRef(0);
+  const [loadExhausted, setLoadExhausted] = useState(false);
   useEffect(() => {
-    if (loadState === 'ready') { silentRetryRef.current = 0; return undefined; }
+    if (loadState === 'ready') { silentRetryRef.current = 0; setLoadExhausted(false); return undefined; }
     if (loadState !== 'error' || loadErrorKind !== 'load') return undefined;
-    if (silentRetryRef.current >= 5) {
-      console.warn('[FC-TRAIN-SETUP] тихие повторы наборов исчерпаны');
+    const backoffMs = loadGateBackoffMs(silentRetryRef.current + 1);
+    if (backoffMs === null) {
+      console.warn('[FC-TRAIN-SETUP] тихие повторы наборов исчерпаны → «Сейчас недоступно»', { attempts: silentRetryRef.current });
+      setLoadExhausted(true);
       return undefined;
     }
     const timer = setTimeout(() => {
       silentRetryRef.current += 1;
-      console.warn('[FC-TRAIN-SETUP] тихий повтор наборов', { attempt: silentRetryRef.current });
+      console.warn('[FC-TRAIN-SETUP] тихий повтор наборов', { attempt: silentRetryRef.current, backoffMs });
       setLoadRevision((value) => value + 1);
-    }, 20_000);
+    }, backoffMs);
     return () => clearTimeout(timer);
   }, [loadErrorKind, loadRevision, loadState]);
+
+  const retryDecksLoad = useCallback((source: 'tap' | 'foreground') => {
+    console.warn('[FC-TRAIN-SETUP] повтор после «Сейчас недоступно»', { source });
+    if (source === 'tap') hapticTap();
+    silentRetryRef.current = 0;
+    setLoadExhausted(false);
+    setLoadRevision((value) => value + 1);
+  }, []);
+
+  // D158: автоповтор при возврате в приложение, если повторы исчерпаны.
+  useEffect(() => {
+    if (!loadExhausted) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retryDecksLoad('foreground');
+    });
+    return () => sub.remove();
+  }, [loadExhausted, retryDecksLoad]);
+
+  // D158: загрузка, не ответившая ни успехом, ни ошибкой, не держит скелетон вечно.
+  useEffect(() => {
+    if (loadState !== 'loading') return undefined;
+    const timer = setTimeout(() => {
+      console.warn('[FC-TRAIN-SETUP] watchdog: наборы не ответили за потолок → цикл тихих повторов', { loadRevision, ceilingMs: LOAD_GATE_TOTAL_MS });
+      setLoadErrorKind('load');
+      setLoadState('error');
+    }, LOAD_GATE_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [loadRevision, loadState]);
 
   useEffect(() => {
     void loadDecks();
@@ -523,7 +559,29 @@ export default function FlashcardsTrainingSetupScreen() {
               </Text>
             </View>}
 
-            {loadState === 'loading' || (loadState === 'error' && loadErrorKind === 'load') ? (
+            {loadState === 'error' && loadErrorKind === 'load' && loadExhausted ? (
+              <SetupSurface testID="fc-training-setup-unavailable" glass={glass} style={styles.messageBox}>
+                <Text accessibilityLiveRegion="polite" style={[
+                  styles.message,
+                  { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 22 * textScale },
+                ]}>{triLang(lang, {
+                  ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+                  'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang',
+                  tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+                })}</Text>
+                <Pressable
+                  testID="fc-training-setup-try-again"
+                  accessibilityRole="button"
+                  onPress={() => retryDecksLoad('tap')}
+                  style={({ pressed }) => [styles.tryAgain, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.82 }]}
+                >
+                  <Text style={[styles.tryAgainLabel, { color: t.textPrimary, fontSize: 16 * textScale }]}>{triLang(lang, {
+                    ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+                    'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+                  })}</Text>
+                </Pressable>
+              </SetupSurface>
+            ) : loadState === 'loading' || (loadState === 'error' && loadErrorKind === 'load') ? (
               <SetupSurface
                 testID="fc-training-setup-loading"
                 glass={glass}
@@ -726,6 +784,8 @@ const styles = StyleSheet.create({
   suggestIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   suggestTitle: { minWidth: 0, textAlign: 'center', fontWeight: '800' },
   message: { textAlign: 'center', fontWeight: '600' },
+  tryAgain: { minHeight: 44, borderRadius: 22, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
+  tryAgainLabel: { textAlign: 'center', fontWeight: '700' },
   deckGrid: { marginTop: 14, gap: 10 },
   validation: { marginTop: 10, textAlign: 'center', fontWeight: '700' },
   dockScroll: { flexGrow: 0, flexShrink: 1, maxHeight: '46%' },

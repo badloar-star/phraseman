@@ -876,6 +876,39 @@ function publishProjection(token: AccountGenerationToken, projection: LevelSpinS
   } : {});
 }
 
+type RowVerdict<T> =
+  | Readonly<{ kind: 'skip' }>
+  | Readonly<{ kind: 'ok'; value: T }>
+  | Readonly<{ kind: 'fail'; fail: () => never }>;
+const SKIP_ROW: RowVerdict<never> = Object.freeze({ kind: 'skip' });
+// Сколько проверок отпечатков идёт одновременно: при истории до MAX_LOCAL_RUNE_HISTORY строк неограниченный
+// параллелизм дал бы всплеск памяти и вызовов через мост (ревью opus 04.10).
+const VERIFY_BATCH_SIZE = 32;
+
+/**
+ * Проверяет строки пачками параллельно, но решает строго в исходном порядке: исключение или отказ строки
+ * раньше по порядку всегда побеждает более позднюю строку — как было при проверке по одной.
+ */
+async function verifyRowsInOrder<R, T>(
+  rows: readonly R[],
+  check: (row: R) => Promise<RowVerdict<T>>,
+): Promise<T[]> {
+  const values: T[] = [];
+  for (let start = 0; start < rows.length; start += VERIFY_BATCH_SIZE) {
+    const settled = await Promise.all(rows.slice(start, start + VERIFY_BATCH_SIZE).map((row) => check(row).then(
+      (verdict) => ({ threw: false as const, verdict }),
+      (error: unknown) => ({ threw: true as const, error }),
+    )));
+    for (const item of settled) {
+      if (item.threw) throw item.error;
+      if (item.verdict.kind === 'skip') continue;
+      if (item.verdict.kind === 'fail') return item.verdict.fail();
+      values.push(item.verdict.value);
+    }
+  }
+  return values;
+}
+
 async function storedOperationsForOwner(ownerStableId: string): Promise<readonly LocalRuneOperation[]> {
   // зачем (замер №9): полный обход ключей хранилища на каждом восстановлении — подозреваемый в 4 с на холодном
   // старте. Пишем цену обхода, чтений и проверки отпечатков, только если весь кусок дольше 500 мс.
@@ -900,36 +933,44 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
     AsyncStorage.multiGet(paidEnvelopeKeys),
   ]);
   const readsMs = Date.now() - loadStartedAt - scanMs;
-  const result: LocalRuneOperation[] = [];
-  for (const [, raw] of rows) {
-    if (raw === null) continue;
+  // зачем (координатор 04.10, замер №11: verify ~450 мс на 13 операций + 4 журнала): отпечатки проверялись
+  // строго по очереди (await в цикле). Теперь проверки идут пачками по VERIFY_BATCH_SIZE параллельно, а решение
+  // принимается в ИСХОДНОМ порядке строк (verifyRowsInOrder): первая битая строка роняет восстановление с той же
+  // причиной, что и раньше, следующие пачки не запускаются. Ни одна строка не пропускается; порядок прежний.
+  const operations = await verifyRowsInOrder(rows, async ([, raw]): Promise<RowVerdict<LocalRuneOperation>> => {
+    if (raw === null) return SKIP_ROW;
     let parsed: unknown;
-    try { parsed = JSON.parse(raw) as unknown; } catch { runeOperationCorrupt('read_all', 'json_parse', null, raw); }
-    const operation = parseLocalRuneOperation(parsed, ownerStableId);
-    if (!operation) runeOperationCorrupt('read_all', 'parse_failed', parsed, raw);
-    if (!await hasValidLocalRuneFingerprint(operation)) runeOperationCorrupt('read_all', 'fingerprint_invalid', parsed, raw);
-    result.push(operation);
-  }
-  for (const [, raw] of journalRows) {
-    if (raw === null) continue;
-    let parsed: unknown;
-    try { parsed = JSON.parse(raw) as unknown; } catch { throw new Error('practice_rune_journal_corrupt'); }
-    const entry = parsePracticeRuneJournalEntry(parsed, ownerStableId);
-    if (!entry || !await hasValidPracticeRuneFingerprint(entry.operation)) {
-      throw new Error('practice_rune_journal_corrupt');
+    try { parsed = JSON.parse(raw) as unknown; } catch {
+      return { kind: 'fail', fail: () => runeOperationCorrupt('read_all', 'json_parse', null, raw) };
     }
-    result.push(entry.operation);
-  }
-  for (const [key, raw] of paidEnvelopeRows) {
-    if (raw === null) continue;
+    const operation = parseLocalRuneOperation(parsed, ownerStableId);
+    if (!operation) return { kind: 'fail', fail: () => runeOperationCorrupt('read_all', 'parse_failed', parsed, raw) };
+    if (!await hasValidLocalRuneFingerprint(operation)) {
+      return { kind: 'fail', fail: () => runeOperationCorrupt('read_all', 'fingerprint_invalid', parsed, raw) };
+    }
+    return { kind: 'ok', value: operation };
+  });
+  const journalCorrupt = (): never => { throw new Error('practice_rune_journal_corrupt'); };
+  const journalOperations = await verifyRowsInOrder(journalRows, async ([, raw]): Promise<RowVerdict<LocalRuneOperation>> => {
+    if (raw === null) return SKIP_ROW;
     let parsed: unknown;
-    try { parsed = JSON.parse(raw) as unknown; } catch { throw new Error('paid_level_spin_envelope_corrupt'); }
+    try { parsed = JSON.parse(raw) as unknown; } catch { return { kind: 'fail', fail: journalCorrupt }; }
+    const entry = parsePracticeRuneJournalEntry(parsed, ownerStableId);
+    if (!entry || !await hasValidPracticeRuneFingerprint(entry.operation)) return { kind: 'fail', fail: journalCorrupt };
+    return { kind: 'ok', value: entry.operation };
+  });
+  const envelopeCorrupt = (): never => { throw new Error('paid_level_spin_envelope_corrupt'); };
+  const envelopeOperations = await verifyRowsInOrder(paidEnvelopeRows, async ([key, raw]): Promise<RowVerdict<LocalRuneOperation>> => {
+    if (raw === null) return SKIP_ROW;
+    let parsed: unknown;
+    try { parsed = JSON.parse(raw) as unknown; } catch { return { kind: 'fail', fail: envelopeCorrupt }; }
     const envelope = await parsePaidLevelSpinEnvelope(parsed, ownerStableId);
     if (!envelope || key !== paidLevelSpinEnvelopeKey(ownerStableId, envelope.requestId)) {
-      throw new Error('paid_level_spin_envelope_corrupt');
+      return { kind: 'fail', fail: envelopeCorrupt };
     }
-    result.push(envelope.operation);
-  }
+    return { kind: 'ok', value: envelope.operation };
+  });
+  const result: LocalRuneOperation[] = [...operations, ...journalOperations, ...envelopeOperations];
   const unique = new Map<string, LocalRuneOperation>();
   for (const operation of result) {
     const prior = unique.get(operation.operationId);

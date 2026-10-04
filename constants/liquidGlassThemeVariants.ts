@@ -19,9 +19,13 @@ export const LIQUID_GLASS_COLOR_LEVELS = ['calm', 'accent', 'max'] as const;
 export type LiquidGlassColorLevel = typeof LIQUID_GLASS_COLOR_LEVELS[number];
 export const LIQUID_GLASS_APPEARANCES = ['dark', 'light'] as const;
 export type LiquidGlassAppearance = typeof LIQUID_GLASS_APPEARANCES[number];
-export type LiquidGlassVariant = Readonly<{ level: LiquidGlassColorLevel; appearance: LiquidGlassAppearance }>;
+/**
+ * `intensity` (0…1, ползунок 2026-10-04) главнее `level`: без неё вариант берёт опорную
+ * точку уровня (calm 0 / accent 0.5 / max 1) — старые вызовы с одним `level` не меняются.
+ */
+export type LiquidGlassVariant = Readonly<{ level: LiquidGlassColorLevel; appearance: LiquidGlassAppearance; intensity?: number }>;
 
-export const DEFAULT_LIQUID_GLASS_VARIANT: LiquidGlassVariant = Object.freeze({ level: 'calm', appearance: 'dark' });
+export const DEFAULT_LIQUID_GLASS_VARIANT: LiquidGlassVariant = Object.freeze({ level: 'calm', appearance: 'dark', intensity: 0 });
 
 /** Неизвестное значение из хранилища → «Спокойно» (как было до уровней). */
 export function resolveLiquidGlassColorLevel(value: unknown): LiquidGlassColorLevel {

@@ -22,6 +22,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
       return keys.map((key) => [key, mockStore.get(key) ?? null]);
     }),
     setItem: jest.fn(async (key: string, value: string) => { mockStore.set(key, value); }),
+    // зачем (ползунок 2026-10-04): интенсивность и совместимый уровень пишутся одной multiSet.
+    multiSet: jest.fn(async (pairs: [string, string][]) => { pairs.forEach(([key, value]) => mockStore.set(key, value)); }),
   },
 }));
 
@@ -58,7 +60,7 @@ describe('theme colour level and appearance', () => {
     expect(result.current.statusBarLight).toBe(false);
     expect(result.current.theme.bgPrimary).toBe(expected.bg);
     expect(result.current.theme.accent).toBe(expected.accent);
-    expect(getActiveLiquidGlassVariant()).toEqual({ level: 'accent', appearance: 'light' });
+    expect(getActiveLiquidGlassVariant()).toEqual({ level: 'accent', appearance: 'light', intensity: 0.5 });
     expect(mockStore.get('liquid_glass_color_level')).toBe('accent');
     expect(mockStore.get('liquid_glass_appearance')).toBe('light');
     expect(mockStore.get('liquid_glass_theme')).toBe('marine');

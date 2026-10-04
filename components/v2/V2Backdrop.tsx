@@ -42,11 +42,12 @@ const ThemeGlow = memo(function ThemeGlow({ colors }: { colors: readonly [string
  */
 function V2Backdrop() {
   const p = useV2Palette();
-  const { liquidGlassThemeId, liquidGlassColorLevel } = useTheme();
+  const { liquidGlassThemeId, liquidGlassIntensity } = useTheme();
   // зачем: владелец 24.09 — «пятна света на фоне убрать»: фон ровный тёмный,
   // глубину дают сами карточки (дымка внутри стекла), а не фон.
-  // Исключение — уровень «Максимум» (владелец 30.09): свечение фона цветом темы.
-  const glow = liquidGlassColorLevel === 'max' ? liquidGlassTokens(liquidGlassThemeId).bgGlow : null;
+  // Исключение — верхняя половина ползунка (бывший «Максимум», владелец 30.09): свечение
+  // фона цветом темы. Его прозрачность смешивается от 0 на середине шкалы — без скачка.
+  const glow = liquidGlassIntensity > 0.5 ? liquidGlassTokens(liquidGlassThemeId).bgGlow : null;
   return (
     <>
       <LinearGradient

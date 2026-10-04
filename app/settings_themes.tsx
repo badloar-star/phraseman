@@ -16,13 +16,12 @@ import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import {
-  LIQUID_GLASS_COLOR_LEVELS,
   liquidGlassTokens,
   type GlassTokens,
   type LiquidGlassAppearance,
-  type LiquidGlassColorLevel,
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
+import { ThemeIntensitySlider } from '../components/settings/ThemeIntensitySlider';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
@@ -31,7 +30,8 @@ import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
 
 // зачем (владелец 2026-09-30, макет themes-v2-proposals.html → «Темы»):
 // справа от заголовка луна и солнце без текста (тёмное / светлое, «Как в системе» убрано),
-// ниже сегмент «Спокойно / Акцент / Максимум», затем одна стеклянная карточка с 13 темами.
+// ниже ползунок насыщенности (владелец 2026-10-04: три кнопки «Спокойно / Акцент / Максимум»
+// заменены одним ползунком), затем одна стеклянная карточка с 13 темами.
 // Подписей «Оформление / Цвет» и блока предпросмотра НЕТ. Тап по теме применяет её сразу —
 // экран перекрашивается в том же кадре, отдельной кнопки «Применить» больше нет.
 // Все темы бесплатны («ТЕМЫ ВСЕ ФРИ», владелец 30.09): ни замка, ни Plus, ни пейвола.
@@ -45,10 +45,10 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'marine' },
 ];
 
-const LEVEL_LABELS: Readonly<Record<LiquidGlassColorLevel, ThemeDisplayName>> = {
-  calm: { ru: 'Спокойно', uk: 'Спокійно', en: 'Calm', es: 'Calma', 'pt-BR': 'Calmo', vi: 'Dịu', id: 'Tenang', tr: 'Sakin', pl: 'Spokojnie' },
-  accent: { ru: 'Акцент', uk: 'Акцент', en: 'Accent', es: 'Acento', 'pt-BR': 'Destaque', vi: 'Điểm nhấn', id: 'Aksen', tr: 'Vurgu', pl: 'Akcent' },
-  max: { ru: 'Максимум', uk: 'Максимум', en: 'Max', es: 'Máximo', 'pt-BR': 'Máximo', vi: 'Tối đa', id: 'Maksimal', tr: 'Maksimum', pl: 'Maksimum' },
+// Только для экранного диктора: у ползунка нет видимой подписи (владелец: «только ползунок»).
+const INTENSITY_LABEL: ThemeDisplayName = {
+  ru: 'Насыщенность цвета', uk: 'Насиченість кольору', en: 'Color intensity', es: 'Intensidad del color',
+  'pt-BR': 'Intensidade da cor', vi: 'Độ đậm màu', id: 'Intensitas warna', tr: 'Renk yoğunluğu', pl: 'Intensywność koloru',
 };
 
 const APPEARANCE_OPTIONS: ReadonlyArray<Readonly<{ key: LiquidGlassAppearance; icon: 'moon' | 'sunny'; label: ThemeDisplayName }>> = [
@@ -104,33 +104,6 @@ const AppearanceToggle = memo(function AppearanceToggle({ glass, lang, value, on
   );
 });
 
-const LevelSegment = memo(function LevelSegment({ glass, lang, value, onChange }: {
-  glass: GlassTokens; lang: Lang; value: LiquidGlassColorLevel; onChange: (next: LiquidGlassColorLevel) => void;
-}) {
-  const on = selectedChip(glass);
-  return (
-    <View accessibilityRole="radiogroup" style={[styles.segment, { backgroundColor: glass.opaqueControl }]}>
-      {LIQUID_GLASS_COLOR_LEVELS.map(level => {
-        const selected = level === value;
-        const label = triLang(lang, LEVEL_LABELS[level]);
-        return (
-          <Pressable
-            key={level}
-            testID={`theme-level-${level}`}
-            accessibilityRole="radio"
-            accessibilityState={{ selected, checked: selected }}
-            accessibilityLabel={label}
-            onPress={() => onChange(level)}
-            style={[styles.segmentItem, selected ? [styles.chipOn, on.box] : null]}
-          >
-            <Text style={[styles.segmentText, { color: selected ? (glass.isLight ? on.ink : glass.text) : glass.secondary }]}>{label}</Text>
-          </Pressable>
-        );
-      })}
-    </View>
-  );
-});
-
 type ThemeRowProps = {
   option: ThemeOption;
   label: string;
@@ -177,8 +150,9 @@ export default function SettingsThemes() {
     appliedLiquidGlassThemeId,
     setPreviewLiquidGlassThemeId,
     setLiquidGlassThemeId,
-    liquidGlassColorLevel,
-    setLiquidGlassColorLevel,
+    liquidGlassIntensity,
+    setLiquidGlassIntensity,
+    setPreviewLiquidGlassIntensity,
     liquidGlassAppearance,
     setLiquidGlassAppearance,
   } = useTheme();
@@ -187,6 +161,8 @@ export default function SettingsThemes() {
   // зачем: примерки больше нет, но старая примерка (если осталась с прошлой версии
   // экрана) не должна пережить уход — всегда возвращаем применённую тему.
   useEffect(() => () => setPreviewLiquidGlassThemeId(null), [setPreviewLiquidGlassThemeId]);
+  // зачем: превью интенсивности не должно пережить уход с экрана посреди жеста.
+  useEffect(() => () => setPreviewLiquidGlassIntensity(null), [setPreviewLiquidGlassIntensity]);
 
   /** Тап по теме = применить сразу (optimistic: state мгновенно, диск догоняет фоном) + ачивка. */
   const onRowPress = useCallback((mode: LiquidGlassThemeId) => {
@@ -202,12 +178,6 @@ export default function SettingsThemes() {
     });
   }, [appliedLiquidGlassThemeId, setLiquidGlassThemeId]);
 
-  const onLevel = useCallback((level: LiquidGlassColorLevel) => {
-    if (level === liquidGlassColorLevel) return;
-    hapticTap();
-    setLiquidGlassColorLevel(level);
-  }, [liquidGlassColorLevel, setLiquidGlassColorLevel]);
-
   const onAppearance = useCallback((appearance: LiquidGlassAppearance) => {
     if (appearance === liquidGlassAppearance) return;
     hapticTap();
@@ -217,7 +187,7 @@ export default function SettingsThemes() {
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
-  const vivid = liquidGlassColorLevel !== 'calm';
+  const vivid = liquidGlassIntensity > 0;
   const listShadow: ViewStyle | null = glass.isLight
     ? { shadowColor: glass.shadowTint, shadowOpacity: 1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 2 }
     : null;
@@ -245,7 +215,14 @@ export default function SettingsThemes() {
               </Text>
               <AppearanceToggle glass={glass} lang={lang} value={liquidGlassAppearance} onChange={onAppearance} />
             </View>
-            <LevelSegment glass={glass} lang={lang} value={liquidGlassColorLevel} onChange={onLevel} />
+            <ThemeIntensitySlider
+              glass={glass}
+              themeId={liquidGlassThemeId}
+              value={liquidGlassIntensity}
+              label={triLang(lang, INTENSITY_LABEL) ?? 'Color intensity'}
+              onPreview={setPreviewLiquidGlassIntensity}
+              onCommit={setLiquidGlassIntensity}
+            />
             <View
               accessibilityRole="radiogroup"
               style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
@@ -278,9 +255,6 @@ const styles = StyleSheet.create({
   modeItem: { width: 42, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   // Тонкая 1px кромка выбранного сегмента — как в макете (разрешено в стиле 2.0).
   chipOn: { borderWidth: 1 }, // guard-ok: 1px кромка 2.0
-  segment: { flexDirection: 'row', gap: 4, padding: 4, borderRadius: 16, marginTop: 20 },
-  segmentItem: { flex: 1, minHeight: 38, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
-  segmentText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   list: { flexDirection: 'column', alignItems: 'stretch', padding: 0, paddingVertical: 0, paddingHorizontal: 0, gap: 0, borderRadius: 20, marginTop: 14 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },

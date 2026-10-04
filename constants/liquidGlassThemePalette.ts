@@ -2,13 +2,18 @@ import type { Theme } from './theme';
 import { alpha, oklchToHex } from './liquidGlassColor';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
-  buildLiquidGlassVariant,
   resolveLiquidGlassAppearance,
   resolveLiquidGlassColorLevel,
   type LiquidGlassAccentRoles,
   type LiquidGlassBaseTokens,
   type LiquidGlassVariant,
 } from './liquidGlassThemeVariants';
+import {
+  buildLiquidGlassIntensityTokens,
+  intensityForLiquidGlassLevel,
+  liquidGlassLevelForIntensity,
+  quantizeLiquidGlassIntensity,
+} from './liquidGlassThemeIntensity';
 
 export {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -20,6 +25,16 @@ export {
   type LiquidGlassColorLevel,
   type LiquidGlassVariant,
 } from './liquidGlassThemeVariants';
+
+export {
+  LIQUID_GLASS_INTENSITY_DETENTS,
+  LIQUID_GLASS_INTENSITY_STEP,
+  clampLiquidGlassIntensity,
+  intensityForLiquidGlassLevel,
+  liquidGlassLevelForIntensity,
+  migrateStoredLiquidGlassIntensity,
+  quantizeLiquidGlassIntensity,
+} from './liquidGlassThemeIntensity';
 
 /** The approved 2.0 tint family. This registry changes color only, never assets or access. */
 export const LIQUID_GLASS_THEME_IDS = [
@@ -36,8 +51,21 @@ const HUES: Readonly<Record<Exclude<LiquidGlassThemeId, 'graphite'>, number>> = 
 };
 
 type BaseGlassTokens = LiquidGlassBaseTokens;
-/** Neutral theme tokens + colour roles of the current level/appearance (see liquidGlassThemeVariants.ts). */
-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles;
+/**
+ * Neutral theme tokens + colour roles of the current level/appearance (see liquidGlassThemeVariants.ts).
+ * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
+ */
+export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & Readonly<{ intensity: number }>;
+
+/** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
+function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
+  const level = resolveLiquidGlassColorLevel(requested.level);
+  const raw = typeof requested.intensity === 'number' && Number.isFinite(requested.intensity)
+    ? requested.intensity
+    : intensityForLiquidGlassLevel(level);
+  const intensity = quantizeLiquidGlassIntensity(raw);
+  return { level: liquidGlassLevelForIntensity(intensity), appearance: resolveLiquidGlassAppearance(requested.appearance), intensity };
+}
 
 const GRAPHITE: BaseGlassTokens = Object.freeze({
   bg: '#0C0D10', bgTop: '#181A1F', bgBottom: '#16181D',
@@ -73,16 +101,18 @@ const TOKEN_REGISTRY: Readonly<Record<LiquidGlassThemeId, BaseGlassTokens>> = Ob
 // нельзя (сотни файлов, многие правят параллельные сессии), поэтому ThemeProvider
 // регистрирует активный вариант здесь, а вызов без второго аргумента берёт его.
 // Пока провайдер ничего не записал — «Спокойно» + тёмное, т.е. прежние токены байт-в-байт.
-let activeVariant: LiquidGlassVariant = DEFAULT_LIQUID_GLASS_VARIANT;
+let activeVariant: Required<LiquidGlassVariant> = normalizeVariant(DEFAULT_LIQUID_GLASS_VARIANT);
+// зачем: 13 тем × 2 оформления × 21 шаг ползунка = 546 палитр максимум — кэш ограничен сам.
 const variantCache = new Map<string, GlassTokens>();
 
 /** Called only by ThemeProvider: the variant that argument-less token lookups resolve to. */
 export function setActiveLiquidGlassVariant(variant: LiquidGlassVariant): void {
-  if (variant.level === activeVariant.level && variant.appearance === activeVariant.appearance) return;
-  activeVariant = Object.freeze({ level: variant.level, appearance: variant.appearance });
+  const next = normalizeVariant(variant);
+  if (next.intensity === activeVariant.intensity && next.appearance === activeVariant.appearance) return;
+  activeVariant = Object.freeze(next);
 }
 
-export function getActiveLiquidGlassVariant(): LiquidGlassVariant {
+export function getActiveLiquidGlassVariant(): Required<LiquidGlassVariant> {
   return activeVariant;
 }
 
@@ -90,16 +120,19 @@ export function getActiveLiquidGlassVariant(): LiquidGlassVariant {
 export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = activeVariant): GlassTokens {
   // зачем: вызов вида ids.map(liquidGlassTokens) передаёт индекс вторым аргументом —
   // всё, что не вариант, трактуем как активный вариант, а не как «неизвестный уровень».
-  const variant = requested && typeof requested === 'object'
-    ? { level: resolveLiquidGlassColorLevel(requested.level), appearance: resolveLiquidGlassAppearance(requested.appearance) }
-    : activeVariant;
+  const variant = requested && typeof requested === 'object' ? normalizeVariant(requested) : activeVariant;
   const themeId: LiquidGlassThemeId = typeof id === 'string' && Object.prototype.hasOwnProperty.call(TOKEN_REGISTRY, id)
     ? id as LiquidGlassThemeId
     : 'graphite';
-  const key = `${themeId}|${variant.level}|${variant.appearance}`;
+  const key = `${themeId}|${variant.intensity}|${variant.appearance}`;
   const cached = variantCache.get(key);
   if (cached) return cached;
-  const tokens = buildLiquidGlassVariant(themeId, TOKEN_REGISTRY[themeId], variant);
+  // зачем (ползунок 2026-10-04): на опорных точках 0 / 0.5 / 1 — прежние формулы байт-в-байт,
+  // между ними — смешивание соседних (liquidGlassThemeIntensity.ts).
+  const tokens: GlassTokens = Object.freeze({
+    ...buildLiquidGlassIntensityTokens(themeId, TOKEN_REGISTRY[themeId], variant.appearance, variant.intensity),
+    intensity: variant.intensity,
+  });
   variantCache.set(key, tokens);
   return tokens;
 }

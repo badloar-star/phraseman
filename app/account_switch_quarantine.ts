@@ -1105,6 +1105,12 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
   const stable = require('./stable_id') as typeof import('./stable_id');
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const pendingLink = require('./pending_auth_link') as typeof import('./pending_auth_link');
+  // Route recovery sign-out through the same Account V2 authority used by the
+  // foreground provider flow. The gate remains lazy and falls back to the
+  // legacy Firebase call when V2 is disabled or unsupported on this platform.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const accountsV2 = require('./accounts_v2_client_flag') as
+    typeof import('./accounts_v2_client_flag');
   const timeoutMs = 10_000;
   return resumeAccountSwitchQuarantine({
     readStableId: async () => {
@@ -1161,8 +1167,15 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
       return premiumIdle && restoreIdle && cloudIdle;
     },
     signOut: async () => {
-      if (auth?.currentUser) await auth.signOut();
-      cloud.resetAnonAuthCacheForSignOut();
+      // зачем (AA S6): выход восстановления идёт через тот же шов авторитета,
+      // что и обычный выход — иначе V2/AA-сессия оставалась бы открытой после
+      // выхода из Firebase. При выключенных флагах шов сразу зовёт старый выход.
+      console.log(`[AA-S6] quarantine_signout start hasUser=${auth?.currentUser ? 'yes' : 'no'}`);
+      await accountsV2.runAccountsV2ProviderSignOutTransition(async () => {
+        if (auth?.currentUser) await auth.signOut();
+        cloud.resetAnonAuthCacheForSignOut();
+      });
+      console.log('[AA-S6] quarantine_signout done');
     },
     wipeLocalData: async () => { await cloud.wipeLocalAccountData(); },
     clearStableId: async () => {

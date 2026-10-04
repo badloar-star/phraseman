@@ -41,6 +41,11 @@ type Props = {
   allowNone?: boolean;
   /** зачем: оставлен для совместимости вызовов — окно теперь всегда Liquid Glass. */
   liquidGlass?: boolean;
+  /**
+   * зачем (packs-simple.html `.lg`, шапка «Сообщества» 04.10): пилюля «EN ▾» без флага —
+   * 40 высотой, светлая полупрозрачная заливка. Остальные вызовы не меняются.
+   */
+  pill?: boolean;
 };
 
 const FLAG_ART: Partial<Record<PackLanguage, number>> = {
@@ -61,7 +66,7 @@ function FlagMark({ code, width, height, color }: { code: PackLanguage; width: n
   return <Text style={{ width, fontSize: 13, fontWeight: '700', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
 }
 
-export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false }: Props) {
+export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false, pill = false }: Props) {
   const options = allowNone ? PACK_LANGUAGE_CHOICES : PACK_LANGUAGES;
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -104,16 +109,16 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
         disabled={disabled}
         onPress={open}
         hitSlop={4}
-        style={({ pressed }) => [styles.trigger, {
-          backgroundColor: visible ? g.selected : g.opaqueControl,
+        style={({ pressed }) => [styles.trigger, pill ? styles.triggerPill : null, {
+          backgroundColor: visible ? g.selected : pill ? 'rgba(255,255,255,0.09)' : g.opaqueControl,
           opacity: disabled ? 0.55 : pressed ? 0.78 : 1,
         }]}
       >
-        <FlagMark code={value} width={24} height={16} color={g.text} />
+        {pill && value !== NO_PACK_LANGUAGE ? null : <FlagMark code={value} width={24} height={16} color={g.text} />}
         {value === NO_PACK_LANGUAGE ? null : (
           <Text style={[styles.code, { color: g.text }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
         )}
-        <Ionicons name="chevron-down" size={14} color={g.secondary} />
+        <Ionicons name="chevron-down" size={pill ? 16 : 14} color={pill ? g.text : g.secondary} />
       </Pressable>
 
       <Modal
@@ -179,6 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
+  triggerPill: { minWidth: 0, height: 40, paddingLeft: 14, paddingRight: 14, borderRadius: 20, gap: 6 },
   code: { fontSize: 16, fontWeight: '700' },
   overlay: {
     flex: 1,

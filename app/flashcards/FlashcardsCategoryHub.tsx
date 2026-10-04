@@ -119,7 +119,8 @@ type Props = {
 
 const COLS = 3;
 const GAP = 10;
-const H_PAD = 16;
+// зачем (packs-simple.html): поле страницы 20, как у шапки «Сообщества» (V2.screenPad).
+const H_PAD = 20;
 const TILE_RADIUS = 18;
 /**
  * Пропорция PNG-«веера» наборов (329x268 плюс прозрачные поля внутри кадра).

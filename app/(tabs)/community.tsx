@@ -1,14 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, usePathname } from 'expo-router';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
-import { V2, V2_TYPE } from '../../constants/v2Style';
+import { V2 } from '../../constants/v2Style';
 import { useV2Palette } from '../../components/v2/useV2Palette';
-import V2SegmentedControl, { type V2Segment } from '../../components/v2/V2SegmentedControl';
+import { CommunityHeaderSlotProvider, type CommunityHeaderSlot } from '../community_header_slot';
 import { TabRuntimeOwnerOverride, useTabNav } from '../TabContext';
 import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model';
 import { useSpireTabEnabled } from '../spire_tab_flag';
+import { hapticTap } from '../../hooks/use-haptics';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -35,7 +36,8 @@ function sectionFromParam(value: unknown): Section | null {
 }
 
 /**
- * Вкладка «Сообщество»: «Друзья | Наборы» под переключателем.
+ * Вкладка «Сообщество»: текстовые вкладки «Шпиль · Друзья · Наборы» (packs-simple.html кадр 1,
+ * решение владельца 04.10 — одна шапка на всю вкладку, без заголовка «Сообщество»).
  * Раздел меняется мгновенно; открытые разделы остаются смонтированными (свой
  * скролл и состояние), но работают только видимые — владелец выдаётся одному.
  */
@@ -48,6 +50,8 @@ export default function CommunityTabRoute() {
   const spireVisible = useSpireTabEnabled();
   const [section, setSection] = useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? 'friends');
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
+  // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.
+  const [packsSlot, setPacksSlot] = useState<CommunityHeaderSlot | null>(null);
 
   useEffect(() => {
     const fromParam = sectionFromParam(sectionParam);
@@ -65,14 +69,13 @@ export default function CommunityTabRoute() {
     if (!spireVisible && section === 'spire') setSection('friends');
   }, [spireVisible, section]);
 
-  const segments = useMemo<readonly V2Segment<Section>[]>(() => [
+  const segments = useMemo<readonly { key: Section; label: string }[]>(() => [
     ...(spireVisible ? [{ key: 'spire' as const, label: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Tháp', id: 'Menara', tr: 'Kule', pl: 'Wieża' }) }] : []),
     // зачем: паритет с макетом community.html COM-01 — порядок «Шпиль · Друзья · Наборы».
     { key: 'friends', label: triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' }) },
     { key: 'packs', label: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }) },
   ], [lang, spireVisible]);
 
-  const title = triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', en: 'Community', es: 'Comunidad', 'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność' });
   const tabVisible = runtimeOwnerId === 'community' || segments.some((s) => s.key === runtimeOwnerId);
 
   const renderSection = (key: Section) => {
@@ -82,7 +85,7 @@ export default function CommunityTabRoute() {
     let body: React.ReactNode;
     if (key === 'friends') { const Screen = loadFriends(); body = <Screen />; }
     else if (key === 'spire') { const Screen = loadSpire(); body = <Screen />; }
-    else { const Screen = loadPacks(); body = <Screen presentation="embedded" />; }
+    else { const Screen = loadPacks(); body = <CommunityHeaderSlotProvider value={setPacksSlot}><Screen presentation="embedded" /></CommunityHeaderSlotProvider>; }
     return (
       <View
         key={key}
@@ -99,8 +102,29 @@ export default function CommunityTabRoute() {
   return (
     <View testID="community-tab" style={s.root}>
       <View style={s.header}>
-        <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
-        <V2SegmentedControl testID="community-sections" segments={segments} value={section} onChange={setSection} />
+        <View testID="community-sections" accessibilityRole="tablist" style={s.tabs}>
+          {segments.map((seg) => {
+            const on = seg.key === section;
+            return (
+              <Pressable
+                key={seg.key}
+                testID={`community-sections-${seg.key}`}
+                accessibilityRole="tab"
+                accessibilityState={{ selected: on }}
+                // зачем: как у прежнего переключателя — отклик на нажатие только при смене вкладки.
+                onPressIn={() => { if (!on) hapticTap(); }}
+                onPress={() => setSection(seg.key)}
+                hitSlop={{ top: 12, bottom: 6, left: 8, right: 8 }}
+                // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
+                style={[s.tab, { borderBottomColor: on ? p.accent : 'transparent' }]}
+              >
+                <Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+        <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : null}</View>
+        {section === 'packs' && packsSlot?.overlay ? <View pointerEvents="box-none" style={s.headerOverlay}>{packsSlot.overlay}</View> : null}
       </View>
       <View style={s.body}>
         {renderSection('friends')}
@@ -113,8 +137,14 @@ export default function CommunityTabRoute() {
 
 const s = StyleSheet.create({
   root: { flex: 1 },
-  header: { paddingHorizontal: V2.screenPad, paddingTop: 12, paddingBottom: 8, gap: 16 },
-  title: { ...V2_TYPE.largeTitle },
+  // зачем: строка packs-simple.html — вкладки слева, кнопки раздела справа, высота по круглой кнопке 42.
+  header: { paddingHorizontal: V2.screenPad, paddingTop: 12, paddingBottom: 4, minHeight: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  tabs: { flexDirection: 'row', alignItems: 'flex-end', gap: 22, marginTop: 6 },
+  tab: { paddingBottom: 8, borderBottomWidth: 3 },
+  // зачем: макет 17/600; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
+  tabText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
+  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  headerOverlay: { ...StyleSheet.absoluteFillObject, paddingHorizontal: V2.screenPad, paddingTop: 12, paddingBottom: 4, justifyContent: 'center' },
   body: { flex: 1, minHeight: 0 },
   // Скрытый раздел не рисуется, но сохраняет своё состояние и скролл.
   hidden: { display: 'none' },

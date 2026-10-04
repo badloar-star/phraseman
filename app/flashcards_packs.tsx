@@ -47,6 +47,7 @@ import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
+import { useCommunityHeaderSlotSetter } from './community_header_slot';
 import { primeFlashcardsCollectionCache } from './flashcards/useCollectionData';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
@@ -412,52 +413,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     return () => sub.remove();
   }, [embedded, leavePacks, searchOpen, toggleSearch]);
 
-  return (
-    <ScreenGradient entranceOffsetY={reduceMotion || embedded ? undefined : (parallaxY as unknown as Animated.Value)}>
-      {/* зачем (эмулятор 30.09): внутри «Сообщества» свой градиент начинался под переключателем
-          и давал ступеньку тона; фон рисует вкладка, как у встроенных «Друзей». */}
-      {embedded ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
-      <SafeAreaView
-        style={[styles.safe, { backgroundColor: 'transparent' }]}
-        edges={embedded ? ['left', 'right'] : ['top', 'left', 'right']}
-      >
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-        <View style={[styles.header, { borderBottomColor: t.border }]}>
-          {embedded ? null : (
-          <TouchableOpacity
-            testID="flashcards-header-back"
-            accessibilityLabel="qa-flashcards-header-back"
-            accessible
-            onPress={leavePacks}
-            style={styles.headerBack}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : g.text} />
-          </TouchableOpacity>
-          )}
-
-          {/*
-            Единственный заголовок экрана — сразу справа от стрелки «назад».
-            AdaptiveLabel вместо сырого numberOfLines: длинные локали (pl/pt-BR)
-            ужимаются по размеру шрифта, а не обрезаются многоточием.
-          */}
-          <AdaptiveLabel
-            testID="flashcards-packs-title"
-            provenance="authored"
-            availableWidth={headerTitleW}
-            compactLineLimit={1}
-            accessibilityRole="header"
-            style={[
-              styles.headerTitle,
-              { color: onColoredGradient ? gradHeaderInk : g.text, fontSize: headerTitleSize },
-            ]}
-            maxFontSizeMultiplier={1.2}
-          >
-            {screenTitle}
-          </AdaptiveLabel>
-
+  const headerActions = (
           <View style={styles.headerActions}>
             <PackLanguagePicker
+              pill={embedded}
               lang={lang}
               t={t}
               value={packLanguage}
@@ -473,6 +432,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={[
                 styles.headerRoundBtn,
+                embedded ? styles.headerRoundBtnLarge : null,
                 {
                   borderColor: g.glassEdge,
                   backgroundColor: searchOpen || communityQuery.trim().length > 0 ? g.selected : g.card,
@@ -489,19 +449,16 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             </TouchableOpacity>
 
           </View>
+  );
 
-          {/*
-            Раскрывающееся поле поиска. Лежит абсолютным слоем ПОВЕРХ заголовка и
-            кнопок — так раскрытие не меняет высоту шапки и обходится анимацией
-            только по opacity/transform. Закрытое поле не кликается и скрыто от
-            скринридера.
-          */}
+  const searchLayer = (
           <Animated.View
             pointerEvents={searchOpen ? 'auto' : 'none'}
             accessibilityElementsHidden={!searchOpen}
             importantForAccessibility={searchOpen ? 'auto' : 'no-hide-descendants'}
             style={[
               styles.headerSearchLayer,
+              embedded ? styles.headerSearchLayerEmbedded : null,
               {
                 opacity: searchAnim,
                 transform: [{ translateX: searchTranslateX }],
@@ -537,13 +494,87 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               </TouchableOpacity>
             </View>
           </Animated.View>
+  );
+
+  // зачем: во вкладке «Сообщество» кнопки раздела живут в общей шапке. Слот пересобирается только при
+  // смене того, что в нём видно, — иначе шапка ловила бы новый объект на каждый рендер раздела.
+  const setHeaderSlot = useCommunityHeaderSlotSetter();
+  const headerSlot = useMemo(
+    () => (embedded ? { right: headerActions, overlay: searchLayer } : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- JSX выше выводится ровно из этих значений
+    [embedded, searchOpen, communityQuery, packLanguage, lang, liquidGlassThemeId, t, toggleSearch, handlePackLanguageChange, searchLabel, closeSearchLabel],
+  );
+  useEffect(() => {
+    if (!setHeaderSlot) return;
+    setHeaderSlot(headerSlot);
+  }, [headerSlot, setHeaderSlot]);
+  useEffect(() => () => setHeaderSlot?.(null), [setHeaderSlot]);
+
+  return (
+    <ScreenGradient entranceOffsetY={reduceMotion || embedded ? undefined : (parallaxY as unknown as Animated.Value)}>
+      {/* зачем (эмулятор 30.09): внутри «Сообщества» свой градиент начинался под переключателем
+          и давал ступеньку тона; фон рисует вкладка, как у встроенных «Друзей». */}
+      {embedded ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
+      <SafeAreaView
+        style={[styles.safe, { backgroundColor: 'transparent' }]}
+        edges={embedded ? ['left', 'right'] : ['top', 'left', 'right']}
+      >
+        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+        {/* зачем (владелец 04.10, packs-simple.html): во вкладке «Сообщество» своей шапки нет —
+            лупа и язык уходят в общую строку вкладок через слот, заголовок — в начало списка. */}
+        {embedded ? null : (
+        <View style={[styles.header, { borderBottomColor: t.border }]}>
+          {embedded ? null : (
+          <TouchableOpacity
+            testID="flashcards-header-back"
+            accessibilityLabel="qa-flashcards-header-back"
+            accessible
+            onPress={leavePacks}
+            style={styles.headerBack}
+            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          >
+            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : g.text} />
+          </TouchableOpacity>
+          )}
+
+          {/*
+            Единственный заголовок экрана — сразу справа от стрелки «назад».
+            AdaptiveLabel вместо сырого numberOfLines: длинные локали (pl/pt-BR)
+            ужимаются по размеру шрифта, а не обрезаются многоточием.
+          */}
+          <AdaptiveLabel
+            testID="flashcards-packs-title"
+            provenance="authored"
+            availableWidth={headerTitleW}
+            compactLineLimit={1}
+            accessibilityRole="header"
+            style={[
+              styles.headerTitle,
+              { color: onColoredGradient ? gradHeaderInk : g.text, fontSize: headerTitleSize },
+            ]}
+            maxFontSizeMultiplier={1.2}
+          >
+            {screenTitle}
+          </AdaptiveLabel>
+
+          {headerActions}
+
+          {/*
+            Раскрывающееся поле поиска. Лежит абсолютным слоем ПОВЕРХ заголовка и
+            кнопок — так раскрытие не меняет высоту шапки и обходится анимацией
+            только по opacity/transform. Закрытое поле не кликается и скрыто от
+            скринридера.
+          */}
+          {searchLayer}
         </View>
+        )}
 
         <View style={styles.scrollRegion}>
           <Animated.ScrollView decelerationRate="fast"
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
+              embedded ? styles.scrollContentEmbedded : null,
               { paddingBottom: (embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 84 },
             ]}
             showsVerticalScrollIndicator
@@ -553,6 +584,12 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             onScroll={reduceMotion ? undefined : onHubScroll}
             scrollEventThrottle={16}
           >
+            {embedded ? (
+              // зачем (packs-simple.html кадр 1): заголовок раздела 30/700 под строкой вкладок, прокручивается со списком.
+              <Text accessibilityRole="header" testID="flashcards-packs-title-embedded" style={[styles.embeddedTitle, { color: g.text }]}>
+                {screenTitle}
+              </Text>
+            ) : null}
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
               t={t}
@@ -621,6 +658,8 @@ const styles = StyleSheet.create({
   scrollRegion: { flex: 1, minHeight: 0 },
   scrollView: { flex: 1, minHeight: 0 },
   scrollContent: { paddingTop: 16, paddingBottom: 104 },
+  scrollContentEmbedded: { paddingTop: 8 },
+  embeddedTitle: { paddingHorizontal: 20, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginBottom: 14 },
   bottomTabsDock: {
     position: 'absolute',
     left: 0,
@@ -686,6 +725,8 @@ const styles = StyleSheet.create({
    * координаты здесь — от контентной области шапки: 36 = ширина кнопки «назад»,
    * дальше слой закрывает заголовок и круглые кнопки целиком.
    */
+  // зачем: `.rb` packs-simple.html — круглая кнопка 42 в общей шапке «Сообщества».
+  headerRoundBtnLarge: { width: 42, height: 42, borderRadius: 21 },
   headerSearchLayer: {
     position: 'absolute',
     left: 36,
@@ -695,6 +736,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 6,
   },
+  // зачем: во вкладке «Сообщество» кнопки «назад» нет — поле поиска от левого края строки вкладок.
+  headerSearchLayerEmbedded: { left: 0 },
   headerSearchField: {
     flexDirection: 'row',
     alignItems: 'center',

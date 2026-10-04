@@ -22,6 +22,10 @@ const RADIUS = 14;
 // экраны остаются на прежней геометрии 56/14 — форма выбирается пропом shape.
 const PILL_HEIGHT = 58;
 const PILL_RADIUS = 30;
+// зачем (overlays.html `.ov-provider` + `.cta`): в шторке входа кнопки 54 высотой и радиусом 24. Меняется только
+// геометрия — логотип Google на белом и чёрная кнопка Apple остаются по фирменным правилам (проверка в сторах).
+const SHEET_HEIGHT = 54;
+const SHEET_RADIUS = 24;
 
 interface ProviderButtonProps {
   onPress: () => void;
@@ -29,8 +33,8 @@ interface ProviderButtonProps {
   disabled?: boolean;
   /** Текст кнопки. Локализуется на стороне вызывающего. */
   label: string;
-  /** 'default' — 56/14 (как везде), 'pill' — таблетка 58/30 (онбординг Bevel). */
-  shape?: 'default' | 'pill';
+  /** 'default' — 56/14 (как везде), 'pill' — таблетка 58/30 (онбординг Bevel), 'sheet' — 54/24 (шторка входа 2.0). */
+  shape?: 'default' | 'pill' | 'sheet';
 }
 
 interface GoogleButtonProps extends ProviderButtonProps {
@@ -53,6 +57,7 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
       style={[
         styles.button,
         isPill && styles.pill,
+        shape === 'sheet' && styles.sheet,
         // Белая таблетка на светлом фоне — мягкая тень вместо обводки.
         isPill && !isDark && styles.pillLightShadow,
         { backgroundColor: bg, borderColor: border, borderWidth: 0},
@@ -89,6 +94,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
       style={[
         styles.button,
         shape === 'pill' && styles.pill,
+        shape === 'sheet' && styles.sheet,
         { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 0},
         (loading || disabled) && styles.disabled,
       ]}
@@ -120,6 +126,10 @@ const styles = StyleSheet.create({
   pill: {
     height: PILL_HEIGHT,
     borderRadius: PILL_RADIUS,
+  },
+  sheet: {
+    height: SHEET_HEIGHT,
+    borderRadius: SHEET_RADIUS,
   },
   pillLightShadow: {
     ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.08, offsetY: 3, backgroundColor: '#FFFFFF' }),

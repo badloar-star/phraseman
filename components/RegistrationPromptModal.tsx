@@ -1499,6 +1499,7 @@ function RegistrationPromptModal({
                 disabled={authOperationBusy}
                 label={labelGoogle}
                 variant="light"
+                shape="sheet"
               />
             )}
           </Animated.View>
@@ -1509,6 +1510,7 @@ function RegistrationPromptModal({
                 loading={loadingProvider === 'apple'}
                 disabled={authOperationBusy}
                 label={labelApple}
+                shape="sheet"
               />
             )}
           </Animated.View>
@@ -2060,11 +2062,12 @@ function RegistrationPromptModal({
                 accessibilityLabel={labelLaterAccessibility}
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
                 variant="secondary"
-                style={[styles.laterButton, { backgroundColor: glass.opaqueControl, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром.
+                style={[styles.laterButton, styles.laterGhost, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 testID="auth-prompt-later"
               >
-                <Text style={[styles.laterText, { color: glass.mutedText, fontSize: f.body }]}>
+                <Text style={[styles.laterText, { color: glass.text, fontSize: 16, fontWeight: '700' }]}>
                   {labelLater}
                 </Text>
               </PressableHybrid>
@@ -2075,10 +2078,10 @@ function RegistrationPromptModal({
                 accessibilityRole="button"
                 accessibilityLabel={labelLaterAccessibility}
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
-                style={[styles.laterButton, { backgroundColor: glass.opaqueControl, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 testID="auth-prompt-later"
               >
-                <Text style={[styles.laterText, { color: glass.mutedText, fontSize: f.body }]}>
+                <Text style={[styles.laterText, { color: glass.text, fontSize: 16, fontWeight: '700' }]}>
                   {labelLater}
                 </Text>
               </Pressable>
@@ -2232,6 +2235,13 @@ const styles = StyleSheet.create({
   laterText: {
     fontWeight: '600',
     textAlign: 'center',
+  },
+  laterGhost: {
+    alignSelf: 'stretch',
+    borderRadius: 24,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: `.cta.gh` — тонкий полупрозрачный контур капсулы
+    backgroundColor: 'transparent',
+    marginTop: 10,
   },
   legalLinks: {
     flexDirection: 'row',

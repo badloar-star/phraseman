@@ -122,6 +122,11 @@ export type AppEventMap = {
   /** Активное пари аннулировано (например, после revive или потери цепочки). */
   wager_lost: { reason: 'revive' | 'streak_broken' };
   streak_freeze_updated: { active: boolean };
+  /**
+   * §137: первое засчитанное учебное действие дня (урок / карточки / «Мои ошибки»). Локально, до сервера.
+   * source — `activity:<kind>` или `migration:<cold_start|foreground>` (день перехода на правило).
+   */
+  streak_day_counted: { days: number; dayKey: string; source: string };
   /** Урок впервые завершён (lesson_complete впервые). Используется mastery UI. */
   lesson_finished_once: { lessonId: number; studyTarget?: string };
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */

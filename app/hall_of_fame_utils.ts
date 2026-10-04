@@ -13,6 +13,7 @@ import { foregroundActiveRunEndingAt, previousDateKey, repairDevSeededStreakInSt
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { markActiveDay } from './friends_together/together_days';
+import { classifyStreakTouch, hydrateStreakDayState, markStreakDayCounted, peekStreakDayState, resolveLegacyRuleDay } from './streak_day_signal';
 import {
   getLocalDayKey,
   isDayBeforeYesterdayFlexible,
@@ -156,16 +157,57 @@ export const getMyWeekPoints = async (): Promise<number> => {
 // зачем (баг 01.10): серия обновлялась только на холодном старте и после Шпиля, поэтому
 // день, прожитый из фона, её «сжигал». Возврат в приложение и любое завершённое занятие
 // теперь тоже отмечают день — не чаще одного раза за локальный день (память процесса).
+// §137 (04.10): день засчитывает только учебное действие (урок / карточки / «Мои ошибки»);
+// открытие приложения и прочие действия лишь сверяют серию (сгорела → 0), см. streak_day_signal.ts.
 let streakTouchedDayKey: string | null = null;
-let streakTouchInFlight: Promise<number> | null = null;
+let streakSweptDayKey: string | null = null;
+let streakCountInFlight: Promise<number> | null = null;
+let streakPassiveInFlight: Promise<number> | null = null;
 export function touchStreakForToday(reason: string): Promise<number> | null {
   const day = getLocalDayKey();
   if (streakTouchedDayKey === day) return null;
-  if (streakTouchInFlight) return streakTouchInFlight;
-  console.log(`[STREAK] touch reason=${reason} day=${day}`);
-  streakTouchInFlight = updateStreakOnActivity()
+  const kind = classifyStreakTouch(reason);
+  if (kind.mode === 'count') {
+    if (streakCountInFlight) return streakCountInFlight;
+    console.log(`[STREAK-DAY] touch reason=${reason} mode=count day=${day} afterPassive=${streakPassiveInFlight !== null}`);
+    // зачем: учебное действие, пришедшее во время сверки, не теряется — засчитываем после неё.
+    const afterPassive: Promise<unknown> = streakPassiveInFlight ?? Promise.resolve();
+    streakCountInFlight = afterPassive
+      .then(() => countStreakDay(reason, day))
+      .finally(() => { streakCountInFlight = null; });
+    return streakCountInFlight;
+  }
+  if (streakCountInFlight) return streakCountInFlight;
+  if (streakPassiveInFlight) return streakPassiveInFlight;
+  console.log(`[STREAK-DAY] touch reason=${reason} mode=passive day=${day}`);
+  streakPassiveInFlight = resolveLegacyRuleDay(day)
+    .then((legacy) => (legacy ? countStreakDay(`migration:${reason}`, day) : sweepStreakOnce(reason, day)))
+    .finally(() => { streakPassiveInFlight = null; });
+  return streakPassiveInFlight;
+}
+
+function sweepStreakOnce(reason: string, day: string): Promise<number> {
+  if (streakSweptDayKey === day) {
+    const known = peekStreakDayState();
+    console.log(`[STREAK-DAY] sweep:skip already_swept reason=${reason} days=${String(known?.days ?? null)}`);
+    return Promise.resolve(known?.days ?? -1);
+  }
+  return sweepStreakWithoutCounting(reason).then((streak) => {
+    streakSweptDayKey = day;
+    return streak;
+  });
+}
+
+function countStreakDay(reason: string, day: string): Promise<number> {
+  let wasCountedBefore = false;
+  return readStoredItem('last_active_date')
+    .then((lastActive) => { wasCountedBefore = lastActive === day; })
+    .catch((error: unknown) => console.warn('[STREAK-DAY] count:read_last_failed', error instanceof Error ? error.message : String(error)))
+    .then(() => updateStreakOnActivity())
     .then((streak) => {
       streakTouchedDayKey = day;
+      streakSweptDayKey = day;
+      markStreakDayCounted({ wasCountedBefore, days: streak, source: reason, today: day });
       // зачем (§59): раз в сутки отдать серию серверу, иначе облако отстаёт от телефона.
       void import('./streak_server_sync')
         .then(({ syncStreakToServerOncePerDay }) => syncStreakToServerOncePerDay(streak))
@@ -173,12 +215,56 @@ export function touchStreakForToday(reason: string): Promise<number> | null {
       return streak;
     })
     .catch((error: unknown) => {
-      console.warn('[STREAK] touch:failed', error instanceof Error ? error.message : String(error));
+      console.warn('[STREAK-DAY] count:failed', error instanceof Error ? error.message : String(error));
       return 0;
-    })
-    .finally(() => { streakTouchInFlight = null; });
-  return streakTouchInFlight;
+    });
 }
+
+/**
+ * §137: сверка без засчитывания дня (холодный старт, возврат, не-учебные действия).
+ * Сгоревшая серия (пропущено ≥2 дней и журнал не лечит) → streak_count = 0; last_active_date
+ * не трогаем — день засчитает только учебное действие. Пропуск ровно одного дня ждёт действия:
+ * там решает заморозка Plus (без изменений).
+ */
+export const sweepStreakWithoutCounting = async (reason: string): Promise<number> => {
+  try {
+    const lastActive = await readStoredItem('last_active_date');
+    const streak = parseInt(await readStoredItem('streak_count') || '0') || 0;
+    const today = getLocalDayKey();
+    if (!lastActive || isSameLocalOrUtcDay(lastActive) || isYesterdayFlexible(lastActive) || isDayBeforeYesterdayFlexible(lastActive)) {
+      const branch = !lastActive ? 'no_history' : isSameLocalOrUtcDay(lastActive) ? 'counted_today' : isYesterdayFlexible(lastActive) ? 'alive_yesterday' : 'one_missed_await_activity';
+      console.log(`[STREAK-DAY] sweep reason=${reason} branch=${branch} lastActive=${String(lastActive)} streak=${streak}`);
+      hydrateStreakDayState(lastActive, streak, today);
+      return streak;
+    }
+    let journalRunToYesterday = 0;
+    try {
+      const [{ getForegroundDailyMsMap }, { MIN_ACTIVE_MS }] = await Promise.all([
+        import('./foreground_usage_ms'),
+        import('../modules/stats_activity_rows'),
+      ]);
+      const utcToday = new Date().toISOString().split('T')[0]!;
+      journalRunToYesterday = foregroundActiveRunEndingAt(await getForegroundDailyMsMap(), previousDateKey(utcToday), MIN_ACTIVE_MS);
+    } catch (error) {
+      console.warn('[STREAK-DAY] sweep:journal_read_failed', error instanceof Error ? error.message : String(error));
+    }
+    if (journalRunToYesterday >= 1 || streak <= 0) {
+      console.log(`[STREAK-DAY] sweep reason=${reason} branch=${streak <= 0 ? 'already_zero' : 'journal_heal_await_activity'} lastActive=${lastActive} streak=${streak} journal=${journalRunToYesterday}`);
+      hydrateStreakDayState(lastActive, streak, today);
+      return streak;
+    }
+    console.warn(`[STREAK-DAY] sweep reason=${reason} branch=LOST lastActive=${lastActive} today=${today} ${streak}->0`);
+    logStreakLost(streak);
+    AsyncStorage.getItem('app_lang').then(l => sendStreakWarningLazy(streak, notificationLangFromStorageValue(l))).catch(noteSwallowedHandler('hall_of_fame_utils:sweep_warning'));
+    incrementStreakLostCount();
+    await persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', 0);
+    hydrateStreakDayState(lastActive, 0, today);
+    return 0;
+  } catch (e) {
+    console.warn('[STREAK-DAY] sweep:failed', e instanceof Error ? e.message : String(e));
+    return -1;
+  }
+};
 
 // ── Обновить цепочку дней подряд при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
@@ -285,10 +371,15 @@ export const updateStreakOnActivity = async (
       else {
         const prevStreak = streak;
         console.warn(`[STREAK] update:branch=LOST lastActive=${String(lastActive)} today=${today} missedExactlyOneDay=${missedExactlyOneDay} freezeActive=${isStreakFreezeActiveToday(freeze, today)} ${prevStreak}->1`);
-        logStreakLost(prevStreak);
+        // зачем (§137): сверка на старте уже обнулила серию и отчиталась о потере — не дублируем.
+        if (prevStreak > 0) {
+          logStreakLost(prevStreak);
           AsyncStorage.getItem('app_lang').then(l => sendStreakWarningLazy(prevStreak, notificationLangFromStorageValue(l))).catch(noteSwallowedHandler('hall_of_fame_utils:promise_3'));
-        // зачем: D101 — восстановление серии за жемчуг удалено: серия просто сбрасывается.
-        incrementStreakLostCount();
+          // зачем: D101 — восстановление серии за жемчуг удалено: серия просто сбрасывается.
+          incrementStreakLostCount();
+        } else {
+          console.log('[STREAK-DAY] update:lost_already_reported_by_sweep');
+        }
         streak = 1;
       }
     }

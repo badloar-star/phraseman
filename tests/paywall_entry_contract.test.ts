@@ -99,4 +99,35 @@ describe('typed paywall entry contract', () => {
       impressionId: 'pw-123',
     })).toEqual({ decision });
   });
+  // §141 (04.10): окно не ждёт на пустом экране, если последний известный доступ — точно «бесплатно».
+  test('shows immediately from a cached free entitlement while live access is unresolved', () => {
+    const resolution = resolvePremiumModalEntry({
+      params: { context: 'generic', source: 'direct' },
+      accessResolved: false,
+      hasPremiumAccess: false,
+      impressionId: 'pw-cache',
+      cachedEntitlement: 'free',
+    });
+    expect(resolution.decision).toBe('show');
+  });
+
+  test.each(['premium', 'unknown', undefined] as const)('waits while unresolved when cached entitlement is %s (no paywall flash for Plus)', (cachedEntitlement) => {
+    expect(resolvePremiumModalEntry({
+      params: { context: 'generic', source: 'direct' },
+      accessResolved: false,
+      hasPremiumAccess: false,
+      impressionId: 'pw-cache',
+      cachedEntitlement,
+    })).toEqual({ decision: 'wait' });
+  });
+
+  test('live Plus dismisses even if the cache said free', () => {
+    expect(resolvePremiumModalEntry({
+      params: { context: 'generic', source: 'direct' },
+      accessResolved: true,
+      hasPremiumAccess: true,
+      impressionId: 'pw-cache',
+      cachedEntitlement: 'free',
+    })).toEqual({ decision: 'dismiss' });
+  });
 });

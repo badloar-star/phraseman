@@ -211,17 +211,26 @@ export function createPaywallEntry(input: Readonly<{
   };
 }
 
+/** Последний известный доступ из синхронного снимка профиля (до ответа живой проверки). */
+export type CachedPaywallEntitlement = 'free' | 'premium' | 'unknown';
+
 /**
  * Trusts the live entitlement snapshot, never route params. Unknown commercial
  * dimensions throw in DEV/tests and fail closed (dismiss) in production.
+ *
+ * зачем (§141, 04.10, правило владельца «каждый раздел открывается мгновенно»): пока живой доступ
+ * уточняется, окно не ждёт на пустом градиенте — при точно известном «бесплатно» показывается сразу.
+ * Plus/неизвестно — прежнее ожидание: платному окно покупки не мелькает. Если живой статус окажется
+ * Plus, сработает обычный dismiss.
  */
 export function resolvePremiumModalEntry(input: Readonly<{
   params: RawPaywallEntryParams;
   accessResolved: boolean;
   hasPremiumAccess: boolean;
   impressionId: string;
+  cachedEntitlement?: CachedPaywallEntitlement;
 }>): PremiumModalEntryResolution {
-  if (!input.accessResolved) return { decision: 'wait' };
+  if (!input.accessResolved && input.cachedEntitlement !== 'free') return { decision: 'wait' };
   if (input.hasPremiumAccess) return { decision: 'dismiss' };
 
   const context = parseContext(input.params.context);

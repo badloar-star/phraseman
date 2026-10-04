@@ -11,7 +11,15 @@ import { openPremiumPaywall } from './paywall_navigation';
 import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';
 import { usePremium } from '../components/PremiumContext';
 import { dismissPaywallModal } from './navigation_back';
-import { resolvePremiumModalEntry } from './paywall_entry_contract';
+import { resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
+import { getAppSnapshot } from './app_snapshot_store';
+
+/** §141: последний известный доступ из снимка профиля (тот же источник, что засевает PremiumContext). */
+function cachedEntitlementFromSnapshot(): CachedPaywallEntitlement {
+  const profile = getAppSnapshot().profile;
+  if (!profile) return 'unknown';
+  return profile.premiumActive === true || profile.vipActive === true ? 'premium' : 'free';
+}
 
 type RouteParams = Record<string, string | string[]>;
 
@@ -52,6 +60,9 @@ export default function PremiumModalDispatcher() {
   const params = useLocalSearchParams<RouteParams>();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const [paywallImpressionId] = useState(() => Crypto.randomUUID());
+  // Снимок читается один раз на открытие окна: решение «показать сразу» не должно прыгать между кадрами.
+  const [cachedEntitlement] = useState(cachedEntitlementFromSnapshot);
+  const cachedShowLoggedRef = useRef(false);
 
   // Готов ли корневой навигатор. При холодном старте прямо на /premium_modal (deep-link,
   // первый экран) Root Layout ещё НЕ смонтирован — навигация в этот момент бросает
@@ -71,7 +82,13 @@ export default function PremiumModalDispatcher() {
         accessResolved,
         hasPremiumAccess,
         impressionId: paywallImpressionId,
+        cachedEntitlement,
       });
+  if (!accessResolved && entryResolution?.decision === 'show' && !cachedShowLoggedRef.current) {
+    cachedShowLoggedRef.current = true;
+    // Лёгкий console.log: debug-logger тянет config/Platform в транзитный экран без нужды.
+    console.log('[PAYWALL] окно показано сразу по кэшу доступа', JSON.stringify({ cached: cachedEntitlement })); // guard-ok: один раз на открытие окна
+  }
 
   useEffect(() => {
     if (!rootNavReady || dispatchedRef.current) return;

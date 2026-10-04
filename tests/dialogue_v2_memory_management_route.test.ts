@@ -21,10 +21,8 @@ describe('Dialogue V2 Plus memory management route', () => {
     expect(source).toContain('accessResolved');
     expect(source).toContain('hasPremiumAccess');
     expect(source).toContain("pathname: '/premium_modal'");
-    // зачем (2.0, 04.10): подтверждение очистки — стеклянное окно с деструктивным тоном, не системный Alert.
-    expect(source).not.toContain('Alert.alert(');
-    expect(source).toContain('<ThemedConfirmModal');
-    expect(source).toMatch(/<ThemedConfirmModal[\s\S]*?\n\s+destructive\n/);
+    expect(source).toContain('Alert.alert(');
+    expect(source).toContain("style: 'destructive'");
     expect(source).toContain('dialogue-v2-memory-clear-confirm');
     expect(source).toContain('dialogue-v2-memory-delete-only');
     expect(source).not.toContain('clearing || !hasPremiumAccess');

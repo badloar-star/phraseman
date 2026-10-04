@@ -9,7 +9,6 @@
 // Пока CLOUD_SYNC_ENABLED = false — все функции тихо возвращают без действий.
 // ════════════════════════════════════════════════════════════════════════════
 
-import { clearAllDialogueV2MemoryDiskCache } from './dialogue_v2_memory_disk_cache';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS,
@@ -5159,9 +5158,6 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
   }
   await clearCustomizationAccountLocalState();
-  // зачем (04.10, политика fe079cd49): копия «Памяти диалогов» на устройстве стирается при выходе и смене
-  // аккаунта. Функция никогда не бросает — общую чистку не ломает.
-  await clearAllDialogueV2MemoryDiskCache();
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())

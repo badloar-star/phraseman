@@ -144,7 +144,7 @@ function AppMessagesInbox({
   const { hasPremiumAccess } = usePremium();
   // зачем: шторка сообщений (макет system.html SYS-10) — Liquid Glass 13 тем; все поверхности
   // из токенов активной темы, зелёный бренд и цветные рамки убраны.
-  const { f, theme, liquidGlassThemeId } = useTheme();
+  const { theme, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const copy = inboxText(lang);
@@ -781,7 +781,7 @@ function AppMessagesInbox({
     <>
       <View style={styles.modalHeader}>
         <View>
-          <Text style={[styles.modalTitle, { color: chrome.text, fontSize: Math.max(20, f.h2) }]}>{copy.title}</Text>
+          <Text style={[styles.modalTitle, { color: chrome.text, fontSize: 22, lineHeight: 28 }]}>{copy.title}</Text>
           <Text style={[styles.modalSub, { color: chrome.muted }]}>
             {unreadCount > 0 ? copy.newCount(unreadCount) : copy.allRead}
           </Text>
@@ -801,7 +801,7 @@ function AppMessagesInbox({
       {messages.length === 0 ? (
         <View style={styles.emptyState}>
           <View accessible={false} style={[styles.emptyTile, { backgroundColor: glass.opaqueControl }]}>
-            <Ionicons name="mail-open-outline" size={26} color={glass.lightTint} />
+            <Ionicons name="chatbubble-outline" size={24} color={glass.lightTint} />
           </View>
           <Text style={[styles.emptyTitle, { color: chrome.text }]}>{copy.emptyTitle}</Text>
           <Text style={[styles.emptyBody, { color: chrome.muted }]}>{copy.emptyBody}</Text>
@@ -821,8 +821,8 @@ function AppMessagesInbox({
               : message.poll
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 160);
-            const rowBackgroundColor = messageRead ? chrome.readCard : chrome.cardStrong;
-            const rowTitleColor = messageRead ? chrome.muted : chrome.text;
+            const rowBackgroundColor = 'transparent';
+            const rowTitleColor = chrome.text;
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
             return (
               <TouchableOpacity
@@ -832,13 +832,7 @@ function AppMessagesInbox({
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
-                <View style={styles.messageRowTop}>
-                  <View style={styles.messageTitleWrap}>
-                    <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]}>
-                      {text.title}
-                    </Text>
-                  </View>
-                </View>
+                {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
                     <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint, borderColor: vipSurveyBorder }]}>
@@ -864,7 +858,14 @@ function AppMessagesInbox({
                       <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
                     </View>
                   ) : null}
-                  <Text style={[styles.messageDate, { color: rowMutedColor }]}>{formatMessageDate(message.createdAtMs)}</Text>
+                  <Text style={[styles.messageDate, { color: chrome.muted }]}>{message.unread ? copy.unread : formatMessageDate(message.createdAtMs)}</Text>
+                </View>
+                <View style={styles.messageRowTop}>
+                  <View style={styles.messageTitleWrap}>
+                    <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]}>
+                      {text.title}
+                    </Text>
+                  </View>
                 </View>
                 <Text style={[styles.messagePreview, messageRead && styles.messagePreviewRead, { color: rowMutedColor }]}>
                   {preview}
@@ -1511,13 +1512,14 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   modalTitle: {
-    fontWeight: '800',
+    fontWeight: '700',
   },
   modalSub: {
     marginTop: 2,
+    // зачем: макет 14, но шкала владельца D145 (01.10, новее макета) — подписи 13.
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '700',
+    fontWeight: '400',
   },
   roundIcon: {
     width: 44,
@@ -1528,25 +1530,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   listContent: {
-    gap: 10,
     paddingBottom: 4,
   },
+  // зачем: макет system.html system_17 — плоские строки с точкой слева и тонкой линией снизу, без карточек.
   messageRow: {
     position: 'relative',
-    borderRadius: 16,
-    borderWidth: 0,
-    padding: 13,
+    borderBottomWidth: StyleSheet.hairlineWidth, // guard-ok: разделитель строк, а не рамка контейнера
+    borderBottomColor: 'rgba(255,255,255,0.09)',
+    paddingVertical: 14,
+    paddingLeft: 22,
+    paddingRight: 4,
     overflow: 'visible',
   },
-  messageRowRead: {
-    paddingHorizontal: 11,
-    paddingVertical: 9,
-  },
+  messageRowRead: {},
   messageRowTop: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: 10,
-    marginBottom: 5,
+    marginBottom: 3,
   },
   messageTitleWrap: {
     flex: 1,
@@ -1556,8 +1557,8 @@ const styles = StyleSheet.create({
   },
   unreadDot: {
     position: 'absolute',
-    top: 19,
-    left: -14,
+    top: 21,
+    left: 4,
     width: 8,
     height: 8,
     borderRadius: 4,
@@ -1580,11 +1581,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: 8,
-    marginBottom: 7,
+    marginBottom: 3,
   },
   messageDate: {
+    // зачем: макет 12, шкала D145 — 13.
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   pollBadge: {
     height: 22,
@@ -1613,14 +1615,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   messagePreview: {
+    // зачем: макет 14, но шкала владельца D145 (01.10, новее макета) — подписи 13.
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '700',
+    fontWeight: '400',
   },
   messagePreviewRead: {
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '600',
+    fontWeight: '400',
   },
   messageRowActions: {
     marginTop: 10,
@@ -1648,22 +1651,25 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   emptyTile: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 55,
+    height: 55,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   emptyTitle: {
-    marginTop: 8,
+    marginTop: 6,
+    // зачем: макет 18 жирный; по D145 это не заголовок раздела (<19) — 16, иерархия весом.
     fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
   },
   emptyBody: {
+    // зачем: макет 15, шкала D145 — 16.
     fontSize: 16,
     lineHeight: 22,
     textAlign: 'center',
-    fontWeight: '700',
+    fontWeight: '400',
   },
   detailContent: {
     paddingBottom: 6,

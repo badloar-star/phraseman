@@ -10,17 +10,20 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).not.toContain('styles.rowDismiss');
   });
 
-  it('renders read inbox rows as compact gray plaques that can be reopened', () => {
+  // зачем (паритет system.html system_17, 04.10): прочитанная строка оформлена как непрочитанная — плоская, с линией
+  // снизу, без серой компактной плашки и без обрезки текста; отличается только меткой сверху (дата вместо «Новое»).
+  it('renders read inbox rows like unread ones (flat rows from system_17) and they can be reopened', () => {
     expect(inboxSource).toContain('const messageRead = !message.unread;');
     expect(inboxSource).toContain('styles.messageRowRead');
-    expect(inboxSource).toContain('numberOfLines={messageRead ? 1 : 2}');
+    expect(inboxSource).toContain("{message.unread ? copy.unread : formatMessageDate(message.createdAtMs)}");
     expect(inboxSource).toContain('onPress={() => selectMessage(message)}');
   });
 
   it('keeps unread dots outside the text flow so inbox rows stay centered', () => {
     expect(inboxSource).toContain('{message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}');
     expect(inboxSource).toContain("position: 'absolute'");
-    expect(inboxSource).toContain('left: -14');
+    // зачем (system_17): точка стоит у левого края строки внутри отступа 22, а не вынесена за край.
+    expect(inboxSource).toContain('left: 4');
     expect(inboxSource).not.toContain('readDotSpace');
     expect(inboxSource).not.toMatch(/messageMetaRow:[\s\S]*?paddingLeft: 16[\s\S]*?messageDate:/);
     expect(inboxSource).not.toMatch(/messagePreview:[\s\S]*?paddingLeft: 16[\s\S]*?messagePreviewRead:/);

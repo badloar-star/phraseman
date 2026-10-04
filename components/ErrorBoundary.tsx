@@ -241,9 +241,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   warningArt: {
-    width: 60,
-    height: 60,
-    borderRadius: 20,
+    // зачем: паритет с макетом system.html system_12 — плашка 61pt, радиус 16, крестик ~26.
+    width: 61,
+    height: 61,
+    borderRadius: 16,
     backgroundColor: GRAPHITE.opaqueCard,
     alignItems: 'center',
     justifyContent: 'center',
@@ -251,8 +252,8 @@ const styles = StyleSheet.create({
   },
   warningMark: {
     color: GRAPHITE.lightTint,
-    fontSize: 38,
-    lineHeight: 40,
+    fontSize: 34,
+    lineHeight: 36,
     fontWeight: '500',
   },
   title: {
@@ -265,6 +266,7 @@ const styles = StyleSheet.create({
   },
   body: {
     color: GRAPHITE.secondary,
+    // зачем: в макете 15, но решение владельца D145 (только 16/13) новее макета — 16; отличие в журнале паритета.
     fontSize: 16,
     lineHeight: 22,
     textAlign: 'center',
@@ -272,38 +274,36 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   },
   retryBtn: {
-    width: '100%',
-    maxWidth: 320,
-    minHeight: 52,
+    // зачем: макет system_12 — малая белая кнопка 42pt по ширине текста.
+    minHeight: 42,
     backgroundColor: GRAPHITE.accent,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 26,
+    paddingHorizontal: 18,
+    borderRadius: 21,
     alignItems: 'center',
     justifyContent: 'center',
   },
   retryText: {
     color: GRAPHITE.accentInk,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '600',
     textAlign: 'center',
   },
   debugBox: {
     width: '100%',
-    marginTop: 18,
+    marginTop: 30,
     maxHeight: 220,
     backgroundColor: GRAPHITE.opaqueCard,
-    borderRadius: 12,
-    paddingHorizontal: 12,
+    borderRadius: 14,
+    paddingHorizontal: 14,
   },
   debugTitle: {
-    color: '#FF6B6B',
+    color: GRAPHITE.secondary,
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '600',
     marginBottom: 6,
   },
   debugText: {
-    color: '#FFB4B4',
+    color: GRAPHITE.mutedText,
     fontSize: 13,
     fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
     marginBottom: 6,

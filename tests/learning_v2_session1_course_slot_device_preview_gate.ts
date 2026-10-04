@@ -8,27 +8,14 @@ const root = resolve(__dirname, "..");
 const read = (path: string): string => readFileSync(resolve(root, path), "utf8");
 const findings: string[] = [];
 
-for (const path of ["app/(tabs)/lessons.tsx", "app/learning-v2/lesson/[id].tsx"]) {
+// зачем (§129): экран lesson/[id] удалён — обычная карта курса теперь только вкладка «Уроки»
+for (const path of ["app/(tabs)/lessons.tsx"]) {
   const source = read(path);
   if (source.includes('previewMode: "authoring_v1"')) {
     findings.push(`normal_course_route_forces_authoring_preview:${path}`);
   }
   if (!source.includes('previewOrigin: "course"')) {
     findings.push(`session1_course_return_not_wired:${path}`);
-  }
-}
-
-const legacyMap = read("app/learning-v2/lesson/[id].tsx");
-for (const required of [
-  "preparedCourseSessionsRef",
-  "prepareCourseSession",
-  "LEARNING_V2_SESSION_MODAL_EXIT_MS",
-  "Promise.all([prepared.promise, modalExit])",
-  "preparedCourseSessionsRef.current.delete(prepared.key)",
-  "stageLearningV2CourseSessionReadyHandoffV3",
-]) {
-  if (!legacyMap.includes(required)) {
-    findings.push(`legacy_course_route_does_not_reuse_prewarmed_handle:${required}`);
   }
 }
 

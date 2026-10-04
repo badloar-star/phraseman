@@ -1145,20 +1145,18 @@ describe("pure canonical V2 generation plan", () => {
       repositoryRoot,
       "app/use_learning_v2_activity_action_session_v1.ts",
     );
-    const activityAuxiliaryLessonMapV1 = path.join(
-      repositoryRoot,
-      "app/learning-v2/lesson/[id].tsx",
-    );
+    // зачем (§129, 04.10): экран-карта урока app/learning-v2/lesson/[id].tsx удалён (мёртвый маршрут) — из допустимого набора файлов он снят.
     const activityAuxiliaryLessonSessionV1 = path.join(
       repositoryRoot,
       "app/learning-v2/session/[id].tsx",
     );
     const functionsIndex = path.join(root, "..", "index.ts");
+    // зачем (04.10): набор импортов клиента сверен с кодом. './app_check_init' ушёл — App Check снят из клиента целиком (решение владельца,
+    // клиентская инициализация и пакет удалены); './swallow_log' добавлен PM-229 (немой catch пишет причину). Граница живого пути та же.
     expect(sourceModuleReferences(activityAuxiliaryAppClientV1)).toEqual([
       "@react-native-async-storage/async-storage",
       "@react-native-firebase/app",
       "@react-native-firebase/functions",
-      "./app_check_init",
       "./callable_timeout",
       "./cloud_sync",
       "./interactive_network_quiet",
@@ -1166,18 +1164,19 @@ describe("pure canonical V2 generation plan", () => {
       "../modules/learning-v2/progress/progress_account_scope",
       "../modules/learning-v2/runtime/activity_auxiliary_client_descriptor_v1",
       "../modules/learning-v2/runtime/activity_auxiliary_client_loader_v1",
+      "./swallow_log",
     ]);
     expect(sourceModuleReferences(activityReleasedSessionAppClientV1)).toEqual([
       "@react-native-async-storage/async-storage",
       "@react-native-firebase/app",
       "@react-native-firebase/functions",
-      "./app_check_init",
       "./callable_timeout",
       "./cloud_sync",
       "./interactive_network_quiet",
       "./stable_id",
       "../modules/learning-v2/progress/progress_account_scope",
       "../modules/learning-v2/runtime/activity_released_session_package_v1",
+      "./swallow_log",
     ]);
     expect(
       sourceModuleReferences(activityReleasedSessionCompletionProjectionV1),
@@ -2272,7 +2271,6 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(activityActionSessionV1),
           canonicalRealPath(activityCompactActionExecutorV1),
           canonicalRealPath(activityActionSessionHookV1),
-          canonicalRealPath(activityAuxiliaryLessonMapV1),
           canonicalRealPath(activityAuxiliaryLessonSessionV1),
           canonicalRealPath(releaseRolloutV1),
           canonicalRealPath(activityAuxiliaryReleaseIndexV1),

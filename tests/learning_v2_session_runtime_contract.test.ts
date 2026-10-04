@@ -22,19 +22,16 @@ const source = (relative: string) =>
 
 test("premium session route uses the real twelve-card compiler without the rejected lab player", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");
-  const map = source("app/learning-v2/lesson/[id].tsx");
   expect(runtime).not.toContain("ModeDemoPlayer");
   expect(runtime).not.toContain("LearningV2ModesLab");
-  expect(map).toContain('pathname: "/learning-v2/session/[id]"');
+  // зачем (§129): проверки экрана-карты урока (lesson/[id]: путь на сессию, прогрев среды, восстановление локальных завершений,
+  // сетевое намерение сессии) сняты — экран удалён; живой вкладке «Уроки» этих шагов и не было.
   expect(runtime).toContain("useReducedMotion");
   expect(runtime).not.toContain("withRepeat(");
   expect(runtime).toContain('color: "#07110A"');
   expect(runtime).toContain("awarded: { shards: 0 }");
   expect(runtime).toContain("getLesson1SessionRuntime");
   expect(runtime).not.toContain("compileV2RequiredSessions(");
-  expect(map).toContain(
-    "InteractionManager.runAfterInteractions(\n      warmLesson1SessionRuntime,",
-  );
   expect(runtime).not.toMatch(
     /@react-native-firebase|httpsCallable|fetch\(|XMLHttpRequest/,
   );
@@ -66,30 +63,9 @@ test("premium session route uses the real twelve-card compiler without the rejec
   expect(runtime).toContain(").commit(scope, envelope)");
   expect(runtime).toContain("withAccountTransitionLock(async () =>");
   expect(runtime).not.toContain("Promise.all([\n        outbox.enqueue");
-  expect(map).not.toContain("flushPendingRequiredSessionCompletions");
-  expect(map).toContain("await createRequiredSessionLocalCommitCoordinator(");
-  expect(map).toContain(").recover(scope);");
-  expect(map).toContain(
-    "const state = await withAccountTransitionLock(async () =>",
-  );
-  expect(map).toContain("deriveLocalOfflineProgressAccountScopeHash(stableId)");
-  expect(map).toContain("generation: LOCAL_OFFLINE_PROGRESS_GENERATION");
-  expect(map).toContain("prepareLearningV2SessionNetworkIntent(node.id)");
-  expect(map).toContain(
-    "releaseLearningV2SessionNetworkIntentAfterResultFrame(resultTarget)",
-  );
-  expect(map).toContain('setLocalRecoveryOutcome("failure")');
-  expect(map).toContain("secondFrame = requestAnimationFrame(() =>");
-  expect(map).toContain(
-    "releaseLearningV2SessionNetworkIntentAfterExitFrame(exitTarget)",
-  );
-  expect(
-    map.indexOf("prepareLearningV2SessionNetworkIntent(node.id)"),
-  ).toBeLessThan(map.indexOf("router.push({"));
   expect(runtime).toContain("claimLearningV2SessionNetworkIntent(sessionId)");
   expect(runtime).toContain("waitForLearningV2SessionNetworkIntent(intent)");
   expect(runtime).toContain("markLearningV2SessionResultPending(intent)");
-  expect(map).toContain("useLayoutEffect(() =>");
   expect(runtime).toContain("useLayoutEffect(() =>");
   expect(runtime).toContain(
     "This wait is evidence/fencing only. It never gates local lesson controls.",
@@ -221,7 +197,6 @@ test("an interrupted session always remounts from the intro with a new run id", 
 test("the direct 32x56 player restarts an interrupted run and keeps answer verdicts off the server", () => {
   const runtime = source("app/learning_v2_direct_session_player_v1.tsx");
   const lessons = source("app/(tabs)/lessons.tsx");
-  const compatibilityMap = source("app/learning-v2/lesson/[id].tsx");
   const functionsIndex = source("functions/src/index.ts");
   const evaluateBody = runtime.slice(
     runtime.indexOf("const evaluate = useCallback("),
@@ -267,8 +242,6 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   expect(runtime).toContain("playSelectableAudio(option.responseId)");
   expect(runtime).not.toContain("loadCurrentLearningV2CourseReleasedSessionV2");
   expect(lessons).toContain('runtimeMode: "direct_v1"');
-  expect(compatibilityMap).toContain('runtimeMode: "direct_v1"');
-  expect(compatibilityMap).toContain("learningV2CourseSessionIdV1(");
   expect(runtime).not.toMatch(
     /activity_released_session_submission|server_active_release_answer_sequence/u,
   );

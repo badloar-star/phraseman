@@ -153,7 +153,6 @@ describe('numeric energy v2 contract', () => {
   it('no longer shows a price badge on the representative paid CTAs', () => {
     for (const file of [
       'app/flashcards_training_setup.tsx',
-      'app/learning-v2/lesson/[id].tsx',
       'components/level-exam/LevelExamIntro.tsx',
       'components/AiDialogBriefingScreen.tsx',
     ]) {

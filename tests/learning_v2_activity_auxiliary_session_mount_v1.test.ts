@@ -28,17 +28,15 @@ describe("Learning V2 auxiliary session runtime mount", () => {
     });
   });
 
-  test("preloads on the map and keeps active answer transport local", () => {
-    const map = source("app/learning-v2/lesson/[id].tsx");
+  test("keeps active answer transport local on the session screen", () => {
     const session = source("app/learning-v2/session/[id].tsx");
     const client = source("app/learning_v2_activity_auxiliary_client.ts");
     const releasedClient = source(
       "app/learning_v2_activity_released_session_client_v1.ts",
     );
     // зачем (D47/PM-205): текст занятия прогревается, а ЗВУК — нет; скачивания озвучки V2 нет.
-    expect(map).toContain("preloadCurrentLearningV2ActivityReleasedSessionV1({");
-    expect(map).not.toContain("preloadCurrentLearningV2ActivityAudioSessionV1({");
-    expect(map).toContain("...auxiliaryScope");
+    // зачем (§129): прогрев занятия на экране-карте урока (lesson/[id]) удалён вместе с экраном; сессия по-прежнему берёт текст из
+    // выпущенной сессии и держит транспорт ответов локальным — это проверяется ниже по экрану занятия.
     expect(session).toContain("useLearningV2ActivityAuxiliarySessionV1({");
     expect(session).toContain("useLearningV2ActivityReleasedSessionV1({");
     expect(session).toContain("allowNetwork: false");

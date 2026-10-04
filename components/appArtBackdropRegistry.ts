@@ -97,10 +97,8 @@ function readRouteBackdrop(pathname?: string | null): {
 }
 
 function resolveLearningV2Backdrop(normalized: string): AppArtBackdropName | undefined {
-  if (
-    normalized === '/learning-v2/course' ||
-    normalized.startsWith('/learning-v2/lesson/')
-  ) {
+  // зачем (§129): ветка '/learning-v2/lesson/' снята вместе с экраном-картой урока (маршрут удалён)
+  if (normalized === '/learning-v2/course') {
     return 'lessons';
   }
 

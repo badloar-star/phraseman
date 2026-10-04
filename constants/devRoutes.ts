@@ -37,7 +37,7 @@ export const DIALOGUE_V2_VISUAL_FIXTURE_ROUTE = `/${DIALOGUE_V2_VISUAL_FIXTURE_R
  * dev/internal сборке, сессии курса ещё дописываются параллельно. Это НЕ
  * `DEV_UTILITY_ROUTE_NAME` (та группа регистрируется как плоский `Stack.Screen`
  * по имени файла и в релизе не рендерится вовсе) — `learning-v2/*` живёт как
- * обычный вложенный expo-router каталог (course, session/[id], lesson/[id]),
+ * обычный вложенный expo-router каталог (course, session/[id]),
  * поэтому здесь только ПУТЬ-префикс для отдельной проверки диплинка в
  * `_layout.tsx` (`isDevUtilityRoutePath`-подобный guard). Экраны внутри сами
  * себя не защищали — только `course.tsx` и `intro-reader-fixture.tsx` получили

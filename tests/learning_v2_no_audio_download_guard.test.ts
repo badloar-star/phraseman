@@ -29,7 +29,6 @@ const LIVE_V2_FILES = [
   "app/learning_v2_lesson_audio_pack_v1.ts",
   "app/learning_v2_bootstrap_audio_seed_v1.ts",
   "app/learning_v2_direct_session_player_v1.tsx",
-  "app/learning-v2/lesson/[id].tsx",
   "app/learning-v2/session/[id].tsx",
   "app/(tabs)/lessons.tsx",
 ];

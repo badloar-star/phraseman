@@ -73,11 +73,10 @@ describe('mistake practice preservation boundary', () => {
   });
 
   test('Learning V2 keeps required-session ownership separate from an optional error loop', () => {
-    const source = read('app/learning-v2/lesson/[id].tsx');
+    // зачем (§129): прежний контракт читал удалённый экран-карту урока (buildLessonRoadItems, locked_session | checkpoint). Требование то же —
+    // обязательная сессия и необязательная петля ошибок живут раздельно, — но владеет им теперь экран занятия.
+    const source = read('app/learning-v2/session/[id].tsx');
 
     expect(source).toContain('createRequiredSessionLocalCommitCoordinator');
-    expect(source).toContain('learningV2CourseSessionRoleV1');
-    expect(source).toContain('kind: "locked_session" | "checkpoint"');
-    expect(source).toContain('function buildLessonRoadItems(');
   });
 });

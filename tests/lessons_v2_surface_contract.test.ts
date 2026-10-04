@@ -10,7 +10,6 @@ const exists = (rel: string) => fs.existsSync(path.join(process.cwd(), rel));
 
 const lessonsSource = read("app/(tabs)/lessons.tsx");
 const labSource = read("components/learning-v2-lab/LearningV2ModesLab.tsx");
-const mapSource = read("app/learning-v2/lesson/[id].tsx");
 const sessionSource = read("app/learning-v2/session/[id].tsx");
 
 describe("lessons V2 — одна карта раскрывается прямо под плашкой урока", () => {
@@ -73,13 +72,9 @@ describe("lessons V2 — одна карта раскрывается прямо
       '<LessonsTab presentation="push" initialPage="v2" />',
     );
     expect(sessionSource).toContain('pathname: "/learning-v2/course"');
-    expect(mapSource).toContain("buildLessonMapModel");
-    expect(mapSource).toContain("buildLessonRoadItems");
-    expect(mapSource).toContain("LEARNING_V2_LESSON_SESSION_COUNT_V1");
-    expect(mapSource).toContain("КАРТА УРОКА");
-    expect(mapSource).toContain("Ты научишься");
-    expect(mapSource).toContain("useTheme()");
-    expect(mapSource).not.toContain("Путь к свободной речи");
+    // зачем (§129): отдельного экрана «карта урока» (lesson/[id]) больше нет — одна карта раскрывается под плашкой урока (lessons.tsx),
+    // это и есть название теста; проверки текста мёртвого экрана («КАРТА УРОКА», «Ты научишься») сняты вместе с ним.
+    expect(exists("app/learning-v2/lesson/[id].tsx")).toBe(false);
     // зачем (аудит по Библии, 2026-08-26): «вы» → «ты» (Правило 14).
     // Проверяется наличие всех трёх обещаний, а не форма обращения.
     expect(lessonsSource).toContain("Ты поймёшь");

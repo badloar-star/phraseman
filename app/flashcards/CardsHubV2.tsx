@@ -164,7 +164,7 @@ function CardsHubV2Inner({
 
       <View style={styles.tiles}>
         {tiles.map((t) => (
-          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={`${t.title}. ${t.count}`} onPress={t.onPress}
+          <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
             style={({ pressed }) => [
               styles.tile,
               { minHeight: tileH, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.85)' }] },

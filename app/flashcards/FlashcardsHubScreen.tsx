@@ -1,4 +1,4 @@
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -526,6 +526,7 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
+  const hubParams = useLocalSearchParams<{ train?: string }>();
   const onTrainPress = () => {
         void hapticTap();
         console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
@@ -554,6 +555,18 @@ export default function FlashcardsHubScreen() {
         pendingModeRef.current = null;
         setModeSheetVisible(true);
   };
+
+  // зачем (макет «Список»: плавающая «Тренировать» на списке «Сохранённых»): список зовёт хаб с ?train=1 — открываем то же окно выбора режима
+  // со всей логикой лимита и пейвола; параметр сбрасываем, чтобы возврат на хаб не открывал окно снова.
+  const autoTrainHandledRef = useRef(false);
+  useEffect(() => {
+    if (hubParams.train !== '1' || autoTrainHandledRef.current) return;
+    autoTrainHandledRef.current = true;
+    router.setParams({ train: undefined } as never);
+    onTrainPress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hubParams.train]);
+  useFocusEffect(useCallback(() => { autoTrainHandledRef.current = false; }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
   const topCard = peekSelectedSavedContour()?.[0] ?? null;

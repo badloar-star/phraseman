@@ -54,6 +54,8 @@ import {
 } from './flashcards/selectors';
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
 import CollectionHeader from './flashcards/CollectionHeader';
+import CollectionGalleryView from './flashcards/CollectionGalleryView';
+import { CollectionMenuSheet, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import CollectionListView, {
   CollectionEmptyState,
   UndoDeleteSnackbar,
@@ -1040,9 +1042,33 @@ export default function FlashcardsScreen() {
    * Отдаём константный фон темы — тот же, что у стека и у экрана редактора.
    * Кадр не пустой, геометрия не прыгает, а смены фона на переходе не видно.
    */
+  // зачем (владелец 04.10, макет cards-section «Список»): «Сохранённые» — сетка плиток; тап по плитке открывает карточку (пока — стопкой с этой карточки),
+  // «Тренировать» ведёт на хаб с открытым окном выбора режима (там вся логика лимита и пейвола).
+  const savedSurface = activeCat === 'saved' && !packDeeplink;
+  const openCardFromGallery = useCallback((id: string) => {
+    const idx = listCards.findIndex((card) => card.id === id);
+    indexRef.current = Math.max(0, idx);
+    fcHaptic('tap');
+    setViewMode('deck');
+  }, [listCards]);
+  const onTrainGallery = useCallback(() => {
+    router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
+  }, [router]);
+
   if (bypassEmptyCustomCollection) {
     return <View style={{ flex: 1, backgroundColor: t.bgPrimary }} />;
   }
+
+  const savedTitleBlock = savedSurface ? (
+    <CollectionTitleBlock
+      lang={lang}
+      title={s.title}
+      cardCount={savedCardsForPackLanguage.length}
+      showSearch
+      searchInput={searchInput}
+      onSearchInput={setSearchInput}
+    />
+  ) : null;
 
   return (
     <ScreenGradient>
@@ -1071,6 +1097,17 @@ export default function FlashcardsScreen() {
             onSpeak={onSpeakCb}
           />
         ) : (<>
+        {savedSurface ? (
+          <CollectionTopBar
+            lang={lang}
+            onBack={handleCollectionBack}
+            onMenu={() => setSavedActionsOpen(true)}
+            selectionMode={selectionMode}
+            selectedCount={selectedCardIds.length}
+            selectionTotal={savedCardsForPackLanguage.length}
+            onExitSelection={exitSelectionMode}
+          />
+        ) : (
         <CollectionHeader
           t={t}
           f={f}
@@ -1112,6 +1149,7 @@ export default function FlashcardsScreen() {
           searchActive={searchActive}
           onSearchInput={setSearchInput}
         />
+        )}
 
         {/*
           Лайк и «Добавить себе» — на самом наборе.
@@ -1169,6 +1207,9 @@ export default function FlashcardsScreen() {
           </View>
         ) : null}
 
+        {savedSurface && (loading && listCards.length === 0 || isEmpty) ? (
+          <View style={{ paddingHorizontal: 20 }}>{savedTitleBlock}</View>
+        ) : null}
         {activeCat === 'saved' && loading && !packDeeplink && listCards.length === 0 ? (
           <SavedCollectionLoading lang={lang} />
         ) : isEmpty && activeCat === 'saved' && !packDeeplink ? (
@@ -1212,6 +1253,35 @@ export default function FlashcardsScreen() {
             onExitToList={exitDeckToList}
             strengthForCard={strengthForCard}
             extraBottomPad={0}
+          />
+        ) : savedSurface ? (
+          <CollectionGalleryView
+            cards={listCards}
+            lang={cardContentLang}
+            header={savedTitleBlock}
+            hiddenByLimitCount={hiddenByLimitCount}
+            onOpenPremiumLimit={openPremiumLimit}
+            onOpenCard={openCardFromGallery}
+            onSpeak={(text) => onSpeakCb(text)}
+            strengthForCard={strengthForCard}
+            onCardsViewed={registerFlashcardViewed}
+            isEditableCustomCard={isEditableCustomCard}
+            onEditCard={openEditEditor}
+            onDeleteCardById={deleteCardById}
+            selectionMode={selectionMode}
+            selectedIds={selectedCardIdSet}
+            onToggleSelection={toggleSavedCardSelection}
+            selectedCount={selectedCardIds.length}
+            canCreatePack={canCreatePackFromSelection(selectedCardIds) && !selectionCreateBusy}
+            selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
+            onCreatePack={openCreatePackFromSelection}
+            onDeleteSelected={confirmDeleteSelected}
+            showDeleteHint={showDeleteHint}
+            onSetShowDeleteHint={setShowDeleteHint}
+            onTrain={listCards.length > 0 ? onTrainGallery : null}
+            allowAddCustomCard={false}
+            onCreateCard={openCreateEditor}
+            activeCat={activeCat}
           />
         ) : (
           <CollectionListView
@@ -1271,6 +1341,32 @@ export default function FlashcardsScreen() {
           onUndo={undoDelete}
         />
       )}
+
+      {savedSurface ? (
+        <CollectionMenuSheet
+          visible={savedActionsOpen}
+          onClose={() => setSavedActionsOpen(false)}
+          menu={{
+            lang,
+            viewMode,
+            onToggleViewMode: toggleViewMode,
+            showViewToggle: !isEmpty,
+            hasFilter: filterGroups.length > 0 && savedContentKind === 'phrase',
+            filterActive: activeFilter !== 'all',
+            onOpenFilter: () => setFilterOpen(true),
+            savedContentKind,
+            savedContentCounts,
+            onSavedContentKindChange: setSavedContentKind,
+            packLanguage,
+            onPackLanguageChange: handlePackLanguageChange,
+            selectionMode,
+            selectedCount: selectedCardIds.length,
+            onEnterSelection: enterSelectionMode,
+            onDeleteSelected: confirmDeleteSelected,
+            onOpenCommunity: openCommunityPacks,
+          }}
+        />
+      ) : null}
 
       <FlashcardsFilterDropdown
         visible={filterOpen && !selectionMode && (activeCat !== 'saved' || savedContentKind === 'phrase')}

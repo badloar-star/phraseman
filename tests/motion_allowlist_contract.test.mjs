@@ -33,6 +33,7 @@ const ALLOWED = {
   'components/stats/AiBlockNote.tsx': [1, 'ИИ готовит разбор (загрузка)'],
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': [1, 'идёт запись/звук'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
+  'app/flashcards/CardsHubV2.tsx': [1, 'парение плиток хаба по макету; крутится только пока экран активен (useRuntimeActive)'],
 };
 
 function walk(dir, out) {

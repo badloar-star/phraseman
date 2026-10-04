@@ -46,12 +46,16 @@ type Props = Readonly<{
   onOpen: (id: string) => void;
   onSpeak?: (id: string) => void;
   speakLabel?: string;
+  /** Долгое нажатие на плитку (действия с карточкой). */
+  onLongPress?: (id: string) => void;
+  /** Режим выбора: отмеченные плитки получают галочку. */
+  selectedIds?: ReadonlySet<string>;
 }>;
 
 const FACE_ALPHA_TOP = 'E6';
 const FACE_ALPHA_MID = 'DB';
 
-const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, onOpen, onSpeak, speakLabel }: Readonly<{
+const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, onOpen, onSpeak, speakLabel, onLongPress, selected }: Readonly<{
   card: GalleryCard;
   index: number;
   lvl: number;
@@ -63,6 +67,8 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
   onOpen: (id: string) => void;
   onSpeak?: (id: string) => void;
   speakLabel?: string;
+  onLongPress?: (id: string) => void;
+  selected?: boolean | undefined;
 }>) {
   const style = useAnimatedStyle(() => {
     const layout = galleryLayoutFor(scale.value, width);
@@ -86,6 +92,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
         accessibilityRole="button"
         accessibilityLabel={card.front}
         onPress={() => onOpen(card.id)}
+        onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
         style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: 'rgba(0,0,0,0.8)' }] }, pressed && styles.pressed]}>
         <View style={[styles.face, { borderRadius: radius, padding: pad }]}>
           <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.56, 1]} start={pts.start} end={pts.end} style={StyleSheet.absoluteFill} />
@@ -121,13 +128,18 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
             </View>
           ) : null}
           <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
+          {selected !== undefined ? (
+            <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: accent } : styles.checkOff]}>
+              {selected ? <Ionicons name="checkmark" size={16} color="#04261D" /> : null}
+            </View>
+          ) : null}
         </View>
       </Pressable>
     </Animated.View>
   );
 });
 
-function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel }: Props) {
+function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, selectedIds }: Props) {
   const [a, b] = themePair(g);
   const [lvl, setLvl] = useState(() => galleryLayoutFor(scale.value, width).idx);
   // зачем: смена «ступени» (колонки 1…4) — редкое событие; на неё меняются скругление, поля, кегль и набор деталей (не покадрово).
@@ -155,6 +167,8 @@ function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen,
           onOpen={onOpen}
           onSpeak={onSpeak}
           speakLabel={speakLabel}
+          onLongPress={onLongPress}
+          selected={selectedIds ? selectedIds.has(card.id) : undefined}
         />
       ))}
     </Animated.View>
@@ -175,4 +189,6 @@ const styles = StyleSheet.create({
   speak: { position: 'absolute', right: 10, top: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' },
   dots: { position: 'absolute', left: 14, bottom: 11, flexDirection: 'row', gap: 4 },
   dot: { width: 6, height: 6, borderRadius: 3 },
+  check: { position: 'absolute', left: 10, top: 10, width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  checkOff: { backgroundColor: 'rgba(255,255,255,0.14)' },
 });

@@ -38,5 +38,7 @@ test('screen-reader exposes open, edit and delete as separate real actions', () 
   assert.match(renderTile, /<View\s+key=\{pack\.id\}/);
   assert.doesNotMatch(mine, /accessibilityLabel="qa-fc-my-packs-(back|browse-community)"/);
   // зачем: 0ee956c9e — неизвестное число не озвучивается прочерком: пока count === null, подпись без числа.
-  assert.match(hub, /accessibilityLabel=\{count === null \? `\$\{title\}\. \$\{subtitle\}` : `\$\{title\}\. \$\{subtitle\}\. /);
+  // зачем: плитки хаба рисует CardsHubV2 (макет 2.0); неизвестное число — пустая строка, и подпись тогда без числа.
+  const hubTiles = readFileSync(join(root, 'app/flashcards/CardsHubV2.tsx'), 'utf8');
+  assert.match(hubTiles, /accessibilityLabel=\{t\.count === '' \? t\.title : `\$\{t\.title\}\. \$\{t\.count\}`\}/);
 });

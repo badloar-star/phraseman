@@ -5803,6 +5803,7 @@ export default function LessonsTab({
       <FeatureIntroModal
         visible={legacyLessonsIntro.visible}
         icon={legacyLessonsIntroDef.icon}
+        introId={legacyLessonsIntroDef.id}
         family={legacyLessonsIntroDef.family}
         art={legacyLessonsIntroDef.art}
         title={legacyLessonsIntroDef.title(lang)}

@@ -7,7 +7,7 @@
 // classic-параллели тут нет и не нужно). Каркас — HybridSheetShell (вход из
 // света, settle без отскока; свайп вызывает onLater).
 import React, { memo, useCallback, useEffect, useRef } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -29,6 +29,8 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { FeatureIntroIconName } from '../app/feature_intro_registry';
 import FeatureIntroStage, { type FeatureIntroFamily } from './feature_intro/FeatureIntroStage';
 import type { FeatureIntroArt } from '../app/feature_intro_art';
+import { ThemedArt } from '../app/theme/ThemedArt';
+import { resolveThemedArt, THEMED_ART_ALL_NAMES, type ThemedArtName } from '../app/theme/themed_art_registry';
 
 interface Props {
   visible: boolean;
@@ -48,6 +50,8 @@ interface Props {
   /** Вторичная кнопка / бэкдроп / свайп / системная «назад». */
   onLater: () => void;
   testIdPrefix?: string;
+  /** id вступления из реестра (`cards_hub_first_visit`…) — по нему берётся сцена 2.0 `intro_<ключ>`. */
+  introId?: string;
 }
 
 /** Один узел каскада: opacity 0→1 + translateY 14→0, задержка из LUM.ladder. */
@@ -142,6 +146,17 @@ function IconStage({ icon }: { icon: FeatureIntroIconName }) {
   );
 }
 
+/** id вступления → имя сцены: `cards_hub_first_visit` / `cards_swipe_help` → `intro_cards_hub` / `intro_cards_swipe`. */
+function introSceneName(introId: string | undefined): ThemedArtName | null {
+  if (!introId) return null;
+  const candidate = `intro_${introId.replace(/_(first_visit|help)$/, '')}`;
+  if (!(THEMED_ART_ALL_NAMES as readonly string[]).includes(candidate)) {
+    console.warn('[INTRO-ART] нет сцены для вступления', JSON.stringify({ introId, candidate }));
+    return null;
+  }
+  return candidate as ThemedArtName;
+}
+
 function FeatureIntroModal({
   visible,
   icon,
@@ -158,8 +173,23 @@ function FeatureIntroModal({
   onSecondary,
   onDismissed,
   testIdPrefix = 'feature-intro',
+  introId,
 }: Props) {
-  const { f, liquidGlassThemeId } = useTheme();
+  const { f, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  // зачем (владелец 04.10, «ВОТ ВШИВАЙ», 06dd77148): окно первого входа показывает сцену 2.0 intro_<ключ> через ThemedArt
+  // (светлая/тёмная по оформлению темы). Нет сцены — прежний значок; концепции-«семьи» забракованы и уступают сцене.
+  const sceneTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
+  const sceneName = introSceneName(introId);
+  const sceneOrigin = sceneName ? resolveThemedArt(sceneName, sceneTone).origin : 'none';
+  const showScene = sceneName !== null && (sceneOrigin === 'v2art' || sceneOrigin === 'v2art_other_brightness');
+  const stageFamily = showScene ? undefined : family;
+  const { width: winW } = useWindowDimensions();
+  const sceneW = Math.min(winW - 40, 440);
+  const sceneH = Math.round(sceneW / 1.5);
+  useEffect(() => {
+    if (!visible) return;
+    console.log('[INTRO-ART]', JSON.stringify({ introId: introId ?? null, sceneName, tone: sceneTone, origin: sceneOrigin, shown: showScene ? 'scene' : (family ? `family:${family}` : `icon:${icon}`) }));
+  }, [visible, introId, sceneName, sceneTone, sceneOrigin, showScene, family, icon]);
   // зачем: FeatureIntro — только поверхность/палитра стекла (макет overlays), тексты и логика не тронуты.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const pendingAction = useRef<(() => void) | null>(null);
@@ -192,10 +222,14 @@ function FeatureIntroModal({
     >
       {({ requestDismiss }) => <>
       <ScrollView style={{ flexShrink: 1 }} contentContainerStyle={{ paddingBottom: 4 }} bounces={false}>
-        {family ? <FeatureIntroStage family={family} art={art} /> : <View style={styles.iconRow}><IconStage icon={icon} /></View>}
+        {showScene && sceneName ? (
+          <View style={styles.sceneRow}>
+            <ThemedArt name={sceneName} width={sceneW} height={sceneH} testID={`${testIdPrefix}-scene`} />
+          </View>
+        ) : stageFamily ? <FeatureIntroStage family={stageFamily} art={art} /> : <View style={styles.iconRow}><IconStage icon={icon} /></View>}
 
       <CascadeItem index={1}>
-        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: family ? f.h1 * 1.3 : 25, lineHeight: family ? f.h1 * 1.3 * 1.2 : 31 }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: stageFamily ? f.h1 * 1.3 : 25, lineHeight: stageFamily ? f.h1 * 1.3 * 1.2 : 31 }]}>{title}</Text>
       </CascadeItem>
 
       <CascadeItem index={2}>
@@ -238,6 +272,11 @@ export default memo(FeatureIntroModal);
 
 const styles = StyleSheet.create({
   iconRow: {
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  // Сцена 3:2 по ширине содержимого шторки; заголовок ниже на 14 (как у значка).
+  sceneRow: {
     alignItems: 'center',
     marginBottom: 4,
   },

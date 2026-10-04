@@ -754,7 +754,7 @@ function DailyPhraseCard({
 
       <FeatureIntroModal visible={dailyIntro.visible} icon={dailyIntroDef.icon} family={dailyIntroDef.family} art={dailyIntroDef.art}
         title={dailyIntroDef.title(lang)} body={dailyIntroDef.body(lang)} ctaLabel={dailyIntroDef.ctaLabel(lang)} laterLabel={featureIntroClose(lang)}
-        onDone={dailyIntro.close} onLater={dailyIntro.close} onDismissed={dailyIntro.finish} testIdPrefix="daily_phrase_first_visit" />
+        onDone={dailyIntro.close} onLater={dailyIntro.close} onDismissed={dailyIntro.finish} testIdPrefix="daily_phrase_first_visit" introId={dailyIntroDef.id} />
       <Modal
         visible={detailsVisible}
         transparent

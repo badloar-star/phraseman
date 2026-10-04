@@ -3956,6 +3956,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           onDone={dismissSwipeHint}
           onLater={dismissSwipeHint}
           testIdPrefix="swipe-intro"
+          introId={swipeIntro.id}
         /> : null}
 
         {/* Источник полёта рун (владелец, 2026-08-27) */}

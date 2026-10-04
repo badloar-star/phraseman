@@ -15,5 +15,5 @@ export default function FeatureIntroEntry({ id, enabled }: { id: string; enabled
   if (!def) return null;
   return <FeatureIntroModal visible={intro.visible && active} icon={def.icon} family={def.family} art={def.art}
     title={def.title(lang)} body={def.body(lang)} ctaLabel={def.ctaLabel(lang)} laterLabel={featureIntroClose(lang)}
-    onDone={() => intro.dismiss(true)} onLater={() => intro.dismiss(false)} testIdPrefix={id} />;
+    onDone={() => intro.dismiss(true)} onLater={() => intro.dismiss(false)} testIdPrefix={id} introId={def.id} />;
 }

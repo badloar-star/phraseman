@@ -61,11 +61,32 @@ function checkTrace(root, row, field, atField, shaField, minAtMs, violations, la
   }
 }
 
+/**
+ * Журнал сверки (SVERKA_LOG.md): строки таблицы `| id | склейка | что на макете | что в приложении | файл кода |`.
+ * Возвращает id, у которых в журнале записано расхождение (обе колонки заполнены и не «совпадает»).
+ *
+ * зачем (владелец 04.10, дыра в гейте): сверка писала отличия в журнал, а в реестре у строки оставалось diffs: [] — гейт ничего не видел.
+ */
+export function parseSverkaOpenDiffs(text) {
+  const open = new Map();
+  for (const line of String(text ?? '').split(/\r?\n/)) {
+    const match = /^\|\s*([a-z0-9-]+-\d{3})\s*\|(.*)\|\s*$/.exec(line);
+    if (!match) continue;
+    const cols = match[2].split('|').map((c) => c.trim());
+    const mockup = cols[1] ?? '';
+    const app = cols[2] ?? '';
+    if (!mockup || !app || /^(—|-|нет|совпада)/i.test(app) || /^(—|-|нет)$/i.test(mockup)) continue;
+    open.set(match[1], { mockup, app });
+  }
+  return open;
+}
+
 export function evaluateRegistry(root, registry, options = {}) {
   const violations = [];
   const runGit = options.runGit ?? defaultGit;
   const rows = Array.isArray(registry?.rows) ? registry.rows : [];
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
+  const sverkaOpen = options.sverkaOpenDiffs ?? new Map();
   const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, other: 0 };
   for (const row of rows) {
     if (row.status in counts) counts[row.status] += 1;
@@ -74,6 +95,16 @@ export function evaluateRegistry(root, registry, options = {}) {
     if (row.status === 'removed_by_owner') {
       if (!row.removed_reason) violations.push({ id: row.id, code: 'removed_reason_missing', detail: 'removed_by_owner без removed_reason' });
       continue;
+    }
+    // зачем (владелец 04.10): отличие, записанное в журнале сверки, обязано быть в diffs строки реестра — иначе гейт его «не видит».
+    // Исключение — строка match с ревью координатора ПОСЛЕ последней склейки (координатор оценил отличие и принял).
+    const logged = sverkaOpen.get(row.id);
+    if (logged && (!Array.isArray(row.diffs) || row.diffs.length === 0)) {
+      const reviewedAfterEvidence = row.status === 'match' && !!row.reviewed_by
+        && Date.parse(row.reviewed_at ?? '') >= Date.parse(row.evidence_at ?? '');
+      if (!reviewedAfterEvidence) {
+        violations.push({ id: row.id, code: 'sverka_diff_not_in_registry', detail: `журнал сверки: «${logged.mockup}» ≠ «${logged.app}», а diffs пуст` });
+      }
     }
     if (row.status !== 'match') {
       violations.push({ id: row.id, code: `status_${row.status}`, detail: `${row.screen} / ${row.state}` });
@@ -128,7 +159,9 @@ async function main() {
     console.error(`${LOG} ОТКАЗ: реестр не читается: ${error instanceof Error ? error.message : String(error)}`);
     return 1;
   }
-  const result = evaluateRegistry(root, registry);
+  const logPath = path.join(root, 'docs/phraseman-2.0/evidence/parity/SVERKA_LOG.md');
+  const sverkaOpenDiffs = fs.existsSync(logPath) ? parseSverkaOpenDiffs(fs.readFileSync(logPath, 'utf8')) : new Map();
+  const result = evaluateRegistry(root, registry, { sverkaOpenDiffs });
   if (!flag('--no-matrix-check')) {
     const matrixPath = path.join(root, registry.matrix ?? 'docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md');
     if (fs.existsSync(matrixPath)) {

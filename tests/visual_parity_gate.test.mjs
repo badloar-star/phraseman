@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { evaluateRegistry, missingMatrixRows } from '../scripts/visual_parity_gate.mjs';
+import { evaluateRegistry, missingMatrixRows, parseSverkaOpenDiffs } from '../scripts/visual_parity_gate.mjs';
 import { parseMatrix } from '../scripts/visual_parity_build.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -193,4 +193,23 @@ test('parity_shot: склейка «макет | кадр устройства»
   assert.ok(fs.existsSync(path.join(dir, row.evidence)));
   assert.equal(row.evidence_sha256, sha(fs.readFileSync(path.join(dir, row.evidence))));
   assert.ok(Number.isFinite(Date.parse(row.evidence_at)));
+});
+
+// зачем (владелец 04.10, дыра гейта): отличия из журнала сверки обязаны попадать в diffs реестра.
+test('журнал сверки: расхождение есть, а diffs пуст — отказ; с diffs или ревью после склейки — проходит', () => {
+  const log = ['| id | склейка | что на макете | что в приложении | файл кода |', '|---|---|---|---|---|', '| demo-001 | demo.png | кнопка круглая | кнопка квадратная | app/screen.tsx |', '| demo-002 | demo2.png | всё | совпадает | app/screen.tsx |'].join(String.fromCharCode(10));
+  const open = parseSverkaOpenDiffs(log);
+  assert.deepEqual([...open.keys()], ['demo-001']);
+  const dir = sandbox();
+  const bad = evaluateRegistry(dir, { rows: [matchRow()] }, { runGit: fakeGit(T0), sverkaOpenDiffs: open });
+  assert.ok(codes(bad).includes('sverka_diff_not_in_registry'));
+  const withDiffs = evaluateRegistry(dir, { rows: [matchRow({ diffs: ['кнопка квадратная'] })] }, { runGit: fakeGit(T0), sverkaOpenDiffs: open });
+  assert.ok(!codes(withDiffs).includes('sverka_diff_not_in_registry'));
+  const reviewed = evaluateRegistry(dir, { rows: [matchRow({ reviewed_at: new Date(T0 + 20 * MINUTE).toISOString() })] }, { runGit: fakeGit(T0), sverkaOpenDiffs: open });
+  assert.ok(!codes(reviewed).includes('sverka_diff_not_in_registry'));
+});
+
+test('склейка без ревью и match с непустыми diffs не проходят', () => {
+  assert.ok(codes(run(sandbox(), [matchRow({ reviewed_by: null })])).includes('review_missing'));
+  assert.ok(codes(run(sandbox(), [matchRow({ diffs: ['x'] })])).includes('diffs_not_empty'));
 });

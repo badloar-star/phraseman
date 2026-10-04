@@ -163,7 +163,8 @@ export default function ReferralSheetShell({
                 <View style={[styles.grabberPill, { backgroundColor: glass.glassEdge }]} />
               </View>
               <View style={styles.header}>
-                <Text style={{ color: glass.text, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
+                {/* зачем (overlay-more.css `.om-title`): заголовок 25/31 по центру шторки; слева запас под ширину крестика, чтобы центр не съезжал. */}
+                <Text style={{ color: glass.text, fontSize: 25, lineHeight: 31, fontWeight: '800', flex: 1, textAlign: 'center', marginLeft: 56 }}>
                   {title}
                 </Text>
                 <Pressable

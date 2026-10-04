@@ -7,7 +7,7 @@
  * идемпотентность и валидация — внутри referral_bootstrap).
  */
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
@@ -227,7 +227,8 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       title={L('Код от друга', 'Код від друга', 'Friend\'s code', 'Código de un amigo', 'Código de um amigo', 'Mã của bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
       closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
-      <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 12 }}>
+      {/* зачем (`.om-copy`): пояснение по центру под заголовком. */}
+      <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 2, textAlign: 'center' }}>
         {L(
           'Введи код и оформи Plus или Pro — другу откроется ключ к награде.',
           'Введи код і оформи Plus або Pro — друг отримає ключ до нагороди.',
@@ -240,6 +241,10 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           'Wpisz kod i kup Plus lub Pro, aby znajomy dostał klucz.',
         )}
       </Text>
+      {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700, шкала D145 — 13. */}
+      <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', marginTop: 14, marginBottom: 7 }}>
+        {L('Код приглашения', 'Код запрошення', 'Invite code', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
+      </Text>
       <TextInput
         testID="referral-code-sheet-input"
         accessibilityLabel={L('Код приглашения', 'Код запрошення', 'Invite code', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
@@ -249,15 +254,17 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         autoCorrect={false}
         placeholder={L('Введите код', 'Введіть код', 'Enter the code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
         placeholderTextColor={glass.mutedText}
+        // зачем (`.field`): 48 высотой, радиус 14, поля 14, тонкая кромка, обычный вес.
         style={{
-          minHeight: 56,
-          borderRadius: 28,
-          paddingHorizontal: 20,
+          minHeight: 48,
+          borderRadius: 14,
+          paddingHorizontal: 14,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: glass.glassEdge,
           backgroundColor: glass.opaqueControl,
           color: glass.text,
-          fontSize: f.body ?? 16,
-          fontWeight: '700',
-          letterSpacing: 1,
+          fontSize: 16,
+          fontWeight: '500',
         }}
       />
       <TouchableOpacity
@@ -267,23 +274,24 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         activeOpacity={0.82}
         disabled={!canSubmit}
         onPress={() => { void submit(); }}
+        // зачем (`.cta` + `.cta:disabled`): пилюля 48/24 без значка; пустое поле — та же кнопка на 46 %, при отправке «Применяем…».
         style={{
-          minHeight: 56,
-          borderRadius: 28,
+          minHeight: 48,
+          borderRadius: 24,
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'row',
           gap: 8,
           marginTop: 12,
-          backgroundColor: canSubmit ? glass.cta : glass.selected,
-          opacity: canSubmit ? 1 : 0.55,
+          backgroundColor: glass.cta,
+          opacity: canSubmit || busy ? 1 : 0.46,
         }}
       >
-        {busy
-          ? <ActivityIndicator color={glass.ctaInk} />
-          : <Ionicons name="checkmark-circle-outline" size={20} color={canSubmit ? glass.ctaInk : glass.mutedText} />}
-        <Text style={{ color: canSubmit ? glass.ctaInk : glass.mutedText, fontSize: f.body ?? 16, fontWeight: '700' }}>
-          {L('Применить код', 'Застосувати код', 'Apply code', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
+        {busy ? <ActivityIndicator color={glass.ctaInk} /> : null}
+        <Text style={{ color: glass.ctaInk, fontSize: 16, fontWeight: '700' }}>
+          {busy
+            ? L('Применяем…', 'Застосовуємо…', 'Applying…', 'Aplicando…', 'Aplicando…', 'Đang áp dụng…', 'Menerapkan…', 'Uygulanıyor…', 'Stosowanie…')
+            : L('Применить код', 'Застосувати код', 'Apply code', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
         </Text>
       </TouchableOpacity>
       {feedback && (

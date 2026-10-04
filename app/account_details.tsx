@@ -211,11 +211,11 @@ export default function AccountDetailsScreen() {
               variant="icon"
               withHaptic={false}
               withSound={false}
-              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+              // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
+              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
+              <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
@@ -233,7 +233,8 @@ export default function AccountDetailsScreen() {
               <FlowText
                 testID="account-name"
                 provenance="user"
-                style={{ color: glass.text, fontSize: 26, lineHeight: 32, fontWeight: '700', marginTop: 10, maxWidth: '86%', textAlign: 'center' }}
+                // зачем (profile.html `.section-title`): имя 19/24 жирным под монетой.
+                style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700', marginTop: 10, maxWidth: '86%', textAlign: 'center' }}
               >
                 {userName || namePlaceholder}
               </FlowText>
@@ -244,10 +245,11 @@ export default function AccountDetailsScreen() {
                 withHaptic={false}
                 withSound={false}
                 variant="chip"
-                style={{ marginTop: 10, minHeight: 44 }}
-                contentStyle={{ minHeight: 44, paddingHorizontal: 18, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+                // зачем (profile.html `.chipbtn`): пилюля 32 (поля 12, r16, без кромки) в области нажатия 44 — 6 сверху и снизу.
+                style={{ marginTop: 4, paddingVertical: 6 }}
+                contentStyle={{ height: 32, paddingHorizontal: 12, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
               >
-                <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>{nameLabel}</Text>
+                <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '600' }}>{nameLabel}</Text>
               </PressableHybrid>
             </View>
 

@@ -38,7 +38,10 @@ test('surveys, quest sheet and code screens no longer use the old theme roles', 
 
 test('tap targets are at least 44dp on the migrated close/back buttons', () => {
   assert.match(src.vipSurvey, /roundButton:\s*\{[^}]*width:\s*44,\s*height:\s*44/);
-  assert.match(src.vipReview, /closeButton:\s*\{[\s\S]*?width:\s*44,\s*height:\s*44/);
+  // 04.10 (владелец): окно отзыва после опроса Plus — шторка по кадру system_20, крестика в макете нет;
+  // закрытие — капсула «Не сейчас» высотой 48 (≥44dp) и тап по фону.
+  assert.match(src.vipReview, /laterButton:\s*\{[^}]*minHeight:\s*48/);
+  assert.doesNotMatch(src.vipReview, /testID="vip-survey-review-close"/);
 });
 
 test('feature intro uses the opaque glass sheet and keeps copy/logic props untouched', () => {

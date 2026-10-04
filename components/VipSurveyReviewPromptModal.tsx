@@ -1,6 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -11,7 +10,8 @@ import { triLang } from '../constants/i18n';
 import { openStoreReviewPage } from '../app/store_review';
 import { hasUserRated, markReviewPrompted, markReviewRated } from '../app/review_utils';
 import { recordVipSurveyReviewClickFromApp } from '../app/vip_survey';
-import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import { CascadeItem } from './modal_fx/HybridAlertShell';
+import HybridSheetShell from './modal_fx/HybridSheetShell';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -27,7 +27,7 @@ type Props = {
 
 function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic' }: Props) {
   const { lang } = useLang();
-  const { f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -67,159 +67,125 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
     onClose();
   };
 
-  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
-  const laterLabel = triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
+  // зачем: подпись второй кнопки как в кадре system_20.
+  const laterLabel = triLang(lang, { ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' });
 
-  // зачем: тело карточки одинаковое в classic/hybrid — расходятся только
-  // внешняя оболочка (нативный Modal vs HybridAlertShell) и физика кнопок
-  // (TouchableOpacity → DuoPressable/PressableHybrid под гибридом), см.
-  // паттерн ThemedConfirmModal.
-  const cardBody = (
-    <View testID="vip-survey-review-prompt" style={[styles.card, { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: g.opaqueSheet, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}>
+  const kicker = 'PLUS'; // зачем: кикер `.ov` кадра system_20; слово-марка одинаково во всех языках
+  const title = triLang(lang, {
+    ru: 'Твой Plus активирован',
+    uk: 'Твій Plus активовано',
+    en: 'Your Plus is active',
+    es: 'Tu Plus está activo',
+    'pt-BR': 'Seu Plus está ativo',
+    vi: 'Plus của bạn đã kích hoạt',
+    id: 'Plus-mu sudah aktif',
+    tr: 'Plus’ın aktif',
+    pl: 'Twój Plus jest aktywny',
+  });
+  const body = triLang(lang, {
+    ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
+    uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
+    en: 'Want to share your impressions of Phraseman? An honest review helps other people know what to expect from the app.',
+    es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
+    'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
+    vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
+    id: 'Mau berbagi kesanmu tentang Phraseman? Ulasan yang jujur membantu orang lain tahu apa yang bisa diharapkan dari aplikasi ini.',
+    tr: 'Phraseman hakkındaki izlenimini paylaşmak ister misin? Dürüst bir değerlendirme, başkalarının uygulamadan ne bekleyeceğini anlamasına yardımcı olur.',
+    pl: 'Chcesz podzielić się wrażeniami o Phraseman? Szczera recenzja pomoże innym zrozumieć, czego oczekiwać od aplikacji.',
+  });
+  const writeLabel = triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' });
+
+  // зачем (владелец 04.10): окно после опроса Plus — в виде обычного «Оценить» по кадру system_20:
+  // шторка снизу, кикер, заголовок, белая кнопка и тёмная капсула «Не сейчас»; текст свой, про Plus.
+  // Крестика в макете нет — закрытие капсулой «Не сейчас» (48dp) и тапом по фону.
+  const sheetBody = (
+    <View testID="vip-survey-review-prompt" style={styles.content}>
+      <CascadeItem delay={isHybrid ? LUM.ladder[1] : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text style={[styles.kicker, { color: g.secondary }]}>{kicker}</Text>
+      </CascadeItem>
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text style={[styles.title, { color: g.text }]}>{title}</Text>
+        <Text style={[styles.body, { color: g.secondary }]}>{body}</Text>
+      </CascadeItem>
+      {isHybrid ? (
+        <DuoPressable
+          testID="vip-survey-review-write"
+          accessibilityRole="button"
+          accessibilityLabel={writeLabel}
+          onPress={() => { void openReview(); }}
+          wrapStyle={{ width: '100%', marginTop: 18 }}
+          style={[styles.primaryButton, { backgroundColor: g.accent }]}
+        >
+          <Text style={[styles.buttonText, { color: g.accentInk }]}>{writeLabel}</Text>
+        </DuoPressable>
+      ) : (
+        <TouchableOpacity
+          testID="vip-survey-review-write"
+          activeOpacity={0.88}
+          accessibilityRole="button"
+          accessibilityLabel={writeLabel}
+          onPress={() => { void openReview(); }}
+          style={[styles.primaryButton, styles.fullWidth, { backgroundColor: g.accent, marginTop: 18 }]}
+        >
+          <Text style={[styles.buttonText, { color: g.accentInk }]}>{writeLabel}</Text>
+        </TouchableOpacity>
+      )}
       {isHybrid ? (
         <PressableHybrid
-          variant="icon"
-          onPress={close}
-          testID="vip-survey-review-close"
+          variant="secondary"
+          testID="vip-survey-review-later"
           accessibilityRole="button"
-          accessibilityLabel={closeLabel}
-          style={[styles.closeButton, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}
+          accessibilityLabel={laterLabel}
+          onPress={close}
+          style={[styles.fullWidth, { marginTop: 10 }]}
+          contentStyle={[styles.laterButton, { backgroundColor: g.card }]}
         >
-          <Ionicons name="close" size={20} color={g.text} />
+          <Text style={[styles.buttonText, { color: g.text }]}>{laterLabel}</Text>
         </PressableHybrid>
       ) : (
         <TouchableOpacity
-          testID="vip-survey-review-close"
-          activeOpacity={0.76}
+          testID="vip-survey-review-later"
+          activeOpacity={0.7}
           accessibilityRole="button"
-          accessibilityLabel={closeLabel}
+          accessibilityLabel={laterLabel}
           onPress={close}
-          style={[styles.closeButton, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}
+          style={[styles.laterButton, styles.fullWidth, { backgroundColor: g.card, marginTop: 10 }]}
         >
-          <Ionicons name="close" size={20} color={g.text} />
+          <Text style={[styles.buttonText, { color: g.text }]}>{laterLabel}</Text>
         </TouchableOpacity>
       )}
-
-      <CascadeItem delay={isHybrid ? LUM.ladder[1] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={[styles.iconWrap, { backgroundColor: g.opaqueControl, borderRadius: 29, overflow: 'hidden' }]}>
-          <Ionicons name="star" size={28} color={g.text} />
-        </View>
-      </CascadeItem>
-      <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={[styles.title, { color: g.text, fontSize: Math.max(22, f.h2) }]}>
-          {triLang(lang, {
-            ru: 'Твой Plus активирован',
-            uk: 'Твій Plus активовано',
-            en: 'Your Plus is active',
-            es: 'Tu Plus está activo',
-            'pt-BR': 'Seu Plus está ativo',
-            vi: 'Plus của bạn đã kích hoạt',
-            id: 'Plus-mu sudah aktif',
-            tr: 'Plus’ın aktif',
-            pl: 'Twój Plus jest aktywny',
-          })}
-        </Text>
-      </CascadeItem>
-      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]}>
-          {triLang(lang, {
-            ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
-            uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
-            en: 'Want to share your impressions of Phraseman? An honest review helps other people know what to expect from the app.',
-            es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
-            'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
-            vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
-            id: 'Mau berbagi kesanmu tentang Phraseman? Ulasan yang jujur membantu orang lain tahu apa yang bisa diharapkan dari aplikasi ini.',
-            tr: 'Phraseman hakkındaki izlenimini paylaşmak ister misin? Dürüst bir değerlendirme, başkalarının uygulamadan ne bekleyeceğini anlamasına yardımcı olur.',
-            pl: 'Chcesz podzielić się wrażeniami o Phraseman? Szczera recenzja pomoże innym zrozumieć, czego oczekiwać od aplikacji.',
-          })}
-        </Text>
-      </CascadeItem>
-      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        {isHybrid ? (
-          <DuoPressable
-            testID="vip-survey-review-write"
-            accessibilityRole="button"
-            onPress={openReview}
-            edgeColor={g.glassEdge}
-            edgeHeight={5}
-            style={[styles.primaryButtonHybridFace, { backgroundColor: g.accent }]}
-          >
-            <Ionicons name="create-outline" size={19} color={g.ctaInk} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: g.accentInk }]}>
-              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
-            </Text>
-          </DuoPressable>
-        ) : (
-          <TouchableOpacity
-            testID="vip-survey-review-write"
-            activeOpacity={0.88}
-            accessibilityRole="button"
-            onPress={openReview}
-            style={[styles.primaryButton, { backgroundColor: g.accent, borderRadius: 16, overflow: 'hidden' }]}
-          >
-            <Ionicons name="create-outline" size={19} color={g.ctaInk} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: g.accentInk }]}>
-              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
-            </Text>
-          </TouchableOpacity>
-        )}
-        {/* Единый стандарт: текстовая «Позже» под primary (раньше отказ был
-            только через крестик/фон). */}
-        {isHybrid ? (
-          <PressableHybrid
-            variant="secondary"
-            testID="vip-survey-review-later"
-            accessibilityRole="button"
-            accessibilityLabel={laterLabel}
-            onPress={close}
-            style={styles.laterButton}
-            contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-              {laterLabel}
-            </Text>
-          </PressableHybrid>
-        ) : (
-          <TouchableOpacity
-            testID="vip-survey-review-later"
-            activeOpacity={0.7}
-            accessibilityRole="button"
-            accessibilityLabel={laterLabel}
-            onPress={close}
-            style={styles.laterButton}
-          >
-            <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-              {laterLabel}
-            </Text>
-          </TouchableOpacity>
-        )}
-      </CascadeItem>
     </View>
   );
 
   if (isHybrid) {
     return (
-      <HybridAlertShell
+      <HybridSheetShell
         visible={visible}
-        onRequestClose={close}
-        shadowColor="#000000"
-        backdropColor="rgba(0,0,0,0.56)"
+        onClose={close}
+        closeLabel={laterLabel}
         testID="vip-survey-review-prompt-hybrid"
+        material="liquid-glass"
+        backdropAccessible={false}
       >
-        {cardBody}
-      </HybridAlertShell>
+        {sheetBody}
+      </HybridSheetShell>
     );
   }
 
   return (
-    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
-      <View style={styles.root}>
-        {/* guard-ok: скрим-фон закрывает модалку по тапу вовне (та же роль, что
-            у HybridAlertShell), не несёт своего смысла для VoiceOver/TalkBack. */}
-        <Pressable style={StyleSheet.absoluteFill} onPress={close} accessible={false} />
-        {cardBody}
-      </View>
+    <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={close}>
+      {/* guard-ok: скрим закрывает шторку по тапу вовне, своего смысла для VoiceOver/TalkBack не несёт. */}
+      <Pressable style={styles.root} onPress={close} accessible={false}>
+        {/* guard-ok: гасит всплытие тапа из шторки в скрим. */}
+        <Pressable
+          onPress={(event) => event.stopPropagation()}
+          accessible={false}
+          style={[styles.sheet, { backgroundColor: g.opaqueSheet, paddingBottom: Math.max(18, bottomInset + 12) }]}
+        >
+          <View testID="vip-survey-review-grabber" style={[styles.grabber, { backgroundColor: g.glassEdge }]} />
+          {sheetBody}
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 }
@@ -229,82 +195,68 @@ export default memo(VipSurveyReviewPromptModal);
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 18,
+    justifyContent: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0.56)',
   },
-  card: {
+  sheet: {
     width: '100%',
-    maxWidth: 520,
+    paddingHorizontal: 22,
+    paddingTop: 12,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+  },
+  grabber: {
     alignSelf: 'center',
-    borderRadius: 22,
-    borderWidth: 1,
-    padding: 22,
-    paddingTop: 24,
-    alignItems: 'center',
+    width: 36,
+    height: 4,
+    borderRadius: 99,
+    marginBottom: 18,
   },
-  closeButton: {
-    position: 'absolute',
-    top: 12,
-    right: 12,
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  content: {
+    width: '100%',
+    alignItems: 'flex-start',
   },
-  iconWrap: {
-    width: 58,
-    height: 58,
-    borderRadius: 29,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(34,197,94,0.14)',
-    marginBottom: 14,
-  },
-  title: {
-    fontWeight: '900',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  body: {
-    textAlign: 'center',
-    lineHeight: 22,
-    fontWeight: '600',
-    marginBottom: 20,
+  kicker: {
+    // зачем: `.ov` макета 12/3px; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 13.
+    fontSize: 13,
+    lineHeight: 16,
+    fontWeight: '700',
+    letterSpacing: 3,
     paddingHorizontal: 4,
   },
-  primaryButton: {
-    minHeight: 50,
-    borderRadius: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 18,
+  title: {
+    fontSize: 24,
+    lineHeight: 30,
+    fontWeight: '700',
+    paddingTop: 8,
+    paddingHorizontal: 4,
+  },
+  body: {
+    fontSize: 16,
+    lineHeight: 22,
+    marginTop: 8,
+    paddingHorizontal: 4,
+  },
+  fullWidth: {
     width: '100%',
   },
-  // Лицо DuoPressable: те же размеры/выравнивание, что у primaryButton, но без
-  // borderRadius/overflow — их несёт DuoPressable через edgeColor-подошву.
-  primaryButtonHybridFace: {
-    minHeight: 50,
-    borderRadius: 16,
-    flexDirection: 'row',
+  primaryButton: {
+    minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 18,
-  },
-  primaryText: {
-    fontWeight: '900',
+    paddingHorizontal: 24,
   },
   laterButton: {
-    alignSelf: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginTop: 4,
-    minHeight: 44,
+    minHeight: 48,
+    borderRadius: 24,
+    alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    textAlign: 'center',
   },
 });

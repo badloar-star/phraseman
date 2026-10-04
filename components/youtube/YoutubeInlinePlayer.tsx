@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
+import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import type { WebViewMessageEvent } from 'react-native-webview';
 import WebView from 'react-native-webview';
 import {
@@ -128,6 +129,10 @@ export default function YoutubeInlinePlayer({
     if (!claim) return;
     console.log('[VIDEO-PLAYER] аренда звука снята', JSON.stringify({ videoId, why }));
     claim.release();
+    // зачем (§126 п.9): экран держим ровно пока видео играет — снимаем вместе с арендой звука.
+    void Promise.resolve(deactivateKeepAwake(`video:${videoId}`)).catch((error: unknown) => {
+      console.warn('[VIDEO-PLAYER] keep-awake: снять не удалось', String((error as Error)?.message ?? error).slice(0, 120));
+    });
   }, [videoId]);
   useEffect(() => () => releaseAudioClaim('unmount'), [releaseAudioClaim]);
   // Новый WebView (повтор после ошибки) снова ждёт готовности.
@@ -200,6 +205,11 @@ export default function YoutubeInlinePlayer({
           audioClaimRef.current = claimVideoAudio(pauseVideo, `video:${videoId}`);
           // Идёт запись с микрофона — видео не имеет права звучать поверх неё.
           if (!audioClaimRef.current) pauseVideo();
+          // зачем (§126 п.9, жалоба «видео гаснет через 5 минут»): удержания экрана не было нигде —
+          // система гасила экран посреди ролика. Держим, пока у видео есть аренда звука.
+          else void activateKeepAwakeAsync(`video:${videoId}`).catch((error: unknown) => {
+            console.warn('[VIDEO-PLAYER] keep-awake: включить не удалось', String((error as Error)?.message ?? error).slice(0, 120));
+          });
         }
       } else {
         releaseAudioClaim('paused_or_ended');

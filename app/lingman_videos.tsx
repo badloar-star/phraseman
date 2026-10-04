@@ -359,9 +359,16 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       const videoIndex = allVideos.findIndex((item) => item.id === video.id);
       const unreadCount = snapshot.unreadCount ?? 0;
       const nextUnread = Math.min(unreadCount, Math.max(0, videoIndex));
-      patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread);
+      const seenToken = captureAccountGeneration();
+      patchLingmanUnread(seenToken, channel.channelId, nextUnread);
       setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
-      void markLingmanYoutubeCatalogSeen(video.id);
+      // зачем (аудит Optimistic UI, 04.10): бейдж «новые» гаснет сразу, а запись «просмотрено» могла упасть без следа — тогда экран
+      // и хранилище расходились до следующего обновления. Теперь при отказе бейдж возвращается и причина идёт в лог.
+      markLingmanYoutubeCatalogSeen(video.id).catch((error: unknown) => {
+        DebugLogger.error('[VIDEO-TAB]:markSeen', error, 'warning');
+        patchLingmanUnread(seenToken, channel.channelId, unreadCount);
+        setCachedSnapshot((current) => current ? { ...current, unreadCount } : current);
+      });
     }
     // Ровно один videoId хранится в состоянии: смена id размонтирует прежний
     // WebView до создания следующего, поэтому параллельного воспроизведения нет.

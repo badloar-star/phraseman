@@ -18,7 +18,6 @@ const mockPracticeRunesInput = jest.fn();
 const mockSessionAttemptsInput = jest.fn();
 const mockLoadStrengths = jest.fn();
 const mockClearAnimation = jest.fn();
-const mockGetBlitzBest = jest.fn();
 const mockConsumeQuota = jest.fn();
 let mockPendingRecord: Record<string, any> | null = null;
 
@@ -152,10 +151,12 @@ jest.mock('../hooks/useSessionAttempts', () => ({
 }));
 jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: jest.fn() }));
 jest.mock('../app/spanish_content_gate', () => ({ flashcardContentLang: () => 'en' }));
+// зачем (04.10): шапка Блица (2dac16675) показывает EnergyBar — его анимации и фокус-гейт в jest не поднимаются, проверяем логику доступа.
+jest.mock('../components/EnergyBar', () => ({ __esModule: true, default: () => null }));
 jest.mock('../app/flashcards/PhraseCard', () => ({ useFcReduceMotion: () => true }));
 jest.mock('../app/flashcards/low_power', () => ({ isLowPowerEffective: () => false }));
 jest.mock('../app/flashcards/SoundService', () => ({
-  comboSfxForStreak: () => 'combo', fcHaptic: jest.fn(), playSfx: jest.fn(),
+  fcHaptic: jest.fn(), playSfx: jest.fn(),
 }));
 jest.mock('../app/flashcards/blitz_logic', () => ({
   BLITZ_ADVANCE_OK_MS: 350,
@@ -164,7 +165,7 @@ jest.mock('../app/flashcards/blitz_logic', () => ({
   applyBlitzAnswer: jest.fn(),
   canStartBlitz: (count: number) => count >= 4,
   buildBlitzQuestion: (...args: unknown[]) => mockBuildQuestion(...args),
-  initialBlitzState: () => ({ score: 0, streak: 0, lives: 3 }),
+  initialBlitzState: () => ({ lives: 3, correct: 0, wrong: 0 }),
 }));
 jest.mock('../app/flashcards/deck_sources', () => ({
   deckRefKey: () => 'saved',
@@ -184,10 +185,6 @@ jest.mock('../app/flashcards/deck_selection', () => ({
   SOLO_DECK_ID: 'solo', deckRouteParam: () => 'saved', decksCountLabel: () => 'Saved',
 }));
 jest.mock('../app/flashcards/mode_prefs', () => ({ getLastPreset: jest.fn(), presetDeckIds: () => [] }));
-jest.mock('../app/flashcards/blitz_record', () => ({
-  getBlitzBest: (...args: unknown[]) => mockGetBlitzBest(...args),
-  commitBlitzScore: jest.fn(async (score: number) => ({ score, best: score, isRecord: true })),
-}));
 jest.mock('../app/navigation_back', () => ({
   markNextNavigationAsReplace: (...args: unknown[]) => mockMarkReplace(...args),
   safeRouterBack: (...args: unknown[]) => mockBack(...args),
@@ -272,7 +269,6 @@ beforeEach(() => {
   mockRefundEnergy.mockResolvedValue(undefined);
   mockAcknowledgeEnergy.mockResolvedValue(true);
   mockLoadStrengths.mockResolvedValue({});
-  mockGetBlitzBest.mockResolvedValue(0);
   mockConsumeQuota.mockResolvedValue({ status: 'allowed', used: 1, limit: 3 });
   mockBuildQuestion.mockImplementation((_card: unknown, pool: typeof mockCards) => ({
     card: pool[0], options: pool.map((card) => card.translation), correctIndex: 0,
@@ -294,7 +290,6 @@ test('unresolved performs no work; exhausted direct start refunds and redirects 
   expect(intervalSpy).not.toHaveBeenCalled();
   expect(mockRuneSettle).not.toHaveBeenCalled();
   expect(mockRuneCorrect).not.toHaveBeenCalled();
-  expect(mockGetBlitzBest).not.toHaveBeenCalled();
   expect(mockPracticeRunesInput).toHaveBeenLastCalledWith(expect.objectContaining({ enabled: false }));
   expect(mockSessionAttemptsInput).toHaveBeenLastCalledWith(expect.objectContaining({
     autoHydrate: false,
@@ -327,7 +322,6 @@ test('unresolved performs no work; exhausted direct start refunds and redirects 
   expect(intervalSpy).not.toHaveBeenCalled();
   expect(mockRuneSettle).not.toHaveBeenCalled();
   expect(mockRuneCorrect).not.toHaveBeenCalled();
-  expect(mockGetBlitzBest).toHaveBeenCalledTimes(1);
   expect(view.queryByTestId('fc-blitz-result')).toBeNull();
   intervalSpy.mockRestore();
 });
@@ -345,7 +339,6 @@ test('granted direct access keeps the normal deck, energy, question and timer pa
   expect(mockLoadDeckRefs).toHaveBeenCalledTimes(1);
   expect(mockLoadDeckCards).toHaveBeenCalledTimes(1);
   expect(mockConfirmEnergy).toHaveBeenCalledTimes(1);
-  expect(mockGetBlitzBest).toHaveBeenCalledTimes(1);
   expect(mockPracticeRunesInput).toHaveBeenLastCalledWith(expect.objectContaining({ enabled: true }));
   expect(mockSessionAttemptsInput).toHaveBeenLastCalledWith(expect.objectContaining({
     autoHydrate: true,

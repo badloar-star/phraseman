@@ -1,101 +1,41 @@
 /**
  * cards-2.0 (E12): чистая логика блица (§3.9 мастер-плана).
- * Покрытие: комбо-пороги ×3/×5/×10 (множитель + точный hit для SFX), очки
- * 100 × множитель, жизни (ошибка = −1, 0 = конец), редьюсер applyBlitzAnswer,
+ * Покрытие: жизни (ошибка = −1, 0 = конец), редьюсер applyBlitzAnswer,
  * сборка вопроса «EN → выбери перевод из 4» (уникальные decoys из своей колоды).
+ * Очков, комбо и рекорда нет (владелец 04.10: «ОЧКИ ИЗ БЛИЦА УБИРАЙ ВООБЩЕ, ТОЛЬКО МОНЕТЫ СЧИТАЕМ»).
  */
+import * as blitzLogic from '../app/flashcards/blitz_logic';
 import {
   applyBlitzAnswer,
   buildBlitzQuestion,
-  comboMultiplier,
-  comboThresholdHit,
   initialBlitzState,
-  pointsForCorrect,
-  BLITZ_COMBO_STEPS,
   BLITZ_LIVES,
-  BLITZ_POINTS_CORRECT,
   BLITZ_MIN_CARDS,
   blitzMinCards,
   canStartBlitz,
   type BlitzCardLike,
-  type BlitzState,
 } from '../app/flashcards/blitz_logic';
 
 // ════════════════════════════════════════════════════════════════════════════
-describe('комбо-пороги (§3.9: ×3/×5/×10)', () => {
-  it('множитель растёт по конфигу: 1 → 1.5 → 2 → 3', () => {
-    expect(comboMultiplier(0)).toBe(1);
-    expect(comboMultiplier(1)).toBe(1);
-    expect(comboMultiplier(2)).toBe(1);
-    expect(comboMultiplier(3)).toBe(1.5);
-    expect(comboMultiplier(4)).toBe(1.5);
-    expect(comboMultiplier(5)).toBe(2);
-    expect(comboMultiplier(9)).toBe(2);
-    expect(comboMultiplier(10)).toBe(3);
-    expect(comboMultiplier(25)).toBe(3);
-  });
-
-  it('порог срабатывает РОВНО на 3/5/10 (для SFX fc_combo_* и пружины бейджа)', () => {
-    const hits = Array.from({ length: 12 }, (_, i) => comboThresholdHit(i + 1));
-    expect(hits[2]).toBe(3); // третий подряд
-    expect(hits[4]).toBe(5);
-    expect(hits[9]).toBe(10);
-    // все прочие — null (SFX не спамится на каждом ответе)
-    hits.forEach((h, i) => {
-      if (![2, 4, 9].includes(i)) expect(h).toBeNull();
-    });
-    expect(BLITZ_COMBO_STEPS.map((s) => s.streak)).toEqual([10, 5, 3]);
-  });
-
-  it('очки: 100 × множитель, округление до целого', () => {
-    expect(pointsForCorrect(1)).toBe(BLITZ_POINTS_CORRECT);
-    expect(pointsForCorrect(3)).toBe(150);
-    expect(pointsForCorrect(5)).toBe(200);
-    expect(pointsForCorrect(10)).toBe(300);
-  });
-});
-
-// ════════════════════════════════════════════════════════════════════════════
-describe('applyBlitzAnswer — очки, серия, жизни', () => {
-  it('верный ответ: серия +1, очки с множителем, correct +1', () => {
-    let s: BlitzState = initialBlitzState();
-    const r1 = applyBlitzAnswer(s, true);
-    expect(r1.state).toMatchObject({ streak: 1, score: 100, correct: 1, wrong: 0, lives: BLITZ_LIVES });
-    expect(r1.gained).toBe(100);
-    expect(r1.comboHit).toBeNull();
-    expect(r1.outOfLives).toBe(false);
-
-    s = r1.state;
-    s = applyBlitzAnswer(s, true).state; // streak 2 (+100)
-    const r3 = applyBlitzAnswer(s, true); // streak 3 (+150, порог ×3)
-    expect(r3.comboHit).toBe(3);
-    expect(r3.gained).toBe(150);
-    expect(r3.state.score).toBe(350);
-  });
-
-  it('серия из 10 верных: пороги на 3/5/10, сумма очков по множителям', () => {
-    let s = initialBlitzState();
-    const hits: Array<number | null> = [];
-    for (let i = 0; i < 10; i++) {
-      const r = applyBlitzAnswer(s, true);
-      hits.push(r.comboHit);
-      s = r.state;
+describe('applyBlitzAnswer — только жизни и счётчики ответов', () => {
+  it('очков, серии и комбо в логике больше нет', () => {
+    expect(initialBlitzState()).toEqual({ lives: BLITZ_LIVES, correct: 0, wrong: 0 });
+    for (const name of ['comboMultiplier', 'pointsForCorrect', 'comboThresholdHit', 'BLITZ_POINTS_CORRECT', 'BLITZ_COMBO_STEPS']) {
+      expect(blitzLogic).not.toHaveProperty(name);
     }
-    expect(hits.filter((h) => h != null)).toEqual([3, 5, 10]);
-    // 100+100 + 150+150 + 200×5 + 300 = 1800
-    expect(s.score).toBe(1800);
-    expect(s.streak).toBe(10);
+    expect(Object.keys(applyBlitzAnswer(initialBlitzState(), true)).sort()).toEqual(['outOfLives', 'state']);
   });
 
-  it('ошибка: −1 жизнь, серия в 0, очки не растут; 3 ошибки = конец', () => {
-    let s = initialBlitzState();
-    s = applyBlitzAnswer(s, true).state;
-    s = applyBlitzAnswer(s, true).state;
-    s = applyBlitzAnswer(s, true).state; // streak 3
+  it('верный ответ: correct +1, жизни не трогаются', () => {
+    const r = applyBlitzAnswer(initialBlitzState(), true);
+    expect(r.state).toEqual({ lives: BLITZ_LIVES, correct: 1, wrong: 0 });
+    expect(r.outOfLives).toBe(false);
+  });
 
+  it('ошибка: −1 жизнь; 3 ошибки = конец', () => {
+    let s = applyBlitzAnswer(initialBlitzState(), true).state;
     const w1 = applyBlitzAnswer(s, false);
-    expect(w1.state).toMatchObject({ streak: 0, lives: 2, wrong: 1, score: 350 });
-    expect(w1.gained).toBe(0);
+    expect(w1.state).toEqual({ lives: 2, correct: 1, wrong: 1 });
     expect(w1.outOfLives).toBe(false);
 
     const w2 = applyBlitzAnswer(w1.state, false);
@@ -105,10 +45,8 @@ describe('applyBlitzAnswer — очки, серия, жизни', () => {
     const w3 = applyBlitzAnswer(w2.state, false);
     expect(w3.state.lives).toBe(0);
     expect(w3.outOfLives).toBe(true);
-    // после ошибки серия начинается заново — множитель снова ×1
-    const again = applyBlitzAnswer(w1.state, true);
-    expect(again.gained).toBe(100);
-    expect(again.state.streak).toBe(1);
+    s = applyBlitzAnswer(w3.state, false).state;
+    expect(s.lives).toBe(0);
   });
 });
 

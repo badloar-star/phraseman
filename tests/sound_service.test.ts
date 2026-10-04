@@ -53,7 +53,6 @@ jest.mock('expo-speech', () => ({
 import {
   __resetFcSoundServiceForTests,
   autoSpeakAfterSfx,
-  comboSfxForStreak,
   fcHaptic,
   isFcAutoSpeakEnabled,
   isFcSfxEnabled,
@@ -71,7 +70,7 @@ const AsyncStorageMock = require('../tests/__mocks__/async-storage');
 /** E9: полный набор событий §5 (все обязаны иметь файл в SFX_DEFS). */
 const ALL_SFX: FcSfxName[] = [
   'flip', 'tick', 'correct', 'incorrect', 'swipe_know', 'swipe_learn',
-  'combo_x3', 'combo_x5', 'combo_x10', 'star', 'chest_open',
+  'star', 'chest_open',
   'session_complete', 'riser',
 ];
 
@@ -169,7 +168,7 @@ describe('playSfx + тумблер fc_sfx_on', () => {
   it('E9: громкости ключевых событий по таблице §5', async () => {
     const expected: Partial<Record<FcSfxName, number>> = {
       flip: 0.3, tick: 0.2, correct: 0.55, incorrect: 0.4,
-      combo_x5: 0.6, star: 0.5, session_complete: 0.7, riser: 0.6,
+      star: 0.5, session_complete: 0.7, riser: 0.6,
     };
     for (const [name, vol] of Object.entries(expected) as [FcSfxName, number][]) {
       createdPlayers.length = 0;
@@ -178,15 +177,6 @@ describe('playSfx + тумблер fc_sfx_on', () => {
       await flushMicrotasks();
       expect(createdPlayers[0].volume).toBe(vol);
     }
-  });
-
-  it('E9: comboSfxForStreak — пороги ×3/×5/×10', () => {
-    expect(comboSfxForStreak(1)).toBe('correct');
-    expect(comboSfxForStreak(3)).toBe('combo_x3');
-    expect(comboSfxForStreak(4)).toBe('combo_x3');
-    expect(comboSfxForStreak(5)).toBe('combo_x5');
-    expect(comboSfxForStreak(9)).toBe('combo_x5');
-    expect(comboSfxForStreak(10)).toBe('combo_x10');
   });
 });
 

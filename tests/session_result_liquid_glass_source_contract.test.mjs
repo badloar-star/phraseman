@@ -23,7 +23,8 @@ const CALLER_HASHES = {
   // 04.10 (владелец: «очки из Блица убирай вообще, только монеты считаем») — из вызова итога снят scoreText.
   'app/flashcards_blitz_session.tsx': '6daf7548317720b0038ac5b0c1fe85250bbd292a1fc29341ba51c9b9a7a6a334',
   'app/flashcards_recall_session.tsx': 'd2aadef834596945ab0bfc45014d13bd7bc3581b1aaba8845eab26b482416127',
-  'app/flashcards_swipe.tsx': '6d0e9410bfed5feaccf12bc784473e4f6d33d839cc626215ec8668738f288ee1',
+  // 04.10 (PM-134, 2c8a7b95f): обработчик «Готово» переименован openSettings → exitFromResult, пропсы те же.
+  'app/flashcards_swipe.tsx': '4f7696964132f495cc65ada711d7cafdfa9363c545767f9585ea4a862a6b536d',
   'app/flashcards_speaking_session.tsx': 'ab93e11aadd09277d3a23075d47f4d7f4d1ade81de67800234f9fae0c17843ea',
 };
 

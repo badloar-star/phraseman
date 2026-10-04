@@ -86,6 +86,7 @@ import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
+import { cleanupRetiredBlitzRecord } from './flashcards/blitz_record_cleanup';
 import {
   readOnboardingNotificationChoice,
   shouldPromptForOnboardingNotifications,
@@ -845,6 +846,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const awaitingStoreReturnRef = useRef(false);
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredMistakePracticeStorage'));
+    void cleanupRetiredBlitzRecord().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredBlitzRecord'));
   }, []);
   // зачем (D47, владелец): прогрев озвучки V2 (координатор + фоновая задача
   // expo-background-task) удалён целиком — это и был источник «всё тормозит

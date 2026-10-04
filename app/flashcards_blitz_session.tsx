@@ -6,8 +6,8 @@
 // (?deck= — deck_sources; без параметра — все сохранённые + мои карточки).
 // cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК наборов через запятую —
 // карточки объединяются в один пул (loadDeckCardsMulti),
-// 3 жизни (ошибка = −1), комбо-серия ×3/×5/×10 → SFX fc_combo_* с питчем
-// вверх + пружинный бейдж, счёт очков (верно = 100 × комбо-множитель).
+// 3 жизни (ошибка = −1). Очков, комбо и рекорда нет (владелец 04.10: «ОЧКИ
+// ИЗ БЛИЦА УБИРАЙ ВООБЩЕ, ТОЛЬКО МОНЕТЫ СЧИТАЕМ») — считаем только монеты.
 //
 // Механика 4 кнопок — концептуальный реюз trainer_arena_session (подсветка
 // правильного/неверного, лок, автопереход), но быстрее: 350мс / 700мс на
@@ -15,15 +15,12 @@
 // transform scaleX (НЕ width — принцип 3), origin слева.
 //
 // Финал (таймер 0 / жизни 0) → SessionResultScreen (верно/ошибок/точность
-// + счёт). legacy reward блиц не даёт (безлимитный режим).
+// + монеты). legacy reward блиц не даёт (безлимитный режим).
 //
 // FIX (владелец, 2026-08-13):
-//  • «что даёт счёт?» — личный рекорд (flashcards/blitz_record.ts): побил
-//    прошлый лучший — «Новый рекорд!», иначе видно счёт и лучший результат.
-//    Никакой новой валюты, наград и звёзд в разделе не заводится.
 //  • выбор наборов доступен ИЗ САМОГО режима (кнопка в шапке → DeckPickerSheet,
 //    как в слушании), а не только из таббара раздела.
-// Чистая логика (очки/комбо/жизни/вопрос) — flashcards/blitz_logic.ts.
+// Чистая логика (жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -45,8 +42,6 @@ import Reanimated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
-  withSequence,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from '../components/ThemeContext';
@@ -66,7 +61,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { useFcReduceMotion } from './flashcards/PhraseCard';
 import { isLowPowerEffective } from './flashcards/low_power';
-import { comboSfxForStreak, fcHaptic, playSfx } from './flashcards/SoundService';
+import { fcHaptic, playSfx } from './flashcards/SoundService';
 import {
   BLITZ_ADVANCE_OK_MS,
   BLITZ_ADVANCE_WRONG_MS,
@@ -83,7 +78,6 @@ import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck
 import { hydrateFcDeckOptionsSnapshot, loadAllFcDeckRefs, loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
-import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
@@ -128,12 +122,9 @@ const TIMER_FILL = '#E9E9EB';
 const DANGER_SEC = 10;
 
 type BtnState = 'idle' | 'correct' | 'wrong';
-/** Итог раунда + личный рекорд (§ «что даёт счёт»): `best` — лучший ПОСЛЕ раунда. */
+/** Итог раунда: только сводка ответов (очков и рекорда нет — владелец 04.10). */
 type ResultState = {
   summary: SessionOutcomeSummary;
-  score: number;
-  best: number;
-  isRecord: boolean;
 };
 
 // Fisher-Yates: единое перемешивание карточек.
@@ -206,12 +197,10 @@ export default function FlashcardsBlitzSession() {
   const [locked, setLocked] = useState(false);
   const [blitz, setBlitz] = useState<BlitzState>(() => initialBlitzState());
   const [timeLeft, setTimeLeft] = useState(BLITZ_DURATION_SEC);
-  const [lastGain, setLastGain] = useState(0);
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения —
   // фейковый summary, реальная игровая механика не запускается вообще.
   const [result, setResult] = useState<ResultState | null>(() => (devJumpToFinale ? {
     summary: { correct: 18, wrong: 2, total: 20, accuracy: 0.9, learnKeys: [] },
-    score: 1250, best: 1250, isRecord: true,
   } : null));
   // зачем (владелец, 2026-08-27): sessionKey привязан к roundId — новый раунд
   // (рестарт «Ещё разок») получает новую копилку по цене повтора, ровно как
@@ -312,35 +301,15 @@ export default function FlashcardsBlitzSession() {
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const pausedRemainingMsRef = useRef(BLITZ_DURATION_SEC * 1000);
   const answerSequenceRef = useRef(0);
-  /**
-   * Лучший результат до текущего раунда. Читаем один раз на входе, чтобы финал
-   * знал ответ мгновенно и подпись результата не «моргала» задним числом.
-   */
-  const bestRef = useRef(0);
 
-  /**
-   * «Уменьшить движение» / слабое устройство: микро-пульсы счёта и комбо
-   * выключаются целиком (значения просто встают в 1), таймер-полоса и логика
-   * не трогаются — они несут информацию, а не декор.
-   */
+  /** «Уменьшить движение» / слабое устройство — передаётся экрану итогов. */
   const simpleMotion = useFcReduceMotion() || isLowPowerEffective();
-  const simpleMotionRef = useRef(simpleMotion);
-  simpleMotionRef.current = simpleMotion;
 
-  // Reanimated: таймер-полоса (scaleX, origin слева), бейдж комбо и очки.
+  // Reanimated: таймер-полоса (scaleX, origin слева).
   const progress = useSharedValue(1);
-  const comboScale = useSharedValue(0);
-  const scoreScale = useSharedValue(1);
-  const gainAnim = useSharedValue(0);
 
   // зачем (practice.html `.trk`): полоса растёт от 0 по прошедшему времени; `progress` по-прежнему — доля оставшегося.
   const timerBarStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: 1 - progress.value }] }));
-  const comboStyle = useAnimatedStyle(() => ({ transform: [{ scale: comboScale.value }] }));
-  const scoreStyle = useAnimatedStyle(() => ({ transform: [{ scale: scoreScale.value }] }));
-  const gainStyle = useAnimatedStyle(() => ({
-    opacity: 1 - gainAnim.value,
-    transform: [{ translateY: -14 * gainAnim.value }],
-  }));
 
   const clearRoundTimers = useCallback(() => {
     if (intervalRef.current) {
@@ -390,18 +359,6 @@ export default function FlashcardsBlitzSession() {
     setRoundId((current) => current + 1);
   }, [blitzAccessGranted, clearRoundTimers, progress, refundActiveBlitzEnergy, refundBlitzEnergy]);
 
-  // Личный рекорд: одно чтение на маунт, дальше — только запись при финале.
-  useEffect(() => {
-    if (!blitzAccessGranted) return;
-    let cancelled = false;
-    void getBlitzBest().then((best) => {
-      if (!cancelled) bestRef.current = best;
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [blitzAccessGranted]);
-
   // ── Загрузка пула: ?deck= или дефолт «все сохранённые + мои карточки» ──────
   useEffect(() => {
     if (!blitzAccessGranted) return undefined;
@@ -446,28 +403,7 @@ export default function FlashcardsBlitzSession() {
     clearRoundTimers();
     cancelAnimation(progress);
     const summary = summarizeSession(eventsRef.current);
-    const score = blitzRef.current.score;
-    /**
-     * Смысл счёта — личный рекорд. Сравниваем с уже прочитанным `bestRef`
-     * (мгновенно, без ожидания диска), а запись идёт своей очередью и её
-     * результат уточняет карточку итога, если рекорд успели обновить в
-     * параллельном раунде.
-     */
-    const previousBest = bestRef.current;
-    const isRecord = score > 0 && score > previousBest;
-    if (isRecord) bestRef.current = score;
-    setResult({ summary, score, best: isRecord ? score : previousBest, isRecord });
-    void commitBlitzScore(score)
-      .then((outcome) => {
-        if (!blitzAccessGrantedRef.current) return;
-        bestRef.current = outcome.best;
-        setResult((cur) =>
-          cur && cur.score === outcome.score
-            ? { ...cur, best: outcome.best, isRecord: outcome.isRecord }
-            : cur,
-        );
-      })
-      .catch((error: unknown) => { console.warn('[FC-BLITZ] сохранение рекорда не удалось (продолжаем без неё)', error); });
+    setResult({ summary });
   }, [clearRoundTimers, progress]);
 
   const pauseBlitzCountdown = useCallback(() => {
@@ -844,13 +780,10 @@ export default function FlashcardsBlitzSession() {
     setBlitz(init);
     setBtnStates(IDLE_BTNS);
     setLocked(false);
-    setLastGain(0);
     setTimeLeft(BLITZ_DURATION_SEC);
     setQuestion(durableManifest?.initialQuestion ?? buildBlitzQuestion(queueRef.current[0]!, pool));
     shownAtRef.current = Date.now();
     endAtRef.current = Date.now() + BLITZ_DURATION_SEC * 1000;
-    comboScale.value = 0;
-
     progress.value = 1;
     progress.value = withTiming(0, {
       duration: BLITZ_DURATION_SEC * 1000,
@@ -973,41 +906,14 @@ export default function FlashcardsBlitzSession() {
         verdict: isOk ? 'correct' : 'pedagogical_wrong',
       });
 
-      const { state, gained, comboHit } = applyBlitzAnswer(blitzRef.current, isOk);
+      // зачем (владелец 04.10): очков и комбо нет — верный ответ звучит всегда одинаково; монеты начисляются выше.
+      const { state } = applyBlitzAnswer(blitzRef.current, isOk);
       blitzRef.current = state;
       setBlitz(state);
 
       if (isOk) {
-        // §5: комбо ×3/×5/×10 — мотив correct с питчем +2/+4/+6 + хаптика 2×Light
-        if (comboHit != null) {
-          playSfx(comboSfxForStreak(state.streak));
-          fcHaptic('combo');
-        } else {
-          playSfx('correct');
-          fcHaptic('correct');
-        }
-        setLastGain(gained);
-        // Бейдж комбо «клюёт» на каждый верный в серии; на пороге — сильнее.
-        // Пики строго ≤ 1 (см. FC_TEXT_SAFE_PULSE): раньше комбо и счёт
-        // разгонялись до 1.45/1.15, и текст внутри них апскейлился — на iPhone
-        // цифры и кириллица становились «мыльными». Критически задемпфированные
-        // пружины (dampingRatio: 1) не перелетают цель, поэтому 1 — потолок.
-        if (state.streak >= 3) {
-          comboScale.value = simpleMotionRef.current
-            ? 1
-            : withSequence(
-                withTiming(comboHit != null ? 0.74 : 0.88, { duration: 90 }),
-                withSpring(1, { duration: 340, dampingRatio: 1 }),
-              );
-        }
-        scoreScale.value = simpleMotionRef.current
-          ? 1
-          : withSequence(
-              withTiming(0.86, { duration: 80 }),
-              withSpring(1, { duration: 320, dampingRatio: 1 }),
-            );
-        gainAnim.value = 0;
-        gainAnim.value = withTiming(1, { duration: 650, easing: Easing.out(Easing.cubic) });
+        playSfx('correct');
+        fcHaptic('correct');
       } else {
         // зачем (22.09): узкий список языков не пускал запись ошибки для
         // испанского и немецкого — блиц для них не пополнял «Мои ошибки».
@@ -1029,7 +935,6 @@ export default function FlashcardsBlitzSession() {
         }
         playSfx('incorrect');
         fcHaptic('wrong');
-        comboScale.value = withTiming(0, { duration: 150 });
       }
 
       if (attemptEffect === 'attempts_exhausted') {
@@ -1042,8 +947,6 @@ export default function FlashcardsBlitzSession() {
     },
     [
       attempts,
-      comboScale,
-      gainAnim,
       locked,
       nextQuestion,
       pauseBlitzCountdown,
@@ -1052,7 +955,6 @@ export default function FlashcardsBlitzSession() {
       question,
       roundId,
       runeFlight,
-      scoreScale,
       studyTarget,
     ],
   );
@@ -1613,19 +1515,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
     marginTop: 14,
-  },
-  gainFloat: { position: 'absolute', top: -4, left: 2 },
-  /**
-   * зачем: блок вопроса и бейдж комбо разделяются тоном, без рамки. Варианты ответа (PM-129)
-   * несут тонкую 1px обводку `.opt` из practice.html — исключение 2.0 владельца (24.09).
-   */
-  comboBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    borderRadius: 999,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
   },
   // зачем (`.qc`): 160 высотой, поля 22/28, тонкая кромка.
   questionBox: {

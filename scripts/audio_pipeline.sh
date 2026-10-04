@@ -89,15 +89,7 @@ synth_note "$TMP/e5.wav" 659.25 11 0.24
 mix_notes "$TMP/correct.wav" 0.34 "$TMP/c5.wav:0" "$TMP/e5.wav:110"
 finalize "$TMP/correct.wav" fc_correct
 
-# 2) fc_combo_x3/x5/x10 — тот же мотив, питч +2/+4/+6 полутонов (пре-рендер §5)
-for st in 2 4 6; do
-  ratio=$(awk -v n="$st" 'BEGIN { printf "%.6f", 2^(n/12) }')
-  inv=$(awk -v r="$ratio" 'BEGIN { printf "%.6f", 1/r }')
-  case "$st" in 2) nm=fc_combo_x3;; 4) nm=fc_combo_x5;; 6) nm=fc_combo_x10;; esac
-  ffmpeg -y -v error -i "$TMP/correct.wav" \
-    -af "asetrate=$SR*$ratio,aresample=$SR,atempo=$inv" -ac 1 "$TMP/$nm.wav"
-  finalize "$TMP/$nm.wav" "$nm"
-done
+# 2) fc_combo_x3/x5/x10 удалены (владелец 04.10: комбо Блица убраны вместе с очками).
 
 # 3) fc_incorrect — мягкий thud вниз: минорная секунда E4→Eb4, lowpass, 220мс
 synth_note "$TMP/e4.wav" 329.63 18 0.20

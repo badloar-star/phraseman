@@ -1,7 +1,8 @@
 /**
  * cards-2.0 (E12): чистая логика блица (§3.9 мастер-плана — Speed Review).
- * 60 секунд, «EN → выбери перевод из 4», 3 жизни, комбо-серия ×3/×5/×10
- * (множитель очков + SFX fc_combo_*), счёт: верно = 100 × множитель.
+ * 60 секунд, «EN → выбери перевод из 4», 3 жизни.
+ * Очков, комбо и рекорда нет (владелец 04.10: «ОЧКИ ИЗ БЛИЦА УБИРАЙ ВООБЩЕ,
+ * ТОЛЬКО МОНЕТЫ СЧИТАЕМ») — монеты начисляет usePracticeRunes, не этот модуль.
  *
  * Без RN-импортов — юнит-тестируется в node (tests/fc_blitz.test.ts).
  * Все числа режима — здесь же (задел под remote config, §1).
@@ -28,88 +29,36 @@ export function canStartBlitz(cardCount: number | null | undefined): boolean {
 export function blitzMinCards(): number {
   return BLITZ_MIN_CARDS;
 }
-/** База очков за верный ответ (умножается на комбо-множитель). */
-export const BLITZ_POINTS_CORRECT = 100;
-/** Комбо-серии → множитель очков (пороги ×3/×5/×10 — SFX fc_combo_*, §5). */
-export const BLITZ_COMBO_STEPS: readonly { streak: number; mult: number }[] = [
-  { streak: 10, mult: 3 },
-  { streak: 5, mult: 2 },
-  { streak: 3, mult: 1.5 },
-];
 /** Автопереход к следующему вопросу: быстрее арены (§3.9) — 350мс / 700мс на ошибке. */
 export const BLITZ_ADVANCE_OK_MS = 350;
 export const BLITZ_ADVANCE_WRONG_MS = 700;
 
-// ── Комбо и очки ─────────────────────────────────────────────────────────────
-
-/** Множитель очков для текущей серии (×1 / ×1.5 / ×2 / ×3). */
-export function comboMultiplier(streak: number): number {
-  for (const step of BLITZ_COMBO_STEPS) {
-    if (streak >= step.streak) return step.mult;
-  }
-  return 1;
-}
-
-/** Очки за верный ответ при серии `streak` (серия УЖЕ включает этот ответ). */
-export function pointsForCorrect(streak: number): number {
-  return Math.round(BLITZ_POINTS_CORRECT * comboMultiplier(streak));
-}
-
-/** Серия ровно достигла порога ×3/×5/×10 → порог (для SFX/бейджа), иначе null. */
-export function comboThresholdHit(streak: number): number | null {
-  for (const step of BLITZ_COMBO_STEPS) {
-    if (streak === step.streak) return step.streak;
-  }
-  return null;
-}
-
-// ── Счёт сессии (чистый редьюсер) ────────────────────────────────────────────
+// ── Ход сессии (чистый редьюсер) ─────────────────────────────────────────────
 
 export type BlitzState = {
-  score: number;
-  /** Текущая серия верных подряд (ошибка сбрасывает в 0). */
-  streak: number;
   lives: number;
   correct: number;
   wrong: number;
 };
 
 export function initialBlitzState(lives: number = BLITZ_LIVES): BlitzState {
-  return { score: 0, streak: 0, lives, correct: 0, wrong: 0 };
+  return { lives, correct: 0, wrong: 0 };
 }
 
 export type BlitzAnswerOutcome = {
   state: BlitzState;
-  /** Очки, начисленные за этот ответ (0 при ошибке). */
-  gained: number;
-  /** Порог комбо, достигнутый ЭТИМ ответом (3/5/10), иначе null. */
-  comboHit: number | null;
   /** Жизни кончились — сессия завершается. */
   outOfLives: boolean;
 };
 
-/** Ответ в блице: верно → серия+1, очки с множителем; ошибка → −жизнь, серия 0. */
+/** Ответ в блице: верно → +1 к верным; ошибка → −жизнь. */
 export function applyBlitzAnswer(state: BlitzState, isCorrect: boolean): BlitzAnswerOutcome {
   if (isCorrect) {
-    const streak = state.streak + 1;
-    const gained = pointsForCorrect(streak);
-    return {
-      state: {
-        ...state,
-        streak,
-        score: state.score + gained,
-        correct: state.correct + 1,
-      },
-      gained,
-      comboHit: comboThresholdHit(streak),
-      outOfLives: false,
-    };
+    return { state: { ...state, correct: state.correct + 1 }, outOfLives: false };
   }
   const lives = Math.max(0, state.lives - 1);
   return {
-    state: { ...state, streak: 0, lives, wrong: state.wrong + 1 },
-    gained: 0,
-    comboHit: null,
+    state: { ...state, lives, wrong: state.wrong + 1 },
     outOfLives: lives <= 0,
   };
 }

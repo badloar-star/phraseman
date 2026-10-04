@@ -49,9 +49,6 @@ export type FcSfxName =
   | 'incorrect' // неверный ответ — мягкий thud вниз, без buzzer
   | 'swipe_know' // свайп «знаю» — восходящий whoosh+tick
   | 'swipe_learn' // свайп «учу» — нисходящий whoosh
-  | 'combo_x3' // комбо ×3 — мотив correct, питч +2 полутона (пре-рендер)
-  | 'combo_x5' // комбо ×5 — питч +4
-  | 'combo_x10' // комбо ×10 — питч +6
   | 'star' // звезда/сундук — sparkle 400мс
   | 'chest_open' // reveal сундука/пака — арпеджио C5-E5-G5-C6
   | 'session_complete' // финал сессии — арпеджио 5 нот ≤900мс
@@ -65,22 +62,13 @@ const SFX_DEFS: Record<FcSfxName, { source: () => number; volume: number }> = {
   incorrect: { source: () => require('../../assets/sounds/fc/fc_incorrect.mp3'), volume: 0.4 },
   swipe_know: { source: () => require('../../assets/sounds/fc/fc_swipe_know.mp3'), volume: 0.3 },
   swipe_learn: { source: () => require('../../assets/sounds/fc/fc_swipe_learn.mp3'), volume: 0.3 },
-  combo_x3: { source: () => require('../../assets/sounds/fc/fc_combo_x3.mp3'), volume: 0.6 },
-  combo_x5: { source: () => require('../../assets/sounds/fc/fc_combo_x5.mp3'), volume: 0.6 },
-  combo_x10: { source: () => require('../../assets/sounds/fc/fc_combo_x10.mp3'), volume: 0.6 },
   star: { source: () => require('../../assets/sounds/fc/fc_star.mp3'), volume: 0.5 },
   chest_open: { source: () => require('../../assets/sounds/fc/fc_chest_open.mp3'), volume: 0.6 },
   session_complete: { source: () => require('../../assets/sounds/fc/fc_session_complete.mp3'), volume: 0.7 },
   riser: { source: () => require('../../assets/sounds/fc/fc_riser.mp3'), volume: 0.6 },
 };
 
-/** Комбо-серия → SFX (§5: ×3/×5/×10); вне порогов — обычный correct. */
-export function comboSfxForStreak(streak: number): FcSfxName {
-  if (streak >= 10) return 'combo_x10';
-  if (streak >= 5) return 'combo_x5';
-  if (streak >= 3) return 'combo_x3';
-  return 'correct';
-}
+// зачем (владелец 04.10): комбо Блица убраны вместе с очками — звуков и вибрации комбо больше нет.
 
 const POOL_SIZE = 2; // два плеера на звук — быстрые повторные срабатывания без обрыва хвоста
 
@@ -343,7 +331,6 @@ export type FcHapticKind =
   | 'threshold' // пересечение порога свайпа — selection, 1 раз
   | 'correct' // Success / Light
   | 'wrong' // Error / Light — без buzzer
-  | 'combo' // 2×Light шаг 100мс
   | 'star' // Medium / Light
   | 'finish' // 3×Light по 100мс
   | 'tap'; // selection на сегментах/табах
@@ -377,10 +364,6 @@ export function fcHaptic(kind: FcHapticKind): void {
     case 'star':
       if (isIOS) void hapticMediumImpact();
       else void hapticLightImpact();
-      return;
-    case 'combo':
-      void hapticLightImpact();
-      setTimeout(() => void hapticLightImpact(), 100);
       return;
     case 'finish':
       void hapticLightImpact();

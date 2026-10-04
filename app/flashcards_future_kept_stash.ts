@@ -32,9 +32,17 @@ const LOG = '[FLASHCARD-FUTURE-STASH]';
 /** Ключ аккаунта (не устройства): в копии и в стирании вместе с остальными данными аккаунта. */
 export const FLASHCARD_FUTURE_KEPT_STASH_KEY = 'flashcards_force_future_kept_local_v1';
 
-// зачем: потолок, чтобы значение гарантированно влезало в страницу аварийной копии (512 КБ).
-// Тысяча конфликтов «из будущего» подряд нереальна; превышение пишется в лог.
-const STASH_MAX_ENTRIES = 1000;
+// зачем (S1e-2, п.4): значение ключа — ОДНА пара аварийной копии, а пара не делится между страницами
+// (страница ≤ 512 КБ, иначе копия бросает value_upgrade_required и смена аккаунта блокируется).
+// Прежний потолок 1000 записей не влезал: богатая карточка (объяснения и примеры на трёх языках,
+// кириллица = 2 байта) — ~2.5 КБ, ×1000 ≈ 2.5 МБ. Поэтому два потолка: по числу (300 — с запасом
+// выше реального числа конфликтов «из будущего») и по байтам (384 КБ — запас на конверт страницы и
+// соседние пары). Сверх потолка отбрасываются самые старые записи, число — в лог.
+export const FLASHCARD_FUTURE_KEPT_STASH_MAX_ENTRIES = 300;
+export const FLASHCARD_FUTURE_KEPT_STASH_MAX_BYTES = 384 * 1024;
+// зачем (S1e-2, п.3): записи ЧУЖОГО владельца (псевдоним merge, вопрос координатору) не применяются;
+// старше 30 дней — как срок аварийной копии — их удаляем при применении, чтобы не копились.
+const FOREIGN_ENTRY_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 
 /** Локальные версии одного списка карточек (ключ хранилища + язык). */
 export type FutureKeptLocalGroup = Readonly<{
@@ -91,22 +99,66 @@ function parseStash(raw: string | null, stage: string): StashEntry[] | null {
 
 const entryIdentity = (entry: StashEntry): string => `${entry.owner}\u0000${entry.target}\u0000${entry.id}`;
 
-/** Объединить записи: по (владелец, язык, id) остаётся более поздняя; потолок — самые свежие. */
+/** Длина строки в байтах UTF-8 (без TextEncoder — его может не быть в движке). */
+function utf8Bytes(text: string): number {
+  let bytes = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const code = text.charCodeAt(index);
+    if (code < 0x80) bytes += 1;
+    else if (code < 0x800) bytes += 2;
+    else if (code >= 0xd800 && code <= 0xdbff && index + 1 < text.length) {
+      bytes += 4;
+      index += 1;
+    } else bytes += 3;
+  }
+  return bytes;
+}
+
+const serialize = (entries: readonly StashEntry[]): string => JSON.stringify({ v: 1, entries });
+
+/** S1e-2: потолки по числу и по байтам; остаются самые свежие (вход отсортирован по времени). */
+function capEntries(sorted: readonly StashEntry[]): StashEntry[] {
+  let kept = sorted.length > FLASHCARD_FUTURE_KEPT_STASH_MAX_ENTRIES
+    ? sorted.slice(sorted.length - FLASHCARD_FUTURE_KEPT_STASH_MAX_ENTRIES)
+    : [...sorted];
+  if (kept.length < sorted.length) {
+    console.warn(`${LOG} cap_reached reason=count dropped_oldest=${sorted.length - kept.length}`);
+  }
+  // Байты: конверт + записи + запятые; считаем по записи, без повторной сериализации всего списка.
+  const sizes = kept.map((entry) => utf8Bytes(JSON.stringify(entry)) + 1);
+  let total = utf8Bytes(serialize([])) + sizes.reduce((sum, size) => sum + size, 0);
+  let start = 0;
+  while (total > FLASHCARD_FUTURE_KEPT_STASH_MAX_BYTES && start < kept.length) {
+    total -= sizes[start];
+    start += 1;
+  }
+  if (start > 0) {
+    console.warn(`${LOG} cap_reached reason=bytes dropped_oldest=${start} kept=${kept.length - start}`);
+    kept = kept.slice(start);
+  }
+  return kept;
+}
+
+/** Объединить записи: по (владелец, язык, id) остаётся более поздняя; потолки — самые свежие. */
 function mergeEntries(base: readonly StashEntry[], extra: readonly StashEntry[]): StashEntry[] {
   const byIdentity = new Map<string, StashEntry>();
   for (const entry of [...base, ...extra]) {
     const known = byIdentity.get(entryIdentity(entry));
     if (known === undefined || entry.at >= known.at) byIdentity.set(entryIdentity(entry), entry);
   }
-  const merged = [...byIdentity.values()].sort((a, b) => a.at - b.at);
-  if (merged.length > STASH_MAX_ENTRIES) {
-    console.warn(`${LOG} cap_reached dropped_oldest=${merged.length - STASH_MAX_ENTRIES}`);
-    return merged.slice(merged.length - STASH_MAX_ENTRIES);
-  }
-  return merged;
+  return capEntries([...byIdentity.values()].sort((a, b) => a.at - b.at));
 }
 
-const serialize = (entries: readonly StashEntry[]): string => JSON.stringify({ v: 1, entries });
+/**
+ * S1e-2 (п.2): ключ стирается вместе с аккаунтом. Если он не пуст и в аварийную копию не попал
+ * (presync гостя с успешной выгрузкой: свап без копии), пишем число — редкий случай становится видимым.
+ * Только лог, стирание не останавливает.
+ */
+export function logFutureKeptStashBeforeWipe(stashRaw: string | null, inBackup: boolean): void {
+  if (stashRaw === null || inBackup) return;
+  const entries = parseStash(stashRaw, 'wipe');
+  console.warn(`${LOG} future_kept_stash_wiped count=${entries === null ? 'unparsable' : entries.length}`);
+}
 
 /**
  * S1e: объединить значение ключа на телефоне с тем же ключом из прежней копии ТОГО ЖЕ владельца.
@@ -203,6 +255,17 @@ export type FutureKeptApplyResult = Readonly<{
   kept: number;
 }>;
 
+/** Оставшиеся записи → ключ (пусто — удалить). Сбой не бросает: повтор безопасен. */
+async function writeRemaining(remaining: readonly StashEntry[]): Promise<void> {
+  try {
+    if (remaining.length === 0) await AsyncStorage.removeItem(FLASHCARD_FUTURE_KEPT_STASH_KEY);
+    else await AsyncStorage.setItem(FLASHCARD_FUTURE_KEPT_STASH_KEY, serialize(remaining));
+  } catch (error) {
+    // Ключ остался прежним: повторное применение безопасно (заменяется только облачная версия).
+    console.warn(`${LOG} apply cleanup_failed reason=${errorReason(error)}`);
+  }
+}
+
 type TargetCounters = { replaced: number; already: number; changed: number; seen: Set<string> };
 
 /**
@@ -236,8 +299,13 @@ export async function applyFutureKeptStashAfterReturn(
     return { status: 'no_owner', replaced: 0, kept: entries.length };
   }
   const own = entries.filter((entry) => entry.owner === currentOwner);
-  const foreign = entries.filter((entry) => entry.owner !== currentOwner);
+  const foreignAll = entries.filter((entry) => entry.owner !== currentOwner);
+  const foreignCutoff = Date.now() - FOREIGN_ENTRY_MAX_AGE_MS;
+  const foreign = foreignAll.filter((entry) => entry.at >= foreignCutoff);
+  const foreignExpired = foreignAll.length - foreign.length;
+  if (foreignExpired > 0) console.log(`${LOG} apply foreign_expired dropped=${foreignExpired}`);
   if (own.length === 0) {
+    if (foreignExpired > 0) await writeRemaining(foreign);
     console.log(`${LOG} apply skip reason=no_own_entries other_owner=${foreign.length}`);
     return { status: 'no_own_entries', replaced: 0, kept: foreign.length };
   }
@@ -279,13 +347,7 @@ export async function applyFutureKeptStashAfterReturn(
     const missing = byId.size - counters.seen.size;
     console.log(`${LOG} apply target=${target} replaced=${result} already=${counters.already} changed_since=${counters.changed} missing=${missing} result=ok`);
   }
-  try {
-    if (unresolved.length === 0) await AsyncStorage.removeItem(FLASHCARD_FUTURE_KEPT_STASH_KEY);
-    else await AsyncStorage.setItem(FLASHCARD_FUTURE_KEPT_STASH_KEY, serialize(unresolved));
-  } catch (error) {
-    // Ключ остался прежним: повторное применение безопасно (заменяется только облачная версия).
-    console.warn(`${LOG} apply cleanup_failed reason=${errorReason(error)}`);
-  }
+  await writeRemaining(unresolved);
   console.log(`${LOG} apply done replaced=${replacedTotal} kept=${unresolved.length} other_owner=${foreign.length}`);
   return { status: 'applied', replaced: replacedTotal, kept: unresolved.length };
 }

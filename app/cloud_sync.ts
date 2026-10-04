@@ -272,6 +272,7 @@ import {
 } from './flashcards_cloud_upload';
 import {
   FLASHCARD_FUTURE_KEPT_STASH_KEY,
+  logFutureKeptStashBeforeWipe,
   mergeFutureKeptStashRaw,
   stashForceFutureKeptLocalVersions,
 } from './flashcards_future_kept_stash';
@@ -4868,7 +4869,7 @@ async function foldMergedGuestBackupBeforeNewBackup(
  * версии карточек S1e, ещё не долитые обратно. Читаем только этот ключ — без проверки цепочки
  * хешей: значение лишь объединяется с живым, ничего не перезаписывает.
  */
-async function readOwnAccountSwitchBackupValue(
+export async function readOwnAccountSwitchBackupValue(
   previousBackupRaw: string,
   ownerStableId: string,
   key: string,
@@ -4909,6 +4910,25 @@ async function readOwnAccountSwitchBackupValue(
   } catch (error) {
     identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_read_failed', { code: identityErrorCode(error) });
     return null;
+  }
+}
+
+/**
+ * AA 2.0, S1e-2 (п.2): перед стиранием аккаунта — лежит ли непустой ключ S1e в аварийной копии
+ * владельца. Нет (presync гостя с успешной выгрузкой: свап без копии) → лог числа записей.
+ * Только наблюдение: стирание не останавливает, сбой проверки — в лог.
+ */
+async function noteFutureKeptStashBeforeWipe(ownerStableId: string | null): Promise<void> {
+  try {
+    const stashRaw = await AsyncStorage.getItem(FLASHCARD_FUTURE_KEPT_STASH_KEY);
+    // Ключа нет — обычный случай, проверять нечего.
+    if (stashRaw === null) return;
+    const backupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+    const inBackup = backupRaw !== null && ownerStableId !== null
+      && await readOwnAccountSwitchBackupValue(backupRaw, ownerStableId, FLASHCARD_FUTURE_KEPT_STASH_KEY) !== null;
+    logFutureKeptStashBeforeWipe(stashRaw, inBackup);
+  } catch (error) {
+    identityTrace('[ACC-SWITCH-WIPE]', 'future_kept_stash_check_failed', { code: identityErrorCode(error) });
   }
 }
 
@@ -5189,6 +5209,8 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
+  // зачем (AA 2.0, S1e-2 п.2): непустой ключ S1e, не попавший в копию, стирается — делаем это видимым.
+  await noteFutureKeptStashBeforeWipe(receiptOwnerStableId);
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>([
     'app_theme',

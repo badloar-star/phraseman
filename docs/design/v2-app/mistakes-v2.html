@@ -18,8 +18,11 @@
   .ans { border-radius: 16px; padding: 16px 16px 16px 18px; display: flex; align-items: center; gap: 14px; }
   .ans .k { font-size: 13px; font-weight: 600; color: var(--sec); }
   .ans .v { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 4px; }
-  .ans.ok { background: rgba(111,208,140,.10); border: 1px solid rgba(111,208,140,.35); }
-  .ans.no { background: rgba(242,118,107,.10); border: 1px solid rgba(242,118,107,.35); }
+  /* зачем: владелец выбрал «Разбор промаха — A» (раунд 2): одна карточка, строки через hairline, без заливок и полос */
+  .stack.g13:has(> .ans) { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .stack.g13 > .ans + .ans { margin-top: 0; border-top: 1px solid var(--line); }
+  .ans { border-radius: 0; }
+  .ans.ok, .ans.no { background: transparent; border: none; }
   .ans.no .v { color: #F7A39B; text-decoration: line-through; text-decoration-thickness: 1.5px; }
   .ans.ok .v { color: #A6E8B9; }
   .hl { color: #F2766B; }
@@ -167,9 +170,9 @@ const fbNo = () => phone(`${runHead(25)}<div class="qc" style="margin-top:34px">
 const why = () => phone(`<div style="opacity:.3">${runHead(25)}</div>`, { overlay: sheet('why', `
   <div class="flex"><div class="grow" style="font-size:22px;font-weight:700">Почему «внуки»</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div class="stack g13" style="margin-top:18px">
-    <div class="note"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки.</div>
-    <div class="note">Дети — это <b>children</b>, без grand-.</div>
-    <div class="note" style="color:var(--sec)">My grandchildren visit me on Sundays.<br>Внуки навещают меня по воскресеньям.</div>
+    <div class="ans no"><div class="grow"><div class="k">Твой выбор</div><div class="v">Дети</div></div></div>
+    <div class="ans"><div class="grow"><div class="k">Почему</div><div style="font-size:16px;line-height:23px;margin-top:4px;color:#D8D8DA"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.</div></div></div>
+    <div class="ans ok"><div class="grow"><div class="k">Правильно</div><div class="v">Внуки</div></div><span class="rb fill t">${icon('vol', 's18')}</span></div>
   </div>
   <div class="flex" style="gap:10px;margin-top:20px"><div class="cta gh t" style="flex:1">Объясни проще</div><div class="cta t" style="flex:1">Понятно</div></div>`, true) });
 

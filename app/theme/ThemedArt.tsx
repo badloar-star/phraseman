@@ -9,7 +9,12 @@ import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { resolveThemedArt, type ThemedArtBrightness, type ThemedArtName } from './themed_art_registry';
+import {
+  resolveThemedArt,
+  themedArtBrightnessForBackground,
+  type ThemedArtBrightness,
+  type ThemedArtName,
+} from './themed_art_registry';
 
 export type ThemedArtProps = Readonly<{
   name: ThemedArtName;
@@ -26,11 +31,14 @@ export type ThemedArtProps = Readonly<{
 
 function ThemedArtImpl({ name, size = 96, width, height, style, brightness, accessibilityLabel, testID }: ThemedArtProps) {
   const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity } = useTheme();
-  const tone: ThemedArtBrightness = brightness ?? (liquidGlassAppearance === 'light' ? 'light' : 'dark');
+  // Палитра уже кэширована по теме+оформлению+шагу ползунка — тот же объект, без расчётов.
+  const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
+  // Комплект — по яркости фона темы: светлые → light, тёмные и тёмные градиентные → dark.
+  const tone: ThemedArtBrightness = brightness ?? themedArtBrightnessForBackground(tokens.bg);
   // Источники — из кэша реестра по имени+яркости: ползунок и смена темы их не пересоздают.
   const art = useMemo(() => resolveThemedArt(name, tone), [name, tone]);
-  // Цвет детали — из уже кэшированной палитры (тот же объект на шаге ползунка), без расчётов.
-  const tint = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }).accentBright;
+  // Цвет детали. Слоя .accent пока нет ни у одного предмета — тогда рисуется чистый предмет.
+  const tint = tokens.accentBright;
   const box = useMemo<ViewStyle>(() => ({ width: width ?? size, height: height ?? size }), [width, height, size]);
 
   return (

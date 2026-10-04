@@ -154,6 +154,25 @@ export function resolveThemedArt(name: ThemedArtName, brightness: ThemedArtBrigh
   return resolved;
 }
 
+/**
+ * Комплект по яркости ФОНА темы (относительная яркость WCAG): светлые темы → light,
+ * тёмные тонированные и тёмные градиентные → dark. зачем (координатор 04.10): решать по фону,
+ * а не по флагу оформления — так комплект совпадёт с тем, на чём предмет реально лежит.
+ */
+export function themedArtBrightnessForBackground(bg: string): ThemedArtBrightness {
+  const hex = /^#([0-9a-f]{6})/i.exec(bg)?.[1];
+  if (!hex) {
+    if (IS_DEV) console.log('[THEMED-ART] unparsed background, using dark', { bg });
+    return 'dark';
+  }
+  const lin = (i: number) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  };
+  const luminance = 0.2126 * lin(0) + 0.7152 * lin(2) + 0.0722 * lin(4);
+  return luminance >= 0.5 ? 'light' : 'dark';
+}
+
 /** Есть ли что показать (новый предмет или нынешняя картинка) — иначе экран оставляет свой вид. */
 export function hasThemedArt(name: ThemedArtName, brightness: ThemedArtBrightness): boolean {
   return resolveThemedArt(name, brightness).origin !== 'none';

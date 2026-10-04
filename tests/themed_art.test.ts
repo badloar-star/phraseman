@@ -82,3 +82,33 @@ describe('honest gaps', () => {
     }
   });
 });
+
+describe('first real assets (adfaa8c34) and set choice', () => {
+  const HOME = ['lessons', 'dialogs', 'cards', 'continue', 'phrase_of_day', 'mistakes_entry', 'today'] as const;
+
+  it('the 7 Home items are real files in both sets, with no accent layer yet (clean object)', () => {
+    for (const name of HOME) {
+      for (const brightness of ['dark', 'light'] as const) {
+        const art = resolveThemedArt(name, brightness);
+        expect(art.origin).toBe('v2art');
+        expect(art.accent).toBeNull();
+      }
+    }
+  });
+
+  it('everything else stays on the previous fallbacks', () => {
+    expect(resolveThemedArt('streak_05', 'dark').origin).toBe('fallback');
+    expect(resolveThemedArt('lesson_07', 'light').origin).toBe('none');
+  });
+
+  it('set follows the theme BACKGROUND: light themes → light, dark tinted and dark gradient → dark', () => {
+    const { liquidGlassTokens } = require('../constants/liquidGlassThemePalette') as typeof import('../constants/liquidGlassThemePalette');
+    const { themedArtBrightnessForBackground } = require('../app/theme/themed_art_registry') as typeof import('../app/theme/themed_art_registry');
+    for (const k of [0, 0.5, 1]) {
+      expect(themedArtBrightnessForBackground(liquidGlassTokens('marine', { level: 'calm', appearance: 'dark', intensity: k }).bg)).toBe('dark');
+      expect(themedArtBrightnessForBackground(liquidGlassTokens('grad_magma', { level: 'calm', appearance: 'dark', intensity: k }).bg)).toBe('dark');
+      expect(themedArtBrightnessForBackground(liquidGlassTokens('marine', { level: 'calm', appearance: 'light', intensity: k }).bg)).toBe('light');
+      expect(themedArtBrightnessForBackground(liquidGlassTokens('grad_magma', { level: 'calm', appearance: 'light', intensity: k }).bg)).toBe('light');
+    }
+  });
+});

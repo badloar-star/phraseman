@@ -2514,7 +2514,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Подзаголовок «Все карточк» обрезан",
+        "Карточка вопроса и кнопки без стекла (частично исправлено 9b848f4b8)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -2574,7 +2577,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "«Верно/неверно» без градиента и кромки макета",
+        "Вес текста ответов 600 вместо 700"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -5903,7 +5909,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Заливка карточек уроков светлее макета (#151517) — токен opaqueCard темы «Затмение»",
+        "Замок в кружке закрытого урока контурный, в learn.html залитый (уточняется: round-2 — контур)",
+        "Монета в пилюле серая, в макете бронзовая",
+        "После холодного старта в пилюле монет «—» вместо баланса"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -5934,7 +5945,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Карточки светлее макета, у закрытых уроков название ярче",
+        "Пилюля монет и круглые кнопки поиска/смешать без стекла"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -5967,7 +5981,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Замок контурный вместо залитого",
+        "Монета серая вместо бронзовой",
+        "Заливка карточек светлее (тема)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6359,7 +6377,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Строки без обводки, заливка светлее",
+        "Галочка невыбранной строки не видна в «Затмении»",
+        "Кнопка «Начать» без глянца",
+        "Круг «назад» меньше и без стекла"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6387,7 +6410,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Как learn-016: строки без обводки, кнопка без глянца, выбранная строка не светлее"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6415,7 +6440,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Как learn-016: приглушение при лимите слабее макета"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6473,7 +6500,14 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Нет плашки энергии в шапке",
+        "Под названием звёзды + «1/50» вместо полосы прогресса",
+        "Карточки-строки плоские, без кромки и тени",
+        "Плитки значков без подложки",
+        "Другой набор строк (Перепройти/Словарь/Неправильные формы) и значков",
+        "Нет блока «Небольшой совет»"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -12127,7 +12161,15 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Пункты раздела — отдельные карточки, в макете одна карточка с разделителями",
+        "Подписи мелким шрифтом под пунктами (в макете нет)",
+        "Plus и промокод в «Профиле», в макете — раздел «Phraseman Plus»",
+        "Лишний блок «Важное от Phraseman»",
+        "У карточки профиля стрелка вместо кнопки «Войти»",
+        "У «Язык изучения» флаг и нет стрелки (в макете глобус и стрелка)",
+        "Лишний подзаголовок «Профиль и приложение»"
+      ],
       "status": "pending",
       "mockup_pinned": "owner 04.10: переведено на новый макет",
       "reviewed_by": null,
@@ -16575,7 +16617,13 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Вторая кнопка «Закрыть» вместо «Позже»",
+        "Шторка светлее, без стеклянной кромки",
+        "Главная кнопка без глянца",
+        "Описание в 5 строк вместо 4 (кегль крупнее)",
+        "Сцена вместо значка — макет кадра 41 устарел (нужен новый макет)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22303,7 +22351,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кнопка «‹» и карточка списка без стеклянной кромки"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22357,7 +22407,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Затемнение под шторкой слабее макета",
+        "Шторка без светлой кромки",
+        "Кнопка «Начать» без тени"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22435,7 +22489,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Нет строки «Ваш ответ» (зачёркнуто) и кнопки «послушать»",
+        "Правильный ответ показан английским словом вместо перевода",
+        "Нет разделителей между цифрами шапки",
+        "Круглые кнопки и карточки без стекла"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22513,7 +22572,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Шапка задания (✕, счётчик, ⋯) под строкой состояния — нет отступа safe area",
+        "Счётчик «0 / 1» при выбранных «Все 12»",
+        "Направление задания RU→EN вместо EN→RU",
+        "Кнопки и панель вариантов без стекла"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22617,7 +22681,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кадр 15 «Верно»: нет точек-шагов справа",
+        "В шторке 6 вариантов вместо 2",
+        "Шторка «Верно» появляется через ~2 с после ответа"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22643,7 +22711,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кадр 16 «Неверно»: объяснение общее вместо конкретного",
+        "В шторке 6 вариантов вместо 2",
+        "Шторка без стеклянной кромки"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22669,7 +22741,11 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кадр 17 «Почему»: лишняя строка-дубль слова перед «Правильно»",
+        "«Объясни проще» переносится на 2 строки",
+        "Прямые кавычки вместо «ёлочек»"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22695,7 +22771,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кадр 18 «Итог»: лишняя строка «Монеты»",
+        "Нет блока «Исправлено» со списком",
+        "✕ под строкой состояния",
+        "Сессия из 12 ошибок даёт 1 задание, верный повтор не засчитан"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -24404,12 +24485,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/packs-simple-001.png",
-      "evidence_at": "2026-10-04T19:09:47.739Z",
-      "evidence_sha256": "c4241bfc08821ed42520911cb691a2e72865630767353fd8d3f3cbeb58e20ab2",
+      "evidence_at": "2026-10-04T19:25:33.068Z",
+      "evidence_sha256": "59caccf97da6af7e212b49ae2a93971a128559d01cc9f5fbfcbf448baa129cca",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Карточки наборов светлее макета (тема)",
+        "Плашка «Топ» у всех наборов (данные топа)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -24487,7 +24571,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Карточки набора плитками 2 в ряд без перевода, в макете — список «слово / перевод»",
+        "Кнопки «назад» и «⋮» без стекла (⋮ — квадрат с обводкой)",
+        "Лишний значок-аватар у автора",
+        "Открытие набора ~138 с (нарушение мгновенного открытия)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

@@ -2695,9 +2695,17 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
 /** Скелет тренировки (макет wordsLoading): те же размеры, что у готового экрана — без прыжка раскладки. */
-function WordsTrainingSkeleton({ glass, kicker }: { glass: ReturnType<typeof liquidGlassTokens>; kicker: string }) {
+// зачем (practice.html `.opt.ok/.opt.no`, как в «Блице»): верный — зелёная кромка + 12 % подкраска, неверный — красная.
+const WORD_ANSWER_OK_SURFACE = 'rgba(111,208,140,0.12)';
+const WORD_ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.12)';
+const WORD_ANSWER_OK_EDGE = '#6FD08C';
+const WORD_ANSWER_BAD_EDGE = '#E05050';
+
+function WordsTrainingSkeleton({ glass, kicker, header }: { glass: ReturnType<typeof liquidGlassTokens>; kicker: string; header?: React.ReactNode }) {
   return (
-    <View testID="lesson-words-training" style={{ flex:1, paddingHorizontal:16, paddingTop:12 }}>
+    <View testID="lesson-words-training" style={{ flex:1 }}>
+      {header}
+      <View style={{ flex:1, paddingHorizontal:16, paddingTop:14 }}>
       <PracticeProgressRow glass={glass} progress={0} flush />
       <PracticeQuestionCard glass={glass} kicker={kicker} style={{ marginTop: 30 }}>
         <View style={{ width:'60%', height:26, borderRadius:8, backgroundColor:glass.opaqueControl, marginTop:22 }} />
@@ -2709,11 +2717,12 @@ function WordsTrainingSkeleton({ glass, kicker }: { glass: ReturnType<typeof liq
           </View>
         ))}
       </View>
+      </View>
     </View>
   );
 }
 
-function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
+function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, headerTitle, onHeaderBack, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; headerTitle: string; onHeaderBack: () => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2722,6 +2731,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { s } = useLang();
   const router = useRouter();
+  // зачем: точная ширина колонки сетки вариантов (2 в ряд, зазор 10) — из onLayout ряда.
+  const [optionsRowWidth, setOptionsRowWidth] = useState(0);
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
@@ -3090,8 +3101,24 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   };
 
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
+  // зачем (redesign-round-1 «Словарь» вариант A, владелец 04.10): шапка — «назад», «1. Словарь» и под ним
+  // «Узнавание · 0 / 37», справа сердца и монеты (`vhead` макета). Без hud — итог и скелет.
+  const renderTrainingHeader = (subtitle?: string, hud?: React.ReactNode) => (
+    <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingHorizontal:12, paddingTop:12 }}>
+      <PracticeBackButton
+        glass={glass}
+        color={glass.text}
+        testID="lesson-words-header-back"
+        accessibilityLabel={pickTriLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        onPress={onHeaderBack}
+      />
+      <PracticeHeaderTitle glass={glass} title={headerTitle} subtitle={subtitle} />
+      {hud}
+    </View>
+  );
   if (allDone || (validQueue.length === 0 && learnedCnt >= words.length)) return (
     <View style={{ flex: 1 }}>
+      {renderTrainingHeader()}
       {/* зачем (владелец 01.10): итог слов = общий экран завершения 2.0, вариант learn.html F8. */}
       <V2DoneScreen
         testID="lesson-words-complete"
@@ -3148,7 +3175,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   if (!current) {
     // зачем: скелет вместо голого текста (макет wordsLoading): геометрия первого кадра = итоговая.
-    return <WordsTrainingSkeleton glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />;
+    return <WordsTrainingSkeleton header={renderTrainingHeader()} glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />;
   }
 
   const ROUND_CONFIG: Record<RoundType, { label: string; color: string; bg: string; icon: string }> = {
@@ -3170,17 +3197,14 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const isContext = current.roundType === 'context';
   const trainingProgress = words.length > 0 ? learnedCnt / words.length : 0;
   return (
-    <View testID="lesson-words-training" style={{ flex:1, paddingHorizontal:16, paddingTop:12 }}>
-      <View style={{ width:'100%', marginBottom:14, flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
-        <SessionAttemptsHud
-          remaining={attempts.state.remainingAttempts}
-          locale={lang}
-          testID="lesson-words-session-attempts"
-        />
-        <View style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
-          <Text style={{ color:glass.secondary, fontSize:13, lineHeight:17, fontWeight:'600', fontVariant:['tabular-nums'] }}>
-            {`${round.label} · ${trainingStepLabel}`}
-          </Text>
+    <View testID="lesson-words-training" style={{ flex:1 }}>
+      {renderTrainingHeader(`${round.label} · ${trainingStepLabel}`, (
+        <View style={{ flexDirection:'row', alignItems:'center', gap:6 }}>
+          <SessionAttemptsHud
+            remaining={attempts.state.remainingAttempts}
+            locale={lang}
+            testID="lesson-words-session-attempts"
+          />
           <View ref={runeFlight.counterRef} collapsable={false}>
             <PracticeRuneCounter
               runes={practiceRunes.runes}
@@ -3191,15 +3215,16 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             />
           </View>
         </View>
-      </View>
+      ))}
+      <View style={{ flex:1, paddingHorizontal:16, paddingTop:14 }}>
       <PracticeProgressRow glass={glass} progress={trainingProgress} flush />
       {/* Вопрос — источник полёта рун (владелец, 2026-08-27: «анимация
           полёта точно такая же, как в Learning V2»). */}
-      <View ref={runeFlight.originRef} collapsable={false} style={{ marginTop:30 }}>
+      <View ref={runeFlight.originRef} collapsable={false} style={{ marginTop:22 }}>
         {isContext ? (
           <PracticeQuestionCard
             glass={glass}
-            minHeight={140}
+            minHeight={150}
             kicker={pickTriLang(lang, { ru: 'Вставь слово в предложение:', uk: 'Встав слово у речення:', es: 'Coloca la palabra en la frase:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
           >
             {(() => {
@@ -3216,7 +3241,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         ) : (
           <PracticeQuestionCard
             glass={glass}
-            minHeight={140}
+            minHeight={150}
             kicker={pickTriLang(lang, {
               ru: 'Выбери английский перевод:',
               uk: 'Оберіть англійський переклад:',
@@ -3229,7 +3254,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             })}
           >
             <Text
-              style={{ color:glass.text, fontSize:30, fontWeight:'700', textAlign:'center', lineHeight:36, maxWidth:'100%', marginTop:14 }}
+              style={{ color:glass.text, fontSize:32, fontWeight:'700', textAlign:'center', lineHeight:38, letterSpacing:-0.3, maxWidth:'100%', marginTop:10 }}
               maxFontSizeMultiplier={1.2}
             >
               {current.question}
@@ -3237,18 +3262,21 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           </PracticeQuestionCard>
         )}
       </View>
-      <View style={{ flex:1 }} />
-      {/* Варианты ответов: узнавание — столбец, контекст — 2 колонки (макет optList / opts2) */}
-      <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between', rowGap:12, paddingBottom:16 }}>
+      {/* зачем (макет A `.grid2`): варианты сразу под карточкой вопроса, сетка 2 в ряд с зазором 10 — и для
+          узнавания, и для контекста; кнопки контурные, как в «Блице» (`.opt.sq` 76). */}
+      <View
+        onLayout={(e) => { const w = Math.round(e.nativeEvent.layout.width); if (w !== optionsRowWidth) setOptionsRowWidth(w); }}
+        style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', columnGap:10, rowGap:10, marginTop:14, paddingBottom:16 }}
+      >
         {current.options.map((opt, i) => {
           const isCorrect  = isLessonWordOptionCorrect(opt, current.correctOption);
           const isSelected = opt === chosen;
-          let tc = glass.text;
+          const tc = glass.text;
           let mark: 'correct' | 'wrong' | null = null;
           let dim = false;
           if (chosen !== null) {
-            if (isCorrect)       { tc = t.correct; mark = 'correct'; }
-            else if (isSelected) { tc = t.wrong; mark = 'wrong'; }
+            if (isCorrect)       { mark = 'correct'; }
+            else if (isSelected) { mark = 'wrong'; }
             else dim = true;
           }
           const on = flashKey === `${i}`;
@@ -3258,14 +3286,14 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
               accessibilityRole="button"
               accessibilityLabel={opt}
               style={({ pressed }) => ({
-                width: isContext ? '48%' : '100%',
-                minHeight: 56,
+                width: optionsRowWidth > 0 ? Math.floor((optionsRowWidth - 10) / 2) : '48%',
+                minHeight: 76,
                 paddingVertical: 10,
-                paddingHorizontal: mark ? 40 : 14,
-                borderRadius: 16,
-                // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0).
-                borderWidth: StyleSheet.hairlineWidth, // guard-ok
-                borderColor: glass.line,
+                paddingHorizontal: mark ? 34 : 12,
+                borderRadius: 14,
+                // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0); ответ — цветная кромка.
+                borderWidth: 1, // guard-ok
+                borderColor: mark === 'correct' ? WORD_ANSWER_OK_EDGE : mark === 'wrong' ? WORD_ANSWER_BAD_EDGE : glass.glassEdge,
                 backgroundColor: on || pressed ? glass.selected : glass.opaqueCard,
                 opacity: dim ? 0.4 : 1,
                 alignItems: 'center',
@@ -3275,9 +3303,13 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
               onPress={() => { if (chosen !== null) return; flash(`${i}`); handleChoice(opt); }}
               disabled={chosen !== null}
             >
+              {/* `.opt.ok` / `.opt.no`: подкраска 12 % поверх основы, значок цветом состояния, текст основной. */}
               {mark && (
-                <View pointerEvents="none" style={{ position:'absolute', right:12, top:0, bottom:0, justifyContent:'center' }}>
-                  <Ionicons name={mark === 'correct' ? 'checkmark' : 'close'} size={isContext ? 18 : 20} color={mark === 'correct' ? t.correct : t.wrong} />
+                <View pointerEvents="none" style={{ position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:13, backgroundColor: mark === 'correct' ? WORD_ANSWER_OK_SURFACE : WORD_ANSWER_BAD_SURFACE }} />
+              )}
+              {mark && (
+                <View pointerEvents="none" style={{ position:'absolute', right:10, top:0, bottom:0, justifyContent:'center' }}>
+                  <Ionicons name={mark === 'correct' ? 'checkmark' : 'close'} size={18} color={mark === 'correct' ? WORD_ANSWER_OK_EDGE : WORD_ANSWER_BAD_EDGE} />
                 </View>
               )}
               <Text
@@ -3302,6 +3334,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           textColor={glass.secondary}
         />
       )}
+      </View>
       {runeFlight.flight && (
         <CoinRewardFlight
           key={runeFlight.flight.key}
@@ -3627,21 +3660,26 @@ function LessonWords() {
     return () => { cancelled = true; };
   }, [lessonId, storageKey]);
 
+  const trainingOwnsHeader = !frenchVocabularyBlocked && !frenchRemoteWordsLoading && tab !== 'list' && wordProgressReady;
+  const goBackToLesson = () => { hapticTap(); safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any); };
   return (
     <ScreenGradient>
     <View style={{ flex:1, paddingTop: insets.top }}>
       <ContentWrap>
-      {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. */}
-      <View style={{ flexDirection:'row', alignItems:'center', gap:6, paddingHorizontal:12, paddingTop:12 }}>
+      {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. Во время тренировки шапку рисует сама
+          тренировка (с подзаголовком, сердцами и монетами — макет «Словарь» A), здесь — список, загрузка, отказ. */}
+      {trainingOwnsHeader ? null : (
+      <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingHorizontal:12, paddingTop:12 }}>
         <PracticeBackButton
           glass={glass}
           color={glass.text}
           testID="lesson-words-header-back"
           accessibilityLabel={pickTriLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-          onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any); }}
+          onPress={goBackToLesson}
         />
         <PracticeHeaderTitle glass={glass} title={ws.title(lessonId)} />
       </View>
+      )}
 
       <View style={{ flex:1 }}>
         {frenchVocabularyBlocked ? (
@@ -3681,6 +3719,8 @@ function LessonWords() {
             onCancelStart={() => setUserTab('list')}
             studyTarget={studyTarget}
             onAndroidBackIntercept={setAndroidBackIntercept}
+            headerTitle={ws.title(lessonId)}
+            onHeaderBack={goBackToLesson}
             devFakeStartRunes={devRunesFake?.runes}
             devJumpToFinale={devJumpToFinale}
           />

@@ -16,8 +16,10 @@ describe('lesson words option layout contract', () => {
     expect(start).toBeGreaterThanOrEqual(0);
     // зачем: карточки ответов переведены на Liquid Glass — теперь <Pressable> с width 48%/100%, minHeight 56 и
     // переносом слов; устойчивость к крупному тексту держат minWidth:0 + maxFontSizeMultiplier, а не обрезка.
-    expect(block).toContain("width: isContext ? '48%' : '100%'");
-    expect(block).toContain('minHeight: 56');
+    // 04.10 (redesign-round-1 «Словарь» A, владелец): сетка 2 в ряд для всех раундов, ширина колонки из onLayout
+    // ряда (зазор 10), высота варианта 76.
+    expect(block).toContain('width: optionsRowWidth > 0 ? Math.floor((optionsRowWidth - 10) / 2)');
+    expect(block).toContain('minHeight: 76');
     expect(block).toContain('minWidth:0');
     expect(block).toContain('flexShrink:1');
     expect(block).toContain('maxFontSizeMultiplier={1.2}');

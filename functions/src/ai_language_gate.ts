@@ -69,6 +69,29 @@ function looksLikeEnglishLeak(text: string, lang: string): boolean {
   return hits >= 4 && englishStopwordRatio(text) >= 0.25;
 }
 
+/**
+ * Диагностика решения гейта (правила не меняет). зачем (§142, 04.10): explainMistake браковал правильные русские
+ * объяснения как wrong_language, а причина отказа нигде не печаталась — чинить правило вслепую нельзя.
+ */
+export function describeGeneratedLanguageDecision(text: string, lang: string): Readonly<{
+  reason: GeneratedLanguageRejectReason | null;
+  wrongScriptRatio: number;
+  latinWordsOutsideQuotes: number;
+  stopwordHits: number;
+  sampleLatinWords: readonly string[];
+}> {
+  const trimmed = String(text ?? '').trim();
+  const checkText = textForLanguageCheck(trimmed, lang);
+  const latin = checkText.toLowerCase().match(/[a-z]{2,}/g) ?? [];
+  return Object.freeze({
+    reason: rejectGeneratedLanguageText(trimmed, lang),
+    wrongScriptRatio: Math.round(wrongScriptRatio(checkText, lang) * 1000) / 1000,
+    latinWordsOutsideQuotes: latin.length,
+    stopwordHits: latin.filter((word) => ENGLISH_STOPWORDS.has(word)).length,
+    sampleLatinWords: Object.freeze([...new Set(latin)].slice(0, 12)),
+  });
+}
+
 export function rejectGeneratedLanguageText(
   text: string,
   lang: string,

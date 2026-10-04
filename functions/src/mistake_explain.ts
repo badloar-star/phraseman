@@ -29,6 +29,7 @@ import {
   type MistakeExplainVariant,
 } from './explain/mistake_explain_cache';
 import { assertAiOutputLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
+import { describeGeneratedLanguageDecision } from './ai_language_gate';
 import {
   buildMistakeBundleMessages,
   parseMistakeExplanationBundle,
@@ -614,12 +615,26 @@ async function generate(
   return { answer: generated.answer, usage: generated.usage };
 }
 
-function assertMistakeGeneratedText(answer: string, payload: ExplainMistakePayload): void {
-  assertAiOutputLanguage({
-    text: answer,
-    targetLang: payload.interfaceLang,
-    feature: 'mistake_explain',
-  });
+function assertMistakeGeneratedText(answer: string, payload: ExplainMistakePayload, section = 'text'): void {
+  try {
+    assertAiOutputLanguage({
+      text: answer,
+      targetLang: payload.interfaceLang,
+      feature: 'mistake_explain',
+    });
+  } catch (error) {
+    // зачем (§142, 04.10): 6 из 10 вызовов — 503 из-за ложного wrong_language на правильном русском тексте.
+    // Печатаем, ЧТО решило отказ: причина гейта, доля чужого алфавита, латинские слова вне кавычек.
+    const decision = describeGeneratedLanguageDecision(answer, resolveAiOutputLang(payload.interfaceLang, 'mistake_explain'));
+    console.warn('[EXPLAIN-LANG] reject', JSON.stringify({
+      section,
+      variant: payload.variant,
+      interfaceLang: payload.interfaceLang,
+      textChars: answer.length,
+      ...decision,
+    }));
+    throw error;
+  }
 }
 
 function isMistakeGeneratedTextSafe(answer: string, payload: ExplainMistakePayload): boolean {
@@ -688,8 +703,8 @@ function validateMistakeBundle(
   } catch {
     throw new HttpsError('unavailable', 'mistake_explain_invalid_bundle');
   }
-  assertMistakeGeneratedText(bundle.full, payload);
-  assertMistakeGeneratedText(bundle.eli5, payload);
+  assertMistakeGeneratedText(bundle.full, payload, 'full');
+  assertMistakeGeneratedText(bundle.eli5, payload, 'eli5');
   return bundle;
 }
 

@@ -162,6 +162,33 @@ const L27_PLAN_RECALL_AUTHORITY_SHA256 =
   "38da89e2562454a1daebb1c1ddb124d36ad487b0aabccb6d807a68744ca6473a";
 const L27_CANONICAL_OBJECT_SHA256 =
   "ca4411b999f2f0e199c1de2b352b8f606e89969713f4c5350ed5f5f5e40bc9d5";
+const L28_PLAN_RECALL_AUTHORITY = [
+  {
+    fromLessonId: "de_l16",
+    constructIds: [
+      "de_gc_spoken_preterite_island_v1",
+      "de_gc_perfekt_sein_classes_v1",
+    ],
+    responsibility:
+      "contrast bounded spoken forms and completed events with the selected narrative register",
+  },
+  {
+    fromLessonId: "de_l15",
+    constructIds: ["de_gc_perfekt_haben_classes_v1"],
+    responsibility:
+      "retrieve verified haben-class completed-event brackets for contrast with the selected narrative set",
+  },
+  {
+    fromLessonId: "de_l18",
+    constructIds: ["de_gc_connector_topology_contrast_v1"],
+    responsibility:
+      "retrieve the established connector-topology contrast while sequencing cause and result in a connected account",
+  },
+] as const;
+const L28_PLAN_RECALL_AUTHORITY_SHA256 =
+  "4498cc546c93be421b36baa5fd911c755af937e58c07a5d0cc7cba74d3b68b6c";
+const L28_CANONICAL_OBJECT_SHA256 =
+  "bbed0011f3a848a569cf608a0de706d82a5503b0a137235d60dbddf412bc8328";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -259,6 +286,16 @@ function hasExactL27PlanRecallAuthority(value: unknown): boolean {
     canonical === JSON.stringify(L27_PLAN_RECALL_AUTHORITY) &&
     createHash("sha256").update(canonical).digest("hex") ===
       L27_PLAN_RECALL_AUTHORITY_SHA256
+  );
+}
+
+function hasExactL28PlanRecallAuthority(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(L28_PLAN_RECALL_AUTHORITY) &&
+    createHash("sha256").update(canonical).digest("hex") ===
+      L28_PLAN_RECALL_AUTHORITY_SHA256
   );
 }
 
@@ -899,6 +936,12 @@ function validateBlueprint(
     ) {
       throw new Error("l27_plan_recall_authority_invalid");
     }
+    if (
+      expectedOrdinal === 28 &&
+      !hasExactL28PlanRecallAuthority(candidate.crossLessonRecall)
+    ) {
+      throw new Error("l28_plan_recall_authority_invalid");
+    }
     candidate.crossLessonRecall.forEach((recall, recallIndex) => {
       assertPlainRecord(
         recall,
@@ -1403,6 +1446,14 @@ function validateBlueprint(
         throw new Error("l27_canonical_object_identity_invalid");
       }
     }
+    if (expectedOrdinal === 28) {
+      const l28CanonicalObjectSha256 = createHash("sha256")
+        .update(JSON.stringify(candidate))
+        .digest("hex");
+      if (l28CanonicalObjectSha256 !== L28_CANONICAL_OBJECT_SHA256) {
+        throw new Error("l28_canonical_object_identity_invalid");
+      }
+    }
   });
 
   for (const domain of SCENARIO_DOMAINS) {
@@ -1521,6 +1572,19 @@ assert.equal(
   true,
   "L27 authority must pass only for the exact five-row contract",
 );
+const directL28AuthorityProbe = clone(
+  ((raw as JsonRecord).lessons as JsonRecord[])[27].crossLessonRecall,
+) as JsonRecord[];
+assert.equal(
+  hasExactL28PlanRecallAuthority(directL28AuthorityProbe.slice(0, 1)),
+  false,
+  "L28 authority must fail while the required L15/L18 rows are absent",
+);
+assert.equal(
+  hasExactL28PlanRecallAuthority(clone(L28_PLAN_RECALL_AUTHORITY)),
+  true,
+  "L28 authority must pass only for the exact ordered three-row contract",
+);
 validateBlueprint(raw, constructs);
 
 expectFailure(
@@ -1533,6 +1597,134 @@ expectFailure(
     ).filter((recall) => recall.fromLessonId !== "de_l18");
   },
   /^l27_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    lesson28.crossLessonRecall = (
+      lesson28.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l15");
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l15Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l15",
+    )!;
+    l15Recall.constructIds = ["de_gc_controlled_partizip_ii_v1"];
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l15Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l15",
+    )!;
+    l15Recall.responsibility =
+      "retrieve completed-event brackets for narrative contrast";
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l15Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l15",
+    )!;
+    l15Recall.fromLessonId = "de_l14";
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    lesson28.crossLessonRecall = (
+      lesson28.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l18");
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l18Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l18",
+    )!;
+    l18Recall.constructIds = ["de_gc_introduced_verbletzt_clause_v1"];
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l18Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l18",
+    )!;
+    l18Recall.responsibility =
+      "retrieve connector topology while sequencing the account";
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const l18Recall = (lesson28.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l18",
+    )!;
+    l18Recall.fromLessonId = "de_l17";
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    (lesson28.crossLessonRecall as JsonRecord[]).push({
+      fromLessonId: "de_l01",
+      constructIds: ["de_gc_statement_v2_v1"],
+      responsibility: "extra recall row",
+    });
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    const recalls = lesson28.crossLessonRecall as JsonRecord[];
+    lesson28.crossLessonRecall = [recalls[1], recalls[0], recalls[2]];
+  },
+  /^l28_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson28 = (candidate.lessons as JsonRecord[])[27];
+    lesson28.title = "Eine Geschichte klar erzählen";
+  },
+  /^l28_canonical_object_identity_invalid$/u,
 );
 expectFailure(
   raw,

@@ -3298,6 +3298,16 @@
             "de_gc_perfekt_sein_classes_v1"
           ],
           "responsibility": "contrast bounded spoken forms and completed events with the selected narrative register"
+        },
+        {
+          "fromLessonId": "de_l15",
+          "constructIds": ["de_gc_perfekt_haben_classes_v1"],
+          "responsibility": "retrieve verified haben-class completed-event brackets for contrast with the selected narrative set"
+        },
+        {
+          "fromLessonId": "de_l18",
+          "constructIds": ["de_gc_connector_topology_contrast_v1"],
+          "responsibility": "retrieve the established connector-topology contrast while sequencing cause and result in a connected account"
         }
       ],
       "session56Final": {

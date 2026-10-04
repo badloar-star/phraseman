@@ -15,9 +15,12 @@ describe('lesson completion single finish surface', () => {
   });
 
   it('shows only the next-lesson unlock hint, without follow-up completion overlays', () => {
-    expect(completionSurface).toContain('starsNote={nextLessonUnlockHint}');
+    // зачем (04.10): 7887bbc7b (итог урока по макету E1–E4) — подсказка стала одной из веток starsNote
+    // («нужно 2★» при одной звезде, иначе «следующий урок открыт» по nextLessonUnlockHint), а не самим значением.
+    expect(completionSurface).toMatch(/starsNote=\{[\s\S]{0,700}?: nextLessonUnlockHint\s*\?/);
     expect(source).toContain('const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);');
-    expect(source).toContain('readLegacyFreeLessonCap(studyTarget).catch(() => undefined)');
+    // зачем (04.10): PM-229 db985607f — немой catch пишет причину; результат при отказе тот же (undefined).
+    expect(source).toContain("readLegacyFreeLessonCap(studyTarget).catch(noteSwallowedAs('lesson_complete:useEffect.readLegacyFreeLessonCap', undefined))");
     expect(source).toContain('requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap)');
     expect(source).toContain("ru: 'Следующий урок входит в Plus'");
     expect(completionSurface).toContain("ru: 'Открыть Plus'");

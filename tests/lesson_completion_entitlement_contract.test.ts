@@ -34,6 +34,7 @@ describe('lesson completion entitlement wiring', () => {
     expect(hintBlock).toContain('shouldAnnounceNextLessonUnlock(');
     expect(hintBlock).toContain("params.unlocked === '1'");
     expect(hintBlock).not.toContain('completionRequiresPremium\n    ?');
-    expect(completion.slice(results, results + 1500)).toContain('starsNote={nextLessonUnlockHint}');
+    // зачем (04.10): 7887bbc7b — подсказка о следующем уроке стала веткой starsNote (макет E1–E4), смысл тот же.
+    expect(completion.slice(results, results + 3000)).toMatch(/starsNote=\{[\s\S]{0,700}?: nextLessonUnlockHint\s*\?/);
   });
 });

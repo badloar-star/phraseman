@@ -2195,7 +2195,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
               <ContentWrap>
               <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-              <View style={{ paddingHorizontal: 15, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+              <View style={{ paddingHorizontal: 15, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 {!embedded && (<TapScale
                   onPress={() => {
@@ -2233,8 +2233,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   «впрыгивал» целиком, когда loadAll() догружался. Держим геометрию
                   загруженного экрана скелетоном (шапка героя, legacy reward-карта, недельный
                   график, ряд достижений), как в рабочем состоянии экрана. */}
+              {/* зачем (D158, кадр 04.10): панель лежала поверх заготовки без своего фона — «Сейчас недоступно» накладывалось на мерцающие блоки. Непрозрачный фон экрана делает её чистым блоком по центру. */}
               {!statsReady && statsUnavailable ? (
-                <View testID="stats-unavailable" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 1 }}>
+                <View testID="stats-unavailable" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 1, backgroundColor: statsGlass.bg }}>
                   <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
                     {triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', es: 'No disponible ahora', en: 'Not available right now', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' })}
                   </Text>

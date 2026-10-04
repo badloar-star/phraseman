@@ -2,19 +2,21 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` through `de_l27` closure across cumulative
-Stages A–D already recorded below, plus L27 Stage A (Task 4 authority repair)
-and L27 Stage B (Task 5 L27 chapter blueprint plus fail-closed chapter gate).
+**Scope:** the bounded `de_l24` through `de_l28` closure across cumulative
+Stages A–D already recorded below, plus L27 and L28 Stage A (Task 4 authority
+repair) and Stage B (Task 5 chapter blueprint plus fail-closed chapter gate).
 **Mode:** fresh independent read-only reviews after each GREEN. Cumulative
-Stages B–D and L27 Stage B used exact-spec and native-German semantic judges.
-No reviewer authored or mutated the reviewed files.
+Stages B–D and L27/L28 Stage B used exact-spec and native-German semantic
+judges. No reviewer authored or mutated the reviewed files.
 **Reviewed commits:** cumulative Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
 `eadfba9fe2225a9205eb9242a62f74496685e3fc`; Stage C
 `917c02a80599354847ba211e205484751a53fef0`; Stage D
 `4091319a91241636f0f1d9ff9a2837857bd914ee`; L27 Stage A
 `8a02c929f11c91dcc4ad234b988f8c0b157cd2b0`; L27 Stage B
-`079b54138296271cbec921b200cd4176b951cb4b`.
+`079b54138296271cbec921b200cd4176b951cb4b`; L28 Stage A
+`ce23e30d42ce91acee65de53b488070e40e3c68e`; L28 Stage B
+`3963b8d16a6c3872a671d2801594f1b513432c20`.
 
 ## Stable authority identities
 
@@ -223,6 +225,66 @@ broader relative scope, new connectors, new case/preposition relations, new
 tense, broader narrative Präteritum, functional Genitiv, L28 grammar, Task 6,
 learner-facing surfaces, release, audio, mockup and English-contour reuse.
 
+## L28 Stage A — repaired Task 4 authority boundary
+
+| Reviewed artifact                                                | SHA-256                                                            |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/lesson_blueprints_de_v1.json` | `0BE735435BF0D326757CED50300BB96D440CD1C35503A3628FF3E8EBC1FAD798` |
+| `tests/learning_v2_de_lesson_boundaries_gate.ts`                 | `BCB9A32256ED70FE544169E51BD8F3FDB24EDA25FC249ACB82AA727A9F55DD00` |
+
+The canonical Task 4 `de_l28` object SHA-256 is
+`BBED0011F3A848A569CF608A0DE706D82A5503B0A137235D60DBDDF412BC8328`.
+Its exact ordered three-row recall-authority SHA-256 is
+`4498CC546C93BE421B36BAA5FD911C755AF937E58C07A5D0CC7CBA74D3B68B6C`.
+
+The initial guardian returned `PASS_FULL_PREAUTHOR_AUTHORIZATION_L28` for
+canonical chapter candidate
+`AAB50F4FE37AAA9E51C814F6B1FA40B248C5A7ED4732CFA526C33A282F44F7A4`,
+acknowledged as `ACK_L28_CANONICAL_aab50f4f`. A subsequent fail-closed authority
+check blocked the missing non-adjacent L15/L18 recall authority. Stage A repaired
+Task 4 and its gate by pinning the exact ordered L16/L15/L18 contract. Fresh
+Stage A exact-spec and adversarial reviews both returned `PASS`, with `P0=0`,
+`P1=0`, `P2=0`.
+
+## L28 Stage B — closed Task 5 L28 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `B1F3FF628232136DA04CA50437AD425F815AB1D6835F12CF6509CF0186772218` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `BE5B70830B7326B910AC5A9D3DDA2C1CAB7241C7AC22587040023D5D7C1EFD7E` |
+
+The final canonical Task 5 `de_l28` chapter object SHA-256 is
+`3105C00880C7EC7BFEC15D6D0D62EE7A6508A941B88015D08F0B7EDF2D9DA1B5`.
+The chapter gate pins the exact Task 4 plan SHA-256
+`BBED0011F3A848A569CF608A0DE706D82A5503B0A137235D60DBDDF412BC8328`.
+The final C05 object SHA-256 is
+`6D317C542BE79FD8B0BDCBAB1DB8CCC3134CB320A8B49868B2C0478457F2D41F`;
+the reviewed support-surface SHA-256 is
+`5735291D555AEDD166D700B3135208E8E648D05EF13D8200EBA22988C5E87F7D`.
+The canonical object contains 27,533 characters and 27,588 UTF-8 bytes.
+
+The materialized lesson contains exactly seven chapters and 56 packet IDs. It
+introduces only the selected bounded narrative Präteritum inventory, contrasts
+it with the already known Perfekt and spoken-past islands, preserves exact
+L16/L15/L18 recall provenance, and ends in independent changed-context transfer
+at `de_l28_c07_s56`. The component identities remain pinned: grammar boundary
+`767F049902A83F16904179FC7AF81F6095BB596670B610FDBAF364DC975A5D79`,
+packet IDs `90A77D162A565B5E1E058E4D3CD9FAC37370E1225C9F257ED88A81B5D1B4A977`,
+lexical packages `E59121F8A6139B16A36DE17A536A638226DEC70F126248F497D4C6DA1E7E4F9D`,
+recall schedule `F91E45CD83E039B856E62F150FBECA3F00CA819CACDAA88A99D96E64DC93FE83`
+and lifecycle anchors
+`FB4060A3564661407BDD9C4489F5350837C528A5FCF0C8F6FCE07628E622DE6D`.
+
+`AMENDED_PASS_L28_TRANSPORT` clarified only the review-packet transport and did
+not alter candidate bytes or content authority. The first reviewers acknowledged
+`ACK_L28_REVIEW_PACKET_aab50f4f`; exact-spec review passed with `P0=0`, `P1=0`,
+`P2=0`, while native-German review blocked the unselected `folgte` as `P1` and
+the combined H84 hostile mutation's masking gap as `P2`.
+`AMENDED_PASS_L28_CONTENT_1` authorized the bounded content and isolated-hostile
+repair; the writer acknowledged `ACK_AMENDED_PASS_L28_CONTENT_1`. The final
+reviewers acknowledged `ACK_L28_FINAL_REVIEW_3105c008`. Fresh final exact-spec
+and native-German reviews both returned `PASS`, with `P0=0`, `P1=0`, `P2=0`.
+
 ## Hostile and deterministic evidence
 
 - All 52 ordered L24 hostile mutations fail closed with their dedicated
@@ -320,6 +382,33 @@ session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
   this cumulative receipt's final SHA-256; at that point it must report
   `PASS (31/31)`.
 
+## L28 hostile and deterministic evidence
+
+- All 111 ordered L28 hostile mutations fail closed with their dedicated
+  diagnostics, including exact Task 4 recall authority, selected-form inventory,
+  register contrast, event sequencing, state/action and cause/result meaning,
+  lifecycle and recall provenance, lexical packages and utility, independent
+  transfer, isolated rejection of `folgte`, `ging`, `brauchte` and `schrieb`,
+  forbidden grammar/surface leakage and English-contour isolation.
+- L28 focused chapter gate: `PASS (de_l28; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-28 chapter gate: `PASS (prefix 28; 196 chapters; 1568 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L27 focused and prefix-27 regression gates: `PASS` (7/56 and 189/1512).
+- The unscoped Task 5 gate remains the required incompleteness signal with exit
+  1 and exact error
+  `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;28/32 lessons;196/224 chapters`.
+- Task 4 lesson-boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32
+session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
+- Research-authority gate: `PASS (53 claims)`.
+- Grammar-graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
+- Current one-phrase interaction gate: `PASS (72/72)`.
+- Schema and owner-decision gates: `PASS`.
+- Prettier, ESLint and scoped diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite is valid only after the manifest binds
+  this cumulative receipt's final SHA-256; at that point it must report
+  `PASS (31/31)`.
+
 ## Identity-cycle boundary
 
 This receipt deliberately excludes
@@ -332,10 +421,10 @@ weakens the separate recenter hash gate or handover obligation.
 
 ## Closed boundary and next authorized step
 
-- `de_l24` through `de_l27` are closed for Task 5 at the reviewed commits
+- `de_l24` through `de_l28` are closed for Task 5 at the reviewed commits
   above; their applicable Task 4 identities remain pinned by the fail-closed gate.
 - The next exact grammar-first blueprint task is a fresh instruction reread and
-  content-addressed guardian for `de_l28`, followed by one bounded lesson and
+  content-addressed guardian for `de_l29`, followed by one bounded lesson and
   both independent final reviews.
 - Task 6 lexical reconciliation remains mandatory before exact learner-facing
   packet authoring.
@@ -345,5 +434,6 @@ weakens the separate recenter hash gate or handover obligation.
 - This receipt authorizes no English-contour change, deploy, push, production
   write or release action.
 
-Any byte change in a reviewed cumulative Stage A–D or L27 Stage A/B identity
-invalidates the corresponding verdict and requires fresh independent review.
+Any byte change in a reviewed cumulative Stage A–D, L27 Stage A/B or L28 Stage
+A/B identity invalidates the corresponding verdict and requires fresh
+independent review.

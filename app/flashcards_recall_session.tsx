@@ -65,6 +65,7 @@ import {
   type DeckRef,
 } from './flashcards/deck_sources';
 import { isFullPhraseFuzzyCorrect } from './flashcards/fuzzy_match';
+import { parseRecallDirection } from './flashcards/practice_setup_params';
 import { FC_DEFAULT_SESSION_SIZE, isValidSessionSize } from './flashcards/mode_prefs';
 import {
   requeueAfterMistake,
@@ -124,7 +125,15 @@ export default function FlashcardsRecallSession() {
   const params = useLocalSearchParams<{
     deck?: string | string[];
     size?: string | string[];
+    dir?: string | string[];
   }>();
+  // зачем (координатор 04.10, настройка тренировки): направление «перевод → фраза» (как было) или
+  // «фраза → перевод». Читается один раз на вход; без параметра — прежнее поведение.
+  const [direction] = useState(() => parseRecallDirection(params.dir));
+  const promptOf = useCallback((card: { en: string; translation: string }) =>
+    (direction === 'to_source' ? card.en : card.translation), [direction]);
+  const answerOf = useCallback((card: { en: string; translation: string }) =>
+    (direction === 'to_source' ? card.translation : card.en), [direction]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight, liquidGlassThemeId } = useTheme();
@@ -592,15 +601,19 @@ export default function FlashcardsRecallSession() {
       verdict: correct ? 'correct' : 'pedagogical_wrong',
     });
     setRemainingQueueCount(queueRef.current.length);
-    setFeedback({ kind, expected: card.en });
-  }, [activeCard, answerRevealed, attemptSessionId, attemptsPhase, practiceRunes, registerAttemptVerdict, runeFlight, studyTarget]);
+    setFeedback({ kind, expected: answerOf(card) });
+  }, [activeCard, answerOf, answerRevealed, attemptSessionId, attemptsPhase, practiceRunes, registerAttemptVerdict, runeFlight, studyTarget]);
 
   const checkAnswer = useCallback(() => {
     if (!activeCard || feedback || answerRevealed || !input.trim()) return;
-    const verdict = isFullPhraseFuzzyCorrect(input, activeCard.en);
+    // Перевод бывает с вариантами («привет / здравствуй») — засчитываем любой.
+    const [main, ...alternatives] = direction === 'to_source'
+      ? answerOf(activeCard).split(/\s*[\/;]\s*/).filter(Boolean)
+      : [answerOf(activeCard)];
+    const verdict = isFullPhraseFuzzyCorrect(input, main ?? answerOf(activeCard), alternatives);
     if (verdict.ok) recordVerdict(true, verdict.typo ? 'typo' : 'correct');
     else recordVerdict(false, 'wrong');
-  }, [activeCard, answerRevealed, feedback, input, recordVerdict]);
+  }, [activeCard, answerOf, answerRevealed, direction, feedback, input, recordVerdict]);
 
   const advance = useCallback(() => {
     if (!feedback || attemptsPhase !== 'active') return;
@@ -684,6 +697,11 @@ export default function FlashcardsRecallSession() {
       ru: 'Напиши на изучаемом языке', uk: 'Напиши мовою, яку вивчаєш', en: 'Write in the language you are learning', es: 'Escribe en el idioma que estudias',
       'pt-BR': 'Escreva no idioma que você está aprendendo', vi: 'Viết bằng ngôn ngữ bạn đang học', id: 'Tulis dalam bahasa yang sedang kamu pelajari',
       tr: 'Öğrendiğin dilde yaz', pl: 'Napisz w języku, którego się uczysz',
+    }),
+    promptToSource: triLang(lang, {
+      ru: 'Напиши перевод', uk: 'Напиши переклад', en: 'Write the translation', es: 'Escribe la traducción',
+      'pt-BR': 'Escreva a tradução', vi: 'Viết bản dịch', id: 'Tulis terjemahannya',
+      tr: 'Çevirisini yaz', pl: 'Napisz tłumaczenie',
     }),
     hint: triLang(lang, {
       ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
@@ -924,7 +942,7 @@ export default function FlashcardsRecallSession() {
   const feedbackSurface = feedback?.kind === 'wrong' ? FEEDBACK_BAD_SURFACE : FEEDBACK_OK_SURFACE;
   const attemptsInteractive = attempts.hydrated && attemptsPhase === 'active';
   const canCheck = attemptsInteractive && input.trim().length > 0 && !feedback && !answerRevealed;
-  const hintCharacters = Array.from(activeCard.en.trim());
+  const hintCharacters = Array.from(answerOf(activeCard).trim());
   const hintPrefix = hintCharacters.length > 6
     ? `${hintCharacters.slice(0, 6).join('')}…`
     : hintCharacters.join('');
@@ -958,14 +976,14 @@ export default function FlashcardsRecallSession() {
                 ref={promptRef}
                 collapsable={false}
                 accessible
-                accessibilityLabel={`${copy.prompt}. ${activeCard.translation}`}
+                accessibilityLabel={`${direction === 'to_source' ? copy.promptToSource : copy.prompt}. ${promptOf(activeCard)}`}
                 style={styles.focusPrompt}
               >
                 <Text style={[styles.instruction, { color: recallGlass.secondary }]}>
-                  {copy.prompt}
+                  {direction === 'to_source' ? copy.promptToSource : copy.prompt}
                 </Text>
                 <Text style={[styles.translation, { color: t.textPrimary, fontSize: Math.max(28, Math.round(f.h1 * 1.1)), lineHeight: Math.max(34, Math.round(f.h1 * 1.35)) }]}>
-                  {activeCard.translation}
+                  {promptOf(activeCard)}
                 </Text>
               </View>
             </Reanimated.View>
@@ -978,7 +996,7 @@ export default function FlashcardsRecallSession() {
               >
                 <RecallGlassSurface chrome={recallGlass} />
                 <Text style={[styles.eyebrow, { color: recallGlass.secondary }]}>{copy.revealed}</Text>
-                <Text selectable style={[styles.answerText, { color: t.textPrimary }]}>{activeCard.en}</Text>
+                <Text selectable style={[styles.answerText, { color: t.textPrimary }]}>{answerOf(activeCard)}</Text>
                 <View style={styles.selfGradeRow}>
                   <Pressable
                     testID="fc-recall-self-grade-wrong"

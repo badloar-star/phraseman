@@ -90,6 +90,7 @@ import {
   flashcardPendingGrantPreset,
   persistSpentEnergyOrRefund,
 } from './flashcards/training_entry_policy';
+import { logSessionSizeSetup } from './flashcards/practice_setup_params';
 import {
   FC_DEFAULT_SESSION_SIZE,
   isValidSessionSize,
@@ -1048,8 +1049,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   /** Размер сессии из шита; 0 — параметра нет, тренируем весь выбранный пул. */
   const requestedSessionSize = useMemo<FcSessionSize | 0>(() => {
     const raw = Number(routeParamString(params.size));
-    return isValidSessionSize(raw) ? raw : 0;
-  }, [params.size]);
+    const applied = isValidSessionSize(raw) ? raw : 0;
+    // зачем (координатор 04.10, настройка «Правда/ложь» 10/20/Все): видно, что пришло и что применено.
+    logSessionSizeSetup(trainingMode === 'truefalse' ? 'truefalse' : 'swipe', params.size, applied);
+    return applied;
+  }, [params.size, trainingMode]);
   const visibleRequestedOfficialOwnedIds = useMemo(
     () => (officialPacksEnabled ? requestedOfficialOwnedIds : []),
     [officialPacksEnabled, requestedOfficialOwnedIds],

@@ -65,7 +65,6 @@ import { fcHaptic, playSfx } from './flashcards/SoundService';
 import {
   BLITZ_ADVANCE_OK_MS,
   BLITZ_ADVANCE_WRONG_MS,
-  BLITZ_DURATION_SEC,
   applyBlitzAnswer,
   canStartBlitz,
   buildBlitzQuestion,
@@ -73,6 +72,7 @@ import {
   type BlitzQuestion,
   type BlitzState,
 } from './flashcards/blitz_logic';
+import { parseBlitzDurationSec } from './flashcards/practice_setup_params';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
 import { hydrateFcDeckOptionsSnapshot, loadAllFcDeckRefs, loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
@@ -177,7 +177,12 @@ export default function FlashcardsBlitzSession() {
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
 
-  const params = useLocalSearchParams<{ deck?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  const params = useLocalSearchParams<{ deck?: string; sec?: string | string[]; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  // зачем (координатор 04.10, настройка тренировки 30/60/90 с): длительность раунда — из маршрута, один раз
+  // на вход в сессию (ref: эффекты раунда не пересоздаются; без параметра — прежние 60 с).
+  const roundDurationMsRef = useRef<number | null>(null);
+  if (roundDurationMsRef.current === null) roundDurationMsRef.current = parseBlitzDurationSec(params.sec) * 1000;
+  const roundDurationMs = roundDurationMsRef.current;
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
@@ -199,7 +204,7 @@ export default function FlashcardsBlitzSession() {
   const [btnStates, setBtnStates] = useState<BtnState[]>(IDLE_BTNS);
   const [locked, setLocked] = useState(false);
   const [blitz, setBlitz] = useState<BlitzState>(() => initialBlitzState());
-  const [timeLeft, setTimeLeft] = useState(BLITZ_DURATION_SEC);
+  const [timeLeft, setTimeLeft] = useState(() => roundDurationMs / 1000);
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения —
   // фейковый summary, реальная игровая механика не запускается вообще.
   const [result, setResult] = useState<ResultState | null>(() => (devJumpToFinale ? {
@@ -308,7 +313,7 @@ export default function FlashcardsBlitzSession() {
   const finishingRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const pausedRemainingMsRef = useRef(BLITZ_DURATION_SEC * 1000);
+  const pausedRemainingMsRef = useRef(roundDurationMs);
   const answerSequenceRef = useRef(0);
 
   /** «Уменьшить движение» / слабое устройство — передаётся экрану итогов. */
@@ -431,7 +436,7 @@ export default function FlashcardsBlitzSession() {
     clearRoundTimers();
     endAtRef.current = Date.now() + remainingMs;
     setTimeLeft(Math.ceil(remainingMs / 1000));
-    progress.value = Math.min(1, remainingMs / (BLITZ_DURATION_SEC * 1000));
+    progress.value = Math.min(1, remainingMs / (roundDurationMsRef.current ?? roundDurationMs));
     progress.value = withTiming(0, { duration: remainingMs, easing: Easing.linear });
     intervalRef.current = setInterval(() => {
       const remainder = endAtRef.current - Date.now();
@@ -813,27 +818,27 @@ export default function FlashcardsBlitzSession() {
     queueRef.current = durableManifest?.roundQueue ?? shuffleArr(pool);
     qIdxRef.current = 0;
     answerSequenceRef.current = 0;
-    pausedRemainingMsRef.current = BLITZ_DURATION_SEC * 1000;
+    pausedRemainingMsRef.current = roundDurationMsRef.current ?? roundDurationMs;
     const init = initialBlitzState();
     blitzRef.current = init;
     setBlitz(init);
     setBtnStates(IDLE_BTNS);
     setLocked(false);
-    setTimeLeft(BLITZ_DURATION_SEC);
+    setTimeLeft((roundDurationMsRef.current ?? roundDurationMs) / 1000);
     setQuestion(durableManifest?.initialQuestion ?? buildBlitzQuestion(queueRef.current[0]!, pool));
     // зачем (сверка 04.10, «таймер 0:42 при появлении»): отсчёт идёт с ПЕРВОГО кадра с вопросом, не раньше.
     const roundStartedAt = Date.now();
     shownAtRef.current = roundStartedAt;
-    endAtRef.current = roundStartedAt + BLITZ_DURATION_SEC * 1000;
+    endAtRef.current = roundStartedAt + (roundDurationMsRef.current ?? roundDurationMs);
     progress.value = 1;
     let firstFrame: ReturnType<typeof scheduleAfterPaint> | null = scheduleAfterPaint(() => {
       firstFrame = null;
       const paintedAt = Date.now();
       shownAtRef.current = paintedAt;
-      endAtRef.current = paintedAt + BLITZ_DURATION_SEC * 1000;
+      endAtRef.current = paintedAt + (roundDurationMsRef.current ?? roundDurationMs);
       console.log('[FC-BLITZ-GATE] round:timer_start', JSON.stringify({ round: roundId, afterPaintMs: paintedAt - roundStartedAt }));
       progress.value = withTiming(0, {
-        duration: BLITZ_DURATION_SEC * 1000,
+        duration: roundDurationMsRef.current ?? roundDurationMs,
         easing: Easing.linear,
       });
       startRoundTicker();

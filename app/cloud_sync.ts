@@ -1068,6 +1068,10 @@ function classifyRetiredIdentitySubject(
     : 'unknown';
 }
 
+// зачем (AA S2b, пункт 12, §122): на холодном старте ключ читали ~16 потребителей
+// подряд, и каждое чтение шло мостом в SQLite. Теперь он читается через снапшот:
+// из хранилища один раз, дальше синхронно из памяти (peek); запись и удаление идут
+// сквозь снапшот, а любая запись мимо него (wipe аккаунта) выбрасывает ключ из памяти.
 async function readStableAuthLinkCache(key: string): Promise<boolean> {
   try {
     const peeked = peekStoredItem(STABLE_AUTH_LINK_CACHE_KEY);
@@ -1107,10 +1111,6 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
     if (timeoutId !== undefined) clearTimeout(timeoutId);
   });
 }
-// зачем (AA S2b, пункт 12, §122): на холодном старте ключ читали ~16 потребителей
-// подряд, и каждое чтение шло мостом в SQLite. Теперь он читается через снапшот:
-// из хранилища один раз, дальше синхронно из памяти (peek); запись и удаление идут
-// сквозь снапшот, а любая запись мимо него (wipe аккаунта) выбрасывает ключ из памяти.
 
 // ── Lazy getters — грузятся только если пакеты установлены ───────────────────
 const isDateKey = (value: unknown): value is string =>
@@ -2355,11 +2355,14 @@ export async function mergeStableAccountsViaServer(
       { stableIdA: string; stableIdB: string; anonMergeNonce?: string },
       MergeStableAccountsResult
     >('authMergeStableAccounts');
+    // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта — если он
+    // выдан одной из сторон слияния; после успешного слияния он больше не нужен.
     const res = await withTimeout(
       fn({ stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]) }),
       STABLE_AUTH_LINK_TIMEOUT_MS,
       'auth_merge_callable',
     );
+    if (res?.data?.ok === true) forgetAnonMergeNonce([a, b], 'merged');
     return res?.data ?? null;
   } catch (e) {
     if (__DEV__) console.warn('[cloud_sync] mergeStableAccountsViaServer failed', e);
@@ -2398,14 +2401,11 @@ async function adoptAuthoritativeStableIdentity(
   authoritativeStableIdRaw: string,
 ): Promise<boolean> {
   const localStableId = String(localStableIdRaw || '').trim();
-    // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта — если он
-    // выдан одной из сторон слияния; после успешного слияния он больше не нужен.
   const authoritativeStableId = String(authoritativeStableIdRaw || '').trim();
   if (!localStableId || !authoritativeStableId) return false;
   if (localStableId === authoritativeStableId) return true;
 
   const sourceGeneration = captureAccountGeneration();
-    if (res?.data?.ok === true) forgetAnonMergeNonce([a, b], 'merged');
   if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
 
   return withAccountTransitionLock(async () => {

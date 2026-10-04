@@ -82,6 +82,8 @@ const SCOPED_CACHE_PREFIXES = [
   // тихий — сервер ответит заново (см. explain_local_cache.ts).
   'ai_explain_local_cache_v1:',
   ...APP_MESSAGES_CACHE_PREFIXES,
+  // Каталог маркета наборов на диске (PM-252 п.7) — публичный, пересобирается из сети.
+  'community_catalog_v1:',
 ] as const;
 
 // зачем: PM-199-A2 — раньше при сбое хранилища функция всё равно возвращала успех,

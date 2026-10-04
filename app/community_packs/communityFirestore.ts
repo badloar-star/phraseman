@@ -1,4 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { FlashcardMarketPack, FlashcardPackCategory } from '../flashcards/marketplace';
 import { derivePackCodeName } from '../flashcards/marketplace';
@@ -202,7 +203,61 @@ let _communityCatalogCache: {
 } | null = null;
 
 let catalogGeneration = 0;
-export function invalidateCommunityPackCatalog(): void { catalogGeneration += 1; _communityCatalogCache = null; }
+
+/**
+ * зачем (PM-252 п.7, Firebase-экономия + мгновенное открытие): кэш в памяти умирал с процессом,
+ * и КАЖДЫЙ холодный запуск снова читал 100–200 документов (7 запросов). Каталог публичный и
+ * меняется медленно — копия на диске с тем же TTL 6 ч отдаёт его без сети. Запись фоном, чтение
+ * один раз на загрузчик. Ключ: `community_catalog_v1:<kind>:<studyTarget>`; стирается сбросом кэша.
+ */
+export const COMMUNITY_CATALOG_DISK_PREFIX = 'community_catalog_v1:';
+type CatalogKind = 'community' | 'video';
+type CatalogEntry = { key: string; at: number; packs: FlashcardMarketPack[] };
+const catalogDiskKey = (kind: CatalogKind, key: string): string => `${COMMUNITY_CATALOG_DISK_PREFIX}${kind}:${key}`;
+
+async function readCatalogFromDisk(kind: CatalogKind, key: string): Promise<CatalogEntry | null> {
+  try {
+    const raw = await AsyncStorage.getItem(catalogDiskKey(kind, key));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<CatalogEntry>;
+    if (typeof parsed?.at !== 'number' || !Array.isArray(parsed.packs)) {
+      console.warn('[PACKS-CATALOG] disk entry malformed -> ignored', JSON.stringify({ kind, key }));
+      return null;
+    }
+    return { key, at: parsed.at, packs: parsed.packs as FlashcardMarketPack[] };
+  } catch (error) {
+    console.warn('[PACKS-CATALOG] disk read failed -> network', JSON.stringify({ kind, key }), error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
+function writeCatalogToDisk(kind: CatalogKind, entry: CatalogEntry): void {
+  void AsyncStorage.setItem(catalogDiskKey(kind, entry.key), JSON.stringify({ at: entry.at, packs: entry.packs }))
+    .catch((error: unknown) => {
+      console.warn('[PACKS-CATALOG] disk write failed (memory copy still serves)', JSON.stringify({ kind, key: entry.key }), error instanceof Error ? error.message : String(error));
+    });
+}
+
+/** Один сетевой запрос на ключ: хаб, витрина, прогрев и тренировки на холодном старте больше не дублируют 7 запросов. */
+const catalogInFlight = new Map<string, Promise<FlashcardMarketPack[]>>();
+function dedupeCatalogFetch(id: string, run: () => Promise<FlashcardMarketPack[]>): Promise<FlashcardMarketPack[]> {
+  const pending = catalogInFlight.get(id);
+  if (pending) return pending;
+  const next = run().finally(() => { catalogInFlight.delete(id); });
+  catalogInFlight.set(id, next);
+  return next;
+}
+
+export function invalidateCommunityPackCatalog(): void {
+  catalogGeneration += 1;
+  _communityCatalogCache = null;
+  // зачем: после публикации/правки своего набора диск не должен вернуть каталог без него.
+  void AsyncStorage.getAllKeys()
+    .then((keys) => AsyncStorage.multiRemove(keys.filter((k) => k.startsWith(`${COMMUNITY_CATALOG_DISK_PREFIX}community:`))))
+    .catch((error: unknown) => {
+      console.warn('[PACKS-CATALOG] disk invalidate failed', error instanceof Error ? error.message : String(error));
+    });
+}
 
 /** Синхронный снимок для первого кадра. null — снимка нет, нужен спиннер. */
 export function peekPublishedCommunityMarketPacks(
@@ -271,7 +326,20 @@ export async function loadVideoMarketPacks(
   if (!opts?.forceRemote) {
     const warm = peekVideoMarketPacks(studyTarget);
     if (warm) return warm;
+    const disk = await readCatalogFromDisk('video', cacheKey);
+    if (disk && Date.now() - disk.at <= COMMUNITY_CATALOG_TTL_MS) {
+      _videoCatalogCache = disk;
+      DebugLogger.info('[VIDEO-PACK]', `каталог с диска: ${disk.packs.length}, возраст ${Math.round((Date.now() - disk.at) / 60000)} мин`);
+      return disk.packs;
+    }
   }
+  return dedupeCatalogFetch(`video:${cacheKey}`, () => fetchVideoCatalogFromNetwork(studyTarget, cacheKey));
+}
+
+async function fetchVideoCatalogFromNetwork(
+  studyTarget: RuntimeStudyTarget | undefined,
+  cacheKey: string,
+): Promise<FlashcardMarketPack[]> {
   try {
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
@@ -285,6 +353,7 @@ export async function loadVideoMarketPacks(
     /** Порядок — общий для всего приложения: лайки → добавления → свежесть. */
     const out = list.filter((pack) => !!pack.videoId).sort(comparePacksBySocial);
     _videoCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
+    writeCatalogToDisk('video', _videoCatalogCache);
     DebugLogger.info('[VIDEO-PACK]', `каталог из сети: документов ${snap.docs.length}, с videoId ${out.length}`);
     return out;
   } catch (error) {
@@ -296,6 +365,13 @@ export async function loadVideoMarketPacks(
     // вызывающий экран должен получить reject и показать «Повторить».
     if (_videoCatalogCache?.key === cacheKey && _videoCatalogCache.packs.length > 0) {
       return _videoCatalogCache.packs;
+    }
+    // Копия на диске любого возраста лучше, чем «Повторить» на пустом экране (D158).
+    const disk = await readCatalogFromDisk('video', cacheKey);
+    if (disk && disk.packs.length > 0) {
+      DebugLogger.warn('[VIDEO-PACK]', `сеть недоступна — показываем копию с диска (${disk.packs.length})`);
+      _videoCatalogCache = disk;
+      return disk.packs;
     }
     throw error;
   }
@@ -318,9 +394,23 @@ export async function loadPublishedCommunityMarketPacks(
       if (__DEV__) console.log('[PACKS-FIRSTFRAME] load CACHE key=%s packs=%d source=warm-cache', cacheKey, warm.length);
       return warm;
     }
+    const disk = await readCatalogFromDisk('community', cacheKey);
+    if (disk && Date.now() - disk.at <= COMMUNITY_CATALOG_TTL_MS && generation === catalogGeneration) {
+      _communityCatalogCache = disk;
+      console.log('[PACKS-CATALOG] load DISK', JSON.stringify({ key: cacheKey, packs: disk.packs.length, ageMin: Math.round((Date.now() - disk.at) / 60000) }));
+      return disk.packs;
+    }
   } else if (__DEV__) {
     console.log('[PACKS-FIRSTFRAME] load FORCE-REMOTE key=%s (cache bypassed by user gesture)', cacheKey);
   }
+  return dedupeCatalogFetch(`community:${cacheKey}:${generation}`, () => fetchCommunityCatalogFromNetwork(studyTarget, cacheKey, generation));
+}
+
+async function fetchCommunityCatalogFromNetwork(
+  studyTarget: RuntimeStudyTarget | undefined,
+  cacheKey: string,
+  generation: number,
+): Promise<FlashcardMarketPack[]> {
   try {
     // Limit each language independently; a busy EN catalog must not starve FR/DE/ES.
     // зачем (D127): «Без языка» — отдельная корзина, иначе такие наборы тонули бы
@@ -347,14 +437,22 @@ export async function loadPublishedCommunityMarketPacks(
       return [];
     }
     _communityCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
-    if (__DEV__) console.log('[PACKS-FIRSTFRAME] load NETWORK key=%s packs=%d source=firestore', cacheKey, out.length);
+    writeCatalogToDisk('community', _communityCatalogCache);
+    console.log('[PACKS-CATALOG] load NETWORK', JSON.stringify({ key: cacheKey, docs: docs.length, packs: out.length }));
     return out;
   } catch (e) {
     // зачем: вкладка «Сообщество» тихо показывала пустой список без единой
     // подсказки в логах — владелец видел 0 наборов при 2 published в базе.
     if (__DEV__) console.warn('[communityFirestore] loadPublishedCommunityMarketPacks failed', e);
-    // Отказ сети не должен обнулять уже показанный каталог — отдаём прошлый снимок.
-    return _communityCatalogCache?.key === cacheKey ? _communityCatalogCache.packs : [];
+    // Отказ сети не должен обнулять уже показанный каталог — отдаём прошлый снимок (память, затем диск любого возраста).
+    if (_communityCatalogCache?.key === cacheKey) return _communityCatalogCache.packs;
+    const disk = await readCatalogFromDisk('community', cacheKey);
+    if (disk) {
+      console.warn('[PACKS-CATALOG] network failed -> disk copy', JSON.stringify({ key: cacheKey, packs: disk.packs.length }));
+      _communityCatalogCache = disk;
+      return disk.packs;
+    }
+    return [];
   }
 }
 

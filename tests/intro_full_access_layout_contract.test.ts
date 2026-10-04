@@ -27,7 +27,8 @@ describe('intro full access layout orchestration', () => {
     expect(source).toMatch(/getVerifiedRealPremiumStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
     expect(source).toMatch(/getVerifiedVipStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
     expect(source).toContain('const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip()');
-    expect(source).toContain('!hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome()');
+    // зачем (04.10): PM-229 (62c7b2fc4) перенёс вызов на новую строку и дописал лог причины в .catch — условие то же.
+    expect(source).toMatch(/!hasPaidOrVipAfterOnboarding\s*&& await shouldShowIntroFullAccessWelcome\(\)/);
     expect(source).toMatch(/await markIntroFullAccessEndedSeen\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });
 

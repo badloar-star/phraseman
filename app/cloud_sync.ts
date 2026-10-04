@@ -271,6 +271,11 @@ import {
   uploadFlashcardListsToPages,
 } from './flashcards_cloud_upload';
 import {
+  FLASHCARD_FUTURE_KEPT_STASH_KEY,
+  mergeFutureKeptStashRaw,
+  stashForceFutureKeptLocalVersions,
+} from './flashcards_future_kept_stash';
+import {
   isAccountsV2LegacyDomainKey,
   isAccountsV2LegacySwitchFlagOn,
   omitAccountsV2LegacyDomains,
@@ -826,6 +831,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     // stableId владельца и отпечатки его списков — это след аккаунта, стирается вместе с ним.
     // Без отпечатка повторный вход объединяет со страницами (безопасная сторона), не затирает их.
     FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY,
+    // зачем (AA 2.0, S1e): локальные версии карточек, уступившие облачной «из будущего» при силовом
+    // переносе, — данные аккаунта: едут в его аварийную копию и стираются вместе с ним.
+    FLASHCARD_FUTURE_KEPT_STASH_KEY,
     'cloud_migration_v1',
     // Кэши лидербордов (содержат предыдущего юзера)
     'global_lb_cache',
@@ -4579,6 +4587,14 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       return refuse('flashcards_upload_failed');
     }
     const flashcardUpload = flashcardOutcome.plan;
+    // зачем (AA 2.0, S1e): в страницах осталась облачная правка «из будущего», локальная версия в
+    // облако не ушла, а после true телефон сотрут. Кладём её в ключ аккаунта — он едет в аварийную
+    // копию того же владельца и возвращается при входе. Не сохранилось → отказ: стирать нельзя.
+    if (!await stashForceFutureKeptLocalVersions(uid, flashcardUpload.remoteFutureKept)) {
+      console.warn('[LEGACY-V2-SYNC] force_sync result=false reason=future_kept_stash_failed');
+      pendingSync = false;
+      return refuse('flashcards_upload_failed');
+    }
     const forceDocProgress = buildDocProgressWithoutFlashcardLists(forceData, flashcardUpload);
 
     const now = Date.now();
@@ -4844,6 +4860,58 @@ async function foldMergedGuestBackupBeforeNewBackup(
   return true;
 }
 
+/**
+ * AA 2.0, S1e: значение одного ключа из аварийной копии ЭТОГО владельца (v3 — по страницам,
+ * v1/v2 — из корня). null — ключа нет / копия чужая / не читается (причина в логе).
+ *
+ * зачем: новая копия того же владельца заменяет прежнюю целиком, а прежняя может нести локальные
+ * версии карточек S1e, ещё не долитые обратно. Читаем только этот ключ — без проверки цепочки
+ * хешей: значение лишь объединяется с живым, ничего не перезаписывает.
+ */
+async function readOwnAccountSwitchBackupValue(
+  previousBackupRaw: string,
+  ownerStableId: string,
+  key: string,
+): Promise<string | null> {
+  try {
+    const root = JSON.parse(previousBackupRaw) as Record<string, unknown>;
+    if (root.stableId !== ownerStableId) {
+      identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_skipped', { reason: 'other_owner' });
+      return null;
+    }
+    if (root.version === 1 || root.version === 2) {
+      const pair = (Array.isArray(root.pairs) ? root.pairs : []).find((item: unknown) => (
+        Array.isArray(item) && item[0] === key && typeof item[1] === 'string'
+      )) as [string, string] | undefined;
+      return pair?.[1] ?? null;
+    }
+    const pageCount = Number(root.pageCount);
+    if (root.version !== 3 || typeof root.backupId !== 'string' || !Number.isSafeInteger(pageCount)
+      || pageCount < 0 || pageCount > ACCOUNT_SWITCH_BACKUP_MAX_PAGES) {
+      identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_skipped', { reason: 'root_shape' });
+      return null;
+    }
+    for (let pageIndex = 0; pageIndex < pageCount; pageIndex += 1) {
+      const pageRaw = await AsyncStorage.getItem(`${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${root.backupId}:${pageIndex}`);
+      if (pageRaw === null) {
+        identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_skipped', { reason: 'page_missing', pageIndex });
+        return null;
+      }
+      const page = JSON.parse(pageRaw) as { backupId?: unknown; stableId?: unknown; pairs?: unknown };
+      if (page.backupId !== root.backupId || page.stableId !== ownerStableId || !Array.isArray(page.pairs)) {
+        identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_skipped', { reason: 'page_shape', pageIndex });
+        return null;
+      }
+      const pair = page.pairs.find((item: unknown) => Array.isArray(item) && item[0] === key) as unknown[] | undefined;
+      if (pair !== undefined) return typeof pair[1] === 'string' ? pair[1] : null;
+    }
+    return null;
+  } catch (error) {
+    identityTrace('[ACC-SWITCH-WIPE]', 'backup carry_read_failed', { code: identityErrorCode(error) });
+    return null;
+  }
+}
+
 export async function saveAccountSwitchEmergencyBackup(
   reason: string,
   expectedStableId?: string,
@@ -4897,6 +4965,11 @@ export async function saveAccountSwitchEmergencyBackup(
     }
     await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, previousBackupIdentity.stableId);
   }
+  // зачем (AA 2.0, S1e): прежняя копия ТОГО ЖЕ владельца заменяется целиком — её локальные версии
+  // карточек (ещё не долитые) объединяем с живыми в новой копии, а не затираем.
+  const carriedFutureKeptStash = previousBackupRaw !== null && previousBackupIdentity?.stableId === stableId
+    ? await readOwnAccountSwitchBackupValue(previousBackupRaw, stableId, FLASHCARD_FUTURE_KEPT_STASH_KEY)
+    : null;
   const shardQueueKey = shardDeltaQueueStorageKey(stableId);
   const keySet = new Set([
     ...await collectAccountLocalDataKeys(),
@@ -4969,7 +5042,11 @@ export async function saveAccountSwitchEmergencyBackup(
         'account_switch_backup_verification_failed',
       );
       let pagePairs: [string, string][] = [];
-      for (const [key, value] of rows) {
+      for (const [key, liveValue] of rows) {
+        // S1e: ключ локальных версий карточек — живое значение + записи прежней копии владельца.
+        const value = key === FLASHCARD_FUTURE_KEPT_STASH_KEY
+          ? mergeFutureKeptStashRaw(liveValue, carriedFutureKeptStash)
+          : liveValue;
         if (value == null) continue;
         if (key.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
           value.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {

@@ -35,6 +35,7 @@ import {
 } from './flashcard_pages_read_result';
 import { writeFlashcardPages, type FlashcardPagesPreWriteHook } from './flashcards_cloud_pages';
 import { buildFlashcardDocFieldMarkers, decideFlashcardDocField } from './flashcards_doc_field_clear';
+import type { FutureKeptLocalGroup } from './flashcards_future_kept_stash';
 import type { StudyTarget } from './study_target';
 import { flashcardsSavedKey } from './target_storage_keys';
 
@@ -59,6 +60,11 @@ export type FlashcardCloudUploadPlan = Readonly<{
   sentToDoc: ReadonlySet<string>;
   /** Заперт замком 8J — не уходил никуда. */
   lockedNow: ReadonlySet<string>;
+  /**
+   * S1e (только force): в записанных страницах осталась облачная версия «из будущего», а локальная
+   * в облако не ушла. forceSyncToCloud кладёт эти локальные версии в аварийную копию владельца.
+   */
+  remoteFutureKept: readonly FutureKeptLocalGroup[];
 }>;
 
 export type FlashcardCloudUploadDeps = Readonly<{
@@ -121,6 +127,7 @@ export async function uploadFlashcardListsToPages(
   const clearDocField = new Set<string>();
   const sentToDoc = new Set<string>();
   const lockedNow = new Set<string>();
+  const remoteFutureKept: FutureKeptLocalGroup[] = [];
 
   // зачем (8J): restore не смог прочитать страницы ключа → облачная правда неизвестна.
   // Такой ключ не уходит НИКУДА: ни в страницы (writeFlashcardPages удалил бы хвост),
@@ -174,6 +181,14 @@ export async function uploadFlashcardListsToPages(
       store: deps.preWriteStore ?? DEFAULT_PRE_WRITE_STORE,
       mergeLocal: deps.mergeLocal ?? defaultFlashcardLocalMerge,
     });
+    // зачем (S1e): перенос вот-вот сотрёт телефон, а локальные версии карточек, уступившие облачной
+    // «из будущего», в страницы не ушли. Только когда страницы реально записаны: при сбое страниц
+    // список целиком уезжает в документ (doc_fallback) — локальные версии и так в облаке.
+    const futureKeptPairs = preWrite?.kind === 'write' ? preWrite.remoteFutureKeptPairs ?? [] : [];
+    if (mode === 'force' && pagesWritten !== null && futureKeptPairs.length > 0) {
+      remoteFutureKept.push({ key, target, versions: futureKeptPairs });
+      console.log(`${LOG} force_sync key=${key} remote_future_kept_local=${futureKeptPairs.length}`);
+    }
     const decision = decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null);
     if (decision !== 'keep_in_doc') {
       offloaded.add(key);
@@ -193,7 +208,7 @@ export async function uploadFlashcardListsToPages(
       console.log(`${LOG} force_sync key=${key} decision=${shown} pages=${pagesWritten ?? 'failed'}`);
     }
   }
-  return { keys, offloaded, clearDocField, sentToDoc, lockedNow };
+  return { keys, offloaded, clearDocField, sentToDoc, lockedNow, remoteFutureKept };
 }
 
 /** 8N: зависимости выгрузки + решения крючка «объединить с облаком» по языку. */

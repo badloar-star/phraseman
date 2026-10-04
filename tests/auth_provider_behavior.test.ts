@@ -1425,11 +1425,53 @@ test('unreadable post-wipe storage is not accepted as an empty account', async (
     getAllKeys: jest.Mock;
   };
   storage.getAllKeys.mockRejectedValueOnce(new Error('storage unreadable'));
+  const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
 
-  const handoff = await authProvider.beginAccountDeletion();
+  let handoff: Awaited<ReturnType<typeof authProvider.beginAccountDeletion>>;
+  let warnLines: string[];
+  try {
+    handoff = await authProvider.beginAccountDeletion();
+  } finally {
+    warnLines = warn.mock.calls.map((call) => String(call[0]));
+    warn.mockRestore();
+  }
 
   expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
   expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+  // зачем (хвост security-ревью PM-289, L-2): отказ проверки стирания больше не немой —
+  // причина в логе, поведение прежнее (закрыто).
+  expect(warnLines.some((line) => line.startsWith('[AUTH-DELETE] wipe_verify_failed code='))).toBe(true);
+});
+
+// зачем (хвост security-ревью PM-289, L-1): отдельный снос pending_shard_grants_* при удалении снят —
+// его покрывает проверенная полная очистка (verifyPostDeleteLocalWipe). Значит, любой посторонний
+// ключ после неё, в том числе pending_shard_grants_*, обязан остановить удаление.
+test.each([
+  'pending_shard_grants_v2:stable-a',
+  'pending_shard_grants_delete_cleanup_v1:stable-a',
+  'pending_shard_grants_v1',
+  'some_unknown_account_key_v9',
+])('post-delete wipe residue %s → local_wipe_unverified, deletion does not continue (PM-289 L-1)', async (residue) => {
+  authState.isAnonymous = false;
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider();
+  const storage = lastLoadedAuthProviderStorage as typeof import('@react-native-async-storage/async-storage').default & {
+    getAllKeys: jest.Mock;
+  };
+  const originalGetAllKeys = storage.getAllKeys.getMockImplementation();
+  storage.getAllKeys.mockResolvedValue([residue, 'account_delete_pending_auth_v1']);
+  let handoff: Awaited<ReturnType<typeof authProvider.beginAccountDeletion>>;
+  try {
+    handoff = await authProvider.beginAccountDeletion();
+  } finally {
+    storage.getAllKeys.mockImplementation(originalGetAllKeys);
+  }
+
+  expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
   expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
     .toContain('"phase":"prepared"');
 });

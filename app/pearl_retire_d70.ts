@@ -145,7 +145,9 @@ export async function retireLocalPearlBalance(
     }
     const state = parsePearlLedgerState(raw, owner);
     if (state === null) {
-      // Журнал ещё не открыт (его открывает loadShardsFromCloud) — попробуем на следующем старте.
+      // Журнал не открыт. Начальный баланс в него клал loadShardsFromCloud, а с PM-289 (0c3c4708f)
+      // вход его больше не вызывает — на свежем устройстве журнала и не будет, списывать нечего; на
+      // старом уже открытый журнал читается выше. Попробуем на следующем старте (одно чтение ключа).
       log('exit ledger_not_initialized source=local_ledger');
       return 'ledger_not_initialized';
     }

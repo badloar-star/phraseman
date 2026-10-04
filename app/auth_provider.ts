@@ -143,6 +143,7 @@ import {
   readShardDeltaQueue,
 } from './shards_delta_queue';
 import { restoreAccountSwitchEmergencyBackupIfSafe, writeAccountSwitchBackupMergeAlias } from './account_switch_backup_restore';
+import { applyFutureKeptStashAfterReturn } from './flashcards_future_kept_stash';
 import { classifyPresyncBackupRefusal } from './presync_backup_refusal';
 import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
 import {
@@ -542,6 +543,18 @@ async function tryRestoreAccountSwitchBackup(
       // восстановление — best effort
       DebugLogger.error('auth_provider:res', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  // зачем (AA 2.0, S1e): копия доливает только отсутствующие ключи — список карточек после облачного
+  // restore уже есть, и локальные версии, уступившие облачной «из будущего» при силовом переносе,
+  // лежат отдельным ключом. Возвращаем их в список (только поверх той самой облачной версии).
+  if (isCurrent()) {
+    try {
+      await applyFutureKeptStashAfterReturn(peekStableId());
+    } catch (error) {
+      identityTrace('[AUTH-LINK-GOOGLE]', 'future_kept_stash_apply_failed', { stage, code: identityErrorCode(error) });
+    }
+  } else {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'future_kept_stash_apply_skipped', { stage, reason: 'stale_generation' });
+  }
   // AA S2d раунд 3 (ревью п.2): отложенные копии старше 30 дней — давняя утечка.
   try {
     await pruneShelvedAccountSwitchBackups();
@@ -803,7 +816,10 @@ async function verifyPostDeleteLocalWipe(): Promise<boolean> {
     // gone. The only permitted row is the non-secret deletion guard mirror
     // restored after clear; authoritative proofs remain in SecureStore.
     return remainingKeys.every((key) => key === ACCOUNT_DELETE_PENDING_AUTH_KEY);
-  } catch {
+  } catch (error) {
+    // зачем (хвост security-ревью PM-289, L-2): немой catch прятал причину отказа проверки.
+    // Поведение прежнее — непрочитанное хранилище не считается чистым (удаление закрыто).
+    console.warn(`[AUTH-DELETE] wipe_verify_failed code=${identityErrorCode(error)}`);
     return false;
   }
 }

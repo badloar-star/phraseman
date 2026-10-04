@@ -179,7 +179,16 @@ export type LockedFlashcardsMerge = Readonly<{
    * keepRemoteFromFuture). Локальный список их НЕ получает — на телефоне остаётся своя версия.
    */
   remoteFutureKept: number;
+  /**
+   * S1e: пары «локальная версия / оставленная облачная» для этих карточек (длина = remoteFutureKept).
+   * зачем: при силовом переносе перед сменой аккаунта локальная версия в облако не уходит, а телефон
+   * стирается — её надо положить в аварийную копию владельца (app/flashcards_future_kept_stash.ts).
+   */
+  remoteFutureKeptPairs: readonly FutureKeptLocalVersion[];
 }>;
+
+/** S1e: локальная версия карточки, уступившая место облачной «из будущего», и сама облачная. */
+export type FutureKeptLocalVersion = Readonly<{ local: unknown; remote: unknown }>;
 
 /**
  * S1c (§116): режим объединения. `active` — активное устройство перед записью (8N): правило §100,
@@ -284,7 +293,7 @@ export function mergeLockedFlashcardsWithPages(
   if (localCards === null) {
     return {
       value: pagesRaw, cloud: cloudCards.length, localOnly: 0, deletedSkipped: 0, localUnparsable: true,
-      localWon: 0, remoteWon: 0, remoteWonCards: [], remoteFutureKept: 0,
+      localWon: 0, remoteWon: 0, remoteWonCards: [], remoteFutureKept: 0, remoteFutureKeptPairs: [],
     };
   }
   const isDeleted = (card: unknown): boolean => {
@@ -297,7 +306,7 @@ export function mergeLockedFlashcardsWithPages(
     if (!localByIdentity.has(identity)) localByIdentity.set(identity, card);
   }
   let localWon = 0;
-  let remoteFutureKept = 0;
+  const remoteFutureKeptPairs: FutureKeptLocalVersion[] = [];
   const remoteWonCards: unknown[] = [];
   const conflicts: Record<CardEditTimeOrder, number> = { local_newer: 0, remote_newer: 0, within_clock_margin: 0, time_unknown: 0 };
   const keptCloud = cloudCards.filter((card) => !isDeleted(card)).map((cloudCard) => {
@@ -312,7 +321,8 @@ export function mergeLockedFlashcardsWithPages(
     // Будущее у локальной (свои часы спешат) — прежнее правило режима.
     if (options.keepRemoteFromFuture === true && mode === 'active' && pick.winner === 'local'
       && isCardEditTimeFromFuture(cardEditTime(cloudCard), now)) {
-      remoteFutureKept += 1;
+      // зачем (S1e): локальную версию не теряем — силовой перенос положит её в копию владельца.
+      remoteFutureKeptPairs.push({ local: localCard, remote: cloudCard });
       return cloudCard;
     }
     if (pick.winner === 'local') {
@@ -322,6 +332,7 @@ export function mergeLockedFlashcardsWithPages(
     remoteWonCards.push(cloudCard);
     return cloudCard;
   });
+  const remoteFutureKept = remoteFutureKeptPairs.length;
   if (conflicts.local_newer + conflicts.remote_newer + conflicts.within_clock_margin + conflicts.time_unknown > 0) {
     // S1d R2: remote_future_kept — только когда > 0 (прежний формат строки сводки не меняется).
     const futureKept = remoteFutureKept > 0 ? ` remote_future_kept=${remoteFutureKept}` : '';
@@ -339,6 +350,7 @@ export function mergeLockedFlashcardsWithPages(
     remoteWon: remoteWonCards.length,
     remoteWonCards,
     remoteFutureKept,
+    remoteFutureKeptPairs,
   };
 }
 
@@ -504,6 +516,8 @@ export type FlashcardPagesPreWriteDecision =
      * телефоне. > 0 → отпечаток не сохраняется (иначе следующий синк записал бы локальную поверх).
      */
     remoteFutureKept?: number;
+    /** S1e: локальные версии этих карточек (для аварийной копии при силовом переносе). */
+    remoteFutureKeptPairs?: readonly FutureKeptLocalVersion[];
   }>
   | Readonly<{ kind: 'skip'; reason: string }>;
 
@@ -765,6 +779,7 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
       replacedFromRemote: merge.remoteWonCards,
       fingerprint: fingerprintCardsJson(cardsJson),
       remoteFutureKept: merge.remoteFutureKept,
+      remoteFutureKeptPairs: merge.remoteFutureKeptPairs,
     };
   } catch (error) {
     console.warn(`${LOG} pre_write_merge key=${key} decision=skip_write reason=decide_error error=${String(error).slice(0, 120)}`);

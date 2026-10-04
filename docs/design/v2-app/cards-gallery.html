@@ -29,6 +29,7 @@
   .btn { height: 38px; padding: 0 16px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line-2); color: #fff; font: 600 14px Inter, sans-serif; cursor: pointer; }
   .btn:hover { background: #262628; }
 
+/* LOCKED:cards-css:start */
   /* ---------- галерея карточек ---------- */
   #g { position: relative; margin-top: 18px; }
   .gc { position: absolute; left: 0; top: 0; perspective: 900px; cursor: pointer; will-change: transform, width, height;
@@ -56,6 +57,7 @@
   .face .dots i.on { background: var(--acc); }
   #g[data-lv="s"] .ipa, #g[data-lv="s"] .spk, #g[data-lv="s"] .dots, #g[data-lv="xs"] .ipa, #g[data-lv="xs"] .spk, #g[data-lv="xs"] .dots { opacity: 0; }
   #g[data-lv="m"] .spk, #g[data-lv="m"] .dots { opacity: 0; }
+/* LOCKED:cards-css:end */
 </style>
 </head>
 <body>
@@ -89,11 +91,12 @@ const WORDS = [
   ['Visa', '/ˈviːzə/', 'Виза'], ['Currency', '/ˈkʌrənsi/', 'Валюта'], ['Souvenir', '/ˌsuːvəˈnɪə/', 'Сувенир'], ['Itinerary', '/aɪˈtɪnərəri/', 'Маршрут'],
 ];
 document.head.insertAdjacentHTML('beforeend', '<style>.face{transition:border-radius .4s,padding .4s}#g .en{font-size:var(--fs)}#g .ru{font-size:var(--fr)}#g .ipa{font-size:var(--fi)}.gc.enter{transform:translate3d(0,40px,0) scale(.9)!important}</style>');
-const li = (n) => ({ cards: '<rect x="4" y="7.5" width="12" height="13" rx="2.5"/><path d="M8 4.5h9.5A2.5 2.5 0 0120 7v10"/>' }[n]);
+const li = (n) => ({ cards: '<rect x="4" y="7.5" width="12" height="13" rx="2.5"/><path d="M8 4.5h9.5A2.5 2.5 0 0120 7v10"/>', globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.4 5.5 3.4 8.5s-1 5.9-3.4 8.5c-2.4-2.6-3.4-5.5-3.4-8.5s1-5.9 3.4-8.5z"/>' }[n]);
 const lic = (n, c = '') => `<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${li(n)}</svg>`;
 const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
 const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
 
+/* LOCKED:cards-engine:start */
 // ---------- движок галереи: колонки и форма карточки зависят от ползунка ----------
 const W = 390, GAP = 12;
 const LV = ['l', 'm', 's', 'xs'];
@@ -158,6 +161,7 @@ function applyTheme() {
   document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme));
 }
 
+/* LOCKED:cards-engine:end */
 // ---------- общий «стеклянный» язык хаба ----------
 document.head.insertAdjacentHTML('beforeend', `<style>
   .gl { position: relative; border-radius: 26px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%);

@@ -17,50 +17,48 @@ const videoRow = (ti, n, du, added) => `<div class="gl vrow t sm" style="--t:var
 const VIDEOS = [['Самый лёгкий способ понять немецкий', 296, '24:18'], ['Немецкие фразы, которые помогут заговорить', 100, '18:42']];
 const videoSec = (k = 2) => `<div class="sec" style="margin-top:24px"><div class="ti">Из видео</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>${VIDEOS.slice(0, k).map((v) => videoRow(...v)).join('')}`;
 
-const fan = `<div style="position:absolute;right:14px;top:20px;width:128px;height:150px">
-  <div class="mc solid float" style="--t:var(--g1);--rr:-10deg;position:absolute;right:0;top:-4px;width:100px;height:54px;transform:rotate(-10deg);font-size:15px"><span>Gate</span></div>
-  <div class="mc solid float" style="--t:var(--g1);--rr:4deg;position:absolute;right:14px;top:34px;width:104px;height:54px;transform:rotate(4deg);font-size:16px;animation-delay:.4s"><span>Visa</span></div>
-  <div class="mc solid float" style="--t:var(--g1);--rr:-5deg;position:absolute;right:0;top:72px;width:100px;height:54px;transform:rotate(-5deg);font-size:15px;animation-delay:.8s"><span>Land</span></div></div>`;
+// зачем (владелец 04.10): «хаб обязан быть БЕЗ СКРОЛЛА»; «Из видео — равнозначно кнопкам «Сохранённые» и «Мои наборы», это просто ещё один раздел».
+// Поэтому: тренировка + четыре РАВНЫХ раздела (Сохранённые, Мои наборы, Из видео, Сообщество), никаких списков и лент под ними — всё помещается в один экран.
+const SECTIONS = [['bookmark', 'Сохранённые', '64'], ['layers', 'Мои наборы', '4'], ['play', 'Из видео', '3 набора'], ['globe', 'Сообщество', '1 240']];
+const secIcon = (n, cls = 's26') => (n === 'globe' ? lic('globe', cls) : icon(n, cls));
+const fan = `<div style="position:absolute;right:14px;top:20px;width:128px;height:130px">
+  <div class="mc float" style="--t:var(--g1);position:absolute;right:0;top:-4px;width:100px;height:46px;transform:rotate(-10deg);font-size:15px"><span>Gate</span></div>
+  <div class="mc float" style="--t:var(--g1);position:absolute;right:14px;top:30px;width:104px;height:46px;transform:rotate(4deg);font-size:16px;animation-delay:.4s"><span>Visa</span></div>
+  <div class="mc float" style="--t:var(--g1);position:absolute;right:0;top:64px;width:100px;height:46px;transform:rotate(-5deg);font-size:15px;animation-delay:.8s"><span>Land</span></div></div>`;
 
+// 1. «Аврора»: большая панель тренировки и четыре равные плитки 2×2
 const hubA = () => phone(`${head2()}<div class="rise">
-  <div class="gl pad" style="margin-top:24px;min-height:196px">${fan}<div class="ov2">Тренировка</div><div style="font-size:64px;line-height:68px;font-weight:800;letter-spacing:-1.4px;margin-top:10px">133</div><div style="font-size:16px;color:var(--sec);margin-top:2px">карточки · 3 набора</div><div class="ac-cta t" style="margin-top:20px">Тренироваться${arrow}</div></div>
-  <div class="flex" style="gap:12px;margin-top:14px;align-items:stretch">${[['bookmark', 'Сохранённые', 64, 0], ['layers', 'Мои наборы', 4, 1]].map(([ic, t, n, i]) => `<div class="gl pad t grow" style="padding:16px"><div class="gtile" style="--t:var(--g1)">${icon(ic, 's24')}</div><div style="font-size:18px;font-weight:700;margin-top:14px">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div>`).join('')}</div>
-  <div class="sec" style="margin-top:26px"><div class="ti">Лучшее у сообщества</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
-  <div>${comm.slice(0, 1).map((p) => commRow(...p)).join('')}</div>${videoSec(1)}</div>`);
+  <div class="gl pad" style="margin-top:26px;min-height:250px">${fan}<div class="ov2">Тренировка</div><div style="font-size:72px;line-height:76px;font-weight:800;letter-spacing:-1.6px;margin-top:12px">133</div><div style="font-size:16px;color:var(--sec);margin-top:2px">карточки · 3 набора</div><div class="ac-cta t" style="margin-top:28px">Тренироваться${arrow}</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">${SECTIONS.map(([ic, t, n]) => `<div class="gl pad t" style="padding:18px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between"><div class="gtile" style="--t:var(--g1)">${secIcon(ic, 's24')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div></div>`).join('')}</div></div>`);
 
-const deckBig = (t, a, n, l, i) => `<div class="deckc gl t" style="--t:var(--g1);background:linear-gradient(160deg,color-mix(in srgb,var(--t) 44%,rgba(18,18,24,.7)),rgba(10,10,14,.7))">
-  <div class="gtile" style="width:72px;height:72px;border-radius:22px;font-size:34px">${t[0]}</div><div style="margin-top:auto"><div class="flex" style="gap:8px">${lvl(l)}${cnt(n)}</div><div style="font-size:26px;line-height:31px;font-weight:800;letter-spacing:-.4px;margin-top:12px">${t}</div><div style="font-size:16px;color:var(--sec);margin-top:4px">${a}</div></div></div>`;
-
+// 2. «Лента»: панель-число сверху, четыре широкие равные строки
+const wide = (ic, t, n) => `<div class="gl t" style="display:flex;align-items:center;gap:16px;padding:14px 18px 14px 14px;margin-top:12px;min-height:92px;border-radius:24px"><div class="gtile" style="width:60px;height:60px;border-radius:18px;--t:var(--g1)">${secIcon(ic, 's26')}</div><div class="grow"><div style="font-size:20px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div>${ch2}</div>`;
 const hubB = () => phone(`${head2()}<div class="rise">
-  <div class="sec" style="margin-top:24px"><div class="ti">Лучшее у сообщества</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
-  <div class="hs">${comm.map((p) => deckBig(...p)).join('')}</div>
-  <div class="gl t" style="border-radius:30px;display:flex;align-items:center;gap:14px;padding:12px 12px 12px 22px"><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:2px">133 карточки · 3 набора</div></div><span class="ac-round t">${icon('play', 's24')}</span></div>
-  <div style="margin-top:12px">${[['bookmark', 'Сохранённые', 64], ['layers', 'Мои наборы', 4]].map(([ic, t, n]) => `<div class="gl sm t" style="padding:14px 18px;display:flex;align-items:center;gap:14px;margin-top:10px">${icon(ic, 's20')}<span style="font-weight:700;font-size:17px">${t}</span><span class="cntp" style="margin-left:auto">${n}</span>${ch2}</div>`).join('')}</div>${videoSec(1)}</div>`);
+  <div class="gl t" style="margin-top:24px;display:flex;align-items:center;gap:16px;padding:20px 16px 20px 22px;border-radius:30px"><div class="grow"><div class="ov2">Тренировка</div><div style="font-size:56px;line-height:60px;font-weight:800;letter-spacing:-1.2px;margin-top:8px">133</div><div style="font-size:15px;color:var(--sec);margin-top:2px">карточки · 3 набора</div></div><span class="ac-round t" style="width:84px;height:84px">${icon('play', 's28')}</span></div>
+  ${SECTIONS.map(([ic, t, n]) => wide(ic, t, n)).join('')}</div>`);
 
-const mini = (w, i) => `<div class="mc t" style="--t:var(--g1);height:96px;font-size:15px"><span>${w}</span></div>`;
+// 3. «Мини-колоды»: каждый раздел — своя стопка из трёх карточек (один цвет темы), тренировка — закреплённая кнопка
+const stack3 = (words) => `<div style="position:relative;height:70px;margin:0 6px">${words.map((w, i) => `<div class="mc" style="--t:var(--g1);position:absolute;left:${i * 10}px;right:${(2 - i) * 10}px;top:${(2 - i) * 9}px;height:46px;font-size:${14 - (2 - i)}px;opacity:${i === 2 ? 1 : 0.6 + i * 0.15};border-radius:14px"><span>${i === 2 ? w : ''}</span></div>`).join('')}</div>`;
+const SWORDS = [['', '', 'Boarding pass'], ['', '', 'Layover'], ['', '', 'Хаб'], ['', '', 'Сообщество']];
 const hubC = () => phone(`${head2()}<div class="rise">
-  <div class="sec" style="margin-top:24px"><div class="ti">Ваши карточки<span class="n">64</span></div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">${['Boarding pass', 'Layover', 'Check in', 'Carry-on', 'Gate', 'Delay'].map((w, i) => mini(w, i)).join('')}</div>
-  <div class="sec" style="margin-top:28px"><div class="ti">Наборы</div></div>
-  <div>${commRow('Travel', 'Только вы', 24, '', 0)}${commRow('B2 глаголы', 'Ирина', 49, 'B2', 1)}</div>${videoSec(1)}</div>`,
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px">${SECTIONS.map(([ic, t, n], i) => `<div class="gl pad t" style="padding:18px 14px 16px;min-height:236px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:flex-end;opacity:.9">${secIcon(ic, 's20')}</div>${stack3(['', '', ['Boarding pass', 'Layover', 'Video', 'Community'][i]])}<div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div></div>`).join('')}</div></div>`,
   { fixed: `<div style="position:absolute;left:0;right:0;bottom:0;z-index:20;padding:20px 20px 34px;background:linear-gradient(rgba(12,12,13,0),rgba(12,12,13,.92) 40%)"><div class="ac-cta t">Тренироваться · 133${arrow}</div></div>` });
 
+// 4. «Стопка»: верхняя карточка крупно, кнопка и четыре равных круглых раздела
 const hubD = () => phone(`${head2()}<div class="rise">
-  <div style="position:relative;height:270px;margin-top:30px">
-    <div class="mc solid" style="--t:var(--g1);position:absolute;left:38px;right:38px;top:0;height:120px;opacity:.7;border-radius:28px"></div>
-    <div class="mc solid" style="--t:var(--g1);position:absolute;left:19px;right:19px;top:20px;height:140px;opacity:.9;border-radius:28px"></div>
-    <div class="mc solid t float" style="--t:var(--g1);--rr:0deg;position:absolute;left:0;right:0;top:46px;height:210px;border-radius:30px;flex-direction:column"><span style="font-size:36px;font-weight:700">Boarding pass</span><span style="font-size:16px;font-style:italic;color:rgba(255,255,255,.65);margin-top:8px;font-weight:400">/ˈbɔːdɪŋ pɑːs/</span></div></div>
-  <div class="ac-cta t" style="margin-top:10px">Тренироваться · 133${arrow}</div>
-  <div class="flex" style="justify-content:space-between;margin-top:26px">${[['bookmark', 'Сохранённые', 64], ['layers', 'Мои наборы', 4], ['people', 'Сообщество', '1 240'], ['play', 'Из видео', 3]].map(([ic, t, n]) => `<div class="t" style="text-align:center"><div class="gl" style="width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto">${icon(ic, 's24')}</div><div style="font-size:14px;font-weight:600;margin-top:10px">${t}</div><div style="font-size:13px;color:var(--sec)">${n}</div></div>`).join('')}</div></div>`);
+  <div style="position:relative;height:250px;margin-top:26px">
+    <div class="mc solid" style="--t:var(--g1);position:absolute;left:38px;right:38px;top:0;height:110px;opacity:.7;border-radius:28px"></div>
+    <div class="mc solid" style="--t:var(--g1);position:absolute;left:19px;right:19px;top:18px;height:130px;opacity:.9;border-radius:28px"></div>
+    <div class="mc solid t float" style="--t:var(--g1);position:absolute;left:0;right:0;top:40px;height:200px;border-radius:30px;flex-direction:column"><span style="font-size:36px;font-weight:700">Boarding pass</span><span style="font-size:16px;font-style:italic;color:rgba(255,255,255,.65);margin-top:8px;font-weight:400">/ˈbɔːdɪŋ pɑːs/</span></div></div>
+  <div class="ac-cta t" style="margin-top:14px">Тренироваться · 133${arrow}</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:34px">${SECTIONS.map(([ic, t, n]) => `<div class="t" style="text-align:center"><div class="gl" style="width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto">${secIcon(ic, 's24')}</div><div style="font-size:13px;font-weight:600;margin-top:10px;line-height:17px">${t}</div><div style="font-size:13px;color:var(--sec);margin-top:2px">${n.replace(' набора', '')}</div></div>`).join('')}</div></div>`);
 
+// 5. «Диск»: круглая кнопка тренировки с кольцом и четыре равные плитки 2×2
 const hubE = () => phone(`${head2()}<div class="rise">
-  <div class="gl pad" style="margin-top:22px;display:flex;align-items:center;gap:14px"><div class="grow"><div class="ov2">Тренировка</div><div style="font-size:20px;font-weight:700;margin-top:6px">133 карточки · 3 набора</div></div><div class="ac-cta sm t">Начать</div></div>
-  <div class="gl seg2" id="seg" style="margin-top:16px"><span class="on" data-tab="0">Сохранённые</span><span data-tab="1">Наборы</span><span data-tab="2">Сообщество</span><span data-tab="3">Из видео</span></div>
-  <div style="margin-top:12px" id="tabs">
-    <div class="tabp on">${[['Boarding pass', 'Посадочный талон'], ['Layover', 'Пересадка'], ['Check in', 'Регистрация'], ['Carry-on', 'Ручная кладь']].map(([e, r], i) => `<div class="gl gpk t sm" style="--t:var(--g1)"><div class="gtile">${e[0]}</div><div class="grow"><div style="font-size:17px;font-weight:700">${e}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${r}</div></div>${icon('vol', 's18')}</div>`).join('')}</div>
-    <div class="tabp">${commRow('Travel', 'Только вы', 24, '', 0)}${commRow('Phrasal verbs', 'В сообществе', 18, '', 1)}${commRow('B2 глаголы', 'Ирина', 49, 'B2', 2)}</div>
-    <div class="tabp">${comm.map((p) => commRow(...p)).join('')}</div>
-    <div class="tabp"><div style="font-size:15px;color:var(--sec);margin:4px 4px 0">3 набора · 596 фраз</div>${VIDEOS.map((v) => videoRow(...v)).join('')}${videoRow('200 фраз на немецком всего из 100 немецких слов', 200, '31:05', true)}</div></div></div>`);
+  <div style="position:relative;width:224px;height:224px;margin:26px auto 0">
+    <div style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--acc) 0 62%, rgba(255,255,255,.1) 62% 100%);-webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));mask:radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px))"></div>
+    <div class="gl t" style="position:absolute;inset:18px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="ov2">Тренировка</div><div style="font-size:60px;line-height:64px;font-weight:800;letter-spacing:-1.2px;margin-top:6px">133</div><div style="font-size:14px;color:var(--sec)">карточки</div></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px">${SECTIONS.map(([ic, t, n]) => `<div class="gl t" style="padding:14px 14px;display:flex;align-items:center;gap:12px;min-height:84px;border-radius:22px"><div class="gtile" style="width:46px;height:46px;border-radius:14px;--t:var(--g1)">${secIcon(ic, 's22')}</div><div style="min-width:0"><div style="font-size:16px;font-weight:700;line-height:20px">${t}</div><div style="font-size:14px;color:var(--sec);margin-top:2px">${n}</div></div></div>`).join('')}</div></div>`);
 
 // ---------- телефон с галереей ----------
 const galleryPhone = () => phone(`${topRow(`${lim2}<span class="rb t">${icon('plus', 's20')}</span>`)}${title('Travel', '20 карточек')}
@@ -68,9 +66,9 @@ const galleryPhone = () => phone(`${topRow(`${lim2}<span class="rb t">${icon('pl
 
 document.getElementById('root').innerHTML =
   block('gal', 'Карточки — масштаб как в галерее', 'Ползунок вверху страницы. Щипок двумя пальцами или Ctrl + колесо над экраном делают то же самое. Нажатие — переворот на перевод.', [col('Сохранённые: карточки меняют размер и форму', galleryPhone())]) +
-  block('hub', 'Хаб «Карточки» — выберите 1 из 5', 'Тот же состав: тренировка, «Сохранённые», «Мои наборы», сообщество, лимит 2/3. Всё анимировано; цвета меняются темой вверху.',
-    [col('Вариант 1 · «Аврора»: колода и веер карточек', hubA()), col('Вариант 2 · «Витрина колод»: большие наборы лентой', hubB()), col('Вариант 3 · «Мини-галерея» карточек', hubC()),
-     col('Вариант 4 · «Стопка»: верхняя карточка крупно', hubD()), col('Вариант 5 · «Вкладки-стекло»', hubE())]);
+  block('hub', 'Хаб «Карточки» — выберите 1 из 5', 'Без прокрутки. Тренировка и четыре РАВНЫХ раздела: Сохранённые, Мои наборы, Из видео, Сообщество (лимит 2/3 в шапке). Всё анимировано; цвета меняются темой вверху.',
+    [col('Вариант 1 · «Аврора»: панель тренировки и 4 равные плитки', hubA()), col('Вариант 2 · «Лента»: число и 4 равные строки', hubB()), col('Вариант 3 · «Мини-колоды»: у каждого раздела своя стопка', hubC()),
+     col('Вариант 4 · «Стопка»: верхняя карточка и 4 круга', hubD()), col('Вариант 5 · «Диск»: круглая тренировка и 4 плитки', hubE())]);
 
 // ---------- подключение ----------
 const g = document.getElementById('g');
@@ -106,11 +104,6 @@ document.getElementById('b-auto').addEventListener('click', () => {
   const t0 = performance.now();
   const step = (now) => { const p = (now - t0) / 9000; if (p >= 1) { setScale(0, false); return; } setScale(0.5 - 0.5 * Math.cos(p * Math.PI * 2), true); auto = requestAnimationFrame(step); };
   auto = requestAnimationFrame(step);
-});
-document.getElementById('seg').addEventListener('click', (e) => {
-  const t = e.target.closest('[data-tab]'); if (!t) return;
-  const seg = t.parentElement; seg.querySelectorAll('span').forEach((x) => x.classList.toggle('on', x === t));
-  seg.nextElementSibling.querySelectorAll('.tabp').forEach((p, i) => p.classList.toggle('on', i === +t.dataset.tab));
 });
 applyTheme();
 apply(false);

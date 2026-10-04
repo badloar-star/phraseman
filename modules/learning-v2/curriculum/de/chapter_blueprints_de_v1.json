@@ -21641,6 +21641,786 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l25",
+      "lessonOrdinal": 25,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_state_passive_v1",
+          "de_gc_event_passive_v1",
+          "de_gc_finite_sein_present_v1",
+          "de_gc_perfekt_sein_classes_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1"
+        ],
+        "noExpansion": "Permit only present singular state passive ist plus one of the verified controlled participles geöffnet, geschlossen, gesperrt, gereinigt or repariert, contrasted with the matching present singular event passive wird plus that participle. The productive distinction is only an event happening or being carried out versus the resulting state already holding; finite sein is limited to ist in these state-passive wholes and in already known bounded state or identity support. The sole Perfekt-with-sein contrast is the already known whole Der Techniker ist angekommen, used receptively to show a completed intransitive event rather than passive meaning. Do not introduce plural or other passive person-number forms, war or wurde or any new tense, werden plus infinitive, recipient passive, an agent phrase, a participle-formation rule, auxiliary guessing, adjectival lexicalization as a substitute for the state-passive contrast, a new connector, a new case or preposition relation, broader narrative Präteritum, L26 grammar, learner-facing artifacts, release, audio, mockup, English-contour reuse, or any Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l25_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l25_ch01",
+          "lessonOutcome": "recognise the state-passive sein and participle bracket",
+          "packetIds": [
+            "de_l25_c01_s01",
+            "de_l25_c01_s02",
+            "de_l25_c01_s03",
+            "de_l25_c01_s04",
+            "de_l25_c01_s05",
+            "de_l25_c01_s06",
+            "de_l25_c01_s07",
+            "de_l25_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "municipal-library-entrance-status",
+            "participants": "visitor-and-facility-guide",
+            "goal": "recognise-ist-plus-geoeffnet-as-a-resulting-state-bracket",
+            "contextSignature": "library-entrance-state-passive-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Die Tür ist geöffnet.",
+            "exit": "Die Tür ist geöffnet.",
+            "independentEvidenceByPacketId": "de_l25_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "introduction",
+              "packetId": "de_l25_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l25_c01_s03", "de_l25_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l25_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c01_oeffnen_v1",
+                "semanticIdentity": "offnen|open one service access point so the resulting state can be checked",
+                "lemmaOrExpression": "öffnen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "öffnen",
+                  "valencyFrame": "transitive open-service-access accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "open one service access point so the resulting state can be checked",
+                "communicativeUse": "Die Tür ist geöffnet.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch01",
+                  "checkpointPacketId": "de_l25_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognise-ist-plus-geoeffnet-as-a-resulting-state-bracket",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l25_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-pool-side-door-status",
+              "participants": "pool-attendant-and-parent",
+              "goal": "independently-recognise-ist-plus-geoeffnet-as-a-resulting-state-bracket",
+              "contextSignature": "pool-door-state-passive-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c01", "de_l24_c02"],
+            "targetsFutureChapterIds": ["de_l25_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l25_ch02",
+          "lessonOutcome": "contrast an event occurring with its resulting state",
+          "packetIds": [
+            "de_l25_c02_s09",
+            "de_l25_c02_s10",
+            "de_l25_c02_s11",
+            "de_l25_c02_s12",
+            "de_l25_c02_s13",
+            "de_l25_c02_s14",
+            "de_l25_c02_s15",
+            "de_l25_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "parking-garage-closing-observation",
+            "participants": "driver-and-service-attendant",
+            "goal": "contrast-a-gate-closing-event-with-the-closed-resulting-state",
+            "contextSignature": "garage-gate-event-state-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das Tor wird geschlossen. Das Tor ist geschlossen.",
+            "exit": "Das Tor wird geschlossen. Das Tor ist geschlossen.",
+            "independentEvidenceByPacketId": "de_l25_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "guided",
+              "packetId": "de_l25_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l25_c02_s11", "de_l25_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l25_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c02_schliessen_v1",
+                "semanticIdentity": "schließen|close one service gate so event and resulting state can be contrasted",
+                "lemmaOrExpression": "schließen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "schließen",
+                  "valencyFrame": "transitive close-service-gate accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "close one service gate so event and resulting state can be contrasted",
+                "communicativeUse": "Das Tor wird geschlossen. Das Tor ist geschlossen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch02",
+                  "checkpointPacketId": "de_l25_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-contrast-a-gate-closing-event-with-the-closed-resulting-state",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l25_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "market-hall-loading-gate-status",
+              "participants": "vendor-and-site-manager",
+              "goal": "independently-contrast-a-gate-closing-event-with-the-closed-resulting-state",
+              "contextSignature": "market-gate-event-state-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c02", "de_l24_c03"],
+            "targetsFutureChapterIds": ["de_l25_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l25_ch03",
+          "lessonOutcome": "describe the state of a service or facility",
+          "packetIds": [
+            "de_l25_c03_s17",
+            "de_l25_c03_s18",
+            "de_l25_c03_s19",
+            "de_l25_c03_s20",
+            "de_l25_c03_s21",
+            "de_l25_c03_s22",
+            "de_l25_c03_s23",
+            "de_l25_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "community-centre-access-status",
+            "participants": "visitor-and-caretaker",
+            "goal": "describe-a-facility-access-result-with-state-passive",
+            "contextSignature": "community-centre-access-state"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Eingang ist gesperrt.",
+            "exit": "Der Eingang ist gesperrt.",
+            "independentEvidenceByPacketId": "de_l25_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "retrieval",
+              "packetId": "de_l25_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l25_c03_s19", "de_l25_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l25_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c03_sperren_v1",
+                "semanticIdentity": "sperren|block one facility access point and report the resulting state",
+                "lemmaOrExpression": "sperren",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "sperren",
+                  "valencyFrame": "transitive block-facility-access accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "block one facility access point and report the resulting state",
+                "communicativeUse": "Der Eingang ist gesperrt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch03",
+                  "checkpointPacketId": "de_l25_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-describe-a-facility-access-result-with-state-passive",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l25_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-ground-side-entrance-status",
+              "participants": "player-and-club-volunteer",
+              "goal": "independently-describe-a-facility-access-result-with-state-passive",
+              "contextSignature": "sports-ground-access-state-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c03", "de_l24_c04"],
+            "targetsFutureChapterIds": ["de_l25_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l25_ch04",
+          "lessonOutcome": "ask whether an event is happening or a result already holds",
+          "packetIds": [
+            "de_l25_c04_s25",
+            "de_l25_c04_s26",
+            "de_l25_c04_s27",
+            "de_l25_c04_s28",
+            "de_l25_c04_s29",
+            "de_l25_c04_s30",
+            "de_l25_c04_s31",
+            "de_l25_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "clinic-waiting-area-cleaning-status-call",
+            "participants": "receptionist-and-cleaning-coordinator",
+            "goal": "ask-whether-cleaning-is-happening-or-the-clean-result-already-holds",
+            "contextSignature": "clinic-cleaning-event-state-question"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Wird der Bereich gerade gereinigt, oder ist der Bereich schon gereinigt?",
+            "exit": "Wird der Bereich gerade gereinigt, oder ist der Bereich schon gereinigt?",
+            "independentEvidenceByPacketId": "de_l25_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "production",
+              "packetId": "de_l25_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l25_c04_s27", "de_l25_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l25_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c04_reinigen_v1",
+                "semanticIdentity": "reinigen|clean one service area while distinguishing the event from the resulting state",
+                "lemmaOrExpression": "reinigen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "reinigen",
+                  "valencyFrame": "transitive clean-service-area accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "clean one service area while distinguishing the event from the resulting state",
+                "communicativeUse": "Wird der Bereich gerade gereinigt, oder ist der Bereich schon gereinigt?",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch04",
+                  "checkpointPacketId": "de_l25_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-ask-whether-cleaning-is-happening-or-the-clean-result-already-holds",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l25_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "hostel-kitchen-cleaning-status-call",
+              "participants": "host-and-service-worker",
+              "goal": "independently-ask-whether-cleaning-is-happening-or-the-clean-result-already-holds",
+              "contextSignature": "hostel-cleaning-event-state-question-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c04", "de_l24_c05"],
+            "targetsFutureChapterIds": ["de_l25_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l25_ch05",
+          "lessonOutcome": "use the contrast to clarify a service status",
+          "packetIds": [
+            "de_l25_c05_s33",
+            "de_l25_c05_s34",
+            "de_l25_c05_s35",
+            "de_l25_c05_s36",
+            "de_l25_c05_s37",
+            "de_l25_c05_s38",
+            "de_l25_c05_s39",
+            "de_l25_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "office-printer-service-status",
+            "participants": "employee-and-service-desk-adviser",
+            "goal": "clarify-a-device-service-status-with-event-versus-resulting-state",
+            "contextSignature": "office-device-service-clarification"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Die Statusmeldung zeigt: Das Gerät wird repariert. Das Gerät ist noch nicht repariert.",
+            "exit": "Die Statusmeldung zeigt: Das Gerät wird repariert. Das Gerät ist noch nicht repariert.",
+            "independentEvidenceByPacketId": "de_l25_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l25_c05_s35", "de_l25_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l25_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c05_statusmeldung_v1",
+                "semanticIdentity": "statusmeldung|service status message used to clarify event versus resulting state",
+                "lemmaOrExpression": "Statusmeldung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Statusmeldung",
+                  "plural": "Statusmeldungen"
+                },
+                "nounPackageIdentity": "die|statusmeldung|statusmeldungen",
+                "verbPackage": null,
+                "senseGloss": "service-status message used to clarify event versus resulting state",
+                "communicativeUse": "Die Statusmeldung zeigt: Das Gerät wird repariert. Das Gerät ist noch nicht repariert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch05",
+                  "checkpointPacketId": "de_l25_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "setting",
+                  "facetValue": "library-copy-machine-status-message",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l25_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-copy-machine-status-message",
+              "participants": "librarian-and-technician",
+              "goal": "independently-clarify-a-device-service-status-with-event-versus-resulting-state",
+              "contextSignature": "library-device-status-message-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c05", "de_l24_c06"],
+            "targetsFutureChapterIds": ["de_l25_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l25_ch06",
+          "lessonOutcome": "repair event-state-Perfekt confusion",
+          "packetIds": [
+            "de_l25_c06_s41",
+            "de_l25_c06_s42",
+            "de_l25_c06_s43",
+            "de_l25_c06_s44",
+            "de_l25_c06_s45",
+            "de_l25_c06_s46",
+            "de_l25_c06_s47",
+            "de_l25_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "maintenance-training-event-state-perfect-repair",
+            "participants": "trainee-and-service-trainer",
+            "goal": "repair-confusion-between-event-passive-state-passive-and-known-sein-perfect",
+            "contextSignature": "maintenance-event-state-perfect-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Das Ergebnis ist nicht dasselbe: „Die Tür wird geöffnet“ beschreibt den Vorgang. „Die Tür ist geöffnet“ beschreibt den Zustand. „Der Techniker ist angekommen“ beschreibt ein abgeschlossenes Ereignis. Ich korrigiere die Verwechslung.",
+            "exit": "Das Ergebnis ist nicht dasselbe: „Die Tür wird geöffnet“ beschreibt den Vorgang. „Die Tür ist geöffnet“ beschreibt den Zustand. „Der Techniker ist angekommen“ beschreibt ein abgeschlossenes Ereignis. Ich korrigiere die Verwechslung.",
+            "independentEvidenceByPacketId": "de_l25_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "transfer",
+              "packetId": "de_l25_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l25_c06_s43", "de_l25_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l25_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_sein_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c06_ergebnis_v1",
+                "semanticIdentity": "ergebnis|result used to distinguish a resulting state from an event and a known completed event report",
+                "lemmaOrExpression": "Ergebnis",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Ergebnis",
+                  "plural": "Ergebnisse"
+                },
+                "nounPackageIdentity": "das|ergebnis|ergebnisse",
+                "verbPackage": null,
+                "senseGloss": "result used to distinguish a resulting state from an event and a known completed-event report",
+                "communicativeUse": "Das Ergebnis ist nicht dasselbe: „Die Tür wird geöffnet“ beschreibt den Vorgang. „Die Tür ist geöffnet“ beschreibt den Zustand. „Der Techniker ist angekommen“ beschreibt ein abgeschlossenes Ereignis. Ich korrigiere die Verwechslung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch06",
+                  "checkpointPacketId": "de_l25_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_sein_classes_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-confusion-between-event-passive-state-passive-and-known-sein-perfect",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l25_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "facility-status-report-language-check",
+              "participants": "caretaker-and-language-mentor",
+              "goal": "independently-repair-confusion-between-event-passive-state-passive-and-known-sein-perfect",
+              "contextSignature": "facility-report-event-state-perfect-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c06", "de_l24_c07"],
+            "targetsFutureChapterIds": ["de_l25_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l25_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l25_ch07",
+          "lessonOutcome": "transfer the event-state contrast to a new service process",
+          "packetIds": [
+            "de_l25_c07_s49",
+            "de_l25_c07_s50",
+            "de_l25_c07_s51",
+            "de_l25_c07_s52",
+            "de_l25_c07_s53",
+            "de_l25_c07_s54",
+            "de_l25_c07_s55",
+            "de_l25_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_finite_sein_present_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1"
+          ],
+          "situation": {
+            "setting": "workplace-charging-station-service-handover",
+            "participants": "facility-coordinator-and-new-colleague",
+            "goal": "transfer-the-event-state-contrast-to-a-charging-station-service-process",
+            "contextSignature": "workplace-charging-station-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Frau Neumann, die Ladestation wird gerade repariert. Die Ladestation ist noch nicht repariert. Sie fragen: „Ist die Ladestation schon repariert?“ Nein. Nicht „ist repariert“: Das beschreibt das fertige Ergebnis. Hier läuft die Reparatur noch.",
+            "exit": "Frau Neumann, die Ladestation wird gerade repariert. Die Ladestation ist noch nicht repariert. Sie fragen: „Ist die Ladestation schon repariert?“ Nein. Nicht „ist repariert“: Das beschreibt das fertige Ergebnis. Hier läuft die Reparatur noch.",
+            "independentEvidenceByPacketId": "de_l25_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "delayed",
+              "packetId": "de_l25_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l25_c07_s51",
+            "de_l25_c07_s52",
+            "de_l25_c07_s53",
+            "de_l25_c07_s54",
+            "de_l25_c07_s55",
+            "de_l25_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l25_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_state_passive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_finite_sein_present_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l25_c07_ladestation_v1",
+                "semanticIdentity": "ladestation|charging station whose service event and resulting state must be distinguished",
+                "lemmaOrExpression": "Ladestation",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Ladestation",
+                  "plural": "Ladestationen"
+                },
+                "nounPackageIdentity": "die|ladestation|ladestationen",
+                "verbPackage": null,
+                "senseGloss": "charging station whose service event and resulting state must be distinguished",
+                "communicativeUse": "Frau Neumann, die Ladestation wird gerade repariert. Die Ladestation ist noch nicht repariert. Sie fragen: „Ist die Ladestation schon repariert?“ Nein. Nicht „ist repariert“: Das beschreibt das fertige Ergebnis. Hier läuft die Reparatur noch.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l25_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l25_ch07",
+                  "checkpointPacketId": "de_l25_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_state_passive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_finite_sein_present_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-clarify-whether-a-charging-station-is-being-repaired-or-already-repaired",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l25_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-mobility-hub-status-briefing",
+              "participants": "volunteer-coordinator-and-new-helper",
+              "goal": "independently-clarify-whether-a-charging-station-is-being-repaired-or-already-repaired",
+              "contextSignature": "community-charging-station-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l25_c05", "de_l25_c06"],
+            "targetsFutureChapterIds": ["de_l26_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l26_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

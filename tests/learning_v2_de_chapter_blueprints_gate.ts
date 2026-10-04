@@ -11206,6 +11206,317 @@ function validateL24SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l24_semantic_contract_invalid:identity");
 }
 
+/**
+ * L25 deliberately teaches the narrow state/event passive contrast.  Its
+ * source is pinned as a whole because a schema-valid edit can otherwise turn
+ * a resulting state into a new passive paradigm, tense, or learner surface.
+ */
+const L25_CONTRACT_HASH =
+  "31125f05ddd4ad87f67be874a259ebba62d15e0e86d4c9d8c749c4998fe64150";
+const L25_PLAN_HASH =
+  "3aa85ec64295bdae6fa46070f60e7559000b5baa78daa9024b5e32f1483e8a5d";
+
+function validateL25SemanticContract(raw: R, plan: Boundary): void {
+  const lesson = (raw.lessons as R[]).find(
+    (candidate) => candidate.lessonId === "de_l25",
+  ) as R | undefined;
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+    (candidate) => candidate.lessonId === "de_l25",
+  ) as R | undefined;
+  if (
+    !lesson ||
+    !expected ||
+    l23Hash(expected) !== L25_CONTRACT_HASH ||
+    l23Hash(plan as unknown as R) !== L25_PLAN_HASH
+  )
+    throw new Error("l25_semantic_contract_invalid:identity");
+  const chapters = lesson.chapters as R[];
+  const expectedChapters = expected.chapters as R[];
+  const allowed = [
+    "de_gc_state_passive_v1",
+    "de_gc_event_passive_v1",
+    "de_gc_finite_sein_present_v1",
+    "de_gc_perfekt_sein_classes_v1",
+  ];
+  const finalAllowed = allowed.slice(0, 3);
+  const prohibited = [
+    "de_gc_werden_infinitive_meanings_v1",
+    "de_gc_broader_narrative_preterite_v1",
+  ];
+  if (
+    (lesson.grammarBoundary as R).noExpansion !==
+    (expected.grammarBoundary as R).noExpansion
+  )
+    throw new Error("l25_semantic_contract_invalid:no_expansion");
+  if (
+    chapters.length !== 7 ||
+    JSON.stringify((lesson.grammarBoundary as R).allowedConstructIds) !==
+      JSON.stringify(allowed) ||
+    JSON.stringify((lesson.grammarBoundary as R).prohibitedConstructIds) !==
+      JSON.stringify(prohibited) ||
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.allowedConstructIds) !==
+          JSON.stringify(index === 6 ? finalAllowed : allowed) ||
+        JSON.stringify(chapter.prohibitedConstructIds) !==
+          JSON.stringify(prohibited) ||
+        JSON.stringify((chapter.checkpoint as R).integratedConstructIds) !==
+          JSON.stringify(index === 6 ? finalAllowed : allowed),
+    )
+  )
+    throw new Error("l25_semantic_contract_invalid:sets");
+  const anchors = [
+    "introduction|de_l25_c01_s01",
+    "guided|de_l25_c02_s09",
+    "retrieval|de_l25_c03_s17",
+    "production|de_l25_c04_s25",
+    "transfer|de_l25_c06_s41",
+    "delayed|de_l25_c07_s49",
+  ];
+  const actualAnchors = chapters.flatMap((chapter) =>
+    (chapter.lifecycleAnchors as R[]).map(
+      (anchor) => `${anchor.stage}|${anchor.packetId}`,
+    ),
+  );
+  if (JSON.stringify(actualAnchors) !== JSON.stringify(anchors))
+    throw new Error("l25_registry_anchor_mismatch");
+  const prior = (raw.lessons as R[]).find(
+    (candidate) => candidate.lessonId === "de_l24",
+  ) as R;
+  if (
+    JSON.stringify(
+      (prior.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !==
+    JSON.stringify([
+      "de_l25_c07_s51",
+      "de_l25_c07_s52",
+      "de_l25_c07_s53",
+      "de_l25_c07_s54",
+      "de_l25_c07_s55",
+      "de_l25_c07_s56",
+      "de_l25_c07_s55",
+    ])
+  )
+    throw new Error("l24_l25_inverse_provenance_invalid");
+  const surfaces = chapters.map((chapter) => {
+    const support = chapter.supportFading as R;
+    const sense = (
+      (chapter.checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0] as R;
+    return [support.entry, support.exit, sense.communicativeUse].map(String);
+  });
+  const pedagogic = surfaces.flat().join(" ");
+  const meta = JSON.stringify(lesson).replaceAll(
+    String((expected.grammarBoundary as R).noExpansion),
+    "",
+  );
+  const controlled = "geöffnet|geschlossen|gesperrt|gereinigt|repariert";
+  const state = new RegExp(
+    `\\bist\\b[^.!?:;]{0,100}\\b(?:${controlled})\\b`,
+    "iu",
+  );
+  const event = new RegExp(
+    `\\bwird\\b[^.!?:;]{0,100}\\b(?:${controlled})\\b`,
+    "iu",
+  );
+  if (!state.test(surfaces[0].join(" ")))
+    throw new Error("l25_state_passive_evidence_missing");
+  if (
+    !event.test(surfaces[1].join(" ")) ||
+    !state.test(surfaces[1].join(" ")) ||
+    !event.test(surfaces[3].join(" ")) ||
+    !state.test(surfaces[3].join(" "))
+  )
+    throw new Error("l25_event_state_contrast_invalid");
+  if (
+    !String(surfaces[4].join(" ")).includes("Das Gerät wird repariert") ||
+    !String(surfaces[4].join(" ")).includes(
+      "Das Gerät ist noch nicht repariert",
+    )
+  )
+    throw new Error("l25_status_clarification_invalid");
+  if (
+    /\b(?:sind|waren|werden|wurden)\b[^.!?:;]{0,100}\b(?:geöffnet|geschlossen|gesperrt|gereinigt|repariert)\b/iu.test(
+      pedagogic,
+    )
+  )
+    throw new Error("l25_passive_number_paradigm_leak");
+  if (
+    !surfaces[5].join(" ").includes("Der Techniker ist angekommen") ||
+    /\bist\b[^.!?:;]{0,80}\bworden\b/iu.test(surfaces[5].join(" "))
+  )
+    throw new Error("l25_perfect_state_confusion");
+  if (
+    /\b(?:war|wurde|wurden)\b|\bist\b[^.!?:;]{0,100}\bworden\b/iu.test(
+      pedagogic,
+    )
+  )
+    throw new Error("l25_new_tense_leak");
+  if (
+    /\b(?:werde|wirst|werden|werdet)\b[^.!?:;]{0,100}\b[A-Za-zÄÖÜäöüß]+en\b/iu.test(
+      pedagogic,
+    ) ||
+    /\bwird\b[^.!?:;]{0,100}\b(?:geöffnet|geschlossen|gesperrt|gereinigt|repariert)\b[^.!?:;]{0,100}\bwerden\b/iu.test(
+      pedagogic,
+    ) ||
+    /werdenInfinitiveProbe/iu.test(meta)
+  )
+    throw new Error("l25_werden_infinitive_leak");
+  if (
+    /\b(?:bekommt|kriegt|erhält)\b/iu.test(pedagogic) ||
+    /recipientPassiveProbe/iu.test(meta)
+  )
+    throw new Error("l25_recipient_passive_leak");
+  if (
+    /\b(?:vom|von|durch)\b/iu.test(pedagogic) ||
+    /agentPhraseProbe/iu.test(meta)
+  )
+    throw new Error("l25_agent_phrase_leak");
+  if (/unverified participle|participleFormationProbe/iu.test(meta + pedagogic))
+    throw new Error("l25_unverified_participle_leak");
+  if (/auxiliaryGuessProbe|auxiliary guessing/iu.test(meta))
+    throw new Error("l25_auxiliary_guess_leak");
+  if (
+    /\b(?:kam|blieb)\b/iu.test(pedagogic) ||
+    /narrativeTenseProbe/iu.test(meta)
+  )
+    throw new Error("l25_broader_preterite_leak");
+  if (/\b(?:obwohl|nachdem)\b|connectorProbe/iu.test(pedagogic + meta))
+    throw new Error("l25_new_connector_leak");
+  if (
+    /\b(?:wegen|trotz)\b|newCaseOrPrepositionRelationProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l25_new_case_preposition_relation_leak");
+  if (/hidden L26 grammar|TASK6_ADJUDICATED/iu.test(meta))
+    throw new Error("l25_l26_or_task6_leak");
+  const forbiddenSurfaceKeys = new Set([
+    "interaction",
+    "interactions",
+    "prompt",
+    "target",
+    "audioTarget",
+    "audioTranscript",
+    "referenceAudio",
+    "voiceTarget",
+    "correctText",
+    "responseOptions",
+    "modePayload",
+    "feedback",
+    "learnerText",
+    "ru",
+    "uk",
+    "releaseProjection",
+    "releasePath",
+    "mockupPath",
+  ]);
+  const hasForbiddenSurface = (value: unknown): boolean => {
+    if (Array.isArray(value)) return value.some(hasForbiddenSurface);
+    if (!value || typeof value !== "object") return false;
+    return Object.entries(value as R).some(
+      ([key, nested]) =>
+        forbiddenSurfaceKeys.has(key) || hasForbiddenSurface(nested),
+    );
+  };
+  const hasReleaseSurface = (value: unknown): boolean => {
+    if (Array.isArray(value)) return value.some(hasReleaseSurface);
+    if (!value || typeof value !== "object") return false;
+    return Object.entries(value as R).some(
+      ([key, nested]) =>
+        ["releaseProjection", "releasePath", "mockupPath"].includes(key) ||
+        hasReleaseSurface(nested),
+    );
+  };
+  if (hasReleaseSurface(lesson)) throw new Error("l25_release_surface_leak");
+  if (lesson.learnerArtifactsAuthorized === true || hasForbiddenSurface(lesson))
+    throw new Error("l25_learner_surface_leak");
+  if (lesson.allowNonGermanAssessedTarget === true)
+    throw new Error("l25_interaction_002_future_boundary_invalid");
+  if (lesson.englishContourProbe !== undefined)
+    throw new Error("l25_english_contour_leak");
+  const final = surfaces[6].join(" ");
+  if (
+    !final.includes("Frau Neumann") ||
+    !final.includes("wird gerade repariert") ||
+    !final.includes("ist noch nicht repariert")
+  )
+    throw new Error("l25_c07_final_transfer");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.situation) !==
+          JSON.stringify(expectedChapters[index].situation) ||
+        JSON.stringify((chapter.checkpoint as R).newSituation) !==
+          JSON.stringify(
+            (expectedChapters[index].checkpoint as R).newSituation,
+          ),
+    )
+  )
+    throw new Error("l25_semantic_contract_invalid:situations");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0]
+          .communicativeUse !==
+        (
+          (expectedChapters[index].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0].communicativeUse,
+    ) ||
+    (chapters[4].checkpoint as R).packetId !==
+      (expectedChapters[4].checkpoint as R).packetId
+  )
+    throw new Error("l25_checkpoint_lexical_alignment_invalid");
+  if (
+    chapters.some((chapter, index) => {
+      const actualSense = (
+        (chapter.checkpoint as R).plannedNewLexicalSenses as R[]
+      )[0] as R;
+      const expectedSense = (
+        (expectedChapters[index].checkpoint as R).plannedNewLexicalSenses as R[]
+      )[0] as R;
+      const actualPackage = clone(actualSense);
+      const expectedPackage = clone(expectedSense);
+      delete actualPackage.utilityProof;
+      delete expectedPackage.utilityProof;
+      return JSON.stringify(actualPackage) !== JSON.stringify(expectedPackage);
+    })
+  )
+    throw new Error("l25_semantic_contract_invalid:lexical_packages");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(
+          ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0]
+            .utilityProof,
+        ) !==
+        JSON.stringify(
+          (
+            (expectedChapters[index].checkpoint as R)
+              .plannedNewLexicalSenses as R[]
+          )[0].utilityProof,
+        ),
+    )
+  )
+    throw new Error("l25_semantic_contract_invalid:lexical_utility");
+  if (
+    chapters.some(
+      (chapter, index) =>
+        JSON.stringify(chapter.chapterEvidencePacketIds) !==
+          JSON.stringify(expectedChapters[index].chapterEvidencePacketIds) ||
+        JSON.stringify(chapter.recallSchedule) !==
+          JSON.stringify(expectedChapters[index].recallSchedule),
+    )
+  )
+    throw new Error("l25_semantic_contract_invalid:evidence");
+  if (l23Hash(lesson) !== L25_CONTRACT_HASH)
+    throw new Error("l25_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -11331,6 +11642,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l24")
   )
     validateL24SemanticContract(raw, l24Plan);
+  const l25Plan = source.get("de_l25");
+  if (
+    l25Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l25")
+  )
+    validateL25SemanticContract(raw, l25Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -15529,6 +15846,278 @@ function fixtures(): void {
   expectL24((raw) => {
     (l24(raw).chapters as R[])[0].lessonOutcome = "x";
   }, "l24_semantic_contract_invalid:identity");
+  // L25 hostile corpus: keep the numbered guardian order stable.  These
+  // mutations are deliberately direct: the semantic contract is exercised
+  // independently of the structural registry validator above.
+  const l25 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l25") as R;
+  const expectL25 = (mut: (raw: R, plan: R) => void, id: string): void => {
+    const raw = clone(json(FILE)) as R;
+    const plan = clone(
+      (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+        (lesson) => lesson.id === "de_l25",
+      ),
+    ) as R;
+    mut(raw, plan);
+    let thrown: unknown;
+    try {
+      validateL25SemanticContract(raw, plan as Boundary);
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, `expected_error:${id}`);
+    assert.equal(thrown.message, id);
+  };
+  const addL25 = (raw: R, chapter: number, text: string): void => {
+    const support = (l25(raw).chapters as R[])[chapter].supportFading as R;
+    support.entry = `${String(support.entry)} ${text}`;
+  };
+  const setL25PedagogicSurfaces = (
+    raw: R,
+    chapter: number,
+    text: string,
+  ): void => {
+    const target = (l25(raw).chapters as R[])[chapter];
+    const support = target.supportFading as R;
+    const sense = (
+      (target.checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0] as R;
+    support.entry = text;
+    support.exit = text;
+    sense.communicativeUse = text;
+  };
+  expectL25((r) => {
+    (l25(r).grammarBoundary as R).noExpansion = "x";
+  }, "l25_semantic_contract_invalid:no_expansion"); // 1
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[0].allowedConstructIds as string[]).push("x");
+  }, "l25_semantic_contract_invalid:sets"); // 2
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[6].checkpoint as R).integratedConstructIds = [
+      "de_gc_state_passive_v1",
+      "de_gc_event_passive_v1",
+      "de_gc_finite_sein_present_v1",
+      "de_gc_perfekt_sein_classes_v1",
+    ];
+  }, "l25_semantic_contract_invalid:sets"); // 3
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 0, "Die Tür wird geöffnet.");
+  }, "l25_state_passive_evidence_missing"); // 4
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 1, "Das Tor ist geschlossen.");
+  }, "l25_event_state_contrast_invalid"); // 5
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 1, "Das Tor wird geschlossen.");
+  }, "l25_event_state_contrast_invalid"); // 6
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 3, "Der Bereich ist gereinigt.");
+  }, "l25_event_state_contrast_invalid"); // 7
+  expectL25((r) => {
+    setL25PedagogicSurfaces(
+      r,
+      4,
+      "Die Statusmeldung zeigt: Das Gerät wird repariert.",
+    );
+  }, "l25_status_clarification_invalid"); // 8
+  expectL25(
+    (r) => addL25(r, 0, "Die Türen sind geöffnet."),
+    "l25_passive_number_paradigm_leak",
+  ); // 9
+  expectL25(
+    (r) => addL25(r, 1, "Die Tore werden geschlossen."),
+    "l25_passive_number_paradigm_leak",
+  ); // 10
+  expectL25((r) => addL25(r, 0, "Die Tür war geöffnet."), "l25_new_tense_leak"); // 11
+  expectL25(
+    (r) => addL25(r, 1, "Das Tor wurde geschlossen."),
+    "l25_new_tense_leak",
+  ); // 12
+  expectL25(
+    (r) => addL25(r, 0, "Die Tür ist geöffnet worden."),
+    "l25_new_tense_leak",
+  ); // 13
+  expectL25(
+    (r) => addL25(r, 0, "Ich werde die Tür öffnen."),
+    "l25_werden_infinitive_leak",
+  ); // 14
+  expectL25(
+    (r) => addL25(r, 0, "Du wirst die Tür öffnen."),
+    "l25_werden_infinitive_leak",
+  ); // 15
+  expectL25(
+    (r) => addL25(r, 0, "Wir werden die Tür öffnen."),
+    "l25_werden_infinitive_leak",
+  ); // 16
+  expectL25(
+    (r) => addL25(r, 0, "Die Tür wird geöffnet werden."),
+    "l25_werden_infinitive_leak",
+  ); // 17
+  expectL25(
+    (r) => addL25(r, 0, "Sie bekommt die Tür geöffnet."),
+    "l25_recipient_passive_leak",
+  ); // 18
+  expectL25(
+    (r) => addL25(r, 0, "Sie kriegt die Tür geöffnet."),
+    "l25_recipient_passive_leak",
+  ); // 19
+  expectL25(
+    (r) => addL25(r, 0, "Sie erhält die Tür geöffnet."),
+    "l25_recipient_passive_leak",
+  ); // 20
+  expectL25(
+    (r) => addL25(r, 0, "Die Tür wird vom Team geöffnet."),
+    "l25_agent_phrase_leak",
+  ); // 21
+  expectL25(
+    (r) => addL25(r, 0, "Die Tür wird von Frau Klein geöffnet."),
+    "l25_agent_phrase_leak",
+  ); // 22
+  expectL25(
+    (r) => addL25(r, 0, "Die Tür wird durch das Team geöffnet."),
+    "l25_agent_phrase_leak",
+  ); // 23
+  expectL25((r) => {
+    l25(r).unverifiedParticipleProbe = "unverified participle";
+  }, "l25_unverified_participle_leak"); // 24
+  expectL25(
+    (r) => addL25(r, 0, "unverified participle"),
+    "l25_unverified_participle_leak",
+  ); // 25
+  expectL25((r) => {
+    l25(r).participleFormationProbe = "x";
+  }, "l25_unverified_participle_leak"); // 26
+  expectL25((r) => {
+    l25(r).auxiliaryGuessProbe = "x";
+  }, "l25_auxiliary_guess_leak"); // 27
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 5, "Der Techniker ist fertig.");
+  }, "l25_perfect_state_confusion"); // 28
+  expectL25((r) => {
+    setL25PedagogicSurfaces(r, 5, "Der Techniker ist angekommen worden.");
+  }, "l25_perfect_state_confusion"); // 29
+  expectL25((r) => addL25(r, 0, "Er kam."), "l25_broader_preterite_leak"); // 30
+  expectL25((r) => addL25(r, 0, "Er blieb."), "l25_broader_preterite_leak"); // 31
+  expectL25(
+    (r) => addL25(r, 0, "obwohl die Tür geöffnet ist"),
+    "l25_new_connector_leak",
+  ); // 32
+  expectL25(
+    (r) => addL25(r, 0, "nachdem die Tür geöffnet ist"),
+    "l25_new_connector_leak",
+  ); // 33
+  expectL25(
+    (r) => addL25(r, 0, "wegen der Tür"),
+    "l25_new_case_preposition_relation_leak",
+  ); // 34
+  expectL25(
+    (r) => addL25(r, 0, "trotz der Tür"),
+    "l25_new_case_preposition_relation_leak",
+  ); // 35
+  expectL25((r) => {
+    l25(r).hiddenGrammarProbe = "hidden L26 grammar";
+  }, "l25_l26_or_task6_leak"); // 36
+  expectL25((r) => {
+    l25(r).task6Probe = "TASK6_ADJUDICATED";
+  }, "l25_l26_or_task6_leak"); // 37
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[0].checkpoint as R).interaction = {
+      target: "x",
+    };
+  }, "l25_learner_surface_leak"); // 38
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].ru = { prompt: "x" };
+  }, "l25_learner_surface_leak"); // 39
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].audioTranscript = "x";
+  }, "l25_learner_surface_leak"); // 40
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].responseOptions = ["x"];
+  }, "l25_learner_surface_leak"); // 41
+  expectL25((r) => {
+    l25(r).learnerArtifactsAuthorized = true;
+  }, "l25_learner_surface_leak"); // 42
+  expectL25((r) => {
+    l25(r).allowNonGermanAssessedTarget = true;
+  }, "l25_interaction_002_future_boundary_invalid"); // 43
+  expectL25((r) => {
+    l25(r).englishContourProbe = "x";
+  }, "l25_english_contour_leak"); // 44
+  expectL25((r) => {
+    l25(r).releaseProjection = "x";
+  }, "l25_release_surface_leak"); // 45
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].mockupPath = "x";
+  }, "l25_release_surface_leak"); // 46
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[0].lifecycleAnchors as R[])[0].packetId = "x";
+  }, "l25_registry_anchor_mismatch"); // 47
+  expectL25((r) => {
+    (
+      (
+        ((r.lessons as R[]).find((x) => x.lessonId === "de_l24") as R)
+          .chapters as R[]
+      )[0].recallSchedule as R
+    ).futureDelayedProbe = { kind: "COURSE_PACKET", packetId: "x" };
+  }, "l24_l25_inverse_provenance_invalid"); // 48
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[0].checkpoint as R).newSituation = {};
+  }, "l25_semantic_contract_invalid:situations"); // 49
+  expectL25((r) => {
+    (
+      ((l25(r).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0].id = "x";
+  }, "l25_semantic_contract_invalid:lexical_packages"); // 50
+  expectL25((r) => {
+    (
+      ((l25(r).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0].communicativeUse = "x";
+  }, "l25_checkpoint_lexical_alignment_invalid"); // 51
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[4].checkpoint as R).packetId = "x";
+  }, "l25_checkpoint_lexical_alignment_invalid"); // 52
+  expectL25((r) => {
+    const c = (l25(r).chapters as R[])[5];
+    const s = ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R;
+    (s.utilityProof as R).facetValue = "x";
+  }, "l25_semantic_contract_invalid:lexical_utility"); // 53
+  expectL25((r) => {
+    ((l25(r).chapters as R[])[0].chapterEvidencePacketIds as string[]).pop();
+  }, "l25_semantic_contract_invalid:evidence"); // 54
+  expectL25((r) => {
+    const c = (l25(r).chapters as R[])[0];
+    ((c.recallSchedule as R).futureDelayedProbe as R).packetId = "x";
+  }, "l25_semantic_contract_invalid:evidence"); // 55
+  expectL25((r) => {
+    const c = (l25(r).chapters as R[])[6];
+    setL25PedagogicSurfaces(
+      r,
+      6,
+      String((c.supportFading as R).entry).replace("Frau Neumann, ", ""),
+    );
+  }, "l25_c07_final_transfer"); // 56
+  expectL25((r) => {
+    const c = (l25(r).chapters as R[])[6];
+    setL25PedagogicSurfaces(
+      r,
+      6,
+      String((c.supportFading as R).entry).replace(
+        "wird gerade repariert",
+        "ist repariert",
+      ),
+    );
+  }, "l25_c07_final_transfer"); // 57
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].unrelatedFieldProbe = "x";
+  }, "l25_semantic_contract_invalid:identity"); // 58
+  expectL25((_r, plan) => {
+    ((plan.chapterOutcomes as R[])[0] as R).outcome = "x";
+  }, "l25_semantic_contract_invalid:identity"); // 59
+  expectL25((r) => {
+    (l25(r).chapters as R[])[0].lessonOutcome = "x";
+  }, "l25_semantic_contract_invalid:identity"); // 60
+
   const prematureL23 = clone(json(FILE)) as R;
   prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);
   assert.throws(() => {

@@ -35,7 +35,8 @@ test('language rows preserve the registry, active and disabled semantics, and on
   assert.match(source, /const active = lang === item\.code;/);
   assert.match(source, /disabled=\{!enabled\}/);
   assert.match(source, /accessibilityState=\{\{ selected: active, disabled: !enabled \}\}/);
-  assert.match(source, /if \(!interfaceCode\) return;\s*hapticTap\(\);\s*void setLang\(interfaceCode\);/s);
+  // 02.10 (FINAL_PHASE п.7, f0b2153b4): вибрация только на управляющих кнопках — строка языка без hapticTap.
+  assert.match(source, /if \(!interfaceCode\) return;[\s\S]{0,200}?void setLang\(interfaceCode\);/);
   assert.match(source, /withHaptic=\{false\}/);
   assert.match(source, /withSound=\{false\}/);
   assert.match(source, /name="checkmark"\s+size=\{20\}/);
@@ -67,7 +68,11 @@ test('transpiled screen uses the release-aware registry and preserves row intera
     { code: 'zz', native: 'Unavailable' },
   ];
   const require = name => ({
-    react: { __esModule: true, default: React },
+    // 04.10: экран показывает блок «Язык изучения» (profile.html PRF-03) — нужны useState/useEffect и чтение языка.
+    react: { __esModule: true, default: React, useState: initial => [initial, () => undefined], useEffect: () => undefined },
+    'expo-image': { Image: 'Image' },
+    './study_target': { getStoredStudyTarget: () => Promise.resolve('en') },
+    '../components/settings/SettingsGlassRows': { SettingsGlassEyebrow: 'SettingsGlassEyebrow', SettingsGlassRow: 'SettingsGlassRow' },
     'react-native': { Text: 'Text', View: 'View' },
     '../components/BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
     '../components/ContentWrap': { __esModule: true, default: 'ContentWrap' },
@@ -108,12 +113,12 @@ test('transpiled screen uses the release-aware registry and preserves row intera
   assert.equal(rows[0].props.withSound, false, 'rows opt out of wrapper sound');
   rows[0].props.onPress();
   assert.deepEqual(calls.setLang, ['ru']);
-  assert.equal(calls.haptics, 1);
+  assert.equal(calls.haptics, 0); // FINAL_PHASE п.7: без вибрации на строке
   assert.equal(rows[1].props.accessibilityState.disabled, true);
   assert.equal(rows[1].props.disabled, true);
   rows[1].props.onPress();
   assert.deepEqual(calls.setLang, ['ru'], 'the invalid option cannot select a language');
-  assert.equal(calls.haptics, 1, 'the invalid option cannot trigger feedback');
+  assert.equal(calls.haptics, 0, 'the invalid option cannot trigger feedback');
 });
 
 test('the TSX source remains syntactically transpileable', () => {

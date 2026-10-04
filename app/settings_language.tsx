@@ -34,11 +34,11 @@ export default function SettingsLanguage() {
   const { lang, setLang, s } = useLang();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
+  const [studyTarget, rememberShownStudyTarget] = useState<StudyTarget>('en');
   useEffect(() => {
     let alive = true;
     getStoredStudyTarget(lang as Lang)
-      .then((v) => { if (alive) setStudyTarget(v); })
+      .then((v) => { if (alive) rememberShownStudyTarget(v); })
       .catch((error: unknown) => { console.warn(`[SETTINGS-LANG] study_target_load_failed reason=${error instanceof Error ? error.message : String(error)}`); });
     return () => { alive = false; };
   }, [lang]);

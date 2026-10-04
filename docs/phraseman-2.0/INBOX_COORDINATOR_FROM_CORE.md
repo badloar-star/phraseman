@@ -1817,3 +1817,23 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - A/B «Дизайна» (Pixel_8 2 ядра/2 ГБ, 20+20 холодных): ON FATAL 0/20, first frame медиана 434 мс; OFF 0/20, 452 мс. Выигрыш ≈18 мс (−4 %, p90 −8 %).
 - Решение: OFF по умолчанию остаётся (§112/§119). 0/20 не исключает прежних 2/44 с ON, причина addViewAt не объяснена; выигрыш мал против риска падения в сторе. Пересмотр — только если App Check найдёт и закроет причину addViewAt, затем повтор 40/40.
 - getAllKeys 14 за старт (level_spin_star_grants.ts:866 ×5, energy_session_operation_ledger.ts:1263 ×4) — App Check, денежные журналы — только single-flight (§122).
+
+## 2026-10-04 — §122 read-through снапшот: шаг 1–2b, замеры, справка для AccountV2 (App Check → координатор, AccountV2)
+**Модули:** `app/storage_snapshot.ts` (снапшот), `app/storage_mutation_bus.ts` (шина записей), охрана `app/async_storage_null_bind_guard.ts` публикует каждую запись (JS-API и нативные мутаторы) с ключами.
+**Коммиты:** 7e852f7d6 (шаг 1), 0ec358cbd (intro/premium/vip/coin_rank), d91542b60 (журнал ошибок, серия), + правка «боевое хранилище = AsyncStorage» (журнал).
+**Замеры store-release x86_64, Pixel_8 4 ядра, 8 холодных стартов:**
+- calls: fin1 (до снапшота) 492–553 (медиана ≈545) → fin2 (intro/premium/vip/coin_rank) 372–524 (≈521) → fin3 (+журнал ошибок, серия) 331, 497, 482, 482, 485, 481, 340, 482 (медиана ≈482, максимум 497). **Ворота PM-220 (≤520) — ЗЕЛЁНЫЕ**, цель < 450 — ещё нет (два запуска по ≈335 показывают, что потолок достижим).
+- Первый кадр 1.07–2.15 с, FATAL 0.
+**Кто остался (callers= по source map fin3):** getAllKeys ×11 (level_spin_star_grants:866 ×5, energy_session_operation_ledger:1263 ×4 — денежные, снапшот их НЕ берёт, только single-flight), mistake_practice root ×9 (исправлено после fin3: путь merge передавал AsyncStorage как «подставное» хранилище), streak_count multiGet ×7 (серия пишется между чтениями — каждая запись сбрасывает ключ), level_spin_star_projection ×7 (деньги, под deny), разовые: spire_config_cache, community_tab_seen_at, home_feature_tips_index.
+**Отдельная находка:** одна запись на старте занимает 2.9–3.0 с (fin2: `stats_daily_breakdown`, fin3: `app_messages_cache_v1`) — очередь записей/большое значение; это отдельный источник задержки первого кадра, прошу отдать владельцам app_messages и статистики.
+**Красные тесты не мои (остатки удалённого):** mistake_practice_rewards, mistake_practice_reward_account_race (registerXP/settleMistakePracticeCompletionReward удалены), mistake_practice_source_capture_contract (personal_plan_exercise.tsx удалён), mistake_practice_lesson_capture_contract (текст исходника) + revenuecat «stale account» (D158).
+
+### Короткая справка по API для AccountV2 (подключить `stable_auth_link_cache_v1`, cloud_sync.ts:1104)
+```ts
+import { readStoredItem, readStoredItems, writeStoredItem, removeStoredItem, peekStoredItem, hydrateStoredKeys } from './storage_snapshot';
+const raw = await readStoredItem(STABLE_AUTH_LINK_CACHE_KEY);        // 1-й раз — хранилище, дальше память
+const rows = await readStoredItems([k1, k2]);                        // одним multiGet недостающие, параллельные вызовы склеены
+await writeStoredItem(key, value); await removeStoredItem(key);      // сначала память (peekStoredItem сразу видит), потом хранилище, откат при ошибке
+peekStoredItem(key); // синхронно: string | null | undefined (undefined = снапшот не знает)
+```
+Гарантии: ЛЮБАЯ запись через AsyncStorage (setItem/multiSet/multiMerge/removeItem/multiRemove/mergeItem/clear — даже мимо снапшота) выбрасывает ключ из памяти на старте и на финише записи; пока по ключу идёт запись, чтение идёт в хранилище; чтение, начатое до записи, не может сохранить устаревший результат. Пока охрана не поставлена (тесты без неё) снапшот прозрачен и ничего не держит. Деньги (`level_spin_star_*`, `practice_rune_journal_v1:`, `paid_level_spin*`, `energy_*`, `client_shard_operation*`, `*operation_ledger*`) в память НЕ кладутся (SNAPSHOT_DENY_PATTERNS). Значения > 256 КБ не запоминаются. Логи: `[SNAPSHOT-RT]` (miss/hydrate/bypass/каждый catch, итог через 20 с). Для `stable_auth_link_cache_v1` (×14 за старт, 1.0 с суммарно): заменить `AsyncStorage.getItem(STABLE_AUTH_LINK_CACHE_KEY)` на `readStoredItem(...)`, setItem/removeItem оставить как есть (они сами сбросят ключ).

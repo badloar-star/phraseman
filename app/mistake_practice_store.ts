@@ -226,7 +226,8 @@ async function loadMistakeEventJournalFresh(
   // зачем (§122, замер 04.10: чтение корня журнала ×17, страниц ×5, кусков ×5 за старт): для боевого хранилища читаем через снапшот —
   // хранилище один раз, дальше память; любая запись (в т.ч. под замком записи журнала) выбрасывает ключ. Страницы и куски журнала
   // адресуются хешем содержимого, корень меняется только записью. Подставное хранилище (тесты) читается напрямую.
-  const getRaw = input.storage
+  // зачем (замер fin3): mergeMistakeEvents передаёт сюда уже разрешённое хранилище (то же AsyncStorage) — это боевой путь, не подставное
+  const getRaw = input.storage && input.storage !== AsyncStorage
     ? (rawKey: string): Promise<string | null> => storage.getItem(rawKey)
     : readStoredItem;
   const raw = await getRaw(mistakePracticeEventsKey(accountScope, input.studyTarget));

@@ -37,3 +37,6 @@ Revert the commit; consumers fall back to direct AsyncStorage reads with no data
 
 Governance-ID: TG-9DFC3A513661
 (2026-10-04: журнал ошибок и серия дней читаются через снапшот; rollback = git revert.)
+
+Governance-ID: TG-2FB561F20BD7
+(2026-10-04: журнал ошибок — боевое хранилище через снапшот; INBOX справка.)

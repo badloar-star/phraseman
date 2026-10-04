@@ -32,7 +32,7 @@ function Sheen({ radius }: Readonly<{ radius: number }>) {
 }
 
 /** «.card» макета: заливка 150° из цветов темы, тень вниз, блик и кромка. */
-export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style }: Readonly<{
+export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid }: Readonly<{
   g: GlassTokens;
   children: React.ReactNode;
   onPress?: () => void;
@@ -41,6 +41,8 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
   accessibilityLabel?: string;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  /** Сплошная заливка вместо градиента темы (например, кнопки-плитки «Изменить / Удалить»: #202022). */
+  solid?: string;
 }>) {
   const [a, b] = themePair(g);
   const colors = [`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`] as const;
@@ -54,7 +56,7 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
       onPress={onPress}
       onLongPress={onLongPress}
       style={({ pressed }) => [styles.card, { boxShadow: DROP as never }, pressed && styles.pressed, style]}>
-      <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, styles.cardFill]} />
+      {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.cardFill, { backgroundColor: solid }]} /> : <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, styles.cardFill]} />}
       {children}
       <Sheen radius={14} />
     </Pressable>

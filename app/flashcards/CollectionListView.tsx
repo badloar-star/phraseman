@@ -25,6 +25,7 @@ import { FlowText } from '../../components/text-integrity';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import PressableHybrid from '../../components/PressableHybrid';
 import { LUM } from '../../constants/motionHybrid';
@@ -924,39 +925,41 @@ export function UndoDeleteSnackbar({
 }) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Карточка удалена — «Вернуть»»): тост 58 высотой,
+  // r18, заливка 150° из цветов темы, тень вниз, кнопка «Вернуть» 42 высотой на тёмной плашке.
+  const [ta, tb] = themePair(g);
   return (
     <Reanimated.View
       entering={FadeInDown.duration(220)}
       style={{
         position: 'absolute',
-        left: 14,
-        right: 14,
+        left: 16,
+        right: 16,
         bottom: bottomOffset,
         zIndex: 90,
       }}
     >
       <View
         style={{
+          height: 58,
           flexDirection: 'row',
           alignItems: 'center',
           gap: 12,
-          backgroundColor: g.sheet,
-          borderColor: g.glassEdge,
-          borderWidth: 1,
-          borderRadius: 16,
-          paddingHorizontal: 16,
-          paddingVertical: 13,
-          shadowColor: '#000',
-          shadowOpacity: 0.25,
-          shadowRadius: 12,
-          shadowOffset: { width: 0, height: 4 },
-          elevation: 6,
-          overflow: 'hidden',
+          borderRadius: 18,
+          paddingLeft: 18,
+          paddingRight: 8,
+          boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -14, color: 'rgba(0,0,0,0.9)' }],
         }}
       >
-        <SavedListGlass tint={g.selected} edge={g.glassEdge} />
-        <Ionicons name="trash-outline" size={18} color={g.secondary} />
-        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: g.text, fontSize: f.sub, fontWeight: '600' }}>
+        <LinearGradient
+          pointerEvents="none"
+          colors={[`${mixDark(ta, '#12121A', 0.2)}E2`, 'rgba(18,18,22,0.85)']}
+          start={{ x: 0.25, y: 0.07 }}
+          end={{ x: 0.75, y: 0.93 }}
+          style={[StyleSheet.absoluteFill, { borderRadius: 18 }]}
+        />
+        <Ionicons name="trash-outline" size={18} color="#FFFFFF" />
+        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: '#FFFFFF', fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
           {triLang(lang, {
               ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
               'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
@@ -967,17 +970,17 @@ export function UndoDeleteSnackbar({
           accessibilityLabel="qa-fc-undo-delete"
           accessible
           onPress={onUndo}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           style={{
-            borderRadius: 10,
-            backgroundColor: g.selected,
-            borderWidth: 1,
-            borderColor: g.glassEdge,
-            paddingHorizontal: 14,
-            paddingVertical: 7,
+            height: 42,
+            borderRadius: 21,
+            backgroundColor: '#343437',
+            paddingHorizontal: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '700' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
             {triLang(lang, {
               ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer',
               'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Batalkan', tr: 'Geri al', pl: 'Cofnij',

@@ -41,7 +41,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
 import { flashcardsSystemCardsForTarget } from './flashcards_target_gate';
-import { CardItem, CategoryId } from './flashcards/types';
+import { CardItem, CategoryId, resolveFlashcardBackText } from './flashcards/types';
 import { writeFlashcardsProgress } from './flashcards/storage';
 // E8: быстрый старт — размер сессии из последнего пресета (fc_mode_prefs_v1)
 import { fcHaptic } from './flashcards/SoundService';
@@ -57,6 +57,9 @@ import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionGalleryView from './flashcards/CollectionGalleryView';
 import { CollectionMenuSheet, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
+import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
+import { togglePackCardSaved } from './flashcards/save_pack_card';
+import { isFlashcardSaved } from '../hooks/use-flashcards';
 import { useCommunityAuthorName } from './community_packs/packAuthorNames';
 import { isLocalAuthorPackId } from './community_packs/localAuthorPacks';
 import CollectionListView, {
@@ -180,6 +183,9 @@ export default function FlashcardsScreen() {
   // в каталоге долгим тапом по плитке. На самой странице набора — там, где
   // человек и читает чужие карточки, — жалобы не было вовсе.
   const [packReportOpen, setPackReportOpen] = useState(false);
+  // зачем: раскрытая карточка (ExpandedCardV2) — состояние нужно уже Back-обработчику выше по файлу
+  const [openedCardId, setOpenedCardId] = useState<string | null>(null);
+  const [openedSaved, setOpenedSaved] = useState(false);
   /**
    * Покупка набора за руны (владелец 2026-09-17, экран 8 макета рун).
    * Шит переиспользован целиком — своей вёрстки покупки здесь нет.
@@ -480,6 +486,10 @@ export default function FlashcardsScreen() {
 
   /** Один контракт для стрелки и Android Back: сначала закрываем локальный слой. */
   const handleCollectionBack = useCallback(() => {
+    if (openedCardId) {
+      setOpenedCardId(null);
+      return;
+    }
     if (savedActionsOpen) {
       setSavedActionsOpen(false);
       return;
@@ -502,7 +512,7 @@ export default function FlashcardsScreen() {
       return;
     }
     leaveCollection();
-  }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, savedActionsOpen, searchActive, searchInput, selectionMode, viewMode]);
+  }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, openedCardId, savedActionsOpen, searchActive, searchInput, selectionMode, viewMode]);
 
   // Saved visibility must use the same authoritative feature decision as the
   // save path: Plus/VIP/intro/admin access and the remote global Free switch.
@@ -1048,12 +1058,45 @@ export default function FlashcardsScreen() {
   // зачем (владелец 04.10, макет cards-section «Список»): «Сохранённые» — сетка плиток; тап по плитке открывает карточку (пока — стопкой с этой карточки),
   // «Тренировать» ведёт на хаб с открытым окном выбора режима (там вся логика лимита и пейвола).
   const savedSurface = activeCat === 'saved' && !packDeeplink;
+  // зачем (владелец 04.10: «карточки открываются горизонтальными разворачивающимися»): тап по плитке раскрывает карточку по центру (ExpandedCardV2),
+  // а не открывает стопку. «Сохранено» читается из общего хранилища сохранённых по английскому слову.
+  const openedCard = useMemo(() => (openedCardId ? listCards.find((card) => card.id === openedCardId) ?? null : null), [openedCardId, listCards]);
   const openCardFromGallery = useCallback((id: string) => {
-    const idx = listCards.findIndex((card) => card.id === id);
-    indexRef.current = Math.max(0, idx);
     fcHaptic('tap');
-    setViewMode('deck');
-  }, [listCards]);
+    setOpenedCardId(id);
+  }, []);
+  const closeOpenedCard = useCallback(() => setOpenedCardId(null), []);
+  useEffect(() => {
+    if (!openedCard) return undefined;
+    let cancelled = false;
+    void isFlashcardSaved(openedCard.en, openedCard.packLanguage ?? studyTarget).then((value) => {
+      if (!cancelled) setOpenedSaved(value);
+    }).catch((error: unknown) => {
+      console.warn('[PACK-CARD-SAVE] не удалось проверить «сохранено»', error instanceof Error ? error.message : String(error));
+    });
+    return () => { cancelled = true; };
+  }, [openedCard?.id]); // eslint-disable-line react-hooks/exhaustive-deps -- проверяем только при открытии новой карточки
+  const onToggleOpenedSave = useCallback(() => {
+    const card = openedCard;
+    if (!card) return;
+    const before = openedSaved;
+    setOpenedSaved(!before); // Optimistic UI: галочка сразу, запись догоняет
+    fcHaptic('tap');
+    void togglePackCardSaved(card, before, packDeeplink, studyTarget).then((result) => {
+      if (result === 'limit_reached') {
+        setOpenedSaved(before);
+        openPremiumLimit();
+      } else if (result === 'stale' || result === 'failed') {
+        setOpenedSaved(before);
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось сохранить карточку.', uk: 'Не вдалося зберегти картку.', en: 'Could not save the card.', es: 'No se pudo guardar la tarjeta.',
+          'pt-BR': 'Não foi possível salvar o cartão.', vi: 'Không thể lưu thẻ.', id: 'Kartu tidak dapat disimpan.', tr: 'Kart kaydedilemedi.', pl: 'Nie udało się zapisać karty.',
+        }));
+      } else if (result === 'duplicate') {
+        setOpenedSaved(true);
+      }
+    });
+  }, [openedCard, openedSaved, packDeeplink, studyTarget, openPremiumLimit]);
   const onTrainGallery = useCallback(() => {
     router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
   }, [router]);
@@ -1091,6 +1134,21 @@ export default function FlashcardsScreen() {
       cardCount={listCards.length}
     />
   ) : null;
+
+  const expandedOpened = openedCard;
+  const expandedEditable = expandedOpened ? isEditableCustomCard(expandedOpened) : false;
+  const expandedOwn = !!expandedOpened && (savedSurface || packMine || expandedEditable);
+  const expandedStrength = expandedOpened && strengthForCard ? strengthForCard(expandedOpened.en) : null;
+  const expandedData: ExpandedCardData | null = expandedOpened ? {
+    id: expandedOpened.id,
+    front: expandedOpened.en,
+    ipa: expandedOpened.transcription ?? null,
+    back: resolveFlashcardBackText(expandedOpened, cardContentLang),
+    dots: expandedStrength === 'strong' ? 4 : expandedStrength === 'medium' ? 2 : expandedStrength === 'weak' ? 1 : 0,
+    example: expandedOpened.exampleEn?.trim() || null,
+    exampleTr: (cardContentLang === 'uk' ? expandedOpened.exampleUk : cardContentLang === 'es' ? expandedOpened.exampleEs : expandedOpened.exampleRu)?.trim() || null,
+  } : null;
+  const expandedOverline = savedSurface ? s.title : packBadge === 'in_you' && packAuthorName ? `${packTitleText} · ${packAuthorName}` : packTitleText;
 
   const savedTitleBlock = savedSurface ? (
     <CollectionTitleBlock
@@ -1532,6 +1590,33 @@ export default function FlashcardsScreen() {
       ) : null}
 
     </SafeAreaView>
+    {expandedData ? (
+      <ExpandedCardV2
+        card={expandedData}
+        lang={lang}
+        overline={expandedOverline}
+        footer={expandedOwn ? 'own' : 'foreign'}
+        showSave={!savedSurface}
+        saved={openedSaved}
+        canEdit={!!expandedOpened && (expandedEditable || packMine)}
+        canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved')}
+        onClose={closeOpenedCard}
+        onSpeak={(text) => onSpeakCb(text)}
+        onEdit={() => {
+          const card = expandedOpened;
+          setOpenedCardId(null);
+          if (!card) return;
+          if (expandedEditable) openEditEditor(card);
+          else onEditPack();
+        }}
+        onDelete={() => {
+          const card = expandedOpened;
+          setOpenedCardId(null);
+          if (card) void deleteCardById(card.id);
+        }}
+        onToggleSave={onToggleOpenedSave}
+      />
+    ) : null}
     </ScreenGradient>
   );
 }

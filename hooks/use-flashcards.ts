@@ -32,7 +32,7 @@ export interface Flashcard {
   // надёжный признак, что запись сделана старым генератором и её надо
   // перегенерировать: по виду строки выдумку от правды не отличить.
   transcriptionEngineVersion?: number;
-  source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase';
+  source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase' | 'pack';
   sourceId?: string;
   sourceTitle?: string;
   addedAt: number;

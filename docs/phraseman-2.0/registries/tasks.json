@@ -13976,17 +13976,18 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
+    "reviewer": "App Check, независимый рецензент (только чтение), 04.10: INBOX §143",
     "evidence": [
       "2026-10-03 39e077ac9: legal/privacy_policy_en(.ios).json пересобраны под реальную 2.0 по заранее данному «да» владельца; legal:sync, legal_copies_sync_contract 6/6, hash-контракт 8/8; сверено с кодом: диалоги ИИ и память (functions/src/dialogue_v2_memory_contract.ts rawTranscriptRetention forbidden; очистка памяти языка в app/dialogue_v2_memory.tsx), TTS на устройстве, распознавание речи платформой, аналитика по согласию, пуши Expo, удаление аккаунта с 14-дневной отсрочкой, RevenueCat, комьюнити-паки за монеты, диагностика поддержки только при явной отправке; срок TTL 90 дней в политику НЕ вписан (в коде не реализован — см. PM-252). Публикация (hosting-таргеты knowlywww и admin) и юридическая проверка — отдельно, не выданы за выполненные",
       "2026-10-03 39e077ac9: из политики убраны Arena-матчи/дуэли, клубы, подарки, бусты, аватар-предметы, Shards/Runes, голосовой репетитор, XP; grep по четырём legal/*.json: Shards/Runes/XP/voice tutor = 0; Arena/tournament/club/gift остаются только в оговорке об исторических записях ретайренных функций и «gift choice» веб-заказа сертификатов; список «было → стало» — INBOX_COORDINATOR_FROM_CORE.md («Политика и условия под реальную 2.0»)"
     ],
     "notes": [
-      "2026-10-03 ревизия реестра (координатор): PM-248 → review; опубликованный текст — после выкладки координатором (knowlywww, admin)"
+      "2026-10-03 ревизия реестра (координатор): PM-248 → review; опубликованный текст — после выкладки координатором (knowlywww, admin)",
+      "2026-10-04 независимое ревью (App Check, только чтение): PASS с одной правкой текста. Политика legal/privacy_policy_en.json (27 разделов) сверена с кодом: (1) срок 90 дней для журналов приложения (раздел 19) — совпадает с реализованным TTL app_errors/app_activity (бэкфилл expireAt 03.10); (2) отдельное согласие для диалогов ИИ и разбора ошибок (раздел 11) — гейты есть в коде (app/ai_dialog_consent*.ts, ai_explain_consent.ts, ai_consent_factory.ts); (3) удаление аккаунта с отсрочкой 14 дней — ACCOUNT_DELETE_GRACE_MS = 14 суток (functions/src/account_delete_grace.ts); (4) память диалогов: rawTranscriptRetention = forbidden (functions/src/dialogue_v2_memory_contract.ts) — не противоречит разделам 11/13; (5) продуктовая аналитика за согласием: trackActivity пишет в Firestore не-ошибочные события только при isAnalyticsConsentGranted (app/app_activity.ts:112), следы LESSON-EXIT попадают под этот гейт — раздел 10 это описывает; (6) в политике нет Shards/Runes/XP/голосового репетитора. Замечания: (а) раздел 5 перечисляет среди публичных полей «points» — публичный снимок профиля (app/public_profile_snapshot.ts) очков не публикует (XP удалён) → убрать слово «points»; (б) разделы про Шпиль (floor, steps, weekly result) описывают функцию, код которой за выключенным флагом — публиковать вместе с включением Шпиля или пометить; (в) публикация и юридическая проверка остаются за владельцем. Статус оставлен review (публикации нет)."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "PASS",
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null

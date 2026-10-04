@@ -132,6 +132,7 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
 export { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
 import { achievementImageSource } from '../constants/achievementImageAssets';
 import { prefetchAllAchievementArt } from './achievement_art_prefetch';
+import { peekStableId } from './stable_id';
 
 // ── Иконки по ачивке (Ionicons) — constants/achievementIcons.ts ──
 export { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
@@ -894,6 +895,17 @@ const AccordionSection = memo(function AccordionSection({
 });
 
 // ── Главный экран ─────────────────────────────────────────────────────────────
+/** Последние показанные состояния достижений: память процесса, ключ — аккаунт (stable id), чтобы чужой аккаунт не показывался первым кадром. */
+let lastAchievementStates: { owner: string; states: AchievementState[] } | null = null;
+function peekLastAchievementStates(): AchievementState[] | null {
+  const owner = peekStableId();
+  return owner && lastAchievementStates?.owner === owner ? lastAchievementStates.states : null;
+}
+function rememberLastAchievementStates(next: AchievementState[]): void {
+  const owner = peekStableId();
+  if (owner) lastAchievementStates = { owner, states: next };
+}
+
 export default function AchievementsScreen() {
   const router          = useRouter();
   const { theme: t, f, isDark, themeMode, liquidGlassThemeId } = useTheme();
@@ -904,12 +916,14 @@ export default function AchievementsScreen() {
   const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
   const isUK = lang === 'uk';
 
-  const [states, setStates]   = useState<AchievementState[]>([]);
+  // зачем (правило владельца «каждый раздел открывается мгновенно», аудит 04.10): раньше на КАЖДОМ открытии шёл скелетон-полка, пока читалось
+  // хранилище. Последние показанные состояния держим в памяти по аккаунту — первый кадр рисуется из них, чтение хранилища и пересчёт идут фоном.
+  const [states, setStates]   = useState<AchievementState[]>(() => peekLastAchievementStates() ?? []);
   // зачем (аудит 2026-08-22): states стартует пустым массивом, и до прихода
   // loadAchievementStates() полка ложно показывала «Пока нет наград» даже
   // игроку с десятками наград. Паттерн — как в collectibles_screen: держим
   // «загружено хоть раз» отдельно от «пусто по-настоящему».
-  const [achievementsLoaded, setAchievementsLoaded] = useState(false);
+  const [achievementsLoaded, setAchievementsLoaded] = useState(() => peekLastAchievementStates() !== null);
   const [stats, setStats]     = useState<AchievementStats>(emptyAchievementStats());
   const [selected, setSelected] = useState<Achievement | null>(null);
   const [openCategory, setOpenCategory] = useState<string | null>(null);
@@ -943,6 +957,7 @@ export default function AchievementsScreen() {
         console.log('[ACH-BOOT] apply skipped: unmounted', { origin });
         return;
       }
+      rememberLastAchievementStates(nextStates);
       setStates(nextStates);
       setAchievementsLoaded(true);
       console.log('[ACH-BOOT] states applied', {

@@ -60,6 +60,7 @@ import {
 } from './packCommentsFirestore';
 import { registerCommunityPackAddRemote } from './packSocialFirestore';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { peekStableId } from '../stable_id';
 
 type Props = {
   visible: boolean;
@@ -129,6 +130,29 @@ function timeAgoLabel(ms: number, lang: Lang): string {
   if (hr < 24) return triLang(lang, { ru: `${hr} ч`, uk: `${hr} год`, en: `${hr}h`, es: `${hr} h`, 'pt-BR': `${hr} h`, vi: `${hr} giờ`, id: `${hr} jam`, tr: `${hr} sa`, pl: `${hr} godz` });
   const day = Math.floor(hr / 24);
   return triLang(lang, { ru: `${day} дн`, uk: `${day} дн`, en: `${day}d`, es: `${day} d`, 'pt-BR': `${day} d`, vi: `${day} ngày`, id: `${day} hr`, tr: `${day} gün`, pl: `${day} dni` });
+}
+
+/** Последняя серверная лента комментариев по набору: память процесса, ключ — аккаунт и набор; не больше 20 наборов. */
+const packCommentsMemory = new Map<string, PackComment[]>();
+const PACK_COMMENTS_MEMORY_MAX = 20;
+function packCommentsMemoryKey(packId: string): string | null {
+  const owner = peekStableId();
+  return owner ? `${owner}:${packId}` : null;
+}
+function peekPackCommentsMemory(packId: string): PackComment[] | null {
+  const key = packCommentsMemoryKey(packId);
+  return key ? (packCommentsMemory.get(key) ?? null) : null;
+}
+function rememberPackCommentsMemory(packId: string, list: PackComment[]): void {
+  const key = packCommentsMemoryKey(packId);
+  if (!key) return;
+  packCommentsMemory.delete(key);
+  packCommentsMemory.set(key, list);
+  while (packCommentsMemory.size > PACK_COMMENTS_MEMORY_MAX) {
+    const oldest = packCommentsMemory.keys().next().value;
+    if (oldest === undefined) break;
+    packCommentsMemory.delete(oldest);
+  }
 }
 
 export default function PackCommentsSheet({ visible, packId, packTitle, isPackAuthor, packAuthorStableId, ownedLocally, lang, onClose, highlightCommentId }: Props) {
@@ -236,7 +260,15 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     if (!visible || !packId) return;
     if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] эффект стартовал', { packId, isPackAuthorProp: isPackAuthor, ownedLocally });
     let cancelled = false;
-    setLoading(true);
+    // зачем (аудит «мгновенное открытие», 04.10): спиннер крутился на КАЖДОМ открытии, даже если ленту этого набора только что видели. Теперь, если
+    // в памяти есть последняя серверная лента для этого аккаунта и набора, показываем её сразу, а загрузка идёт фоном и сливается через mergeServerComments.
+    const remembered = peekPackCommentsMemory(packId);
+    if (remembered) {
+      setComments((prev) => mergeServerComments(prev, remembered));
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
     void (async () => {
       const uid = await getCanonicalUserId().catch((e) => {
         if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] getCanonicalUserId упал', { packId, reason: e instanceof Error ? e.message : String(e) });
@@ -271,6 +303,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // guard-ok: только поднимаем canWrite (|| с текущим значением), никогда
       // не опускаем — та же защита от гонки, что в отдельном эффекте выше.
       setCanWrite((prev) => prev || finalCanWrite);
+      rememberPackCommentsMemory(packId, serverComments);
       setComments((prev) => mergeServerComments(prev, serverComments));
       setLoading(false);
     })();

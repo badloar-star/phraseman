@@ -78,6 +78,20 @@ export function warmExplainPhrase(): void {
   });
 }
 
+/**
+ * Готовое объяснение из ДИСКОВОГО кэша (без сети) — или null. Нужен, чтобы шторка открывалась уже с текстом (аудит «мгновенное открытие», 04.10).
+ * Никогда не бросает.
+ */
+export async function readCachedExplainPhraseText(req: ExplainPhraseRequest): Promise<string | null> {
+  try {
+    const cached = await readExplainLocalCache({ kind: 'phrase', key: explainPhraseRequestKey(req) });
+    return cached?.status === 'ok' && cached.text.trim() ? cached.text : null;
+  } catch (error: unknown) {
+    console.warn('[EXPLAIN-PHRASE] prefill:read_failed', error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
 export async function callExplainPhrase(
   req: ExplainPhraseRequest,

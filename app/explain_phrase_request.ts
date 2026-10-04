@@ -17,6 +17,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   callExplainPhrase,
+  readCachedExplainPhraseText,
   type ExplainPhraseRequest,
   type ExplainPhraseResponse,
 } from './explain_phrase_client';
@@ -86,6 +87,18 @@ export function canReuseExplainRequestState(
       typeof state.text === 'string' &&
       state.text.trim().length > 0,
   );
+}
+
+/**
+ * зачем (аудит «каждый раздел открывается мгновенно», 04.10): шторка на холодном старте показывала скелетон, хотя готовый текст лежит на диске —
+ * дисковый кэш читался уже ПОСЛЕ первого кадра. Кнопка зовёт это при касании/открытии: текст переезжает в память, и хук шторки берёт его сразу.
+ */
+export async function prefillExplainResultFromDisk(req: ExplainPhraseRequest): Promise<void> {
+  const key = explainRequestKey(req);
+  if (explainResultCache.has(key)) return;
+  const text = await readCachedExplainPhraseText(req);
+  if (!text) return;
+  rememberExplainResult(key, { loading: false, text, status: 'ok', fromCache: true, error: false });
 }
 
 function rememberExplainResult(key: string, state: ExplainRequestState): void {

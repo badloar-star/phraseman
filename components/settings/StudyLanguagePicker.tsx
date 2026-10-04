@@ -20,6 +20,7 @@ import type { Lang } from '../../constants/i18n';
 import {
   applyStudyLanguageSelection,
   getStartedStudyLanguages,
+  peekStartedStudyLanguages,
 } from '../../app/study_languages';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../../app/events';
@@ -98,8 +99,10 @@ export default function StudyLanguagePicker({
   // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора не менялась.
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>([activeTarget]);
-  const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(false);
+  // зачем (аудит «мгновенное открытие», 04.10): если список начатых языков уже известен в памяти (по аккаунту) — берём его первым кадром и считаем
+  // «разрешённым»: ранний тап больше не уходит в резолвер-роут со спиннером. Чтение хранилища всё равно идёт фоном и заменяет значение.
+  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>(() => peekStartedStudyLanguages() ?? [activeTarget]);
+  const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(() => peekStartedStudyLanguages() !== null);
   const [busy, setBusy] = useState(false);
 
   const reloadStarted = useCallback(async () => {

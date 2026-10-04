@@ -20,7 +20,8 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from '../app/analytics';
 import { isExplainEnabled } from '../app/explain_phrase_flags';
-import { asLang } from '../app/explain_phrase_request';
+import { asLang, prefillExplainResultFromDisk } from '../app/explain_phrase_request';
+import { useStudyTarget } from './StudyTargetContext';
 import { warmExplainPhrase } from '../app/explain_phrase_client';
 import ExplainSheet from './ExplainSheet';
 
@@ -42,6 +43,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
   const effLang = lang || ctxLang;
   const uiLang = asLang(effLang);
   const [open, setOpen] = useState(false);
+  const { studyTarget } = useStudyTarget();
 
   // Показ кнопки = единица спроса (для adoption/cohort-метрик README).
   useEffect(() => {
@@ -60,11 +62,14 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
   // Внутри стоит TTL: серия тапов подряд разбудит сервер один раз за 9 минут.
   const handleWarm = () => {
     warmExplainPhrase();
+    // Дисковый кэш объяснения — в память заранее (до выезда шторки), чтобы она открылась уже с текстом.
+    void prefillExplainResultFromDisk({ phraseEn, phraseMeaning, lang: effLang, studyTarget });
   };
 
   const handleOpen = () => {
     hapticTap();
     void trackEvent('explain_sheet_opened', { lang: effLang });
+    void prefillExplainResultFromDisk({ phraseEn, phraseMeaning, lang: effLang, studyTarget });
     setOpen(true);
   };
 

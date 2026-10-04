@@ -2636,7 +2636,24 @@ export default function LessonsTab({
   // тапа состояние уже в памяти и страница открывается первым же кадром.
   // Стоимость нулевая для Firebase (локальный AsyncStorage + кэш каталога) и
   // разовая по диску — оба загрузчика дедуплицируются собственными кэшами.
-  const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2";
+  // зачем (аудит «каждый раздел открывается мгновенно», 04.10): комментарий выше обещал прогрев «пока человек смотрит на список», но условие осталось
+  // только page === "v2" — первый заход в V2 в продакшене ждал диск. Прогрев взводим ПОСЛЕ первого кадра вкладки «Обучение»: фокус на вкладке
+  // → runAfterInteractions → ещё 2 с паузы (не тормозим холодный старт), только пока открыт список уроков. Стоимость — локальный диск, без сети.
+  const [learningV2WarmupArmed, setLearningV2WarmupArmed] = useState(false);
+  useFocusEffect(
+    useCallback(() => {
+      if (learningV2WarmupArmed || page !== "lessons") return undefined;
+      let timer: ReturnType<typeof setTimeout> | null = null;
+      const task = InteractionManager.runAfterInteractions(() => {
+        timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);
+      });
+      return () => {
+        task.cancel?.();
+        if (timer) clearTimeout(timer);
+      };
+    }, [learningV2WarmupArmed, page]),
+  );
+  const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2" || learningV2WarmupArmed;
   useFocusEffect(
     useCallback(() => {
       if (!learningV2WarmupEnabled) return undefined;

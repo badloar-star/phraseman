@@ -14,6 +14,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { isStudyTarget, setStoredStudyTarget, type StudyTarget } from './study_target';
 import { DebugLogger } from './debug-logger';
+import { peekStableId } from './stable_id';
+
+// зачем (правило владельца «каждый раздел открывается мгновенно», аудит 04.10): список начатых языков читался из хранилища при каждом открытии пикера,
+// а ранний тап уходил в резолвер-роут со спиннером. Последний известный список держим в памяти по аккаунту; пикер берёт его первым кадром.
+let startedMemory: { owner: string; list: StudyTargetLang[] } | null = null;
+function rememberStarted(list: StudyTargetLang[]): StudyTargetLang[] {
+  const owner = peekStableId();
+  if (owner) startedMemory = { owner, list };
+  return list;
+}
+export function peekStartedStudyLanguages(): StudyTargetLang[] | null {
+  const owner = peekStableId();
+  return owner && startedMemory?.owner === owner ? startedMemory.list : null;
+}
 
 export type StudyTargetLang = StudyTarget;
 
@@ -67,9 +81,9 @@ export async function getStartedStudyLanguages(seed?: StudyTargetLang): Promise<
     } catch (e) {
       DebugLogger.error('study_languages:seeded', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-    return seeded;
+    return rememberStarted(seeded);
   }
-  return stored;
+  return rememberStarted(stored);
 }
 
 /** Отметить язык начатым (идемпотентно). Возвращает актуальный список. */
@@ -82,7 +96,7 @@ export async function markStudyLanguageStarted(target: StudyTargetLang): Promise
   } catch (e) {
       DebugLogger.error('study_languages:next', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  return next;
+  return rememberStarted(next);
 }
 
 export async function saveLanguageProfile(

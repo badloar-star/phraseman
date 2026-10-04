@@ -1622,8 +1622,8 @@ export default function FriendsTabScreen() {
         },
       });
       setSearchError(isTransient
-        ? L('Связь пропала. Проверь интернет и попробуй ещё раз', 'Зв’язок зник. Перевір інтернет і спробуй ще раз', 'Connection lost. Check your internet and try again', 'Se perdió la conexión. Revisa tu internet e inténtalo de nuevo', 'A conexão caiu. Verifique sua internet e tente novamente', 'Mất kết nối. Hãy kiểm tra internet và thử lại', 'Koneksi terputus. Periksa internet lalu coba lagi', 'Bağlantı koptu. İnternetini kontrol edip tekrar dene', 'Połączenie zerwane. Sprawdź internet i spróbuj ponownie')
-        : L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+        ? L('Связь пропала. Попробуй ещё раз', 'Зв’язок зник. Спробуй ще раз', 'Connection lost. Try again', 'Se perdió la conexión. Inténtalo de nuevo', 'A conexão caiu. Tente novamente', 'Mất kết nối. Hãy thử lại', 'Koneksi terputus. Coba lagi', 'Bağlantı kesildi. Tekrar dene', 'Brak połączenia. Spróbuj ponownie')
+        : L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }
@@ -1685,7 +1685,7 @@ export default function FriendsTabScreen() {
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
       }
     } catch (e) {
       void import('../app_health')
@@ -1706,7 +1706,7 @@ export default function FriendsTabScreen() {
       });
       setFoundUser(targetUser);
       setCodeInput(previousCodeInput);
-      showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+      showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -1760,7 +1760,7 @@ export default function FriendsTabScreen() {
       .catch((error: unknown) => {
         console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
-        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
       })
       .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, showFeedback]);
@@ -1899,14 +1899,14 @@ export default function FriendsTabScreen() {
         });
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: 'Не получилось. Проверь интернет и попробуй ещё раз',
-          messageUk: 'Не вдалося. Перевір інтернет і спробуй ще раз',
-          messageEs: 'No funcionó. Comprueba Internet e inténtalo de nuevo',
-          messagePtBr: 'Não deu certo. Verifique a internet e tente novamente',
-          messageVi: 'Không thành công. Hãy kiểm tra mạng rồi thử lại',
-          messageId: 'Gagal. Periksa internet lalu coba lagi',
-          messageTr: 'Olmadı. İnterneti kontrol edip tekrar dene',
-          messagePl: 'Nie udało się. Sprawdź internet i spróbuj ponownie',
+          messageRu: 'Сейчас не получилось. Попробуй ещё раз',
+          messageUk: 'Зараз не вийшло. Спробуй ще раз',
+          messageEs: 'Ahora no ha funcionado. Inténtalo de nuevo',
+          messagePtBr: 'Não deu certo agora. Tente de novo',
+          messageVi: 'Lúc này chưa được. Hãy thử lại',
+          messageId: 'Belum berhasil. Coba lagi',
+          messageTr: 'Şu an olmadı. Tekrar dene',
+          messagePl: 'Teraz się nie udało. Spróbuj ponownie',
         });
       })
       .finally(() => {

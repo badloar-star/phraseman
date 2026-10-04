@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
@@ -11,7 +11,15 @@ import {
   viewDialogueV2Memory,
 } from './dialogue_v2_memory_client';
 import {
+  clearDialogueV2MemoryDiskCache,
+  readDialogueV2MemoryDiskCache,
+  writeDialogueV2MemoryDiskCache,
+} from './dialogue_v2_memory_disk_cache';
+import { captureAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import {
   fetchReleasedDialogueV2Catalogue,
+  peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
 } from './dialogue_v2_catalogue_client';
 import { triLang } from '../constants/i18n';
@@ -20,6 +28,7 @@ import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -134,6 +143,10 @@ function memoryCopy(lang: ReturnType<typeof useLang>['lang']) {
 
 /** Последняя полученная память по языку — только в памяти процесса (без диска: это данные Plus-аккаунта). */
 const memoryCacheByTarget = new Map<string, DialogueV2MemoryView>();
+// зачем (04.10): кэш процесса привязан к аккаунту — после смены аккаунта память прошлого не мелькнёт.
+function memoryCacheKey(studyTarget: string): string {
+  return `${accountScopeKey(captureAccountGeneration()) ?? "no-account"}|${studyTarget}`;
+}
 const MEMORY_SILENT_RETRIES = 5;
 const MEMORY_SILENT_RETRY_MS = 20_000;
 
@@ -147,12 +160,20 @@ export default function DialogueV2MemoryRoute() {
   // зачем (владелец 01.10: «никаких загружается / не загрузилось»): повторный заход — сразу последняя
   // полученная память этого языка; сбой сети — тихий повтор в фоне, текста об ошибке нет.
   const [state, setState] = useState<MemoryState>(() => {
-    const cached = typeof studyTarget === 'string' ? memoryCacheByTarget.get(studyTarget) : undefined;
+    const cached = typeof studyTarget === 'string' ? memoryCacheByTarget.get(memoryCacheKey(studyTarget)) : undefined;
     return cached ? { kind: 'available', memory: cached } : { kind: 'loading' };
   });
   const [retryTick, setRetryTick] = useState(0);
-  const [labels, setLabels] = useState<CatalogueLabels>(() => catalogueLabels(null, 'en'));
+  // зачем (правило «мгновенное открытие», 04.10): названия сцен — сразу из локального каталога (встроенный
+  // снимок), а не английская заглушка с подменой после сети.
+  const [labels, setLabels] = useState<CatalogueLabels>(() => (
+    supportedTarget(studyTarget) ? catalogueLabels(peekDialogueV2Catalogue(studyTarget), studyTarget) : catalogueLabels(null, 'en')
+  ));
   const [clearing, setClearing] = useState(false);
+  // зачем (чек-лист 2.0, нативные Alert → стекло): подтверждение — стеклянное окно, отказ — строка
+  // под кнопкой, а не системный диалог поверх стеклянного экрана.
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [clearFailed, setClearFailed] = useState(false);
 
   useEffect(() => {
     if (!accessResolved || !hasPremiumAccess) return undefined;
@@ -162,6 +183,14 @@ export default function DialogueV2MemoryRoute() {
     }
     let active = true;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    // зачем (правило «мгновенное открытие», 04.10): после холодного старта — копия с устройства, пока сеть
+    // не ответила; ответ сети её заменяет (состояние меняем только из 'loading', поздний диск не затрёт сеть).
+    if (!memoryCacheByTarget.has(memoryCacheKey(studyTarget))) {
+      void readDialogueV2MemoryDiskCache(studyTarget).then((disk) => {
+        if (!active || !disk) return;
+        setState((prev) => (prev.kind === 'loading' ? { kind: 'available', memory: disk } : prev));
+      });
+    }
     const scheduleRetry = (reason: string) => {
       if (retryTick >= MEMORY_SILENT_RETRIES) {
         console.warn('[DIALOGUE-V2] memory: silent retries exhausted', { studyTarget, reason, retryTick });
@@ -177,7 +206,9 @@ export default function DialogueV2MemoryRoute() {
       if (!active) return;
       setLabels(catalogueLabels(envelope, studyTarget));
       if (memory) {
-        memoryCacheByTarget.set(studyTarget, memory);
+        console.log('[DIALOG-MEMORY] source=network', JSON.stringify({ studyTarget, checkpoints: memory.scenarioCheckpoints.length, summary: Boolean(memory.sharedSummary) }));
+        memoryCacheByTarget.set(memoryCacheKey(studyTarget), memory);
+        void writeDialogueV2MemoryDiskCache(memory);
         setState({ kind: 'available', memory });
       } else {
         scheduleRetry('empty_response');
@@ -194,27 +225,25 @@ export default function DialogueV2MemoryRoute() {
   const clearMemory = useCallback(async () => {
     if (clearing || !supportedTarget(studyTarget)) return;
     setClearing(true);
+    setClearFailed(false);
     try {
       const receipt = await clearDialogueV2Memory({ studyTarget });
       if (receipt) {
         const cleared: DialogueV2MemoryView = { ok: true, studyTarget, sharedSummary: null, scenarioCheckpoints: [] };
-        memoryCacheByTarget.set(studyTarget, cleared);
+        memoryCacheByTarget.set(memoryCacheKey(studyTarget), cleared);
+        // зачем: «Очистить память» стирает и копию на устройстве (так обещает политика).
+        void clearDialogueV2MemoryDiskCache(studyTarget);
         setState({ kind: 'available', memory: cleared });
       }
     } catch (error: unknown) {
       console.warn('[DIALOGUE-V2] memory: clear failed', { studyTarget, message: error instanceof Error ? error.message : String(error) });
-      Alert.alert(copy.clearFailed);
+      setClearFailed(true);
     } finally {
       setClearing(false);
     }
-  }, [clearing, copy.clearFailed, studyTarget]);
+  }, [clearing, studyTarget]);
 
-  const confirmClear = useCallback(() => {
-    Alert.alert(copy.confirmTitle, copy.confirmBody, [
-      { text: copy.cancel, style: 'cancel' },
-      { text: copy.clear, style: 'destructive', onPress: () => { void clearMemory(); } },
-    ]);
-  }, [clearMemory, copy]);
+  const confirmClear = useCallback(() => setConfirmOpen(true), []);
 
   const renderHeader = () => (
     <View style={{ height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap }}>
@@ -244,6 +273,25 @@ export default function DialogueV2MemoryRoute() {
     </PressableScale>
   );
 
+  const renderClearFeedback = () => (
+    <>
+      {clearFailed ? (
+        <Text testID="dialogue-v2-memory-clear-failed" accessibilityLiveRegion="polite" style={{ color: p.wrong, ...V2_TYPE.body, textAlign: 'center' }}>{copy.clearFailed}</Text>
+      ) : null}
+      <ThemedConfirmModal
+        visible={confirmOpen}
+        title={copy.confirmTitle}
+        message={copy.confirmBody}
+        cancelLabel={copy.cancel}
+        confirmLabel={copy.clear}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => { setConfirmOpen(false); void clearMemory(); }}
+        destructive
+        testIDPrefix="dialogue-v2-memory-clear"
+      />
+    </>
+  );
+
   if (!accessResolved) {
     return <SafeAreaView testID="dialogue-v2-memory-access-checking" style={{ flex: 1, backgroundColor: p.bg }} />;
   }
@@ -265,6 +313,7 @@ export default function DialogueV2MemoryRoute() {
             <View testID="dialogue-v2-memory-delete-only" style={{ gap: V2.gapTight }}>
               <Text style={{ color: p.textSecondary, ...V2_TYPE.body, textAlign: 'center' }}>{copy.deleteOnly}</Text>
               {renderClearControl()}
+              {renderClearFeedback()}
             </View>
           </View>
         </SafeAreaView>
@@ -321,6 +370,7 @@ export default function DialogueV2MemoryRoute() {
           ) : null}
 
           {renderClearControl()}
+          {renderClearFeedback()}
         </ScrollView>
       </SafeAreaView>
     </View>

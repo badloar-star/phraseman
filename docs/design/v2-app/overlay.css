@@ -1,0 +1,82 @@
+/* Overlay catalog only. Shared geometry/material remains in kit.css + liquid-glass.css. */
+.ov-underlay { padding-top: 42px; opacity: .32; }
+.ov-underlay .ghost { height: 82px; margin-top: 12px; }
+.ov-dim { position: absolute; inset: 0; z-index: 48; background: rgba(0,0,0,.58); }
+.ov-modal {
+  position: absolute; z-index: 55; left: 22px; right: 22px; top: 50%;
+  transform: translateY(-50%); max-height: 790px; overflow: hidden;
+  padding: 22px; border-radius: 26px; border: 1px solid var(--line-2);
+  background: #18191c;
+}
+.ov-sheet {
+  position: absolute; z-index: 55; left: 0; right: 0; bottom: 0; max-height: 850px;
+  padding: 12px 20px 28px; border-radius: 30px 30px 0 0;
+  border: 1px solid var(--line-2); background: #18191c;
+}
+.ov-grab { width: 42px; height: 5px; border-radius: 4px; margin: 0 auto 16px; background: #5d5e64; }
+.ov-stage {
+  width: 108px; height: 108px; margin: 4px auto 18px; border-radius: 34px;
+  display: grid; place-items: center; color: #f4f5f8;
+  background: radial-gradient(circle at 34% 28%,#5d6068,#24262b 70%);
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 18px 36px -24px #000;
+}
+.ov-title { font-size: 25px; line-height: 31px; font-weight: 760; text-align: center; }
+.ov-title.ov-left, .ov-body.ov-left { text-align: left; }
+.ov-body { margin-top: 10px; color: var(--sec); font-size: 15px; line-height: 22px; text-align: center; }
+.ov-note { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 17px; }
+.ov-auth-head { display: grid; grid-template-columns: 55px 1fr; gap: 14px; align-items: start; }
+.ov-provider { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 54px; }
+.ov-provider + .ov-provider { margin-top: 10px; }
+.ov-provider.light { background: #f2f3f6; color: #111216; }
+.ov-provider.dark { background: #25262a; color: #fff; border: 1px solid var(--line-2); }
+.ov-trust { display: flex; justify-content: center; align-items: center; gap: 7px; margin-top: 15px; color: var(--muted); font-size: 12px; }
+.ov-panel { margin-top: 14px; padding: 16px; border-radius: 18px; border: 1px solid var(--line); background: #202126; }
+.ov-panel-title { font-size: 16px; line-height: 21px; font-weight: 720; }
+.ov-panel-body { margin-top: 6px; color: var(--sec); font-size: 13px; line-height: 19px; }
+.ov-code { margin-top: 12px; text-align: center; font-size: 28px; letter-spacing: 7px; font-weight: 760; }
+.ov-inline-error { margin-top: 11px; color: #f0f0f2; font-size: 13px; line-height: 18px; }
+.ov-field-label { display: block; margin-top: 16px; color: var(--sec); font-size: 12px; font-weight: 700; }
+.ov-field { width: 100%; margin-top: 7px; box-sizing: border-box; }
+.ov-field:disabled, .cta:disabled { opacity: .46; cursor: not-allowed; }
+.ov-busy { display: flex; align-items: center; gap: 12px; }
+.ov-busy .ov-panel-body { margin-top: 0; }
+.ov-text-action { display: block; margin: 14px auto 0; color: var(--sec); font: 700 13px Inter,sans-serif; }
+.ov-announcement { padding-top: 52px; }
+.ov-announcement .ov-body { max-height: 330px; overflow-y: auto; text-align: left; }
+.ov-scroll-copy { max-height: 330px; overflow-y: auto; text-align: left; }
+.ov-report-name { margin: 6px 0 20px; color: var(--sec); font-size: 16px; text-align: center; overflow-wrap: anywhere; }
+.ov-stage-small { width: 76px; height: 76px; border-radius: 24px; }
+.ov-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.ov-action-toast {
+  position: absolute; z-index: 60; left: 14px; right: 14px; bottom: 50px;
+  display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 12px 14px;
+  border-radius: 20px; border: 1px solid var(--line-2); background: #242529;
+  box-shadow: 0 18px 38px rgba(0,0,0,.48);
+}
+.ov-action-toast .rail { align-self: stretch; width: 3px; border-radius: 3px; background: #d9dbe1; }
+.ov-action-toast .copy { flex: 1; min-width: 0; }
+.ov-action-toast .tone { color: #f2f3f6; font-size: 12px; font-weight: 760; letter-spacing: .5px; text-transform: uppercase; }
+.ov-action-toast .message { display: block; margin-top: 3px; color: #d1d2d6; font-size: 14px; line-height: 18px; }
+.ov-toast-action { min-height: 36px; padding: 0 12px; border: 0; border-radius: 18px; background: #383a40; color: #fff; font: 700 13px Inter,sans-serif; }
+.ov-anim { animation: ov-enter 560ms cubic-bezier(.2,1,.3,1) both; }
+.ov-action-toast.ov-anim.hybrid.tone-error .tile,
+.ov-action-toast.ov-anim.hybrid.tone-warning .tile { animation: ov-toast-shake 520ms 360ms ease-out both; }
+.ov-action-toast.ov-anim.hybrid.tone-reward::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: rgba(255,255,255,.11); opacity: 0; pointer-events: none;
+  animation: ov-toast-bloom 620ms 240ms ease-out both;
+}
+.ov-action-toast.ov-anim.hybrid.tone-reward .tile { animation: ov-toast-pulse 520ms 360ms ease-out both; }
+@keyframes ov-enter { from { opacity: 0; transform: translateY(26px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes ov-toast-shake { 0%,100% { transform:translateX(0); } 28% { transform:translateX(-4px); } 52% { transform:translateX(3px); } 74% { transform:translateX(-2px); } }
+@keyframes ov-toast-bloom { 0% { opacity:0; } 42% { opacity:1; } 100% { opacity:0; } }
+@keyframes ov-toast-pulse { 0%,100% { transform:scale(1); } 46% { transform:scale(1.12); } }
+.ov-modal.ov-anim { animation-name: ov-modal-enter; }
+@keyframes ov-modal-enter { from { opacity:0; transform:translateY(calc(-50% + 26px)) scale(.97); } to { opacity:1; transform:translateY(-50%) scale(1); } }
+.ov-sheet.ov-anim { animation-name: ov-sheet-enter; }
+@keyframes ov-sheet-enter { from { opacity:0; transform:translateY(80px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) {
+  .ov-anim, .ov-modal.ov-anim, .ov-sheet.ov-anim,
+  .ov-action-toast.hybrid .tile, .ov-action-toast.hybrid::before { animation: none !important; }
+}

@@ -2,7 +2,7 @@
  * «Скажи по-…» для режима «Устно» (вспомнить и произнести) — под ИЗУЧАЕМЫЙ язык, 9 языков интерфейса.
  *
  * зачем (DQA / PM-134, 04.10): подпись была зашита «Скажи по-английски» и врала тем, кто учит испанский,
- * французский или немецкий. Неизвестный язык обучения → английский (как и весь раздел карточек по умолчанию).
+ * французский или немецкий. Неизвестный язык обучения → нейтральное «Скажи вслух» (с логом [FC-SAY-IT]).
  */
 import { triLang, type Lang } from '../constants/i18n';
 import type { RuntimeStudyTarget } from './target_storage_keys';
@@ -34,9 +34,20 @@ const SAY_IT: Readonly<Record<SayItTarget, SayItCopy>> = {
   },
 };
 
+const SAY_IT_ALOUD: SayItCopy = {
+  ru: 'Скажи вслух', uk: 'Скажи вголос', en: 'Say it aloud', es: 'Dilo en voz alta',
+  'pt-BR': 'Diga em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan dengan lantang', tr: 'Sesli söyle', pl: 'Powiedz na głos',
+};
+
+function isSayItTarget(value: RuntimeStudyTarget): value is SayItTarget {
+  return value === 'en' || value === 'es' || value === 'fr' || value === 'de';
+}
+
 export function sayItInStudyLanguage(lang: Lang, studyTarget: RuntimeStudyTarget): string {
-  const target: SayItTarget = studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de' ? studyTarget : 'en';
-  return triLang(lang, SAY_IT[target]);
+  if (isSayItTarget(studyTarget)) return triLang(lang, SAY_IT[studyTarget]);
+  // зачем: неизвестный язык обучения — общий вариант без названия языка, а не ложный «по-английски».
+  console.warn('[FC-SAY-IT] unknown study target → neutral «say it aloud»', JSON.stringify({ studyTarget: studyTarget ?? null }));
+  return triLang(lang, SAY_IT_ALOUD);
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

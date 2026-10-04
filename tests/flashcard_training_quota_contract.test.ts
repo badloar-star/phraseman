@@ -76,7 +76,9 @@ describe('Revenue VNext flashcard training quota wiring', () => {
     // приходил после отказа гейта.
     expect(button).toContain('if (!sessionAuthorized && !speakingGate.tryStartAttempt())');
     expect(button).toContain('if (!holdStartedRef.current) return;');
-    expect(button).toContain('{!speakingAllowed ? (');
+    // зачем (04.10, §SPEECH-NA): на телефоне без распознавания речи значок Plus/лимита не показываем —
+    // кнопка уже перечёркнута, «купи» там врало бы. Замок лимита — только когда речь доступна.
+    expect(button).toContain('{!speakingAllowed && !speechNa ? (');
   });
 
   // зачем (законный сдвиг, 03.10): createChargedOperationGuard() в «Вспомни»/«Устно» заменён защитой

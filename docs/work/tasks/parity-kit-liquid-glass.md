@@ -36,3 +36,7 @@ Out of scope: логика тренировок, энергия, награды,
 ## Rollback
 
 Убрать `<KitGlassLayer …/>` из потребителей и удалить `components/v2/KitLiquidGlass.tsx` — данных и прав пользователя не касается.
+
+Governance-ID: TG-51DA273CFD34
+Governance-ID: TG-4FCAA5531C60
+(продолжение той же задачи: стекло строк «Настроек» — components/settings/SettingsGlassRows.tsx; коммит только через временный индекс)

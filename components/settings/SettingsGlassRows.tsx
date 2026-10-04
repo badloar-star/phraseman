@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import SafeLinearGradient from '../SafeLinearGradient';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 // зачем (владелец 2026-09-29): корневой экран «Настройки» переносится 1 в 1 по макету
@@ -53,6 +54,8 @@ export function SettingsGlassList({ children, marginTop }: { children: React.Rea
 export function SettingsGlassTile({ glass, children }: { glass: SettingsGlass; children: React.ReactNode }) {
   return (
     <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' }}>
+      {/* зачем (сверка 04.10, kit.css LIQUID GLASS): плитка значка — стекло с бликом и кромкой, как в макете. */}
+      <KitGlassLayer radius={10} />
       {children}
     </View>
   );
@@ -65,6 +68,8 @@ export function SettingsGlassCard({ glass, children, testID, style }: { glass: S
       <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} />
+      {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
+      <KitGlassLayer radius={14} />
       {children}
     </View>
   );
@@ -99,6 +104,8 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} />
+      {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
+      <KitGlassLayer radius={14} />
       {leading ?? (icon ? (
         <SettingsGlassTile glass={glass}>
           {/* зачем (темы 2.0): значок плитки в цвете темы в «Акценте/Максимуме»; в «Спокойно» — как было. */}

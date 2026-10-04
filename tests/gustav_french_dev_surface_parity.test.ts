@@ -47,12 +47,18 @@ describe('Gustav French dev surface parity', () => {
 
   it('keeps mistake practice target-scoped and explicitly supports French', () => {
     const session = read('app/mistake_practice_session.tsx');
+    const runtime = read('app/mistake_practice_session_runtime.ts');
+    const contracts = read('modules/mistake-practice/contracts.ts');
     const store = read('app/mistake_practice_store.ts');
 
-    expect(session).toContain("studyTarget !== 'en' && studyTarget !== 'fr'");
-    expect(session).toContain('loadMistakeEventJournal({ accountScope: scope, studyTarget })');
-    expect(store).toContain('mistakePracticeEventsKey(input.studyTarget)');
-    expect(store).toContain('input.event.studyTarget !== input.studyTarget');
+    // зачем: 133f50647 (22.09) заменил узкую проверку «en/fr» общим списком языков курса — смысл тот же:
+    // французский пускается, язык вне курса — нет; журнал читается с языком в подготовке сессии.
+    expect(contracts).toMatch(/MISTAKE_STUDY_TARGETS = \[[^\]]*'fr'/);
+    expect(session).toContain('if (!isMistakeStudyTargetValue(studyTarget))');
+    expect(runtime).toContain('await loadMistakeEventJournal(input)');
+    // зачем: ключ журнала теперь (аккаунт, язык), события сверяются пачкой — язык по-прежнему разделяет журналы.
+    expect(store).toMatch(/mistakePracticeEventsKey\([^)]*input\.studyTarget\)/);
+    expect(store).toContain('event.studyTarget !== input.studyTarget');
   });
 
 
@@ -67,13 +73,14 @@ describe('Gustav French dev surface parity', () => {
     expect(targetGate).toContain('french_ai_dialog_source_gate');
     expect(targetGate).toContain('french_ai_dialog_prompt_contract');
 
-    expect(home).toContain('<DialogsTabContent headerSlot={header} />');
+    // зачем: 73aac3377 (30.09) добавил пилюлю остатка (quotaInHeader) — главная по-прежнему рисует общий хаб со слотом шапки.
+    expect(home).toMatch(/<DialogsTabContent headerSlot=\{header\}[^>]*\/>/);
     expect(home).not.toContain('aiDialogGateOpen ?');
     expect(home).not.toContain('frenchGateCopy.body');
 
     expect(dialogsTab).toContain('if (!aiDialogGateOpen)');
     expect(dialogsTab).toContain('showGlassAlert(frenchGateCopy.title, frenchGateCopy.body'); // зачем: стеклянное окно вместо нативного Alert (overlays-runtime)
-    expect(dialogsTab).toContain("{ key: 'situations' as const");
+    // зачем: вкладку «situations» убрал редизайн диалогов 5e4324d90 (23.08); сценарии рисуются тем же списком.
     expect(dialogsTab).toContain('getChallengeDialogScenarios().map');
     expect(dialogsTab).not.toContain('return (\n      <View style={{ flex: 1 }}>\n        {headerSlot}');
 
@@ -82,9 +89,13 @@ describe('Gustav French dev surface parity', () => {
       expect(source).toContain('aiDialogTargetGateCopy(lang, studyTarget)');
     }
 
-    for (const source of [session, companion]) {
+    // зачем: с 6c02e4088 (20.09) шлюз составной (dialogueRuntimeOpen / companionGateOpen = aiDialogGateOpen && …) —
+    // телеметрия старта по-прежнему стоит за ним.
+    expect(session).toContain('const dialogueRuntimeOpen = aiDialogGateOpen &&');
+    expect(companion).toContain('const companionGateOpen = aiDialogGateOpen &&');
+    for (const [source, gate] of [[session, 'dialogueRuntimeOpen'], [companion, 'companionGateOpen']] as const) {
       const startTelemetryIndex = source.indexOf("trackEvent('ai_dialog_started'");
-      const gateReturnIndex = source.lastIndexOf('if (!aiDialogGateOpen) return;', startTelemetryIndex);
+      const gateReturnIndex = source.lastIndexOf(`if (!${gate}) return;`, startTelemetryIndex);
       expect(startTelemetryIndex).toBeGreaterThanOrEqual(0);
       expect(gateReturnIndex).toBeGreaterThanOrEqual(0);
       expect(gateReturnIndex).toBeLessThan(startTelemetryIndex);

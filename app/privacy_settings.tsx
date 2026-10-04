@@ -198,7 +198,7 @@ export default function PrivacySettings() {
   }, [applyConsentToggle]);
 
   const analyticsLabel = L({ ru: 'Отправлять данные об использовании', uk: 'Надсилати дані про використання', es: 'Enviar datos de uso', 'pt-BR': 'Enviar dados de uso', vi: 'Gửi dữ liệu sử dụng', id: 'Kirim data penggunaan', tr: 'Kullanım verisi gönder', pl: 'Wysyłać dane o użytkowaniu' });
-  const aiExplainLabel = L({ ru: 'AI-разбор ошибок в уроках', uk: 'ІІ-розбір помилок в уроках', es: 'Análisis de errores con IA', 'pt-BR': 'Análise de erros com IA', vi: 'Phân tích lỗi bằng AI', id: 'Analisis kesalahan AI', tr: 'Yapay zeka hata analizi', pl: 'Analiza błędów AI' });
+  const aiExplainLabel = L({ ru: 'AI-разбор ошибок', uk: 'ІІ-розбір помилок в уроках', es: 'Análisis de errores con IA', 'pt-BR': 'Análise de erros com IA', vi: 'Phân tích lỗi bằng AI', id: 'Analisis kesalahan AI', tr: 'Yapay zeka hata analizi', pl: 'Analiza błędów AI' });
   const aiDialogLabel = L({ ru: 'AI-диалоги', uk: 'AI-діалоги', es: 'Diálogos con IA', 'pt-BR': 'Diálogos com IA', vi: 'Hội thoại AI', id: 'Dialog AI', tr: 'Yapay zeka diyalogları', pl: 'Dialogi AI' });
   const sectionTitleStyle = {
     color: glass.secondary,
@@ -240,7 +240,8 @@ export default function PrivacySettings() {
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
               contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
             >
-              <Ionicons name="close" size={20} color={glass.lightTint} />
+              {/* зачем: паритет с макетом profile.html PRF-07 — в шапке «назад» (шеврон), не крестик */}
+              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
             <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10, flexShrink: 1 }}>
               {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
@@ -254,11 +255,11 @@ export default function PrivacySettings() {
             <View style={{ gap: 10 }}>
               <PrivacyRow
                 testID="privacy-analytics-consent"
-                icon="stats-chart"
+                icon="trending-up-outline"
                 label={analyticsLabel}
                 sub={analyticsOn
                   ? L({ ru: 'Помогают понять, что улучшать', uk: 'Допомагають зрозуміти, що покращувати', es: 'Ayudan a saber qué mejorar', 'pt-BR': 'Ajudam a saber o que melhorar', vi: 'Giúp biết cần cải thiện gì', id: 'Membantu tahu apa yang diperbaiki', tr: 'Neyi geliştireceğimizi anlarız', pl: 'Pomagają wiedzieć, co ulepszać' })
-                  : L({ ru: 'Сейчас не отправляются', uk: 'Зараз не надсилаються', es: 'Ahora no se envían', 'pt-BR': 'Agora não são enviados', vi: 'Hiện không gửi', id: 'Sekarang tidak dikirim', tr: 'Şu an gönderilmiyor', pl: 'Teraz nie są wysyłane' })}
+                  : L({ ru: 'Приложение работает и без этого', uk: 'Зараз не надсилаються', es: 'Ahora no se envían', 'pt-BR': 'Agora não são enviados', vi: 'Hiện không gửi', id: 'Sekarang tidak dikirim', tr: 'Şu an gönderilmiyor', pl: 'Teraz nie są wysyłane' })}
                 right={<LocalSwitch value={analyticsOn} onValueChange={toggleAnalytics} accessibilityLabel={analyticsLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -270,7 +271,9 @@ export default function PrivacySettings() {
               <View pointerEvents="none" style={{ position: 'absolute', inset: 0, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge }} />
               <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', flexShrink: 1 }}>
                 {L({
-                  ru: 'Обезличенные данные о том, как проходит обучение. Не обязательно — приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.',
+                  ru: analyticsOn
+                    ? 'Обезличенные данные о том, как проходит обучение, помогают понять, что улучшать. Сбор технических сбоев для стабильности продолжается.'
+                    : 'Сейчас данные об использовании не отправляются. Сбор технических сбоев для стабильности продолжается.', // зачем: макет PRF-07 — дословный текст плашки
                   uk: 'Знеособлені дані про те, як проходить навчання. Не обов’язково — застосунок працює і без цього. Збір збоїв для стабільності триває завжди.',
                   es: 'Datos despersonalizados sobre cómo avanza el aprendizaje. No es obligatorio: la app funciona sin esto. La recolección de fallos para la estabilidad continúa siempre.',
                   'pt-BR': 'Dados despersonalizados sobre como o aprendizado avança. Não é obrigatório: o app funciona sem isso. A coleta de falhas para estabilidade continua sempre.',
@@ -288,11 +291,11 @@ export default function PrivacySettings() {
             <View style={{ gap: 10 }}>
               <PrivacyRow
                 testID="privacy-ai-explain-consent"
-                icon="sparkles"
+                icon="create-outline"
                 label={aiExplainLabel}
                 sub={aiExplainOn
                   ? L({ ru: 'При ошибке ИИ объясняет, что не так, и может упростить объяснение', uk: 'При помилці ІІ пояснює, що не так, і може спростити пояснення', es: 'Al fallar, la IA explica qué salió mal y puede simplificarlo', 'pt-BR': 'No erro, a IA explica o que houve e pode simplificar', vi: 'Khi sai, AI giải thích lỗi và có thể đơn giản hoá', id: 'Saat salah, AI menjelaskan dan bisa menyederhanakan', tr: 'Hatada yapay zeka açıklar ve basitleştirebilir', pl: 'Przy błędzie AI wyjaśnia i może uprościć wyjaśnienie' })
-                  : L({ ru: 'Сейчас разбор ошибок через ИИ не используется', uk: 'Зараз розбір помилок через ІІ не використовується', es: 'Ahora no se usa el análisis de errores con IA', 'pt-BR': 'Agora a análise de erros com IA não é usada', vi: 'Hiện không dùng phân tích lỗi bằng AI', id: 'Sekarang analisis kesalahan AI tidak digunakan', tr: 'Şu an yapay zeka hata analizi kullanılmıyor', pl: 'Teraz analiza błędów AI nie jest używana' })}
+                  : L({ ru: 'Сейчас не используется', uk: 'Зараз розбір помилок через ІІ не використовується', es: 'Ahora no se usa el análisis de errores con IA', 'pt-BR': 'Agora a análise de erros com IA não é usada', vi: 'Hiện không dùng phân tích lỗi bằng AI', id: 'Sekarang analisis kesalahan AI tidak digunakan', tr: 'Şu an yapay zeka hata analizi kullanılmıyor', pl: 'Teraz analiza błędów AI nie jest używana' })}
                 right={<LocalSwitch value={aiExplainOn} onValueChange={toggleAiExplain} accessibilityLabel={aiExplainLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -300,11 +303,11 @@ export default function PrivacySettings() {
               />
               <PrivacyRow
                 testID="privacy-ai-dialog-consent"
-                icon="chatbubbles"
+                icon="chatbubble-outline"
                 label={aiDialogLabel}
                 sub={aiDialogOn
                   ? L({ ru: 'Можно общаться с ИИ-собеседником', uk: 'Можна спілкуватися з ІІ-співрозмовником', es: 'Puedes hablar con el interlocutor de IA', 'pt-BR': 'Você pode conversar com o interlocutor de IA', vi: 'Có thể trò chuyện với bạn đồng hành AI', id: 'Bisa mengobrol dengan teman bicara AI', tr: 'Yapay zeka konuşma partneriyle sohbet edebilirsin', pl: 'Możesz rozmawiać z rozmówcą AI' })
-                  : L({ ru: 'Сейчас AI-диалоги не используются', uk: 'Зараз AI-діалоги не використовуються', es: 'Ahora no se usan los diálogos con IA', 'pt-BR': 'Agora os diálogos com IA não são usados', vi: 'Hiện không dùng hội thoại AI', id: 'Sekarang dialog AI tidak digunakan', tr: 'Şu an yapay zeka diyalogları kullanılmıyor', pl: 'Teraz dialogi AI nie są używane' })}
+                  : L({ ru: 'Сейчас не используются', uk: 'Зараз AI-діалоги не використовуються', es: 'Ahora no se usan los diálogos con IA', 'pt-BR': 'Agora os diálogos com IA não são usados', vi: 'Hiện không dùng hội thoại AI', id: 'Sekarang dialog AI tidak digunakan', tr: 'Şu an yapay zeka diyalogları kullanılmıyor', pl: 'Teraz dialogi AI nie są używane' })}
                 right={<LocalSwitch value={aiDialogOn} onValueChange={toggleAiDialog} accessibilityLabel={aiDialogLabel} glass={glass} />}
                 glass={glass}
                 titleColor={glass.lightTint}
@@ -337,7 +340,7 @@ export default function PrivacySettings() {
                   на knowlyapps.com — пункт вёл наружу, шторки были недостижимы. */}
               <PrivacyRow
                 testID="privacy-policy-row"
-                icon="lock-closed"
+                icon="document-text"
                 label={L({ ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách bảo mật', id: 'Kebijakan privasi', tr: 'Gizlilik politikası', pl: 'Polityka prywatności' })}
                 onPress={() => {
                   void hapticTap();

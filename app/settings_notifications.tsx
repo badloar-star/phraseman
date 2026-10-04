@@ -352,7 +352,8 @@ export default function SettingsNotifications() {
   const master = prefs.master;
   const timeRowActive = master && dailyEnabled;
 
-  const sectionTitleStyle = { color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
+  // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
+  const sectionTitleStyle = { color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
   const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
   const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
 
@@ -376,7 +377,8 @@ export default function SettingsNotifications() {
                 style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
                 contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
               >
-                <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+                {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
+              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
               </PressableHybrid>
               <View
                 pointerEvents="none"

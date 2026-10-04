@@ -194,6 +194,11 @@ export default function SurveyScreen() {
           'pt-BR': 'A pesquisa está indisponível agora. Você pode voltar ao aplicativo e continuar praticando.', vi: 'Khảo sát hiện không khả dụng. Bạn có thể quay lại ứng dụng và tiếp tục học.', id: 'Survei sedang tidak tersedia. Kamu bisa kembali ke aplikasi dan melanjutkan latihan.',
           tr: 'Anket şu anda kullanılamıyor. Uygulamaya dönüp çalışmaya devam edebilirsin.', pl: 'Ankieta jest teraz niedostępna. Możesz wrócić do aplikacji i kontynuować naukę.',
         })}
+        // зачем: паритет с макетом PRF-13 — кнопка «Вернуться» вместо «OK»
+        actionLabel={triLang(lang, {
+          ru: 'Вернуться', uk: 'Повернутися', en: 'Go back', es: 'Volver', 'pt-BR': 'Voltar',
+          vi: 'Quay lại', id: 'Kembali', tr: 'Geri dön', pl: 'Wróć',
+        })}
         onClose={() => {
           hapticTap();
           closeRoute();
@@ -231,6 +236,7 @@ function UnavailableSurvey({
   title,
   closeAccessibilityLabel,
   message,
+  actionLabel,
   onClose,
   insets,
   colors,
@@ -239,6 +245,7 @@ function UnavailableSurvey({
   title: string;
   closeAccessibilityLabel: string;
   message: string;
+  actionLabel: string;
   onClose: () => void;
   insets: { top: number; right: number; bottom: number; left: number };
   colors: {
@@ -290,9 +297,10 @@ function UnavailableSurvey({
               borderColor: colors.edge,
             }}
           >
+            {/* зачем: паритет с макетом profile.html PRF-13 — «назад» шевроном */}
             <Ionicons
-              name="close"
-              size={20}
+              name="chevron-back"
+              size={22}
               color={colors.icon}
               accessibilityElementsHidden
               importantForAccessibility="no-hide-descendants"
@@ -368,7 +376,7 @@ function UnavailableSurvey({
 
               <PressableHybrid
                 testID="survey-fallback-ok"
-                accessibilityLabel="OK"
+                accessibilityLabel={actionLabel}
                 accessibilityRole="button"
                 onPress={onClose}
                 withHaptic={false}
@@ -378,7 +386,7 @@ function UnavailableSurvey({
                 contentStyle={{ minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.cta }}
               >
                 <FlowText testID="survey-cta-label" provenance="authored" style={{ color: colors.ctaInk, fontWeight: '700', fontSize: scaled(17), lineHeight: scaled(22) }}>
-                  OK
+                  {actionLabel}
                 </FlowText>
               </PressableHybrid>
             </View>

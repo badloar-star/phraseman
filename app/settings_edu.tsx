@@ -270,7 +270,8 @@ export default function SettingsEdu() {
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
               contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
             >
-              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+              {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
+              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
             <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>
               {loc.edu.title}
@@ -278,7 +279,8 @@ export default function SettingsEdu() {
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>
               {L({ ru: 'Проверка ответа, ввод и единая озвучка', uk: 'Перевірка відповіді, введення та єдине озвучення', en: 'Answer checking, input, and voice', es: 'Comprobación, escritura y voz', 'pt-BR': 'Verificação, digitação e voz', vi: 'Kiểm tra câu trả lời, nhập và giọng nói', id: 'Pemeriksaan jawaban, input, dan suara', tr: 'Cevap kontrolü, giriş ve ses', pl: 'Sprawdzanie odpowiedzi, wpisywanie i głos' })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+            {/* зачем: паритет с макетом profile.html PRF-05 — eyebrow секции: secondary, разрядка 1.7 */}
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
               {L({ ru: 'ОТВЕТ', uk: 'ВІДПОВІДЬ', en: 'ANSWER', es: 'RESPUESTA', 'pt-BR': 'RESPOSTA', vi: 'CÂU TRẢ LỜI', id: 'JAWABAN', tr: 'YANIT', pl: 'ODPOWIEDŹ' })}
             </Text>
             <View style={{ gap: 10 }}>
@@ -298,7 +300,8 @@ export default function SettingsEdu() {
             })}
             </View>
 
-            <Text style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+            {/* зачем: паритет с макетом profile.html PRF-05 — eyebrow секции: secondary, разрядка 1.7 */}
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
               {L({ ru: 'ЗВУК', uk: 'ЗВУК', en: 'SOUND', es: 'SONIDO', 'pt-BR': 'SOM', vi: 'ÂM THANH', id: 'SUARA', tr: 'SES', pl: 'DŹWIĘK' })}
             </Text>
             <View style={{ gap: 10 }}>

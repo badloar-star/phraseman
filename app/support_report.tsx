@@ -90,7 +90,8 @@ export default function SupportReportScreen() {
             style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
             contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
           >
-            <Ionicons name="close" size={20} color={glass.lightTint} />
+            {/* зачем: паритет с макетом profile.html PRF-09 — «назад» шевроном */}
+            <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
           </PressableHybrid>
           <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}
@@ -129,19 +130,7 @@ export default function SupportReportScreen() {
               <Text style={{ color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '400', marginTop: 7 }}>
                 {L('Расскажите, что случилось', 'Розкажіть, що сталося', 'Tell us what happened', 'Cuéntanos qué pasó', 'Conte o que aconteceu', 'Hãy cho chúng tôi biết chuyện gì xảy ra', 'Ceritakan apa yang terjadi', 'Ne olduğunu anlatın', 'Opisz, co się stało')}
               </Text>
-              <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 10 }}>
-                {L(
-                  'Здесь можно описать любую проблему, найденную в приложении. Чем подробнее описание, тем быстрее мы сможем всё проверить. Если проблема подтвердится и будет исправлена, вы сможете получить очень приятный бонус.',
-                  'Тут можна описати будь-яку проблему, знайдену в застосунку. Що докладніший опис, то швидше ми все перевіримо. Якщо проблема підтвердиться й буде виправлена, ви зможете отримати дуже приємний бонус.',
-                  'Describe any problem you found in the app. More detail helps us verify it faster. If it is confirmed and fixed, you may receive a very pleasant bonus.',
-                  'Describe cualquier problema que hayas encontrado en la app. Cuantos más detalles, antes podremos comprobarlo. Si se confirma y se corrige, podrás recibir un bono muy agradable.',
-                  'Descreva qualquer problema encontrado no app. Quanto mais detalhes, mais rápido poderemos verificar. Se for confirmado e corrigido, você poderá receber um bônus muito agradável.',
-                  'Hãy mô tả bất kỳ vấn đề nào bạn gặp trong ứng dụng. Càng chi tiết, chúng tôi càng kiểm tra nhanh. Nếu được xác nhận và khắc phục, bạn có thể nhận một phần thưởng rất thú vị.',
-                  'Jelaskan masalah apa pun yang kamu temukan di aplikasi. Semakin rinci, semakin cepat kami memeriksanya. Jika terbukti dan diperbaiki, kamu bisa mendapat bonus yang sangat menyenangkan.',
-                  'Uygulamada bulduğunuz herhangi bir sorunu anlatın. Ne kadar ayrıntılı olursa o kadar hızlı inceleriz. Sorun doğrulanıp düzeltilirse çok hoş bir bonus alabilirsiniz.',
-                  'Opisz dowolny problem znaleziony w aplikacji. Im więcej szczegółów, tym szybciej go sprawdzimy. Jeśli problem się potwierdzi i zostanie naprawiony, możesz otrzymać bardzo miły bonus.',
-                )}
-              </Text>
+              {/* зачем: паритет с макетом PRF-09 — длинной расшифровки под подзаголовком в макете нет (правило владельца: без длинных подписей) */}
 
               <Text style={{ color: glass.secondary, fontSize: scaled(11), lineHeight: scaled(16), fontWeight: '700', letterSpacing: 1.7, textTransform: 'uppercase', marginTop: 24, marginBottom: 8 }}>
                 {L('Описание проблемы', 'Опис проблеми', 'Problem description', 'Descripción del problema', 'Descrição do problema', 'Mô tả vấn đề', 'Deskripsi masalah', 'Sorun açıklaması', 'Opis problemu')}
@@ -151,7 +140,7 @@ export default function SupportReportScreen() {
                 accessibilityLabel={L('Описание проблемы', 'Опис проблеми', 'Problem description', 'Descripción del problema', 'Descrição do problema', 'Mô tả vấn đề', 'Deskripsi masalah', 'Sorun açıklaması', 'Opis problemu')}
                 value={description}
                 onChangeText={setDescription}
-                placeholder={L('Например: в «Карточках» нажимаю «Послушать», но звука нет. Ожидал услышать фразу.', 'Наприклад: у «Картках» натискаю «Послухати», але звуку немає. Очікував почути фразу.', 'For example: in Cards I tap Listen, but there is no sound. I expected to hear the phrase.', 'Por ejemplo: en Tarjetas pulso Escuchar, pero no hay sonido. Esperaba oír la frase.', 'Por exemplo: em Cartões toco em Ouvir, mas não há som. Esperava ouvir a frase.', 'Ví dụ: trong Thẻ, tôi nhấn Nghe nhưng không có âm thanh. Tôi mong được nghe câu đó.', 'Contoh: di Kartu saya mengetuk Dengarkan, tetapi tidak ada suara. Saya berharap mendengar frasanya.', 'Örneğin: Kartlarda Dinleye dokunuyorum ama ses gelmiyor. Cümleyi duymayı bekliyordum.', 'Na przykład: w Kartach naciskam Posłuchaj, ale nie ma dźwięku. Chciałem usłyszeć frazę.')}
+                placeholder={L('Например: в «Карточках» нажимаю «Послушать», но звука нет.', 'Наприклад: у «Картках» натискаю «Послухати», але звуку немає. Очікував почути фразу.', 'For example: in Cards I tap Listen, but there is no sound. I expected to hear the phrase.', 'Por ejemplo: en Tarjetas pulso Escuchar, pero no hay sonido. Esperaba oír la frase.', 'Por exemplo: em Cartões toco em Ouvir, mas não há som. Esperava ouvir a frase.', 'Ví dụ: trong Thẻ, tôi nhấn Nghe nhưng không có âm thanh. Tôi mong được nghe câu đó.', 'Contoh: di Kartu saya mengetuk Dengarkan, tetapi tidak ada suara. Saya berharap mendengar frasanya.', 'Örneğin: Kartlarda Dinleye dokunuyorum ama ses gelmiyor. Cümleyi duymayı bekliyordum.', 'Na przykład: w Kartach naciskam Posłuchaj, ale nie ma dźwięku. Chciałem usłyszeć frazę.')}
                 placeholderTextColor={glass.mutedText}
                 multiline
                 maxLength={3000}
@@ -162,14 +151,14 @@ export default function SupportReportScreen() {
               <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge, paddingVertical: 14, paddingHorizontal: 16, backgroundColor: glass.opaqueCard, overflow: 'hidden' }}>
                 <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                  <Ionicons name="shield-checkmark-outline" size={20} color={glass.secondary} />
+                  <Ionicons name="checkmark" size={20} color={glass.secondary} />
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={{ color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(20), fontWeight: '700' }}>
                       {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
                     </Text>
                     <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', marginTop: 3 }}>
                       {L(
-                        'К этому обращению прикрепятся только недавние технические действия. Без текста сообщений, паролей и платёжных данных.',
+                        'Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.',
                         'До цього звернення додадуться лише недавні технічні дії. Без тексту повідомлень, паролів і платіжних даних.',
                         'Only recent technical actions are attached to this request. Message text, passwords, and payment data are excluded.',
                         'Solo se adjuntan acciones técnicas recientes. Se excluyen mensajes, contraseñas y datos de pago.',

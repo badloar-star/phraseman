@@ -708,11 +708,12 @@ export default function ManageSubscription() {
               style={S.closeHit}
               contentStyle={[S.closeFace, { backgroundColor: glass.opaqueControl }]}
             >
-              <Ionicons name="close" size={20} color={glass.lightTint} />
+              {/* зачем: паритет с макетом profile.html PRF-10 — «назад» шевроном */}
+              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
 
             <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
-              {LP('Управление подпиской', 'Керування підпискою', 'Manage subscription', 'Gestionar suscripción', 'Gerenciar assinatura', 'Quản lý gói đăng ký', 'Kelola langganan', 'Aboneliği yönet', 'Zarządzaj subskrypcją')}
+              {LP('Подписка Plus', 'Керування підпискою', 'Manage subscription', 'Gestionar suscripción', 'Gerenciar assinatura', 'Quản lý gói đăng ký', 'Kelola langganan', 'Aboneliği yönet', 'Zarządzaj subskrypcją')}
             </Text>
 
             <View testID="manage-subscription-status-card" style={[S.statusCard, { backgroundColor: glass.opaqueCard }]}>
@@ -838,10 +839,14 @@ export default function ManageSubscription() {
                   >
                     <Ionicons name="open-outline" size={19} color={glass.secondary} />
                     <Text style={[S.cancelText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
-                      {LP('Отменить подписку', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
+                      {LP('Перейти к отмене', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
                     </Text>
                   </PressableHybrid>
                 )}
+                {/* зачем: паритет с макетом PRF-10 — короткая подпись под кнопками про источник цены */}
+                <Text style={{ color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18), textAlign: 'center', marginTop: 16 }}>
+                  {LP('Цена и период всегда берутся из App Store / Google Play.', 'Ціна й період завжди беруться з App Store / Google Play.', 'Price and period always come from the App Store / Google Play.', 'El precio y el período siempre vienen del App Store / Google Play.', 'Preço e período sempre vêm da App Store / Google Play.', 'Giá và thời hạn luôn lấy từ App Store / Google Play.', 'Harga dan periode selalu berasal dari App Store / Google Play.', 'Fiyat ve süre her zaman App Store / Google Play’den gelir.', 'Cena i okres zawsze pochodzą z App Store / Google Play.')}
+                </Text>
               </>
             )}
             </ScrollView>

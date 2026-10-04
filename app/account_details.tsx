@@ -214,7 +214,8 @@ export default function AccountDetailsScreen() {
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
               contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
             >
-              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+              {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
+              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
             <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}

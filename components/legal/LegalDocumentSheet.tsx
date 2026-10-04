@@ -123,7 +123,8 @@ export default function LegalDocumentSheet({
                 borderColor: glass.glassEdge,
               }}
             >
-              <Ionicons name="open-outline" size={19} color={glass.lightTint} />
+              {/* зачем: паритет с макетом profile.html PRF-07/08 — на кнопке сайта стрелка вправо (arrowR) */}
+              <Ionicons name="arrow-forward" size={19} color={glass.lightTint} />
             </PressableHybrid>
           </View>
 

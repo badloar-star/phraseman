@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
@@ -14,6 +14,19 @@ import PressableHybrid from '../components/PressableHybrid';
 import SafeLinearGradient from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { Image } from 'expo-image';
+import { getStoredStudyTarget, type StudyTarget } from './study_target';
+import { SettingsGlassEyebrow, SettingsGlassRow } from '../components/settings/SettingsGlassRows';
+
+// зачем: паритет с макетом profile.html PRF-03 — внизу экрана языков блок «Язык изучения» с флагом текущего языка.
+const STUDY_NAME: Record<StudyTarget, string> = { en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', it: 'Italiano' };
+const STUDY_FLAG: Record<StudyTarget, number> = {
+  en: require('../assets/images/language_flags/language_en.webp'),
+  es: require('../assets/images/language_flags/language_es_dev.webp'),
+  fr: require('../assets/images/language_flags/language_fr_dev.webp'),
+  de: require('../assets/images/language_flags/language_de.webp'),
+  it: require('../assets/images/language_flags/language_it.webp'),
+};
 
 export default function SettingsLanguage() {
   const router = useRouter();
@@ -21,6 +34,14 @@ export default function SettingsLanguage() {
   const { lang, setLang, s } = useLang();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
+  useEffect(() => {
+    let alive = true;
+    getStoredStudyTarget(lang as Lang)
+      .then((v) => { if (alive) setStudyTarget(v); })
+      .catch((error: unknown) => { console.warn(`[SETTINGS-LANG] study_target_load_failed reason=${error instanceof Error ? error.message : String(error)}`); });
+    return () => { alive = false; };
+  }, [lang]);
   const closeLabel = triLang(lang as Lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
   const subtitle = triLang(lang as Lang, {
     ru: 'Язык меню и подсказок приложения', uk: 'Мова меню та підказок застосунку', en: 'Language for the app menus and hints', es: 'Idioma de los menús y las pistas de la app',
@@ -85,6 +106,14 @@ export default function SettingsLanguage() {
               );
             })}
             </View>
+            <SettingsGlassEyebrow glass={glass} title={triLang(lang as Lang, { ru: 'ЯЗЫК ИЗУЧЕНИЯ', uk: 'МОВА НАВЧАННЯ', en: 'LEARNING LANGUAGE', es: 'IDIOMA DE ESTUDIO', 'pt-BR': 'IDIOMA DE ESTUDO', vi: 'NGÔN NGỮ HỌC', id: 'BAHASA BELAJAR', tr: 'ÖĞRENİLEN DİL', pl: 'JĘZYK NAUKI' })} />
+            <SettingsGlassRow
+              glass={glass}
+              testID="settings-language-study-row"
+              leading={<Image source={STUDY_FLAG[studyTarget]} accessible={false} style={{ width: 54, height: 38, borderRadius: 10 }} contentFit="cover" />}
+              title={STUDY_NAME[studyTarget]}
+              sub={triLang(lang as Lang, { ru: 'Сейчас изучаете', uk: 'Зараз вивчаєте', en: 'Currently learning', es: 'Estudias ahora', 'pt-BR': 'Estudando agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorsun', pl: 'Teraz się uczysz' })}
+            />
           </BouncyScrollView>
         </ContentWrap>
       </View>

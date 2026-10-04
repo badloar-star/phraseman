@@ -10,6 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePathname, useRouter } from 'expo-router';
+import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -55,7 +56,7 @@ function entitlementAccountIsCurrent(token: AccountGenerationToken): token is Ac
     && isCurrentAccountGeneration(token, token.stableId);
 }
 
-type Copy = { title: string; value: string; cta: string; ghost: string };
+type Copy = { title: string; value: string; cta: string; invite: string; ghost: string };
 
 // зачем: владелец 2026-09-29 — карточка «Plus закончился» на Liquid Glass «1 в 1» с
 // макета coins.html PAY-09: значок, заголовок, одна строка без обещаний («Plus
@@ -68,54 +69,63 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus закончился',
     value: 'Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.',
     cta: 'Продлить Plus',
+    invite: 'Пригласить друга',
     ghost: 'Позже',
   },
   uk: {
     title: 'Plus закінчився',
     value: 'Plus завершено. Прогрес збережено. Актуальні умови доступні в пропозиції магазину.',
     cta: 'Продовжити Plus',
+    invite: 'Запросити друга',
     ghost: 'Пізніше',
   },
   en: {
     title: 'Plus has ended',
     value: 'Plus has ended. Your progress is saved. Current terms are shown in the store offer.',
     cta: 'Renew Plus',
+    invite: 'Invite a friend',
     ghost: 'Later',
   },
   es: {
     title: 'Plus terminó',
     value: 'Plus ha terminado. Tu progreso está guardado. Las condiciones actuales están en la oferta de la tienda.',
     cta: 'Renovar Plus',
+    invite: 'Invitar a un amigo',
     ghost: 'Más tarde',
   },
   'pt-BR': {
     title: 'O Plus acabou',
     value: 'O Plus terminou. Seu progresso está salvo. As condições atuais estão na oferta da loja.',
     cta: 'Renovar Plus',
+    invite: 'Convidar um amigo',
     ghost: 'Depois',
   },
   vi: {
     title: 'Plus đã hết hạn',
     value: 'Plus đã kết thúc. Tiến độ của bạn đã được lưu. Điều kiện hiện tại có trong ưu đãi trên cửa hàng.',
     cta: 'Gia hạn Plus',
+    invite: 'Mời bạn bè',
     ghost: 'Để sau',
   },
   id: {
     title: 'Plus berakhir',
     value: 'Plus telah berakhir. Progresmu tersimpan. Ketentuan terkini ada di penawaran toko.',
     cta: 'Perpanjang Plus',
+    invite: 'Undang teman',
     ghost: 'Nanti',
   },
   tr: {
     title: 'Plus bitti',
     value: 'Plus sona erdi. İlerlemen kayıtlı. Güncel koşullar mağaza teklifinde.',
     cta: 'Plus’ı yenile',
+    invite: 'Arkadaşını davet et',
     ghost: 'Sonra',
   },
   pl: {
     title: 'Plus się skończył',
     value: 'Plus dobiegł końca. Twój postęp jest zapisany. Aktualne warunki są w ofercie sklepu.',
     cta: 'Przedłuż Plus',
+    invite: 'Zaproś znajomego',
     ghost: 'Później',
   },
 };
@@ -125,6 +135,8 @@ function EntitlementExpiredHost() {
   const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
+  // зачем (coins.html PAY-09; владелец 02.08, вариант А): вторая кнопка зовёт в приглашения — пока раздел включён.
+  const rouletteOn = useReferralRouletteEnabled();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
@@ -317,11 +329,11 @@ function EntitlementExpiredHost() {
         </View>
         <Text
           accessibilityRole="header"
-          style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.24) }]}
+          style={[styles.title, { color: glass.text, fontSize: 24, lineHeight: 30 }]}
         >
           {tx.title}
         </Text>
-        <Text style={[styles.value, { color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+        <Text style={[styles.value, { color: glass.secondary, fontSize: 16, lineHeight: 22 }]}>
           {tx.value}
         </Text>
         <TouchableOpacity
@@ -340,8 +352,24 @@ function EntitlementExpiredHost() {
             });
           }}
         >
-          <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.body }]}>{tx.cta}</Text>
+          <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: 16 }]}>{tx.cta}</Text>
         </TouchableOpacity>
+        {rouletteOn ? (
+          <TouchableOpacity
+            testID="entitlement-expired-invite"
+            accessibilityRole="button"
+            accessibilityLabel={tx.invite}
+            activeOpacity={0.8}
+            style={[styles.invite, { backgroundColor: glass.opaqueControl }]}
+            onPress={() => {
+              navigateAfterModalClose(markShownAndClose, () => {
+                router.push({ pathname: '/referrals' } as never);
+              });
+            }}
+          >
+            <Text style={[styles.ctaText, { color: glass.text, fontSize: 16 }]}>{tx.invite}</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity
           testID="entitlement-expired-ghost"
           accessibilityRole="button"
@@ -350,7 +378,7 @@ function EntitlementExpiredHost() {
           style={styles.ghost}
           onPress={markShownAndClose}
         >
-          <Text style={[styles.ghostText, { color: glass.secondary, fontSize: f.body }]}>{tx.ghost}</Text>
+          <Text style={[styles.ghostText, { color: glass.text, fontSize: 16 }]}>{tx.ghost}</Text>
         </TouchableOpacity>
       </ScrollView>
     </HybridSheetShell>
@@ -360,12 +388,16 @@ function EntitlementExpiredHost() {
 const styles = StyleSheet.create({
   scroll: { flexGrow: 0, flexShrink: 1 },
   content: { alignItems: 'center', paddingTop: 18, paddingBottom: 4 },
-  tile: { width: 64, height: 64, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
-  title: { marginTop: 16, fontWeight: '800', textAlign: 'center' },
-  value: { marginTop: 8, textAlign: 'center' },
-  cta: { alignSelf: 'stretch', marginTop: 22, minHeight: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
-  ctaText: { fontWeight: '800' },
-  ghost: { alignSelf: 'stretch', marginTop: 8, minHeight: 48, alignItems: 'center', justifyContent: 'center' },
+  // зачем (coins.html PAY-09): плитка 61/16, заголовок 24, текст 16 (D145), кнопки-пилюли 48/24;
+  // «Пригласить друга» — капсула с тонким контуром, «Позже» — капсула без контура.
+  tile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  title: { marginTop: 16, fontWeight: '700', textAlign: 'center' },
+  value: { marginTop: 7, textAlign: 'center' },
+  cta: { alignSelf: 'stretch', marginTop: 22, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
+  ctaText: { fontWeight: '700' },
+  // `.cta.gh` на кадре — тёмная капсула; рамок в этом окне нет (сторож), поэтому тон заливкой.
+  invite: { alignSelf: 'stretch', marginTop: 10, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+  ghost: { alignSelf: 'stretch', marginTop: 10, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   ghostText: { fontWeight: '700' },
 });
 

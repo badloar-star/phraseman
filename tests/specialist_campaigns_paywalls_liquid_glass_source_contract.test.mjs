@@ -52,9 +52,17 @@ test('feature intro uses the opaque glass sheet and keeps copy/logic props untou
 });
 
 test('promo results are shown as a glass plate with an icon, not coloured text', () => {
-  for (const name of ['promoEntry', 'referral']) {
+  for (const name of ['promoEntry']) {
     assert.match(src[name], /checkmark-circle-outline/);
     assert.match(src[name], /close-circle-outline/);
     assert.match(src[name], /accessibilityRole="alert"/);
   }
+});
+
+// 04.10: новый макет = эталон (владелец 04.10). overlays-more.html, кадры 19–30 (`.om-feedback`): результат кода друга —
+// простая строка без стеклянной плашки и без значка; объявление для экранного диктора остаётся.
+test('referral code result is a plain line as in overlays-more, still announced', () => {
+  assert.match(src.referral, /testID="referral-code-sheet-feedback"/);
+  assert.match(src.referral, /accessibilityRole="alert"/);
+  assert.doesNotMatch(src.referral, /checkmark-circle-outline|close-circle-outline/);
 });

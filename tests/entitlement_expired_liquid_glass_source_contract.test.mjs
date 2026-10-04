@@ -19,13 +19,17 @@ test('no borders, no adjustsFontSizeToFit, 44dp targets, scroll for large fonts'
   assert.equal(/border(?:Top|Bottom)?(?:Width|Color):/.test(src), false);
   assert.equal(src.includes('adjustsFontSizeToFit'), false);
   assert.ok(src.includes('ScrollView'));
-  assert.ok(src.includes('minHeight: 52') && src.includes('minHeight: 48'));
+  // 04.10: PAY-09 `.cta` — 48 высотой (было 52).
+  assert.ok(src.includes('minHeight: 48'));
 });
 
-test('copy follows PAY-09 with no old promises, invite or referral path, nine languages', () => {
+// 04.10 (координатор: «два сторожа не должны противоречить друг другу»): в макете PAY-09 есть «Пригласить друга» —
+// кнопка вернулась (как требует referral_screens_contract). Старые обещания («безлимит», AURAS) по-прежнему запрещены.
+test('copy follows PAY-09: no old promises, invite button to /referrals, nine languages', () => {
   assert.ok(src.includes('Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.'));
   assert.ok(src.includes("cta: 'Продлить Plus'") && src.includes("ghost: 'Позже'"));
-  assert.equal(/безлимит|безліміт|AURAS|Пригласить|referrals/i.test(src.replace(/^\s*\/\/.*$/gm, '')), false);
+  assert.equal(/безлимит|безліміт|AURAS/i.test(src.replace(/^\s*\/\/.*$/gm, '')), false);
+  assert.ok(src.includes("invite: 'Пригласить друга'") && src.includes("pathname: '/referrals'"));
   for (const lang of ['ru:', 'uk:', 'en:', 'es:', "'pt-BR':", 'vi:', 'id:', 'tr:', 'pl:']) assert.ok(src.includes(lang), lang);
 });
 

@@ -81,11 +81,12 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain('vip_expired');
   });
 
-  it('never replaces expiry renewal content with referral roulette promotion', () => {
-    expect(hostSrc).not.toContain('useReferralRouletteEnabled');
+  // 04.10: макет PAY-09 — продление остаётся главным действием, «Пригласить друга» вторым (под флагом раздела приглашений).
+  it('keeps renewal primary; invite to /referrals is a secondary button behind the referral flag', () => {
+    expect(hostSrc).toContain('useReferralRouletteEnabled');
     expect(hostSrc).toContain('const tx = TEXTS[lang] ?? TEXTS.ru');
     expect(hostSrc).not.toContain('onSecondary');
-    expect(hostSrc).not.toContain('/referrals');
+    expect(hostSrc).toContain("pathname: '/referrals'");
     expect(hostSrc).toContain("const context = kind === 'premium' ? 'premium_expired' : 'vip_expired'");
   });
 

@@ -341,7 +341,9 @@ describe('referral roulette screen contract', () => {
     expect(referrals).not.toContain('BlurView');
     expect(referrals).not.toContain('backdropFilter');
 
-    expect(shell).toContain('TonalSurface');
+    // 04.10 (координатор): тональной подложки в оболочке шторки больше нет — её снял сторож overlays_runtime
+    // («старая тональная подложка убрана», стекло владельца 2.0). Два сторожа не должны противоречить друг другу.
+    expect(shell).not.toContain('TonalSurface');
     expect(shell).not.toMatch(/borderWidth:\s*[1-9]/);
     expect(sheet).toContain('testID="referral-code-sheet-input"');
     expect(sheet).toContain('testID="referral-code-sheet-submit"');

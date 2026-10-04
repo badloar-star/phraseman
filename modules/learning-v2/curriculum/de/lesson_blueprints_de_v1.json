@@ -3157,6 +3157,21 @@
           "fromLessonId": "de_l22",
           "constructIds": ["de_gc_relative_clause_gender_case_v1"],
           "responsibility": "maintain precise reference during mediation"
+        },
+        {
+          "fromLessonId": "de_l18",
+          "constructIds": ["de_gc_connector_topology_contrast_v1"],
+          "responsibility": "retrieve the established deshalb-plus-V2 versus weil-plus-verb-final topology while mediating a revised shared plan"
+        },
+        {
+          "fromLessonId": "de_l24",
+          "constructIds": ["de_gc_event_passive_v1"],
+          "responsibility": "retrieve process passive meaning to distinguish an ongoing project process from an existing result"
+        },
+        {
+          "fromLessonId": "de_l25",
+          "constructIds": ["de_gc_state_passive_v1"],
+          "responsibility": "retrieve state passive meaning to distinguish an existing project result from an ongoing process"
         }
       ],
       "session56Final": {

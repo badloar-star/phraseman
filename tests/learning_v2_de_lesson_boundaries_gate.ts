@@ -127,6 +127,41 @@ const L24_CROSS_LESSON_RECALL = [
       "contrast participle brackets by function rather than surface form",
   },
 ] as const;
+const L27_PLAN_RECALL_AUTHORITY = [
+  {
+    fromLessonId: "de_l26",
+    constructIds: ["de_gc_werden_infinitive_meanings_v1"],
+    responsibility:
+      "retrieve certainty contrasts under connected-project conditions",
+  },
+  {
+    fromLessonId: "de_l22",
+    constructIds: ["de_gc_relative_clause_gender_case_v1"],
+    responsibility: "maintain precise reference during mediation",
+  },
+  {
+    fromLessonId: "de_l18",
+    constructIds: ["de_gc_connector_topology_contrast_v1"],
+    responsibility:
+      "retrieve the established deshalb-plus-V2 versus weil-plus-verb-final topology while mediating a revised shared plan",
+  },
+  {
+    fromLessonId: "de_l24",
+    constructIds: ["de_gc_event_passive_v1"],
+    responsibility:
+      "retrieve process passive meaning to distinguish an ongoing project process from an existing result",
+  },
+  {
+    fromLessonId: "de_l25",
+    constructIds: ["de_gc_state_passive_v1"],
+    responsibility:
+      "retrieve state passive meaning to distinguish an existing project result from an ongoing process",
+  },
+] as const;
+const L27_PLAN_RECALL_AUTHORITY_SHA256 =
+  "38da89e2562454a1daebb1c1ddb124d36ad487b0aabccb6d807a68744ca6473a";
+const L27_CANONICAL_OBJECT_SHA256 =
+  "ca4411b999f2f0e199c1de2b352b8f606e89969713f4c5350ed5f5f5e40bc9d5";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -215,6 +250,16 @@ function assertStringArray(
 
 function expectExact(value: unknown, expected: unknown, label: string): void {
   if (value !== expected) throw new Error(`${label}:${String(value)}`);
+}
+
+function hasExactL27PlanRecallAuthority(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(L27_PLAN_RECALL_AUTHORITY) &&
+    createHash("sha256").update(canonical).digest("hex") ===
+      L27_PLAN_RECALL_AUTHORITY_SHA256
+  );
 }
 
 function lessonOrdinalFromId(id: string, label: string): number {
@@ -848,6 +893,12 @@ function validateBlueprint(
     if (expectedOrdinal > 1 && candidate.crossLessonRecall.length === 0) {
       throw new Error(`cross_lesson_recall_missing:${candidate.id}`);
     }
+    if (
+      expectedOrdinal === 27 &&
+      !hasExactL27PlanRecallAuthority(candidate.crossLessonRecall)
+    ) {
+      throw new Error("l27_plan_recall_authority_invalid");
+    }
     candidate.crossLessonRecall.forEach((recall, recallIndex) => {
       assertPlainRecord(
         recall,
@@ -1344,6 +1395,14 @@ function validateBlueprint(
         throw new Error("l24_canonical_object_identity_invalid");
       }
     }
+    if (expectedOrdinal === 27) {
+      const l27CanonicalObjectSha256 = createHash("sha256")
+        .update(JSON.stringify(candidate))
+        .digest("hex");
+      if (l27CanonicalObjectSha256 !== L27_CANONICAL_OBJECT_SHA256) {
+        throw new Error("l27_canonical_object_identity_invalid");
+      }
+    }
   });
 
   for (const domain of SCENARIO_DOMAINS) {
@@ -1449,8 +1508,79 @@ const raw = JSON.parse(readFileSync(LESSONS_PATH, "utf8")) as unknown;
 const constructs = JSON.parse(
   readFileSync(CONSTRUCTS_PATH, "utf8"),
 ) as GrammarConstruct[];
+const directL27AuthorityProbe = clone(
+  ((raw as JsonRecord).lessons as JsonRecord[])[26].crossLessonRecall,
+) as JsonRecord[];
+assert.equal(
+  hasExactL27PlanRecallAuthority(directL27AuthorityProbe.slice(0, 2)),
+  false,
+  "L27 authority must fail when the required L18/L24/L25 rows are absent",
+);
+assert.equal(
+  hasExactL27PlanRecallAuthority(clone(L27_PLAN_RECALL_AUTHORITY)),
+  true,
+  "L27 authority must pass only for the exact five-row contract",
+);
 validateBlueprint(raw, constructs);
 
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson27 = (candidate.lessons as JsonRecord[])[26];
+    lesson27.crossLessonRecall = (
+      lesson27.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l18");
+  },
+  /^l27_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson27 = (candidate.lessons as JsonRecord[])[26];
+    lesson27.title = "Projekt-Update erweitert";
+  },
+  /^l27_canonical_object_identity_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson27 = (candidate.lessons as JsonRecord[])[26];
+    const l24Recall = (lesson27.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l24",
+    )!;
+    l24Recall.constructIds = ["de_gc_state_passive_v1"];
+  },
+  /^l27_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson27 = (candidate.lessons as JsonRecord[])[26];
+    const l25Recall = (lesson27.crossLessonRecall as JsonRecord[]).find(
+      (recall) => recall.fromLessonId === "de_l25",
+    )!;
+    l25Recall.responsibility =
+      "retrieve state passive meaning during project mediation";
+  },
+  /^l27_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson27 = (candidate.lessons as JsonRecord[])[26];
+    (lesson27.crossLessonRecall as JsonRecord[]).push({
+      fromLessonId: "de_l01",
+      constructIds: ["de_gc_statement_v2_v1"],
+      responsibility: "extra recall row",
+    });
+  },
+  /^l27_plan_recall_authority_invalid$/u,
+);
 expectFailure(
   raw,
   constructs,

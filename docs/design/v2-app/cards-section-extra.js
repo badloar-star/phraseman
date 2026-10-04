@@ -37,10 +37,10 @@ const stackHero = (word, ipa, cls = '') => `<div style="position:relative;height
   <div class="mc solid" style="position:absolute;left:19px;right:19px;top:18px;height:130px;opacity:.9;border-radius:28px"></div>
   <div class="mc solid t float ${cls}" data-open="mode" style="position:absolute;left:0;right:0;top:40px;height:200px;border-radius:30px;flex-direction:column"><span style="font-size:36px;font-weight:700">${word}</span><span style="font-size:16px;font-style:italic;color:rgba(255,255,255,.65);margin-top:8px;font-weight:400">${ipa}</span></div></div>`;
 const tilesS = (counts = ['64', '4', '3 набора', '1 240'], dim = false) => `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">${SECTIONS.map(([ic, t], i) => `<div class="gl pad t" style="padding:18px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between${dim ? ';opacity:.55' : ''}"><div class="gtile">${secIcon(ic, 's24')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${counts[i]}</div></div></div>`).join('')}</div>`;
-const hubS = () => phone(`${headS()}<div class="rise">${stackHero('Boarding pass', '/ˈbɔːdɪŋ pɑːs/')}<div class="ac-cta t" data-open="mode" style="margin-top:14px">Тренироваться · 133${arrowS}</div>${tilesS()}</div>`, { overlay: sheet('mode', modeInner) });
-const hubLoadingS = () => phone(`${headS()}${stackHero('Boarding pass', '/ˈbɔːdɪŋ pɑːs/')}<div class="ac-cta t" style="margin-top:14px">Тренироваться · 133${arrowS}</div>${tilesS(['64', '4', '…', '…'])}`);
+const hubS = () => phone(`${headS()}<div class="rise">${stackHero('Boarding pass', '/ˈbɔːdɪŋ pɑːs/')}<div class="ac-cta t" data-open="mode" style="margin-top:14px">Тренироваться · осталось 2 из 3${arrowS}</div>${tilesS()}</div>`, { overlay: sheet('mode', modeInner) });
+const hubLoadingS = () => phone(`${headS()}${stackHero('Boarding pass', '/ˈbɔːdɪŋ pɑːs/')}<div class="ac-cta t" style="margin-top:14px">Тренироваться · осталось 2 из 3${arrowS}</div>${tilesS(['64', '4', '…', '…'])}`);
 const hubNewS = () => phone(`${headS(3)}<div class="rise"><div class="gl pad" style="margin-top:26px;min-height:250px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center"><div class="gtile" style="width:64px;height:64px;border-radius:20px">${K.icon('people', 's28')}</div><div style="font-size:24px;font-weight:700;margin-top:18px">Начните с готового</div><div style="font-size:16px;color:var(--sec);margin-top:6px">Добавьте набор из сообщества или из видео</div></div><div class="ac-cta t" style="margin-top:14px">Выбрать набор${arrowS}</div>${tilesS(['0', '0', '3 набора', '1 240'])}</div>`);
-const hubLimitS = () => phone(`${headS(0)}<div class="rise">${stackHero('На сегодня всё', 'Новые тренировки — завтра')}<div class="ac-cta t" style="margin-top:14px;opacity:.9">Листать карточки${arrowS}</div>${tilesS()}</div>`);
+const hubLimitS = () => phone(`${headS(0)}<div class="rise">${stackHero('На сегодня всё', 'Новые тренировки — завтра')}<div class="ac-cta t" style="margin-top:14px;opacity:.55">Осталось 0 из 3 · до завтра</div>${tilesS()}</div>`);
 
 // ---------- «Из видео» ----------
 const videoRowS = (ti, n, du, added) => `<div class="gl vrow t sm"><div class="vth"><span class="pl">${K.icon('play', 's16')}</span><span class="du">${du}</span></div><div class="grow" style="min-width:0"><div style="font-size:15px;line-height:19px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${ti}</div><div style="font-size:14px;color:var(--sec);margin-top:4px">${n} фраз</div></div>${added ? `<span class="cntp">${K.icon('check', 's16')}</span>` : '<span class="vadd">Добавить</span>'}</div>`;
@@ -70,4 +70,14 @@ const galleryPhoneS = () => phone(`<div class="topbar"><span class="rb t">${K.ic
 // ---------- большая карточка (шторка карточки): та же зафиксированная карточка, крупно ----------
 const bigCard = (en, ipa, ru, back) => `<div class="gc static t gbig ${back ? 'flipped' : ''}" style="--t:var(--g1);height:230px"><div class="fl"><div class="face"><div class="en" style="font-size:34px;font-weight:600">${en}</div><div class="ipa" style="font-size:16px">${ipa}</div><span class="spk">${K.icon('vol', 's16')}</span><span class="dots">${dotsS(3)}</span></div><div class="face back"><div class="ru" style="font-size:30px">${ru}</div></div></div></div>`;
 const cardL = (w, t) => cardS(w, t, "", { lv: "l" });
-const cardBackS = () => phone(`<div style="opacity:.3">${packView({ title: "Travel", author: "Вы", meta: "", act: "", n: 24, words: TRAVEL() })}</div>`, { overlay: sheet("c3", cardSheet({ ...OWN_CARD, back: true }), true) });
+const cardBackS = () => phone(`<div style="opacity:.3">${packView({ title: "Travel", author: "Вы", meta: "", act: "", n: 24, words: TRAVEL() })}</div>`, { overlay: cardSheet({ ...OWN_CARD, back: true }) });
+
+// зачем: тап по карточке в списке раскрывает её по центру (разворот), тап по затемнению закрывает; перевернуть раскрытую карточку — тап по ней (общий обработчик переворота)
+document.addEventListener('click', (e) => {
+  const ph = e.target.closest('.ph'); if (!ph) return;
+  const op = ph.querySelector('.copen'); if (!op) return;
+  const dim = ph.querySelector('[data-dim="co"]');
+  if (e.target === dim) { op.classList.remove('on'); dim.classList.remove('on'); return; }
+  const c = e.target.closest('.gc.static');
+  if (c && !c.classList.contains('gbig') && !op.contains(c)) { e.stopImmediatePropagation(); op.classList.add('on'); dim.classList.add('on'); }
+}, true);

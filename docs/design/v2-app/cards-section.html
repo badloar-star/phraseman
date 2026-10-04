@@ -165,7 +165,7 @@ const volBtn = `<span class="rb fill t">${icon('vol', 's18')}</span>`;
 const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
 const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
 const navHead = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${t}</div>${right}</div>`;
-const empty = (ic, h, l, btn, o = {}) => `<div class="empty"><div class="tile t61"${o.c ? ` style="color:${o.c}"` : ''}>${ic}</div><div class="h">${h}</div><div class="l">${l}</div><span class="cta t">${btn}</span></div>`;
+const empty = (ic, h, l, btn, o = {}) => `<div class="empty"><div class="tile t61"${o.c ? ` style="color:${o.c}"` : ''}>${ic}</div><div class="h">${h}</div><div class="l">${l}</div>${btn ? `<span class="cta t">${btn}</span>` : ''}</div>`;
 const sec = (t, ac = '', n = '') => `<div class="sec"><div class="ti">${t}${n !== '' ? `<span class="n">${n}</span>` : ''}</div>${ac ? `<div class="ac">${ac}</div>` : ''}</div>`;
 
 // строка набора — эталон хаба
@@ -188,7 +188,7 @@ const modeInner = `<div class="flex" style="padding:0 4px"><div class="grow" sty
 // =====================================================================
 const hubHero = (o = {}) => `<div class="card c2" style="margin-top:26px;padding:18px 18px 20px">
   <div class="flex" style="gap:14px"><div class="tile t55">${li('cards', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div></div>
-  <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться'}${arr}</div></div>`;
+  <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться · осталось 2 из 3'}${arr}</div></div>`;
 const hub = () => phone(`
   ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
   ${title('Карточки', 'Слова и фразы')}
@@ -278,18 +278,19 @@ const badge = (ic, t) => `<span class="pill s" style="margin-left:auto;color:#DA
 const TRAVEL = () => word('Boarding pass', 'Посадочный талон', 'cs') + word('Layover', 'Пересадка', 'cs') + word('Check in', 'Зарегистрироваться', 'cs') + word('Carry-on', 'Ручная кладь', 'cs');
 const B2 = () => word('Lay', 'Класть') + word('Claim', 'Утверждать') + word('Convince', 'Убеждать') + word('Hire', 'Нанимать');
 
-// шторка карточки
-const cardSheet = (o) => `
-  <div class="ov" style="padding:0 4px">${o.ov}</div>
-  <div style="margin-top:12px">${bigCard(o.w, o.ipa, o.tr, !!o.back)}</div>
-  <div class="note" style="margin-top:16px"><div class="ov">Пример</div><div style="font-size:17px;line-height:23px;margin-top:8px">${o.ex}</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.exTr}</div></div>
-  <div style="margin-top:16px">${o.foot}</div>`;
+// зачем (владелец 04.10): «во всех разделах карточки открываются горизонтальными красивыми разворачивающимися, какие я одобрил» —
+// вместо нижней шторки карточка раскрывается по центру: горизонтальное разворачивание (поворот вокруг вертикальной оси) и тот же переворот на перевод, что в галерее.
+const cardSheet = (o, open = true) => `<div class="dim${open ? ' on' : ''}" data-dim="co"></div><div class="copen${open ? ' on' : ''}">
+  <div class="ov" style="text-align:center;margin-bottom:12px">${o.ov}</div>
+  ${bigCard(o.w, o.ipa, o.tr, !!o.back)}
+  <div class="gl pad" style="margin-top:14px;padding:14px 18px"><div class="ov2" style="letter-spacing:2px">Пример</div><div style="font-size:17px;line-height:23px;margin-top:8px">${o.ex}</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.exTr}</div></div>
+  <div style="margin-top:14px">${o.foot}</div></div>`;
 const OWN_CARD = { ov: 'Travel', w: 'Boarding pass', ipa: '/ˈbɔːdɪŋ pɑːs/', tr: 'Посадочный талон', ex: 'Have your boarding pass ready.', exTr: 'Приготовьте посадочный талон.',
   foot: `<div class="acts"><div class="card t">${icon('edit', 's22')}Изменить</div><div class="card t">${li('bookmarkF', 's22')}Сохранено</div><div class="card t">${icon('trash', 's22')}Удалить</div></div>` };
 
 const packOwn = () => phone(packView({ title: 'Travel', author: 'Вы', badge: badge(li('lock', 's16'), 'Только вы'),
   meta: `<div class="cta sm gh t">${icon('plus', 's18')}Карточка</div>`, act: `<div class="cta sm t">Тренировать${icon('arrowR', 's18')}</div>`, n: 24, words: TRAVEL() }),
-  { overlay: sheet('cs', cardSheet(OWN_CARD)) });
+  { overlay: cardSheet(OWN_CARD, false) });
 
 const packForeign = () => phone(packView({ title: 'B2 глаголы', author: 'Ирина', meta: `<div class="meta" style="margin:0;font-size:16px;gap:22px">${meta(3, 11, 1)}</div>`,
   act: `<span class="cta sm t">Добавить себе ${icon('plus', 's18')}</span>`, n: 49, words: B2() }));
@@ -306,10 +307,10 @@ const packUndo = () => phone(packView({ title: 'Travel', author: 'Вы', badge: 
 // =====================================================================
 // 5. КАРТОЧКА (ШТОРКА)
 // =====================================================================
-const cardOwn = () => phone(`<div style="opacity:.3">${packView({ title: 'Travel', author: 'Вы', meta: '', act: '', n: 24, words: TRAVEL() })}</div>`, { overlay: sheet('c1', cardSheet(OWN_CARD), true) });
-const cardForeign = () => phone(`<div style="opacity:.3">${packView({ title: 'B2 глаголы', author: 'Ирина', meta: '', act: '', n: 49, words: B2() })}</div>`, { overlay: sheet('c2', cardSheet({
+const cardOwn = () => phone(`<div style="opacity:.3">${packView({ title: 'Travel', author: 'Вы', meta: '', act: '', n: 24, words: TRAVEL() })}</div>`, { overlay: cardSheet(OWN_CARD) });
+const cardForeign = () => phone(`<div style="opacity:.3">${packView({ title: 'B2 глаголы', author: 'Ирина', meta: '', act: '', n: 49, words: B2() })}</div>`, { overlay: cardSheet({
   ov: 'B2 глаголы · Ирина', w: 'Convince', ipa: '/kənˈvɪns/', tr: 'Убеждать', ex: 'She convinced me to stay.', exTr: 'Она убедила меня остаться.',
-  foot: `<div class="cta t">${icon('bookmark', 's20')}Сохранить</div>` }), true) });
+  foot: `<div class="cta t">${icon('bookmark', 's20')}Сохранить</div>` }) });
 
 // =====================================================================
 // 6. СОЗДАНИЕ И РЕДАКТИРОВАНИЕ
@@ -496,7 +497,7 @@ const resPerfect = () => phone(`
 // 13–14. ЛИМИТ И СЕТЬ
 // =====================================================================
 const limitOut = () => phone(`${topRow(lim(0))}${title('Блиц', 'Минута на скорость')}
-  ${empty(li('clock', 's28'), 'На сегодня всё', 'Новые тренировки — завтра', 'Листать карточки')}`);
+  ${empty(li('clock', 's28'), 'На сегодня всё', 'Новые тренировки — завтра', '')}`);
 const offline = () => phone(`${topRow()}${title('Карточки')}
   ${empty(icon('wifiOff', 's28'), 'Сейчас недоступно', 'Проверьте интернет', `${li('refresh', 's18')}Попробовать снова`, { c: 'var(--sec)' })}`);
 

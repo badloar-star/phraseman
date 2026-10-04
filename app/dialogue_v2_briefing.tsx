@@ -22,6 +22,7 @@ import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { actionToastTri, emitAppEvent } from './events';
+import { safeRouterBack } from './navigation_back';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -194,11 +195,11 @@ export default function DialogueV2BriefingRoute() {
   }, [lang, localCoinRank, scenarioId, state, studyTarget]);
 
   if (state.kind === 'loading') {
-    return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-loading" loading message={labels.loading} backLabel={labels.back} onBack={() => router.back()} />;
+    return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-loading" loading message={labels.loading} backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} />;
   }
 
   if (!model) {
-    return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-unavailable" message={labels.unavailable} backLabel={labels.back} onBack={() => router.back()} />;
+    return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-unavailable" message={labels.unavailable} backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} />;
   }
 
   return (
@@ -207,7 +208,7 @@ export default function DialogueV2BriefingRoute() {
       {...model}
       currentRank={localCoinRank}
       labels={labels}
-      onBack={() => router.back()}
+      onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
       onStart={() => {
         if (!model.unlocked) {
           console.warn('[DIALOGUE-V2] start blocked: scenario locked', { scenarioId });
@@ -253,7 +254,7 @@ export default function DialogueV2BriefingRoute() {
       }}
     />
     {/* макет B5: закрытие окна уводит с экрана диалога */}
-    <NoEnergyModal visible={noEnergy} onClose={() => { setNoEnergy(false); router.back(); }} />
+    <NoEnergyModal visible={noEnergy} onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
     </>
   );
 }

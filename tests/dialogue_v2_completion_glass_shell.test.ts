@@ -10,7 +10,9 @@ describe('Dialogue V2 completion glass shell', () => {
     expect(source).toContain("edges={['top', 'bottom']}");
     expect(source).toContain('dialogueGlassCardStyle(glass, 16)');
     expect(source).toContain('review.objectiveResults.map');
-    expect(source).toContain('router.back()');
+    // 04.10 (Ядро, navigation_back_underlay): «Готово» уходит назад через общий помощник с корнем раздела.
+    expect(source).toContain("safeRouterBack(router, '/ai_dialog_home' as never)");
+    expect(source).not.toContain('router.back()');
 
     // Итог без выдуманной экономики: опыта, жемчуга и монет за диалог нет (решения о награде нет).
     expect(source).not.toMatch(/\bXP\b/);

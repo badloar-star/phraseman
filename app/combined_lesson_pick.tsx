@@ -33,6 +33,7 @@ import { getCourseLevelForLesson } from './course_levels';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { PracticeBackButton } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
+import { safeRouterBack } from './navigation_back';
 
 const TOPIC_COUNT = 32;
 
@@ -128,7 +129,7 @@ export default function CombinedLessonPickScreen() {
               ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás',
               'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
             })}
-            onPress={() => { hapticTap(); router.back(); }}
+            onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as never); }}
           />
           <Text
             maxFontSizeMultiplier={1.3}

@@ -23,6 +23,7 @@ import {
   resolveCurrentDialogueV2FreeformPreparedBotVoice,
 } from './dialogue_v2_freeform_prepared_bot_voice_runtime';
 import { parseDialogueV2FreeformSessionTurnShape } from '../shared/dialogue_v2_freeform_session_contract';
+import { safeRouterBack } from './navigation_back';
 
 const SUPPORTED_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -260,7 +261,7 @@ export default function DialogueV2FreeformRoute() {
   sendRef.current = send;
 
   if (!accessResolved) {
-    return <DialogueGlassGate glass={glass} testID="dialogue-v2-freeform-loading" backLabel={labels.back} onBack={() => router.back()} loading title={labels.loading} />;
+    return <DialogueGlassGate glass={glass} testID="dialogue-v2-freeform-loading" backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} loading title={labels.loading} />;
   }
   if (!hasPremiumAccess) {
     return (
@@ -268,7 +269,7 @@ export default function DialogueV2FreeformRoute() {
         glass={glass}
         testID="dialogue-v2-freeform-plus"
         backLabel={labels.back}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         icon="lock-closed-outline"
         title={labels.plus}
         action={{ label: labels.openPlus, onPress: () => router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogue_v2_freeform' } } as never) }}
@@ -282,7 +283,7 @@ export default function DialogueV2FreeformRoute() {
         glass={glass}
         testID="dialogue-v2-freeform-unavailable"
         backLabel={labels.back}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         icon="cloud-offline-outline"
         title={labels.unavailable}
         action={{
@@ -303,5 +304,5 @@ export default function DialogueV2FreeformRoute() {
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => router.back()} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={voice.start} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
+  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={voice.start} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
 }

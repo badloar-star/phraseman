@@ -24,6 +24,7 @@ import { LV2_BAD, LV2_GOOD } from '../components/learning-v2/LearningV2Glass';
 import type { DialogueV2CoachingMood } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 // зачем (владелец 2026-09-30, макет dialogs.html D1–D5 = practice.html «Завершение»): итог
 // диалога — тот же экран, что во всех режимах: «✕», заголовок «Диалог пройден» / «Разговор
@@ -172,7 +173,7 @@ export default function DialogueV2CompletionRoute() {
   const correct = Math.max(0, turns - mistakes);
   const accuracy = turns > 0 ? Math.round((correct / turns) * 100) : 0;
   const title = endedBy === 'bot' ? labels.passed : labels.finished;
-  const close = () => router.back();
+  const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
   const again = () => {
     if (!scenarioId) return;
     router.replace({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);

@@ -42,6 +42,7 @@ import {
   type DialogueV2SessionBottom,
   type DialogueV2SessionMessage,
 } from '../components/dialogs/DialogueV2SessionScreen';
+import { safeRouterBack } from './navigation_back';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
@@ -471,11 +472,11 @@ function SessionContent() {
         glass={glass}
         testID="dialogue-v2-session-paused"
         backLabel={labels.back}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         icon="cloud-offline-outline"
         title={coachingLabels.pausedTitle}
         message={coachingLabels.pausedMessage}
-        action={{ label: labels.back, onPress: () => router.back() }}
+        action={{ label: labels.back, onPress: () => safeRouterBack(router, '/ai_dialog_home' as never) }}
       />
     );
   }
@@ -487,7 +488,7 @@ function SessionContent() {
         glass={glass}
         testID="dialogue-v2-session-loading"
         backLabel={labels.back}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         loading
         title={labels.loading}
       />
@@ -507,10 +508,10 @@ function SessionContent() {
         glass={glass}
         testID="dialogue-v2-session-unavailable"
         backLabel={labels.back}
-        onBack={() => router.back()}
+        onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         icon="cloud-offline-outline"
         title={labels.unavailable}
-        action={{ label: labels.back, onPress: () => router.back() }}
+        action={{ label: labels.back, onPress: () => safeRouterBack(router, '/ai_dialog_home' as never) }}
       />
     );
   }
@@ -602,7 +603,7 @@ function SessionContent() {
       retryAvailable={failureReason !== 'rate_limited' || !rateLimitCooling}
       retryDisabled={sending || !pendingTurnRef.current || failureReason === 'plus_daily_cap'}
       onRetry={retry}
-      onBack={() => router.back()}
+      onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
       onChangeDraft={setDraft}
       onSend={() => { void send(); }}
       onStartVoice={voice.start}

@@ -30,6 +30,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { safeRouterBack } from './navigation_back';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -248,7 +249,7 @@ export default function DialogueV2MemoryRoute() {
   const renderHeader = () => (
     <View style={{ height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap }}>
       <PressableScale
-        onPress={() => router.back()}
+        onPress={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         variant="flat"
         accessibilityRole="button"
         accessibilityLabel={copy.back}

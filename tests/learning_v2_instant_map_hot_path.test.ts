@@ -51,7 +51,11 @@ describe("Learning V2 instant inline map hot path", () => {
     expect(source).toContain(
       "buildLearningV2CourseAccordionMapFromPreparedProgressV1",
     );
-    expect(source).toContain("onLearningV2PressIn={prepareLearningV2Lesson}");
+    // зачем: 123aaf87a (владелец 13.09) запер новый курс до готовности — прогрев по нажатию
+    // подключается только к доступной плитке; на запертой он бессмыслен. Прогрев остался.
+    expect(source).toContain(
+      "onLearningV2PressIn={learningV2Available ? prepareLearningV2Lesson : undefined}",
+    );
     expect(prepareBlock).toContain(
       "preparedProgress: learningV2PreparedProgress",
     );

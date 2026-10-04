@@ -8238,6 +8238,1085 @@ function validateL19SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l19_semantic_contract_invalid:exact");
 }
 
+const L20_CONTRACT = {
+  lessonId: "de_l20",
+  lessonOrdinal: 20,
+  grammarBoundary: {
+    allowedConstructIds: [
+      "de_gc_infinitive_verb_cluster_v1",
+      "de_gc_modal_finite_bare_infinitive_v1",
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_separable_verb_bracket_v1",
+      "de_gc_introduced_verbletzt_clause_v1",
+      "de_gc_formal_sie_sich_v1",
+      "de_gc_reciprocal_reference_v1",
+    ],
+    prohibitedConstructIds: [
+      "de_gc_relative_clause_gender_case_v1",
+      "de_gc_event_passive_v1",
+    ],
+    noExpansion:
+      "Permit only a controlled clause-right-bracket cluster whose infinitival material stays together with an already licensed finite modal, plus comparison with known separable, simple modal, introduced-clause and deshalb-versus-weil topologies and bounded review of formal Sie→sich and reciprocal wir→uns, ihr→euch, plural sie/Sie→sich. Do not license zu-infinitive complements, lassen or perception-verb clusters, uncontrolled three-or-more-verb expansion, modal Perfekt or Ersatzinfinitiv, alternative cluster orders, new modal meanings, new connectors or introducers, new case or preposition relations, relative clauses, event or state passive, ordinary third-person reflexive expansion, new reciprocal markers, L21+ grammar, or any Task6 lexical adjudication.",
+  },
+  chapters: [
+    {
+      id: "de_l20_c01",
+      ordinal: 1,
+      lessonOutcomeId: "de_l20_ch01",
+      lessonOutcome:
+        "recognise a controlled dependency inside a multi-verb cluster",
+      packetIds: [
+        "de_l20_c01_s01",
+        "de_l20_c01_s02",
+        "de_l20_c01_s03",
+        "de_l20_c01_s04",
+        "de_l20_c01_s05",
+        "de_l20_c01_s06",
+        "de_l20_c01_s07",
+        "de_l20_c01_s08",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "community-pickup-plan-reading",
+        participants: "coordinator-and-volunteers",
+        goal: "recognise-the-abholen-muessen-dependency-in-the-right-bracket",
+        contextSignature: "pickup-plan-cluster-recognition",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry: "Der Abholplan gilt, weil wir die Kisten heute abholen müssen.",
+        exit: "Der Abholplan gilt, weil wir die Kisten heute abholen müssen.",
+        independentEvidenceByPacketId: "de_l20_c01_s08",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "introduction",
+          packetId: "de_l20_c01_s01",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l20_c01_s03", "de_l20_c01_s04"],
+      checkpoint: {
+        packetId: "de_l20_c01_s08",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c01_abholplan_v1",
+            semanticIdentity:
+              "abholplan|pickup plan used to ground the controlled right-bracket cluster",
+            lemmaOrExpression: "Abholplan",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Abholplan",
+              plural: "Abholpläne",
+            },
+            nounPackageIdentity: "der|abholplan|abholplane",
+            verbPackage: null,
+            senseGloss:
+              "pickup plan used to ground the controlled right-bracket cluster",
+            communicativeUse:
+              "Der Abholplan gilt, weil wir die Kisten heute abholen müssen.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch01",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch01",
+              checkpointPacketId: "de_l20_c01_s08",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "charity-donation-pickup-note",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l20_c01_s08"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "charity-donation-pickup-note",
+          participants: "donation-driver-and-charity-coordinator",
+          goal: "independently-recognise-the-abholen-muessen-dependency-in-the-right-bracket",
+          contextSignature: "charity-pickup-cluster-recognition-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c06", "de_l19_c07"],
+        targetsFutureChapterIds: ["de_l20_c02"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s51",
+        },
+      },
+    },
+    {
+      id: "de_l20_c02",
+      ordinal: 2,
+      lessonOutcomeId: "de_l20_ch02",
+      lessonOutcome:
+        "keep a known modal and infinitival material together in the right bracket",
+      packetIds: [
+        "de_l20_c02_s09",
+        "de_l20_c02_s10",
+        "de_l20_c02_s11",
+        "de_l20_c02_s12",
+        "de_l20_c02_s13",
+        "de_l20_c02_s14",
+        "de_l20_c02_s15",
+        "de_l20_c02_s16",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "formal-pickup-feasibility-call",
+        participants: "formal-coordinator-and-resident",
+        goal: "keep-abholen-koennen-together-after-weil",
+        contextSignature: "formal-pickup-guided-cluster",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Das Transportfenster passt, weil Sie die Kisten heute abholen können.",
+        exit: "Das Transportfenster passt, weil Sie die Kisten heute abholen können.",
+        independentEvidenceByPacketId: "de_l20_c02_s16",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "guided",
+          packetId: "de_l20_c02_s09",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l20_c02_s11", "de_l20_c02_s12"],
+      checkpoint: {
+        packetId: "de_l20_c02_s16",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c02_transportfenster_v1",
+            semanticIdentity:
+              "transportfenster|available transport window used to negotiate formal pickup feasibility",
+            lemmaOrExpression: "Transportfenster",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "das",
+              singular: "Transportfenster",
+              plural: "Transportfenster",
+            },
+            nounPackageIdentity: "das|transportfenster|transportfenster",
+            verbPackage: null,
+            senseGloss:
+              "available transport window used to negotiate formal pickup feasibility",
+            communicativeUse:
+              "Das Transportfenster passt, weil Sie die Kisten heute abholen können.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch02",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch02",
+              checkpointPacketId: "de_l20_c02_s16",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "library-donation-pickup-call",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l20_c02_s16"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "library-donation-pickup-call",
+          participants: "library-coordinator-and-formal-volunteer",
+          goal: "independently-keep-abholen-koennen-together-after-weil",
+          contextSignature: "library-pickup-guided-cluster-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c07", "de_l20_c01"],
+        targetsFutureChapterIds: ["de_l20_c03"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s52",
+        },
+      },
+    },
+    {
+      id: "de_l20_c03",
+      ordinal: 3,
+      lessonOutcomeId: "de_l20_ch03",
+      lessonOutcome:
+        "distinguish a simple modal bracket from a controlled cluster",
+      packetIds: [
+        "de_l20_c03_s17",
+        "de_l20_c03_s18",
+        "de_l20_c03_s19",
+        "de_l20_c03_s20",
+        "de_l20_c03_s21",
+        "de_l20_c03_s22",
+        "de_l20_c03_s23",
+        "de_l20_c03_s24",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "community-timetable-comparison",
+        participants: "two-volunteers-and-coordinator",
+        goal: "distinguish-main-clause-modal-bracket-from-weil-final-cluster",
+        contextSignature: "timetable-simple-versus-cluster",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Wir müssen die Kisten heute abholen. Der Zeitplan bleibt, weil wir die Kisten heute abholen müssen.",
+        exit: "Wir müssen die Kisten heute abholen. Der Zeitplan bleibt, weil wir die Kisten heute abholen müssen.",
+        independentEvidenceByPacketId: "de_l20_c03_s24",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "retrieval",
+          packetId: "de_l20_c03_s17",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l20_c03_s19", "de_l20_c03_s20"],
+      checkpoint: {
+        packetId: "de_l20_c03_s24",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c03_zeitplan_v1",
+            semanticIdentity:
+              "zeitplan|timetable used to contrast a simple modal bracket with a clause-final cluster",
+            lemmaOrExpression: "Zeitplan",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Zeitplan",
+              plural: "Zeitpläne",
+            },
+            nounPackageIdentity: "der|zeitplan|zeitplane",
+            verbPackage: null,
+            senseGloss:
+              "timetable used to contrast a simple modal bracket with a clause-final cluster",
+            communicativeUse:
+              "Wir müssen die Kisten heute abholen. Der Zeitplan bleibt, weil wir die Kisten heute abholen müssen.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch03",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch03",
+              checkpointPacketId: "de_l20_c03_s24",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "discourse",
+              situationFacet: "goal",
+              facetValue:
+                "independently-distinguish-main-clause-modal-bracket-from-weil-final-cluster",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l20_c03_s24"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "furniture-bank-pickup-schedule-check",
+          participants: "donor-and-collection-volunteer",
+          goal: "independently-distinguish-main-clause-modal-bracket-from-weil-final-cluster",
+          contextSignature: "furniture-pickup-simple-versus-cluster-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c01", "de_l20_c02"],
+        targetsFutureChapterIds: ["de_l20_c04"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s53",
+        },
+      },
+    },
+    {
+      id: "de_l20_c04",
+      ordinal: 4,
+      lessonOutcomeId: "de_l20_ch04",
+      lessonOutcome: "state who can help complete one multi-step action",
+      packetIds: [
+        "de_l20_c04_s25",
+        "de_l20_c04_s26",
+        "de_l20_c04_s27",
+        "de_l20_c04_s28",
+        "de_l20_c04_s29",
+        "de_l20_c04_s30",
+        "de_l20_c04_s31",
+        "de_l20_c04_s32",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "collection-point-helper-allocation",
+        participants: "coordinator-and-named-helper",
+        goal: "state-who-can-complete-the-pickup",
+        contextSignature: "helper-allocation-cluster-production",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Wir wissen, dass Frau Keller die Kisten an der Sammelstelle abholen kann.",
+        exit: "Wir wissen, dass Frau Keller die Kisten an der Sammelstelle abholen kann.",
+        independentEvidenceByPacketId: "de_l20_c04_s32",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "production",
+          packetId: "de_l20_c04_s25",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l20_c04_s27", "de_l20_c04_s28"],
+      checkpoint: {
+        packetId: "de_l20_c04_s32",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c04_sammelstelle_v1",
+            semanticIdentity:
+              "sammelstelle|collection point whose pickup needs an assigned helper",
+            lemmaOrExpression: "Sammelstelle",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Sammelstelle",
+              plural: "Sammelstellen",
+            },
+            nounPackageIdentity: "die|sammelstelle|sammelstellen",
+            verbPackage: null,
+            senseGloss:
+              "collection point whose pickup needs an assigned helper",
+            communicativeUse:
+              "Wir wissen, dass Frau Keller die Kisten an der Sammelstelle abholen kann.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch04",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch04",
+              checkpointPacketId: "de_l20_c04_s32",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "sports-club-equipment-collection-briefing",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l20_c04_s32"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "sports-club-equipment-collection-briefing",
+          participants: "club-organiser-and-named-driver",
+          goal: "independently-state-who-can-complete-the-pickup",
+          contextSignature: "club-equipment-helper-allocation-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c02", "de_l20_c03"],
+        targetsFutureChapterIds: ["de_l20_c05"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s54",
+        },
+      },
+    },
+    {
+      id: "de_l20_c05",
+      ordinal: 5,
+      lessonOutcomeId: "de_l20_ch05",
+      lessonOutcome: "negotiate a bounded multi-step plan",
+      packetIds: [
+        "de_l20_c05_s33",
+        "de_l20_c05_s34",
+        "de_l20_c05_s35",
+        "de_l20_c05_s36",
+        "de_l20_c05_s37",
+        "de_l20_c05_s38",
+        "de_l20_c05_s39",
+        "de_l20_c05_s40",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "bounded-neighbourhood-pickup-negotiation",
+        participants: "formal-contact-and-volunteer-team",
+        goal: "negotiate-who-can-help-with-the-pickup-without-imposing-an-obligation",
+        contextSignature: "pickup-feasibility-negotiation",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "Die Abholrunde bleibt offen, weil wir uns helfen können. Frau Keller, Sie können die Kisten morgen abholen.",
+        exit: "Die Abholrunde bleibt offen, weil wir uns helfen können. Frau Keller, Sie können die Kisten morgen abholen.",
+        independentEvidenceByPacketId: "de_l20_c05_s40",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l20_c05_s35", "de_l20_c05_s36"],
+      checkpoint: {
+        packetId: "de_l20_c05_s40",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c05_abholrunde_v1",
+            semanticIdentity:
+              "abholrunde|planned pickup round negotiated without imposing an obligation",
+            lemmaOrExpression: "Abholrunde",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Abholrunde",
+              plural: "Abholrunden",
+            },
+            nounPackageIdentity: "die|abholrunde|abholrunden",
+            verbPackage: null,
+            senseGloss:
+              "planned pickup round negotiated without imposing an obligation",
+            communicativeUse:
+              "Die Abholrunde bleibt offen, weil wir uns helfen können. Frau Keller, Sie können die Kisten morgen abholen.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch05",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch05",
+              checkpointPacketId: "de_l20_c05_s40",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "mediation",
+              situationFacet: "goal",
+              facetValue:
+                "independently-negotiate-who-can-help-with-the-pickup-without-imposing-an-obligation",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l20_c05_s40"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "food-bank-pickup-roster-negotiation",
+          participants: "formal-site-contact-and-driver-team",
+          goal: "independently-negotiate-who-can-help-with-the-pickup-without-imposing-an-obligation",
+          contextSignature: "food-bank-pickup-feasibility-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c03", "de_l20_c04"],
+        targetsFutureChapterIds: ["de_l20_c06"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s55",
+        },
+      },
+    },
+    {
+      id: "de_l20_c06",
+      ordinal: 6,
+      lessonOutcomeId: "de_l20_ch06",
+      lessonOutcome: "repair a split or reordered verb cluster",
+      packetIds: [
+        "de_l20_c06_s41",
+        "de_l20_c06_s42",
+        "de_l20_c06_s43",
+        "de_l20_c06_s44",
+        "de_l20_c06_s45",
+        "de_l20_c06_s46",
+        "de_l20_c06_s47",
+        "de_l20_c06_s48",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_separable_verb_bracket_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "pickup-message-quality-check",
+        participants: "learner-and-language-support-reviewer",
+        goal: "repair-one-split-and-one-reordered-right-bracket-cluster",
+        contextSignature: "pickup-cluster-dual-repair",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "[1] weil wir die Kisten heute müssen abholen → weil wir die Kisten heute abholen müssen. [2] weil wir müssen die Kisten heute abholen → weil wir die Kisten heute abholen müssen. Die Reihenfolge ist jetzt richtig.",
+        exit: "[1] weil wir die Kisten heute müssen abholen → weil wir die Kisten heute abholen müssen. [2] weil wir müssen die Kisten heute abholen → weil wir die Kisten heute abholen müssen. Die Reihenfolge ist jetzt richtig.",
+        independentEvidenceByPacketId: "de_l20_c06_s48",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "transfer",
+          packetId: "de_l20_c06_s41",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l20_c06_s43", "de_l20_c06_s44"],
+      checkpoint: {
+        packetId: "de_l20_c06_s48",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c06_reihenfolge_v1",
+            semanticIdentity:
+              "reihenfolge|verb order that is repaired inside the controlled right bracket",
+            lemmaOrExpression: "Reihenfolge",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Reihenfolge",
+              plural: "Reihenfolgen",
+            },
+            nounPackageIdentity: "die|reihenfolge|reihenfolgen",
+            verbPackage: null,
+            senseGloss:
+              "verb order that is repaired inside the controlled right bracket",
+            communicativeUse:
+              "Falsch: weil wir die Kisten heute müssen abholen. Richtig: weil wir die Kisten heute abholen müssen. Die Reihenfolge ist jetzt richtig.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch06",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch06",
+              checkpointPacketId: "de_l20_c06_s48",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_separable_verb_bracket_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "repair",
+              situationFacet: "goal",
+              facetValue:
+                "independently-repair-one-split-and-one-reordered-right-bracket-cluster",
+              necessityClass: "REPAIR_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l20_c06_s48"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "peer-review-of-donation-pickup-note",
+          participants: "learner-and-peer-reviewer",
+          goal: "independently-repair-one-split-and-one-reordered-right-bracket-cluster",
+          contextSignature: "donation-pickup-cluster-dual-repair-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c04", "de_l20_c05"],
+        targetsFutureChapterIds: ["de_l20_c07"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s56",
+        },
+      },
+    },
+    {
+      id: "de_l20_c07",
+      ordinal: 7,
+      lessonOutcomeId: "de_l20_ch07",
+      lessonOutcome: "transfer cluster control to a new collaborative task",
+      packetIds: [
+        "de_l20_c07_s49",
+        "de_l20_c07_s50",
+        "de_l20_c07_s51",
+        "de_l20_c07_s52",
+        "de_l20_c07_s53",
+        "de_l20_c07_s54",
+        "de_l20_c07_s55",
+        "de_l20_c07_s56",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_event_passive_v1",
+      ],
+      situation: {
+        setting: "changed-community-pickup-after-helper-cancellation",
+        participants: "replacement-coordinator-and-volunteers",
+        goal: "renegotiate-the-pickup-after-one-helper-becomes-unavailable",
+        contextSignature: "changed-helper-final-transfer",
+      },
+      supportFading: {
+        entryLevel: 2,
+        exitLevel: 0,
+        entry:
+          "Frau Keller ist verhindert. Das Ersatzteam ist bereit. Die Helfer helfen sich, weil sie die Kisten heute abholen müssen. Herr Brandt, Sie bereiten sich vor, weil Sie morgen helfen können.",
+        exit: "Frau Keller ist verhindert. Das Ersatzteam ist bereit. Die Helfer helfen sich, weil sie die Kisten heute abholen müssen. Herr Brandt, Sie bereiten sich vor, weil Sie morgen helfen können.",
+        independentEvidenceByPacketId: "de_l20_c07_s56",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "delayed",
+          packetId: "de_l20_c07_s49",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "delayed",
+          packetId: "de_l20_c07_s50",
+        },
+      ],
+      chapterEvidencePacketIds: [
+        "de_l20_c07_s49",
+        "de_l20_c07_s50",
+        "de_l20_c07_s51",
+        "de_l20_c07_s52",
+        "de_l20_c07_s53",
+        "de_l20_c07_s54",
+        "de_l20_c07_s55",
+        "de_l20_c07_s56",
+      ],
+      checkpoint: {
+        packetId: "de_l20_c07_s56",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l20_c07_ersatzteam_v1",
+            semanticIdentity:
+              "ersatzteam|replacement team used for transfer after a helper cancellation",
+            lemmaOrExpression: "Ersatzteam",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "das",
+              singular: "Ersatzteam",
+              plural: "Ersatzteams",
+            },
+            nounPackageIdentity: "das|ersatzteam|ersatzteams",
+            verbPackage: null,
+            senseGloss:
+              "replacement team used for transfer after a helper cancellation",
+            communicativeUse:
+              "Frau Keller ist verhindert. Das Ersatzteam ist bereit. Die Helfer helfen sich, weil sie die Kisten heute abholen müssen. Herr Brandt, Sie bereiten sich vor, weil Sie morgen helfen können.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l20_ch07",
+            utilityProof: {
+              chapterOutcomeId: "de_l20_ch07",
+              checkpointPacketId: "de_l20_c07_s56",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "transfer",
+              situationFacet: "goal",
+              facetValue:
+                "independently-renegotiate-the-pickup-after-one-helper-becomes-unavailable",
+              necessityClass: "TRANSFER_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l20_c07_s56"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "changed-festival-equipment-pickup-call",
+          participants: "replacement-driver-and-event-volunteers",
+          goal: "independently-renegotiate-the-pickup-after-one-helper-becomes-unavailable",
+          contextSignature: "festival-equipment-changed-helper-transfer-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c05", "de_l20_c06"],
+        targetsFutureChapterIds: ["de_l21_c01"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l21_c07_s55",
+        },
+      },
+    },
+  ],
+} as const;
+
+function validateL20SemanticContract(raw: R, plan: Boundary): void {
+  const l20 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l20",
+  );
+  if (!l20) throw new Error("l20_semantic_contract_invalid:identity");
+  const expected = L20_CONTRACT as unknown as R,
+    chapters = l20.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l20.grammarBoundary as R,
+    expectedBoundary = expected.grammarBoundary as R;
+  if (l20.lessonOrdinal !== expected.lessonOrdinal || chapters.length !== 7)
+    throw new Error("l20_semantic_contract_invalid:identity");
+  if (boundary.noExpansion !== expectedBoundary.noExpansion)
+    throw new Error("l20_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(0, 1),
+      ) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(1, 3),
+      ) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(3),
+      ) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(expectedBoundary.allowedConstructIds) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(
+        (expectedChapters[6].checkpoint as R).integratedConstructIds,
+      )
+  )
+    throw new Error("l20_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l20_c07_s${n}`),
+    l19 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l19",
+    ) as R;
+  if (
+    !l19 ||
+    JSON.stringify(
+      (l19.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l19_l20_inverse_provenance_invalid");
+  const c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R,
+    expectedC06 = expectedChapters[5].supportFading as R,
+    expectedC07 = expectedChapters[6].supportFading as R;
+  if (
+    c06.entry !== expectedC06.entry ||
+    c06.exit !== expectedC06.exit ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l20_c06_repair_items");
+  if (
+    String(c07.entry).includes("Das Ersatzteam hilft sich") ||
+    String(c07.exit).includes("Das Ersatzteam hilft sich")
+  )
+    throw new Error("l20_c07_singular_collective_reciprocal_leak");
+  if (
+    !String(c07.entry).includes("Herr Brandt, Sie bereiten sich vor") ||
+    !String(c07.exit).includes("Herr Brandt, Sie bereiten sich vor")
+  )
+    throw new Error("l20_c07_formal_sie_sich_missing");
+  if (
+    c07.entry !== expectedC07.entry ||
+    c07.exit !== expectedC07.exit ||
+    JSON.stringify(chapters[6].situation) !==
+      JSON.stringify(expectedChapters[6].situation)
+  )
+    throw new Error("l20_c07_final_transfer");
+  const signatures = new Set<string>(),
+    ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const expectedChapter = expectedChapters[index],
+      cp = chapter.checkpoint as R,
+      expectedCp = expectedChapter.checkpoint as R;
+    if (
+      chapter.id !== expectedChapter.id ||
+      chapter.ordinal !== expectedChapter.ordinal ||
+      chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+      chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+      JSON.stringify(chapter.packetIds) !==
+        JSON.stringify(expectedChapter.packetIds)
+    )
+      throw new Error("l20_semantic_contract_invalid:identity");
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedChapter.allowedConstructIds) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(expectedChapter.prohibitedConstructIds) ||
+      JSON.stringify(cp.integratedConstructIds) !==
+        JSON.stringify(expectedCp.integratedConstructIds)
+    )
+      throw new Error("l20_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(expectedChapter.lifecycleAnchors)
+    )
+      throw new Error("l20_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify(chapter.supportFading) !==
+      JSON.stringify(expectedChapter.supportFading)
+    )
+      throw new Error("l20_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify([expectedChapter.situation, expectedCp.newSituation])
+    )
+      throw new Error("l20_semantic_contract_invalid:situations");
+    for (const sit of [chapter.situation as R, cp.newSituation as R]) {
+      const signature = String(sit.contextSignature);
+      if (signatures.has(signature))
+        throw new Error("l20_semantic_contract_invalid:situations");
+      signatures.add(signature);
+    }
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(expectedChapter.chapterEvidencePacketIds)
+    )
+      throw new Error("l20_semantic_contract_invalid:evidence");
+    if (
+      JSON.stringify(chapter.recallSchedule) !==
+      JSON.stringify(expectedChapter.recallSchedule)
+    )
+      throw new Error("l20_semantic_contract_invalid:identity");
+    const senses = cp.plannedNewLexicalSenses as R[],
+      expectedSenses = expectedCp.plannedNewLexicalSenses as R[];
+    if (senses.length !== 1 || expectedSenses.length !== 1)
+      throw new Error("l20_semantic_contract_invalid:lexical_packages");
+    const sense = senses[0],
+      expectedSense = expectedSenses[0],
+      actualPackage = clone(sense),
+      expectedPackage = clone(expectedSense);
+    delete actualPackage.utilityProof;
+    delete expectedPackage.utilityProof;
+    if (
+      ids.has(String(sense.id)) ||
+      semantics.has(String(sense.semanticIdentity)) ||
+      JSON.stringify(actualPackage) !== JSON.stringify(expectedPackage) ||
+      cp.lexicalStatus !== expectedCp.lexicalStatus
+    )
+      throw new Error("l20_semantic_contract_invalid:lexical_packages");
+    ids.add(String(sense.id));
+    semantics.add(String(sense.semanticIdentity));
+    if (
+      JSON.stringify(sense.utilityProof) !==
+      JSON.stringify(expectedSense.utilityProof)
+    )
+      throw new Error("l20_semantic_contract_invalid:lexical_utility");
+  });
+  const surface = JSON.stringify(l20)
+    .replaceAll(String(expectedBoundary.noExpansion), "")
+    .replaceAll(String(expectedC06.entry), "")
+    .replaceAll(String(expectedC07.entry), "")
+    .replaceAll(
+      String(
+        (
+          (
+            (expectedChapters[5].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).communicativeUse,
+      ),
+      "",
+    );
+  if (/müssen abholen|split cluster|alternative cluster order/iu.test(surface))
+    throw new Error("l20_infinitive_cluster_invalid");
+  if (
+    /modal Perfekt|Ersatzinfinitiv|hätte .* müssen|hat .* müssen/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l20_modal_perfekt_leak");
+  if (/relative clause|der die das welcher|Relativsatz/iu.test(surface))
+    throw new Error("l20_relative_clause_leak");
+  if (/event passive|state passive|wird abgeholt|ist abgeholt/iu.test(surface))
+    throw new Error("l20_event_passive_leak");
+  if (
+    /already satisfies DE-INTERACTION-001|learnerArtifactsAuthorized.{0,10}true|sessions|release|audio|mockup/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l20_interaction_future_boundary_invalid");
+  if (/English contour|copy English|English reuse/iu.test(surface))
+    throw new Error("l20_english_contour_leak");
+  if (JSON.stringify(l20) !== JSON.stringify(expected))
+    throw new Error("l20_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -8333,6 +9412,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l19")
   )
     validateL19SemanticContract(raw, l19Plan);
+  const l20Plan = source.get("de_l20");
+  if (
+    l20Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l20")
+  )
+    validateL20SemanticContract(raw, l20Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -8581,6 +9666,16 @@ function validate(raw: unknown): {
               sv.id === "de_lex_plan_l19_c06_formulierung_v1" &&
               sv.semanticIdentity ===
                 "formulierung|wording whose formal-address and reciprocal forms are under repair"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l20_c01_abholplan_v1" &&
+              sv.semanticIdentity ===
+                "abholplan|pickup plan used to ground the controlled right-bracket cluster"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l20_c03_zeitplan_v1" &&
+              sv.semanticIdentity ===
+                "zeitplan|timetable used to contrast a simple modal bracket with a clause-final cluster"
             )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
@@ -9142,6 +10237,39 @@ function expectL19PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL19SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL20Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l20",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL20SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL20PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l20") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL20SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -11576,6 +12704,116 @@ function fixtures(): void {
         `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
       );
   }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;19\/32 lessons;133\/224 chapters/u);
+
+  const l20 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l20") as R;
+  expectL20Exact((raw) => {
+    const lesson = l20(raw);
+    lesson.lessonOrdinal = 21;
+    const packetIds = (lesson.chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, "l20_semantic_contract_invalid:identity");
+  expectL20Exact((raw) => {
+    (l20(raw).grammarBoundary as R).noExpansion =
+      "Teach modal Perfekt and free cluster order.";
+  }, "l20_semantic_contract_invalid:no_expansion");
+  expectL20PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).reverse();
+  }, "l20_semantic_contract_invalid:sets");
+  expectL20Exact((raw) => {
+    (l20(raw).chapters as R[])[6].lifecycleAnchors = [];
+  }, "l20_semantic_contract_invalid:anchors");
+  expectL20Exact((raw) => {
+    ((l20(raw).chapters as R[])[1].supportFading as R).exitLevel = 1;
+  }, "l20_semantic_contract_invalid:support_fading");
+  expectL20Exact((raw) => {
+    const chapters = l20(raw).chapters as R[];
+    ((chapters[1].checkpoint as R).newSituation as R).contextSignature = (
+      (chapters[0].checkpoint as R).newSituation as R
+    ).contextSignature;
+  }, "l20_semantic_contract_invalid:situations");
+  expectL20Exact((raw) => {
+    const sense = (
+      ((l20(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.nounPackage as R).article = "das";
+  }, "l20_semantic_contract_invalid:lexical_packages");
+  expectL20Exact((raw) => {
+    const sense = (
+      ((l20(raw).chapters as R[])[2].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.utilityProof as R).facetValue =
+      "distinguish-main-clause-modal-bracket-from-weil-final-cluster";
+  }, "l20_semantic_contract_invalid:lexical_utility");
+  expectL20Exact((raw) => {
+    ((l20(raw).chapters as R[])[3].chapterEvidencePacketIds as string[]).pop();
+  }, "l20_semantic_contract_invalid:evidence");
+  expectL20Exact((raw) => {
+    const l19 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l19",
+    ) as R;
+    (
+      ((l19.chapters as R[])[6].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "de_l20_c07_s56";
+  }, "l19_l20_inverse_provenance_invalid");
+  expectL20Exact((raw) => {
+    ((l20(raw).chapters as R[])[5].supportFading as R).entry =
+      "weil wir die Kisten heute müssen abholen → weil wir die Kisten heute abholen müssen.";
+  }, "l20_c06_repair_items");
+  expectL20Exact((raw) => {
+    const support = (l20(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Das Ersatzteam ist bereit.",
+      "Das Ersatzteam ist morgen bereit.",
+    );
+  }, "l20_c07_final_transfer");
+  expectL20Exact((raw) => {
+    l20(raw).clusterProbe = "weil wir die Kisten heute müssen abholen";
+  }, "l20_infinitive_cluster_invalid");
+  expectL20Exact((raw) => {
+    l20(raw).modalPerfektProbe = "Teach modal Perfekt with Ersatzinfinitiv.";
+  }, "l20_modal_perfekt_leak");
+  expectL20Exact((raw) => {
+    l20(raw).relativeClauseProbe = "Teach a relative clause.";
+  }, "l20_relative_clause_leak");
+  expectL20Exact((raw) => {
+    l20(raw).passiveProbe = "Teach event passive: Die Kiste wird abgeholt.";
+  }, "l20_event_passive_leak");
+  expectL20Exact((raw) => {
+    l20(raw).learnerArtifactsAuthorized = true;
+  }, "l20_interaction_future_boundary_invalid");
+  expectL20Exact((raw) => {
+    l20(raw).englishContourProbe = "Copy English reuse into L20.";
+  }, "l20_english_contour_leak");
+  expectL20Exact((raw) => {
+    const support = (l20(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Die Helfer helfen sich",
+      "Das Ersatzteam hilft sich",
+    );
+  }, "l20_c07_singular_collective_reciprocal_leak");
+  expectL20Exact((raw) => {
+    const support = (l20(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Herr Brandt, Sie bereiten sich vor",
+      "Herr Brandt, Sie helfen morgen",
+    );
+  }, "l20_c07_formal_sie_sich_missing");
+  const prematureL20 = clone(json(FILE)) as R;
+  prematureL20.lessons = (prematureL20.lessons as R[]).slice(0, 20);
+  assert.throws(() => {
+    const result = validate(prematureL20);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;20\/32 lessons;140\/224 chapters/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

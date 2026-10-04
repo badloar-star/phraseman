@@ -89,7 +89,7 @@
     },
     {
       "sourcePath": "factory/КОНСТИТУЦИЯ.md",
-      "sha256": "da702a4fd1f551b96222163913f82f0ff509a0251c3900ba38b17dd8c5b43c70"
+      "sha256": "7c37e01e8034b51c174930d12e3753fa34349f443fe4d4ba8cdbb341dea749f2"
     },
     {
       "sourcePath": "factory/МЕТОД_РАБОТЫ.md",
@@ -149,7 +149,7 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/author.md",
-      "sha256": "ade7e4f0ac1754bb23e5a2e2e30a3c62bd23c8f0867e344744e31d69430c28c8"
+      "sha256": "4665a0e7dabca36ec01eafdb94bc518258259b6bcb3f18c68783c8f1d4123140"
     },
     {
       "sourcePath": "factory/pipeline/prompts/editor.md",
@@ -161,55 +161,55 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_learner.md",
-      "sha256": "2b7dcf047f9dc41173b450ff074877fcff874aaa497efdf15ad867f81accf5a6"
+      "sha256": "902731ebba5b9693d2afb9feae87d798b0d9b00ba53eb8d42b9482fc324c2d65"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_nonsense.md",
-      "sha256": "5f9f7c467a4db4fbf68b758955054e92f49218b9cdd8ed852ebaddbfcbb0ff2d"
+      "sha256": "0897be8da50267458fa8d94279528336ac48e05cfbad93211d1a7a3c2223a1b1"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_pedagogy.md",
-      "sha256": "4c224c5fc3941c34d03a34d79d97047042371e3e04dbf17b7ed698d5581339cf"
+      "sha256": "660af6cee646441389214e59f4d8144df0a585995de9cdb6f6f14de184518f63"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_progression.md",
-      "sha256": "5d32fe1975a0961fe91f21b45fed0af26171dc371e87f9ffabdfedc71f72f610"
+      "sha256": "66b30265694ca7b283bc4729bf6a64e3cf77f1b4a4b25bcb3724e20471e9bc2b"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_reader.md",
-      "sha256": "dced5acf848ffccf6ddb66c73e7ad58efc7759ea3f8173ca807e1956529d294c"
+      "sha256": "f8256cb683b44435c2260b17b2bc49ba9d1bab914c860bbb8e9dfb1c7c9f0384"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_taste.md",
-      "sha256": "66742ff8c52a31c4bf685d84cc43517bd4bf3446b03973912938b0065023cf73"
+      "sha256": "03dd81acb3c00b544b936c29a5d34c41a880121b24d1444e629edf4708cef166"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale.md",
-      "sha256": "6687c15a0c1988c4cd4993eb938d26aa8b7d8cd9d3b6847250fccd762596b266"
+      "sha256": "09b38eebb7506b6a161f93aaec5c301a94eea222f574f5612a1a01c147783555"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale_batch.md",
-      "sha256": "3cb97b2486041031ac78ccb7b72e71bde3a61c6de059287994a9aa4e173b63a7"
+      "sha256": "2d1f2df6be7dadc221ee139aefea6ab4db0c4d9246aae98de362f51a481a0d45"
     },
     {
       "sourcePath": "factory/pipeline/prompts/localize.md",
-      "sha256": "30adefc3e786fa951a4a19317636eeecf0397cc3e1ccff7bba72365022e55450"
+      "sha256": "93a42669372f15211e0075a753a79638c18e74302e66cf9d81bd947c730803dc"
     },
     {
       "sourcePath": "factory/pipeline/prompts/localize_batch.md",
-      "sha256": "705b9eca1703b4fd6b586bd84f7879c0fa278c67729d18138471204277254fd4"
+      "sha256": "14ced943686bf35ea4f1abe84ad821ba29a8999df240111f4f058a86616c179c"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_pre.md",
-      "sha256": "f94b95a44dfca3c1435af5dd58bf3654bdd51cb2dd1c13024d993e8a03d3d9f2"
+      "sha256": "01adbc7dc8450b4b2b6a8f04c8dd1b3f73921938fff99551ab7eb41fdbdcd503"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_post.md",
-      "sha256": "f7a0bebc78cf43bebff224d9bf0ee5229d621290604ffb485051627c062d4a6e"
+      "sha256": "3dea5552f1210fe078cf9e5874f92cd27b95d853c146007a4891344ec7bf360d"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_release.md",
-      "sha256": "86182810fb7818c8e8401a5bef732abd2807c5534020fc9d73f7be0942b3b4d3"
+      "sha256": "4747c146a7f4936e83b41585de3b36e6c2344c08815ebb262b95d39a21cb9e20"
     }
   ],
   "requirements": [
@@ -301,6 +301,16 @@
       "applicability": "always",
       "severity": "HOLD",
       "assertion": "Каждая немецкая learner-facing interaction проверяет ровно одну фразу целевого языка и один соответствующий target; context_gap_grammar имеет ровно один видимый ___ с одним естественным немецким fragment, assessed target/audio/voice не содержит ;, ； или |, correctText непуст и конкретен, а dictation target точно равен referenceAudio.transcript. Последовательность нескольких реплик сохраняется без потерь как отдельные interaction с собственными ID, evaluator/ответом, аудио и feedback; RU и UK сохраняют одинаковые число и порядок.",
+      "family": "interaction_granularity"
+    },
+    {
+      "id": "DE-INTERACTION-002",
+      "sourcePath": "factory/КОНСТИТУЦИЯ.md",
+      "sourceSection": "Assessed target/audio/voice содержит только целевой язык.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR", "RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкие assessed target, audio и voice содержат только немецкий язык; локализованные служебные маркеры, подписи интерфейса и пояснения не допускаются внутри немецкой target-фразы или audio transcript.",
       "family": "interaction_granularity"
     },
     {

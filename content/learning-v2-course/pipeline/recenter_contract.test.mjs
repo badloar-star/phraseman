@@ -131,26 +131,41 @@ const openingRequirementRows = [
   },
 ];
 
-const germanInteractionRequirement = {
-  id: "DE-INTERACTION-001",
-  sourcePath: "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
-  sourceSection:
-    "## Применимое общее решение владельца 2026-10-03 — одна немецкая фраза на одно взаимодействие",
-  phase: ["PRE_AUTHOR", "POST_AUTHOR", "RELEASE_PROJECTION"],
-  applicability: "always",
-  severity: "HOLD",
-  assertion:
-    "Каждая немецкая learner-facing interaction проверяет ровно одну фразу целевого языка и один соответствующий target; context_gap_grammar имеет ровно один видимый ___ с одним естественным немецким fragment, assessed target/audio/voice не содержит ;, ； или |, correctText непуст и конкретен, а dictation target точно равен referenceAudio.transcript. Последовательность нескольких реплик сохраняется без потерь как отдельные interaction с собственными ID, evaluator/ответом, аудио и feedback; RU и UK сохраняют одинаковые число и порядок.",
-  family: "interaction_granularity",
-};
+const germanInteractionRequirements = [
+  {
+    id: "DE-INTERACTION-001",
+    sourcePath: "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
+    sourceSection:
+      "## Применимое общее решение владельца 2026-10-03 — одна немецкая фраза на одно взаимодействие",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR", "RELEASE_PROJECTION"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion:
+      "Каждая немецкая learner-facing interaction проверяет ровно одну фразу целевого языка и один соответствующий target; context_gap_grammar имеет ровно один видимый ___ с одним естественным немецким fragment, assessed target/audio/voice не содержит ;, ； или |, correctText непуст и конкретен, а dictation target точно равен referenceAudio.transcript. Последовательность нескольких реплик сохраняется без потерь как отдельные interaction с собственными ID, evaluator/ответом, аудио и feedback; RU и UK сохраняют одинаковые число и порядок.",
+    family: "interaction_granularity",
+  },
+  {
+    id: "DE-INTERACTION-002",
+    sourcePath: "factory/КОНСТИТУЦИЯ.md",
+    sourceSection: "Assessed target/audio/voice содержит только целевой язык.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR", "RELEASE_PROJECTION"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion:
+      "Немецкие assessed target, audio и voice содержат только немецкий язык; локализованные служебные маркеры, подписи интерфейса и пояснения не допускаются внутри немецкой target-фразы или audio transcript.",
+    family: "interaction_granularity",
+  },
+];
 
 function germanInteractionContractIssues(manifest) {
-  const actual = manifest.requirements.find(
-    (item) => item.id === germanInteractionRequirement.id,
-  );
-  return JSON.stringify(actual) === JSON.stringify(germanInteractionRequirement)
-    ? []
-    : ["german_interaction_requirement_mismatch:DE-INTERACTION-001"];
+  return germanInteractionRequirements.flatMap((expected) => {
+    const actual = manifest.requirements.find(
+      (item) => item.id === expected.id,
+    );
+    return JSON.stringify(actual) === JSON.stringify(expected)
+      ? []
+      : [`german_interaction_requirement_mismatch:${expected.id}`];
+  });
 }
 
 function openingContractIssues(manifest) {
@@ -329,7 +344,7 @@ test("every clear-opening semantic row fails closed on a plausible non-empty mut
 
 test("German one-phrase interaction owner decision is exact and language-isolated", () => {
   const manifest = load();
-  assert.equal(manifest.requirements.length, 101);
+  assert.equal(manifest.requirements.length, 102);
   assert.deepEqual(germanInteractionContractIssues(manifest), []);
   assert.ok(
     !manifest.sourceDocuments.some(
@@ -379,12 +394,51 @@ test("German one-phrase interaction contract fails closed on weakening and sourc
   for (const mutate of mutations) {
     const broken = structuredClone(manifest);
     const row = broken.requirements.find(
-      (item) => item.id === germanInteractionRequirement.id,
+      (item) => item.id === germanInteractionRequirements[0].id,
     );
     assert.ok(row);
     mutate(row);
     assert.deepEqual(germanInteractionContractIssues(broken), [
       "german_interaction_requirement_mismatch:DE-INTERACTION-001",
+    ]);
+  }
+});
+
+test("German target-language-only interaction contract fails closed on weakening and English substitution", () => {
+  const manifest = load();
+  const mutations = [
+    (row) => {
+      row.phase = ["PRE_AUTHOR", "POST_AUTHOR"];
+    },
+    (row) => {
+      row.applicability = "release";
+    },
+    (row) => {
+      row.sourcePath =
+        "factory/judgements/owner/2026-10-03_single_phrase_per_interaction.md";
+    },
+    (row) => {
+      row.assertion = row.assertion.replace(
+        "содержат только немецкий язык",
+        "могут содержать локализованные маркеры",
+      );
+    },
+    (row) => {
+      row.assertion = row.assertion.replace(
+        "не допускаются внутри немецкой target-фразы или audio transcript",
+        "допускаются внутри немецкой target-фразы или audio transcript",
+      );
+    },
+  ];
+  for (const mutate of mutations) {
+    const broken = structuredClone(manifest);
+    const row = broken.requirements.find(
+      (item) => item.id === germanInteractionRequirements[1].id,
+    );
+    assert.ok(row);
+    mutate(row);
+    assert.deepEqual(germanInteractionContractIssues(broken), [
+      "german_interaction_requirement_mismatch:DE-INTERACTION-002",
     ]);
   }
 });

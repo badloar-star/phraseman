@@ -938,10 +938,29 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       // Холодный старт после вытеснения (открытой области ещё нет): то же
       // состояние device_taken_over, без выхода из провайдера и без сети дальше.
       if (code === LEASE_EVICTED_CODE && mode === 'resume') {
-        const generation = this.state.generation;
+        // зачем (AA S6, дефект D2 из матрицы M06): поколение сдвигается, как в
+        // reducer при вытеснении. Без этого вход после перезапуска получал НОВУЮ
+        // сессию в ТОМ ЖЕ поколении, забор области отвергал её
+        // (scope_metadata_invalid) и вход падал «закрыто» с выходом из провайдера.
+        const generation = accountAuthorityGeneration(this.state.generation.value + 1);
         this.commitState(freezeAccountAuthorityState({ phase: 'device_taken_over', deviceId: this.deviceId, generation }));
         this.log.warn('[AA-S4] lease establish_evicted_cold', { kind: mode });
+        this.log.info('[AA-S6] evicted_cold generation_advanced', { generation: generation.value });
         return freezeAccountAuthorityResult({ type: 'device_taken_over', generation });
+      }
+      // зачем (AA S6, дефект D1 из матрицы M07): холодный старт без сети — НЕ
+      // повод выходить из провайдера (раньше failClosed выходил, и человек терял
+      // вход на каждом офлайн-запуске). Область не открывается до сети;
+      // следующий повод (возврат из фона, R1) повторит продление.
+      if (code === LEASE_UNAVAILABLE_CODE && mode === 'resume' && previousOwner === null) {
+        const reduction = reduceAccountAuthorityState(this.state, { type: 'provider_cancelled', attemptId: operationId });
+        this.commitState(reduction.state);
+        this.log.warn('[AA-S6] resume offline_cold_kept_provider', { phase: reduction.state.phase });
+        if (!reduction.result) {
+          this.log.warn('[AA-S6] resume offline_cold_result_missing', { phase: this.state.phase });
+          throw error;
+        }
+        return reduction.result;
       }
       // AA S4b: временный сбой сети при продлении живой сессии — НЕ вытеснение и
       // не выход: сессия остаётся, следующий повод (foreground) повторит.

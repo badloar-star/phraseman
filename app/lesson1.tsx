@@ -2631,9 +2631,12 @@ function LessonScreen() {
       lessonFirstQuestionVisible ? 'gate passed (first question visible), charging via gate' : 'lesson not ready for paid entry',
     );
   }, [lessonFirstQuestionVisible, lessonId]);
-  useFirstQuestionEnergyGate({
+  // зачем (D159, владелец 04.10): энергия окончательно списывается после ПЕРВОГО ОТВЕТА; вышел без ответа — возврат;
+  // повторный вход в тот же раздел урока в течение 10 мин — бесплатно.
+  const lessonEnergyGate = useFirstQuestionEnergyGate({
     intent: lessonEnergyIntent,
     screen: 'lesson1',
+    finalizeOn: 'first_answer',
     firstQuestionVisible: lessonFirstQuestionVisible,
     onResult: (result) => endEnergySpendTrace(`spend:${String(lessonId)}`, String(result)),
     onInsufficient: () => showEnergyEmptyFeedback(),
@@ -2897,6 +2900,7 @@ function LessonScreen() {
     // нельзя: иначе оплаченный урок обрывался бы на первом же ответе (заряд ушёл
     // именно на этот вход). Гейт остался ровно один — на входе, выше.
     answerInFlightRef.current = true;
+    lessonEnergyGate.markAnswered();
     const st = studyTargetRef.current;
     const expected = phraseCanonicalAnswer(phrase, st);
     const answerAlts = phraseAnswerAlternatives(phrase, st);
@@ -3316,7 +3320,7 @@ function LessonScreen() {
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId]);
+  }, [lessonEnergyGate, progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId]);
 
   const retryCurrentLessonPhraseAfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);

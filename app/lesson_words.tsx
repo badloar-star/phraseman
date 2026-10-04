@@ -2772,9 +2772,12 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   // началом упражнения. Повторный реальный вход создаёт новый intent и стоит 1 ⚡.
   // зачем: D72/D87/PM-084 — списание через единый гейт первого вопроса: первая
   // карточка видна → −1 один раз на попытку; уход до показа → возврат.
-  useFirstQuestionEnergyGate({
+  // зачем (D159, владелец 04.10): энергия окончательно списывается после ПЕРВОГО ОТВЕТА; вышел без ответа — возврат;
+  // повторный вход в тот же раздел урока в течение 10 мин — бесплатно.
+  const wordsEnergyGate = useFirstQuestionEnergyGate({
     intent: wordsEnergyIntent,
     screen: 'lesson_words',
+    finalizeOn: 'first_answer',
     firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: queue.length > 0 }),
     onInsufficient: () => onNoEnergyRef.current(),
     onCancelled: () => onCancelStartRef.current(),
@@ -2938,6 +2941,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     // обрывалась бы сразу после списания. Гейт ровно один — на входе.
     sessionTouchedRef.current = true;
     locked.current = true;
+    wordsEnergyGate.markAnswered();
 
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);

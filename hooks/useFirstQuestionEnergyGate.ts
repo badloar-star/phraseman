@@ -21,10 +21,13 @@ import { captureAccountGeneration } from '../app/account_generation';
 import { energyActivityForSessionKind, type EnergyActivityKey } from '../app/energy_contract';
 import {
   chargeFirstQuestion,
+  markFirstAnswerGiven,
   markFirstQuestionShown,
+  noteFirstQuestionSessionExit,
   recoverUnshownFirstQuestionCharges,
   refundIfFirstQuestionNotShown,
   type FirstQuestionChargeResult,
+  type FirstQuestionFinalizeOn,
   type FirstQuestionRecoveryDeps,
 } from '../app/energy_first_question_gate';
 import {
@@ -43,16 +46,24 @@ export type FirstQuestionEnergyGateOptions = Readonly<{
   onCancelled?: () => void;
   /** Любой итог авто-списания (для трасс экрана), вызывается до обработчиков. */
   onResult?: (result: FirstQuestionChargeResult) => void;
+  /**
+   * D159: 'first_answer' — списание окончательно только после первого ответа (экран зовёт `markAnswered`);
+   * вышел без ответа → возврат; повторный вход в тот же раздел урока в окне — бесплатно. По умолчанию 'shown' (D72).
+   */
+  finalizeOn?: FirstQuestionFinalizeOn;
 }>;
 
 export type FirstQuestionEnergyGate = Readonly<{
   charge: () => Promise<FirstQuestionChargeResult>;
   markShown: () => void;
   refundNotShown: (reason: string) => void;
+  /** D159: первый ответ дан — энергия списана окончательно. Повторные вызовы безопасны. */
+  markAnswered: () => void;
 }>;
 
 export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptions): FirstQuestionEnergyGate {
   const { intent, screen, firstQuestionVisible } = options;
+  const finalizeOn: FirstQuestionFinalizeOn = options.finalizeOn ?? 'shown';
   const activity = options.activity ?? energyActivityForSessionKind(intent.grant.kind);
   const { confirmActivityStart, refundActivityStart, acknowledgeSessionStart, energyReady } = useEnergy();
 
@@ -77,13 +88,19 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
   const charge = useCallback((): Promise<FirstQuestionChargeResult> => {
     const deps = depsRef.current;
     if (!deps) return Promise.resolve('cancelled');
-    return chargeFirstQuestion(deps, { activity, intent, screen });
-  }, [activity, intent, screen]);
+    return chargeFirstQuestion(deps, { activity, intent, screen, finalizeOn });
+  }, [activity, intent, screen, finalizeOn]);
 
   const markShown = useCallback(() => {
     const deps = depsRef.current;
     if (!deps) return;
     void markFirstQuestionShown(deps, operationId);
+  }, [operationId]);
+
+  const markAnswered = useCallback(() => {
+    const deps = depsRef.current;
+    if (!deps) return;
+    void markFirstAnswerGiven(deps, operationId);
   }, [operationId]);
 
   const refundNotShown = useCallback((reason: string) => {
@@ -106,7 +123,10 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
     return () => {
       mountedRef.current = false;
       const deps = depsRef.current;
+      // D159: в режиме first_answer «до первого вопроса» значит «без единого ответа» (гейт допишет no_answer).
       if (deps) void refundIfFirstQuestionNotShown(deps, operationId, `unmounted_before_first_question:${screen}`);
+      // Порядок важен: возврат синхронно ставит статус refunding — сессия без ответа окно не откроет.
+      void noteFirstQuestionSessionExit(operationId);
     };
   }, [operationId, screen]);
 
@@ -134,5 +154,5 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
     });
   }, [charge, firstQuestionVisible, markShown, operationId]);
 
-  return useMemo(() => ({ charge, markShown, refundNotShown }), [charge, markShown, refundNotShown]);
+  return useMemo(() => ({ charge, markShown, refundNotShown, markAnswered }), [charge, markShown, refundNotShown, markAnswered]);
 }

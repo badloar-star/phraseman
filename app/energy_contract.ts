@@ -102,6 +102,12 @@ export type EnergyActivityKey =
  */
 export const ENERGY_SESSION_COST = 1 as const;
 
+/**
+ * D159 (владелец 04.10): повторный вход в тот же раздел того же урока (урок / «Словарь» / «Глаголы») в течение
+ * этого окна после выхода — бесплатно: это продолжение, а не новое занятие. Единственное место значения.
+ */
+export const ENERGY_FREE_REENTRY_WINDOW_MS = 10 * 60 * 1000;
+
 export type EnergyActivityCost = 0 | typeof ENERGY_SESSION_COST;
 
 /**

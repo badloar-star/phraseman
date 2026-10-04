@@ -19,7 +19,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import type { EnergyActivityKey } from './energy_contract';
+import { ENERGY_FREE_REENTRY_WINDOW_MS, type EnergyActivityKey } from './energy_contract';
 
 export type FirstQuestionChargeResult = 'spent' | 'unlimited' | 'cancelled' | 'insufficient';
 
@@ -44,7 +44,13 @@ export type FirstQuestionRecoveryDeps = FirstQuestionGateDeps & Readonly<{
   readStartStatus: (operationId: string) => Promise<FirstQuestionLedgerStatus>;
 }>;
 
-type GateStatus = 'charging' | 'charged' | 'shown' | 'refunding' | 'refunded' | 'unlimited';
+type GateStatus = 'charging' | 'charged' | 'shown' | 'refunding' | 'refunded' | 'unlimited' | 'free_reentry';
+
+/**
+ * Когда списание становится окончательным. 'shown' — D72: при показе первого вопроса (по умолчанию).
+ * 'first_answer' — D159 (урок, «Словарь», «Глаголы»): только после первого ответа; вышел без ответа → возврат.
+ */
+export type FirstQuestionFinalizeOn = 'shown' | 'first_answer';
 
 type GateEntry = {
   status: GateStatus;
@@ -53,9 +59,41 @@ type GateEntry = {
   promise: Promise<FirstQuestionChargeResult>;
   shownRequested: boolean;
   abortReason: string | null;
+  finalizeOn: FirstQuestionFinalizeOn;
+  answerRequested: boolean;
+  reentryKey: string | null;
+  owner: string | null;
 };
 
 export const FIRST_QUESTION_GATE_PENDING_KEY = 'energy_first_question_gate_pending_v1';
+/** D159: время последнего выхода из раздела урока (ключ «activity:subject») — для бесплатного повторного входа. */
+export const FREE_REENTRY_EXITS_KEY = 'energy_free_reentry_exits_v1';
+
+type FreeReentryExits = Readonly<{ owner: string; exits: Readonly<Record<string, number>> }>;
+
+async function readFreeReentryExits(owner: string): Promise<Record<string, number>> {
+  try {
+    const raw = await AsyncStorage.getItem(FREE_REENTRY_EXITS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Partial<FreeReentryExits>;
+    if (parsed?.owner !== owner || !parsed.exits || typeof parsed.exits !== 'object') return {};
+    return { ...parsed.exits };
+  } catch (error) {
+    warn('free_reentry: exits read failed — charging normally', error);
+    return {};
+  }
+}
+
+async function writeFreeReentryExit(owner: string, key: string, exitAtMs: number): Promise<void> {
+  try {
+    const current = await readFreeReentryExits(owner);
+    // Старые выходы за окном не нужны — храним только живые.
+    const live = Object.fromEntries(Object.entries(current).filter(([, at]) => exitAtMs - at < ENERGY_FREE_REENTRY_WINDOW_MS));
+    await AsyncStorage.setItem(FREE_REENTRY_EXITS_KEY, JSON.stringify({ owner, exits: { ...live, [key]: exitAtMs } }));
+  } catch (error) {
+    warn(`free_reentry: exit write failed key=${key}`, error);
+  }
+}
 const LOG = '[ENERGY-GATE]';
 
 type PendingRecord = Readonly<{
@@ -167,9 +205,16 @@ async function refund(deps: FirstQuestionGateDeps, operationId: string, entry: G
  */
 export function chargeFirstQuestion(
   deps: FirstQuestionGateDeps,
-  input: Readonly<{ activity: EnergyActivityKey; intent: FirstQuestionGateIntent; screen: string }>,
+  input: Readonly<{
+    activity: EnergyActivityKey;
+    intent: FirstQuestionGateIntent;
+    screen: string;
+    /** D159: 'first_answer' — окончательно после первого ответа, плюс бесплатный повторный вход. */
+    finalizeOn?: FirstQuestionFinalizeOn;
+  }>,
 ): Promise<FirstQuestionChargeResult> {
   const { activity, intent, screen } = input;
+  const finalizeOn: FirstQuestionFinalizeOn = input.finalizeOn ?? 'shown';
   const operationId = intent.operationId;
   const existing = registry.get(operationId);
   if (existing) {
@@ -183,11 +228,28 @@ export function chargeFirstQuestion(
     screen,
     shownRequested: false,
     abortReason: null,
+    finalizeOn,
+    answerRequested: false,
+    reentryKey: finalizeOn === 'first_answer' ? `${activity}:${intent.grant.subjectId}` : null,
+    owner: null,
     promise: Promise.resolve('cancelled'),
   };
   registry.set(operationId, entry);
   const startedAt = Date.now();
   entry.promise = (async (): Promise<FirstQuestionChargeResult> => {
+    entry.owner = deps.getOwnerId();
+    // D159: повторный вход в тот же раздел урока в окне после выхода — продолжение, не новое занятие.
+    if (entry.reentryKey && entry.owner) {
+      const exits = await readFreeReentryExits(entry.owner);
+      const exitAt = exits[entry.reentryKey];
+      const windowLeftMs = exitAt === undefined ? -1 : ENERGY_FREE_REENTRY_WINDOW_MS - (Date.now() - exitAt);
+      if (windowLeftMs > 0) {
+        entry.status = 'free_reentry';
+        log(`free_reentry: op=${operationId} key=${entry.reentryKey} window_left_ms=${windowLeftMs} — nothing spent`);
+        return 'unlimited';
+      }
+      log(`free_reentry: none op=${operationId} key=${entry.reentryKey} lastExitAgoMs=${exitAt === undefined ? 'none' : Date.now() - exitAt}`);
+    }
     let result: FirstQuestionChargeResult;
     try {
       result = await deps.confirmActivityStart(activity, intent);
@@ -220,6 +282,11 @@ export function chargeFirstQuestion(
       await refund(deps, operationId, entry, entry.abortReason);
       return result;
     }
+    if (entry.finalizeOn === 'first_answer') {
+      if (entry.answerRequested) await acknowledge(deps, operationId, entry);
+      else if (entry.shownRequested) log(`shown: op=${operationId} screen=${screen} — refundable until first answer (D159)`);
+      return result;
+    }
     if (entry.shownRequested) await acknowledge(deps, operationId, entry);
     return result;
   })();
@@ -245,7 +312,54 @@ export async function markFirstQuestionShown(
     log(`shown: skip op=${operationId} reason=status-${entry.status}`);
     return;
   }
+  if (entry.finalizeOn === 'first_answer') {
+    // D159: показ не финализирует — запись журнала остаётся до первого ответа.
+    log(`shown: op=${operationId} screen=${entry.screen} — refundable until first answer (D159)`);
+    return;
+  }
   await acknowledge(deps, operationId, entry);
+}
+
+/**
+ * D159: первый ответ дан — списание окончательное (подтверждаем старт, снимаем запись журнала).
+ * Повторные вызовы безопасны: после подтверждения статус 'shown'.
+ */
+export async function markFirstAnswerGiven(
+  deps: FirstQuestionGateDeps,
+  operationId: string,
+): Promise<void> {
+  const entry = registry.get(operationId);
+  if (!entry) {
+    log(`answer: skip op=${operationId} reason=no-entry`);
+    return;
+  }
+  if (entry.status === 'charging') {
+    entry.answerRequested = true;
+    log(`answer: queued until charge resolves op=${operationId}`);
+    return;
+  }
+  if (entry.status !== 'charged') {
+    if (entry.status !== 'shown') log(`answer: skip op=${operationId} reason=status-${entry.status}`);
+    return;
+  }
+  log(`answer: first answer op=${operationId} screen=${entry.screen} — charge is final`);
+  await acknowledge(deps, operationId, entry);
+}
+
+/**
+ * D159: выход из раздела урока. Если энергия за сессию осталась списанной (был ответ) или сама сессия была
+ * бесплатным продолжением — запоминаем время выхода: повторный вход в окне будет бесплатным.
+ * Сессия, за которую энергию вернули, окно НЕ открывает (иначе «вошёл-вышел» = бесконечные бесплатные входы).
+ */
+export async function noteFirstQuestionSessionExit(operationId: string): Promise<void> {
+  const entry = registry.get(operationId);
+  if (!entry || !entry.reentryKey || !entry.owner) return;
+  if (entry.status !== 'shown' && entry.status !== 'free_reentry') {
+    log(`exit: no free window op=${operationId} key=${entry.reentryKey} status=${entry.status}`);
+    return;
+  }
+  log(`exit: free window opened op=${operationId} key=${entry.reentryKey} windowMs=${ENERGY_FREE_REENTRY_WINDOW_MS}`);
+  await writeFreeReentryExit(entry.owner, entry.reentryKey, Date.now());
 }
 
 /**
@@ -271,7 +385,8 @@ export async function refundIfFirstQuestionNotShown(
     log(`refund: skip op=${operationId} reason=${reason} why=status-${entry.status}`);
     return;
   }
-  await refund(deps, operationId, entry, reason);
+  // D159: в режиме first_answer сюда попадаем только без единого ответа (ответ снял бы статус charged).
+  await refund(deps, operationId, entry, entry.finalizeOn === 'first_answer' ? `no_answer:${reason}` : reason);
 }
 
 /** Текущее состояние попытки (для логов и тестов). */

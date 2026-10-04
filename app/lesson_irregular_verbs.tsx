@@ -297,9 +297,12 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   // Старт тренировки неправильных глаголов = 1 ⚡ только при готовых упражнениях.
   // зачем: D72/D87/PM-084 — единый гейт первого вопроса: −1 один раз на попытку,
   // уход до показа первого задания → возврат.
-  useFirstQuestionEnergyGate({
+  // зачем (D159, владелец 04.10): энергия окончательно списывается после ПЕРВОГО ОТВЕТА; вышел без ответа — возврат;
+  // повторный вход в тот же раздел урока в течение 10 мин — бесплатно.
+  const verbsEnergyGate = useFirstQuestionEnergyGate({
     intent: verbsEnergyIntent,
     screen: 'irregular_verbs',
+    finalizeOn: 'first_answer',
     firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: verbs.length > 0 }),
     onInsufficient: () => onNoEnergyRef.current(),
     onCancelled: () => onCancelStartRef.current(),
@@ -476,6 +479,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     // зачем: 10 ⚡ уже списаны за вход, внутри энергия не тратится — блокировать
     // ответы по нулю нельзя, иначе оплаченная тренировка обрывалась бы сразу.
     locked.current = true;
+    verbsEnergyGate.markAnswered();
 
     const verb = queue[pos % Math.max(queue.length, 1)];
     if (!verb) return;
@@ -592,7 +596,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         }
       }
     }, isCorrect ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
-  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget, attempts.registerVerdict, attemptSessionId, lessonId]);
+  }, [verbsEnergyGate, phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget, attempts.registerVerdict, attemptSessionId, lessonId]);
 
   const activeVerb = queue[pos % Math.max(queue.length, 1)];
   const activeForm = FORM_SEQ[step];

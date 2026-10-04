@@ -46,6 +46,8 @@ jest.mock('../app/account_generation', () => ({
   withRestoreApplicationLock: async (fn: () => unknown) => fn(),
   beginInitialAccountGeneration: () => {},
   invalidateAccountGeneration: () => {},
+  // зачем (04.10): каталог сообщества при загрузке подписывается на смену поколения аккаунта (очистка памяти авторских наборов), заглушке нужна подписка
+  subscribeAccountGeneration: () => ({ remove: () => undefined }),
 }));
 
 /** Каталог сообщества в этом стороже не нужен: свой набор обязан жить без сети. */

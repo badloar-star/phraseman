@@ -1,7 +1,12 @@
+// зачем (04.10): рабочая цепочка импортов экономики Learning V2 стала тянуть expo-asset, который сборка тестов не преобразует; сами проверки наград
+// владельца-репозитория не используют (зависимости передаются явно) — как и в соседнем тесте гонки, подставляем его пустой заглушкой.
+jest.mock('../app/learning_v2_owner_repository_runtime', () => ({
+  commitMistakeCorrectionWalletComposite: jest.fn(async () => ({ status: 'applied' })),
+}));
+
 import {
   buildMistakeCorrectionRewardKey,
   flushPendingMistakeCorrectionRewards,
-  settleMistakePracticeCompletionReward,
   shouldRewardMistakeCorrection,
   settleMistakePracticeAnswerRewards,
 } from '../app/mistake_practice_rewards';
@@ -48,29 +53,25 @@ describe('mistake practice rewards', () => {
     expect(shouldRewardMistakeCorrection({ ...base, independent: false })).toBe(false);
   });
 
-  test('independent correct answer gets idempotent XP and correction gets one wallet claim', async () => {
-    const registerXP = jest.fn(async () => ({ finalDelta: 5, multiplier: 1, isBonus: false }));
+  // зачем (D02/D70, 2.0): опыт (XP) удалён из приложения — прежний тест требовал «идемпотентный XP» (+5) вместе с монетой за исправление.
+  // Награда за ответ теперь одна: монета за переход «активная → исправленная», ровно одна заявка в кошелёк на цикл ошибки.
+  test('correction gets exactly one wallet claim and one reward event', async () => {
     const claimCorrectionStar = jest.fn(async () => ({ granted: true as const }));
     const appendRewardEvent = jest.fn(async () => undefined);
 
     await expect(settleMistakePracticeAnswerRewards(base, {
-      registerXP,
       claimCorrectionStar,
       appendRewardEvent,
-    })).resolves.toEqual({ xp: 5, starGranted: true });
+    })).resolves.toEqual({ starGranted: true });
 
-    expect(registerXP).toHaveBeenCalledTimes(1);
-    expect((registerXP.mock.calls[0] as unknown[])[5]).toMatchObject({
-      eventId: expect.stringMatching(/^mistake-practice-xp:v1:[a-f0-9]{64}$/),
-    });
+    expect(claimCorrectionStar).toHaveBeenCalledTimes(1);
     expect(claimCorrectionStar).toHaveBeenCalledWith(expect.objectContaining({
       rewardKey: buildMistakeCorrectionRewardKey(base),
     }));
     expect(appendRewardEvent).toHaveBeenCalledTimes(1);
   });
 
-  test('wrong or recognition-only answer cannot mint XP or a star', async () => {
-    const registerXP = jest.fn();
+  test('wrong or recognition-only answer cannot mint a star', async () => {
     const claimCorrectionStar = jest.fn();
     const appendRewardEvent = jest.fn();
 
@@ -78,34 +79,22 @@ describe('mistake practice rewards', () => {
       ...base,
       correct: false,
       afterStatus: 'active',
-    }, { registerXP, claimCorrectionStar, appendRewardEvent }))
-      .resolves.toEqual({ xp: 0, starGranted: false });
+    }, { claimCorrectionStar, appendRewardEvent }))
+      .resolves.toEqual({ starGranted: false });
 
     await expect(settleMistakePracticeAnswerRewards({
       ...base,
       support: 'recognition',
       afterStatus: 'active',
-    }, { registerXP, claimCorrectionStar, appendRewardEvent }))
-      .resolves.toEqual({ xp: 0, starGranted: false });
+    }, { claimCorrectionStar, appendRewardEvent }))
+      .resolves.toEqual({ starGranted: false });
 
-    expect(registerXP).not.toHaveBeenCalled();
     expect(claimCorrectionStar).not.toHaveBeenCalled();
     expect(appendRewardEvent).not.toHaveBeenCalled();
   });
 
-  test('completion bonus uses one stable XP event per session', async () => {
-    const registerXP = jest.fn(async () => ({ finalDelta: 10, multiplier: 1, isBonus: false }));
-
-    await expect(settleMistakePracticeCompletionReward({
-      sessionId: 'mistake-session:v1:abc',
-      initialCount: 5,
-      studyTarget: 'en',
-    }, { registerXP })).resolves.toBe(10);
-
-    expect((registerXP.mock.calls[0] as unknown[])[5]).toMatchObject({
-      eventId: expect.stringMatching(/^mistake-practice-complete-xp:v1:[a-f0-9]{64}$/),
-    });
-  });
+  // зачем (D02/D70, 2.0): тест «бонус за завершение даёт одно стабильное XP-событие на сессию» удалён вместе с XP и функцией
+  // settleMistakePracticeCompletionReward — бонуса опыта за завершённую сессию «Моих ошибок» больше нет.
 
   test('offline reward failure stays pending and replays the same correction safely', async () => {
     const values = new Map<string, string>();

@@ -48,7 +48,6 @@ test('account switch between correction evidence load and commit cannot credit t
     correct: true, independent: true, support: 'production',
     beforeStatus: 'active', afterStatus: 'corrected',
   }, {
-    registerXP: jest.fn(async () => ({ finalDelta: 5, multiplier: 1, isBonus: false })),
   })).rejects.toThrow('mistake_correction_account_generation_stale');
   expect(mockCommitComposite).not.toHaveBeenCalled();
 });

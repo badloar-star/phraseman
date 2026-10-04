@@ -12,7 +12,10 @@ describe('lesson mistake-practice capture wiring', () => {
     expect(source).toContain('captureObjectiveAttempt({');
     expect(source).toContain("verdict: 'wrong'");
     expect(source).toContain("objective: true");
-    expect(source).toContain("kind: 'word_order'");
+    // зачем (репорт #15 Ольга, 2026-09-20): здесь стоял жёсткий kind: 'word_order' — ЛЮБАЯ ошибка урока приходила в «Мои ошибки» с подсказкой
+    // «Сверь порядок слов». Теперь тип считается по самому промаху (lessonMistakeFacet); прежняя строка сторожила именно этот баг.
+    expect(source).toContain('kind: lessonMistakeFacet({');
+    expect(source).not.toContain("kind: 'word_order'");
   });
 
   test('does not keep the three old long-term mistake writers', () => {

@@ -2,17 +2,19 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` and `de_l25` closure across Stage A (Task 4
-authority repair), Stage B (Task 5 L24 chapter blueprint plus fail-closed
-chapter gate) and Stage C (Task 5 L25 chapter blueprint plus fail-closed
-chapter gate).
-**Mode:** fresh independent read-only reviews after each GREEN. Stages B and C
-used exact-spec and native-German semantic judges. No reviewer authored or
+**Scope:** the bounded `de_l24`, `de_l25` and `de_l26` closure across Stage A
+(Task 4 authority repair), Stage B (Task 5 L24 chapter blueprint plus
+fail-closed chapter gate), Stage C (Task 5 L25 chapter blueprint plus
+fail-closed chapter gate) and Stage D (Task 5 L26 chapter blueprint plus
+fail-closed chapter gate).
+**Mode:** fresh independent read-only reviews after each GREEN. Stages B, C and
+D used exact-spec and native-German semantic judges. No reviewer authored or
 mutated the reviewed files.
 **Reviewed commits:** Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
 `eadfba9fe2225a9205eb9242a62f74496685e3fc`; Stage C
-`917c02a80599354847ba211e205484751a53fef0`.
+`917c02a80599354847ba211e205484751a53fef0`; Stage D
+`4091319a91241636f0f1d9ff9a2837857bd914ee`.
 
 ## Stable authority identities
 
@@ -113,6 +115,51 @@ relation, broader narrative Präteritum, L26 grammar, Task 6 lexical
 adjudication, learner-facing surface, release, audio, mockup or English-contour
 reuse.
 
+## Stage D — closed Task 5 L26 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `04903AA1A8B79444F81A448ADD8F680C044D47C264A8CFCAD9E04AC49AAE814B` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `71D6423750D43367DC41323A11C35411271E6DA271033C73E8174F7470EE3989` |
+
+The canonical Task 5 `de_l26` chapter object SHA-256 is
+`695CB33190DB3141A47A27F3A26988C9906CD15A6A469AEA70F03FED3660424A`.
+The chapter gate pins the exact Task 4 `de_l26` plan SHA-256
+`805FE54F40B7F2C9229F6BEC162BCF2D4EB686E0F849A1DCA1435D5AF3106F1D`.
+
+The materialized lesson contains exactly seven chapters and 56 packet IDs. It
+preserves the declared lifecycle anchors, inverse L25→L26 recall provenance,
+per-chapter changed-context evidence, controlled lexical packages, exact
+support fading and independent final transfer at `de_l26_c07_s56`.
+
+Stage D received two fresh independent reviews on the exact identities above:
+
+- exact-spec review: `PASS`, `P0=0`, `P1=0`, `P2=0`;
+- native-German semantic review: `PASS`, `P0=0`, `P1=0`, `P2=0`.
+
+The native review confirmed bounded, natural German for present third-person
+singular `wird` plus a clause-final bare infinitive in one future-time use and
+one cautious modal-assessment use marked by `wahrscheinlich`, contrasted with
+ordinary Präsens plus explicit future-time wording and the known event/state
+passive distinction. It found no universal-future rule, other `werden`
+person-number forms, question or negation-scope expansion, future perfect,
+modal Perfekt, double-infinitive cluster, new passive paradigm, recipient
+passive, agent phrase, participle-formation rule, new tense, new connector, new
+case/preposition relation, broader narrative Präteritum, functional Genitiv,
+L27 grammar, Task 6 lexical adjudication, learner-facing surface, release,
+audio, mockup or English-contour reuse.
+
+The required repair loop remained fail-closed: a transient file lock was
+resolved safely; initial duplicate hostile mutations #4–#10 and the
+native-German C4/C5 findings blocked closure; the amended guardian's exact
+four-field repair packet changed only
+`chapters[3].supportFading.entry`,
+`chapters[3].checkpoint.plannedNewLexicalSenses[0].communicativeUse`,
+`chapters[4].supportFading.entry` and
+`chapters[4].checkpoint.plannedNewLexicalSenses[0].communicativeUse`; both C4/C5
+`supportFading.exit` values remained unchanged; and both fresh reviewers reran
+on the final bytes before returning `PASS`, with `P0=0`, `P1=0`, `P2=0`.
+
 ## Hostile and deterministic evidence
 
 - All 52 ordered L24 hostile mutations fail closed with their dedicated
@@ -156,6 +203,33 @@ session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
   this cumulative receipt's final SHA-256; at that point it must report
   `PASS (31/31)`.
 
+## L26 hostile and deterministic evidence
+
+- All 60 ordered L26 hostile mutations fail closed with their dedicated
+  diagnostics, including future/modal meaning collapse, ordinary
+  present-future erasure, `wahrscheinlich` cue loss, person-number and tense
+  expansion, question and negation-scope leakage, future perfect, modal
+  Perfekt, double-infinitive clusters, passive expansion, lexical/situation
+  drift, future learner-layer flags, topology/provenance mutations and terminal
+  transfer weakening.
+- L26 focused chapter gate: `PASS (de_l26; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-26 chapter gate: `PASS (prefix 26; 182 chapters; 1456 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L25 focused and prefix-25 regression gates: `PASS`.
+- The unscoped Task 5 gate remains the required incompleteness signal:
+  `INCREMENTAL_TASK5;26/32 lessons;182/224 chapters`.
+- Task 4 lesson-boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32
+session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
+- Research-authority gate: `PASS (53 claims)`.
+- Grammar-graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
+- Current one-phrase interaction gate: `PASS (72/72)`.
+- Schema and owner-decision gates: `PASS`.
+- Prettier, ESLint and scoped diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite is valid only after the manifest binds
+  this cumulative receipt's final SHA-256; at that point it must report
+  `PASS (31/31)`.
+
 ## Identity-cycle boundary
 
 This receipt deliberately excludes
@@ -168,10 +242,10 @@ weakens the separate recenter hash gate or handover obligation.
 
 ## Closed boundary and next authorized step
 
-- `de_l24` and `de_l25` are closed for Task 5 at the reviewed commits above;
-  their applicable Task 4 identities remain pinned by the fail-closed gate.
+- `de_l24`, `de_l25` and `de_l26` are closed for Task 5 at the reviewed commits
+  above; their applicable Task 4 identities remain pinned by the fail-closed gate.
 - The next exact grammar-first blueprint task is a fresh instruction reread and
-  content-addressed guardian for `de_l26`, followed by one bounded lesson and
+  content-addressed guardian for `de_l27`, followed by one bounded lesson and
   both independent final reviews.
 - Task 6 lexical reconciliation remains mandatory before exact learner-facing
   packet authoring.
@@ -181,5 +255,5 @@ weakens the separate recenter hash gate or handover obligation.
 - This receipt authorizes no English-contour change, deploy, push, production
   write or release action.
 
-Any byte change in a reviewed Stage A, B, or C identity invalidates the
+Any byte change in a reviewed Stage A, B, C, or D identity invalidates the
 corresponding verdict and requires fresh independent review.

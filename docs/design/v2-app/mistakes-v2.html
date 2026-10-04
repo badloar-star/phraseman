@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ошибки 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10): «макеты ВСЕГО, что связано с ошибками и отработкой, строго по 2.0»,
+     тексты про «три разных дня» — убрать везде. Только детали набора kit.css. */
+  .seg { display: flex; gap: 6px; }
+  .seg i { flex: 1; height: 6px; border-radius: 3px; background: var(--track); }
+  .seg i.on { background: #fff; }
+  .tag { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px; background: var(--control); font-size: 14px; font-weight: 600; color: #DADADC; }
+  .tabs { display: flex; gap: 8px; }
+  .tabs span { height: 36px; padding: 0 16px; border-radius: 18px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: #161618; border: 1px solid var(--line); }
+  .tabs span.on { color: #0B0C0E; background: #F2F1F6; border-color: transparent; }
+  .ans { border-radius: 16px; padding: 16px 16px 16px 18px; display: flex; align-items: center; gap: 14px; }
+  .ans .k { font-size: 13px; font-weight: 600; color: var(--sec); }
+  .ans .v { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 4px; }
+  .ans.ok { background: rgba(111,208,140,.10); border: 1px solid rgba(111,208,140,.35); }
+  .ans.no { background: rgba(242,118,107,.10); border: 1px solid rgba(242,118,107,.35); }
+  .ans.no .v { color: #F7A39B; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+  .ans.ok .v { color: #A6E8B9; }
+  .hl { color: #F2766B; }
+  .bot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 18px 20px 34px; background: linear-gradient(rgba(12,12,13,0), #0C0C0D 30%); }
+  .tok { display: inline-flex; align-items: center; height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--outline); font-size: 17px; font-weight: 600; }
+  .tok.used { opacity: .25; }
+  .slot { min-height: 64px; border-bottom: 1px solid var(--line-2); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 10px; }
+  .field { border-radius: 14px; background: #161618; border: 1px solid var(--line-2); min-height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 18px; }
+  .big { font-size: 64px; line-height: 70px; font-weight: 800; letter-spacing: -1px; }
+  .dots3 { display: flex; gap: 8px; justify-content: center; }
+  .dots3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--track); }
+  .dots3 i.on { background: #fff; }
+  .note { border-radius: 16px; background: #161618; border: 1px solid var(--line); padding: 16px 18px; font-size: 16px; line-height: 23px; color: #D8D8DA; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Ошибки и отработка — все экраны</h1>
+  <p class="page-lead">Раздел целиком в стиле 2.0: вход с Главной, хаб, список, карточка ошибки, отработка всех типов заданий, ответы, разбор, итог, пустые состояния. Без пояснительных текстов про «три дня» — прогресс показывают только три деления.</p>
+  <div class="page-nav"><a href="#hub">Хаб и список</a><a href="#card">Карточка ошибки</a><a href="#run">Отработка</a><a href="#fb">Ответы и разбор</a><a href="#end">Итог и пустые</a></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, sheet, energy } = K;
+const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
+const seg = (n) => `<div class="seg" style="width:54px">${[0, 1, 2].map((i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div>`;
+const back = (title, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:20px;font-weight:700">${title}</div>${right}</div>`;
+
+// ---------- строки ошибок ----------
+const mrow = (w, tr, kind, n) => `<div class="card t"><div class="row" style="min-height:72px"><div class="tx"><div class="tt">${w}</div><div class="st">${tr} · ${kind}</div></div>${seg(n)}${ch}</div></div>`;
+
+// 1. Вход с Главной (плитка)
+const homeEntry = () => phone(`
+  <div class="lt"><div class="ti">Сегодня</div></div>
+  <div class="card c2 t" style="margin-top:28px;padding:18px 18px 20px">
+    <div class="flex" style="gap:14px"><div class="tile t55">${icon('flag', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Мои ошибки</div><div style="font-size:15px;color:var(--sec);margin-top:4px">12 ждут отработки</div></div><span class="frac"><b>12</b></span></div>
+    <div class="cta t" style="margin-top:18px">Отработать</div>
+  </div>
+  <div class="card c2" style="margin-top:13px;height:120px;opacity:.5"></div>
+  <div class="card c2" style="margin-top:13px;height:120px;opacity:.35"></div>`);
+
+// 2. Хаб
+const hub = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('back', 's20')}</span>${energy(5)}</div>
+  <div class="lt"><div class="ti">Мои ошибки</div><div class="su">Английский</div></div>
+  <div class="card c2" style="margin-top:26px;padding:20px 20px 22px">
+    <div class="flex" style="align-items:flex-end;justify-content:space-between"><div><div class="big">12</div><div style="font-size:15px;color:var(--sec);margin-top:2px">ждут отработки</div></div>
+      <div style="text-align:right"><div style="font-size:28px;font-weight:700">38</div><div style="font-size:15px;color:var(--sec)">исправлено</div></div></div>
+    <div class="trk" style="margin-top:20px"><i style="width:76%"></i></div>
+  </div>
+  <div class="sec"><div class="ti">Чаще всего</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
+  <div class="stack">${mrow('Grandchildren', 'Внуки', 'Значение', 0)}${mrow('I have been', 'Я был', 'Порядок слов', 1)}${mrow('Ready', 'Готов', 'Карточки', 2)}</div>
+  <div class="sec"><div class="ti">По типу</div></div>
+  <div class="stack">
+    <div class="card t"><div class="row"><div class="tile">${icon('layers', 's20')}</div><div class="tx"><div class="tt">Значение слов</div></div><span class="cntp">5</span>${ch}</div></div>
+    <div class="card t"><div class="row"><div class="tile">${icon('edit', 's20')}</div><div class="tx"><div class="tt">Грамматика</div></div><span class="cntp">4</span>${ch}</div></div>
+    <div class="card t"><div class="row"><div class="tile">${icon('mic', 's20')}</div><div class="tx"><div class="tt">Произношение</div></div><span class="cntp">3</span>${ch}</div></div>
+  </div>`, { fixed: `<div class="bot"><div class="cta t">Отработать 12</div></div>` });
+
+// 3. Список с вкладками
+const list = () => phone(`
+  ${back('Все ошибки', `<span class="rb t">${icon('search', 's20')}</span>`)}
+  <div class="tabs" style="margin-top:22px"><span class="on">Ждут · 12</span><span>Исправлены · 38</span></div>
+  <div class="stack" style="margin-top:18px">${mrow('Grandchildren', 'Внуки', 'Значение', 0)}${mrow('I have been', 'Я был', 'Порядок слов', 1)}${mrow('Ready', 'Готов', 'Карточки', 2)}${mrow('Although', 'Хотя', 'Значение', 0)}${mrow('Make a decision', 'Принять решение', 'Предлоги', 1)}${mrow('Through', 'Через', 'Произношение', 0)}${mrow('Would rather', 'Лучше бы', 'Грамматика', 2)}</div>`,
+  { fixed: `<div class="bot"><div class="cta t">Отработать 12</div></div>` });
+
+// 4. Карточка ошибки
+const card = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div>
+  <div style="margin-top:18px"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Grandchildren</div>
+    <div class="flex" style="margin-top:8px;justify-content:space-between"><div style="font-size:18px;color:var(--sec)">Внуки</div><span class="rb fill t">${icon('vol', 's18')}</span></div></div>
+  <div class="flex" style="margin-top:16px;gap:8px"><span class="tag">Значение</span><span class="tag">Карточки</span><span class="tag">×3</span></div>
+  <div class="stack g13" style="margin-top:24px">
+    <div class="ans no"><div class="grow"><div class="k">Ваш ответ</div><div class="v">Дети</div></div></div>
+    <div class="ans ok"><div class="grow"><div class="k">Правильно</div><div class="v">Внуки</div></div><span class="rb fill t">${icon('vol', 's18')}</span></div>
+  </div>
+  <div class="card c2" style="margin-top:13px;padding:18px 18px 20px">
+    <div class="flex" style="justify-content:space-between"><div style="font-size:17px;font-weight:700">Исправление</div><span class="frac"><b style="font-size:22px">0</b><span>/3</span></span></div>
+    <div class="seg" style="margin-top:14px"><i></i><i></i><i></i></div>
+  </div>
+  <div class="card c2 t" style="margin-top:13px;padding:16px 18px"><div class="flex"><div class="tile">${icon('chat', 's20')}</div><div class="grow" style="font-size:17px;font-weight:700">Почему это ошибка</div>${ch}</div></div>
+  <div class="sec" style="margin-top:26px"><div class="ti">История</div></div>
+  <div class="card" style="padding:4px 18px">
+    <div class="flex" style="justify-content:space-between;min-height:48px;border-bottom:1px solid var(--line)"><span>Карточки</span><span style="color:var(--sec)">4 окт.</span></div>
+    <div class="flex" style="justify-content:space-between;min-height:48px;border-bottom:1px solid var(--line)"><span>Карточки</span><span style="color:var(--sec)">3 окт.</span></div>
+    <div class="flex" style="justify-content:space-between;min-height:48px"><span>Урок 4</span><span style="color:var(--sec)">3 окт.</span></div>
+  </div>`, { fixed: `<div class="bot"><div class="cta t">Отработать</div></div>` });
+
+// 5. Меню карточки (шторка)
+const cardMenu = () => phone(`<div style="opacity:.3"><div style="font-size:34px;font-weight:700;margin-top:60px">Grandchildren</div></div>`, { overlay: sheet('cm', `
+  <div class="stack">
+    <div class="card t"><div class="row"><div class="tile">${icon('check', 's20')}</div><div class="tx"><div class="tt">Я это знаю</div></div></div></div>
+    <div class="card t"><div class="row"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="tt">Сообщить о неточности</div></div></div></div>
+    <div class="card t"><div class="row"><div class="tile" style="color:#F2766B">${icon('trash', 's20')}</div><div class="tx"><div class="tt" style="color:#F2766B">Удалить из ошибок</div></div></div></div>
+  </div>`, true) });
+
+// 6. Перед отработкой (шторка)
+const start = () => phone(`<div style="opacity:.3"><div class="lt"><div class="ti">Мои ошибки</div></div></div>`, { overlay: sheet('st', `
+  <div class="center"><div style="font-size:24px;font-weight:700">Отработка</div><div style="font-size:16px;color:var(--sec);margin-top:6px">12 ошибок · около 4 минут</div></div>
+  <div class="stack" style="margin-top:22px">
+    <div class="card t"><div class="row"><div class="tile">${icon('layers', 's20')}</div><div class="tx"><div class="tt">Все ошибки</div></div><span class="cntp">12</span></div></div>
+    <div class="card t"><div class="row"><div class="tile">${icon('edit', 's20')}</div><div class="tx"><div class="tt">Только грамматика</div></div><span class="cntp">4</span></div></div>
+    <div class="card t"><div class="row"><div class="tile">${icon('mic', 's20')}</div><div class="tx"><div class="tt">Только произношение</div></div><span class="cntp">3</span></div></div>
+  </div>
+  <div class="cta t" style="margin-top:22px">Начать ${icon('boltF', 's18')} 1</div>`, true) });
+
+// ---------- отработка ----------
+const runHead = (p) => `<div class="flex" style="gap:14px;margin-top:6px"><span class="rb t">${icon('close', 's20')}</span><div class="grow"><div class="trk" style="height:6px"><i style="width:${p}%"></i></div></div><span style="color:var(--sec);font-weight:600;font-variant-numeric:tabular-nums">${Math.round(p * 12 / 100)}/12</span></div>`;
+// 7. Выбор перевода
+const runChoose = () => phone(`${runHead(25)}
+  <div class="qc" style="margin-top:34px"><div class="k">Выбери перевод</div><div class="q">Grandchildren</div></div>
+  <div class="stack g13" style="margin-top:23px"><div class="opt t">Внуки</div><div class="opt t">Дети</div><div class="opt t">Родители</div><div class="opt t">Племянники</div></div>`);
+// 8. Сборка фразы
+const runBuild = () => phone(`${runHead(42)}
+  <div style="margin-top:34px;font-size:16px;color:var(--sec)">Собери фразу</div>
+  <div style="font-size:24px;line-height:30px;font-weight:700;margin-top:10px">Я был здесь раньше</div>
+  <div class="slot" style="margin-top:26px"><span class="tok t">I</span><span class="tok t">have</span></div>
+  <div class="flex" style="flex-wrap:wrap;gap:10px;margin-top:22px"><span class="tok used">I</span><span class="tok t">before</span><span class="tok used">have</span><span class="tok t">been</span><span class="tok t">here</span><span class="tok t">was</span></div>`,
+  { fixed: `<div class="bot"><div class="cta dis">Проверить</div></div>` });
+// 9. Напиши
+const runType = () => phone(`${runHead(58)}
+  <div style="margin-top:34px;font-size:16px;color:var(--sec)">Напиши по-английски</div>
+  <div style="font-size:24px;line-height:30px;font-weight:700;margin-top:10px">Принять решение</div>
+  <div class="field" style="margin-top:26px">Make a decis<span style="width:2px;height:24px;background:#fff;margin-left:1px"></span></div>`,
+  { fixed: `<div class="bot"><div class="cta t">Проверить</div></div>` });
+// 10. Скажи вслух
+const runSay = () => phone(`${runHead(75)}
+  <div class="qc" style="margin-top:34px"><div class="k">Скажи по-английски</div><div class="q">Через</div></div>
+  <div class="center" style="margin-top:60px"><span class="rb t" style="width:92px;height:92px;display:inline-flex;background:#F2F1F6;color:#0B0C0E;border:none">${icon('mic', 's28')}</span><div style="color:var(--sec);margin-top:14px;font-size:15px">Зажми и говори</div></div>`,
+  { fixed: `<div class="bot"><div class="cta gh t">Не могу сейчас говорить</div></div>` });
+
+// ---------- ответы ----------
+const fbSheet = (ok) => sheet(ok ? 'ok' : 'no', ok
+  ? `<div class="flex" style="gap:14px"><span class="rb" style="background:rgba(111,208,140,.18);border-color:rgba(111,208,140,.4);color:#6FD08C">${icon('check', 's20')}</span><div class="grow"><div style="font-size:22px;font-weight:700">Верно</div></div>${seg(1)}</div>
+     <div class="cta t" style="margin-top:24px">Дальше</div>`
+  : `<div class="flex" style="gap:14px"><span class="rb" style="background:rgba(242,118,107,.18);border-color:rgba(242,118,107,.4);color:#F2766B">${icon('close', 's20')}</span><div class="grow"><div style="font-size:22px;font-weight:700">Почти</div></div></div>
+     <div class="stack g13" style="margin-top:18px"><div class="ans no"><div class="grow"><div class="k">Ваш ответ</div><div class="v">Дети</div></div></div><div class="ans ok"><div class="grow"><div class="k">Правильно</div><div class="v">Внуки</div></div><span class="rb fill t">${icon('vol', 's18')}</span></div></div>
+     <div class="flex" style="gap:10px;margin-top:20px"><div class="cta gh t" style="flex:1">Почему</div><div class="cta t" style="flex:1">Дальше</div></div>`, true);
+const fbOk = () => phone(`${runHead(25)}<div class="qc" style="margin-top:34px"><div class="k">Выбери перевод</div><div class="q">Grandchildren</div></div>
+  <div class="stack g13" style="margin-top:23px"><div class="opt ok">Внуки</div><div class="opt">Дети</div><div class="opt">Родители</div></div>`, { overlay: fbSheet(true) });
+const fbNo = () => phone(`${runHead(25)}<div class="qc" style="margin-top:34px"><div class="k">Выбери перевод</div><div class="q">Grandchildren</div></div>
+  <div class="stack g13" style="margin-top:23px"><div class="opt ok">Внуки</div><div class="opt no">Дети</div></div>`, { overlay: fbSheet(false) });
+// 13. Разбор «Почему»
+const why = () => phone(`<div style="opacity:.3">${runHead(25)}</div>`, { overlay: sheet('why', `
+  <div class="flex"><div class="grow" style="font-size:22px;font-weight:700">Почему «внуки»</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+  <div class="stack g13" style="margin-top:18px">
+    <div class="note"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки.</div>
+    <div class="note">Дети — это <b>children</b>, без grand-.</div>
+    <div class="note" style="color:var(--sec)">My grandchildren visit me on Sundays.<br>Внуки навещают меня по воскресеньям.</div>
+  </div>
+  <div class="flex" style="gap:10px;margin-top:20px"><div class="cta gh t" style="flex:1">Объясни проще</div><div class="cta t" style="flex:1">Понятно</div></div>`, true) });
+
+// ---------- итог и пустые ----------
+const result = () => phone(`
+  <div class="center" style="margin-top:70px"><div class="ov">Отработка</div><div class="big" style="margin-top:14px">9/12</div><div style="font-size:17px;color:var(--sec);margin-top:6px">ответов верно</div></div>
+  <div class="card c2" style="margin-top:34px;padding:18px 20px">
+    <div class="flex" style="justify-content:space-between;min-height:40px"><span>Исправлено совсем</span><b style="font-size:20px">2</b></div>
+    <div class="flex" style="justify-content:space-between;min-height:40px"><span>Ближе к исправлению</span><b style="font-size:20px">7</b></div>
+    <div class="flex" style="justify-content:space-between;min-height:40px"><span>Ещё повторить</span><b style="font-size:20px">3</b></div>
+  </div>
+  <div class="sec"><div class="ti">Исправлено</div></div>
+  <div class="stack"><div class="card"><div class="row"><div class="tile" style="color:#6FD08C">${icon('check', 's20')}</div><div class="tx"><div class="tt">Would rather</div><div class="st">Лучше бы</div></div></div></div>
+  <div class="card"><div class="row"><div class="tile" style="color:#6FD08C">${icon('check', 's20')}</div><div class="tx"><div class="tt">Ready</div><div class="st">Готов</div></div></div></div></div>`,
+  { fixed: `<div class="bot"><div class="cta t">Готово</div></div>` });
+const empty = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('back', 's20')}</span></div>
+  <div class="lt"><div class="ti">Мои ошибки</div></div>
+  <div class="center" style="margin-top:120px"><div class="tile t61" style="margin:0 auto;color:#6FD08C">${icon('check', 's28')}</div>
+    <div style="font-size:24px;font-weight:700;margin-top:22px">Ошибок нет</div><div style="font-size:16px;color:var(--sec);margin-top:8px">Всё исправлено</div></div>`,
+  { fixed: `<div class="bot"><div class="cta t">К урокам</div></div>` });
+const allDone = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('back', 's20')}</span></div>
+  <div class="lt"><div class="ti">Мои ошибки</div></div>
+  <div class="center" style="margin-top:120px"><div class="tile t61" style="margin:0 auto">${icon('flag', 's28')}</div>
+    <div style="font-size:24px;font-weight:700;margin-top:22px">На сегодня всё</div><div style="font-size:16px;color:var(--sec);margin-top:8px">Остальные ошибки вернутся завтра</div></div>
+  <div class="card c2" style="margin-top:40px;padding:18px 20px"><div class="flex" style="justify-content:space-between"><span>Ждут</span><b style="font-size:22px">10</b></div></div>`,
+  { fixed: `<div class="bot"><div class="cta t">К урокам</div></div>` });
+const offline = () => phone(`
+  <div class="topbar"><span class="rb t">${icon('back', 's20')}</span></div>
+  <div class="lt"><div class="ti">Мои ошибки</div></div>
+  <div class="center" style="margin-top:120px"><div class="tile t61" style="margin:0 auto;color:var(--sec)">${icon('wifiOff', 's28')}</div>
+    <div style="font-size:22px;font-weight:700;margin-top:22px">Сейчас недоступно</div></div>`,
+  { fixed: `<div class="bot"><div class="cta gh t">Попробовать снова</div></div>` });
+
+document.getElementById('root').innerHTML =
+  block('hub', 'Вход, хаб и список', '', [col('Главная — вход', homeEntry()), col('Хаб', hub()), col('Все ошибки', list())]) +
+  block('card', 'Карточка ошибки', '', [col('Карточка', card()), col('Меню карточки', cardMenu()), col('Перед отработкой', start())]) +
+  block('run', 'Отработка — типы заданий', '', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay())]) +
+  block('fb', 'Ответы и разбор', '', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
+  block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]);
+K.init();
+</script>
+</body>
+</html>

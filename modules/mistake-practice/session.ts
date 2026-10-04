@@ -52,6 +52,28 @@ export interface MistakePracticeSession {
   readonly answeredAttemptIds: readonly string[];
 }
 
+/** Не больше стольких id ошибок принимает маршрут «Ещё N» (как лимит одной сессии). */
+export const MISTAKE_RETRY_IDS_MAX = 30;
+const MISTAKE_ID_PATTERN = /^[A-Za-z0-9:_-]{1,128}$/;
+
+/**
+ * Разбор параметра маршрута `mistakeIds` (id через запятую). Недоверенный ввод: оставляем только
+ * id допустимого вида, без повторов, не больше MISTAKE_RETRY_IDS_MAX; остальное — в `dropped`
+ * (экран пишет это в лог [MISTAKE-RETRY]).
+ */
+export function parseMistakeRetryIdsParam(raw: unknown): Readonly<{ ids: readonly string[]; dropped: number; overLimit: number }> {
+  const text = Array.isArray(raw) ? raw.join(',') : typeof raw === 'string' ? raw : '';
+  const parts = text.split(',').map((part) => part.trim()).filter((part) => part.length > 0);
+  const valid: string[] = [];
+  let dropped = 0;
+  for (const part of parts) {
+    if (!MISTAKE_ID_PATTERN.test(part)) { dropped += 1; continue; }
+    if (!valid.includes(part)) valid.push(part);
+  }
+  const ids = valid.slice(0, MISTAKE_RETRY_IDS_MAX);
+  return Object.freeze({ ids: Object.freeze(ids), dropped, overLimit: valid.length - ids.length });
+}
+
 /** Верхняя граница одной сессии: дольше человек устаёт, а не учится. */
 export const MISTAKE_PRACTICE_MAX_SESSION = 30;
 /**
@@ -120,15 +142,23 @@ export function buildMistakePracticeSession(input: {
    * исправленных ошибок для закрепления. Без параметра — 'active', поведение прежнее байт в байт.
    */
   readonly pool?: MistakePracticePool;
+  /**
+   * зачем (координатор 04.10, кнопка «Ещё N» в итоге, mistakes-panel.html кадр result): сузить
+   * новую сессию до ошибок, на которые в прошлой сессии ответили неверно. Пустой список или без
+   * параметра — поведение прежнее байт в байт. Дальше работают обычные правила pool/срока/лимита.
+   */
+  readonly mistakeIds?: readonly string[];
 }): MistakePracticeSession {
   const focusMistakeId = input.focusMistakeId?.trim() ?? '';
   const facetFiltered = input.facets && input.facets.length > 0
     ? input.items.filter((item) => input.facets!.includes(item.facet))
     : input.items;
   const pool: MistakePracticePool = input.pool ?? 'active';
+  const retryIds = input.mistakeIds && input.mistakeIds.length > 0 ? new Set(input.mistakeIds) : null;
+  const idFiltered = retryIds ? facetFiltered.filter((item) => retryIds.has(item.mistakeId)) : facetFiltered;
   const candidates = focusMistakeId
-    ? facetFiltered.filter((item) => item.mistakeId === focusMistakeId)
-    : facetFiltered;
+    ? idFiltered.filter((item) => item.mistakeId === focusMistakeId)
+    : idFiltered;
   const ready = pool === 'corrected'
     ? selectCorrectedMistakesForReview(candidates, { limit: focusMistakeId ? 1 : 30 })
     : selectMistakesForSession(candidates, {

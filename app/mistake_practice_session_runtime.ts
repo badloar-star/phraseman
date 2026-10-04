@@ -39,6 +39,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   facets?: readonly MistakeFacet[];
   /** зачем (владелец 04.10): 'corrected' — повтор исправленных для закрепления; без параметра — как раньше. */
   pool?: MistakePracticePool;
+  /** «Ещё N» (координатор 04.10): только эти ошибки — неверные в прошлой сессии. Пусто — как раньше. */
+  mistakeIds?: readonly string[];
   storage?: MistakePracticeStorage;
   nowMs?: number;
 }>, dependencies: MutableMistakeContentDependencies = {}): Promise<Readonly<{
@@ -67,7 +69,9 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   const restoredPool: MistakePracticePool = restored?.pool ?? 'active';
   // зачем (повтор исправленных, 04.10): в повторе очередь из исправленных, а ошибка в повторе
   // возвращает ошибку в активные и её переспрашивают — обе стадии законны. Обычная сессия — только активные.
-  const restoredStillAvailable = restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
+  const retryRequested = (input.mistakeIds?.length ?? 0) > 0;
+  // зачем: «Ещё N» просит НОВУЮ сессию из конкретных ошибок — продолжать прежнюю вместо неё нельзя.
+  const restoredStillAvailable = !retryRequested && restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
     const item = projection.items.get(entry.mistakeId);
     if (item?.cycleId !== entry.cycleId) return false;
     return restoredPool === 'corrected'
@@ -126,6 +130,19 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   const items = [...projection.items.values()].filter((item) =>
     !input.lessonId || item.lessonId === input.lessonId,
   );
+  if (retryRequested) {
+    const requested = new Set(input.mistakeIds);
+    const known = items.filter((item) => requested.has(item.mistakeId));
+    const eligible = known.filter((item) => (requestedPool === 'corrected' ? item.status === 'corrected' : item.status === 'active'));
+    console.log('[MISTAKE-RETRY] prepare', JSON.stringify({
+      requested: requested.size,
+      foundInJournal: known.length,
+      eligibleInPool: eligible.length,
+      pool: requestedPool,
+      statuses: known.reduce<Record<string, number>>((acc, item) => ({ ...acc, [item.status]: (acc[item.status] ?? 0) + 1 }), {}),
+      emptyReason: eligible.length > 0 ? null : known.length === 0 ? 'ids_not_in_journal' : 'none_in_pool',
+    }));
+  }
   const session = buildMistakePracticeSession({
     items,
     requestedLength: input.requestedLength,
@@ -133,6 +150,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     focusMistakeId: input.focusMistakeId,
     facets: input.facets,
     pool: input.pool,
+    mistakeIds: input.mistakeIds,
   });
   const deferSave = input.persistSession && input.deferNewSessionSave === true;
   if (input.persistSession && !deferSave) {

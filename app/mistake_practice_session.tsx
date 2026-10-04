@@ -52,6 +52,7 @@ import {
   type MistakePracticeLength,
   mistakePracticeProgress,
   mistakePracticeSessionCostsEnergy,
+  parseMistakeRetryIdsParam,
   type MistakePracticeSession,
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
@@ -380,6 +381,8 @@ function MistakePracticeSessionScreen() {
     facetGroup?: string;
     /** 'corrected' — «Повторить исправленные» (владелец 04.10); без параметра — обычная отработка. */
     pool?: string;
+    /** «Ещё N» (координатор 04.10): id ошибок через запятую — только неверные из прошлой сессии. */
+    mistakeIds?: string | string[];
     returnTo?: string;
     maxReviewSessionId?: string;
     devRunesSeed?: string | string[];
@@ -430,6 +433,15 @@ function MistakePracticeSessionScreen() {
   // enabled=false, пока session ещё не гидрирован (sessionId недоступен).
   // зачем (владелец 04.10, «Повторить исправленные»): повтор собирается из исправленных ошибок и платит 1 монету за верный ответ.
   const reviewPool = params.pool === 'corrected' ? 'corrected' as const : undefined;
+  // зачем: маршрут — недоверенный ввод; разбор один раз на значение параметра, мусор — в лог.
+  const retryIdsKey = Array.isArray(params.mistakeIds) ? params.mistakeIds.join(',') : (params.mistakeIds ?? '');
+  const retryIds = useMemo(() => {
+    const parsed = parseMistakeRetryIdsParam(retryIdsKey);
+    if (retryIdsKey) {
+      console.log('[MISTAKE-RETRY] route', JSON.stringify({ accepted: parsed.ids.length, dropped: parsed.dropped, overLimit: parsed.overLimit }));
+    }
+    return parsed;
+  }, [retryIdsKey]);
   const practiceRunes = usePracticeRunes({
     activity: 'mistake_practice',
     repeatPriceOnly: reviewPool === 'corrected',
@@ -555,6 +567,7 @@ function MistakePracticeSessionScreen() {
         focusMistakeId: focusedMistakeId,
         facets: facetsFromParam(params.facetGroup),
         pool: reviewPool,
+        mistakeIds: retryIds.ids,
       });
       if (!cancelled && prepareStageRef.current === 'abandoned') {
         console.warn('[MISTAKES-GATE] session:prepare:late_after_ceiling → ignored', JSON.stringify({ resumed: prepared.resumed })); // guard-ok
@@ -641,7 +654,7 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, reviewPool, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, retryIds, reviewPool, requestedLength, router, studyTarget]);
 
   // зачем (D158): подготовка, не ответившая ни успехом, ни ошибкой, не держит экран вечно.
   useEffect(() => {

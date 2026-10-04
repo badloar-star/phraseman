@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="cards-glass.css">
 <link rel="stylesheet" href="cards-section.css">
 <style>
-  /* зачем (владелец 04.10): «раздел ошибки — макеты в нормальном стиле, как утверждённые карточки: продуманно и красиво».
-     Тот же язык: стекло, градиент цвета темы внутри, аврора, акцентная главная кнопка. Всё без обводок-контейнеров (только тонкая кромка блика). */
+  /* зачем (владелец 04.10): «раздел ошибки ты ничего не сделал, только цвета изменил» — настоящий редизайн структуры:
+     хаб = та же грамматика, что у «Карточек» (стопка + кнопка + четыре равные плитки), ошибки = утверждённые карточки,
+     ошибка раскрывается разворотом карточки, вопрос отработки = сама карточка, ответ = её переворот. */
   .scr > .in { min-height: 100%; }
   .seg { display: flex; gap: 5px; }
   .seg i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); }
@@ -18,14 +19,8 @@
   .tabs { display: flex; gap: 8px; }
   .tabs span { height: 38px; padding: 0 18px; border-radius: 19px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: rgba(255,255,255,.07); }
   .tabs span.on { color: var(--on); background: var(--acc); }
-  .mrow { display: flex; align-items: center; gap: 14px; padding: 12px 16px 12px 12px; margin-top: 10px; min-height: 76px; }
-  .mrow .tx { flex: 1; min-width: 0; }
-  .mrow .w { font-size: 18px; font-weight: 700; line-height: 22px; }
-  .mrow .s { font-size: 14px; color: var(--sec); margin-top: 2px; line-height: 18px; }
-  .mrow .seg { width: 48px; flex: none; }
-  .chv { color: var(--sec); display: flex; flex: none; }
   .ans2 { padding: 4px 18px; }
-  .ans2 .r { display: flex; align-items: center; gap: 12px; padding: 14px 0; }
+  .ans2 .r { display: flex; align-items: center; gap: 12px; padding: 13px 0; }
   .ans2 .r + .r { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
   .ans2 .k { font-size: 13px; font-weight: 600; color: var(--sec); }
   .ans2 .v { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 3px; }
@@ -38,36 +33,48 @@
   .tok.used { opacity: .22; }
   .slot { min-height: 70px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px; border-radius: 20px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
   .fld { border-radius: 18px; min-height: 60px; display: flex; align-items: center; padding: 0 18px; font-size: 19px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
-  .big { font-size: 72px; line-height: 76px; font-weight: 800; letter-spacing: -1.6px; }
-  .hl { color: #F7A39B; }
   .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 40%); }
   .cta2 { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 26px; flex: 1; font-size: 17px; font-weight: 700; background: rgba(255,255,255,.1); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
-  .typ { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
-  .typ .gl { padding: 14px 10px; min-height: 104px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 22px; }
-  .qgl { padding: 22px 20px 26px; text-align: center; border-radius: 28px; }
-  .qgl .k { font-size: 15px; color: var(--sec); }
-  .qgl .q { font-size: 34px; line-height: 40px; font-weight: 700; margin-top: 12px; letter-spacing: -.4px; }
-  .og { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-  .og > div { min-height: 58px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; position: relative; }
-  .og .ok { box-shadow: inset 0 0 0 1.5px rgba(111,208,140,.7); background: rgba(111,208,140,.12); }
-  .og .no { box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.7); background: rgba(242,118,107,.12); }
-  .og .fd { opacity: .45; }
   .mic { width: 96px; height: 96px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 18px 34px -12px color-mix(in srgb, var(--acc) 70%, transparent); }
-  .gc.static.mb { height: 190px; }
   .skel { border-radius: 10px; background: linear-gradient(90deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%); background-size: 200% 100%; animation: sh 1.4s linear infinite; }
   @keyframes sh { to { background-position: -200% 0; } }
   .center { text-align: center; }
-  .rs { display: flex; justify-content: space-between; align-items: center; min-height: 46px; font-size: 17px; }
-  .rs + .rs { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
-  .rs b { font-size: 22px; }
+  .big { font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -1.2px; }
+  /* карточка ошибки: счётчик ошибок в углу и шаги исправления вместо «силы слова» */
+  .gc.static .xn { position: absolute; z-index: 2; right: 10px; top: 10px; height: 24px; padding: 0 9px; border-radius: 12px; display: flex; align-items: center; font-size: 12px; font-weight: 700; background: rgba(242,118,107,.22); color: #FFB4AC; }
+  .gc.static.fixed .xn { background: rgba(111,208,140,.22); color: #9CF0BB; }
+  .gc.static .face .k { font-size: 14px; color: rgba(255,255,255,.62); margin-bottom: 8px; position: relative; z-index: 1; }
+  .gc.static.mb { height: 200px; }
+  .gc.static.mb .en { font-size: 36px; font-weight: 600; }
+  .gc.static.res-ok .face { box-shadow: inset 0 0 0 2px rgba(111,208,140,.85), 0 0 34px -6px rgba(111,208,140,.55); }
+  .gc.static.res-no .face { box-shadow: inset 0 0 0 2px rgba(242,118,107,.85), 0 0 34px -6px rgba(242,118,107,.5); }
+  .ogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .ogrid > div { min-height: 78px; border-radius: 22px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10px; font-size: 18px; font-weight: 600; }
+  .ogrid .ok { box-shadow: inset 0 0 0 1.5px rgba(111,208,140,.75), inset 1px 1.5px 0 -.2px rgba(255,255,255,.26); background: rgba(111,208,140,.14); }
+  .ogrid .no { box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.75); background: rgba(242,118,107,.13); }
+  .ogrid .fd { opacity: .4; }
+  .stp { display: flex; align-items: center; gap: 10px; }
+  .stp i { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 13px; font-weight: 700; color: var(--sec); }
+  .stp i.on { background: var(--acc); color: var(--on); }
+  .stp b { flex: 1; height: 2px; border-radius: 1px; background: rgba(255,255,255,.12); }
+  .stp b.on { background: var(--acc); }
+  .ring { position: relative; width: 208px; height: 208px; margin: 0 auto; }
+  .ring .rg { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(var(--acc) 0 75%, rgba(255,255,255,.1) 75% 100%); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px)); mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px)); }
+  .ring .in2 { position: absolute; inset: 22px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .st3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; }
+  .st3 .gl { padding: 14px 8px; text-align: center; border-radius: 22px; }
+  .st3 b { display: block; font-size: 28px; line-height: 32px; }
+  .st3 span { font-size: 13px; color: var(--sec); line-height: 16px; display: block; margin-top: 4px; }
+  .hist { display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 16px; }
+  .hist + .hist { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
   .chip.on { background: #222224; }
 </style>
 </head>
 <body>
 <div class="page">
   <h1 class="page-h1">Мои ошибки — все экраны, состояния и окна</h1>
-  <p class="page-lead">Раздел целиком в утверждённом стиле карточек: стекло, градиент цвета темы внутри, аврора на фоне, акцентная главная кнопка. Слово ошибки показано той же зафиксированной карточкой с переворотом. Тема меняется чипами.</p>
-  <div class="page-nav"><a href="#hub">Вход и хаб</a><a href="#list">Список</a><a href="#card">Карточка ошибки</a><a href="#run">Отработка</a><a href="#fb">Ответы и разбор</a><a href="#end">Итог и пустые</a></div>
+  <p class="page-lead">Переделан по структуре, не только по цвету: хаб как у «Карточек» (стопка, главная кнопка, четыре равные плитки), ошибки — утверждённые карточки с переворотом, ошибка раскрывается разворотом, вопрос отработки — сама карточка, ответ — её переворот, итог — кольцо. Тема меняется чипами.</p>
+  <div class="page-nav"><a href="#hub">Вход и хаб</a><a href="#list">Список</a><a href="#card">Ошибка раскрыта</a><a href="#run">Отработка</a><a href="#fb">Ответ переворотом</a><a href="#end">Итог и пустые</a></div>
   <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
 </div>
@@ -76,115 +83,107 @@
 <script>
 (() => {
 const { icon, phone, col, block, sheet, energy } = K;
-const ch = `<span class="chv">${icon('fwd', 's18')}</span>`;
-const seg = (n) => `<div class="seg">${[0, 1, 2].map((i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div>`;
-const KIND = { 'Значение': 'layers', 'Грамматика': 'edit', 'Произношение': 'mic', 'Порядок слов': 'edit', 'Карточки': 'layers', 'Предлоги': 'edit' };
-const mrow = (w, tr, kind, n) => `<div class="gl mrow t"><div class="gtile" style="width:46px;height:46px;border-radius:14px">${icon(KIND[kind] || 'layers', 's20')}</div><div class="tx"><div class="w">${w}</div><div class="s">${tr} · ${kind}</div></div>${seg(n)}${ch}</div>`;
-const back = (title, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">${title}</div>${right}</div>`;
 const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
 const bot = (inner) => `<div class="bot2">${inner}</div>`;
-const mcard = (en, ipa, ru, flipped) => `<div class="gc static mb t ${flipped ? 'flipped' : ''}" style="--t:var(--g1)"><div class="fl"><div class="face"><div class="en" style="font-size:34px;font-weight:600">${en}</div><div class="ipa" style="font-size:16px">${ipa}</div><span class="spk">${icon('vol', 's16')}</span><span class="dots">${dotsS(1)}</span></div><div class="face back"><div class="ru" style="font-size:30px">${ru}</div></div></div></div>`;
+const back = (title, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">${title}</div>${right}</div>`;
+const IP = { Grandchildren: '/ˈɡræntʃɪldrən/', 'I have been': '/aɪ həv biːn/', Ready: '/ˈredi/', Although: '/ɔːlˈðəʊ/', 'Make a decision': '/meɪk ə dɪˈsɪʒn/', Through: '/θruː/', 'Would rather': '/wʊd ˈrɑːðə/' };
+const steps = (n) => [0, 1, 2].map((d) => `<i class="${d < n ? 'on' : ''}"></i>`).join('');
+// карточка ошибки (тот же зафиксированный CSS): на лицевой — слово, в углу счётчик ошибок, внизу шаги исправления; на обороте — перевод
+const mcs = (en, ru, n, lv = 'm', open = '', times = 3) => {
+  const H = { l: 105, m: 150, s: 123 }[lv]; const FS = { l: 22, m: 18, s: 14.5 }[lv];
+  const done = n >= 3;
+  return `<div class="gcs gc static t${done ? ' fixed' : ''}" ${open ? `data-open="${open}"` : ''} data-lv="${lv}" style="--t:var(--g1);height:${H}px;--fs:${FS}px"><div class="fl"><div class="face"><span class="xn">${done ? '✓' : '×' + times}</span><div class="en">${en}</div>${lv === 'l' || lv === 'm' ? `<div class="ipa">${IP[en] || ''}</div>` : ''}<span class="dots">${steps(n)}</span></div><div class="face back"><div class="ru">${ru}</div></div></div></div>`;
+};
+const big = (en, ru, flipped, state = '', k = '') => `<div class="gc static mb t ${flipped ? 'flipped' : ''} ${state}" style="--t:var(--g1)"><div class="fl"><div class="face">${k ? `<div class="k">${k}</div>` : ''}<div class="en">${en}</div>${k ? '' : `<div class="ipa" style="font-size:16px">${IP[en] || ''}</div><span class="spk">${icon('vol', 's16')}</span>`}</div><div class="face back"><div class="k">Правильно</div><div class="ru" style="font-size:32px">${ru}</div></div></div></div>`;
 const ansBlock = (mine, right, extra = '') => `<div class="gl ans2 t"><div class="r no"><div class="tx"><div class="k">Ваш ответ</div><div class="v">${mine}</div></div></div>${extra}<div class="r ok"><div class="tx"><div class="k">Правильно</div><div class="v">${right}</div></div><span class="sp">${icon('vol', 's18')}</span></div></div>`;
+const SEC = [['flag', 'Все ошибки', '12'], ['layers', 'Значение слов', '5'], ['edit', 'Грамматика', '4'], ['mic', 'Произношение', '3']];
+const tiles = (sk, dim) => `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">${SEC.map(([ic, t, n]) => `<div class="gl pad t" style="padding:18px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between${dim ? ';opacity:.55' : ''}"><div class="gtile">${icon(ic, 's24')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${sk ? '…' : n}</div></div></div>`).join('')}</div>`;
+const fixedPill = (n) => `<span class="pill s" style="color:#9CF0BB">${icon('check', 's16')}${n}</span>`;
+const stackM = (word, sub, badge) => `<div style="position:relative;height:250px;margin-top:26px">
+  <div class="mc solid" style="position:absolute;left:38px;right:38px;top:0;height:110px;opacity:.7;border-radius:28px"></div>
+  <div class="mc solid" style="position:absolute;left:19px;right:19px;top:18px;height:130px;opacity:.9;border-radius:28px"></div>
+  <div class="mc solid t float" data-open="st" style="position:absolute;left:0;right:0;top:40px;height:200px;border-radius:30px;flex-direction:column"><span style="position:absolute;right:16px;top:14px;z-index:2;height:28px;padding:0 12px;border-radius:14px;display:flex;align-items:center;font-size:14px;font-weight:700;background:rgba(242,118,107,.24);color:#FFB4AC">${badge}</span><span style="font-size:36px;font-weight:700">${word}</span><span style="font-size:16px;font-style:italic;color:rgba(255,255,255,.65);margin-top:8px;font-weight:400">${sub}</span></div></div>`;
+const hubHead = (right) => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div><div class="lt"><div class="ti">Мои ошибки</div><div class="su">Английский</div></div>`;
 
-// 1. Вход с Главной
+// ---------- вход, хаб ----------
 const homeEntry = () => phone(`<div class="lt"><div class="ti">Сегодня</div></div><div class="rise">
-  <div class="gl pad t" style="margin-top:28px;padding:20px"><div class="flex" style="gap:14px"><div class="gtile" style="width:56px;height:56px">${icon('flag', 's26')}</div><div class="grow"><div style="font-size:20px;font-weight:700">Мои ошибки</div><div style="font-size:15px;color:var(--sec);margin-top:3px">12 ждут отработки</div></div><span class="pill s" style="font-weight:700">12</span></div>
-  ${cta('Отработать', ' style="margin-top:20px"')}</div>
-  <div class="gl" style="margin-top:12px;height:120px;opacity:.5"></div><div class="gl" style="margin-top:12px;height:120px;opacity:.3"></div></div>`);
-
-// 2. Хаб — без прокрутки
-const hubBody = (sk) => `<div class="rise">
-  <div class="gl pad t" style="margin-top:22px;padding:20px 20px 22px">
-    <div class="flex" style="align-items:flex-end;justify-content:space-between"><div><div class="ov2">Ждут отработки</div>${sk ? '<div class="skel" style="width:90px;height:64px;margin-top:10px"></div>' : '<div class="big" style="margin-top:6px">12</div>'}</div>
-      <div style="text-align:right"><div style="font-size:30px;font-weight:700">${sk ? '…' : '38'}</div><div style="font-size:15px;color:var(--sec)">исправлено</div></div></div>
-    <div class="trk" style="margin-top:18px"><i style="width:${sk ? 0 : 76}%"></i></div></div>
-  <div style="margin-top:14px">${cta(sk ? 'Отработать' : 'Отработать · 12', sk ? ' style="opacity:.6"' : ' data-open="st"')}</div>
-  <div class="sec" style="margin-top:20px"><div class="ti">Чаще всего</div><div class="ac">Все ${icon('fwd', 's16')}</div></div>
-  ${sk ? [1, 2, 3].map(() => '<div class="gl mrow"><div class="skel" style="width:46px;height:46px;border-radius:14px"></div><div class="tx"><div class="skel" style="width:60%;height:16px"></div><div class="skel" style="width:40%;height:12px;margin-top:8px"></div></div></div>').join('') : mrow('Grandchildren', 'Внуки', 'Значение', 0) + mrow('I have been', 'Я был', 'Порядок слов', 1) + mrow('Ready', 'Готов', 'Карточки', 2)}
-  <div class="typ">${[['layers', 'Значение слов', 5], ['edit', 'Грамматика', 4], ['mic', 'Произношение', 3]].map(([ic, t, n]) => `<div class="gl t"><div class="gtile" style="width:40px;height:40px;border-radius:12px">${icon(ic, 's20')}</div><div><div style="font-size:14px;font-weight:700;line-height:18px;letter-spacing:-.2px">${t}</div><div style="font-size:14px;color:var(--sec);margin-top:1px">${sk ? '…' : n}</div></div></div>`).join('')}</div></div>`;
-const hubHead = `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span>${energy(5)}</div><div class="lt"><div class="ti">Мои ошибки</div><div class="su">Английский</div></div>`;
-const hub = () => phone(hubHead + hubBody(false), { overlay: start(true) });
-const hubLoading = () => phone(hubHead + hubBody(true));
-
-// 3. Список
-const list = (tab2) => phone(`${back('Все ошибки', `<span class="rb t">${icon('search', 's20')}</span>`)}
-  <div class="tabs" style="margin-top:22px"><span class="${tab2 ? '' : 'on'}">Ждут · 12</span><span class="${tab2 ? 'on' : ''}">Исправлены · 38</span></div>
-  <div style="margin-top:12px">${tab2 ? mrow('Would rather', 'Лучше бы', 'Грамматика', 3) + mrow('Ready', 'Готов', 'Карточки', 3) + mrow('Although', 'Хотя', 'Значение', 3) + mrow('Through', 'Через', 'Произношение', 3) : mrow('Grandchildren', 'Внуки', 'Значение', 0) + mrow('I have been', 'Я был', 'Порядок слов', 1) + mrow('Ready', 'Готов', 'Карточки', 2) + mrow('Although', 'Хотя', 'Значение', 0) + mrow('Make a decision', 'Принять решение', 'Предлоги', 1) + mrow('Through', 'Через', 'Произношение', 0) + mrow('Would rather', 'Лучше бы', 'Грамматика', 2)}</div>`,
-  { fixed: bot(cta(tab2 ? 'Повторить исправленные' : 'Отработать · 12')) });
-
-// 4. Карточка ошибки
-const card = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div>
-  <div class="rise"><div style="margin-top:16px">${mcard('Grandchildren', '/ˈɡræntʃɪldrən/', 'Внуки', false)}</div>
-  <div class="flex" style="margin-top:14px;gap:8px"><span class="tag">Значение</span><span class="tag">Карточки</span><span class="tag">×3</span></div>
-  <div style="margin-top:16px">${ansBlock('Дети', 'Внуки')}</div>
-  <div class="gl pad t" style="margin-top:12px;padding:16px 18px"><div class="flex" style="justify-content:space-between"><div style="font-size:17px;font-weight:700">Исправление</div><span style="font-size:22px;font-weight:700">0<span style="color:var(--sec);font-size:16px">/3</span></span></div><div class="seg" style="margin-top:12px"><i></i><i></i><i></i></div></div>
-  <div class="gl t" style="margin-top:12px;padding:14px 18px"><div class="flex"><div class="gtile" style="width:44px;height:44px;border-radius:13px">${icon('chat', 's20')}</div><div class="grow" style="font-size:17px;font-weight:700">Почему это ошибка</div>${ch}</div></div></div>`, { fixed: bot(cta('Отработать')) });
-const cardBack = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span></div>
-  <div class="rise"><div style="margin-top:16px">${mcard('Grandchildren', '/ˈɡræntʃɪldrən/', 'Внуки', true)}</div>
-  <div class="sec" style="margin-top:22px"><div class="ti">История</div></div>
-  <div class="gl" style="padding:4px 18px">${[['Карточки', '4 окт.'], ['Карточки', '3 окт.'], ['Урок 4', '3 окт.']].map(([a, b]) => `<div class="rs"><span>${a}</span><span style="color:var(--sec);font-size:16px">${b}</span></div>`).join('')}</div></div>`, { fixed: bot(cta('Отработать')) });
-
-// 5. Меню карточки
-const menuRow = (ic, t, red) => `<div class="gl mrow t" style="min-height:62px"><div class="gtile" style="width:42px;height:42px;border-radius:13px${red ? ';color:#F2766B' : ''}">${icon(ic, 's20')}</div><div class="tx"><div class="w" style="font-size:17px${red ? ';color:#F2766B' : ''}">${t}</div></div></div>`;
-const cardMenu = () => phone(`<div style="opacity:.3"><div style="font-size:34px;font-weight:700;margin-top:60px">Grandchildren</div></div>`, { overlay: sheet('cm', menuRow('check', 'Я это знаю') + menuRow('flag', 'Сообщить о неточности') + menuRow('trash', 'Удалить из ошибок', true), true) });
-
-// 6. Перед отработкой
+  <div class="gl pad t" style="margin-top:28px;padding:20px;min-height:190px"><div style="position:absolute;right:16px;top:22px;width:120px;height:110px">
+    <div class="mc float" style="--t:var(--g1);position:absolute;right:0;top:0;width:96px;height:44px;transform:rotate(-9deg);font-size:15px"><span>Visa</span></div>
+    <div class="mc float" style="--t:var(--g1);position:absolute;right:10px;top:34px;width:100px;height:44px;transform:rotate(4deg);font-size:15px;animation-delay:.5s"><span>Ready</span></div></div>
+    <div class="ov2">Мои ошибки</div><div style="font-size:56px;line-height:60px;font-weight:800;letter-spacing:-1.2px;margin-top:10px">12</div><div style="font-size:15px;color:var(--sec);margin-top:2px">ждут отработки</div>${cta('Отработать', ' style="margin-top:20px"')}</div>
+  <div class="gl" style="margin-top:12px;height:120px;opacity:.45"></div></div>`);
+const hubB = (sk) => `<div class="rise">${sk ? stackM('…', '', '…').replace(/data-open="st"/, '') : stackM('Grandchildren', '/ˈɡræntʃɪldrən/', '×3')}
+  <div style="margin-top:14px">${cta(sk ? 'Отработать' : 'Отработать · 12', sk ? ' style="opacity:.6"' : ' data-open="st"')}</div>${tiles(sk)}</div>`;
+const hub = () => phone(hubHead(fixedPill(38)) + hubB(false), { overlay: start(true) });
+const hubLoading = () => phone(hubHead(`<span class="pill s">…</span>`) + hubB(true));
+const startS = () => phone(`<div style="opacity:.3">${hubHead('')}</div>`, { overlay: start(false) });
 const start = (closed) => sheet('st', `<div class="center"><div style="font-size:24px;font-weight:700">Отработка</div><div style="font-size:16px;color:var(--sec);margin-top:6px">12 ошибок · около 4 минут</div></div>
-  <div style="margin-top:14px">${[['layers', 'Все ошибки', 12], ['edit', 'Только грамматика', 4], ['mic', 'Только произношение', 3]].map(([ic, t, n]) => `<div class="gl mrow t" style="min-height:64px"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon(ic, 's20')}</div><div class="tx"><div class="w" style="font-size:17px">${t}</div></div><span class="pill s" style="font-weight:700">${n}</span></div>`).join('')}</div>
+  <div style="margin-top:14px">${[['flag', 'Все ошибки', 12], ['edit', 'Только грамматика', 4], ['mic', 'Только произношение', 3]].map(([ic, t, n]) => `<div class="gl t" style="display:flex;align-items:center;gap:14px;padding:10px 16px 10px 10px;margin-top:10px;min-height:64px"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon(ic, 's20')}</div><div class="grow" style="font-size:17px;font-weight:700">${t}</div><span class="pill s" style="font-weight:700">${n}</span></div>`).join('')}</div>
   <div style="margin-top:18px">${cta(`Начать ${icon('boltF', 's18')} 1`)}</div>`, !closed);
-const startS = () => phone(`<div style="opacity:.3">${hubHead}</div>`, { overlay: start(false) });
 
-// ---------- отработка ----------
+// ---------- список: ошибки = карточки ----------
+const L1 = [['Grandchildren', 'Внуки', 0, 3], ['I have been', 'Я был', 1, 2], ['Ready', 'Готов', 2, 2], ['Although', 'Хотя', 0, 4], ['Make a decision', 'Принять решение', 1, 2], ['Through', 'Через', 0, 3]];
+const L2 = [['Would rather', 'Лучше бы', 3], ['Ready', 'Готов', 3], ['Although', 'Хотя', 3], ['Through', 'Через', 3]];
+const list = (done) => phone(`${back('Все ошибки', `<span class="rb t">${icon('search', 's20')}</span>`)}
+  <div class="tabs" style="margin-top:20px"><span class="${done ? '' : 'on'}">Ждут · 12</span><span class="${done ? 'on' : ''}">Исправлены · 38</span></div>
+  <div class="cgrid m rise" style="margin-top:16px">${done ? L2.map(([w, t, n]) => mcs(w, t, n)).join('') : L1.map(([w, t, n, x]) => mcs(w, t, n, 'm', 'ex', x)).join('')}</div>`,
+  { fixed: bot(cta(done ? 'Повторить исправленные' : 'Отработать · 12')) });
+
+// ---------- ошибка раскрыта (разворот карточки, как в «Карточках») ----------
+const opened = (flipped) => phone(`<div style="opacity:.3">${back('Все ошибки')}<div class="cgrid m" style="margin-top:70px">${L1.slice(0, 2).map(([w, t, n, x]) => mcs(w, t, n, 'm', '', x)).join('')}</div></div>`, { overlay: `<div class="dim on" data-dim="co"></div><div class="copen on">
+  <div class="flex" style="justify-content:space-between;align-items:center;margin-bottom:12px"><span class="tag">Значение · Карточки</span><span class="tag" style="background:rgba(242,118,107,.2);color:#FFB4AC">×3</span></div>
+  ${big('Grandchildren', 'Внуки', flipped)}
+  <div style="margin-top:14px">${ansBlock('Дети', 'Внуки')}</div>
+  <div class="gl pad t" style="margin-top:12px;padding:14px 18px"><div class="flex" style="justify-content:space-between;margin-bottom:12px"><span style="font-size:16px;font-weight:700">Исправление</span><span style="color:var(--sec)">0 из 3</span></div><div class="stp"><i>1</i><b></b><i>2</i><b></b><i>3</i></div></div>
+  <div class="flex" style="gap:10px;margin-top:14px"><div class="cta2">Почему</div><div class="ac-cta" style="flex:1;width:auto">Отработать</div></div></div>` });
+const openedHist = () => phone(`<div style="opacity:.3">${back('Все ошибки')}</div>`, { overlay: `<div class="dim on" data-dim="co"></div><div class="copen on">
+  ${big('Ready', 'Готов', true)}
+  <div class="gl pad t" style="margin-top:14px;padding:14px 18px"><div class="flex" style="justify-content:space-between;margin-bottom:12px"><span style="font-size:16px;font-weight:700">Исправление</span><span style="color:var(--sec)">2 из 3</span></div><div class="stp"><i class="on">${icon('check', 's14')}</i><b class="on"></b><i class="on">${icon('check', 's14')}</i><b></b><i>3</i></div></div>
+  <div class="gl t" style="margin-top:12px;padding:4px 18px"><div class="hist"><span>Карточки</span><span style="color:var(--sec)">4 окт.</span></div><div class="hist"><span>Карточки</span><span style="color:var(--sec)">3 окт.</span></div><div class="hist"><span>Урок 4</span><span style="color:var(--sec)">3 окт.</span></div></div>
+  <div style="margin-top:14px">${cta('Отработать')}</div></div>` });
+const menuRow = (ic, t, red) => `<div class="gl t" style="display:flex;align-items:center;gap:14px;padding:10px 16px 10px 10px;margin-top:10px;min-height:62px"><div class="gtile" style="width:42px;height:42px;border-radius:13px${red ? ';color:#F2766B' : ''}">${icon(ic, 's20')}</div><div class="grow" style="font-size:17px;font-weight:700${red ? ';color:#F2766B' : ''}">${t}</div></div>`;
+const cardMenu = () => phone(`<div style="opacity:.3">${back('Все ошибки')}<div class="cgrid m" style="margin-top:20px">${L1.slice(0, 2).map(([w, t, n, x]) => mcs(w, t, n, 'm', '', x)).join('')}</div></div>`, { overlay: sheet('cm', menuRow('check', 'Я это знаю') + menuRow('flag', 'Сообщить о неточности') + menuRow('trash', 'Удалить из ошибок', true), true) });
+
+// ---------- отработка: вопрос = карточка ----------
 const runHead = (p) => `<div class="flex" style="gap:14px;margin-top:6px"><span class="rb t">${icon('close', 's20')}</span><div class="grow"><div class="trk" style="height:6px"><i style="width:${p}%"></i></div></div><span style="color:var(--sec);font-weight:600;font-variant-numeric:tabular-nums">${Math.round(p * 12 / 100)}/12</span></div>`;
-const qgl = (k, q) => `<div class="gl qgl t" style="margin-top:30px"><div class="k">${k}</div><div class="q">${q}</div></div>`;
-const runChoose = () => phone(`${runHead(25)}<div class="rise">${qgl('Выбери перевод', 'Grandchildren')}<div class="og">${['Внуки', 'Дети', 'Родители', 'Племянники'].map((o) => `<div class="gl">${o}</div>`).join('')}</div></div>`);
-const runBuild = () => phone(`${runHead(42)}<div class="rise"><div style="margin-top:30px;font-size:16px;color:var(--sec)">Собери фразу</div>
-  <div style="font-size:26px;line-height:32px;font-weight:700;margin-top:8px">Я был здесь раньше</div>
-  <div class="slot" style="margin-top:24px"><span class="tok">I</span><span class="tok">have</span></div>
-  <div class="flex" style="flex-wrap:wrap;gap:10px;margin-top:22px"><span class="tok used">I</span><span class="tok">before</span><span class="tok used">have</span><span class="tok">been</span><span class="tok">here</span><span class="tok">was</span></div></div>`,
-  { fixed: bot(`<div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div>`) });
-const runType = () => phone(`${runHead(58)}<div class="rise"><div style="margin-top:30px;font-size:16px;color:var(--sec)">Напиши по-английски</div>
-  <div style="font-size:26px;line-height:32px;font-weight:700;margin-top:8px">Принять решение</div>
-  <div class="fld" style="margin-top:24px">Make a decis<span style="width:2px;height:26px;background:var(--acc);margin-left:1px"></span></div></div>`, { fixed: bot(cta('Проверить')) });
-const runSay = () => phone(`${runHead(75)}<div class="rise">${qgl('Скажи по-английски', 'Через')}
-  <div class="center" style="margin-top:56px"><span class="mic">${icon('mic', 's32')}</span><div style="color:var(--sec);margin-top:16px;font-size:15px">Зажми и говори</div></div></div>`, { fixed: bot(`<div class="cta2">Не могу сейчас говорить</div>`) });
+const runChoose = () => phone(`${runHead(25)}<div class="rise" style="margin-top:26px">${big('Grandchildren', 'Внуки', false, '', 'Выбери перевод')}<div class="ogrid">${['Внуки', 'Дети', 'Родители', 'Племянники'].map((o) => `<div class="gl">${o}</div>`).join('')}</div></div>`);
+const runBuild = () => phone(`${runHead(42)}<div class="rise" style="margin-top:26px"><div class="gl t" style="padding:20px;text-align:center;border-radius:28px"><div style="font-size:15px;color:var(--sec)">Собери фразу</div><div style="font-size:28px;line-height:34px;font-weight:700;margin-top:8px">Я был здесь раньше</div></div>
+  <div class="slot" style="margin-top:22px"><span class="tok">I</span><span class="tok">have</span></div>
+  <div class="flex" style="flex-wrap:wrap;gap:10px;margin-top:20px"><span class="tok used">I</span><span class="tok">before</span><span class="tok used">have</span><span class="tok">been</span><span class="tok">here</span><span class="tok">was</span></div></div>`, { fixed: bot(`<div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div>`) });
+const runType = () => phone(`${runHead(58)}<div class="rise" style="margin-top:26px">${big('Принять решение', '', false, '', 'Напиши по-английски')}<div class="fld" style="margin-top:20px">Make a decis<span style="width:2px;height:26px;background:var(--acc);margin-left:1px"></span></div></div>`, { fixed: bot(cta('Проверить')) });
+const runSay = () => phone(`${runHead(75)}<div class="rise" style="margin-top:26px">${big('Через', '', false, '', 'Скажи по-английски')}<div class="center" style="margin-top:44px"><span class="mic">${icon('mic', 's32')}</span><div style="color:var(--sec);margin-top:16px;font-size:15px">Зажми и говори</div></div></div>`, { fixed: bot(`<div class="cta2">Не могу сейчас говорить</div>`) });
 
-// ---------- ответы ----------
-const fbSheet = (ok) => sheet(ok ? 'ok' : 'no', ok
-  ? `<div class="flex" style="gap:14px"><span class="sp" style="width:44px;height:44px;background:rgba(111,208,140,.2);color:#6FD08C">${icon('check', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">Верно</div><div style="width:54px">${seg(1)}</div></div><div style="margin-top:22px">${cta('Дальше')}</div>`
-  : `<div class="flex" style="gap:14px"><span class="sp" style="width:44px;height:44px;background:rgba(242,118,107,.2);color:#F2766B">${icon('close', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">Почти</div></div>
-     <div style="margin-top:16px">${ansBlock('Дети', 'Внуки')}</div>
-     <div class="flex" style="gap:10px;margin-top:18px"><div class="cta2">Почему</div><div class="ac-cta" style="flex:1;width:auto">Дальше</div></div>`, true);
-const fbBase = (opts) => `${runHead(25)}${qgl('Выбери перевод', 'Grandchildren')}<div class="og">${opts}</div>`;
-const fbOk = () => phone(fbBase(`<div class="gl ok">Внуки</div><div class="gl fd">Дети</div><div class="gl fd">Родители</div>`), { overlay: fbSheet(true) });
-const fbNo = () => phone(fbBase(`<div class="gl ok">Внуки</div><div class="gl no">Дети</div>`), { overlay: fbSheet(false) });
+// ---------- ответ: карточка переворачивается ----------
+const fbOk = () => phone(`${runHead(25)}<div class="rise" style="margin-top:26px">${big('Grandchildren', 'Внуки', true, 'res-ok')}
+  <div class="gl t" style="margin-top:16px;padding:16px 18px;display:flex;align-items:center;gap:14px"><span class="sp" style="width:44px;height:44px;background:rgba(111,208,140,.22);color:#6FD08C">${icon('check', 's20')}</span><div class="grow"><div style="font-size:22px;font-weight:700">Верно</div><div style="font-size:14px;color:var(--sec);margin-top:2px">Шаг 1 из 3</div></div><div class="stp" style="width:96px"><i class="on">${icon('check', 's14')}</i><b></b><i>2</i><b></b><i>3</i></div></div></div>`, { fixed: bot(cta('Дальше')) });
+const fbNo = () => phone(`${runHead(25)}<div class="rise" style="margin-top:26px">${big('Grandchildren', 'Внуки', true, 'res-no')}
+  <div style="margin-top:16px">${ansBlock('Дети', 'Внуки')}</div></div>`, { fixed: bot(`<div class="flex" style="gap:10px"><div class="cta2">Почему</div><div class="ac-cta" style="flex:1;width:auto">Дальше</div></div>`) });
 const why = () => phone(`<div style="opacity:.3">${runHead(25)}</div>`, { overlay: sheet('why', `<div class="flex"><div class="grow" style="font-size:22px;font-weight:700">Почему «внуки»</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div style="margin-top:16px">${ansBlock('Дети', 'Внуки', `<div class="r"><div class="tx"><div class="k">Почему</div><div style="font-size:16px;line-height:23px;margin-top:4px;color:#E2E2E6"><b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.</div></div></div>`)}</div>
   <div class="flex" style="gap:10px;margin-top:18px"><div class="cta2">Объясни проще</div><div class="ac-cta" style="flex:1;width:auto">Понятно</div></div>`, true) });
 
 // ---------- итог и пустые ----------
-const result = () => phone(`<div class="rise"><div class="center" style="margin-top:64px"><div class="ov2">Отработка</div><div class="big" style="margin-top:14px">9/12</div><div style="font-size:17px;color:var(--sec);margin-top:6px">ответов верно</div></div>
-  <div class="gl t" style="margin-top:30px;padding:6px 20px"><div class="rs"><span>Исправлено совсем</span><b>2</b></div><div class="rs"><span>Ближе к исправлению</span><b>7</b></div><div class="rs"><span>Ещё повторить</span><b>3</b></div></div>
-  <div class="sec"><div class="ti">Исправлено</div></div>
-  <div class="gl mrow t" style="min-height:66px;margin-top:0"><div class="gtile" style="width:42px;height:42px;border-radius:13px;color:#6FD08C">${icon('check', 's20')}</div><div class="tx"><div class="w" style="font-size:17px">Would rather</div><div class="s">Лучше бы</div></div></div>
-  <div class="gl mrow t" style="min-height:66px"><div class="gtile" style="width:42px;height:42px;border-radius:13px;color:#6FD08C">${icon('check', 's20')}</div><div class="tx"><div class="w" style="font-size:17px">Ready</div><div class="s">Готов</div></div></div></div>`, { fixed: bot(cta('Готово')) });
-const emptyS = (ic, ti, su, btn, color, extra = '') => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span></div><div class="lt"><div class="ti">Мои ошибки</div></div>
-  <div class="center" style="margin-top:110px"><div class="gtile" style="width:72px;height:72px;border-radius:22px;margin:0 auto${color ? ';color:' + color : ''}">${icon(ic, 's28')}</div>
-  <div style="font-size:24px;font-weight:700;margin-top:22px">${ti}</div>${su ? `<div style="font-size:16px;color:var(--sec);margin-top:8px">${su}</div>` : ''}</div>${extra}`, { fixed: bot(btn) });
+const result = () => phone(`<div class="rise"><div class="center" style="margin-top:44px"><div class="ov2" style="margin-bottom:22px">Отработка</div>
+  <div class="ring"><div class="rg"></div><div class="in2"><div class="big" style="font-size:64px;line-height:68px">9/12</div><div style="font-size:15px;color:var(--sec);margin-top:2px">верно</div></div></div></div>
+  <div class="st3"><div class="gl t"><b>2</b><span>исправлено совсем</span></div><div class="gl t"><b>7</b><span>ближе к цели</span></div><div class="gl t"><b>3</b><span>ещё повторить</span></div></div>
+  <div style="font-size:17px;font-weight:600;margin:24px 0 12px">Исправлено</div>
+  <div class="cgrid m">${mcs('Would rather', 'Лучше бы', 3)}${mcs('Ready', 'Готов', 3)}</div></div>`, { fixed: bot(`<div class="flex" style="gap:10px"><div class="cta2">Ещё 3</div><div class="ac-cta" style="flex:1;width:auto">Готово</div></div>`) });
+const emptyFan = (ic, color) => `<div style="position:relative;height:150px;margin-top:70px"><div class="mc solid" style="position:absolute;left:46px;right:46px;top:0;height:96px;opacity:.35;border-radius:26px"></div><div class="mc solid" style="position:absolute;left:28px;right:28px;top:20px;height:104px;opacity:.6;border-radius:26px"></div>
+  <div class="mc solid t float" style="position:absolute;left:10px;right:10px;top:44px;height:104px;border-radius:26px${color ? ';color:' + color : ''}">${icon(ic, 's32')}</div></div>`;
+const emptyS = (ic, ti, su, btn, color, extra = '') => phone(`${hubHead('')}<div class="center">${emptyFan(ic, color)}<div style="font-size:26px;font-weight:700;margin-top:26px">${ti}</div>${su ? `<div style="font-size:16px;color:var(--sec);margin-top:8px">${su}</div>` : ''}</div>${extra}`, { fixed: bot(btn) });
 const empty = () => emptyS('check', 'Ошибок нет', 'Всё исправлено', cta('К урокам'), '#6FD08C');
-const allDone = () => emptyS('flag', 'На сегодня всё', 'Остальные ошибки вернутся завтра', cta('К урокам'), '', `<div class="gl pad" style="margin-top:36px;padding:16px 20px"><div class="flex" style="justify-content:space-between"><span>Ждут</span><b style="font-size:22px">10</b></div></div>`);
-const offline = () => emptyS('wifiOff', 'Сейчас недоступно', '', `<div class="cta2">Попробовать снова</div>`, 'var(--sec)');
+const allDone = () => emptyS('flag', 'На сегодня всё', 'Остальные вернутся завтра', cta('К урокам'), '', `<div class="gl pad" style="margin-top:30px;padding:16px 20px"><div class="flex" style="justify-content:space-between"><span>Ждут</span><b style="font-size:22px">10</b></div></div>`);
+const offline = () => emptyS('wifiOff', 'Сейчас недоступно', 'Проверьте интернет', `<div class="cta2">Попробовать снова</div>`, 'var(--sec)');
 
 document.getElementById('root').innerHTML =
-  block('hub', 'Вход и хаб', 'Хаб без прокрутки: число ошибок и прогресс, главная кнопка с числом, три самые частые ошибки и три типа. Нажатие на «Отработать» открывает выбор перед стартом.', [col('Главная — вход', homeEntry()), col('Хаб', hub()), col('Хаб — загрузка', hubLoading()), col('Перед отработкой', startS())]) +
-  block('list', 'Список', '', [col('Все ошибки — ждут', list(false)), col('Все ошибки — исправлены', list(true))]) +
-  block('card', 'Карточка ошибки', 'Слово — той же зафиксированной карточкой: нажатие переворачивает на перевод.', [col('Карточка', card()), col('Карточка — оборот и история', cardBack()), col('Меню карточки', cardMenu())]) +
-  block('run', 'Отработка — типы заданий', '', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay())]) +
-  block('fb', 'Ответы и разбор', '', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
+  block('hub', 'Вход и хаб', 'Хаб без прокрутки, как у «Карточек»: стопка ошибок со счётчиком, главная кнопка с числом и четыре равные плитки. Нажатие на стопку или кнопку открывает выбор перед стартом.', [col('Главная — вход', homeEntry()), col('Хаб', hub()), col('Хаб — загрузка', hubLoading()), col('Перед отработкой', startS())]) +
+  block('list', 'Список', 'Ошибки — те же карточки: в углу счётчик ошибок, внизу три шага исправления; нажатие раскрывает.', [col('Ждут', list(false)), col('Исправлены', list(true))]) +
+  block('card', 'Ошибка раскрыта', 'Карточка разворачивается по центру, как в «Карточках», и переворачивается на перевод. Под ней — ответ, три шага исправления и история.', [col('Ошибка', opened(false)), col('Оборот', opened(true)), col('История и шаги', openedHist()), col('Меню ошибки', cardMenu())]) +
+  block('run', 'Отработка — типы заданий', 'Вопрос — сама карточка, варианты — плитки 2×2.', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay())]) +
+  block('fb', 'Ответ и разбор', 'Ответ — переворот той же карточки: зелёное свечение при верном, красное при ошибке; нижней шторки нет.', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
   block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]);
 K.init();
 
-// ---- темы и переворот карточки ----
 const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
   ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
 let theme = 0;

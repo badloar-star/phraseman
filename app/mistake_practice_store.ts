@@ -134,12 +134,23 @@ async function mergePhoneStateJournal(journal: MistakeEventJournal): Promise<Mis
     Object.fromEntries(journal.events.map((event) => [event.eventId, event])),
     journal.accountScope,
   );
-  return mergeMistakeEventJournals(journal, {
+  const merged = mergeMistakeEventJournals(journal, {
     version: 1,
     accountScope: journal.accountScope,
     studyTarget: journal.studyTarget,
     events: Object.freeze(Object.values(facts)),
   });
+  // зачем (§142, логи прода 04.10: 188 отказов [MP-SYNC] event_target_mismatch с повторами): факты phone-state общие на аккаунт,
+  // без языка, и попадали в журнал КАЖДОГО языка — журнал fr выгружал английские события, сервер их отклонял, клиент повторял.
+  // Оставляем только события своего языка (и уже впитанные раньше чужие тоже): каждое живёт в журнале своего языка.
+  const own = merged.events.filter((event) => event.studyTarget === journal.studyTarget);
+  if (own.length === merged.events.length) return merged;
+  const foreignByTarget: Record<string, number> = {};
+  for (const event of merged.events) {
+    if (event.studyTarget !== journal.studyTarget) foreignByTarget[String(event.studyTarget)] = (foreignByTarget[String(event.studyTarget)] ?? 0) + 1;
+  }
+  console.warn('[MISTAKE-JOURNAL] foreign_target_facts', JSON.stringify({ studyTarget: journal.studyTarget, kept: own.length, dropped: merged.events.length - own.length, foreignByTarget }));
+  return Object.freeze({ ...merged, events: Object.freeze(own) });
 }
 
 const normalizedScope = (value: string): string => {

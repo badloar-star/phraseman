@@ -2749,7 +2749,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // выбора наборов (phase='select') — тот самый устаревший полноэкранный
   // подбор, который владелец считает мёртвым грузом. Теперь ведёт назад —
   // туда, откуда пришли запускать тренировку (тот же путь, что у exitTraining).
-  const openSettings = useCallback(() => {
+  // зачем (ревью PM-134, 04.10): кнопки «Настройки» в шапке больше нет (abac0c627) — обработчик остался только как выход из итога («Готово»), имя отражает действие.
+  const exitFromResult = useCallback(() => {
     void hapticTap();
     abandonActiveSwipePendingGrant();
     draftRestoreAttemptedRef.current = true;
@@ -4313,7 +4314,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         runesGained={practiceRunes.runes}
         learnLeft={0}
         onRetryWrong={() => { void startSession(); }}
-        onDone={openSettings}
+        onDone={exitFromResult}
         retryLabel={text.nextRound}
         scoreText={`${text.scoreLabel}: ${resultScore}`}
         testID="flashcards-swipe-result"

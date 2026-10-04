@@ -85,7 +85,8 @@ const levelRailWrapper = lessons.slice(
   Math.max(0, lessons.indexOf('testID="legacy-lessons-level-rail"') - 600),
   lessons.indexOf('testID="legacy-lessons-level-rail"'),
 );
-assert.match(levelRailWrapper, /\{ flex: 1, minWidth: 0 \}/);
+// зачем (владелец 04.10, «Обучение B»): поле поиска занимает остаток строки, рельса кнопок — по содержимому справа.
+assert.match(levelRailWrapper, /\{ flexShrink: 0 \}/);
 assert.match(lessons, /testID="legacy-lessons-level-combo"/);
 assert.match(lessons, /testID="legacy-lessons-open-new-lessons"/);
 // Заголовки уровней и экзамены обязаны остаться в потоке списка — без них
@@ -144,8 +145,9 @@ const newLessonsChipBlock = legacyBranch.slice(
 );
 // зачем (владелец 2026-09-30, learn.html 2.0): кнопки ряда стали круглыми 44×44, как `.rb`
 // макета (раньше квадратные 52×44). Размер у всех кнопок ряда по-прежнему один.
-assert.match(newLessonsChipBlock, /width: 44/);
-assert.match(newLessonsChipBlock, /height: 44/);
+// зачем (владелец 04.10, «Обучение B»): строка инструментов 40px — кнопки 40×40, размер у всех один.
+assert.match(newLessonsChipBlock, /width: 40/);
+assert.match(newLessonsChipBlock, /height: 40/);
 // зачем: подпись у «Новых уроков» отменена владельцем 2026-09-17 («кнопка
 // должна быть такого же размера») — текст не влезал в 52pt без ужатия шрифта,
 // а ужимать владелец запрещает. Осталась иконка, название несёт

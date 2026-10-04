@@ -84,10 +84,11 @@ test('header title stays on one line without squeezing; back button only outside
   const title = header.slice(titleStart, header.indexOf('</Text>', titleStart));
   assert.doesNotMatch(title, /numberOfLines|adjustsFontSizeToFit|flex: 1\b/, 'title is not squeezed by the HUD');
   assert.match(title, /flexShrink: 0/);
-  assert.match(title, /fontSize: 40/);
+  // зачем (владелец 04.10, раунд 2 → «Обучение B»): заголовок 34, подзаголовок убран.
+  assert.match(title, /fontSize: 34/);
   assert.match(header, /flexWrap: "wrap"/, 'the HUD wraps under the title when space runs out');
   assert.match(header, /\{!isRetainedTab \? \(\s*<PressableHybrid\s+testID="legacy-lessons-back-home"/, 'root tab has no back button');
-  assert.match(header, /lessonsListCopy\.subtitle\(lang\)/);
+  assert.doesNotMatch(header, /lessonsListCopy\.subtitle\(lang\)/);
   assert.doesNotMatch(lessons, /adjustsFontSizeToFit/);
 });
 

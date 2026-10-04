@@ -2565,7 +2565,6 @@ export default function LessonsTab({
   // зачем (аудит 2026-09-21): поиск по урокам открывается ЛУПОЙ в ряду чипов,
   // а не живёт постоянной строкой — владелец: «не фулл строка ввода, а просто
   // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.
-  const [legacySearchOpen, setLegacySearchOpen] = useState(false);
   const [legacyLessonQuery, setLegacyLessonQuery] = useState("");
   const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
     useState(false);
@@ -5286,8 +5285,8 @@ export default function LessonsTab({
                     flexShrink: 0,
                     maxWidth: "100%",
                     color: learnGlass.text,
-                    fontSize: 40,
-                    lineHeight: 46,
+                    fontSize: 34,
+                    lineHeight: 40,
                     fontWeight: "700",
                     letterSpacing: -0.6,
                   }}
@@ -5296,70 +5295,81 @@ export default function LessonsTab({
                 </Text>
                 <View style={{ marginLeft: "auto" }}>{legacyLessonsResourceHud}</View>
               </View>
-              <Text
-                style={{
-                  marginTop: 6,
-                  color: learnGlass.secondary,
-                  fontSize: 16,
-                  lineHeight: 20,
-                }}
-              >
-                {lessonsListCopy.subtitle(lang)}
-              </Text>
             </View>
 
-            {/* `.ltools` макета: круглые кнопки поиска и «Смешать темы» (комбинированный урок). */}
+            {/* зачем (владелец 04.10, раунд 2 → «Обучение B»): одна строка 40px — поле поиска на всю ширину + «Смешать темы»
+                и «Новые уроки» справа; поиск больше не прячется за кнопкой и не открывает отдельную панель. */}
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 10,
                 paddingHorizontal: 20,
-                marginTop: 26,
+                marginTop: 12,
               }}
             >
-              <TouchableOpacity
+              <View
                 testID="legacy-lessons-search-toggle"
-                accessibilityRole="button"
-                accessibilityState={{ selected: legacySearchOpen }}
-                accessibilityLabel={triLang(lang, {
-                  ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
-                  es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
-                  id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
-                })}
-                onPress={() => {
-                  hapticTap();
-                  setLegacySearchOpen((prev) => {
-                    // Закрываем — снимаем и фильтр: иначе список остался бы
-                    // урезанным без единого видимого признака почему.
-                    if (prev) setLegacyLessonQuery("");
-                    return !prev;
-                  });
-                }}
                 style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
+                  flex: 1,
+                  minWidth: 0,
+                  height: 40,
+                  borderRadius: 20,
+                  flexDirection: "row",
                   alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  // зачем: активная лупа — светлая заливка cta, как «.rb.fill» в макете A3.
-                  backgroundColor: legacySearchOpen ? learnGlass.cta : learnGlass.opaqueControl,
+                  gap: 8,
+                  paddingLeft: 14,
+                  paddingRight: legacyLessonQuery ? 0 : 14,
+                  backgroundColor: learnGlass.opaqueControl,
                   borderWidth: 1,
-                  borderColor: legacySearchOpen ? learnGlass.cta : learnGlass.glassEdge,
+                  borderColor: learnGlass.glassEdge,
                 }}
               >
-                <Ionicons
-                  name="search"
-                  size={20}
-                  color={legacySearchOpen ? learnGlass.ctaInk : learnGlass.text}
+                <Ionicons name="search" size={18} color={learnGlass.secondary} />
+                <TextInput
+                  testID="legacy-lessons-search-input"
+                  value={legacyLessonQuery}
+                  onChangeText={setLegacyLessonQuery}
+                  returnKeyType="search"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
+                    es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
+                    id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
+                  })}
+                  placeholder={triLang(lang, {
+                    ru: "Урок или тема", uk: "Урок або тема", en: "Lesson or topic",
+                    es: "Lección o tema", "pt-BR": "Lição ou tema", vi: "Bài học hoặc chủ đề",
+                    id: "Pelajaran atau topik", tr: "Ders veya konu", pl: "Lekcja lub temat",
+                  })}
+                  placeholderTextColor={learnGlass.secondary}
+                  selectionColor={learnGlass.text}
+                  style={{ flex: 1, minWidth: 0, color: learnGlass.text, fontSize: 16, padding: 0 }}
                 />
-              </TouchableOpacity>
+                {legacyLessonQuery ? (
+                  <TouchableOpacity
+                    testID="legacy-lessons-search-close"
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, {
+                      ru: "Очистить поиск", uk: "Очистити пошук", en: "Clear search",
+                      es: "Borrar búsqueda", "pt-BR": "Limpar busca", vi: "Xóa tìm kiếm",
+                      id: "Hapus pencarian", tr: "Aramayı temizle", pl: "Wyczyść wyszukiwanie",
+                    })}
+                    onPress={() => {
+                      hapticTap();
+                      setLegacyLessonQuery("");
+                    }}
+                    hitSlop={6}
+                    style={{ width: 40, height: 40, alignItems: "center", justifyContent: "center" }}
+                  >
+                    <Ionicons name="close" size={18} color={learnGlass.secondary} />
+                  </TouchableOpacity>
+                ) : null}
+              </View>
 
               {/* Ряд листается, только если кнопкам тесно (крупный шрифт/узкий экран);
                   затухание справа появляется лишь тогда — иначе оно ложилось бы полосой
                   на фон темы. */}
-              <View style={{ flex: 1, minWidth: 0 }}>
+              <View style={{ flexShrink: 0 }}>
                 <ScrollView
                   horizontal
                   testID="legacy-lessons-level-rail"
@@ -5396,15 +5406,15 @@ export default function LessonsTab({
                     onPress={openCombinedLesson}
                     variant="chip"
                     style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 22,
+                      width: 40,
+                      height: 40,
+                      borderRadius: 20,
                       backgroundColor: learnGlass.opaqueControl,
                       borderWidth: 1,
                       borderColor: learnGlass.glassEdge,
                     }}
                     contentStyle={{
-                      height: 44,
+                      height: 40,
                       paddingHorizontal: 0,
                       alignItems: "center",
                       justifyContent: "center",
@@ -5436,16 +5446,16 @@ export default function LessonsTab({
                       variant="chip"
                       style={{
                         flexShrink: 0,
-                        width: 44,
-                        height: 44,
-                        borderRadius: 22,
+                        width: 40,
+                        height: 40,
+                        borderRadius: 20,
                         backgroundColor: learnGlass.opaqueControl,
                         borderWidth: 1,
                         borderColor: learnGlass.glassEdge,
                         opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
                       }}
                       contentStyle={{
-                        height: 44,
+                        height: 40,
                         paddingHorizontal: 0,
                         alignItems: "center",
                         justifyContent: "center",
@@ -5473,69 +5483,6 @@ export default function LessonsTab({
               </View>
             </View>
 
-            {/* `.srch` макета A3: поле под рядом кнопок — ряд остаётся на месте. */}
-            {legacySearchOpen ? (
-              <View
-                style={{
-                  marginHorizontal: 20,
-                  marginTop: 16,
-                  height: 48,
-                  borderRadius: 16,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingLeft: 16,
-                  backgroundColor: learnGlass.opaqueControl,
-                  borderWidth: 1,
-                  borderColor: learnGlass.glassEdge,
-                }}
-              >
-                <Ionicons name="search" size={18} color={learnGlass.secondary} />
-                <TextInput
-                  testID="legacy-lessons-search-input"
-                  value={legacyLessonQuery}
-                  onChangeText={setLegacyLessonQuery}
-                  autoFocus
-                  returnKeyType="search"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
-                    es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
-                    id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
-                  })}
-                  placeholder={triLang(lang, {
-                    ru: "Урок или тема", uk: "Урок або тема", en: "Lesson or topic",
-                    es: "Lección o tema", "pt-BR": "Lição ou tema", vi: "Bài học hoặc chủ đề",
-                    id: "Pelajaran atau topik", tr: "Ders veya konu", pl: "Lekcja lub temat",
-                  })}
-                  placeholderTextColor={learnGlass.secondary}
-                  selectionColor={learnGlass.text}
-                  style={{
-                    flex: 1,
-                    minWidth: 0,
-                    color: learnGlass.text,
-                    fontSize: 16,
-                    padding: 0,
-                  }}
-                />
-                <TouchableOpacity
-                  testID="legacy-lessons-search-close"
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Закрыть поиск", uk: "Закрити пошук", en: "Close search",
-                    es: "Cerrar búsqueda", "pt-BR": "Fechar busca", vi: "Đóng tìm kiếm",
-                    id: "Tutup pencarian", tr: "Aramayı kapat", pl: "Zamknij wyszukiwanie",
-                  })}
-                  onPress={() => {
-                    hapticTap();
-                    setLegacyLessonQuery("");
-                    setLegacySearchOpen(false);
-                  }}
-                  style={{ width: 44, height: 46, alignItems: "center", justifyContent: "center" }}
-                >
-                  <Ionicons name="close" size={18} color={learnGlass.secondary} />
-                </TouchableOpacity>
-              </View>
-            ) : null}
 
             {/* зачем: ответ недоступной кнопки «Новые уроки» (только дев-сборка, см. выше). */}
             {learningV2LockedNoticeVisible ? (

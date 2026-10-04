@@ -338,14 +338,13 @@ export default function CoinRankScreen() {
           accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           onPress={goBack}
           scaleTo={0.94}
-          style={[styles.backButton, glass]}
+          style={styles.backButton}
         >
-          <V2GlassSheen seed={4} />
-          <Ionicons name="chevron-back" size={24} color={p.text} />
+          <Ionicons name="chevron-back" size={21} color={p.text} />
         </V2Pressable>
-        <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
-        <View style={styles.headerSpacer} />
       </View>
+      {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как кошелёк и профиль. */}
+      <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
 
       <ScrollView
         style={styles.scroll}
@@ -399,7 +398,7 @@ export default function CoinRankScreen() {
             <View style={[styles.divider, { backgroundColor: p.divider }]} />
             <View style={styles.costRow}>
               <Text style={[styles.costTitle, { color: p.text }]}>{copy.balance}</Text>
-              <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.text }]}>
+              <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.textSecondary }]}>
                 {balance === null ? '—' : formatCoins(balance)}
               </Text>
             </View>
@@ -463,25 +462,14 @@ export default function CoinRankScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  header: {
-    minHeight: 70,
-    paddingHorizontal: V2.screenPad,
-    paddingBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  backButton: {
-    width: V2.iconButton,
-    height: V2.iconButton,
-    borderRadius: V2.iconButton / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerTitle: { ...V2_TYPE.title, flex: 1, textAlign: 'center', marginHorizontal: 10 },
-  headerSpacer: { width: V2.iconButton, height: V2.iconButton },
+  // зачем (`.topbar` 44 + `.rb.bare` + `.screen-title`): голый шеврон 48×44, заголовок 34/40 слева на 10 ниже.
+  header: { minHeight: 44, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center' },
+  backButton: { width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' },
+  headerTitle: { fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10, paddingHorizontal: V2.screenPad },
   scroll: { flex: 1 },
   scrollContent: { paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 24, gap: V2.gap },
-  hero: { alignItems: 'center', paddingTop: 14, paddingBottom: 10 },
+  // зачем (coins.html): герой 24 под заголовком (16 + 8 у прокрутки), карточка 28 ниже (16 + промежуток 12).
+  hero: { alignItems: 'center', paddingTop: 16, paddingBottom: 16 },
   coinsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 22 },
   heroCoinFrom: { width: 88, height: 88 },
   heroCoinTo: { width: 104, height: 104 },
@@ -498,7 +486,8 @@ const styles = StyleSheet.create({
   priceCoin: { width: 20, height: 20 },
   priceText: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 16 },
-  balanceValue: { ...V2_TYPE.headline, fontWeight: '400', fontVariant: ['tabular-nums'] },
+  // `.value`: вторичный тон; макет 14, шкала D145 — 13.
+  balanceValue: { fontSize: 13, lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
   statusCard: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16 },
   statusCopy: { flex: 1, minWidth: 0 },
   statusTitle: { ...V2_TYPE.headline },

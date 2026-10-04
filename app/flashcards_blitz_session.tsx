@@ -55,7 +55,7 @@ import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import ReportErrorButton from '../components/ReportErrorButton';
+import EnergyBar from '../components/EnergyBar';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -333,7 +333,8 @@ export default function FlashcardsBlitzSession() {
   const scoreScale = useSharedValue(1);
   const gainAnim = useSharedValue(0);
 
-  const timerBarStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: progress.value }] }));
+  // зачем (practice.html `.trk`): полоса растёт от 0 по прошедшему времени; `progress` по-прежнему — доля оставшегося.
+  const timerBarStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: 1 - progress.value }] }));
   const comboStyle = useAnimatedStyle(() => ({ transform: [{ scale: comboScale.value }] }));
   const scoreStyle = useAnimatedStyle(() => ({ transform: [{ scale: scoreScale.value }] }));
   const gainStyle = useAnimatedStyle(() => ({
@@ -1352,7 +1353,7 @@ export default function FlashcardsBlitzSession() {
             </View>
 
             <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
-              <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card }]}>
+              <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
                 <SkeletonBlock width="70%" height={(f.h1 ?? 24) + 2} />
               </View>
               <View style={{ gap: 10 }}>
@@ -1380,44 +1381,7 @@ export default function FlashcardsBlitzSession() {
           ru: 'Ещё разок!', uk: 'Ще разок!', en: 'One more!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
           vi: 'Chơi lại!', id: 'Sekali lagi!', tr: 'Bir daha!', pl: 'Jeszcze raz!',
         })}
-        scoreText={
-          /**
-           * Смысл счёта — личный рекорд (FIX владельца, 2026-08-13):
-           * побил прошлый лучший → «Новый рекорд! N», иначе → «Счёт: N ·
-           * рекорд: M». Ни наград, ни валюты, ни звёзд.
-           *
-           * зачем devRunesFake (владелец, 2026-08-27): «Проверка рун» из
-           * DEV-хаба подменяет и счёт — сама игровая механика (commitBlitzScore
-           * и т.д.) остаётся честной и нетронутой, подмена только в тексте.
-           */
-          (() => {
-            const displayScore = devRunesFake ? devRunesFake.secondary : result.score;
-            const displayBest = devRunesFake ? devRunesFake.tertiary * 100 : result.best;
-            return result.isRecord
-              ? triLang(lang, {
-                  ru: `Новый рекорд! ${displayScore}`,
-                  uk: `Новий рекорд! ${displayScore}`,
-                  en: `New record! ${displayScore}`,
-                  es: `¡Nuevo récord! ${displayScore}`,
-                  'pt-BR': `Novo recorde! ${displayScore}`,
-                  vi: `Kỷ lục mới! ${displayScore}`,
-                  id: `Rekor baru! ${displayScore}`,
-                  tr: `Yeni rekor! ${displayScore}`,
-                  pl: `Nowy rekord! ${displayScore}`,
-                })
-              : triLang(lang, {
-                  ru: `Счёт: ${displayScore} · рекорд: ${displayBest}`,
-                  uk: `Рахунок: ${displayScore} · рекорд: ${displayBest}`,
-                  en: `Score: ${displayScore} · record: ${displayBest}`,
-                  es: `Puntos: ${displayScore} · récord: ${displayBest}`,
-                  'pt-BR': `Pontos: ${displayScore} · recorde: ${displayBest}`,
-                  vi: `Điểm: ${displayScore} · kỷ lục: ${displayBest}`,
-                  id: `Skor: ${displayScore} · rekor: ${displayBest}`,
-                  tr: `Puan: ${displayScore} · rekor: ${displayBest}`,
-                  pl: `Wynik: ${displayScore} · rekord: ${displayBest}`,
-                });
-          })()
-        }
+        // зачем (владелец 04.10: «ОЧКИ ИЗ БЛИЦА УБИРАЙ ВООБЩЕ, ТОЛЬКО МОНЕТЫ СЧИТАЕМ»): строки «Счёт · рекорд» в итоге нет.
         onDone={leave}
         accentColor={ACCENT}
         testID="fc-blitz-result"
@@ -1501,13 +1465,17 @@ export default function FlashcardsBlitzSession() {
               наборов ушла — наборы выбираются на экране настройки тренировки (D152), шапка
               освободилась, и плашка монет встала на своё место из макета. */}
           <View style={styles.headerRow}>
-            <PracticeBackButton glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
+            <View style={{ marginRight: 6 }}>
+              <PracticeBackButton large glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
+            </View>
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
               <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
                 <Text style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
               </ScrollView>
             </PracticeHeaderTitle>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            {/* зачем (practice.html `.hd`): справа энергия (у Plus скрыта), сердца и монеты через 6. */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <EnergyBar ownerActive glass />
               <SessionAttemptsHud
                 remaining={attempts.state.remainingAttempts}
                 locale={lang}
@@ -1522,26 +1490,12 @@ export default function FlashcardsBlitzSession() {
                   testID="fc-blitz-practice-runes"
                 />
               </View>
-              {/* зачем: блиц показывает английскую фразу и переводы-дистракторы,
-                  то есть контент, в котором бывает ошибка, — а пожаловаться было
-                  негде (в свайпе флаг есть, здесь его забыли). Флаг только когда
-                  вопрос на экране: жаловаться на пустоту не на что. */}
-              {question ? (
-                <ReportErrorButton
-                  screen="flashcards_blitz"
-                  dataId={`flashcard_${question.card.id ?? 'unknown'}`}
-                  dataText={`EN: ${question.card.en}
-RU: ${question.card.translation}`}
-                  variant="icon-flag"
-                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
-                  testID="fc-blitz-report"
-                />
-              ) : null}
+              {/* зачем (владелец, practice.html): флажка «сообщить об ошибке» в шапке Блица нет — убран по макету. */}
             </View>
           </View>
 
           {/* Таймер-полоса: Reanimated scaleX от 1 к 0, origin слева (принцип 3) */}
-          <View style={[styles.timerTrack, { backgroundColor: blitzGlass.glassEdge }]}>
+          <View style={[styles.timerTrack, { backgroundColor: '#2C2C2E' }]}>
             <Reanimated.View
               style={[
                 styles.timerFill,
@@ -1553,47 +1507,21 @@ RU: ${question.card.translation}`}
 
           {/* Счёт · время · комбо — источник полёта рун (владелец, 2026-08-27) */}
           <View ref={runeFlight.originRef} collapsable={false} style={styles.scoreRow}>
-            <View style={{ minWidth: 90 }}>
-              <Reanimated.View style={scoreStyle}>
-                <Text
-                  testID="fc-blitz-score"
-                  // зачем (PM-129, шкала D145): под полосой мелкая подпись (13/600, вторичный
-                  // тон), а не крупная цифра — счёт остаётся, но перестаёт спорить с вопросом.
-                  style={{ color: blitzGlass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}
-                >
-                  {blitz.score}
-                </Text>
-              </Reanimated.View>
-              {lastGain > 0 ? (
-                <Reanimated.View pointerEvents="none" style={[styles.gainFloat, gainStyle]}>
-                  <Text style={{ color: OK, fontSize: f.caption + 1, fontWeight: '900' }}>+{lastGain}</Text>
-                </Reanimated.View>
-              ) : null}
-            </View>
             <PracticeTimerPill
               testID="fc-blitz-timer"
               glass={blitzGlass}
               color={danger ? BAD : blitzGlass.text}
               text={`${mm}:${ss}`}
             />
-            <View style={{ minWidth: 90, alignItems: 'flex-end' }}>
-              {blitz.streak >= 3 ? (
-                <Reanimated.View
-                  testID="fc-blitz-combo"
-                  style={[styles.comboBadge, { backgroundColor: `${ACCENT}2E` }, comboStyle]}
-                >
-                  <Ionicons name="flame" size={15} color={ACCENT} />
-                  <Text style={{ color: ACCENT, fontSize: f.sub, fontWeight: '900' }}>×{blitz.streak}</Text>
-                </Reanimated.View>
-              ) : null}
-            </View>
           </View>
 
-          {/* Вопрос + 4 варианта */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 16, paddingVertical: 12, gap: 14, justifyContent: 'center' }} keyboardShouldPersistTaps="handled">
-            <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card }]}>
+          {/* Вопрос + 4 варианта. зачем (practice.html): карточка вопроса стоит сверху (38 от строки таймера), варианты
+              через 23 и между собой 13 — не по центру экрана. */}
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 38, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled">
+            <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
               <BlitzGlassSurface chrome={blitzGlass} />
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginBottom: 6 }}>
+              {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}
+              <Text style={{ color: blitzGlass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
                 {triLang(lang, {
                   ru: 'Выбери перевод', uk: 'Обери переклад', en: 'Choose the translation', es: 'Elige la traducción',
                   'pt-BR': 'Escolha a tradução', vi: 'Chọn bản dịch', id: 'Pilih terjemahan', tr: 'Çeviriyi seç', pl: 'Wybierz tłumaczenie',
@@ -1602,13 +1530,13 @@ RU: ${question.card.translation}`}
               <Text
                 testID="fc-blitz-question"
 
-                style={[styles.questionText, { color: t.textPrimary, fontSize: (f.h1 ?? 24) + 2 }]}
+                style={[styles.questionText, { color: t.textPrimary, fontSize: f.body * 2, lineHeight: Math.round(f.body * 2.375), marginTop: 22 }]}
               >
                 {question?.card.en ?? ''}
               </Text>
             </View>
 
-            <View style={{ gap: 10 }}>
+            <View style={{ gap: 13 }}>
               {(question?.options ?? []).map((opt, i) => {
                 const state = btnStates[i];
                 // зачем (PM-129, `.opt` / `.opt.ok` / `.opt.no` макета): у варианта тонкая
@@ -1661,26 +1589,30 @@ RU: ${question.card.translation}`}
 }
 
 const styles = StyleSheet.create({
+  // зачем (practice.html `.hd`): поле страницы 20, шапка 16 от верха, промежутки 6.
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    gap: 6,
+    paddingHorizontal: 20,
+    paddingTop: 16,
   },
+  // зачем (`.trk`): полоса 22 под шапкой, по полю 20, дорожка #2C2C2E.
   timerTrack: {
     height: 6,
     borderRadius: 3,
-    marginHorizontal: 16,
+    marginHorizontal: 20,
+    marginTop: 22,
     overflow: 'hidden',
   },
   timerFill: { height: 6, borderRadius: 3, width: '100%' },
+  // зачем (владелец 04.10): очков и комбо нет — в строке под полосой один таймер по центру; подписи «0 · 100» макета сняты.
   scoreRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
-    marginTop: 12,
+    marginTop: 14,
   },
   gainFloat: { position: 'absolute', top: -4, left: 2 },
   /**
@@ -1695,18 +1627,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
+  // зачем (`.qc`): 160 высотой, поля 22/28, тонкая кромка.
   questionBox: {
     borderRadius: 16,
+    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная кромка `.qc`
     paddingVertical: 22,
-    paddingHorizontal: 20,
+    paddingHorizontal: 28,
     alignItems: 'center',
-    minHeight: 110,
+    minHeight: 160,
     justifyContent: 'center',
   },
   glassSurface: {
     overflow: 'hidden',
   },
-  questionText: { fontWeight: '800', textAlign: 'center' },
+  questionText: { fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
   optionBtn: {
     borderRadius: 14,
     borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — тонкая полупрозрачная обводка `.opt` макета practice.html
@@ -1716,5 +1650,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  optionText: { fontWeight: '700', textAlign: 'center' },
+  // зачем (`.opt`): 16.5/21 600; шкала D145 — кегль f.body (16 при «Среднем»), вес 600.
+  optionText: { fontWeight: '600', textAlign: 'center' },
 });

@@ -20,7 +20,7 @@ const HIT = { top: 4, bottom: 4, left: 4, right: 4 } as const;
 
 /** Круглая кнопка «‹» шапки занятия: круг 34 внутри области нажатия 44 dp. */
 export function PracticeBackButton({
-  glass, color, onPress, testID, accessibilityLabel, disabled,
+  glass, color, onPress, testID, accessibilityLabel, disabled, large = false,
 }: {
   glass: PracticeGlass;
   color: string;
@@ -28,6 +28,8 @@ export function PracticeBackButton({
   testID?: string;
   accessibilityLabel?: string;
   disabled?: boolean;
+  /** зачем (practice.html `.hd .rb.l`): в шапке тренировки круг 48 — он сам больше области нажатия 44. */
+  large?: boolean;
 }) {
   return (
     <Pressable
@@ -38,9 +40,9 @@ export function PracticeBackButton({
       disabled={disabled || !onPress}
       onPress={onPress}
       hitSlop={HIT}
-      style={({ pressed }) => [styles.touch, { opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] }]}
+      style={({ pressed }) => [styles.touch, large ? styles.touchLarge : null, { opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] }]}
     >
-      <View style={[styles.round, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+      <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
         <Ionicons name="chevron-back" size={20} color={color} />
       </View>
     </Pressable>
@@ -129,6 +131,8 @@ const styles = StyleSheet.create({
     width: PRACTICE_ROUND, height: PRACTICE_ROUND, borderRadius: PRACTICE_ROUND / 2,
     alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth,
   },
+  touchLarge: { width: 48, height: 48 },
+  roundLarge: { width: 48, height: 48, borderRadius: 24 },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   subtitle: { fontSize: 16, lineHeight: 22, marginTop: 2 },
   timer: { minHeight: 38, borderRadius: 19, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center' },

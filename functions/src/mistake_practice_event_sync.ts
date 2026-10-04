@@ -22,6 +22,8 @@ const TYPES = new Set(['captured', 'hint_used', 'practice_answered', 'hidden', '
  * в modules/mistake-practice/contracts.ts — сервер не импортирует клиентский
  * код, поэтому связь держится сторожем, а не типом.
  */
+/** Предел длины ответа ученика (зеркало клиентского MISTAKE_GIVEN_MAX_CHARS). */
+export const MISTAKE_GIVEN_MAX_CHARS = 200;
 const STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
 type StudyTarget = (typeof STUDY_TARGETS)[number];
 const isStudyTarget = (value: unknown): value is StudyTarget =>
@@ -66,6 +68,13 @@ function parseEvent(input: unknown, target: StudyTarget): Record<string, unknown
   if (input.studyTarget !== target) return fail('event_target_mismatch');
   if (!isRecord(input.payload)) return fail('event_shape:payload');
   const detached = JSON.parse(canonicalJsonV1(input)) as Record<string, unknown>;
+  // зачем (04.10, решение координатора — вариант А): ответ ученика (payload.given) хранится в облаке;
+  // старые клиенты не режут его — ограничиваем 200 знаками при приёме.
+  const detachedPayload = detached.payload as Record<string, unknown>;
+  if (typeof detachedPayload.given === 'string' && detachedPayload.given.length > MISTAKE_GIVEN_MAX_CHARS) {
+    console.info('[MISTAKE-SYNC] given_truncated', JSON.stringify({ chars: detachedPayload.given.length }));
+    detachedPayload.given = detachedPayload.given.slice(0, MISTAKE_GIVEN_MAX_CHARS);
+  }
   if (canonicalJsonV1(detached).length > EVENT_MAX_CHARS) return fail('event_too_large');
   return Object.freeze(detached);
 }

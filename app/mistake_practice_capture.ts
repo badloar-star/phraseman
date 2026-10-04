@@ -7,6 +7,7 @@ import type {
   MistakeFacetRef,
   MistakeStudyTarget,
 } from '../modules/mistake-practice/contracts';
+import { MISTAKE_GIVEN_MAX_CHARS } from '../modules/mistake-practice/contracts';
 import { buildMistakeIdentity } from '../modules/mistake-practice/identity';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
@@ -172,7 +173,8 @@ async function captureObjectiveAttemptUnlogged(
         // не может показать «ты написал X → надо Y» — а это его суть.
         // В отпечаток ошибки поле НЕ входит (см. identity.ts), поэтому повторы
         // одной ошибки с разными опечатками по-прежнему склеиваются в одну.
-        given: attempt.facet.given ?? null,
+        // зачем (04.10, вариант А): ответ уходит в облако — не больше 200 знаков.
+        given: typeof attempt.facet.given === 'string' ? attempt.facet.given.slice(0, MISTAKE_GIVEN_MAX_CHARS) : null,
       },
     },
   });

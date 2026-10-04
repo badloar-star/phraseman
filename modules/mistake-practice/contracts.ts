@@ -89,6 +89,9 @@ export interface MistakeContentRef {
   readonly distractors?: readonly string[];
 }
 
+/** Предел длины ответа ученика в записи ошибки (клиент и сервер), см. MistakeFacetRef.given. */
+export const MISTAKE_GIVEN_MAX_CHARS = 200;
+
 export interface MistakeFacetRef {
   readonly kind: MistakeFacet;
   readonly tokenIndex?: number;
@@ -106,7 +109,12 @@ export interface MistakeFacetRef {
    * по явному списку полей — см. identity.ts, contentFingerprint.
    *
    * Необязательное: старые записи журнала читаются без него как раньше,
-   * миграции нет. Хранится ЛОКАЛЬНО на устройстве, в Firestore не уходит.
+   * миграции нет.
+   *
+   * ⚠️ Хранение (исправлено 04.10, решение координатора — вариант А): поле живёт в событии журнала и
+   * СИНХРОНИЗИРУЕТСЯ в облако вместе с ним (users/{uid}/progress_events через mistakePracticeEventSync),
+   * чтобы «Ваш ответ» был виден на любом устройстве. Удаляется вместе с аккаунтом (рекурсивно с users/{uid}).
+   * Длина — не больше MISTAKE_GIVEN_MAX_CHARS (200): режет клиент при записи и сервер при приёме.
    */
   readonly given?: string;
 }

@@ -22,7 +22,9 @@ describe('useAudio TTS resiliency', () => {
 
   it('falls back to system TTS when a pre-generated clip does not start', () => {
     expect(audioSource).toContain('CLIP_START_TIMEOUT_MS');
-    expect(audioSource).toContain('clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS)');
+    // зачем (04.10): таймер НЕ убран — f32242825 лишь обернул вызов, чтобы в лог шла причина ([WORD-AUDIO] clip:fallback_to_system reason=start_timeout).
+    // Смысл сторожа прежний: медленный клип не должен оставлять тишину — по таймауту включается системный голос.
+    expect(audioSource).toContain("clipStartTimer = setTimeout(() => fallbackOnce('start_timeout'), CLIP_START_TIMEOUT_MS)");
     expect(audioSource).toContain('clearClipStartTimer();');
     // зачем (2026-09-15): код давно глушит клип через ленивую обёртку
     // stopPhraseAudioIfLoaded() — плеер клипов грузится по требованию.

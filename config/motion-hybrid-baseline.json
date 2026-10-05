@@ -7,7 +7,6 @@
     "components/PremiumCelebrationModal.tsx": "празднование: своего движения в макете нет — ждёт макета движения (владелец, координатор 05.10)",
     "components/premium_celebration/CelebrationSceneViews.tsx": "сцены празднования Plus: своего движения в макете нет — ждёт макета движения (владелец, координатор 05.10)",
     "components/learning-v2/LearningV2FounderPassModal.tsx": "окно .modal (learning-v2.html cmodal): в ките .modal статичное — ждёт макета движения",
-    "components/LearningV2SessionOutcomeSheet.tsx": "окно .modal итога сессии: в ките .modal статичное — ждёт макета движения",
     "components/streak/StreakStagesModal.tsx": "в макете results «Стадии серии» — отдельная страница, не шторка: движения кита для неё нет — ждёт макета движения",
     "components/home/HomeMistakesLockedSheet.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)",
     "components/home/v2/HomeV2VideoPlayerModal.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)"

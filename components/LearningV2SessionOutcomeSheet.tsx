@@ -7,7 +7,6 @@ import Animated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withTiming,
 } from "react-native-reanimated";
 
@@ -19,8 +18,13 @@ import { useLv2Glass } from "./learning-v2/LearningV2Glass";
 import { KitGlassLayer } from "./v2/KitLiquidGlass";
 import { ThemeAccentFill } from "./v2/ThemeAccentFill";
 import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
+import { KIT_MOTION } from "../constants/motionHybrid";
+import PressableHybrid from "./PressableHybrid";
 
-export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
+// зачем (координатор 05.10, kit.css:147 `.dim`): окно .cm в макете статичное и живёт на затемнении —
+// оно появляется и уходит вместе с ним: opacity 260 мс (CSS `ease`) в обе стороны, без своих сдвигов и пружин.
+export const LEARNING_V2_SESSION_MODAL_EXIT_MS = KIT_MOTION.dimMs;
+const DIM_EASE = REasing.bezier(0.25, 0.1, 0.25, 1);
 
 interface LearningV2SessionOutcomeSheetProps {
   visible: boolean;
@@ -114,16 +118,10 @@ export default function LearningV2SessionOutcomeSheet({
       sceneProgress.value = 1;
       return;
     }
-    sceneProgress.value = 0;
-    backdropOpacity.value = withTiming(1, { duration: 180 });
-    cardProgress.value = withTiming(1, {
-      duration: 320,
-      easing: REasing.bezier(0.22, 0.84, 0.24, 1),
-    });
-    sceneProgress.value = withDelay(90, withTiming(1, {
-      duration: 360,
-      easing: REasing.bezier(0.16, 1, 0.3, 1),
-    }));
+    const dimIn = { duration: KIT_MOTION.dimMs, easing: DIM_EASE };
+    backdropOpacity.value = withTiming(1, dimIn);
+    cardProgress.value = withTiming(1, dimIn);
+    sceneProgress.value = withTiming(1, dimIn);
     return () => {
       cancelAnimation(backdropOpacity);
       cancelAnimation(cardProgress);
@@ -136,24 +134,9 @@ export default function LearningV2SessionOutcomeSheet({
   }, [backdropOpacity, cardProgress, reducedMotion, sceneProgress, visible]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
-  const cardStyle = useAnimatedStyle(() => ({
-    opacity: cardProgress.value,
-    transform: [
-      { translateY: (1 - cardProgress.value) * 18 },
-      { scale: 0.96 + cardProgress.value * 0.04 },
-    ],
-  }));
-  const sceneStyle = useAnimatedStyle(() => ({
-    opacity: sceneProgress.value,
-    transform: [
-      { translateY: (1 - sceneProgress.value) * 10 },
-      { scale: 0.78 + sceneProgress.value * 0.22 },
-    ],
-  }));
-  const detailsStyle = useAnimatedStyle(() => ({
-    opacity: sceneProgress.value,
-    transform: [{ translateY: (1 - sceneProgress.value) * 8 }],
-  }));
+  const cardStyle = useAnimatedStyle(() => ({ opacity: cardProgress.value }));
+  const sceneStyle = useAnimatedStyle(() => ({ opacity: sceneProgress.value }));
+  const detailsStyle = useAnimatedStyle(() => ({ opacity: sceneProgress.value }));
 
   const leave = useCallback((afterLeave: () => void, immediate = false) => {
     if (closingRef.current) return;
@@ -163,9 +146,10 @@ export default function LearningV2SessionOutcomeSheet({
       afterLeave();
       return;
     }
-    backdropOpacity.value = withTiming(0, { duration: 150 });
-    cardProgress.value = withTiming(0, { duration: 170 });
-    sceneProgress.value = withTiming(0, { duration: 120 });
+    const dimOut = { duration: KIT_MOTION.dimMs, easing: DIM_EASE };
+    backdropOpacity.value = withTiming(0, dimOut);
+    cardProgress.value = withTiming(0, dimOut);
+    sceneProgress.value = withTiming(0, dimOut);
     if (immediate) {
       afterLeave();
       return;
@@ -218,16 +202,22 @@ export default function LearningV2SessionOutcomeSheet({
           >
             {/* зачем (kit.css `.modal::after`): окно — стекло с бликом и светлой кромкой сверху, не плоская заливка. */}
             <KitGlassLayer radius={22} />
-            <Pressable
+            {/* зачем (kit.css:64–65 `.t.down`): ✕ вжимается до .97 общим нажатием, а не гаснет; хаптик даёт leave(). */}
+            <PressableHybrid
               testID="learning-v2-session-modal-close"
               accessibilityRole="button"
               accessibilityLabel={closeLabel}
               hitSlop={8}
               onPress={dismiss}
-              style={({ pressed }) => [sx.close, { borderColor: g.glassEdge, opacity: pressed ? 0.66 : 1 }]}
+              variant="icon"
+              pressScaleTo={KIT_MOTION.pressScale}
+              withHaptic={false}
+              withSound={false}
+              style={sx.closeHit}
+              contentStyle={[sx.close, { borderColor: g.glassEdge }]}
             >
               <Ionicons name="close" size={18} color={g.text} />
-            </Pressable>
+            </PressableHybrid>
 
             <Animated.View style={[sx.scene, sceneStyle]}>
               <View style={[sx.orbPlate, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.cta }]}>
@@ -303,7 +293,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 18 },
   card: { width: "100%", maxWidth: 390, borderWidth: 1, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
   // зачем (learning-v2.html `.cm .x` = `.rb.sq`): крестик 36, r12, без заливки, тонкая кромка, 14 от краёв; область нажатия добирает hitSlop.
-  close: { position: "absolute", top: 14, right: 14, width: 36, height: 36, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center", zIndex: 3 },
+  closeHit: { position: "absolute", top: 14, right: 14, width: 36, height: 36, alignSelf: "auto", zIndex: 3 },
+  close: { width: 36, height: 36, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center" },
   // зачем (`.orb` margin-top 6, тень 0 7px 0; `.ck` margin-top 22): шайба сверху сцены, цоколь на 7 ниже, подпись в 22 от шайбы.
   scene: { height: 98, paddingTop: 6, alignItems: "center", justifyContent: "flex-start" },
   orb: { alignItems: "center", justifyContent: "center" },

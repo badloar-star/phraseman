@@ -5898,7 +5898,18 @@ export default function LessonsTab({
                 pl: "Zacznij",
               })
         }
-        // зачем: подпись строки лучших звёзд (видна, только когда Ядро передаст bestStars).
+        // зачем (learning-v2.html 2.2, Ядро 91a523b5a): лучшие звёзды пройденного занятия — из той же витрины, что
+        // рисует звёзды на узлах карты (состояние подписано, окно перерисуется при записи). Нет значения — строки нет.
+        bestStars={
+          selectedLearningV2Session?.state === "completed"
+            ? learningV2StarResults[
+                learningV2CourseSessionIdV1(
+                  selectedLearningV2Session.lessonOrdinal,
+                  selectedLearningV2Session.sessionOrdinal,
+                )
+              ]
+            : undefined
+        }
         bestStarsLabel={triLang(lang, {
           ru: "Лучший результат",
           en: "Best result",

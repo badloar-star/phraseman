@@ -115,10 +115,14 @@ describe('hypothesis (a): recovery observes no progress section, publish lands a
   ])('%s does not overwrite a visible 9830 with 0', async (_label, arrange) => {
     arrange();
     // Снимок поднимается РОВНО между observe (внутри recoverProjection) и
-    // publishProjection: первая запись проекции на диск — уже после observe.
+    // publishProjection: первая запись восстановления на диск — уже после observe.
+    // зачем (К1, 05.10): восстановление больше не перезаписывает проекцию, если она байт-в-байт та же (здесь —
+    // нулевая проекция), но outbox в том же окне пишется. Окно «между observe и publish» то же — триггер теста
+    // смотрит на запись проекции ИЛИ outbox.
     (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
       pairs.forEach(([key, value]) => { storage[key] = value; });
-      if (pairs.some(([key]) => key === levelSpinStarProjectionKey(OWNER)) && !progress) {
+      if (pairs.some(([key]) => key === levelSpinStarProjectionKey(OWNER) || key === levelSpinStarGrantOutboxKey(OWNER))
+        && !progress) {
         progress = { stars: 9830, starsEarnedTotal: 0 };
       }
     });

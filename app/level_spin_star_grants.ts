@@ -1284,10 +1284,19 @@ async function recoverProjection(
         ))),
       });
     }
+    // зачем (координатор 05.10, шаг К1; пакет 04:26: multi_set 0,8–0,86 с на КАЖДОМ проходе восстановления, проходов
+    // на старте до трёх): проекция и outbox перезаписывались, даже когда ничего не изменилось. Запись пропускается
+    // ТОЛЬКО при байтовом совпадении нового JSON с тем, что уже лежит на диске (прочитано выше под тем же
+    // storage-замком) — запись идентичного значения ничего не меняет. Журналы практики и подготовленные операции
+    // пишутся как раньше.
+    const projectionJson = JSON.stringify(projection);
+    const outboxJson = JSON.stringify([...pending.values()]);
+    const projectionUnchanged = projectionRaw !== null && projectionRaw === projectionJson;
+    const outboxUnchanged = outboxRaw !== null && outboxRaw === outboxJson;
     const writes: [string, string][] = [
       ...recoveredPracticeJournalWrites,
-      [levelSpinStarProjectionKey(ownerStableId), JSON.stringify(projection)],
-      [levelSpinStarGrantOutboxKey(ownerStableId), JSON.stringify([...pending.values()])],
+      ...(projectionUnchanged ? [] : [[levelSpinStarProjectionKey(ownerStableId), projectionJson] as [string, string]]),
+      ...(outboxUnchanged ? [] : [[levelSpinStarGrantOutboxKey(ownerStableId), outboxJson] as [string, string]]),
       ...prepared.map((operation) => [
         operationStorageKey(ownerStableId, operation.operationId),
         JSON.stringify(operation),
@@ -1296,8 +1305,10 @@ async function recoverProjection(
     recoverStage('compaction');
     recoverCounts.writes = writes.length;
     recoverCounts.writeBytes = writes.reduce((sum, [, value]) => sum + value.length, 0);
+    recoverCounts.skippedUnchanged = (projectionUnchanged ? 1 : 0) + (outboxUnchanged ? 1 : 0);
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
-    await AsyncStorage.multiSet(writes);
+    // Пропуск виден в [COIN-RECOVER] slow (counts.skippedUnchanged) — отдельный лог на частом пути не пишем.
+    if (writes.length > 0) await AsyncStorage.multiSet(writes);
     recoverStage('multi_set');
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     // зачем ([COLD-START-IO], store-release, слабый профиль, 02.10): очистка подготовленных операций

@@ -60,6 +60,10 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
   ['/flashcards_my_packs', 'flashcards'],
   ['/ai_dialog_home', 'dialogs'],
   ['/lingman_videos', 'lingman'],
+  // зачем (Сверка 06:10, [NAV-BACK] section_mismatch): вкладка «Видео» рендерит тот же экран канала — это корень
+  // раздела 'lingman'. Без неё «назад» из плейлиста сбрасывал историю и открывал новый /lingman_videos.
+  ['/video', 'lingman'],
+  ['/(tabs)/video', 'lingman'],
 
   ['/arena', 'arena'],
 

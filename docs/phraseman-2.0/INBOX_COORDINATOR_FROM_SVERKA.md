@@ -241,3 +241,8 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 ## 04:47 — эмулятор упал (4-й раз за ночь, НЕ на уроке 1)
 Последние действия: закрыла визитку (✕, 04:46), открыла настройки ссылкой `am start -a VIEW -d phraseman://settings` → «intent delivered to currently running top-most instance» → в пределах 5 с `error: closed`.
 Значит, падает не только урок 1. Оба последних раза — переход на новый экран сразу после тяжёлого действия (там подготовка урока, тут повышение ранга + церемония). Жду «эмулятор свободен».
+
+## 04:59 — для Ядра: [COIN-DIVERGENCE] холодный старт → C:\Temp\claude\coin_divergence_run.txt
+Холодный старт 04:57:48, ничего не нажимала. Строк [COIN-DIVERGENCE] 0 (на +20 с и +35 с) — publish/observe пишутся только при трате/начислении.
+❗ Баланс на старте 6845, а после траты 04:43 было 1845: +5000 пришли между 04:44 и 04:57, источник по логу старта не виден.
+Старт: [COIN-RECOVER] slow 4.6–5.0 с (part_stored_ops 2.6–4.7 с, allKeys 507), [ACCOUNT-LOCK] hold_exceeded 4564 мс (readUnifiedLevelSpinStars), achievements_coins_boot_check done через 15.1 с.

@@ -1693,9 +1693,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [homeScreenReady, effectiveShowOnboarding, isBanned]);
   useEffect(() => {
     if (!nativeSplashCanHide) return;
-    bootMark('SplashScreen.hideAsync() — сплеш скрыт');
     bootCommitWindowEndsAt = Date.now() + 3000;
-    void SplashScreen.hideAsync();
+    // зачем (пакет 09:26: после early hide +9016 был ещё hideAsync +13112): сплеш уже снят по кадру Главной —
+    // повторный нативный вызов не нужен и может дать необработанный отказ.
+    if (splashEarlyHideDone) {
+      bootMark('SplashScreen.hideAsync() пропущен — сплеш уже снят по кадру Главной');
+    } else {
+      bootMark('SplashScreen.hideAsync() — сплеш скрыт');
+      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:nativeSplashCanHide.hideAsync'));
+    }
     resolveNativeSplashHidden();
     markNativeSplashHidden();
   }, [nativeSplashCanHide]);

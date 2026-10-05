@@ -6,7 +6,7 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import { addFlashcard, alignSavedVideoFlashcardsWithChannel, loadFlashcards } from '../../hooks/use-flashcards';
-import { fetchPublishedVideoPhrases } from '../../app/video_phrases_client';
+import { loadVideoPhrasesCached, peekCachedVideoPhrases, type VideoPhrasesSource } from '../../app/video_phrases_client';
 import { isVideoPhrasesEnabled } from '../../app/remote_flags';
 import type { VideoPhrase } from '../../shared/video_phrases_contract';
 import { SaveToCardsButton } from '../SaveToCardsButton';
@@ -27,20 +27,25 @@ type YoutubeVideoPhrasesProps = {
   expanded?: boolean;
   onToggle?: () => void;
   testID?: string;
+  /** Откуда пришли фразы (память/диск/сеть) — для лога экрана ролика [VIDEO-SCREEN]. */
+  onSourceResolved?: (from: VideoPhrasesSource, count: number) => void;
 };
 
 /** Тихие повторы загрузки фраз: 5 попыток, пауза 4 с × номер попытки. */
 const PHRASES_SILENT_RETRIES = 5;
 const PHRASES_RETRY_BASE_MS = 4000;
 
-export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, onToggle, testID }: YoutubeVideoPhrasesProps) {
+export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, onToggle, testID, onSourceResolved }: YoutubeVideoPhrasesProps) {
   const { lang } = useLang();
   const studyTarget = packLanguage;
   // зачем: Liquid Glass (макет video.html «Фразы из видео») — все цвета из токенов
   // активной темы, шторка «Фраза» на HybridSheetShell material="liquid-glass".
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const [phrases, setPhrases] = useState<readonly VideoPhrase[]>([]);
+  // зачем (video-011, «каждый раздел мгновенно»): фразы из памяти процесса — уже на первом кадре, без скелетонов.
+  const [phrases, setPhrases] = useState<readonly VideoPhrase[]>(() => peekCachedVideoPhrases(videoId) ?? []);
+  const onSourceResolvedRef = useRef(onSourceResolved);
+  onSourceResolvedRef.current = onSourceResolved;
   const [savedIds, setSavedIds] = useState<ReadonlySet<string>>(new Set());
   const [selected, setSelected] = useState<VideoPhrase | null>(null);
   // Держим последнюю открытую фразу, чтобы содержимое шторки не пропадало на время анимации закрытия.
@@ -48,7 +53,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   if (selected) lastSelectedRef.current = selected;
   const shown = selected ?? lastSelectedRef.current;
   const [localExpanded, setLocalExpanded] = useState(false);
-  const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [state, setState] = useState<'loading' | 'ready' | 'error'>(() => (peekCachedVideoPhrases(videoId) ? 'ready' : 'loading'));
   const savingIdsRef = useRef(new Set<string>());
   // зачем: сетевой сбой прятал блок фраз навсегда — в зависимостях
   // эффекта были только пропсы, а при повторе они не меняются. Этот
@@ -66,12 +71,15 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     if (!enabled) { setPhrases([]); setState('ready'); return undefined; }
     let active = true;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
-    setState('loading');
+    // Уже показанные фразы из кэша не прячем под скелетоны на время проверки свежести.
+    if (!peekCachedVideoPhrases(videoId)) setState('loading');
     const savedCards = alignSavedVideoFlashcardsWithChannel({ videoId, packLanguage: studyTarget, sourceTitle })
       .catch(noteSwallowedAs('YoutubeVideoPhrases:useEffect.alignSavedVideoFlashcardsWithChannel', 0))
       .then(() => loadFlashcards(studyTarget));
     const startedAt = Date.now();
-    void Promise.all([fetchPublishedVideoPhrases(videoId), savedCards]).then(([next, cards]) => {
+    void Promise.all([loadVideoPhrasesCached(videoId), savedCards]).then(([loaded, cards]) => {
+      const next = loaded.phrases;
+      onSourceResolvedRef.current?.(loaded.from, next.length);
       if (!active) {
         DebugLogger.info('[YT-PHRASES]', `stale result dropped videoId=${videoId} target=${studyTarget} attempt=${retryTick}`);
         return;
@@ -79,7 +87,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       setPhrases(next);
       setSavedIds(new Set(cards.filter((card) => card.source === 'video_phrase' && card.sourceId?.startsWith(`${videoId}:`)).map((card) => card.sourceId as string)));
       setState('ready');
-      DebugLogger.info('[YT-PHRASES]', `ready videoId=${videoId} target=${studyTarget} phrases=${next.length} savedCards=${cards.length} attempt=${retryTick} ms=${Date.now() - startedAt}`);
+      DebugLogger.info('[YT-PHRASES]', `ready videoId=${videoId} target=${studyTarget} from=${loaded.from} phrases=${next.length} savedCards=${cards.length} attempt=${retryTick} ms=${Date.now() - startedAt}`);
     }).catch((e) => {
       // зачем: раньше причина глохла в немом catch, и отличить обрыв сети
       // от постоянной ошибки (нет индекса, отказ правил) было нечем.

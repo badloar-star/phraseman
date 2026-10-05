@@ -3182,6 +3182,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_playlist" />
+      <Stack.Screen name="lingman_video_watch" />
       <Stack.Screen name="flashcards_training_setup" />
       <Stack.Screen name="flashcards_speaking_session" />
       <Stack.Screen name="flashcards_blitz_session" />

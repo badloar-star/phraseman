@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -7,12 +7,10 @@ import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
-import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { captureAccountGeneration } from './account_generation';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
@@ -36,14 +34,12 @@ export default function LingmanPlaylistScreen() {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const screenRuntimeActive = useRuntimeActive(true);
   const token = useMemo(() => captureAccountGeneration(), []);
   const initial = peekYoutubeCatalogScreenSnapshot(token);
   const [catalog, setCatalog] = useState<YoutubeCatalogScreenSnapshot | null>(initial?.channel.id === channelId ? initial : null);
   const catalogRef = useRef(catalog);
   catalogRef.current = catalog;
   const [loading, setLoading] = useState(!catalog);
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const playlist = catalog?.playlists.find((item) => item.id === playlistId);
   const videos = useMemo(() => catalog?.videos.filter((video) => video.playlistIds.includes(playlistId)) ?? [], [catalog, playlistId]);
   const copy = {
@@ -76,8 +72,12 @@ export default function LingmanPlaylistScreen() {
     return () => { cancelled = true; };
   }, [channelId, playlistId, token]);
 
-  const openVideo = (video: (typeof videos)[number]) => setActiveVideoId(video.id);
-  const closeVideo = useCallback(() => setActiveVideoId(null), []);
+  // зачем (Сверка video-011 🔴, координатор 05.10): ролик открывается отдельным экраном (плеер, набор, фразы по
+  // таймкодам), а не встроенным плеером внутри списка. Название передаём — экран рисует его с первого кадра.
+  const openVideo = (video: (typeof videos)[number]) => {
+    console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'playlist', videoId: video.id, playlistId })); // guard-ok: вход на экран ролика
+    router.push({ pathname: '/lingman_video_watch', params: { videoId: video.id, channelId, title: video.title, source: 'playlist' } } as never);
+  };
   const playAll = () => {
     if (!playlist) return;
     const url = trustedPlaylistUrl(playlist.url, playlist.id);
@@ -104,17 +104,7 @@ export default function LingmanPlaylistScreen() {
                 key={video.id}
                 video={video}
                 compact
-                highlighted={video.id === activeVideoId}
                 onWatch={() => openVideo(video)}
-                inlinePlayer={video.id === activeVideoId ? (
-                  <YoutubeInlinePlayer
-                    videoId={video.id}
-                    title={video.title}
-                    active={screenRuntimeActive}
-                    onClose={closeVideo}
-                    presentation="preview"
-                  />
-                ) : undefined}
               />
             )) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
           </ScrollView>

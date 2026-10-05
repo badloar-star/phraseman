@@ -402,6 +402,17 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       return;
     }
     deepLinkHandledRef.current = target;
+    // зачем (video-011, координатор 05.10: «старый маршрут lingman_videos?videoId — редирект, ссылки не ломать»): обычный
+    // ролик открывается экраном ролика; премьера остаётся встроенной в шапке вкладки. hero здесь не читаем — он объявлен
+    // ниже по рендеру, считаем по каталогу.
+    const activeEvent = catalog?.activeEvent;
+    const isHeroTarget = !!activeEvent && activeEvent.id === target && (activeEvent.state === 'upcoming' || activeEvent.state === 'live');
+    if (!isHeroTarget) {
+      const video = allVideos.find((item) => item.id === target);
+      console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'deeplink_redirect', videoId: target })); // guard-ok: редирект логируется
+      router.push({ pathname: '/lingman_video_watch', params: { videoId: target, channelId: catalog?.channel.id ?? channel.channelId, title: video?.title ?? '', source: 'deeplink_redirect' } } as never);
+      return;
+    }
     console.log('[VIDEO-TAB] deeplink: открываю ролик', JSON.stringify({ target }));
     setTab('home');
     setActiveVideoId(target);

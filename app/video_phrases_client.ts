@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { normalizeVideoPhraseList, type VideoPhrase } from '../shared/video_phrases_contract';
 import { rnfbInstance } from './rnfb_modular';
 
@@ -57,4 +58,74 @@ export async function fetchPublishedVideoPhrases(videoId: string): Promise<reado
       return snapshot.exists ? snapshot.data() ?? null : null;
     },
   }), videoId);
+}
+
+// ── Кэш фраз ролика ─────────────────────────────────────────────────────────
+// зачем (video-011, координатор 05.10: «экран ролика открывается мгновенно … фразы из кэша»; правило «каждый раздел
+// без ожиданий»): раньше каждое открытие ролика читало 2 документа Firestore и до ответа держало скелетоны. Теперь
+// память процесса → диск → сеть только если кэш старше TTL. Фразы — публичный опубликованный контент.
+export const VIDEO_PHRASES_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const VIDEO_PHRASES_CACHE_PREFIX = 'video_phrases_cache_v1:';
+
+type CachedVideoPhrases = Readonly<{ savedAtMs: number; phrases: readonly VideoPhrase[] }>;
+const phrasesMemory = new Map<string, CachedVideoPhrases>();
+
+export type VideoPhrasesSource = 'memory' | 'disk' | 'net' | 'stale_after_net_error';
+
+/** Синхронный первый кадр: только память процесса. */
+export function peekCachedVideoPhrases(videoId: string): readonly VideoPhrase[] | null {
+  return phrasesMemory.get(videoId)?.phrases ?? null;
+}
+
+async function readDiskPhrases(videoId: string): Promise<CachedVideoPhrases | null> {
+  try {
+    const raw = await AsyncStorage.getItem(`${VIDEO_PHRASES_CACHE_PREFIX}${videoId}`);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { savedAtMs?: unknown; phrases?: unknown };
+    if (typeof parsed.savedAtMs !== 'number' || !Array.isArray(parsed.phrases)) return null;
+    // Кэш тоже проходит контракт: повреждённая запись не должна попасть на экран.
+    return { savedAtMs: parsed.savedAtMs, phrases: normalizeVideoPhraseList(videoId, parsed.phrases) };
+  } catch (error) {
+    console.warn(`[VIDEO-PHRASES-CACHE] ${videoId}: диск не прочитан — ${String(error)}`); // guard-ok: catch логируется
+    return null;
+  }
+}
+
+function rememberPhrases(videoId: string, phrases: readonly VideoPhrase[], savedAtMs: number): void {
+  phrasesMemory.set(videoId, { savedAtMs, phrases });
+}
+
+/**
+ * Фразы ролика с кэшем. Свежий кэш (память/диск моложе TTL) — без сети. Протух или нет — сеть; при её отказе отдаём
+ * старый кэш, если он есть, иначе пробрасываем ошибку (вызывающий тихо повторяет).
+ */
+export async function loadVideoPhrasesCached(
+  videoId: string,
+  options: Readonly<{ nowMs?: number; fetcher?: (id: string) => Promise<readonly VideoPhrase[]> }> = {},
+): Promise<Readonly<{ phrases: readonly VideoPhrase[]; from: VideoPhrasesSource }>> {
+  const nowMs = options.nowMs ?? Date.now();
+  const fetcher = options.fetcher ?? fetchPublishedVideoPhrases;
+  const mem = phrasesMemory.get(videoId);
+  if (mem && nowMs - mem.savedAtMs <= VIDEO_PHRASES_CACHE_TTL_MS) return { phrases: mem.phrases, from: 'memory' };
+  const disk = mem ?? await readDiskPhrases(videoId);
+  if (disk && !mem) rememberPhrases(videoId, disk.phrases, disk.savedAtMs);
+  if (disk && nowMs - disk.savedAtMs <= VIDEO_PHRASES_CACHE_TTL_MS) return { phrases: disk.phrases, from: 'disk' };
+  try {
+    const phrases = await fetcher(videoId);
+    rememberPhrases(videoId, phrases, nowMs);
+    AsyncStorage.setItem(`${VIDEO_PHRASES_CACHE_PREFIX}${videoId}`, JSON.stringify({ savedAtMs: nowMs, phrases }))
+      .catch((error: unknown) => console.warn(`[VIDEO-PHRASES-CACHE] ${videoId}: запись на диск не удалась — ${String(error)}`)); // guard-ok: catch логируется
+    return { phrases, from: 'net' };
+  } catch (error) {
+    if (disk) {
+      console.warn(`[VIDEO-PHRASES-CACHE] ${videoId}: сеть отказала, отдаю старый кэш (${Math.round((nowMs - disk.savedAtMs) / 60000)} мин) — ${String(error)}`); // guard-ok: catch логируется
+      return { phrases: disk.phrases, from: 'stale_after_net_error' };
+    }
+    throw error;
+  }
+}
+
+/** Только для тестов. */
+export function __resetVideoPhrasesCacheForTests(): void {
+  phrasesMemory.clear();
 }

@@ -47,6 +47,7 @@ const OVERRIDES = {
   '/level_exam': ['keep', 'Learning V1', 'D72/D121: экзамены'],
   '/lingman_videos': ['keep', 'видео', 'D50/D132: лента видео'],
   '/lingman_playlist': ['keep', 'видео', 'D50/D132'],
+  '/lingman_video_watch': ['keep', 'видео', 'video-011: экран ролика (плеер, набор, фразы)'],
   '/motion_showcase': ['archive', 'dev-инструменты', 'production-safe gate, dev-витрина'],
   '/pos_analytics_audit': ['archive', 'dev-инструменты', 'production-safe gate, dev-аудит'],
   '/v2_kit_preview': ['archive', 'dev-инструменты', 'витрина только для разработки'],

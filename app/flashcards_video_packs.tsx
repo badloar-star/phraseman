@@ -357,9 +357,10 @@ export default function FlashcardsVideoPacksScreen() {
       const videoId = videoIdFromPackId(pack.id);
       const channelId = videoChannelIdOf(pack);
       DebugLogger.info(LOG, `открываю ролик с фразами: videoId=${videoId} channelId=${channelId || '—'}`);
+      // зачем (video-011, координатор 05.10): набор «Из видео» ведёт на экран ролика (плеер, набор, фразы), а не на ленту.
       router.push({
-        pathname: '/lingman_videos',
-        params: channelId ? { videoId, channelId } : { videoId },
+        pathname: '/lingman_video_watch',
+        params: { videoId, ...(channelId ? { channelId } : {}), title: pack.videoTitle ?? '', source: 'video_packs' },
       } as never);
       return;
     }

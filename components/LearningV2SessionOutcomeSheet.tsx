@@ -255,6 +255,8 @@ export default function LearningV2SessionOutcomeSheet({
               <View style={sx.stats}>
                 {stats.map((stat) => (
                   <View key={stat.id} testID={stat.testID} style={[sx.stat, { backgroundColor: g.opaqueControl }]}>
+                    {/* зачем (сверка 010, learning-v2.html `.facts > div::after`): каждый факт — отдельная стеклянная плитка с бликом и кромкой (--lg-sheen/--lg-rim). */}
+                    <KitGlassLayer radius={16} />
                     <Ionicons name={stat.icon} size={18} color={g.secondary} />
                     <Text style={[sx.statText, { color: g.text }]}>{stat.value}</Text>
                   </View>
@@ -311,7 +313,7 @@ const styles = StyleSheet.create({
   starOff: { opacity: 0.2 },
   bestLabel: { marginLeft: 6, fontSize: 16, lineHeight: 21, fontWeight: "600" },
   stats: { flexDirection: "row", gap: 7, marginTop: 18 },
-  stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 5 },
+  stat: { flex: 1, minHeight: 58, borderRadius: 16, overflow: "hidden", paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 5 },
   statText: { fontSize: 13, lineHeight: 18, fontWeight: "700", textAlign: "center" },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },

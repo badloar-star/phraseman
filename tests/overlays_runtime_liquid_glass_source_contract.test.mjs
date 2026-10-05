@@ -16,6 +16,8 @@ const files = {
 };
 const hook = read('hooks/use-glass-alert.tsx');
 const inline = read('components/account/GlassInlineAlert.tsx');
+// зачем (Сверка overlays-runtime, 05.10): карточка окна общая — .or-alert из макета.
+const card = read('components/v2/GlassAlertDialog.tsx');
 const report = read('components/ReportUserModal.tsx');
 const refCode = read('components/referral_code_sheet.tsx');
 const refHow = read('components/referral_how_sheet.tsx');
@@ -58,18 +60,20 @@ test('ник: ошибки валидации — стеклянный слой 
   assert.ok(files.nickname.includes('<GlassInlineAlert'));
   assert.ok(files.settings.includes('<GlassInlineAlert'));
   assert.ok(!/<Modal[ >]/.test(inline.replace(/\/\/.*$/gm, '')), 'слой не Modal — нет present-over-present на iOS');
-  assert.ok(inline.includes('liquidGlassTokens('));
-  assert.ok(inline.includes('minHeight: 48'), 'тап ≥ 44dp');
+  assert.ok(inline.includes('<GlassAlertCard'), 'карточка — общая .or-alert');
+  assert.ok(card.includes('liquidGlassTokens('));
+  assert.ok(card.includes('minHeight: 44'), 'тап ≥ 44dp (.or-actions .cta 44)');
 });
 
 test('хук: сигнатура Alert.alert, подтверждение и выбор на стеклянных компонентах', () => {
   assert.ok(hook.includes('ThemedConfirmModal'));
   assert.ok(hook.includes('ThemedChoiceModal'));
+  assert.ok(hook.includes('<GlassAlertDialog'), 'окно с одной кнопкой — по центру (.or-alert)');
   assert.ok(hook.includes("style === 'destructive'"));
   assert.ok(!/catch\s*(\([^)]*\))?\s*\{\s*\}/.test(hook), 'нет немого catch');
 });
 
-for (const [name, source] of Object.entries({ report, refCode, refHow, refShell, inline, hook })) {
+for (const [name, source] of Object.entries({ report, refCode, refHow, refShell, inline, hook, card })) {
   test(`${name}: запреты владельца`, () => {
     assert.ok(!source.includes('adjustsFontSizeToFit'), 'нет сжатия шрифта');
     assert.ok(!/borderWidth:\s*(?:[2-9]|\d{2,})/.test(source), 'нет толстых обводок');

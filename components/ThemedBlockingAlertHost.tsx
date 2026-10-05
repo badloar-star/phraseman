@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useReducer } from 'react';
-import ThemedChoiceModal from './ThemedChoiceModal';
+import { GlassAlertDialog } from './v2/GlassAlertDialog';
 import {
   getThemedBlockingAlertHead,
   resolveThemedBlockingAlertHead,
@@ -16,15 +16,12 @@ function ThemedBlockingAlertHost() {
   const head = getThemedBlockingAlertHead();
   const visible = useOverlayVisible('themedAlert', head != null);
   return (
-    <ThemedChoiceModal
+    // зачем (Сверка overlays-runtime, 05.10): инфо-окно с одной «OK» — по центру (`.or-alert`), а не шторкой выбора.
+    <GlassAlertDialog
       visible={visible}
       title={head?.title ?? ''}
-      message={head?.message ?? ''}
-      choices={
-        head
-          ? [{ label: head.okLabel, onPress: () => { resolveThemedBlockingAlertHead(); } }]
-          : []
-      }
+      message={head?.message || undefined}
+      actions={head ? [{ label: head.okLabel, onPress: () => { resolveThemedBlockingAlertHead(); } }] : []}
       onRequestClose={() => {
         resolveThemedBlockingAlertHead();
       }}

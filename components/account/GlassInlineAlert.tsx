@@ -8,10 +8,11 @@
 // приложения (макет overlays-runtime, «native alert · empty/short/long/blocked name»).
 // Тексты и кнопка «OK» те же, что были у системного алерта.
 // ════════════════════════════════════════════════════════════════════════════
+// зачем (Сверка overlays-runtime 002–005, 05.10): сама карточка — общая GlassAlertCard (`.or-alert`:
+// поля 24, r25, кромка, заголовок 23/29, кнопка 44 с глянцем), затемнение .62 как `.or-dim`.
 import React, { memo } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useTheme } from '../ThemeContext';
-import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { StyleSheet, View } from 'react-native';
+import { GlassAlertCard } from '../v2/GlassAlertDialog';
 
 type Props = {
   visible: boolean;
@@ -22,45 +23,19 @@ type Props = {
 };
 
 function GlassInlineAlert({ visible, title, message, okLabel = 'OK', onClose }: Props) {
-  const { liquidGlassThemeId, f } = useTheme();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
   if (!visible) return null;
   return (
-    <View
-      style={[StyleSheet.absoluteFill, styles.scrim, { backgroundColor: 'rgba(0,0,0,0.55)' }]}
-      accessibilityViewIsModal
-      testID="glass-inline-alert"
-    >
-      <View style={[styles.card, { backgroundColor: glass.opaqueSheet }]}>
-        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
-          {title}
-        </Text>
-        {message ? (
-          <Text style={[styles.message, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45 }]}>
-            {message}
-          </Text>
-        ) : null}
-        <TouchableOpacity
-          accessibilityRole="button"
-          accessibilityLabel={okLabel}
-          activeOpacity={0.8}
-          onPress={onClose}
-          style={[styles.button, { backgroundColor: glass.accent }]}
-        >
-          <Text style={[styles.buttonLabel, { color: glass.accentInk, fontSize: f.body }]}>{okLabel}</Text>
-        </TouchableOpacity>
+    <View style={[StyleSheet.absoluteFill, styles.scrim]} accessibilityViewIsModal testID="glass-inline-alert">
+      <View style={styles.wrap}>
+        <GlassAlertCard key={`${title}:${message ?? ''}`}title={title} message={message} actions={[{ label: okLabel, onPress: onClose }]} />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  scrim: { alignItems: 'center', justifyContent: 'center', padding: 20, zIndex: 20 },
-  card: { width: '100%', maxWidth: 340, borderRadius: 24, padding: 20 },
-  title: { fontWeight: '700', textAlign: 'center' },
-  message: { marginTop: 8, textAlign: 'center' },
-  button: { marginTop: 18, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
-  buttonLabel: { fontWeight: '700', textAlign: 'center' },
+  scrim: { alignItems: 'center', justifyContent: 'center', padding: 24, zIndex: 20, backgroundColor: 'rgba(0,0,0,0.62)' },
+  wrap: { width: '100%', maxWidth: 360 },
 });
 
 export default memo(GlassInlineAlert);

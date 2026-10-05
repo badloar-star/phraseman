@@ -4,7 +4,7 @@
 // зачем: макет overlays-runtime («Native alerts») требует стеклянные окна вместо системных
 // серых UIAlertController/AlertDialog. Хук повторяет сигнатуру Alert.alert
 // (title, message?, buttons?) — тексты, кнопки и обработчики переносятся 1:1, меняется только вид:
-//   • 0–1 кнопка  → ThemedChoiceModal с одной кнопкой (как инфо-окно «OK»);
+//   • 0–1 кнопка  → GlassAlertDialog по центру (overlays-runtime `.or-alert`, Сверка 05.10 — было шторкой снизу);
 //   • 2 кнопки    → ThemedConfirmModal (отмена + действие; style:'destructive' → мягкий красный тон);
 //   • 3+ кнопок   → ThemedChoiceModal со списком (style:'destructive' → тот же мягкий красный тон).
 // Экземпляр рендерится самим экраном через `node` (не глобальная очередь), поэтому
@@ -13,6 +13,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
+import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { DebugLogger } from '../app/debug-logger';
 
 export type GlassAlertButton = {
@@ -80,6 +81,18 @@ export function useGlassAlert(defaultOkLabel = 'OK'): { showGlassAlert: ShowGlas
           destructive={confirmBtn.style === 'destructive'}
           onCancel={() => settle(cancelBtn, 'cancel')}
           onConfirm={() => settle(confirmBtn, 'confirm')}
+        />
+      );
+    }
+    if (buttons.length <= 1) {
+      const only = buttons[0];
+      return (
+        <GlassAlertDialog
+          visible={open && spec != null}
+          title={spec?.title ?? ''}
+          message={spec?.message ? spec.message : undefined}
+          actions={only ? [{ label: only.text, destructive: only.style === 'destructive', onPress: () => settle(only, 'ok') }] : []}
+          onRequestClose={() => settle(only?.style === 'cancel' ? only : undefined, 'dismiss')}
         />
       );
     }

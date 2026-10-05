@@ -47,7 +47,7 @@ import {
 } from './lesson_lock_system';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
-import ThemedChoiceModal from '../components/ThemedChoiceModal';
+import { GlassAlertDialog } from '../components/v2/GlassAlertDialog';
 import { emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
@@ -1300,7 +1300,9 @@ function LessonMenu() {
           ранний return выше уводит на пейвол (премиум) или назад в список
           (уровень/прогресс), где причину называет модал списка. Мёртвый модал
           удалён, чтобы не выглядел работающим запасным путём. */}
-      <ThemedChoiceModal
+      {/* зачем (Сверка overlays-runtime 030–033, 05.10): «Скоро» — окно по центру (`.or-alert`) с белой «Закрыть»,
+          а не шторка выбора со стрелкой «›». */}
+      <GlassAlertDialog
         visible={soonOpen !== null}
         title={triLang(lang, {
   ru: 'Скоро',
@@ -1376,7 +1378,7 @@ function LessonMenu() {
 })
               : ''
         }
-        choices={[{ label: triLang(lang, {
+        actions={[{ label: triLang(lang, {
   ru: 'Закрыть',
   uk: 'Закрити',
   en: 'Close',

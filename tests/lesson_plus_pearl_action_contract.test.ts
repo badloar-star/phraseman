@@ -18,7 +18,8 @@ describe('Plus-only lesson pearl purchase contract', () => {
 
   // зачем: D107/D70 — покупка урока за жемчуг удалена; модалка гейта осталась, кнопки покупки нет
   it('keeps the progress-gate modal without the pearl purchase button', () => {
-    expect(source).toContain('<ThemedChoiceModal');
+    // зачем (Сверка learn-011/013, 05.10): ворота — окно по центру LessonsGateDialog (learn.html dlg), а не шторка выбора
+    expect(source).toContain('<LessonsGateDialog');
     expect(source).not.toContain('Разблокировать · ');
     expect(source).not.toContain('buyLessonUnlock');
     expect(source).not.toContain('buyLessonWithPearls');

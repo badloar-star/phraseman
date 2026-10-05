@@ -126,7 +126,7 @@ import {
 } from "../learning_v2_session_star_results_store";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
-import ThemedChoiceModal from "../../components/ThemedChoiceModal";
+import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
@@ -5989,8 +5989,11 @@ export default function LessonsTab({
           onClose={() => setLearningV2DictionaryOpen(false)}
         />
       ) : null}
-      <ThemedChoiceModal
+      {/* зачем (Сверка learn-011/012/013, learn.html dlg): ворота списка — окно по центру с плиткой-замком/шапочкой
+          и белой «Закрыть», а не общая шторка выбора. */}
+      <LessonsGateDialog
         visible={gateModal !== null}
+        icon={gateModal?.kind === "exam" || gateModal?.kind === "frenchExam" ? "school" : "lock"}
         title={
           gateModal?.kind === "frenchExam"
             ? frenchExamGateCopy("level", lang).title
@@ -6101,28 +6104,19 @@ export default function LessonsTab({
                           })
                     : ""
         }
-        choices={
-          // зачем: D107/D70 — покупка урока за жемчуг удалена, уже купленные уроки читаются из lessons_pearl_unlock_storage
-          [
-                {
-                  label: triLang(lang, {
-                    ru: "Закрыть",
-                    en: "Close",
-                    uk: "Закрити",
-                    es: "Cerrar",
-                    "pt-BR": "Fechar",
-                    vi: "Đóng",
-                    id: "Tutup",
-                    tr: "Kapat",
-                    pl: "Zamknij",
-                  }),
-                  onPress: () => {
-                    setGateModal(null);
-                  },
-                },
-              ]
-        }
-        onRequestClose={() => setGateModal(null)}
+        // зачем: D107/D70 — покупка урока за жемчуг удалена; у ворот одна кнопка — «Закрыть».
+        closeLabel={triLang(lang, {
+          ru: "Закрыть",
+          en: "Close",
+          uk: "Закрити",
+          es: "Cerrar",
+          "pt-BR": "Fechar",
+          vi: "Đóng",
+          id: "Tutup",
+          tr: "Kapat",
+          pl: "Zamknij",
+        })}
+        onClose={() => setGateModal(null)}
       />
     </>
   );

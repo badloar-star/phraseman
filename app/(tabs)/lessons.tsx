@@ -277,6 +277,9 @@ import {
   resolveLearningV2FounderPassGateV1,
   writeLearningV2FounderPassReceiptV1,
 } from "../learning_v2_release_intro_receipt_v1";
+// зачем (58, сперва замер): когда и кем вычисляется модуль маршрута «Уроки» — на старте роутером или прогревом
+// вкладки/тапом. Временно; снять вместе с решением по 58.
+console.warn('[ROUTE-EVAL] lessons module evaluated', JSON.stringify({ epochMs: Date.now(), stack: String(new Error().stack ?? '').split(String.fromCharCode(10)).slice(1, 9).map((line) => line.trim()) })); // guard-ok: временная трассировка
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
  *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
  *  аккаунта не должен мигнуть ни в одном из двух presentation-режимов. */

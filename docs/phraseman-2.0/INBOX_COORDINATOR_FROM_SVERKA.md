@@ -335,3 +335,6 @@ Render Error: Cannot read property 'prototype' of undefined — MonthSelector �
 
 ## 11:12 — чужой набор (packs-simple-004): 138 с НЕ воспроизвелось
 Тап 11:09:07 → экран набора с 16 карточками уже на первом кадре (+2 с). Лог C:\Temp\claudec_preview.txt (15 строк): [PACK-OPEN] stage:start memo=нет local=false meta=есть → net:fetch:start 1 мс → cards:doc 107 мс → fetch:done cards=16 110 мс → preview:mount → preview:cards 173 мс → first-layout 443 мс. Затем повторный cards:doc для этого же набора 263 мс (лишний второй запрос) и для чужого MQ2TYDZs19fYRfSIV02p (прогрев соседнего?). Строк [FC-PREVIEW] и [FC-PACK-OPEN] — 0 (видимо, этот путь их не пишет). Ничего не нажимала.
+
+## 11:47 — эмулятор на NVIDIA: окно ворот урока НЕ роняет ✅
+Тап по закрытому уроку 2 → окно «Ещё рано» (learn-011 снят). Цвета хаба Карточек до/после смены графики совпадают пиксельно (±3 в переливе). Логи C:\Temp\claude\lesson_gate.txt: [LESSON-GATE] decision access=progress_required; [LESSONS-GATE-OPEN] tapToCommit 279 мс, commitToFrame 207, tapToFrame 486, animFull 454. 🔴 cards-section-032: шторка «Режим тренировки» просвечивает (снято на NVIDIA; хаб с ней сверен пиксельно — графика не виновата).

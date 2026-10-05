@@ -533,6 +533,11 @@ export function DialogueV2SessionScreen({
                 accessibilityLabel={labels.placeholder}
                 maxFontSizeMultiplier={1.4}
                 multiline
+                // зачем (Сверка dialogs-022): клавиша ввода — «Отправить», а не перенос строки; Enter отправляет реплику
+                // только когда отправить можно (тот же canSend, что у кнопки ↑), иначе ничего не делает.
+                returnKeyType="send"
+                submitBehavior="submit"
+                onSubmitEditing={() => { if (!sending && canSend) onSend(); }}
                 style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
               />
               {voiceDraft ? (

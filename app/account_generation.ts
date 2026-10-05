@@ -191,11 +191,14 @@ function lockCallerTag(): string {
   if (names.length > 0) return names.join(' <- ');
   // зачем (замер №11: держатели «unknown», 6,8 с): все кадры безымянные — печатаем сырые кадры (имя + место),
   // чтобы вызывающего можно было найти хотя бы по позиции в бандле, а не по пустому «unknown».
-  const rawFrames = stack.split('\n').slice(2, 40)
+  // зачем (пакет 02:26): символизация показала, что 4 первых кадра — сам замок и обёртки asyncToGenerator, а
+  // вызывающий код дальше. Служебные кадры (обёртки async, apply, сам модуль замка) пропускаем, берём следующие 8.
+  const rawFrames = stack.split('\n').slice(2, 60)
     .map((line) => line.trim().replace(/^at\s+/, ''))
-    .filter((line) => line.length > 0 && !/^(next|asyncGeneratorStep|_next|_throw|tryCallOne|tryCallTwo|doResolve|lockCallerTag|withAccountTransitionLock|withStorageLock)\b/.test(line))
-    .filter((line) => !/^(Promise|InternalBytecode)\b/.test(line))
-    .slice(0, 4)
+    .filter((line) => line.length > 0 && !/^(next|asyncGeneratorStep|_next|_throw|tryCallOne|tryCallTwo|doResolve|lockCallerTag|withAccountTransitionLock|_withAccountTransitionLock|withStorageLock|_withStorageLock)\b/.test(line))
+    .filter((line) => !/^(Promise|InternalBytecode|apply \(native\))/.test(line))
+    .filter((line) => !/asyncToGenerator|regeneratorRuntime|account_generation|storage_mutex/.test(line))
+    .slice(0, 8)
     // зачем (пакет 01:26): URL дев-бандла с длинным query обрезался раньше строки:колонки — место нельзя было
     // найти. Кадр печатаем ЦЕЛИКОМ (URL нужен Metro /symbolicate: у lazy-чанков он разный) —
     // scripts/diag/symbolicate_pack.mjs превращает его в файл:строка. Только dev.
@@ -204,7 +207,8 @@ function lockCallerTag(): string {
 }
 const LOCK_CALLER_NOISE = new Set([
   'next', 'asyncGeneratorStep', '_next', '_throw', 'tryCallOne', 'tryCallTwo', 'doResolve', 'Promise', 'anonymous',
-  'lockCallerTag', 'withAccountTransitionLock', 'withStorageLock', 'apply', 'call', 'Generator', 'invoke',
+  'lockCallerTag', 'withAccountTransitionLock', '_withAccountTransitionLock', 'withStorageLock', '_withStorageLock',
+  'apply', 'call', 'Generator', 'invoke',
   'callTimer', 'callTimers', 'flushedQueue', 'callReactNativeMicrotasks', 'run', 'step', 'new',
 ]);
 

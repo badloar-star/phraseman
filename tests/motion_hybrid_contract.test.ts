@@ -137,11 +137,42 @@ function surveyMotionViolations(source: string): string[] {
   return violations;
 }
 
+/**
+ * Не поверхности, а содержимое: файл сам ничего не показывает и не двигает — его рисует родительская
+ * шторка/экран, а под MODAL_LIKE он попал только по имени. Каждая запись — с причиной (координатор 05.10).
+ */
+const NOT_A_SURFACE: Readonly<Record<string, string>> = {
+  'components/profile-card/ProfileCardBioSheet.tsx': 'содержимое шторки «О себе» визитки: без Modal и анимаций, показывает родитель визитки',
+  'components/profile-card/ProfileCardProSheet.tsx': 'содержимое шторки Plus визитки: без Modal и анимаций, показывает родитель визитки',
+  'components/paywall/PaywallTrialReminderPrompt.tsx': 'встроенный блок экрана оплаты (напоминание о пробном периоде), не окно и не шторка',
+  'components/ResponsiveModalScrollView.tsx': 'обёртка прокрутки содержимого окон, сама не окно и не двигается',
+};
+
 describe('motion hybrid contract', () => {
   const files = [...walk(path.join(ROOT, 'components')), ...walk(path.join(ROOT, 'app'))];
-  const modalLike = files.filter((f) => MODAL_LIKE.test(path.basename(f)));
-  const baseline = JSON.parse(fs.readFileSync(BASELINE_PATH, 'utf8')) as { legacyModalFiles: string[] };
-  const legacySet = new Set(baseline.legacyModalFiles);
+  const modalLike = files.filter((f) => MODAL_LIKE.test(path.basename(f)) && !(rel(f) in NOT_A_SURFACE));
+  const baseline = JSON.parse(fs.readFileSync(BASELINE_PATH, 'utf8')) as {
+    legacyModalFiles: string[];
+    /** Без своего движения в макете / под запретом владельца / передано другой сессии — путь → причина. */
+    awaiting?: Record<string, string>;
+  };
+  const awaiting = baseline.awaiting ?? {};
+  // зачем (координатор 05.10): «ждущие» — не долг храповика, а объяснённые исключения; храповик legacy не трогаем.
+  const legacySet = new Set([...baseline.legacyModalFiles, ...Object.keys(awaiting)]);
+
+  it('every explained exception still exists, has a reason, and still needs the exception', () => {
+    for (const [file, reason] of [...Object.entries(NOT_A_SURFACE), ...Object.entries(awaiting)]) {
+      expect(fs.existsSync(path.join(ROOT, file))).toBe(true);
+      expect(reason.trim().length).toBeGreaterThan(10);
+    }
+    // Как только «ждущий» файл получил вход (KIT_MOTION/шелл) — исключение надо убрать из baseline.
+    const resolved = Object.keys(awaiting).filter((r) => hasHybridEntry(path.join(ROOT, r)));
+    expect(resolved).toEqual([]);
+    // Содержимое не должно вдруг начать двигаться само: тогда это уже поверхность.
+    const nowAnimated = Object.keys(NOT_A_SURFACE).filter((r) =>
+      /<Modal\b|with(Spring|Timing)\s*\(|Animated\.(timing|spring)\s*\(/.test(stripComments(fs.readFileSync(path.join(ROOT, r), 'utf8'))));
+    expect(nowAnimated).toEqual([]);
+  });
 
   it('every NEW modal-like surface enters through the hybrid (motionVariant or shared shells)', () => {
     const offenders = modalLike

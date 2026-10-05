@@ -99,7 +99,9 @@ test('real handlers, routes and testIDs stay wired', () => {
   assert.ok(handlerStart >= 0 && handlerEnd > handlerStart, 'legacy lesson press handler is present');
   const handler = lessons.slice(handlerStart, handlerEnd);
   assert.match(handler, /hapticTap\(\);/);
-  assert.match(handler, /resolveLessonAccess\(\{/);
+  // зачем (05.10, 767dc8175): вход доступа собирается через applyDevAsFreeToLessonAccess({ … }) — решение то же.
+  assert.match(handler, /applyDevAsFreeToLessonAccess\(\{/);
+  assert.match(handler, /resolveLessonAccess\(accessInput\)/);
   assert.match(handler, /void prefetchLessonMenuCache\(num, studyTarget\);/);
   assert.match(handler, /router\.push\(\{ pathname: "\/lesson_menu", params: \{ id: num \} \}\)/);
   assert.match(handler, /openLessonPaywall\(num\)/);

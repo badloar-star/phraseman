@@ -1,5 +1,15 @@
 # Task packet: стекло kit.css в приложении + сверка «приложение = макет»
 
+Governance-ID: TG-96E63C4ADF01
+Governance-ID: TG-4B8D64BE3749
+Governance-ID: TG-CC523032E50F
+Governance-ID: TG-F1F07565A8A0
+Governance-ID: TG-D5C40CA91E89
+Governance-ID: TG-04CB2D2AAC4D
+Governance-ID: TG-5C777B797A22
+Governance-ID: TG-3AB1FE44F96E
+Governance-ID: TG-2CA53ABA8BB8
+Governance-ID: TG-238A9E7FF547
 Governance-ID: TG-6E8B00B01DE2
 Governance-ID: TG-EC8858170E72
 Governance-ID: TG-9CF92663B81E

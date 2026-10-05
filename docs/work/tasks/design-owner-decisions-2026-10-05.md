@@ -2,7 +2,7 @@
 
 Governance-ID: TG-ADD35B80EF3E
 Governance-ID: TG-7C507A61AB54
-Status: In progress
+Status: Done (2026-10-05)
 Owner: сессия «2 · Дизайн»
 Related epic/enabler: гейт паритета «приложение = макет» (CLAUDE.md, 04.10)
 

@@ -163,3 +163,15 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 Склейки: dialogs-016/020/038/041.
 
 ## 00:31 — 🔴 эмулятор снова offline/not found (~00:31, сразу после твоих замеров?). [PACK-OPEN] 500-набора готов: данные 0.5 с, экран ~13.8 с — тормозит отрисовка 500 строк (отчёт PACK_OPEN_RUN_2026-10-05_0028.md).
+
+## 01:06 — СТАТУС ДЛЯ КООРДИНАТОРА (сообщения не доходят):
+- [MISTAKE-SESSION] — см. evidence/parity/MISTAKE_RUN_2026-10-04_2233.md: «Все 12→1» ИСПРАВЛЕНО (dropping stored session reason=already_finished → new session initialCount 12); 🔴 AI-EXPLAIN daily_limit при premium=true freeLeft=3; 🟡 шторка вердикта 1.2–2.2 с.
+- Сделано: learn 7, packs-simple-001, home, mistakes-panel 014/015/016, dialogs 002/004/008/014/016/018/019/020/023/030/031/038/041, [PACK-OPEN] 500 (0.5 с данные / ~13.8 с экран).
+- Принято в очередь: Блиц «тап→назад» + [BLITZ-AUTOOPEN] → C:\Temp\claudelitz_autoopen.txt; font_scale 2.0 карточка (лицо/оборот/пример) → вернуть 1.0. После 01:36.
+- 🔴 01:02 приложение на чёрном экране, JS-логов нет, adb reverse 8081 есть.
+
+## 01:07 — принят сценарий 3: повтор [PACK-OPEN] 500 после FlatList (preview:mount/cards/first-layout/content-size, gallery:cards) → C:\Temp\claude\pack_open_after.txt + снимки верх/после прокрутки до конца; проверить пропадание строк и жёлтое VirtualizedList-in-ScrollView.
+
+## 01:09 — принято в очередь (после 3 сценариев сессии 3): пересъёмка learn-002/016/017/018/020 (f9016d1bd, 334dfe276, c16b99f36); в diffs: заливка карточек «Затмение» светлее; «Начать» лавандовая vs #F2F1F6 (Темы); монета серая — «данные: ранг».
+
+## 01:13 — 🔴🔴 ЗАКОНОМЕРНОСТЬ: эмулятор падает при открытии «Сообщество → Наборы». Случаи: 21:31, 21:41, 21:49, 00:31 (сразу после возврата из набора в каталог), 01:11 (тап вкладки «Сообщество»/«Наборы»). Один раз на «Настройки» (21:53). Режимы разные (swiftshader, gpu guest headless) — падает всё равно. Гипотеза: каталог наборов (CatalogTileGlass/BlurView experimentalBlurMethod, boxShadow inset, LinearGradient на 50 строках) роняет графику/память устройства. Прошу: снять logcat/tombstone эмулятора на момент падения (kernel/qemu), и проверить на реальном телефоне. Мои сценарии для сессии 3 (PACK-OPEN после FlatList) из-за этого не сделать.

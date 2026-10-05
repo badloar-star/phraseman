@@ -530,6 +530,9 @@ test('approved hub A: stack, accent CTA with the monthly remainder and four equa
   assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
   assert.match(view, /fc-cards-hub-train/);
   assert.match(view, /stackTop/);
-  assert.doesNotMatch(view, /ScrollView|borderWidth: (?!StyleSheet\.hairlineWidth)/, 'hub A has no scroll and only 1px hairline edges');
+  // зачем (координатор 05.10, FONTSCALE2): при шрифте 1.0 хаб без прокрутки, как в макете; ScrollView разрешён ТОЛЬКО как запасной вариант при крупном системном шрифте
+  assert.doesNotMatch(view, /borderWidth: (?!StyleSheet\.hairlineWidth)/, 'hub A has only 1px hairline edges');
+  assert.equal((view.match(/<ScrollView/g) ?? []).length, 1, 'one ScrollView only');
+  assert.ok(view.includes('return fs > 1') && view.includes('? <ScrollView'), 'hub A has no scroll at font scale 1.0');
   assert.match(view, /tiles: \{[^}]*flexWrap: 'wrap'/);
 });

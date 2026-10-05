@@ -9,7 +9,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View, type BoxShadowValue, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type BoxShadowValue, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
@@ -110,22 +110,29 @@ function CardsHubV2Inner({
   // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
   const fixed = 4 + 44 + 8 + 46 + 6 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
   const rem = Math.max(0, availableHeight - fixed);
-  const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)));
+  const { fontScale } = useWindowDimensions();
+  const fs = Math.max(1, fontScale);
+  // при крупном шрифте превью-карточке нужно больше места под слово и транскрипцию (до ×1.5), иначе слово режется по высоте
+  const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)) * (fs > 1 ? Math.min(fs, 1.5) : 1));
   const tileH = Math.round(Math.min(150, Math.max(96, (rem - stackH) / 2)));
   const k = stackH / 250;
+  // зачем (координатор 05.10, «хаб «Карточки» режет текст при системном шрифте 2.0»; сжимать шрифт нельзя): fontSize система масштабирует, а заданный
+  // lineHeight остаётся прежним — строка становится ниже глифов и низ срезается. Масштабируем lineHeight тем же коэффициентом, высоты пилюли/шапки —
+  // в minHeight, подписи плиток и превью — с переносом. При шрифте 1.0 коэффициент 1: вид совпадает с макетом пиксель в пиксель.
+  const lh = (n: number) => (fs === 1 ? n : Math.round(n * fs));
 
-  return (
+  const body = (
     <View style={styles.root} testID="fc-cards-hub-v2">
-      <View style={styles.topbar}>
+      <View style={[styles.topbar, fs > 1 && { height: undefined, minHeight: 44 }]}>
         <Pressable testID="fc-cards-hub-back" accessibilityRole="button" accessibilityLabel={labels.back} onPress={onBack} hitSlop={8}
           style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
           <Ionicons name="arrow-back" size={20} color={g.text} />
         </Pressable>
         <View style={styles.topRight}>
           {limitLabel ? (
-            <View testID="fc-cards-hub-limit" style={[styles.pill, { backgroundColor: g.opaqueControl }]}>
+            <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.opaqueControl }]}>
               <Ionicons name="albums-outline" size={16} color={g.text} />
-              <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
+              <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
             </View>
           ) : null}
           <Pressable testID="fc-cards-hub-create-pack" accessibilityRole="button" accessibilityLabel={labels.create} onPress={onCreate} hitSlop={8}
@@ -135,16 +142,16 @@ function CardsHubV2Inner({
         </View>
       </View>
 
-      <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-      <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
+      <Text accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
+      <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
 
       <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
         <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
         <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: DROP }, floatStyle]} pointerEvents="none">
           <LinearGradient colors={stackFill(a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-          <Text style={styles.topWord} numberOfLines={1}>{topWord}</Text>
-          {topIpa ? <Text style={styles.topIpa} numberOfLines={1}>{topIpa}</Text> : null}
+          <Text style={[styles.topWord, { lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : 1}>{topWord}</Text>
+          {topIpa ? <Text style={[styles.topIpa, { lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
           <Edge radius={30} shadows={bevel('rgba(255,255,255,0.30)', `${a}59`)} />
         </Reanimated.View>
       </View>
@@ -155,7 +162,7 @@ function CardsHubV2Inner({
           { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
           pressed && styles.pressed,
         ]}>
-        <Text style={[styles.ctaText, { color: g.accentInk }]}>{trainLabel}</Text>
+        <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{trainLabel}</Text>
         <View style={styles.ctaIcon}>
           <Ionicons name={trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
         </View>
@@ -188,8 +195,8 @@ function CardsHubV2Inner({
               ]} />
             </View>
             <View>
-              <Text style={[styles.tileTitle, { color: g.text }]} numberOfLines={1}>{t.title}</Text>
-              <Text style={[styles.tileCount, { color: g.secondary }]} numberOfLines={1}>{t.count === '' ? ' ' : t.count}</Text>
+              <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
+              <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count === '' ? ' ' : t.count}</Text>
             </View>
             <Edge radius={26} shadows={bevel('rgba(255,255,255,0.26)', 'rgba(255,255,255,0.07)')} />
           </Pressable>
@@ -197,6 +204,10 @@ function CardsHubV2Inner({
       </View>
     </View>
   );
+  // зачем: при крупном шрифте хаб не помещается в экран — прокручивается; при 1.0 прежняя разметка без ScrollView (макет без прокрутки)
+  return fs > 1
+    ? <ScrollView contentContainerStyle={styles.scrollGrow} showsVerticalScrollIndicator={false}>{body}</ScrollView>
+    : body;
 }
 
 const CardsHubV2 = memo(CardsHubV2Inner);
@@ -204,6 +215,7 @@ export default CardsHubV2;
 
 // зачем: размеры строго из макета cards-section (замер getBoundingClientRect, 430×932): заголовок 40/46, пилюля 30, кнопки шапки 42, плитка 150 с отступами 18/16.
 const styles = StyleSheet.create({
+  scrollGrow: { flexGrow: 1, paddingBottom: 24 },
   root: { flex: 1, paddingHorizontal: 20 },
   pressed: { opacity: 0.82 },
   topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

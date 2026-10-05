@@ -25928,6 +25928,1018 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l30",
+      "lessonOrdinal": 30,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_spoken_preterite_island_v1",
+          "de_gc_limited_functional_genitive_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_functional_b1_integration_v1"
+        ],
+        "noExpansion": "Permit only the source-attested active modal-Perfekt frame Anderthalb Stunden hat er warten müssen and bounded active substitutions with a known participant in the exact hat/haben ... warten müssen cluster. Permit Er hat gewartet only as the established ordinary-haben-Perfekt contrast and Er musste warten only as the established L16 modal-Präteritum contrast. Permit Wer hat warten müssen? and Warum hat er oder sie warten müssen? only for clarification inside the same selected cluster. At de_l30_c07_s49, permit only the delayed L29 document relation die Nummer des Antrags and the exact bounded reason phrase wegen des Regens; do not derive another Genitiv frame. Do not introduce another lexical infinitive, another modal, a participle in place of warten, a different cluster order, subordinate-clause auxiliary order, Plusquamperfekt, hätte or hätten, missed-obligation counterfactuals, event passive, state passive, werden-plus-infinitive meanings, a general modal-Perfekt paradigm, a universal spoken-register claim, register-repair mediation, functional-B1 integration, unlabelled DACH production, Task 6 lexical adjudication, learner-facing RU or UK content, release, audio, mockup, HANDOVER, or English-contour reuse."
+      },
+      "chapters": [
+        {
+          "id": "de_l30_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l30_ch01",
+          "lessonOutcome": "recognise the selected active hat/haben warten müssen cluster",
+          "packetIds": [
+            "de_l30_c01_s01",
+            "de_l30_c01_s02",
+            "de_l30_c01_s03",
+            "de_l30_c01_s04",
+            "de_l30_c01_s05",
+            "de_l30_c01_s06",
+            "de_l30_c01_s07",
+            "de_l30_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "early-shift-handover-waiting-area",
+            "participants": "employee-and-shift-colleague",
+            "goal": "recognise-who-had-to-wait-and-for-how-long",
+            "contextSignature": "shift-handover-modal-perfekt-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Aktive Klammer: Anderthalb Stunden [hat] er [warten müssen]. Die Wartezeit gehört zur Übergabe.",
+            "exit": "Anderthalb Stunden hat er warten müssen.",
+            "independentEvidenceByPacketId": "de_l30_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "introduction",
+              "packetId": "de_l30_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l30_c01_s03", "de_l30_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l30_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c01_wartezeit_v1",
+                "semanticIdentity": "wartezeit|length of time spent waiting during a handover",
+                "lemmaOrExpression": "Wartezeit",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Wartezeit",
+                  "plural": "Wartezeiten"
+                },
+                "nounPackageIdentity": "die|wartezeit|wartezeiten",
+                "verbPackage": null,
+                "senseGloss": "length of time spent waiting during a handover",
+                "communicativeUse": "Die Wartezeit war ein Problem. Anderthalb Stunden hat er warten müssen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch01",
+                  "checkpointPacketId": "de_l30_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "late-delivery-reception-area",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "late-delivery-reception-area",
+              "participants": "receptionist-and-delivery-driver",
+              "goal": "independently-recognise-the-active-waiting-cluster",
+              "contextSignature": "delivery-reception-modal-perfekt-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l20_c01", "de_l15_c01"],
+            "targetsFutureChapterIds": ["de_l30_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s49"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l30_ch02",
+          "lessonOutcome": "contrast ordinary haben plus Partizip II, known musste warten and bounded hat/haben warten müssen",
+          "packetIds": [
+            "de_l30_c02_s09",
+            "de_l30_c02_s10",
+            "de_l30_c02_s11",
+            "de_l30_c02_s12",
+            "de_l30_c02_s13",
+            "de_l30_c02_s14",
+            "de_l30_c02_s15",
+            "de_l30_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "handover-delay-comparison-board",
+            "participants": "team-lead-and-employee",
+            "goal": "distinguish-three-bounded-past-forms",
+            "contextSignature": "handover-three-form-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Die Verzögerung war ein Problem. Vergleich: Er hat gewartet. Er musste warten. Er hat warten müssen. Nur die dritte Form ist das neue ausgewählte Modal-Perfekt.",
+            "exit": "Er hat gewartet. Er musste warten. Er hat warten müssen.",
+            "independentEvidenceByPacketId": "de_l30_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "guided",
+              "packetId": "de_l30_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l30_c02_s11", "de_l30_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l30_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c02_verzoegerung_v1",
+                "semanticIdentity": "verzogerung|delay recorded during a workplace handover",
+                "lemmaOrExpression": "Verzögerung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Verzögerung",
+                  "plural": "Verzögerungen"
+                },
+                "nounPackageIdentity": "die|verzogerung|verzogerungen",
+                "verbPackage": null,
+                "senseGloss": "delay recorded during a workplace handover",
+                "communicativeUse": "Die Verzögerung war ein Problem. Vergleich: Er hat gewartet. Er musste warten. Er hat warten müssen. Nur die dritte Form ist das neue ausgewählte Modal-Perfekt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch02",
+                  "checkpointPacketId": "de_l30_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "service-desk-delay-comparison",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "service-desk-delay-comparison",
+              "participants": "service-agent-and-colleague",
+              "goal": "independently-distinguish-the-three-past-forms",
+              "contextSignature": "service-delay-three-form-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l15_c02",
+              "de_l16_c02",
+              "de_l30_c01"
+            ],
+            "targetsFutureChapterIds": ["de_l30_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s50"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l30_ch03",
+          "lessonOutcome": "report one completed situation where a known participant had to wait",
+          "packetIds": [
+            "de_l30_c03_s17",
+            "de_l30_c03_s18",
+            "de_l30_c03_s19",
+            "de_l30_c03_s20",
+            "de_l30_c03_s21",
+            "de_l30_c03_s22",
+            "de_l30_c03_s23",
+            "de_l30_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "supplier-arrival-handover",
+            "participants": "warehouse-employee-and-supplier",
+            "goal": "report-the-known-waiting-participant",
+            "contextSignature": "supplier-active-modal-perfekt-report"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Bekannte Person: Der Lieferant hat warten müssen. Die Lieferung war später da.",
+            "exit": "Der Lieferant hat warten müssen.",
+            "independentEvidenceByPacketId": "de_l30_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "retrieval",
+              "packetId": "de_l30_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l30_c03_s19", "de_l30_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l30_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c03_lieferant_v1",
+                "semanticIdentity": "lieferant|supplier identified as the participant who waited",
+                "lemmaOrExpression": "Lieferant",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Lieferant",
+                  "plural": "Lieferanten"
+                },
+                "nounPackageIdentity": "der|lieferant|lieferanten",
+                "verbPackage": null,
+                "senseGloss": "supplier identified as the participant who waited",
+                "communicativeUse": "Bekannte Person: Der Lieferant hat warten müssen. Die Lieferung war später da.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch03",
+                  "checkpointPacketId": "de_l30_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "facility-employee-and-supplier",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l30_c03_s24"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l30_c03_lieferung_v1",
+                "semanticIdentity": "lieferung|delivery associated with the completed waiting situation",
+                "lemmaOrExpression": "Lieferung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Lieferung",
+                  "plural": "Lieferungen"
+                },
+                "nounPackageIdentity": "die|lieferung|lieferungen",
+                "verbPackage": null,
+                "senseGloss": "delivery associated with the completed waiting situation",
+                "communicativeUse": "Bekannte Person: Der Lieferant hat warten müssen. Die Lieferung war später da.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch03",
+                  "checkpointPacketId": "de_l30_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "delivery-arrival-handover",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "delivery-arrival-handover",
+              "participants": "facility-employee-and-supplier",
+              "goal": "independently-report-who-had-to-wait",
+              "contextSignature": "maintenance-arrival-modal-perfekt-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l09_c03", "de_l30_c02"],
+            "targetsFutureChapterIds": ["de_l30_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l30_ch04",
+          "lessonOutcome": "ask who had to wait and for what reason",
+          "packetIds": [
+            "de_l30_c04_s25",
+            "de_l30_c04_s26",
+            "de_l30_c04_s27",
+            "de_l30_c04_s28",
+            "de_l30_c04_s29",
+            "de_l30_c04_s30",
+            "de_l30_c04_s31",
+            "de_l30_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "handover-clarification-call",
+            "participants": "incoming-employee-and-outgoing-employee",
+            "goal": "ask-who-waited-and-why",
+            "contextSignature": "handover-modal-perfekt-clarification"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Rückfrage im selben Muster: Wer hat warten müssen? Warum hat er warten müssen? Der Wartegrund steht in der Notiz.",
+            "exit": "Wer hat warten müssen? Warum hat er warten müssen?",
+            "independentEvidenceByPacketId": "de_l30_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "production",
+              "packetId": "de_l30_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l30_c04_s27", "de_l30_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l30_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c04_rueckfrage_v1",
+                "semanticIdentity": "ruckfrage|clarifying question in a workplace handover",
+                "lemmaOrExpression": "Rückfrage",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Rückfrage",
+                  "plural": "Rückfragen"
+                },
+                "nounPackageIdentity": "die|ruckfrage|ruckfragen",
+                "verbPackage": null,
+                "senseGloss": "clarifying question in a workplace handover",
+                "communicativeUse": "Rückfrage im selben Muster: Wer hat warten müssen? Warum hat er warten müssen? Der Wartegrund steht in der Notiz.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch04",
+                  "checkpointPacketId": "de_l30_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "interaction_opening",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-ask-who-waited-and-why",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l30_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l30_c04_wartegrund_v1",
+                "semanticIdentity": "wartegrund|stated reason for a participant s wait",
+                "lemmaOrExpression": "Wartegrund",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Wartegrund",
+                  "plural": "Wartegründe"
+                },
+                "nounPackageIdentity": "der|wartegrund|wartegrunde",
+                "verbPackage": null,
+                "senseGloss": "stated reason for a participant's wait",
+                "communicativeUse": "Rückfrage im selben Muster: Wer hat warten müssen? Warum hat er warten müssen? Der Wartegrund steht in der Notiz.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch04",
+                  "checkpointPacketId": "de_l30_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-ask-who-waited-and-why",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l30_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "reception-shift-clarification",
+              "participants": "two-reception-employees",
+              "goal": "independently-ask-who-waited-and-why",
+              "contextSignature": "reception-modal-perfekt-question-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l20_c04", "de_l30_c03"],
+            "targetsFutureChapterIds": ["de_l30_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l30_ch05",
+          "lessonOutcome": "reconstruct who waited, why and what happened next using known clauses",
+          "packetIds": [
+            "de_l30_c05_s33",
+            "de_l30_c05_s34",
+            "de_l30_c05_s35",
+            "de_l30_c05_s36",
+            "de_l30_c05_s37",
+            "de_l30_c05_s38",
+            "de_l30_c05_s39",
+            "de_l30_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "shift-log-reconstruction",
+            "participants": "supervisor-and-incoming-employee",
+            "goal": "reconstruct-participant-reason-and-next-step",
+            "contextSignature": "shift-log-three-part-reconstruction"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Drei bekannte Aussagen: Die Kollegin hat warten müssen. Der Dienstplan war nicht da. Danach hat sie die Notiz gemacht.",
+            "exit": "Die Kollegin hat warten müssen. Der Dienstplan war nicht da. Danach hat sie die Notiz gemacht.",
+            "independentEvidenceByPacketId": "de_l30_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l30_c05_s35", "de_l30_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l30_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c05_notiz_v1",
+                "semanticIdentity": "notiz|handover note recording what happened next",
+                "lemmaOrExpression": "Notiz",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Notiz",
+                  "plural": "Notizen"
+                },
+                "nounPackageIdentity": "die|notiz|notizen",
+                "verbPackage": null,
+                "senseGloss": "handover note recording what happened next",
+                "communicativeUse": "Drei bekannte Aussagen: Die Kollegin hat warten müssen. Der Dienstplan war nicht da. Danach hat sie die Notiz gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch05",
+                  "checkpointPacketId": "de_l30_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-reconstruct-who-why-and-next",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l30_c05_s40"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l30_c05_dienstplan_v1",
+                "semanticIdentity": "dienstplan|work schedule whose absence explains the wait",
+                "lemmaOrExpression": "Dienstplan",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Dienstplan",
+                  "plural": "Dienstpläne"
+                },
+                "nounPackageIdentity": "der|dienstplan|dienstplane",
+                "verbPackage": null,
+                "senseGloss": "work schedule whose absence explains the wait",
+                "communicativeUse": "Drei bekannte Aussagen: Die Kollegin hat warten müssen. Der Dienstplan war nicht da. Danach hat sie die Notiz gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch05",
+                  "checkpointPacketId": "de_l30_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "reception-log-reconstruction",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "reception-log-reconstruction",
+              "participants": "reception-supervisor-and-employee",
+              "goal": "independently-reconstruct-who-why-and-next",
+              "contextSignature": "reception-log-modal-perfekt-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c05", "de_l30_c04"],
+            "targetsFutureChapterIds": ["de_l30_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l30_ch06",
+          "lessonOutcome": "repair a Partizip II substitution or cluster-order error",
+          "packetIds": [
+            "de_l30_c06_s41",
+            "de_l30_c06_s42",
+            "de_l30_c06_s43",
+            "de_l30_c06_s44",
+            "de_l30_c06_s45",
+            "de_l30_c06_s46",
+            "de_l30_c06_s47",
+            "de_l30_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "maintenance-handover-repair",
+            "participants": "trainee-and-shift-supervisor",
+            "goal": "repair-the-selected-cluster-without-expanding-it",
+            "contextSignature": "maintenance-modal-perfekt-form-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Reparatur: nicht „Er hat gewartet müssen“ und nicht „Er warten müssen hat“, sondern „Er hat warten müssen“. Das war eine Panne. Das Ersatzteil war kaputt.",
+            "exit": "Er hat warten müssen.",
+            "independentEvidenceByPacketId": "de_l30_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "transfer",
+              "packetId": "de_l30_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l30_c06_s43", "de_l30_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l30_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c06_panne_v1",
+                "semanticIdentity": "panne|breakdown connected with the waiting report",
+                "lemmaOrExpression": "Panne",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Panne",
+                  "plural": "Pannen"
+                },
+                "nounPackageIdentity": "die|panne|pannen",
+                "verbPackage": null,
+                "senseGloss": "breakdown connected with the waiting report",
+                "communicativeUse": "Das war eine Panne. Das Ersatzteil war kaputt. Er hat warten müssen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch06",
+                  "checkpointPacketId": "de_l30_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "equipment-desk-form-correction",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c06_s48"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l30_c06_ersatzteil_v1",
+                "semanticIdentity": "ersatzteil|replacement part connected with the breakdown",
+                "lemmaOrExpression": "Ersatzteil",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Ersatzteil",
+                  "plural": "Ersatzteile"
+                },
+                "nounPackageIdentity": "das|ersatzteil|ersatzteile",
+                "verbPackage": null,
+                "senseGloss": "replacement part connected with the breakdown",
+                "communicativeUse": "Das war eine Panne. Das Ersatzteil war kaputt. Er hat warten müssen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch06",
+                  "checkpointPacketId": "de_l30_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "equipment-desk-form-correction",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l30_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "equipment-desk-form-correction",
+              "participants": "employee-and-language-coach",
+              "goal": "independently-repair-the-selected-cluster",
+              "contextSignature": "equipment-modal-perfekt-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c06", "de_l30_c05"],
+            "targetsFutureChapterIds": ["de_l30_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l30_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l30_ch07",
+          "lessonOutcome": "transfer the selected active pattern to a new handover problem",
+          "packetIds": [
+            "de_l30_c07_s49",
+            "de_l30_c07_s50",
+            "de_l30_c07_s51",
+            "de_l30_c07_s52",
+            "de_l30_c07_s53",
+            "de_l30_c07_s54",
+            "de_l30_c07_s55",
+            "de_l30_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_infinitive_verb_cluster_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_functional_b1_integration_v1"
+          ],
+          "situation": {
+            "setting": "unfamiliar-community-shift-handover",
+            "participants": "coordinator-and-relief-worker",
+            "goal": "clarify-who-waited-why-and-what-happened-next",
+            "contextSignature": "community-shift-modal-perfekt-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Neue Übergabe: Die Ablösung hat wegen des Regens warten müssen. Die Nummer des Antrags war im Übergabeprotokoll. Danach hat sie die Notiz gemacht.",
+            "exit": "Die Ablösung hat wegen des Regens warten müssen. Die Nummer des Antrags war im Übergabeprotokoll. Danach hat sie die Notiz gemacht.",
+            "independentEvidenceByPacketId": "de_l30_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_functional_genitive_v1",
+              "stage": "delayed",
+              "packetId": "de_l30_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l30_c07_s51",
+            "de_l30_c07_s52",
+            "de_l30_c07_s53",
+            "de_l30_c07_s54",
+            "de_l30_c07_s55",
+            "de_l30_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l30_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_limited_modal_perfekt_v1",
+              "de_gc_infinitive_verb_cluster_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l30_c07_abloesung_v1",
+                "semanticIdentity": "ablosung|relief worker identified as the participant who waited",
+                "lemmaOrExpression": "Ablösung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Ablösung",
+                  "plural": "Ablösungen"
+                },
+                "nounPackageIdentity": "die|ablosung|ablosungen",
+                "verbPackage": null,
+                "senseGloss": "relief worker identified as the participant who waited",
+                "communicativeUse": "Neue Übergabe: Die Ablösung hat wegen des Regens warten müssen. Die Nummer des Antrags war im Übergabeprotokoll. Danach hat sie die Notiz gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch07",
+                  "checkpointPacketId": "de_l30_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "event-coordinator-and-relief-worker",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l30_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l30_c07_uebergabeprotokoll_v1",
+                "semanticIdentity": "ubergabeprotokoll|handover record containing the known application number relation",
+                "lemmaOrExpression": "Übergabeprotokoll",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Übergabeprotokoll",
+                  "plural": "Übergabeprotokolle"
+                },
+                "nounPackageIdentity": "das|ubergabeprotokoll|ubergabeprotokolle",
+                "verbPackage": null,
+                "senseGloss": "handover record containing the known application-number relation",
+                "communicativeUse": "Neue Übergabe: Die Ablösung hat wegen des Regens warten müssen. Die Nummer des Antrags war im Übergabeprotokoll. Danach hat sie die Notiz gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l30_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l30_ch07",
+                  "checkpointPacketId": "de_l30_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_limited_modal_perfekt_v1",
+                    "de_gc_infinitive_verb_cluster_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-transfer-the-selected-active-cluster",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l30_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "unfamiliar-event-shift-handover",
+              "participants": "event-coordinator-and-relief-worker",
+              "goal": "independently-transfer-the-selected-active-cluster",
+              "contextSignature": "event-shift-modal-perfekt-final-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l29_c07", "de_l30_c06"],
+            "targetsFutureChapterIds": ["de_l31_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l31_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

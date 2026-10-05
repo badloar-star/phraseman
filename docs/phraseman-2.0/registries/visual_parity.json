@@ -9600,13 +9600,16 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learning-v2-018.png",
+      "evidence_at": "2026-10-05T02:26:13.513Z",
+      "evidence_sha256": "4cd642207a2e3bbbce91b61a62eb1739750669f4a1f68ab7389e8ced8ed72d45",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Совпадает по раскладке и текстам; мелочь: заливка фона ровная, в макете лёгкий градиент/виньетка",
+        "Ячейки 016/017/019 (слова/поиск/ничего не нашлось) не сняты — у аккаунта 0 открытых слов, нужен пройденный урок"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

@@ -5859,7 +5859,22 @@ export default function LessonsTab({
         )}
         message={selectedLearningV2Outcome}
         primaryLabel={
-          selectedLearningV2Session?.state === "completed"
+          // зачем (learning-v2.html 2.3, координатор 05.10): у проверки главы (каждое 8-е занятие) кнопка
+          // «Начать проверку» — отдельная строка, общий «Начать» других экранов не трогаем.
+          selectedLearningV2Session?.state !== "completed"
+            && (selectedLearningV2Session?.sessionOrdinal ?? 1) % 8 === 0
+            ? triLang(lang, {
+                ru: "Начать проверку",
+                en: "Start the check",
+                uk: "Почати перевірку",
+                es: "Empezar la prueba",
+                "pt-BR": "Começar o teste",
+                vi: "Bắt đầu kiểm tra",
+                id: "Mulai tes",
+                tr: "Teste başla",
+                pl: "Rozpocznij test",
+              })
+            : selectedLearningV2Session?.state === "completed"
             ? triLang(lang, {
                 ru: "Повторить",
                 en: "Retry",
@@ -5883,6 +5898,18 @@ export default function LessonsTab({
                 pl: "Zacznij",
               })
         }
+        // зачем: подпись строки лучших звёзд (видна, только когда Ядро передаст bestStars).
+        bestStarsLabel={triLang(lang, {
+          ru: "Лучший результат",
+          en: "Best result",
+          uk: "Найкращий результат",
+          es: "Mejor resultado",
+          "pt-BR": "Melhor resultado",
+          vi: "Kết quả tốt nhất",
+          id: "Hasil terbaik",
+          tr: "En iyi sonuç",
+          pl: "Najlepszy wynik",
+        })}
         onPrimaryPress={() => launchSelectedLearningV2Session(false)}
         // зачем (learning-v2.html startModal 2.2/2.3: `sec: null`): у пройденного занятия и у проверки главы
         // второй кнопки «Сразу к практике» нет — в макете на её месте только отступ.

@@ -45,6 +45,12 @@ interface LearningV2SessionOutcomeSheetProps {
    * белой с «play». Чисто вид; сам путь открытия закрытых занятий (тост-отказ) не менялся.
    */
   locked?: boolean;
+  /**
+   * зачем (learning-v2.html 2.2 «Пройденное — Повторить», координатор 05.10): строка «★★☆ Лучший результат».
+   * Показывается ТОЛЬКО при значении 0–3; нет значения — строки нет. Данные подключает Ядро.
+   */
+  bestStars?: 0 | 1 | 2 | 3;
+  bestStarsLabel?: string;
 }
 
 export default function LearningV2SessionOutcomeSheet({
@@ -66,6 +72,8 @@ export default function LearningV2SessionOutcomeSheet({
   attemptsLabel = "3 попытки",
   onMounted,
   locked = false,
+  bestStars,
+  bestStarsLabel = "Лучший результат",
 }: LearningV2SessionOutcomeSheetProps) {
   // зачем (learning-v2.html, startModal): окно занятия — на токенах Liquid Glass активной темы.
   const g = useLv2Glass();
@@ -231,6 +239,15 @@ export default function LearningV2SessionOutcomeSheet({
               {/* зачем (сверка с learning-v2.html, 04.10): цель занятия приходит из текста курса с разметкой `код` —
                   человеку показывались сами обратные кавычки («`I am + слово о себе`»). Показываем текст без разметки. */}
               <Text style={[styles.message, { color: g.secondary, fontSize: 16, lineHeight: 22 }]}>{message.replace(/`/g, '')}</Text>
+              {bestStars !== undefined ? (
+                // `.flex` center gap 8, margin-top 16: звёзды s24 (погашенные #3A3A3E), подпись 15/600 --sec, отступ 6.
+                <View testID="learning-v2-session-modal-best-stars" accessible accessibilityLabel={`${bestStarsLabel}: ${bestStars}/3`} style={styles.bestRow}>
+                  {[1, 2, 3].map((i) => (
+                    <Ionicons key={i} name="star" size={24} color={g.text} style={i <= bestStars ? null : styles.starOff} />
+                  ))}
+                  <Text style={[styles.bestLabel, { color: g.secondary }]}>{bestStarsLabel}</Text>
+                </View>
+              ) : null}
 
               <View style={styles.stats}>
                 {stats.map((stat) => (
@@ -287,6 +304,9 @@ const styles = StyleSheet.create({
   kicker: { marginTop: 22, textAlign: "center", fontSize: 13, lineHeight: 18, fontWeight: "800", letterSpacing: 1.6 },
   title: { marginTop: 9, textAlign: "center", fontWeight: "800", letterSpacing: -0.6 },
   message: { marginTop: 8, textAlign: "center", fontWeight: "400" },
+  bestRow: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 16 },
+  starOff: { opacity: 0.2 },
+  bestLabel: { marginLeft: 6, fontSize: 16, lineHeight: 21, fontWeight: "600" },
   stats: { flexDirection: "row", gap: 7, marginTop: 18 },
   stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 5 },
   statText: { fontSize: 13, lineHeight: 18, fontWeight: "700", textAlign: "center" },

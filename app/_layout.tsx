@@ -338,6 +338,9 @@ const nativeSplashHidden = new Promise<void>((resolve) => { resolveNativeSplashH
 // на нативном драйвере — без React-рендера корня; размонтируется она позже обычным путём. Один раз за процесс.
 const startupHoldEarlyDismissOpacity = new Animated.Value(1);
 let splashEarlyHideDone = false;
+// зачем (пакет 11:54, прогон 1: гейт снял сплеш +6863, ранний путь снял ещё раз +6936): прежний гейт тоже отмечает,
+// что уже снял сплеш, — ранний путь тогда не зовёт hideAsync повторно.
+let splashGateHideDone = false;
 function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
   return Promise.race([
     nativeSplashHidden.then(() => 'hidden' as const),
@@ -1650,6 +1653,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     void whenHomePainted(120_000).then((outcome) => {
       if (cancelled) { bootMark('HOME-PAINT early hide: skip', { reason: 'unmounted' }); return; }
       if (splashEarlyHideDone) { bootMark('HOME-PAINT early hide: skip', { reason: 'already_done' }); return; }
+      if (splashGateHideDone) { bootMark('HOME-PAINT early hide: skip', { reason: 'gate_already_hid' }); return; }
       if (outcome !== 'painted') { bootMark('HOME-PAINT early hide: skip', { reason: outcome }); return; }
       const gate = splashGateRef.current;
       const holding = [
@@ -1699,6 +1703,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (splashEarlyHideDone) {
       bootMark('SplashScreen.hideAsync() пропущен — сплеш уже снят по кадру Главной');
     } else {
+      splashGateHideDone = true;
       bootMark('SplashScreen.hideAsync() — сплеш скрыт');
       void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:nativeSplashCanHide.hideAsync'));
     }

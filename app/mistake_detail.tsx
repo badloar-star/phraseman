@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import { useScaledTextStyles } from '../hooks/useLineScale';
@@ -132,6 +132,31 @@ export default function MistakeDetailScreen() {
     });
     router.push({ pathname: '/mistake_practice_session', params: { focusMistakeId: detail.mistakeId } } as never);
   }, [detail, gate, router, target]);
+
+  // зачем (координатор 05.10, «Правильно — переводом»: направление задания, по правилу «сперва логи»): что именно показано на детали ошибки.
+  // phraseScript/meaningScript — алфавит (latin|cyrillic|other), чтобы по логу видно направление: строка «Правильно» = фраза или перевод.
+  useEffect(() => {
+    if (detail === null || detail === 'missing') return;
+    const script = (value: string | null | undefined): string => {
+      if (!value) return 'none';
+      if (/[Ѐ-ӿ]/.test(value)) return 'cyrillic';
+      if (/[A-Za-z]/.test(value)) return 'latin';
+      return 'other';
+    };
+    console.log('[MISTAKE-DETAIL] direction', JSON.stringify({
+      mistakeId: detail.mistakeId.slice(-8),
+      facet: detail.facet,
+      sourceGroup: detail.sourceGroup,
+      status: detail.status,
+      correctRowShows: 'phrase',
+      phraseScript: script(detail.phrase),
+      meaningScript: script(detail.meaning),
+      givenScript: script(detail.given),
+      hasGiven: detail.given !== null,
+      hasMeaning: detail.meaning !== null,
+      hasPractice: detail.hasPractice,
+    }));
+  }, [detail]);
 
   const goBack = useCallback(() => safeRouterBack(router, '/mistakes_list' as never), [router]);
   const closeMenu = useCallback(() => setMenuOpen(false), []);

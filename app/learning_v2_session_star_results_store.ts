@@ -111,6 +111,24 @@ export function peekLearningV2SessionStarResults(): LearningV2SessionStarResults
   return memory;
 }
 
+/**
+ * Лучшие звёзды (0–3) за занятие — для строки «Лучший результат» в окне старта пройденного занятия.
+ *
+ * зачем (координатор 05.10, макет startModal): синхронно из памяти — окно открывается мгновенно, без чтения
+ * диска. Значения нет (старое занятие пройдено до появления витрины или витрина ещё не поднята) — undefined:
+ * ничего не выдумываем. Передан accountScopeHash и он не совпадает с поднятым — тоже undefined (чужой аккаунт).
+ * Запись — только recordLearningV2SessionStarResult (max прежнего и нового), новых записей и сети здесь нет.
+ */
+export function getLessonBestStars(
+  courseSessionId: string,
+  accountScopeHash?: string,
+): 0 | 1 | 2 | 3 | undefined {
+  if (accountScopeHash !== undefined && accountScopeHash !== memoryScopeHash) return undefined;
+  if (!SESSION_ID_RE.test(courseSessionId)) return undefined;
+  const stars = Object.prototype.hasOwnProperty.call(memory, courseSessionId) ? memory[courseSessionId] : undefined;
+  return validStars(stars) ? stars : undefined;
+}
+
 export function subscribeLearningV2SessionStarResults(
   listener: () => void,
 ): () => void {

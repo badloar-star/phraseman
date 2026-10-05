@@ -180,8 +180,16 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
 
   const visible = offline && !dismissed;
 
+  // зачем (system-005): был ли офлайн до этого события — только переход offline→online даёт «Снова в сети»,
+  // а стартовый unknown→online нет. Пока только лог: что показали бы.
+  const wasOfflineRef = useRef(false);
   useEffect(() => {
     const unsubscribe = subscribeNetStatus((online) => {
+      const wasOffline = wasOfflineRef.current;
+      wasOfflineRef.current = !online;
+      console.warn('[NET-BANNER] status', JSON.stringify({
+        online, wasOffline, wouldShowBackOnline: online && wasOffline,
+      })); // guard-ok: временная трассировка system-005, только на переход сети
       setOffline(!online);
       // Вернулась сеть — сбрасываем «скрытость», чтобы следующий офлайн показался.
       if (online) setDismissed(false);

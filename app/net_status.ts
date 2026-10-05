@@ -55,6 +55,9 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
   };
   const setStatus = (next: Exclude<NetStatus, 'unknown'>) => {
     if (status === next) return;
+    // зачем (system-005, координатор 05.10: «Снова в сети» — сперва лог переходов офлайн→онлайн): одна строка на
+    // реальный переход статуса, дубли сюда не доходят.
+    console.warn('[NET-STATUS] transition', JSON.stringify({ from: status, to: next, listeners: listeners.size })); // guard-ok: system-005, только на реальный переход
     status = next;
     const online = next === 'online';
     listeners.forEach((listener) => {

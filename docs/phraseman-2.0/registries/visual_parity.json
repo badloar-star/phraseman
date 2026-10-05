@@ -4089,13 +4089,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/video-008.png",
+      "evidence_at": "2026-10-05T05:03:08.633Z",
+      "evidence_sha256": "a067df798b58be8d1c015c9bb8859744cbb616843c9a9f37497dea1a58fed29c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Строка плейлиста совпадает: обложка стопкой с ▶, название, «N видео», стрелка",
+        "Шапка и вкладки — как в video-001: кнопка YouTube вместо «EN», плашка канала без названия, 2 вкладки во всю ширину вместо 3 слева (нет «Все видео»)",
+        "🟡 Длинные названия плейлистов (данные с YouTube) тянутся в 3–5 строк, строка раздувается; в макете названия в 1 строку — ограничить 2 строками",
+        "Название без «…» обрезки, капс из YouTube как есть («АНГЛИЙСКИЙ С НУЛЯ ДО A2…»)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

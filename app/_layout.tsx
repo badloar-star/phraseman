@@ -333,6 +333,11 @@ coldStartMark('layout.module_imports:done', '_layout', { entryToImportsMs: msSin
 // ждёт и кадр Главной, и снятие сплеша.
 let resolveNativeSplashHidden: () => void = () => {};
 const nativeSplashHidden = new Promise<void>((resolve) => { resolveNativeSplashHidden = resolve; });
+// зачем (координатор 05.10, пакет 08:26: кадр Главной +13369, сплеш снят +15590 — ~2,2 с между setFirstContentReady и
+// коммитом корня, JS-поток занят): сплеш снимаем прямо в колбэке первого кадра Главной. JS-заставку гасим прозрачностью
+// на нативном драйвере — без React-рендера корня; размонтируется она позже обычным путём. Один раз за процесс.
+const startupHoldEarlyDismissOpacity = new Animated.Value(1);
+let splashEarlyHideDone = false;
 function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
   return Promise.race([
     nativeSplashHidden.then(() => 'hidden' as const),
@@ -561,7 +566,11 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   }, [visible, canHideNativeSplash]);
 
   useEffect(() => {
-    if (!visible) return;
+    // зачем: ранний показ Главной гасит заставку прозрачностью; при следующем показе заставка снова видна.
+    if (!visible) {
+      startupHoldEarlyDismissOpacity.setValue(1);
+      return;
+    }
     glyphIn.setValue(0); pulse.setValue(0); wordIn.setValue(0); subIn.setValue(0); shine.setValue(0);
 
     const enter = Animated.timing(glyphIn, {
@@ -609,7 +618,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   });
 
   return (
-    <View pointerEvents="none" style={styles.startupSplashAnimatedRoot}>
+    <Animated.View pointerEvents="none" style={[styles.startupSplashAnimatedRoot, { opacity: startupHoldEarlyDismissOpacity }]}>
       <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphEnterScale }] }}>
         <Animated.View style={[styles.startupSplashGlyphPulse, { transform: [{ scale: glyphPulseScale }] }]}>
           <Image
@@ -664,7 +673,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
       >
         by Professor Lingman
       </Animated.Text>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -1630,6 +1639,37 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     const sub = onAppEvent('app_home_screen_ready', () => setHomeScreenReady(true));
     return () => sub.remove();
+  }, []);
+  // зачем (координатор 05.10, одобрено «после цифр»): снять сплеш в колбэке кадра Главной, не дожидаясь коммита корня.
+  // Флаги — значения последнего коммита. Онбординг/бан/не готово → не прятать и печатать, какой флаг держит;
+  // тогда сплеш снимет прежний гейт nativeSplashCanHide.
+  const splashGateRef = useRef({ fontsReady, ready, liquidGlassChoiceReady, effectiveShowOnboarding, isBanned });
+  splashGateRef.current = { fontsReady, ready, liquidGlassChoiceReady, effectiveShowOnboarding, isBanned };
+  useEffect(() => {
+    let cancelled = false;
+    void whenHomePainted(120_000).then((outcome) => {
+      if (cancelled) { bootMark('HOME-PAINT early hide: skip', { reason: 'unmounted' }); return; }
+      if (splashEarlyHideDone) { bootMark('HOME-PAINT early hide: skip', { reason: 'already_done' }); return; }
+      if (outcome !== 'painted') { bootMark('HOME-PAINT early hide: skip', { reason: outcome }); return; }
+      const gate = splashGateRef.current;
+      const holding = [
+        gate.fontsReady ? null : 'fontsReady',
+        gate.ready ? null : 'ready',
+        gate.liquidGlassChoiceReady ? null : 'liquidGlassChoiceReady',
+        gate.effectiveShowOnboarding ? 'effectiveShowOnboarding' : null,
+        gate.isBanned ? 'isBanned' : null,
+      ].filter((flag): flag is string => flag !== null);
+      if (holding.length > 0) { bootMark('HOME-PAINT early hide: held', { holding, ...gate }); return; }
+      splashEarlyHideDone = true;
+      bootMark('HOME-PAINT early hide — сплеш скрыт по кадру Главной', gate);
+      void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:homePaintEarlyHide.hideAsync'));
+      Animated.timing(startupHoldEarlyDismissOpacity, {
+        toValue: 0, duration: 120, easing: Easing.out(Easing.cubic), useNativeDriver: true,
+      }).start();
+      resolveNativeSplashHidden();
+      markNativeSplashHidden();
+    });
+    return () => { cancelled = true; };
   }, []);
   // зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ, мгновенно на 100%»):
   // homeScreenReady был ЕДИНСТВЕННЫМ флагом гейта без потолка времени. Все

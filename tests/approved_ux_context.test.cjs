@@ -54,7 +54,9 @@ test('voice controls announce user-facing labels and retain QA testIDs', () => {
 test('approved empty shelves and learning settings explain the next action', () => {
   assert.ok(read('app/achievements_screen.tsx').includes('Здесь будут твои награды. Занимайся'));
   assert.ok(read('app/flashcards_my_packs.tsx').includes('кнопкой «+» внизу'));
-  assert.ok(read('app/settings_edu.tsx').includes('Выключи, если хочешь остановиться'));
+  // зачем (05.10, f76077ff4): макет 2.0 profile.html education (04.10) новее снимка 14.09 — пояснение автоперехода
+  // короткое, но по-прежнему говорит, что произойдёт: «Следующее задание откроется само».
+  assert.ok(read('app/settings_edu.tsx').includes('Следующее задание откроется само'));
 });
 test('support placeholder contains a reproducible example rather than abstract questions', () => {
   assert.ok(read('app/support_report.tsx').includes('Например: в «Карточках» нажимаю'));

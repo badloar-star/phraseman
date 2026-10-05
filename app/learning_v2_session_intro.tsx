@@ -18,6 +18,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LEARNING_V2_OWNER_LAYOUT } from "../components/learning-v2/learningV2OwnerLayout";
+import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
 
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 import { useLang } from "../components/LangContext";
@@ -509,10 +510,12 @@ export default function LearningV2SessionIntro({
             style={styles.closeButton}
             contentStyle={[
               styles.closeButtonFace,
-              { backgroundColor: g.opaqueControl },
+              { backgroundColor: g.opaqueControl, borderColor: g.glassEdge },
             ]}
           >
-            <Ionicons name="close" size={22} color={g.text} />
+            {/* зачем (learning-v2.html `.shd .rb` + kit.css `.rb::after`): круг 42 — стекло с кромкой, крестик 20. */}
+            <KitGlassLayer radius={21} />
+            <Ionicons name="close" size={20} color={g.text} />
           </PressableHybrid>
 
           <View style={styles.stageMeta}>
@@ -660,7 +663,7 @@ export default function LearningV2SessionIntro({
                                 : wrong
                                   ? lv2Alpha(g.bad, 0.1)
                                   : g.opaqueCard,
-                              borderColor: correct ? g.good : wrong ? g.bad : g.glassEdge, // guard-ok: 1 px кромка макета
+                              borderColor: correct ? g.good : wrong ? g.bad : g.line, // guard-ok: 1 px кромка макета (`.ach` --line)
                             },
                           ]}
                         >
@@ -756,9 +759,12 @@ export default function LearningV2SessionIntro({
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   safe: { flex: 1, overflow: "hidden" },
+  // зачем (сверка с learning-v2.html, 05.10): `.shd` margin-top 8, gap 10, поля страницы --pad 20. Прежние поля 6/18
+  // шли из настроек Atlas 12.09; по гейту владельца 04.10 эталон — макет 2.0.
   header: {
-    minHeight: 58,
-    paddingHorizontal: 18,
+    minHeight: 42,
+    marginTop: 8,
+    paddingHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
@@ -767,9 +773,11 @@ const styles = StyleSheet.create({
   // зачем: владелец запретил обводки контейнеров — кнопка, панель вопроса и
   // варианты разделяются тоном (bgCard/bgSurface2 на градиенте экрана), не рамкой.
   closeButtonFace: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 1, // guard-ok: 1 px кромка `.rb` (исключение PhraseMan 2.0)
+    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -791,15 +799,16 @@ const styles = StyleSheet.create({
   headerAccessory: { flexShrink: 0 },
   progressRow: {
     height: 4,
-    marginHorizontal: 18,
-    marginTop: 4,
+    marginHorizontal: 20,
+    marginTop: 12,
     flexDirection: "row",
     gap: 6,
   },
   progressSegment: { flex: 1, height: 4, borderRadius: 4 },
   slide: { flex: 1, minHeight: 0 },
   scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingHorizontal: LEARNING_V2_OWNER_LAYOUT.intro.pagePadding, paddingTop: 24 },
+  // `.ititle` margin-top 26 от полосы: 18 здесь + 8 у заголовка.
+  scrollContent: { paddingHorizontal: 20, paddingTop: 18 },
   scrollContentCompact: { paddingTop: 16 },
   readerColumn: { width: "100%", maxWidth: 680, alignSelf: "center" },
   title: {
@@ -815,11 +824,12 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginTop: 8,
   },
-  knowledgeFlow: { marginTop: 20, gap: 12, paddingHorizontal: 18, paddingVertical: 18 },
+  // `.know` padding 18/18/6 + абзац margin-bottom 14 → снизу 20, между абзацами 14.
+  knowledgeFlow: { marginTop: 20, gap: 14, paddingHorizontal: 18, paddingTop: 18, paddingBottom: 20 },
   readerParagraph: { fontSize: 16, lineHeight: 23, fontWeight: "400" },
   spacer: { height: 4 },
   questionPanel: {
-    marginTop: 18,
+    marginTop: 24,
   },
   questionEyebrowRow: {
     flexDirection: "row",
@@ -841,26 +851,27 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginTop: 10,
   },
-  answerList: { marginTop: 14, gap: LEARNING_V2_OWNER_LAYOUT.intro.cardGap },
+  // `.stack` — 9 между вариантами.
+  answerList: { marginTop: 14, gap: 9 },
   answerChoiceTouch: { minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight },
   answerLetter: { width: 30, height: 30, borderRadius: 9, alignItems: "center", justifyContent: "center" },
   answerChoice: {
     minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight,
     borderRadius: 14,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px кромка макета
+    borderWidth: 1, // guard-ok: 1 px кромка макета
     paddingLeft: 10,
     paddingRight: 14,
     paddingVertical: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 10,
+    gap: 14,
   },
   answerChoiceText: {
     flex: 1,
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: "700",
+    fontWeight: "600",
   },
   correctMessage: {
     fontSize: 16,
@@ -879,7 +890,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    paddingHorizontal: 18,
+    paddingHorizontal: 20,
     paddingTop: 12,
   },
   reportDock: {

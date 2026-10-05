@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
+import { rememberMistakeDetailDraft } from './mistake_detail_draft';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
@@ -112,6 +113,8 @@ export default function MistakesListScreen() {
     if (openingRef.current) return;
     openingRef.current = true;
     hapticTap();
+    // зачем (аудит Optimistic UI п.3): деталь рисует шапку из этой строки на первом кадре.
+    rememberMistakeDetailDraft({ mistakeId: item.mistakeId, phrase: item.phrase, meaning: item.meaning, captureCount: item.captureCount, qualifyingDays: item.qualifyingDays, status: item.status });
     router.push({ pathname: '/mistake_detail', params: { mistakeId: item.mistakeId } } as never);
   }, [router]);
 

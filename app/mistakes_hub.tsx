@@ -24,6 +24,7 @@ import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from 
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
+import { rememberMistakeDetailDraft } from './mistake_detail_draft';
 import { safeRouterBack } from './navigation_back';
 import { peekStableId } from './stable_id';
 
@@ -198,8 +199,11 @@ export default function MistakesHubScreen() {
   }, [router]);
   const openOne = useCallback((mistakeId: string) => {
     hapticTap();
+    // зачем (аудит Optimistic UI п.3): деталь рисует шапку из строки хаба на первом кадре.
+    const item = snapshot?.items.find((row) => row.mistakeId === mistakeId);
+    if (item) rememberMistakeDetailDraft({ mistakeId, phrase: item.phrase, meaning: item.meaning, captureCount: item.captureCount, qualifyingDays: item.qualifyingDays, status: item.status });
     router.push({ pathname: '/mistake_detail', params: { mistakeId } } as never);
-  }, [router]);
+  }, [router, snapshot]);
   const goBack = useCallback(() => safeRouterBack(router, '/' as never), [router]);
 
   const [accentA, accentB] = themePair(g);

@@ -25,6 +25,7 @@ import { mistakeFacetExplanation } from './mistake_facet_explanations';
 import { loadMistakeDetail, type MistakeDetail, type MistakeTimelineEntry } from './mistake_detail_model';
 import { hideMistake, type MistakeHideReason } from './mistake_hide';
 import { markMistakeHiddenLocally, unmarkMistakeHiddenLocally } from './mistake_local_hidden';
+import { peekMistakeDetailDraft } from './mistake_detail_draft';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { actionToastTri, emitAppEvent } from './events';
@@ -191,6 +192,9 @@ export default function MistakeDetailScreen() {
   }, [copy.hideFailed, detail, goBack, target]);
 
   const loaded = detail !== null && detail !== 'missing';
+  // зачем (аудит Optimistic UI п.3): пока журнал читается — шапка из черновика строки списка, а не пустой экран с «‹».
+  const draft = useMemo(() => peekMistakeDetailDraft(mistakeId), [mistakeId]);
+  const shown = loaded ? detail : detail === null ? draft : null;
   const dateOf = (atMs: number) => new Date(atMs).toLocaleDateString(lang === 'en' ? 'en-GB' : lang, { day: 'numeric', month: 'short' });
   const [accentA, accentB] = themePair(g);
   const labelOf = (event: MistakeTimelineEntry): string => {
@@ -205,7 +209,7 @@ export default function MistakeDetailScreen() {
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          {!loaded ? (
+          {!shown ? (
             <View style={[styles.plain, { paddingTop: insets.top + 8 }]}>
               <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
               {detail === 'missing' ? <Text style={[styles.missing, { color: g.secondary }]}>{copy.noData}</Text> : null}
@@ -222,32 +226,33 @@ export default function MistakeDetailScreen() {
                 />
                 <View style={styles.heroBar}>
                   <BackButton g={g} label={copy.back} onPress={goBack} />
-                  {detail.status === 'active' ? (
+                  {loaded && detail.status === 'active' ? (
                     <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
                       <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
                       <GlassRim radius={21} />
                     </Pressable>
                   ) : <View style={styles.round} />}
                 </View>
-                <Text style={[styles.phrase, { color: g.text }]}>{detail.phrase}</Text>
-                {detail.meaning ? <Text style={styles.meaning}>{detail.meaning}</Text> : null}
+                <Text style={[styles.phrase, { color: g.text }]}>{shown.phrase}</Text>
+                {shown.meaning ? <Text style={styles.meaning}>{shown.meaning}</Text> : null}
                 <View style={styles.stats}>
                   <View style={styles.stat}>
-                    <Text style={[styles.statNum, { color: g.text }]}>{`×${detail.captureCount}`}</Text>
+                    <Text style={[styles.statNum, { color: g.text }]}>{`×${shown.captureCount}`}</Text>
                     <Text style={[styles.statLabel, { color: g.secondary }]}>{copy.errors}</Text>
                   </View>
                   <View style={[styles.stat, styles.statSep]}>
-                    <Text style={[styles.statNum, { color: g.text }]}>{`${detail.status === 'corrected' ? 3 : detail.qualifyingDays}/3`}</Text>
+                    <Text style={[styles.statNum, { color: g.text }]}>{`${shown.status === 'corrected' ? 3 : shown.qualifyingDays}/3`}</Text>
                     <Text style={[styles.statLabel, { color: g.secondary }]}>{copy.toFix}</Text>
                   </View>
                   <View style={[styles.stat, styles.statSep]}>
-                    <Text style={[styles.statNum, { color: g.text }]}>{dateOf(detail.lastCapturedAtMs)}</Text>
+                    <Text style={[styles.statNum, { color: g.text }]}>{loaded ? dateOf(detail.lastCapturedAtMs) : '—'}</Text>
                     <Text style={[styles.statLabel, { color: g.secondary }]}>{copy.last}</Text>
                   </View>
                 </View>
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.heroEdge]} />
               </View>
 
+              {loaded ? (
               <View style={styles.body}>
                 <Panel g={g}>
                   {detail.given ? <AnswerRow g={g} first label={copy.yours} value={detail.given} color={MP_COLORS.badText} strike /> : null}
@@ -308,6 +313,7 @@ export default function MistakeDetailScreen() {
                   </Panel>
                 )}
               </View>
+              ) : null}
             </>
           )}
         </ScrollView>

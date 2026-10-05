@@ -31,7 +31,10 @@ function walk(dir: string, out: string[] = []): string[] {
 const rel = (abs: string) => path.relative(ROOT, abs).split(path.sep).join('/');
 
 const MODAL_LIKE = /(Modal|Toast|Sheet|Banner|Celebration|Prompt)\w*\.tsx$/;
-const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal/;
+// зачем (координатор 05.10): гейт владельца 04.10 (CLAUDE.md, «анимации в точности как на макетах») новее этого
+// правила (15.08). Движение кита 2.0 — словарь KIT_MOTION в constants/motionHybrid (только числа kit.css) — такой же
+// законный вход, как гибрид. Это вход по содержимому, а не исключение по имени файла.
+const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION/;
 
 function hasHybridEntry(file: string): boolean {
   return /Hybrid\w*\.tsx$/.test(path.basename(file))

@@ -2547,7 +2547,13 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Кадр «Верно» не снят (таймер 60 с кончился раньше) — переснять утром",
+        "По соседним кадрам Блица: пилюля таймера плоская тёмная, цифры ярко-белые; в макете стеклянная, цифры приглушённые",
+        "Карточка вопроса и кнопки ответов без стекла (градиент, светлая кромка сверху, тень)",
+        "«Верно» тёмно-зелёная плоская; в макете зелёный градиент и зелёная кромка",
+        "Вес текста ответов 600 вместо 700"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -22808,18 +22814,16 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/MISTAKE_COUNTER_right_0251.png",
       "evidence_at": null,
       "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Кадр 15 «Верно» (переснят 22:36): точки-шаги 1·2·3 крупнее и шире, «3» обрезана правым краем; в макете маленькие, плотно, первая с галочкой",
-        "Верный повтор не засчитан (attemptEffect none, chain modes 0/1) — точки все серые",
-        "Счётчик 0 / 12 после двух ответов (в макете 3 / 12)",
-        "Шторка на экране через 1.2–2.2 с после ответа (verdict:shown 0–1 мс)",
-        "Направление RU→EN, в макете EN→RU"
+        "Пересверено по свежему снимку 02:51 (MISTAKE_COUNTER_right_0251.png): 2 варианта ✓, точки компактные и «3» не обрезана ✓, счётчик 3/12 ✓, шторка 57–286 мс ✓ — сняты",
+        "Направление RU→EN («Племянница» → Niece), в макете EN→RU",
+        "«Верно» коммитится дважды (chain null→set, 57 и 183 мс)"
       ],
       "status": "pending",
       "reviewed_by": null,
@@ -22840,17 +22844,17 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/MISTAKE_COUNTER_wrong_0250.png",
       "evidence_at": null,
       "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Кадр 16 «Почти» (переснят 22:34): «Почему» узкая, в макете «Почему»/«Дальше» 50/50",
-        "Объяснение общее («Свяжи значение со всей фразой…»), в макете конкретное про слово с жирным",
-        "Направление RU→EN, в макете EN→RU",
-        "Счётчик 0 / 12"
+        "Пересверено по свежему снимку 02:51 (MISTAKE_COUNTER_wrong_0250.png): 2 варианта ✓, объяснение конкретное про слово ✓, счётчик 3/12 ✓ — сняты",
+        "«Почему» узкая, в макете «Почему»/«Дальше» 50/50",
+        "Направление RU→EN («Бабуля» → Granny), в макете EN→RU",
+        "Объяснение без жирного выделения слова (в макете слово жирным)"
       ],
       "status": "pending",
       "reviewed_by": null,

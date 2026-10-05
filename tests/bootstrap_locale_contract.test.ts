@@ -40,7 +40,11 @@ describe('bootstrap locale contract', () => {
   it('does not add language or pack readiness to the native splash gate', () => {
     const layout = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
     const match = layout.match(/const nativeSplashCanHide = ([^;]+);/);
-    expect(match?.[1]).toContain('(effectiveShowOnboarding || isBanned || firstContentReady)');
+    // зачем (05.10): с 8516191b5 Главная обязана ещё и прислать homeScreenReady (с потолком). Онбординг и бан стоят в
+    // ИЛИ раньше — новый пользователь на онбординге и забаненный не ждут готовности Главной; это и сторожим.
+    expect(match?.[1]).toContain('(effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady))');
+    const visible = layout.match(/const startupSplashVisible = ([^;]+);/);
+    expect(visible?.[1]).toContain('(!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
     expect(match?.[1]).not.toMatch(/lang|pack|manifest|download|network|hydrate/i);
   });
 

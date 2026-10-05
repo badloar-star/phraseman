@@ -172,8 +172,17 @@ jest.mock("../components/SafeLinearGradient", () => {
 jest.mock("../app/stable_safe_area_metrics", () => ({
   useStableSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }),
 }));
+// зачем: экран занятия подключает @react-native-masked-view (ESM в node_modules,
+// тестовая среда его не транспилирует) — заглушка рендерит детей как есть.
+jest.mock("@react-native-masked-view/masked-view", () => ({
+  __esModule: true,
+  default: ({ children }: { children?: unknown }) => children ?? null,
+}));
 jest.mock("../app/stable_id", () => ({
   getStableId: async () => "stable-user-1",
+  // зачем: app/plus_transfer.ts (через revenuecat_init) при загрузке
+  // подписывается onStableIdChanged (S2d, ebc1a860d) — без него набор не грузится.
+  onStableIdChanged: () => () => undefined,
 }));
 jest.mock("../app/account_generation", () => ({
   ensureAccountGeneration: () => ({ stableId: "stable-user-1", generation: 3 }),

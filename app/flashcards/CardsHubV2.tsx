@@ -40,7 +40,12 @@ type Props = Readonly<{
   onCreate: () => void;
   onTrain: () => void;
   trainButtonRef?: React.Ref<View>;
-  labels: Readonly<{ back: string; create: string; trainA11y: string }>;
+  labels: Readonly<{ back: string; create: string; trainA11y: string   /**
+   * Новичок: своих карточек и наборов нет (макет cards-section-extra.js hubNewS). Вместо стопки — стеклянная карточка
+   * «Начните с готового», главная кнопка — «Выбрать набор» (а не тренировка, тренировать пока нечего).
+   */
+  fresh?: Readonly<{ title: string; sub: string; cta: string; onPress: () => void }>;
+}>;
 }>;
 
 /** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */
@@ -95,7 +100,7 @@ const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: Style
 
 function CardsHubV2Inner({
   g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
-  onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight,
+  onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight, fresh,
 }: Props) {
   const float = useSharedValue(0);
   // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
@@ -145,6 +150,31 @@ function CardsHubV2Inner({
       <Text accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
       <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
 
+      {fresh ? (
+        // зачем (Сверка cards-section-003, hubNewS): у новичка не было этого состояния — стопка показывала выдуманную
+        // карточку «Boarding pass», которой у человека нет. Карточка по центру: плитка 64/r20, 24/700, подпись 16.
+        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.85)' }] }]}>
+          <LinearGradient
+            pointerEvents="none"
+            colors={[`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`]}
+            locations={[0, 0.6, 1]}
+            start={{ x: 0.25, y: 0.067 }}
+            end={{ x: 0.75, y: 0.933 }}
+            style={[StyleSheet.absoluteFill, styles.tileFill]}
+          />
+          <View style={styles.freshIcon}>
+            <LinearGradient pointerEvents="none" colors={[mixDark(a, '#1E1E20', 0.6), mixDark(b, '#08080B', 0.32)]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+            <Ionicons name="people-outline" size={28} color="#FFFFFF" />
+            <Edge radius={20} shadows={[
+              { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' },
+              { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' },
+            ]} />
+          </View>
+          <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
+          <Text style={[styles.freshSub, { color: g.secondary, lineHeight: lh(22) }]}>{fresh.sub}</Text>
+          <Edge radius={26} shadows={bevel('rgba(255,255,255,0.26)', 'rgba(255,255,255,0.07)')} />
+        </View>
+      ) : (
       <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
         <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
@@ -155,16 +185,17 @@ function CardsHubV2Inner({
           <Edge radius={30} shadows={bevel('rgba(255,255,255,0.30)', `${a}59`)} />
         </Reanimated.View>
       </View>
+      )}
 
-      <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={labels.trainA11y} onPress={onTrain}
+      <Pressable ref={trainButtonRef} testID="fc-cards-hub-train" accessibilityRole="button" accessibilityLabel={fresh ? fresh.cta : labels.trainA11y} onPress={fresh ? fresh.onPress : onTrain}
         style={({ pressed }) => [
           styles.cta,
           { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
           pressed && styles.pressed,
         ]}>
-        <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{trainLabel}</Text>
+        <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
         <View style={styles.ctaIcon}>
-          <Ionicons name={trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
+          <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
         </View>
         <Edge radius={26} shadows={[{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }]} />
       </Pressable>
@@ -239,6 +270,11 @@ const styles = StyleSheet.create({
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
   tileFill: { borderRadius: 26 },
+  // hubNewS `.gl.pad`: 26 от подзаголовка, высота стопки (250 в макете), всё по центру.
+  fresh: { marginTop: 26, borderRadius: 26, paddingHorizontal: 22, paddingVertical: 22, alignItems: 'center', justifyContent: 'center' },
+  freshIcon: { width: 64, height: 64, borderRadius: 20, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  freshTitle: { marginTop: 18, fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center' },
+  freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
   tileCount: { fontSize: 15, lineHeight: 19 },

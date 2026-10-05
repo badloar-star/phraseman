@@ -639,6 +639,16 @@ export default function FlashcardsHubScreen() {
   ];
   const reduceMotion = useFcReduceMotion();
   const windowHeight = useWindowDimensions().height;
+  // зачем (Сверка cards-section-003, hubNewS): своих карточек и наборов нет (оба числа уже известны, не «загрузка») —
+  // хаб новичка: «Начните с готового» и «Выбрать набор» ведёт в каталог сообщества. Раньше показывалась выдуманная «Boarding pass».
+  const fresh = savedCount === 0 && myPackCount === 0
+    ? {
+      title: triLang(lang, { ru: 'Начните с готового', uk: 'Почніть із готового', en: 'Start with a ready pack', es: 'Empieza con algo listo', 'pt-BR': 'Comece com algo pronto', vi: 'Bắt đầu với bộ có sẵn', id: 'Mulai dari yang siap pakai', tr: 'Hazır bir setle başla', pl: 'Zacznij od gotowego' }),
+      sub: triLang(lang, { ru: 'Добавьте набор из сообщества или из видео', uk: 'Додайте набір зі спільноти або з відео', en: 'Add a pack from the community or from a video', es: 'Añade un pack de la comunidad o de un vídeo', 'pt-BR': 'Adicione um pacote da comunidade ou de um vídeo', vi: 'Thêm bộ thẻ từ cộng đồng hoặc từ video', id: 'Tambahkan paket dari komunitas atau dari video', tr: 'Topluluktan ya da videodan bir paket ekle', pl: 'Dodaj zestaw od społeczności lub z wideo' }),
+      cta: triLang(lang, { ru: 'Выбрать набор', uk: 'Обрати набір', en: 'Choose a pack', es: 'Elegir un pack', 'pt-BR': 'Escolher um pacote', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybierz zestaw' }),
+      onPress: () => router.push('/flashcards_packs' as never),
+    }
+    : undefined;
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
@@ -665,6 +675,7 @@ export default function FlashcardsHubScreen() {
             onTrain={() => { pendingDeckRef.current = null; onTrainPress(); }}
             trainButtonRef={trainButtonRef}
             labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
+            fresh={fresh}
           />
         </ContentWrap>
 

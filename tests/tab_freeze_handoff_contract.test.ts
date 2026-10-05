@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const layoutPath = path.resolve(__dirname, '../app/(tabs)/_layout.tsx');
-const source = fs.readFileSync(layoutPath, 'utf8');
+const source = normalizeEol(fs.readFileSync(layoutPath, 'utf8'));
 
 function tabPaneSource(): string {
   const start = source.indexOf('function TabPane(');

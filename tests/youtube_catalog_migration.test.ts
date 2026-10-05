@@ -1,9 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(process.cwd());
 const read = (relative: string) =>
-  fs.readFileSync(path.join(root, relative), "utf8");
+  normalizeEol(fs.readFileSync(path.join(root, relative), "utf8"));
 
 describe("YouTube catalog migration and rollback bridge", () => {
   const legacyAdmin = read("admin/v2/legacy.html");

@@ -5,8 +5,9 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (...p: string[]): string => fs.readFileSync(path.join(process.cwd(), ...p), 'utf8');
+const read = (...p: string[]): string => normalizeEol(fs.readFileSync(path.join(process.cwd(), ...p), 'utf8'));
 
 function block(source: string, header: string): string {
   const start = source.indexOf(header);

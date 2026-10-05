@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('canonical Telegram Premium admin activation surface', () => {
-  const live = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
-  const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
-  const index = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8');
+  const live = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8'));
+  const rules = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8'));
+  const index = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8'));
 
   it('keeps the Telegram workflow inside the sole live legacy admin surface', () => {
     expect(live).toContain("switchTab('testers')");

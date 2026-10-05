@@ -11,11 +11,12 @@
  */
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 type Option = { label: string; action?: { kind: string; route?: string } };
 type Preset = { id: number; category: string; question: string; description: string; insight: string; options: Option[] };
 
-const html = fs.readFileSync(path.resolve(__dirname, '../admin/v2/legacy.html'), 'utf8');
+const html = normalizeEol(fs.readFileSync(path.resolve(__dirname, '../admin/v2/legacy.html'), 'utf8'));
 const match = html.match(/const SHARD_SURVEY_PRESETS =\s*(\[[\s\S]*?\n  \]);\s*\n  const SS_SURVEY_ACTION_ROUTES/);
 if (!match) throw new Error('SHARD_SURVEY_PRESETS not found');
 const presets = JSON.parse(match[1]) as Preset[];

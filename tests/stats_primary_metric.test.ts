@@ -4,6 +4,7 @@ import {
   isStatsPrimaryMetric,
   normalizeStatsPrimaryMetric,
 } from '../app/stats_primary_metric';
+import { normalizeEol } from './helpers/read_source';
 
 describe('statistics primary metric preference', () => {
   // 04.10: опыт удалён (D02) — остались время и год, всё прежнее (включая 'xp') мигрирует во время.
@@ -32,10 +33,10 @@ describe('statistics primary metric preference', () => {
 // DEFAULT_STATS_PRIMARY_METRIC с последующей асинхронной подменой
 // (Perf Bible: instant first frame, no default-then-patch).
 describe('streak stats "Активность за год" tab — no flash-then-snap on mount', () => {
-  const source = require('fs').readFileSync(
+  const source = normalizeEol(require('fs').readFileSync(
     require('path').join(__dirname, '..', 'app/streak_stats.tsx'),
     'utf8',
-  );
+  ));
 
   it('lazily initializes useState from the synchronous peek, not a bare default', () => {
     expect(source).toContain(

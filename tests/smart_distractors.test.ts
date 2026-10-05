@@ -7,6 +7,7 @@ import {
 import { buildLessonWordOptions } from '../app/lesson_word_options';
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const words: SmartDistractorCandidate[] = [
   { value: 'remember', pos: 'verbs', source: 'lesson' },
@@ -124,7 +125,7 @@ describe('smart distractor ranking', () => {
   });
 
   it('keeps lesson 1 smart option source free of legacy locale runtime markers', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/lesson1_smart_options.ts'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/lesson1_smart_options.ts'), 'utf8'));
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);

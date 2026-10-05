@@ -1,3 +1,4 @@
+import { normalizeEol } from './helpers/read_source';
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -376,7 +377,7 @@ describe('telegram bridge core', () => {
   });
 
   test('desktop sender is not launched with immediate paste from the bridge', () => {
-    const bridgeSource = fs.readFileSync(path.join(__dirname, '..', 'tools', 'telegram-bridge', 'bridge.cjs'), 'utf8');
+    const bridgeSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'tools', 'telegram-bridge', 'bridge.cjs'), 'utf8'));
     expect(bridgeSource).not.toContain("'-SendImmediately'");
   });
 
@@ -410,7 +411,7 @@ describe('telegram bridge core', () => {
     });
     saveState(statePath, state);
 
-    expect(JSON.parse(fs.readFileSync(statePath, 'utf8')).routes['10:20'].sessionId).toBe('atomic-session');
+    expect(JSON.parse(normalizeEol(fs.readFileSync(statePath, 'utf8'))).routes['10:20'].sessionId).toBe('atomic-session');
     expect(fs.readdirSync(tempDir).filter((file: string) => file.endsWith('.tmp'))).toEqual([]);
     expect(fs.existsSync(`${statePath}.bak`)).toBe(true);
   });
@@ -533,7 +534,7 @@ describe('telegram bridge core', () => {
   });
 
   test('telegram bridge queue commands use the selected inbox session', () => {
-    const source = fs.readFileSync(path.join(__dirname, '..', 'tools', 'telegram-bridge', 'bridge.cjs'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'tools', 'telegram-bridge', 'bridge.cjs'), 'utf8'));
 
     expect(source).toContain('function resolveCommandRoute(state, message)');
     expect(source).toContain('return resolveMessageRoute(state, message) || resolveSelectedRoute(state, message.chatId);');

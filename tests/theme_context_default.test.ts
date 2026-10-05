@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('ThemeContext default theme', () => {
-  const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8');
-  const settingsThemesSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'settings_themes.tsx'), 'utf8');
-  const themeSource = fs.readFileSync(path.join(__dirname, '..', 'constants', 'theme.ts'), 'utf8');
+  const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8'));
+  const settingsThemesSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'settings_themes.tsx'), 'utf8'));
+  const themeSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'constants', 'theme.ts'), 'utf8'));
 
   it('uses Indigo as the first-run and fallback app theme', () => {
     expect(source).toContain("const DEFAULT_THEME_MODE: ThemeMode = 'indigo'");

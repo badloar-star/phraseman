@@ -2,6 +2,7 @@
 // Пропуск 1 дня у Plus — серия цела; у Free — сброс; дважды заморозку не потратить.
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn() }));
 jest.mock('../app/premium_freeze_allowance', () => ({
@@ -75,7 +76,7 @@ describe('автозаморозка серии Plus (Q94)', () => {
   });
 
   it('проводка: автозаморозка только при пропуске ровно одного дня и мёртвом «вчера» в журнале', () => {
-    const hall = fs.readFileSync(path.join(__dirname, '..', 'app/hall_of_fame_utils.ts'), 'utf8');
+    const hall = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app/hall_of_fame_utils.ts'), 'utf8'));
     expect(hall).toMatch(/const canFreeze = journalRunToYesterday < 1 && lastActive !== null && missedExactlyOneDay;/);
     expect(hall).toMatch(/canFreeze && !manualFreeze\s*\n\s*\? \(await \(await import\('\.\/streak_auto_freeze'\)\)\.tryAutoPremiumFreeze\(today\)\)\.applied/);
     expect(hall).toMatch(/soundDirector\.request\('pm\.streak\.saved'/);

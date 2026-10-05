@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
+const read = (file: string) => normalizeEol(fs.readFileSync(path.join(root, file), 'utf8'));
 
 describe('inline speaking surface contract', () => {
   const panel = read('components/SpeakingPanel.tsx');

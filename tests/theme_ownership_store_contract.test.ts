@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (владелец 2026-08-24): купленная за 200 жемчужин тема — это потраченная
 // валюта. Если облачный restore перезапишет список покупок (как это уже сделал
@@ -15,7 +16,7 @@ const store = require('../app/theme_ownership_merge') as {
   mergeOwnedThemesRestoreValue: (local: string | null | undefined, remote: string | null | undefined) => string;
 };
 
-const cloudSyncSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8');
+const cloudSyncSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8'));
 
 describe('purchased theme ownership survives sync', () => {
   it('merges two devices instead of overwriting either', () => {
@@ -87,7 +88,7 @@ describe('purchased theme ownership survives sync', () => {
   // темами, накопил бы их все навсегда — и после отмены подписки сохранил бы
   // весь платный набор, а темы за жемчуг перестал бы покупать вовсе.
   it('grandfathers themes exactly once, not on every launch', () => {
-    const storeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8');
+    const storeSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8'));
     expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY_PREFIX');
     // Ранний выход, когда миграция (текущая ИЛИ legacy) уже прошла.
     expect(storeSource).toContain("if (alreadyMigrated === '1' || legacyMigrated === '1') {");
@@ -101,7 +102,7 @@ describe('purchased theme ownership survives sync', () => {
   // если у него было своё законное основание на дедушку. Ключ теперь составной
   // (префикс + stable id), но остаётся локальным — не в облаке.
   it('scopes the migration marker per account while keeping it device-local', () => {
-    const storeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8');
+    const storeSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8'));
     expect(storeSource).toContain("import { getCanonicalUserId } from './user_id_policy';");
     expect(storeSource).toContain('async function grandfatherMigrationKey(): Promise<string> {');
     expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY_PREFIX}${stableId ?? \'anon\'}');

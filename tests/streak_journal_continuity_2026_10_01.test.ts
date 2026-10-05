@@ -6,8 +6,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { foregroundActiveRunEndingAt, previousDateKey } from '../app/streak_safety';
 import { MIN_ACTIVE_MS } from '../modules/stats_activity_rows';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8'));
 
 describe('серия: непрерывность по журналу времени в приложении', () => {
   const day = (ms: number) => ms;

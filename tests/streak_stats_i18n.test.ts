@@ -24,6 +24,7 @@ import {
 } from '../constants/streak_stats_i18n';
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('streakCalendarShortWeekdays', () => {
   it('keeps explicit locale abbreviations when report mode is enabled', () => {
@@ -62,7 +63,7 @@ describe('streakWeekRowShort', () => {
 
 describe('streak stats locale contract', () => {
   it('does not route planned locale stats copy through legacy runtime markers', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../constants/streak_stats_i18n.ts'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../constants/streak_stats_i18n.ts'), 'utf8'));
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);

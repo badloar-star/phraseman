@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const rulesPath = process.env.TOURNAMENT_SEMANTIC_RULES_PATH
   ? path.resolve(process.env.TOURNAMENT_SEMANTIC_RULES_PATH)
   : path.join(process.cwd(), 'firestore.rules');
-const rules = fs.readFileSync(rulesPath, 'utf8')
+const rules = normalizeEol(fs.readFileSync(rulesPath, 'utf8'))
   .replace(/\r\n/gu, '\n');
 
 const ROOTS = [

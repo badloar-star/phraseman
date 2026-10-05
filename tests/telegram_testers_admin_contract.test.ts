@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('telegram testers admin page contract', () => {
   // зачем (04.10): живая страница — admin/v2/testers.html (её публикует hosting), как и legacy.html
   const htmlPath = path.join(process.cwd(), 'admin', 'v2', 'testers.html');
-  const html = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, 'utf8') : '';
-  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
-  const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
-  const functionSource = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'telegram_premium_bot.ts'), 'utf8');
+  const html = fs.existsSync(htmlPath) ? normalizeEol(fs.readFileSync(htmlPath, 'utf8')) : '';
+  const adminIndex = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8'));
+  const rules = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8'));
+  const functionSource = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'telegram_premium_bot.ts'), 'utf8'));
 
   // зачем (04.10): в 2.0 страница названа «Телеграм оплаты» — прежний сторож «без слов про оплату»
   // в видимом тексте снят (название сменили намеренно); защита по admin-claim и список остаются

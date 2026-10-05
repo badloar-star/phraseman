@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const read = (relative: string) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
+const read = (relative: string) => normalizeEol(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
 
 const panel = read('components/SpeakingPanel.tsx');
 const wordDrill = read('components/WordDrillCard.tsx');

@@ -1,6 +1,7 @@
 /* eslint-disable import/first */
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const mockCallable = jest.fn();
 
@@ -23,12 +24,12 @@ describe('standalone survey delivery', () => {
   });
 
   it('keeps the source-level Home callsite contract', () => {
-    const client = fs.readFileSync(path.join(ROOT, 'app', 'survey_client.ts'), 'utf8');
-    const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
-    const hook = fs.readFileSync(path.join(ROOT, 'hooks', 'use_home_survey_entry.ts'), 'utf8');
-    const loader = fs.readFileSync(path.join(ROOT, 'app', 'home_survey_entry.ts'), 'utf8');
-    const screen = fs.readFileSync(path.join(ROOT, 'app', 'survey_screen.tsx'), 'utf8');
-    const controller = fs.readFileSync(path.join(ROOT, 'app', 'survey_flow_controller.ts'), 'utf8');
+    const client = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_client.ts'), 'utf8'));
+    const home = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8'));
+    const hook = normalizeEol(fs.readFileSync(path.join(ROOT, 'hooks', 'use_home_survey_entry.ts'), 'utf8'));
+    const loader = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'home_survey_entry.ts'), 'utf8'));
+    const screen = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_screen.tsx'), 'utf8'));
+    const controller = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'survey_flow_controller.ts'), 'utf8'));
 
     expect(client).toContain('export async function fetchActiveSurveyWithRetry');
     expect(client).toContain('options.attempts ?? 3');

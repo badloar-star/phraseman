@@ -2,9 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { PAYWALL_SOURCE_VALUES } from '../app/paywall_entry_contract';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8');
+const read = (relative: string): string => normalizeEol(fs.readFileSync(path.join(root, relative), 'utf8'));
 
 describe('голосовая практика — дневной лимит через единый гейт', () => {
   const surfaces: ReadonlyArray<[string, string]> = [

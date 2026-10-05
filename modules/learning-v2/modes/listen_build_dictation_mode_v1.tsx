@@ -27,6 +27,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
+import { useScaledTextStyles } from "../../../hooks/useLineScale";
+import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -60,11 +62,14 @@ function listenBuildTaskLabel(
   return copy[locale];
 }
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const RING_RADIUS = 47;
+// `.playb` 128 + svg.rg viewBox 128, r 60, stroke 5 — кольцо по краю самой кнопки (как в «Слушай и выбирай»).
+const RING_VIEW = 128;
+const RING_RADIUS = 60;
 const RING_LEN = 2 * Math.PI * RING_RADIUS;
 
 function DictationRingButtonV1({
   playing,
+  hasPlayedOnce,
   reducedMotion,
   disabled,
   accessibilityLabel,
@@ -74,6 +79,7 @@ function DictationRingButtonV1({
   surface,
 }: {
   readonly playing: boolean;
+  readonly hasPlayedOnce: boolean;
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
   readonly accessibilityLabel: string;
@@ -86,32 +92,18 @@ function DictationRingButtonV1({
   const progress = useSharedValue(0);
   useEffect(() => {
     if (!playing) {
-      progress.value = withTiming(0, { duration: reducedMotion ? 1 : 120 });
+      // зачем (learning-v2.html ld, ring: 1): прослушанная фраза — полное кольцо, не сброс в ноль.
+      progress.value = withTiming(hasPlayedOnce ? 1 : 0, { duration: reducedMotion ? 1 : 120 });
       return;
     }
     progress.value = 0;
     progress.value = withTiming(1, { duration: MOTION.ringFillMs, easing: Easing.linear });
-  }, [playing, progress, reducedMotion]);
+  }, [hasPlayedOnce, playing, progress, reducedMotion]);
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_LEN * (1 - progress.value),
   }));
   return (
     <View style={[styles.ringWrap, compact && { width: 80, height: 80 }]}>
-      <Svg width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox="0 0 104 104" style={StyleSheet.absoluteFill}>
-        <Circle cx={52} cy={52} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
-        <AnimatedCircle
-          cx={52}
-          cy={52}
-          r={RING_RADIUS}
-          stroke={accent}
-          strokeWidth={5}
-          strokeLinecap="round"
-          fill="none"
-          strokeDasharray={RING_LEN}
-          animatedProps={ringProps}
-          transform="rotate(-90 52 52)"
-        />
-      </Svg>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel}
@@ -122,10 +114,25 @@ function DictationRingButtonV1({
           void hapticLightImpact();
           onPress();
         }}
-        style={[styles.ringBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+        style={[styles.ringBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
       >
-        <Ionicons name="play" size={40} color={accent} />
+        <Ionicons name={playing ? "volume-high" : "play"} size={44} color={accent} />
       </Pressable>
+      <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
+        <Circle cx={RING_VIEW / 2} cy={RING_VIEW / 2} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
+        <AnimatedCircle
+          cx={RING_VIEW / 2}
+          cy={RING_VIEW / 2}
+          r={RING_RADIUS}
+          stroke={accent}
+          strokeWidth={5}
+          strokeLinecap="round"
+          fill="none"
+          strokeDasharray={RING_LEN}
+          animatedProps={ringProps}
+          transform={`rotate(-90 ${RING_VIEW / 2} ${RING_VIEW / 2})`}
+        />
+      </Svg>
     </View>
   );
 }
@@ -139,6 +146,8 @@ interface ChipProps {
   readonly disabled: boolean;
   readonly onPress: () => void;
   readonly variant: "bank" | "answer";
+  /** `.chip.ghost`: взятое слово остаётся тенью .22 на своём месте в банке. */
+  readonly ghost?: boolean;
 }
 
 function DictationChipV1({
@@ -150,6 +159,7 @@ function DictationChipV1({
   disabled,
   onPress,
   variant,
+  ghost = false,
 }: ChipProps) {
   const compact = useLearningV2CompactPractice();
   const enter = useSharedValue(reducedMotion ? 1 : 0);
@@ -187,7 +197,7 @@ function DictationChipV1({
   }, [nudgeToken, reducedMotion, nudge]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: enter.value,
+    opacity: ghost ? 0.22 : enter.value,
     transform: [
       { translateY: (1 - enter.value) * (variant === "bank" ? 16 : 10) },
       { translateX: nudge.value },
@@ -201,7 +211,7 @@ function DictationChipV1({
       <Lv2Chip
         compact={compact}
         accessibilityLabel={label}
-        disabled={disabled}
+        disabled={disabled || ghost}
         onPress={onPress}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
       >
@@ -275,9 +285,12 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
     if (phase !== "success") announcedRef.current = false;
   }, [phase, reducedMotion, prompt]);
 
+  const sx = useScaledTextStyles(styles);
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: g.secondary }]}>
+    // зачем (сверка с learning-v2.html ld, 05.10): как «Слушай и выбирай» + «Собери фразу» — заголовок слева 600,
+    // кнопка 128 в 26, подпись 14, фраза 18, строка ответа 22 с подсказкой, банк 22 с тенями, разбор 18, «Проверить» 22.
+    <View style={sx.root}>
+      <Text style={[sx.taskLabel, { color: g.secondary }]}>
         {listenBuildTaskLabel(
           interfaceLocale,
           (modePayload?.family === "listen_build_dictation"
@@ -285,8 +298,10 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
             : 2) > 1,
         )}
       </Text>
+      <View style={[sx.playRow, compact && { marginTop: 8 }]}>
       <DictationRingButtonV1
         playing={playing}
+        hasPlayedOnce={hasPlayedOnce}
         reducedMotion={reducedMotion}
         disabled={!onPlayFullPhraseAudio || loading}
         accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
@@ -295,7 +310,8 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         track={g.opaqueControl}
         surface={g.opaqueCard}
       />
-      <Text style={[styles.playSub, { color: g.secondary }]}>
+      </View>
+      <Text style={[sx.playSub, { color: g.secondary }, compact && { marginTop: 6 }]}>
         {!onPlayFullPhraseAudio
           ? audioCopy.unavailable
           : loading
@@ -307,16 +323,21 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
               : audioCopy.play}
       </Text>
 
-      {/* Перевод/EN раскрывается только после успеха — до этого честный диктант. */}
-      {phase === "success" && (
-        <Text style={[styles.revealText, { color: g.text }]}>
+      {/* Фраза раскрывается после успеха или разбора (learning-v2.html ld-2/ld-4) — до этого честный диктант. */}
+      {(phase === "success" || resolved) && (
+        <Text style={[sx.revealText, { color: g.text }]}>
           {modePayload?.family === "listen_build_dictation"
             ? modePayload.hiddenTargetPhrase
             : prompt}
         </Text>
       )}
 
-      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.line }]}>
+      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.glassEdge }]}>
+        {answerChips.length === 0 ? (
+          <Text style={[sx.placeholder, { color: g.mutedText }]}>
+            {learningV2SessionCopy(interfaceLocale as Parameters<typeof learningV2SessionCopy>[0]).tapWords}
+          </Text>
+        ) : null}
         {answerChips.map((chip, index) => (
           <DictationChipV1
             key={`${chip.responseId}-${index}`}
@@ -338,15 +359,15 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         ))}
       </View>
 
-      <View style={[styles.bank, compact && { gap: 6 }]}>
+      <View style={[sx.bank, compact && { gap: 6, marginTop: 10 }]}>
         {options
-          .filter((option) => !usedIds.has(option.responseId))
           .map((option, index) => (
             <DictationChipV1
               key={option.responseId}
               label={option.text}
               index={index}
               variant="bank"
+              ghost={usedIds.has(option.responseId)}
               verdict="none"
               nudgeToken={0}
               reducedMotion={reducedMotion}
@@ -356,12 +377,12 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
           ))}
       </View>
 
-      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
+      {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
 
       <Lv2Cta
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
-        style={styles.submit}
+        style={[sx.submit, compact && { marginTop: 10 }]}
       >
         {learningV2ModeCheckLabelV1(interfaceLocale)}
       </Lv2Cta>
@@ -372,27 +393,31 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 export default ListenBuildDictationModeV1;
 
 const styles = StyleSheet.create({
-  root: { gap: 14, alignItems: "center" },
+  root: {},
   taskLabel: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: "700",
-    textAlign: "center",
+    fontWeight: "600",
   },
+  playRow: { alignItems: "center", marginTop: 26 },
   ringWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
-  ringBtn: { width: 104, height: 104, borderRadius: 52, alignItems: "center", justifyContent: "center" },
-  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
-  revealText: { fontSize: 24, lineHeight: 30, fontWeight: "700", textAlign: "center", letterSpacing: -0.3 },
+  ringBtn: { width: 128, height: 128, borderRadius: 64, alignItems: "center", justifyContent: "center" },
+  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "600", textAlign: "center", marginTop: 14 },
+  revealText: { fontSize: 24, lineHeight: 30, fontWeight: "700", textAlign: "center", letterSpacing: -0.3, marginTop: 18 },
   answerRow: {
     minHeight: 64,
     width: "100%",
+    marginTop: 22,
     borderBottomWidth: 1,
     flexDirection: "row",
     flexWrap: "wrap",
+    alignItems: "center",
     gap: 8,
-    paddingBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 12,
   },
-  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", width: "100%" },
-  feedbackLane: { width: "100%" },
-  submit: { width: "100%" },
+  placeholder: { fontSize: 16, lineHeight: 21 },
+  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", width: "100%", marginTop: 22 },
+  feedbackLane: { width: "100%", marginTop: 18 },
+  submit: { width: "100%", marginTop: 22 },
 });

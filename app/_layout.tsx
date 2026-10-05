@@ -849,6 +849,17 @@ const BAN_CACHE_AT_KEY = 'ban_status_cached_at_v1';
 const BAN_CACHE_TTL_MS = 30 * 60 * 1000;
 
 // Вынесено в дочерний компонент чтобы иметь доступ к LangContext + AchievementContext
+// зачем (координатор 05.10, пакет 07:26: setFirstContentReady(true) +8224 → «splash gate» canHide +10207 — фиксация
+// корня заняла ~2 с): какие коммиты дерева AppContent дорогие на старте. Только коммиты ≥ 80 мс и только до скрытия
+// сплеша + 3 с; в release Profiler не вызывает onRender — нулевая цена.
+const BOOT_COMMIT_LOG_MIN_MS = 80;
+let bootCommitWindowEndsAt: number | null = null;
+function bootCommitProfilerOnRender(id: string, phase: string, actualDuration: number, baseDuration: number): void {
+  if (bootCommitWindowEndsAt !== null && Date.now() > bootCommitWindowEndsAt) return;
+  if (actualDuration < BOOT_COMMIT_LOG_MIN_MS) return;
+  console.warn('[BOOT-COMMIT]', JSON.stringify({ id, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration), atEpochMs: Date.now() })); // guard-ok: временная трассировка старта
+}
+
 function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [ready, setReady]           = useState(false);
   const reduceMotion = useReduceMotion();
@@ -944,6 +955,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const onboardingPathRef = useRef(false);
   const deferLessonPrimeRef = useRef(false);
   const firstContentReadyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // зачем (пакет 07:26): когда вызван setFirstContentReady(true) — строка «splash gate» печатает, сколько прошло до фиксации.
+  const firstContentReadySetAtRef = useRef<number | null>(null);
   const runHeavyInitRef = useRef<(() => void) | null>(null);
   const heavyInitStartedRef = useRef(false);
   const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
@@ -1607,6 +1620,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       isBanned,
       liquidGlassChoiceReady,
       canHide: nativeSplashCanHide,
+      // зачем (пакет 07:26): сколько прошло от setFirstContentReady(true) до этой фиксации гейта.
+      sinceFirstContentSetMs: firstContentReady && firstContentReadySetAtRef.current !== null
+        ? Date.now() - firstContentReadySetAtRef.current : null,
     });
   }, [fontsReady, ready, firstContentReady, homeScreenReady, effectiveShowOnboarding, isBanned, liquidGlassChoiceReady, nativeSplashCanHide]);
   useEffect(() => {
@@ -1636,6 +1652,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     bootMark('SplashScreen.hideAsync() — сплеш скрыт');
+    bootCommitWindowEndsAt = Date.now() + 3000;
     void SplashScreen.hideAsync();
     resolveNativeSplashHidden();
     markNativeSplashHidden();
@@ -1652,6 +1669,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       firstContentReadyTimerRef.current = setTimeout(() => {
         firstContentReadyTimerRef.current = null;
         bootMark('firstContentReady timer fired -> setFirstContentReady(true)', { plannedMs: 32, lateMs: Date.now() - armedAt - 32 });
+        if (firstContentReadySetAtRef.current === null) firstContentReadySetAtRef.current = Date.now();
         setFirstContentReady(true);
       }, 32);
     });
@@ -1672,6 +1690,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         plannedMs: FIRST_CONTENT_READY_FALLBACK_MS,
         lateMs: Date.now() - fallbackArmedAt - FIRST_CONTENT_READY_FALLBACK_MS,
       });
+      if (firstContentReadySetAtRef.current === null) firstContentReadySetAtRef.current = Date.now();
       setFirstContentReady(true);
     }, FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);
@@ -3444,7 +3463,9 @@ export default function RootLayout() {
             <StudyTargetProvider>
             <EnergyProvider>
                 <OverlayArbiterProvider>
-                    <AppContent fontsReady={fontsReady} />
+                    <Profiler id="app_content" onRender={bootCommitProfilerOnRender}>
+                      <AppContent fontsReady={fontsReady} />
+                    </Profiler>
                     {/* зачем (D49, владелец 2026-10-01): хост «Дневного пути» удалён —
                         он открывал окно «бонус дня» на старте каждый новый день
                         (без флага). Замена — блок «Сегодня» на Главной, без окон. */}

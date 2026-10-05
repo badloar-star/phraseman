@@ -4,7 +4,6 @@ import {
   Animated,
   Easing,
   Modal,
-  Pressable,
   StyleSheet,
   Text,
   View,
@@ -13,6 +12,13 @@ import {
 import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 import { triLang } from "../../constants/i18n";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
+import { KIT_MOTION } from "../../constants/motionHybrid";
+import PressableHybrid from "../PressableHybrid";
+
+// зачем (координатор 05.10, kit.css:147 `.dim`): окно .cm в макете статичное и живёт на затемнении —
+// появляется и уходит вместе с ним, opacity 260 мс (CSS `ease`), без своих сдвигов, пружины пропуска
+// и блика (их в макете нет). Native driver — кадры идут на UI-потоке, без setState.
+const DIM_EASE = Easing.bezier(0.25, 0.1, 0.25, 1);
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
 import { Lv2Cta, lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
@@ -40,8 +46,6 @@ export default function LearningV2FounderPassModal({
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotionPreference() !== false;
   const entrance = useRef(new Animated.Value(0)).current;
-  const passEntrance = useRef(new Animated.Value(0)).current;
-  const sheen = useRef(new Animated.Value(0)).current;
   const closingRef = useRef(false);
 
   const copy = useMemo(
@@ -143,36 +147,16 @@ export default function LearningV2FounderPassModal({
     closingRef.current = false;
     if (reduceMotion) {
       entrance.setValue(1);
-      passEntrance.setValue(1);
-      sheen.setValue(1);
       return;
     }
     entrance.setValue(0);
-    passEntrance.setValue(0);
-    sheen.setValue(0);
-    Animated.parallel([
-      Animated.timing(entrance, {
-        toValue: 1,
-        duration: 360,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }),
-      Animated.spring(passEntrance, {
-        toValue: 1,
-        delay: 90,
-        speed: 15,
-        bounciness: 5,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      Animated.timing(sheen, {
-        toValue: 1,
-        duration: 520,
-        easing: Easing.out(Easing.quad),
-        useNativeDriver: true,
-      }).start();
-    });
-  }, [entrance, passEntrance, reduceMotion, sheen, visible]);
+    Animated.timing(entrance, {
+      toValue: 1,
+      duration: KIT_MOTION.dimMs,
+      easing: DIM_EASE,
+      useNativeDriver: true,
+    }).start();
+  }, [entrance, reduceMotion, visible]);
 
   const dismiss = useCallback(() => {
     if (closingRef.current) return;
@@ -189,46 +173,13 @@ export default function LearningV2FounderPassModal({
     onDismiss();
     Animated.timing(entrance, {
       toValue: 0,
-      duration: 180,
-      easing: Easing.in(Easing.quad),
+      duration: KIT_MOTION.dimMs,
+      easing: DIM_EASE,
       useNativeDriver: true,
     }).start();
   }, [entrance, onDismiss, reduceMotion]);
 
-  const cardStyle = {
-    opacity: entrance,
-    transform: [
-      {
-        translateY: entrance.interpolate({
-          inputRange: [0, 1],
-          outputRange: [34, 0],
-        }),
-      },
-      {
-        scale: entrance.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0.975, 1],
-        }),
-      },
-    ],
-  } as const;
-  const passStyle = {
-    opacity: passEntrance,
-    transform: [
-      {
-        translateY: passEntrance.interpolate({
-          inputRange: [0, 1],
-          outputRange: [16, 0],
-        }),
-      },
-      {
-        scale: passEntrance.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0.94, 1],
-        }),
-      },
-    ],
-  } as const;
+  const cardStyle = { opacity: entrance } as const;
 
   return (
     <Modal
@@ -252,30 +203,22 @@ export default function LearningV2FounderPassModal({
       >
         <Animated.View style={[StyleSheet.absoluteFill, styles.scrim, { opacity: entrance }]} />
         <Animated.View style={[styles.card, { backgroundColor: g.opaqueSheet }, cardStyle]}>
-          <Pressable
+          {/* зачем (kit.css:64–65 `.t.down`): ✕ вжимается до .97 общим нажатием, а не гаснет. */}
+          <PressableHybrid
             accessibilityRole="button"
             accessibilityLabel={copy.close}
             hitSlop={10}
             onPress={dismiss}
-            style={({ pressed }) => [
-              styles.close,
-              { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
-            ]}
+            variant="icon"
+            pressScaleTo={KIT_MOTION.pressScale}
+            withSound={false}
+            style={styles.closeHit}
+            contentStyle={[styles.close, { backgroundColor: g.opaqueControl }]}
           >
             <Ionicons name="close" size={22} color={g.text} />
-          </Pressable>
+          </PressableHybrid>
 
-          <Animated.View style={[styles.pass, lv2CardStyle(g, 18), { backgroundColor: g.opaqueCard }, passStyle]}>
-            <Animated.View
-              pointerEvents="none"
-              style={[
-                styles.sheen,
-                {
-                  opacity: sheen.interpolate({ inputRange: [0, 0.2, 0.75, 1], outputRange: [0, 0.12, 0.08, 0] }),
-                  transform: [{ translateX: sheen.interpolate({ inputRange: [0, 1], outputRange: [-220, 260] }) }, { rotate: "18deg" }],
-                },
-              ]}
-            />
+          <View style={[styles.pass, lv2CardStyle(g, 18), { backgroundColor: g.opaqueCard }]}>
             <View style={[styles.seal, { backgroundColor: g.opaqueControl }]}>
               <Ionicons name="star-outline" size={28} color={g.text} />
             </View>
@@ -288,7 +231,7 @@ export default function LearningV2FounderPassModal({
               ) : null}
               <Text style={[styles.passMeta, { color: g.secondary }]}>{copy.access}</Text>
             </View>
-          </Animated.View>
+          </View>
 
           <Text style={[styles.kicker, { color: g.secondary }]}>{copy.kicker}</Text>
           <Text style={[styles.title, { color: g.text }]}>{copy.title}</Text>
@@ -334,16 +277,13 @@ const styles = StyleSheet.create({
     shadowRadius: 30,
     elevation: 24,
   },
+  closeHit: { position: "absolute", top: 12, right: 12, width: 44, height: 44, alignSelf: "auto", zIndex: 3 },
   close: {
-    position: "absolute",
-    top: 12,
-    right: 12,
     width: 44,
     height: 44,
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 3,
   },
   pass: {
     minHeight: 96,
@@ -353,13 +293,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
-  },
-  sheen: {
-    position: "absolute",
-    top: -70,
-    bottom: -70,
-    width: 54,
-    backgroundColor: "#FFFFFF",
   },
   seal: {
     width: 55,

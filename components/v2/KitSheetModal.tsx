@@ -1,7 +1,7 @@
 // ─── Нижняя шторка кита 2.0 — kit.css `.sheet` / `.grab` ──────────────────────
 // зачем (координатор 05.10, Сверка system-014/015): входящие в макете — шторка снизу поверх раздела, а не
 // полноэкранное окно. Вид — kit.css `.sheet`: радиус 28 сверху, поля 12/18/40, фон --sheet, кромка 1 px без нижней,
-// ручка 44×5; выезд 440 мс cubic-bezier(.2,1,.3,1), уход 260 мс; затемнение .6. Всё движение — Reanimated на
+// ручка 44×5; выезд и уход 440 мс cubic-bezier(.2,1,.3,1) (CSS-переход один на обе стороны); затемнение .6 за 260 мс. Всё движение — Reanimated на
 // UI-потоке, без setState в кадрах.
 //
 // Видимость управляется снаружи (visible). На visible=false шторка сама доигрывает уход и только потом снимает
@@ -45,7 +45,7 @@ type Props = Readonly<{
   testID?: string;
 }>;
 
-export function KitSheetModal({ visible, onRequestClose, closeLabel, header, children, maxHeightRatio = 0.88, fill = false, testID }: Props) {
+export function KitSheetModal({ visible, onRequestClose, closeLabel, header, children, maxHeightRatio = KIT_MOTION.sheetMaxHeight, fill = false, testID }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -63,15 +63,15 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
     if (visible) {
       setPresented(true);
       drag.value = 0;
-      backdropO.value = withTiming(1, { duration: reduceMotion ? INSTANT : KIT_MOTION.backdropMs });
+      backdropO.value = withTiming(1, { duration: reduceMotion ? INSTANT : KIT_MOTION.dimMs });
       slide.value = 1;
-      slide.value = withTiming(0, { duration: reduceMotion ? INSTANT : KIT_MOTION.sheetInMs, easing: SHEET_EASE });
+      slide.value = withTiming(0, { duration: reduceMotion ? INSTANT : KIT_MOTION.sheetMs, easing: SHEET_EASE });
       return () => { cancelAnimation(slide); cancelAnimation(backdropO); };
     }
     // Уход: доигрываем и только потом снимаем Modal.
     const finish = () => setPresented(false);
-    backdropO.value = withTiming(0, { duration: reduceMotion ? INSTANT : KIT_MOTION.sheetOutMs });
-    slide.value = withTiming(1, { duration: reduceMotion ? INSTANT : KIT_MOTION.sheetOutMs, easing: REasing.in(REasing.cubic) }, (finished) => {
+    backdropO.value = withTiming(0, { duration: reduceMotion ? INSTANT : KIT_MOTION.dimMs });
+    slide.value = withTiming(1, { duration: reduceMotion ? INSTANT : KIT_MOTION.sheetMs, easing: SHEET_EASE }, (finished) => {
       if (finished) runOnJS(finish)();
     });
     return () => { cancelAnimation(slide); cancelAnimation(backdropO); };
@@ -84,11 +84,11 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
     .failOffsetX([-32, 32])
     .onUpdate((e) => {
       'worklet';
-      drag.value = e.translationY < 0 ? e.translationY * KIT_MOTION.dragResist : e.translationY;
+      drag.value = e.translationY < 0 ? e.translationY * SHEET.dragResist : e.translationY;
     })
     .onEnd((e) => {
       'worklet';
-      if (drag.value > KIT_MOTION.dragClosePx || e.velocityY > KIT_MOTION.dragCloseVelocity) {
+      if (drag.value > SHEET.dragClosePx || e.velocityY > SHEET.dragCloseVelocity) {
         runOnJS(requestClose)();
       } else {
         drag.value = withSpring(0, SHEET.dragReturn);
@@ -138,7 +138,7 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
 
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end' },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: `rgba(0,0,0,${KIT_MOTION.dimOpacity})` },
   // `.sheet`: r28 сверху, поля 12/18/40, кромка 1 px без нижней.
   sheet: {
     borderTopLeftRadius: 28,

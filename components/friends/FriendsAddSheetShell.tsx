@@ -33,15 +33,17 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { KIT_MOTION } from '../../constants/motionHybrid';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLineScale } from '../../hooks/useLineScale';
 import { useFriendsGlass } from './FriendsGlassKit';
 
 const LOG = '[FRIEND-ADD-SHEET]';
-const SHEET_EASE = REasing.bezier(0.2, 1, 0.3, 1);
-const SHEET_IN_MS = 440;
-const SHEET_OUT_MS = 260;
+// зачем (AGENTS.md Motion п.8): числа шторки — из словаря кита KIT_MOTION (kit.css:147/150), не литералами.
+const SHEET_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
+const SHEET_IN_MS = KIT_MOTION.sheetMs;
+const SHEET_OUT_MS = KIT_MOTION.sheetMs;
 
 interface FriendsAddSheetShellProps {
   visible: boolean;
@@ -68,7 +70,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
   useEffect(() => {
     if (!visible) return;
-    backdropO.value = withTiming(1, { duration: 260 });
+    backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs });
     slide.value = 1;
     slide.value = withTiming(0, { duration: SHEET_IN_MS, easing: SHEET_EASE });
   }, [visible, backdropO, slide]);
@@ -111,8 +113,8 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
   const dismiss = useCallback(() => {
     hapticTap();
     Keyboard.dismiss();
-    backdropO.value = withTiming(0, { duration: SHEET_OUT_MS });
-    slide.value = withTiming(1, { duration: SHEET_OUT_MS, easing: REasing.in(REasing.cubic) }, (finished) => {
+    backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs });
+    slide.value = withTiming(1, { duration: SHEET_OUT_MS, easing: SHEET_EASE }, (finished) => {
       if (finished) runOnJS(handleCloseRef.current)();
     });
   }, [backdropO, slide]);

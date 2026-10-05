@@ -100,22 +100,37 @@ export const SURVEY_HYBRID = {
  * under Reduce Motion; the automatic snap-back becomes instantaneous there. */
 export const SHEET = {
   dragReturn: { damping: 22, stiffness: 300 },
-} as const;
-
-/**
- * Движение кита 2.0 (kit.css, гейт владельца 04.10 «анимации в точности как на макетах»):
- * шторка .sheet — выезд 440 мс cubic-bezier(.2,1,.3,1), уход короче входа; затемнение как у гибрида.
- */
-export const KIT_MOTION = {
-  sheetInMs: 440,
-  sheetOutMs: LUM.exitMs,
-  backdropMs: LUM.backdropMs,
-  /** cubic-bezier(.2,1,.3,1) */
-  sheetEase: [0.2, 1, 0.3, 1] as const,
-  /** Закрытие перетаскиванием — как у общих шторок. */
+  /** Закрытие перетаскиванием (паттерн referral_sheet_shell): порог, скорость, резина вверх. */
   dragClosePx: 88,
   dragCloseVelocity: 900,
   dragResist: 0.12,
+} as const;
+
+/**
+ * Движение кита 2.0 — ТОЛЬКО числа из docs/design/v2-app/kit.css (гейт владельца 04.10 в CLAUDE.md:
+ * «каждая анимация в точности как на макетах»). Ссылка на строку kit.css у каждого числа.
+ * Пружина «Световод + Чекан» (LUM) остаётся там, где у макета нет своего движения.
+ */
+export const KIT_MOTION = {
+  /** kit.css:64 `.t` — отпускание нажатия: transform 240ms cubic-bezier(.3,1.4,.5,1). */
+  pressMs: 240,
+  pressEase: [0.3, 1.4, 0.5, 1] as const,
+  /** kit.css:65 `.t.down` — вдавливание 90ms до scale(.97), opacity .86. */
+  pressDownMs: 90,
+  pressScale: 0.97,
+  pressOpacity: 0.86,
+  /** kit.css:127–128 `.pill .num.up/.dn` — счётчики 650ms cubic-bezier(.3,1.4,.5,1). */
+  counterMs: 650,
+  /** kit.css:134 `.trk > i` — полоса прогресса: width 800ms cubic-bezier(.2,.8,.2,1). */
+  progressMs: 800,
+  progressEase: [0.2, 0.8, 0.2, 1] as const,
+  /** kit.css:147 `.dim` — затемнение: opacity 260ms, rgba(0,0,0,.6). */
+  dimMs: 260,
+  dimOpacity: 0.6,
+  /** kit.css:150 `.sheet` — шторка: transform 440ms cubic-bezier(.2,1,.3,1) в обе стороны, max-height 90%. */
+  sheetMs: 440,
+  sheetEase: [0.2, 1, 0.3, 1] as const,
+  sheetMaxHeight: 0.9,
 } as const;
 
 /** Тосты: вход/выход и жёсткая ошибка. */

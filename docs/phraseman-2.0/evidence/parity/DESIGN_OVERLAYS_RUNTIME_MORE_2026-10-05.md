@@ -252,3 +252,18 @@
 - Владельцу: строка «Монеты» в итоге отработки (017; в макете нет — итог по правилам владельца шире монет).
 - packs-simple-001: «Новые» по умолчанию уже сделано (ff5c5b4a9); панель вкладок под каталогом — вопрос координатора; плашка «Топ» — данные.
 - packs-simple-004: **два макета на один экран** — packs-simple рисует карточки набора списком «слово / перевод», зафиксированный cards-section (packForeign) — плитками карточек (так в приложении) → владельцу; лишний аватар автора и стекло кнопок — после его решения; открытие ~138 с — Ядру (мгновенное открытие).
+
+---
+
+# Окна без макета — overlays-campaigns (38), overlays-specialist (38), overlays-players (7): согласованность с китом 2.0
+
+Проверено скриптом и чтением (13 файлов): PlayerProfileModal, PromoBanner, promo_code_entry, referral_code_sheet, ExplainReportButton, ReportErrorButton, ReferralWelcomeHost, PremiumCelebrationModal, VipCelebrationModal, VipSurveyModal, VipSurveyReviewPromptModal, survey/SurveySheetModal, survey/SurveyRewardPanel. Чужих незакоммиченных правок нет.
+
+- Толстых рамок нет; контуры — 1 px glassEdge / --line (правило 2.0). Выбранный вариант опроса (VipSurveyModal) и причина жалобы (ExplainReportButton) — тонкая светлая обводка, как `.opt` кита (1 px --outline) — не выпадение.
+- Шрифты: ни одного размера вне 16/13 ниже 19 (заголовки — общая шкала темы `f.*`), D145 соблюдён.
+- Высоты 44 — круглые кнопки (rb 42/44), плитки значков и строки шапки, не главные кнопки; главные — 48/52.
+- Оболочки: опросы на HybridSheetShell, ревью-подсказка на HybridAlertShell/HybridSheetShell, подтверждения визитки на ThemedConfirmModal (= system.html .modal r26); празднования Plus/VIP — свои сцены (своего движения в макете нет, в awaiting сторожа движения).
+- specialist-030…037 («Сегодня», «Открыт следующий урок/экзамен») — кода в реестре нет: «Сегодня» живёт на Главной (запрет владельца), уведомления о разблокировке — у Ядра.
+- Платежи (paywalls) не трогал.
+
+Итог: явных выпадений из кита не найдено, правок нет.

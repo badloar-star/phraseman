@@ -35,7 +35,9 @@ describe('home startup stability', () => {
     expect(home).toContain('const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);');
     expect(hook).toContain("import { loadHomeSurvey, markHomeSurveyCompleted, peekHomeSurvey } from '../app/home_survey_entry';");
     expect(entry).toContain('fetchActiveSurveyWithRetry');
-    expect(home).toContain("import SurveySheetModal from '../../components/survey/SurveySheetModal';");
+    // зачем (координатор 05.10): окно опроса грузится лениво — модуль тот же, вычисляется не вместе с чанком Главной.
+    expect(home).toContain("const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');");
+    expect(home).toContain('const SurveySheetModal = lazy(loadSurveySheetModal);');
     expect(home).not.toContain("pathname: '/survey_screen'");
   });
 });

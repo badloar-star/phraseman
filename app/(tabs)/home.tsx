@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
+import React, { Suspense, lazy, useState, useRef, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
@@ -24,8 +24,6 @@ import { getLocalDayKey } from '../local_date';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationVariant, isCelebrationPending, type PremiumCelebrationVariant, } from '../premium_celebration_state';
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
-import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
-import VipCelebrationModal from '../../components/VipCelebrationModal';
 import { isLightThemeMode } from '../../constants/theme';
 import { GOLD_RICH } from '../../constants/goldTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -51,13 +49,10 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
-import { loadAchievementStates } from '../achievements';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import SurveySheetModal from '../../components/survey/SurveySheetModal';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
-import SavedCardsFlight from '../../components/SavedCardsFlight';
 import {
   homeArrivalEffect,
   markHomeArrivalPlayed,
@@ -89,8 +84,7 @@ import { getV2Palette, V2 } from '../../constants/v2Style';
 // компонент импортируется как Reanimated, а не подменяет существующий.
 import { runOnJS, useSharedValue } from 'react-native-reanimated';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
-import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
-import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
+import type { PlayerInfo } from '../../components/PlayerProfileModal';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
@@ -107,9 +101,8 @@ import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contra
 // порог открытия раздела снят, шторка «ошибок мало» стала недостижимой.
 // homeMistakesButtonState остаётся: по нему решаются плитка «Мои ошибки» и прогрев подсказки хаба.
 import { homeMistakesButtonState } from '../home_mistakes_pulse_model';
-import { getLingmanYoutubeSnapshot, type LingmanYoutubeVideo } from '../lingman_youtube';
+import type { LingmanYoutubeVideo } from '../lingman_youtube';
 import { isVideoButtonEnabled } from '../remote_flags';
-import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import {
     readCurrentStreakWeekMarkers,
@@ -128,7 +121,44 @@ function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
   if (state === null) return 'unknown';
   return state.counted ? 'counted' : 'pending';
 }
+import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
 import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+
+// зачем (координатор 05.10, пакет 05:26: [JS-STALL] 1,5 с — вычисление чанка Главной до первого кадра; план
+// 11eeb7b56): закрытые окна и редкие модули не нужны первому кадру — их модули больше не вычисляются вместе с чанком.
+// Окна — ленивые компоненты с прежними именами, монтируются только после первого открытия (и остаются, чтобы
+// проиграть закрытие); их модули прогреваются после первого кадра (prewarmHomeDeferredModules), поэтому первое
+// открытие не ждёт загрузки. Вид первого кадра не меняется: эти окна на нём закрыты.
+const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
+const loadVipCelebrationModal = () => import('../../components/VipCelebrationModal');
+const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');
+const loadSavedCardsFlight = () => import('../../components/SavedCardsFlight');
+const loadPlayerProfileModal = () => import('../../components/PlayerProfileModal');
+const loadFeatureIntroEntry = () => import('../../components/feature_intro/FeatureIntroEntry');
+const PremiumCelebrationModal = lazy(loadPremiumCelebrationModal);
+const VipCelebrationModal = lazy(loadVipCelebrationModal);
+const SurveySheetModal = lazy(loadSurveySheetModal);
+const SavedCardsFlight = lazy(loadSavedCardsFlight);
+const PlayerProfileModal = lazy(loadPlayerProfileModal);
+const FeatureIntroEntry = lazy(loadFeatureIntroEntry);
+// Защёлка «окно уже открывалось»: до первого открытия ленивое окно не монтируется вовсе, после — остаётся
+// смонтированным, чтобы доиграть анимацию закрытия и не грузиться заново.
+function useMountedAfterFirstOpen(open: boolean): boolean {
+  const [opened, setOpened] = useState(open);
+  if (open && !opened) setOpened(true);
+  return open || opened;
+}
+function prewarmHomeDeferredModules(): void {
+  const started = Date.now();
+  void Promise.all([
+    loadPremiumCelebrationModal(), loadVipCelebrationModal(), loadSurveySheetModal(),
+    loadSavedCardsFlight(), loadPlayerProfileModal(), loadFeatureIntroEntry(),
+  ]).then(() => {
+    console.log(`[HOME-LAZY] prewarm:done ${Date.now() - started}мс`);
+  }).catch((error: unknown) => {
+    console.warn('[HOME-LAZY] prewarm:failed — окно загрузится при первом открытии', error instanceof Error ? error.message : String(error));
+  });
+}
 const { height: SCREEN_H } = Dimensions.get('window');
 /** Значок действия в шапке (спин, подарок) — соразмерен соседям хедера. */
 /**
@@ -792,7 +822,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // зачем (владелец 2026-09-14): подсказка хаба должна быть готова ДО
                 // открытия раздела - греем раз в сутки фоном, пока человек на Главной.
                 // Греем только у открытого раздела: ниже порога подсказку не увидят.
-                if (homeMistakesButtonState(counts.active) === 'ready') void prewarmMistakeHubAdvice({ studyTarget: mistakeStudyTarget, lang });
+                if (homeMistakesButtonState(counts.active) === 'ready') {
+                    void import('../mistake_hub_advice')
+                        .then((m) => m.prewarmMistakeHubAdvice({ studyTarget: mistakeStudyTarget, lang }))
+                        .catch(noteSwallowedHandler('home:prewarmMistakeHubAdvice'));
+                }
                 // зачем (владелец 2026-09-15): раздел ошибок открывается только от
                 // порога — греть подсказку раньше незачем, она всё равно не видна.
             })
@@ -816,7 +850,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
         let alive = true;
-        void getLingmanYoutubeSnapshot()
+        void import('../lingman_youtube')
+            .then((m) => m.getLingmanYoutubeSnapshot())
             .then((snapshot) => {
                 if (!alive) return;
                 latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
@@ -907,6 +942,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [vipCelebrationMarker, setVipCelebrationMarker] = useState<string | null>(null);
     const vipCelebrationQueuedMarkerRef = useRef<string | null>(null);
     const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', homeRuntimeActive && vipCelebrationVisible);
+    const premiumCelebrationMounted = useMountedAfterFirstOpen(celebrationOverlayVisible);
+    const vipCelebrationMounted = useMountedAfterFirstOpen(vipCelebrationOverlayVisible);
+    const profileModalMounted = useMountedAfterFirstOpen(homeProfilePlayer !== null);
+    const profileIntroEnabled = profileIntroRequested && homeRuntimeActive && homeProfilePlayer !== null;
+    const profileIntroMounted = useMountedAfterFirstOpen(profileIntroEnabled);
+    const savedCardsFlightMounted = useMountedAfterFirstOpen(cardArrivals > 0);
+    useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
     const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const isSketchLightTheme = isLightThemeMode(themeMode);
@@ -1468,7 +1510,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             step('avatar');
             const [specialTitleStoragePairs, achievementStates] = await Promise.all([
                 AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]),
-                loadAchievementStates().catch(noteSwallowedAs('home:loadData.loadAchievementStates', [])),
+                import('../achievements').then((m) => m.loadAchievementStates()).catch(noteSwallowedAs('home:loadData.loadAchievementStates', [])),
             ]);
             const specialTitleStorage = new Map(specialTitleStoragePairs);
             const helpfulReportsRaw = specialTitleStorage.get(HELPFUL_REPORTS_CONFIRMED_KEY) ?? null;
@@ -2197,7 +2239,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           удалена вместе с homeLevelUpSpinReceipt и её setTimeout — спин
           убран как механика, показывать было бы нечего. */}
 
-      <PlayerProfileModal
+      {/* Каждое ленивое окно — в своей границе Suspense: приостановка не поднимается выше и не гасит Главную. */}
+      {profileModalMounted ? (<Suspense fallback={null}><PlayerProfileModal
         player={homeProfilePlayer}
         myInfo={{
             name: userName || 'Phraseman',
@@ -2206,17 +2249,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             streak,
         }}
         onClose={() => setHomeProfilePlayer(null)}
-      />
-      <FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroRequested && homeRuntimeActive && homeProfilePlayer !== null} />
+      /></Suspense>) : null}
+      {profileIntroMounted ? (<Suspense fallback={null}><FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroEnabled} /></Suspense>) : null}
 
-      {homeSurvey.launch ? (
+      {homeSurvey.launch ? (<Suspense fallback={null}>
         <SurveySheetModal
           visible
           launch={homeSurvey.launch}
           onClose={homeSurvey.closeSurvey}
           onDurablyReconciled={homeSurvey.onDurablyReconciled}
         />
-      ) : null}
+      </Suspense>) : null}
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
@@ -2285,7 +2328,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       </ScreenGradient>
 
       {/* Premium celebration: запускается после IAP / admin-grant. Pending консумируется на close. */}
-      <PremiumCelebrationModal visible={celebrationOverlayVisible} variant={celebrationVariant} onClose={() => {
+      {premiumCelebrationMounted ? (<Suspense fallback={null}><PremiumCelebrationModal visible={celebrationOverlayVisible} variant={celebrationVariant} onClose={() => {
             setCelebrationVisible(false);
             // Consume the exact event marker so the same admin grant does not re-open on next sync.
             const marker = celebrationMarker;
@@ -2304,14 +2347,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     setVipCelebrationVisible(true);
                 });
             });
-        }}/>
-      <VipCelebrationModal visible={vipCelebrationOverlayVisible} onClose={() => {
+        }}/></Suspense>) : null}
+      {vipCelebrationMounted ? (<Suspense fallback={null}><VipCelebrationModal visible={vipCelebrationOverlayVisible} onClose={() => {
             setVipCelebrationVisible(false);
             const marker = vipCelebrationMarker;
             setVipCelebrationMarker(null);
             vipCelebrationQueuedMarkerRef.current = null;
             void consumeVipCelebration(marker);
-        }}/>
+        }}/></Suspense>) : null}
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
       {/* зачем (владелец 2026-09-21): шторка «тут пока нечего разбирать» убрана
           вместе с порогом открытия — хаб теперь открывается при любом числе
@@ -2319,7 +2362,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           однажды всплыл бы не вовремя. Сам компонент в проекте сохранён. */}
       {/* Сохранённые карточки слетаются в плитку «Карточки». Оверлей поверх всего:
           места не занимает, поэтому первый кадр главной остаётся стабильным. */}
-      <SavedCardsFlight
+      {savedCardsFlightMounted ? (<Suspense fallback={null}><SavedCardsFlight
         count={cardArrivals}
         target={cardsTileCenter}
         origin={{ x: Dimensions.get('window').width / 2, y: Dimensions.get('window').height * 0.32 }}
@@ -2332,6 +2375,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           // проиграет её заново или, наоборот, съест непоказанный прилёт.
           void markHomeArrivalPlayed(effect);
         }}
-      />
+      /></Suspense>) : null}
     </View>);
 }

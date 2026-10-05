@@ -18,6 +18,7 @@ import {
   requestYoutubeSeek,
   subscribeYoutubePosition,
 } from '../../app/youtube_player_seek_bus';
+import { actionToastTri, emitAppEvent } from '../../app/events';
 import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type YoutubeVideoPhrasesProps = {
@@ -30,6 +31,35 @@ type YoutubeVideoPhrasesProps = {
   /** Откуда пришли фразы (память/диск/сеть) — для лога экрана ролика [VIDEO-SCREEN]. */
   onSourceResolved?: (from: VideoPhrasesSource, count: number) => void;
 };
+
+/**
+ * зачем (аудит Optimistic UI 05.10, п.5): откат закладки фразы больше не молчит — тост по причине, как у избранного видео.
+ */
+function toastPhraseSaveRollback(reason: string): void {
+  emitAppEvent('action_toast', reason === 'limit_reached'
+    ? actionToastTri('error', {
+      ru: 'Место для карточек закончилось — освободи немного в «Карточках»',
+      uk: 'Місце для карток закінчилося — звільни трохи в «Картках»',
+      en: 'No room for more cards — free some up in Cards',
+      es: 'No queda espacio para tarjetas: libera algo en Tarjetas',
+      'pt-BR': 'Sem espaço para cartões — libere um pouco em Cartões',
+      vi: 'Hết chỗ cho thẻ — hãy giải phóng bớt trong Thẻ',
+      id: 'Tidak ada ruang untuk kartu — kosongkan sedikit di Kartu',
+      tr: 'Kart için yer kalmadı — Kartlar bölümünde biraz yer aç',
+      pl: 'Brak miejsca na karty — zwolnij trochę w Kartach',
+    })
+    : actionToastTri('error', {
+      ru: 'Не удалось сохранить фразу. Попробуй ещё раз',
+      uk: 'Не вдалося зберегти фразу. Спробуй ще раз',
+      en: "Couldn't save the phrase. Try again",
+      es: 'No se pudo guardar la frase. Inténtalo de nuevo',
+      'pt-BR': 'Não foi possível salvar a frase. Tente de novo',
+      vi: 'Không lưu được cụm từ. Hãy thử lại',
+      id: 'Gagal menyimpan frasa. Coba lagi',
+      tr: 'İfade kaydedilemedi. Tekrar dene',
+      pl: 'Nie udało się zapisać frazy. Spróbuj ponownie',
+    }));
+}
 
 /** Тихие повторы загрузки фраз: 5 попыток, пауза 4 с × номер попытки. */
 const PHRASES_SILENT_RETRIES = 5;
@@ -154,6 +184,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       if (result !== 'added' && result !== 'duplicate') {
         // зачем (аудит Optimistic UI 05.10): откат обязан называть причину — иначе закладка «сама» снимается без следа.
         console.warn(`[VIDEO-PHRASE-SAVE] rollback reason=${String(result)} phrase=${phrase.id}`); // guard-ok: ранний выход логируется
+        toastPhraseSaveRollback(String(result));
         setSavedIds((current) => {
           const next = new Set(current);
           next.delete(phrase.id);
@@ -163,6 +194,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     } catch (error) {
       // зачем: запрет немого catch — причина отката в журнал.
       console.warn(`[VIDEO-PHRASE-SAVE] rollback reason=threw phrase=${phrase.id} message=${error instanceof Error ? error.message : String(error)}`); // guard-ok
+      toastPhraseSaveRollback('threw');
       setSavedIds((current) => {
         const next = new Set(current);
         next.delete(phrase.id);

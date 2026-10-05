@@ -216,8 +216,8 @@ const baseStyles = StyleSheet.create({
     paddingRight: 16,
     justifyContent: 'center',
   },
-  // зачем: `.tt.m` макета 17/600 и `.st` 15; шкала D145 (решение владельца 04.10) — 16 и 16.
-  word: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  tr: { fontSize: 16, lineHeight: 20, marginTop: 1 },
+  // зачем: `.tt.m` макета 17/600 и `.st` 15 (решение (Б) 05.10 — макет главнее D145).
+  word: { fontSize: 17, lineHeight: 22, fontWeight: '600' }, // d145-mockup: cards-section.html .tt.m 17/22
+  tr: { fontSize: 15, lineHeight: 19, marginTop: 1 }, // d145-mockup: cards-section.html .st 15/19
   bottom: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: PAD, paddingTop: 18, paddingBottom: 12 },
 });

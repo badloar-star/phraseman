@@ -518,8 +518,8 @@ export default function CommunityPackSocialBar({
         }}
       >
         {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
-        {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
-        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
+        {/* зачем: макет 17/700 (решение (Б) 05.10 — макет главнее D145). d145-mockup: packs-simple.html кнопка 17/700 */}
+        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 17, /* d145-mockup: packs-simple.html кнопка 17/700 */ lineHeight: lh(22), fontWeight: '700' }}>
           {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         </Text>
       </TouchableOpacity>

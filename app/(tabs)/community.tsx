@@ -145,8 +145,9 @@ const s = StyleSheet.create({
   header: { paddingHorizontal: V2.screenPad, paddingTop: 12, paddingBottom: 4, minHeight: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   tabs: { flexDirection: 'row', alignItems: 'flex-end', gap: 22, marginTop: 6 },
   tab: { paddingBottom: 8, borderBottomWidth: 3 },
-  // зачем: макет 17/600; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
-  tabText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
+  // зачем: макет 17/600 (решение (Б) 05.10 — макет главнее D145).
+  tabText: { fontSize: 17, // d145-mockup: packs-simple.html .tabs3 17/600
+    lineHeight: 22, fontWeight: '600' },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   headerOverlay: { flex: 1, minHeight: 46, justifyContent: 'center' },
   body: { flex: 1, minHeight: 0 },

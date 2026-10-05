@@ -526,9 +526,9 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     fontWeight: "700",
   },
-  // зачем (learning-v2.html wordCard, «1 из 4» 15/600 --sec; D145 → 16).
+  // зачем (learning-v2.html wordCard, «1 из 4» 15/600 --sec; решение (Б) 05.10 — макет главнее D145).
   counter: {
-    fontSize: 16,
+    fontSize: 15, // d145-mockup: learning-v2.html wordCard счётчик 15
     lineHeight: 21,
     fontWeight: "600",
   },

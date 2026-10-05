@@ -2401,8 +2401,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: 19, lineHeight: 24, fontWeight: '700' }}>
                       {triLang(lang, { ru: 'Ваша неделя', uk: 'Ваш тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
                     </Text>
-                    {/* зачем (`.value`): вторичный тон; макет 14, шкала D145 — 13. */}
-                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18 }}>{humanMinutes(coachMetrics.calendarWeekDays.reduce((sum, day) => sum + day.minutes, 0), lang)}</Text>
+                    {/* зачем (`.value`): вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145). d145-mockup: results.html .value 14 */}
+                    <Text style={{ color: statsGlass.secondary, fontSize: 14, /* d145-mockup: results.html .value 14 */ lineHeight: 18 }}>{humanMinutes(coachMetrics.calendarWeekDays.reduce((sum, day) => sum + day.minutes, 0), lang)}</Text>
                   </View>
                   {(() => {
                     // зачем (results-007): календарная неделя Пн…Вс; будущие дни — пустые низкие столбики.

@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
   earnedCopy: { flex: 1, minWidth: 0 },
   earnedTitle: { ...V2_TYPE.headline },
   earnedNote: { ...V2_TYPE.subtitle, marginTop: 1 },
-  // `.value`: вторичный тон; макет 14, шкала D145 — 13.
-  earnedValue: { fontSize: 13, lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
+  // `.value`: вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145).
+  earnedValue: { fontSize: 14, // d145-mockup: coins.html .value 14
+    lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
 });

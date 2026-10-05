@@ -266,8 +266,7 @@ const styles = StyleSheet.create({
   },
   body: {
     color: GRAPHITE.secondary,
-    // зачем: в макете 15, но решение владельца D145 (только 16/13) новее макета — 16; отличие в журнале паритета.
-    fontSize: 16,
+    fontSize: 15, // d145-mockup: system.html system_12 текст 15 (решение (Б) 05.10 — макет главнее D145)
     lineHeight: 22,
     textAlign: 'center',
     maxWidth: 440,

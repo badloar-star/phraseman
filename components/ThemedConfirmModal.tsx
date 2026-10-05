@@ -301,8 +301,9 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingTop: 26, paddingBottom: 20 },
   title: { fontSize: 21, lineHeight: 27, fontWeight: '700', textAlign: 'center' },
   titleAlone: { marginBottom: 20 },
-  // зачем (system.html `.modal .mb` 15/21): шкала D145 — текст под заголовком 16/22.
-  message: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8, marginBottom: 20 },
+  // зачем (system.html `.modal .mb` 15/21; решение (Б) 05.10 — макет главнее D145).
+  message: { fontSize: 15, lineHeight: 21, // d145-mockup: system.html .modal .mb 15/21
+    textAlign: 'center', marginTop: 8, marginBottom: 20 },
   messageNode: { marginTop: 8, marginBottom: 20 },
   confirmActions: { flexDirection: 'row', gap: 10, marginTop: 0 },
   action: {
@@ -315,8 +316,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  // `.cta` 17 в ките; шкала D145 — 16, как во всех окнах 2.0.
-  actionLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
+  // `.cta` 17 в ките (решение (Б) 05.10 — макет главнее D145).
+  actionLabel: { fontSize: 17, // d145-mockup: system.html .cta 17
+    fontWeight: '700', textAlign: 'center' },
   classicBackdrop: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.68)',

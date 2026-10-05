@@ -240,8 +240,8 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           'Wpisz kod i kup Plus lub Pro, aby znajomy dostał klucz.',
         )}
       </Text>
-      {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700, шкала D145 — 13. */}
-      <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', marginTop: 14, marginBottom: 7 }}>
+      {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700 (решение (Б) 05.10 — макет главнее D145). d145-mockup: overlays-more.html .om-field-label 12 */}
+      <Text style={{ color: glass.secondary, fontSize: 12, /* d145-mockup: overlays-more.html .om-field-label 12 */ lineHeight: 18, fontWeight: '700', marginTop: 14, marginBottom: 7 }}>
         {L('Код приглашения', 'Код запрошення', 'Invite code', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
       </Text>
       <TextInput

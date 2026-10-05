@@ -791,8 +791,8 @@ const baseStyles = StyleSheet.create({
   // зачем: во вкладке «Сообщество» слой стоит на месте строки вкладок: «назад» 42 + поле 46 (кадр 2).
   headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 12 },
   headerSearchFieldEmbedded: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0, backgroundColor: 'rgba(255,255,255,0.08)' },
-  // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
-  headerSearchInputEmbedded: { height: 44, fontSize: 16 },
+  // зачем: макет 17 (решение (Б) 05.10 — макет главнее D145).
+  headerSearchInputEmbedded: { height: 44, fontSize: 17 }, // d145-mockup: cards-section.html .srch 17
   headerSearchField: {
     flexDirection: 'row',
     alignItems: 'center',

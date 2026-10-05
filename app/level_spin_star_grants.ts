@@ -656,6 +656,51 @@ function unacknowledgedBreakdown(
   return out;
 }
 
+/**
+ * Только для лога [COIN-COMPACTION]: что удаляет уплотнение трат и как от этого меняется видимый баланс. «После» —
+ * расчёт на копии списка операций, ничего не пишется. serverBalance уплотнение не меняет — поэтому до/после равны,
+ * и это и есть суть утечки. Подсчёт не имеет права уронить восстановление: сбой → причина в строке лога.
+ */
+function describeSpendCompaction(
+  projection: LevelSpinStarProjection,
+  stale: readonly LocalRuneOperation[],
+  keptOperationId: string | null,
+): Record<string, unknown> {
+  const removedIds = new Set(stale.map((operation) => operation.operationId));
+  const removed = stale.map((operation) => ({
+    id: operation.operationId,
+    kind: (operation as { kind?: unknown }).kind ?? operation.schemaVersion,
+    runeDelta: (operation as { runeDelta?: unknown }).runeDelta ?? null,
+  }));
+  const removedSum = removed.reduce((sum, row) => sum + (typeof row.runeDelta === 'number' ? row.runeDelta : 0), 0);
+  let visibleBefore: number | string;
+  let visibleAfter: number | string;
+  try {
+    visibleBefore = visibleProjection(projection).balance;
+  } catch (error) {
+    visibleBefore = `error:${error instanceof Error ? error.message : String(error)}`;
+  }
+  try {
+    visibleAfter = visibleProjection(Object.freeze({
+      ...projection,
+      operations: Object.freeze(projection.operations.filter((operation) => !removedIds.has(operation.operationId))),
+    })).balance;
+  } catch (error) {
+    visibleAfter = `error:${error instanceof Error ? error.message : String(error)}`;
+  }
+  return {
+    serverSeq: projection.serverSeq,
+    removedCount: removed.length,
+    removedSum,
+    removed,
+    keptOperationId,
+    serverBalanceBefore: projection.serverBalance,
+    serverBalanceAfter: projection.serverBalance,
+    visibleBefore,
+    visibleAfter,
+  };
+}
+
 function unacknowledgedPracticeEarnedTotal(projection: LevelSpinStarProjection): number {
   return projection.operations.reduce((total, operation) => (
     operation.schemaVersion === 'client-practice-rune-operation.v1'
@@ -1247,13 +1292,20 @@ async function recoverProjection(
     const staleSpendOperations = projection.serverSeq > 0
       ? spendOperations.filter((operation) => operation.operationId !== newestSpendOperationId)
       : [];
+    // зачем (координатор 05.10, диагноз +5000 на тестовом аккаунте): уплотнение удаляет старые траты, НЕ внося их в
+    // serverBalance, — видимый баланс растёт на их сумму. Раньше это шло только в DebugLogger.info и нигде не было
+    // видно. Только лог, поведение то же; починка — решение владельца. Без uid: суммы, id записей трат, их вид.
     if (staleSpendOperations.length > 0) {
-      DebugLogger.info('level_spin_star_grants:spend_compaction', JSON.stringify({
-        stale: staleSpendOperations.length,
-        keptOperationId: newestSpendOperationId,
+      console.warn('[COIN-COMPACTION] spends_removed', JSON.stringify(describeSpendCompaction(
+        projection, staleSpendOperations, newestSpendOperationId,
+      ))); // guard-ok: денежный исход обязан логироваться и в релизе
+    } else if (spendOperations.length > 0) {
+      console.log('[COIN-COMPACTION] skip', JSON.stringify({
+        reason: projection.serverSeq > 0 ? 'only_newest_spend' : 'no_server_basis',
         serverSeq: projection.serverSeq,
-        serverBalance: projection.serverBalance,
-      }));
+        spends: spendOperations.length,
+        keptOperationId: newestSpendOperationId,
+      })); // guard-ok: ранний выход денежного блока обязан логироваться
     }
     const compactedOperations = [
       ...projection.operations.filter((operation) => (

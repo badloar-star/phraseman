@@ -489,6 +489,7 @@ function MistakePracticeSessionScreen() {
   const analyticsSessionRef = useRef<MistakePracticeSession | null>(null);
   const analyticsCompletedRef = useRef(false);
   const submissionLatchRef = useRef(false);
+  const verdictTapAtRef = useRef(0);
   // зачем (§126, «Мои ошибки» 15–18 с на ответ): журнал ответов живёт в памяти, запись — фоном по очереди (см. модуль)
   const answerJournalRef = useRef<{ key: string; journal: MistakeAnswerJournal } | null>(null);
   const getAnswerJournal = useCallback((scope: string, target: 'en' | 'fr'): MistakeAnswerJournal => {
@@ -762,8 +763,22 @@ function MistakePracticeSessionScreen() {
     });
   }, [lang, session, studyTarget]);
 
+  // коммит шторки и первый кадр после него — когда человек реально видит вердикт
+  useEffect(() => {
+    if (!feedback || !verdictTapAtRef.current) return;
+    const tapAt = verdictTapAtRef.current;
+    console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'tray_committed', sinceTapMs: Date.now() - tapAt, correct: feedback.correct }));
+    const raf = requestAnimationFrame(() => {
+      console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'first_frame_after_commit', sinceTapMs: Date.now() - tapAt }));
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [feedback]);
+
   const submitVerdict = useCallback(async (correct: boolean) => {
     if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current) return;
+    // зачем (сверка 22:33, «шторка вердикта на экране через 1,2–2,2 с, хотя verdict:shown 0–1 мс»): метка тапа для логов по этапам —
+    // тап → вычисление → setState → коммит шторки → первый кадр. Значения печатаются в [MISTAKE-SESSION] verdict:stage.
+    verdictTapAtRef.current = Date.now();
     submissionLatchRef.current = true;
     setSubmitting(true);
     try {
@@ -811,6 +826,7 @@ function MistakePracticeSessionScreen() {
         // Stop the held capture before the automatic same-card reset.
         setSpeechHeld(false);
       }
+      console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'setState_done', sinceTapMs: Date.now() - verdictTapAtRef.current }));
       console.log('[MISTAKE-SESSION] verdict:shown', JSON.stringify({ attemptId, correct, attemptEffect, ms: Date.now() - tVerdict, cursorAfter: result.session.cursor, queueLength: result.session.queue.length }));
       const occurredAtMs = Date.now();
       const modeDefinition = MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode];

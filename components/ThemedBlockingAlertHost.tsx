@@ -21,6 +21,7 @@ function ThemedBlockingAlertHost() {
       visible={visible}
       title={head?.title ?? ''}
       message={head?.message || undefined}
+      icon={head?.icon}
       actions={head ? [{ label: head.okLabel, onPress: () => { resolveThemedBlockingAlertHead(); } }] : []}
       onRequestClose={() => {
         resolveThemedBlockingAlertHead();

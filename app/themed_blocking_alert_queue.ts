@@ -3,7 +3,9 @@
  * Используется из non-React кода (например flushCommunityModerationAlertsFromInbox).
  */
 
-type Queued = { title: string; message: string; okLabel: string; resolve: () => void };
+// зачем (Сверка overlays-runtime 039–041, 05.10): у стадий аккаунта в макете плитка со значком (`.or-stage`, замок).
+export type ThemedBlockingAlertIcon = 'lock-closed';
+type Queued = { title: string; message: string; okLabel: string; icon?: ThemedBlockingAlertIcon; resolve: () => void };
 
 const queue: Queued[] = [];
 const listeners = new Set<() => void>();
@@ -34,10 +36,11 @@ export function resolveThemedBlockingAlertHead(): void {
 export function enqueueThemedBlockingInfoAlert(
   title: string,
   message: string,
-  okLabel: string
+  okLabel: string,
+  opts?: { icon?: ThemedBlockingAlertIcon },
 ): Promise<void> {
   return new Promise((resolve) => {
-    queue.push({ title, message, okLabel, resolve });
+    queue.push({ title, message, okLabel, icon: opts?.icon, resolve });
     notify();
   });
 }

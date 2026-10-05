@@ -162,16 +162,17 @@ export default function SettingsEdu() {
         tr: 'Otomatik ilerleme',
         pl: 'Automatyczne przejście dalej',
       }),
+      // зачем (Сверка profile-007, profile.html education): подпись короткая, как в макете.
       sub: L({
-        ru: 'После верного ответа следующее задание откроется само. Выключи, если хочешь остановиться и перечитать ответ.',
-        uk: 'Після правильної відповіді наступне завдання відкриється саме. Вимкни, якщо хочеш зупинитися й перечитати відповідь.',
-        en: 'After a correct answer, the next task opens automatically. Turn it off if you want to pause and reread the answer.',
-        es: 'Tras acertar, se abre la siguiente tarea. Desactívalo si quieres detenerte y releer la respuesta.',
-        'pt-BR': 'Após acertar, a próxima tarefa abre sozinha. Desative para parar e reler a resposta.',
-        vi: 'Sau câu trả lời đúng, bài tiếp theo tự mở. Tắt nếu muốn dừng lại và đọc lại đáp án.',
-        id: 'Setelah jawaban benar, soal berikutnya terbuka otomatis. Matikan untuk berhenti dan membaca ulang jawaban.',
-        tr: 'Doğru cevaptan sonra sonraki görev açılır. Durup cevabı yeniden okumak istersen kapat.',
-        pl: 'Po poprawnej odpowiedzi kolejne zadanie otworzy się samo. Wyłącz, jeśli chcesz się zatrzymać i przeczytać odpowiedź ponownie.',
+        ru: 'Следующее задание откроется само',
+        uk: 'Наступне завдання відкриється саме',
+        en: 'The next task opens by itself',
+        es: 'La siguiente tarea se abre sola',
+        'pt-BR': 'A próxima tarefa abre sozinha',
+        vi: 'Bài tiếp theo tự mở',
+        id: 'Soal berikutnya terbuka sendiri',
+        tr: 'Sonraki görev kendiliğinden açılır',
+        pl: 'Kolejne zadanie otworzy się samo',
       }),
     },
     {
@@ -189,15 +190,15 @@ export default function SettingsEdu() {
         pl: 'Wpisywanie z klawiatury',
       }),
       sub: L({
-        ru: 'Вводить ответ вручную вместо выбора слов',
-        uk: 'Вводити відповідь вручну замість вибору слів',
-        en: 'Type the answer instead of choosing words',
-        es: 'Escribir la respuesta completa con el teclado',
-        'pt-BR': 'Digitar a resposta em vez de escolher palavras',
-        vi: 'Tự gõ câu trả lời thay vì chọn từ',
-        id: 'Ketik jawaban sendiri alih-alih memilih kata',
-        tr: 'Kelime seçmek yerine cevabı elle yaz',
-        pl: 'Wpisuj odpowiedź ręcznie zamiast wybierać słowa',
+        ru: 'Вводить ответ вручную',
+        uk: 'Вводити відповідь вручну',
+        en: 'Type the answer yourself',
+        es: 'Escribir la respuesta a mano',
+        'pt-BR': 'Digitar a resposta',
+        vi: 'Tự gõ câu trả lời',
+        id: 'Ketik jawaban sendiri',
+        tr: 'Cevabı elle yaz',
+        pl: 'Wpisuj odpowiedź ręcznie',
       }),
     },
     {
@@ -358,7 +359,7 @@ export default function SettingsEdu() {
             >
             <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
             <RowIcon name="person-outline" />
-            <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Выбор голоса и скорости для английского', uk: 'Вибір голосу і швидкості для англійської', en: 'Choose the English voice and speed', es: 'Elige la voz y la velocidad para el inglés', 'pt-BR': 'Escolha a voz e a velocidade em inglês', vi: 'Chọn giọng và tốc độ tiếng Anh', id: 'Pilih suara dan kecepatan bahasa Inggris', tr: 'İngilizce sesi ve hızı seç', pl: 'Wybierz angielski głos i tempo' })}</Text></View>
+            <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
             </PressableHybrid>
           </BouncyScrollView>

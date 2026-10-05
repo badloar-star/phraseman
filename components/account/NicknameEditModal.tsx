@@ -236,7 +236,10 @@ export default function NicknameEditModal({
       DebugLogger.error('NicknameEditModal:localReferencesOptimistic', error, 'warning');
     });
 
-    const rollbackToOldName = () => {
+    // зачем (владелец: откат имени был молчаливым): причина отката пишется в лог ВСЕГДА, не только в __DEV__ —
+    // по строке [NAME-CHANGE] видно, почему имя вернулось (занято / кулдаун / сеть). Само имя в лог не пишем.
+    const rollbackToOldName = (reason: string) => {
+      console.log(`[NAME-CHANGE] rollback reason=${reason} stale=${isStaleAttempt()}`);
       if (isStaleAttempt()) {
         traceNick('rollback:skip stale_attempt');
         return; // более свежая попытка уже решила исход UI
@@ -283,13 +286,13 @@ export default function NicknameEditModal({
 
       if (reservation.status === 'taken') {
         traceNick('save:out taken — откат + плашка');
-        rollbackToOldName();
+        rollbackToOldName('taken');
         onNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
         traceNick('save:out cooldown_14d — откат + плашка');
-        rollbackToOldName();
+        rollbackToOldName('cooldown_14d');
         onNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
           'Нік можна змінювати не частіше одного разу на 14 днів.',
@@ -307,7 +310,7 @@ export default function NicknameEditModal({
         // Самая частая ветка при плохой сети — и именно в ней ловится зависание
         // экрана, если владелец в этот момент жмёт «Назад».
         traceNick(`save:out reserve_not_ok status=${reservation.status} — откат + плашка`);
-        rollbackToOldName();
+        rollbackToOldName(`reserve_${reservation.status}`);
         onNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
           'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',

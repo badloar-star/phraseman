@@ -255,12 +255,17 @@ export default function AccountDetailsScreen() {
 
             {/* Инлайн-плашка отката смены ника (некритичная, вместо блокирующего Alert). */}
             {nameNotice ? (
+              // зачем (overlays-runtime.html .or-rollback): плашка отката — причина 13/19 и строка-итог «Прежнее имя
+              // восстановлено.» 12 вторичным цветом; радиус 16, поля 13/14, отступ сверху 16; без значка (в макете его нет).
               <View
                 testID="account-nickname-inline-notice"
-                style={{ marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, borderRadius: 14, padding: 12 }}
+                accessibilityRole="alert"
+                style={{ marginTop: 16, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 14, backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
               >
-                <Ionicons name="alert-circle-outline" size={20} color={t.wrong} />
-                <Text style={{ flex: 1, color: glass.secondary, fontSize: 13, lineHeight: 18 }}>{nameNotice}</Text>
+                <Text style={{ color: glass.text, fontSize: 13, lineHeight: 19 }}>{nameNotice}</Text>
+                <Text testID="account-nickname-restored" style={{ marginTop: 4, color: glass.secondary, fontSize: 12, lineHeight: 17 }}>
+                  {L('Прежнее имя восстановлено.', 'Попереднє імʼя відновлено.', 'Your previous name has been restored.', 'Se restauró el nombre anterior.', 'O nome anterior foi restaurado.', 'Đã khôi phục tên cũ.', 'Nama sebelumnya dipulihkan.', 'Önceki ad geri yüklendi.', 'Przywrócono poprzednią nazwę.')}
+                </Text>
               </View>
             ) : null}
 

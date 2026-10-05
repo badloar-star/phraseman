@@ -258,12 +258,16 @@ export async function primeAppSnapshotFromStorage(
     BOOT_STUDY_TARGET_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
+  // зачем (пакет 09:26, прогон 2: published 8246 мс при preRead 334): время каждой части пачки — какая держит публикацию.
+  const partsStartedAt = Date.now();
+  const parts: Record<string, number> = {};
+  const mark = (name: string) => { parts[name] = Date.now() - partsStartedAt; };
   const [storageRead, , bootRunes] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
-      (pairs) => ({ ok: true as const, pairs }),
-      () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
+      (pairs) => { mark('multiGetMs'); return { ok: true as const, pairs }; },
+      () => { mark('multiGetMs'); return { ok: false as const, pairs: [] as [string, string | null][] }; },
     ),
-    hydrateUserSettingsFromStorage(settingsBootReadScope).catch(noteSwallowedHandler('app_snapshot_bootstrap:hydrateUserSettingsFromStorage')),
+    hydrateUserSettingsFromStorage(settingsBootReadScope).catch(noteSwallowedHandler('app_snapshot_bootstrap:hydrateUserSettingsFromStorage')).finally(() => mark('settingsMs')),
     // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
     // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
     // стал длиннее ни на один лишний последовательный поход в хранилище.
@@ -271,9 +275,11 @@ export async function primeAppSnapshotFromStorage(
     // бандл ради одного getItem противоречит Performance Bible (_layout.tsx
     // подключает его тем же `await import`).
     import('./level_spin_star_grants')
-      .then((module) => module.peekStoredLevelSpinStarsForBoot(accountGeneration))
-      .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null)),
+      .then((module) => { mark('runesImportMs'); return module.peekStoredLevelSpinStarsForBoot(accountGeneration); })
+      .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null))
+      .finally(() => mark('runesPeekMs')),
   ]);
+  console.warn('[BOOT-SNAPSHOT] parts', JSON.stringify({ ...parts, keys: keys.length, sincePrimeStartMs: Date.now() - now })); // guard-ok: временная трассировка HOME-COLD
 
   if (!isAccountCurrent()) { exit('account_changed:multiget'); return; }
   // A failed storage read is not an empty account. Publishing defaults here

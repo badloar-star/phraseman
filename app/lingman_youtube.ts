@@ -392,9 +392,13 @@ export function getLingmanYoutubeUnreadCount(videos: Pick<LingmanYoutubeVideo, '
 
 async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
   try {
+    // зачем (пакет 09:26: video:cache_read 3303/8682 мс при hit): сколько ждали хранилище и сколько разбор.
+    const startedAt = Date.now();
     const raw = await AsyncStorage.getItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT);
-    if (!raw) return null;
+    const getItemMs = Date.now() - startedAt;
+    if (!raw) { console.warn('[HOME-COLD] video_cache:miss', JSON.stringify({ getItemMs })); return null; } // guard-ok: ранний выход логируется
     const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[]; channelId?: string };
+    console.warn('[HOME-COLD] video_cache:read', JSON.stringify({ getItemMs, parseMs: Date.now() - startedAt - getItemMs, bytes: raw.length })); // guard-ok: временная трассировка
     // Кэш привязан к channelId: если «Пульт» переключил канал, старый список не
     // показываем (иначе под новым именем висели бы видео прошлого канала).
     const activeChannelId = getActiveYoutubeChannel().channelId;

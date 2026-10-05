@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
   channelPillContent: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0 },
   avatar: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 },
   avatarText: { fontSize: 13, fontWeight: '800' },
-  channelName: { ...V2_TYPE.body, flex: 1, minWidth: 0, flexShrink: 1 },
+  // зачем (Сверка video-001: в пилюле было только фото): flex:1 в пилюле шириной по содержимому давал названию 0 px —
+  // имя канала схлопывалось. Теперь ширина по тексту, сжимается только при нехватке места; `.chbtn` 16/700.
+  channelName: { ...V2_TYPE.body, fontWeight: '700', flexShrink: 1, minWidth: 0 },
   channelChevron: { flexShrink: 0 },
 });

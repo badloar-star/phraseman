@@ -19,7 +19,7 @@ export default function YoutubeChannelTabs({ value, onChange }: {
     playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', en: 'Playlists', es: 'Listas de reproducción', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
   };
   return (
-    <View style={[styles.wrap, { borderBottomColor: g.glassEdge }]}>
+    <View style={[styles.wrap, { borderBottomColor: g.line }]}>
       {/* зачем (владелец 01.10): вкладки «Все видео» нет — канал показывает «Главная» и «Плейлисты». */}
       {(['home', 'playlists'] as const).map((tab) => {
         const active = value === tab;
@@ -43,8 +43,11 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   );
 }
 
+// зачем (Сверка video-001/008, video.html .tabs3): вкладки слева через 22, по ширине текста, подчёркивание 2 px
+// под самим словом, линия --line (было: две вкладки растянуты на всю ширину с длинной чертой).
 const styles = StyleSheet.create({
-  wrap: { flexDirection: 'row', borderBottomWidth: 1, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая линия под вкладками, как `.tabs3` макета
-  tab: { flex: 1, minWidth: 0, minHeight: 44, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
-  label: { fontSize: 16, fontWeight: '600', textAlign: 'center' },
+  wrap: { flexDirection: 'row', gap: 22, borderBottomWidth: 1, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая линия под вкладками, как `.tabs3` макета
+  // длинная подпись (es «Listas de reproducción», крупный шрифт) сжимается и переносится, а не уходит за экран
+  tab: { flexShrink: 1, minWidth: 0, minHeight: 44, paddingVertical: 12, justifyContent: 'center' },
+  label: { fontSize: 16, fontWeight: '600' },
 });

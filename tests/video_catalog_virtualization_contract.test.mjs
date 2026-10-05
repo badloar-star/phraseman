@@ -24,7 +24,9 @@ test('Video chrome follows the reference hierarchy without inert controls', () =
 });
 
 test('Video tab strip gives every long localized label a responsive share of a narrow screen', () => {
-  assert.ok(tabs.includes("flex: 1"), 'every tab shares the available width');
+  // зачем (Сверка video-001, .tabs3): вкладки по ширине текста слева через 22, но сжимаются на узком экране.
+  assert.ok(tabs.includes('gap: 22'), 'tabs sit left with the mockup gap');
+  assert.ok(tabs.includes('flexShrink: 1'), 'every tab may shrink on a narrow screen');
   assert.ok(tabs.includes("minWidth: 0"), 'long labels may shrink and wrap instead of overflowing');
   assert.ok(tabs.includes("Listas de reproducción"), 'the long Spanish playlist label remains a real localized label');
   assert.ok(!tabs.includes('marginRight: 10'), 'inter-tab fixed gaps cannot push the third tab off-screen');
@@ -33,7 +35,9 @@ test('Video tab strip gives every long localized label a responsive share of a n
 test('Video channel pill constrains a long external channel name without hiding its action', () => {
   assert.ok(header.includes("maxWidth: '100%'"), 'pill cannot exceed the screen width');
   assert.ok(header.includes('channelPillContent: { flexDirection'), 'pill keeps a content row');
-  assert.ok(header.includes('channelName: { ...V2_TYPE.body, flex: 1, minWidth: 0, flexShrink: 1 }'), 'external name can wrap/shrink within the pill');
+  // зачем (Сверка video-001): flex:1 в пилюле по содержимому обнулял ширину имени — только сжатие.
+  assert.ok(header.includes("channelName: { ...V2_TYPE.body, fontWeight: '700', flexShrink: 1, minWidth: 0 }"), 'external name can shrink within the pill');
+  assert.ok(!/channelName: {[^}]*flex: 1/.test(header), 'name never gets flex:1 inside a content-sized pill');
   assert.ok(header.includes('styles.channelChevron'), 'the disclosure chevron keeps a non-shrinking style');
   assert.ok(header.includes('channelAccessibilityLabel'), 'screen readers receive the full current channel name');
 });

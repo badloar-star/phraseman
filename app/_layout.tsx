@@ -11,6 +11,27 @@ import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зач
 const BOOT_TRACE_ENABLED = !!(globalThis as { __DEV__?: boolean }).__DEV__;
 if (BOOT_TRACE_ENABLED) console.warn('[BOOT] _layout module eval START'); // guard-ok: BOOT_TRACE_ENABLED и есть __DEV__
 const BOOT_T0 = Date.now();
+// зачем (координатор 05.10, пакет 01:26, «сперва логи»): таймеры ворот сплеша опаздывали на 1,5–2 с (FALLBACK 400 мс
+// сработал через ~2 с). Сторож простоя JS-потока: тик 100 мс, печатает каждый разрыв > 250 мс с временем от
+// старта — видно, КОГДА и НА СКОЛЬКО поток стоял. Только dev, сам снимается через 3 с после снятия сплеша
+// (и не позже 30 с).
+const JS_STALL_TICK_MS = 100;
+const JS_STALL_REPORT_MS = 250;
+if (BOOT_TRACE_ENABLED) {
+  let lastTickAt = Date.now();
+  let stopAt = BOOT_T0 + 30_000;
+  const watchdog = setInterval(() => {
+    const now = Date.now();
+    const gapMs = now - lastTickAt;
+    lastTickAt = now;
+    if (gapMs > JS_STALL_REPORT_MS) {
+      console.warn(`[JS-STALL] +${now - BOOT_T0}ms поток стоял ${gapMs}ms (с +${now - gapMs - BOOT_T0}ms)`); // guard-ok: только dev
+    }
+    const splashHiddenAt = (globalThis as { __phrasemanNativeSplashHiddenAt?: number }).__phrasemanNativeSplashHiddenAt;
+    if (typeof splashHiddenAt === 'number') stopAt = Math.min(stopAt, splashHiddenAt + 3_000);
+    if (now >= stopAt) clearInterval(watchdog);
+  }, JS_STALL_TICK_MS);
+}
 export function bootMark(step: string, extra?: unknown): void {
   if (!BOOT_TRACE_ENABLED) return;
   const ms = Date.now() - BOOT_T0;
@@ -1622,10 +1643,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     const sub = onAppEvent('app_first_content_ready', () => {
-      bootMark('app_first_content_ready event received');
+      // зачем (пакет 01:26): событие пришло на +6236, а ворота до +8214 видели false. Печатаем, взведён ли уже
+      // таймер (повтор игнорируется) и на сколько он реально опоздал — так видно, стоит ли JS-поток.
+      const pending = firstContentReadyTimerRef.current !== null;
+      bootMark('app_first_content_ready event received', { timerAlreadyPending: pending });
       if (firstContentReadyTimerRef.current) return;
+      const armedAt = Date.now();
       firstContentReadyTimerRef.current = setTimeout(() => {
         firstContentReadyTimerRef.current = null;
+        bootMark('firstContentReady timer fired -> setFirstContentReady(true)', { plannedMs: 32, lateMs: Date.now() - armedAt - 32 });
         setFirstContentReady(true);
       }, 32);
     });
@@ -1640,8 +1666,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     if (!ready || effectiveShowOnboarding || isBanned || firstContentReady) return;
+    const fallbackArmedAt = Date.now();
     const timer = setTimeout(() => {
-      bootMark('firstContentReady FALLBACK fired (экран не прислал событие)');
+      bootMark('firstContentReady FALLBACK fired (экран не прислал событие)', {
+        plannedMs: FIRST_CONTENT_READY_FALLBACK_MS,
+        lateMs: Date.now() - fallbackArmedAt - FIRST_CONTENT_READY_FALLBACK_MS,
+      });
       setFirstContentReady(true);
     }, FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);

@@ -194,8 +194,14 @@ function lockCallerTag(): string {
   const rawFrames = stack.split('\n').slice(2, 40)
     .map((line) => line.trim().replace(/^at\s+/, ''))
     .filter((line) => line.length > 0 && !/^(next|asyncGeneratorStep|_next|_throw|tryCallOne|tryCallTwo|doResolve|lockCallerTag|withAccountTransitionLock|withStorageLock)\b/.test(line))
+    .filter((line) => !/^(Promise|InternalBytecode)\b/.test(line))
     .slice(0, 4)
-    .map((line) => line.replace(/https?:\/\/[^\s)]*\//g, '').slice(0, 120));
+    // зачем (пакет 01:26): URL дев-бандла с длинным query обрезался раньше строки:колонки — место нельзя было
+    // найти. Оставляем «bundle:строка:колонка» (символизируется через Metro /symbolicate).
+    .map((line) => line
+      .replace(/\(?https?:\/\/[^\s)]*?:(\d+):(\d+)\)?/g, '(bundle:$1:$2)')
+      .replace(/\(address at [^)]*\)/g, '')
+      .slice(0, 120));
   return rawFrames.length > 0 ? `raw: ${rawFrames.join(' <- ')}` : 'unknown';
 }
 const LOCK_CALLER_NOISE = new Set([

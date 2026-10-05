@@ -255,12 +255,37 @@ export function actionToastTri(
   };
 }
 
+// зачем (координатор 05.10, пакет 01:26, «сперва логи»): событие app_first_content_ready приходило по 4–5 раз,
+// а ворота сплеша первое как будто не засчитывали. Печатаем, КТО прислал (именованные кадры стека) и когда
+// (мс от старта процесса) — только в dev.
+let firstContentReadyEmitCount = 0;
+function logFirstContentReadyEmit(): void {
+  if (!(globalThis as { __DEV__?: boolean }).__DEV__) return;
+  firstContentReadyEmitCount += 1;
+  const entryAt = (globalThis as { __phrasemanEntryEpochMs?: number }).__phrasemanEntryEpochMs;
+  const sinceEntryMs = typeof entryAt === 'number' ? Date.now() - entryAt : null;
+  const frames: string[] = [];
+  for (const line of (new Error().stack ?? '').split('\n').slice(2, 30)) {
+    const name = /at\s+([^\s(]+)/.exec(line.trim())?.[1] ?? '';
+    if (!name || name === 'emitAppEvent' || name === 'logFirstContentReadyEmit' || name.startsWith('?anon')
+      || name === 'anonymous' || name === 'next' || name === 'asyncGeneratorStep') continue;
+    frames.push(name);
+    if (frames.length >= 4) break;
+  }
+  console.warn('[BOOTSPLASH-EVT] emit app_first_content_ready', JSON.stringify({
+    n: firstContentReadyEmitCount,
+    sinceEntryMs,
+    source: frames.join(' <- ') || 'unknown',
+  }));
+}
+
 export function emitAppEvent<K extends keyof AppEventMap>(
   event: K,
   payload?: AppEventMap[K]
 ): void {
   if (event === 'app_first_content_ready') {
     appFirstContentReadyFired = true;
+    logFirstContentReadyEmit();
   }
   if (event === 'app_home_screen_ready') {
     appHomeScreenReadyFired = true;

@@ -48,7 +48,9 @@ describe('DialogueV2SessionScreen', () => {
     expect(source).toContain('<DialogueGlassBubble');
     expect(source).toContain('dialogueGlassFieldStyle(glass)');
     expect(source).toContain('<DialogueGlassMenuSheet');
-    expect(source).toContain("behavior={Platform.OS === 'ios' ? 'padding' : 'height'}");
+    // зачем (сверка dialogs-030/-016): на Android 'height' при adjustResize не возвращал высоту после скрытия клавиатуры (пустая полоса ~150px) — режим 'padding' на обеих платформах
+    expect(source).toContain('behavior="padding"');
+    expect(source).not.toContain("'height'");
     expect(source).toContain('keyboardVerticalOffset={0}');
   });
 });

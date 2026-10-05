@@ -1,7 +1,7 @@
 import EnergyBar from '../EnergyBar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { ActivityIndicator, BackHandler, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, BackHandler, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PressableScale } from '../feedback/PressableScale';
@@ -273,9 +273,22 @@ export function DialogueV2SessionScreen({
     scrollRef.current?.scrollToEnd({ animated: true });
   }, []);
 
+  // зачем (сверка dialogs-030/-016, 🔴 «после отправки клавиатура скрыта, а поле ввода осталось приподнятым — пустая полоса ~150px»):
+  // на Android при windowSoftInputMode=adjustResize режим height у KeyboardAvoidingView удваивает сдвиг и после скрытия клавиатуры не возвращает высоту.
+  // Режим padding возвращает нижний отступ в 0 сам. Сперва логи: высота клавиатуры при показе/скрытии печатается в [DIALOGUE-KEYBOARD].
+  React.useEffect(() => {
+    const show = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow', (event) => {
+      console.log('[DIALOGUE-KEYBOARD] show', JSON.stringify({ height: Math.round(event.endCoordinates?.height ?? 0), os: Platform.OS }));
+    });
+    const hide = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide', () => {
+      console.log('[DIALOGUE-KEYBOARD] hide', JSON.stringify({ os: Platform.OS }));
+    });
+    return () => { show.remove(); hide.remove(); };
+  }, []);
+
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior="padding"
       keyboardVerticalOffset={0}
       style={{ flex: 1, backgroundColor: glass.bg }}
       testID="dialogue-v2-session-screen"

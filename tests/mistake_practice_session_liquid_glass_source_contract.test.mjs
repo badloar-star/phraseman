@@ -17,7 +17,10 @@ test('mistake practice keeps real answer flows while structural surfaces use Liq
 });
 
 test('mistake practice frame protects both system safe areas', () => {
-  assert.match(source, /<SafeAreaView style=\{styles\.screen\}>/);
+  // зачем (f58f8afa5, Сверка mistakes-panel-010/017): RN SafeAreaView на Android не даёт отступа — шапка с ✕ уходила
+  // под строку состояния. Обе зоны защищены отступами проекта useStableSafeAreaInsets (Performance Bible).
+  assert.match(source, /const insets = useStableSafeAreaInsets\(\);/);
+  assert.match(source, /<View style=\{\[styles\.screen, \{ paddingTop: insets\.top, paddingBottom: insets\.bottom \}\]\}>/);
   // нижняя часть защищена «стаканом» с отступом под жест (Tray считает insets.bottom сам), а контент прокрутки оставляет под ним место
   assert.match(source, /paddingBottom: 340/);
 });

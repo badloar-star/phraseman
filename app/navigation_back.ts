@@ -414,6 +414,16 @@ function popBackCandidate(leaving: NavigationEntry | null): NavigationEntry | nu
     || !candidate
     || candidate.section !== leaving.section
   ) {
+    // зачем (Сверка 06:10: «назад» из плейлиста открыло экран канала вместо вкладки «Видео»): сброс истории — ранний
+    // выход; печатаем, КАКОЕ значение его решило. Пути без параметров запроса.
+    console.warn('[NAV-BACK] candidate:reset', JSON.stringify({
+      reason: !leaving ? 'no_leaving' : leaving.role === 'root' ? 'leaving_is_root'
+        : leaving.section === null ? 'leaving_no_section' : !candidate ? 'no_candidate' : 'section_mismatch',
+      leaving: leaving ? pathnameOf(leaving.href) : null,
+      leavingSection: leaving?.section ?? null,
+      candidate: candidate ? pathnameOf(candidate.href) : null,
+      candidateSection: candidate?.section ?? null,
+    })); // guard-ok: ранний выход навигации логируется
     // Чужая/неизвестная ветка не должна воскреснуть после перехода на fallback.
     navigationStack = [];
     return null;
@@ -444,6 +454,17 @@ export function safeRouterBack(
   const leaving = currentEntry();
   const candidate = popBackCandidate(leaving);
   const chosen = safeTarget(candidate, fallback);
+  // зачем (Сверка 06:10): каждое решение «назад» — откуда, кандидат из истории, что выбрано и каким способом.
+  const logBack = (method: string): void => {
+    console.warn('[NAV-BACK] decision', JSON.stringify({
+      leaving: leaving ? pathnameOf(leaving.href) : null,
+      leavingSection: leaving?.section ?? null,
+      candidate: candidate ? pathnameOf(candidate.href) : null,
+      chosen: pathnameOf(chosen.path),
+      fallback: pathnameOf(hrefForTarget(fallback) ?? HOME_BACK_FALLBACK),
+      method,
+    })); // guard-ok: решение навигации логируется
+  };
 
   // Settings sheets are mounted over the retained Settings tab. A native one-step
   // dismiss preserves that tab instance, but only when Settings owns this branch.
@@ -456,6 +477,7 @@ export function safeRouterBack(
     && typeof router.dismiss === 'function'
     && router.canDismiss()
   ) {
+    logBack('settings_dismiss_1');
     router.dismiss(1);
     return;
   }
@@ -472,15 +494,18 @@ export function safeRouterBack(
       && typeof router.dismiss === 'function'
       && router.canDismiss()
     ) {
+      logBack('same_path_dismiss_1');
       router.dismiss(1);
       return;
     }
     if (typeof router.dismissTo === 'function') {
+      logBack('dismiss_to');
       router.dismissTo(chosen.target);
       return;
     }
   }
 
+  logBack('replace');
   suppressNextRemember = true;
   paywallDismissShouldReplace = false;
   router.replace(chosen.target);

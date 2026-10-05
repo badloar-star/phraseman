@@ -86,5 +86,7 @@ test('social bar keeps the like gate, purchase hook and optimistic add', () => {
   assert.ok(source.includes('likeLockedToast()'), 'like before add still explains why it is locked');
   assert.ok(source.includes('onRequestPurchase(pack, price)'), 'paid pack still opens the purchase sheet');
   assert.ok(source.includes('addToLibraryOptimistic'), 'optimistic add stays');
-  assert.ok(!source.includes('t.correct'), 'no green "added" state');
+  // зачем (макет packs-simple.html кадр 4, `.ac-cta { background: var(--acc); color: var(--on) }`; коммиты 438053c05, d627c1b17): `t.correctText` — это
+  // цвет ТЕКСТА на акценте (--on), тот же, что у вкладок `.bar3`, а не зелёное состояние. Ловим только токен `t.correct` целиком — зелёный фон/текст «Добавлено».
+  assert.ok(!/t\.correct(?!Text)/.test(source), 'no green "added" state');
 });

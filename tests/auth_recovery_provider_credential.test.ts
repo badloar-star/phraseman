@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8'));
 
 function recoveryCredentialSource(): string {
   const start = source.indexOf('export async function acquireAuthRecoveryNativeCredential');

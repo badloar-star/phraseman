@@ -4,11 +4,12 @@
 // и поздний ответ после закрытия окна не делают ничего лишнего (автоперехода нет).
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const hub = fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsHubScreen.tsx'), 'utf8');
-const sheet = fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsTrainingModeSheet.tsx'), 'utf8');
-const quota = fs.readFileSync(path.join(root, 'app/monthly_training_sessions.ts'), 'utf8');
+const hub = normalizeEol(fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsHubScreen.tsx'), 'utf8'));
+const sheet = normalizeEol(fs.readFileSync(path.join(root, 'app/flashcards/FlashcardsTrainingModeSheet.tsx'), 'utf8'));
+const quota = normalizeEol(fs.readFileSync(path.join(root, 'app/monthly_training_sessions.ts'), 'utf8'));
 
 describe('FC train early tap (§90)', () => {
   test('кнопка не отключается на ожидании квоты и не серая', () => {

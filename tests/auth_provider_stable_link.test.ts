@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const authProviderPath = path.join(process.cwd(), 'app', 'auth_provider.ts');
 const cloudSyncPath = path.join(process.cwd(), 'app', 'cloud_sync.ts');
@@ -7,10 +8,10 @@ const accountDeleteQuarantinePath = path.join(process.cwd(), 'app', 'account_del
 const registrationPromptPath = path.join(process.cwd(), 'components', 'RegistrationPromptModal.tsx');
 
 describe('auth provider stable-id linking', () => {
-  const source = readFileSync(authProviderPath, 'utf8');
-  const cloudSyncSource = readFileSync(cloudSyncPath, 'utf8');
-  const accountDeleteQuarantineSource = readFileSync(accountDeleteQuarantinePath, 'utf8');
-  const registrationPromptSource = readFileSync(registrationPromptPath, 'utf8');
+  const source = normalizeEol(readFileSync(authProviderPath, 'utf8'));
+  const cloudSyncSource = normalizeEol(readFileSync(cloudSyncPath, 'utf8'));
+  const accountDeleteQuarantineSource = normalizeEol(readFileSync(accountDeleteQuarantinePath, 'utf8'));
+  const registrationPromptSource = normalizeEol(readFileSync(registrationPromptPath, 'utf8'));
   it('repairs the stable link through the server without any App Check step', () => {
     const start = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableIdDetailed');
     const end = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId(', start);
@@ -432,7 +433,7 @@ describe('auth provider stable-id linking', () => {
 });
 
 test('identity_retired branches delegate to fresh identity handling and never retry with the stale stable id', () => {
-  const source = readFileSync(authProviderPath, 'utf8');
+  const source = normalizeEol(readFileSync(authProviderPath, 'utf8'));
   expect(source).toContain("ensureFreshPostDeletionIdentity('identity_retired'");
   const retiredBranches = source.match(/if \([^\n]*failure === 'identity_retired'\)[\s\S]{0,900}?return \{ result: '[^']+'[^\n]*\};/g) ?? [];
   expect(retiredBranches.length).toBeGreaterThanOrEqual(2);
@@ -442,7 +443,7 @@ test('identity_retired branches delegate to fresh identity handling and never re
 });
 
 test('stable-only retirement preserves the live provider uid and completes as created_new in one attempt', () => {
-  const source = readFileSync(authProviderPath, 'utf8');
+  const source = normalizeEol(readFileSync(authProviderPath, 'utf8'));
   expect(source).toContain("retiredSubject === 'stable'");
   expect(source).toContain('ensureFreshStableIdentityForLiveProvider');
   expect(source).toContain("result: 'created_new'");

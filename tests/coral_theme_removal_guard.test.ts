@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 const SOURCE_ROOTS = ['app', 'components', 'constants', 'hooks', 'lib', 'modules', 'scripts'];
@@ -28,7 +29,7 @@ const walkFiles = (relativeRoot: string): string[] => {
 
 describe('removed Coral theme regression guard', () => {
   it('has a dedicated command for the removal gate', () => {
-    const packageJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')) as {
+    const packageJson = JSON.parse(normalizeEol(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'))) as {
       scripts?: Record<string, string>;
     };
 
@@ -41,7 +42,7 @@ describe('removed Coral theme regression guard', () => {
     const filesWithCoral = SOURCE_ROOTS.flatMap(walkFiles)
       .filter((relativePath) => !/(?:^|\/)(?:__tests__|generated)\/|\.(?:spec|test)\.[^.]+$/i.test(relativePath))
       .filter((relativePath) => {
-        const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+        const source = normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
         return /coral/i.test(source);
       })
       .sort();
@@ -57,9 +58,9 @@ describe('removed Coral theme regression guard', () => {
   });
 
   it('keeps the only theme occurrence as a persisted-value migration tombstone', () => {
-    const themeContext = fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8');
-    const themePalette = fs.readFileSync(path.join(ROOT, 'constants', 'theme.ts'), 'utf8');
-    const themeSettings = fs.readFileSync(path.join(ROOT, 'app', 'settings_themes.tsx'), 'utf8');
+    const themeContext = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8'));
+    const themePalette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'theme.ts'), 'utf8'));
+    const themeSettings = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'settings_themes.tsx'), 'utf8'));
 
     expect(themeContext.match(/coral/gi)).toHaveLength(1);
     expect(themeContext).toMatch(/REMOVED_THEME_MODES[^\n]*'coral'/);

@@ -2,9 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import { buildCertificateShareMessage, buildExamShareMessage } from '../app/exam_share';
 import type { Lang } from '../constants/i18n';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'exam_share.ts'), 'utf8');
+const SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'exam_share.ts'), 'utf8'));
 const PLANNED_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const satisfies readonly Lang[];
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 

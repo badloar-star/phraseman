@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as ts from 'typescript';
+import { normalizeEol } from './helpers/read_source';
 
-const layout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
+const layout = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8'));
 const effectStart = layout.indexOf('const bootstrap = async () => {');
 const effectEnd = layout.indexOf("const sub = onAppEvent('achievement_unlocked'", effectStart);
 const bootstrapRegion = layout.slice(effectStart, effectEnd);

@@ -28,6 +28,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 import { findRulesBlockedKeys } from '../app/cloud_sync';
+import { normalizeEol } from './helpers/read_source';
 
 const RULES_PATH = join(__dirname, '..', 'firestore.rules');
 
@@ -50,7 +51,7 @@ function readKeysFromRulesFunction(rules: string, functionName: string): string[
 }
 
 describe('cloud_sync: клиентское зеркало блок-листа firestore.rules', () => {
-  const rules = readFileSync(RULES_PATH, 'utf8');
+  const rules = normalizeEol(readFileSync(RULES_PATH, 'utf8'));
 
   // Все ключи progress, запись которых правила запрещают клиенту. Два
   // источника: явный премиум-блоклист и серверные ключи прогресса внутри

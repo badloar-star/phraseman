@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: Q-COIN (b), координатор 01.10. Сторож проводки сверки монет:
 // метка сверки закрыта от клиента правилами, функция экспортирована,
@@ -7,7 +8,7 @@ import { join } from 'path';
 // число телефона не участвует в расчёте подъёма.
 
 const root = join(__dirname, '..');
-const read = (...parts: string[]) => readFileSync(join(root, ...parts), 'utf8');
+const read = (...parts: string[]) => normalizeEol(readFileSync(join(root, ...parts), 'utf8'));
 
 test('coinReconcileV1 marker is server-only in Firestore Rules (update and create)', () => {
   const rules = read('firestore.rules');

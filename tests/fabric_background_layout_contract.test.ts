@@ -1,15 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('Fabric background layout guard', () => {
   const root = process.cwd();
 
   it('keeps decorative background layers pinned for Fabric/Yoga layout commits', () => {
-    const screenGradient = fs.readFileSync(path.join(root, 'components', 'ScreenGradient.tsx'), 'utf8');
-    const appArtBackdrop = fs.readFileSync(path.join(root, 'components', 'AppArtBackdrop.tsx'), 'utf8');
-    const safeLinearGradient = fs.readFileSync(path.join(root, 'components', 'SafeLinearGradient.tsx'), 'utf8');
-    const topFadeMask = fs.readFileSync(path.join(root, 'components', 'TopFadeMask.tsx'), 'utf8');
-    const tabLayout = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8');
+    const screenGradient = normalizeEol(fs.readFileSync(path.join(root, 'components', 'ScreenGradient.tsx'), 'utf8'));
+    const appArtBackdrop = normalizeEol(fs.readFileSync(path.join(root, 'components', 'AppArtBackdrop.tsx'), 'utf8'));
+    const safeLinearGradient = normalizeEol(fs.readFileSync(path.join(root, 'components', 'SafeLinearGradient.tsx'), 'utf8'));
+    const topFadeMask = normalizeEol(fs.readFileSync(path.join(root, 'components', 'TopFadeMask.tsx'), 'utf8'));
+    const tabLayout = normalizeEol(fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8'));
 
     expect(screenGradient).toContain('collapsable={false}');
     expect(screenGradient).toContain("overflow: 'visible'");

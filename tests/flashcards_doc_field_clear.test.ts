@@ -6,6 +6,7 @@ import {
   decideFlashcardDocField,
   flashcardDocFieldClearedMarkerKey,
 } from '../app/flashcards_doc_field_clear';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account V2, Пакет 8H-2 — сторож очистки progress.flashcards_v1 в документе.
@@ -59,12 +60,12 @@ describe('8H-2 — маркеры для нового снимка', () => {
 });
 
 describe('8H-2 — встройка в doSyncToCloud (структура cloud_sync)', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+  const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8')).split('\r\n').join('\n');
   const start = source.indexOf('async function doSyncToCloud(');
   const body = source.slice(start, source.indexOf('\n}\n', start));
 
   // 8K: цикл выгрузки карточек вынесен в общий путь (app/flashcards_cloud_upload.ts).
-  const helperSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8').split('\r\n').join('\n');
+  const helperSource = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8')).split('\r\n').join('\n');
   const helperStart = helperSource.indexOf('export async function uploadFlashcardListsToPages(');
   const helper = helperSource.slice(helperStart, helperSource.indexOf('\n}\n', helperStart));
 

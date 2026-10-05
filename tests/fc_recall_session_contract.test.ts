@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
+const read = (...parts: string[]) => normalizeEol(fs.readFileSync(path.join(ROOT, ...parts), 'utf8'));
 
 describe('full-phrase recall session contract', () => {
   test('uses the same Cards session shell, HUD, rewards and result screen', () => {
@@ -10,7 +11,7 @@ describe('full-phrase recall session contract', () => {
     expect(fs.existsSync(file)).toBe(true);
     if (!fs.existsSync(file)) return;
 
-    const source = fs.readFileSync(file, 'utf8');
+    const source = normalizeEol(fs.readFileSync(file, 'utf8'));
     expect(source).toContain('SessionAttemptsHud');
     expect(source).toContain('useSessionAttempts');
     expect(source).toContain('useSessionAttemptAutoReset');

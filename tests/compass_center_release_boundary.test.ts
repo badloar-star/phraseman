@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 const exists = (relativePath: string): boolean => fs.existsSync(path.join(ROOT, relativePath));
-const read = (relativePath: string): string => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+const read = (relativePath: string): string => normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 
 const FUTURE_ONLY_FILES = [
   'app/compass_ai_explanation.ts',

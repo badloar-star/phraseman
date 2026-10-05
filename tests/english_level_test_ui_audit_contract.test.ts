@@ -1,20 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 import vm from 'vm';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
 const surface = path.join(root, 'knowly-www', 'english-level-test');
-const appSource = fs.readFileSync(path.join(surface, 'app.js'), 'utf8');
-const certificateSource = fs.readFileSync(path.join(surface, 'certificate.js'), 'utf8');
-const cssSource = fs.readFileSync(path.join(surface, 'styles.css'), 'utf8');
-const indexSource = fs.readFileSync(path.join(surface, 'index.html'), 'utf8');
+const appSource = normalizeEol(fs.readFileSync(path.join(surface, 'app.js'), 'utf8'));
+const certificateSource = normalizeEol(fs.readFileSync(path.join(surface, 'certificate.js'), 'utf8'));
+const cssSource = normalizeEol(fs.readFileSync(path.join(surface, 'styles.css'), 'utf8'));
+const indexSource = normalizeEol(fs.readFileSync(path.join(surface, 'index.html'), 'utf8'));
 
 function loadI18n(): any {
   const sandbox: Record<string, unknown> = {};
   const locales = path.join(surface, 'i18n.locales.js');
   const absolute = path.join(surface, 'i18n.js');
-  vm.runInNewContext(fs.readFileSync(locales, 'utf8'), sandbox, { filename: locales });
-  vm.runInNewContext(fs.readFileSync(absolute, 'utf8'), sandbox, { filename: absolute });
+  vm.runInNewContext(normalizeEol(fs.readFileSync(locales, 'utf8')), sandbox, { filename: locales });
+  vm.runInNewContext(normalizeEol(fs.readFileSync(absolute, 'utf8')), sandbox, { filename: absolute });
   return sandbox.EnglishTestI18n;
 }
 

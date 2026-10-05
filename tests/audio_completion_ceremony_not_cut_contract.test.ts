@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 /**
  * Сторож решения владельца 2026-09-17: озвучка ПОСЛЕДНЕЙ фразы урока обязана
@@ -42,7 +43,7 @@ function extractArrowFunctionBody(source: string, declaration: string): string {
 }
 
 describe('озвучка последней фразы не обрывается экраном завершения', () => {
-  const source = readFileSync(SESSION_SCREEN, 'utf8');
+  const source = normalizeEol(readFileSync(SESSION_SCREEN, 'utf8'));
 
   for (const declaration of ['const next = () => {', 'const skip = () => {']) {
     const label = declaration.includes('next') ? 'next()' : 'skip()';

@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('Dialogue V2 Plus memory management route', () => {
-  const source = fs.readFileSync(
+  const source = normalizeEol(fs.readFileSync(
     path.join(__dirname, '..', 'app', 'dialogue_v2_memory.tsx'),
     'utf8',
-  );
+  ));
 
   test('loads and clears only the selected language through audited callables', () => {
     expect(source).toContain('viewDialogueV2Memory({ studyTarget })');

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account V2, Пакет 8K — forceSyncToCloud (перенос при смене устройства) не кладёт список
@@ -254,7 +255,7 @@ describe('8K — restore после force sync на другом устройс�
 });
 
 describe('8K — встройка в cloud_sync (единый путь выгрузки)', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+  const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8')).split('\r\n').join('\n');
   const bodyOf = (name: string): string => {
     const start = source.indexOf(`async function ${name}(`);
     expect(start).toBeGreaterThan(0);

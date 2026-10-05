@@ -8,9 +8,10 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const SOURCE_PATH = path.join(__dirname, '..', 'app', 'cache_reset.ts');
-const source = fs.readFileSync(SOURCE_PATH, 'utf8');
+const source = normalizeEol(fs.readFileSync(SOURCE_PATH, 'utf8'));
 
 /**
  * Код без комментариев: в шапке файла запрещённые ключи ПЕРЕЧИСЛЕНЫ намеренно —
@@ -197,7 +198,7 @@ describe('cache_reset: сбой хранилища (PM-199-A2)', () => {
   });
 
   it('настройки показывают «failed» при ok=false, а не «Готово»', () => {
-    const settings = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    const settings = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8'));
     expect(settings).toMatch(/clearAppCaches\(\)\s*\.then\(\(result\) => \{ setClearCacheState\(result\.ok \? 'done' : 'failed'\)/);
   });
 });

@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: владелец 2026-08-22 — вход через Google висел 10–30 с из-за холодных
 // стартов callable-функций пути входа. Ускорение держится на трёх опорах:
@@ -10,16 +11,16 @@ import path from 'path';
 //      с троттлом и fire-and-forget.
 // Этот сторож не даёт молча выпилить любую из опор при рефакторинге.
 
-const authIdentitySource = readFileSync(
-  path.join(process.cwd(), 'functions', 'src', 'auth_identity.ts'), 'utf8');
-const authMergeSource = readFileSync(
-  path.join(process.cwd(), 'functions', 'src', 'auth_merge.ts'), 'utf8');
-const cloudSyncSource = readFileSync(
-  path.join(process.cwd(), 'app', 'cloud_sync.ts'), 'utf8');
-const onboardingSource = readFileSync(
-  path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
-const registrationSource = readFileSync(
-  path.join(process.cwd(), 'components', 'RegistrationPromptModal.tsx'), 'utf8');
+const authIdentitySource = normalizeEol(readFileSync(
+  path.join(process.cwd(), 'functions', 'src', 'auth_identity.ts'), 'utf8'));
+const authMergeSource = normalizeEol(readFileSync(
+  path.join(process.cwd(), 'functions', 'src', 'auth_merge.ts'), 'utf8'));
+const cloudSyncSource = normalizeEol(readFileSync(
+  path.join(process.cwd(), 'app', 'cloud_sync.ts'), 'utf8'));
+const onboardingSource = normalizeEol(readFileSync(
+  path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8'));
+const registrationSource = normalizeEol(readFileSync(
+  path.join(process.cwd(), 'components', 'RegistrationPromptModal.tsx'), 'utf8'));
 
 /** Тело callable: от export до первого закрытия `});` в нулевой колонке. */
 function callableSlice(source: string, exportName: string): string {

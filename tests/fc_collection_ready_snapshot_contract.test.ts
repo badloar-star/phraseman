@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(__dirname, '..', 'app', 'flashcards', 'useCollectionData.ts'),
   'utf8',
-);
+));
 
 describe('Cards collection ready-snapshot contract', () => {
   test('early storage hydration preserves staged pack metadata until the full catalog arrives', () => {
@@ -20,7 +21,7 @@ describe('Cards collection ready-snapshot contract', () => {
     // карточек своего языка, список читается и пишется по каждому языку отдельно.
     expect(source).toContain('await mergeSavedFlashcardRepairs(migratedLocal, accountToken);');
     expect(source).not.toContain('await saveFlashcards(migratedLocal, studyTarget);');
-    const hookSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-flashcards.ts'), 'utf8');
+    const hookSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-flashcards.ts'), 'utf8'));
     const repairStart = hookSource.indexOf('export const mergeSavedFlashcardRepairs');
     const repairBody = hookSource.slice(repairStart, repairStart + 1800);
     expect(repairBody).toContain('withWriteLock(accountToken');
@@ -41,14 +42,14 @@ describe('Cards collection ready-snapshot contract', () => {
   });
 
   test('official pack staging uses the active study target on both entry screens', () => {
-    const hub = fs.readFileSync(
+    const hub = normalizeEol(fs.readFileSync(
       path.join(__dirname, '..', 'app', 'flashcards', 'FlashcardsCategoryHub.tsx'),
       'utf8',
-    );
-    const mine = fs.readFileSync(
+    ));
+    const mine = normalizeEol(fs.readFileSync(
       path.join(__dirname, '..', 'app', 'flashcards_my_packs.tsx'),
       'utf8',
-    );
+    ));
 
     expect(source).toContain('stageOwnedPackCardsForNavigation(\n  packId: string,\n  studyTarget?: RuntimeStudyTarget,');
     expect(source).toContain('bundledPacksForOwned([packId], studyTarget)');

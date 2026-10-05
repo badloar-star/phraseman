@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(ROOT, 'components', 'AppMessagesInbox.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'AppMessagesInbox.tsx'), 'utf8'));
 
 describe('team messages inside notification center', () => {
   it('supports embedded rows and reports its unread count to the bell', () => {

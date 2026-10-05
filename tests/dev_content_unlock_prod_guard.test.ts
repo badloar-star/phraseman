@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 /**
  * Страж: «голый» DEV_MODE никогда не должен открывать платный контент в стор-сборке.
@@ -49,7 +50,7 @@ function stripComments(source: string): string {
 }
 
 describe('DEV_CONTENT_UNLOCK production guard', () => {
-  const source = fs.readFileSync(CONFIG_PATH, 'utf8');
+  const source = normalizeEol(fs.readFileSync(CONFIG_PATH, 'utf8'));
 
   it('exports DEV_CONTENT_UNLOCK exactly once', () => {
     const count = (source.match(/export\s+const\s+DEV_CONTENT_UNLOCK\b/g) ?? []).length;
@@ -81,7 +82,7 @@ describe('content gates do not read bare DEV_MODE', () => {
       // хотя проверять там нечего. Удалённый экран не может читать DEV_MODE;
       // для всех существующих файлов проверка остаётся строгой.
       if (!fs.existsSync(abs)) return;
-      const code = stripComments(fs.readFileSync(abs, 'utf8'));
+      const code = stripComments(normalizeEol(fs.readFileSync(abs, 'utf8')));
       // Слово DEV_MODE как идентификатор (не DEV_CONTENT_UNLOCK, не FORCE_PREMIUM_DEV_…).
       const bareDevMode = code.match(/(?<![A-Za-z0-9_])DEV_MODE(?![A-Za-z0-9_])/g) ?? [];
       expect(bareDevMode).toHaveLength(0);

@@ -10,15 +10,16 @@ import {
 } from '../app/flashcards/selectors';
 import { customCardLocalizationForLang } from '../app/flashcards/custom_card_localization';
 import type { CardItem } from '../app/flashcards/types';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const COLLECTION_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8');
-const CUSTOM_LOCALIZATION_SOURCE = fs.readFileSync(
+const COLLECTION_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8'));
+const CUSTOM_LOCALIZATION_SOURCE = normalizeEol(fs.readFileSync(
   path.join(ROOT, 'app', 'flashcards', 'custom_card_localization.ts'),
   'utf8',
-);
-const SELECTOR_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'selectors.ts'), 'utf8');
-const CONSTANTS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'constants.ts'), 'utf8');
+));
+const SELECTOR_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'selectors.ts'), 'utf8'));
+const CONSTANTS_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'constants.ts'), 'utf8'));
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 const savedCards: CardItem[] = [

@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
 
 describe('boot cloud restore integration contract', () => {
-  const layout = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
-  const authProvider = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
-  const cloudSync = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
+  const layout = normalizeEol(fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8'));
+  const authProvider = normalizeEol(fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8'));
+  const cloudSync = normalizeEol(fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8'));
 
   it('preserves the detailed restore outcome instead of erasing it into Promise<void>', () => {
     expect(layout).toContain('createBootCloudRestoreCoordinator');

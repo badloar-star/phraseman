@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: D83 (владелец, 2026-09-30) — клиентская Арена удалена целиком, а
 // серверная снята ещё в D78. Прежний сторож сверял «что зовёт клиент ↔ что
@@ -21,7 +22,7 @@ function clientSources(): ReadonlyArray<{ file: string; code: string }> {
         if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
         walk(full);
       } else if (/\.(tsx?|mts|js)$/.test(entry.name)) {
-        const code = fs.readFileSync(full, 'utf8')
+        const code = normalizeEol(fs.readFileSync(full, 'utf8'))
           .replace(/\/\*[\s\S]*?\*\//g, '')
           .replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
         out.push({ file: path.relative(ROOT, full).replace(/\\/g, '/'), code });

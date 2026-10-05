@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, "..");
 const read = (relativePath: string) =>
-  fs.readFileSync(path.join(root, relativePath), "utf8");
+  normalizeEol(fs.readFileSync(path.join(root, relativePath), "utf8"));
 
 function extractNamedFunction(source: string, name: string): string {
   const plainStart = source.indexOf(`function ${name}(`);
@@ -146,7 +147,7 @@ describe("live admin gift certificates workflow", () => {
     ]) {
       const absolute = path.join(root, frozen);
       if (fs.existsSync(absolute))
-        expect(fs.readFileSync(absolute, "utf8")).not.toContain(
+        expect(normalizeEol(fs.readFileSync(absolute, "utf8"))).not.toContain(
           'id="tab-gift-certificates"',
         );
     }

@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (p: string) => fs.readFileSync(path.join(__dirname, '..', p), 'utf8');
+const read = (p: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
 
 // 2026-09-13 (владелец): диалоги = лимит обычного аккаунта, Plus без лимита.
 // D111 (2026-09-30): лимит МЕСЯЧНЫЙ — 30 ответов в календарный месяц UTC.

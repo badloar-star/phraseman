@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ARENA_SOUNDS, arenaSound, arenaSoundEventId } from '../modules/arena/sound_catalog';
+import { normalizeEol } from './helpers/read_source';
 
 /**
  * Звуки Арены.
@@ -15,7 +16,7 @@ import { ARENA_SOUNDS, arenaSound, arenaSoundEventId } from '../modules/arena/so
  */
 
 const ROOT = path.resolve(__dirname, '..');
-const doc = fs.readFileSync(path.join(ROOT, 'docs/arena/SOUND_PROMPTS.md'), 'utf8');
+const doc = normalizeEol(fs.readFileSync(path.join(ROOT, 'docs/arena/SOUND_PROMPTS.md'), 'utf8'));
 
 /** Разбирает документ: имя файла → блок текста до следующего звука. */
 function promptBlocks(): Map<string, string> {
@@ -145,7 +146,7 @@ describe('промпты сходятся с каталогом', () => {
 });
 
 describe('каталог сходится с объявлениями директора', () => {
-  const events = fs.readFileSync(path.join(ROOT, 'modules/audio/sound_events.ts'), 'utf8');
+  const events = normalizeEol(fs.readFileSync(path.join(ROOT, 'modules/audio/sound_events.ts'), 'utf8'));
 
   /**
    * Числа в двух местах расходятся молча: каталог говорит одно, директор

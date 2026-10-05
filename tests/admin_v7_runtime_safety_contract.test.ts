@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const adminHtml = readFileSync(
+const adminHtml = normalizeEol(readFileSync(
   path.join(process.cwd(), 'admin', 'v2', 'legacy.html'),
   'utf8',
-);
+));
 
 describe('admin V9 runtime safety contract', () => {
   it('ships the intentional V9 build marker with the V7 stabilization runtimes on the canonical surface', () => {

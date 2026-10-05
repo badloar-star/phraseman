@@ -3,6 +3,7 @@ import {
   getContractionFor,
   lookupContraction,
 } from '../app/lesson1_smart_options';
+import { normalizeEol } from './helpers/read_source';
 
 // Regression for the "50/50 dims the correct tile" bug.
 // Phrase lesson1_phrase_24 ("Ты добрый" = "You are kind"). Screenshot showed tiles
@@ -124,10 +125,10 @@ describe('50/50 keeps half of ALL tiles (regression: removed 2 instead of 3)', (
   it('source uses total tile count, not wrong-tile count, for dimCount', () => {
     const fs = require('fs');
     const path = require('path');
-    const source: string = fs.readFileSync(
+    const source: string = normalizeEol(fs.readFileSync(
       path.join(__dirname, '..', 'app', 'lesson1.tsx'),
       'utf8',
-    );
+    ));
     // Guard against regressing to `Math.ceil(wrongIdx.length / 2)`.
     expect(source).toContain('const keepCount = Math.max(2, Math.ceil(totalTiles / 2))');
     expect(source).not.toMatch(/dimCount\s*=\s*Math\.ceil\(wrongIdx\.length\s*\/\s*2\)/);
@@ -137,10 +138,10 @@ describe('50/50 keeps half of ALL tiles (regression: removed 2 instead of 3)', (
 describe('50/50 dim resets when the tile bank changes', () => {
   const fs = require('fs');
   const path = require('path');
-  const source: string = fs.readFileSync(
+  const source: string = normalizeEol(fs.readFileSync(
     path.join(__dirname, '..', 'app', 'lesson1.tsx'),
     'utf8',
-  );
+  ));
 
   it('reset effect depends on phraseWordIdx and shuffled, not only status', () => {
     // fiftyFiftyDimmed is a Set of tile INDICES. When the bank changes (next word

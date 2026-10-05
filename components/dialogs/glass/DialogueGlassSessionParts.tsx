@@ -7,6 +7,7 @@ import PressableHybrid from '../../PressableHybrid';
 import { triLang, type Lang } from '../../../constants/i18n';
 import type { DialogueV2CoachingMood } from '../../../app/dialogue_v2_turn_coaching_client';
 import { DialogueGlassCta, dialogueGlassCardStyle, type DialogueGlass } from './DialogueGlassKit';
+import { glassTone } from './glassTone';
 
 // зачем (владелец 2026-09-30, макет dialogs.html C1–C24): детали сессии V2, которых не
 // было в ките — настроение собеседника (серый контурный значок лица, 5 зон), карточка
@@ -94,7 +95,7 @@ export function DialogueGlassGoalCard({
     >
       {/* зачем (сверка dialogs-014): в макете плитка флажка и круг лампочки светлее карточки (`--tile` #242426 на #161618); токен opaqueControl в тёмных темах почти
           сливается с карточкой, и плитки не видно — тон считаем от белого: заметен в любой теме */}
-      <View style={[styles.goalTile, { backgroundColor: 'rgba(255,255,255,0.08)' }]}>
+      <View style={[styles.goalTile, { backgroundColor: glassTone(glass.text, 0.08) }]}>
         <Ionicons name="flag-outline" size={20} color={glass.text} />
       </View>
       <View style={styles.goalText}>
@@ -109,7 +110,7 @@ export function DialogueGlassGoalCard({
         withSound={false}
         variant="icon"
         style={styles.hintHit}
-        contentStyle={[styles.hintButton, { backgroundColor: 'rgba(255,255,255,0.08)' }]}
+        contentStyle={[styles.hintButton, { backgroundColor: glassTone(glass.text, 0.08) }]}
       >
         <Ionicons name="bulb-outline" size={20} color={glass.text} />
       </PressableHybrid>

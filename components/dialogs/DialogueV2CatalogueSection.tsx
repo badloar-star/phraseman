@@ -12,10 +12,11 @@ import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { PressableScale } from '../feedback/PressableScale';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import { glassTone } from './glass/glassTone';
 
-/** Ступени тона поверх карточки категории: строка +5 % белого, плитка +9 % (макет dialogs.html A4: #161618 → #1D1D1F → #28282A). */
-const ROW_TONE = 'rgba(255,255,255,0.045)';
-const TILE_TONE = 'rgba(255,255,255,0.09)';
+/** Ступени тона поверх карточки категории: строка +4,5 %, плитка +9 % цвета текста темы (макет dialogs.html A4: #161618 → #1D1D1F → #28282A); светлая тема темнеет, а не светлеет. */
+const ROW_TONE_ALPHA = 0.045;
+const TILE_TONE_ALPHA = 0.09;
 
 export type DialogueV2CatalogueRowStatus = 'available' | 'done' | 'locked';
 
@@ -124,7 +125,7 @@ export function DialogueV2CatalogueSection({
             >
               {/* зачем (сверка dialogs-004/-002, «плитка категории и строки без карточки/плитки»): в макете ступени тона — карточка категории #161618 → строка #1D1D1F (+5 %) → плитка #28282A (+9 %).
                   Токены темы (opaqueControl/opaqueCard) в тёмных темах почти равны фону карточки, и плитки/строки сливались; тон считаем от белого — ступени видны в любой теме. */}
-              <View style={{ width: 55, height: 55, borderRadius: 14, backgroundColor: TILE_TONE, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: 55, height: 55, borderRadius: 14, backgroundColor: glassTone(glass.text, TILE_TONE_ALPHA), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={worldIcon(world.id)} size={26} color={glass.text} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
@@ -174,7 +175,7 @@ export function DialogueV2CatalogueSection({
                         // A4 `.dl`: высота 60, радиус 14, поля 0·14·0·10.
                         minHeight: 60,
                         borderRadius: 14,
-                        backgroundColor: ROW_TONE,
+                        backgroundColor: glassTone(glass.text, ROW_TONE_ALPHA),
                         paddingLeft: 10,
                         paddingRight: 14,
                         paddingVertical: 6,
@@ -183,7 +184,7 @@ export function DialogueV2CatalogueSection({
                         gap: 16,
                       }}
                     >
-                      <View style={{ width: 46, height: 46, borderRadius: 12, backgroundColor: TILE_TONE, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ width: 46, height: 46, borderRadius: 12, backgroundColor: glassTone(glass.text, TILE_TONE_ALPHA), alignItems: 'center', justifyContent: 'center' }}>
                         {locked ? (
                           <Ionicons name="lock-closed" size={20} color={glass.mutedText} />
                         ) : (

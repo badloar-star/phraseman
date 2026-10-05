@@ -27,7 +27,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { StreakChainIcon } from '../components/StreakChainIcon';
-import { StreakFlameFill } from '../components/streak/StreakFlameFill';
 import { StreakRuleExplainer } from '../components/streak/StreakRuleExplainer';
 import StreakStagesModal from '../components/streak/StreakStagesModal';
 import { hapticTap } from '../hooks/use-haptics';
@@ -266,6 +265,10 @@ type LearningCoachMetrics = {
     actionCta: string;
     scoreColor: string;
     rhythmDays: LearningRhythmDay[];
+    /** Пн…Вс текущей локальной недели (results-007, макет); будущие дни — isFuture, без минут. */
+    calendarWeekDays: (LearningRhythmDay & { isFuture: boolean })[];
+    /** Подпись строки «Стабильный ритм ›» по состоянию (results-007). */
+    rhythmCaption: string;
 };
 function clampNumber(v: number, min: number, max: number): number {
     return Math.max(min, Math.min(max, v));
@@ -671,6 +674,64 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             pl: "Tydzień idzie dobrze. Mała sesja wystarczy, żeby utrzymać stabilność.",
         });
     }
+    // зачем (results-007, координатор 05.10): столбики «Ваша неделя» — календарная неделя Пн…Вс, как в макете, для всех
+    // языков. Понедельник текущей недели всегда не раньше чем 6 дней назад — прошедшие дни берём из rhythmDays.
+    const rhythmByDate = new Map(rhythmDays.map((d) => [d.date, d]));
+    const calendarWeekDays: (LearningRhythmDay & { isFuture: boolean })[] = [];
+    {
+        const monday = new Date(`${todayStr}T12:00:00`);
+        monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+        for (let i = 0; i < 7; i++) {
+            const cal = new Date(monday);
+            cal.setDate(monday.getDate() + i);
+            const date = getLocalDayKey(cal);
+            const known = rhythmByDate.get(date);
+            calendarWeekDays.push(known ? { ...known, isFuture: false } : {
+                date,
+                shortLabel: weekWdays[cal.getDay()],
+                dayNum: String(cal.getDate()),
+                streak: 0,
+                active: false,
+                minutes: 0,
+                combined: 0,
+                isToday: false,
+                isFuture: date > todayStr,
+            });
+        }
+    }
+    // зачем (results-007): подпись строки ритма — по состоянию. «Стабильный ритм» — текст макета; остальные три — короткие
+    // фразы в том же тоне (на утверждение владельцу, координатор 05.10).
+    const rhythmCaption = isWarmup
+        ? triLang(lang, {
+            ru: 'Несколько дней подряд — и ритм сложится', uk: 'Кілька днів поспіль — і ритм складеться',
+            en: 'A few days in a row and the rhythm will form', es: 'Unos días seguidos y el ritmo se formará',
+            'pt-BR': 'Alguns dias seguidos e o ritmo se forma', vi: 'Vài ngày liên tiếp là nhịp sẽ hình thành',
+            id: 'Beberapa hari berturut-turut, ritme akan terbentuk', tr: 'Birkaç gün üst üste, ritim oturacak',
+            pl: 'Kilka dni z rzędu i rytm się ułoży',
+        })
+        : score >= 76
+            ? triLang(lang, {
+                ru: 'Короткие занятия без больших пауз', uk: 'Короткі заняття без великих пауз',
+                en: 'Short sessions without long gaps', es: 'Sesiones cortas sin pausas largas',
+                'pt-BR': 'Sessões curtas sem pausas longas', vi: 'Buổi học ngắn, không nghỉ quá lâu',
+                id: 'Sesi pendek tanpa jeda panjang', tr: 'Uzun ara vermeden kısa çalışmalar',
+                pl: 'Krótkie sesje bez długich przerw',
+            })
+            : score >= 50
+                ? triLang(lang, {
+                    ru: 'Добавь пару коротких занятий на неделе', uk: 'Додай кілька коротких занять на тижні',
+                    en: 'Add a couple of short sessions this week', es: 'Añade un par de sesiones cortas esta semana',
+                    'pt-BR': 'Adicione algumas sessões curtas nesta semana', vi: 'Thêm vài buổi học ngắn trong tuần',
+                    id: 'Tambahkan beberapa sesi pendek minggu ini', tr: 'Bu hafta birkaç kısa çalışma ekle',
+                    pl: 'Dodaj kilka krótkich sesji w tym tygodniu',
+                })
+                : triLang(lang, {
+                    ru: 'Одно короткое занятие сегодня вернёт ритм', uk: 'Одне коротке заняття сьогодні поверне ритм',
+                    en: 'One short session today will bring it back', es: 'Una sesión corta hoy lo recuperará',
+                    'pt-BR': 'Uma sessão curta hoje traz o ritmo de volta', vi: 'Một buổi ngắn hôm nay sẽ lấy lại nhịp',
+                    id: 'Satu sesi pendek hari ini akan memulihkannya', tr: 'Bugün kısa bir çalışma ritmi geri getirir',
+                    pl: 'Jedna krótka sesja dziś przywróci rytm',
+                });
     return {
         score,
         scoreLabel,
@@ -678,6 +739,8 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         status,
         scoreHint,
         isWarmup,
+        calendarWeekDays,
+        rhythmCaption,
         active7,
         minutes7,
         avgMinutesActive,
@@ -1384,7 +1447,8 @@ function StreakHeroCard({
                     {/* зачем (PM-044, координатор 01.10): огонь, заполняемый до 10 дней; заморозка — свой значок. */}
                     {freezeActive
                       ? <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={30} />
-                      : <StreakFlameFill streakDays={totalStreak} size={30} inactive={totalStreak <= 0} />}
+                      // зачем (координатор 05.10, Сверка results-007): в плитке — контурный огонь макета (icon flame s28), а не заполняемая капля.
+                      : <Ionicons name="flame-outline" size={28} color={totalStreak > 0 ? t.textPrimary : t.textMuted} />}
                 </Pressable>
                 <Text style={{ color: t.textPrimary, fontSize: 46, lineHeight: 52, fontWeight: '800', marginTop: 10, fontVariant: ['tabular-nums'] }}>{totalStreak}</Text>
                 <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 20, textAlign: 'center' }}>{`${streakCaption} · ${bestWord} ${bestStreak}`}</Text>
@@ -1881,13 +1945,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
     // зачем (Сверка results-007: неделя «Вт…Пн», в макете «Пн…Вс»; подпись ритма «Лучший день…» против
     // «Короткие занятия без больших пауз»): какие дни попали в столбики и какая подпись выбрана — одна строка на изменение.
-    const resultsWeekTraceKey = `${coachMetrics.rhythmDays.slice(-7).map((d) => `${d.date}:${d.minutes}`).join(',')}|${coachMetrics.status}|${coachMetrics.rhythmSummary}|${lang}`;
+    const resultsWeekTraceKey = `${coachMetrics.calendarWeekDays.map((d) => `${d.date}:${d.minutes}`).join(',')}|${coachMetrics.status}|${coachMetrics.rhythmCaption}|${lang}`;
     useEffect(() => {
         console.warn('[RESULTS-WEEK] bars', JSON.stringify({
             lang,
-            days: coachMetrics.rhythmDays.slice(-7).map((d) => ({ date: d.date, label: d.shortLabel, min: d.minutes, today: d.isToday, active: d.active })),
+            days: coachMetrics.calendarWeekDays.map((d) => ({ date: d.date, label: d.shortLabel, min: d.minutes, today: d.isToday, future: d.isFuture, active: d.active })),
             status: coachMetrics.status,
-            rhythmSummary: coachMetrics.rhythmSummary,
+            rhythmCaption: coachMetrics.rhythmCaption,
             source: allDays.length > 0 ? 'allDays' : 'days',
         })); // guard-ok: временная трассировка results-007
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -2338,10 +2402,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       {triLang(lang, { ru: 'Ваша неделя', uk: 'Ваш тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
                     </Text>
                     {/* зачем (`.value`): вторичный тон; макет 14, шкала D145 — 13. */}
-                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18 }}>{humanMinutes(coachMetrics.minutes7, lang)}</Text>
+                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18 }}>{humanMinutes(coachMetrics.calendarWeekDays.reduce((sum, day) => sum + day.minutes, 0), lang)}</Text>
                   </View>
                   {(() => {
-                    const days = coachMetrics.rhythmDays.slice(-7);
+                    // зачем (results-007): календарная неделя Пн…Вс; будущие дни — пустые низкие столбики.
+                    const days = coachMetrics.calendarWeekDays;
                     const maxMinutes = Math.max(1, ...days.map((day) => day.minutes));
                     const idle = statsGlass.text.length === 7 ? `${statsGlass.text}47` : statsGlass.mutedText;
                     return (
@@ -2364,7 +2429,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <Pressable
                   testID="stats-rhythm-row"
                   accessibilityRole="button"
-                  accessibilityLabel={`${coachMetrics.status}. ${coachMetrics.rhythmSummary}`}
+                  accessibilityLabel={`${coachMetrics.status}. ${coachMetrics.rhythmCaption}`}
                   onPress={() => { hapticTap(); scrollRef.current?.scrollTo({ y: Math.max(0, weekAnalyticsYRef.current), animated: true }); }}
                   style={({ pressed }) => [{ minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingHorizontal: 14, borderRadius: 14, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .list-row */ }, pressed && { opacity: 0.85 }]}
                 >
@@ -2373,7 +2438,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{coachMetrics.status}</Text>
-                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{coachMetrics.rhythmSummary}</Text>
+                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{coachMetrics.rhythmCaption}</Text>
                   </View>
                   <Ionicons name="chevron-forward" size={18} color={statsGlass.secondary} />
                 </Pressable>

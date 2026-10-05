@@ -34,6 +34,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { KIT_MOTION } from '../../constants/motionHybrid';
+import PressableHybrid from '../PressableHybrid';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLineScale } from '../../hooks/useLineScale';
@@ -154,16 +155,20 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
               <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 19 * textScale, lineHeight: lh(24 * textScale), fontWeight: '700' }}>{title}</Text>
               {subtitle ? <Text style={{ color: glass.secondary, fontSize: 16 * textScale, lineHeight: lh(21 * textScale), marginTop: 4 }}>{subtitle}</Text> : null}
             </View>
-            <Pressable
+            {/* зачем (Motion п.4): кнопка шторки — клавиша PressableHybrid, а не плоское затемнение; вибрацию даёт dismiss. */}
+            <PressableHybrid
               testID="friends-add-sheet-close"
               accessibilityRole="button"
               accessibilityLabel={closeLabel}
               hitSlop={6}
+              variant="icon"
+              withHaptic={false}
+              withSound={false}
               onPress={dismiss}
-              style={({ pressed }) => [styles.close, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge, opacity: pressed ? 0.72 : 1 }]} // guard-ok: 1 px кромка .rb.fill
+              contentStyle={[styles.close, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]} // guard-ok: 1 px кромка .rb.fill
             >
               <Ionicons name="close" size={18} color={glass.text} />
-            </Pressable>
+            </PressableHybrid>
           </View>
           <ScrollView
             decelerationRate="fast"

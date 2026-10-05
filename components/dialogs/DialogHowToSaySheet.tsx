@@ -32,6 +32,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { KIT_MOTION, SHEET } from '../../constants/motionHybrid';
+import PressableHybrid from '../PressableHybrid';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -47,6 +49,8 @@ import {
 } from '../../app/ai_dialog_client';
 import { DebugLogger } from '../../app/debug-logger';
 
+const KIT_SHEET_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
+const DISMISS_FALLBACK_SLACK_MS = 80;
 const SHEET_HIDDEN = 420;
 
 interface DialogHowToSaySheetProps {
@@ -102,9 +106,11 @@ export default function DialogHowToSaySheet({
       sheetY.value = 0;
       return;
     }
-    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
+    // зачем (AGENTS.md Motion п.8, dialogs.html — шторка кита): выезд .sheet 440 мс (.2,1,.3,1), затемнение .dim 260 мс
+    // (было 340 мс (.32,.72,0,1) и 200 мс).
+    backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs });
     sheetY.value = SHEET_HIDDEN;
-    sheetY.value = withTiming(0, { duration: 340, easing: REasing.bezier(0.32, 0.72, 0, 1) });
+    sheetY.value = withTiming(0, { duration: KIT_MOTION.sheetMs, easing: KIT_SHEET_EASE });
   }, [visible, backdropO, sheetY, dragTranslateY, reduceMotion]);
 
   const handleCloseRef = useRef(onClose);
@@ -120,13 +126,13 @@ export default function DialogHowToSaySheet({
       handleCloseRef.current();
       return;
     }
-    backdropO.value = withTiming(0, { duration: 180 });
+    backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs });
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
     dismissFallbackRef.current = setTimeout(() => {
       dismissFallbackRef.current = null;
       handleCloseRef.current();
-    }, 300);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 220, easing: REasing.out(REasing.cubic) }, (finished) => {
+    }, KIT_MOTION.sheetMs + DISMISS_FALLBACK_SLACK_MS); // страховка не должна обрывать уход шторки
+    sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: KIT_SHEET_EASE }, (finished) => {
       if (finished) runOnJS(handleCloseRef.current)();
     });
   }, [backdropO, sheetY, reduceMotion]);
@@ -145,17 +151,17 @@ export default function DialogHowToSaySheet({
         .onUpdate((e) => {
           'worklet';
           const ty = e.translationY;
-          dragTranslateY.value = ty < 0 ? ty * 0.12 : ty;
+          dragTranslateY.value = ty < 0 ? ty * SHEET.dragResist : ty;
         })
         .onEnd((e) => {
           'worklet';
-          const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
+          const shouldClose = dragTranslateY.value > SHEET.dragClosePx || e.velocityY > SHEET.dragCloseVelocity;
           if (shouldClose) {
             dragTranslateY.value = withTiming(swipeOffDistance, { duration: 240 }, (finished) => {
               if (finished) runOnJS(closeAfterSwipe)();
             });
           } else {
-            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
+            dragTranslateY.value = withSpring(0, SHEET.dragReturn);
           }
         }),
     [closeAfterSwipe, dragTranslateY, swipeOffDistance],
@@ -253,15 +259,19 @@ export default function DialogHowToSaySheet({
                     tr: 'Nasıl denir…', pl: 'Jak powiedzieć…',
                   })}
                 </Text>
-                <Pressable
+                {/* зачем (Motion п.4): кнопка шторки — клавиша PressableHybrid, а не плоское затемнение; вибрацию даёт dismissSheet. */}
+                <PressableHybrid
                   onPress={dismissSheet}
                   hitSlop={8}
+                  variant="icon"
+                  withHaptic={false}
+                  withSound={false}
                   accessibilityRole="button"
                   accessibilityLabel={closeLabel}
-                  style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 }]}
+                  contentStyle={[styles.closeBtn, { backgroundColor: t.bgSurface2 }]}
                 >
                   <Ionicons name="close" size={20} color={t.textMuted} />
-                </Pressable>
+                </PressableHybrid>
               </View>
 
               <View style={styles.inputRow}>

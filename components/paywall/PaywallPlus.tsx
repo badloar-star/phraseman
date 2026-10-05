@@ -138,9 +138,25 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   const yearOn = selected === 'yearly';
   const monthOn = selected === 'monthly';
   // Выбранный тариф: тон подложки + тонкая светлая кромка (исключение 2.0: 1px полупрозрачная).
+  // зачем (решение владельца 05.10, OM-PROMO-PRESENT): над тарифами плашка «Скидка действует сейчас» —
+  // процент, цена со скидкой и зачёркнутая обычная, ниже «далее {обычная}». Только вид данных стора: нет промо — нет плашки.
+  const promo = (selected === 'monthly' ? monthlyPromo : yearlyPromo) ?? yearlyPromo ?? monthlyPromo;
   const selectedRing = { backgroundColor: g.selected, borderColor: g.level === 'accent' || g.level === 'max' ? g.accentCap : g.lightTint, borderWidth: 1 }; // guard-ok: D43 1px кромка выбора
   return (
     <View>
+      {promo ? (
+        <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: g.opaqueSheet }]}>
+          <Text style={[S.promoKicker, { color: g.mutedText }]}>{pick(lang, COPY.promoNow)}</Text>
+          <View style={S.promoRow}>
+            <View style={[S.promoPill, { backgroundColor: g.opaqueControl }]}>
+              <Text style={[S.promoPct, { color: g.text }]}>{`−${promo.discountPercent}%`}</Text>
+            </View>
+            <Text style={[S.promoPrice, { color: g.text }]}>{promo.promoPriceString}</Text>
+            <Text style={[S.promoStandard, { color: g.mutedText }]}>{promo.standardPriceString}</Text>
+          </View>
+          <Text style={[S.promoThen, { color: g.secondary }]}>{`${pick(lang, COPY.promoThen)} ${promo.standardPriceString}`}</Text>
+        </View>
+      ) : null}
       <V2Pressable
         testID="paywall-plan-yearly"
         accessibilityRole="radio"
@@ -353,6 +369,15 @@ const S = StyleSheet.create({
   tlDetail: { marginTop: 2, fontSize: 13, lineHeight: 17 },
   plan: { paddingVertical: 16, paddingLeft: 18, paddingRight: 16 },
   planGap: { marginTop: 10 },
+  // overlay-more.css `.om-promo`: поля 14, r18; `.om-kicker` 11/800 по центру; цена 21/800; обычная 13/700 зачёркнута; «далее» 14/21
+  promo: { padding: 14, borderRadius: 18, marginBottom: 12, alignItems: 'center' },
+  promoKicker: { fontSize: 11, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' }, // d145-mockup: overlays-more.html .om-kicker 11
+  promoRow: { flexDirection: 'row', alignItems: 'baseline', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 8 },
+  promoPill: { height: 35, borderRadius: 18, paddingHorizontal: 17, justifyContent: 'center', alignSelf: 'center' },
+  promoPct: { fontSize: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }, // d145-mockup: overlays-more.html .pill 17
+  promoPrice: { fontSize: 21, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  promoStandard: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
+  promoThen: { fontSize: 14, lineHeight: 21, marginTop: 9, textAlign: 'center' }, // d145-mockup: overlays-more.html .om-copy 14/21
   planTop: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   planMid: { flex: 1, minWidth: 0 },
   planNameRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 },

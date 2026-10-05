@@ -150,6 +150,9 @@ export const COPY = {
   year: LP('Год', 'Рік', 'Year', 'Año', 'Ano', 'Năm', 'Tahun', 'Yıllık', 'Rok'),
   month: LP('Месяц', 'Місяць', 'Month', 'Mes', 'Mês', 'Tháng', 'Bulan', 'Aylık', 'Miesiąc'),
   bestValue: LP('Выгоднее всего', 'Найвигідніше', 'Best value', 'Más ventajoso', 'Melhor valor', 'Tiết kiệm nhất', 'Paling hemat', 'En avantajlı', 'Najkorzystniej'),
+  // зачем (решение владельца 05.10, overlays-more.html OM-PROMO-PRESENT): плашка скидки стора над тарифами.
+  promoNow: LP('Скидка действует сейчас', 'Знижка діє зараз', 'Discount active now', 'Descuento activo ahora', 'Desconto ativo agora', 'Đang giảm giá', 'Diskon berlaku sekarang', 'İndirim şu an geçerli', 'Zniżka obowiązuje teraz'),
+  promoThen: LP('далее', 'далі', 'then', 'después', 'depois', 'sau đó', 'lalu', 'sonra', 'potem'),
   perYear: LP('в год', 'на рік', 'a year', 'al año', 'por ano', 'mỗi năm', 'per tahun', 'yıllık', 'rocznie'),
   perMonth: LP('в месяц', 'на місяць', 'a month', 'al mes', 'por mês', 'mỗi tháng', 'per bulan', 'aylık', 'miesięcznie'),
   noTrial: LP('Без пробного периода', 'Без пробного періоду', 'No free trial', 'Sin prueba gratis', 'Sem teste grátis', 'Không có dùng thử', 'Tanpa uji coba', 'Deneme süresi yok', 'Bez okresu próbnego'),

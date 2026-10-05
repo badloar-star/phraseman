@@ -149,3 +149,12 @@ test('the fixed CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp
   assert.match(ui, /retry: \{ minHeight: 44/);
   assert.match(read(SCREEN), /useStableSafeAreaInsets/);
 });
+
+// зачем (решение владельца 05.10, overlays-more.html OM-PROMO-PRESENT/ABSENT): при скидке стора над тарифами —
+// плашка «Скидка действует сейчас» (−%, цена со скидкой, зачёркнутая обычная, «далее …»); нет промо — нет плашки.
+test('store promo plate renders only from store promo data', () => {
+  const plans = readFileSync(new URL('../components/paywall/PaywallPlus.tsx', import.meta.url), 'utf8');
+  assert.match(plans, /\{promo \? \(\s*<View testID="paywall-promo-plate"/);
+  assert.ok(plans.includes('promo.discountPercent') && plans.includes('promo.promoPriceString') && plans.includes('promo.standardPriceString'));
+  assert.ok(!/paywall-promo-plate[\s\S]{0,600}\d+\s*%[^`]/.test(plans.replace(/−\$\{promo\.discountPercent\}%/g, '')), 'no hard-coded discount');
+});

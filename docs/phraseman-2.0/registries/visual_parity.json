@@ -13791,7 +13791,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "🔴 Экрана подтверждения нет: в макете отдельный экран «Повысить ранг» (Лектор → Эксперт, стоимость 6 000, «Ваш баланс», кнопка); в приложении тап «Повысить ранг» на визитке СРАЗУ списывает монеты (04:43: 7845 → 1845, лог [COIN-RANK-UPGRADE] повышено 5→6)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -13813,13 +13815,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/coins-004.png",
+      "evidence_at": "2026-10-05T03:44:02.562Z",
+      "evidence_sha256": "4c92f166d2dd3dddbc50a9bdfd1eedc5a91ee85f7319c1288d5152c67fe13413",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "🔴 Вместо экрана с «Проверяем повышение / Не закрывайте приложение» и неактивной кнопкой — анимация на визитке «Повышаем ранг…»",
+        "🔴 Номер ранга на визитке на 1 больше настоящего: в логе rank 5→6, визитка показала «Лектор · ранг 6» → «Эксперт · ранг 7»; макет «Ранг 5 → 6»",
+        "Нет блока стоимости (6 000) и баланса до/после",
+        "После повышения кнопка «Повысить ранг · ещё 5 155»: текст в 2 строки, цена обрезана снизу (так же было «6 000» до повышения)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -289,7 +289,17 @@ export default function DialogueV2CompletionRoute() {
         <View style={styles.footer}>
           <DialogueGlassCta glass={glass} label={labels.done} trailingArrow onPress={close} testID="dialogue-v2-completion-done" />
           {scenarioId ? (
-            <DialogueGlassCta glass={glass} ghost size="small" label={labels.again} onPress={again} testID="dialogue-v2-completion-again" style={styles.again} />
+            // зачем (сверка dialogs-041, макет `.quiet`): «Ещё раз» — тихая текстовая ссылка по центру (16/600, вторичным), а не кнопка-пилюля
+            <Pressable
+              testID="dialogue-v2-completion-again"
+              accessibilityRole="button"
+              accessibilityLabel={labels.again}
+              hitSlop={8}
+              onPress={again}
+              style={({ pressed }) => [styles.again, pressed && { opacity: 0.6 }]}
+            >
+              <Text style={[styles.againText, { color: glass.secondary }]}>{labels.again}</Text>
+            </Pressable>
           ) : null}
         </View>
       </SafeAreaView>
@@ -341,5 +351,6 @@ const styles = StyleSheet.create({
   was: { fontSize: 16, textDecorationLine: 'line-through' },
   ok: { fontSize: 16, fontWeight: '700' },
   footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 },
-  again: { marginTop: 10 },
+  again: { marginTop: 14, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+  againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
 });

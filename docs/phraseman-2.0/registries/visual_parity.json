@@ -13813,7 +13813,8 @@
         "Текущий день — тонкая белая полоска (0 минут); в макете высокий белый столбец (данные)",
         "«Стабильный ритм»: подпись «Лучший день: Ср · слабый: Сб»; в макете «Короткие занятия без больших пауз»",
         "Ниже лишние блоки «Последние достижения · Все 9» и «11 ч 35 мин · Время/Год» — в макете на этом телефоне их нет (сверить с results-009/011)",
-        "Шапка ниже макетной (заголовок ≈ на 35 px ниже)"
+        "Шапка ниже макетной (заголовок ≈ на 35 px ниже)",
+        "🔴 При прокрутке заголовок «Серия и результаты» остаётся на месте и налезает на «Последние достижения» (без фона) — BUG_results_header_overlaps_0751.png"
       ],
       "status": "pending",
       "reviewed_by": null,
@@ -13871,7 +13872,9 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "🔴 Не снять: тап «Год» на «Серия и результаты» → красный экран Render Error «Cannot read property 'prototype' of undefined» в MonthSelector (ActivityHeatmap365.tsx), BUG_results_year_render_error_0753.png"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

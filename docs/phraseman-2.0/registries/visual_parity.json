@@ -13800,9 +13800,9 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/results-007.png",
+      "evidence_at": "2026-10-05T06:47:29.693Z",
+      "evidence_sha256": "e7b5852416331ee9d1b22b776f09e4fc36585011d126b6d9f9aaf868d83d97b2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

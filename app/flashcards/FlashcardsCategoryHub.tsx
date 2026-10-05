@@ -117,6 +117,8 @@ type Props = {
   studyTarget?: RuntimeStudyTarget;
   /** Поиск по названию — состояние живёт в шапке экрана (лупа). */
   communityQuery?: string;
+  /** Сброс поиска каталога (cards-section catalogNone «Сбросить фильтры»): только клиентское состояние, без запросов. */
+  onResetFilters?: () => void;
   /** Сортировка каталога — круглые кнопки фильтров в шапке экрана. */
   communitySort?: CommunityPacksSort;
   /** Independent language of community packs; legacy packs normalize to English. */
@@ -383,6 +385,7 @@ export default function FlashcardsCategoryHub({
   themeMode,
   studyTarget,
   communityQuery = '',
+  onResetFilters,
   communitySort = 'popular',
   packLanguage = 'en',
 }: Props) {
@@ -963,6 +966,29 @@ export default function FlashcardsCategoryHub({
                       pl: 'Nic nie znaleziono.',
                     })}
               </FlowText>
+              {/* зачем (Сверка cards-section-023 catalogNone, координатор 05.10): на пустой результат ПОИСКА — подсказка и
+                  «Сбросить фильтры» (`.empty .l` 16/22 через 8, `.cta` 0/28 через 26). Сброс только строки поиска: язык набора —
+                  сохранённый выбор человека, его кнопка не трогает. Без запросов в сеть — фильтр клиентский. */}
+              {catalogCommunityPacks.length > 0 && communityQuery.trim().length > 0 ? (
+                <>
+                  <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
+                    {triLang(lang, { ru: 'Попробуй другое слово', uk: 'Спробуй інше слово', en: 'Try another word', es: 'Prueba otra palabra', 'pt-BR': 'Tente outra palavra', vi: 'Thử từ khác', id: 'Coba kata lain', tr: 'Başka bir kelime dene', pl: 'Spróbuj innego słowa' })}
+                  </Text>
+                  {onResetFilters ? (
+                    <TouchableOpacity
+                      testID="flashcards-community-reset-filters"
+                      accessibilityRole="button"
+                      activeOpacity={0.86}
+                      onPress={onResetFilters}
+                      style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.accent }}
+                    >
+                      <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '700' }}>
+                        {triLang(lang, { ru: 'Сбросить фильтры', uk: 'Скинути фільтри', en: 'Reset filters', es: 'Quitar filtros', 'pt-BR': 'Limpar filtros', vi: 'Xóa bộ lọc', id: 'Atur ulang filter', tr: 'Filtreleri sıfırla', pl: 'Wyczyść filtry' })}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : null}
+                </>
+              ) : null}
             </View>
           ) : null}
           {/* зачем (packs-simple.html `.stack`): строки столбиком через 9. */}

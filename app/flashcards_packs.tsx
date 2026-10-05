@@ -186,6 +186,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
    * кнопки сортировки. Состояние держим здесь и отдаём в каталог готовым.
    */
   const [communityQuery, setCommunityQuery] = useState('');
+  // зачем (cards-section catalogNone «Сбросить фильтры»): мгновенный клиентский сброс строки поиска, без запросов.
+  const resetCommunityFilters = useCallback(() => setCommunityQuery(''), []);
   // зачем (решение владельца «все элементы как на макете» через координатора 05.10; макет packs-simple.html кадр 1: `.bar3` — активна «Новые»):
   // каталог открывается на «Новые»; `?sort=popular` по-прежнему ведёт на «Топ». Сортировка клиентская над ОДНИМ загруженным списком —
   // ни нового запроса, ни индекса Firestore смена умолчания не требует (applyCommunityPacksFilter).
@@ -640,6 +642,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               hubAuthorStableId={hubAuthorStableId}
               studyTarget={studyTarget}
               communityQuery={communityQuery}
+              onResetFilters={resetCommunityFilters}
               communitySort={communitySort}
               packLanguage={packLanguage}
             />

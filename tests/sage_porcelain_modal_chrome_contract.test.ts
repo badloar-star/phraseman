@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 
 jest.mock('react-native', () => ({
   StyleSheet: { absoluteFill: {}, absoluteFillObject: {} },
@@ -7,6 +5,18 @@ jest.mock('react-native', () => ({
   Platform: { OS: 'ios' },
 }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
+// зачем (координатор 05.10): с 47f56ec7e (окно «Нет энергии», 29.09) RewardModalBackdrop плавно проявляет фон
+// через react-native-reanimated. Его lib/module — ESM, ts-jest пакет не трансформирует, и сюит падал до первого
+// утверждения. Тест про цвета и обводки, анимация ему не нужна — заглушка, как в coin_reward_flight_lifecycle.
+jest.mock('react-native-reanimated', () => ({
+  __esModule: true,
+  default: { View: 'Animated.View' },
+  Easing: { out: (easing: unknown) => easing, cubic: 0 },
+  useSharedValue: (initial: number) => ({ value: initial }),
+  useAnimatedStyle: (factory: () => unknown) => factory(),
+  withTiming: (value: unknown) => value,
+  cancelAnimation: () => undefined,
+}));
 
 import { PAYWALL_THEME_CONFIG } from '../components/paywallThemeConfig';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
@@ -25,15 +35,12 @@ import {
   RewardModalLiquidGlass,
 } from '../components/RewardModalBackdrop';
 
-const ROOT = path.resolve(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('sage porcelain modal, reward, and paywall chrome', () => {
-  it('uses porcelain energy modal chrome without decorative glow', () => {
-    const energyModal = read('components/NoEnergyModal.tsx');
-    expect(energyModal).toContain("sagePorcelain: {\n    glow: 'rgba(49,95,80,0)'");
-    expect(energyModal).toContain("surfaceColors: ['#FCFDF9', '#F5F7F2', '#E7EAE3']");
-  });
+  // зачем (координатор 05.10): проверка «окно энергии в sagePorcelain без свечения» снята. Окно «Нет энергии»
+  // с 47f56ec7e (29.09, макет B5) и 645d571ab (05.10, три вида по макетам) нарисовано на Liquid Glass 2.0 и
+  // больше не держит свою таблицу цветов по темам — проверять в нём нечего; его вид сторожит гейт паритета
+  // с макетом (docs/phraseman-2.0/evidence/parity). Палитра porcelain общих окон наград — ниже, без изменений.
 
   it('uses explicit porcelain reward backdrop behavior instead of a dark fallback', () => {
     expect(rewardModalPanelColors('sagePorcelain', SAGE_PORCELAIN)).toEqual(['#FCFDF9', '#F5F7F2', '#E7EAE3']);

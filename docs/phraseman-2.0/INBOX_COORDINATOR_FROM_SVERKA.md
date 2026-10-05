@@ -338,3 +338,5 @@ Render Error: Cannot read property 'prototype' of undefined — MonthSelector �
 
 ## 11:47 — эмулятор на NVIDIA: окно ворот урока НЕ роняет ✅
 Тап по закрытому уроку 2 → окно «Ещё рано» (learn-011 снят). Цвета хаба Карточек до/после смены графики совпадают пиксельно (±3 в переливе). Логи C:\Temp\claude\lesson_gate.txt: [LESSON-GATE] decision access=progress_required; [LESSONS-GATE-OPEN] tapToCommit 279 мс, commitToFrame 207, tapToFrame 486, animFull 454. 🔴 cards-section-032: шторка «Режим тренировки» просвечивает (снято на NVIDIA; хаб с ней сверен пиксельно — графика не виновата).
+
+## 12:08 — [LESSONS-GATE-OPEN] 4 открытия окна «Ещё рано» (список): tapToFrame 486 / 273 / 211 / 200 мс — первое холодное, дальше ~200 мс. Файл C:\Temp\claude\lesson_gate.txt. learn-012/013 («Уровень пока закрыт»/«Недоступно») на этом аккаунте недостижимы — помечено. Открытие с карточки урока на Главной не проверяла: там урок 1 открыт (не закрытый).

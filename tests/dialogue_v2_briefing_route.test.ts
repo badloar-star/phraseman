@@ -62,6 +62,13 @@ jest.mock('../components/dialogs/DialogueV2BriefingScreen', () => ({
   DialogueV2BriefingScreen: (props: unknown) => mockScreen(props),
 }));
 jest.mock('../components/feedback/PressableScale', () => ({ PressableScale: 'PressableScale' }));
+// По умолчанию тариф ещё не известен → запрет по месячному остатку не действует (прежние проверки не меняются).
+const mockUsePremium = jest.fn(() => ({ accessResolved: false, hasPremiumAccess: false }));
+jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));
+const mockReadMonthlyQuota = jest.fn(async () => ({ status: 'allowed', remaining: 10 }));
+jest.mock('../app/ai_dialog_daily_quota', () => ({
+  readAiDialogMonthlyQuota: (...args: unknown[]) => mockReadMonthlyQuota(...(args as [])),
+}));
 
 import DialogueV2BriefingRoute from '../app/dialogue_v2_briefing';
 
@@ -151,5 +158,39 @@ describe('Dialogue V2 briefing route', () => {
     expect(mockPush).not.toHaveBeenCalled();
     const last = mockNoEnergyModal.mock.calls[mockNoEnergyModal.mock.calls.length - 1][0] as { visible: boolean };
     expect(last.visible).toBe(true);
+  });
+
+  // зачем (Сверка 05.10 🟡): при 0 оставшихся ответах Free диалог не стартует — энергия не списывается, сразу экран
+  // лимита (тот же, что у хаба).
+  it('opens the limit screen instead of starting when Free monthly replies are exhausted', async () => {
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: false });
+    mockReadMonthlyQuota.mockResolvedValue({ status: 'exhausted' } as never);
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockReadMonthlyQuota).toHaveBeenCalled());
+    await act(async () => {});
+    await act(async () => {
+      mockScreen.mock.calls.at(-1)[0].onStart();
+    });
+    expect(mockConfirmSpendOne).not.toHaveBeenCalled();
+    expect(mockPush).toHaveBeenCalledWith({
+      pathname: '/premium_modal',
+      params: { context: 'dialog_limit', source: 'dialogue_v2_briefing' },
+    });
+  });
+
+  it('starts normally for Free with replies left', async () => {
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: false });
+    mockReadMonthlyQuota.mockResolvedValue({ status: 'allowed', remaining: 3 } as never);
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockReadMonthlyQuota).toHaveBeenCalled());
+    await act(async () => {});
+    await act(async () => {
+      mockScreen.mock.calls.at(-1)[0].onStart();
+    });
+    expect(mockConfirmSpendOne).toHaveBeenCalled();
+    expect(mockPush).toHaveBeenCalledWith({
+      pathname: '/dialogue_v2_session',
+      params: { scenarioId: 'work_01', energyOp: 'op-1' },
+    });
   });
 });

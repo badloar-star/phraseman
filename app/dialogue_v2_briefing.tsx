@@ -21,6 +21,9 @@ import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2Briefi
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import { usePremium } from '../components/PremiumContext';
+import { readAiDialogMonthlyQuota } from './ai_dialog_daily_quota';
+import { captureAccountGeneration } from './account_generation';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 
@@ -148,6 +151,27 @@ export default function DialogueV2BriefingRoute() {
   const [briefingNonce] = useState(() => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`);
   const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, `${briefingNonce}_${dialogueAttempt}`);
   const startInFlightRef = useRef(false);
+  // зачем (Сверка 05.10 🟡: диалог стартовал при 0 оставшихся ответах — энергия списана, а первая реплика упиралась
+  // в лимит): месячный остаток Free читаем из зеркала на телефоне заранее (0 сети, 0 чтений Firestore). При нуле
+  // «Начать» не списывает энергию и сразу открывает экран лимита — тот же, что у хаба (premium_modal dialog_limit).
+  const { accessResolved, hasPremiumAccess } = usePremium();
+  const freeTier = accessResolved && !hasPremiumAccess;
+  const [monthlyQuotaExhausted, setMonthlyQuotaExhausted] = useState(false);
+  useEffect(() => {
+    if (!freeTier || !supportedTarget(studyTarget)) {
+      setMonthlyQuotaExhausted(false);
+      return undefined;
+    }
+    let alive = true;
+    void readAiDialogMonthlyQuota(studyTarget, captureAccountGeneration().stableId).then((quota) => {
+      if (!alive) return;
+      console.log('[DIALOGUE-V2] briefing:quota', JSON.stringify({ status: quota.status, scenarioId }));
+      setMonthlyQuotaExhausted(quota.status === 'exhausted');
+    }).catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] briefing:quota → mirror read failed', error instanceof Error ? error.message : String(error));
+    });
+    return () => { alive = false; };
+  }, [freeTier, scenarioId, studyTarget]);
   const [noEnergy, setNoEnergy] = useState(false);
   // зачем (владелец 01.10: «диалоги открываются без загрузки»): первый кадр — из каталога в
   // памяти/снимке (peek), сеть только обновляет фоном и не откатывает показанное на «недоступно».
@@ -215,6 +239,14 @@ export default function DialogueV2BriefingRoute() {
           return;
         }
         if (startInFlightRef.current) return;
+        if (freeTier && monthlyQuotaExhausted) {
+          console.warn('[DIALOGUE-V2] start blocked: monthly replies exhausted → limit screen, energy not spent', { scenarioId });
+          router.push({
+            pathname: '/premium_modal',
+            params: { context: 'dialog_limit', source: 'dialogue_v2_briefing' },
+          } as never);
+          return;
+        }
         startInFlightRef.current = true;
         // зачем (Ядро 01.10, замер): «тап → готовность первого хода».
         if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());

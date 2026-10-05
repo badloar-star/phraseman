@@ -195,3 +195,5 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 ## 02:32 — verdict:stage готов: шторка 75/209 мс ✅; tray_committed дважды 🟡; счётчик 1/12 не сдвинулся 🔴. Отчёт docs/phraseman-2.0/evidence/parity/MISTAKE_STAGES_2026-10-05_0230.md, сырой C:\Temp\claude\mistake_verdict_stages.txt.
 
 ## 02:53 — MISTAKE counter после 17be8d8c2 (бандл перезагружен 02:49): ✅ счётчик 3→4, ✅ «неверно» 1 коммит, ✅ точка «3» не обрезана, 🟡 «верно» 2 коммита (chain null→set). Отчёт docs/phraseman-2.0/evidence/parity/MISTAKE_COUNTER_2026-10-05_0251.md, файл C:\Temp\claude\mistake_counter.txt.
+
+## 02:55 — принято: (А) AI-EXPLAIN/AI-LIMIT → C:\Temp\claudei_limit_run.txt; (Б) DIALOGUE-V2 completion → C:\Temp\claude\dialogue_completion_run.txt — первыми, файлы Ядру и тебе. Затем Learning V2 010…012, 016…019, 023…025, 028…032 (Собери фразу: подпись в пустой строке, тень в банке, банк не перестраивается). 🔴 эмулятор опять пропал ~02:55, жду подъёма.

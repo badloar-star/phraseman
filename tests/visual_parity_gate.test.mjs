@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { evaluateRegistry, missingMatrixRows, parseSverkaOpenDiffs } from '../scripts/visual_parity_gate.mjs';
+import { evaluateRegistry, missingMatrixRows, parseSverkaHeadingDiffs, parseSverkaOpenDiffs } from '../scripts/visual_parity_gate.mjs';
 import { parseMatrix } from '../scripts/visual_parity_build.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -212,4 +212,27 @@ test('журнал сверки: расхождение есть, а diffs пу�
 test('склейка без ревью и match с непустыми diffs не проходят', () => {
   assert.ok(codes(run(sandbox(), [matchRow({ reviewed_by: null })])).includes('review_missing'));
   assert.ok(codes(run(sandbox(), [matchRow({ diffs: ['x'] })])).includes('diffs_not_empty'));
+});
+
+// зачем (координатор 05.10): отличия, записанные в журнале сверки ЗАГОЛОВКОМ (`### id · … — НЕ СОВПАДАЕТ`, «отличия:», «остались:»), а не таблицей,
+// раньше гейт не видел. Теперь они открыты, пока более поздний заголовок того же id не скажет ИСПРАВЛЕНО.
+test('заголовки журнала: НЕ СОВПАДАЕТ открывает отличие, сокращение 016/017/018 раскрывается, ИСПРАВЛЕНО закрывает', () => {
+  const log = [
+    '### learn-016/017/018 · «Смешать темы» — НЕ СОВПАДАЕТ',
+    '### learn-004 · Поиск — ничего не нашлось — НЕ СОВПАДАЕТ',
+    '### mistakes-panel-004 · Перед отработкой — раскладка СОВПАДАЕТ; отличия вида:',
+    '### profile-002 · Настройки — СОВПАДАЕТ',
+    '### learn-004 · Ничего не нашлось — ИСПРАВЛЕНО: убрана лишняя строка',
+  ].join('\n');
+  const open = parseSverkaHeadingDiffs(log);
+  assert.deepEqual([...open.keys()].sort(), ['learn-016', 'learn-017', 'learn-018', 'mistakes-panel-004']);
+  assert.ok(!open.has('learn-004'), 'более поздний ИСПРАВЛЕНО закрыл отличие');
+  assert.ok(!open.has('profile-002'), 'просто СОВПАДАЕТ отличием не является');
+});
+
+test('строка с отличием в заголовке журнала и пустым diffs не проходит гейт', () => {
+  const open = parseSverkaHeadingDiffs('### learn-001 · Обучение A1 — НЕ СОВПАДАЕТ');
+  const rows = [matchRow({ id: 'learn-001', diffs: [] })];
+  const result = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), sverkaOpenDiffs: open });
+  assert.ok(codes(result).includes('sverka_diff_not_in_registry'));
 });

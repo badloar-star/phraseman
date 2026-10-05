@@ -81,6 +81,31 @@ export function parseSverkaOpenDiffs(text) {
   return open;
 }
 
+/**
+ * зачем (координатор 05.10, обход реестра «строка с отличиями никогда не match»): журнал сверки пишут не только таблицей `| id | макет | приложение |`,
+ * но и заголовками `### learn-016/017/018 · … — НЕ СОВПАДАЕТ` (и «отличия:»/«остались:»). Такие записи таблицей не ловились — гейт их «не видел».
+ * Читаем заголовки: id (в том числе сокращение `learn-016/017/018`), открытое отличие = НЕ СОВПАДАЕТ / «отличия» / «остались» без слова ИСПРАВЛЕНО;
+ * более поздний заголовок того же id с ИСПРАВЛЕНО (и без НЕ СОВПАДАЕТ) отличие закрывает.
+ */
+export function parseSverkaHeadingDiffs(text) {
+  const open = new Map();
+  for (const line of String(text ?? '').split(/\r?\n/)) {
+    const match = /^###\s+([a-z0-9-]+-\d{3}(?:\/\d{3})*)\b\s*·?\s*(.*)$/.exec(line);
+    if (!match) continue;
+    const parts = match[1].split('/');
+    const prefix = parts[0].replace(/\d{3}$/, '');
+    const ids = parts.map((part, index) => (index === 0 ? part : `${prefix}${part}`));
+    const title = match[2];
+    const fixed = /ИСПРАВЛЕНО/i.test(title) && !/НЕ СОВПАДАЕТ/i.test(title);
+    const opened = /НЕ СОВПАДАЕТ|отличия|остались/i.test(title);
+    for (const id of ids) {
+      if (fixed) open.delete(id);
+      else if (opened) open.set(id, { mockup: 'заголовок журнала', app: title.slice(0, 120) });
+    }
+  }
+  return open;
+}
+
 export function evaluateRegistry(root, registry, options = {}) {
   const violations = [];
   const runGit = options.runGit ?? defaultGit;
@@ -160,7 +185,8 @@ async function main() {
     return 1;
   }
   const logPath = path.join(root, 'docs/phraseman-2.0/evidence/parity/SVERKA_LOG.md');
-  const sverkaOpenDiffs = fs.existsSync(logPath) ? parseSverkaOpenDiffs(fs.readFileSync(logPath, 'utf8')) : new Map();
+  const sverkaLogText = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '';
+  const sverkaOpenDiffs = new Map([...parseSverkaHeadingDiffs(sverkaLogText), ...parseSverkaOpenDiffs(sverkaLogText)]);
   const result = evaluateRegistry(root, registry, { sverkaOpenDiffs });
   if (!flag('--no-matrix-check')) {
     const matrixPath = path.join(root, registry.matrix ?? 'docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md');

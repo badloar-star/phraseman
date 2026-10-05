@@ -81,6 +81,7 @@ import {
   phoneStateEconomyCompositeFromLegacy,
 } from './phone_state_economy_bridge';
 import { drainCustomizationSelectionOutbox } from './customization_selection_journal';
+import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups';
 import {
   backfillClientShardPhoneStateOutbox,
   drainClientShardPhoneStateOutbox,
@@ -593,11 +594,17 @@ export function installPhoneStateProductionRuntime(): void {
         storage: AsyncStorage,
         mirror: commitPhoneStateCustomizationSelection,
       }).catch(noteSwallowedHandler('phone_state_runtime:promise_2'));
-      void backfillClientShardPhoneStateOutbox({
-        accountToken: session.context.runtimeToken,
+      // зачем (координатор 05.10, шаг 1а; пакеты 03:26/04:26): досыпка outbox шардов держала замок аккаунта +
+      // storage-замок 3,4–5,2 с на холодном старте (полный обход ключей), за ней стояли монеты, курс, оформление.
+      // Новые операции шардов кладутся в outbox сами при записи (enqueuePhoneStateMirror) — досыпка лишь подбирает
+      // старые корни, поэтому её запуск переносится на после первого кадра Главной. ЛОГИКА НЕ МЕНЯЕТСЯ: та же
+      // цепочка backfill → drain, сверка поколения аккаунта внутри функций.
+      const shardRuntimeToken = session.context.runtimeToken;
+      runAfterHomeFirstFrame('client_shard_phone_state_backfill', () => backfillClientShardPhoneStateOutbox({
+        accountToken: shardRuntimeToken,
       }).then(() => drainClientShardPhoneStateOutbox({
-        accountToken: session.context.runtimeToken,
-      })).catch(noteSwallowedHandler('phone_state_runtime:promise_3'));
+        accountToken: shardRuntimeToken,
+      })).catch(noteSwallowedHandler('phone_state_runtime:promise_3')));
       configurePhoneStateLearningV2Bridge({
         scope,
         deviceId: session.deviceId,

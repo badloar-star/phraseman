@@ -12,6 +12,8 @@ import {
   getYoutubePinnedVideosRaw,
 } from './remote_flags';
 import { DebugLogger } from './debug-logger';
+// зачем (пакет 10:26): ключ кэша и канал по умолчанию — из лёгкого модуля, которым Главная читает кэш без этого модуля.
+import { LINGMAN_DEFAULT_CHANNEL_ID, LINGMAN_FEED_SNAPSHOT_STORAGE_KEY } from './lingman_youtube_feed_disk';
 
 export type LingmanYoutubeVideo = {
   id: string;
@@ -40,7 +42,7 @@ export type LingmanYoutubeSnapshot = {
 // английский канал @professorlingman. Прежний id UCNNVZbMkh4jrW6uluaaJTwA по RSS
 // оказался каналом «Professor Lingman | LEARN ITALIAN» — лента тянула итальянские
 // видео. id ниже сверен с canonical-ссылкой страницы @professorlingman и его RSS.
-export const LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg';
+export const LINGMAN_CHANNEL_ID = LINGMAN_DEFAULT_CHANNEL_ID;
 export const LINGMAN_CHANNEL_DISPLAY_NAME = 'Professor Lingman';
 export const LINGMAN_CHANNEL_HANDLE = '@professorlingman';
 export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@professorlingman/videos';
@@ -106,7 +108,7 @@ function getActiveFeedUrl(): string {
 }
 const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v2';
 const STORAGE_LAST_OPENED_AT = 'lingman_youtube_last_opened_at_ms_v2';
-const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = 'lingman_youtube_last_successful_snapshot_v2';
+const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = LINGMAN_FEED_SNAPSHOT_STORAGE_KEY;
 let seenMutationRevision = 0;
 let pendingSeenMutationRevision = 0;
 let latestSeenMutationVideoId: string | null = null;

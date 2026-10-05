@@ -103,6 +103,7 @@ import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contra
 import { homeMistakesButtonState } from '../home_mistakes_pulse_model';
 import type { LingmanYoutubeVideo } from '../lingman_youtube';
 import { isVideoButtonEnabled } from '../remote_flags';
+import { readRawCachedLingmanFeed } from '../lingman_youtube_feed_disk';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import {
     readCurrentStreakWeekMarkers,
@@ -908,6 +909,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cancelled = true;
         };
     }, [focusTick, homeRuntimeActive, mistakeAccountGeneration, mistakeAccountGenerationKey, mistakeStudyTarget, studyTarget]);
+    // зачем (пакет 10:26: кэш ленты читался 3,9 с — ~2,9 с уходило на ленивый импорт модуля ленты, и ещё ждали
+    // homeRuntimeActive): сохранённый список канала читаем лёгким модулем сразу при монтировании; модуль ленты
+    // потом обновит из сети и подмешает пины. Один раз за запуск (homeVideoSnapshotMemo).
+    useEffect(() => {
+        if (homeVideoSnapshotMemo || !isVideoButtonEnabled() || homeVideoRailUsesCatalog(studyTarget)) return undefined;
+        let alive = true;
+        const startedAt = Date.now();
+        void readRawCachedLingmanFeed().then((videos) => {
+            console.warn('[HOME-COLD] video:raw_cache', JSON.stringify({ ms: Date.now() - startedAt, videos: videos?.length ?? 0, alive, memo: !!homeVideoSnapshotMemo })); // guard-ok: временная трассировка холодного старта
+            if (!alive || !videos || homeVideoSnapshotMemo) return;
+            homeVideoSnapshotMemo = { videos, latestVideoId: videos[0]?.id ?? null, error: false };
+            latestVideoIdRef.current = homeVideoSnapshotMemo.latestVideoId;
+            setHomeV2Videos(videos);
+            setHomeV2VideoStatus('ready');
+        });
+        return () => { alive = false; };
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- один раз при монтировании
+    }, []);
     // зачем (владелец 2026-09-15): вход в видео переехал из шапки в ряд «Сегодня»,
     // поэтому счётчик непросмотренных читается здесь. Локальный снапшот, без сети.
     useEffect(() => {

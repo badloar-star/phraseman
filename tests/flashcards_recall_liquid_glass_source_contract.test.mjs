@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'app', 'flashcards_recall_session.tsx'),
   'utf8',
-);
+));
 const activeScreen = source.slice(source.indexOf('  const feedbackSurface'), source.indexOf('\nconst styles ='));
 
 function luminance(hex) {

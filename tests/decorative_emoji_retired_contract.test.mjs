@@ -3,8 +3,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8')
+const read = (p) => normalizeEol(readFileSync(new URL(`../${p}`, import.meta.url), 'utf8'))
   .replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
 
 const RETIRED = {

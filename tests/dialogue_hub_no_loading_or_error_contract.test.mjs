@@ -4,8 +4,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const hub = readFileSync(new URL('../components/dialogs/DialogueV2CatalogueContainer.tsx', import.meta.url), 'utf8')
+const hub = normalizeEol(readFileSync(new URL('../components/dialogs/DialogueV2CatalogueContainer.tsx', import.meta.url), 'utf8'))
   .replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
 
 test('the dialogue hub renders no loading state', () => {
@@ -20,7 +21,7 @@ test('the dialogue hub renders no error card or manual retry', () => {
   assert.doesNotMatch(hub, /retryCatalogue/);
 });
 
-const strip = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
+const strip = (path) => normalizeEol(readFileSync(new URL(path, import.meta.url), 'utf8')).replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
 
 test('dialogue memory and hub notices carry no loading or load-error copy', () => {
   const memory = strip('../app/dialogue_v2_memory.tsx');

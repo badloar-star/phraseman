@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const explain = readFileSync(new URL('../components/ExplainReportButton.tsx', import.meta.url), 'utf8');
-const error = readFileSync(new URL('../components/ReportErrorButton.tsx', import.meta.url), 'utf8');
+const explain = normalizeEol(readFileSync(new URL('../components/ExplainReportButton.tsx', import.meta.url), 'utf8'));
+const error = normalizeEol(readFileSync(new URL('../components/ReportErrorButton.tsx', import.meta.url), 'utf8'));
 
 for (const [name, src] of [['ExplainReportButton', explain], ['ReportErrorButton', error]]) {
   test(`${name}: Liquid Glass tokens, opaque sheet, neutral CTA, no thick/coloured borders`, () => {

@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import ts from 'typescript';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 // зачем (владелец 2026-09-30, D78): оболочка A/D (PaywallLiquidGlass, карточки/плитки
 // тарифов, PaywallTrialStages) удалена вместе с пейволами A–G. Этот сторож теперь
@@ -10,7 +11,7 @@ import ts from 'typescript';
 // tests/paywall_v3_source_contract.test.mjs.
 
 const root = join(import.meta.dirname, '..');
-const read = (path) => readFileSync(join(root, path), 'utf8');
+const read = (path) => normalizeEol(readFileSync(join(root, path), 'utf8'));
 
 function assertParses(path) {
   const result = ts.transpileModule(read(path), {

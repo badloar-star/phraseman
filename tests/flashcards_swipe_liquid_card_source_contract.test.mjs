@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'app', 'flashcards_swipe.tsx'),
   'utf8',
-);
+));
 const play = source.slice(source.indexOf('  const renderPlay = () =>'), source.indexOf('\n  const renderQuickStart ='));
 
 assert.match(source, /import \{ LinearGradient \} from '\.\.\/components\/SafeLinearGradient';/);

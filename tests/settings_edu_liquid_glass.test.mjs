@@ -2,8 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = fs.readFileSync(path.resolve('app/settings_edu.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.resolve('app/settings_edu.tsx'), 'utf8'));
 const localSwitchTag = source.match(/function LocalSwitch[\s\S]*?<PressableHybrid([\s\S]*?)\n\s*>/)?.[1] ?? '';
 
 test('learning settings use the approved liquid-glass shell without losing settings behavior', () => {

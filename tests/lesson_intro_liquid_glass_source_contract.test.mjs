@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const intro = readFileSync(new URL('../app/lesson_intro_screens.tsx', import.meta.url), 'utf8');
+const intro = normalizeEol(readFileSync(new URL('../app/lesson_intro_screens.tsx', import.meta.url), 'utf8'));
 
 test('lesson intro C1–C3 uses the active Liquid Glass material while preserving its real reveal flow', () => {
   assert.ok(intro.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');

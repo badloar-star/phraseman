@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'components', 'FeatureIntroModal.tsx'),
   'utf8',
-);
+));
 const iconStage = source.slice(source.indexOf('function IconStage'), source.indexOf('\nfunction FeatureIntroModal'));
 
 assert.match(source, /import \{ LinearGradient \} from '\.\/SafeLinearGradient';/);

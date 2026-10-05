@@ -6,6 +6,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { renderReport, summarizeExport } from '../scripts/pm216_release_size_report.mjs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 function fakeExport() {
   const dir = mkdtempSync(join(tmpdir(), 'pm216-'));
@@ -66,10 +67,10 @@ test('the report text never presents repository size as app size', () => {
 });
 
 test('PM-009 inventory keeps sources, archive and bundle as three different columns (A2)', () => {
-  const md = readFileSync(new URL('../docs/phraseman-2.0/evidence/PM-009_asset_bundle_inventory.md', import.meta.url), 'utf8');
+  const md = normalizeEol(readFileSync(new URL('../docs/phraseman-2.0/evidence/PM-009_asset_bundle_inventory.md', import.meta.url), 'utf8'));
   assert.match(md, /исходники\*\* — все байты файлов в `assets\/`/);
   assert.match(md, /\*\*в архиве EAS\*\*/);
   assert.match(md, /\*\*в бандле\*\*/);
-  const runtime = readFileSync(new URL('../docs/phraseman-2.0/docs/RUNTIME.md', import.meta.url), 'utf8');
+  const runtime = normalizeEol(readFileSync(new URL('../docs/phraseman-2.0/docs/RUNTIME.md', import.meta.url), 'utf8'));
   assert.match(runtime, /PM-216/);
 });

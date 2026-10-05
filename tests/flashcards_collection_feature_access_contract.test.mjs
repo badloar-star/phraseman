@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const root = join(import.meta.dirname, '..');
-const read = (path) => readFileSync(join(root, path), 'utf8');
+const read = (path) => normalizeEol(readFileSync(join(root, path), 'utf8'));
 
 test('Saved visibility uses the authoritative flashcards feature-access decision', () => {
   const collection = read('app/flashcards_collection.tsx');

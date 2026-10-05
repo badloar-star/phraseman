@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 // зачем (владелец 2026-09-29): меню урока (B1–B5) и интро урока (C1–C3) переносятся
 // «1 в 1» по learn.html / spec_learn.md. Контракт фиксирует ВИД (нейтральные токены
 // Liquid Glass, размеры макета) и то, что логика меню/интро не тронута.
-const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8');
+const read = (p) => normalizeEol(readFileSync(new URL(p, import.meta.url), 'utf8'));
 const menu = read('../app/lesson_menu.tsx');
 const menuGlass = read('../components/lessons/LessonMenuGlass.tsx');
 const intro = read('../app/lesson_intro_screens.tsx');

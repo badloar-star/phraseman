@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const BASELINE = join(ROOT, 'config', 'typography-two-sizes-baseline.json');
@@ -44,7 +45,7 @@ function offenders() {
     for (const f of walk(join(ROOT, d), [])) {
       const rel = relative(ROOT, f).split(sep).join('/');
       if (SKIP.some((re) => re.test(rel))) continue;
-      const src = readFileSync(f, 'utf8');
+      const src = normalizeEol(readFileSync(f, 'utf8'));
       let n = 0;
       for (const m of src.matchAll(/fontSize:\s*([0-9]+(?:\.[0-9]+)?)\b/g)) {
         const size = Number(m[1]);
@@ -67,14 +68,14 @@ if (process.argv.includes('--update')) {
 }
 
 test('text sizes other than 16/13 (below title size) never grow — D145', () => {
-  const base = JSON.parse(readFileSync(BASELINE, 'utf8'));
+  const base = JSON.parse(normalizeEol(readFileSync(BASELINE, 'utf8')));
   const grown = Object.entries(current).filter(([f, n]) => n > (base.files[f] ?? 0));
   assert.deepEqual(grown, [], `новые размеры текста кроме 16/13: ${JSON.stringify(grown)} — используйте 16 или 13 (D145)`);
   assert.ok(total <= base.total, `всего ${total} > базы ${base.total}`);
 });
 
 test('V2 type scale uses only 16/13 for text and regular/bold weights — D145', () => {
-  const v2 = readFileSync(join(ROOT, 'constants', 'v2Style.ts'), 'utf8');
+  const v2 = normalizeEol(readFileSync(join(ROOT, 'constants', 'v2Style.ts'), 'utf8'));
   const block = v2.slice(v2.indexOf('export const V2_TYPE'), v2.indexOf('} as const;', v2.indexOf('export const V2_TYPE')));
   for (const name of ['headline', 'body', 'subtitle', 'caption', 'overline']) {
     const line = block.split('\n').find((l) => l.trim().startsWith(`${name}:`)) ?? '';

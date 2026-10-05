@@ -1,14 +1,15 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 // зачем (владелец 01.10, скрин «Тренироваться с карточками»): окно выбора тренировки —
 // шторка снизу с ручкой, заголовок слева, подпись, круглая ×, крупные строки
 // «значок в квадрате · название · описание · ›». Цвета — наши токены.
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'app', 'flashcards', 'FlashcardsTrainingModeSheet.tsx'),
   'utf8',
-);
+));
 const styles = source.slice(source.indexOf('const styles = StyleSheet.create'));
 const styleBlock = (name, nextName) => {
   const start = styles.indexOf(`\n  ${name}:`);

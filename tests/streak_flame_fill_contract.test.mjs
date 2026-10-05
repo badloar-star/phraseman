@@ -4,8 +4,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import ts from 'typescript';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = readFileSync(new URL('../components/streak/StreakFlameFill.tsx', import.meta.url), 'utf8');
+const source = normalizeEol(readFileSync(new URL('../components/streak/StreakFlameFill.tsx', import.meta.url), 'utf8'));
 const start = source.indexOf('export const STREAK_FLAME_FULL_DAYS');
 const end = source.indexOf('type Props = ');
 const compiled = ts.transpileModule(source.slice(start, end), {
@@ -53,7 +54,7 @@ test('A2: static — no infinite animation, no network, no new image assets', ()
 });
 
 test('streak screen shows the flame instead of the feather (freeze keeps its own icon)', () => {
-  const stats = readFileSync(new URL('../app/streak_stats.tsx', import.meta.url), 'utf8');
+  const stats = normalizeEol(readFileSync(new URL('../app/streak_stats.tsx', import.meta.url), 'utf8'));
   assert.match(stats, /<StreakFlameFill streakDays=\{totalStreak\}/);
   assert.match(stats, /freezeActive\s*\n?\s*\? <StreakChainIcon themeMode=\{themeMode\} frozen/);
 });

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = readFileSync('components/ErrorBoundary.tsx', 'utf8');
+const source = normalizeEol(readFileSync('components/ErrorBoundary.tsx', 'utf8'));
 
 const approvedCopy = {
   ru: {

@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const rules = fs.readFileSync('firestore.rules', 'utf8');
+const rules = normalizeEol(fs.readFileSync('firestore.rules', 'utf8'));
 
 test('automated SOC2 evidence collections are admin-readable and client immutable', () => {
   for (const collection of ['soc2_evidence_manifests', 'soc2_automated_control_projection', 'soc2_automation_state', 'soc2_evidence_runs']) {

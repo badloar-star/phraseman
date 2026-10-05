@@ -3,8 +3,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const strip = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
+const strip = (path) => normalizeEol(readFileSync(new URL(path, import.meta.url), 'utf8')).replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
 
 const BANNED = [
   'Загружаем данные', 'Данные недоступны', 'Вопросы не загрузились', 'Видео временно недоступны',

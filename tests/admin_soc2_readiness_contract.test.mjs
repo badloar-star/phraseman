@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
-const source = fs.readFileSync('admin/v2/legacy.html', 'utf8');
+const source = normalizeEol(fs.readFileSync('admin/v2/legacy.html', 'utf8'));
 
 test('admin exposes an actionable SOC 2 readiness workbench without product writes', () => {
   assert.match(source, /switchTab\('soc2-readiness'\)/);

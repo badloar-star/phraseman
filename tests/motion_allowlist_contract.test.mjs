@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizeEol } from './helpers/read_source_esm.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIRS = ['app', 'components', 'modules', 'hooks'];
@@ -67,7 +68,7 @@ function infiniteLoops(src) {
 const found = {};
 for (const d of DIRS) {
   for (const f of walk(join(ROOT, d), [])) {
-    const src = readFileSync(f, 'utf8').replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
+    const src = normalizeEol(readFileSync(f, 'utf8')).replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
     const n = infiniteLoops(src);
     if (n > 0) found[relative(ROOT, f).split(sep).join('/')] = n;
   }

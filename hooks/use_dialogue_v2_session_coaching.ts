@@ -103,7 +103,18 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
 
   /** Разбор нового хода; replyIds — id пузырей собеседника в порядке `replies`. */
   const applyCoaching = useCallback((coaching: DialogueV2TurnCoaching | null) => {
-    if (!coaching) return;
+    // зачем (Сверка 05.10: диалог закончился после 2-й реплики, цели засчитаны скачком 1→4): цель и конец диалога
+    // решает сервер (activeObjectiveId, dialogueEnded в ответе хода) — печатаем, что пришло на каждом ходе.
+    if (!coaching) {
+      console.log('[DIALOGUE-V2] coaching:none — ход без разбора');
+      return;
+    }
+    console.log('[DIALOGUE-V2] coaching:turn', JSON.stringify({
+      activeObjectiveId: coaching.activeObjectiveId,
+      dialogueEnded: coaching.dialogueEnded,
+      mood: coaching.mood ?? null,
+      hasHint: !!coaching.hint,
+    }));
     if (coaching.mood) setMood(coaching.mood);
     if (coaching.activeObjectiveId) setActiveObjectiveId(coaching.activeObjectiveId);
     if (coaching.hint) setHint(coaching.hint);
@@ -111,7 +122,13 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   }, []);
 
   const applyQuota = useCallback((quota: DialogueV2CoachedTurnQuota | null) => {
-    if (!quota || quota.remaining === null) return;
+    if (!quota || quota.remaining === null) {
+      console.log(`[DIALOGUE-V2] quota:skip — ${quota ? 'remaining=null (безлимит)' : 'нет квоты в ответе'}`);
+      return;
+    }
+    console.log('[DIALOGUE-V2] quota:turn', JSON.stringify({
+      remaining: quota.remaining, exhausted: quota.remaining <= 0, resetAtMs: quota.resetAtMs, quotaVersion: quota.quotaVersion,
+    }));
     quotaFromServerRef.current = true;
     setQuotaRemaining(quota.remaining);
     if (quota.remaining <= 0) setQuotaExhausted(true);

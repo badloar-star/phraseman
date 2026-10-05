@@ -29,6 +29,7 @@ import Animated, {
 import { AnimatedCountUpText } from "../../AnimatedCountUpText";
 import { HOME_RUNE_ICON_SOURCE } from "../../home/homeRuneAsset";
 import { Lv2Cta, lv2CardStyle, useLv2Glass, type Lv2Glass } from "../LearningV2Glass";
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 
 export type HorizonResultSkillRow = Readonly<{
   id: string;
@@ -100,6 +101,7 @@ const ResultStar = memo(function ResultStar({
 const ResultAward = memo(function ResultAward({
   gain, word, a11yLabel, settled, reducedMotion, g,
 }: Readonly<{ gain: number; word: string; a11yLabel: string; settled: boolean; reducedMotion: boolean; g: Lv2Glass }>) {
+  const sx = useScaledTextStyles(styles);
   const visibleGain = settled ? Math.max(0, Math.round(gain)) : 0;
   const pop = useSharedValue(reducedMotion ? 1 : 0);
   useEffect(() => {
@@ -129,21 +131,21 @@ const ResultAward = memo(function ResultAward({
       testID="horizons-rune-award"
       accessible
       accessibilityLabel={a11yLabel}
-      style={styles.award}
+      style={sx.award}
     >
       <Animated.View style={coinStyle}>
-        <Image source={HOME_RUNE_ICON_SOURCE} style={styles.coin} contentFit="contain" accessible={false} />
+        <Image source={HOME_RUNE_ICON_SOURCE} style={sx.coin} contentFit="contain" accessible={false} />
       </Animated.View>
-      <View style={styles.awardNum} importantForAccessibility="no-hide-descendants">
-        <Text style={[styles.awardValue, { color: g.text }]}>+</Text>
+      <View style={sx.awardNum} importantForAccessibility="no-hide-descendants">
+        <Text style={[sx.awardValue, { color: g.text }]}>+</Text>
         <AnimatedCountUpText
           value={visibleGain}
           durationMs={900}
           accessible={false}
           importantForAccessibility="no-hide-descendants"
-          style={[styles.awardValue, styles.awardCount, { color: g.text }]}
+          style={[sx.awardValue, sx.awardCount, { color: g.text }]}
         />
-        <Text style={[styles.awardWord, { color: g.secondary }]}>{word}</Text>
+        <Text style={[sx.awardWord, { color: g.secondary }]}>{word}</Text>
       </View>
     </View>
   );
@@ -154,6 +156,7 @@ export default function HorizonResultGlass({
   rewardsSettled, reducedMotion, skills, skillsTitle, skillOkLabel, skillReviewLabel,
   mistakesSlot, feedbackSlot, ctaLabel, ctaTestID, ctaEnabled, onContinue, bottomInset,
 }: Props) {
+  const sx = useScaledTextStyles(styles);
   const g = useLv2Glass();
   const safeCorrect = Math.max(0, Math.round(correct));
   const safeWrong = Math.max(0, Math.round(wrong));
@@ -176,27 +179,27 @@ export default function HorizonResultGlass({
 
   return (
     <ScrollView
-      style={styles.scroll}
-      contentContainerStyle={[styles.content, { paddingBottom: Math.max(16, bottomInset + 12) }]}
+      style={sx.scroll}
+      contentContainerStyle={[sx.content, { paddingBottom: Math.max(16, bottomInset + 12) }]}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.head}>
-        <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-        <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
+      <View style={sx.head}>
+        <Text accessibilityRole="header" style={[sx.title, { color: g.text }]}>{title}</Text>
+        <Text style={[sx.subtitle, { color: g.secondary }]}>{subtitle}</Text>
       </View>
 
-      <View style={styles.starsRow} accessible accessibilityLabel={`${stars}/3`}>
+      <View style={sx.starsRow} accessible accessibilityLabel={`${stars}/3`}>
         {[0, 1, 2].map((i) => (
           <ResultStar key={i} index={i} filled={i < stars} reducedMotion={reducedMotion} g={g} />
         ))}
       </View>
 
       <Animated.View style={detailsStyle}>
-        <View testID="horizons-result-stats" style={[styles.stats, lv2CardStyle(g)]}>
+        <View testID="horizons-result-stats" style={[sx.stats, lv2CardStyle(g)]}>
           <StatCell value={String(safeCorrect)} label={labels.correct} color={g.good} g={g} />
-          <View style={[styles.statDivider, { backgroundColor: g.line }]} />
+          <View style={[sx.statDivider, { backgroundColor: g.line }]} />
           <StatCell value={String(safeWrong)} label={labels.wrong} color={g.bad} g={g} />
-          <View style={[styles.statDivider, { backgroundColor: g.line }]} />
+          <View style={[sx.statDivider, { backgroundColor: g.line }]} />
           <StatCell value={`${accuracy}%`} label={labels.accuracy} color={g.text} g={g} />
         </View>
 
@@ -210,17 +213,17 @@ export default function HorizonResultGlass({
         />
 
         {skills && skills.length > 0 ? (
-          <View testID="horizons-result-skills" style={[styles.skills, lv2CardStyle(g)]}>
-            {skillsTitle ? <Text style={[styles.cardTitle, { color: g.text }]}>{skillsTitle}</Text> : null}
+          <View testID="horizons-result-skills" style={[sx.skills, lv2CardStyle(g)]}>
+            {skillsTitle ? <Text style={[sx.cardTitle, { color: g.text }]}>{skillsTitle}</Text> : null}
             {skills.map((row) => (
-              <View key={row.id} style={[styles.skillRow, { borderTopColor: g.line }]}>
+              <View key={row.id} style={[sx.skillRow, { borderTopColor: g.line }]}>
                 <Ionicons
                   name={row.state === "ok" ? "checkmark-circle-outline" : "refresh-circle-outline"}
                   size={22}
                   color={row.state === "ok" ? g.good : g.secondary}
                 />
-                <Text style={[styles.skillLabel, { color: g.text }]}>{row.label}</Text>
-                <Text style={[styles.skillTag, { color: g.secondary }]}>
+                <Text style={[sx.skillLabel, { color: g.text }]}>{row.label}</Text>
+                <Text style={[sx.skillTag, { color: g.secondary }]}>
                   {row.state === "ok" ? skillOkLabel : skillReviewLabel}
                 </Text>
               </View>
@@ -228,10 +231,10 @@ export default function HorizonResultGlass({
           </View>
         ) : null}
 
-        {mistakesSlot ? <View style={styles.block}>{mistakesSlot}</View> : null}
-        {feedbackSlot ? <View style={styles.block}>{feedbackSlot}</View> : null}
+        {mistakesSlot ? <View style={sx.block}>{mistakesSlot}</View> : null}
+        {feedbackSlot ? <View style={sx.block}>{feedbackSlot}</View> : null}
 
-        <View style={styles.next}>
+        <View style={sx.next}>
           <Lv2Cta
             testID={ctaTestID}
             accessibilityLabel={ctaLabel}
@@ -248,10 +251,11 @@ export default function HorizonResultGlass({
 }
 
 function StatCell({ value, label, color, g }: Readonly<{ value: string; label: string; color: string; g: Lv2Glass }>) {
+  const sx = useScaledTextStyles(styles);
   return (
-    <View style={styles.statCell} accessible accessibilityLabel={`${value} ${label}`}>
-      <Text style={[styles.statValue, { color }]}>{value}</Text>
-      <Text style={[styles.statLabel, { color: g.secondary }]}>{label}</Text>
+    <View style={sx.statCell} accessible accessibilityLabel={`${value} ${label}`}>
+      <Text style={[sx.statValue, { color }]}>{value}</Text>
+      <Text style={[sx.statLabel, { color: g.secondary }]}>{label}</Text>
     </View>
   );
 }

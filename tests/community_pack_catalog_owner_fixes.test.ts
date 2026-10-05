@@ -271,6 +271,13 @@ describe('шапка каталога сообщества (замечания �
     }
   });
 
+  it('по умолчанию каталог открыт на «Новые» (макет packs-simple кадр 1), ?sort=popular ведёт на «Топ»', () => {
+    expect(screen).toContain("params.sort === 'popular' ? 'popular' : 'new'");
+    expect(screen).not.toContain("params.sort === 'new' ? 'new' : 'popular'");
+    // сортировка клиентская над одним списком: нового запроса/индекса Firestore смена умолчания не требует
+    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
+  });
+
   it('каталог получает фильтр готовым из шапки', () => {
     expect(screen).toContain('communityQuery={communityQuery}');
     expect(screen).toContain('communitySort={communitySort}');

@@ -8,6 +8,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { CoinImage } from './ProfileCardCoin';
 import { gradientPoints, type GradientSpec } from './profile_card_looks';
+import { useLineScale } from '../../hooks/useLineScale';
 
 export type ButtonTone = 'primary' | 'alt' | 'off';
 
@@ -68,12 +69,13 @@ export function buttonInk(tone: ButtonTone, fill: Readonly<{ text: string }> | n
 
 /** Двухстрочная подпись кнопки (.vz-2l): жирное название + мелкая цена. */
 export function TwoLine({ title, sub, ink, subCoinRank }: { title: string; sub: string; ink: string; subCoinRank?: number | null }) {
+  const lh = useLineScale();
   return (
     <View style={styles.twoLine}>
-      <Text style={[styles.twoTitle, { color: ink }]}>{title}</Text>
+      <Text style={[styles.twoTitle, { color: ink, lineHeight: lh(22) }]}>{title}</Text>
       <View style={[styles.twoSubRow, { opacity: 0.75 }]}>
         {subCoinRank !== undefined ? <CoinImage rank={subCoinRank ?? 0} size={15} /> : null}
-        <Text style={[styles.twoSub, { color: ink }]}>{sub}</Text>
+        <Text style={[styles.twoSub, { color: ink, lineHeight: lh(16) }]}>{sub}</Text>
       </View>
     </View>
   );
@@ -104,8 +106,14 @@ export function RankChip({ rank, label, bg, ink, testID }: { rank: number | null
 }
 
 const styles = StyleSheet.create({
+  // зачем (Сверка 05.10, coins-003): у «Повысить ранг · 6 000» в половине ширины визитки название не помещается
+  // в строку (шрифт сжимать нельзя) — при жёсткой высоте 56 цена обрезалась снизу. Теперь 56 — минимум, кнопка
+  // растёт по содержимому (поля 8 сверху/снизу) и ничего не режет.
   button: {
-    height: 56,
+    minHeight: 56,
+    paddingVertical: 8,
+    // соседняя кнопка ряда (.vz-foot alignItems stretch) растягивается на ту же высоту — пара кнопок ровная.
+    flexGrow: 1,
     minWidth: 0,
     borderRadius: 28,
     paddingHorizontal: 14,

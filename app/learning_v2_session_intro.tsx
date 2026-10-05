@@ -53,6 +53,7 @@ import {
   richTitle,
 } from "../components/lesson_intro_rich";
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
+import { useScaledTextStyles } from '../hooks/useLineScale';
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -232,6 +233,7 @@ function IntroReaderParagraph({
   correctExampleLabel: string;
   wrongExampleLabel: string;
 }>) {
+  const sx = useScaledTextStyles(styles);
   return (
     <Text
       testID={
@@ -240,7 +242,7 @@ function IntroReaderParagraph({
           : `learning-v2-intro-reader-paragraph-${lineIndex}`
       }
       style={[
-        styles.readerParagraph,
+        sx.readerParagraph,
         { color: glass.text },
       ]}
     >
@@ -337,6 +339,7 @@ export default function LearningV2SessionIntro({
   /** Header-owned status content must participate in layout, never float over it. */
   headerAccessory?: React.ReactNode;
 }>) {
+  const sx = useScaledTextStyles(styles);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   // зачем (learning-v2.html, интро): все цвета экрана — токены Liquid Glass активной темы.
@@ -494,22 +497,22 @@ export default function LearningV2SessionIntro({
   return (
     <LinearGradient
       colors={[g.bgTop, g.bg, g.bgBottom]}
-      style={[styles.screen, { backgroundColor: g.bg }]}
+      style={[sx.screen, { backgroundColor: g.bg }]}
     >
       <SafeAreaView
-        style={[styles.safe, { paddingTop: insets.top }]}
+        style={[sx.safe, { paddingTop: insets.top }]}
         edges={[]}
       >
-        <View style={styles.header}>
+        <View style={sx.header}>
           <PressableHybrid
             testID="learning-v2-intro-close"
             variant="icon"
             accessibilityLabel={copy.close}
             hitSlop={10}
             onPress={onBack}
-            style={styles.closeButton}
+            style={sx.closeButton}
             contentStyle={[
-              styles.closeButtonFace,
+              sx.closeButtonFace,
               { backgroundColor: g.opaqueControl, borderColor: g.glassEdge },
             ]}
           >
@@ -518,24 +521,24 @@ export default function LearningV2SessionIntro({
             <Ionicons name="close" size={20} color={g.text} />
           </PressableHybrid>
 
-          <View style={styles.stageMeta}>
-            <Text style={[styles.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
+          <View style={sx.stageMeta}>
+            <Text style={[sx.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
               {stageLabel}
             </Text>
             <Text
               accessibilityLabel={copy.progress(safeIndex + 1, screens.length)}
-              style={[styles.pageCounter, { color: g.secondary }]}
+              style={[sx.pageCounter, { color: g.secondary }]}
             >
               {safeIndex + 1} / {screens.length}
             </Text>
           </View>
           {headerAccessory ? (
-            <View style={styles.headerAccessory}>{headerAccessory}</View>
+            <View style={sx.headerAccessory}>{headerAccessory}</View>
           ) : null}
         </View>
 
         <View
-          style={styles.progressRow}
+          style={sx.progressRow}
           accessibilityRole="progressbar"
           accessibilityValue={{ min: 1, max: screens.length, now: safeIndex + 1 }}
         >
@@ -543,7 +546,7 @@ export default function LearningV2SessionIntro({
             <View
               key={entry.screenId ?? `${lessonId}-${progressIndex}`}
               style={[
-                styles.progressSegment,
+                sx.progressSegment,
                 { backgroundColor: g.opaqueControl },
                 progressIndex <= safeIndex && { backgroundColor: g.accent },
               ]}
@@ -560,20 +563,20 @@ export default function LearningV2SessionIntro({
                   ReduceMotion.System,
                 )
           }
-          style={styles.slide}
+          style={sx.slide}
         >
           <ScrollView
-            style={styles.scroll}
+            style={sx.scroll}
             contentContainerStyle={[
-              styles.scrollContent,
-              compact && styles.scrollContentCompact,
+              sx.scrollContent,
+              compact && sx.scrollContentCompact,
               { paddingBottom: 94 + insets.bottom },
             ]}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
-            <View style={styles.readerColumn}>
-              <Text style={[styles.title, { color: lv2Alpha(g.text, 0.86) }]}>
+            <View style={sx.readerColumn}>
+              <Text style={[sx.title, { color: lv2Alpha(g.text, 0.86) }]}>
                 {titleSegments.map((segment, segmentIndex) => (
                   <Text
                     key={`${segmentIndex}-${segment.text}`}
@@ -588,16 +591,16 @@ export default function LearningV2SessionIntro({
                 ))}
               </Text>
               {!!subtitle && (
-                <Text style={[styles.subtitle, { color: g.secondary }]}>
+                <Text style={[sx.subtitle, { color: g.secondary }]}>
                   {subtitle}
                 </Text>
               )}
 
-              <View style={[styles.knowledgeFlow, lv2CardStyle(g)]}>
+              <View style={[sx.knowledgeFlow, lv2CardStyle(g)]}>
                 {lines.map((line, lineIndex) => {
                   const text = lineText(line);
                   if (line.type === "spacer") {
-                    return <View key={`${lineIndex}-spacer`} style={styles.spacer} />;
+                    return <View key={`${lineIndex}-spacer`} style={sx.spacer} />;
                   }
                   if (!text.trim()) return null;
                   const parts = line.parts?.length
@@ -618,19 +621,19 @@ export default function LearningV2SessionIntro({
               </View>
 
               {question && (
-                <View ref={runeAwardOriginRef} collapsable={false} style={styles.questionPanel}>
-                  <View style={styles.questionEyebrowRow}>
-                    <Text style={[styles.questionEyebrow, { color: g.text }]}>
+                <View ref={runeAwardOriginRef} collapsable={false} style={sx.questionPanel}>
+                  <View style={sx.questionEyebrowRow}>
+                    <Text style={[sx.questionEyebrow, { color: g.text }]}>
                       {copy.answerFirst}
                     </Text>
-                    <Text style={[styles.questionNumber, { color: g.mutedText }]}>
+                    <Text style={[sx.questionNumber, { color: g.mutedText }]}>
                       {question.taskSlot} / 3
                     </Text>
                   </View>
-                  <Text style={[styles.questionPrompt, { color: g.text }]}>
+                  <Text style={[sx.questionPrompt, { color: g.text }]}>
                     {questionPrompt}
                   </Text>
-                  <View style={styles.answerList}>
+                  <View style={sx.answerList}>
                     {questionChoices.map((choice, choiceIndex) => {
                       const correct = selectedCorrectIndex === choiceIndex;
                       const wrong = !correct && wrongChoiceIndexes.includes(choiceIndex);
@@ -652,9 +655,9 @@ export default function LearningV2SessionIntro({
                           disabled={answered}
                           withHaptic={false}
                           onPress={() => chooseAnswer(choiceIndex)}
-                          style={styles.answerChoiceTouch}
+                          style={sx.answerChoiceTouch}
                           contentStyle={[
-                            styles.answerChoice,
+                            sx.answerChoice,
                             {
                               // зачем (learning-v2.html, `.ach`): верный — зелёная заливка .12 и
                               // кромка 1 px того же цвета, неверный — красная .10; обычный — плита.
@@ -667,12 +670,12 @@ export default function LearningV2SessionIntro({
                             },
                           ]}
                         >
-                          <View style={[styles.answerLetter, { backgroundColor: correct ? g.good : wrong ? g.bad : g.opaqueControl }]}>
+                          <View style={[sx.answerLetter, { backgroundColor: correct ? g.good : wrong ? g.bad : g.opaqueControl }]}>
                             <Text style={{ color: correct || wrong ? g.ctaInk : g.secondary, fontSize: 13, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
                           </View>
                           <Text
                             style={[
-                              styles.answerChoiceText,
+                              sx.answerChoiceText,
                               { color: g.text },
                             ]}
                           >
@@ -693,7 +696,7 @@ export default function LearningV2SessionIntro({
                   {answered && (
                     <Text
                       accessibilityLiveRegion="polite"
-                      style={[styles.correctMessage, { color: g.good }]}
+                      style={[sx.correctMessage, { color: g.good }]}
                     >
                       {copy.correct}
                     </Text>
@@ -701,7 +704,7 @@ export default function LearningV2SessionIntro({
                   {!answered && wrongCount >= 2 && (
                     <Text
                       accessibilityLiveRegion="polite"
-                      style={[styles.explanation, { color: g.secondary }]}
+                      style={[sx.explanation, { color: g.secondary }]}
                     >
                       {questionExplanation}
                     </Text>
@@ -712,7 +715,7 @@ export default function LearningV2SessionIntro({
           </ScrollView>
         </Animated.View>
 
-        <View style={[styles.reportDock, { bottom: insets.bottom + 78 }]}>
+        <View style={[sx.reportDock, { bottom: insets.bottom + 78 }]}>
           <ReportErrorButton
             screen="learning_v2_intro"
             dataId={`learning_v2_intro_${lessonId}_${safeIndex}`}
@@ -725,7 +728,7 @@ export default function LearningV2SessionIntro({
 
         <View
           style={[
-            styles.bottomBar,
+            sx.bottomBar,
             {
               paddingBottom: Math.max(insets.bottom, 6),
               backgroundColor: g.bg,
@@ -739,7 +742,7 @@ export default function LearningV2SessionIntro({
             accessibilityLabel={isLast ? copy.startPractice : copy.next}
             disabled={!answered}
             onPress={advance}
-            style={styles.ctaWrap}
+            style={sx.ctaWrap}
             right={
               <Ionicons
                 name={isLast ? "play" : "arrow-forward"}

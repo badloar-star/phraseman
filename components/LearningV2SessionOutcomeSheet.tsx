@@ -17,6 +17,7 @@ import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
 import { useLv2Glass } from "./learning-v2/LearningV2Glass";
 import { KitGlassLayer } from "./v2/KitLiquidGlass";
+import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
 
 export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
 
@@ -75,6 +76,8 @@ export default function LearningV2SessionOutcomeSheet({
   bestStars,
   bestStarsLabel = "Лучший результат",
 }: LearningV2SessionOutcomeSheetProps) {
+  const sx = useScaledTextStyles(styles);
+  const lh = useLineScale();
   // зачем (learning-v2.html, startModal): окно занятия — на токенах Liquid Glass активной темы.
   const g = useLv2Glass();
   const layout = LEARNING_V2_OWNER_LAYOUT.modal;
@@ -194,20 +197,20 @@ export default function LearningV2SessionOutcomeSheet({
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismiss}>
-      <View style={styles.root}>
+      <View style={sx.root}>
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={dismiss}
           accessibilityRole="button"
           accessibilityLabel={closeLabel}
         >
-          <Animated.View style={[styles.backdrop, backdropStyle]} />
+          <Animated.View style={[sx.backdrop, backdropStyle]} />
         </Pressable>
-        <View style={[styles.center, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]} pointerEvents="box-none">
+        <View style={[sx.center, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]} pointerEvents="box-none">
           <Animated.View
             accessibilityViewIsModal
             style={[
-              styles.card,
+              sx.card,
               { borderRadius: 22, backgroundColor: g.opaqueSheet, borderColor: g.glassEdge }, // guard-ok: 1 px кромка макета
               cardStyle,
             ]}
@@ -220,62 +223,62 @@ export default function LearningV2SessionOutcomeSheet({
               accessibilityLabel={closeLabel}
               hitSlop={8}
               onPress={dismiss}
-              style={({ pressed }) => [styles.close, { borderColor: g.glassEdge, opacity: pressed ? 0.66 : 1 }]}
+              style={({ pressed }) => [sx.close, { borderColor: g.glassEdge, opacity: pressed ? 0.66 : 1 }]}
             >
               <Ionicons name="close" size={18} color={g.text} />
             </Pressable>
 
-            <Animated.View style={[styles.scene, sceneStyle]}>
-              <View style={[styles.orbPlate, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.cta }]}>
-                <View style={styles.orbPlateShade} />
+            <Animated.View style={[sx.scene, sceneStyle]}>
+              <View style={[sx.orbPlate, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.cta }]}>
+                <View style={sx.orbPlateShade} />
               </View>
-              <View style={[styles.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.text }]}>
+              <View style={[sx.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.text }]}>
                 <Ionicons name={locked ? "lock-closed" : checkpoint ? "trophy" : "play"} size={38} color={locked ? g.secondary : g.ctaInk} />
               </View>
             </Animated.View>
             <Animated.View style={detailsStyle}>
-              <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
-              <Text style={[styles.title, { color: g.text, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
+              <Text testID="learning-v2-session-modal-kicker" style={[sx.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
+              <Text style={[sx.title, { color: g.text, fontSize: layout.headingSize, lineHeight: lh(31) }]}>{title}</Text>
               {/* зачем (сверка с learning-v2.html, 04.10): цель занятия приходит из текста курса с разметкой `код` —
                   человеку показывались сами обратные кавычки («`I am + слово о себе`»). Показываем текст без разметки. */}
-              <Text style={[styles.message, { color: g.secondary, fontSize: 16, lineHeight: 22 }]}>{message.replace(/`/g, '')}</Text>
+              <Text style={[sx.message, { color: g.secondary, fontSize: 16, lineHeight: lh(22) }]}>{message.replace(/`/g, '')}</Text>
               {bestStars !== undefined ? (
                 // `.flex` center gap 8, margin-top 16: звёзды s24 (погашенные #3A3A3E), подпись 15/600 --sec, отступ 6.
-                <View testID="learning-v2-session-modal-best-stars" accessible accessibilityLabel={`${bestStarsLabel}: ${bestStars}/3`} style={styles.bestRow}>
+                <View testID="learning-v2-session-modal-best-stars" accessible accessibilityLabel={`${bestStarsLabel}: ${bestStars}/3`} style={sx.bestRow}>
                   {[1, 2, 3].map((i) => (
-                    <Ionicons key={i} name="star" size={24} color={g.text} style={i <= bestStars ? null : styles.starOff} />
+                    <Ionicons key={i} name="star" size={24} color={g.text} style={i <= bestStars ? null : sx.starOff} />
                   ))}
-                  <Text style={[styles.bestLabel, { color: g.secondary }]}>{bestStarsLabel}</Text>
+                  <Text style={[sx.bestLabel, { color: g.secondary }]}>{bestStarsLabel}</Text>
                 </View>
               ) : null}
 
-              <View style={styles.stats}>
+              <View style={sx.stats}>
                 {stats.map((stat) => (
-                  <View key={stat.id} testID={stat.testID} style={[styles.stat, { backgroundColor: g.opaqueControl }]}>
+                  <View key={stat.id} testID={stat.testID} style={[sx.stat, { backgroundColor: g.opaqueControl }]}>
                     <Ionicons name={stat.icon} size={18} color={g.secondary} />
-                    <Text style={[styles.statText, { color: g.text }]}>{stat.value}</Text>
+                    <Text style={[sx.statText, { color: g.text }]}>{stat.value}</Text>
                   </View>
                 ))}
               </View>
-              <View style={[styles.divider, { backgroundColor: g.line }]} />
+              <View style={[sx.divider, { backgroundColor: g.line }]} />
 
-              <View style={styles.primaryWrap}>
+              <View style={sx.primaryWrap}>
                 <TouchableOpacity
                   accessibilityRole="button"
                   accessibilityState={{ disabled: actionsDisabled }}
                   disabled={actionsDisabled}
                   activeOpacity={0.8}
                   onPress={start}
-                  style={[styles.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
+                  style={[sx.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
-                  <Text style={[styles.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
+                  <Text style={[sx.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
                   {/* зачем (`.cta .ar` right 22): стрелка прижата к правому краю кнопки, подпись по центру. */}
-                  <Ionicons name="arrow-forward" size={20} color={g.accentInk} style={styles.primaryArrow} />
+                  <Ionicons name="arrow-forward" size={20} color={g.accentInk} style={sx.primaryArrow} />
                 </TouchableOpacity>
               </View>
               {secondaryLabel ? (
-                <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[styles.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
-                  <Text style={[styles.secondaryLabel, { color: g.secondary, fontSize: 16 }]}>{secondaryLabel}</Text>
+                <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[sx.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
+                  <Text style={[sx.secondaryLabel, { color: g.secondary, fontSize: 16 }]}>{secondaryLabel}</Text>
                 </TouchableOpacity>
               ) : (
                 <View testID="learning-v2-session-no-secondary" style={{ height: 14 }} />

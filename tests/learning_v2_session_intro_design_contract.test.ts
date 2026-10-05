@@ -42,7 +42,10 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
   expect(intro).toMatch(/ru:\s*['"]СХЕМА['"]/);
   expect(intro).toMatch(/ru:\s*['"]ЛОВУШКА['"]/);
   expect(intro).toContain("learning-v2-intro-next");
-  expect(intro).toContain("style={styles.scroll}");
+  // зачем (координатор 05.10, FONTSCALE2): стили читаются через useScaledTextStyles(styles) → `sx`
+  // (при шрифте 1.0 это тот же объект styles).
+  expect(intro).toContain("style={sx.scroll}");
+  expect(intro).toContain("const sx = useScaledTextStyles(styles);");
   expect(intro).toContain("slide: { flex: 1, minHeight: 0 }");
   expect(intro).toContain("{ paddingBottom: 94 + insets.bottom }");
   expect(intro).toContain("bottomBar: {");

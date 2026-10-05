@@ -37,6 +37,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
 
 
 /**
@@ -96,6 +97,8 @@ function NoEnergyModal({
   qaIgnorePremiumAccess = false,
   motionVariant = 'classic',
 }: Props) {
+  const sx = useScaledTextStyles(styles);
+  const lh = useLineScale();
   const router = useRouter();
   const { theme: t, themeMode, liquidGlassThemeId, f } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -427,7 +430,7 @@ function NoEnergyModal({
     );
 
   const boltIcon = (
-    <View style={[styles.boltCircle, { backgroundColor: glass.opaqueControl }]}>
+    <View style={[sx.boltCircle, { backgroundColor: glass.opaqueControl }]}>
       <EnergyIcon
         filled
         themeColor={t.gold}
@@ -462,21 +465,21 @@ function NoEnergyModal({
       {cascade(
         LUM.ladder[2],
         'title',
-        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+        <Text accessibilityRole="header" style={[sx.title, { color: glass.text, fontSize: f.h2 }]}>
           {titleText}
         </Text>,
       )}
       {cascade(
         LUM.ladder[2],
         'body',
-        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45 }]}>
+        <Text style={[sx.body, { color: glass.secondary, fontSize: f.body, lineHeight: lh(f.body * 1.45) }]}>
           {showBody}
         </Text>,
       )}
       {cascade(
         LUM.ladder[3],
         'actions',
-        <View style={styles.actions}>
+        <View style={sx.actions}>
           <TouchableOpacity
             testID={hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later'}
             accessibilityRole="button"
@@ -486,9 +489,9 @@ function NoEnergyModal({
               laterPress();
             }}
             activeOpacity={0.76}
-            style={[styles.action, { borderWidth: 1, borderColor: glass.glassEdge }]}
+            style={[sx.action, { borderWidth: 1, borderColor: glass.glassEdge }]}
           >
-            <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
+            <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             testID={hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus'}
@@ -499,9 +502,9 @@ function NoEnergyModal({
               openPremiumAfterClose();
             }}
             activeOpacity={0.82}
-            style={[styles.action, { backgroundColor: glass.accent }]}
+            style={[sx.action, { backgroundColor: glass.accent }]}
           >
-            <Text style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{goldCtaLabel}</Text>
+            <Text style={[sx.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{goldCtaLabel}</Text>
           </TouchableOpacity>
         </View>,
       )}
@@ -519,9 +522,9 @@ function NoEnergyModal({
         laterPress();
       }}
       activeOpacity={0.76}
-      style={[styles.action, styles.actionStacked, { borderWidth: 1, borderColor: glass.glassEdge }]}
+      style={[sx.action, sx.actionStacked, { borderWidth: 1, borderColor: glass.glassEdge }]}
     >
-      <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
+      <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
     </TouchableOpacity>
   );
   const plusButton = (testID: string, label: string, course: boolean) => (
@@ -534,10 +537,10 @@ function NoEnergyModal({
         openPremiumAfterClose();
       }}
       activeOpacity={0.82}
-      style={[styles.action, styles.actionStacked, course && styles.actionCourse, { backgroundColor: glass.accent }]}
+      style={[sx.action, sx.actionStacked, course && sx.actionCourse, { backgroundColor: glass.accent }]}
     >
-      <Text style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{label}</Text>
-      {course ? <Ionicons name="arrow-forward" size={20} color={glass.accentInk} style={styles.actionArrow} /> : null}
+      <Text style={[sx.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{label}</Text>
+      {course ? <Ionicons name="arrow-forward" size={20} color={glass.accentInk} style={sx.actionArrow} /> : null}
     </TouchableOpacity>
   );
 
@@ -546,18 +549,18 @@ function NoEnergyModal({
   const learnBody = (
     <>
       {cascade(LUM.ladder[1], 'bolt', (
-        <View style={[styles.learnIcon, { backgroundColor: glass.opaqueControl }]}>
+        <View style={[sx.learnIcon, { backgroundColor: glass.opaqueControl }]}>
           <EnergyIcon filled themeColor={t.gold} size={28} animateChange={false} shouldShake={false} themeMode={themeMode} />
         </View>
       ))}
       {cascade(LUM.ladder[2], 'title', (
-        <Text accessibilityRole="header" style={[styles.learnTitle, { color: glass.text }]}>{titleText}</Text>
+        <Text accessibilityRole="header" style={[sx.learnTitle, { color: glass.text }]}>{titleText}</Text>
       ))}
       {cascade(LUM.ladder[2], 'body', (
-        <Text style={[styles.learnBodyText, { color: glass.secondary }]}>{showBody}</Text>
+        <Text style={[sx.learnBodyText, { color: glass.secondary }]}>{showBody}</Text>
       ))}
       {cascade(LUM.ladder[3], 'actions', (
-        <View style={styles.stackedActions}>
+        <View style={sx.stackedActions}>
           {plusButton(hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus', learnCtaLabel, false)}
           {laterButton(hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later')}
         </View>
@@ -570,16 +573,16 @@ function NoEnergyModal({
   const courseBody = (
     <>
       {cascade(LUM.ladder[1], 'bolt', (
-        <View style={[styles.courseIcon, { backgroundColor: glass.opaqueControl }]}>
+        <View style={[sx.courseIcon, { backgroundColor: glass.opaqueControl }]}>
           <EnergyIcon filled themeColor={t.gold} size={44} animateChange={false} shouldShake={false} themeMode={themeMode} />
         </View>
       ))}
       {cascade(LUM.ladder[2], 'title', (
-        <Text accessibilityRole="header" style={[styles.courseTitle, { color: glass.text }]}>{titleText}</Text>
+        <Text accessibilityRole="header" style={[sx.courseTitle, { color: glass.text }]}>{titleText}</Text>
       ))}
       {cascade(LUM.ladder[2], 'body', (
-        <View style={styles.courseCopy}>
-          <Text style={[styles.courseText, { color: glass.secondary }]}>{courseLead}</Text>
+        <View style={sx.courseCopy}>
+          <Text style={[sx.courseText, { color: glass.secondary }]}>{courseLead}</Text>
           {modalVisible ? (
             <CourseCountdown
               recoveryEndsAtMs={recoveryEndsAtMs}
@@ -589,11 +592,11 @@ function NoEnergyModal({
               color={glass.text}
             />
           ) : null}
-          <Text style={[styles.courseText, styles.courseNote, { color: glass.secondary }]}>{courseNote}</Text>
+          <Text style={[sx.courseText, sx.courseNote, { color: glass.secondary }]}>{courseNote}</Text>
         </View>
       ))}
       {cascade(LUM.ladder[3], 'actions', (
-        <View style={styles.courseActions}>
+        <View style={sx.courseActions}>
           {plusButton(hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus', courseCtaLabel, true)}
           <TouchableOpacity
             testID={hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later'}
@@ -604,9 +607,9 @@ function NoEnergyModal({
               laterPress();
             }}
             activeOpacity={0.7}
-            style={styles.courseLater}
+            style={sx.courseLater}
           >
-            <Text style={[styles.courseLaterLabel, { color: glass.secondary }]}>{laterLabel}</Text>
+            <Text style={[sx.courseLaterLabel, { color: glass.secondary }]}>{laterLabel}</Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -614,8 +617,8 @@ function NoEnergyModal({
   );
 
   const cardBody = variant === 'learn' ? learnBody : variant === 'course' ? courseBody : dialogsBody;
-  const variantCard = variant === 'learn' ? styles.learnCard : variant === 'course' ? styles.courseCard : null;
-  const variantContent = variant === 'learn' ? styles.learnContent : variant === 'course' ? styles.courseContent : null;
+  const variantCard = variant === 'learn' ? sx.learnCard : variant === 'course' ? sx.courseCard : null;
+  const variantContent = variant === 'learn' ? sx.learnContent : variant === 'course' ? sx.courseContent : null;
 
   const cardSurface = { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge };
 
@@ -628,7 +631,7 @@ function NoEnergyModal({
         backdropColor="rgba(0,0,0,0.6)"
         testID="no-energy-modal-hybrid-backdrop"
       >
-        <View style={[styles.card, styles.hybridCard, cardSurface, variantCard, variantContent]}>{cardBody}</View>
+        <View style={[sx.card, sx.hybridCard, cardSurface, variantCard, variantContent]}>{cardBody}</View>
       </HybridAlertShell>
     );
   }
@@ -643,7 +646,7 @@ function NoEnergyModal({
     >
       <View
         style={[
-          styles.overlay,
+          sx.overlay,
           {
             backgroundColor: variant === 'course' ? 'rgba(0,0,0,0.68)' : 'rgba(0,0,0,0.6)',
             paddingTop: Math.max(24, insets.top),
@@ -665,16 +668,16 @@ function NoEnergyModal({
         <Animated.View
           accessibilityViewIsModal
           style={[
-            styles.card,
-            styles.classicCard,
+            sx.card,
+            sx.classicCard,
             cardSurface,
             variantCard,
             { opacity: cardOp, transform: [{ scale: cardScale }] },
           ]}
         >
           <ScrollView
-            style={[styles.scroll, variantCard && { borderRadius: variantCard.borderRadius }]}
-            contentContainerStyle={[styles.scrollContent, variantContent]}
+            style={[sx.scroll, variantCard && { borderRadius: variantCard.borderRadius }]}
+            contentContainerStyle={[sx.scrollContent, variantContent]}
             showsVerticalScrollIndicator={false}
             bounces={false}
           >
@@ -719,6 +722,7 @@ const CourseCountdown = memo(function CourseCountdown({
   fallbackDeadlineMs: number;
   color: string;
 }) {
+  const sx = useScaledTextStyles(styles);
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
@@ -735,7 +739,7 @@ const CourseCountdown = memo(function CourseCountdown({
     leftMs = next + Math.max(0, missingUnits - 1) * recoveryIntervalMs;
   }
   return (
-    <Text testID="no-energy-course-countdown" style={[styles.courseTimer, { color }]}>
+    <Text testID="no-energy-course-countdown" style={[sx.courseTimer, { color }]}>
       {formatCountdown(leftMs)}
     </Text>
   );

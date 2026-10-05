@@ -12,6 +12,7 @@ import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
 import { useLv2Glass } from "./LearningV2Glass";
+import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
 
 type Props = Readonly<{
   /**
@@ -38,6 +39,8 @@ export default function LearningV2LessonDictionaryOverlayV1({
   words,
   onClose,
 }: Props) {
+  const sx = useScaledTextStyles(styles);
+  const lh = useLineScale();
   const { lang } = useLang();
   const { f } = useTheme();
   // зачем (learning-v2.html, dict): словарь курса — на токенах Liquid Glass активной темы.
@@ -253,11 +256,11 @@ export default function LearningV2LessonDictionaryOverlayV1({
     ({ item }: { item: DictionaryRow }) => {
       if (item.kind === "lesson") {
         return (
-          <View style={styles.lessonHeading}>
-            <Text style={[styles.lessonHeadingText, { color: g.secondary }]}>
+          <View style={sx.lessonHeading}>
+            <Text style={[sx.lessonHeadingText, { color: g.secondary }]}>
               {lessonLabel(item.lessonOrdinal)}
             </Text>
-            <Text style={[styles.lessonHeadingCount, { color: g.secondary }]}>
+            <Text style={[sx.lessonHeadingCount, { color: g.secondary }]}>
               {item.count}
             </Text>
           </View>
@@ -271,11 +274,11 @@ export default function LearningV2LessonDictionaryOverlayV1({
       return (
         // зачем (learning-v2.html `.wrow`): строка 66 с линией снизу; слово 19/600, транскрипция и перевод --sec;
         // справа круглая кнопка звука 38 (#262628, без кромки) и закладка 22 в карточки.
-        <View style={[styles.row, { borderBottomColor: g.line }]}>
-          <View style={styles.wordCopy}>
+        <View style={[sx.row, { borderBottomColor: g.line }]}>
+          <View style={sx.wordCopy}>
             {/* зачем: 19 из макета с учётом выбранного размера шрифта (f.bodyLg = 16 × масштаб). */}
-            <Text style={[styles.target, { color: g.text, fontSize: Math.round((19 * f.bodyLg) / 16), lineHeight: Math.round((24 * f.bodyLg) / 16) }]}>{target}</Text>
-            <Text style={[styles.meta, { color: g.secondary }]}>
+            <Text style={[sx.target, { color: g.text, fontSize: Math.round((19 * f.bodyLg) / 16), lineHeight: lh(Math.round((24 * f.bodyLg) / 16)) }]}>{target}</Text>
+            <Text style={[sx.meta, { color: g.secondary }]}>
               {encounter.transcription} · {translation}
             </Text>
           </View>
@@ -285,7 +288,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
             onPress={() => replay(word)}
             hitSlop={4}
             style={({ pressed }) => [
-              styles.speak,
+              sx.speak,
               { backgroundColor: active || pressed ? g.selected : g.opaqueControl },
             ]}
           >
@@ -310,7 +313,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
         </View>
       );
     },
-    [f.bodyLg, g, lang, lessonLabel, listenLabel, replay, speakingId],
+    [f.bodyLg, g, lang, lessonLabel, lh, listenLabel, replay, speakingId, sx],
   );
 
   return (
@@ -325,17 +328,17 @@ export default function LearningV2LessonDictionaryOverlayV1({
       testID="learning-v2-map-dictionary-overlay"
       accessibilityViewIsModal
       importantForAccessibility="yes"
-      style={[styles.overlay, {
+      style={[sx.overlay, {
         backgroundColor: g.bg,
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
       }]}
     >
-      <View style={[styles.header, { borderBottomColor: g.line }]}>
-        <View style={styles.headerCopy}>
-          <Text style={[styles.eyebrow, { color: g.secondary }]}>{copy.lesson}</Text>
-          <Text style={[styles.title, { color: g.text }]}>{copy.title}</Text>
-          <Text style={[styles.count, { color: g.secondary }]}>{copy.count}</Text>
+      <View style={[sx.header, { borderBottomColor: g.line }]}>
+        <View style={sx.headerCopy}>
+          <Text style={[sx.eyebrow, { color: g.secondary }]}>{copy.lesson}</Text>
+          <Text style={[sx.title, { color: g.text }]}>{copy.title}</Text>
+          <Text style={[sx.count, { color: g.secondary }]}>{copy.count}</Text>
         </View>
         <Pressable
           testID="learning-v2-map-dictionary-close"
@@ -344,7 +347,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
           onPress={onClose}
           hitSlop={10}
           style={({ pressed }) => [
-            styles.close,
+            sx.close,
             { borderColor: g.glassEdge, opacity: pressed ? 0.7 : 1 },
           ]}
         >
@@ -355,7 +358,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
       {/* Поиск показываем только когда искать есть в чём: на десятке слов
           строка поиска — лишний элемент, который просто занимает экран. */}
       {words.length >= 12 ? (
-        <View style={[styles.searchRow, { backgroundColor: g.opaqueControl }]}>
+        <View style={[sx.searchRow, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name="search" size={18} color={g.secondary} />
           <TextInput
             testID="learning-v2-map-dictionary-search"
@@ -367,7 +370,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="search"
-            style={[styles.searchInput, { color: g.text }]}
+            style={[sx.searchInput, { color: g.text }]}
           />
           {query.length > 0 ? (
             <Pressable
@@ -385,12 +388,12 @@ export default function LearningV2LessonDictionaryOverlayV1({
       <FlatList
         data={rows}
         keyExtractor={dictionaryRowKey}
-        contentContainerStyle={styles.listContent}
+        contentContainerStyle={sx.listContent}
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={
-          <View style={styles.empty}>
+          <View style={sx.empty}>
             <Ionicons name={normalizedQuery ? "search" : "book-outline"} size={36} color={g.mutedText} />
-            <Text style={[styles.emptyText, { color: g.secondary }]}>
+            <Text style={[sx.emptyText, { color: g.secondary }]}>
               {normalizedQuery ? copy.nothingFound : copy.empty}
             </Text>
           </View>
@@ -426,7 +429,7 @@ const styles = StyleSheet.create({
   searchRow: {
     marginHorizontal: 20,
     marginTop: 16,
-    height: 46,
+    minHeight: 46,
     borderRadius: 14,
     paddingHorizontal: 14,
     flexDirection: "row",

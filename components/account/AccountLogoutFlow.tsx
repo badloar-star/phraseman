@@ -10,7 +10,7 @@
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -19,6 +19,8 @@ import { signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
 export type LogoutStage = 'idle' | 'confirm' | 'wiping' | 'failed';
 
@@ -30,7 +32,7 @@ interface AccountLogoutFlowProps {
 }
 
 export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }: AccountLogoutFlowProps) {
-  const { liquidGlassThemeId, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = (
@@ -154,21 +156,34 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   // зачем: окно выхода — Liquid Glass по макету PRF-20: непрозрачная основа темы, нейтральный CTA,
   // «Отмена» тоном темы; красный — только у иконки отказа (семантика ошибки). Один нативный
   // <Modal> на три стадии сохранён (см. комментарий ниже) — меняется лишь содержимое.
+  // зачем (Сверка overlays-runtime 017/018/036/037, 05.10): карточка = `.or-alert` — поля 20, r25, кромка --line-2,
+  // стекло; плитка 68 (r23) со значком; заголовок 23/29 по центру; текст 16/22 (D145) через 9; кнопки в ряд 44 через 18,
+  // прозрачная «Отмена» (`.cta.gh`) слева, действие справа. Было: r28, поля 22, круг 56, кнопки 48 столбиком.
   const cardStyle = {
     width: '100%' as const,
-    maxWidth: 380,
+    maxWidth: 360,
     backgroundColor: glass.opaqueSheet,
-    borderRadius: 28,
-    padding: 22,
+    borderRadius: 25,
+    borderWidth: 1, // guard-ok: 1 px кромка .or-alert
+    borderColor: glass.glassEdge,
+    padding: 20,
+    overflow: 'hidden' as const,
   };
   const buttonStyle = {
-    minHeight: 48,
-    borderRadius: 24,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    flex: 1,
+    minHeight: 44,
+    borderRadius: 22,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
+    overflow: 'hidden' as const,
   };
+  const ghostButton = { borderWidth: 1, borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, backgroundColor: 'transparent' }; // guard-ok: .cta.gh
+  const stageStyle = { width: 68, height: 68, borderRadius: 23, alignSelf: 'center' as const, alignItems: 'center' as const, justifyContent: 'center' as const, marginBottom: 15, backgroundColor: glass.opaqueControl };
+  const titleStyle = { color: glass.text, fontSize: 23, lineHeight: 29, fontWeight: '800' as const, textAlign: 'center' as const };
+  const bodyStyle = { color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 9, textAlign: 'center' as const };
+  const ctaText = { fontSize: 16, fontWeight: '700' as const, textAlign: 'center' as const };
 
   return (
     <>
@@ -193,34 +208,34 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             Прокрутка теперь общая для всех трёх стадий (крупный шрифт тоже переполняет). */}
         <ScrollView
           decelerationRate="fast"
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 20 }}
           showsVerticalScrollIndicator={false}
         >
           {stage === 'failed' ? (
-            <View style={[cardStyle, { alignItems: 'center' }]}>
-              <View
-                style={{ width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.selected }}
-              >
+            <View style={cardStyle}>
+              <KitGlassLayer radius={25} />
+              <View style={stageStyle}>
                 <Ionicons name="lock-closed" size={26} color={glass.text} />
               </View>
-              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
+              <Text accessibilityRole="header" style={titleStyle}>
                 {failureKind === 'recovery'
                   ? L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta')
                   : L('Смена аккаунта не началась', 'Зміна акаунту не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła')}
               </Text>
-              <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginTop: 8, textAlign: 'center' }}>
+              <Text style={bodyStyle}>
                 {failureText ?? ''}
               </Text>
-              <View style={{ alignSelf: 'stretch', flexDirection: 'row', gap: 10, marginTop: 22 }}>
+              <View style={{ alignSelf: 'stretch', flexDirection: 'row', gap: 9, marginTop: 18 }}>
                 <TouchableOpacity
                   activeOpacity={0.8}
                   accessibilityRole="button"
                   testID="account-logout-failed-close"
                   onPress={() => { doHaptic(); onStageChange('idle'); }}
-                  style={[buttonStyle, { flex: 1, backgroundColor: failureKind === 'recovery' ? glass.cta : glass.opaqueControl }]}
+                  style={[buttonStyle, failureKind === 'recovery' ? { backgroundColor: glass.accent } : ghostButton]}
                 >
-                  <Text style={{ color: failureKind === 'recovery' ? glass.ctaInk : glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                  {failureKind === 'recovery' ? <ThemeAccentFill glass={glass} radius={22} /> : null}
+                  <Text style={[ctaText, { color: failureKind === 'recovery' ? glass.accentInk : glass.text }]}>
                     {L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
                   </Text>
                 </TouchableOpacity>
@@ -230,9 +245,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                     accessibilityRole="button"
                     testID="account-logout-failed-retry"
                     onPress={() => { void runLogout(); }}
-                    style={[buttonStyle, { flex: 1, backgroundColor: glass.accent }]}
+                    style={[buttonStyle, { backgroundColor: glass.accent }]}
                   >
-                    <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                    <ThemeAccentFill glass={glass} radius={22} />
+                    <Text style={[ctaText, { color: glass.accentInk }]}>
                       {L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów')}
                     </Text>
                   </TouchableOpacity>
@@ -242,22 +258,26 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
           ) : stage === 'wiping' ? (
             <View
               accessibilityLiveRegion="polite"
-              style={[cardStyle, { maxWidth: 320, paddingVertical: 28, alignItems: 'center' }]}
+              style={cardStyle}
             >
-              <ActivityIndicator size="large" color={glass.text} />
-              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.body, fontWeight: '700', marginTop: 18, textAlign: 'center' }}>
+              <KitGlassLayer radius={25} />
+              <View style={stageStyle}>
+                <Ionicons name="lock-closed" size={26} color={glass.text} />
+              </View>
+              <Text accessibilityRole="header" style={titleStyle}>
                 {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Saving progress', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
               </Text>
-              <Text style={{ color: glass.secondary, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
+              <Text style={bodyStyle}>
                 {L('Не закрывай приложение', 'Не закривай застосунок', 'Don\'t close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
               </Text>
             </View>
           ) : (
             <View style={cardStyle}>
-              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
+              <KitGlassLayer radius={25} />
+              <Text accessibilityRole="header" style={titleStyle}>
                 {L('Выйти из аккаунта?', 'Вийти з акаунту?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
               </Text>
-              <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginBottom: 10 }}>
+              <Text style={bodyStyle}>
                 {L(
                   'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                   "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
@@ -270,7 +290,8 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
                 )}
               </Text>
-              <Text style={{ color: glass.secondary, fontSize: f.sub, lineHeight: f.sub * 1.45 }}>
+              {/* `.or-next`: второй абзац тем же стилем через 9 */}
+              <Text style={bodyStyle}>
                 {L(
                   'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим выход, чтобы ничего не потерялось.',
                   'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо вихід, щоб нічого не загубилося.',
@@ -284,28 +305,31 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 )}
               </Text>
 
-              <TouchableOpacity
-                activeOpacity={0.8}
-                accessibilityRole="button"
-                testID="account-logout-confirm"
-                onPress={() => { void runLogout(); }}
-                style={[buttonStyle, { marginTop: 22, backgroundColor: glass.accent }]}
-              >
-                <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                accessibilityRole="button"
-                testID="account-logout-cancel"
-                onPress={() => onStageChange('idle')}
-                style={[buttonStyle, { marginTop: 10, backgroundColor: glass.selected }]}
-              >
-                <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'row', gap: 9, marginTop: 18 }}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                  testID="account-logout-cancel"
+                  onPress={() => onStageChange('idle')}
+                  style={[buttonStyle, ghostButton]}
+                >
+                  <Text style={[ctaText, { color: glass.text }]}>
+                    {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                  testID="account-logout-confirm"
+                  onPress={() => { void runLogout(); }}
+                  style={[buttonStyle, { backgroundColor: glass.accent }]}
+                >
+                  <ThemeAccentFill glass={glass} radius={22} />
+                  <Text style={[ctaText, { color: glass.accentInk }]}>
+                    {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </ScrollView>

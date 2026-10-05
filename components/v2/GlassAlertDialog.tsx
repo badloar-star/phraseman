@@ -75,7 +75,8 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
                 styles.cta,
                 stack ? null : styles.ctaRow,
                 a.ghost
-                  ? { borderWidth: 1, borderColor: glass.glassEdge, backgroundColor: 'transparent' } // guard-ok: .cta.gh — 1 px кромка
+                  // `.cta.gh`: кромка --outline (белый 30 %) — цвет текста темы на 0x4D, как в FeatureIntroModal.
+                  ? { borderWidth: 1, borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, backgroundColor: 'transparent' } // guard-ok: .cta.gh — 1 px кромка
                   : { backgroundColor: glass.accent },
                 { opacity: pressed ? 0.88 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
               ]}

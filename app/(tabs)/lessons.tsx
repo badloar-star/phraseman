@@ -5643,7 +5643,8 @@ export default function LessonsTab({
               ListEmptyComponent={
                 legacyLessonQuery.trim() ? (
                   <View style={{ paddingHorizontal: 30, paddingTop: 60, alignItems: "center" }}>
-                    <Text style={{ color: learnGlass.text, fontSize: 16, fontWeight: "700", textAlign: "center" }}>
+                    {/* зачем (Сверка learn-004, learn.html .empty .tt): заголовок 18/700 (было 16). */}
+                    <Text style={{ color: learnGlass.text, fontSize: 18, lineHeight: 24, fontWeight: "700", textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Ничего не нашлось", uk: "Нічого не знайшлося", en: "Nothing found",
                         es: "No se encontró nada", "pt-BR": "Nada encontrado", vi: "Không tìm thấy gì",

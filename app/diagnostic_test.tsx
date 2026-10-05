@@ -1638,7 +1638,7 @@ export default function DiagnosticTest() {
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
+    <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
     </>
   );
 
@@ -1679,7 +1679,7 @@ export default function DiagnosticTest() {
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
+    <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
     </>
   );
 

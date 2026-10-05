@@ -489,7 +489,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           onBack={() => safeRouterBack(router, '/lessons_list' as never)}
           onStart={startExam}
         />
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+        <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       </>
     );
   }

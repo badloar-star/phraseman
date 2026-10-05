@@ -117,7 +117,7 @@ export const SECTION: ShowcaseSection = {
       title: cs('no_energy_modal_title'),
       detail: cs('real_modal'),
       kind: 'render',
-      render: ({ visible, onClose }) => <NoEnergyModal visible={visible} onClose={onClose} activity="classic_lesson" />,
+      render: ({ visible, onClose }) => <NoEnergyModal variant="learn" visible={visible} onClose={onClose} activity="classic_lesson" />,
     },
     {
       id: 'card_pack_shard_paywall_confirm',

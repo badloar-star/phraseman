@@ -1539,7 +1539,7 @@ export default function FlashcardsBlitzSession() {
         </ContentWrap>
         {deckPickerSheet}
       </SafeAreaView>
-      <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} activity="flashcards" />
+      <NoEnergyModal variant="learn" visible={energyGate === 'denied'} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
         <CoinRewardFlight
           key={runeFlight.flight.key}

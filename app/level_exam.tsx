@@ -1154,7 +1154,7 @@ export default function LevelExam() {
               />
             </ExamFooter>
           </ContentWrap>
-          <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+          <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -1311,7 +1311,7 @@ export default function LevelExam() {
             )}
           </ExamFooter>
         </ContentWrap>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+        <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       </SafeAreaView>
       </ScreenGradient>
       </>

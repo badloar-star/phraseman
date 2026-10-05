@@ -3945,7 +3945,7 @@ function LessonScreen() {
         )}
       </ScreenGradient>
     </TouchableWithoutFeedback>
-    <NoEnergyModal
+    <NoEnergyModal variant="learn"
       visible={showNoEnergyModal}
       activity="classic_lesson"
       onClose={resetNoEnergyModal}

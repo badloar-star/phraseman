@@ -3783,7 +3783,7 @@ function LessonWords() {
       )}
       </ContentWrap>
 
-      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('list'); }} activity="lesson_words" />
+      <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('list'); }} activity="lesson_words" />
     </View>
     </ScreenGradient>
   );

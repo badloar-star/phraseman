@@ -1029,7 +1029,7 @@ export default function ExamScreen() {
       </ExamFooter>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+    <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1156,7 +1156,7 @@ export default function ExamScreen() {
         </ExamFooter>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+      <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1239,7 +1239,7 @@ export default function ExamScreen() {
         </ExamFooter>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+      <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       {exitModal}
     </>
   );
@@ -1269,7 +1269,7 @@ export default function ExamScreen() {
           </View>
         </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+      <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       {exitModal}
     </>
   );
@@ -1372,7 +1372,7 @@ export default function ExamScreen() {
           </ExamFooter>
         </SafeAreaView>
         </ScreenGradient>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+        <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         <CertificateNameModal
           visible={nameModalVisible}
           initialName={certificate?.name?.trim() ? certificate.name : certNamePrefill}
@@ -1434,7 +1434,7 @@ export default function ExamScreen() {
           </BouncyScrollView>
         </SafeAreaView>
         </ScreenGradient>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+        <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         <CertificateNameModal
           visible={nameModalVisible}
           initialName={certificate.name?.trim() ? certificate.name : certNamePrefill}
@@ -1541,7 +1541,7 @@ export default function ExamScreen() {
         </ExamFooter>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
+      <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       {exitModal}
     </>
   );

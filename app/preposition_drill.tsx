@@ -636,7 +636,7 @@ function PrepositionDrillScreen() {
         </View>
         </ContentWrap>
 
-        <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} activity="preposition_drill" />
+        <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={onCloseEnergyModal} activity="preposition_drill" />
       </View>
     </ScreenGradient>
   );

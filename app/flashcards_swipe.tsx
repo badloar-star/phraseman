@@ -4376,7 +4376,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           </View>
         </ContentWrap>
       </SafeAreaView>
-      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="flashcards" />
+      <NoEnergyModal variant="learn" visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="flashcards" />
     </ScreenGradient>
   );
 }

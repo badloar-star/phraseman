@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   View,
   Text,
@@ -38,7 +39,16 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
 
+/**
+ * зачем (координатор 05.10, решение (б) по правилу владельца «каждый экран как на его макете»): у окна три
+ * утверждённых макета — dialogs.html B5 (две кнопки в ряд), learn.html noEnergy/dlg (кнопки столбиком) и
+ * learning-v2.html 3.2 (крупный тикающий таймер). Вариант обязателен: каждое место вызова выбирает его явно.
+ */
+export type NoEnergyVariant = 'dialogs' | 'learn' | 'course';
+
 interface Props {
+  /** Чей макет рисуем — см. NoEnergyVariant. Значения по умолчанию нет намеренно. */
+  variant: NoEnergyVariant;
   visible: boolean;
   onClose: () => void;
   /**
@@ -68,6 +78,7 @@ interface Props {
 }
 
 function NoEnergyModal({
+  variant,
   visible,
   onClose,
   onGotIt,
@@ -86,7 +97,9 @@ function NoEnergyModal({
   const {
     energy,
     bonusEnergy,
+    maxEnergy,
     recoveryIntervalMs,
+    recoveryEndsAtMs,
     timeUntilNextMs,
   } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -308,6 +321,82 @@ function NoEnergyModal({
     tr: 'Plus al',
     pl: 'Uzyskaj Plus',
   });
+  // learn.html noEnergy: «Открыть Plus»; learning-v2.html 3.2: «Plus — без ограничений».
+  const learnCtaLabel = triLang(lang, {
+    ru: 'Открыть Plus',
+    uk: 'Відкрити Plus',
+    en: 'Open Plus',
+    es: 'Abrir Plus',
+    'pt-BR': 'Abrir o Plus',
+    vi: 'Mở Plus',
+    id: 'Buka Plus',
+    tr: "Plus'ı aç",
+    pl: 'Otwórz Plus',
+  });
+  const courseCtaLabel = triLang(lang, {
+    ru: 'Plus — без ограничений',
+    uk: 'Plus — без обмежень',
+    en: 'Plus — no limits',
+    es: 'Plus: sin límites',
+    'pt-BR': 'Plus: sem limites',
+    vi: 'Plus — không giới hạn',
+    id: 'Plus — tanpa batas',
+    tr: 'Plus — sınırsız',
+    pl: 'Plus — bez limitów',
+  });
+  // зачем (координатор 05.10, п.2): числа — из настоящих данных энергии, не из текста макета.
+  const recoveryMinutes = Math.max(1, Math.round(recoveryIntervalMs / 60_000));
+  const capacity = maxEnergy;
+  const courseLead = missingToStart > 1
+    ? triLang(lang, {
+        ru: 'Энергии хватит через',
+        uk: 'Енергії вистачить через',
+        en: 'You will have enough in',
+        es: 'Tendrás suficiente en',
+        'pt-BR': 'Você terá o suficiente em',
+        vi: 'Sẽ đủ năng lượng sau',
+        id: 'Energi cukup dalam',
+        tr: 'Yeterli enerji şu sürede',
+        pl: 'Wystarczy za',
+      })
+    : triLang(lang, {
+        ru: 'Одна единица восстановится через',
+        uk: 'Одна одиниця відновиться через',
+        en: 'One unit comes back in',
+        es: 'Una unidad vuelve en',
+        'pt-BR': 'Uma unidade volta em',
+        vi: 'Một đơn vị sẽ hồi sau',
+        id: 'Satu unit pulih dalam',
+        tr: 'Bir birim şu sürede dolar',
+        pl: 'Jedna jednostka wróci za',
+      });
+  const courseNote = triLang(lang, {
+    ru: `Запас ${capacity}, каждые ${recoveryMinutes} ${ruMinutes(recoveryMinutes)} +1. Plus занимается без ограничений.`,
+    uk: `Запас ${capacity}, кожні ${recoveryMinutes} хв +1. З Plus можна займатися без обмежень.`,
+    en: `Up to ${capacity}, +1 every ${recoveryMinutes} min. Plus has no limits.`,
+    es: `Máximo ${capacity}, +1 cada ${recoveryMinutes} min. Con Plus no hay límites.`,
+    'pt-BR': `Até ${capacity}, +1 a cada ${recoveryMinutes} min. No Plus não há limites.`,
+    vi: `Tối đa ${capacity}, cứ ${recoveryMinutes} phút +1. Plus học không giới hạn.`,
+    id: `Maksimal ${capacity}, +1 tiap ${recoveryMinutes} menit. Plus tanpa batas.`,
+    tr: `En fazla ${capacity}, her ${recoveryMinutes} dakikada +1. Plus ile sınır yok.`,
+    pl: `Zapas ${capacity}, co ${recoveryMinutes} min +1. Z Plus bez limitów.`,
+  });
+  // Запасной срок, если часы восстановления неизвестны (recoveryEndsAtMs = 0): снимок на момент показа.
+  const courseFallbackMs = timeToStartMs > 0 ? timeToStartMs : (timeUntilNextMs || recoveryIntervalMs);
+  const courseFallbackDeadlineMs = React.useMemo(() => Date.now() + courseFallbackMs, [courseFallbackMs]);
+
+  // зачем (координатор 05.10, п.3): энергия восстановилась, пока окно курса открыто, — окно закрываем.
+  // Только для окна, открытого при нехватке: иначе закрыли бы сразу при показе.
+  const openedShortRef = useRef(false);
+  useEffect(() => {
+    if (!modalVisible) { openedShortRef.current = false; return; }
+    if (totalAvailable < requiredEnergy) { openedShortRef.current = true; return; }
+    if (variant !== 'course' || !openedShortRef.current) return;
+    openedShortRef.current = false;
+    console.log('[NO-ENERGY] restored_while_open', JSON.stringify({ variant, totalAvailable, requiredEnergy, activity: activity ?? null }));
+    onClose();
+  }, [activity, modalVisible, onClose, requiredEnergy, totalAvailable, variant]);
+
   // зачем: Liquid Glass 1 в 1 с макета dialogs.html B5 — по центру круг с молнией, заголовок,
   // одна строка про восстановление и в ряд «Позже» (контур) + «Получить Plus» (светлая кнопка).
   // Поверхность — непрозрачный opaqueSheet с волосяной кромкой glassEdge из токенов темы; свои
@@ -342,7 +431,7 @@ function NoEnergyModal({
     </View>
   );
 
-  const cardBody = (
+  const dialogsBody = (
     <>
       {cascade(
         LUM.ladder[1],
@@ -411,6 +500,115 @@ function NoEnergyModal({
     </>
   );
 
+
+  const laterButton = (testID: string) => (
+    <TouchableOpacity
+      testID={testID}
+      accessibilityRole="button"
+      accessibilityLabel={laterLabel}
+      onPress={() => {
+        hapticTap();
+        laterPress();
+      }}
+      activeOpacity={0.76}
+      style={[styles.action, styles.actionStacked, { borderWidth: 1, borderColor: glass.glassEdge }]}
+    >
+      <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
+    </TouchableOpacity>
+  );
+  const plusButton = (testID: string, label: string, course: boolean) => (
+    <TouchableOpacity
+      testID={testID}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      onPress={() => {
+        hapticTap();
+        openPremiumAfterClose();
+      }}
+      activeOpacity={0.82}
+      style={[styles.action, styles.actionStacked, course && styles.actionCourse, { backgroundColor: glass.accent }]}
+    >
+      <Text style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{label}</Text>
+      {course ? <Ionicons name="arrow-forward" size={20} color={glass.accentInk} style={styles.actionArrow} /> : null}
+    </TouchableOpacity>
+  );
+
+  // learn.html `.dlg`: круг 64 со значком 28, отступ 16, заголовок 22/28, текст 16/22 в 10, кнопки столбиком
+  // через 10 в 22 от текста — «Открыть Plus» сверху, «Позже» контуром снизу.
+  const learnBody = (
+    <>
+      {cascade(LUM.ladder[1], 'bolt', (
+        <View style={[styles.learnIcon, { backgroundColor: glass.opaqueControl }]}>
+          <EnergyIcon filled themeColor={t.gold} size={28} animateChange={false} shouldShake={false} themeMode={themeMode} />
+        </View>
+      ))}
+      {cascade(LUM.ladder[2], 'title', (
+        <Text accessibilityRole="header" style={[styles.learnTitle, { color: glass.text }]}>{titleText}</Text>
+      ))}
+      {cascade(LUM.ladder[2], 'body', (
+        <Text style={[styles.learnBodyText, { color: glass.secondary }]}>{showBody}</Text>
+      ))}
+      {cascade(LUM.ladder[3], 'actions', (
+        <View style={styles.stackedActions}>
+          {plusButton(hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus', learnCtaLabel, false)}
+          {laterButton(hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later')}
+        </View>
+      ))}
+    </>
+  );
+
+  // learning-v2.html 3.2 `energyEmpty`: плита 96/r28 с молнией 44, заголовок 25/31/800 в 20, «восстановится через»,
+  // таймер 40/46 тикает раз в секунду, строка про запас, белая кнопка r20 со стрелкой, «Позже» текстом.
+  const courseBody = (
+    <>
+      {cascade(LUM.ladder[1], 'bolt', (
+        <View style={[styles.courseIcon, { backgroundColor: glass.opaqueControl }]}>
+          <EnergyIcon filled themeColor={t.gold} size={44} animateChange={false} shouldShake={false} themeMode={themeMode} />
+        </View>
+      ))}
+      {cascade(LUM.ladder[2], 'title', (
+        <Text accessibilityRole="header" style={[styles.courseTitle, { color: glass.text }]}>{titleText}</Text>
+      ))}
+      {cascade(LUM.ladder[2], 'body', (
+        <View style={styles.courseCopy}>
+          <Text style={[styles.courseText, { color: glass.secondary }]}>{courseLead}</Text>
+          {modalVisible ? (
+            <CourseCountdown
+              recoveryEndsAtMs={recoveryEndsAtMs}
+              recoveryIntervalMs={recoveryIntervalMs}
+              missingUnits={Math.max(1, missingToStart)}
+              fallbackDeadlineMs={courseFallbackDeadlineMs}
+              color={glass.text}
+            />
+          ) : null}
+          <Text style={[styles.courseText, styles.courseNote, { color: glass.secondary }]}>{courseNote}</Text>
+        </View>
+      ))}
+      {cascade(LUM.ladder[3], 'actions', (
+        <View style={styles.courseActions}>
+          {plusButton(hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus', courseCtaLabel, true)}
+          <TouchableOpacity
+            testID={hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later'}
+            accessibilityRole="button"
+            accessibilityLabel={laterLabel}
+            onPress={() => {
+              hapticTap();
+              laterPress();
+            }}
+            activeOpacity={0.7}
+            style={styles.courseLater}
+          >
+            <Text style={[styles.courseLaterLabel, { color: glass.secondary }]}>{laterLabel}</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+    </>
+  );
+
+  const cardBody = variant === 'learn' ? learnBody : variant === 'course' ? courseBody : dialogsBody;
+  const variantCard = variant === 'learn' ? styles.learnCard : variant === 'course' ? styles.courseCard : null;
+  const variantContent = variant === 'learn' ? styles.learnContent : variant === 'course' ? styles.courseContent : null;
+
   const cardSurface = { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge };
 
   if (hybrid) {
@@ -422,7 +620,7 @@ function NoEnergyModal({
         backdropColor="rgba(0,0,0,0.6)"
         testID="no-energy-modal-hybrid-backdrop"
       >
-        <View style={[styles.card, styles.hybridCard, cardSurface]}>{cardBody}</View>
+        <View style={[styles.card, styles.hybridCard, cardSurface, variantCard, variantContent]}>{cardBody}</View>
       </HybridAlertShell>
     );
   }
@@ -439,7 +637,7 @@ function NoEnergyModal({
         style={[
           styles.overlay,
           {
-            backgroundColor: 'rgba(0,0,0,0.6)',
+            backgroundColor: variant === 'course' ? 'rgba(0,0,0,0.68)' : 'rgba(0,0,0,0.6)',
             paddingTop: Math.max(24, insets.top),
             paddingBottom: Math.max(24, insets.bottom),
             paddingLeft: Math.max(24, insets.left),
@@ -462,12 +660,13 @@ function NoEnergyModal({
             styles.card,
             styles.classicCard,
             cardSurface,
+            variantCard,
             { opacity: cardOp, transform: [{ scale: cardScale }] },
           ]}
         >
           <ScrollView
-            style={styles.scroll}
-            contentContainerStyle={styles.scrollContent}
+            style={[styles.scroll, variantCard && { borderRadius: variantCard.borderRadius }]}
+            contentContainerStyle={[styles.scrollContent, variantContent]}
             showsVerticalScrollIndicator={false}
             bounces={false}
           >
@@ -480,6 +679,59 @@ function NoEnergyModal({
 }
 
 export default memo(NoEnergyModal);
+
+function ruMinutes(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'минуту';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'минуты';
+  return 'минут';
+}
+
+function formatCountdown(ms: number): string {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const sec = total % 60;
+  const ss = String(sec).padStart(2, '0');
+  return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`;
+}
+
+/**
+ * зачем (координатор 05.10, п.3): таймер окна курса тикает раз в секунду собственным setInterval —
+ * перерисовывается только он, родитель и экран под окном не трогаются. Размонтирован (окно закрыто) —
+ * интервал снят.
+ */
+const CourseCountdown = memo(function CourseCountdown({
+  recoveryEndsAtMs, recoveryIntervalMs, missingUnits, fallbackDeadlineMs, color,
+}: {
+  recoveryEndsAtMs: number;
+  recoveryIntervalMs: number;
+  missingUnits: number;
+  fallbackDeadlineMs: number;
+  color: string;
+}) {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  // Те же часы, что у шкалы энергии (useEnergyCountdown): остаток до ближайшей единицы по recoveryEndsAtMs,
+  // плюс полные интервалы за каждую недостающую сверх первой.
+  let leftMs = fallbackDeadlineMs - now;
+  if (recoveryEndsAtMs > 0 && recoveryIntervalMs > 0) {
+    const startedAt = recoveryEndsAtMs - recoveryIntervalMs;
+    const elapsed = Math.max(0, now - startedAt);
+    const step = elapsed % recoveryIntervalMs;
+    const next = step === 0 && elapsed > 0 ? recoveryIntervalMs : recoveryIntervalMs - step;
+    leftMs = next + Math.max(0, missingUnits - 1) * recoveryIntervalMs;
+  }
+  return (
+    <Text testID="no-energy-course-countdown" style={[styles.courseTimer, { color }]}>
+      {formatCountdown(leftMs)}
+    </Text>
+  );
+});
 
 const styles = StyleSheet.create({
   overlay: {
@@ -537,4 +789,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   actionLabel: { fontWeight: '700', textAlign: 'center' },
+  actionStacked: { flex: 0, alignSelf: 'stretch' },
+  // `.cm .cta`: 54, r20, стрелка у правого края.
+  actionCourse: { minHeight: 54, borderRadius: 20, paddingHorizontal: 48 },
+  actionArrow: { position: 'absolute', right: 22 },
+  // learn.html `.dlg`
+  learnCard: { borderRadius: 24 },
+  learnContent: { paddingTop: 26, paddingHorizontal: 22, paddingBottom: 22, gap: 0 },
+  learnIcon: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },
+  learnTitle: { fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
+  learnBodyText: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 10 },
+  stackedActions: { alignSelf: 'stretch', gap: 10, marginTop: 22 },
+  // learning-v2.html `.cm .cd` + energyEmpty
+  courseCard: { borderRadius: 22 },
+  courseContent: { paddingTop: 22, paddingHorizontal: 22, paddingBottom: 16, gap: 0 },
+  courseIcon: { width: 96, height: 96, borderRadius: 28, alignItems: 'center', justifyContent: 'center', marginTop: 4 },
+  courseTitle: { fontSize: 25, lineHeight: 31, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center', marginTop: 20 },
+  courseCopy: { alignSelf: 'stretch', alignItems: 'center', marginTop: 8 },
+  courseText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  courseNote: { marginTop: 6 },
+  courseTimer: { fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6, marginTop: 8, fontVariant: ['tabular-nums'] },
+  courseActions: { alignSelf: 'stretch', marginTop: 22 },
+  courseLater: { alignSelf: 'center', minHeight: 44, paddingTop: 14, paddingBottom: 4, paddingHorizontal: 20, justifyContent: 'center' },
+  courseLaterLabel: { fontSize: 16, fontWeight: '600', textAlign: 'center' },
 });

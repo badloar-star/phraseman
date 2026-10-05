@@ -42,6 +42,7 @@ assert.ok(contrast('#E05050', '#0B0B0D') >= 4.5, 'wrong mark must stay legible o
 assert.match(activeGame, /<BlitzGlassSurface radius=\{16\} \/>/);
 assert.match(activeGame, /onPress=\{\(\) => pick\(i\)\}/);
 assert.match(activeGame, /disabled=\{locked\}/);
-assert.match(activeGame, /<NoEnergyModal visible=\{energyGate === 'denied'\}/);
+// зачем (координатор 05.10): у окна «нет энергии» обязательный variant — макет выбирает место вызова.
+assert.match(activeGame, /<NoEnergyModal variant="learn" visible=\{energyGate === 'denied'\}/);
 
 console.log('flashcards blitz liquid-glass active-state contract: PASS');

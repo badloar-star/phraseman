@@ -2187,7 +2187,7 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
           <View style={[styles.gateSkeletonHearts, { backgroundColor: gateGlass.opaqueControl }]} />
         </View>
       ) : null}
-      <NoEnergyModal
+      <NoEnergyModal variant="course"
         visible={gate === "denied"}
         activity="learning_v2_session"
         onClose={() => safeRouterBack(router, "/(tabs)/lessons" as never)}

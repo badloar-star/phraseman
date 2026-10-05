@@ -1811,7 +1811,7 @@ RU: ${card.translation}`}
         </ContentWrap>
       </View>
       {deckPickerSheet}
-      <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
+      <NoEnergyModal variant="learn" visible={noEnergyOpen} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
         <CoinRewardFlight
           key={runeFlight.flight.key}

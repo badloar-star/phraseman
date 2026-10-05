@@ -254,7 +254,7 @@ export default function DialogueV2BriefingRoute() {
       }}
     />
     {/* макет B5: закрытие окна уводит с экрана диалога */}
-    <NoEnergyModal visible={noEnergy} onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
+    <NoEnergyModal variant="dialogs" visible={noEnergy} onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
     </>
   );
 }

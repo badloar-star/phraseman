@@ -933,7 +933,7 @@ export default function FlashcardsRecallSession() {
               }}
             />
           </ContentWrap>
-          <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
+          <NoEnergyModal variant="learn" visible={noEnergyOpen} onClose={leave} activity="flashcards" />
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -1170,7 +1170,7 @@ export default function FlashcardsRecallSession() {
             onDone={runeFlight.clearFlight}
           />
         ) : null}
-        <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
+        <NoEnergyModal variant="learn" visible={noEnergyOpen} onClose={leave} activity="flashcards" />
       </SafeAreaView>
     </ScreenGradient>
   );

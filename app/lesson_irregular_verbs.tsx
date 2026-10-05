@@ -1354,7 +1354,7 @@ function LessonIrregularVerbs() {
           )}
         </ContentWrap>
 
-        <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
+        <NoEnergyModal variant="learn" visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
       </View>
     </ScreenGradient>
   );

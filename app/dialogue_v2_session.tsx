@@ -360,8 +360,12 @@ function SessionContent() {
       const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
       console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
       if (reason === 'quota_exhausted') {
-        // Откат оптимистичного пузыря: сервер ход не принял, ответа на него не будет.
-        setMessages((current) => Object.freeze(current.filter((message) => message.id !== pending.learnerId)));
+        // зачем (Сверка 05.10: реплика молча пропадала): пузырь ученика ОСТАЁТСЯ — человек видит, что написал, а
+        // ниже сразу встаёт экран лимита с понятным выходом (Plus / подождать). Раньше пузырь удалялся, а экран
+        // лимита у телефона, считавшего себя Plus, не показывался вовсе — ни ошибки, ни реплики.
+        console.warn('[DIALOGUE-V2] turn:quota_exhausted → bubble kept, limit wall shown', {
+          scenarioId, learnerId: pending.learnerId, freeTier,
+        });
         pendingTurnRef.current = null;
         coaching.markExhausted(error instanceof DialogueV2TurnFailureError ? error.quotaObservation : null);
       } else if (reason === 'paused') {

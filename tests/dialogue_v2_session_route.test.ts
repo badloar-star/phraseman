@@ -366,7 +366,9 @@ describe('Dialogue V2 session route', () => {
     }));
   });
 
-  it('rolls back the optimistic bubble and shows the monthly wall when the free quota is exhausted', async () => {
+  // зачем (Сверка 05.10: при quota_exhausted реплика молча пропадала): реплика ученика ОСТАЁТСЯ видимой, ниже —
+  // экран лимита с понятным выходом. Раньше пузырь откатывался.
+  it('keeps the learner bubble and shows the monthly wall when the free quota is exhausted', async () => {
     const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {
       DialogueV2TurnFailureError: new (reason: string, observation?: unknown) => Error;
     };
@@ -377,8 +379,27 @@ describe('Dialogue V2 session route', () => {
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
 
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('wall'));
-    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
+      expect.objectContaining({ author: 'learner', text: 'Hallo' }),
+    ]);
     expect(mockScreen.mock.calls.at(-1)[0].turnError).toBe(false);
+  });
+
+  it('shows the limit wall when the server refuses by quota even though the phone believes it is Plus', async () => {
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
+    const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {
+      DialogueV2TurnFailureError: new (reason: string, observation?: unknown) => Error;
+    };
+    mockSendTurn.mockRejectedValueOnce(new DialogueV2TurnFailureError('quota_exhausted', null));
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('wall'));
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
+      expect.objectContaining({ author: 'learner', text: 'Hallo' }),
+    ]);
   });
 
   it('closes the scene when the persona ends it and opens the summary over the chat', async () => {

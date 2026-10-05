@@ -68,6 +68,11 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   allowanceRef.current = allowance;
   const [quotaRemaining, setQuotaRemaining] = useState<number | null>(null);
   const [quotaExhausted, setQuotaExhausted] = useState(false);
+  // зачем (Сверка 05.10, dialogue_completion_run: «coached:send → quota_exhausted», реплика пропала молча): сервер
+  // сказал «лимит исчерпан» (dialog_free_limit), а телефон считал человека Plus (freeTier=false) — экран лимита был
+  // закрыт условием freeTier. Отказ СЕРВЕРА — факт, он показывает экран лимита независимо от того, что телефон
+  // думает о тарифе.
+  const [serverExhausted, setServerExhausted] = useState(false);
   // зачем: поздний ответ зеркала не должен затирать свежий остаток из хода (last-write-guard).
   const quotaFromServerRef = useRef(false);
 
@@ -131,7 +136,10 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     }));
     quotaFromServerRef.current = true;
     setQuotaRemaining(quota.remaining);
-    if (quota.remaining <= 0) setQuotaExhausted(true);
+    if (quota.remaining <= 0) {
+      setQuotaExhausted(true);
+      setServerExhausted(true);
+    }
     if (quota.quotaVersion !== null && studyTarget) {
       void recordAiDialogMonthlyQuotaFromServer(studyTarget, captureAccountGeneration().stableId, {
         remainingQuota: quota.remaining,
@@ -142,13 +150,18 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   }, [studyTarget]);
 
   const markExhausted = useCallback((observation: AiDialogQuotaObservation | null) => {
+    console.warn('[DIALOGUE-V2] quota:exhausted_by_server', JSON.stringify({
+      freeTierOnPhone: freeTier,
+      observation: observation ?? null,
+    }));
     quotaFromServerRef.current = true;
     setQuotaRemaining(0);
     setQuotaExhausted(true);
+    setServerExhausted(true);
     if (studyTarget) {
       void markAiDialogMonthlyQuotaExhausted(studyTarget, captureAccountGeneration().stableId, observation ?? undefined);
     }
-  }, [studyTarget]);
+  }, [freeTier, studyTarget]);
 
   const toggleTranslation = useCallback((messageId: string) => {
     setTranslatedIds((current) => (current.has(messageId) ? withoutId(current, messageId) : withId(current, messageId)));
@@ -198,7 +211,7 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
       ? Object.freeze({ revealed: whyRevealed, freeLeft: whyFreeLeft(allowance), freePerDay: DIALOGUE_V2_WHY_FREE_PER_DAY })
       : null,
     quotaView,
-    quotaExhausted: freeTier && quotaExhausted,
+    quotaExhausted: (freeTier && quotaExhausted) || serverExhausted,
     applyCoaching,
     applyQuota,
     markExhausted,

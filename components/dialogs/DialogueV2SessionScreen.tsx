@@ -519,6 +519,7 @@ export function DialogueV2SessionScreen({
                 placeholderTextColor={glass.mutedText}
                 accessibilityLabel={labels.placeholder}
                 maxFontSizeMultiplier={1.4}
+                multiline
                 style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
               />
               {voiceDraft ? (

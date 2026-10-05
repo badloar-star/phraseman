@@ -116,6 +116,11 @@ export function dialogueGlassFieldStyle(glass: DialogueGlass): TextStyle {
     flex: 1,
     minWidth: 0,
     minHeight: 52,
+    // зачем (сверка dialogs-014: «плейсхолдер переносится на 2 строки, вторая отрезана»): на узком экране «Напиши или зажми микрофон» в одну строку
+    // не помещается; шрифт не сжимаем и текст не режем — поле многострочное и растёт по тексту (до 132), строка по центру по высоте
+    maxHeight: 132,
+    paddingVertical: 14,
+    textAlignVertical: 'center',
     borderRadius: 26,
     paddingHorizontal: 18,
     backgroundColor: glass.opaqueControl,

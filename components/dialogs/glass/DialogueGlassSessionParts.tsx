@@ -92,7 +92,9 @@ export function DialogueGlassGoalCard({
       style={styles.goalHit}
       contentStyle={[dialogueGlassCardStyle(glass, 18), styles.goal]}
     >
-      <View style={[styles.goalTile, { backgroundColor: glass.opaqueControl }]}>
+      {/* зачем (сверка dialogs-014): в макете плитка флажка и круг лампочки светлее карточки (`--tile` #242426 на #161618); токен opaqueControl в тёмных темах почти
+          сливается с карточкой, и плитки не видно — тон считаем от белого: заметен в любой теме */}
+      <View style={[styles.goalTile, { backgroundColor: 'rgba(255,255,255,0.08)' }]}>
         <Ionicons name="flag-outline" size={20} color={glass.text} />
       </View>
       <View style={styles.goalText}>
@@ -107,7 +109,7 @@ export function DialogueGlassGoalCard({
         withSound={false}
         variant="icon"
         style={styles.hintHit}
-        contentStyle={[styles.hintButton, { backgroundColor: glass.opaqueControl }]}
+        contentStyle={[styles.hintButton, { backgroundColor: 'rgba(255,255,255,0.08)' }]}
       >
         <Ionicons name="bulb-outline" size={20} color={glass.text} />
       </PressableHybrid>

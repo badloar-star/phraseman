@@ -17,6 +17,7 @@ import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
 import { useLv2Glass } from "./learning-v2/LearningV2Glass";
 import { KitGlassLayer } from "./v2/KitLiquidGlass";
+import { ThemeAccentFill } from "./v2/ThemeAccentFill";
 import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
 
 export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
@@ -273,6 +274,8 @@ export default function LearningV2SessionOutcomeSheet({
                   onPress={start}
                   style={[sx.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
+                  {/* зачем (сверка learning-v2-010, 05.10): глянец .cta макета / фактура темы — общий слой, как у всех главных кнопок. */}
+                  <ThemeAccentFill glass={g} radius={20} />
                   <Text style={[sx.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
                   {/* зачем (`.cta .ar` right 22): стрелка прижата к правому краю кнопки, подпись по центру. */}
                   <Ionicons name="arrow-forward" size={20} color={g.accentInk} style={sx.primaryArrow} />

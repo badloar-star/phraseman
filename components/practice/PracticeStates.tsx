@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } fro
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { PracticeGlass } from './PracticeChrome';
+import { KitCtaGloss } from '../v2/KitLiquidGlass';
 
 // зачем (владелец 2026-09-30, второй проход practice.html): служебные состояния тренировок
 // (пусто / мало карточек / ошибка загрузки / данные тренировки не открылись), строка
@@ -52,6 +53,8 @@ export function PracticeCta({
         style,
       ]}
     >
+      {/* зачем (координатор 05.10): кнопка всегда цвета cta — глянец .cta макета в тёмных темах; в светлых cta тёмная, глянец не нужен. */}
+      {!disabled && !glass.isLight ? <KitCtaGloss cta={glass.cta} radius={small ? 22 : 24} /> : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
       <Text style={[small ? styles.ctaSmallText : styles.ctaText, { color: ink }]}>{label}</Text>
       {trailingArrow ? (

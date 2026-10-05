@@ -149,11 +149,8 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         borderColor: glass.glassEdge,
       }}
     >
-      {primary && !disabled ? (
-        glass.level === 'calm' && !glass.isLight
-          ? <LinearGradient pointerEvents="none" colors={[glass.lightTint, glass.cta, glass.cta]} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
-          : <ThemeAccentFill glass={glass} radius={height / 2} />
-      ) : null}
+      {/* зачем (координатор 05.10): в «Спокойно-тёмном» — общий глянец .cta макета из ThemeAccentFill, а не свой градиент. */}
+      {primary && !disabled ? <ThemeAccentFill glass={glass} radius={height / 2} /> : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
       <FlowText testID="friends-button-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>
         {label}

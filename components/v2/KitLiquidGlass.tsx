@@ -46,6 +46,48 @@ export const KIT_CTA_SHADOW: BoxShadowValue[] = [
   { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -10, color: 'rgba(0,0,0,0.75)' },
 ];
 
+const KIT_CTA_INNER: BoxShadowValue[] = KIT_CTA_SHADOW.filter((s) => s.inset);
+const KIT_CTA_DROP: BoxShadowValue[] = KIT_CTA_SHADOW.filter((s) => !s.inset);
+
+const mixHex6 = (hex: string, to: number, k: number): string => {
+  const n = Number.parseInt(hex.replace('#', '').slice(0, 6), 16);
+  if (!Number.isFinite(n)) return hex;
+  const ch = (shift: number) => Math.round(((n >> shift) & 255) * (1 - k) + to * k).toString(16).padStart(2, '0');
+  return `#${ch(16)}${ch(8)}${ch(0)}`.toUpperCase();
+};
+
+/**
+ * Цвета глянца `.cta` от цвета кнопки темы. Для `--cta #F2F1F6` — ровно макет (kit.css:197);
+ * для тонированных тем та же форма: верх светлее, низ на ~6 % темнее (#F2F1F6 → #E3E2E8).
+ */
+export function kitCtaGlossColors(cta: string): readonly [string, string, string] {
+  const base = cta.slice(0, 7).toUpperCase();
+  if (base === KIT_CTA_GRADIENT[1]) return KIT_CTA_GRADIENT;
+  return [mixHex6(base, 255, 0.85), base, mixHex6(base, 0, 0.062)];
+}
+
+/**
+ * Глянец главной светлой кнопки макета (`.cta:not(.gh)`): градиент сверху вниз, блик 1px по верхней кромке,
+ * тёмная кромка снизу, мягкая тень. Первым ребёнком кнопки с тем же скруглением; статичен.
+ * зачем (сверка learning-v2-010, координатор 05.10): KIT_CTA_* были написаны, но нигде не подключены —
+ * «Начать» и все главные кнопки в «Спокойно-тёмном» были плоскими. Тень обрежется, если у кнопки overflow: hidden.
+ */
+export const KitCtaGloss = memo(function KitCtaGloss({ cta, radius }: { cta: string; radius: number }) {
+  return (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: KIT_CTA_DROP }]}>
+      <LinearGradient
+        colors={kitCtaGlossColors(cta)}
+        locations={KIT_CTA_GRADIENT_LOCATIONS}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={[StyleSheet.absoluteFill, { borderRadius: radius }]}
+      />
+      {/* зачем: внутренние блики — отдельным слоем ПОВЕРХ градиента, иначе градиент их закроет. */}
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: KIT_CTA_INNER }]} />
+    </View>
+  );
+});
+
 /**
  * Слой стекла: блик + кромка. Первым ребёнком контейнера с `overflow: 'hidden'` и тем же скруглением.
  * `rim={false}` — только блик (для элементов, у которых своя цветная кромка, например «верно/неверно»).

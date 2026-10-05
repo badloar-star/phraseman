@@ -27,6 +27,7 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
   Extrapolation,
@@ -245,6 +246,8 @@ function PhraseCardImpl({
   strength = null,
   edgeLabels = null,
 }: PhraseCardProps) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом, но не больше предела maxFontSizeMultiplier самих текстов
+  const lh = useLineScale();
   const ctx = useTheme();
   // зачем (Liquid Glass, cards.html #8/#37): грани карточки на токенах стекла активной темы.
   const g = liquidGlassTokens(ctx.liquidGlassThemeId);
@@ -613,7 +616,7 @@ function PhraseCardImpl({
         style={{
           color: g.text,
           fontSize: edgeLabels ? cardFont(28, 20) : cardFont(f.h1 ?? 22, 16),
-          lineHeight: edgeLabels ? Math.round(cardFont(28, 20) * 1.22) : undefined,
+          lineHeight: edgeLabels ? lh(Math.round(cardFont(28, 20) * 1.22), 1.35) : undefined,
           fontWeight: edgeLabels ? '700' : '400',
           textAlign: 'center',
           width: '100%',

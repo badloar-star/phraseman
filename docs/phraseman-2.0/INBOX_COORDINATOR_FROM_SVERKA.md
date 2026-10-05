@@ -328,3 +328,5 @@ Render Error: Cannot read property 'prototype' of undefined — MonthSelector �
 
 ## 09:40 — новый экран ролика (ddac46ce6) проверен из плейлиста
 Открывается отдельным экраном ✅. Лог C:\Temp\claudeideo_screen.txt: navigate source=playlist → open phrasesFrom=memory phrases=100 packFrom=pending → pack found:false (4.7 с). Блока «Набор к ролику» нет — у ролика нет набора. Путь «Из видео» не проверяла (это Сообщество → Наборы, запрет до утра).
+
+## 09:45 — эмулятор упал (первая же команда «назад» с экрана ролика /lingman_video_watch, плеер YouTube играл). Жду 90 с по совету «Эмулятора».

@@ -148,6 +148,9 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
       <ScrollView
         contentContainerStyle={[s.content, { paddingTop: insets.top + 8, paddingBottom: 170 + insets.bottom }]}
         showsVerticalScrollIndicator={false}
+        // зачем: в feedbackSlot живёт форма «Всё было понятно?» с полем ввода — клавиатура не должна её закрывать.
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustKeyboardInsets
       >
         <View style={s.head}>
           <Pressable

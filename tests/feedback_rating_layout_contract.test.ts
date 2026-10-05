@@ -5,32 +5,34 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
 describe('feedback rating layout reachability', () => {
+  // зачем (владелец 01.10 «старые экраны заменить на макетные», PM-137): итог урока — общий экран завершения
+  // V2DoneScreen; прежний ResultsSequence снят. Форма «Всё было понятно?» живёт в feedbackSlot нового экрана:
+  // внутри прокрутки, после содержимого и ДО закреплённых кнопок, и видна над клавиатурой.
   it('keeps optional result feedback in the shared scroll flow before its actions', () => {
-    const sequence = read('components/feedback/ResultsSequence.tsx');
-    const skipStart = sequence.indexOf('<Pressable style={styles.center}');
-    const skipEnd = sequence.indexOf('</Pressable>', skipStart);
-    const feedbackStart = sequence.indexOf('{feedbackSlot ?');
-    const actionsStart = sequence.indexOf('<Animated.View style={[styles.ctaWrap');
+    const done = read('components/completion/V2DoneScreen.tsx');
+    const scrollStart = done.indexOf('<ScrollView');
+    const feedbackAt = done.indexOf('{props.feedbackSlot ?');
+    const scrollEnd = done.indexOf('</ScrollView>');
+    const dockAt = done.indexOf('<View style={[s.dock');
 
-    expect(sequence).toContain('feedbackSlot?: React.ReactNode');
-    expect(sequence).toContain('<ScrollView');
-    expect(sequence).toContain('automaticallyAdjustKeyboardInsets');
-    expect(sequence).toContain('<View style={styles.root}>');
-    expect(skipStart).toBeGreaterThan(-1);
-    expect(skipEnd).toBeGreaterThan(skipStart);
-    expect(sequence.slice(skipStart, skipEnd)).not.toContain('feedbackSlot');
-    expect(feedbackStart).toBeGreaterThan(skipEnd);
-    expect(actionsStart).toBeGreaterThan(feedbackStart);
+    expect(done).toContain('feedbackSlot?: ReactNode');
+    expect(done).toContain('automaticallyAdjustKeyboardInsets');
+    expect(scrollStart).toBeGreaterThan(-1);
+    expect(feedbackAt).toBeGreaterThan(scrollStart);
+    expect(scrollEnd).toBeGreaterThan(feedbackAt);
+    expect(dockAt).toBeGreaterThan(scrollEnd);
   });
 
-  // зачем: D83 — экран результатов Арены удалён, остаётся урок.
-  it('composes lesson feedback through ResultsSequence instead of an absolute overlay', () => {
+  // зачем: D83 — экран результатов Арены удалён, остаётся урок; итог урока — V2DoneScreen (01.10).
+  it('composes lesson feedback through the V2 done screen instead of an absolute overlay', () => {
     const lesson = read('app/lesson_complete.tsx');
     const lessonStart = lesson.indexOf('if (!legacyCompletionSurfacesEnabled)');
     const lessonEnd = lesson.indexOf('testID="lesson-complete-loading"', lessonStart);
     const lessonSurface = lesson.slice(lessonStart, lessonEnd);
 
-    expect(lessonSurface).toContain('feedbackSlot={showLessonFeedback');
+    expect(lessonSurface).toContain('<V2DoneScreen');
+    expect(lessonSurface).toContain('feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ?');
+    expect(lessonSurface).toMatch(/\{showLessonFeedback \? \(\s*<FeedbackRatingCard\s+kind="lesson"/);
     expect(lessonSurface).not.toMatch(/position:\s*['"]absolute['"][\s\S]{0,240}<FeedbackRatingCard/);
   });
 

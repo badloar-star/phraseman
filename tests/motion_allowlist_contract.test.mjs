@@ -31,6 +31,7 @@ const ALLOWED = {
   'components/ForceUpdateGate.tsx': [1, 'только принудительное обновление без выхода'],
   'components/OfflineBanner.tsx': [1, 'статус: нет сети'],
   'components/SkeletonShimmer.tsx': [1, 'скелетон (загрузка)'],
+  'components/v2/KitSpinner.tsx': [1, 'системный спиннер кита `.spin` (загрузка/проверка)'],
   'components/stats/AiBlockNote.tsx': [1, 'ИИ готовит разбор (загрузка)'],
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': [1, 'идёт запись/звук'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],

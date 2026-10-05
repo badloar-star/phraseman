@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { getAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
 import {
@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import CoinRankCatalog, { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
 import { KitSheetModal } from '../components/v2/KitSheetModal';
+import KitSpinner from '../components/v2/KitSpinner';
 import CoinRankUpgradeCeremony from '../components/level_up/CoinRankUpgradeCeremony';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
@@ -438,7 +439,8 @@ export default function CoinRankScreen() {
         {pending ? (
           <View style={[styles.card, styles.statusCard, glass]}>
             <V2GlassSheen seed={3} />
-            <ActivityIndicator size="small" color={p.text} />
+            {/* зачем (65в, coins.html №4): системный спиннер кита `.spin`, а не платформенный ActivityIndicator */}
+            <KitSpinner testID="coin-rank-pending-spinner" />
             <View style={styles.statusCopy}>
               <Text style={[styles.statusTitle, { color: p.text }]}>{copy.pendingTitle}</Text>
               <Text style={[styles.statusNote, { color: p.textSecondary }]}>{copy.pendingNote}</Text>
@@ -512,11 +514,14 @@ const styles = StyleSheet.create({
   // `.value`: вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145).
   balanceValue: { fontSize: 14, // d145-mockup: coins.html .value 14
     lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
-  statusCard: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, padding: 16 },
+  // зачем (65в): `.status-card` макета — отступы 14/16, заголовок 15 жирный, текст 14/20 (общий для «Не хватает…» и «Проверяем…»).
+  statusCard: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
   statusIcon: { marginTop: 2 },
   statusCopy: { flex: 1, minWidth: 0 },
-  statusTitle: { ...V2_TYPE.headline },
-  statusNote: { ...V2_TYPE.subtitle, marginTop: 2 },
+  statusTitle: { fontSize: 15, // d145-mockup: coins.html .status-card strong 15 (extension.css)
+    lineHeight: 20, fontWeight: '700' },
+  statusNote: { fontSize: 14, // d145-mockup: coins.html .status-card 14/20 (extension.css)
+    lineHeight: 20, marginTop: 2 },
   maxState: { minHeight: 120, alignItems: 'center', justifyContent: 'center', gap: 12 },
   maxTitle: { ...V2_TYPE.headline, textAlign: 'center' },
   footer: { paddingHorizontal: V2.screenPad, paddingTop: 12 },

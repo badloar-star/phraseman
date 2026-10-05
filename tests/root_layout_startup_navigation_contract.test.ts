@@ -13,7 +13,8 @@ describe('root layout startup navigation contract', () => {
     expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
     // зачем (PM-220): форма таймера изменилась (колбэк с bootMark), но правило то же — у флага
     // firstContentReady есть потолок FIRST_CONTENT_READY_FALLBACK_MS, который его выставляет.
-    expect(source).toMatch(/setTimeout\(\(\) => \{[^}]*setFirstContentReady\(true\);\s*\}, FIRST_CONTENT_READY_FALLBACK_MS\)/);
+    // зачем (05.10): в теле таймера теперь bootMark с объектом и отметка времени — шаблон допускает их, потолок тот же.
+    expect(source).toMatch(/setTimeout\(\(\) => \{(?:(?!setTimeout\()[\s\S])*?setFirstContentReady\(true\);\s*\}, FIRST_CONTENT_READY_FALLBACK_MS\)/);
     expect(source.indexOf('<Stack')).toBeGreaterThan(-1);
     expect(source.indexOf('<Stack')).toBeLessThan(
       source.indexOf('<StartupSplashHold visible={startupSplashVisible}'),

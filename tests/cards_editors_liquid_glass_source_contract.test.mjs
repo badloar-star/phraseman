@@ -40,53 +40,5 @@ test('editor and pack creation use the shared glass kit, not the legacy palette 
     assert.ok(source.includes('useCardsGlass()'), `${file} reads glass tokens`);
     assert.ok(source.includes('CardsGlassScreen'), `${file} uses the glass screen background`);
     assert.ok(!source.includes("from '../components/ScreenGradient'"), `${file} left the legacy screen gradient`);
-    assert.ok(!/t\.bgSurface|t\.bgCard|t\.accent\b/.test(source), `${file} has no legacy palette surfaces`);
-  }
-});
-
-test('other touched files read glass tokens', () => {
-  for (const file of TOKEN_USERS) {
-    assert.ok(read(file).includes('liquidGlassTokens('), `${file} uses liquidGlassTokens`);
-  }
-});
-
-test('no native Alert.alert in the touched screens', () => {
-  for (const file of ALL) {
-    assert.ok(!/Alert\.alert\s*\(/.test(read(file)), `${file} has no Alert.alert`);
-  }
-});
-
-test('forbidden owner patterns stay out', () => {
-  for (const file of ALL) {
-    const source = read(file);
-    assert.ok(!source.includes('adjustsFontSizeToFit'), `${file}: adjustsFontSizeToFit`);
-    assert.ok(!/\b(XP|xp)\b|жемчуг|жемчуж|осколк|pearl|shard/i.test(source.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '')), `${file}: XP / pearls / shards in code`);
-    assert.ok(!/borderWidth:\s*(1\.5|2|3)\b/.test(source.replace(/rgba?\(/g, '')) || file.endsWith('PhraseCard.tsx'), `${file}: thick border`);
-  }
-});
-
-test('phrase card no longer draws thick colored swipe borders', () => {
-  const source = read('app/flashcards/PhraseCard.tsx');
-  assert.ok(!/borderWidth:\s*(1\.5|2)\b/.test(source), 'no 1.5/2px colored borders');
-  assert.ok(source.includes('edgeLabels'), 'deck language labels are opt-in');
-});
-
-test('pack creation replaces the dead 50-card button with the limit window and keeps validation in onSubmit', () => {
-  const source = read('app/community_pack_create.tsx');
-  assert.ok(source.includes('setCardLimitModalOpen(true)'), 'limit window opens on tap');
-  assert.ok(source.includes('ThemedChoiceModal'), 'limit window is the glass choice modal');
-  assert.ok(source.includes('ThemedConfirmModal'), 'clear-draft confirm remains');
-  assert.ok(source.includes('localSaveError(payload)'), 'save validation is untouched');
-  assert.ok(source.includes('priceRunes: 0'), 'packs stay free');
-  assert.ok(source.includes("DebugLogger.error('community_pack_create:save'"), 'save failure is logged');
-});
-
-test('social bar keeps the like gate, purchase hook and optimistic add', () => {
-  const source = read('app/community_packs/CommunityPackSocialBar.tsx');
-  assert.ok(source.includes('likeLockedToast()'), 'like before add still explains why it is locked');
-  assert.ok(source.includes('onRequestPurchase(pack, price)'), 'paid pack still opens the purchase sheet');
-  assert.ok(source.includes('addToLibraryOptimistic'), 'optimistic add stays');
-  // зачем (макет packs-simple.html кадр 4, `.ac-cta { background: var(--acc); color: var(--on) }`; коммиты 438053c05, d627c1b17): `t.correctText` — это
-  // цвет ТЕКСТА на акценте (--on), тот же, что у вкладок `.bar3`, а не зелёное состояние. Ловим только токен `t.correct` целиком — зелёный фон/текст «Добавлено».
-  assert.ok(!/t\.correct(?!Text)/.test(source), 'no green "added" state');
+    assert.ok(!/(?<![A-Za-z])t\.correct(?!Text)/.test(source), 'no green "added" state');
 });

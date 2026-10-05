@@ -41,6 +41,8 @@ jest.mock('../app/swallow_log', () => ({
   noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
 }));
 jest.mock('react-native', () => ({
+  // зачем (05.10): экран берёт межстрочный через useLineScale → useWindowDimensions (системный шрифт 1.0).
+  useWindowDimensions: () => ({ width: 390, height: 844, scale: 2, fontScale: 1 }),
   ScrollView: 'ScrollView',
   StyleSheet: {
     create: (styles: unknown) => styles,

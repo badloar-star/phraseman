@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } fro
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { PracticeGlass } from './PracticeChrome';
-import { KitCtaGloss } from '../v2/KitLiquidGlass';
+import { KitCtaGloss, KitGlassLayer } from '../v2/KitLiquidGlass';
 
 // зачем (владелец 2026-09-30, второй проход practice.html): служебные состояния тренировок
 // (пусто / мало карточек / ошибка загрузки / данные тренировки не открылись), строка
@@ -190,6 +190,8 @@ export function PracticeQuestionCard({
       testID={testID}
       style={[styles.qc, { minHeight, backgroundColor: glass.opaqueCard, borderColor: glass.line }, style]}
     >
+      {/* зачем (Сверка practice-001, kit.css `.qc::after`): карточка вопроса — стекло с бликом и светлой кромкой, как в Блице. */}
+      <KitGlassLayer radius={16} />
       {kicker ? <Text style={[styles.qcKicker, { color: glass.secondary }]}>{kicker}</Text> : null}
       {children}
     </View>

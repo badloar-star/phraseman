@@ -55,6 +55,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
 import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
+import { useLineScale } from '../hooks/useLineScale';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -165,6 +166,7 @@ export default function FlashcardsBlitzSession() {
   const router = useRouter();
   const { theme: t, f, liquidGlassThemeId } = useTheme();
   const blitzGlass = liquidGlassTokens(liquidGlassThemeId);
+  const lh = useLineScale();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const blitzAccessGranted = accessResolved;
   const blitzAccessGrantedRef = useRef(blitzAccessGranted);
@@ -1434,9 +1436,9 @@ export default function FlashcardsBlitzSession() {
               <PracticeBackButton large glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
             </View>
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
-              <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
-                <Text style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
-              </ScrollView>
+              {/* зачем (Сверка practice-001, practice.html `.hd .su` nowrap): справа три пилюли (энергия, сердца, монеты), места мало —
+                  горизонтальная прокрутка срезала «Все карточк» без намёка. Одна строка с многоточием. */}
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: lh(21), marginTop: 2 }}>{deckTitle}</Text>
             </PracticeHeaderTitle>
             {/* зачем (practice.html `.hd`): справа энергия (у Plus скрыта), сердца и монеты через 6. */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>

@@ -24244,13 +24244,19 @@
       "anim_notes": [
         "blink 1.05s steps(2) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-028.png",
+      "evidence_at": "2026-10-05T10:04:33.377Z",
+      "evidence_sha256": "d89459d2b33e9fb3d1f14a669bac960bab51238d8929a33b222a60eef07ba667",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Снято 10:59, телефон макета 28 (подписи в cards-section.html сдвинуты на 2: «Ничего не нашли» = 28)",
+        "Совпадает: значок поиска в плитке, «Ничего не нашли», «Попробуйте другое слово.», «Показать все»",
+        "Нет строки «N набора · N фраз» под заголовком при активном поиске (в макете остаётся)",
+        "Пустой блок ниже макетного (≈ на 60 px)",
+        "Цвет плитки и кнопки — цвет темы, не сравниваю"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

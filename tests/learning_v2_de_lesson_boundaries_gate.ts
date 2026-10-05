@@ -226,6 +226,72 @@ const L29_EVIDENCE_IDS_SHA256 =
   "b05eeca3ce0f6992804f7edf96532d28ddf23b6453a9c4e75259c1a58700ee7e";
 const L29_CANONICAL_OBJECT_SHA256 =
   "414e499f0ff839d80ca6df6af2a29c3a1f7e3b9ec133b2f8aa1549fed5207295";
+const L30_PLAN_RECALL_AUTHORITY = [
+  {
+    fromLessonId: "de_l20",
+    constructIds: ["de_gc_infinitive_verb_cluster_v1"],
+    responsibility:
+      "retrieve right-bracket control before adding finite haben around the selected warten müssen cluster",
+  },
+  {
+    fromLessonId: "de_l15",
+    constructIds: ["de_gc_perfekt_haben_classes_v1"],
+    responsibility:
+      "contrast ordinary haben plus Partizip II with the source-attested haben plus warten plus müssen Ersatzinfinitiv pattern",
+  },
+  {
+    fromLessonId: "de_l09",
+    constructIds: ["de_gc_modal_finite_bare_infinitive_v1"],
+    responsibility:
+      "retain the known finite-modal plus bare-infinitive bracket only as a form contrast and do not substitute it for the selected Perfekt cluster",
+  },
+  {
+    fromLessonId: "de_l16",
+    constructIds: ["de_gc_spoken_preterite_island_v1"],
+    responsibility:
+      "contrast known musste warten with hat/haben warten müssen without claiming an absolute register split",
+  },
+  {
+    fromLessonId: "de_l29",
+    constructIds: ["de_gc_limited_functional_genitive_v1"],
+    responsibility:
+      "preserve the exact delayed L29 bounded document relation at de_l30_c07_s49 without using Genitiv to generate a new modal-Perfekt frame",
+  },
+] as const;
+const L30_PLAN_RECALL_AUTHORITY_SHA256 =
+  "445b40b2409bc26790f0158dc72339df4592bc7af53b7bd5e506f3244c7683ea";
+const L30_EVIDENCE_IDS = [
+  "DE-GRM-MODALPERF-001",
+  "DE-GRM-MODAL-001",
+  "DE-GRM-PERFEKT-001",
+  "DE-GRM-PAST-001",
+] as const;
+const L30_EVIDENCE_IDS_SHA256 =
+  "4e01f56d92da435c5f3feddd4f26864e4b3b7b1f1c0a533200ce26227161014a";
+const L30_PRODUCTIVE_NO_EXPANSION =
+  "only the source-attested active modal Perfekt cluster hat/haben warten müssen with a known participant; no other lexical infinitive or modal";
+const L30_EXCLUDED_NO_EXPANSION =
+  "hätte or hätten, passive or werden clusters, missed-obligation counterfactuals, Plusquamperfekt, subordinate-clause auxiliary order, other lexical infinitives or modals, and general modal Perfekt production";
+const L30_LEGAL_FUTURE_PROHIBITED_CONSTRUCT_IDS = [
+  "de_gc_register_repair_mediation_v1",
+  "de_gc_functional_b1_integration_v1",
+] as const;
+const L30_FORBIDDEN_ALREADY_INTRODUCED_CONSTRUCT_IDS = [
+  "de_gc_event_passive_v1",
+  "de_gc_state_passive_v1",
+  "de_gc_werden_infinitive_meanings_v1",
+] as const;
+const L30_FORBIDDEN_PRODUCTIVE_SURFACES = [
+  "hätte",
+  "hätten",
+  "passive",
+  "werden",
+  "worden",
+  "wurde",
+  "wurden",
+] as const;
+const L30_CANONICAL_OBJECT_SHA256 =
+  "cacba03eeaad98dd132ede35b32e43ab93d25de87abe04b8350117e179b3bca9";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -343,6 +409,15 @@ function hasExactL29PlanRecallAuthority(value: unknown): boolean {
     canonical === JSON.stringify(L29_PLAN_RECALL_AUTHORITY) &&
     createHash("sha256").update(canonical).digest("hex") ===
       L29_PLAN_RECALL_AUTHORITY_SHA256
+  );
+}
+function hasExactL30PlanRecallAuthority(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(L30_PLAN_RECALL_AUTHORITY) &&
+    createHash("sha256").update(canonical).digest("hex") ===
+      L30_PLAN_RECALL_AUTHORITY_SHA256
   );
 }
 
@@ -995,6 +1070,11 @@ function validateBlueprint(
     ) {
       throw new Error("l29_plan_recall_authority_invalid");
     }
+    if (
+      expectedOrdinal === 30 &&
+      !hasExactL30PlanRecallAuthority(candidate.crossLessonRecall)
+    )
+      throw new Error("l30_plan_recall_authority_invalid");
     candidate.crossLessonRecall.forEach((recall, recallIndex) => {
       assertPlainRecord(
         recall,
@@ -1524,6 +1604,57 @@ function validateBlueprint(
         throw new Error("l29_canonical_object_identity_invalid");
       }
     }
+    if (expectedOrdinal === 30) {
+      const grammar = candidate.grammarBoundary as JsonRecord;
+      const final = candidate.session56Final as JsonRecord;
+      const surface = [
+        candidate.title,
+        candidate.scenario,
+        candidate.canDoTerritory,
+        grammar.productive,
+        ...(candidate.chapterOutcomes as JsonRecord[]).map((c) => c.outcome),
+        ...(candidate.lexicalDomains as string[]),
+        candidate.pragmatics,
+        final.transferSituation,
+        candidate.accessibilityAlternative,
+      ]
+        .join(" ")
+        .toLowerCase();
+      for (const forbidden of L30_FORBIDDEN_PRODUCTIVE_SURFACES)
+        if (surface.includes(forbidden))
+          throw new Error(`l30_forbidden_productive_surface:${forbidden}`);
+      if (grammar.productive !== L30_PRODUCTIVE_NO_EXPANSION)
+        throw new Error("l30_productive_no_expansion_invalid");
+      if (grammar.excluded !== L30_EXCLUDED_NO_EXPANSION)
+        throw new Error("l30_excluded_no_expansion_invalid");
+      if (
+        JSON.stringify(candidate.prohibitedConstructIds) !==
+        JSON.stringify(L30_LEGAL_FUTURE_PROHIBITED_CONSTRUCT_IDS)
+      )
+        throw new Error("l30_future_prohibited_contract_invalid");
+      const active = [
+        ...(candidate.introducedConstructIds as string[]),
+        ...(candidate.extendedConstructIds as string[]),
+        ...(candidate.reviewedConstructIds as string[]),
+        ...(final.requiredConstructIds as string[]),
+      ];
+      for (const forbidden of L30_FORBIDDEN_ALREADY_INTRODUCED_CONSTRUCT_IDS)
+        if (active.includes(forbidden))
+          throw new Error(`l30_forbidden_known_construct:${forbidden}`);
+      if (
+        JSON.stringify(candidate.evidenceIds) !==
+          JSON.stringify(L30_EVIDENCE_IDS) ||
+        createHash("sha256")
+          .update(JSON.stringify(candidate.evidenceIds))
+          .digest("hex") !== L30_EVIDENCE_IDS_SHA256
+      )
+        throw new Error("l30_evidence_authority_invalid");
+      if (
+        createHash("sha256").update(JSON.stringify(candidate)).digest("hex") !==
+        L30_CANONICAL_OBJECT_SHA256
+      )
+        throw new Error("l30_canonical_object_identity_invalid");
+    }
   });
 
   for (const domain of SCENARIO_DOMAINS) {
@@ -1660,7 +1791,303 @@ assert.equal(
   true,
   "L29 authority must pass only for the exact ordered four-row contract",
 );
+assert.equal(
+  hasExactL30PlanRecallAuthority(clone(L30_PLAN_RECALL_AUTHORITY)),
+  true,
+  "L30 authority must pass only for the exact ordered five-row contract",
+);
 validateBlueprint(raw, constructs);
+
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.crossLessonRecall = (
+      lesson30.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l20");
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.crossLessonRecall = (
+      lesson30.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l15");
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.crossLessonRecall = (
+      lesson30.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l09");
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.crossLessonRecall = (
+      lesson30.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l16");
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.crossLessonRecall = (
+      lesson30.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l29");
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recall = (lesson30.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l20",
+    )!;
+    recall.constructIds = ["de_gc_separable_verb_bracket_v1"];
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recall = (lesson30.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l15",
+    )!;
+    recall.responsibility =
+      "contrast ordinary Perfekt with the selected cluster";
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recall = (lesson30.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l09",
+    )!;
+    recall.fromLessonId = "de_l08";
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recall = (lesson30.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l16",
+    )!;
+    recall.responsibility = "contrast Präteritum and modal Perfekt";
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recall = (lesson30.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l29",
+    )!;
+    recall.responsibility = "retain the previous document relation";
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const recalls = lesson30.crossLessonRecall as JsonRecord[];
+    lesson30.crossLessonRecall = [
+      recalls[1],
+      recalls[0],
+      recalls[2],
+      recalls[3],
+      recalls[4],
+    ];
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.crossLessonRecall as JsonRecord[]).push({
+      fromLessonId: "de_l01",
+      constructIds: ["de_gc_statement_v2_v1"],
+      responsibility: "extra recall row",
+    });
+  },
+  /^l30_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.evidenceIds = (lesson30.evidenceIds as string[]).filter(
+      (id) => id !== "DE-GRM-MODALPERF-001",
+    );
+  },
+  /^introduced_construct_evidence_missing:de_l30:DE-GRM-MODALPERF-001$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const evidence = lesson30.evidenceIds as string[];
+    lesson30.evidenceIds = [evidence[1], evidence[0], evidence[2], evidence[3]];
+  },
+  /^l30_evidence_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.evidenceIds as string[]).push("DE-GRM-ADJ-001");
+  },
+  /^l30_evidence_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.title = "Was hätte erledigt werden müssen?";
+  },
+  /^l30_forbidden_productive_surface:hätte$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const boundary = lesson30.grammarBoundary as JsonRecord;
+    boundary.productive = "finite haben plus a passive werden cluster";
+  },
+  /^l30_forbidden_productive_surface:passive$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const outcomes = lesson30.chapterOutcomes as JsonRecord[];
+    outcomes[2].outcome = "report one completed situation with werden";
+  },
+  /^l30_forbidden_productive_surface:werden$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.extendedConstructIds as string[]).push("de_gc_event_passive_v1");
+  },
+  /^l30_forbidden_known_construct:de_gc_event_passive_v1$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.extendedConstructIds as string[]).push("de_gc_state_passive_v1");
+  },
+  /^l30_forbidden_known_construct:de_gc_state_passive_v1$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.extendedConstructIds as string[]).push(
+      "de_gc_werden_infinitive_meanings_v1",
+    );
+  },
+  /^l30_forbidden_known_construct:de_gc_werden_infinitive_meanings_v1$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    (lesson30.prohibitedConstructIds as string[]).push(
+      "de_gc_event_passive_v1",
+    );
+  },
+  /^prohibited_construct_not_future:de_l30:de_gc_event_passive_v1$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const boundary = lesson30.grammarBoundary as JsonRecord;
+    boundary.excluded = (boundary.excluded as string).replace(
+      "passive or werden clusters, ",
+      "",
+    );
+  },
+  /^l30_excluded_no_expansion_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    lesson30.prohibitedConstructIds = (
+      lesson30.prohibitedConstructIds as string[]
+    ).filter((id) => id !== "de_gc_register_repair_mediation_v1");
+  },
+  /^l30_future_prohibited_contract_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const final = lesson30.session56Final as JsonRecord;
+    final.requiredConstructIds = (
+      final.requiredConstructIds as string[]
+    ).filter((id) => id !== "de_gc_limited_functional_genitive_v1");
+  },
+  /^l30_canonical_object_identity_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson30 = (candidate.lessons as JsonRecord[])[29];
+    const prerequisites = lesson30.prerequisiteLessonIds as string[];
+    prerequisites.splice(prerequisites.indexOf("de_l20"), 0, "de_l16");
+  },
+  /^lesson_prerequisite_closure_mismatch:de_l30:expected=de_l01,de_l02,de_l03,de_l04,de_l08,de_l09,de_l15,de_l20$/u,
+);
 
 expectFailure(
   raw,

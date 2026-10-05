@@ -3468,14 +3468,14 @@
       "id": "de_l30",
       "ordinal": 30,
       "cefrBand": "B1",
-      "title": "Was hätte erledigt werden müssen?",
-      "scenario": "explaining a missed obligation and reconstructing what was required in a workplace handover",
+      "title": "Er hat warten müssen",
+      "scenario": "explaining in a workplace handover who had to wait and why the waiting was necessary",
       "scenarioDomain": "work",
-      "canDoTerritory": "use a tightly limited modal Perfekt with Ersatzinfinitiv after ordinary Perfekt and multi-verb brackets are stable",
+      "canDoTerritory": "use only the selected active hat/haben warten müssen modal Perfekt cluster after ordinary Perfekt and multi-verb brackets are stable",
       "grammarBoundary": {
-        "productive": "finite haben plus a controlled infinitive cluster ending in the selected modal Ersatzinfinitiv",
-        "receptive": "known ordinary Perfekt, modal and infinitive-cluster components",
-        "excluded": "general modal Perfekt production and uncontrolled multi-verb variants"
+        "productive": "only the source-attested active modal Perfekt cluster hat/haben warten müssen with a known participant; no other lexical infinitive or modal",
+        "receptive": "known ordinary haben Perfekt, the exact L16 musste warten contrast, L20 infinitive-cluster control and the exact delayed L29 document relation",
+        "excluded": "hätte or hätten, passive or werden clusters, missed-obligation counterfactuals, Plusquamperfekt, subordinate-clause auxiliary order, other lexical infinitives or modals, and general modal Perfekt production"
       },
       "introducedConstructIds": ["de_gc_limited_modal_perfekt_v1"],
       "extendedConstructIds": [
@@ -3505,75 +3505,85 @@
         {
           "id": "de_l30_ch01",
           "ordinal": 1,
-          "outcome": "recognise the selected modal Perfekt cluster"
+          "outcome": "recognise the selected active hat/haben warten müssen cluster"
         },
         {
           "id": "de_l30_ch02",
           "ordinal": 2,
-          "outcome": "contrast ordinary Perfekt with the bounded Ersatzinfinitiv pattern"
+          "outcome": "contrast ordinary haben plus Partizip II, known musste warten and bounded hat/haben warten müssen"
         },
         {
           "id": "de_l30_ch03",
           "ordinal": 3,
-          "outcome": "state one missed past obligation in the approved frame"
+          "outcome": "report one completed situation where a known participant had to wait"
         },
         {
           "id": "de_l30_ch04",
           "ordinal": 4,
-          "outcome": "ask for clarification about what was required"
+          "outcome": "ask who had to wait and for what reason"
         },
         {
           "id": "de_l30_ch05",
           "ordinal": 5,
-          "outcome": "reconstruct the required action and actual outcome"
+          "outcome": "reconstruct who waited, why and what happened next using known clauses"
         },
         {
           "id": "de_l30_ch06",
           "ordinal": 6,
-          "outcome": "repair ordinary participle or cluster-order substitution"
+          "outcome": "repair a Partizip II substitution or cluster-order error"
         },
         {
           "id": "de_l30_ch07",
           "ordinal": 7,
-          "outcome": "transfer the limited pattern to a new handover problem"
+          "outcome": "transfer the selected active pattern to a new handover problem"
         }
       ],
       "lexicalDomains": [
         "workplace handovers",
-        "obligations",
-        "missed actions",
+        "waiting and delays",
+        "required past actions",
         "clarification"
       ],
       "plannedPronunciationTargetIds": [
-        "de_pron_plan_multi_verb_cluster_rhythm_v1",
-        "de_pron_plan_modal_assessment_focus_v1"
+        "de_pron_plan_multi_verb_cluster_rhythm_v1"
       ],
       "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
-      "pragmatics": "explain a missed obligation without using complex grammar to assign unsupported blame",
+      "pragmatics": "report unavoidable past waiting and ask for clarification without inventing blame or a counterfactual failure",
       "crossLessonRecall": [
         {
           "fromLessonId": "de_l20",
           "constructIds": ["de_gc_infinitive_verb_cluster_v1"],
-          "responsibility": "retrieve stable cluster control before the bounded modal Perfekt extension"
+          "responsibility": "retrieve right-bracket control before adding finite haben around the selected warten müssen cluster"
         },
         {
           "fromLessonId": "de_l15",
           "constructIds": ["de_gc_perfekt_haben_classes_v1"],
-          "responsibility": "contrast the new cluster with ordinary haben Perfekt"
+          "responsibility": "contrast ordinary haben plus Partizip II with the source-attested haben plus warten plus müssen Ersatzinfinitiv pattern"
+        },
+        {
+          "fromLessonId": "de_l09",
+          "constructIds": ["de_gc_modal_finite_bare_infinitive_v1"],
+          "responsibility": "retain the known finite-modal plus bare-infinitive bracket only as a form contrast and do not substitute it for the selected Perfekt cluster"
+        },
+        {
+          "fromLessonId": "de_l16",
+          "constructIds": ["de_gc_spoken_preterite_island_v1"],
+          "responsibility": "contrast known musste warten with hat/haben warten müssen without claiming an absolute register split"
         },
         {
           "fromLessonId": "de_l29",
           "constructIds": ["de_gc_limited_functional_genitive_v1"],
-          "responsibility": "retain bounded document relations while reconstructing the missed requirement"
+          "responsibility": "preserve the exact delayed L29 bounded document relation at de_l30_c07_s49 without using Genitiv to generate a new modal-Perfekt frame"
         }
       ],
       "session56Final": {
         "sessionId": "de_l30_c07_s56",
-        "transferSituation": "clarify a different missed obligation in a new handover and agree the next action",
+        "transferSituation": "clarify in a different handover who had to wait, why and what happened next",
         "requiredConstructIds": [
           "de_gc_limited_modal_perfekt_v1",
           "de_gc_infinitive_verb_cluster_v1",
           "de_gc_perfekt_haben_classes_v1",
+          "de_gc_spoken_preterite_island_v1",
           "de_gc_limited_functional_genitive_v1"
         ],
         "evidenceDimensions": [
@@ -3592,7 +3602,8 @@
       "evidenceIds": [
         "DE-GRM-MODALPERF-001",
         "DE-GRM-MODAL-001",
-        "DE-GRM-PERFEKT-001"
+        "DE-GRM-PERFEKT-001",
+        "DE-GRM-PAST-001"
       ],
       "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
     },

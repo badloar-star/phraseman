@@ -397,7 +397,8 @@ export default function CoinRankScreen() {
             </View>
             <View style={[styles.divider, { backgroundColor: p.divider }]} />
             <View style={styles.costRow}>
-              <Text style={[styles.costTitle, { color: p.text }]}>{copy.balance}</Text>
+              {/* зачем (сверка coins-005, coins.html `.flex > .grow + .value`): подпись растягивается, значение прижато к правому краю */}
+              <Text style={[styles.costTitle, styles.costTitleGrow, { color: p.text }]}>{copy.balance}</Text>
               <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.textSecondary }]}>
                 {balance === null ? '—' : formatCoins(balance)}
               </Text>
@@ -416,7 +417,8 @@ export default function CoinRankScreen() {
         {short ? (
           <View style={[styles.card, styles.statusCard, glass]}>
             <V2GlassSheen seed={3} />
-            <Ionicons name="lock-closed" size={20} color={p.text} />
+            {/* зачем (сверка coins-005): в макете замок маленький серый у первой строки, а не крупный белый по центру */}
+            <Ionicons name="lock-closed" size={18} color={p.textSecondary} style={styles.statusIcon} />
             <View style={styles.statusCopy}>
               <Text style={[styles.statusTitle, { color: p.text }]}>{`${copy.shortTitle} ${formatCoins(missing!)} ${copy.coins}`}</Text>
               <Text style={[styles.statusNote, { color: p.textSecondary }]}>{copy.shortNote}</Text>
@@ -481,6 +483,7 @@ const styles = StyleSheet.create({
   costRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   costCopy: { flex: 1, minWidth: 0 },
   costTitle: { ...V2_TYPE.headline },
+  costTitleGrow: { flex: 1, minWidth: 0 },
   costNote: { ...V2_TYPE.subtitle, marginTop: 4 },
   pricePill: { flexDirection: 'row', alignItems: 'center', gap: 9, height: 35, paddingHorizontal: 14, borderRadius: 18 },
   priceCoin: { width: 20, height: 20 },
@@ -488,7 +491,8 @@ const styles = StyleSheet.create({
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 16 },
   // `.value`: вторичный тон; макет 14, шкала D145 — 13.
   balanceValue: { fontSize: 13, lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
-  statusCard: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16 },
+  statusCard: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, padding: 16 },
+  statusIcon: { marginTop: 2 },
   statusCopy: { flex: 1, minWidth: 0 },
   statusTitle: { ...V2_TYPE.headline },
   statusNote: { ...V2_TYPE.subtitle, marginTop: 2 },

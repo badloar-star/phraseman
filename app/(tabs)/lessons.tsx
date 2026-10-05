@@ -129,6 +129,7 @@ import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import { LUM } from "../../constants/motionHybrid";
+import { pickLessonsExamStatus } from "../lessons_exam_status";
 import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
@@ -4442,8 +4443,13 @@ export default function LessonsTab({
       tr: isB2 ? "Sınav" : `${lvl} sınavı`,
       pl: isB2 ? "Egzamin" : `Egzamin ${lvl}`,
     });
-    const subLine = result
-      ? result.passed
+    // зачем (learn-4/8, координатор 05.10): порядок статусов — в pickLessonsExamStatus (сданный → нужен Plus →
+    // «Почти» только при pct > 0 → прежняя цепочка). Тексты прежние.
+    const examStatusKind = pickLessonsExamStatus({
+      result, examPremiumRequired, examSourceAvailable, allDone, isPremium, prevExamLevel,
+    });
+    const subLine = examStatusKind === "passed" || examStatusKind === "almost"
+      ? examStatusKind === "passed" && result
         ? triLang(lang, {
             // зачем: макет learn.html A5 — «Сдан — 92%» без эмодзи-галочки.
             ru: `Сдан — ${result.pct}%`,
@@ -4460,13 +4466,25 @@ export default function LessonsTab({
         // по несдавшему (Часть V п.6). Рядом стоит «✅ Сдано» — держим тот же
         // тон: называем результат без приговора и зовём вернуться.
         : triLang(lang, {
-            ru: `Почти — ${result.pct}%`, uk: `Майже — ${result.pct}%`, en: `Almost — ${result.pct}%`,
-            es: `Casi — ${result.pct}%`, 'pt-BR': `Quase — ${result.pct}%`, vi: `Suýt rồi — ${result.pct}%`,
-            id: `Hampir — ${result.pct}%`, tr: `Az kaldı — ${result.pct}%`, pl: `Prawie — ${result.pct}%`,
+            ru: `Почти — ${result?.pct ?? 0}%`, uk: `Майже — ${result?.pct ?? 0}%`, en: `Almost — ${result?.pct ?? 0}%`,
+            es: `Casi — ${result?.pct ?? 0}%`, 'pt-BR': `Quase — ${result?.pct ?? 0}%`, vi: `Suýt rồi — ${result?.pct ?? 0}%`,
+            id: `Hampir — ${result?.pct ?? 0}%`, tr: `Az kaldı — ${result?.pct ?? 0}%`, pl: `Prawie — ${result?.pct ?? 0}%`,
           })
-      : !examSourceAvailable
+      : examStatusKind === "plus"
+        ? triLang(lang, {
+            ru: "Откроется с Plus",
+            en: "Unlocks with Plus",
+            uk: "Відкриється з Plus",
+            es: "Se abre con Plus",
+            "pt-BR": "Abre com Plus",
+            vi: "Mở với Plus",
+            id: "Terbuka dengan Plus",
+            tr: "Plus ile açılır",
+            pl: "Otwiera się z Plus",
+          })
+      : examStatusKind === "source_unavailable"
         ? frenchExamGateCopy("level", lang).title
-        : allDone
+        : examStatusKind === "start"
           ? triLang(lang, {
               ru: "Нажми, чтобы начать",
               en: "Tap to start",
@@ -4478,19 +4496,7 @@ export default function LessonsTab({
               tr: "Başlamak için dokun",
               pl: "Dotknij, aby rozpocząć",
             })
-          : examPremiumRequired
-            ? triLang(lang, {
-                ru: "Откроется с Plus",
-                en: "Unlocks with Plus",
-                uk: "Відкриється з Plus",
-                es: "Se abre con Plus",
-                "pt-BR": "Abre com Plus",
-                vi: "Mở với Plus",
-                id: "Terbuka dengan Plus",
-                tr: "Plus ile açılır",
-                pl: "Otwiera się z Plus",
-              })
-            : isPremium && prevExamLevel
+          : examStatusKind === "prev_exam"
               ? triLang(lang, {
                   ru: `Сначала зачёт ${prevExamLevel}`,
                   en: `First, the ${prevExamLevel} exam`,
@@ -4519,7 +4525,7 @@ export default function LessonsTab({
     // зачем (learn-4/8, Сверка: Free видит «Почти — 0%» вместо «Откроется с Plus»): какие входы решили статус экзамена.
     logOncePerKey('[LESSONS-EXAM] status', `${lvl}|${subLine}`, {
       level: lvl, hasResult: Boolean(result), resultPct: result?.pct ?? null, passed: result?.passed ?? null,
-      examSourceAvailable, allDone, examPremiumRequired, isPremium, chosen: subLine,
+      examSourceAvailable, allDone, examPremiumRequired, isPremium, kind: examStatusKind, chosen: subLine,
     });
     return (
       <LessonsListGlassExamCard

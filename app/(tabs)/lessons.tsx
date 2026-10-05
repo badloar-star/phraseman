@@ -4269,9 +4269,26 @@ export default function LessonsTab({
       if (y <= 0 && bouncyStretch.value !== 0) {
         bouncyStretch.value = withSpring(0, { damping: 22, stiffness: 240 });
       }
+      // зачем (learn-2, Сверка: после очистки поиска список пустеет на несколько экранов, ошибок нет): высота содержимого
+      // против числа строк — огромная contentHeight при малом числе отрисованных строк = виртуализация/устаревшие замеры.
+      console.warn('[LESSONS-LIST] scroll_end', JSON.stringify({
+        offsetY: Math.round(y),
+        contentHeight: Math.round(e?.nativeEvent?.contentSize?.height ?? -1),
+        layoutHeight: Math.round(e?.nativeEvent?.layoutMeasurement?.height ?? -1),
+        rows: legacyFilteredListData.length,
+        queryLength: legacyLessonQuery.trim().length,
+      })); // guard-ok: временная трассировка learn-2
     },
-    [bouncyStretch],
+    [bouncyStretch, legacyFilteredListData.length, legacyLessonQuery],
   );
+  // зачем (learn-2): каждая смена данных списка — сколько строк и под каким запросом (длина, без текста).
+  useEffect(() => {
+    console.warn('[LESSONS-LIST] data', JSON.stringify({
+      rows: legacyFilteredListData.length,
+      queryLength: legacyLessonQuery.trim().length,
+      firstKinds: legacyFilteredListData.slice(0, 4).map((item) => item.kind),
+    })); // guard-ok: временная трассировка learn-2
+  }, [legacyFilteredListData, legacyLessonQuery]);
   // Премиум-урок: открываем пейвол СРАЗУ, без промежуточного окна «урок входит в премиум».
   // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
   const openLessonPaywall = useCallback(

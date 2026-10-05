@@ -10,6 +10,7 @@ import {
   dialogueGlassCardStyle,
   useDialogueGlass,
 } from './glass/DialogueGlassKit';
+import { glassTone } from './glass/glassTone';
 
 // зачем (владелец 2026-09-30): брифинг «1 в 1» по макету dialogs.html B1/B2 (Liquid Glass):
 // медальон сцены 88, бейдж уровня, крупное название, карточка брифинга, карточка «Задания»
@@ -98,8 +99,9 @@ export function DialogueV2BriefingScreen({
                 key={objective.id}
                 style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : null]}
               >
-                <View style={[styles.num, { backgroundColor: glass.opaqueControl }]}>
-                  <Text maxFontSizeMultiplier={1.2} style={[styles.numText, { color: glass.secondary }]}>{index + 1}</Text>
+                {/* зачем (сверка dialogs-008, макет `.obj .n`): цифра в видимом кружке (control #1C1C1E на карточке #161618) — тон от цвета текста темы, токен opaqueControl сливался с карточкой */}
+                <View style={[styles.num, { backgroundColor: glassTone(glass.text, 0.10) }]}>
+                  <Text maxFontSizeMultiplier={1.2} style={[styles.numText, { color: glass.text }]}>{index + 1}</Text>
                 </View>
                 <Text maxFontSizeMultiplier={1.4} style={[styles.objText, { color: glass.text }]}>{objective.label}</Text>
               </View>

@@ -18,7 +18,7 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 // FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
 // зачем: «добавить друга» — низкий Bevel-шит на общем каркасе шторок рефералки.
-import CenteredDialogShell from '../../components/centered_dialog_shell';
+import FriendsAddSheetShell from '../../components/friends/FriendsAddSheetShell';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -648,30 +648,30 @@ function AddFriendModal({
   const searchInputRef = useRef<TextInput>(null);
   useEffect(() => {
     if (!visible) return;
-    const id = setTimeout(() => searchInputRef.current?.focus(), 260);
+    // зачем: шторка выезжает 440 мс — фокус после выезда, иначе на iOS клавиатура не поднимается.
+    const id = setTimeout(() => searchInputRef.current?.focus(), 460);
     return () => clearTimeout(id);
   }, [visible]);
   // зачем (Сверка community-007, community.html find 04.10): подпись «Имя или код» — поиск по коду уже есть (isFriendCodeQuery).
   const inputLabel = L('Имя или код', 'Імʼя або код', 'Name or code', 'Nombre o código', 'Nome ou código', 'Tên hoặc mã', 'Nama atau kode', 'Ad veya kod', 'Imię lub kod');
   const subtitle = L('Найдите по имени или коду', 'Знайдіть за імʼям або кодом', 'Find by name or code', 'Busca por nombre o código', 'Encontre por nome ou código', 'Tìm theo tên hoặc mã', 'Cari dengan nama atau kode', 'Ad veya kodla bul', 'Znajdź po imieniu lub kodzie');
   const shareLabel = L('Поделиться своим кодом', 'Поділитися своїм кодом', 'Share your code', 'Compartir tu código', 'Compartilhar seu código', 'Chia sẻ mã của bạn', 'Bagikan kodemu', 'Kodunu paylaş', 'Udostępnij swój kod');
-  // зачем: владелец (2026-07-26) — окно «Добавить друга» должно появляться ПОСРЕДИ
-  // экрана и быть полностью независимым от клавиатуры: клавиатура выезжает под ним
-  // и не двигает его. Раньше был нижний шит (ReferralSheetShell), который рос
-  // паддингом под клавиатуру и визуально «поднимался». Каркас шита остался за
-  // шитами рефералки, а здесь — отдельный центрированный CenteredDialogShell.
+  // зачем: владелец (2026-07-26) уходил от нижнего шита, потому что тот рос паддингом под клавиатурой и «ездил».
+  // Макет 04.10 снова шторка — FriendsAddSheetShell фиксированной высоты, над клавиатурой поднимается целиком
+  // (координатор 05.10; лог [FRIEND-ADD-SHEET]).
   // зачем (владелец 2026-09-29): содержимое окна 1 в 1 по макету community.html#COM-04-FIND…ERROR —
   // подпись поля, поле 54 с кнопкой поиска 54, скелетон, карточка найденного, строка результата.
   return (
-    <CenteredDialogShell
+    // зачем (координатор 05.10, макет 04.10): нижняя шторка вместо окна по центру; над клавиатурой поднимается целиком.
+    <FriendsAddSheetShell
       visible={visible}
       onClose={onClose}
       testID="friends-add-sheet"
+      subtitle={subtitle}
       title={L('Добавить друга', 'Додати друга', 'Add a friend', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
       closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
       <View style={{ gap: 14, paddingBottom: 4 }}>
-            <Text style={{ color: glass.secondary, fontSize: 16 * textScale, lineHeight: 21 * textScale, marginTop: -6 }}>{subtitle}</Text>
             <View
               testID="friends-code-search-card"
               style={{
@@ -771,7 +771,7 @@ function AddFriendModal({
               </Pressable>
             ) : null}
       </View>
-    </CenteredDialogShell>
+    </FriendsAddSheetShell>
   );
 }
 

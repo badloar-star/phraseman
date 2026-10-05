@@ -91,3 +91,18 @@ test('add-friend dialog sits in the upper third on short screens and never follo
   assert.ok(!dialog.includes('<KeyboardAvoidingView'), 'no KeyboardAvoidingView');
   assert.ok(!/Keyboard\.addListener|keyboardDidShow/.test(dialog), 'no keyboard subscription');
 });
+
+// зачем (координатор 05.10, макет community.html find 04.10): «Добавить друга» — нижняя шторка. Причину решения 26.07
+// (шит рос паддингом под клавиатурой) закрываем: шторка фиксированной высоты ЦЕЛИКОМ поднимается над клавиатурой,
+// подъём учитывает, насколько окно уже сузила система (не поднять дважды), всё пишется в [FRIEND-ADD-SHEET].
+test('add-friend sheet lifts above the keyboard as a whole and logs every decision', () => {
+  const sheet = read('components/friends/FriendsAddSheetShell.tsx');
+  const screen = read('app/(tabs)/friends.tsx');
+  assert.ok(screen.includes('<FriendsAddSheetShell'), 'add-friend uses the bottom sheet');
+  assert.ok(!sheet.includes('<KeyboardAvoidingView'), 'no KeyboardAvoidingView — no padding growth');
+  assert.ok(/translateY: slide\.value \* viewportHeight - lift\.value/.test(sheet), 'the whole sheet is translated by the lift');
+  assert.ok(sheet.includes('Math.max(0, keyboardHeight - shrunkBy'), 'lift subtracts what the window already shrank');
+  assert.ok(/console\.log\(LOG, 'keyboard show'/.test(sheet) && /console\.log\(LOG, 'lift'/.test(sheet), '[FRIEND-ADD-SHEET] logs');
+  assert.ok(sheet.includes("const LOG = '[FRIEND-ADD-SHEET]'"));
+  assert.ok(sheet.includes('borderTopLeftRadius: 28') && sheet.includes('width: 44, height: 5'), 'kit .sheet radius 28 and .grab 44x5');
+});

@@ -52,6 +52,7 @@ import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
   mistakePracticeProgress,
+  mistakePracticeAnsweredProgress,
   mistakePracticeSessionCostsEnergy,
   parseMistakeRetryIdsParam,
   type MistakePracticeSession,
@@ -713,6 +714,8 @@ function MistakePracticeSessionScreen() {
   // открытии): формула переехала в mistakePracticeProgress рядом с сессией —
   // там её сторожит тест. Подробности класса бага — в комментарии к функции.
   const progress = useMemo(() => (session ? mistakePracticeProgress(session) : 0), [session]);
+  // зачем (п.70, решено по рекомендации): шапка «n / N» — пройденные вопросы, а не закрытые ошибки.
+  const answeredProgress = useMemo(() => (session ? mistakePracticeAnsweredProgress(session) : { answered: 0, total: 0 }), [session]);
   // зачем (сверка 02:30, «счётчик 1/12 не сдвигается после верного»): сперва логи — откуда индекс, кто и когда его меняет, что видит шторка.
   useEffect(() => {
     if (!session) return;
@@ -720,6 +723,7 @@ function MistakePracticeSessionScreen() {
     const closedIds = session.queue.slice(0, session.cursor).map((item) => item.mistakeId).filter((id) => !remaining.has(id));
     console.log('[MISTAKE-SESSION] counter', JSON.stringify({
       shown: progress,
+      header: `${answeredProgress.answered}/${answeredProgress.total}`,
       initialCount: session.initialCount,
       cursor: session.cursor,
       queueLength: session.queue.length,
@@ -1297,7 +1301,6 @@ function MistakePracticeSessionScreen() {
   const whyText = cleanMistakeExplanation(liveExplanation ?? feedback?.explanation ?? '', { lang, answers: [feedback?.answer ?? '', feedback?.userAnswer ?? ''] });
   // зачем (владелец 2026-09-14): «твой ответ» и «верный» стоят рядом с подсветкой расхождения; разметку даёт чистая функция buildMistakeAnswerDiff.
   const diff = feedback && !feedback.correct ? buildMistakeAnswerDiff({ userAnswer: feedback.userAnswer, correctAnswer: feedback.answer }) : null;
-  const total = session.initialCount;
   const canCheck = answerValue.trim().length > 0 && !submitting;
 
   // ---- «стакан» внизу экрана: зависит от состояния задания ----
@@ -1419,7 +1422,7 @@ function MistakePracticeSessionScreen() {
         {/* зачем (DQA / PM-134 A2, 04.10): у крестика роль кнопки — диктор объявляет «Закрыть, кнопка». */}
         <RoundButton g={g} icon="close" label={copy.close} onPress={leavePractice} testID="mistake-practice-close" />
         <View style={styles.topRight}>
-          <Text style={[styles.counter, { color: g.secondary }]}>{`${progress} / ${total}`}</Text>
+          <Text style={[styles.counter, { color: g.secondary }]}>{`${answeredProgress.answered} / ${answeredProgress.total}`}</Text>
           <RoundButton g={g} icon="ellipsis-horizontal" label={pcopy.menu} onPress={() => { hapticTap(); setMenuOpen(true); }} testID="mistake-practice-menu" />
         </View>
       </View>

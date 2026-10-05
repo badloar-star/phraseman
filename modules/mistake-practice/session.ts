@@ -343,3 +343,16 @@ export function mistakePracticeProgress(
   ).size;
   return Math.min(session.initialCount, closed);
 }
+
+/**
+ * Счётчик шапки задания «n / N» — пройденные вопросы.
+ * зачем (решено по рекомендации 05.10, п.70): закрытые ошибки (mistakePracticeProgress) не двигались после верного
+ * ответа (ошибка закрывается только за три разных дня) — человек не видел движения. Шапка считает ответы; если ошибка
+ * вернулась в очередь после промаха, общее число честно растёт.
+ */
+export function mistakePracticeAnsweredProgress(
+  session: Pick<MistakePracticeSession, 'queue' | 'cursor' | 'initialCount'>,
+): Readonly<{ answered: number; total: number }> {
+  const total = Math.max(session.initialCount, session.queue.length);
+  return { answered: Math.min(Math.max(0, session.cursor), total), total };
+}

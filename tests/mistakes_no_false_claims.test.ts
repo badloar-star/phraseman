@@ -50,7 +50,8 @@ describe('mistakes section never claims more than the data says', () => {
     expect(screen).toContain('modes: new Set(afterItem.qualifyingModes).size');
     expect(screen).toContain('requiredModes: requiredModesForMistake(afterItem)');
     // Счётчик шапки «n / total» — просто числа сессии, делить не на что.
-    expect(screen).toContain('`${progress} / ${total}`');
+    // зачем (05.10, п.70): шапка — пройденные вопросы сессии (mistakePracticeAnsweredProgress), тоже просто числа.
+    expect(screen).toContain('`${answeredProgress.answered} / ${answeredProgress.total}`');
   });
 
   test('the locked sheet jokes without telling anyone to fail on purpose', () => {

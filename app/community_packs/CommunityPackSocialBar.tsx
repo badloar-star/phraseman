@@ -246,6 +246,20 @@ export default function CommunityPackSocialBar({
         // зачем (FINAL_PHASE п.7): исключение оставляло цифру перевёрнутой навсегда — откатываем тихо.
         console.warn(`[PACK-LIKE] ${pack.id}: переключение не удалось — откат к liked=${!expectedLiked}`, error);
         setSnapshot((prev) => (prev.liked === expectedLiked ? toggleLikeOptimistic(prev) : prev));
+        // зачем (аудит Optimistic UI 05.10, п.4): откат больше не молчит — как у избранного видео.
+        emitAppEvent('action_toast', expectedLiked
+          ? actionToastTri('error', {
+            ru: 'Не удалось поставить лайк. Попробуй ещё раз', uk: 'Не вдалося поставити вподобання. Спробуй ще раз',
+            en: "Couldn't like the pack. Try again", es: 'No se pudo dar me gusta. Inténtalo de nuevo',
+            'pt-BR': 'Não foi possível curtir. Tente de novo', vi: 'Không thích được. Hãy thử lại',
+            id: 'Gagal menyukai. Coba lagi', tr: 'Beğenilemedi. Tekrar dene', pl: 'Nie udało się polubić. Spróbuj ponownie',
+          })
+          : actionToastTri('error', {
+            ru: 'Не удалось убрать лайк. Попробуй ещё раз', uk: 'Не вдалося прибрати вподобання. Спробуй ще раз',
+            en: "Couldn't remove the like. Try again", es: 'No se pudo quitar el me gusta. Inténtalo de nuevo',
+            'pt-BR': 'Não foi possível remover a curtida. Tente de novo', vi: 'Không bỏ thích được. Hãy thử lại',
+            id: 'Gagal membatalkan suka. Coba lagi', tr: 'Beğeni kaldırılamadı. Tekrar dene', pl: 'Nie udało się cofnąć polubienia. Spróbuj ponownie',
+          }));
         return;
       }
       /**

@@ -286,6 +286,8 @@ function loadTile({ themeId = 'graphite', presentation, selected = true, countLa
     '../../components/SafeLinearGradient': { LinearGradient: 'LinearGradient' },
     '../../components/text-integrity/AdaptiveLabel': { AdaptiveLabel: 'AdaptiveLabel' },
     './SoundService': { fcHaptic: () => { calls.haptic += 1; } },
+    // зачем (координатор 05.10, FONTSCALE2): плитка берёт межстрочный из общего хука; при шрифте 1.0 он возвращает число как есть
+    '../../hooks/useLineScale': { useLineScale: () => lineHeight => lineHeight },
     './DeckPickerSheet': {},
   };
   const module = { exports: {} };
@@ -356,7 +358,7 @@ test('protects pre-edit business, classic, default tile, and dependency contract
     hash: 'de0ad33d93b0190fe26645e2b23f5dbeae11b03adfd592fb74ff52327feec66f',
   });
   assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '8fbe27312e3f92b53cf340cfc4b90f43921f91dd26b181dac079d9313df63946');
-  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '24db75ac2c63c7709364a4d6432c2b613a2563128dfb2a719398d6bc2539223e');
+  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '87d893860d8ef451c51f5c8b5dfbfd33549456a1e2807041b419a71b1f22ca6c');
   assert.deepEqual(protectedShellCoordination(shellSource), {
     count: 32,
     hash: '0792bd1aeb8ab2d9f40b1a6a0fd871dbcf6fbeccce5e2064e1911b15480ee850',

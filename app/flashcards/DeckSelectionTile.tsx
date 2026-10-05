@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
@@ -60,6 +61,8 @@ export default function DeckSelectionTile({
   textScale = 1,
   countLabel,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом, но не больше предела maxFontSizeMultiplier самих текстов
+  const lh = useLineScale();
   const { width: viewportWidth } = useWindowDimensions();
   const disabled = deck.count <= 0;
   const enter = useSharedValue(simpleMotion ? 1 : 0);
@@ -225,7 +228,7 @@ export default function DeckSelectionTile({
               {
                 color: t.textPrimary,
                 fontSize: labelReflowed ? Math.max(11, Math.round(f.sub * 0.9)) : f.sub,
-                lineHeight: labelReflowed ? 15 : 18,
+                lineHeight: lh(labelReflowed ? 15 : 18, 1.5),
               },
             ]}
             maxFontSizeMultiplier={1.5}

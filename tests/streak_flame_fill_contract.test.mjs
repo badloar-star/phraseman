@@ -55,6 +55,7 @@ test('A2: static — no infinite animation, no network, no new image assets', ()
 
 test('streak screen shows the flame instead of the feather (freeze keeps its own icon)', () => {
   const stats = normalizeEol(readFileSync(new URL('../app/streak_stats.tsx', import.meta.url), 'utf8'));
-  assert.match(stats, /<StreakFlameFill streakDays=\{totalStreak\}/);
+  // зачем (координатор 05.10, Сверка results-007): в плитке «Серия и результаты» — контурный огонь макета results.html.
+  assert.match(stats, /<Ionicons name="flame-outline" size=\{28\}/);
   assert.match(stats, /freezeActive\s*\n?\s*\? <StreakChainIcon themeMode=\{themeMode\} frozen/);
 });

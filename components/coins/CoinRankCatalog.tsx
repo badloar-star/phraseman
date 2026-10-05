@@ -30,13 +30,20 @@ type Props = Readonly<{
   lang: Lang;
   /** Текущий ранг (null, пока неизвестен) — плитка подсвечивается. */
   currentRank: number | null;
+  /** false — заголовок рисует владелец (шапка шторки). */
+  showTitle?: boolean;
 }>;
 
-function CoinRankCatalog({ glass, lang, currentRank }: Props) {
+/** Заголовок каталога на языке интерфейса — для шапки шторки. */
+export function coinRankCatalogTitle(lang: Lang): string {
+  return triLang(lang, COPY).title;
+}
+
+function CoinRankCatalog({ glass, lang, currentRank, showTitle = true }: Props) {
   const copy = triLang(lang, COPY);
   return (
     <View testID="coin-rank-catalog" style={styles.wrap}>
-      <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{copy.title}</Text>
+      {showTitle ? <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{copy.title}</Text> : null}
       <View style={styles.grid}>
         {COIN_RANK_TABLE.map((row) => {
           const on = currentRank === row.rank;

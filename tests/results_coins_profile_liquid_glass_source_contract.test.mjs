@@ -58,6 +58,9 @@ test('coin rank catalog shows all 20 ranks from the single table and is mounted 
     assert.ok(catalog.includes(lang.includes('-') ? `'${lang}':` : `${lang}:`), `catalog copy missing ${lang}`);
   }
   assert.match(read('app/coin_rank.tsx'), /<CoinRankCatalog /);
+  // 05.10 (решение владельца 7): сетки на экране нет — каталог в шторке кита, открывается тапом по рангу.
+  assert.match(read('app/coin_rank.tsx'), /testID="coin-rank-open-catalog"[\s\S]{0,160}onPress=\{\(\) => setCatalogOpen\(true\)\}/);
+  assert.match(read('app/coin_rank.tsx'), /<KitSheetModal[\s\S]{0,400}<CoinRankCatalog glass=\{g\} lang=\{lang\} currentRank=\{rank\} showTitle=\{false\} \/>/);
   // трассировка церемонии другого автора не должна пропасть
   assert.match(read('app/coin_rank.tsx'), /\[RANK-CEREMONY\]/);
 });

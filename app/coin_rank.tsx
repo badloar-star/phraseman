@@ -18,7 +18,8 @@ import { getRunesBalanceRead, peekRunes } from './runes_system';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import CoinRankCatalog from '../components/coins/CoinRankCatalog';
+import CoinRankCatalog, { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
+import { KitSheetModal } from '../components/v2/KitSheetModal';
 import CoinRankUpgradeCeremony from '../components/level_up/CoinRankUpgradeCeremony';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
@@ -169,6 +170,7 @@ export default function CoinRankScreen() {
   rankBindingRef.current = rankBinding;
   const reconciliationBlockedRef = useRef(false);
   const [balanceReconciling, setBalanceReconciling] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(false);
   const current = rank === null ? null : coinRankRowForDisplay(rank);
   const canUpgrade = isCoinRankUpgradeEligible({
     rank,
@@ -191,6 +193,7 @@ export default function CoinRankScreen() {
     ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
   });
   const copy = useMemo(() => ({
+    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
     title: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
     rank: triLang(lang, { ru: 'Ранг', uk: 'Ранг', en: 'Rank', es: 'Rango', 'pt-BR': 'Rank', vi: 'Hạng', id: 'Peringkat', tr: 'Rütbe', pl: 'Ranga' }),
     balance: triLang(lang, { ru: 'Ваш баланс', uk: 'Ваш баланс', en: 'Your balance', es: 'Tu saldo', 'pt-BR': 'Seu saldo', vi: 'Số dư của bạn', id: 'Saldo kamu', tr: 'Bakiyen', pl: 'Twoje saldo' }),
@@ -351,8 +354,15 @@ export default function CoinRankScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* зачем (coins.html PAY-01): две монеты со стрелкой «текущая → следующая», ниже «Лектор → Эксперт» и «Ранг 5 → 6». */}
-        <View style={styles.hero}>
+        {/* зачем (coins.html PAY-01): две монеты со стрелкой «текущая → следующая», ниже «Лектор → Эксперт» и «Ранг 5 → 6».
+            Решение владельца 05.10 (п. 7): сетки «Ранги монеты» на экране нет — каталог рангов открывается по тапу на ранг. */}
+        <V2Pressable
+          testID="coin-rank-open-catalog"
+          accessibilityLabel={coinRankCatalogTitle(lang)}
+          onPress={() => setCatalogOpen(true)}
+          scaleTo={0.97}
+          style={styles.hero}
+        >
           <View style={styles.coinsRow}>
             {current ? (
               <Image
@@ -380,7 +390,7 @@ export default function CoinRankScreen() {
           <Text style={[styles.rankMeta, { color: p.textSecondary }]}>
             {rank === null ? ' ' : next ? `${copy.rank} ${rank} → ${next.rank}` : `${copy.rank} ${rank}`}
           </Text>
-        </View>
+        </V2Pressable>
 
         {next && current ? (
           <View style={[styles.card, glass]}>
@@ -436,8 +446,6 @@ export default function CoinRankScreen() {
           </View>
         ) : null}
 
-        {/* зачем (coins.html «каталог 00–19»): ряд всех 20 рангов под карточкой повышения; чисто вид. */}
-        <CoinRankCatalog glass={g} lang={lang} currentRank={rank} />
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 18, backgroundColor: g.bgBottom }]}>
@@ -457,6 +465,17 @@ export default function CoinRankScreen() {
         {ready ? <Text style={[styles.footNote, { color: p.textSecondary }]}>{copy.ceremonyNote}</Text> : null}
       </View>
 
+      {/* зачем (решение 7): каталог всех 20 рангов — шторкой кита; чисто вид, повышение и цены здесь не участвуют. */}
+      <KitSheetModal
+        visible={catalogOpen}
+        onRequestClose={() => setCatalogOpen(false)}
+        closeLabel={copy.close}
+        testID="coin-rank-catalog-sheet"
+        header={<Text accessibilityRole="header" style={[styles.catalogTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>}
+      >
+        <CoinRankCatalog glass={g} lang={lang} currentRank={rank} showTitle={false} />
+      </KitSheetModal>
+
       <CoinRankUpgradeCeremony ceremony={visibleCeremony} onDone={dismissCeremony} />
     </View>
   );
@@ -472,6 +491,7 @@ const styles = StyleSheet.create({
   scrollContent: { paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 24, gap: V2.gap },
   // зачем (coins.html): герой 24 под заголовком (16 + 8 у прокрутки), карточка 28 ниже (16 + промежуток 12).
   hero: { alignItems: 'center', paddingTop: 16, paddingBottom: 16 },
+  catalogTitle: { fontSize: 20, lineHeight: 25, fontWeight: '700', marginBottom: 14 },
   coinsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 22 },
   heroCoinFrom: { width: 88, height: 88 },
   heroCoinTo: { width: 104, height: 104 },

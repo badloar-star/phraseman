@@ -19,6 +19,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
       cancelAnimation,
@@ -375,6 +376,8 @@ export default function CardPackShardPaywallModal({
   onGoToShards,
   onCommunityPackHiddenOnDevice,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): только вёрстка текста — межстрочный растёт с системным шрифтом; логика покупки и цены не тронуты
+  const lh = useLineScale();
   const { theme: t, f, themeMode } = useTheme();
   // зачем: стаб false отдавал sagePorcelain тёмную ручку шторки (#3C5A50)
   // вместо светлой #D1D9D1 на фарфоровой панели.
@@ -683,7 +686,7 @@ export default function CardPackShardPaywallModal({
                             style={{
                               color: bodyTextColor,
                               fontSize: f.body,
-                              lineHeight: 23,
+                              lineHeight: lh(23),
                               marginTop: 10,
                             }}
                           >
@@ -866,7 +869,7 @@ export default function CardPackShardPaywallModal({
                             style={{
                               color: bodyTextColor,
                               fontSize: f.body,
-                              lineHeight: 23,
+                              lineHeight: lh(23),
                               marginTop: 8,
                             }}
                           >
@@ -898,7 +901,7 @@ export default function CardPackShardPaywallModal({
                           >
                             <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
                               <Ionicons name="alert-circle-outline" size={20} color={t.gold} />
-                              <Text style={{ flex: 1, color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>
+                              <Text style={{ flex: 1, color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: lh(22) }}>
                                 {str.voucherWarn}
                               </Text>
                             </View>
@@ -956,7 +959,7 @@ export default function CardPackShardPaywallModal({
                                 style={{
                                   color: bodyTextColor,
                                   fontSize: f.body,
-                                  lineHeight: 23,
+                                  lineHeight: lh(23),
                                   marginTop: i === 0 ? 16 : 8,
                                 }}
                               >

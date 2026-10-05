@@ -641,15 +641,32 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       if (!isCurrentAccountGeneration(accountToken)) return;
       announceUnlimitedReason('runLoad', unlimited);
       await withAccountTransitionLock(async (accountTransitionLockLease) => {
-        if (!isCurrentAccountGeneration(accountToken)) return;
+        // зачем (координатор 05.10, пакет 02:26: безымянный держатель замка аккаунта 3,4 с на холодном старте;
+        // runLoad — стрелка в useCallback, в стеке без имени): шаги под замком с длительностями — подтвердить или
+        // снять подозрение. Печать только если весь проход под замком дольше 500 мс.
+        const energyLockStartedAt = Date.now();
+        const energyLockStages: Record<string, number> = {};
+        let energyLockStageAt = energyLockStartedAt;
+        const energyLockStage = (name: string) => {
+          const now = Date.now();
+          energyLockStages[name] = now - energyLockStageAt;
+          energyLockStageAt = now;
+        };
+        const logEnergyLockIfSlow = (outcome: string) => {
+          const heldMs = Date.now() - energyLockStartedAt;
+          if (heldMs < 500) return;
+          console.warn('[ENERGY-LOAD] lock_slow', JSON.stringify({ outcome, heldMs, stages: energyLockStages }));
+        };
+        if (!isCurrentAccountGeneration(accountToken)) { logEnergyLockIfSlow('generation_changed_at_entry'); return; }
         // Admin drain/fill applies before energy_state is read and under the
         // same account lock as spend/refund, so it cannot land in another user.
         await applyAdminEnergyCommand();
-        if (!isCurrentAccountGeneration(accountToken)) return;
-        if (!isCurrentAccountGeneration(accountToken)) return;
+        energyLockStage('admin_command');
+        if (!isCurrentAccountGeneration(accountToken)) { logEnergyLockIfSlow('generation_changed_after_admin'); return; }
         let loadSucceeded = false;
         try {
           const initialRecovery = await readAndRecoverState(dynMax, recoveryMs, accountToken, unlimited);
+          energyLockStage('read_recover_state_1');
           const state = initialRecovery.state;
           const bonusState = initialRecovery.bonus;
           const storedRefundCredit = await readEnergySessionRefundCredit(accountToken);
@@ -668,11 +685,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
             accountToken,
             accountTransitionLockLease,
           });
-          if (!isCurrentAccountGeneration(accountToken)) return;
+          energyLockStage('refund_credit_and_session_operations');
+          if (!isCurrentAccountGeneration(accountToken)) { logEnergyLockIfSlow('generation_changed_after_operations'); return; }
           // A recovered prepared debit republishes its exact crash-time
           // projection. Re-run ordinary elapsed-time recovery afterwards so
           // completed refill intervals during the stopped process are kept.
           const settledRecovery = await readAndRecoverState(dynMax, recoveryMs, accountToken, unlimited);
+          energyLockStage('read_recover_state_2');
           const settledState = settledRecovery.state;
           const settledBonus = settledRecovery.bonus;
           const settledRefundCredit = await readEnergySessionRefundCredit(accountToken);
@@ -735,6 +754,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
               void syncEnergyPushRef.current?.();
             }
           }
+          energyLockStage('publish');
+          logEnergyLockIfSlow(loadSucceeded ? 'ok' : 'load_failed');
         }
       });
     } catch (e) {

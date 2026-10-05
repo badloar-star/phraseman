@@ -3,6 +3,7 @@ import { Text, View, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useLineScale } from '../../hooks/useLineScale';
 
 // зачем (владелец 2026-09-30): список уроков вкладки «Обучение» переносится «1 в 1» по макету
 // learn.html A1–A9 (Liquid Glass 2.0). На эмуляторе вкладка ещё рисовала старые оливково-зелёные
@@ -131,6 +132,7 @@ export const LessonsListLevelHeader = React.memo(function LessonsListLevelHeader
   countText: string | null;
   first: boolean;
 }) {
+  const lh = useLineScale();
   return (
     <View
       testID={`legacy-lessons-level-header-${label}`}
@@ -146,7 +148,7 @@ export const LessonsListLevelHeader = React.memo(function LessonsListLevelHeader
         marginHorizontal: 22,
       }}
     >
-      <Text style={{ color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '700', letterSpacing: -0.2 }}>
+      <Text style={{ color: glass.text, fontSize: 22, lineHeight: lh(28), fontWeight: '700', letterSpacing: -0.2 }}>
         {label}
       </Text>
       {locked ? <Ionicons name="lock-closed" size={16} color={glass.secondary} /> : null}

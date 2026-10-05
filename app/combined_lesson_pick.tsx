@@ -35,10 +35,12 @@ import { PracticeBackButton } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { safeRouterBack } from './navigation_back';
 import { lessonsGlassAlpha } from '../components/lessons/LessonsListGlassKit';
+import { useLineScale } from '../hooks/useLineScale';
 
 const TOPIC_COUNT = 32;
 
 export default function CombinedLessonPickScreen() {
+  const lh = useLineScale();
   const { liquidGlassThemeId } = useTheme();
   // зачем (владелец 2026-09-30): «Смешать темы» 1:1 по макету learn.html (A15–A17), Liquid Glass; только вид.
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -136,7 +138,7 @@ export default function CombinedLessonPickScreen() {
           />
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 }}
+            style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: lh(34), fontWeight: '700', letterSpacing: -0.4 }}
           >
             {triLang(lang, {
               ru: 'Смешать темы', en: 'Mix topics', uk: 'Змішати теми', es: 'Mezclar temas',
@@ -149,7 +151,7 @@ export default function CombinedLessonPickScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingTop: 22, paddingBottom: 16 }}>
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '600' }}
+            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: lh(22), fontWeight: '600' }}
           >
             {picked.length === 0
               ? triLang(lang, {
@@ -214,9 +216,9 @@ export default function CombinedLessonPickScreen() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   gap: 14,
-                  // зачем (`.tp` height 60, .nm nowrap+ellipsis): высота строки ровно 60, название в одну строку —
+                  // зачем (`.tp` height 60, .nm nowrap+ellipsis): строка от 60 (при крупном системном шрифте растёт, а не режет текст), название в одну строку —
                   // на экран влезает столько же строк, что в макете, и строки не скачут при прокрутке.
-                  height: 60,
+                  minHeight: 60,
                   paddingHorizontal: 16,
                   borderRadius: 16,
                   overflow: 'hidden',
@@ -250,7 +252,7 @@ export default function CombinedLessonPickScreen() {
                   maxFontSizeMultiplier={1.3}
                   numberOfLines={1}
                   ellipsizeMode="tail"
-                  style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
+                  style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}
                 >
                   {name}
                 </Text>

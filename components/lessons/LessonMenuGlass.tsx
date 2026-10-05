@@ -5,6 +5,7 @@ import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { useLineScale } from '../../hooks/useLineScale';
 
 // зачем (владелец 2026-09-29): меню урока переносится «1 в 1» по макету learn.html B1–B5
 // (Liquid Glass). Раньше экран собирался из общего V2Kit с его собственной палитрой, из-за чего
@@ -100,6 +101,7 @@ export function LessonMenuHeader({
   right?: React.ReactNode;
   testID?: string;
 }) {
+  const lh = useLineScale();
   return (
     <View testID={testID} style={{ flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 48 }}>
       <LessonMenuRoundButton
@@ -111,9 +113,9 @@ export function LessonMenuHeader({
         testID={testID ? `${testID}-back` : undefined}
       />
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 25, fontWeight: '700' }}>{title}</Text>
+        <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: lh(25), fontWeight: '700' }}>{title}</Text>
         {subtitle ? (
-          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{subtitle}</Text>
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: lh(21), marginTop: 2 }}>{subtitle}</Text>
         ) : null}
       </View>
       {right}
@@ -143,6 +145,7 @@ export function LessonMenuRow({
   onPress: () => void;
   onLongPress?: () => void;
 }) {
+  const lh = useLineScale();
   return (
     <PressableHybrid
       testID={testID}
@@ -182,9 +185,9 @@ export function LessonMenuRow({
         <Ionicons name={icon} size={22} color={rowIconColor(glass)} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}>{title}</Text>
         {subtitle ? (
-          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 20, marginTop: 2 }}>{subtitle}</Text>
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: lh(20), marginTop: 2 }}>{subtitle}</Text>
         ) : null}
       </View>
       <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
@@ -204,6 +207,7 @@ export function LessonMenuTip({
   title: string;
   body: string;
 }) {
+  const lh = useLineScale();
   return (
     <View
       style={{
@@ -231,8 +235,8 @@ export function LessonMenuTip({
         <Ionicons name={icon} size={24} color={rowIconColor(glass)} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
-        <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginTop: 6 }}>{body}</Text>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}>{title}</Text>
+        <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: lh(21), marginTop: 6 }}>{body}</Text>
       </View>
     </View>
   );
@@ -260,6 +264,7 @@ export function LessonMenuSummary({
   /** learn.html B: у пройденного урока — «N / 50 фраз», у урока в процессе — «N / 50». */
   unitLabel?: string;
 }) {
+  const lh = useLineScale();
   const ratio = Math.max(0, Math.min(1, progress / 50));
   return (
     <View
@@ -286,7 +291,7 @@ export function LessonMenuSummary({
           <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.accent }} />
         </View>
       )}
-      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress} / 50${showStars && unitLabel ? ` ${unitLabel}` : ''}`}</Text>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: lh(21), fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress} / 50${showStars && unitLabel ? ` ${unitLabel}` : ''}`}</Text>
     </View>
   );
 }

@@ -86,6 +86,7 @@ import {
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { useLineScale } from '../hooks/useLineScale';
 
 type LessonMenuCache = {
   score: number;
@@ -309,6 +310,7 @@ export async function prefetchLessonMenuCache(
 // только ради гейта показа ценника энергии на пунктах меню, который убрали.
 
 function LessonMenu() {
+  const lh = useLineScale();
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
   const { theme:t, f, themeMode, liquidGlassThemeId } = useTheme();
@@ -1231,7 +1233,7 @@ function LessonMenu() {
       <BouncyWrap>
       <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: Math.max(32, insets.bottom + 16), gap: 14 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {/* Реальный прогресс урока: 0–3 звезды, без старых медалей и десятичной оценки. */}
-        <Text accessibilityRole="header" style={{ color: lessonMenuGlass.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 12 }}>{lessonName}</Text>
+        <Text accessibilityRole="header" style={{ color: lessonMenuGlass.text, fontSize: 30, lineHeight: lh(36), fontWeight: '700', letterSpacing: -0.4, marginTop: 12 }}>{lessonName}</Text>
         {(() => {
           if (progress <= 0 && !scoreKnown) return null;
           const earnedStars = lessonMenuStarCount(score);

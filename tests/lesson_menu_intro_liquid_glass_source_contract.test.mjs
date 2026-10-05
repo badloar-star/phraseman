@@ -25,10 +25,11 @@ test('меню урока: презентационные части вынес�
 });
 
 test('меню урока: размеры макета learn.html B1–B4', () => {
-  assert.ok(/fontSize: 30,\s*lineHeight: 36,\s*fontWeight: '700'/.test(menu), 'название урока 30/36 700');
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный через lh() — при шрифте 1.0 то же число, при крупном растёт.
+  assert.ok(/fontSize: 30,\s*lineHeight: (?:lh\()?36\)?,\s*fontWeight: '700'/.test(menu), 'название урока 30/36 700');
   assert.ok(menuGlass.includes('ROW_MIN_HEIGHT = 76'), 'строка пункта min-height 76');
   assert.ok(menuGlass.includes('width: 46') && menuGlass.includes('borderRadius: 23'), 'круглая плашка значка 46');
-  assert.ok(/fontSize: 16,\s*lineHeight: 21,\s*fontWeight: '700'/.test(menuGlass), 'заголовок пункта 16/21 700 (D145)');
+  assert.ok(/fontSize: 16,\s*lineHeight: (?:lh\()?21\)?,\s*fontWeight: '700'/.test(menuGlass), 'заголовок пункта 16/21 700 (D145)');
   assert.ok(menuGlass.includes('width: 55') && menuGlass.includes('cardStyle(glass, 22)'), 'карточка совета: плитка 55, радиус 22');
   assert.ok(menuGlass.includes('height: 7'), 'трек прогресса 7');
   assert.ok(menuGlass.includes('size={22}'), 'крупные звёзды 22 (stars3 lg)');

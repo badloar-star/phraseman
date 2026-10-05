@@ -20,6 +20,7 @@ import {
   LessonsListStars,
   type LessonsListGlass,
 } from './LessonsListGlassKit';
+import { useLineScale } from '../../hooks/useLineScale';
 
 // зачем (владелец 2026-09-30): карточка урока `.lc` из learn.html — круг 44 с номером слева,
 // название 17/22, строка состояния (звёзды D36 / полоска прогресса / «Открыт» / замок), шеврон.
@@ -211,6 +212,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
   current,
   onPressLesson,
 }: Props) {
+  const lh = useLineScale();
   const locked = state.kind === 'plus' || state.kind === 'locked';
   const press = useCallback(() => onPressLesson(num), [num, onPressLesson]);
   // зачем (владелец 2026-09-30, learn.html A14 «Открытие следующего урока»): когда урок
@@ -255,7 +257,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       </View>
       <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.8 : 1 }}>
         {/* зачем (learn.html `.lc.locked .tt`): у закрытого урока название приглушённое (#D0D0D2 ≈ текст темы с прозрачностью .82, + .8 у блока). */}
-        <Text style={{ color: locked ? lessonsGlassAlpha(glass.text, 0.82) : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{name}</Text>
+        <Text style={{ color: locked ? lessonsGlassAlpha(glass.text, 0.82) : glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}>{name}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
           {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
         </View>

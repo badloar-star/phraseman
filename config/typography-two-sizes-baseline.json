@@ -1,4 +1,32 @@
 {
-  "total": 0,
-  "files": {}
+  "total": 72,
+  "files": {
+    "app/(tabs)/lessons.tsx": 1,
+    "app/account_details.tsx": 1,
+    "app/community_packs/CommunityPackSocialBar.tsx": 1,
+    "app/community_packs/PackEditorV2.tsx": 2,
+    "app/community_pack_create.tsx": 1,
+    "app/flashcards/CardsHubV2.tsx": 3,
+    "app/flashcards/CollectionGalleryView.tsx": 5,
+    "app/flashcards/CollectionHeaderV2.tsx": 2,
+    "app/flashcards/ExpandedCardV2.tsx": 5,
+    "app/flashcards/FlashcardsTrainingModeSheet.tsx": 2,
+    "app/flashcards/MyPacksV2.tsx": 2,
+    "app/flashcards/PackHeaderV2.tsx": 2,
+    "app/flashcards/TrainingSetupV2.tsx": 5,
+    "app/flashcards/VideoPackRow.tsx": 3,
+    "app/flashcards/VideoSetView.tsx": 5,
+    "app/flashcards_packs.tsx": 1,
+    "app/mistakes_hub.tsx": 4,
+    "app/mistakes_list.tsx": 2,
+    "app/mistake_detail.tsx": 1,
+    "app/mistake_practice_session.tsx": 2,
+    "components/cards-grid/CardsKit.tsx": 5,
+    "components/mistake-practice/MistakeSessionFinale.tsx": 2,
+    "components/mistakes-panel/PanelKit.tsx": 5,
+    "components/mistakes-panel/PracticeKit.tsx": 5,
+    "components/NotificationCenterButton.tsx": 2,
+    "components/SpeechUnavailableNote.tsx": 1,
+    "components/youtube/YoutubeVideoPhrases.tsx": 2
+  }
 }

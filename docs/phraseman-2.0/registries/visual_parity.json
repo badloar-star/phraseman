@@ -23454,13 +23454,20 @@
         "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)",
         "gfloat 5s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-001.png",
+      "evidence_at": "2026-10-05T05:48:00.793Z",
+      "evidence_sha256": "1c043f806f14c6796c2b7b3e34d3b923c41cb92d6cd0f621a4326926e641cd93",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Раскладка совпадает: шапка, стопка-превью, кнопка тренировки, 4 плитки 2×2 (цвет темы макета не сравниваю — тема «Затмение»)",
+        "«Назад» — стрелка «←»; в макете шеврон «‹»",
+        "У плитки «Мои наборы» нет числа (в макете «4»); у остальных плиток число есть",
+        "🟡 Текст кнопки «Тренироваться · осталось 23 из 30 →» смещён вправо: слева ≈45 px, справа ≈20 px — стрелка почти у края; в макете по центру",
+        "Названия плиток крупнее макетных (≈26 против ≈24), плитки чуть выше",
+        "Анимации grise 0.64s / gfloat 5s — не записаны (anim cards-section-001)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

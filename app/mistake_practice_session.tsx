@@ -713,6 +713,24 @@ function MistakePracticeSessionScreen() {
   // открытии): формула переехала в mistakePracticeProgress рядом с сессией —
   // там её сторожит тест. Подробности класса бага — в комментарии к функции.
   const progress = useMemo(() => (session ? mistakePracticeProgress(session) : 0), [session]);
+  // зачем (сверка 02:30, «счётчик 1/12 не сдвигается после верного»): сперва логи — откуда индекс, кто и когда его меняет, что видит шторка.
+  useEffect(() => {
+    if (!session) return;
+    const remaining = new Set(session.queue.slice(session.cursor).map((item) => item.mistakeId));
+    const closedIds = session.queue.slice(0, session.cursor).map((item) => item.mistakeId).filter((id) => !remaining.has(id));
+    console.log('[MISTAKE-SESSION] counter', JSON.stringify({
+      shown: progress,
+      initialCount: session.initialCount,
+      cursor: session.cursor,
+      queueLength: session.queue.length,
+      closedUnique: new Set(closedIds).size,
+      answered: session.answeredAttemptIds.length,
+      pendingCursor: pendingSession ? pendingSession.cursor : null,
+      pendingWouldShow: pendingSession ? mistakePracticeProgress(pendingSession) : null,
+      feedbackShown: feedback !== null,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- печатаем при смене сессии/шторки, остальное — снимок значений
+  }, [session, feedback !== null]);
   // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя голосовое
   // задание «Моих ошибок» превращается в печать той же фразы — ошибка всё равно
   // отрабатывается и засчитывается, а микрофон не обещает того, что не умеет.
@@ -776,7 +794,8 @@ function MistakePracticeSessionScreen() {
   useEffect(() => {
     if (!feedback || !verdictTapAtRef.current) return;
     const tapAt = verdictTapAtRef.current;
-    console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'tray_committed', sinceTapMs: Date.now() - tapAt, correct: feedback.correct }));
+    // зачем: tray_committed дважды на ответ — вторая причина печатается: chain пришёл следом (дорисовка точек) или другое изменение feedback
+    console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'tray_committed', sinceTapMs: Date.now() - tapAt, correct: feedback.correct, chain: feedback.chain ? 'set' : 'null' }));
     const raf = requestAnimationFrame(() => {
       console.log('[MISTAKE-SESSION] verdict:stage', JSON.stringify({ stage: 'first_frame_after_commit', sinceTapMs: Date.now() - tapAt }));
     });
@@ -950,7 +969,8 @@ function MistakePracticeSessionScreen() {
         }
         : null;
       // дорисовываем цепочку в уже показанную шторку (если её за это время не закрыли)
-      setFeedback((current) => (current && current.chain === null ? { ...current, chain } : current));
+      // зачем (сверка 02:30, «коммит шторки дважды»): для неверного ответа цепочки нет (chain=null) — новый объект feedback вызвал бы лишний ре-рендер шторки впустую
+      setFeedback((current) => (current && current.chain === null && chain !== null ? { ...current, chain } : current));
       console.log('[MISTAKE-SESSION] verdict:chain', JSON.stringify({ attemptId, chain, afterStatus, ms: Date.now() - tVerdict }));
     } finally {
       submissionLatchRef.current = false;
@@ -1310,7 +1330,7 @@ function MistakePracticeSessionScreen() {
             g={g}
             ok={feedback.correct}
             label={feedback.correct ? pcopy.rightOk : pcopy.almost}
-            right={feedback.chain ? <StepDots g={g} n={feedback.chain.corrected ? 3 : feedback.chain.days} /> : null}
+            right={feedback.chain ? <StepDots g={g} compact n={feedback.chain.corrected ? 3 : feedback.chain.days} /> : null}
           />
           {/* зачем (сверка 15–18): в шторке «Верно»/«Неверно» по макету только два варианта — верный и выбранный (при верном — первый другой). */}
           {isChoice ? <OptionGrid g={g} options={feedbackOptions} marks={marks} disabled /> : null}

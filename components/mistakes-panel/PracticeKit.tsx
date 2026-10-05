@@ -160,18 +160,18 @@ export const ResultRow = memo(function ResultRow({ g, ok, label, right }: Readon
 });
 
 /** Три шага цепочки дней (кружок 26, линии 2): закрашены те, что засчитаны. */
-export const StepDots = memo(function StepDots({ g, n }: Readonly<{ g: Lv2Glass; n: number }>) {
+export const StepDots = memo(function StepDots({ g, n, compact }: Readonly<{ g: Lv2Glass; n: number; /** В строке результата (макет `.stp` width 96): кружки 18.5, линии схлопнуты — как в вёрстке макета. */ compact?: boolean }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <View style={styles.steps}>
+    <View style={[styles.steps, compact && styles.stepsCompact]}>
       {[0, 1, 2].map((index) => {
         const done = index < n;
         return (
           <React.Fragment key={`step-${index}`}>
             {index > 0 ? <View style={[styles.stepLine, { backgroundColor: done ? g.accent : 'rgba(255,255,255,0.12)' }]} /> : null}
-            <View style={[styles.stepDot, { backgroundColor: done ? g.accent : MP_COLORS.ghost }]}>
-              {done ? <Ionicons name="checkmark" size={14} color={g.accentInk} /> : <Text style={[styles.stepNum, { color: g.secondary }]}>{index + 1}</Text>}
+            <View style={[styles.stepDot, compact && styles.stepDotCompact, { backgroundColor: done ? g.accent : MP_COLORS.ghost }]}>
+              {done ? <Ionicons name="checkmark" size={compact ? 11 : 14} color={g.accentInk} /> : <Text style={[styles.stepNum, compact && styles.stepNumCompact, { color: g.secondary }]}>{index + 1}</Text>}
             </View>
           </React.Fragment>
         );
@@ -203,7 +203,11 @@ const baseStyles = StyleSheet.create({
   resultText: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   resultRight: { marginLeft: 'auto', width: 96 },
   steps: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // зачем (сверка 02:30, «точки крупнее, «3» обрезана краем»): в макете `.stp` ширина 96, кружки сжимаются до (96−4·10)/3 ≈ 18.7, линии — нулевой длины
+  stepsCompact: { width: '100%' },
   stepDot: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   stepNum: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
+  stepDotCompact: { width: 18.5, height: 18.5, borderRadius: 9.25 },
+  stepNumCompact: { fontSize: 11, lineHeight: 14 },
   stepLine: { flex: 1, height: 2 },
 });

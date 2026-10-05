@@ -33,6 +33,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
@@ -97,6 +98,8 @@ function CatalogGlass({ tint, edge }: { tint: string; edge: string }) {
 }
 
 export default function FlashcardsPacksScreen({ presentation = 'push' }: FlashcardsPacksScreenProps = {}) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const embedded = presentation === 'embedded';
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
@@ -679,7 +682,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   safe: { flex: 1, flexDirection: 'column', minHeight: 0 },
   scrollRegion: { flex: 1, minHeight: 0 },
   scrollView: { flex: 1, minHeight: 0 },
@@ -706,7 +709,7 @@ const styles = StyleSheet.create({
     boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.08)' }],
   },
   bottomTab: {
-    height: 44,
+    minHeight: 44,
     paddingHorizontal: 22,
     borderRadius: 22,
     alignItems: 'center',
@@ -766,7 +769,7 @@ const styles = StyleSheet.create({
   },
   // зачем: во вкладке «Сообщество» слой стоит на месте строки вкладок: «назад» 42 + поле 46 (кадр 2).
   headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  headerSearchFieldEmbedded: { flex: 1, height: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0, backgroundColor: 'rgba(255,255,255,0.08)' },
+  headerSearchFieldEmbedded: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0, backgroundColor: 'rgba(255,255,255,0.08)' },
   // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
   headerSearchInputEmbedded: { height: 44, fontSize: 16 },
   headerSearchField: {

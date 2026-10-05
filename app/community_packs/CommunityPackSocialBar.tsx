@@ -19,6 +19,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -85,6 +86,8 @@ export default function CommunityPackSocialBar({
   onRequestPurchase,
   onOpenComments,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный счётчиков и кнопок растёт с системным шрифтом
+  const lh = useLineScale();
   // зачем (Liquid Glass, cards.html #18–19, #50, video.html #12–13): варианты `screen` и
   // `row` — на токенах стекла активной темы, без зелёного «добавлен» и цветных рамок.
   // Вариант `tile` НЕ меняем: он стоит на утверждённом владельцем хабе Карточек
@@ -428,7 +431,7 @@ export default function CommunityPackSocialBar({
     const cell = (icon: keyof typeof Ionicons.glyphMap, value: string) => (
       <View style={{ alignItems: 'center', gap: 2 }}>
         <Ionicons name={icon} size={18} color={g.secondary} />
-        <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 20 }}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
+        <Text style={{ color: g.secondary, fontSize: 16, lineHeight: lh(20) }}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
       </View>
     );
     return (
@@ -469,12 +472,12 @@ export default function CommunityPackSocialBar({
         activeOpacity={0.85}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         style={isAdded
-          ? { minWidth: 34, height: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }
-          : { minWidth: 98, height: 34, borderRadius: 17, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
+          ? { minWidth: 34, minHeight: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }
+          : { minWidth: 98, minHeight: 34, borderRadius: 17, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
       >
         {isAdded
           ? <Ionicons name="checkmark" size={16} color={g.text} />
-          : <Text style={{ color: t.correctText, fontSize: 14, lineHeight: 18, fontWeight: '700' }}>{shortAdd}</Text>}
+          : <Text style={{ color: t.correctText, fontSize: 14, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
       </TouchableOpacity>
     );
   }
@@ -491,7 +494,7 @@ export default function CommunityPackSocialBar({
         onPress={onAddPress}
         activeOpacity={0.88}
         style={{
-          height: 52,
+          minHeight: 52,
           borderRadius: 26,
           flexDirection: 'row',
           alignItems: 'center',
@@ -502,7 +505,7 @@ export default function CommunityPackSocialBar({
       >
         {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
         {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
-        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
+        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
           {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         </Text>
       </TouchableOpacity>
@@ -515,11 +518,11 @@ export default function CommunityPackSocialBar({
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18, marginTop: 4 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} />
-          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(18), fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Ionicons name="people-outline" size={18} color={g.secondary} />
-          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(18), fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         {renderCommentsCount(18, 13, 5)}
       </View>
@@ -539,11 +542,11 @@ export default function CommunityPackSocialBar({
             size={12}
             color={snapshot.liked ? g.text : g.secondary}
           />
-          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(17), fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons name="people-outline" size={12} color={g.secondary} />
-          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: lh(17), fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         {renderCommentsCount(12, 10, 3)}
       </View>
@@ -618,7 +621,7 @@ export default function CommunityPackSocialBar({
           }}
         >
           {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
-          <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
+          <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
             {isAdded ? ownedLabel : addLabel}
           </Text>
           {isAdded ? null : <Ionicons name="add" size={18} color={g.ctaInk} />}

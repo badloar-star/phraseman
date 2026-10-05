@@ -39,6 +39,7 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Reanimated, {
   FadeInDown,
   useAnimatedStyle,
@@ -235,7 +236,7 @@ type CommunityPackRowProps = {
 };
 
 /** packs-simple.html кадр 2: шторка долгого нажатия — заголовок набора и строки `.card .row` с плиткой 41. */
-const sheetStyles = StyleSheet.create({
+const baseSheetStyles = StyleSheet.create({
   // зачем: макет 18/700; шкала D145 (решение владельца 04.10) — 16 жирным.
   title: { fontSize: 16, lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 },
   row: {
@@ -254,7 +255,7 @@ const sheetStyles = StyleSheet.create({
 });
 
 /** packs-simple.html (замок 04.10): размеры строки `.card .row`, плашки `.cntp`, метки `.tag2`. */
-const rowStyles = StyleSheet.create({
+const baseRowStyles = StyleSheet.create({
   card: {
     minHeight: 74,
     borderRadius: 14,
@@ -270,10 +271,10 @@ const rowStyles = StyleSheet.create({
   titleLine: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
   // зачем: макет 17/22 жирный; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
   title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  topTag: { height: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
+  topTag: { minHeight: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
   topTagText: { fontSize: 13, lineHeight: 16, fontWeight: '700' }, // зачем: макет 12, D145 — 13
   author: { fontSize: 16, lineHeight: 19, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
-  pill: { minWidth: 33, height: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  pill: { minWidth: 33, minHeight: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   pillText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
 });
 
@@ -285,6 +286,8 @@ const rowStyles = StyleSheet.create({
 function CommunityPackRowBase({
   pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, onOpen, onLongPress, onEdit, opening, disabled,
 }: CommunityPackRowProps) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const rowStyles = useScaledTextStyles(baseRowStyles);
   const authorName = useCommunityAuthorName(pack, lang);
   // Единственный источник цены — тот же, из которого спишет шит покупки.
   const packPriceRunes = communityPackPriceRunes(pack);
@@ -383,6 +386,8 @@ export default function FlashcardsCategoryHub({
   communitySort = 'popular',
   packLanguage = 'en',
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const sheetStyles = useScaledTextStyles(baseSheetStyles);
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.

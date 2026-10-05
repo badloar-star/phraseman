@@ -39,3 +39,10 @@ app_art_backdrop); Сверка results-007.
 ## Rollback
 
 git revert коммита.
+
+## Где код
+
+results-007 неделя/подписи — код в a2a24ada9 (коммит Дизайна «контурный огонь», по ошибке целым файлом забрал эти
+незакоммиченные куски — гонка общего файла). Проверено: все правки на месте в HEAD; тесты app_art_backdrop 8/8,
+achievements 21/21, freemium_daily_limit_copy 39/39; node-сторожа streak_stats — 0 fail (typography_two_sizes —
+чужой красный, streak_stats в его списке нет).

@@ -197,11 +197,9 @@ function lockCallerTag(): string {
     .filter((line) => !/^(Promise|InternalBytecode)\b/.test(line))
     .slice(0, 4)
     // зачем (пакет 01:26): URL дев-бандла с длинным query обрезался раньше строки:колонки — место нельзя было
-    // найти. Оставляем «bundle:строка:колонка» (символизируется через Metro /symbolicate).
-    .map((line) => line
-      .replace(/\(?https?:\/\/[^\s)]*?:(\d+):(\d+)\)?/g, '(bundle:$1:$2)')
-      .replace(/\(address at [^)]*\)/g, '')
-      .slice(0, 120));
+    // найти. Кадр печатаем ЦЕЛИКОМ (URL нужен Metro /symbolicate: у lazy-чанков он разный) —
+    // scripts/diag/symbolicate_pack.mjs превращает его в файл:строка. Только dev.
+    .map((line) => line.replace(/\(address at [^)]*\)/g, '').trim().slice(0, 600));
   return rawFrames.length > 0 ? `raw: ${rawFrames.join(' <- ')}` : 'unknown';
 }
 const LOCK_CALLER_NOISE = new Set([

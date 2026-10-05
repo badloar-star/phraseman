@@ -41,7 +41,7 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
         testID={testID}
         // зачем: VoiceOver не достаёт до фона — жест «escape» закрывает окно.
         onAccessibilityEscape={onClose}
-        style={[styles.card, { backgroundColor: glass.opaqueSheet }]}
+        style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.line }]}
       >
         <View style={styles.head}>
           <Ionicons name="bulb-outline" size={24} color={glass.text} accessibilityElementsHidden />
@@ -70,6 +70,7 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: 26, paddingHorizontal: 22, paddingTop: 24, paddingBottom: 22 },
+  // зачем (Сверка dialogs-017, dialogs.html .modal): окно подсказки по центру, как в макете; кромка 1 px --line.
+  card: { borderRadius: 26, borderWidth: 1, paddingHorizontal: 22, paddingTop: 24, paddingBottom: 22 }, // guard-ok: 1 px кромка .modal
   head: { flexDirection: 'row', alignItems: 'center', gap: 12 },
 });

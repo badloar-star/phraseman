@@ -13,7 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { AppState, Platform } from 'react-native';
-import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
+import { enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert, type ThemedBlockingAlertAction } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
@@ -192,8 +192,18 @@ function showPurchasePendingAlert(lang: Lang): void {
 
 /** A thrown store call does not prove that the charge failed. Outside onboarding,
  * ask the customer to verify or restore before any new checkout attempt. */
-function showUnverifiedPurchaseAlert(lang: Lang): void {
-  void enqueueThemedBlockingInfoAlert(
+export type UnverifiedPurchaseChoice = 'check' | 'restore';
+
+/** зачем (65а, решено по рекомендации; макет 014): две кнопки окна — проверка статуса без восстановления и восстановление. */
+export function unverifiedPurchaseAlertActions(lang: Lang): readonly ThemedBlockingAlertAction<UnverifiedPurchaseChoice>[] {
+  return [
+    { value: 'check', ghost: true, label: triLang(lang, { ru: 'Проверить статус', uk: 'Перевірити статус', en: 'Check status', es: 'Comprobar estado', 'pt-BR': 'Verificar status', vi: 'Kiểm tra trạng thái', id: 'Cek status', tr: 'Durumu kontrol et', pl: 'Sprawdź status' }) },
+    { value: 'restore', label: triLang(lang, { ru: 'Восстановить покупки', uk: 'Відновити покупки', en: 'Restore purchases', es: 'Restaurar compras', 'pt-BR': 'Restaurar compras', vi: 'Khôi phục giao dịch', id: 'Pulihkan pembelian', tr: 'Satın alımları geri yükle', pl: 'Przywróć zakupy' }) },
+  ];
+}
+
+function showUnverifiedPurchaseAlert(lang: Lang): Promise<UnverifiedPurchaseChoice | 'dismiss'> {
+  return enqueueThemedBlockingChoiceAlert(
     triLang(lang, {
       ru: 'Статус покупки не подтверждён',
       uk: 'Статус покупки не підтверджено',
@@ -216,7 +226,7 @@ function showUnverifiedPurchaseAlert(lang: Lang): void {
       tr: 'Ödemenin tamamlanıp tamamlanmadığını doğrulayamıyoruz. Önce mağaza satın alımlarını kontrol et veya bu ekranda Geri Yükle’ye dokun. Durum netleşmeden yeniden satın alma.',
       pl: 'Nie możemy potwierdzić, czy płatność przeszła. Najpierw sprawdź zakupy w sklepie lub wybierz Przywróć na tym ekranie. Nie kupuj ponownie, dopóki nie wyjaśnisz statusu.',
     }),
-    'OK',
+    unverifiedPurchaseAlertActions(lang),
   );
 }
 
@@ -411,6 +421,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const operationRef = useRef<'purchase' | 'restore' | null>(null);
+  // зачем (65а): кнопки окна «статус не подтверждён» зовут синхронизацию доступа, объявленную ниже handlePurchase.
+  const entitlementSyncRef = useRef<((mode: 'restore' | 'check') => Promise<void>) | null>(null);
   const [lifetimeEnabled, setLifetimeEnabled] = useState(() => isLifetimeButtonEnabled());
   // Экран после покупки: «Plus ваш. Напомнить о конце пробного?» (только вне онбординга,
   // только если системного разрешения на уведомления ещё нет).
@@ -1108,7 +1120,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             'OK',
           );
         } else {
-          showUnverifiedPurchaseAlert(lang);
+          void showUnverifiedPurchaseAlert(lang).then((choice) => {
+            console.warn('[PAYWALL] unverified:choice', JSON.stringify({ choice })); // guard-ok: выбор пользователя логируется
+            if (choice === 'dismiss') return;
+            void entitlementSyncRef.current?.(choice);
+          });
         }
       }
     } finally {
@@ -1161,7 +1177,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [finishAfterTrialReminderPrompt]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
-  const handleRestore = useCallback(async () => {
+  // зачем (65а): один путь применения доступа для «Восстановить» (restorePurchases) и «Проверить статус» (getCustomerInfo).
+  // mode по умолчанию 'restore': кнопки экранов зовут handleRestore() без аргумента.
+  const handleRestore = useCallback(async (mode: 'restore' | 'check' = 'restore') => {
     if (operationRef.current) return;
     hapticTap();
     if (DEV_IAP_BYPASS || restoring || purchasing) return;
@@ -1188,7 +1206,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const restoreResult = await runRevenueCatOperationForGeneration(
         operationAccount,
-        () => withPurchaseFlow('paywall_restore', () => Purchases.restorePurchases()),
+        () => withPurchaseFlow('paywall_restore', () => (mode === 'check' ? Purchases.getCustomerInfo() : Purchases.restorePurchases())),
       );
       if (restoreResult.status !== 'ok') return;
       const info = restoreResult.value;
@@ -1231,7 +1249,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
-        emitAppEvent('action_toast', actionToastTri('success', {
+        emitAppEvent('action_toast', mode === 'check' ? actionToastTri('success', {
+          ru: 'Покупка подтверждена', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
+          vi: 'Đã xác nhận giao dịch', id: 'Pembelian terkonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
+        }) : actionToastTri('success', {
           ru: 'Покупки восстановлены',
           uk: 'Покупки відновлено',
           es: 'Compras restauradas',
@@ -1241,7 +1262,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           tr: 'Satın alımlar geri yüklendi',
           pl: 'Zakupy przywrócone',
         }));
-        void trackEvent('subscription_restored', { context, paywall: variant });
+        void trackEvent('subscription_restored', { context, paywall: variant, mode });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (source === 'onboarding') {
           if (!isOperationAccountCurrent()) return;
@@ -1259,7 +1280,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       } else {
         // зачем: «активных покупок нет» — честная и ожидаемая ошибка (не баг), но
         // обязана остаться видимой пользователю. Системный Alert → фирменный тост.
-        emitAppEvent('action_toast', actionToastTri('error', {
+        // зачем (65а, ревью): после «Проверить статус» фраза «подписок нет» толкает к повторной покупке, когда списание
+        // могло пройти, — в режиме проверки направляем к восстановлению.
+        console.warn('[PAYWALL] entitlement_sync:no_access', JSON.stringify({ mode })); // guard-ok: ранний исход логируется
+        emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
+          ru: 'Покупка пока не найдена. Нажми «Восстановить покупки».',
+          uk: 'Покупку поки не знайдено. Натисни «Відновити покупки».',
+          es: 'Aún no encontramos la compra. Toca «Restaurar compras».',
+          'pt-BR': 'Ainda não encontramos a compra. Toque em «Restaurar compras».',
+          vi: 'Chưa tìm thấy giao dịch. Hãy chạm «Khôi phục giao dịch».',
+          id: 'Pembelian belum ditemukan. Ketuk «Pulihkan pembelian».',
+          tr: 'Satın alma henüz bulunamadı. «Satın alımları geri yükle»ye dokun.',
+          pl: 'Nie znaleźliśmy jeszcze zakupu. Wybierz «Przywróć zakupy».',
+        }) : actionToastTri('error', {
           ru: 'Активных подписок не обнаружено.',
           uk: 'Активних підписок не знайдено.',
           es: 'No hay suscripciones activas.',
@@ -1270,10 +1303,24 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           pl: 'Nie znaleziono aktywnych subskrypcji.',
         }));
       }
-    } catch {
+    } catch (syncError: unknown) {
       // зачем: сбой самого восстановления (сеть/стор) — тот же тост-механизм,
       // ошибка не должна тонуть молча.
-      emitAppEvent('action_toast', actionToastTri('error', {
+      console.warn('[PAYWALL] entitlement_sync:threw', JSON.stringify({
+        mode,
+        name: syncError instanceof Error ? syncError.name : typeof syncError,
+        code: (syncError as { code?: unknown } | null)?.code ?? null,
+      })); // guard-ok: catch логирует причину
+      emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
+        ru: 'Не удалось проверить статус. Попробуй позже.',
+        uk: 'Не вдалося перевірити статус. Спробуй пізніше.',
+        es: 'No se pudo comprobar el estado. Inténtalo más tarde.',
+        'pt-BR': 'Não foi possível verificar o status. Tente mais tarde.',
+        vi: 'Không kiểm tra được trạng thái. Hãy thử lại sau.',
+        id: 'Tidak bisa mengecek status. Coba lagi nanti.',
+        tr: 'Durum kontrol edilemedi. Daha sonra tekrar dene.',
+        pl: 'Nie udało się sprawdzić statusu. Spróbuj później.',
+      }) : actionToastTri('error', {
         ru: 'Не удалось восстановить покупки. Попробуй позже.',
         uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
         es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
@@ -1288,6 +1335,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       setRestoring(false);
     }
   }, [router, restoring, purchasing, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, resumeLessonId]);
+  entitlementSyncRef.current = handleRestore;
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).

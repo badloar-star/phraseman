@@ -146,6 +146,22 @@ type LevelSpinStarProjection = Readonly<{
   unconfirmedLocalLift?: number;
   /** Квитанция coinReconcileV1 уже применена — повтор не снимает разницу дважды. */
   coinReconcileV1Applied?: true;
+  /**
+   * Вариант (в), диагноз +5000 (05.10): сумма трат (≤ 0), записи которых сняты уплотнением. Сервер о локальных тратах не
+   * знает (покупки уходят ему с delta 0, starsBalance — только начисления), поэтому снятая трата обязана остаться в
+   * поверх-слое, а не исчезнуть: раньше уплотнение удаляло запись и монеты «возвращались». Отдельным полем, а не в
+   * serverBalance: при serverSeq ≠ 0 adoptServerBasis заменяет serverBalance числом сервера и стёр бы «запечённое».
+   * Пишется только когда < 0 — проекции без уплотнений на диске не меняются ни байтом.
+   *
+   * ИНВАРИАНТЫ (opus-ревью 05.10):
+   * - в сумму попадают только траты, чей единственный durable-источник — operationStorageKey (C1; конверты платного
+   *   спина, журналы, подготовленные и квитанции PhoneState исключены — см. StoredOperationsForOwner);
+   * - сервер обязан НИКОГДА не понижать stars без журнала трат (вариант (б)): иначе база − сумма уйдёт ниже нуля и
+   *   visibleProjection бросит level_spin_star_balance_invalid (M3);
+   * - пока поле есть, никто не передаёт settledSpendOperationIds: «погашенная» сервером свёрнутая трата вычлась бы
+   *   дважды (M4, сторож в tests/coin_compaction_logs_contract.test.ts).
+   */
+  compactedSpendTotal?: number;
 }>;
 
 const REQUEST_ID_RE = /^[A-Za-z0-9_-]{16,80}$/;
@@ -532,7 +548,9 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       || Number(value.serverEarnedTotal ?? (value as { serverEarnedFloor?: unknown }).serverEarnedFloor) < 0
       || !Number.isSafeInteger(value.serverSeq ?? 0) || Number(value.serverSeq ?? 0) < 0
       || !Number.isSafeInteger(value.unconfirmedLocalLift ?? 0) || Number(value.unconfirmedLocalLift ?? 0) < 0
-      || (value.coinReconcileV1Applied !== undefined && value.coinReconcileV1Applied !== true)) {
+      || (value.coinReconcileV1Applied !== undefined && value.coinReconcileV1Applied !== true)
+      || (value.compactedSpendTotal !== undefined
+        && (!Number.isSafeInteger(value.compactedSpendTotal) || Number(value.compactedSpendTotal) > 0))) {
       throw new Error('level_spin_star_projection_corrupt');
     }
     const legacyOperationAliases = new Map<string, string>();
@@ -589,6 +607,8 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       ...(Number(value.unconfirmedLocalLift ?? 0) > 0
         ? { unconfirmedLocalLift: Number(value.unconfirmedLocalLift) } : {}),
       ...(value.coinReconcileV1Applied === true ? { coinReconcileV1Applied: true as const } : {}),
+      ...(Number(value.compactedSpendTotal ?? 0) < 0
+        ? { compactedSpendTotal: Number(value.compactedSpendTotal) } : {}),
     });
   } catch (error) {
     if (error instanceof Error && (
@@ -617,8 +637,16 @@ function parsePrepared(raw: string | null, ownerStableId: string): LocalRuneOper
   }
 }
 
+/** v3.1: какие возвращённые конверты уже напечатаны в этом запуске (в памяти процесса, не durable). */
+const refundedEnvelopeLoggedThisLaunch = new Set<string>();
+
+function compactedSpendTotalOf(projection: Readonly<{ compactedSpendTotal?: number }>): number {
+  return Math.min(0, Math.trunc(projection.compactedSpendTotal ?? 0));
+}
+
 function unacknowledgedTotal(projection: LevelSpinStarProjection): number {
-  return projection.operations.reduce((total, operation) => (
+  // зачем (вариант (в)): снятые уплотнением траты по-прежнему вычитаются — одной суммой вместо записей.
+  return compactedSpendTotalOf(projection) + projection.operations.reduce((total, operation) => (
     operation.schemaVersion === 'client-level-spin-star-operation.v1'
       ? projection.acknowledged[operation.operationId] === operation.requestFingerprint
         ? total
@@ -653,13 +681,15 @@ function unacknowledgedBreakdown(
       oldestAgeMin: Math.max(row.oldestAgeMin, ageMin),
     };
   }
+  const compacted = compactedSpendTotalOf(projection);
+  if (compacted < 0) out.compacted_spend_total = { count: 0, amount: compacted, oldestAgeMin: 0 };
   return out;
 }
 
 /**
- * Только для лога [COIN-COMPACTION]: что удаляет уплотнение трат и как от этого меняется видимый баланс. «После» —
- * расчёт на копии списка операций, ничего не пишется. serverBalance уплотнение не меняет — поэтому до/после равны,
- * и это и есть суть утечки. Подсчёт не имеет права уронить восстановление: сбой → причина в строке лога.
+ * Только для лога [COIN-COMPACTION]: что снимает уплотнение трат и как от этого меняется видимый баланс. «После» —
+ * расчёт на копии (записи сняты, их сумма перенесена в compactedSpendTotal), ничего не пишется. Видимый баланс до и
+ * после обязан совпасть; расхождение = утечка. Подсчёт не имеет права уронить восстановление: сбой → причина в строке.
  */
 function describeSpendCompaction(
   projection: LevelSpinStarProjection,
@@ -680,9 +710,12 @@ function describeSpendCompaction(
   } catch (error) {
     visibleBefore = `error:${error instanceof Error ? error.message : String(error)}`;
   }
+  const compactedSpendTotalBefore = compactedSpendTotalOf(projection);
+  const compactedSpendTotalAfter = compactedSpendTotalBefore + removedSum;
   try {
     visibleAfter = visibleProjection(Object.freeze({
       ...projection,
+      compactedSpendTotal: compactedSpendTotalAfter,
       operations: Object.freeze(projection.operations.filter((operation) => !removedIds.has(operation.operationId))),
     })).balance;
   } catch (error) {
@@ -696,6 +729,8 @@ function describeSpendCompaction(
     keptOperationId,
     serverBalanceBefore: projection.serverBalance,
     serverBalanceAfter: projection.serverBalance,
+    compactedSpendTotalBefore,
+    compactedSpendTotalAfter,
     visibleBefore,
     visibleAfter,
   };
@@ -805,7 +840,8 @@ function inferredServerBalanceFromRecoveryOperations(projection: LevelSpinStarPr
   const ordered = [...projection.operations].sort((left, right) => (
     left.createdAtMs - right.createdAtMs || left.operationId.localeCompare(right.operationId)
   ));
-  let localOverlayBefore = 0;
+  // зачем (вариант (в)): balanceBefore свежей траты уже учитывал снятые уплотнением траты — их сумма входит в overlay.
+  let localOverlayBefore = compactedSpendTotalOf(projection);
   let inferred: number | null = null;
   let inferredFromOperationId: string | null = null;
   let divergentCount = 0;
@@ -982,7 +1018,24 @@ async function verifyRowsInOrder<R, T>(
   return values;
 }
 
-async function storedOperationsForOwner(ownerStableId: string): Promise<readonly LocalRuneOperation[]> {
+type StoredOperationsForOwner = Readonly<{
+  operations: readonly LocalRuneOperation[];
+  /**
+   * C1 (opus-ревью 05.10, вариант (в)): id операций, у которых есть durable-источник КРОМЕ operationStorageKey —
+   * журнал практики и конверт неоткрытого платного спина (его в 2.0 никто не удаляет). Уплотнение снимает только
+   * operationStorageKey, поэтому такую трату снимать нельзя: следующий проход вернул бы её из второго источника и
+   * compactedSpendTotal вычел бы её ещё раз.
+   */
+  externallySourcedIds: ReadonlySet<string>;
+  /**
+   * N1 (повторное opus-ревью 05.10, вариант (а)): операции конвертов платного спина, у которых НЕТ своего
+   * operationStorageKey. В 2.0 конверты никто не пишет и не раскрывает (local_level_spins.ts удалён, efe19ae9d) —
+   * это зависшие покупки 1.6.x, приз за которые получить уже нельзя.
+   */
+  envelopeOnlyIds: ReadonlySet<string>;
+}>;
+
+async function storedOperationsForOwner(ownerStableId: string): Promise<StoredOperationsForOwner> {
   // зачем (замер №9): полный обход ключей хранилища на каждом восстановлении — подозреваемый в 4 с на холодном
   // старте. Пишем цену обхода, чтений и проверки отпечатков, только если весь кусок дольше 500 мс.
   const loadStartedAt = Date.now();
@@ -1066,7 +1119,13 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
       paidEnvelopes: paidEnvelopeKeys.length,
     }));
   }
-  return Object.freeze([...unique.values()]);
+  return Object.freeze({
+    operations: Object.freeze([...unique.values()]),
+    externallySourcedIds: new Set([...journalOperations, ...envelopeOperations].map((operation) => operation.operationId)),
+    envelopeOnlyIds: new Set(envelopeOperations
+      .map((operation) => operation.operationId)
+      .filter((operationId) => !operations.some((keyed) => keyed.operationId === operationId))),
+  });
 }
 
 async function recoverProjection(
@@ -1104,7 +1163,7 @@ async function recoverProjection(
     // зачем (замер №9: этот шаг 3,7–4,4 с на холодном старте против 435 мс на тёплом): два куска идут
     // параллельно — какой из них тянет, видно только раздельным замером.
     const parallelStartedAt = Date.now();
-    const [phoneState, storedOperations] = await Promise.all([
+    const [phoneState, storedSources] = await Promise.all([
       readPhoneStateStarCreditState({
         expectedOwnerStableId: ownerStableId,
         expectedAccountGeneration: token.generation,
@@ -1112,6 +1171,7 @@ async function recoverProjection(
       storedOperationsForOwner(ownerStableId)
         .then((value) => { recoverStages.part_stored_ops = Date.now() - parallelStartedAt; return value; }),
     ]);
+    const storedOperations = storedSources.operations;
     recoverStage('phone_state_and_stored_ops');
     recoverCounts.phoneCredits = phoneState.credits.length;
     recoverCounts.storedOperations = storedOperations.length;
@@ -1181,9 +1241,41 @@ async function recoverProjection(
       existingPracticeJournals.set(entry.operation.operationId, entry);
     }
     recoverStage('practice_journal_reads');
+    // зачем (N1, повторное opus-ревью 05.10, вариант (а) — «у людей не списывать»): прежнее уплотнение снимало трату
+    // зависшего конверта платного спина на каждом проходе, поэтому этих монет на диске уже нет в проекции, человек их
+    // видел и мог потратить. Удерживать её теперь — разовое падение баланса, а при остатке < цены — ниже нуля и
+    // level_spin_star_balance_invalid (мёртвый кошелёк). Приз за такой спин в 2.0 получить нельзя. Поэтому трата
+    // конверта, у которой нет ни своего operationStorageKey, ни записи в проекции на диске, считается возвращённой и в
+    // проекцию не вливается. Трата конверта, уже лежащая в проекции (её человек видел списанной), удерживается как была.
+    const diskProjection = parseProjection(projectionRaw, ownerStableId);
+    const diskOperationIds = new Set(diskProjection.operations.map((operation) => operation.operationId));
+    const refundedEnvelopeOperations = storedOperations.filter((operation) => (
+      storedSources.envelopeOnlyIds.has(operation.operationId) && !diskOperationIds.has(operation.operationId)
+    ));
+    // v3.1 (повторное ревью): конверт лежит вечно, решение принимается на каждом проходе — строка печатается один раз
+    // за запуск на каждую пару «владелец + операция», а не на каждом восстановлении.
+    const newlyRefundedEnvelopeOperations = refundedEnvelopeOperations.filter((operation) => {
+      const logKey = `${ownerStableId}\u0000${operation.operationId}`;
+      if (refundedEnvelopeLoggedThisLaunch.has(logKey)) return false;
+      refundedEnvelopeLoggedThisLaunch.add(logKey);
+      return true;
+    });
+    if (newlyRefundedEnvelopeOperations.length > 0) {
+      const refunded = newlyRefundedEnvelopeOperations.map((operation) => ({
+        id: operation.operationId,
+        runeDelta: (operation as { runeDelta?: unknown }).runeDelta ?? null,
+      }));
+      console.warn('[COIN-COMPACTION] envelope_refunded', JSON.stringify({
+        count: refunded.length,
+        sum: refunded.reduce((total, row) => total + (typeof row.runeDelta === 'number' ? row.runeDelta : 0), 0),
+        refunded,
+        serverSeq: diskProjection.serverSeq,
+      })); // guard-ok: денежное решение обязано логироваться и в релизе
+    }
+    const refundedEnvelopeIds = new Set(refundedEnvelopeOperations.map((operation) => operation.operationId));
     let projection = observeCurrentSnapshot(withOperations(
-      parseProjection(projectionRaw, ownerStableId),
-      [...storedOperations, ...phoneState.credits],
+      diskProjection,
+      [...storedOperations.filter((operation) => !refundedEnvelopeIds.has(operation.operationId)), ...phoneState.credits],
     ));
     recoverCounts.projectionOperations = projection.operations.length;
     const recoveredPracticeJournalWrites: [string, string][] = [];
@@ -1289,23 +1381,49 @@ async function recoverProjection(
           left.createdAtMs - right.createdAtMs || left.operationId.localeCompare(right.operationId)
         ))[spendOperations.length - 1].operationId
       : null;
+    // C1 (opus-ревью 05.10): уплотняется только трата, чей единственный durable-источник — operationStorageKey.
+    // Конверт платного спина, журнал практики, список подготовленных и квитанции PhoneState пережили бы multiRemove и
+    // вернули трату на следующем проходе — compactedSpendTotal вычел бы её снова. Такие траты остаются записью.
+    const nonCompactableSpendIds = new Set<string>([
+      ...storedSources.externallySourcedIds,
+      ...prepared.map((operation) => operation.operationId),
+      ...phoneState.credits.map((operation) => operation.operationId),
+    ]);
+    const heldExternalSpendIds = spendOperations
+      .filter((operation) => nonCompactableSpendIds.has(operation.operationId))
+      .map((operation) => operation.operationId);
     const staleSpendOperations = projection.serverSeq > 0
-      ? spendOperations.filter((operation) => operation.operationId !== newestSpendOperationId)
+      ? spendOperations.filter((operation) => (
+        operation.operationId !== newestSpendOperationId && !nonCompactableSpendIds.has(operation.operationId)
+      ))
       : [];
-    // зачем (координатор 05.10, диагноз +5000 на тестовом аккаунте): уплотнение удаляет старые траты, НЕ внося их в
-    // serverBalance, — видимый баланс растёт на их сумму. Раньше это шло только в DebugLogger.info и нигде не было
-    // видно. Только лог, поведение то же; починка — решение владельца. Без uid: суммы, id записей трат, их вид.
+    // зачем (координатор 05.10, диагноз +5000 на тестовом аккаунте): уплотнение снимало старые траты, НЕ внося их
+    // никуда, — видимый баланс рос на их сумму. Вариант (в): сумма переезжает в compactedSpendTotal (ниже). Лог
+    // показывает до/после — они обязаны совпасть. Без uid: суммы, id записей трат, их вид.
     if (staleSpendOperations.length > 0) {
-      console.warn('[COIN-COMPACTION] spends_removed', JSON.stringify(describeSpendCompaction(
-        projection, staleSpendOperations, newestSpendOperationId,
-      ))); // guard-ok: денежный исход обязан логироваться и в релизе
+      console.warn('[COIN-COMPACTION] spends_removed', JSON.stringify({
+        ...describeSpendCompaction(projection, staleSpendOperations, newestSpendOperationId),
+        heldExternal: heldExternalSpendIds,
+      })); // guard-ok: денежный исход обязан логироваться и в релизе
     } else if (spendOperations.length > 0) {
       console.log('[COIN-COMPACTION] skip', JSON.stringify({
-        reason: projection.serverSeq > 0 ? 'only_newest_spend' : 'no_server_basis',
+        reason: projection.serverSeq <= 0 ? 'no_server_basis'
+          : heldExternalSpendIds.length > 0 ? 'only_newest_or_external_source' : 'only_newest_spend',
         serverSeq: projection.serverSeq,
         spends: spendOperations.length,
         keptOperationId: newestSpendOperationId,
+        heldExternal: heldExternalSpendIds,
       })); // guard-ok: ранний выход денежного блока обязан логироваться
+    }
+    // M1 (opus-ревью): сумма считается и проверяется ДО multiRemove — при порче ключи ещё целы.
+    const compactedSpendTotal = compactedSpendTotalOf(projection) + staleSpendOperations.reduce((total, operation) => (
+      total + (operation as { runeDelta: number }).runeDelta
+    ), 0);
+    if (!Number.isSafeInteger(compactedSpendTotal) || compactedSpendTotal > 0) {
+      console.warn('[COIN-COMPACTION] total_invalid', JSON.stringify({
+        compactedSpendTotal, removed: staleSpendOperations.map((operation) => operation.operationId),
+      })); // guard-ok: отказ денежного блока обязан логироваться
+      throw new Error('level_spin_star_projection_corrupt');
     }
     const compactedOperations = [
       ...projection.operations.filter((operation) => (
@@ -1323,8 +1441,14 @@ async function recoverProjection(
         operationStorageKey(ownerStableId, operation.operationId)
       )));
       if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
+      // зачем (вариант (в)): сумма снимаемых трат переезжает в compactedSpendTotal — видимый баланс не меняется.
+      // Повторного вычитания нет: снятые записи уходят из operations и с диска в этом же проходе, следующий проход их
+      // уже не видит. Если процесс умрёт между multiRemove и записью проекции, на диске останется прежняя проекция
+      // с этими записями и прежней суммой — следующий проход перенесёт их ровно один раз (тест H2).
+      const { compactedSpendTotal: _priorCompacted, ...withoutCompacted } = projection;
       projection = Object.freeze({
-        ...projection,
+        ...withoutCompacted,
+        ...(compactedSpendTotal < 0 ? { compactedSpendTotal } : {}),
         operations: Object.freeze(projection.operations.filter((operation) => (
           !compactedOperationIds.has(operation.operationId)
         ))),
@@ -1547,6 +1671,17 @@ export async function mergeLevelSpinServerStars(
       DebugLogger.info('level_spin_star_grants:spend_settled', JSON.stringify({
         settled: settledSpends.size, serverSeq: seq, serverBalance: balance,
       }));
+    }
+    // зачем (вариант (в)): сейчас settledSpendOperationIds не передаёт никто. Если когда-нибудь сервер «погасит» трату,
+    // запись которой уже свёрнута в compactedSpendTotal, она вычтется дважды (сервером и суммой). Этот случай обязан
+    // быть виден сразу — лечится серверным журналом трат (вариант (б)).
+    const settledButCompacted = newer && observation.settledSpendOperationIds
+      ? observation.settledSpendOperationIds.filter((id) => !current.operations.some((operation) => operation.operationId === id))
+      : [];
+    if (settledButCompacted.length > 0 && compactedSpendTotalOf(current) < 0) {
+      console.warn('[COIN-COMPACTION] settled_after_compaction', JSON.stringify({
+        ids: settledButCompacted, compactedSpendTotal: compactedSpendTotalOf(current), serverSeq: seq,
+      })); // guard-ok: возможное двойное списание обязано логироваться и в релизе
     }
     const balanceAdoptable = newer && Number.isSafeInteger(balance) && balance >= 0;
     // зачем (Q-COIN a): при serverSeq 0 снимок сервера раньше ЗАМЕНЯЛ локальную

@@ -5884,7 +5884,10 @@ export default function LessonsTab({
               })
         }
         onPrimaryPress={() => launchSelectedLearningV2Session(false)}
-        secondaryLabel={triLang(lang, {
+        // зачем (learning-v2.html startModal 2.2/2.3: `sec: null`): у пройденного занятия и у проверки главы
+        // второй кнопки «Сразу к практике» нет — в макете на её месте только отступ.
+        secondaryLabel={selectedLearningV2Session?.state === "completed"
+          || (selectedLearningV2Session?.sessionOrdinal ?? 1) % 8 === 0 ? null : triLang(lang, {
           ru: "Сразу к практике",
           en: "Go straight to practice",
           uk: "Одразу до практики",

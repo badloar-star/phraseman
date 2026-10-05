@@ -16,6 +16,7 @@ import { hapticTap } from "../hooks/use-haptics";
 import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
 import { useLv2Glass } from "./learning-v2/LearningV2Glass";
+import { KitGlassLayer } from "./v2/KitLiquidGlass";
 
 export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
 
@@ -28,7 +29,8 @@ interface LearningV2SessionOutcomeSheetProps {
   primaryLabel: string;
   actionsDisabled?: boolean;
   onPrimaryPress: () => void;
-  secondaryLabel: string;
+  /** learning-v2.html startModal: у пройденного/проверки/закрытого `sec: null` — второй кнопки нет, на её месте отступ 14. */
+  secondaryLabel: string | null;
   onSecondaryPress: () => void;
   onClose: () => void;
   closeLabel?: string;
@@ -202,15 +204,17 @@ export default function LearningV2SessionOutcomeSheet({
               cardStyle,
             ]}
           >
+            {/* зачем (kit.css `.modal::after`): окно — стекло с бликом и светлой кромкой сверху, не плоская заливка. */}
+            <KitGlassLayer radius={22} />
             <Pressable
               testID="learning-v2-session-modal-close"
               accessibilityRole="button"
               accessibilityLabel={closeLabel}
               hitSlop={8}
               onPress={dismiss}
-              style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.66 : 1 }]}
+              style={({ pressed }) => [styles.close, { borderColor: g.glassEdge, opacity: pressed ? 0.66 : 1 }]}
             >
-              <Ionicons name="close" size={20} color={g.text} />
+              <Ionicons name="close" size={18} color={g.text} />
             </Pressable>
 
             <Animated.View style={[styles.scene, sceneStyle]}>
@@ -248,12 +252,17 @@ export default function LearningV2SessionOutcomeSheet({
                   style={[styles.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
                   <Text style={[styles.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
-                  <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
+                  {/* зачем (`.cta .ar` right 22): стрелка прижата к правому краю кнопки, подпись по центру. */}
+                  <Ionicons name="arrow-forward" size={20} color={g.accentInk} style={styles.primaryArrow} />
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[styles.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
-                <Text style={[styles.secondaryLabel, { color: g.secondary, fontSize: 16 }]}>{secondaryLabel}</Text>
-              </TouchableOpacity>
+              {secondaryLabel ? (
+                <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[styles.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
+                  <Text style={[styles.secondaryLabel, { color: g.secondary, fontSize: 16 }]}>{secondaryLabel}</Text>
+                </TouchableOpacity>
+              ) : (
+                <View testID="learning-v2-session-no-secondary" style={{ height: 14 }} />
+              )}
             </Animated.View>
           </Animated.View>
         </View>
@@ -266,14 +275,16 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.68)" },
   center: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 18 },
-  card: { width: "100%", maxWidth: 390, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
-  close: { position: "absolute", top: 10, right: 10, width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center", zIndex: 3 },
-  scene: { height: 112, alignItems: "center", justifyContent: "center" },
+  card: { width: "100%", maxWidth: 390, borderWidth: 1, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
+  // зачем (learning-v2.html `.cm .x` = `.rb.sq`): крестик 36, r12, без заливки, тонкая кромка, 14 от краёв; область нажатия добирает hitSlop.
+  close: { position: "absolute", top: 14, right: 14, width: 36, height: 36, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center", zIndex: 3 },
+  // зачем (`.orb` margin-top 6, тень 0 7px 0; `.ck` margin-top 22): шайба сверху сцены, цоколь на 7 ниже, подпись в 22 от шайбы.
+  scene: { height: 98, paddingTop: 6, alignItems: "center", justifyContent: "flex-start" },
   orb: { alignItems: "center", justifyContent: "center" },
   // «цоколь» шайбы (0 7px 0 в макете): та же площадка, смещённая вниз и затемнённая
   orbPlate: { position: "absolute", top: 13, overflow: "hidden" },
   orbPlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
-  kicker: { marginTop: 8, textAlign: "center", fontSize: 13, lineHeight: 18, fontWeight: "700", letterSpacing: 1.6 },
+  kicker: { marginTop: 22, textAlign: "center", fontSize: 13, lineHeight: 18, fontWeight: "800", letterSpacing: 1.6 },
   title: { marginTop: 9, textAlign: "center", fontWeight: "800", letterSpacing: -0.6 },
   message: { marginTop: 8, textAlign: "center", fontWeight: "400" },
   stats: { flexDirection: "row", gap: 7, marginTop: 18 },
@@ -281,7 +292,9 @@ const styles = StyleSheet.create({
   statText: { fontSize: 13, lineHeight: 18, fontWeight: "700", textAlign: "center" },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },
-  primaryButton: { minHeight: 54, borderRadius: 27, paddingHorizontal: 20, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9 },
+  // зачем (`.cm .cta` height 54, r20): в окне занятия кнопка со скруглением 20, а не капсула.
+  primaryButton: { minHeight: 54, borderRadius: 20, paddingHorizontal: 48, flexDirection: "row", alignItems: "center", justifyContent: "center" },
+  primaryArrow: { position: "absolute", right: 22 },
   primaryLabel: { fontWeight: "700" },
   secondaryButton: { alignSelf: "center", minHeight: 44, paddingHorizontal: 20, paddingVertical: 12, justifyContent: "center" },
   secondaryLabel: { fontWeight: "600" },

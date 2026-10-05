@@ -19076,10 +19076,10 @@
       "id": "overlays-runtime-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/overlays-runtime.html",
-        "phone": 17,
-        "label": "account switch · confirmation",
-        "mapping": "label_match"
+        "file": "docs/design/v2-app/profile.html",
+        "phone": 16,
+        "label": "проект UX · offline-выход (PRF-20)",
+        "mapping": "manual_rebind"
       },
       "screen": "Inline и sheets",
       "state": "account switch · confirmation",
@@ -19097,7 +19097,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Перепривязано 10:3x по координатору: окно «Выйти» с экрана аккаунта сверяется с profile.html PRF-20 «Выйти из аккаунта?», а не с «Сменить аккаунт?». Переснять после 0e502c93b",
+        "Состояние: подтверждение выхода"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -19106,10 +19109,10 @@
       "id": "overlays-runtime-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/overlays-runtime.html",
-        "phone": 18,
-        "label": "account switch · non-dismissible wiping",
-        "mapping": "label_match"
+        "file": "docs/design/v2-app/profile.html",
+        "phone": 17,
+        "label": "проект UX · выход выполняется (PRF-20-PROGRESS)",
+        "mapping": "manual_rebind"
       },
       "screen": "Inline и sheets",
       "state": "account switch · non-dismissible wiping",
@@ -19127,7 +19130,10 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Перепривязано 10:3x по координатору: окно «Выйти» с экрана аккаунта сверяется с profile.html PRF-20 «Выйти из аккаунта?», а не с «Сменить аккаунт?». Переснять после 0e502c93b",
+        "Состояние: выход выполняется, окно не закрывается"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

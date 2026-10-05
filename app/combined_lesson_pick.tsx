@@ -6,9 +6,9 @@
  * обычный, только фразы чередуются между темами.
  *
  * Законы владельца, соблюдённые здесь:
- * — ни одной обводки контейнера: строки отделены тоном, а не рамкой;
+ * — строки `.tp` с тонкой кромкой 1 px (исключение PhraseMan 2.0, как в макете);
  * — ни одной подписи-расшифровки мелким шрифтом под названием;
- * — без adjustsFontSizeToFit: длинное название переносится на вторую строку;
+ * — без adjustsFontSizeToFit: длинное название обрезается многоточием, как `.nm` в макете;
  * — кнопка «Начать» стоит на месте с ПЕРВОГО кадра и только меняет подпись,
  *   иначе раскладка прыгала бы при первом выборе.
  */
@@ -34,6 +34,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { PracticeBackButton } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { safeRouterBack } from './navigation_back';
+import { lessonsGlassAlpha } from '../components/lessons/LessonsListGlassKit';
 
 const TOPIC_COUNT = 32;
 
@@ -120,8 +121,10 @@ export default function CombinedLessonPickScreen() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: Math.max(insets.bottom, 12) }}>
         {/* Шапка */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 10 }}>
+        {/* зачем (сверка learn-016…018, learn.html A15–A17): шапка — круг .rb.l 48, gap 14, поля --pad 20, сразу под статус-баром. */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 20, paddingTop: 8 }}>
           <PracticeBackButton
+            large
             glass={glass}
             color={glass.text}
             testID="combo-pick-back"
@@ -143,10 +146,10 @@ export default function CombinedLessonPickScreen() {
         </View>
 
         {/* Счётчик выбора: точки нарисованы всегда, поэтому строка не прыгает */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingBottom: 12 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingTop: 22, paddingBottom: 16 }}>
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '700' }}
+            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '600' }}
           >
             {picked.length === 0
               ? triLang(lang, {
@@ -190,7 +193,7 @@ export default function CombinedLessonPickScreen() {
         {/* Список тем */}
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 16, gap: 10 }}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 16, gap: 9 }}
           showsVerticalScrollIndicator={false}
         >
           {Array.from({ length: TOPIC_COUNT }).map((_, index) => {
@@ -211,18 +214,24 @@ export default function CombinedLessonPickScreen() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   gap: 14,
-                  // зачем: фиксированная высота — длинные названия иначе
-                  // переносятся и строки скачут при прокрутке.
-                  minHeight: 60,
+                  // зачем (`.tp` height 60, .nm nowrap+ellipsis): высота строки ровно 60, название в одну строку —
+                  // на экран влезает столько же строк, что в макете, и строки не скачут при прокрутке.
+                  height: 60,
                   paddingHorizontal: 16,
                   borderRadius: 16,
+                  overflow: 'hidden',
                   // guard-ok: 1 px полупрозрачная кромка строки `.tp` макета (исключение PhraseMan 2.0).
-                  borderWidth: StyleSheet.hairlineWidth, // guard-ok
+                  borderWidth: 1, // guard-ok
                   borderColor: glass.line,
-                  backgroundColor: selected ? glass.opaqueControl : glass.opaqueCard,
+                  backgroundColor: glass.opaqueCard,
                   opacity: atCap ? 0.42 : 1,
                 }}
               >
+                {/* зачем (`.tp.on` #202022 поверх #151517): выбранная строка заметно светлее — белая дымка 5 %,
+                    одинаково видна в любой теме (у части тем тон карточки и тон контрола совпадают). */}
+                {selected ? (
+                  <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: lessonsGlassAlpha(glass.text, 0.05) }]} />
+                ) : null}
                 <View
                   style={{
                     width: 30,
@@ -230,14 +239,18 @@ export default function CombinedLessonPickScreen() {
                     borderRadius: 11,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: selected ? glass.cta : glass.opaqueControl,
+                    // зачем (сверка learn-016 🔴: пустой квадрат сливался со строкой): `.ck` #242426 поверх строки —
+                    // белая дымка 7 % видна в любой теме, а не тон контрола, равный тону карточки.
+                    backgroundColor: selected ? glass.cta : lessonsGlassAlpha(glass.text, 0.07),
                   }}
                 >
                   {selected ? <Ionicons name="checkmark" size={18} color={glass.ctaInk} /> : null}
                 </View>
                 <Text
                   maxFontSizeMultiplier={1.3}
-                  style={{ flex: 1, color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
                 >
                   {name}
                 </Text>
@@ -253,7 +266,7 @@ export default function CombinedLessonPickScreen() {
         </ScrollView>
 
         {/* Кнопка на месте с первого кадра: меняется подпись, а не геометрия */}
-        <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8 }}>
+        <View style={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 8 }}>
           <PracticeCta
             glass={glass}
             testID="combo-pick-start"

@@ -152,13 +152,17 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     try {
       const result = await addFlashcard({ en: phrase.phrase, ru: phrase.translation, uk: phrase.translation, source: 'video_phrase', sourceId: phrase.id, sourceTitle, explanationRu: phrase.explanation, packLanguage: normalizePackLanguage(studyTarget) }, studyTarget);
       if (result !== 'added' && result !== 'duplicate') {
+        // зачем (аудит Optimistic UI 05.10): откат обязан называть причину — иначе закладка «сама» снимается без следа.
+        console.warn(`[VIDEO-PHRASE-SAVE] rollback reason=${String(result)} phrase=${phrase.id}`); // guard-ok: ранний выход логируется
         setSavedIds((current) => {
           const next = new Set(current);
           next.delete(phrase.id);
           return next;
         });
       }
-    } catch {
+    } catch (error) {
+      // зачем: запрет немого catch — причина отката в журнал.
+      console.warn(`[VIDEO-PHRASE-SAVE] rollback reason=threw phrase=${phrase.id} message=${error instanceof Error ? error.message : String(error)}`); // guard-ok
       setSavedIds((current) => {
         const next = new Set(current);
         next.delete(phrase.id);

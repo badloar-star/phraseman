@@ -50,6 +50,7 @@ import {
   requiresPremiumForLesson,
   resolveLessonAccess,
 } from "../monetization_policy";
+import { applyDevAsFreeToLessonAccess } from "../dev_as_free_flag";
 import {
   LEVEL_EXAM_UNLOCK_LESSON_PERCENT,
   allLessonScoresMeetPercent,
@@ -919,7 +920,8 @@ const LessonCard = React.memo(function LessonCard({
               onLearningV2Press?.(num);
               return;
             }
-            const access = resolveLessonAccess({
+            // зачем (координатор 05.10): dev-флаг «как Free» подменяет только isPremium/devMode (в релизе — без изменений).
+            const accessInput = applyDevAsFreeToLessonAccess({
               lessonId: num,
               unlocked: isUnlocked,
               purchased: purchasedLesson,
@@ -927,9 +929,10 @@ const LessonCard = React.memo(function LessonCard({
               devMode: effectiveDevContentUnlock,
               noLimits,
               legacyFreeLessonCap,
-            });
+            }, 'lessons_card');
+            const access = resolveLessonAccess(accessInput);
             logLessonGateDecision('card', {
-              lesson: num, access, isPremium, devMode: effectiveDevContentUnlock, noLimits, purchased: purchasedLesson,
+              lesson: num, access, isPremium: accessInput.isPremium, devMode: accessInput.devMode ?? false, noLimits, purchased: purchasedLesson,
               unlocked: isUnlocked, cap: legacyFreeLessonCap ?? null, levelLockedByExam: Boolean(levelLockedByExam && prevLessonLevel),
             });
             if (access === "available") {
@@ -4289,7 +4292,7 @@ export default function LessonsTab({
   const handleLegacyLessonPress = useCallback(
     (num: number) => {
       hapticTap();
-      const access = resolveLessonAccess({
+      const accessInput = applyDevAsFreeToLessonAccess({
         lessonId: num,
         unlocked: Boolean(unlockedLessons[num - 1]),
         purchased: purchasedLessons.includes(num),
@@ -4297,9 +4300,10 @@ export default function LessonsTab({
         devMode: effectiveDevContentUnlock,
         noLimits: effectiveNoLimits,
         legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
-      });
+      }, 'lessons_list');
+      const access = resolveLessonAccess(accessInput);
       logLessonGateDecision('list', {
-        lesson: num, access, isPremium, devMode: effectiveDevContentUnlock, noLimits: effectiveNoLimits,
+        lesson: num, access, isPremium: accessInput.isPremium, devMode: accessInput.devMode ?? false, noLimits: effectiveNoLimits,
         purchased: purchasedLessons.includes(num), unlocked: Boolean(unlockedLessons[num - 1]),
         cap: effectiveLegacyFreeLessonCap ?? null, levelLockedByExam: false,
       });

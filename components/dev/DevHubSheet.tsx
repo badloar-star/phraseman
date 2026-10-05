@@ -25,6 +25,7 @@ import {
 } from '../../app/dev_plus_controls';
 import { emitAppEvent } from '../../app/events';
 import { makeDevRunesSeed } from '../../app/dev_practice_runes_seed';
+import { setDevAsFreeFlag } from '../../app/dev_as_free_flag';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -475,6 +476,17 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'revoke-plus':
         void applyPlusOverride('removed');
         return;
+      // зачем (координатор 05.10, learn-1): проверка пейвола уроков на эмуляторе — доступ к урокам как у Free в релизе.
+      case 'dev-as-free-on':
+      case 'dev-as-free-off': {
+        const enabled = action === 'dev-as-free-on';
+        void setDevAsFreeFlag(enabled).then((applied) => {
+          setNotice(applied
+            ? (enabled ? 'Уроки как Free: включено — тап по уроку за Plus откроет пейвол.' : 'Уроки как Free: выключено.')
+            : 'Флаг работает только в dev-сборке.');
+        });
+        return;
+      }
       // зачем (владелец, 2026-08-27): «Проверка рун» — каждая кнопка открывает
       // НАСТОЯЩИЙ экран с реальным первым доступным контентом, но с новым
       // devRunesSeed на каждый тап — числа на экране меняются при повторном

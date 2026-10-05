@@ -14,6 +14,9 @@ export type DevToolAction =
   | 'preview-lesson-results'
   | 'grant-plus'
   | 'revoke-plus'
+  // зачем (координатор 05.10, learn-1): «вести себя как Free» — только проверка доступа к урокам, только dev.
+  | 'dev-as-free-on'
+  | 'dev-as-free-off'
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
   | 'open-cancel-flow'
   | 'open-manage-subscription'
@@ -390,6 +393,26 @@ export const DEV_TOOL_SECTIONS = [
         icon: 'remove-circle-outline',
         testID: 'dev-plus-remove',
         tone: 'danger',
+      },
+      {
+        id: 'dev-as-free-on',
+        order: 30,
+        title: 'Уроки как Free',
+        detail: 'Доступ к урокам как у Free в релизе: пейвол вместо «Ещё рано». Покупки и Plus не трогает.',
+        actionLabel: 'Вкл',
+        action: 'dev-as-free-on',
+        icon: 'remove-circle-outline',
+        testID: 'dev-as-free-on',
+      },
+      {
+        id: 'dev-as-free-off',
+        order: 40,
+        title: 'Уроки как обычно',
+        detail: 'Выключает «Уроки как Free».',
+        actionLabel: 'Выкл',
+        action: 'dev-as-free-off',
+        icon: 'add-circle-outline',
+        testID: 'dev-as-free-off',
       },
     ],
   },

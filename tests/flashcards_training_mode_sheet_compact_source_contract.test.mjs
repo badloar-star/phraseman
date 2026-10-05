@@ -29,7 +29,8 @@ assert.doesNotMatch(source, /<BlurView/, 'no backdrop sampler');
 assert.match(source, /Режим тренировки/);
 assert.match(styleBlock('heading', 'headingSubtitle'), /fontSize: 22/);
 assert.match(styleBlock('icon', 'copy'), /width: 57,[\s\S]*height: 57/, 'icon in a square tile');
-assert.match(styleBlock('row', 'rowLine'), /minHeight: 90/);
+// 05.10 (Сверка cards-section-032): строка по макету mode() — 89 = 16 + 57 + 16, промежуток 20.
+assert.match(styleBlock('row', 'rowLine'), /minHeight: 89,[\s\S]*gap: 20/);
 assert.match(styleBlock('scroll', 'content'), /flexShrink: 1,[\s\S]*minHeight: 0/);
 assert.doesNotMatch(source, /numberOfLines/);
 assert.doesNotMatch(source, /styles\.cancelButton/, 'no separate Cancel button — closing is the backdrop');

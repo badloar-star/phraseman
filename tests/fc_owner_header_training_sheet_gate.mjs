@@ -33,7 +33,8 @@ assert.match(sheet, /Пишите по памяти/);
 assert.match(sheet, /mode: 'recall'/);
 assert.doesNotMatch(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
 // зачем: bb5d31820 — окно переделано по скрину владельца; строка режима ниже (76), но выше минимума касания 44.
-assert.match(sheet, /row: \{ minHeight: 90/);
+// 05.10 (Сверка cards-section-032): строка по макету mode() — 16 + плитка 57 + 16 = 89, промежуток 20.
+assert.match(sheet, /row: \{ minHeight: 89, paddingVertical: 16,/);
 assert.match(sheet, /<ScrollView/);
 assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{rowDescription\}`\}/);
 // зачем: efe19ae9d (снимок 30.09) — удалённый флаг «Устно» снят из приложения целиком (isSpeakingEnabled нет нигде);

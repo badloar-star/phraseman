@@ -160,7 +160,8 @@ export default function FlashcardsTrainingModeSheet({
       },
       {
         mode: 'truefalse',
-        icon: 'checkmark-circle-outline',
+        // зачем (Сверка cards-section-032, макет icon('check')): галочка без круга.
+        icon: 'checkmark',
         title: triLang(lang, {
           ru: 'Правда / ложь', uk: 'Правда / неправда', en: 'True / false', es: 'Verdadero / falso',
           'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah',
@@ -220,7 +221,7 @@ export default function FlashcardsTrainingModeSheet({
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         </Pressable>
-        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(24, insets.bottom + 16) }, sheetStyle]}>
+        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40, insets.bottom + 8) }, sheetStyle]}>
           {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
               Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → #101014 на 55 % → второй цвет темы 14 %, без альфы. */}
           <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1A1A20', 0.16), '#101014', mixDark(gb, '#101014', 0.14)]} locations={[0, 0.55, 1]} start={{ x: 0.33, y: 0.03 }} end={{ x: 0.67, y: 0.97 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
@@ -309,7 +310,9 @@ const baseStyles = StyleSheet.create({
   backdrop: { backgroundColor: 'rgba(2,2,4,0.88)' },
   sheet: { width: '100%', backgroundColor: '#101014', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
-  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 20, backgroundColor: '#4A4A4E' },
+  // зачем (Сверка cards-section-032, kit.css `.sheet` поля 12/18/40 и `.grab` 44×5 + 26): шторка была ~15 px выше макета —
+  // лишние нижние поля (системный отступ + 16 + 4). Теперь низ 40 (системная полоса ложится поверх, как в макете), под хватателем 26.
+  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 26, backgroundColor: '#4A4A4E' },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 },
   headCopy: { flex: 1, minWidth: 0 },
   heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
@@ -318,8 +321,9 @@ const baseStyles = StyleSheet.create({
   limitText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
-  content: { paddingTop: 12, paddingBottom: 4 },
-  row: { minHeight: 90, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 16 },
+  content: { paddingTop: 10, paddingBottom: 0 },
+  // cards-section `mode()`: поля 16/4, промежуток 20 — высота строки 16 + 57 + 16.
+  row: { minHeight: 89, paddingVertical: 16, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 20 },
   rowLine: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(255,255,255,0.12)' }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
   icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { flex: 1, minWidth: 0 },

@@ -1953,7 +1953,10 @@ export default function SettingsMain() {
                   setLinkedAuth(null);
                   setAuthPromptVisible(true);
                   if (!res.synced) {
-                    showInfoAlert(
+                    // зачем (overlays-runtime 038, OR-ACCOUNT-SWITCH-UNSYNCED-BACKUP): окно с одной кнопкой «Продолжить» и значком
+                    // закладки, а не общим «OK». Тексты и логика выхода прежние.
+                    console.log('[ACCOUNT-SWITCH-UI] unsynced backup notice shown synced=false'); // guard-ok: ветка окна логируется
+                    void enqueueThemedBlockingInfoAlert(
                       L('Можно выбрать аккаунт', 'Можна вибрати акаунт', 'You can choose an account', 'Puedes elegir cuenta', 'Você pode escolher a conta', 'Bạn có thể chọn tài khoản', 'Kamu bisa memilih akun', 'Hesap seçebilirsin', 'Możesz wybrać konto'),
                       L(
                         'Сервер не ответил перед выходом, поэтому мы сохранили аварийную копию на устройстве. Теперь войди в нужный Google-аккаунт.',
@@ -1966,6 +1969,8 @@ export default function SettingsMain() {
                         'Çıkmadan önce sunucu yanıt vermedi, bu yüzden cihazda acil bir kopya sakladık. Şimdi doğru Google hesabıyla giriş yap.',
                         'Serwer nie odpowiedział przed wylogowaniem, więc zapisaliśmy awaryjną kopię na urządzeniu. Teraz zaloguj się na właściwe konto Google.',
                       ),
+                      L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj'),
+                      { icon: 'bookmark' },
                     );
                   }
                 }}

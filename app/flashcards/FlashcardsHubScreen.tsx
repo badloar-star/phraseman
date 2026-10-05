@@ -637,6 +637,8 @@ export default function FlashcardsHubScreen() {
     { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
     { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
   ];
+  const limitOutTitle = triLang(lang, { ru: 'Лимит на этот месяц исчерпан', uk: 'Ліміт на цей місяць вичерпано', en: 'This month’s limit is used up', es: 'Has agotado el límite de este mes', 'pt-BR': 'O limite deste mês acabou', vi: 'Đã hết lượt của tháng này', id: 'Batas bulan ini sudah habis', tr: 'Bu ayın limiti doldu', pl: 'Limit na ten miesiąc wyczerpany' });
+  const limitOutSub = triLang(lang, { ru: `Обновится ${resetDate}`, uk: `Оновиться ${resetDate}`, en: `Resets on ${resetDate}`, es: `Se renueva el ${resetDate}`, 'pt-BR': `Renova em ${resetDate}`, vi: `Làm mới vào ${resetDate}`, id: `Diperbarui ${resetDate}`, tr: `${resetDate} tarihinde yenilenir`, pl: `Odnowi się ${resetDate}` });
   const reduceMotion = useFcReduceMotion();
   const windowHeight = useWindowDimensions().height;
   // зачем (Сверка cards-section-003, hubNewS): своих карточек и наборов нет (оба числа уже известны, не «загрузка») —
@@ -663,8 +665,9 @@ export default function FlashcardsHubScreen() {
             title={copy.title}
             subtitle={copy.subtitleShort}
             limitLabel={limitLabel}
-            topWord={topCard?.en ?? 'Boarding pass'}
-            topIpa={topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/'}
+            // зачем (Сверка cards-section-004, hubLimitS): лимит исчерпан — верхняя карточка стопки говорит об этом и о дате обновления.
+            topWord={trainingLocked ? limitOutTitle : (topCard?.en ?? 'Boarding pass')}
+            topIpa={trainingLocked ? limitOutSub : (topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/')}
             trainLabel={trainLabel}
             trainLocked={trainingLocked}
             tiles={tiles}

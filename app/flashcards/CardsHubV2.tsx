@@ -180,7 +180,8 @@ function CardsHubV2Inner({
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
         <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: DROP }, floatStyle]} pointerEvents="none">
           <LinearGradient colors={stackFill(a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-          <Text style={[styles.topWord, { lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : 1}>{topWord}</Text>
+          {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
+          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
           {topIpa ? <Text style={[styles.topIpa, { lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
           <Edge radius={30} shadows={bevel('rgba(255,255,255,0.30)', `${a}59`)} />
         </Reanimated.View>
@@ -191,6 +192,8 @@ function CardsHubV2Inner({
         style={({ pressed }) => [
           styles.cta,
           { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+          // зачем (hubLimitS): исчерпанный лимит — кнопка приглушена до .55, как в макете.
+          !fresh && trainLocked ? styles.ctaLocked : null,
           pressed && styles.pressed,
         ]}>
         <Text style={[styles.ctaText, { color: g.accentInk, lineHeight: lh(22) }]}>{fresh ? fresh.cta : trainLabel}</Text>
@@ -262,9 +265,11 @@ const styles = StyleSheet.create({
   stackBack1: { left: 19, right: 19, top: 18, height: 130 },
   stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   topWord: { color: '#FFFFFF', fontSize: 36, lineHeight: 44, fontWeight: '700', paddingHorizontal: 16 },
+  topWordWrap: { textAlign: 'center' },
   topIpa: { marginTop: 8, color: 'rgba(255,255,255,0.65)', fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
   // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
   cta: { marginTop: 14, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
+  ctaLocked: { opacity: 0.55 },
   ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
   ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },

@@ -60,6 +60,7 @@ import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
+import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import { useFcReduceMotion } from './flashcards/PhraseCard';
 import { isLowPowerEffective } from './flashcards/low_power';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
@@ -126,6 +127,8 @@ type BtnState = 'idle' | 'correct' | 'wrong';
 /** Итог раунда: только сводка ответов (очков и рекорда нет — владелец 04.10). */
 type ResultState = {
   summary: SessionOutcomeSummary;
+  /** Сыграно секунд раунда (без пауз) — ячейка «время» итога (cards-section `resBlitz`). */
+  playedSec?: number;
 };
 
 /** Кадр после отрисовки: в RN — requestAnimationFrame; в среде без него (тесты) — следующий тик. */
@@ -425,8 +428,11 @@ export default function FlashcardsBlitzSession() {
     clearRoundTimers();
     cancelAnimation(progress);
     const summary = summarizeSession(eventsRef.current);
-    setResult({ summary });
-  }, [clearRoundTimers, progress]);
+    // зачем: время итога = длина раунда минус остаток таймера; паузы (фон) не считаются.
+    const roundMs = roundDurationMsRef.current ?? roundDurationMs;
+    const playedSec = Math.max(0, roundMs - Math.max(0, endAtRef.current - Date.now())) / 1000;
+    setResult({ summary, playedSec });
+  }, [clearRoundTimers, progress, roundDurationMs]);
 
   const pauseBlitzCountdown = useCallback(() => {
     pausedRemainingMsRef.current = Math.max(0, endAtRef.current - Date.now());
@@ -1335,6 +1341,9 @@ export default function FlashcardsBlitzSession() {
     );
   }
 
+  // зачем: заголовок нужен и итогу (надпись «Блиц · набор») — объявлен до раннего возврата итога.
+  const blitzTitle = triLang(lang, { ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz' });
+
   if (result) {
     return (
       <SessionResultScreen
@@ -1342,6 +1351,9 @@ export default function FlashcardsBlitzSession() {
         wrong={devRunesFake ? devRunesFake.tertiary : result.summary.wrong}
         runesGained={practiceRunes.runes}
         learnLeft={0}
+        overline={`${blitzTitle} · ${deckTitle}`}
+        durationSec={result.playedSec}
+        mistakes={buildResultMistakes(pool, eventsRef.current.filter((e) => !e.correct).map((e) => e.key))}
         onRetryWrong={restart}
         feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: 'Блиц' }}
         retryLabel={triLang(lang, {
@@ -1419,7 +1431,6 @@ export default function FlashcardsBlitzSession() {
   const danger = timeLeft <= DANGER_SEC;
   // зачем: одна подпись «Назад» и название режима для шапки на 9 языках (круглая кнопка макета без текста).
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
-  const blitzTitle = triLang(lang, { ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz' });
   const mm = Math.floor(timeLeft / 60);
   const ss = String(timeLeft % 60).padStart(2, '0');
 

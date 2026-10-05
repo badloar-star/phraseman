@@ -1,4 +1,5 @@
-// зачем (владелец 01.10): итог тренировки карточек = общий экран завершения 2.0
+// зачем (владелец 05.10 11:10, решение 3): итог Карточек — свой экран по cards-section.html (CardsSessionResultV2).
+// Ранее (владелец 01.10): итог тренировки карточек = общий экран завершения 2.0
 // (docs/design/v2-app/practice.html «Единый экран завершения», PM-137). Прежний
 // контракт замораживал хэшами старую вёрстку — её владелец велел заменить. Здесь
 // охраняем то, что не должно сломаться при смене вида: пропсы, четыре места вызова,
@@ -19,13 +20,14 @@ const printer = ts.createPrinter({ removeComments: true, newLine: ts.NewLineKind
 const print = (node, file) => printer.printNode(ts.EmitHint.Unspecified, node, file);
 
 // Места вызова не менялись при переходе на общий экран — их пропсы заморожены прежними хэшами.
+// 05.10 (решение 3, cards-section): все четыре вызова передают надпись режима, время и «Что исправить».
 const CALLER_HASHES = {
   // 04.10 (владелец: «очки из Блица убирай вообще, только монеты считаем») — из вызова итога снят scoreText.
-  'app/flashcards_blitz_session.tsx': '6daf7548317720b0038ac5b0c1fe85250bbd292a1fc29341ba51c9b9a7a6a334',
-  'app/flashcards_recall_session.tsx': 'd2aadef834596945ab0bfc45014d13bd7bc3581b1aaba8845eab26b482416127',
+  'app/flashcards_blitz_session.tsx': '9f7e401a67c5456295b0e1d60aece1ec5920bdbcaab3a6b0db40d54c6f66abf7',
+  'app/flashcards_recall_session.tsx': 'cc8ca99af4e3c2ec90a35c7f9b9997b2d9f5f1df1b48d05bdf395a6e941e0ecc',
   // 04.10 (PM-134, 2c8a7b95f): обработчик «Готово» переименован openSettings → exitFromResult, пропсы те же.
-  'app/flashcards_swipe.tsx': '4f7696964132f495cc65ada711d7cafdfa9363c545767f9585ea4a862a6b536d',
-  'app/flashcards_speaking_session.tsx': 'ab93e11aadd09277d3a23075d47f4d7f4d1ade81de67800234f9fae0c17843ea',
+  'app/flashcards_swipe.tsx': 'ddf57868f7a045920e14c9eb0da2f3b045adf600d39bba42f82ebe49a1d11f69',
+  'app/flashcards_speaking_session.tsx': 'c187dbef27bd751353d4b03c84417359ec039b2d56babf715f6b57d7ced9096d',
 };
 
 function callerNodeHash(relativePath) {
@@ -52,14 +54,18 @@ test('all four flashcard modes still call the result screen with unchanged props
   }
 });
 
-test('the result renders the shared 2.0 done screen with the session numbers', () => {
-  assert.match(source, /import V2DoneScreen from '..\/..\/components\/completion\/V2DoneScreen';/);
-  assert.match(impl, /<V2DoneScreen/);
+test('the result renders the cards-section result screen with the session numbers', () => {
+  assert.match(source, /import CardsSessionResultV2 from '.\/CardsSessionResultV2';/);
+  assert.match(impl, /<CardsSessionResultV2/);
   assert.match(impl, /correct=\{correct\}/);
   assert.match(impl, /wrong=\{wrong\}/);
   assert.match(impl, /coinsGained=\{runesGained\}/);
-  assert.match(impl, /scoreLabel=\{scoreText\}/);
-  assert.match(impl, /stars=\{null\}/);
+  assert.match(impl, /mistakes=\{mistakes\}/);
+  assert.match(impl, /durationSec=\{durationSec\}/);
+  const view = fs.readFileSync(path.join(ROOT, 'app/flashcards/CardsSessionResultV2.tsx'), 'utf8');
+  for (const copy of ['Что исправить', 'Без единой ошибки', 'верных ответов', 'точность', 'время']) assert.ok(view.includes(copy), copy);
+  // владелец 04.10: очки Блица убраны — строки счёта в итоге нет.
+  assert.doesNotMatch(view, /scoreLabel|Счёт/);
 });
 
 test('finale sound/haptic and weekly feedback gate are kept', () => {
@@ -69,9 +75,9 @@ test('finale sound/haptic and weekly feedback gate are kept', () => {
   assert.match(impl, /<FeedbackRatingCard[\s\S]*kind="vocab"/);
 });
 
-test('Done haptics before the callback; «Добить» shows only with a retry handler', () => {
-  assert.match(impl, /onPrimary=\{\(\) => \{ fcHaptic\('tap'\); onDone\(\); \}\}/);
-  assert.match(impl, /secondaryLabel=\{onRetryWrong && retryWrongLabel \? retryWrongLabel : undefined\}/);
+test('Done haptics before the callback; «Ошибки · N» shows only with a retry handler', () => {
+  assert.match(impl, /onDone=\{\(\) => \{ fcHaptic\('tap'\); onDone\(\); \}\}/);
+  assert.match(impl, /retryLabel=\{onRetryWrong && retryWrongLabel \? retryWrongLabel : undefined\}/);
   assert.match(impl, /learnLeft > 0/);
-  assert.match(impl, /onClose=\{onDone\}/);
+  assert.match(impl, /Ошибки · \$\{learnLeft\}/);
 });

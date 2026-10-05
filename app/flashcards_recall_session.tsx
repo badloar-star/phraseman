@@ -74,6 +74,7 @@ import {
   type SessionOutcomeSummary,
 } from './flashcards/session_queue';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
+import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
@@ -185,6 +186,8 @@ export default function FlashcardsRecallSession() {
 
   const queueRef = useRef<DeckCard[]>([]);
   const initialCardsRef = useRef<DeckCard[]>([]);
+  // зачем (итог по cards-section): ячейка «время» — от первого вопроса раунда до итога.
+  const roundStartedAtRef = useRef(0);
   const repeatCountsRef = useRef<Record<string, number>>({});
   const eventsRef = useRef<SessionAnswerEvent[]>([]);
   const masteredIdsRef = useRef(new Set<string>());
@@ -247,6 +250,7 @@ export default function FlashcardsRecallSession() {
     const round = preserveOrder ? cards.slice() : shuffle(cards);
     const first = round[0] ?? null;
     initialCardsRef.current = round;
+    roundStartedAtRef.current = Date.now();
     queueRef.current = round.slice(1);
     repeatCountsRef.current = {};
     eventsRef.current = [];
@@ -852,6 +856,9 @@ export default function FlashcardsRecallSession() {
         wrong={result.summary.wrong}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnIds.length}
+        overline={copy.title}
+        startedAtMs={roundStartedAtRef.current}
+        mistakes={buildResultMistakes(initialCardsRef.current, eventsRef.current.filter((e) => !e.correct).map((e) => e.key))}
         onRetryWrong={result.learnIds.length > 0 ? retryWrong : undefined}
         onDone={leave}
         testID="fc-recall-result"

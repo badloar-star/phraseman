@@ -1,127 +1,19 @@
 /**
- * cards-2.0 (E5): единый экран результата сессии (§3.10 мастер-плана).
+ * cards-2.0 (E5): единый экран результата сессии Карточек (§3.10 мастер-плана).
  * Встраиваемый компонент (НЕ роут): сессии рендерят его вместо своего done-блока.
  *
- * Показывает «верно / ошибок / точность».
- * CTA: «Добить: Ещё учу (N)» (второй раунд по ошибочным) + «Готово».
+ * зачем (владелец 05.10 11:10, решение 3): вид — свой итог раздела по cards-section.html
+ * (CardsSessionResultV2), а не общий экран завершения. Здесь — логика: звук/хаптика финала,
+ * недельный гейт оценки, подписи кнопок.
  */
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
-import { FONT_SCALE, useTheme } from '../../components/ThemeContext';
-import { themeUiAsset } from '../theme_ui_assets';
+import React, { useEffect, useState } from 'react';
 import { useLang } from '../../components/LangContext';
-import ScreenGradient from '../../components/ScreenGradient';
-import ContentWrap from '../../components/ContentWrap';
-import PressableHybrid from '../../components/PressableHybrid';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import { AnimatedCountUpText } from '../../components/AnimatedCountUpText';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
-import V2DoneScreen from '../../components/completion/V2DoneScreen';
 import { triLang } from '../../constants/i18n';
-import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { useScreen } from '../../hooks/use-screen';
 import { shouldPromptFeedback, markFeedbackPrompted } from '../feedback_prompt_throttle';
-import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { fcHaptic, playSfx } from './SoundService';
-import { CoinRewardFlight } from '../../components/rewards/CoinRewardFlight';
-import { useCoinRewardFlight } from '../../hooks/useCoinRewardFlight';
-
-// ── Экран результата ──────────────────────────────────────────────────────────
-
-type ResultGlassTokens = ReturnType<typeof liquidGlassTokens>;
-
-function ResultSurfaceSheen({ glass, testID }: Readonly<{ glass: ResultGlassTokens; testID: string }>) {
-  return (
-    <LinearGradient
-      pointerEvents="none"
-      testID={testID}
-      colors={[glass.lightTint, 'transparent']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0.9, y: 1 }}
-      style={[StyleSheet.absoluteFill, styles.surfaceSheen]}
-    />
-  );
-}
-
-function shouldStackResultStats(availableWidth: number, nativeFontScale: number, preferenceScale: number): boolean {
-  const layoutScale = Math.max(1, nativeFontScale * preferenceScale);
-  return availableWidth < 312 * layoutScale;
-}
-
-function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: string }>) {
-  const { theme: t, themeMode, fontSize, uiScale } = useTheme();
-  const { lang } = useLang();
-  const runeFlight = useCoinRewardFlight();
-  const [originReady, setOriginReady] = useState(false);
-  const [targetReady, setTargetReady] = useState(false);
-  const playedRef = useRef(false);
-  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
-
-  useEffect(() => {
-    if (amount <= 0 || !originReady || !targetReady || playedRef.current) return undefined;
-    playedRef.current = true;
-    const frame = requestAnimationFrame(() => runeFlight.fly(amount));
-    return () => cancelAnimationFrame(frame);
-  }, [amount, originReady, runeFlight, targetReady]);
-
-  return (
-    <>
-      <View
-        ref={runeFlight.counterRef}
-        collapsable={false}
-        onLayout={() => setTargetReady(true)}
-        testID={`${testID}-runes`}
-        accessible
-        accessibilityLabel={triLang(lang, {
-          ru: `Начислено монет: ${amount}`, uk: `Нараховано монет: ${amount}`, en: `Coins earned: ${amount}`,
-          es: `Monedas ganadas: ${amount}`, 'pt-BR': `Moedas ganhas: ${amount}`, vi: `Xu nhận được: ${amount}`,
-          id: `Koin diperoleh: ${amount}`, tr: `Kazanılan jeton: ${amount}`, pl: `Zdobyte monety: ${amount}`,
-        })}
-        style={styles.runeAward}
-      >
-        <Image
-          source={themeUiAsset(themeMode, 'rune')}
-          style={styles.runeAsset}
-          contentFit="contain"
-          accessible={false}
-          accessibilityElementsHidden
-          importantForAccessibility="no"
-        />
-        <Text accessible={false} style={{ color: t.textPrimary, fontSize: 34 * textScale, lineHeight: 40 * textScale, fontWeight: '700' }}>+</Text>
-        <AnimatedCountUpText
-          value={amount}
-          style={{ color: t.textPrimary, fontSize: 34 * textScale, lineHeight: 40 * textScale, fontWeight: '700', minWidth: 24 }}
-          accessible={false}
-          importantForAccessibility="no-hide-descendants"
-        />
-      </View>
-      <View
-        ref={runeFlight.originRef}
-        collapsable={false}
-        onLayout={() => setOriginReady(true)}
-        pointerEvents="none"
-        style={styles.rewardFlightOrigin}
-      />
-      {runeFlight.flight ? (
-        <CoinRewardFlight
-          key={runeFlight.flight.key}
-          from={runeFlight.flight.from}
-          to={runeFlight.flight.to}
-          count={runeFlight.flight.count}
-          onDone={runeFlight.clearFlight}
-        />
-      ) : null}
-    </>
-  );
-}
+import CardsSessionResultV2 from './CardsSessionResultV2';
+import type { CardsResultMistake } from './session_result_mistakes';
 
 export type SessionResultScreenProps = {
   /** Верных ответов (по попыткам). */
@@ -158,6 +50,14 @@ export type SessionResultScreenProps = {
     entityId: string;
     entityLabel?: string | null;
   };
+  /** «Блиц · Сохранённые» — режим и набор над счётом (макет `.ov`). */
+  overline?: string;
+  /** Когда началась тренировка (Date.now()); время в итоге = монтирование итога − старт. */
+  startedAtMs?: number;
+  /** Точная длительность, если режим знает её сам (Блиц: длина раунда); главнее startedAtMs. */
+  durationSec?: number;
+  /** Карточки с ошибками для «Что исправить»; без него секции нет. */
+  mistakes?: readonly CardsResultMistake[];
   testID?: string;
 };
 
@@ -172,22 +72,18 @@ function SessionResultScreenImpl({
   retryLabel,
   scoreText,
   feedback,
+  overline,
+  startedAtMs,
+  durationSec: durationSecProp,
+  mistakes,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
-  const { theme: t, liquidGlassThemeId, fontSize, uiScale } = useTheme();
   const { lang } = useLang();
-  const insets = useStableSafeAreaInsets();
-  const { width, fontScale: nativeFontScale } = useWindowDimensions();
-  const { contentMaxW } = useScreen();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
-  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
-  const safeWindowWidth = Math.max(0, width - insets.left - insets.right);
-  const availableStatsWidth = Math.max(0, Math.min(contentMaxW, safeWindowWidth) - 40);
-  const stackStats = shouldStackResultStats(availableStatsWidth, nativeFontScale, textScale);
-  const accent = accentColor ?? t.accent;
-
-  const total = correct + wrong;
-  const accuracyPct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  // Время фиксируется один раз — в кадр появления итога, а не на каждый рендер.
+  const [durationSec] = useState<number | null>(() => {
+    if (typeof durationSecProp === 'number' && Number.isFinite(durationSecProp)) return Math.max(0, durationSecProp);
+    return typeof startedAtMs === 'number' && startedAtMs > 0 ? Math.max(0, (Date.now() - startedAtMs) / 1000) : null;
+  });
 
   // SFX/хаптика финала сессии (§5, E9).
   useEffect(() => {
@@ -205,25 +101,31 @@ function SessionResultScreenImpl({
       if (cancelled || !allowed) return;
       setShowFeedback(true);
       void markFeedbackPrompted('vocab');
+    }).catch((error: unknown) => {
+      // Оценка необязательна: без гейта просто не показываем её, но причину пишем.
+      console.warn('[FC-RESULT] feedback_gate_failed', error instanceof Error ? error.message : String(error)); // guard-ok: сбой гейта обязан логироваться
     });
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback?.entityId]);
 
-  // зачем (владелец 01.10): «старые экраны все заменить на макетные» — итог тренировки карточек
-  // = общий экран завершения 2.0 (practice.html «Единый экран завершения», PM-137).
+  // зачем (cards-section.html `resMix`): повтор ошибок подписан «Ошибки · N»; у Блица и «Правда/ложь» — свой retryLabel.
   const retryWrongLabel = learnLeft > 0
-    ? triLang(lang, { ru: `Добить: Ещё учу (${learnLeft})`, uk: `Добити: Ще вчу (${learnLeft})`, en: `Finish off: Still learning (${learnLeft})`, es: `Rematar: Aún aprendo (${learnLeft})`, 'pt-BR': `Finalizar: Ainda aprendendo (${learnLeft})`, vi: `Ôn tiếp: Đang học (${learnLeft})`, id: `Tuntaskan: Masih belajar (${learnLeft})`, tr: `Bitir: Hâlâ öğreniyorum (${learnLeft})`, pl: `Dokończ: Wciąż uczę się (${learnLeft})` })
+    ? triLang(lang, { ru: `Ошибки · ${learnLeft}`, uk: `Помилки · ${learnLeft}`, en: `Mistakes · ${learnLeft}`, es: `Errores · ${learnLeft}`, 'pt-BR': `Erros · ${learnLeft}`, vi: `Lỗi · ${learnLeft}`, id: `Kesalahan · ${learnLeft}`, tr: `Hatalar · ${learnLeft}`, pl: `Błędy · ${learnLeft}` })
     : retryLabel;
+  void accentColor; void scoreText; // зачем: прежние пропсы вызовов; в макете итога Карточек нет ни акцента режима, ни строки счёта (владелец 04.10 — только монеты)
   return (
-    <V2DoneScreen
+    <CardsSessionResultV2
       testID={testID}
-      title={triLang(lang, { ru: 'Тренировка завершена', uk: 'Тренування завершено', en: 'Practice complete', es: 'Práctica terminada', 'pt-BR': 'Treino concluído', vi: 'Đã xong buổi luyện', id: 'Latihan selesai', tr: 'Alıştırma bitti', pl: 'Trening ukończony' })}
-      scoreLabel={scoreText}
-      stars={null}
+      overline={overline}
       correct={correct}
       wrong={wrong}
       coinsGained={runesGained}
+      durationSec={durationSec}
+      mistakes={mistakes}
+      retryLabel={onRetryWrong && retryWrongLabel ? retryWrongLabel : undefined}
+      onRetry={onRetryWrong && retryWrongLabel ? () => { fcHaptic('tap'); onRetryWrong(); } : undefined}
+      onDone={() => { fcHaptic('tap'); onDone(); }}
       feedbackSlot={feedback && showFeedback ? (
         <FeedbackRatingCard
             kind="vocab"
@@ -252,92 +154,9 @@ function SessionResultScreenImpl({
             presentation="liquid-glass-rate"
           />
       ) : undefined}
-      primaryLabel={triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
-      onPrimary={() => { fcHaptic('tap'); onDone(); }}
-      secondaryLabel={onRetryWrong && retryWrongLabel ? retryWrongLabel : undefined}
-      onSecondary={onRetryWrong && retryWrongLabel ? () => { fcHaptic('tap'); onRetryWrong(); } : undefined}
-      onClose={onDone}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  scroll: { flex: 1 },
-  scrollContent: { flexGrow: 1 },
-  container: { flexGrow: 1, paddingHorizontal: 20, paddingBottom: 20 },
-  closeTarget: { width: 48, height: 48, justifyContent: 'flex-end', alignSelf: 'flex-start' },
-  closeVisual: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    borderWidth: 1,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  centerBlock: { alignItems: 'center' },
-  title: { width: '100%', minWidth: 0, flexShrink: 1, fontWeight: '700', textAlign: 'center', marginTop: 18 },
-  scorePill: {
-    borderRadius: 999,
-    borderWidth: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 6,
-    marginTop: 12,
-  },
-  runeAward: {
-    marginTop: 12,
-    minHeight: 54,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 14,
-    paddingHorizontal: 12,
-  },
-  runeAsset: { width: 44, height: 44 },
-  rewardFlightOrigin: {
-    position: 'absolute',
-    left: '50%',
-    bottom: 4,
-    width: 18,
-    height: 18,
-    marginLeft: -9,
-    opacity: 0,
-  },
-  statsCard: {
-    flexDirection: 'row',
-    borderRadius: 16,
-    borderWidth: 1,
-    overflow: 'hidden',
-    width: '100%',
-    marginTop: 20,
-  },
-  statsCardStacked: { flexDirection: 'column' },
-  surfaceSheen: { opacity: 0.08 },
-  stat: { flex: 1, minWidth: 0, alignItems: 'center', justifyContent: 'center', paddingVertical: 15, paddingHorizontal: 4, gap: 4 },
-  statStacked: { flex: 0, width: '100%' },
-  statDivider: { width: StyleSheet.hairlineWidth },
-  statDividerStacked: { width: '100%', height: StyleSheet.hairlineWidth },
-  ctaBlock: { gap: 14, marginTop: 16 },
-  actionTarget: { minWidth: 0 },
-  retryWrap: { position: 'relative', overflow: 'visible' },
-  retryBtn: {
-    minHeight: 48,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-  },
-  doneBtn: {
-    minHeight: 52,
-    borderRadius: 26,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-  },
-});
 
 const SessionResultScreen = React.memo(SessionResultScreenImpl);
 export { SessionResultScreen };

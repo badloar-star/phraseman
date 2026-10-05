@@ -116,7 +116,8 @@ const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: { amount
 
 // Плашка баланса в шапке — как .pill макета: фон, тонкая обводка, монета и число «1 285».
 // Первый кадр синхронно из снапшота (Performance Bible), дальше — подписка на снапшот.
-const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass; lang: Lang }) {
+// зачем (итог Карточек, cards-section 05.10): та же плашка баланса нужна экрану итога раздела — не дублируем.
+export const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass; lang: Lang }) {
   const [balance, setBalance] = useState(() => peekRunes());
   useEffect(() => subscribeAppSnapshot(() => setBalance(peekRunes())), []);
   const value = Math.max(0, Math.round(Number(balance) || 0));

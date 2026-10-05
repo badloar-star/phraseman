@@ -78,7 +78,8 @@ test('approved recovery copy explains causes and a way back without promises of 
   for (const [file, copy] of [
     ['app/flashcards_blitz_session.tsx', 'Для блица нужны хотя бы 4 карточки'],
     ['app/pack_opening.tsx', 'Не удалось открыть набор. Вернись назад'],
-    ['app/flashcards/SessionResultScreen.tsx', 'Тренировка завершена'],
+    // 05.10 (решение 3, cards-section): итог Карточек без ошибок говорит «Без единой ошибки» вместо общего «Тренировка завершена».
+    ['app/flashcards/CardsSessionResultV2.tsx', 'Без единой ошибки'],
     // 30.09: personal_plan_theory удалён вместе с «Личным планом» (970f8e7b8).
     ['app/survey_screen.tsx', 'Можно вернуться в приложение'],
     // 01.10: описание «Устно» сокращено по скрину владельца — строка про паузу убрана.

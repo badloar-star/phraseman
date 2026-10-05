@@ -1,6 +1,7 @@
 # Task packet: решения владельца 05.10 (11:10) — дизайн-участок
 
 Governance-ID: TG-ADD35B80EF3E
+Governance-ID: TG-7C507A61AB54
 Status: In progress
 Owner: сессия «2 · Дизайн»
 Related epic/enabler: гейт паритета «приложение = макет» (CLAUDE.md, 04.10)

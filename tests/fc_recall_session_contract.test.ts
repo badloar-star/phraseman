@@ -33,7 +33,8 @@ describe('full-phrase recall session contract', () => {
   });
 
   test('result screen animates both counts and the rune settlement flight', () => {
-    const source = read('app', 'flashcards', 'SessionResultScreen.tsx');
+    // 05.10 (решение 3, cards-section): вид итога вынесен в CardsSessionResultV2 — проверяем обе части.
+    const source = read('app', 'flashcards', 'SessionResultScreen.tsx') + read('app', 'flashcards', 'CardsSessionResultV2.tsx');
     expect(source).toContain('AnimatedCountUpText');
     expect(source).toContain('useCoinRewardFlight');
     expect(source).toContain('CoinRewardFlight');

@@ -67,6 +67,7 @@ import PhraseCard, { useFcReduceMotion } from './flashcards/PhraseCard';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { loadFcDeckOptions } from './flashcards/deck_options';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
+import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { estimateSpeechDurationMs } from './flashcards/audioSession';
@@ -761,6 +762,12 @@ export default function FlashcardsSpeakingSession() {
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, quotaUnavailable, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent, speechNa]);
+
+  // зачем (итог по cards-section): ячейка «время» — от первой карточки раунда (событий ещё нет) до итога.
+  const roundStartedAtRef = useRef(0);
+  useEffect(() => {
+    if (session.events.length === 0 && !session.finished && session.queue.length > 0) roundStartedAtRef.current = Date.now();
+  }, [session.events.length, session.finished, session.queue]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   // Речь здесь НЕ глушим специально (проверено 2026-09-17): `finished`
@@ -1521,6 +1528,9 @@ RU: ${card.translation}`}
         wrong={devRunesFake ? devRunesFake.tertiary : result.wrong}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnLeft}
+        overline={`${labels.title} · ${deckTitle}`}
+        startedAtMs={roundStartedAtRef.current}
+        mistakes={buildResultMistakes(session.queue, session.events.filter((e) => !e.correct).map((e) => e.key))}
         onRetryWrong={result.learnLeft > 0 ? onRetryWrong : undefined}
         onDone={leave}
         accentColor={ACCENT}

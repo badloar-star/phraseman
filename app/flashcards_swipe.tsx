@@ -1147,6 +1147,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
   const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<Record<string, CardProgress>>({});
+  // зачем (итог по cards-section): ячейка «время» — от старта раунда до итога.
+  const roundStartedAtRef = useRef(0);
   const memoryRef = useRef<SwipeMemory>({});
   // зачем (владелец 2026-09-21): запись памяти карточек отложена, чтобы не
   // держать жест свайпа. Эти два сброса — страховка, без них потерялись бы
@@ -2394,6 +2396,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       const promptQueue = buildPromptQueue(sessionCards);
       swipeLocalStart = () => {
         progressRef.current = Object.fromEntries(sessionCards.map((card) => [card.trainingKey, emptyProgress()]));
+        roundStartedAtRef.current = Date.now();
         position.setValue({ x: 0, y: 0 });
         setFeedback(null);
         setTrainingCards(sessionCards);
@@ -4313,12 +4316,25 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     const resultCorrect = devRunesFake ? devRunesFake.secondary : stats.correctSwipes;
     const resultWrong = devRunesFake ? devRunesFake.tertiary : stats.wrong;
     const resultScore = devRunesFake ? devRunesFake.secondary : stats.score;
+    // зачем (cards-section `resMix`): над счётом «Правда / ложь · набор», ниже «Что исправить» — карточки с ошибкой.
+    const tfTitle = triLang(lang, {
+      ru: 'Правда / ложь', en: 'True / false', uk: 'Правда / хиба', es: 'Verdadero / falso',
+      'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah', tr: 'Doğru / yanlış', pl: 'Prawda / fałsz',
+    });
+    const sourceTitles = Array.from(new Set(trainingCards.map((card) => card.trainingSourceTitle).filter(Boolean)));
+    const resultOverline = sourceTitles.length === 1 ? `${tfTitle} · ${sourceTitles[0]}` : tfTitle;
+    const resultMistakes = trainingCards
+      .filter((card) => (progressRef.current[card.trainingKey]?.wrong ?? 0) > 0)
+      .map((card) => ({ id: card.trainingKey, en: card.en, translation: answerFor(card), packLanguage: card.packLanguage }));
     return (
       <SessionResultScreen
         correct={resultCorrect}
         wrong={resultWrong}
         runesGained={practiceRunes.runes}
         learnLeft={0}
+        overline={resultOverline}
+        startedAtMs={roundStartedAtRef.current || undefined}
+        mistakes={resultMistakes}
         onRetryWrong={() => { void startSession(); }}
         onDone={exitFromResult}
         retryLabel={text.nextRound}

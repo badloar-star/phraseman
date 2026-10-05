@@ -35,7 +35,8 @@ describe('feedback rating layout reachability', () => {
   });
 
   it('keeps every other feedback form in vertically scrollable content', () => {
-    const vocabulary = read('app/flashcards/SessionResultScreen.tsx');
+    // 05.10 (решение 3): прокрутку итога Карточек рисует CardsSessionResultV2.
+    const vocabulary = read('app/flashcards/CardsSessionResultV2.tsx');
     const dialogue = read('components/DialogVerdictScreen.tsx');
 
     expect(vocabulary).toContain('<ScrollView');

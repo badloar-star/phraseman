@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useRef, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
+import React, { Suspense, lazy, useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
@@ -452,10 +452,28 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
 }
 
 
+// ── [HOME-RENDER]: разбивка окна первого кадра (только лог, один раз за запуск) ──
+// Модуль home.tsx (со всеми статическими зависимостями) вычислен к моменту этой строки.
+const homeModuleEvaluatedAt = Date.now();
+let homeFirstRenderStartedAt = 0;
+let homeFirstRenderLogged = false;
+function logHomeFirstRenderTiming(): void {
+  if (homeFirstRenderLogged) return;
+  homeFirstRenderLogged = true;
+  const committedAt = Date.now();
+  console.warn('[HOME-RENDER] first', JSON.stringify({
+    moduleToRenderMs: homeFirstRenderStartedAt - homeModuleEvaluatedAt,
+    renderToCommitMs: committedAt - homeFirstRenderStartedAt,
+    committedEpochMs: committedAt,
+  })); // guard-ok: одна release-строка за запуск, как [HOME-PAINT] (release вырезает log/info, warn остаётся)
+}
+
 export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
   // зачем (владелец 2026-09-22, «удалить все замеры»): здесь в ТЕЛЕ компонента
   // стоял countScreenRender('home') — работа на КАЖДЫЙ рендер Главной. Тело
-  // самого горячего экрана обязано быть чистым.
+  // самого горячего экрана обязано быть чистым. Исключение — одна проверка числа ниже: после первого рендера
+  // она ничего не делает (координатор 05.10, [HOME-RENDER]).
+  if (homeFirstRenderStartedAt === 0) homeFirstRenderStartedAt = Date.now();
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
@@ -497,6 +515,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (§78): одна release-строка [HOME-PAINT] после первого кадра — точный замер Главной
     // вместо опроса uiautomator (±1 с). Один раз за запуск, без setState.
     useEffect(() => { markHomeFirstPaint(); }, []);
+    // зачем (координатор 05.10, пакеты 05:26/06:26: стоянка 1,5–2,5 с в окне монтирования Главной, [JS-STALL] стека не
+    // пишет): делим окно на «модуль вычислен → первый рендер начат → зафиксирован». Кадр уже есть в [HOME-PAINT].
+    // Один раз за запуск, без setState; в теле рендера — одна проверка числа.
+    useLayoutEffect(() => { logHomeFirstRenderTiming(); }, []);
     const dailyPhraseCardVisibleRef = useRef(false);
     // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
     // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя

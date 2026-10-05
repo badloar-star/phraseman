@@ -9,7 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 
@@ -65,6 +65,10 @@ const copyFor = (lang: Lang) => triLang(lang, {
 const SIDE = 18;
 const UNFOLD_MS = 760;
 const FLIP_MS = 320;
+/** Высота карточки по макету (системный шрифт 100%); при крупном шрифте карточка растёт по тексту, а не режет его. */
+const CARD_MIN_H = 230;
+/** Вертикальный запас внутри грани: паддинги 20+20 и место под кнопку звука / точки силы. */
+const FACE_PAD_V = 40;
 
 function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, canEdit, showSave = true, onClose, onSpeak, onEdit, onDelete, onToggleSave }: Props) {
   const g = useLv2Glass();
@@ -76,11 +80,18 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
   const unfold = useSharedValue(reduceMotion ? 1 : 0);
   const flip = useSharedValue(0);
   const [flipped, setFlipped] = useState(false);
+  // зачем (координатор 05.10, «ExpandedCardV2 при крупном системном шрифте»; правило владельца — лечим вёрсткой, не сжатием шрифта):
+  // высота карточки = максимум из высоты макета и фактической высоты текста обеих сторон, измеренной onLayout.
+  const [frontH, setFrontH] = useState(0);
+  const [backH, setBackH] = useState(0);
+  const cardH = Math.max(CARD_MIN_H, frontH + FACE_PAD_V, backH + FACE_PAD_V);
 
   // зачем: при открытии новой карточки — заново «разворот» и лицевая сторона
   useEffect(() => {
     if (!card) return;
     setFlipped(false);
+    setFrontH(0);
+    setBackH(0);
     flip.value = 0;
     if (reduceMotion) { unfold.value = 1; return; }
     unfold.value = 0;
@@ -135,15 +146,18 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
           <View style={[StyleSheet.absoluteFill, styles.dim]} />
         </Pressable>
       </Animated.View>
-      <View pointerEvents="box-none" style={styles.center}>
+      {/* зачем: при крупном шрифте стопка (карточка + пример + кнопки) может не поместиться — прокручивается, а не обрезается */}
+      <ScrollView pointerEvents="box-none" style={StyleSheet.absoluteFill} contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} bounces={false}>
         <View pointerEvents="box-none" style={styles.stack}>
           <Text style={[styles.overline, { color: g.secondary }]}>{overline}</Text>
-          <Animated.View style={[styles.cardWrap, unfoldStyle]}>
+          <Animated.View style={[styles.cardWrap, { height: cardH }, unfoldStyle]}>
             <Pressable testID="fc-expanded-card-flip" accessibilityRole="button" accessibilityLabel={flipped ? card.back : card.front} onPress={toggleFlip} style={styles.card}>
               <Animated.View style={[styles.face, frontStyle]}>
                 {faceLayers(`${card.id}f`)}
-                <Text style={styles.en}>{card.front}</Text>
-                {card.ipa ? <Text style={styles.ipa}>{card.ipa}</Text> : null}
+                <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
+                  <Text style={styles.en}>{card.front}</Text>
+                  {card.ipa ? <Text style={styles.ipa}>{card.ipa}</Text> : null}
+                </View>
                 <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={styles.speak}>
                   <Ionicons name="volume-high" size={16} color="#FFFFFF" />
                 </Pressable>
@@ -156,7 +170,9 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
               </Animated.View>
               <Animated.View style={[styles.face, styles.faceBack, backStyle]}>
                 {faceLayers(`${card.id}b`)}
-                <Text style={styles.ru}>{card.back}</Text>
+                <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
+                  <Text style={styles.ru}>{card.back}</Text>
+                </View>
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
               </Animated.View>
             </Pressable>
@@ -185,7 +201,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
             </View>
           ) : null}
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -207,10 +223,12 @@ export const ExpandedCardV2 = memo(ExpandedCardInner);
 
 const styles = StyleSheet.create({
   dim: { backgroundColor: 'rgba(2,2,4,0.72)' },
-  center: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', paddingHorizontal: SIDE },
+  center: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: SIDE, paddingVertical: 24 },
   stack: { alignSelf: 'stretch' },
   overline: { textAlign: 'center', marginBottom: 12, fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
-  cardWrap: { height: 230 },
+  cardWrap: { minHeight: CARD_MIN_H },
+  // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
+  faceText: { alignSelf: 'stretch', alignItems: 'center' },
   card: { flex: 1 },
   face: { ...StyleSheet.absoluteFillObject, borderRadius: 28, padding: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backfaceVisibility: 'hidden', boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: 'rgba(0,0,0,0.8)' }] },
   faceBack: {},
@@ -229,8 +247,8 @@ const styles = StyleSheet.create({
   exampleTr: { marginTop: 4, fontSize: 15, lineHeight: 20 },
   acts: { marginTop: 14, flexDirection: 'row', gap: 10 },
   act: { flex: 1 },
-  actCard: { height: 86 },
-  actInner: { alignItems: 'center', justifyContent: 'center', gap: 10, flex: 1 },
-  actText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  actCard: { minHeight: 86 },
+  actInner: { alignItems: 'center', justifyContent: 'center', gap: 10, flex: 1, paddingVertical: 12, paddingHorizontal: 6 },
+  actText: { fontSize: 15, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
   foot: { marginTop: 14 },
 });

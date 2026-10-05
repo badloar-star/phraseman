@@ -51,7 +51,7 @@ const KNOWN_DEBT: readonly string[] = [
  */
 const FALSE_POSITIVES: Readonly<Record<string, string>> = {
   'app/flashcards/CollectionHeaderV2.tsx': 'шапка: flex:1 у поля поиска, центр у круглых кнопок',
-  'app/flashcards/ExpandedCardV2.tsx': 'карточка фиксированной высоты (230) в оверлее, действия — плитки ряда',
+  'app/flashcards/ExpandedCardV2.tsx': 'карточка растёт по тексту (мин. 230), стопка прокручивается; действия — плитки ряда',
   'app/flashcards/FlashcardsCategoryHub.tsx': 'центр только у плиток/пилюль; «Продолжить» — текст строки',
   'app/learning_v2_modes_showcase_run/[family].tsx': 'dev-only (редирект при !__DEV__), сцена space-between с доком',
   'components/FeedbackRatingCard.tsx': 'встроенная карточка: центр у звёзд и кнопки, «Отправить» в комментарии',

@@ -466,6 +466,7 @@ export default function FlashcardsTrainingSetupScreen() {
     console.log('[FC-TRAIN-ENTRY] setup:start-queued → cancel', JSON.stringify({ reason }));
   }, []);
   useFocusEffect(useCallback(() => {
+    console.log('[BLITZ-AUTOOPEN] setup:focus', JSON.stringify({ queued: pendingStartRef.current }));
     resetStartLock();
     return () => cancelQueuedStart('blur');
   }, [cancelQueuedStart, resetStartLock]));
@@ -495,6 +496,7 @@ export default function FlashcardsTrainingSetupScreen() {
     setStartQueued(false);
     const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId });
     if (!route) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_route', JSON.stringify({ mode, selectedDecks: selectedDeckIds.length })); return; }
+    console.log('[BLITZ-AUTOOPEN] setup:push', JSON.stringify({ mode }));
     console.log('[FC-TRAIN-ENTRY] setup:push', JSON.stringify({ pathname: route.pathname, params: route.params }));
     startInFlightRef.current = true;
     setStarting(true);

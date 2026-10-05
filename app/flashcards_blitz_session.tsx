@@ -183,6 +183,12 @@ export default function FlashcardsBlitzSession() {
   const roundDurationMsRef = useRef<number | null>(null);
   if (roundDurationMsRef.current === null) roundDurationMsRef.current = parseBlitzDurationSec(params.sec) * 1000;
   const roundDurationMs = roundDurationMsRef.current;
+  // зачем (координатор 05.10, «тап → назад → Блиц открылся сам»): каждый вход в экран блица печатает, с чем пришёл — по этой строке видно, КТО его открыл (маршрут и параметры) и сколько раз.
+  useEffect(() => {
+    console.log('[BLITZ-AUTOOPEN] session:mount', JSON.stringify({ deck: params.deck ?? null, sec: params.sec ?? null, at: Date.now() }));
+    return () => console.log('[BLITZ-AUTOOPEN] session:unmount', JSON.stringify({ at: Date.now() }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.

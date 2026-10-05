@@ -533,6 +533,7 @@ export default function FlashcardsHubScreen() {
     // после выбора режима сразу открываем сессию с этим набором. Блиц с малым числом карточек, неизвестный набор — прежний путь через экран выбора.
     const deck = pendingDeckRef.current;
     pendingDeckRef.current = null;
+    console.log('[BLITZ-AUTOOPEN] hub:dismissal-push', JSON.stringify({ mode, deck: deck ? deck.deckId : null, count: deck ? deck.count : null }));
     if (deck && isValidDeckId(deck.deckId)) {
       const route = mode === 'blitz' && !canStartBlitz(deck.count) ? null : buildCardsTrainingRoute(mode, [deck.deckId]);
       console.log(`[FC-TRAIN-ENTRY] прямой старт набора deck=${deck.deckId} режим=${mode} карточек=${deck.count} маршрут=${route ? route.pathname : 'нет → экран выбора'}`);
@@ -582,6 +583,7 @@ export default function FlashcardsHubScreen() {
   // со всей логикой лимита и пейвола; параметр сбрасываем, чтобы возврат на хаб не открывал окно снова.
   const autoTrainHandledRef = useRef(false);
   useEffect(() => {
+    console.log('[BLITZ-AUTOOPEN] hub:autotrain-effect', JSON.stringify({ train: hubParams.train ?? null, deck: hubParams.deck ?? null, handled: autoTrainHandledRef.current }));
     if (hubParams.train !== '1' || autoTrainHandledRef.current) return;
     autoTrainHandledRef.current = true;
     const deckParam = typeof hubParams.deck === 'string' ? hubParams.deck.trim() : '';
@@ -590,7 +592,10 @@ export default function FlashcardsHubScreen() {
     onTrainPress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hubParams.train]);
-  useFocusEffect(useCallback(() => { autoTrainHandledRef.current = false; }, []));
+  useFocusEffect(useCallback(() => {
+    console.log('[BLITZ-AUTOOPEN] hub:focus — сброс флага автозапуска');
+    autoTrainHandledRef.current = false;
+  }, []));
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
   const topCard = peekSelectedSavedContour()?.[0] ?? null;

@@ -115,6 +115,21 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useStableSafeAreaInsets();
   const { width: screenW } = useWindowDimensions();
+  // зачем (координатор 05.10, packs-simple-001: «переключатель «Новые/+/Топ» закрывает последнюю карточку»; сверка нашла настоящее отличие):
+  // нижний отступ списка считался по формуле (высота таб-бара + 84), а где на самом деле стоит док переключателя, не знал. Теперь меряем ОБА
+  // прямоугольника в окне и берём отступ, при котором последняя карточка прокручивается целиком над доком (+16); формула остаётся нижним пределом.
+  const regionRef = useRef<View>(null);
+  const dockRef = useRef<View>(null);
+  const [dockClearance, setDockClearance] = useState(0);
+  const measureDockClearance = useCallback(() => {
+    regionRef.current?.measureInWindow((_rx, ry, _rw, rh) => {
+      dockRef.current?.measureInWindow((_dx, dy, _dw, dh) => {
+        const need = Math.max(0, Math.round(ry + rh - dy + 16));
+        console.log('[CATALOG-LAYOUT] dock', JSON.stringify({ regionY: Math.round(ry), regionH: Math.round(rh), dockY: Math.round(dy), dockH: Math.round(dh), need, tabContentBottomPad, insetBottom: insets.bottom }));
+        setDockClearance((prev) => (prev === need ? prev : need));
+      });
+    });
+  }, [insets.bottom, tabContentBottomPad]);
   /**
    * Заголовок делит шапку с тремя круглыми кнопками, поэтому на узких экранах
    * он аккуратно уменьшается, а не превращается в «Наборы сообщес…».
@@ -591,13 +606,13 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         </View>
         )}
 
-        <View style={styles.scrollRegion}>
+        <View ref={regionRef} collapsable={false} onLayout={measureDockClearance} style={styles.scrollRegion}>
           <Animated.ScrollView decelerationRate="fast"
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
               embedded ? styles.scrollContentEmbedded : null,
-              { paddingBottom: (embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 84 },
+              { paddingBottom: Math.max((embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 84, dockClearance) },
             ]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
@@ -630,7 +645,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             />
           </Animated.ScrollView>
         </View>
-        <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
+        <View ref={dockRef} collapsable={false} onLayout={measureDockClearance} style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
           {/* зачем (владелец 04.10, packs-simple.html `.bar3`, «как на макете»): компактная плавающая пилюля по центру —
               «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
               «+» по центру — круг 48 цвета темы. kit.css даёт `.bar3` блик и кромку (::after), а тень --lg-drop

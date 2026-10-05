@@ -278,6 +278,14 @@ describe('шапка каталога сообщества (замечания �
     expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
   });
 
+  it('нижний отступ списка меряется по реальному доку переключателя, а не только по формуле (packs-simple-001)', () => {
+    expect(screen).toContain('measureInWindow');
+    expect(screen).toContain('dockClearance');
+    expect(screen).toMatch(/paddingBottom: Math\.max\(\(embedded \? tabContentBottomPad : Math\.max\(insets\.bottom, 16\)\) \+ 84, dockClearance\)/);
+    // лог для разбора, если отличие останется: области, док, нужный отступ
+    expect(screen).toContain("[CATALOG-LAYOUT] dock");
+  });
+
   it('каталог получает фильтр готовым из шапки', () => {
     expect(screen).toContain('communityQuery={communityQuery}');
     expect(screen).toContain('communitySort={communitySort}');

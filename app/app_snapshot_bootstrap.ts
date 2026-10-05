@@ -7,7 +7,7 @@ import {
   type AppSnapshotSettings,
 } from './app_snapshot_store';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
-import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { lastOpenedLessonKey, lessonProgressKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
 import type { SettingsBootReadScope } from '../lib/startup_settings_read_scope';
 import { buildCustomizationSnapshot } from './customization_snapshot';
@@ -193,6 +193,33 @@ async function primeFriendsSnapshot(): Promise<void> {
   await startFriendsTabSwrPrime();
 }
 
+const BOOT_LESSON_COUNT = 32;
+
+/**
+ * Число верных ответов последнего открытого урока — тот же счёт, что у Главной в loadData ('correct' | 'replay_correct').
+ * null — урока нет или запись прогресса битая (Главная тогда ждёт свой loadData, как раньше).
+ */
+function lastOpenedLessonCorrectFromBoot(
+  lastOpenedRaw: string | null,
+  values: ReadonlyMap<string, string | null>,
+  studyTarget?: RuntimeStudyTarget,
+): number | null {
+  const lessonId = lastOpenedRaw ? parseInt(lastOpenedRaw, 10) : NaN;
+  if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > BOOT_LESSON_COUNT) return null;
+  const raw = values.get(lessonProgressKey(lessonId, studyTarget)) ?? null;
+  if (!raw) return 0;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return null;
+    let correct = 0;
+    for (const answer of parsed) if (answer === 'correct' || answer === 'replay_correct') correct += 1;
+    return correct;
+  } catch (error) {
+    console.warn('[HOME-COLD] boot_lesson_progress:parse_failed', JSON.stringify({ lessonId, error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch логируется
+    return null;
+  }
+}
+
 export async function primeAppSnapshotFromStorage(
   studyTarget?: RuntimeStudyTarget,
   settingsBootReadScope?: SettingsBootReadScope,
@@ -212,10 +239,14 @@ export async function primeAppSnapshotFromStorage(
   const vipSnapshot = await readVipSnapshotForGeneration(accountGeneration);
   if (!isAccountCurrent()) return;
   const lastOpenedKey = lastOpenedLessonKey(studyTarget);
+  // зачем (пакет 07:26 [HOME-COLD]: карточка урока на холодном старте — заглушки): прогресс уроков читаем в ТОМ ЖЕ
+  // multiGet (номер последнего урока до чтения неизвестен) — без второго похода в хранилище и без нового ключа.
+  const lessonProgressKeys = Array.from({ length: BOOT_LESSON_COUNT }, (_, index) => lessonProgressKey(index + 1, studyTarget));
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
     ...BOOT_SETTINGS_KEYS,
+    ...lessonProgressKeys,
     lastOpenedKey,
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
@@ -269,6 +300,8 @@ export async function primeAppSnapshotFromStorage(
       updatedAt: now,
       primedCount: 0,
       lastOpenedLesson: values.get(lastOpenedKey) ?? null,
+      lastOpenedLessonCorrect: lastOpenedLessonCorrectFromBoot(values.get(lastOpenedKey) ?? null, values, studyTarget),
+      studyTarget: storageStudyTarget(studyTarget),
     },
     settings: buildSettingsSnapshot(values, now),
     primedAt: now,

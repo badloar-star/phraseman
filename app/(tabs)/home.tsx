@@ -747,7 +747,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         if (homeColdFirstFrameLogged) return;
         homeColdFirstFrameLogged = true;
         console.warn('[HOME-COLD] first_frame', JSON.stringify({
-            lessonCard: lastLesson ? 'memory' : 'empty',
+            lessonCard: lastLesson ? (peekHomeScreenHydration(studyTarget) ? 'memory' : 'boot_snapshot') : 'empty',
             lessonId: lastLesson?.id ?? null,
             hydrationInMemory: peekHomeScreenHydration(studyTarget) !== null,
             videos: homeV2Videos.length,
@@ -1684,7 +1684,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:late_insert', JSON.stringify({ lastId, correct }));
                     // зачем (Сверка 06:01, пустая карточка урока на холодном старте): когда карточка получила данные и
                     // что было на первом кадре — данных в памяти процесса не было, пришли из loadData.
-                    console.warn('[HOME-COLD] lesson_card:late', JSON.stringify({ source: 'loadData', lastId, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt })); // guard-ok: временная трассировка холодного старта
+                    console.warn('[HOME-COLD] lesson_card:late', JSON.stringify({ source: 'loadData', lastId, atEpochMs: Date.now() })); // guard-ok: временная трассировка холодного старта (сравнивать с [HOME-RENDER] committedEpochMs; ссылаться на переменные модуля тут нельзя — блок loadData исполняет сторож home_lesson_progress_single_pass)
                     animateNextLayoutTransition();
                 }
                 setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
@@ -1694,7 +1694,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // Урока нет — заготовка уходит плавно, а не рывком.
                 if (!continueResolvedRef.current) {
                     if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:none — заготовка снята');
-                    console.warn('[HOME-COLD] lesson_card:none', JSON.stringify({ lastId: lastId ?? null, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt })); // guard-ok: временная трассировка холодного старта
+                    console.warn('[HOME-COLD] lesson_card:none', JSON.stringify({ lastId: lastId ?? null, atEpochMs: Date.now() })); // guard-ok: временная трассировка холодного старта
                     animateNextLayoutTransition();
                 }
                 setLastLesson(null);

@@ -133,6 +133,9 @@ function publishLessonPrimeSummary(studyTarget?: RuntimeStudyTarget): void {
       updatedAt: Date.now(),
       primedCount: Object.keys(byLesson).length,
       lastOpenedLesson: current.lessons?.lastOpenedLesson ?? null,
+      // зачем (карточка «Продолжить урок» в первом кадре): не терять счёт последнего урока из стартового снимка.
+      lastOpenedLessonCorrect: current.lessons?.lastOpenedLessonCorrect ?? null,
+      ...(current.lessons?.studyTarget ? { studyTarget: current.lessons.studyTarget } : {}),
     },
   }));
 }

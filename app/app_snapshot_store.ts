@@ -54,6 +54,13 @@ export interface AppSnapshotProgress extends AppSnapshotMeta {
 export interface AppSnapshotLessons extends AppSnapshotMeta {
   primedCount: number;
   lastOpenedLesson: string | null;
+  /**
+   * зачем (пакет 07:26 [HOME-COLD]: карточка «Продолжить урок» на холодном старте — заглушки): число верных ответов у
+   * последнего открытого урока, посчитанное стартовым чтением из тех же ключей прогресса, что читает Главная. Вместе с
+   * языком изучения — карточка рисуется в первом кадре, loadData потом уточняет.
+   */
+  lastOpenedLessonCorrect?: number | null;
+  studyTarget?: string;
 }
 
 export interface AppSnapshotFriendProfile {

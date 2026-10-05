@@ -442,6 +442,29 @@ export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]
   }
 }
 
+/**
+ * Только локальное чтение сохранённой ленты (без сети): последний успешный список канала + пины + непросмотренные.
+ * зачем (Сверка 06:01, пакет 07:26 [HOME-COLD] videos=0): Главная показывает это сразу, а сеть обновляет фоном —
+ * правило владельца «каждый раздел мгновенно из кэша». null — кэша нет (первый запуск или другой канал).
+ */
+export async function readCachedLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapshot | null> {
+  const cached = await readCachedVideos();
+  if (!cached) return null;
+  let lastSeenId: string | null = null;
+  try {
+    lastSeenId = await AsyncStorage.getItem(STORAGE_LAST_SEEN_ID);
+  } catch (error) {
+    console.warn('[HOME-COLD] video_cache:last_seen_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+  }
+  const videos = mergePinnedVideos(getPinnedFeedVideos(), cached);
+  return {
+    videos,
+    latestVideoId: videos[0]?.id ?? null,
+    unreadCount: getLingmanYoutubeUnreadCount(videos, lastSeenId),
+    fetchedAtMs: Date.now(),
+  };
+}
+
 export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapshot> {
   const seenRevisionAtStart = seenMutationRevision;
   const seenWritePendingAtStart = pendingSeenMutationRevision !== 0;

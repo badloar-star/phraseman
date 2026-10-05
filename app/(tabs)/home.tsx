@@ -458,6 +458,10 @@ const homeModuleEvaluatedAt = Date.now();
 let homeFirstRenderStartedAt = 0;
 let homeFirstRenderLogged = false;
 let homeColdFirstFrameLogged = false;
+// зачем (пакет 07:26 [HOME-COLD]: videos=0 на первом кадре, сеть до 10 с): последний показанный снимок ленты (RSS-путь) —
+// повторный вход на Главную берёт его в первом кадре; сеть ходит один раз за запуск, флаг ставится только при успехе.
+let homeVideoSnapshotMemo: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error: boolean }> | null = null;
+let homeVideoNetworkOkThisLaunch = false;
 function logHomeFirstRenderTiming(): void {
   if (homeFirstRenderLogged) return;
   homeFirstRenderLogged = true;
@@ -723,10 +727,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Счётчик непросмотренных видео переехал из кнопки в шапке в этот же ряд.
     // зачем D130: для языка с лентой из каталога (итальянский) первый кадр берёт кэш процесса.
     const [homeV2Videos, setHomeV2Videos] = useState<readonly LingmanYoutubeVideo[]>(() => (
-        homeVideoRailUsesCatalog(studyTarget) ? peekHomeVideoRailForTarget(studyTarget)?.videos ?? [] : []
+        homeVideoRailUsesCatalog(studyTarget)
+            ? peekHomeVideoRailForTarget(studyTarget)?.videos ?? []
+            : homeVideoSnapshotMemo?.videos ?? []
     ));
     const [homeV2VideoStatus, setHomeV2VideoStatus] = useState<'loading' | 'ready' | 'error'>(() => (
-        homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget) ? 'ready' : 'loading'
+        homeVideoRailUsesCatalog(studyTarget)
+            ? (peekHomeVideoRailForTarget(studyTarget) ? 'ready' : 'loading')
+            : (homeVideoSnapshotMemo && homeVideoSnapshotMemo.videos.length > 0 ? 'ready' : 'loading')
     ));
     // зачем D132: канала на языке изучения нет → лента скрыта целиком (кэш процесса
     // даёт ответ уже на первом кадре при повторном заходе).
@@ -893,20 +901,42 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         let alive = true;
         const videoLoadStartedAt = Date.now();
         console.warn('[HOME-COLD] video:start', JSON.stringify({ sinceFirstRenderMs: videoLoadStartedAt - homeFirstRenderStartedAt, catalogRail: homeVideoRailUsesCatalog(studyTarget) })); // guard-ok: временная трассировка холодного старта
+        // зачем (пакет 07:26 [HOME-COLD], правило «мгновенно из кэша»): сначала сохранённый список (локально, мс), сеть —
+        // фоном и один раз за запуск. Раньше сеть шла на каждый фокус Главной и до неё лента стояла серой.
+        const applySnapshot = (
+            snapshot: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error?: string }>,
+            source: 'cache' | 'network',
+        ) => {
+            console.warn('[HOME-COLD] video:resolved', JSON.stringify({
+                source, alive, ms: Date.now() - videoLoadStartedAt, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt,
+                videos: snapshot.videos.length, error: snapshot.error ?? null,
+            })); // guard-ok: трассировка холодного старта
+            if (!alive) return;
+            latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
+            // зачем D130: язык с лентой из каталога берёт видео своего канала (эффект ниже),
+            // английская RSS-лента для него только считает непросмотренные.
+            if (homeVideoRailUsesCatalog(studyTarget)) return;
+            // Сбой сети без своих видео не стирает уже показанный кэш.
+            if (source === 'network' && snapshot.error && snapshot.videos.length === 0 && homeVideoSnapshotMemo?.videos.length) return;
+            homeVideoSnapshotMemo = { videos: snapshot.videos, latestVideoId: snapshot.latestVideoId, error: !!snapshot.error };
+            setHomeV2Videos(snapshot.videos);
+            setHomeV2VideoStatus(snapshot.error && snapshot.videos.length === 0 ? 'error' : 'ready');
+        };
+        if (homeVideoSnapshotMemo) latestVideoIdRef.current = homeVideoSnapshotMemo.latestVideoId;
         void import('../lingman_youtube')
-            .then((m) => m.getLingmanYoutubeSnapshot())
-            .then((snapshot) => {
-                console.warn('[HOME-COLD] video:resolved', JSON.stringify({
-                    alive, ms: Date.now() - videoLoadStartedAt, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt,
-                    videos: snapshot.videos.length, error: snapshot.error ?? null,
-                })); // guard-ok: временная трассировка холодного старта
-                if (!alive) return;
-                latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
-                // зачем D130: язык с лентой из каталога берёт видео своего канала (эффект ниже),
-                // английская RSS-лента для него только считает непросмотренные.
-                if (homeVideoRailUsesCatalog(studyTarget)) return;
-                setHomeV2Videos(snapshot.videos);
-                setHomeV2VideoStatus(snapshot.error && snapshot.videos.length === 0 ? 'error' : 'ready');
+            .then(async (m) => {
+                if (!homeVideoSnapshotMemo) {
+                    const cached = await m.readCachedLingmanYoutubeSnapshot();
+                    if (cached) applySnapshot(cached, 'cache');
+                    else console.warn('[HOME-COLD] video:cache_miss', JSON.stringify({ ms: Date.now() - videoLoadStartedAt })); // guard-ok: ветка логируется
+                }
+                if (homeVideoNetworkOkThisLaunch) {
+                    console.warn('[HOME-COLD] video:network_skip', JSON.stringify({ reason: 'already_refreshed_this_launch' })); // guard-ok: ветка логируется
+                    return;
+                }
+                const snapshot = await m.getLingmanYoutubeSnapshot();
+                if (!snapshot.error) homeVideoNetworkOkThisLaunch = true;
+                applySnapshot(snapshot, 'network');
             })
             .catch((error: unknown) => {
                 console.warn('[HOME-VIDEO] snapshot:catch → 0', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен

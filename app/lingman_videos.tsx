@@ -137,21 +137,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // идёт по индексу в данных списка, а не по замеренному y карточки.
   const homeListRef = useRef<FlashListRef<YoutubeVideoSnapshot> | null>(null);
   const deepLinkHandledRef = useRef<string | null>(null);
-  // зачем (Сверка video-001 🔴: «Смотреть все» открывает список прокрученным): гипотеза — FlashList держит позицию
-  // первой карточки, пока шапка списка дорастает. Лог: высоты шапки и первые смещения (был ли жест пользователя).
-  const scrollTraceRef = useRef({ headerH: 0, events: 0, dragged: false, startedAt: Date.now() });
-  const traceHeaderLayout = useCallback((h: number) => {
-    const trace = scrollTraceRef.current;
-    if (Math.round(h) === Math.round(trace.headerH)) return;
-    console.warn('[VIDEO-SCROLL] header_layout', JSON.stringify({ h: Math.round(h), prevH: Math.round(trace.headerH), sinceMountMs: Date.now() - trace.startedAt })); // guard-ok: временная трассировка video-001
-    trace.headerH = h;
-  }, []);
-  const traceScroll = useCallback((y: number) => {
-    const trace = scrollTraceRef.current;
-    if (trace.events >= 8) return;
-    trace.events += 1;
-    console.warn('[VIDEO-SCROLL] scroll', JSON.stringify({ y: Math.round(y), userDragged: trace.dragged, headerH: Math.round(trace.headerH), sinceMountMs: Date.now() - trace.startedAt })); // guard-ok: временная трассировка video-001, первые 8 событий
-  }, []);
   // зачем: «Напомнить» меняется на «Напоминание установлено» мгновенно (оптимистично), система догоняет.
   const [remindedIds, setRemindedIds] = useState<readonly string[]>([]);
 
@@ -642,10 +627,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             showsVerticalScrollIndicator={false}
             refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />}
             contentContainerStyle={inTab ? { ...styles.list, paddingBottom: tabContentBottomPad } : styles.list}
-            onScroll={(e) => traceScroll(e.nativeEvent.contentOffset.y)}
-            scrollEventThrottle={64}
-            onScrollBeginDrag={() => { scrollTraceRef.current.dragged = true; }}
-            ListHeaderComponent={<View onLayout={(e) => traceHeaderLayout(e.nativeEvent.layout.height)}>
+            ListHeaderComponent={<>
             {hero && !savedOnly ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer
@@ -668,7 +650,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             {savedOnly ? null : packsRow}
             {savedRow}
             {savedOnly ? null : <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>}
-            </View>}
+            </>}
             ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
           />
         )}

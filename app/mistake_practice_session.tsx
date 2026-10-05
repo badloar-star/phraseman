@@ -1327,18 +1327,19 @@ function MistakePracticeSessionScreen() {
                 <DiffValue g={g} segments={diff.mine} baseColor={g.text} style={styles.whyValue} />
               </View>
             ) : null}
-            <View style={styles.whyRowText}>
+            {/* зачем (Сверка mistakes-panel-016, .pr + .pr): строки панели «Почему» разделены линией 1 px */}
+            <View style={[styles.whyRowText, feedback.userAnswer.trim() ? styles.whyDivider : null]}>
               <Text testID="mistake-verdict-explanation" style={styles.whyBody}>
                 {whyText || (mistakeExplain.aiMistakeState === 'loading' ? pcopy.thinking : '')}
               </Text>
             </View>
-            <View style={styles.whyRow}>
+            <View style={[styles.whyRow, styles.whyDivider]}>
               <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
               <DiffValue g={g} segments={diff.correct} baseColor={MP_COLORS.okText} style={styles.whyValue} />
             </View>
           </Panel>
           <View style={[styles.trayRow, styles.trayRowGap]}>
-            {liveExplanation ? <PanelCta g={g} ghost testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
+            {liveExplanation ? <PanelCta g={g} ghost flex testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
             <PanelCta g={g} flex label={pcopy.understood} onPress={() => setWhyOpen(false)} />
           </View>
         </Tray>
@@ -1365,7 +1366,8 @@ function MistakePracticeSessionScreen() {
               ) : null}
               <Text testID="mistake-verdict-text" style={styles.trayWhy}>{whyText}</Text>
               <View style={styles.trayRow}>
-                <PanelCta g={g} ghost testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
+                {/* зачем (Сверка mistakes-panel-015/016, .row2 .cta2 flex:1): «Почему» / «Объясни проще» делят строку 50/50 с главной кнопкой */}
+                <PanelCta g={g} ghost flex testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
                 <PanelCta g={g} flex testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
               </View>
             </>
@@ -1590,6 +1592,7 @@ const baseStyles = StyleSheet.create({
   whyTitle: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '700' },
   whyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14 },
   whyRowText: { paddingVertical: 12 },
+  whyDivider: { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.07)' }] },
   whyLabel: { width: 90, fontSize: 16, lineHeight: 20 },
   whyValue: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   whyBody: { fontSize: 16, lineHeight: 23, color: '#E2E2E6' },

@@ -51,7 +51,9 @@ test('lingman: кнопка «Settings» по-прежнему открывае�
 
 test('paywall_purchase: логика покупки не тронута, окна идут через очередь стеклянных алертов', () => {
   assert.ok(files.paywall.includes("from './themed_blocking_alert_queue'"));
-  assert.equal((files.paywall.match(/void enqueueThemedBlockingInfoAlert\(/g) ?? []).length, 4);
+  assert.equal((files.paywall.match(/void enqueueThemedBlockingInfoAlert\(/g) ?? []).length, 3);
+  // зачем (65а, макет 014): «Статус покупки не подтверждён» — окно выбора «Проверить статус / Восстановить покупки».
+  assert.equal((files.paywall.match(/return enqueueThemedBlockingChoiceAlert\(/g) ?? []).length, 1);
   assert.ok(files.paywall.includes('showPurchasePendingAlert(lang)'));
   assert.ok(files.paywall.includes('showUnverifiedPurchaseAlert(lang)'));
 });

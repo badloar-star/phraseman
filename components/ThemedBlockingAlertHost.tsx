@@ -22,7 +22,12 @@ function ThemedBlockingAlertHost() {
       title={head?.title ?? ''}
       message={head?.message || undefined}
       icon={head?.icon}
-      actions={head ? [{ label: head.okLabel, onPress: () => { resolveThemedBlockingAlertHead(); } }] : []}
+      // зачем (Дизайн 05.10, 014/038/039): все кнопки окна; нажатая возвращает своё значение вызывающему.
+      actions={head ? head.actions.map((action) => ({
+        label: action.label,
+        ghost: action.ghost,
+        onPress: () => { resolveThemedBlockingAlertHead(action.value); },
+      })) : []}
       onRequestClose={() => {
         resolveThemedBlockingAlertHead();
       }}

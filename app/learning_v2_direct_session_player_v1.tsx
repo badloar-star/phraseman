@@ -209,6 +209,8 @@ import { sanitizeLearningV2LearnerPromptV1 } from "../modules/learning-v2/conten
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { resolveLearningV2SessionRouteCoordinatesV1 } from "./learning_v2_session_route_coordinates_v1";
 import { isPulseLessonAuthored } from "../components/learning-v2/learningV2PulseGeometry";
+import { useLineScale } from "../hooks/useLineScale";
+import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -390,6 +392,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     [g.text, g.opaqueControl],
   );
   const insets = useStableSafeAreaInsets();
+  const lh = useLineScale();
   const reducedMotion = useReducedMotion();
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
   const routedSessionRunId = first(params.sessionRunId);
@@ -2583,37 +2586,69 @@ export default function LearningV2DirectSessionPlayerV1() {
     // плитка 140 с кубком, заголовок 30/700, пояснение 17 и кнопка «Начать проверку» на токенах
     // темы. Прежний иллюстрированный «портал» уехал вместе со своей палитрой; сам вход и
     // порядок (setCheckpointEntryDone → practice) не менялись.
+    // зачем (сверка с learning-v2.html checkEntry, 05.10): шапка .shd — крестик выхода, попытки и энергия (без
+    // полосы прогресса); контент сверху в 96 от шапки, плитка 140 с кубком 26, пилюля «Подсказки выключены»,
+    // кнопка «Начать проверку →» закреплена внизу (.fx). Раньше не было ни выхода, ни пилюли, всё стояло по центру.
     return (
-      <ScrollView
-        style={{ flex: 1, backgroundColor: g.bg }}
-        contentContainerStyle={[
-          styles.center,
-          { flex: undefined, flexGrow: 1, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 },
-        ]}
-      >
-        <View style={[styles.checkpointTile, { backgroundColor: g.opaqueCard, shadowColor: g.bg }]}>
-          <Ionicons name={isFinal ? "trophy" : "trophy-outline"} size={56} color={g.text} />
+      <View style={[styles.screen, { backgroundColor: g.bg }]}>
+        <View style={[styles.checkpointHeader, { paddingTop: insets.top + 8 }]}>
+          <Pressable
+            testID="learning-v2-checkpoint-close"
+            accessibilityRole="button"
+            accessibilityLabel={copy.close}
+            hitSlop={8}
+            onPress={exitLearningV2Session}
+            style={({ pressed }) => [
+              styles.checkpointClose,
+              { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 },
+            ]}
+          >
+            <KitGlassLayer radius={21} />
+            <Ionicons name="close" size={20} color={g.text} />
+          </Pressable>
+          <View style={styles.screen} />
+          <SessionAttemptsHud
+            glassPill={heartsPill}
+            remaining={sessionAttempts.state.remainingAttempts}
+            locale={lang}
+            testID="learning-v2-checkpoint-attempts"
+          />
+          <EnergyBar glass />
         </View>
-        <Text style={[styles.checkpointTitle, { color: g.text }]}>
-          {isFinal
-            ? checkpointCopy.finalTitle
-            : checkpointCopy.entryTitle(chapter)}
-        </Text>
-        <Text style={[styles.checkpointBody, { color: g.secondary }]}>
-          {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
-        </Text>
-        <Lv2Cta
-          accessibilityLabel={checkpointCopy.start}
-          onPress={() => {
-            sessionStageRef.current = "practice";
-            setCheckpointEntryDone(true);
-            setIntroDone(true);
-          }}
-          style={styles.checkpointCta}
+        <ScrollView
+          style={styles.screen}
+          contentContainerStyle={[styles.checkpointBodyWrap, { paddingBottom: insets.bottom + 120 }]}
         >
-          {checkpointCopy.start}
-        </Lv2Cta>
-      </ScrollView>
+          <View style={[styles.checkpointTile, { backgroundColor: g.opaqueCard, shadowColor: g.bg }]}>
+            <Ionicons name={isFinal ? "trophy" : "trophy-outline"} size={26} color={g.text} />
+          </View>
+          <Text style={[styles.checkpointTitle, { color: g.text, lineHeight: lh(36) }]}>
+            {isFinal
+              ? checkpointCopy.finalTitle
+              : checkpointCopy.entryTitle(chapter)}
+          </Text>
+          <Text style={[styles.checkpointBody, { color: g.secondary, lineHeight: lh(24) }]}>
+            {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
+          </Text>
+          <View testID="learning-v2-checkpoint-no-hints" style={[styles.checkpointPill, { borderColor: g.glassEdge }]}>
+            <Ionicons name="lock-closed" size={16} color={g.text} />
+            <Text style={[styles.checkpointPillText, { color: g.text, lineHeight: lh(21) }]}>{checkpointCopy.noHints}</Text>
+          </View>
+        </ScrollView>
+        <View style={[styles.checkpointFooter, { paddingBottom: Math.max(insets.bottom, 12) + 8 }]} pointerEvents="box-none">
+          <Lv2Cta
+            accessibilityLabel={checkpointCopy.start}
+            onPress={() => {
+              sessionStageRef.current = "practice";
+              setCheckpointEntryDone(true);
+              setIntroDone(true);
+            }}
+            right={<Ionicons name="arrow-forward" size={20} color={g.accentInk} />}
+          >
+            {checkpointCopy.start}
+          </Lv2Cta>
+        </View>
+      </View>
     );
   }
 
@@ -3569,13 +3604,39 @@ const styles = StyleSheet.create({
   },
   checkpointBody: {
     fontSize: 16,
-    lineHeight: 23,
+    lineHeight: 24,
     fontWeight: "400",
     textAlign: "center",
     marginTop: 12,
     maxWidth: 320,
   },
-  checkpointCta: { marginTop: 30, alignSelf: "stretch" },
+  // checkEntry: шапка .shd (8 под статус-баром, поля 20, gap 10), крестик .rb 42.
+  checkpointHeader: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 20, minHeight: 42 },
+  checkpointClose: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 1, // guard-ok: 1 px кромка `.rb` (исключение PhraseMan 2.0)
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // padding 96px 10px 0 внутри полей страницы 20.
+  checkpointBodyWrap: { alignItems: "center", paddingTop: 96, paddingHorizontal: 30 },
+  // `.pill.s.ol`: 30, поля 13, gap 7, контур --line-2, margin-top 22.
+  checkpointPill: {
+    marginTop: 22,
+    minHeight: 30,
+    paddingHorizontal: 13,
+    borderRadius: 15,
+    borderWidth: 1, // guard-ok: контурная пилюля `.pill.ol`
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+  },
+  checkpointPillText: { fontSize: 16, fontWeight: "700" },
+  // `.fx`: кнопка закреплена внизу, поля 20.
+  checkpointFooter: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 20 },
   checkpointRows: { width: "100%", alignItems: "center", marginTop: 18 },
   screen: { flex: 1 },
   practiceBlocked: { opacity: 0 },

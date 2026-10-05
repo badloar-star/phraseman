@@ -23,6 +23,7 @@ import { useLearningV2CompactPractice } from "../../../components/learning-v2/Le
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Lv2Explain, Lv2Option, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
+import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeContextGapCopyV1 } from "./mode_copy_v1";
 
@@ -97,7 +98,7 @@ function ContextGapVariantV1({
   }, [nudgeToken, reducedMotion, nudge]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: dimmed ? 0.82 : 1,
+    opacity: 1,
     transform: [
       { translateY: lift.value * -2 },
       { translateX: nudge.value },
@@ -115,7 +116,7 @@ function ContextGapVariantV1({
         onPress={onPress}
         selected={selected}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
-        style={dimmed ? { opacity: 0.6 } : undefined}
+        style={dimmed ? { opacity: 0.45 } : undefined}
         textStyle={textColor ? { color: textColor } : undefined}
         label={label}
       />
@@ -167,24 +168,26 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
     if (phase !== "success") announcedRef.current = false;
   }, [phase, reducedMotion, prompt]);
 
-  const hasSelection = selectedChoiceId !== null;
+  const sx = useScaledTextStyles(styles);
 
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
-      <Text style={[styles.scene, { color: g.secondary }]}>
+    // зачем (сверка с learning-v2.html cg, 05.10): отступы макета — сцена 10, фраза с пропуском 18, варианты 26 через 13,
+    // разбор 18 (было ровно 14); заголовок 600; затемнение .45 только у вариантов вне разбора (в cg-2…4 не гаснут).
+    <View style={sx.root}>
+      <Text style={[sx.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
+      <Text style={[sx.scene, { color: g.secondary }, compact && { marginTop: 4 }]}>
         {modePayload?.family === "context_gap_grammar"
           ? modePayload.localizedScene[interfaceLocale]
           : prompt}
       </Text>
 
-      <View style={styles.heroRow}>
+      <View style={[sx.heroRow, compact && { marginTop: 8 }]}>
         {hasGap ? (
-          <Text style={[styles.hero, { color: g.text }]}>
+          <Text style={[sx.hero, { color: g.text }]}>
             {pre}
             <Text
               style={[
-                styles.gapSlot,
+                sx.gapSlot,
                 {
                   color: filled ? gapPaint.ink : g.mutedText,
                   backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
@@ -198,11 +201,11 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
           </Text>
         ) : (
           <>
-            <Text style={[styles.hero, { color: g.text }]}>{prompt}</Text>
+            <Text style={[sx.hero, { color: g.text }]}>{prompt}</Text>
             <Text
               style={[
-                styles.gapSlot,
-                styles.gapSlotStandalone,
+                sx.gapSlot,
+                sx.gapSlotStandalone,
                 {
                   color: filled ? gapPaint.ink : g.mutedText,
                   backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
@@ -219,14 +222,14 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
             accessibilityLabel={copy.playPhrase}
             hitSlop={8}
             onPress={onPlayFullPhraseAudio}
-            style={[styles.audioBtn, { backgroundColor: g.opaqueControl }]}
+            style={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
           >
             <Ionicons name="volume-high" size={18} color={g.text} />
           </Pressable>
         )}
       </View>
 
-      <View style={[styles.variants, compact && { gap: 6 }]}>
+      <View style={[sx.variants, compact && { gap: 6, marginTop: 10 }]}>
         {options.map((option) => {
           const selected = selectedChoiceId === option.responseId;
           const verdict: "none" | "ok" | "bad" =
@@ -241,7 +244,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
               label={option.text}
               selected={selected}
               verdict={verdict}
-              dimmed={hasSelection && !selected}
+              dimmed={resolved && phase !== "success" && verdict === "none" && !selected}
               nudgeToken={wrongNudge.responseId === option.responseId ? wrongNudge.token : 0}
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
@@ -254,7 +257,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
         })}
       </View>
 
-      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
+      {explanation ? <View style={sx.explainWrap}><Lv2Explain>{explanation}</Lv2Explain></View> : null}
     </View>
   );
 }
@@ -262,14 +265,17 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
 export default ContextGapGrammarModeV1;
 
 const styles = StyleSheet.create({
-  root: { gap: 14 },
+  root: {},
+  // `.tlab` 15/600 --sec (D145 → 16).
   taskLabel: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: "700",
+    fontWeight: "600",
   },
-  scene: { fontSize: 16, lineHeight: 22, fontWeight: "400" },
-  heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 10 },
+  // `.scene` 16/22 --sec, margin-top 10.
+  scene: { fontSize: 16, lineHeight: 22, fontWeight: "400", marginTop: 10 },
+  // `.thero` margin-top 18, gap 12.
+  heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginTop: 18 },
   hero: { flex: 1, fontSize: 28, lineHeight: 44, minWidth: 200, fontWeight: "700", letterSpacing: -0.3 },
   gapSlot: {
     fontWeight: "700",
@@ -288,9 +294,12 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 19,
+    marginTop: 3,
     alignItems: "center",
     justifyContent: "center",
   },
-  variants: { gap: 10, marginTop: 8 },
+  // `.stack.g13` margin-top 26.
+  variants: { gap: 13, marginTop: 26 },
+  explainWrap: { marginTop: 18 },
   variantWrap: { width: "100%" },
 });

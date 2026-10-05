@@ -39,6 +39,7 @@ import { Lv2Explain, Lv2Option, lv2CardStyle, useLv2Glass } from "../../../compo
 import { useLearningV2CompactPractice, useLearningV2PracticeViewportHost } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useArenaSound } from "../../../hooks/use_arena_sound";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
+import { useLineScale, useScaledTextStyles } from "../../../hooks/useLineScale";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeSpeedMatchCopyV1 } from "./mode_copy_v1";
 import { SPEED_MATCH_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
@@ -118,6 +119,7 @@ function SpeedMatchCardV1({
   readonly onPress: () => void;
 }) {
   const compact = useLearningV2CompactPractice();
+  const lh = useLineScale();
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
 
@@ -129,9 +131,9 @@ function SpeedMatchCardV1({
             withTiming(1.06, { duration: MOTION.matchSquashMs * 0.5, easing: EASE }),
             withTiming(1, { duration: MOTION.matchSquashMs * 0.5, easing: EASE }),
           );
-      // Keep completed words visible as durable progress while making it clear
-      // that these tiles are no longer interactive.
-      opacity.value = withTiming(0.62, {
+      // зачем (learning-v2.html `.mc.gone` .22, sm-1…3): найденная пара гаснет до тени — видно, что осталось,
+      // и ясно, что плитки больше не нажимаются (раньше .62 и зелёная заливка, в макете зелёного нет).
+      opacity.value = withTiming(0.22, {
         duration: reducedMotion ? 1 : MOTION.matchFadeOutMs,
         easing: EASE,
       });
@@ -157,8 +159,8 @@ function SpeedMatchCardV1({
         selected={picked}
         showMark={false}
         style={[styles.card, compact && styles.cardCompact]}
-        textStyle={styles.cardText}
-        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
+        textStyle={[styles.cardText, { lineHeight: lh(21) }]}
+        verdict={verdict === "bad" ? "bad" : "idle"}
         label={label}
       />
     </Animated.View>
@@ -296,24 +298,27 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     }
   };
 
+  const sx = useScaledTextStyles(styles);
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <View style={styles.headerRow}>
-        <Text style={[styles.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
+    // зачем (сверка с learning-v2.html sm, 05.10): заголовок 600, фраза 10, сетка пар 22 (gap 10), разбор 18;
+    // таймер — пилюля .timer, на исходе краснеет только цифра и значок (`.timer.low` color), без красной заливки.
+    <View style={sx.root}>
+      <View style={sx.headerRow}>
+        <Text style={[sx.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
         {round.timerEnabled ? <View
           style={[
-            styles.timerPill,
-            { backgroundColor: timerLow ? g.badFill : g.opaqueControl },
+            sx.timerPill,
+            { backgroundColor: g.opaqueControl },
           ]}
         >
           <Ionicons name="time-outline" size={16} color={timerLow ? g.bad : g.text} />
-          <Text style={[styles.timerText, { color: timerLow ? g.bad : g.text }]}>
+          <Text style={[sx.timerText, { color: timerLow ? g.bad : g.text }]}>
             {secondsLeft}{copy.secondsSuffix}
           </Text>
         </View> : null}
       </View>
 
-      <Text style={[styles.hero, { color: g.text }]}>{prompt}</Text>
+      <Text style={[sx.hero, { color: g.text }, compact && { marginTop: 6 }]}>{prompt}</Text>
 
       <SpeedMatchGridV1>
         <View style={[styles.column, compact && { gap: 6 }]}>
@@ -357,21 +362,21 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
       {round.phase === "finish_timeout" && !resolved && (
         // зачем (learning-v2.html, sm «Время вышло»): карточка `.expl` в колонку — значок часов
         // и «Время вышло», под ней «Ещё раунд» (контур) и «Продолжить без таймера» (залитая).
-        <View accessibilityLiveRegion="polite" style={[styles.timeoutCard, lv2CardStyle(g)]}>
-          <View style={styles.timeoutHead}>
+        <View accessibilityLiveRegion="polite" style={[sx.timeoutCard, lv2CardStyle(g)]}>
+          <View style={sx.timeoutHead}>
             <Ionicons name="time-outline" size={20} color={g.secondary} />
-            <Text style={[styles.feedbackText, { color: g.text }]}>{copy.timeout}</Text>
+            <Text style={[sx.feedbackText, { color: g.text }]}>{copy.timeout}</Text>
           </View>
-          <View style={styles.timeoutActions}>
+          <View style={sx.timeoutActions}>
             <Pressable
               accessibilityRole="button"
               onPress={() => restartRound(true)}
               style={({ pressed }) => [
-                styles.timeoutButton,
+                sx.timeoutButton,
                 { backgroundColor: "transparent", borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px контурная кнопка
               ]}
             >
-              <Text style={[styles.timeoutButtonText, { color: g.text }]}>
+              <Text style={[sx.timeoutButtonText, { color: g.text }]}>
                 {copy.again}
               </Text>
             </Pressable>
@@ -379,18 +384,18 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               accessibilityRole="button"
               onPress={() => restartRound(false)}
               style={({ pressed }) => [
-                styles.timeoutButton,
+                sx.timeoutButton,
                 { backgroundColor: g.accent, opacity: pressed ? 0.72 : 1 },
               ]}
             >
-              <Text style={[styles.timeoutButtonText, { color: g.accentInk }]}>
+              <Text style={[sx.timeoutButtonText, { color: g.accentInk }]}>
                 {copy.withoutTimer}
               </Text>
             </Pressable>
           </View>
         </View>
       )}
-      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
+      {explanation ? <View style={sx.explainWrap}><Lv2Explain>{explanation}</Lv2Explain></View> : null}
     </View>
   );
 }
@@ -407,9 +412,10 @@ function SpeedMatchGridV1({ children }: { children: React.ReactNode }): React.JS
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, gap: 14 },
+  root: { flex: 1 },
   headerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  taskLabel: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
+  // `.tlab` 15/600 --sec (D145 → 16).
+  taskLabel: { fontSize: 16, lineHeight: 22, fontWeight: "600" },
   timerPill: {
     minHeight: 34,
     borderRadius: 17,
@@ -419,7 +425,8 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   timerText: { fontSize: 16, lineHeight: 21, fontWeight: "700", fontVariant: ["tabular-nums"] },
-  hero: { fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
+  // `.thero` margin-top 10; `.grid2` margin-top 22.
+  hero: { fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3, marginTop: 10, marginBottom: 22 },
   gridScroll: { flexGrow: 0, maxHeight: 470 },
   grid: { flexDirection: "row", gap: 10, paddingBottom: 4 },
   column: { flex: 1, gap: 10 },
@@ -431,15 +438,18 @@ const styles = StyleSheet.create({
   },
   cardCompact: { minHeight: 56 },
   cardText: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
-  timeoutCard: { padding: 16, gap: 14 },
+  // `.expl` margin-top 18, padding 14/16, в колонку через 14.
+  timeoutCard: { paddingVertical: 14, paddingHorizontal: 16, gap: 14, marginTop: 18 },
+  explainWrap: { marginTop: 18 },
   timeoutHead: { flexDirection: "row", alignItems: "center", gap: 12 },
   feedbackText: { flex: 1, fontSize: 16, fontWeight: "700", lineHeight: 22 },
   timeoutActions: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
   timeoutButton: {
     flex: 1,
     minWidth: 130,
-    minHeight: 44,
-    borderRadius: 22,
+    // `.cta.sm`: 42, r21, 16/600.
+    minHeight: 42,
+    borderRadius: 21,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px
     borderColor: "transparent",
     paddingHorizontal: 14,

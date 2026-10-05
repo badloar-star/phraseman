@@ -225,19 +225,25 @@ export async function primeAppSnapshotFromStorage(
   settingsBootReadScope?: SettingsBootReadScope,
 ): Promise<void> {
   const now = Date.now();
+  // зачем (координатор 05.10, пакет 08:26: на первом кадре Главной lessonCard=empty, hydrationInMemory=false): каждый
+  // ранний выход публикации снимка обязан назвать причину и момент — иначе не видно, почему карточка не из снимка.
+  const exit = (reason: string): void => {
+    console.warn('[BOOT-SNAPSHOT] exit', JSON.stringify({ reason, ms: Date.now() - now })); // guard-ok: ранний выход логируется
+  };
   const accountGeneration = captureAccountGeneration();
   const ownerStableId = accountGeneration.stableId;
-  if (!ownerStableId) return;
+  if (!ownerStableId) { exit('no_stable_id'); return; }
   const isAccountCurrent = () => isCurrentAccountGeneration(accountGeneration, ownerStableId);
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:start'); return; }
   // PhoneState hydration is local-only and wins for the cutover cohort. Legacy
   // storage remains the compatibility source for everyone else.
   await hydratePersonalProgress().catch(noteSwallowedAs('app_snapshot_bootstrap:hydratePersonalProgress', null));
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:personal_progress'); return; }
   await migrateLegacyVipSnapshotOnce(accountGeneration).catch(noteSwallowedAs('app_snapshot_bootstrap:migrateLegacyVipSnapshotOnce', false));
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:vip_migrate'); return; }
   const vipSnapshot = await readVipSnapshotForGeneration(accountGeneration);
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:vip_read'); return; }
+  const preReadMs = Date.now() - now;
   const lastOpenedKey = lastOpenedLessonKey(studyTarget);
   // зачем (пакет 07:26 [HOME-COLD]: карточка урока на холодном старте — заглушки): прогресс уроков читаем в ТОМ ЖЕ
   // multiGet (номер последнего урока до чтения неизвестен) — без второго похода в хранилище и без нового ключа.
@@ -269,10 +275,10 @@ export async function primeAppSnapshotFromStorage(
       .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null)),
   ]);
 
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:multiget'); return; }
   // A failed storage read is not an empty account. Publishing defaults here
   // would render Level 1 / streak 0 and could be mistaken for real progress.
-  if (!storageRead.ok) return;
+  if (!storageRead.ok) { exit('multiget_failed'); return; }
   const pairs = storageRead.pairs;
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
@@ -282,9 +288,9 @@ export async function primeAppSnapshotFromStorage(
     captureAccountGeneration(),
     now,
   );
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:referral'); return; }
   const profile = buildProfileSnapshot(values, now, vipSnapshot);
-  if (!isAccountCurrent()) return;
+  if (!isAccountCurrent()) { exit('account_changed:profile'); return; }
   // зачем: страховка. Обычно прогрев энергии уже отработал — он запускается сам
   // при импорте своего модуля (EnergyProvider монтируется выше AppContent, и
   // вызова отсюда не хватило бы к первому кадру). Повторный вызов дешёв: внутри
@@ -306,6 +312,16 @@ export async function primeAppSnapshotFromStorage(
     settings: buildSettingsSnapshot(values, now),
     primedAt: now,
   }));
+  {
+    const lastOpenedRaw = values.get(lastOpenedKey) ?? null;
+    console.warn('[BOOT-SNAPSHOT] published', JSON.stringify({
+      ms: Date.now() - now, preReadMs, publishedAtEpochMs: Date.now(),
+      lastOpenedKey, lastOpenedLesson: lastOpenedRaw,
+      lastOpenedLessonCorrect: lastOpenedLessonCorrectFromBoot(lastOpenedRaw, values, studyTarget),
+      studyTarget: storageStudyTarget(studyTarget),
+      lessonProgressKeysFound: lessonProgressKeys.filter((key) => values.get(key) != null).length,
+    })); // guard-ok: временная трассировка HOME-COLD, одна строка за запуск
+  }
   // зачем: PM-211 — после публикации, не в критическом пути первого кадра (см. primeFriendsSnapshot).
   void primeFriendsSnapshot();
 }

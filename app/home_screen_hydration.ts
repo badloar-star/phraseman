@@ -127,6 +127,8 @@ export function buildLastLessonFromHydration(
   return { id, name, progress: mem.lastLessonProgress, score: mem.lastLessonScore };
 }
 
+let bootCardMissLogged = false;
+
 /**
  * зачем (пакет 07:26 [HOME-COLD]: lessonCard=empty, hydrationInMemory=false на холодном старте): памяти процесса ещё нет,
  * но стартовое чтение уже положило в снимок последний урок и число верных (app_snapshot_bootstrap). Счёт и балл — те
@@ -137,12 +139,26 @@ function buildLastLessonFromBootSnapshot(
   studyTarget?: StudyTargetLang,
 ): { id: number; name: string; progress: number; score: string } | null {
   const lessons = getAppSnapshot().lessons;
-  if (!lessons || lessons.studyTarget !== storageStudyTarget(studyTarget)) return null;
+  // зачем (координатор 05.10, пакет 08:26 lessonCard=empty): каждый null называет причину и что лежало в снимке.
+  const miss = (reason: string): null => {
+    if (!bootCardMissLogged) {
+      bootCardMissLogged = true;
+      console.warn('[HOME-COLD] boot_card:null', JSON.stringify({
+        reason, atEpochMs: Date.now(), hasLessons: !!lessons, primedAt: getAppSnapshot().primedAt ?? null,
+        snapshotTarget: lessons?.studyTarget ?? null, expectedTarget: storageStudyTarget(studyTarget),
+        lastOpenedLesson: lessons?.lastOpenedLesson ?? null, lastOpenedLessonCorrect: lessons?.lastOpenedLessonCorrect ?? null,
+      })); // guard-ok: ранний выход логируется, один раз за запуск
+    }
+    return null;
+  };
+  if (!lessons) return miss('no_lessons_in_snapshot');
+  if (lessons.studyTarget !== storageStudyTarget(studyTarget)) return miss('study_target_mismatch');
   const id = lessons.lastOpenedLesson ? parseInt(lessons.lastOpenedLesson, 10) : NaN;
   const correct = lessons.lastOpenedLessonCorrect;
-  if (!Number.isInteger(id) || id < 1 || id > 32 || typeof correct !== 'number') return null;
+  if (!Number.isInteger(id) || id < 1 || id > 32) return miss('no_last_opened_lesson');
+  if (typeof correct !== 'number') return miss('no_correct_count');
   const name = lessonNamesForStudyTarget(lang, studyTarget ?? 'en')[id - 1];
-  if (!name) return null;
+  if (!name) return miss('no_lesson_name');
   return { id, name, progress: correct, score: (correct / 50 * 5).toFixed(1) };
 }
 

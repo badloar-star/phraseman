@@ -913,7 +913,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (!homeRuntimeActive || !isVideoButtonEnabled()) {
             // зачем (Сверка 06:01, серые превью видео на холодном старте): ранний выход обязан говорить причину.
-            console.warn('[HOME-COLD] video:skip', JSON.stringify({ homeRuntimeActive, videoButtonEnabled: isVideoButtonEnabled() })); // guard-ok: ранний выход логируется
+            console.warn('[HOME-COLD] video:skip', JSON.stringify({
+                homeRuntimeActive, videoButtonEnabled: isVideoButtonEnabled(), runtimeOwnerId, homeOnboardingDone,
+                sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt,
+            })); // guard-ok: ранний выход логируется (пакет 08:26: почему runtime неактивен первые 6–8 с)
             return undefined;
         }
         let alive = true;
@@ -943,8 +946,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         if (homeVideoSnapshotMemo) latestVideoIdRef.current = homeVideoSnapshotMemo.latestVideoId;
         void import('../lingman_youtube')
             .then(async (m) => {
+                // зачем (пакет 08:26: после video:start ни одной строки — ни resolved, ни cache_miss): дошёл ли ленивый
+                // импорт ленты и сколько шло чтение кэша.
+                console.warn('[HOME-COLD] video:import_done', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, memo: !!homeVideoSnapshotMemo })); // guard-ok: временная трассировка
                 if (!homeVideoSnapshotMemo) {
                     const cached = await m.readCachedLingmanYoutubeSnapshot();
+                    console.warn('[HOME-COLD] video:cache_read', JSON.stringify({ ms: Date.now() - videoLoadStartedAt, hit: !!cached, alive })); // guard-ok: временная трассировка
                     if (cached) applySnapshot(cached, 'cache');
                     else console.warn('[HOME-COLD] video:cache_miss', JSON.stringify({ ms: Date.now() - videoLoadStartedAt })); // guard-ok: ветка логируется
                 }

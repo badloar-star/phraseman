@@ -9,6 +9,7 @@ import { DEV_CONTENT_UNLOCK } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -201,6 +202,8 @@ function FlashcardListItemImpl({
   onOpenVideoMoment = null,
   videoMomentLabel,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный строки списка растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const effectiveOs = useEffectivePlatformOS();
@@ -1240,7 +1243,7 @@ function FlashcardListItemImpl({
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   savedCompactRow: { flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 10 },
   savedNumber: { width: 19, alignSelf: 'flex-start', marginTop: 8, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   savedTextScroll: { flex: 1, maxHeight: 94 },

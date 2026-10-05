@@ -14,10 +14,10 @@ test('плашка отката показывает причину и стро�
   assert.ok(account.includes('testID="account-nickname-restored"'));
 });
 
-test('вид плашки по overlay-runtime.css: радиус 16, поля 13/14, текст 13/19, итог 13/18 (D145: новые размеры кроме 16 и 13 запрещены)', () => {
+test('вид плашки по overlay-runtime.css: радиус 16, поля 13/14, текст 13/19, итог 12/17 (макеты главнее D145 — владелец 05.10 11:10)', () => {
   const block = account.slice(account.indexOf('testID="account-nickname-inline-notice"'));
   assert.ok(block.includes('borderRadius: 16') && block.includes('paddingVertical: 13') && block.includes('paddingHorizontal: 14'));
-  assert.ok(block.includes('fontSize: 13, lineHeight: 19') && block.includes('fontSize: 13, lineHeight: 18'));
+  assert.ok(block.includes('fontSize: 13, lineHeight: 19') && block.includes('fontSize: 12, lineHeight: 17'));
 });
 
 test('каждый откат пишет [NAME-CHANGE] с причиной, три причины переданы', () => {

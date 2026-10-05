@@ -263,7 +263,7 @@ export default function AccountDetailsScreen() {
                 style={{ marginTop: 16, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 14, backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
               >
                 <Text style={{ color: glass.text, fontSize: 13, lineHeight: 19 }}>{nameNotice}</Text>
-                <Text testID="account-nickname-restored" style={{ marginTop: 4, color: glass.secondary, fontSize: 13, lineHeight: 18 }}>
+                <Text testID="account-nickname-restored" style={{ marginTop: 4, color: glass.secondary, fontSize: 12, lineHeight: 17 }}>
                   {L('Прежнее имя восстановлено.', 'Попереднє імʼя відновлено.', 'Your previous name has been restored.', 'Se restauró el nombre anterior.', 'O nome anterior foi restaurado.', 'Đã khôi phục tên cũ.', 'Nama sebelumnya dipulihkan.', 'Önceki ad geri yüklendi.', 'Przywrócono poprzednią nazwę.')}
                 </Text>
               </View>

@@ -21,6 +21,8 @@ let accountAuthorityResumeQueued = false;
 let accountAuthorityResumeLatestClient:
   Pick<AccountsV2ClientRuntime, 'resumeAccountAuthorityProviderSession'> | null = null;
 let accountAuthorityBootstrapInstall: Promise<boolean> | null = null;
+/** AA S7: в релизе ранний выход bootstrap логируется один раз за процесс (в dev — каждый). */
+let accountAuthorityBootstrapSkipLogged = false;
 let accountAuthorityRenewal: Readonly<{ trigger(trigger: 'cold_start' | 'foreground'): Promise<unknown> }> | null = null;
 let accountAuthorityForegroundListener: Readonly<{ remove(): void }> | null = null;
 
@@ -105,10 +107,20 @@ function loadAccountsV2ClientForAuthorityCutover(): AccountsV2ClientRuntime | nu
  */
 export function installAccountAuthorityProductionBootstrapIfPossible(): Promise<boolean> {
   if (accountAuthorityBootstrapInstall !== null) return accountAuthorityBootstrapInstall;
-  // Do not touch native storage, SecureStore, or Firebase while both rollout
-  // gates are off. The authority composition is only needed for the explicit
-  // V2 migration gate or the owner-authorized global cutover.
-  if (!isAccountAuthorityV2CutoverEnabled() && !isAccountsV2ClientEnabled()) {
+  // зачем (AA S7, TG-E7105CAE3E22): bootstrap AA нужен ТОЛЬКО под воротами cutover.
+  // Его единственные потребители — функции AA клиента (вход/выход/продление/
+  // удаление AA), а их шов зовёт лишь при включённом cutover. Раньше при V2 ON
+  // без cutover он всё равно собирался после первого кадра: синхронные чтения
+  // SecureStore (метаданные, журнал операций), запись installation_id AA в
+  // SecureStore и нативная среда — работа без потребителя и новый идентификатор
+  // на устройстве, которого не было на старом пути. Теперь при cutover OFF —
+  // ни require, ни чтений, ни записей в любом положении флага V2.
+  if (!isAccountAuthorityV2CutoverEnabled()) {
+    // typeof: шов зовут и окружения без __DEV__ (node-тесты), ранний выход не должен падать.
+    if ((typeof __DEV__ !== 'undefined' && __DEV__) || !accountAuthorityBootstrapSkipLogged) {
+      accountAuthorityBootstrapSkipLogged = true;
+      console.log(`[AA-S7] bootstrap skip reason=cutover_off v2=${isAccountsV2ClientEnabled() ? 'on' : 'off'}`);
+    }
     return Promise.resolve(false);
   }
   if (!isAccountsV2ProviderTransitionSupported()) return Promise.resolve(false);

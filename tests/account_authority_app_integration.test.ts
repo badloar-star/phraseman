@@ -377,7 +377,11 @@ describe('Account Authority production app integration', () => {
     expect(Object.keys(secure.snapshot()).some((key) => key.startsWith('phraseman.account_authority.binding'))).toBe(false);
   });
 
-  test('real startup seam attempts production installation before legacy auth sync', async () => {
+  // зачем (AA S7, TG-E7105CAE3E22): прежде здесь закреплялся bootstrap AA при V2 ON
+  // без cutover. S7 его снял: потребители bootstrap — только функции AA за воротами
+  // cutover, а сам он писал installation_id AA в SecureStore. Матрица —
+  // tests/aa_s7_flag_matrix_off_unchanged.test.ts.
+  test('real startup seam skips production installation while cutover is off, even with V2 on', async () => {
     jest.resetModules();
     const order: string[] = [];
     const install = jest.fn(async () => { order.push('install'); return true; });
@@ -394,9 +398,10 @@ describe('Account Authority production app integration', () => {
     appGate.syncAccountsV2ClientAuth('observed-firebase-uid');
     await Promise.resolve();
 
-    expect(install).toHaveBeenCalledTimes(1);
+    expect(appGate.isAccountAuthorityV2CutoverEnabled()).toBe(false);
+    expect(install).not.toHaveBeenCalled();
     expect(sync).toHaveBeenCalledTimes(1);
-    expect(order).toEqual(['install', 'legacy-sync']);
+    expect(order).toEqual(['legacy-sync']);
   });
 
   test('synchronous native module failure is contained and publishes no bootstrap', async () => {

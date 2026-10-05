@@ -45,3 +45,17 @@ test('ReportErrorButton keeps API, validation, throttle/failed/sent branches and
   assert.ok(!error.includes('onSuccess'), 'no XP callback');
   assert.ok(!/жемчуж|перлин/.test(error), 'no pearl copy');
 });
+
+// зачем (владелец 05.10 11:10, решение 6): «Нашёл ошибку?» — только тестерам и разработке.
+// В сборке магазина (ENABLE_DEV_TOOLS = false) кнопки, формы и пунктов меню «Сообщить об ошибке» нет.
+test('ReportErrorButton is visible only to testers and development builds', () => {
+  assert.ok(error.includes("import { ENABLE_DEV_TOOLS } from '../app/config';"), 'reads the dev/tester build flag');
+  assert.ok(error.includes('export const REPORT_ERROR_ENABLED: boolean = ENABLE_DEV_TOOLS;'), 'single exported gate');
+  // Шпиль (свой submitOverride) — рабочая функция режима, её не прячем.
+  assert.ok(/if \(!REPORT_ERROR_ENABLED && !props\.submitOverride\) \{[\s\S]{0,120}return null;/.test(error), 'store build renders nothing');
+  assert.ok(error.includes('export default memo(ReportErrorButtonGate);'), 'every caller goes through the gate');
+  for (const file of ['app/mistake_detail.tsx', 'app/mistake_practice_session.tsx']) {
+    const src = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+    assert.ok(src.includes('{REPORT_ERROR_ENABLED ? <SheetRow'), `${file}: menu report row follows the gate`);
+  }
+});

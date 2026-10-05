@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { ENABLE_DEV_TOOLS } from '../app/config';
 import React, { memo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -552,7 +553,24 @@ function ReportErrorButton({
   );
 }
 
-export default memo(ReportErrorButton);
+/**
+ * зачем (владелец 05.10 11:10, решение 6): «Нашёл ошибку?» видят только тестеры и разработка —
+ * сборка разработки, DEV_MODE и тестерская TestFlight-сборка (ENABLE_DEV_TOOLS); в сборке магазина
+ * кнопки и формы нет совсем. Экранам с пунктом меню «Сообщить об ошибке» — смотреть этот флаг.
+ */
+export const REPORT_ERROR_ENABLED: boolean = ENABLE_DEV_TOOLS;
+
+function ReportErrorButtonGate(props: Props) {
+  // Исключение: свой транспорт (submitOverride) — это не «Нашёл ошибку?», а рабочая функция режима
+  // (Шпиль убирает плохое задание из забега), её не прячем.
+  if (!REPORT_ERROR_ENABLED && !props.submitOverride) {
+    if (props.openRef) props.openRef.current = null;
+    return null;
+  }
+  return <ReportErrorButton {...props} />;
+}
+
+export default memo(ReportErrorButtonGate);
 
 const styles = StyleSheet.create({
   trigger: { paddingVertical: 4, paddingHorizontal: 8, opacity: 0.7 },

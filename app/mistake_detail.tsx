@@ -30,7 +30,7 @@ import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contrac
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
-import ReportErrorButton from '../components/ReportErrorButton';
+import ReportErrorButton, { REPORT_ERROR_ENABLED } from '../components/ReportErrorButton';
 import { getStableId } from './stable_id';
 
 /**
@@ -335,7 +335,8 @@ ${detail.meaning}` : ''}`}
         ) : null}
         <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistake-detail-sheet">
           <SheetRow g={g} testID="mistake-detail-know" icon="checkmark" title={copy.know} onPress={() => hide('known')} />
-          <SheetRow g={g} testID="mistake-detail-report" icon="flag-outline" title={copy.report} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} />
+          {/* решение 6 (05.10): пункт жалобы — только тестерам и разработке, как и сама форма. */}
+          {REPORT_ERROR_ENABLED ? <SheetRow g={g} testID="mistake-detail-report" icon="flag-outline" title={copy.report} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} /> : null}
           <SheetRow g={g} testID="mistake-detail-remove" icon="trash-outline" title={copy.remove} danger onPress={() => hide('removed')} />
         </PanelSheet>
       </SafeAreaView>

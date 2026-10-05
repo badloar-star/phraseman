@@ -31,6 +31,8 @@ import Animated, {
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticSuccess } from "../../../hooks/use-haptics";
+import { useScaledTextStyles } from "../../../hooks/useLineScale";
+import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
   MODE_SPRING_MICRO_V1,
@@ -110,7 +112,8 @@ function PhraseBuilderChipV1({
   }, [nudgeToken, reducedMotion, nudge]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: ghost ? 0 : enter.value,
+    // `.chip.ghost` opacity .22: взятое слово остаётся «тенью» на своём месте в банке, банк не перестраивается.
+    opacity: ghost ? 0.22 : enter.value,
     transform: [
       { translateY: (1 - enter.value) * (variant === "bank" ? 16 : 10) },
       { translateX: nudge.value },
@@ -144,6 +147,7 @@ function PhraseBuilderChipV1({
 export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
   const g = useLv2Glass();
+  const sx = useScaledTextStyles(styles);
   const {
     prompt,
     options,
@@ -189,10 +193,12 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase]);
 
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
-      <View style={styles.heroRow}>
-        <Text style={[styles.hero, { color: g.text }]}>
+    // зачем (сверка с learning-v2.html pbBody, 05.10): отступы по макету — заголовок → фраза 10, → строка ответа 22,
+    // → банк 22, → разбор 18, → «Проверить» 22 (раньше ровный gap 14); межстрочные растут с системным шрифтом.
+    <View style={sx.root}>
+      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
+      <View style={[sx.heroRow, compact && { marginTop: 6 }]}>
+        <Text style={[sx.hero, { color: g.text }]}>
           {modePayload?.family === "phrase_builder"
             ? modePayload.localizedMeaning[interfaceLocale]
             : ""}
@@ -202,7 +208,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
             accessibilityRole="button"
             hitSlop={8}
             onPress={onPlayFullPhraseAudio}
-            style={[styles.audioBtn, { backgroundColor: g.opaqueControl }]}
+            style={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
           >
             <Ionicons name="volume-high" size={18} color={g.text} />
           </Pressable>
@@ -211,10 +217,11 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {/* Строка ответа: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible — никаких прыжков при появлении чипов). */}
-      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.line }]}>
+      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.glassEdge }]}>
         {answerChips.length === 0 ? (
-          <Text style={[styles.placeholder, { color: g.mutedText }]}>
-            {" "}
+          // `.ans` пустая: подсказка «Нажимай слова по порядку» 15 --muted (раньше пробел).
+          <Text style={[sx.placeholder, { color: g.mutedText }]}>
+            {learningV2SessionCopy(interfaceLocale as Parameters<typeof learningV2SessionCopy>[0]).tapWords}
           </Text>
         ) : (
           answerChips.map((chip, index) => (
@@ -240,16 +247,15 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
         )}
       </View>
 
-      <View style={[styles.bank, compact && { gap: 6 }]}>
+      <View style={[sx.bank, compact && { gap: 6, marginTop: 10 }]}>
         {options
-          .filter((option) => !usedIds.has(option.responseId))
           .map((option, index) => (
             <PhraseBuilderChipV1
               key={option.responseId}
               label={option.text}
               index={index}
               variant="bank"
-              ghost={false}
+              ghost={usedIds.has(option.responseId)}
               verdict="none"
               nudgeToken={0}
               reducedMotion={reducedMotion}
@@ -259,9 +265,10 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
           ))}
       </View>
 
-      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
+      {explanation ? <View style={sx.explainWrap}><Lv2Explain>{explanation}</Lv2Explain></View> : null}
 
       <Lv2Cta
+        style={compact ? { marginTop: 10 } : sx.cta}
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
       >
@@ -274,30 +281,39 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 export default PhraseBuilderModeV1;
 
 const styles = StyleSheet.create({
-  root: { gap: 14 },
+  root: {},
+  // `.tlab` 15/600 --sec (D145 → 16).
   taskLabel: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: "700",
+    fontWeight: "600",
   },
-  heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  // `.thero` margin-top 10.
+  heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12, marginTop: 10 },
   hero: { flex: 1, fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
   audioBtn: {
     width: 38,
     height: 38,
     borderRadius: 19,
+    marginTop: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   answerRow: {
+    // `.ans`: min-height 64, линия --line-2, padding 10/0/12, margin-top 22, по центру по вертикали.
     minHeight: 64,
+    marginTop: 22,
     borderBottomWidth: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    alignItems: "flex-start",
+    alignItems: "center",
     gap: 8,
-    paddingBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 12,
   },
-  placeholder: { fontSize: 16 },
-  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start" },
+  placeholder: { fontSize: 16, lineHeight: 21 },
+  // `.bank` margin-top 22, gap 10.
+  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", marginTop: 22 },
+  explainWrap: { marginTop: 18 },
+  cta: { marginTop: 22 },
 });

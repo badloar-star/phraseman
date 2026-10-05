@@ -289,7 +289,8 @@ const styles = StyleSheet.create({
   chipPlate: { borderRadius: 14, paddingBottom: 3, alignSelf: 'flex-start' },
   chip: { minHeight: 46, paddingHorizontal: 18, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   chipCompact: { minHeight: 44, paddingHorizontal: 14 },
-  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  // `.chip` 17/600 (D145 → 16).
+  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '600' },
   opt: {
     minHeight: 58, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, // guard-ok: кромка макета 1 px
     paddingVertical: 12, alignItems: 'center', justifyContent: 'center',

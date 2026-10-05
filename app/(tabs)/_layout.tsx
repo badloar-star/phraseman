@@ -356,13 +356,16 @@ const TAB_BAR_WRAP_SHADOW_ROOM = 24;
 // зачем (владелец 24.09, референс): та же механика сжатия при скролле вниз, что
 // была у дореформенного таббара (commit bfdc8e783~1) — капсула не исчезает,
 // а слегка уменьшается и оседает. Портирована 1:1, только без gold/olive веток.
+// зачем (Сверка system-004, 05.10): system.html `.tb.shrink` — translateY(8) scale(.9) от нижнего края
+// (transform-origin 50% 100%), переход 260 мс cubic-bezier(.33,1,.68,1) в обе стороны, БЕЗ приглушения
+// (было: прозрачность .94, сжатие 220 мс ease-out cubic, масштаб от центра).
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
 const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
-const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+const TAB_SCROLL_EASE = Easing.bezier(0.33, 1, 0.68, 1);
 const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
 const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
 const TAB_SCROLL_DIRECTION_EPSILON = 5;
-const TAB_SCROLL_COLLAPSE_MS = 220;
+const TAB_SCROLL_COLLAPSE_MS = 260;
 const TAB_SCROLL_EXPAND_MS = 260;
 const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
 /** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
@@ -565,7 +568,7 @@ function TabScaffold({
     Animated.timing(tabScrollProgress, {
       toValue: collapsed ? 1 : 0,
       duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
-      easing: Easing.out(Easing.cubic),
+      easing: TAB_SCROLL_EASE,
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (finished && tabScrollCollapsedRef.current === collapsed) {
@@ -608,7 +611,6 @@ function TabScaffold({
 
   const tabScrollScale = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE], extrapolate: 'clamp' });
   const tabScrollTranslateY = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y], extrapolate: 'clamp' });
-  const tabScrollOpacity = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY], extrapolate: 'clamp' });
 
   const expandTabChrome = useCallback(() => animateTabChrome(false), [animateTabChrome]);
 
@@ -682,7 +684,7 @@ function TabScaffold({
               onInteract={expandTabChrome}
               bottomOffset={tabBarBottom}
               reduceMotion={reduceMotion}
-              collapseStyle={{ opacity: tabScrollOpacity, transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }] }}
+              collapseStyle={{ transformOrigin: '50% 100%', transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }] }}
             />
           </View>
           )}

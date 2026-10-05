@@ -10,9 +10,7 @@
     "components/LearningV2SessionOutcomeSheet.tsx": "окно .modal итога сессии: в ките .modal статичное — ждёт макета движения",
     "components/streak/StreakStagesModal.tsx": "в макете results «Стадии серии» — отдельная страница, не шторка: движения кита для неё нет — ждёт макета движения",
     "components/home/HomeMistakesLockedSheet.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)",
-    "components/home/v2/HomeV2VideoPlayerModal.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)",
-    "components/mistakes-panel/PanelSheet.tsx": "передано сессии 3 (координатор 05.10): перевести на KIT_MOTION / KitSheetModal",
-    "app/flashcards/FlashcardsTrainingModeSheet.tsx": "передано сессии 3 (координатор 05.10): перевести на KIT_MOTION / KitSheetModal"
+    "components/home/v2/HomeV2VideoPlayerModal.tsx": "Главная — не трогать (OWNER_FEEDBACK: «ГЛАВНУЮ НЕ ТРОГАЙ ВООБЩЕ»)"
   },
   "awaitingNote": "awaiting — объяснённые исключения (не долг храповика): у каждого причина; сторож падает, если файл получил вход, а исключение не убрали."
 }

@@ -17,7 +17,10 @@ const styleBlock = (name, nextName) => {
   return styles.slice(start, end);
 };
 
-assert.match(source, /animationType="slide"/, 'bottom sheet slides up');
+// зачем (Motion п.8): шторка едет по числам kit.css из KIT_MOTION (440 мс, затемнение 260 мс), а не системным slide
+assert.match(source, /animationType="none"/, 'own motion, no system slide');
+assert.match(source, /KIT_MOTION\.sheetMs/, 'sheet uses kit.css motion');
+assert.match(source, /KIT_MOTION\.dimMs/, 'backdrop uses kit.css motion');
 assert.match(styleBlock('modalRoot', 'backdrop'), /justifyContent: 'flex-end'/, 'sheet is anchored to the bottom');
 // зачем (макет cards-section «Режим тренировки»): шторка r28, ручка 44×5, заголовок 22/700 и пилюля остатка, строки 90 с плиткой 57
 assert.match(styleBlock('sheet', 'sheetFill'), /borderTopLeftRadius: 28/);

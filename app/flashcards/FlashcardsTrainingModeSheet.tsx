@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
   findNodeHandle,
@@ -13,7 +13,11 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import Animated, { cancelAnimation, Easing as REasing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import PressableHybrid from '../../components/PressableHybrid';
+import { KIT_MOTION, LUM } from '../../constants/motionHybrid';
 import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
@@ -48,6 +52,8 @@ type ModeRow = {
   description: string;
 };
 
+const SHEET_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
+
 export default function FlashcardsTrainingModeSheet({
   visible,
   lang,
@@ -75,6 +81,14 @@ export default function FlashcardsTrainingModeSheet({
   const didDismissRef = useRef(false);
   const onDismissedRef = useRef(onDismissed);
   onDismissedRef.current = onDismissed;
+  // зачем (координатор 05.10, Motion п.8; kit.css `.sheet`/`.dim`): шторка едет 440 мс cubic-bezier(.2,1,.3,1) в обе стороны,
+  // затемнение 260 мс — вместо системного animationType="slide". Modal держим смонтированным, пока шторка не доиграла уход.
+  const reduceMotion = useReduceMotion();
+  const [presented, setPresented] = useState(visible);
+  const presentedRef = useRef(visible);
+  const backdropO = useSharedValue(0);
+  const slide = useSharedValue(visible ? 0 : 1); // 1 — за нижним краем, 0 — на месте
+  const exitMs = reduceMotion ? LUM.instantMs : KIT_MOTION.sheetMs;
 
   const finishDismiss = () => {
     if (didDismissRef.current) return;
@@ -91,9 +105,29 @@ export default function FlashcardsTrainingModeSheet({
     if (!hadVisibleRef.current) return undefined;
     hadVisibleRef.current = false;
     // Android has no reliable Modal.onDismiss; leave a native-close barrier before navigation.
-    const timer = setTimeout(finishDismiss, Platform.OS === 'ios' ? 400 : 100);
+    // зачем: барьер считается от конца анимации ухода, иначе переход на экран тренировки пойдёт под ещё уезжающей шторкой
+    const timer = setTimeout(finishDismiss, exitMs + (Platform.OS === 'ios' ? 400 : 100));
     return () => clearTimeout(timer);
   }, [visible]);
+
+  useEffect(() => {
+    const setShown = (value: boolean) => { presentedRef.current = value; setPresented(value); };
+    if (visible) {
+      if (!presentedRef.current) slide.value = 1;
+      setShown(true);
+      backdropO.value = withTiming(1, { duration: reduceMotion ? LUM.instantMs : KIT_MOTION.dimMs });
+      slide.value = withTiming(0, { duration: reduceMotion ? LUM.instantMs : KIT_MOTION.sheetMs, easing: SHEET_EASE });
+      return () => { cancelAnimation(slide); cancelAnimation(backdropO); };
+    }
+    backdropO.value = withTiming(0, { duration: reduceMotion ? LUM.instantMs : KIT_MOTION.dimMs });
+    slide.value = withTiming(1, { duration: reduceMotion ? LUM.instantMs : KIT_MOTION.sheetMs, easing: SHEET_EASE }, (finished) => {
+      if (finished) runOnJS(setShown)(false);
+    });
+    return () => { cancelAnimation(slide); cancelAnimation(backdropO); };
+  }, [visible, reduceMotion, backdropO, slide]);
+
+  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropO.value }));
+  const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: slide.value * screenHeight }] }));
 
   useEffect(() => {
     if (!visible) return undefined;
@@ -180,10 +214,12 @@ export default function FlashcardsTrainingModeSheet({
 
   const [ga, gb] = themePair(g);
   return (
-    <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
+    <Modal visible={presented} transparent animationType="none" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
       <View style={styles.modalRoot}>
-        <Pressable style={[StyleSheet.absoluteFill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
-        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(24, insets.bottom + 16) }]}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
+          <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
+        </Pressable>
+        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(24, insets.bottom + 16) }, sheetStyle]}>
           <LinearGradient pointerEvents="none" colors={[`${mixDark(ga, '#101014', 0.17)}EA`, 'rgba(16,16,20,0.9)']} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
           <View style={styles.grabber} />
           <View style={styles.headRow}>
@@ -199,16 +235,18 @@ export default function FlashcardsTrainingModeSheet({
                 </Text>
               ) : null}
               {preparing === 'failed' && onRetry ? (
-                <Pressable
+                // зачем (Motion п.4): действие — клавиша PressableHybrid, а не плоское затемнение opacity: pressed
+                <PressableHybrid
                   testID="fc-training-mode-retry"
                   accessibilityRole="button"
                   accessibilityLabel={retryLabel}
                   hitSlop={8}
                   onPress={onRetry}
-                  style={({ pressed }) => [styles.retry, { opacity: pressed ? 0.7 : 1 }]}
+                  variant="chip"
+                  style={styles.retry}
                 >
                   <Text style={[styles.headingSubtitle, styles.retryText, { color: g.text }]}>{retryLabel}</Text>
-                </Pressable>
+                </PressableHybrid>
               ) : null}
             </View>
             {limitLabel ? (
@@ -255,7 +293,7 @@ export default function FlashcardsTrainingModeSheet({
             </View>
           </ScrollView>
           <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.2)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.05)' }] }]} />
-        </View>
+        </Animated.View>
       </View>
     </Modal>
   );

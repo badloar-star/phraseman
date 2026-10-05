@@ -30,7 +30,8 @@ test('lesson review modal is the glass sheet with the same handlers', () => {
   }
   assert.ok(!lesson.includes('visible={reviewOpen} transparent'), 'old inline Modal removed');
   assert.ok(review.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  assert.ok(review.includes('glass.opaqueSheet') && review.includes('glass.opaqueControl'));
+  // зачем (Motion п.8, learn.html D9): фон и движение шторки даёт KitSheetModal (.sheet кита, glass.opaqueSheet внутри).
+  assert.ok(review.includes('<KitSheetModal') && review.includes('glass.opaqueControl'));
   assert.ok(!/borderWidth|borderColor/.test(review) && !thickBorder(review));
   assert.ok(!review.includes('adjustsFontSizeToFit') && !OLD_HEX.test(review));
   assert.ok(review.includes('minWidth: 44') && review.includes('width: 44, height: 44'), 'touch targets >= 44');

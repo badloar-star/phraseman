@@ -3,13 +3,13 @@
 // useTheme (в самом LessonContent темы приходят пропсами). Логику не меняем: очки не начисляются,
 // текущий ответ не сбивается — это чистое чтение; все обработчики приходят от урока как раньше.
 import React, { memo } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from './TapScale';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { KitSheetModal } from './v2/KitSheetModal';
 
 type Props = {
   visible: boolean;
@@ -26,27 +26,21 @@ type Props = {
 function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPrev, onNext, onPlay }: Props) {
   const { liquidGlassThemeId, f } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const insets = useStableSafeAreaInsets();
   const atStart = index <= 0;
   const atEnd = index >= count - 1;
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
-      <Pressable
-        onPress={onClose}
-        accessibilityRole="button"
-        accessibilityLabel={triLang(lang, {
+    // зачем (Motion п.8, learn.html D9 — .sheet кита): шторка выезжает 440 мс (.2,1,.3,1) с ручкой и
+    // перетаскиванием вниз, а не проявляется затуханием системного Modal.
+    <KitSheetModal
+      visible={visible}
+      onRequestClose={onClose}
+      closeLabel={triLang(lang, {
           ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
           vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
         })}
-        style={styles.backdrop}
-      >
-        <Pressable
-          onPress={() => {}}
-          accessible={false}
-          style={[styles.sheet, { backgroundColor: glass.opaqueSheet, paddingBottom: Math.max(24, insets.bottom + 12) }]}
-        >
-          <View style={[styles.grabber, { backgroundColor: glass.glassEdge }]} />
+      testID="lesson-review-sheet"
+      header={(
           <View style={styles.headerRow}>
             <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
               {triLang(lang, {
@@ -72,7 +66,8 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
               <Ionicons name="close" size={20} color={glass.text} />
             </TapScale>
           </View>
-
+      )}
+    >
           <View style={styles.cardRow}>
             <TapScale
               onPress={onPrev}
@@ -119,18 +114,13 @@ function LessonReviewSheet({ visible, lang, index, count, current, onClose, onPr
           <Text style={[styles.counter, { color: glass.secondary, fontSize: f.label }]}>
             {count > 0 ? `${index + 1} / ${count}` : ''}
           </Text>
-        </Pressable>
-      </Pressable>
-    </Modal>
+    </KitSheetModal>
   );
 }
 
 export default memo(LessonReviewSheet);
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' },
-  sheet: { borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingHorizontal: 16, paddingTop: 10 },
-  grabber: { alignSelf: 'center', width: 36, height: 4, borderRadius: 2, marginBottom: 12 },
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 },
   title: { flex: 1, fontWeight: '700', marginRight: 12 },
   round: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },

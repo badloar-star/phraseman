@@ -7,7 +7,7 @@ const source = read('components/energy/EnergyInfoPopover.tsx');
 const bar = read('components/EnergyBar.tsx');
 const home = read('app/(tabs)/home.tsx');
 
-test('one explicit-data popover host is shared by EnergyBar and Home', () => {
+test('one explicit-data popover host: EnergyBar (Home 2.0 has no energy popover)', () => {
   for (const prop of [
     'current: number',
     'capacity: number',
@@ -23,20 +23,13 @@ test('one explicit-data popover host is shared by EnergyBar and Home', () => {
   assert.match(bar, /if \(!popoverVisible && infoVisible\) \{[\s\S]{0,100}setInfoVisible\(false\)/);
   assert.match(bar, /popoverRequestGate\.isCurrent\(requestGeneration\)/);
   assert.match(bar, /<EnergyInfoPopover[\s\S]{0,700}current=\{current\}[\s\S]{0,700}formattedTime=\{formattedTime\}/);
-  assert.match(home, /import \{[\s\S]{0,180}\bEnergyInfoPopover\b[\s\S]{0,120}components\/energy\/EnergyInfoPopover/);
-  assert.match(home, /<EnergyInfoPopover[\s\S]{0,700}current=\{homeEnergyTotal\}[\s\S]{0,700}formattedTime=\{timeUntilNextEnergy\}/);
-  assert.match(home, /const homeEnergyPopoverVisible = showHomeEnergy && homeRuntimeActive && energyTooltip\.visible/);
-  assert.match(home, /<EnergyInfoPopover[\s\S]{0,160}visible=\{homeEnergyPopoverVisible\}/);
-  assert.match(home, /if \(!showHomeEnergy \|\| !homeRuntimeActive\) return/);
-  assert.match(home, /energyTooltipRequestGate\.isCurrent\(requestGeneration\)/);
-  assert.equal((home.match(/<EnergyInfoPopover\s/g) ?? []).length, 1);
+  // зачем (51б): на Главной 2.0 поповера энергии нет, хост один — EnergyBar; второй не должен вернуться незаметно.
+  assert.equal((home.match(/<EnergyInfoPopover\s/g) ?? []).length, 0);
 });
 
 test('owner eligibility mutates request refs only after commit', () => {
   assert.doesNotMatch(bar, /if \(popoverEligibleRef\.current && !popoverEligible\) popoverRequestGate\.invalidate\(\)/);
-  assert.doesNotMatch(home, /if \(energyTooltipEligibleRef\.current && !energyTooltipEligible\) energyTooltipRequestGate\.invalidate\(\)/);
   assert.match(bar, /useLayoutEffect\(\(\) => \{[\s\S]{0,240}popoverEligibleRef\.current = popoverEligible;[\s\S]{0,160}popoverRequestGate\.invalidate\(\)/);
-  assert.match(home, /useLayoutEffect\(\(\) => \{[\s\S]{0,260}energyTooltipEligibleRef\.current = energyTooltipEligible;[\s\S]{0,180}energyTooltipRequestGate\.invalidate\(\)/);
 });
 
 test('energy popover uses the 13-theme opaque liquid-glass material and real icon', () => {

@@ -5,15 +5,14 @@ import test from 'node:test';
 
 const root = path.resolve(import.meta.dirname, '..');
 const source = fs.readFileSync(path.join(root, 'app', '(tabs)', 'home.tsx'), 'utf8');
-const orbResolver = fs.readFileSync(path.join(root, 'app', 'max_home_orb_assets.ts'), 'utf8');
-const themes = ['indigo', 'sagePorcelain', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'gold'];
-const layers = ['shell', 'field', 'glints'];
+// зачем (51б): раздел MAX удалён целиком (владелец 04.10) — проверки шара MAX сняты, порядок плиток охраняется.
 
-test('home keeps three quick tiles and reuses the themed MAX orb for Dialogues', () => {
-  const quickItems = source.slice(
-    source.indexOf('const quickItems = ['),
-    source.indexOf('const visibleQuickItems'),
-  );
+test('home keeps three quick tiles: lesson, Dialogues, flashcards', () => {
+  const start = source.indexOf('const quickItems = [');
+  assert.ok(start > -1);
+  const end = source.slice(start).search(/\r?\n {8}\];/);
+  assert.ok(end > -1);
+  const quickItems = source.slice(start, start + end);
 
   assert.ok(quickItems.includes("key: 'lesson'"));
   assert.ok(quickItems.includes("key: 'dialogs'"));
@@ -22,20 +21,6 @@ test('home keeps three quick tiles and reuses the themed MAX orb for Dialogues',
   assert.ok(quickItems.indexOf("key: 'dialogs'") < quickItems.indexOf("key: 'flashcards'"));
   assert.ok(quickItems.includes("ru: 'Диалоги'"));
   assert.ok(quickItems.includes("nav.push('/ai_dialog_home' as never)"));
-  assert.ok(source.includes('const maxOrbLayers = getMaxHomeOrbLayers(themeMode)'));
-  assert.ok(source.includes("item.key === 'dialogs'"));
-  assert.ok(source.includes('<MaxHomeOrb'));
-});
-
-test('the reused MAX orb keeps all three original layers for every interface theme', () => {
-  for (const theme of themes) {
-    for (const layer of layers) {
-      const relative = `../assets/images/home_menu/max/${theme}/${layer}.webp`;
-      assert.ok(orbResolver.includes(`require('${relative}')`), `${theme}/${layer} is wired`);
-      assert.ok(
-        fs.existsSync(path.join(root, relative.replace('../', ''))),
-        `${theme}/${layer} exists`,
-      );
-    }
-  }
+  assert.ok(!source.includes('max_home_orb_assets'), 'MAX удалён — Главная его не тянет');
+  assert.ok(!source.includes('<MaxHomeOrb'));
 });

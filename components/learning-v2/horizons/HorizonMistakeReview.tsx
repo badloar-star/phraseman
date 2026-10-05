@@ -27,6 +27,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { triLang, type Lang } from "../../../constants/i18n";
 import { Lv2Cta, lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 
 /** Сколько промахов показываем на экране итога. Больше — уже лента стыда. */
 export const HORIZON_MISTAKE_REVIEW_LIMIT = 3;
@@ -77,6 +78,7 @@ export default function HorizonMistakeReview({
   onOpenItem,
   onOpenAll,
 }: Props) {
+  const sx = useScaledTextStyles(styles);
   const g = useLv2Glass();
 
   if (items.length === 0) return null;
@@ -99,35 +101,35 @@ export default function HorizonMistakeReview({
   });
 
   return (
-    <View testID="horizons-mistake-review" style={[styles.card, lv2CardStyle(g)]}>
-      <View style={styles.head}>
-        <Text style={[styles.title, { color: g.text }]}>{title}</Text>
-        <Text style={[styles.count, { color: g.mutedText }]}>{shownTotal}</Text>
+    <View testID="horizons-mistake-review" style={[sx.card, lv2CardStyle(g)]}>
+      <View style={sx.head}>
+        <Text style={[sx.title, { color: g.text }]}>{title}</Text>
+        <Text style={[sx.count, { color: g.mutedText }]}>{shownTotal}</Text>
       </View>
 
       {items.map((item, index) => {
         const rowStyle = [
-          styles.row,
+          sx.row,
           // guard-ok: тонкий разделитель строк `.er` макета, не рамка блока
           index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line } : null,
         ];
         const body = (
           <>
             {item.label ? (
-              <Text style={[styles.label, { color: g.secondary }]}>{item.label}</Text>
+              <Text style={[sx.label, { color: g.secondary }]}>{item.label}</Text>
             ) : null}
-            <View style={styles.pair}>
+            <View style={sx.pair}>
               {item.given ? (
                 <>
-                  <Text style={[styles.given, { color: g.bad, textDecorationColor: g.badEdge }]}>
+                  <Text style={[sx.given, { color: g.bad, textDecorationColor: g.badEdge }]}>
                     {item.given}
                   </Text>
                   <Ionicons name="arrow-forward" size={16} color={g.mutedText} />
                 </>
               ) : null}
-              <Text style={[styles.correct, { color: g.good }]}>{item.correct}</Text>
+              <Text style={[sx.correct, { color: g.good }]}>{item.correct}</Text>
               {item.hint ? (
-                <Text style={[styles.hint, { color: g.secondary }]}>{item.hint}</Text>
+                <Text style={[sx.hint, { color: g.secondary }]}>{item.hint}</Text>
               ) : null}
             </View>
           </>
@@ -155,7 +157,7 @@ export default function HorizonMistakeReview({
           testID="horizons-mistakes-retry"
           accessibilityLabel={retryLabel}
           onPress={onOpenAll}
-          style={styles.retry}
+          style={sx.retry}
           right={<Ionicons name="refresh" size={18} color={g.text} />}
         >
           {retryLabel}
@@ -167,9 +169,10 @@ export default function HorizonMistakeReview({
 
 const styles = StyleSheet.create({
   card: { paddingTop: 14, paddingBottom: 14, paddingHorizontal: 16 },
-  head: { flexDirection: "row", alignItems: "center", gap: 10, paddingBottom: 2 },
+  // зачем (learning-v2.html `.errc .h` space-between, `.n` --muted 600): число ошибок у правого края.
+  head: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, paddingBottom: 2 },
   title: { flexShrink: 1, fontSize: 16, lineHeight: 21, fontWeight: "700" },
-  count: { fontSize: 16, lineHeight: 21, fontWeight: "700" },
+  count: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
   row: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 12 },
   label: { width: 110, fontSize: 16, lineHeight: 21, fontWeight: "700" },
   pair: {
@@ -182,7 +185,8 @@ const styles = StyleSheet.create({
     rowGap: 6,
   },
   given: { fontSize: 16, lineHeight: 21, textDecorationLine: "line-through" },
-  correct: { fontSize: 16, lineHeight: 21, fontWeight: "700" },
+  // `.er .ok` 600.
+  correct: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
   hint: { width: "100%", fontSize: 13, lineHeight: 19, marginTop: 2 },
   retry: { minHeight: 44, borderRadius: 22, marginTop: 6 },
 });

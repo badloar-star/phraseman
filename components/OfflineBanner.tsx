@@ -156,6 +156,52 @@ function OfflineBannerHybridCard({
   );
 }
 
+// зачем (system-005, макет system.html SYS-02 «Снова в сети»): светлая капсула с галочкой после возврата сети.
+// Вход как `@keyframes bin` (translateY −70→0, 480 мс, cubic-bezier(.2,1,.3,1)), 2 с на экране, уход за LUM.exitMs.
+const BACK_ONLINE_ENTER_MS = 480;
+const BACK_ONLINE_HOLD_MS = 2000;
+const BACK_ONLINE_BG = '#F2F1F6';
+const BACK_ONLINE_INK = '#0B0C0E';
+
+function BackOnlineBanner({ text, top, onDone }: { text: string; top: number; onDone: () => void }) {
+  const reduceMotion = useReduceMotion();
+  const y = useSharedValue(reduceMotion ? 0 : -70);
+  const opacity = useSharedValue(1);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
+  useEffect(() => {
+    if (!reduceMotion) {
+      y.value = withTiming(0, { duration: BACK_ONLINE_ENTER_MS, easing: Easing.bezier(0.2, 1, 0.3, 1) });
+    }
+    const hold = setTimeout(() => {
+      if (reduceMotion) { onDoneRef.current(); return; }
+      y.value = withTiming(-70, { duration: LUM.exitMs, easing: Easing.in(Easing.cubic) });
+      opacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.in(Easing.cubic) });
+    }, (reduceMotion ? 0 : BACK_ONLINE_ENTER_MS) + BACK_ONLINE_HOLD_MS);
+    const done = setTimeout(() => onDoneRef.current(), (reduceMotion ? 0 : BACK_ONLINE_ENTER_MS + LUM.exitMs) + BACK_ONLINE_HOLD_MS);
+    return () => {
+      clearTimeout(hold);
+      clearTimeout(done);
+      cancelAnimation(y);
+      cancelAnimation(opacity);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduceMotion]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ translateY: y.value }] }));
+  return (
+    <View pointerEvents="none" style={[styles.hybridAnchor, { top }]}>
+      <Reanimated.View style={[styles.hybridCard, style]} accessibilityLiveRegion="polite" testID="back-online-banner">
+        <View style={[styles.surface, { backgroundColor: BACK_ONLINE_BG }]}>
+          <View style={styles.surfaceRow}>
+            <Ionicons name="checkmark" size={20} color={BACK_ONLINE_INK} />
+            <Text style={[styles.surfaceText, { color: BACK_ONLINE_INK }]}>{text}</Text>
+          </View>
+        </View>
+      </Reanimated.View>
+    </View>
+  );
+}
+
 interface OfflineBannerProps {
   lang: string;
   /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
@@ -183,6 +229,8 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
   // зачем (system-005): был ли офлайн до этого события — только переход offline→online даёт «Снова в сети»,
   // а стартовый unknown→online нет. Пока только лог: что показали бы.
   const wasOfflineRef = useRef(false);
+  // Ключ показа «Снова в сети» — один на переход offline→online; null — не показываем.
+  const [backOnlineKey, setBackOnlineKey] = useState<number | null>(null);
   useEffect(() => {
     const unsubscribe = subscribeNetStatus((online) => {
       const wasOffline = wasOfflineRef.current;
@@ -193,6 +241,8 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
       setOffline(!online);
       // Вернулась сеть — сбрасываем «скрытость», чтобы следующий офлайн показался.
       if (online) setDismissed(false);
+      // зачем (system-005): «Снова в сети» — только на реальный переход, не на стартовый unknown→online.
+      setBackOnlineKey(online && wasOffline ? Date.now() : null);
     });
     return unsubscribe;
   }, []);
@@ -271,7 +321,20 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
     };
   }, [hide, isHybrid, visible]);
 
-  if (!visible) return null;
+  if (!visible) {
+    if (backOnlineKey === null || offline) return null;
+    return (
+      <BackOnlineBanner
+        key={backOnlineKey}
+        top={insets.top + 4}
+        text={L(lang, {
+          ru: 'Снова в сети', uk: 'Знову в мережі', en: 'Back online', es: 'Conectado de nuevo',
+          'pt-BR': 'Conectado de novo', vi: 'Đã kết nối lại', id: 'Kembali online', tr: 'Yeniden çevrimiçi', pl: 'Znowu online',
+        })}
+        onDone={() => setBackOnlineKey((current) => (current === backOnlineKey ? null : current))}
+      />
+    );
+  }
 
   const offlineText = L(lang, {
     ru: 'Нет соединения',

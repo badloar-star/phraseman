@@ -96,11 +96,45 @@ function safeResult(value: unknown): DialogueV2CompletionResult | null {
   }) : null;
 }
 
+/** Только для лога: какие ключи пришли и какая проверка формы ответа не прошла (без текстов пользователя). */
+function describeCompletionResponseShape(value: unknown): Record<string, unknown> {
+  const response = record(value);
+  if (!response) return { response: value === null ? 'null' : typeof value };
+  const completion = record(response.v2Completion);
+  const memory = record(response.v2Memory);
+  return {
+    keys: Object.keys(response).sort(),
+    ok: response.ok,
+    replayedType: typeof response.replayed,
+    completionKeys: completion ? Object.keys(completion).sort() : null,
+    memory: memory ? { keys: Object.keys(memory).sort(), shared: memory.sharedMemoryStored } : null,
+    reviewBuilt: completion
+      ? buildDialogueV2CompletionReview({
+        feedback: completion.feedback,
+        context: completion.context,
+        objectiveLabels: completion.objectiveLabels,
+        personaNames: completion.personaNames,
+        userMessages: completion.userMessages,
+        evidenceNote: completion.evidenceNote,
+      }) !== null
+      : null,
+  };
+}
+
 export async function completeDialogueV2Session(
   input: DialogueV2CompletionSelection,
 ): Promise<DialogueV2CompletionResult | null> {
   const selection = safeSelection(input);
-  if (!selection) return null;
+  if (!selection) {
+    console.warn('[DIALOGUE-V2] completion:client invalid_selection', JSON.stringify({
+      keys: input && typeof input === 'object' ? Object.keys(input).sort() : typeof input,
+    }));
+    return null;
+  }
+  // зачем (Сверка 05.10: «completion:run → failed reason=dialogue_v2_completion_unavailable ms=20054»): любая
+  // ошибка сервера и любой «не тот» ответ превращались в одно и то же «недоступно» — настоящая причина терялась.
+  // Печатаем код/текст/details отказа, длительность и, если ответ пришёл, — какую проверку формы он не прошёл.
+  const startedAt = Date.now();
   try {
     const callable = httpsCallable<DialogueV2CompletionSelection, unknown>(
       getFunctions(getApp(), REGION),
@@ -108,10 +142,25 @@ export async function completeDialogueV2Session(
     );
     const response = await callable(selection);
     const result = safeResult(response?.data);
-    if (!result) throw new DialogueV2CompletionUnavailableError();
+    if (!result) {
+      console.warn('[DIALOGUE-V2] completion:client bad_response', JSON.stringify({
+        ms: Date.now() - startedAt,
+        shape: describeCompletionResponseShape(response?.data),
+      }));
+      throw new DialogueV2CompletionUnavailableError();
+    }
+    console.log(`[DIALOGUE-V2] completion:client ok ms=${Date.now() - startedAt} replayed=${result.replayed}`);
     return result;
   } catch (error) {
     if (error instanceof DialogueV2CompletionUnavailableError) throw error;
+    const failure = error as { code?: unknown; message?: unknown; details?: unknown };
+    console.warn('[DIALOGUE-V2] completion:client call_failed', JSON.stringify({
+      ms: Date.now() - startedAt,
+      code: String(failure?.code ?? 'unknown'),
+      message: String(failure?.message ?? error).slice(0, 200),
+      details: failure?.details === undefined ? null : String(JSON.stringify(failure.details)).slice(0, 200),
+      scenarioId: selection.scenarioId,
+    }));
     throw new DialogueV2CompletionUnavailableError();
   }
 }

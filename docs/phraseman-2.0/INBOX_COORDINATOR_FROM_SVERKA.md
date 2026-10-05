@@ -289,3 +289,10 @@ av_back_check.txt, 1 строка): [NAV-BACK] decision leaving=/lingman_playlis
 - 004: кромка шторки и тень «Начать» есть — сняты; затемнение под шторкой всё ещё слабее.
 - Логи: C:\Temp\claude\mistake_direction_logs.txt — 3 строки [MISTAKE-DETAIL] direction (Grandchildren/Daddy/Granny: facet=meaning, sourceGroup=cards, correctRowShows=phrase, phraseScript=latin, meaningScript=cyrillic, hasGiven=false).
 - ⛔ [MISTAKE-SESSION] exercise:direction НЕ сняты: «Начать» в шторке стоит ⚡1 энергии — по запрету трат не нажимала. Нужно разрешение (или снять утром с владельцем).
+
+## 07:24 — Диалоги после переделки сессией 3
+- (2а) поле ввода с открытой клавиатурой НЕ уходит под неё ✅ (DIALOGUE_KB_open_0718.png).
+- (2б) после отправки клавиатура скрылась, пустой полосы снизу НЕТ ✅ — на её месте стена лимита (DIALOGUE_KB_after_send_0720.png). Логи C:\Temp\claude\dialogue_keyboard.txt: show height=312, hide.
+- (3) выход — шторка снизу как в макете ✅; текст «не сохранится» по-прежнему против макета (ждёт владельца).
+- Отправка ответила quota_exhausted: «На этот месяц всё · 30 ответов» — в макете дневной лимит «На сегодня всё · 10 реплик». Реплика осталась без пометки.
+- (1) хаб в СВЕТЛОЙ теме не снят: смена темы — это Настройки, которые роняют эмулятор. Снять на телефоне.

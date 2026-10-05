@@ -276,8 +276,15 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       traceAccountDeleteUi('root_event_emitting');
       emitAppEvent('account_deleted');
       traceAccountDeleteUi('root_event_dispatch_complete');
-    } catch {
+    } catch (error: unknown) {
       traceAccountDeleteUi('local_delete_threw');
+      // зачем (Дизайн 05.10, 041: в макете три разных окна отказа, у нас одно): причина отказа — чтобы выбрать окно.
+      // Без uid и данных аккаунта.
+      console.warn('[ACCOUNT-DELETE-UI] local_delete_threw', JSON.stringify({
+        name: error instanceof Error ? error.name : typeof error,
+        message: error instanceof Error ? error.message.slice(0, 200) : String(error).slice(0, 200),
+        code: (error as { code?: unknown } | null)?.code ?? null,
+      })); // guard-ok: catch логирует причину
       finishAccountDeleteUiTrace('handoff_failed');
       showInfoAlert(
         L({

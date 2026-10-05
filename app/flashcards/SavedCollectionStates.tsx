@@ -1,7 +1,6 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import React, { useCallback } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -17,6 +16,10 @@ type Props = {
   onCommunity: () => void;
   onRetry: () => unknown;
 };
+
+function noop(): void {
+  // кнопки в состоянии поиска нет (hideAction)
+}
 
 function SavedGlassSheen({ edge, tint }: { edge: string; tint: string }) {
   return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -65,8 +68,6 @@ export function SavedCollectionState(props: Props) {
 }
 
 function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; onRetry: () => void }>) {
-  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const title = triLang(lang, {
@@ -77,21 +78,19 @@ function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; on
     ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
     'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
   });
-  return <View testID="fc-saved-unavailable" style={styles.state}>
-    <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-    <Pressable testID="fc-saved-try-again" accessibilityRole="button" accessibilityLabel={action} onPress={onRetry}
-      style={({ pressed }) => [styles.action, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
-      <Text style={[styles.actionText, { color: g.text }]}>{action}</Text>
-    </Pressable>
-  </View>;
+  // зачем (Сверка cards-section offline, шаблон .empty): плитка 61 со значком «нет сети», «Сейчас недоступно» 24/30,
+  // строка 16/22, кнопка «Попробовать снова» со значком обновления — тот же блок по центру экрана, что у «Пусто».
+  const hint = triLang(lang, {
+    ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Revisa tu conexión',
+    'pt-BR': 'Verifique a internet', vi: 'Kiểm tra kết nối mạng', id: 'Periksa koneksi internet', tr: 'İnternetini kontrol et', pl: 'Sprawdź internet',
+  });
+  return <KitEmpty g={g} testID="fc-saved-unavailable" icon="cloud-offline-outline" title={title} detail={hint} action={action} actionIcon="refresh" onAction={onRetry} actionTestID="fc-saved-try-again" />;
 }
 
 // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section кадр 7 «Пусто»): блок стоит
 // по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,
 // «Пока пусто» 24/30, подпись 16/22, кнопка 48 высотой с мятным свечением. Поиск без результатов (кадр 38) — прежний вид.
 function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
-  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const title = searchActive ? triLang(lang, {
@@ -114,14 +113,8 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
     'pt-BR': 'Encontrar pacotes', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket bul', pl: 'Znajdź zestawy',
   });
   if (searchActive) {
-    return <View testID="fc-saved-search-empty" style={styles.state}>
-      <View style={[styles.icon, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-        <SavedGlassSheen edge={g.glassEdge} tint={g.selected} />
-        <Ionicons name="search-outline" size={27} color={g.lightTint} />
-      </View>
-      <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-      <Text style={[styles.detail, { color: g.secondary }]}>{detail}</Text>
-    </View>;
+    // зачем (шаблон .empty макета): поиск без результатов — плитка, 24/30 и 16/22 по центру экрана, как у «Пусто».
+    return <KitEmpty g={g} testID="fc-saved-search-empty" icon="search-outline" title={title} detail={detail} action="" onAction={noop} hideAction />;
   }
   return <KitEmpty g={g} testID="fc-saved-empty" icon="bookmark" title={title} detail={detail} action={action} onAction={onCommunity} actionTestID="fc-saved-find-packs" />;
 }
@@ -130,11 +123,4 @@ const baseStyles = StyleSheet.create({
   loading: { flex: 1, paddingHorizontal: 20, paddingTop: 16, gap: 10 },
   skeleton: { height: 118, borderRadius: 16, borderWidth: 1, padding: 18, justifyContent: 'center', gap: 9, overflow: 'hidden' },
   skeletonLine: { height: 11, borderRadius: 6 },
-  state: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 88, paddingHorizontal: 30 },
-  icon: { width: 61, height: 61, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  title: { fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 },
-  detail: { fontSize: 16, lineHeight: 21, textAlign: 'center', marginTop: 8 },
-  action: { minHeight: 46, borderRadius: 14, paddingHorizontal: 22, alignItems: 'center', justifyContent: 'center', marginTop: 22 },
-  actionText: { fontSize: 16, fontWeight: '700' },
-  pressed: { opacity: 0.82 },
 });

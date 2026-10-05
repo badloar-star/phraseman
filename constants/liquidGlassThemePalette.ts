@@ -105,7 +105,9 @@ function tintedTokens(hue: number): BaseGlassTokens {
   return Object.freeze({
     bg: dark(0.105, 0.014), bgTop: dark(0.155, 0.018), bgBottom: dark(0.14, 0.018),
     opaqueCard: dark(0.15, 0.018), opaqueSheet: dark(0.18, 0.020), opaqueControl: dark(0.24, 0.022),
-    card: alpha(dark(0.19, 0.022), 0.46), sheet: alpha(dark(0.17, 0.020), 0.74),
+    // зачем (владелец 05.10 «решения — рекомендуемые»; правило «стекло 2.0 непрозрачное ≥ 0.9»): стекло карточки =
+    // opaqueCard темы на 0.9 — как «Затмение» (bf4f4996d) и кит V2; было 46 % — фон просвечивал, карточки темнее макета.
+    card: alpha(dark(0.15, 0.018), 0.9), sheet: alpha(dark(0.17, 0.020), 0.74),
     glassEdge: alpha(light(0.90, 0.020), 0.12), lightTint: alpha(light(0.94, 0.024), 0.92),
     cta: light(0.92, 0.028), ctaInk: dark(0.12, 0.018), text: light(0.985, 0.006),
     secondary: light(0.82, 0.016), mutedText: light(0.78, 0.016),

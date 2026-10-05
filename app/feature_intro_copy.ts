@@ -7,6 +7,11 @@ import { mistakePracticeExplanation } from './mistake_practice_intro_copy';
 export const featureIntroClose = (lang: Lang) => triLang(lang, {
   ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
 });
+// зачем (Сверка overlays-041, overlays.html featureIntro): вторая кнопка окна-знакомства — «Позже» (.cta.gh), а не «Закрыть».
+// Отдельная функция: featureIntroClose служит ещё и подписью главной кнопки у части знакомств и в окне согласия ИИ.
+export const featureIntroLater = (lang: Lang) => triLang(lang, {
+  ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później',
+});
 export const APPROVED_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   id: 'mistake_practice_help', trigger: 'condition', icon: 'refresh-circle-outline', family: 'premiere', art: 'mistake_practice',
   title: lang => triLang(lang, { ru: 'Работа над ошибками', uk: 'Робота над помилками', en: 'Mistake practice', es: 'Practicar errores', 'pt-BR': 'Praticar erros', vi: 'Luyện lỗi sai', id: 'Latihan kesalahan', tr: 'Hata çalışması', pl: 'Praca nad błędami' }),

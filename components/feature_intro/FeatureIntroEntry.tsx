@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { featureIntroById } from '../../app/feature_intro_registry';
-import { featureIntroClose } from '../../app/feature_intro_copy';
+import { featureIntroLater } from '../../app/feature_intro_copy';
 import { useFeatureIntro } from '../../hooks/use_feature_intro';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useLang } from '../LangContext';
@@ -20,6 +20,6 @@ export default function FeatureIntroEntry({ id, enabled }: { id: string; enabled
   }, [id, enabled, active, def, intro.visible, shown]);
   if (!def) return null;
   return <FeatureIntroModal visible={intro.visible && active} icon={def.icon} family={def.family} art={def.art}
-    title={def.title(lang)} body={def.body(lang)} ctaLabel={def.ctaLabel(lang)} laterLabel={featureIntroClose(lang)}
+    title={def.title(lang)} body={def.body(lang)} ctaLabel={def.ctaLabel(lang)} laterLabel={featureIntroLater(lang)}
     onDone={() => intro.dismiss(true)} onLater={() => intro.dismiss(false)} testIdPrefix={id} introId={def.id} />;
 }

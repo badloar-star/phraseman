@@ -154,7 +154,7 @@ import {
   type CourseLevel,
 } from "../course_levels";
 import { featureIntroById } from "../feature_intro_registry";
-import { featureIntroClose } from "../feature_intro_copy";
+import { featureIntroLater } from "../feature_intro_copy";
 import { lessonNamesForStudyTarget } from "../lesson_titles_for_study_target";
 import {
   examContentAvailableForTarget,
@@ -5845,7 +5845,7 @@ export default function LessonsTab({
         title={legacyLessonsIntroDef.title(lang)}
         body={legacyLessonsIntroDef.body(lang)}
         ctaLabel={legacyLessonsIntroDef.ctaLabel(lang)}
-        laterLabel={featureIntroClose(lang)}
+        laterLabel={featureIntroLater(lang)}
         secondaryLabel={triLang(lang, {
           ru: "Остаться в новых уроках",
           en: "Stay in new lessons",

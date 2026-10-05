@@ -25,6 +25,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { ThemeAccentFill } from './v2/ThemeAccentFill';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { FeatureIntroIconName } from '../app/feature_intro_registry';
 import FeatureIntroStage, { type FeatureIntroFamily } from './feature_intro/FeatureIntroStage';
@@ -247,6 +248,8 @@ function FeatureIntroModal({
           edgeHeight={4}
           style={[styles.primaryFace, { backgroundColor: glass.accent }]}
         >
+          {/* зачем (Сверка overlays-041, kit.css .cta): главная кнопка с глянцем — общий слой темы (в «Спокойно» KitCtaGloss). */}
+          <ThemeAccentFill glass={glass} radius={24} />
           <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: 16 }]}>{ctaLabel}</Text>
         </DuoPressable>
         {!hideSecondary ? <PressableHybrid

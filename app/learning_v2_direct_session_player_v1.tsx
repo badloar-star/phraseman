@@ -211,6 +211,7 @@ import { resolveLearningV2SessionRouteCoordinatesV1 } from "./learning_v2_sessio
 import { isPulseLessonAuthored } from "../components/learning-v2/learningV2PulseGeometry";
 import { useLineScale } from "../hooks/useLineScale";
 import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
+import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -2447,21 +2448,17 @@ export default function LearningV2DirectSessionPlayerV1() {
         }),
       );
     }
+    // зачем (сверка с learning-v2.html unavailable, 05.10): вид — общий компонент: шапка с крестиком, пояснение,
+    // маленькая «Назад». Решения и логи [V2-SESSION] выше не менялись.
     return (
-      <View style={[styles.center, { backgroundColor: g.bg }]}>
-        <Ionicons name="cloud-offline-outline" size={36} color={g.mutedText} />
-        <Text style={[styles.errorText, { color: g.text }]}>
-          {copy.unavailable}
-        </Text>
-        <Lv2Cta
-          testID="learning-v2-unavailable-back"
-          ghost
-          accessibilityLabel={footerBackLabel}
-          onPress={() => safeRouterBack(router, exitRoute)}
-        >
-          {footerBackLabel}
-        </Lv2Cta>
-      </View>
+      <LearningV2SessionUnavailable
+        title={copy.unavailable}
+        hint={learningV2SessionUnavailableDefaultHint(lang)}
+        backLabel={footerBackLabel}
+        closeLabel={copy.close}
+        onBack={() => safeRouterBack(router, exitRoute)}
+        onClose={exitLearningV2Session}
+      />
     );
   }
   if (finaleStars !== null) {
@@ -2535,46 +2532,23 @@ export default function LearningV2DirectSessionPlayerV1() {
       );
     }
     return (
-      <View style={[styles.center, { backgroundColor: g.bg }]}>
-        <Ionicons name="cloud-offline-outline" size={36} color={g.mutedText} />
-        <Text style={[styles.errorText, { color: g.text }]}>
-          {copy.unavailable}
-        </Text>
-        {__DEV__ && loadFailureReason ? (
-          <Text
-            selectable
-            style={[styles.devFailureReason, { color: g.secondary }]}
-          >
-            {loadFailureReason}
-          </Text>
-        ) : null}
-        <Lv2Cta
-          testID="learning-v2-unavailable-back"
-          ghost
-          accessibilityLabel={footerBackLabel}
-          onPress={() => safeRouterBack(router, exitRoute)}
-        >
-          {footerBackLabel}
-        </Lv2Cta>
+      <View style={styles.screen}>
+        <LearningV2SessionUnavailable
+          title={copy.unavailable}
+          hint={learningV2SessionUnavailableDefaultHint(lang)}
+          backLabel={footerBackLabel}
+          closeLabel={copy.close}
+          onBack={() => safeRouterBack(router, exitRoute)}
+          onClose={exitLearningV2Session}
+          devReason={loadFailureReason ?? null}
+          retry={isAuthoringPreview ? { label: copy.retry, onPress: () => setLoadRevision((value) => value + 1) } : null}
+        />
         {/* зачем (владелец 23.09): в боевом режиме у «Повторить» НЕ БЫЛО ни
             одного успешного исхода — повтор снова упирался в отсутствующий
             мост. Кнопка обещала то, чего механизм не умел. Боевой путь теперь
             вообще не доходит сюда (уходит на карту), а здесь повтор осмыслен
-            только в авторском превью, где материал берётся из бандла. */}
-        {isAuthoringPreview ? (
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => setLoadRevision((value) => value + 1)}
-            style={({ pressed }) => [
-              styles.retry,
-              { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 },
-            ]}
-          >
-            <Text style={[styles.retryText, { color: g.accentInk }]}>
-              {copy.retry}
-            </Text>
-          </Pressable>
-        ) : null}
+            только в авторском превью, где материал берётся из бандла —
+            поэтому retry передаётся в вид только при isAuthoringPreview. */}
       </View>
     );
   }

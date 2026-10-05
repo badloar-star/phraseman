@@ -375,7 +375,17 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
         || active.runtimeGeneration !== input.expectedAccountGeneration)) return false;
     active.triggerSync();
     return true;
-  } catch {
+  } catch (error) {
+    // зачем (координатор 05.10, «сперва логи»): сбой записи покупки/начисления в очередь PhoneState не оставлял следа —
+    // вызывающий видел только false. Поведение прежнее (false); строка несёт причину, вид, сумму и id операции, без uid.
+    const exact = (input.exactResult && typeof input.exactResult === 'object' ? input.exactResult : {}) as Record<string, unknown>;
+    const amount = [exact.runeDelta, exact.price, exact.amount, exact.quantity].find((value) => typeof value === 'number') ?? null;
+    console.warn('[ECONOMY-BRIDGE] write_failed', JSON.stringify({
+      reason: error instanceof Error ? error.message : String(error),
+      kind: input.kind,
+      amount,
+      operationId: input.operationId,
+    })); // guard-ok: сбой денежной записи обязан логироваться и в релизе
     return false;
   }
 }

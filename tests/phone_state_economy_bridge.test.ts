@@ -387,6 +387,51 @@ describe('PhoneState economy bridge', () => {
     }), { idempotencyKey: `economy:${operationId}` });
   });
 
+  // зачем (координатор 05.10): сбой записи покупки раньше глушился немым catch. Поведение то же (false), но причина в логе.
+  test('a failed write of a customization purchase still returns false and logs [ECONOMY-BRIDGE] write_failed', async () => {
+    const commit = jest.fn(async () => { throw new Error('disk_full'); });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const triggerSync = jest.fn();
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync,
+    });
+    const operationId = 'customization_avatar:custom-gen-94:purchase';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'customization_rune_purchase',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-customization-rune-operation.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        accountGeneration: 3,
+        avatarId: 'custom-gen-94',
+        artVersion: 'avatar100-v1',
+        ownedValue: 'avatar100-v1|aurora:black',
+        avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+        runeDelta: -12_000,
+        price: 12_000,
+        balanceBefore: 20_000,
+        balanceAfter: 8_000,
+        reason: 'custom_avatar',
+        createdAtMs: 103,
+        requestFingerprint: validCustomizationRuneFingerprint,
+      },
+    })).resolves.toBe(false);
+    expect(triggerSync).not.toHaveBeenCalled();
+    const line = warn.mock.calls.find(([first]) => first === '[ECONOMY-BRIDGE] write_failed');
+    expect(line).toBeDefined();
+    expect(JSON.parse(String(line?.[1]))).toEqual({
+      reason: 'disk_full', kind: 'customization_rune_purchase', amount: -12_000, operationId,
+    });
+    expect(String(line?.[1])).not.toContain('account-a');
+    warn.mockRestore();
+  });
+
   test('star credit rejects a well-shaped receipt whose immutable fingerprint is false', async () => {
     const commit = jest.fn();
     configurePhoneStateEconomyBridge({

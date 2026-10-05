@@ -51,30 +51,51 @@ export function getLocalYesterdayKey(date: Date = new Date()): string {
  * апдейта), он уже в новом (локальном) формате — так что расширенное сравнение
  * нужно только на один переходный день на пользователя.
  */
-export function isSameLocalOrUtcDay(dayKey: string | null | undefined, reference: Date = new Date()): boolean {
-  if (!dayKey) return false;
-  return dayKey === getLocalDayKey(reference) || dayKey === getUtcDayKey(reference);
-}
-
-export function isYesterdayFlexible(dayKey: string | null | undefined, reference: Date = new Date()): boolean {
-  if (!dayKey) return false;
-  const localYesterday = getLocalYesterdayKey(reference);
-  const utcYesterday = addLocalDays(getUtcDayKey(reference), -1);
-  return dayKey === localYesterday || dayKey === utcYesterday;
-}
+export type DayKeyRelation = 'today' | 'yesterday' | 'day_before_yesterday' | 'other';
 
 /**
- * "Пропущен РОВНО 1 день" — dayKey совпадает с позавчера (по local ИЛИ UTC схеме).
- * Используется там, где раньше было `lastActive >= dayBeforeStr` в связке с явным
- * исключением "сегодня"/"вчера" выше по коду: freeze/repair/chain_shield прощают
- * только один пропущенный день, не больше.
+ * Где ключ дня относительно reference: сегодня / вчера / позавчера / другое.
+ *
+ * зачем (Сверка 05.10, [STREAK] «today=2026-10-05 lastActive=2026-10-04 sameDay=true → same_day keep=8»): раньше
+ * «тот же день» принимал ЛОКАЛЬНЫЙ ИЛИ UTC-день без приоритета. В UTC+N сразу после местной полуночи вчерашний
+ * локальный ключ (10-04) равен UTC-сегодня (10-04) — серия не росла (8 вместо 9). Теперь локальная классификация
+ * ПЕРВИЧНА; UTC-ключ — только запасной путь для старых записей, когда ключ не совпал ни с одним локальным днём.
  */
-export function isDayBeforeYesterdayFlexible(dayKey: string | null | undefined, reference: Date = new Date()): boolean {
-  if (!dayKey) return false;
-  const localDayBefore = addLocalDays(getLocalDayKey(reference), -2);
-  const utcDayBefore = addLocalDays(getUtcDayKey(reference), -2);
-  return dayKey === localDayBefore || dayKey === utcDayBefore;
+export function makeDayKeyComparators(localDayKey: (date?: Date) => string = getLocalDayKey) {
+  const relation = (dayKey: string | null | undefined, reference: Date = new Date()): DayKeyRelation => {
+    if (!dayKey) return 'other';
+    const local = localDayKey(reference);
+    if (dayKey === local) return 'today';
+    if (dayKey === addLocalDays(local, -1)) return 'yesterday';
+    if (dayKey === addLocalDays(local, -2)) return 'day_before_yesterday';
+    // Переходный запасной путь: last_active_date, записанный старой UTC-схемой.
+    const utc = getUtcDayKey(reference);
+    if (dayKey === utc) return 'today';
+    if (dayKey === addLocalDays(utc, -1)) return 'yesterday';
+    if (dayKey === addLocalDays(utc, -2)) return 'day_before_yesterday';
+    return 'other';
+  };
+  return {
+    relation,
+    isSameLocalOrUtcDay: (dayKey: string | null | undefined, reference: Date = new Date()) =>
+      relation(dayKey, reference) === 'today',
+    isYesterdayFlexible: (dayKey: string | null | undefined, reference: Date = new Date()) =>
+      relation(dayKey, reference) === 'yesterday',
+    /**
+     * "Пропущен РОВНО 1 день" — dayKey совпадает с позавчера (локально; UTC — запасной путь).
+     * freeze/repair/chain_shield прощают только один пропущенный день, не больше.
+     */
+    isDayBeforeYesterdayFlexible: (dayKey: string | null | undefined, reference: Date = new Date()) =>
+      relation(dayKey, reference) === 'day_before_yesterday',
+  };
 }
+
+const deviceDayKeyComparators = makeDayKeyComparators();
+
+export const dayKeyRelation = deviceDayKeyComparators.relation;
+export const isSameLocalOrUtcDay = deviceDayKeyComparators.isSameLocalOrUtcDay;
+export const isYesterdayFlexible = deviceDayKeyComparators.isYesterdayFlexible;
+export const isDayBeforeYesterdayFlexible = deviceDayKeyComparators.isDayBeforeYesterdayFlexible;
 
 /**
  * Тестовый хелпер: локальный день для ПРОИЗВОЛЬНОГО IANA-пояса (а не пояса машины,

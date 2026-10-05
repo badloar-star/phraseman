@@ -15,7 +15,9 @@ import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } fro
 import { markActiveDay } from './friends_together/together_days';
 import { classifyStreakTouch, hydrateStreakDayState, markStreakDayCounted, peekStreakDayState, resolveLegacyRuleDay } from './streak_day_signal';
 import {
+  dayKeyRelation,
   getLocalDayKey,
+  getUtcDayKey,
   isDayBeforeYesterdayFlexible,
   isSameLocalOrUtcDay,
   isYesterdayFlexible,
@@ -294,7 +296,7 @@ export const updateStreakOnActivity = async (
     // зачем (баг «Дизайна» 01.10: серия 1 при 6 днях подряд): временная трассировка [STREAK] —
     // вход, ветка и значения, что её решили. Убрать после диагноза, ранние выходы оставить.
     const streakBefore = streak;
-    console.log(`[STREAK] update:enter today=${today} lastActive=${String(lastActive)} streak=${streak} sameDay=${isSameLocalOrUtcDay(lastActive)} yesterday=${isYesterdayFlexible(lastActive)}`);
+    console.log(`[STREAK] update:enter today=${today} utcToday=${getUtcDayKey()} lastActive=${String(lastActive)} streak=${streak} relation=${dayKeyRelation(lastActive)} sameDay=${isSameLocalOrUtcDay(lastActive)} yesterday=${isYesterdayFlexible(lastActive)}`);
 
     // зачем (баг 01.10, диагноз по [STREAK]): серия обновлялась только на холодном старте —
     // день, прожитый без холодного старта (приложение из фона), не сдвигал last_active_date,

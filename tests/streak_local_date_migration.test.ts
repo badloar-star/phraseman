@@ -24,28 +24,18 @@ jest.mock('../app/local_date', () => {
 
   const getLocalDayKey = (date: Date = new Date()) => actual.localDayKeyForTimeZone(date, simulatedZone);
   const getLocalYesterdayKey = (date: Date = new Date()) => actual.addLocalDays(getLocalDayKey(date), -1);
-  const isSameLocalOrUtcDay = (dayKey: string | null | undefined, reference: Date = new Date()) =>
-    !!dayKey && (dayKey === getLocalDayKey(reference) || dayKey === actual.getUtcDayKey(reference));
-  const isYesterdayFlexible = (dayKey: string | null | undefined, reference: Date = new Date()) => {
-    if (!dayKey) return false;
-    const localYesterday = getLocalYesterdayKey(reference);
-    const utcYesterday = actual.addLocalDays(actual.getUtcDayKey(reference), -1);
-    return dayKey === localYesterday || dayKey === utcYesterday;
-  };
-  const isDayBeforeYesterdayFlexible = (dayKey: string | null | undefined, reference: Date = new Date()) => {
-    if (!dayKey) return false;
-    const localDayBefore = actual.addLocalDays(getLocalDayKey(reference), -2);
-    const utcDayBefore = actual.addLocalDays(actual.getUtcDayKey(reference), -2);
-    return dayKey === localDayBefore || dayKey === utcDayBefore;
-  };
+  // зачем (05.10): сравнения берутся из НАСТОЯЩЕЙ фабрики приложения с подставленным поясом — раньше мок
+  // копировал старую логику, и тест не видел приоритета локального дня над UTC.
+  const comparators = actual.makeDayKeyComparators(getLocalDayKey);
 
   return {
     ...actual,
     getLocalDayKey,
     getLocalYesterdayKey,
-    isSameLocalOrUtcDay,
-    isYesterdayFlexible,
-    isDayBeforeYesterdayFlexible,
+    dayKeyRelation: comparators.relation,
+    isSameLocalOrUtcDay: comparators.isSameLocalOrUtcDay,
+    isYesterdayFlexible: comparators.isYesterdayFlexible,
+    isDayBeforeYesterdayFlexible: comparators.isDayBeforeYesterdayFlexible,
   };
 });
 
@@ -203,5 +193,59 @@ describe('streak transition: user changes device timezone mid-streak', () => {
     // the streak is NOT reset to 1 by the pure act of changing timezone while still being
     // active on consecutive real-world days.
     expect(streak).toBeGreaterThan(1);
+  });
+});
+
+// зачем (Сверка 05.10, лог [STREAK] «today=2026-10-05 lastActive=2026-10-04 sameDay=true → same_day keep=8»,
+// тост «День засчитан 🔥 8» вместо 9): в UTC+N сразу после местной полуночи вчерашний локальный ключ равен
+// UTC-сегодня. Локальный день обязан побеждать UTC-запасной путь.
+describe('streak right after local midnight in UTC+N (Europe/London, BST = UTC+1)', () => {
+  beforeEach(async () => {
+    simulatedZone = 'Europe/London';
+    await AsyncStorage.clear();
+    jest.clearAllMocks();
+  });
+  afterEach(() => jest.useRealTimers());
+
+  it('00:12 local on the next day extends the streak 8 -> 9 although the UTC day has not changed yet', async () => {
+    // 2026-10-05 00:12 BST = 2026-10-04T23:12:00Z: локально уже 10-05, по UTC ещё 10-04.
+    jest.useFakeTimers().setSystemTime(new Date('2026-10-04T23:12:00.000Z'));
+    await AsyncStorage.multiSet([
+      ['last_active_date', '2026-10-04'],
+      ['streak_count', '8'],
+    ]);
+    const streak = await updateStreakOnActivity();
+    expect(streak).toBe(9);
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2026-10-05');
+  });
+
+  it('a second activity the same local night stays at 9 (counted once per local day)', async () => {
+    jest.useFakeTimers().setSystemTime(new Date('2026-10-04T23:12:00.000Z'));
+    await AsyncStorage.multiSet([
+      ['last_active_date', '2026-10-04'],
+      ['streak_count', '8'],
+    ]);
+    await updateStreakOnActivity();
+    jest.setSystemTime(new Date('2026-10-04T23:40:00.000Z'));
+    expect(await updateStreakOnActivity()).toBe(9);
+  });
+});
+
+describe('streak in UTC-N late evening (Etc/GMT+5 = UTC-5)', () => {
+  beforeEach(async () => {
+    simulatedZone = 'Etc/GMT+5';
+    await AsyncStorage.clear();
+    jest.clearAllMocks();
+  });
+  afterEach(() => jest.useRealTimers());
+
+  it('22:00 local the next day extends the streak although UTC is already two days past last_active_date', async () => {
+    // 2026-10-05 22:00 (UTC-5) = 2026-10-06T03:00:00Z: локально 10-05, по UTC уже 10-06.
+    jest.useFakeTimers().setSystemTime(new Date('2026-10-06T03:00:00.000Z'));
+    await AsyncStorage.multiSet([
+      ['last_active_date', '2026-10-04'],
+      ['streak_count', '8'],
+    ]);
+    expect(await updateStreakOnActivity()).toBe(9);
   });
 });

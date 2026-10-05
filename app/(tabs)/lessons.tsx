@@ -128,6 +128,7 @@ import {
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
+import { LUM } from "../../constants/motionHybrid";
 import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
@@ -1384,6 +1385,14 @@ function logOncePerKey(tag: string, key: string, payload: Record<string, unknown
 // зачем (learn-(1), Дизайн/координатор 05.10: «Free видит "Ещё рано" вместо пейвола» — потеря выручки, «сперва логи»): каждое
 // решение ворот урока печатает все входы resolveLessonAccess и что показано. devMode = DEV_CONTENT_UNLOCK снимает
 // Plus-ветку в dev-сборке — его значение в строке обязательно. Без uid.
+// зачем (learn-5, координатор 05.10: «окно ворот открывается медленно — лог времени от тапа до показа»): отметка
+// последнего тапа, который может открыть окно ворот. Эффект открытия окна печатает tap→commit и tap→кадр, чтобы
+// отделить задержку кода от собственной анимации HybridAlertShell (~74+380 мс до полной непрозрачности).
+let lessonsGateTapAtMs: number | null = null;
+function markLessonsGateTap(): void {
+  lessonsGateTapAtMs = Date.now();
+}
+
 function logLessonGateDecision(
   source: 'card' | 'list',
   input: Readonly<{
@@ -1391,6 +1400,7 @@ function logLessonGateDecision(
     purchased: boolean; unlocked: boolean; cap: number | null; levelLockedByExam: boolean;
   }>,
 ): void {
+  markLessonsGateTap();
   const shown = input.access === 'available' ? 'lesson_menu'
     : input.access === 'premium_required' ? 'paywall'
       : input.levelLockedByExam ? 'gate_level' : 'gate_lesson_too_early';
@@ -3847,6 +3857,26 @@ export default function LessonsTab({
     if (gateModalKind === null) return;
     soundDirector.request('pm.ui.tap_blocked', { scope: 'lessons-gate' });
   }, [gateModalKind]);
+  // зачем (learn-5): время от тапа до коммита окна ворот и до следующего кадра; animFullMs — собственная анимация
+  // шелла (LUM.ladder[1] + LUM.resolveMs), её прибавлять к tapToFrameMs, чтобы получить «окно видно полностью».
+  useEffect(() => {
+    if (gateModalKind === null) return;
+    const tapAt = lessonsGateTapAtMs;
+    lessonsGateTapAtMs = null;
+    const commitAt = Date.now();
+    const tapToCommitMs = tapAt === null ? null : commitAt - tapAt;
+    requestAnimationFrame(() => {
+      const frameAt = Date.now();
+      console.warn('[LESSONS-GATE-OPEN]', JSON.stringify({
+        kind: gateModalKind,
+        tapSeen: tapAt !== null,
+        tapToCommitMs,
+        commitToFrameMs: frameAt - commitAt,
+        tapToFrameMs: tapAt === null ? null : frameAt - tapAt,
+        animFullMs: LUM.ladder[1] + LUM.resolveMs,
+      })); // guard-ok: временная трассировка learn-5, одна строка на открытие окна
+    });
+  }, [gateModalKind]);
 
   // зачем: D107/D70 — покупка урока за жемчуг удалена, уже купленные уроки читаются из lessons_pearl_unlock_storage
   const mountedRef = useRef(true);
@@ -4501,6 +4531,7 @@ export default function LessonsTab({
         faint={!allDone && !result}
         bestPct={examBestPct}
         onPress={() => {
+          markLessonsGateTap();
           hapticTap();
           const firstLessonByLevel =
             lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;

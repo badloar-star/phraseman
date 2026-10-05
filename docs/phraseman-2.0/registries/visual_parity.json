@@ -13863,14 +13863,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/results-009.png",
+      "evidence_at": "2026-10-05T07:53:38.718Z",
+      "evidence_sha256": "6aa8b32e79a2d70676b983bda57ab6735e1dd9269d090f94f6360bf927ef1acc",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "🔴 Не снять: тап «Год» на «Серия и результаты» → красный экран Render Error «Cannot read property 'prototype' of undefined» в MonthSelector (ActivityHeatmap365.tsx), BUG_results_year_render_error_0753.png"
+        "Пересъёмка 08:53: «Год» больше не падает (Render Error 07:53 исправлен)",
+        "🔴 Не по макету: в макете отдельный экран «Активность за год» с большой сеткой 7×52 по высоте (365 дней · 2026, «Практика по календарю»); в приложении — маленькая горизонтальная полоска-тепловая карта внутри карточки на экране «Серия»",
+        "Клетки зелёные; в макете оттенки серого/белого",
+        "Нет «365 дней», «Практика по календарю», плашки года «2026»",
+        "Заголовок «Активность за год» в 2 строки рядом с переключателем «Время | Год» — в макете переключателя нет"
       ],
       "status": "pending",
       "reviewed_by": null,

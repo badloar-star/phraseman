@@ -3,8 +3,10 @@ import { join } from "node:path";
 
 import { parseLearningV2ActivityAuxiliaryRouteScopeV1 } from "../app/use_learning_v2_activity_auxiliary_session_v1";
 
+// зачем (координатор 05.10): в рабочей копии Windows файлы с CRLF (в индексе LF), и буквальные проверки с «\n»
+// падали ложно, хотя код на месте. Нормализуем окончания строк перед сверкой исходника.
 const source = (relative: string) =>
-  readFileSync(join(__dirname, "..", relative), "utf8");
+  readFileSync(join(__dirname, "..", relative), "utf8").replace(/\r\n/g, "\n");
 
 describe("Learning V2 auxiliary session runtime mount", () => {
   test("requires the complete release route scope and preserves legacy absence", () => {
@@ -53,11 +55,12 @@ describe("Learning V2 auxiliary session runtime mount", () => {
     expect(session).toContain(
       "releasedTaskResults.every((candidate) => candidate !== undefined)",
     );
-    expect(client).toContain(
-      'withBackgroundNetworkLease(\n    "learning-v2.activity-auxiliary"',
+    // Аренда фоновой сети — по смыслу, а не по отступам: форматирование не должно ронять сторожа.
+    expect(client).toMatch(
+      /withBackgroundNetworkLease\(\s*"learning-v2\.activity-auxiliary"/,
     );
-    expect(releasedClient).toContain(
-      'withBackgroundNetworkLease(\n    "learning-v2.activity-released-session"',
+    expect(releasedClient).toMatch(
+      /withBackgroundNetworkLease\(\s*"learning-v2\.activity-released-session"/,
     );
 
     const chooseBody = session.slice(

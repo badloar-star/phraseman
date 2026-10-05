@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { KitGlassLayer } from "../../../components/v2/KitLiquidGlass";
 import * as Crypto from "expo-crypto";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { LinearGradient } from "../../../components/SafeLinearGradient";
@@ -2169,22 +2170,27 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
           Показываем ту же шапку, что и сам плеер, чтобы кадр был осмысленным
           и из него всегда можно было выйти назад. */}
       {gate === "checking" ? (
-        <View style={[styles.gateSkeleton, { paddingTop: gateInsets.top + 10 }]}>
+        // зачем (сверка с learning-v2.html skeleton, 05.10): шапка .shd — 8 под статус-баром, поля 20, gap 10; крестик .rb 42
+        // стеклом; дорожка прогресса пустая; пилюля сердец — три сердца на .35 (раньше пустой брусок).
+        <View style={[styles.gateSkeleton, { paddingTop: gateInsets.top + 8 }]}>
           <Pressable
             accessibilityRole="button"
             hitSlop={10}
             onPress={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
             style={({ pressed }) => [
               styles.gateSkeletonClose,
-              { backgroundColor: gateGlass.opaqueControl, opacity: pressed ? 0.72 : 1 },
+              { backgroundColor: gateGlass.opaqueControl, borderColor: gateGlass.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px кромка .rb (исключение 2.0)
             ]}
           >
-            <Ionicons name="close" size={22} color={gateGlass.text} />
+            <KitGlassLayer radius={21} />
+            <Ionicons name="close" size={20} color={gateGlass.text} />
           </Pressable>
           <View style={[styles.gateSkeletonTrack, { backgroundColor: gateGlass.opaqueControl }]} />
           {/* зачем (learning-v2.html, «Скелет ожидания»): пилюля попыток — приглушённая заглушка
               на месте будущих сердец, чтобы первый кадр уже имел финальную геометрию шапки. */}
-          <View style={[styles.gateSkeletonHearts, { backgroundColor: gateGlass.opaqueControl }]} />
+          <View style={[styles.gateSkeletonHearts, { backgroundColor: gateGlass.opaqueControl }]}>
+            {[0, 1, 2].map((i) => <Ionicons key={i} name="heart" size={16} color={gateGlass.text} />)}
+          </View>
         </View>
       ) : null}
       <NoEnergyModal variant="course"
@@ -2231,15 +2237,17 @@ const styles = StyleSheet.create({
   // первый кадр сразу финальный, без прыжка вёрстки при переходе к сессии.
   gateSkeleton: {
     paddingTop: 54,
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
+    gap: 10,
   },
   gateSkeletonClose: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 1, // guard-ok: 1 px кромка .rb (исключение PhraseMan 2.0)
+    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -2248,10 +2256,14 @@ const styles = StyleSheet.create({
     height: 6,
     borderRadius: 3,
   },
+  // `.pill.hearts`: 30, поля 10, gap 5, три сердца; вся пилюля на .35, пока энергия подтверждается.
   gateSkeletonHearts: {
-    width: 86,
     height: 30,
     borderRadius: 15,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
     opacity: 0.35,
   },
   introAttemptsOverlay: {

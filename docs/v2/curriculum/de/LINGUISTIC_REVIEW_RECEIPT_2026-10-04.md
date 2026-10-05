@@ -2,12 +2,12 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` through `de_l29` closure across cumulative
-Stages A–D already recorded below, plus L27, L28 and L29 Stage A (Task 4
+**Scope:** the bounded `de_l24` through `de_l30` closure across cumulative
+Stages A–D already recorded below, plus L27, L28, L29 and L30 Stage A (Task 4
 authority repair) and Stage B (Task 5 chapter blueprint plus fail-closed
 chapter gate).
 **Mode:** fresh independent read-only reviews after each GREEN. Cumulative
-Stages B–D and L27/L28/L29 Stage B used exact-spec and native-German semantic
+Stages B–D and L27/L28/L29/L30 Stage B used exact-spec and native-German semantic
 judges. No reviewer authored or mutated the reviewed files.
 **Reviewed commits:** cumulative Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
@@ -19,7 +19,9 @@ judges. No reviewer authored or mutated the reviewed files.
 `ce23e30d42ce91acee65de53b488070e40e3c68e`; L28 Stage B
 `3963b8d16a6c3872a671d2801594f1b513432c20`; L29 Stage A
 `9b3de41e021f87969eef9c820b42c091d8859d3b`; L29 Stage B
-`f4d8b0b5cf8074b72b766d9c85ceec4f6da62241`.
+`f4d8b0b5cf8074b72b766d9c85ceec4f6da62241`; L30 Stage A
+`8cd2b0e56092d2a97b3f2691de5424694d635c0d`; L30 Stage B
+`66b08395634b794c67ec3555bb7aaf3253587815`.
 
 ## Stable authority identities
 
@@ -369,6 +371,78 @@ Fresh final exact-spec and native-German adversarial reviews both returned
 `PASS`, with `P0=0`, `P1=0`, `P2=0`. No reviewer authored or mutated the
 reviewed files.
 
+## L30 Stage A — repaired Task 4 authority boundary
+
+| Reviewed artifact                                                | SHA-256                                                            |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/lesson_blueprints_de_v1.json` | `FBDE334D3A2768562FDED9A2701869F982D1D259D7386CCD0321E16D054085E2` |
+| `tests/learning_v2_de_lesson_boundaries_gate.ts`                 | `CD1FC6B34102BD69C59968D3C75B8627F15E1567FCB87C74445864F7C4BEBAFF` |
+
+Stage A is commit `8cd2b0e56092d2a97b3f2691de5424694d635c0d`, tree
+`ccc4a8d4e4fc8fa7ca6b5569743fd6b9c3161bda`. The lesson file contains
+144,830 bytes and the gate contains 93,876 bytes. The canonical Task 4
+`de_l30` object SHA-256 is
+`CACBA03EEAAD98DD132EDE35B32E43AB93D25DE87ABE04B8350117E179B3BCA9`;
+its ordered recall-authority SHA-256 is
+`445B40B2409BC26790F0158DC72339DF4592BC7AF53B7BD5E506F3244C7683EA`
+and its evidence-array SHA-256 is
+`4E01F56D92DA435C5F3FEDDD4F26864E4B3B7B1F1C0A533200CE26227161014A`.
+
+The bound source is `DE-GRM-MODALPERF-001`, with the exact attested frame
+`Anderthalb Stunden hat er warten müssen`. The final V4 exact transport added
+one direct probe and 26 isolated hostile cases. Two fresh prewrite reviews and
+two fresh postwrite reviews returned exact `PASS`; reviewers made no edits.
+
+## L30 Stage B — closed Task 5 L30 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `E640E3F4472440BFD14FA28EA3961DBC8C75A52F846C6118E53DE5739A0752DC` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `2E0A11B6E7263285B659A8CDA5312B1BA1714B0A02E997C4AF16F00BA05541D2` |
+
+Stage B is commit `66b08395634b794c67ec3555bb7aaf3253587815`, tree
+`e6c677373b11a63e34fb7fce7bcfcada1b2e8a99`. The chapter file contains
+1,216,856 bytes and the gate contains 789,721 bytes. The canonical Task 5
+`de_l30` object SHA-256 is
+`9FEEBEEB4E8C52428ED3663F0C9D2F56DB620BB2C58E41243DFA2AC3A4204C5D`.
+Its standalone object payload is
+`AD6B5FC1BD895BA58D65678D44F05E1721719844D014F03C10AFAB0123AA249A`
+and contains 42,339 UTF-8 bytes.
+
+The component identities are pinned: grammar boundary
+`DDFDF11E2559245639030F9C79EACC86289C03E257D94CF5FDED6B0EC3EDB867`,
+packet IDs `607FBED73D83BF66122864568F3E1FCC2EE6F9E6B40EDF0C6CEF326A1ACA6037`,
+lexical packages
+`02709AE2B80BC7F295B2B1C705190AA52CE8011C8B43FA863AD126CCE428F1E0`,
+recall schedule
+`AB44B382D81C2083BD8E85A037A5A97DC9BD070BC07EB13DE7C3B24F0A15CD2B`
+and lifecycle anchors
+`1A5A0477FA7F140A5D9BE7DBAE472290AF5C29B0BE3AA9AD217C8A078561A6B5`.
+
+The materialized lesson contains seven chapters, 56 packet IDs and exactly 12
+planned lexical senses distributed `[1,1,2,2,2,2,2]`. Its final isolated
+hostile corpus contains 125 cases. Fresh exact-spec and native-German reviews
+returned `PASS` before and after materialization.
+
+Transport history is explicit. V1 manifest `8d12…` was superseded after a
+lexical-utility P1. Broken interim V2 manifest `594f…` and gate `c8db…`
+were superseded after `$&` replacement-string insertion corruption. Repaired
+V2 manifest `9e2…` was superseded after a native P1 found unlicensed
+`gab`/`betraf`. Final V3 manifest
+`805835f7be5981c70c2281e087814eee36ab14d1e3aad1a0a54e08c757fc46b1`
+passed exact/prewrite, exact/native and postwrite review.
+
+The frozen prewrite verifier's first postwrite result is recorded as
+`EXPECTED_POSTWRITE_SOURCE_ANCHOR_REJECTION`: only after all payload-integrity
+checks passed, its frozen chapter anchor `3df05f1e…` correctly differed from
+the exact materialized `e640e3f4…`. Independent reviewers approved that
+interpretation; evidence bytes remained unchanged.
+
+The default Git gate diff `+1265/-252` is a heuristic alignment only.
+Minimal, histogram and patience diffs are `+1013/-0`; exact parent hashes
+match, every parent line is preserved in order, and an independent commit
+review passed. No rewrite or reset was used.
+
 ## Hostile and deterministic evidence
 
 - All 52 ordered L24 hostile mutations fail closed with their dedicated
@@ -526,6 +600,56 @@ session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
   manifest identity cycle is introduced. At that point the suite must report
   `PASS (31/31)`.
 
+## L30 hostile and deterministic evidence
+
+- All 125 ordered L30 hostile mutations fail closed with their exact dedicated
+  diagnostics, including lexical surface/facet/participant grounding and the
+  two isolated broader-narrative-Präteritum leak probes.
+- L30 focused chapter gate: `PASS (de_l30; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-30 chapter gate: `PASS (prefix 30; 210 chapters; 1680 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L29 focused regression gate: `PASS` (7 chapters; 56 packet IDs).
+- The unscoped Task 5 gate remains the required incompleteness signal with exit
+  1 and exact error
+  `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;30/32 lessons;210/224 chapters`.
+- Task 4 lesson-boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32
+session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
+- Research-authority gate: `PASS (53 claims)`.
+- Grammar-graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
+- Current one-phrase interaction gate: `PASS (72/72)`.
+- Schema and owner-decision gates: `PASS`.
+- Prettier, ESLint and scoped two-file diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite is valid only after the manifest replaces
+  its single receipt digest with this cumulative receipt's final SHA-256; source
+  document and requirement counts remain exactly 52 and 102, and no receipt ↔
+  manifest identity cycle is introduced. At that point the suite must report
+  `PASS (31/31)`.
+
+## L30 local Codex OpenAI API firewall evidence
+
+In `C:\appsprojects\phraseman`, local Codex used no project OpenAI API key
+for L30 chat, responses, reasoning, reviews, research, judging, phrase/content
+generation, image generation, transcription, embeddings, experiments, or batch
+analysis; no such API use occurred in L30 Stage A, Task 5, review, verification,
+commit, or closure.
+
+The sole permitted local Codex API exception is TTS/voiceover through
+`/v1/audio/speech`, only after an explicit user audio request AND
+`PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1`. Local scripts must use
+`OPENAI_TTS_API_KEY`, never generic `OPENAI_API_KEY`.
+
+Production/user Phraseman Firebase/Cloud Functions secrets are outside this
+local-Codex firewall. TTS/audio remains `HOLD`, so the exception was not
+invoked.
+
+Deterministic added-line and path-scope scans of L30 Stage A commit
+`8cd2b0e56092d2a97b3f2691de5424694d635c0d` and Stage B commit
+`66b08395634b794c67ec3555bb7aaf3253587815` confirm that neither commit
+introduces `api.openai.com`, `/v1/audio/speech`, `OPENAI_API_KEY`,
+`OPENAI_TTS_API_KEY` or `PHRASEMAN_ALLOW_OPENAI_DEV_SPEND`. The scan excludes
+this explanatory receipt.
+
 ## Identity-cycle boundary
 
 This receipt deliberately excludes
@@ -538,19 +662,19 @@ weakens the separate recenter hash gate or handover obligation.
 
 ## Closed boundary and next authorized step
 
-- `de_l24` through `de_l29` are closed for Task 5 at the reviewed commits
+- `de_l24` through `de_l30` are closed for Task 5 at the reviewed commits
   above; their applicable Task 4 identities remain pinned by the fail-closed gate.
-- The next exact grammar-first blueprint task is a fresh instruction reread and
-  content-addressed guardian for `de_l30`, followed by one bounded lesson and
+- The next exact grammar-first blueprint tasks require fresh instruction rereads
+  and content-addressed guardians for `de_l31` Task 4 and Task 5, followed by
   both independent final reviews.
 - Task 6 lexical reconciliation remains mandatory before exact learner-facing
   packet authoring.
-- RU+UK learner sessions, release, audio and the German owner mockup remain
-  `HOLD` until the complete 32/32 grammar-first blueprint and downstream gates
-  close.
+- RU+UK learner sessions, release, audio, the German owner mockup,
+  English-contour work and HANDOVER updates remain `HOLD` until the complete
+  32/32 grammar-first blueprint and downstream gates close.
 - This receipt authorizes no English-contour change, deploy, push, production
   write or release action.
 
 Any byte change in a reviewed cumulative Stage A–D, L27 Stage A/B, L28 Stage
-A/B or L29 Stage A/B identity invalidates the corresponding verdict and
-requires fresh independent review.
+A/B, L29 Stage A/B or L30 Stage A/B identity invalidates the corresponding
+verdict and requires fresh independent review.

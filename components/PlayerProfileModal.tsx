@@ -25,6 +25,7 @@ import {
   type LayoutChangeEvent,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -102,6 +103,8 @@ interface Props {
 }
 
 const CARD_RADIUS = 38;
+/** Окно защиты от двойного тапа «Повысить ранг» на визитке (после него кнопка снова ведёт на /coin_rank). */
+const RANK_UPGRADE_TAP_GUARD_MS = 1000;
 const CARD_CY = 0.36;
 
 type BodyProps = {
@@ -147,6 +150,27 @@ function PlayerProfileModalBody({
   // ── Своя визитка: ранг, баланс, «Про», свой текст (components/profile-card/useSelfProfileCard) ──
   const self = useSelfProfileCard(isMe, L, onFriendRequestToast);
   const { myPro, myProOwned, sheet, setSheet, visibleCeremony } = self;
+  const router = useRouter();
+  // зачем (координатор 05.10, Сверка 04:45): «Повысить ранг» на визитке НЕ тратит монеты — закрывает визитку и
+  // открывает экран подтверждения app/coin_rank.tsx (стоимость, баланс, «Проверяем повышение», трата только по его
+  // кнопке, защита от повтора). При нехватке монет кнопка визитки неактивна, как и раньше (ProfileCardFooter).
+  // Два быстрых тапа до того, как окно убрано, не кладут экран подтверждения в стек дважды. Флаг сбрасывается при
+  // каждом открытии визитки (смена player), чтобы после закрытия и повторного открытия кнопка снова работала —
+  // даже если тело визитки не размонтировалось (координатор 05.10).
+  const rankUpgradeNavigatedRef = useRef(false);
+  useEffect(() => {
+    rankUpgradeNavigatedRef.current = false;
+  }, [player]);
+  const describeRankUpgradeTap = self.describeRankUpgradeTap;
+  const openRankUpgradeConfirm = useCallback(() => {
+    if (rankUpgradeNavigatedRef.current) return;
+    rankUpgradeNavigatedRef.current = true;
+    describeRankUpgradeTap();
+    onClose();
+    router.push('/coin_rank' as never);
+    // Второй сброс — на случай повторного открытия с тем же player без размонтирования: окно от двойного тапа 1 с.
+    setTimeout(() => { rankUpgradeNavigatedRef.current = false; }, RANK_UPGRADE_TAP_GUARD_MS);
+  }, [describeRankUpgradeTap, onClose, router]);
   // зачем (30.09): системный «Назад» сначала закрывает открытую шторку (покупка/стиль/текст),
   // и только потом — всю визитку. Шторка живёт здесь, «Назад» ловит внешний <Modal>.
   useEffect(() => {
@@ -211,7 +235,9 @@ function PlayerProfileModalBody({
 
   const handleShare = useCallback(() => {
     hapticTap();
-    const title = rankRow ? `${coinRankTitle(rankRow.rank, L)} · ${t4(L, PC.rank)} ${rankRow.rank + 1}` : '';
+    // зачем (Сверка 04:45: при rank=5 визитка писала «ранг 6»): ранги 0…19 показываются как есть — так же, как
+    // макет coins.html («Лектор · ранг 5», «Ранг 5 → 6») и экран coin_rank.tsx.
+    const title = rankRow ? `${coinRankTitle(rankRow.rank, L)} · ${t4(L, PC.rank)} ${rankRow.rank}` : '';
     const message = `${t4(L, PC.shareText)}: ${player.name}${title ? ` — ${title}` : ''}${bioText ? `\n«${bioText}»` : ''}`;
     DebugLogger.info(LOG, `поделиться: открываем системное окно ${JSON.stringify({ look, hasBio: !!bioText })}`);
     Share.share({ message }).catch((error: unknown) => {
@@ -362,11 +388,11 @@ function PlayerProfileModalBody({
               isMaxRank={self.isMaxRank}
               balance={self.balance}
               eligible={self.eligible}
-              busy={self.upgrading || self.balanceReconciling}
+              busy={self.upgrading}
               upgradingNow={visibleCeremony !== null}
               proOwned={myPro === null ? null : myProOwned}
               proPrice={PROFILE_CARD_PRO_PRICE_COINS}
-              onUpgrade={() => { void self.handleUpgrade(); }}
+              onUpgrade={openRankUpgradeConfirm}
               onOpenBuy={() => setSheet('buy')}
               onOpenStyle={() => setSheet('style')}
             />

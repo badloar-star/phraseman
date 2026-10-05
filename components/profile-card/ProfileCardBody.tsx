@@ -33,8 +33,10 @@ type Props = Readonly<{
   onOpenBuy: () => void;
 }>;
 
+// зачем (Сверка 05.10 04:45: при rank=5 визитка писала «ранг 6», после повышения «ранг 7»): ранги 0…19 показываются
+// как есть — как в макете coins.html («Лектор · ранг 5», «Ранг 5 → 6») и на экране coin_rank.tsx.
 export function profileCardRankLabel(rank: number, lang: Lang): string {
-  return `${coinRankTitle(rank, lang)} · ${t4(lang, PC.rank)} ${rank + 1}`;
+  return `${coinRankTitle(rank, lang)} · ${t4(lang, PC.rank)} ${rank}`;
 }
 
 function ProfileCardBodyBase({

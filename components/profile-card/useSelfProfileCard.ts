@@ -14,7 +14,9 @@ import {
   isCoinRankUpgradeEligible,
 } from '../../hooks/coin_rank_upgrade_guard';
 import { useCoinBalance } from '../../hooks/use_coin_balance';
-import { useCoinRankUpgrade } from '../../hooks/use_coin_rank_upgrade';
+import { COIN_RANK_MAX, nextCoinRankRow } from '../../app/coin_rank_table_v1';
+import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
+import { useMyCoinRankBinding } from '../../hooks/use_my_coin_rank';
 import { useMyProfileCard } from '../../hooks/use_my_profile_card';
 import { PC, t4 } from './profile_card_copy';
 
@@ -24,10 +26,22 @@ export type SheetKind = 'none' | 'buy' | 'style' | 'bio';
 type Toast = (message: string, type?: 'error' | 'info') => void;
 
 export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
-  const { rankBinding, next, isMaxRank, upgrading, upgrade, ceremony, dismissCeremony } = useCoinRankUpgrade();
+  // зачем (координатор 05.10, Сверка 04:45: «Повысить ранг · 6 000» на визитке списывал монеты одним тапом): визитка
+  // больше НЕ тратит и хук траты (use_coin_rank_upgrade) не подключает вовсе — только чтение ранга. Кнопка ведёт на
+  // экран подтверждения app/coin_rank.tsx (coins.html №3/№4): стоимость, баланс, «Проверяем повышение», трата
+  // только по его кнопке. «Идёт повышение» и церемония жили в экземпляре хука траты визитки — раз визитка не
+  // повышает, они у неё всегда пусты (церемония идёт на экране coin_rank).
+  // Сторож: tests/profile_card_rank_upgrade_confirm_only.test.ts.
+  const rankBinding = useMyCoinRankBinding();
+  const rank = rankBinding?.rank ?? null;
+  const next = rank === null ? null : nextCoinRankRow(rank);
+  const isMaxRank = rank === COIN_RANK_MAX;
+  const upgrading = false;
+  // Тип задан через as: иначе TypeScript сузил бы константу до null, и чтение полей церемонии ниже не прошло бы проверку.
+  const ceremony = null as CoinRankCeremony | null;
+  const dismissCeremony = useCallback(() => undefined, []);
   const { balance, forceBalanceReconcile } = useCoinBalance();
   const myCard = useMyProfileCard(isMe);
-  const [balanceReconciling, setBalanceReconciling] = useState(false);
   const [sheet, setSheet] = useState<SheetKind>('none');
   const [proBusy, setProBusy] = useState(false);
 
@@ -39,7 +53,8 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
     balance,
     nextPrice: next?.priceToReach ?? null,
     upgrading,
-    balanceReconciling,
+    // Сверка баланса после отказа «не хватает монет» теперь живёт только на экране coin_rank.
+    balanceReconciling: false,
   });
   const visibleCeremony = isMe && isCoinRankCeremonyBindingCurrent(ceremony, rankBinding, captureAccountGeneration())
     ? ceremony
@@ -53,36 +68,12 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ceremonyKey]);
 
-  const handleUpgrade = useCallback(async () => {
-    if (!eligible || !rankBinding) {
-      DebugLogger.info(LOG, `повышение: кнопка неактивна ${JSON.stringify({ eligible, rank: rankBinding?.rank ?? null, balance })}`);
-      return;
-    }
-    const result = await upgrade();
-    if (result.ok) {
-      if (result.status === 'already_applied') toast(t4(lang, PC.rankAlready), 'info');
-      return;
-    }
-    DebugLogger.info(LOG, `повышение: отказ ${JSON.stringify(result)}`);
-    switch (result.reason) {
-      case 'insufficient_coins': {
-        setBalanceReconciling(true);
-        const quality = await forceBalanceReconcile();
-        setBalanceReconciling(false);
-        toast(t4(lang, quality === 'durable' ? PC.notEnough : PC.balanceUnknown), 'error');
-        return;
-      }
-      case 'stale_rank':
-      case 'max_rank':
-        toast(t4(lang, PC.rankChanged), 'info');
-        return;
-      case 'identity_changed':
-        toast(t4(lang, PC.accountChanged), 'error');
-        return;
-      default:
-        toast(t4(lang, PC.failedNoCharge), 'error');
-    }
-  }, [balance, eligible, forceBalanceReconcile, lang, rankBinding, toast, upgrade]);
+  /** Повышение ранга с визитки — только навигация на экран подтверждения; см. комментарий выше. */
+  const describeRankUpgradeTap = useCallback(() => {
+    DebugLogger.info(LOG, `повышение: открываем экран подтверждения ${JSON.stringify({
+      rank: rankBinding?.rank ?? null, balance, eligible, nextPrice: next?.priceToReach ?? null,
+    })}`);
+  }, [balance, eligible, next, rankBinding]);
 
   const handleProConfirm = useCallback(async (style: ProfileCardProStyle) => {
     if (proBusy) {
@@ -150,11 +141,10 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
     isMaxRank,
     upgrading,
     balance,
-    balanceReconciling,
     eligible,
     visibleCeremony,
     dismissCeremony,
-    handleUpgrade,
+    describeRankUpgradeTap,
     myPro,
     myProOwned,
     myBio: myCard.bio,

@@ -10,8 +10,8 @@
  * жалоба — `ReportPackModal`, обсуждение — `PackCommentsSheet`.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
+import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
@@ -42,7 +42,11 @@ type Props = {
 
 const PAD = 20;
 
-function WordRow({ card, lang, g, onSpeak }: {
+function RowGap() {
+  return <View style={{ height: 9 }} />;
+}
+
+const WordRow = memo(function WordRow({ card, lang, g, onSpeak }: {
   card: CardItem;
   lang: FlashcardContentLang;
   g: ReturnType<typeof liquidGlassTokens>;
@@ -72,7 +76,7 @@ function WordRow({ card, lang, g, onSpeak }: {
       ) : null}
     </TouchableOpacity>
   );
-}
+});
 
 export default function CommunityPackPreview({
   pack, cards, lang, cardContentLang, t, onBack, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak,
@@ -86,47 +90,79 @@ export default function CommunityPackPreview({
   const cardsLabel = triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' });
   const count = cards.length > 0 ? cards.length : pack.cardCount;
 
+  // зачем (координатор 05.10, «набор из 500 фраз открывается 13,8 с, данные готовы за 0,5 с, тормозит отрисовка»): сперва логи этапов —
+  // сколько строк, когда первый кадр/раскладка; строки в ScrollView.map рисовались ВСЕ 500 разом, теперь виртуализированный список (вид тот же).
+  const mountedAtRef = useRef(Date.now());
+  const firstLayoutLoggedRef = useRef(false);
+  useEffect(() => {
+    console.log('[PACK-OPEN] preview:mount', JSON.stringify({ packId: pack.id, cards: cards.length, packCardCount: pack.cardCount }));
+    return () => console.log('[PACK-OPEN] preview:unmount', JSON.stringify({ packId: pack.id, aliveMs: Date.now() - mountedAtRef.current }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- только на вход/выход экрана
+  }, []);
+  useEffect(() => {
+    console.log('[PACK-OPEN] preview:cards', JSON.stringify({ packId: pack.id, cards: cards.length, sinceMountMs: Date.now() - mountedAtRef.current }));
+  }, [cards.length, pack.id]);
+
+  const header = (
+    <View>
+      {/* `.topbar`: круглые «назад» и «⋮» 42 по краям, высота 44. */}
+      <View style={styles.topbar}>
+        <TouchableOpacity testID="pack-preview-back" accessibilityRole="button" accessibilityLabel={backLabel} onPress={onBack} hitSlop={4}
+          style={[styles.round, { borderColor: g.glassEdge, backgroundColor: g.opaqueControl }]}>
+          <Ionicons name="chevron-back" size={20} color={g.text} />
+        </TouchableOpacity>
+        <TouchableOpacity testID="pack-preview-more" accessibilityRole="button" accessibilityLabel={moreLabel} onPress={onMore} hitSlop={4}
+          style={[styles.round, { borderColor: g.glassEdge, backgroundColor: g.opaqueControl }]}>
+          <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
+        </TouchableOpacity>
+      </View>
+
+      <FlowText testID="pack-preview-title" provenance="user" accessibilityRole="header" style={[styles.title, { color: g.text }]}>
+        {title}
+      </FlowText>
+
+      <View style={styles.authorRow}>
+        <FlowText testID="pack-preview-author" provenance="user" style={[styles.author, { color: g.secondary }]}>
+          {authorName}
+        </FlowText>
+        <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="previewMeta" onOpenComments={onOpenComments} />
+      </View>
+
+      {/* Набор из ролика (D131): превью ролика остаётся — у обычных наборов блока нет. */}
+      {pack.videoId ? <View style={{ marginTop: 18 }}><PackVideoHero pack={pack} lang={lang} t={t} /></View> : null}
+
+      {/* `.sec .ti` + `.n`: «Карточки» 20/26 и число приглушённым тоном. */}
+      <View style={styles.sec}>
+        <Text style={[styles.secTitle, { color: g.text }]}>
+          {cardsLabel}
+          <Text style={[styles.secCount, { color: g.mutedText }]}>{`  ${count}`}</Text>
+        </Text>
+      </View>
+    </View>
+  );
+
   return (
     <View testID="pack-preview" style={styles.root}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        {/* `.topbar`: круглые «назад» и «⋮» 42 по краям, высота 44. */}
-        <View style={styles.topbar}>
-          <TouchableOpacity testID="pack-preview-back" accessibilityRole="button" accessibilityLabel={backLabel} onPress={onBack} hitSlop={4}
-            style={[styles.round, { borderColor: g.glassEdge, backgroundColor: g.opaqueControl }]}>
-            <Ionicons name="chevron-back" size={20} color={g.text} />
-          </TouchableOpacity>
-          <TouchableOpacity testID="pack-preview-more" accessibilityRole="button" accessibilityLabel={moreLabel} onPress={onMore} hitSlop={4}
-            style={[styles.round, { borderColor: g.glassEdge, backgroundColor: g.opaqueControl }]}>
-            <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
-          </TouchableOpacity>
-        </View>
-
-        <FlowText testID="pack-preview-title" provenance="user" accessibilityRole="header" style={[styles.title, { color: g.text }]}>
-          {title}
-        </FlowText>
-
-        <View style={styles.authorRow}>
-          <FlowText testID="pack-preview-author" provenance="user" style={[styles.author, { color: g.secondary }]}>
-            {authorName}
-          </FlowText>
-          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="previewMeta" onOpenComments={onOpenComments} />
-        </View>
-
-        {/* Набор из ролика (D131): превью ролика остаётся — у обычных наборов блока нет. */}
-        {pack.videoId ? <View style={{ marginTop: 18 }}><PackVideoHero pack={pack} lang={lang} t={t} /></View> : null}
-
-        {/* `.sec .ti` + `.n`: «Карточки» 20/26 и число приглушённым тоном. */}
-        <View style={styles.sec}>
-          <Text style={[styles.secTitle, { color: g.text }]}>
-            {cardsLabel}
-            <Text style={[styles.secCount, { color: g.mutedText }]}>{`  ${count}`}</Text>
-          </Text>
-        </View>
-
-        <View style={{ gap: 9 }}>
-          {cards.map((card) => <WordRow key={card.id} card={card} lang={cardContentLang} g={g} onSpeak={onSpeak} />)}
-        </View>
-      </ScrollView>
+      <FlatList
+        data={cards}
+        keyExtractor={(card) => card.id}
+        renderItem={({ item }) => <WordRow card={item} lang={cardContentLang} g={g} onSpeak={onSpeak} />}
+        ListHeaderComponent={header}
+        ItemSeparatorComponent={RowGap}
+        contentContainerStyle={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        initialNumToRender={12}
+        maxToRenderPerBatch={10}
+        updateCellsBatchingPeriod={32}
+        windowSize={7}
+        removeClippedSubviews={Platform.OS === 'android'}
+        onLayout={(e) => {
+          if (firstLayoutLoggedRef.current) return;
+          firstLayoutLoggedRef.current = true;
+          console.log('[PACK-OPEN] preview:first-layout', JSON.stringify({ packId: pack.id, cards: cards.length, listH: Math.round(e.nativeEvent.layout.height), sinceMountMs: Date.now() - mountedAtRef.current }));
+        }}
+        onContentSizeChange={(w, h) => console.log('[PACK-OPEN] preview:content-size', JSON.stringify({ packId: pack.id, h: Math.round(h), sinceMountMs: Date.now() - mountedAtRef.current }))}
+      />
 
       {/* `.bot2`: нижняя кнопка на затухании фона, список уходит под неё. */}
       <View pointerEvents="box-none" style={styles.bottom}>

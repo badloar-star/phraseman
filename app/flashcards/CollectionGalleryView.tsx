@@ -111,6 +111,11 @@ export default function CollectionGalleryView({
     return { id: card.id, front: card.en, ipa: card.transcription ?? null, dots: strength ? DOTS_FOR[strength] ?? strengthDotCount(strength) : 0 };
   }), [cards, strengthForCard]);
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
+  // зачем (координатор 05.10, «500 фраз открываются 13,8 с»): [PACK-OPEN] галереи — сколько карточек и когда посчитан список плиток.
+  const galleryMountedAtRef = useRef(Date.now());
+  useEffect(() => {
+    console.log('[PACK-OPEN] gallery:cards', JSON.stringify({ cards: cards.length, items: items.length, sinceMountMs: Date.now() - galleryMountedAtRef.current }));
+  }, [cards.length, items.length]);
 
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const y = Math.round(event.nativeEvent.contentOffset.y / 40) * 40;

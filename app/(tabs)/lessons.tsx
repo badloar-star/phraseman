@@ -2602,6 +2602,12 @@ export default function LessonsTab({
     state: LearningV2AccordionSessionStateV1;
     traceId: string;
   } | null>(null);
+  // зачем (learning-v2-013, learning-v2.html 2.4 modal-locked): тап по закрытому занятию открывает своё окно — отдельно от
+  // окна запуска (selectedLearningV2Session), чтобы не задеть прогрев и трассировку запуска. Только локальное состояние.
+  const [learningV2LockedSession, setLearningV2LockedSession] = useState<{
+    lessonOrdinal: number;
+    sessionOrdinal: number;
+  } | null>(null);
   // Только для лога подсказки отказа ([V2-LAUNCH] hint:show): было ли окно занятия ещё открыто в момент показа.
   const selectedLearningV2SessionOpenRef = useRef(false);
   selectedLearningV2SessionOpenRef.current = selectedLearningV2Session !== null;
@@ -3679,33 +3685,11 @@ export default function LessonsTab({
         // (learning-v2.html 2.4) не открывается. Печатаем значения, решившие ветку.
         console.warn('[V2-TAP] denied:locked', JSON.stringify({
           courseSessionId: selectedCourseSessionId, state, devUnlock: learningV2DevUnlockAllActive,
-          currentSessionId: learningV2Progress.currentSessionId ?? null, currentOrdinal, shown: 'hint_toast',
+          currentSessionId: learningV2Progress.currentSessionId ?? null, currentOrdinal, shown: 'locked_sheet',
         })); // guard-ok: ранний выход логируется
-        showLearningV2DenialHint(
-          currentOrdinal !== null
-            ? triLang(lang, {
-                ru: `Пройди сессию ${currentOrdinal}, чтобы открыть`,
-                en: `Finish session ${currentOrdinal} to unlock`,
-                uk: `Пройди сесію ${currentOrdinal}, щоб відкрити`,
-                es: `Completa la sesión ${currentOrdinal} para desbloquear`,
-                "pt-BR": `Conclua a sessão ${currentOrdinal} para desbloquear`,
-                vi: `Hoàn thành buổi ${currentOrdinal} để mở khóa`,
-                id: `Selesaikan sesi ${currentOrdinal} untuk membuka`,
-                tr: `Kilidi açmak için ${currentOrdinal}. oturumu tamamla`,
-                pl: `Ukończ sesję ${currentOrdinal}, aby odblokować`,
-              })
-            : triLang(lang, {
-                ru: "Пока закрыто",
-                en: "Still locked",
-                uk: "Поки закрито",
-                es: "Aún bloqueada",
-                "pt-BR": "Ainda bloqueada",
-                vi: "Chưa mở",
-                id: "Masih terkunci",
-                tr: "Şimdilik kilitli",
-                pl: "Na razie zablokowana",
-              }),
-        );
+        // зачем (learning-v2-013, координатор 05.10): для закрытого ЗАНЯТИЯ — окно 2.4 вместо тоста (тост 1.9 — только для
+        // уроков). Мгновенно, без сети и без прогрева запуска.
+        setLearningV2LockedSession({ lessonOrdinal: selectedLesson, sessionOrdinal });
         return;
       }
       const traceId = startLearningV2SessionLaunchTraceV1({
@@ -5979,6 +5963,44 @@ export default function LessonsTab({
           learningV2ModalRequestRef.current += 1;
           setSelectedLearningV2Session(null);
         }}
+      />
+      {/* зачем (learning-v2-013, learning-v2.html 2.4 modal-locked): «Занятие N» · «Сначала заверши предыдущее занятие.» ·
+          одна кнопка «Закрыть», без второй кнопки и без фактов, тусклый шар с замком. */}
+      <LearningV2SessionOutcomeSheet
+        visible={learningV2LockedSession !== null}
+        lessonOrdinal={learningV2LockedSession?.lessonOrdinal ?? 1}
+        sessionOrdinal={learningV2LockedSession?.sessionOrdinal ?? 1}
+        locked
+        title={triLang(lang, {
+          ru: `Занятие ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          en: `Session ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          uk: `Заняття ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          es: `Sesión ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          "pt-BR": `Sessão ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          vi: `Buổi ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          id: `Sesi ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          tr: `Oturum ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+          pl: `Sesja ${learningV2LockedSession?.sessionOrdinal ?? 1}`,
+        })}
+        message={triLang(lang, {
+          ru: "Сначала заверши предыдущее занятие.",
+          en: "Finish the previous session first.",
+          uk: "Спершу заверши попереднє заняття.",
+          es: "Primero termina la sesión anterior.",
+          "pt-BR": "Primeiro conclua a sessão anterior.",
+          vi: "Hãy hoàn thành buổi trước trước.",
+          id: "Selesaikan sesi sebelumnya dulu.",
+          tr: "Önce önceki oturumu bitir.",
+          pl: "Najpierw ukończ poprzednią sesję.",
+        })}
+        primaryLabel={triLang(lang, { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" })}
+        onPrimaryPress={() => setLearningV2LockedSession(null)}
+        secondaryLabel={null}
+        onSecondaryPress={() => setLearningV2LockedSession(null)}
+        closeLabel={triLang(lang, { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" })}
+        sessionLabel={triLang(lang, { ru: "Сессия", en: "Session", uk: "Сесія", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Sesja" })}
+        chapterLabel={triLang(lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })}
+        onClose={() => setLearningV2LockedSession(null)}
       />
       {/* lessonOrdinal={null} — словарь всего курса: урок называет каждая
           секция списка, а не шапка шторки (владелец 2026-09-21). */}

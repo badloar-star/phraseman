@@ -253,7 +253,8 @@ export default function LearningV2SessionOutcomeSheet({
                 </View>
               ) : null}
 
-              <View style={sx.stats}>
+              {/* зачем (learning-v2.html 2.4/2.5 `noFacts: true`, learning-v2-013): у закрытого занятия фактов о занятии нет. */}
+              {locked ? null : <View style={sx.stats}>
                 {stats.map((stat) => (
                   <View key={stat.id} testID={stat.testID} style={[sx.stat, { backgroundColor: g.opaqueControl }]}>
                     {/* зачем (сверка 010, learning-v2.html `.facts > div::after`): каждый факт — отдельная стеклянная плитка с бликом и кромкой (--lg-sheen/--lg-rim). */}
@@ -262,7 +263,7 @@ export default function LearningV2SessionOutcomeSheet({
                     <Text style={[sx.statText, { color: g.text }]}>{stat.value}</Text>
                   </View>
                 ))}
-              </View>
+              </View>}
               <View style={[sx.divider, { backgroundColor: g.line }]} />
 
               <View style={sx.primaryWrap}>

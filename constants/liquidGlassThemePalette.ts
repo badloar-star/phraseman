@@ -91,7 +91,9 @@ const GRAPHITE: BaseGlassTokens = Object.freeze({
   // kit.css (макеты 2.0: learn.html, хаб «Карточки» и др.); было #222429 — светлее макета.
   // Плашки/контролы/шторки (#222429) не тронуты — их сверка отдельно.
   opaqueCard: '#151517', opaqueSheet: '#222429', opaqueControl: '#222429',
-  card: '#1D1E2161', sheet: '#16171ABD', glassEdge: '#FFFFFF24', lightTint: '#F4F5F8EB',
+  // зачем (сверка packs-simple-001, 05.10): стекло карточки = `--card #151517` макета на 0.9 альфы — как стекло кита 2.0
+  // (adaptV2PaletteToGlass) и правило «стекло непрозрачное ≥ 0.9»; было #1D1E21 на 38 % — строки каталога темнее макета.
+  card: '#151517E6', sheet: '#16171ABD', glassEdge: '#FFFFFF24', lightTint: '#F4F5F8EB',
   cta: '#F2F1F6', ctaInk: '#0B0C0E', text: '#FFFFFF', secondary: '#B8B9BD',
   mutedText: '#B8B9BD', line: '#FFFFFF17', selected: '#B4BCCF30',
 });

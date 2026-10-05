@@ -170,7 +170,8 @@ export default function FlashcardsTrainingModeSheet({
       },
       {
         mode: 'recall',
-        icon: 'pencil-outline',
+        // зачем (Сверка cards-section-032, макет icon('edit')): карандаш в квадрате.
+        icon: 'create-outline',
         title: triLang(lang, {
           ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
           'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
@@ -220,7 +221,9 @@ export default function FlashcardsTrainingModeSheet({
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         </Pressable>
         <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(24, insets.bottom + 16) }, sheetStyle]}>
-          <LinearGradient pointerEvents="none" colors={[`${mixDark(ga, '#101014', 0.17)}EA`, 'rgba(16,16,20,0.9)']} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+          {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
+              Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → #101014 на 55 % → второй цвет темы 14 %, без альфы. */}
+          <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1A1A20', 0.16), '#101014', mixDark(gb, '#101014', 0.14)]} locations={[0, 0.55, 1]} start={{ x: 0.33, y: 0.03 }} end={{ x: 0.67, y: 0.97 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
           <View style={styles.grabber} />
           <View style={styles.headRow}>
             <View style={styles.headCopy}>
@@ -278,7 +281,7 @@ export default function FlashcardsTrainingModeSheet({
                     style={({ pressed }) => [styles.row, rowIndex > 0 && styles.rowLine, { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
                   >
                     <View style={styles.icon}>
-                      <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1E1E20', 0.6), mixDark(gb, '#08080B', 0.32)]} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
+                      <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1A1A20', 0.62), mixDark(gb, '#0B0B0F', 0.3)]} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
                       <Ionicons name={rowIcon} size={24} color={g.text} />
                       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, boxShadow: [{ inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' }] }]} />
                     </View>
@@ -301,8 +304,10 @@ export default function FlashcardsTrainingModeSheet({
 
 const baseStyles = StyleSheet.create({
   modalRoot: { flex: 1, justifyContent: 'flex-end' },
-  backdrop: { backgroundColor: '#00000099' },
-  sheet: { width: '100%', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
+  // зачем (Сверка cards-section-032): в макете хаб под шторкой приглушён до .3 и накрыт `.dim` rgba(2,2,4,.62) —
+  // итог ≈ .88 чёрного; прежние .6 оставляли хаб почти ярким.
+  backdrop: { backgroundColor: 'rgba(2,2,4,0.88)' },
+  sheet: { width: '100%', backgroundColor: '#101014', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 20, backgroundColor: '#4A4A4E' },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 },

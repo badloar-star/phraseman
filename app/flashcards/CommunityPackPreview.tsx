@@ -12,6 +12,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
@@ -52,6 +53,8 @@ const WordRow = memo(function WordRow({ card, lang, g, onSpeak }: {
   g: ReturnType<typeof liquidGlassTokens>;
   onSpeak: (text: string, opts?: SpeakOpts) => void;
 }) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const back = resolveFlashcardBackText(card, lang);
   // зачем: до добавления набор можно послушать — нажатие на строку озвучивает слово, как раньше на карточке.
   const speak = useCallback(() => {
@@ -81,6 +84,8 @@ const WordRow = memo(function WordRow({ card, lang, g, onSpeak }: {
 export default function CommunityPackPreview({
   pack, cards, lang, cardContentLang, t, onBack, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const authorName = useCommunityAuthorName(pack, lang);
@@ -173,7 +178,7 @@ export default function CommunityPackPreview({
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: PAD, paddingBottom: 130 },
   topbar: { height: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

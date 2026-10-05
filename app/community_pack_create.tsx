@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -262,6 +263,8 @@ function communityPackValidationToast(
 }
 
 export default function CommunityPackCreateScreen() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const effectiveOs = useEffectivePlatformOS();
   const router = useRouter();
   const params = useLocalSearchParams<{ packId?: string; fresh?: string; stage?: string; packLanguage?: string }>();
@@ -1420,7 +1423,7 @@ export default function CommunityPackCreateScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   safe: { flex: 1 },
   /** Side inset for form body (ContentWrap has no horizontal padding). */
   formHorizontalInset: { paddingHorizontal: 20, width: '100%' },

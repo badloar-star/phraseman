@@ -25,7 +25,7 @@ test('My Packs uses exact live liquid tokens, glass materials and approved typog
   // размеры из макета: заголовок 40/46, подпись 16/22, поиск 46
   assert.ok(kit.includes('fontSize: 40, lineHeight: 46'));
   assert.ok(kit.includes('fontSize: 16, lineHeight: 22'));
-  assert.ok(view.includes('height: 46'));
+  assert.ok(view.includes('minHeight: 46'));
 });
 
 test('My Packs has honest pending/error/search/true-empty states', () => {

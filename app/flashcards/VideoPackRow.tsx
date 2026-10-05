@@ -13,6 +13,7 @@
 import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { KitCard } from '../../components/cards-grid/CardsKit';
 import { pluralWord } from '../../constants/plural';
@@ -97,6 +98,8 @@ export function formatDuration(totalSec?: number): string {
 }
 
 function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, onOpen }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
@@ -210,7 +213,7 @@ export default React.memo(VideoPackRowBase, (prev, next) => (
   && prev.disabled === next.disabled
 ));
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   card: { minHeight: 87 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
   thumb: {

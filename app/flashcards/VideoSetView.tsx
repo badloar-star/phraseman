@@ -9,6 +9,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { memo, useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitCard } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -61,6 +62,8 @@ const stamp = (sec?: number): string => {
 };
 
 function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, onMore, onSpeak, onOpenMoment, cta, onTrain }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const [a, b] = themePair(g);
@@ -163,17 +166,17 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
 
 export const VideoSetView = memo(VideoSetViewInner);
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   pressed: { opacity: 0.82 },
   scroll: { paddingHorizontal: 20, paddingBottom: 140 },
-  top: { height: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
   title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4 },
   hero: { marginTop: 18, height: 218, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', boxShadow: [{ offsetX: 0, offsetY: 20, blurRadius: 40, spreadDistance: -20, color: 'rgba(0,0,0,0.8)' }] },
   play: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.45)' },
   pills: { marginTop: 14, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
+  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
   pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700', color: '#FFFFFF' },
   rows: { marginTop: 9, gap: 9 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
@@ -183,6 +186,6 @@ const styles = StyleSheet.create({
   tr: { marginTop: 2, fontSize: 15, lineHeight: 19 },
   vol: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.14)' },
   dock: { paddingHorizontal: 20 },
-  train: { height: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
+  train: { minHeight: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   trainText: { fontSize: 17, fontWeight: '700' },
 });

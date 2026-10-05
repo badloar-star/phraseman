@@ -9,6 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, FilterChips, SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
@@ -74,6 +75,8 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
   limitLabel?: string | null;
   onCreate?: () => void;
 }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   if (selectionMode) {
@@ -128,6 +131,8 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
   searchInput: string;
   onSearchInput: (value: string) => void;
 }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const { f } = useTheme();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -163,6 +168,8 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
 
 /** Шторка меню «⋯»: всё, что в макете списка не нарисовано, но в продукте есть. */
 export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, onClose, menu }: Readonly<{ visible: boolean; onClose: () => void; menu: CollectionMenuProps }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const { theme: t } = useTheme();
   const copy = useMemo(() => copyFor(menu.lang), [menu.lang]);
@@ -216,13 +223,13 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
   );
 });
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
-  top: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   cancelBtn: { minHeight: 44, justifyContent: 'center' },
   cancelText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
@@ -230,7 +237,7 @@ const styles = StyleSheet.create({
   titleBig: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
   subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
-  search: { marginTop: 22, height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
   searchInput: { flex: 1, paddingVertical: 0, minHeight: 44 },
   langRow: { marginTop: 12, minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   langLabel: { fontSize: 16, lineHeight: 22 },

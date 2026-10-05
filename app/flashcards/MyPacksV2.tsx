@@ -9,6 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitCta, KitEmpty, KitPackRow, KitSectionHead, KitTitle } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -64,6 +65,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 const isPublished = (pack: FlashcardMarketPack): boolean => pack.listingStatus === 'published' || pack.listingStatus === 'update_pending';
 
 function MyPacksV2Inner(props: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
   const g = useLv2Glass();
   const { theme: t } = useTheme();
@@ -215,14 +218,14 @@ const titleFor = (lang: Lang): string => triLang(lang, {
 
 export const MyPacksV2 = memo(MyPacksV2Inner);
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { flex: 1 },
   content: { paddingHorizontal: 20 },
   pressed: { opacity: 0.82 },
-  top: { height: 44, marginTop: 4, marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  top: { minHeight: 44, marginTop: 4, marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' },
-  search: { marginTop: 22, height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   stack: { gap: 9 },
   loading: { marginTop: 30, gap: 9 },

@@ -9,6 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -27,6 +28,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 
 /** Верхняя панель: «назад» без круга (30×42) и квадратная «⋮» 36 (`.rb.bare` + `.rb.sq`). */
 export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Readonly<{ lang: Lang; onBack: () => void; onMenu: () => void }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
@@ -56,6 +59,8 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
   onTrain: (() => void) | null;
   cardCount: number;
 }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const badgeLabel = badge === 'only_you' ? copy.onlyYou : badge === 'in_you' ? copy.inYou : badge === 'community' ? copy.inCommunity : null;
@@ -107,6 +112,8 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
 
 /** «＋ Карточка» — прозрачная кнопка с тонкой кромкой (`.cta.sm.gh`). */
 export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress }: Readonly<{ lang: Lang; onPress: () => void }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
@@ -117,9 +124,9 @@ export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress
   );
 });
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
-  top: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   bare: { width: 30, height: 42, justifyContent: 'center' },
   square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
   info: { paddingHorizontal: 20 },
@@ -127,13 +134,13 @@ const styles = StyleSheet.create({
   authorRow: { marginTop: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', gap: 10 },
   ava: { width: 24, height: 24, borderRadius: 12, backgroundColor: '#2A2A2C', alignItems: 'center', justifyContent: 'center' },
   author: { flexShrink: 1, fontSize: 16, lineHeight: 22 },
-  badge: { marginLeft: 'auto', height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.08)' },
+  badge: { marginLeft: 'auto', minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.08)' },
   badgeText: { fontSize: 15, lineHeight: 20, fontWeight: '600', color: '#DADADC' },
   actions: { marginTop: 16, minHeight: 42, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   actionLeft: { flexShrink: 1, flexDirection: 'row', alignItems: 'center' },
-  train: { height: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  train: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
   trainText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  ghost: { height: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
+  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
   ghostText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   divider: { marginTop: 22, height: 1, backgroundColor: 'rgba(255,255,255,0.09)' },
   cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 17, lineHeight: 20, fontWeight: '600' },

@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import React, { useCallback } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
@@ -28,6 +29,8 @@ function SavedGlassSheen({ edge, tint }: { edge: string; tint: string }) {
 }
 
 export function SavedCollectionLoading({ lang }: { lang: Lang }) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const label = triLang(lang, {
@@ -62,6 +65,8 @@ export function SavedCollectionState(props: Props) {
 }
 
 function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; onRetry: () => void }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const title = triLang(lang, {
@@ -85,6 +90,8 @@ function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; on
 // по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,
 // «Пока пусто» 24/30, подпись 16/22, кнопка 48 высотой с мятным свечением. Поиск без результатов (кадр 38) — прежний вид.
 function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const title = searchActive ? triLang(lang, {
@@ -119,7 +126,7 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
   return <KitEmpty g={g} testID="fc-saved-empty" icon="bookmark" title={title} detail={detail} action={action} onAction={onCommunity} actionTestID="fc-saved-find-packs" />;
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   loading: { flex: 1, paddingHorizontal: 20, paddingTop: 16, gap: 10 },
   skeleton: { height: 118, borderRadius: 16, borderWidth: 1, padding: 18, justifyContent: 'center', gap: 9, overflow: 'hidden' },
   skeletonLine: { height: 11, borderRadius: 6 },

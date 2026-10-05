@@ -292,6 +292,145 @@ const L30_FORBIDDEN_PRODUCTIVE_SURFACES = [
 ] as const;
 const L30_CANONICAL_OBJECT_SHA256 =
   "cacba03eeaad98dd132ede35b32e43ab93d25de87abe04b8350117e179b3bca9";
+const L31_PLAN_RECALL_AUTHORITY = [
+  {
+    fromLessonId: "de_l19",
+    constructIds: ["de_gc_formal_sie_sich_v1"],
+    responsibility: "maintain formal reference under mediation pressure",
+  },
+  {
+    fromLessonId: "de_l14",
+    constructIds: ["de_gc_doch_response_contrast_v1"],
+    responsibility:
+      "reuse correction without treating disagreement as hostility",
+  },
+  {
+    fromLessonId: "de_l30",
+    constructIds: ["de_gc_limited_modal_perfekt_v1"],
+    responsibility:
+      "reformulate a bounded missed-obligation account without forcing the cluster into every response",
+  },
+] as const;
+const L31_PLAN_RECALL_AUTHORITY_SHA256 =
+  "690ee83181d4637f14df842202b0434336bb002a8f5699c4625a0d665ce3a738";
+const L31_EVIDENCE_IDS = [
+  "DE-RSCH-CEFR-002",
+  "DE-RSCH-CEFR-008",
+  "DE-RSCH-CEFR-009",
+  "DE-REG-DUSIE-001",
+] as const;
+const L31_EVIDENCE_IDS_SHA256 =
+  "af70ba975f650240bfbebb8a4d124f6b47a8c183727a34a0e4362243d504c016";
+const L31_GRAMMAR_BOUNDARY = {
+  productive:
+    "neutral-register reformulation using known formal address, connector topology and corrective response frames",
+  receptive: "clear familiar-domain positions and requests that need mediation",
+  excluded:
+    "a universal du-or-Sie workplace rule and any new hidden grammar operation",
+} as const;
+const L31_GRAMMAR_BOUNDARY_SHA256 =
+  "17f92071b09f3abe3d33fa86adc23afecb0b9cd8d85672ef02992082a8690840";
+const L31_CONSTRUCT_ROLE_SETS = {
+  introduced: ["de_gc_register_repair_mediation_v1"],
+  extended: [
+    "de_gc_connector_topology_contrast_v1",
+    "de_gc_doch_response_contrast_v1",
+    "de_gc_formal_sie_sich_v1",
+  ],
+  reviewed: [
+    "de_gc_relative_clause_gender_case_v1",
+    "de_gc_limited_functional_genitive_v1",
+    "de_gc_limited_modal_perfekt_v1",
+  ],
+  prohibited: ["de_gc_functional_b1_integration_v1"],
+} as const;
+const L31_CONSTRUCT_ROLE_SETS_SHA256 =
+  "0205a64c59426d93e8bbdfea959f114e4b353aad04f875ec7287279a026740ff";
+const L31_PREREQUISITE_LESSON_IDS = [
+  "de_l01",
+  "de_l02",
+  "de_l04",
+  "de_l05",
+  "de_l06",
+  "de_l08",
+  "de_l14",
+  "de_l17",
+  "de_l18",
+] as const;
+const L31_PREREQUISITE_LESSON_IDS_SHA256 =
+  "af4647a5c8ee74e6a5b49374eb3f87eb0a9c50935e2d08bf1e9edd9896d01492";
+const L31_CHAPTER_OUTCOMES = [
+  {
+    id: "de_l31_ch01",
+    ordinal: 1,
+    outcome:
+      "identify the main point and register relationship in a misunderstanding",
+  },
+  {
+    id: "de_l31_ch02",
+    ordinal: 2,
+    outcome: "ask a neutral clarification question",
+  },
+  {
+    id: "de_l31_ch03",
+    ordinal: 3,
+    outcome:
+      "reformulate one person's spoken or written digital information for another",
+  },
+  {
+    id: "de_l31_ch04",
+    ordinal: 4,
+    outcome: "correct a negative assumption without escalating tone",
+  },
+  {
+    id: "de_l31_ch05",
+    ordinal: 5,
+    outcome: "mediate a workable next step between two positions",
+  },
+  {
+    id: "de_l31_ch06",
+    ordinal: 6,
+    outcome: "repair address choice reference or connector topology",
+  },
+  {
+    id: "de_l31_ch07",
+    ordinal: 7,
+    outcome:
+      "transfer neutral mediation to a new mixed-register dispute through a short digital reply and spoken follow-up",
+  },
+] as const;
+const L31_CHAPTER_OUTCOMES_SHA256 =
+  "81b47a0bd202944bb155f79699c2d898438b27d7fe4c1a236688120574e80d95";
+const L31_PRAGMATICS =
+  "preserve each stated relationship, distinguish report from endorsement and avoid universal address defaults";
+const L31_SESSION_56_FINAL = {
+  sessionId: "de_l31_c07_s56",
+  transferSituation:
+    "read a short familiar-topic digital exchange, write a neutral reply that keeps the interaction moving, then mediate the misunderstanding and relay an agreed next step",
+  requiredConstructIds: [
+    "de_gc_register_repair_mediation_v1",
+    "de_gc_connector_topology_contrast_v1",
+    "de_gc_doch_response_contrast_v1",
+    "de_gc_formal_sie_sich_v1",
+    "de_gc_limited_modal_perfekt_v1",
+  ],
+  evidenceDimensions: [
+    "reception",
+    "production",
+    "interaction",
+    "mediation",
+    "repair",
+    "register",
+    "changed_context_transfer",
+  ],
+  evidenceModes: ["written_digital_interaction", "spoken_interaction"],
+  independent: true,
+  changedContextRequired: true,
+} as const;
+const L31_SESSION_56_FINAL_SHA256 =
+  "a7d5aa7b88c02a3c98ed19a7750f34a5fd12dff1cc1b9db3190bc2ca29f11593";
+const L31_CANONICAL_OBJECT_SHA256 =
+  "914369c6dd4f0255c2745fc4fd9358e866cfe95c75cf697549802cf0750a0d22";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -419,6 +558,126 @@ function hasExactL30PlanRecallAuthority(value: unknown): boolean {
     createHash("sha256").update(canonical).digest("hex") ===
       L30_PLAN_RECALL_AUTHORITY_SHA256
   );
+}
+
+function hasExactL31PlanRecallAuthority(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(L31_PLAN_RECALL_AUTHORITY) &&
+    createHash("sha256").update(canonical).digest("hex") ===
+      L31_PLAN_RECALL_AUTHORITY_SHA256
+  );
+}
+
+function hasExactL31Value(
+  value: unknown,
+  expected: unknown,
+  expectedSha256: string,
+): boolean {
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(expected) &&
+    createHash("sha256").update(canonical).digest("hex") === expectedSha256
+  );
+}
+
+function validateExactL31Authority(candidate: JsonRecord): void {
+  if (
+    !hasExactL31Value(
+      candidate.evidenceIds,
+      L31_EVIDENCE_IDS,
+      L31_EVIDENCE_IDS_SHA256,
+    )
+  )
+    throw new Error("l31_evidence_authority_invalid");
+
+  if (
+    JSON.stringify(candidate.introducedConstructIds) !==
+    JSON.stringify(L31_CONSTRUCT_ROLE_SETS.introduced)
+  )
+    throw new Error("l31_introduced_construct_set_invalid");
+  if (
+    JSON.stringify(candidate.extendedConstructIds) !==
+    JSON.stringify(L31_CONSTRUCT_ROLE_SETS.extended)
+  )
+    throw new Error("l31_extended_construct_set_invalid");
+  if (
+    JSON.stringify(candidate.reviewedConstructIds) !==
+    JSON.stringify(L31_CONSTRUCT_ROLE_SETS.reviewed)
+  )
+    throw new Error("l31_reviewed_construct_set_invalid");
+  if (
+    JSON.stringify(candidate.prohibitedConstructIds) !==
+    JSON.stringify(L31_CONSTRUCT_ROLE_SETS.prohibited)
+  )
+    throw new Error("l31_prohibited_construct_set_invalid");
+  const roleSets = {
+    introduced: candidate.introducedConstructIds,
+    extended: candidate.extendedConstructIds,
+    reviewed: candidate.reviewedConstructIds,
+    prohibited: candidate.prohibitedConstructIds,
+  };
+  if (
+    createHash("sha256").update(JSON.stringify(roleSets)).digest("hex") !==
+    L31_CONSTRUCT_ROLE_SETS_SHA256
+  )
+    throw new Error("l31_construct_role_sets_identity_invalid");
+
+  const grammar = candidate.grammarBoundary as JsonRecord;
+  if (grammar.productive !== L31_GRAMMAR_BOUNDARY.productive)
+    throw new Error("l31_productive_boundary_invalid");
+  if (grammar.receptive !== L31_GRAMMAR_BOUNDARY.receptive)
+    throw new Error("l31_receptive_boundary_invalid");
+  if (grammar.excluded !== L31_GRAMMAR_BOUNDARY.excluded)
+    throw new Error("l31_excluded_boundary_invalid");
+  if (
+    !hasExactL31Value(
+      grammar,
+      L31_GRAMMAR_BOUNDARY,
+      L31_GRAMMAR_BOUNDARY_SHA256,
+    )
+  )
+    throw new Error("l31_grammar_boundary_identity_invalid");
+
+  if (
+    !hasExactL31Value(
+      candidate.chapterOutcomes,
+      L31_CHAPTER_OUTCOMES,
+      L31_CHAPTER_OUTCOMES_SHA256,
+    )
+  )
+    throw new Error("l31_chapter_outcomes_invalid");
+  if (candidate.pragmatics !== L31_PRAGMATICS)
+    throw new Error("l31_pragmatics_register_invalid");
+
+  const final = candidate.session56Final as JsonRecord;
+  if (
+    JSON.stringify(final.requiredConstructIds) !==
+    JSON.stringify(L31_SESSION_56_FINAL.requiredConstructIds)
+  )
+    throw new Error("l31_final_required_constructs_invalid");
+  if (
+    !hasExactL31Value(final, L31_SESSION_56_FINAL, L31_SESSION_56_FINAL_SHA256)
+  )
+    throw new Error("l31_final_transfer_evidence_invalid");
+
+  if (
+    !hasExactL31Value(
+      candidate.prerequisiteLessonIds,
+      L31_PREREQUISITE_LESSON_IDS,
+      L31_PREREQUISITE_LESSON_IDS_SHA256,
+    )
+  )
+    throw new Error("l31_prerequisite_list_invalid");
+}
+
+function validateL31CanonicalObjectIdentity(candidate: JsonRecord): void {
+  if (
+    createHash("sha256").update(JSON.stringify(candidate)).digest("hex") !==
+    L31_CANONICAL_OBJECT_SHA256
+  )
+    throw new Error("l31_canonical_object_identity_invalid");
 }
 
 function lessonOrdinalFromId(id: string, label: string): number {
@@ -862,6 +1121,7 @@ function validateBlueprint(
         }
       }
     }
+    if (expectedOrdinal === 31) validateExactL31Authority(candidate);
     const introducedConstructIds = candidate.introducedConstructIds as string[];
     const extendedConstructIds = candidate.extendedConstructIds as string[];
     const reviewedConstructIds = candidate.reviewedConstructIds as string[];
@@ -1075,6 +1335,15 @@ function validateBlueprint(
       !hasExactL30PlanRecallAuthority(candidate.crossLessonRecall)
     )
       throw new Error("l30_plan_recall_authority_invalid");
+    if (
+      expectedOrdinal === 31 &&
+      !hasExactL31PlanRecallAuthority(candidate.crossLessonRecall)
+    )
+      throw new Error("l31_plan_recall_authority_invalid");
+    if (expectedOrdinal === 31) {
+      validateExactL31Authority(candidate);
+      validateL31CanonicalObjectIdentity(candidate);
+    }
     candidate.crossLessonRecall.forEach((recall, recallIndex) => {
       assertPlainRecord(
         recall,
@@ -1796,7 +2065,160 @@ assert.equal(
   true,
   "L30 authority must pass only for the exact ordered five-row contract",
 );
+assert.equal(
+  hasExactL31PlanRecallAuthority(clone(L31_PLAN_RECALL_AUTHORITY)),
+  true,
+  "L31 authority must pass only for the exact ordered three-row contract",
+);
 validateBlueprint(raw, constructs);
+
+const expectL31Failure = (
+  mutate: (lesson31: JsonRecord) => void,
+  expected: RegExp,
+): void =>
+  expectFailure(
+    raw,
+    constructs,
+    (candidate) => mutate((candidate.lessons as JsonRecord[])[30]),
+    expected,
+  );
+
+// H01-H04: exact L19 recall row.
+expectL31Failure((lesson) => {
+  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
+    (row) => row.fromLessonId !== "de_l19",
+  );
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[0].fromLessonId = "de_l18";
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[0].constructIds = [
+    "de_gc_connector_topology_contrast_v1",
+  ];
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[0].responsibility =
+    "maintain formal reference";
+}, /^l31_plan_recall_authority_invalid$/u);
+
+// H05-H08: exact L14 recall row.
+expectL31Failure((lesson) => {
+  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
+    (row) => row.fromLessonId !== "de_l14",
+  );
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[1].fromLessonId = "de_l13";
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[1].constructIds = [
+    "de_gc_formal_sie_sich_v1",
+  ];
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[1].responsibility =
+    "reuse correction";
+}, /^l31_plan_recall_authority_invalid$/u);
+
+// H09-H12: exact L30 recall row.
+expectL31Failure((lesson) => {
+  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
+    (row) => row.fromLessonId !== "de_l30",
+  );
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[2].fromLessonId = "de_l29";
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[2].constructIds = [
+    "de_gc_limited_functional_genitive_v1",
+  ];
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[2].responsibility =
+    "reformulate a missed-obligation account";
+}, /^l31_plan_recall_authority_invalid$/u);
+
+// H13-H14: recall order and exact cardinality.
+expectL31Failure((lesson) => {
+  const rows = lesson.crossLessonRecall as JsonRecord[];
+  lesson.crossLessonRecall = [rows[1], rows[0], rows[2]];
+}, /^l31_plan_recall_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[]).push({
+    fromLessonId: "de_l01",
+    constructIds: ["de_gc_statement_v2_v1"],
+    responsibility: "extra recall row",
+  });
+}, /^l31_plan_recall_authority_invalid$/u);
+
+// H15-H20: evidence omissions, order and exact cardinality.
+for (const evidenceId of L31_EVIDENCE_IDS)
+  expectL31Failure((lesson) => {
+    lesson.evidenceIds = (lesson.evidenceIds as string[]).filter(
+      (id) => id !== evidenceId,
+    );
+  }, /^l31_evidence_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  const evidence = lesson.evidenceIds as string[];
+  lesson.evidenceIds = [evidence[1], evidence[0], evidence[2], evidence[3]];
+}, /^l31_evidence_authority_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.evidenceIds as string[]).push("DE-GRM-MODALPERF-001");
+}, /^l31_evidence_authority_invalid$/u);
+
+// H21-H24: exact construct-role sets and order.
+expectL31Failure((lesson) => {
+  lesson.introducedConstructIds = [];
+}, /^l31_introduced_construct_set_invalid$/u);
+expectL31Failure((lesson) => {
+  const ids = lesson.extendedConstructIds as string[];
+  lesson.extendedConstructIds = [ids[1], ids[0], ids[2]];
+}, /^l31_extended_construct_set_invalid$/u);
+expectL31Failure((lesson) => {
+  const ids = lesson.reviewedConstructIds as string[];
+  lesson.reviewedConstructIds = [ids[1], ids[0], ids[2]];
+}, /^l31_reviewed_construct_set_invalid$/u);
+expectL31Failure((lesson) => {
+  lesson.prohibitedConstructIds = [];
+}, /^l31_prohibited_construct_set_invalid$/u);
+
+// H25-H27: productive, receptive and excluded grammar boundaries.
+expectL31Failure((lesson) => {
+  (lesson.grammarBoundary as JsonRecord).productive =
+    "general register repair with new grammar";
+}, /^l31_productive_boundary_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.grammarBoundary as JsonRecord).receptive =
+    "all positions and requests that need mediation";
+}, /^l31_receptive_boundary_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.grammarBoundary as JsonRecord).excluded =
+    "a universal du-or-Sie workplace rule";
+}, /^l31_excluded_boundary_invalid$/u);
+
+// H28-H32: outcomes, pragmatics, final and fallback canonical identity.
+expectL31Failure((lesson) => {
+  (lesson.chapterOutcomes as JsonRecord[])[0].outcome =
+    "identify any relationship in any misunderstanding";
+}, /^l31_chapter_outcomes_invalid$/u);
+expectL31Failure((lesson) => {
+  lesson.pragmatics = "choose the correct address form for every workplace";
+}, /^l31_pragmatics_register_invalid$/u);
+expectL31Failure((lesson) => {
+  const final = lesson.session56Final as JsonRecord;
+  final.requiredConstructIds = (final.requiredConstructIds as string[]).filter(
+    (id) => id !== "de_gc_limited_modal_perfekt_v1",
+  );
+}, /^l31_final_required_constructs_invalid$/u);
+expectL31Failure((lesson) => {
+  (lesson.session56Final as JsonRecord).transferSituation =
+    "mediate the same memorized exchange";
+}, /^l31_final_transfer_evidence_invalid$/u);
+expectL31Failure((lesson) => {
+  lesson.title = "Missverständnisse lösen";
+}, /^l31_canonical_object_identity_invalid$/u);
 
 expectFailure(
   raw,
@@ -2537,7 +2959,7 @@ expectFailure(
     )!;
     formalRecall.fromLessonId = "de_l30";
   },
-  /recall_provenance_mismatch:de_l31:de_gc_formal_sie_sich_v1:expected=de_l19/u,
+  /^l31_plan_recall_authority_invalid$/u,
 );
 expectFailure(
   raw,

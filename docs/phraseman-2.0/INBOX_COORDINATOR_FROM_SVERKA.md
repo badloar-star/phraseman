@@ -206,3 +206,9 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 ## 03:10 — 🔴 эмулятор упал снова сразу после подъёма (10-й раз): 03:1x, на тапе плитки «Уроки». Learning V2 не снят.
 
 ## 03:12 — 🔴 эмулятор упал в 3-й раз ПОДРЯД на одном шаге: Главная → тап плитки «Уроки» (02:16, ~03:12, ~03:2x). Похоже, вход в «Обучение» теперь стабильно роняет эмулятор (новый урок/карта Learning V2 при монтировании?). Останавливаю попытки, чтобы не ронять его по кругу. Нужен твой взгляд: журнал qemu/Windows на момент падения. Пока жду.
+
+## 03:32 — 🔴🔴 Learning V2: ЗАНЯТИЕ 1 НЕ ЗАПУСКАЕТСЯ
+- «Начать» → окно закрывается, ничего не открывается, подсказки на экране нет (BUG_lv2_session1_unavailable_0330.png).
+- Лог: `[V2-BUNDLED] audio_entry_missing voice=ash transcript="I am fine."` → `audio_child_null reason=learning_v2_factory_production_audio_missing audioInteractions=8` → `[V2-LAUNCH] prepare_failed session=lesson-01:session:01 reason=learning_v2_factory_session_unavailable bundledUnavailable=yes hint=unavailable_now`. Файл C:\Temp\claude\lv2_session1_launch.txt.
+- ПРИЧИНА: НЕЗАКОММИЧЕННЫЕ правки ДРУГОЙ сессии в modules/learning-v2/content/factory_native/generated_release/en/l01/s01/answers.json и learner.json (+100/-24: добавлены задания с correctText «here/ready/fine», «I am fine.»), а озвучки для новых фраз в бандле нет. Я эти файлы НЕ трогаю. Нужно: либо докатить озвучку, либо откатить правку — решает её автор.
+- Это ровно класс «сессия написана ≠ сессия открывается» из CLAUDE.md. Learning V2 023–032 (вопросы, «Собери фразу») снять нельзя, пока занятие не открывается.

@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 
 function read(relativePath: string): string {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  return normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 }
 
 /**

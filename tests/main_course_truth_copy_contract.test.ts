@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const sources = [
   path.join('app', 'lesson_complete.tsx'),
@@ -7,7 +8,7 @@ const sources = [
   path.join('app', 'personal_plan_retired_redirect.ts'),
   path.join('app', 'notifications.ts'),
   path.join('components', 'paywall', 'PaywallProofCards.tsx'),
-].map((relativePath) => fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8'));
+].map((relativePath) => normalizeEol(fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8')));
 
 const source = sources.join('\n');
 

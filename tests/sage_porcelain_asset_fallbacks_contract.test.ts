@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -9,7 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 // levelGiftImages.ts и settings.tsx) — сравнивать не с чем, поэтому ожидания
 // теперь абсолютные, по самой Sage.
 function source(file: string): string {
-  return readFileSync(path.join(ROOT, file), 'utf8');
+  return normalizeEol(readFileSync(path.join(ROOT, file), 'utf8'));
 }
 
 // зачем: constants/*.ts периодически прогоняют через Prettier, и вид кавычек

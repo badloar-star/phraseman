@@ -3,9 +3,10 @@ import path from 'path';
 import { SAGE_PORCELAIN } from '../constants/theme';
 import { SAGE_PORCELAIN_CHROME, sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { themeAccessTier } from '../app/theme_access_policy';
+import { normalizeEol } from './helpers/read_source';
 
 describe('Sage Porcelain ThemeContext contract', () => {
-  const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8');
+  const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8'));
 
   it('wires Sage Porcelain into the free runtime theme policy', () => {
     expect(source).toContain('sagePorcelain: SAGE_PORCELAIN');

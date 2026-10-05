@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
+const SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8'));
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 describe('lesson menu planned locale runtime copy', () => {

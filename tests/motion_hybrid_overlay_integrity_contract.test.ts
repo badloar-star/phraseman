@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, "..");
 const read = (relativePath: string) =>
-  fs.readFileSync(path.join(ROOT, relativePath), "utf8");
+  normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
 
 function styleBlock(source: string, name: string): string {
   const start = source.indexOf(`  ${name}: {`);

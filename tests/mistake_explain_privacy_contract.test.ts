@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('mistake explanation cache privacy boundary', () => {
   it('denies every direct client read and write while preserving admin reset', () => {
-    const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
+    const rules = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8'));
     const block = rules.match(/match \/mistake_explanations\/\{mistakeHash\} \{[\s\S]*?\n    \}/);
 
     expect(block).not.toBeNull();

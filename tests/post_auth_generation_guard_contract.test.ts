@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const authSource = fs.readFileSync(path.join(__dirname, '../app/auth_provider.ts'), 'utf8');
-const shardsSource = fs.readFileSync(path.join(__dirname, '../app/shards_system.ts'), 'utf8');
-const backupSource = fs.readFileSync(path.join(__dirname, '../app/account_switch_backup_restore.ts'), 'utf8');
+const authSource = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/auth_provider.ts'), 'utf8'));
+const shardsSource = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/shards_system.ts'), 'utf8'));
+const backupSource = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/account_switch_backup_restore.ts'), 'utf8'));
 
 describe('post-auth stale generation guards', () => {
   test('network helpers receive a generation guard instead of holding a transition lock', () => {

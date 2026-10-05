@@ -1,10 +1,11 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = readFileSync(
+const source = normalizeEol(readFileSync(
   join(process.cwd(), 'components', 'ReviewPromptModal.tsx'),
   'utf8',
-);
+));
 
 describe('ReviewPromptModal overlay arbitration', () => {
   it('keeps caller visibility as intent and gates the native Modal through OverlayArbiter', () => {

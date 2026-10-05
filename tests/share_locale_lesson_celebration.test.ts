@@ -5,6 +5,7 @@
 import type { Lang } from '../constants/i18n';
 import { buildCelebrationShareBody } from '../app/celebration_share_messages';
 import { buildLessonShareMessage } from '../app/lesson_share';
+import { normalizeEol } from './helpers/read_source';
 
 const STORE = 'https://example.com/app';
 
@@ -54,8 +55,8 @@ describe('buildLessonShareMessage', () => {
     const fs = require('fs');
     const path = require('path');
     const root = path.resolve(__dirname, '..');
-    const source = fs.readFileSync(path.join(root, 'app', 'lesson_share.ts'), 'utf8');
-    const completeSource = fs.readFileSync(path.join(root, 'app', 'lesson_complete.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(root, 'app', 'lesson_share.ts'), 'utf8'));
+    const completeSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'lesson_complete.tsx'), 'utf8'));
     const legacyRuntimeRe = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimeRe);

@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'),
   'utf8',
-);
-const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
+));
+const rootLayout = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8'));
 
 describe('CleanOnboarding native animation transition safety', () => {
   it('keeps the welcome entrance and breathing scales on separate native nodes', () => {

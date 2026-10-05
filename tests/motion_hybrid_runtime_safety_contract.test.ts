@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+const read = (relativePath: string) => normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 
 function walkHybridFiles(dir: string, out: string[] = []): string[] {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -75,7 +76,7 @@ describe('motion hybrid runtime safety', () => {
 
   test('all Hybrid components use shared spring tokens', () => {
     for (const file of walkHybridFiles(path.join(ROOT, 'components'))) {
-      const source = fs.readFileSync(file, 'utf8');
+      const source = normalizeEol(fs.readFileSync(file, 'utf8'));
       expect(source).not.toMatch(/withSpring\([^,]+,\s*\{[^}]*\b(?:mass|damping|stiffness)\s*:/s);
     }
   });

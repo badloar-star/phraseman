@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const serverSource = fs.readFileSync(path.join(root, 'functions', 'src', 'shard_survey.ts'), 'utf8');
-const coreSource = fs.readFileSync(path.join(root, 'functions', 'src', 'shard_survey_core.ts'), 'utf8');
-const clientSource = fs.readFileSync(path.join(root, 'app', 'survey_client.ts'), 'utf8');
-const controllerSource = fs.readFileSync(path.join(root, 'app', 'survey_flow_controller.ts'), 'utf8');
+const serverSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'shard_survey.ts'), 'utf8'));
+const coreSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'shard_survey_core.ts'), 'utf8'));
+const clientSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'survey_client.ts'), 'utf8'));
+const controllerSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'survey_flow_controller.ts'), 'utf8'));
 
 describe('shard survey idempotency contract', () => {
   const submitStart = serverSource.indexOf('export const submitShardSurvey');

@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const read = (relativePath: string) => normalizeEol(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 
 describe('retained tabs runtime work contract', () => {
   it('keeps stats refreshes dirty while the retained stats route is inactive', () => {

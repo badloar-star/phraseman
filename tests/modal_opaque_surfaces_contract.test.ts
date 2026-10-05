@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 
-const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
+const read = (file: string) => normalizeEol(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 
 describe('modal opaque surface contract', () => {
   it('keeps shared reward modal panel gradients opaque', () => {

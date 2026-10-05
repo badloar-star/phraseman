@@ -10,6 +10,7 @@ import {
 } from 'fs';
 import { join, relative } from 'path';
 import { spawnSync } from 'child_process';
+import { normalizeEol } from './helpers/read_source';
 
 const root = join(__dirname, '..');
 const functionsRoot = join(root, 'functions', 'src');
@@ -61,7 +62,7 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
     const violations: string[] = [];
     for (const file of sourceFiles(functionsRoot)) {
       const rel = relative(functionsRoot, file).replace(/\\/g, '/');
-      const source = readFileSync(file, 'utf8');
+      const source = normalizeEol(readFileSync(file, 'utf8'));
       for (const pattern of forbiddenPersonalWritePatterns) {
         if (pattern.test(source)) violations.push(`${rel}:${pattern}`);
       }
@@ -122,7 +123,7 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
 
   test('competition never reads legacy shards for permission or returns a wallet projection', () => {
     for (const rel of competitiveFiles) {
-      const source = readFileSync(join(functionsRoot, rel), 'utf8');
+      const source = normalizeEol(readFileSync(join(functionsRoot, rel), 'utf8'));
       expect(source).not.toMatch(/(?:user|userData|userSnap\.data\(\))\.shards\b/);
       expect(source).not.toContain('not_enough_gems');
       expect(source).not.toContain('gemsLeft:');
@@ -131,19 +132,19 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
   });
 
   test('every competitive pearl delta is an immutable external fact', () => {
-    const tournaments = readFileSync(join(functionsRoot, 'tournaments.ts'), 'utf8');
+    const tournaments = normalizeEol(readFileSync(join(functionsRoot, 'tournaments.ts'), 'utf8'));
     for (const source of [
       'tournament_entry', 'tournament_lobby_leave', 'tournament_cancel', 'tournament_prize',
     ]) expect(tournaments).toContain(`source: '${source}'`);
-    const weekly = readFileSync(join(functionsRoot, 'tournament_weekly_payout.ts'), 'utf8');
+    const weekly = normalizeEol(readFileSync(join(functionsRoot, 'tournament_weekly_payout.ts'), 'utf8'));
     expect(weekly).toContain("source: 'tournament_weekly_bank'");
   });
 
   test('Firebase deploy cannot bypass a fresh compiled-runtime parity gate', () => {
-    const firebase = readFileSync(join(root, 'firebase.json'), 'utf8');
-    const pkg = readFileSync(join(root, 'functions', 'package.json'), 'utf8');
-    const parity = readFileSync(join(root, 'scripts', 'functions_runtime_parity_gate.mjs'), 'utf8');
-    const clean = readFileSync(join(root, 'scripts', 'clean_functions_runtime.mjs'), 'utf8');
+    const firebase = normalizeEol(readFileSync(join(root, 'firebase.json'), 'utf8'));
+    const pkg = normalizeEol(readFileSync(join(root, 'functions', 'package.json'), 'utf8'));
+    const parity = normalizeEol(readFileSync(join(root, 'scripts', 'functions_runtime_parity_gate.mjs'), 'utf8'));
+    const clean = normalizeEol(readFileSync(join(root, 'scripts', 'clean_functions_runtime.mjs'), 'utf8'));
     expect(firebase).toContain('npm --prefix functions run build');
     expect(firebase).toContain('node scripts/functions_runtime_parity_gate.mjs');
     expect(pkg).toContain('functions_runtime_parity_gate.mjs');

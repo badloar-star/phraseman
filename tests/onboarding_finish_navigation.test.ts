@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8'));
 
 describe('onboarding finish navigation', () => {
   it('keeps the app stack mounted behind onboarding instead of returning only onboarding', () => {

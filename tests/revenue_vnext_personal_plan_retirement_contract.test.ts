@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (relativePath: string): string => fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8');
+const read = (relativePath: string): string => normalizeEol(fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8'));
 
 describe('Revenue VNext retired Personal Plan acquisition', () => {
   const lessons = read('app/(tabs)/lessons.tsx');

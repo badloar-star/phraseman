@@ -12,6 +12,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 type Handler = () => void;
 const listeners = new Map<string, Set<Handler>>();
@@ -59,7 +60,7 @@ function flushInteractions(): void {
 }
 
 const root = path.resolve(__dirname, '..');
-const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(root, rel), 'utf8'));
 
 describe('PM-211 runAfterHomeFirstFrame — поведение', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports

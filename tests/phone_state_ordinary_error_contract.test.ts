@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const source = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const source = (relativePath: string) => normalizeEol(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 
 describe('ordinary PhoneState failures stay out of user flows', () => {
   test('ordinary startup and language selection contain no network-save message', () => {

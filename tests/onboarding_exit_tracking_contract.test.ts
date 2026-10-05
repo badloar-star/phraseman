@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: воронка «где чаще всего выходят» в админке живёт на ОДНОМ событии
 // onboarding_exit. Показы каждого шага в Firestore сознательно НЕ пишутся — это
 // было бы ~10 платных записей на каждого нового пользователя вместо одной.
 // Контракт держит и сам факт записи, и её дешевизну.
-const source = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8'));
 
 describe('CleanOnboarding exit tracking', () => {
   it('writes a single onboarding_exit record with the last seen step', () => {

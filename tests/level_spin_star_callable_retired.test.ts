@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: серверный кошелёк монет, спины удалены (владелец 01.10, Q13).
 // Сторож: спинов нет, серверный кошелёк монет `levelSpinStarGrant` есть,
 // неизвестный источник — отказ. Клиентский контракт `{ operation }` не меняется.
 
 const root = process.cwd();
-const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
+const read = (...parts: string[]) => normalizeEol(fs.readFileSync(path.join(root, ...parts), 'utf8'));
 
 test('server coin wallet callable exists under the old name and is exported', () => {
   const index = read('functions', 'src', 'index.ts');

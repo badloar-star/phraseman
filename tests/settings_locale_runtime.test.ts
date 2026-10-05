@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const SETTINGS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
-const SETTINGS_EDU_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'settings_edu.tsx'), 'utf8');
-const SETTINGS_NOTIFICATIONS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'settings_notifications.tsx'), 'utf8');
-const LANG_CONTEXT_SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'LangContext.tsx'), 'utf8');
-const THEME_CONTEXT_SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8');
+const SETTINGS_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8'));
+const SETTINGS_EDU_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'settings_edu.tsx'), 'utf8'));
+const SETTINGS_NOTIFICATIONS_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'settings_notifications.tsx'), 'utf8'));
+const LANG_CONTEXT_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'LangContext.tsx'), 'utf8'));
+const THEME_CONTEXT_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8'));
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 describe('settings planned locale runtime copy', () => {

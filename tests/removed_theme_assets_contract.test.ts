@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
 const removedThemeAssetPattern = /minimalDark|minimal-dark|candyBlue|candy-blue/i;
@@ -29,7 +30,7 @@ describe('removed theme assets contract', () => {
 
   it('has no static app references to removed theme assets', () => {
     for (const relativePath of sourceFiles) {
-      const source = fs.readFileSync(path.join(root, relativePath), 'utf8');
+      const source = normalizeEol(fs.readFileSync(path.join(root, relativePath), 'utf8'));
       const assetReferences = source.match(/assets\/images[^'"\r\n)]+/g) ?? [];
       expect(assetReferences.filter(reference => removedThemeAssetPattern.test(reference))).toEqual([]);
     }

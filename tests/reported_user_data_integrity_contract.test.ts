@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
 jest.mock("../app/config", () => ({
   IS_EXPO_GO: true,
@@ -17,14 +18,14 @@ jest.mock("../app/lifetime_profile_stats", () => ({
 
 describe("reported user data integrity", () => {
   it("keeps a pronunciation-only override separate from visible lesson text", () => {
-    const audioSource = fs.readFileSync(
+    const audioSource = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "hooks", "use-audio.ts"),
       "utf8",
-    );
-    const lessonSource = fs.readFileSync(
+    ));
+    const lessonSource = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "app", "lesson1.tsx"),
       "utf8",
-    );
+    ));
     expect(audioSource).toContain("speechText?: string");
     expect(lessonSource).toContain(
       "return line.replace(/\\bread\\b/i, 'reed');",
@@ -35,22 +36,22 @@ describe("reported user data integrity", () => {
   });
 
   it("uses the natural birthday sentence consistently in lesson content", () => {
-    const source = fs.readFileSync(
+    const source = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "app", "lesson_data_1_8_phrases_source.ts"),
       "utf8",
-    );
-    const generated = fs.readFileSync(
+    ));
+    const generated = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "app", "lesson_data_1_8_phrases_es.gen.ts"),
       "utf8",
-    );
-    const theory = fs.readFileSync(
+    ));
+    const theory = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "components", "lesson_help_theory_data.tsx"),
       "utf8",
-    );
-    const traps = fs.readFileSync(
+    ));
+    const traps = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "app", "error_traps", "error_traps_1_8.ts"),
       "utf8",
-    );
+    ));
     expect(source).toContain("english: 'His birthday is in October'");
     expect(generated).toContain("english: 'His birthday is in October'");
     expect(theory).toContain("His birthday is in October");
@@ -93,10 +94,10 @@ describe("reported user data integrity", () => {
   it("keeps every published public draft free of internal diagnostics", () => {
     // зачем: единственная живая админка — admin/v2/legacy.html (AGENTS.md);
     // admin/index.html — заморозили как редирект-заглушку, PREPARED_REPORT_REPLIES там больше нет.
-    const adminHtml = fs.readFileSync(
+    const adminHtml = normalizeEol(fs.readFileSync(
       path.join(__dirname, "..", "admin", "v2", "legacy.html"),
       "utf8",
-    );
+    ));
     const marker = "PREPARED_REPORT_REPLIES = {";
     const start = adminHtml.indexOf(marker);
     const end = adminHtml.indexOf("\n  };", start);

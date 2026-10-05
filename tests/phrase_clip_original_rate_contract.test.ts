@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: решение владельца 2026-08-24 — «звуки не должна скорость в настройках
 // как-либо влиять, они должны оригинальной длины быть».
@@ -18,8 +19,8 @@ import * as path from 'path';
 
 const playerPath = path.join(__dirname, '..', 'hooks', 'phrase_audio_player.ts');
 const audioPath = path.join(__dirname, '..', 'hooks', 'use-audio.ts');
-const playerSource = fs.readFileSync(playerPath, 'utf8');
-const audioSource = fs.readFileSync(audioPath, 'utf8');
+const playerSource = normalizeEol(fs.readFileSync(playerPath, 'utf8'));
+const audioSource = normalizeEol(fs.readFileSync(audioPath, 'utf8'));
 
 // Проверяем КОД, а не комментарии: пояснение «setPlaybackRate здесь запрещён»
 // само содержит запрещённое имя и иначе валило бы сторожа на честной правке.

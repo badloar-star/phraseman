@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -15,7 +16,7 @@ describe('core runtime audit markers', () => {
     expect(fs.existsSync(path.join(ROOT, 'app/services/arena_pulse.ts'))).toBe(false);
 
     for (const file of files) {
-      const source = fs.readFileSync(path.join(ROOT, file), 'utf8')
+      const source = normalizeEol(fs.readFileSync(path.join(ROOT, file), 'utf8'))
         .replace(/\/\*[\s\S]*?\*\//g, '')
         .replace(/\/\/.*$/gm, '');
       expect(source).not.toContain('fallback');

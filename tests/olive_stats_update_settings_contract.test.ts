@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
+const read = (file: string) => normalizeEol(fs.readFileSync(path.join(root, file), 'utf8'));
 
 describe('Olive stats, update and settings chrome', () => {
   it('keeps Olive stats tonal, borderless and shadowed', () => {

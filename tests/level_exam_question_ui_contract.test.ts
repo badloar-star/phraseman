@@ -5,11 +5,12 @@ import {
   formatLevelExamRemaining,
   getLevelExamTimerUrgency,
 } from '../components/level-exam/levelExamTime';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (file: string) => fs.readFileSync(
+const read = (file: string) => normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'components/level-exam', file),
   'utf8',
-);
+));
 
 describe('level exam question UI contract', () => {
   it('formats the total wall-clock timer and exposes warning states', () => {

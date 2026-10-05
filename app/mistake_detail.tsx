@@ -4,6 +4,7 @@ import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_p
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -190,6 +191,7 @@ export default function MistakeDetailScreen() {
                   {detail.status === 'active' ? (
                     <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
                       <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
+                      <GlassRim radius={21} />
                     </Pressable>
                   ) : <View style={styles.round} />}
                 </View>

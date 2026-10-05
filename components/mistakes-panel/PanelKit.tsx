@@ -15,6 +15,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { DIAG_150, MP_COLORS, mixDark, ringShadow, themePair } from './panelPaint';
+import { GlassRim } from './GlassRim';
 
 export const BackButton = memo(function BackButton({ g, onPress, label }: Readonly<{ g: Lv2Glass; onPress: () => void; label: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -28,6 +29,7 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
       onPress={onPress}
       style={({ pressed }) => [styles.back, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
       <Ionicons name="chevron-back" size={20} color={g.text} />
+      <GlassRim radius={21} />
     </Pressable>
   );
 });

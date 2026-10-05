@@ -15,6 +15,7 @@ import type { MistakeDiffSegment } from '../../app/mistake_answer_diff';
 import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { MP_COLORS, bevelShadow, mixDark, ringShadow, themePair } from './panelPaint';
+import { GlassRim } from './GlassRim';
 
 export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID?: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -28,6 +29,7 @@ export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, 
       onPress={onPress}
       style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
       <Ionicons name={icon} size={20} color={g.text} />
+      <GlassRim radius={21} />
     </Pressable>
   );
 });

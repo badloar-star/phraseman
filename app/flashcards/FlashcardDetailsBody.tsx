@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
 import type { CardItem, FlashcardContentLang } from './types';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -60,6 +61,8 @@ const LITERAL_LABEL: Record<FlashcardDetailLabelLang, string> = {
  * Розгорнуті деталі: дослівний переклад (поля literal*) — окрема секція з міткою; пояснення/нотатка — далі в блоці з рейкою.
  */
 function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом, но не больше предела maxFontSizeMultiplier самих текстов
+  const lh = useLineScale();
   const labelLang = flashcardDetailLabelLang(lang);
   const literalText = useMemo(() => {
     const raw =
@@ -136,7 +139,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
             style={{
               color: t.textSecond,
               fontSize: f.sub,
-              lineHeight: Math.round(f.sub * 1.35),
+              lineHeight: lh(Math.round(f.sub * 1.35), 1.35),
               fontWeight: '700',
               marginBottom: 6,
             }}
@@ -149,7 +152,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               style={{
                 color: t.textPrimary,
                 fontSize: f.body,
-                lineHeight: Math.round(f.body * 1.5),
+                lineHeight: lh(Math.round(f.body * 1.5), 1.35),
                 fontWeight: '500',
               }}
             >
@@ -166,7 +169,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               style={{
                 color: t.textMuted,
                 fontSize: f.body,
-                lineHeight: Math.round(f.body * 1.5),
+                lineHeight: lh(Math.round(f.body * 1.5), 1.35),
                 fontStyle: 'italic',
               }}
             >

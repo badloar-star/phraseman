@@ -355,10 +355,53 @@ function formatMonthName(monthKey: string, lang: string, withYear: boolean): str
 
 type CountForms = { one: string; few?: string; many?: string; other: string };
 
+// зачем (Сверка results-009 🔴, 05.10): тап «Год» → красный экран «Cannot read property 'prototype' of undefined»
+// рядом с MonthSelector; сразу под ним карточка месяца зовёт countLabel → Intl.PluralRules, которого в Hermes на
+// Android нет (см. FlashcardsHubScreen.packsWord). Логи [HEATMAP-PLURAL] показывают факт: что лежит в
+// Intl.PluralRules и чем упал конструктор; вместо падения — ручные формы ru/uk/pl, остальные «один / другие».
+type PluralCat = 'zero' | 'one' | 'two' | 'few' | 'many' | 'other';
+let pluralFallbackLogged = false;
+function manualPluralCategory(lang: string, n: number): PluralCat {
+  const abs = Math.abs(Math.trunc(n));
+  const n10 = abs % 10;
+  const n100 = abs % 100;
+  if (lang === 'ru' || lang === 'uk') {
+    if (n10 === 1 && n100 !== 11) return 'one';
+    if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return 'few';
+    return 'many';
+  }
+  if (lang === 'pl') {
+    if (abs === 1) return 'one';
+    if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return 'few';
+    return 'many';
+  }
+  return abs === 1 ? 'one' : 'other';
+}
+function pluralCategory(lang: string, count: number): PluralCat {
+  const ctorType = typeof (globalThis as { Intl?: { PluralRules?: unknown } }).Intl?.PluralRules;
+  if (ctorType !== 'function') {
+    if (!pluralFallbackLogged) {
+      pluralFallbackLogged = true;
+      console.warn(`[HEATMAP-PLURAL] fallback reason=no_ctor typeof=${ctorType} lang=${lang} count=${count}`); // guard-ok: однократный лог причины (флаг), правило «сперва логи»
+    }
+    return manualPluralCategory(lang, count);
+  }
+  try {
+    return new Intl.PluralRules(localeForLang(lang)).select(count);
+  } catch (error) {
+    if (!pluralFallbackLogged) {
+      pluralFallbackLogged = true;
+      const err = error instanceof Error ? error : new Error(String(error));
+      console.warn(`[HEATMAP-PLURAL] fallback reason=ctor_threw lang=${lang} count=${count} message=${err.message} stack=${(err.stack ?? '').split('\n').slice(0, 4).join(' | ')}`); // guard-ok: однократный лог причины (флаг), правило «сперва логи»
+    }
+    return manualPluralCategory(lang, count);
+  }
+}
+
 // зачем: «12 дней», «24 минуты практики» — склонение по правилам языка, а не «мин» на всё.
 function countLabel(lang: string, count: number, forms: Record<string, CountForms>): string {
   const set = forms[lang] ?? forms.en!;
-  const rule = new Intl.PluralRules(localeForLang(lang)).select(count);
+  const rule = pluralCategory(lang, count);
   const word = (rule === 'one' ? set.one : rule === 'few' ? set.few : rule === 'many' ? set.many : undefined) ?? set.other;
   return `${count} ${word}`;
 }

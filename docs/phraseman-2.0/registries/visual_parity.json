@@ -4191,13 +4191,20 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/video-011.png",
+      "evidence_at": "2026-10-05T05:08:08.845Z",
+      "evidence_sha256": "f344db18ed95b5f4d0bf9196fc3f7d5908d14e8dbf8796095b05c553ef9fe7ed",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "🔴 Из плейлиста ролик играет встроенным плеером внутри списка; в макете отдельный экран: плеер сверху на всю ширину с полосой времени, ✕ справа",
+        "Нет «Набор к ролику · 30 карточек · Добавить себе +»",
+        "Нет списка «Фразы из видео N» с таймкодами, переводом и закладкой (лог [YT-PHRASES] ready phrases=100 — данные есть, но на этом пути не показаны)",
+        "Вокруг встроенного плеера толстая светлая рамка — в стиле 2.0 только 1px полупрозрачная",
+        "Нет строки «канал · 2 дня назад · 4,1 тыс.» под названием (дата числом)",
+        "Анимация replay-control в макете — не записана (anim video-011)"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

@@ -35,7 +35,9 @@ function loadRetryPolicy() {
 
 describe('auth recovery pre-cloud boot integration', () => {
   it('runs account-delete recovery first, then the recovery gate, before every cloud/bootstrap seam', () => {
-    const accountDelete = bootstrapRegion.indexOf('await resumePendingAccountDeleteLocalExit()');
+    // зачем (05.10): шаг дочистки удаления — единый координатор auth_provider (resumePendingAccountDeleteLocalExit зовёт
+    // его же, см. account_delete_flow_contract). Порядок проверяется так же строго.
+    const accountDelete = bootstrapRegion.indexOf("await ensureFreshPostDeletionIdentity('startup')");
     const recoveryGate = bootstrapRegion.indexOf('await runAuthRecoveryBootGate(');
     const safetyTimer = bootstrapRegion.indexOf('safetyTimer = setTimeout');
     const cloudCoordinator = bootstrapRegion.indexOf('createBootCloudRestoreCoordinator');
@@ -85,7 +87,9 @@ describe('auth recovery pre-cloud boot integration', () => {
   });
 
   it('coalesces retry races and keeps heavy init from bypassing the gate', () => {
-    expect(bootstrapRegion).toContain('if (authRecoveryBootstrapInFlight) return;');
+    // Повторный вход обязан выйти сразу; ранний выход теперь пишет лог (правило «ранние return логируются»).
+    expect(bootstrapRegion).toMatch(/if \(authRecoveryBootstrapInFlight\) \{\s*bootMark\([^;]*\);\s*return;\s*\}/);
+    expect(bootstrapRegion.indexOf('if (authRecoveryBootstrapInFlight)')).toBeLessThan(bootstrapRegion.indexOf('authRecoveryBootstrapInFlight = true;'));
     expect(bootstrapRegion).toContain('authRecoveryBootstrapInFlight = true;');
     expect(bootstrapRegion).toContain('authRecoveryBootstrapInFlight = false;');
     expect(layout).toContain('if (!recoveryBootAllowsCloud)');

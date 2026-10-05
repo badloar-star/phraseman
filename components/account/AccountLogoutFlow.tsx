@@ -10,7 +10,7 @@
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -156,17 +156,20 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   // зачем: окно выхода — Liquid Glass по макету PRF-20: непрозрачная основа темы, нейтральный CTA,
   // «Отмена» тоном темы; красный — только у иконки отказа (семантика ошибки). Один нативный
   // <Modal> на три стадии сохранён (см. комментарий ниже) — меняется лишь содержимое.
-  // зачем (Сверка overlays-runtime 017/018/036/037, 05.10): карточка = `.or-alert` — поля 20, r25, кромка --line-2,
-  // стекло; плитка 68 (r23) со значком; заголовок 23/29 по центру; текст 16/22 (D145) через 9; кнопки в ряд 44 через 18,
-  // прозрачная «Отмена» (`.cta.gh`) слева, действие справа. Было: r28, поля 22, круг 56, кнопки 48 столбиком.
+  // зачем (координатор 05.10, вывод по 017/018): это «Выйти» с экрана аккаунта — эталон profile.html logout (PRF-20),
+  // а не «Сменить аккаунт?» из overlays-runtime (другой сценарий). `.modal`: поля 24/20/20, r26, кромка --line-2, края 20;
+  // заголовок 22/28; текст 16/22 (D145) через 8; подтверждение — кнопки столбиком 48: главная сверху, `.cta.gh` под ней;
+  // выход — крутилка. Отказ (overlays-runtime 036/037, стадии аккаунта): плитка с замком 68 и кнопки в ряд 44.
   const cardStyle = {
     width: '100%' as const,
     maxWidth: 360,
     backgroundColor: glass.opaqueSheet,
-    borderRadius: 25,
-    borderWidth: 1, // guard-ok: 1 px кромка .or-alert
+    borderRadius: 26,
+    borderWidth: 1, // guard-ok: 1 px кромка .modal
     borderColor: glass.glassEdge,
-    padding: 20,
+    paddingTop: 24,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     overflow: 'hidden' as const,
   };
   const buttonStyle = {
@@ -181,8 +184,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   };
   const ghostButton = { borderWidth: 1, borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, backgroundColor: 'transparent' }; // guard-ok: .cta.gh
   const stageStyle = { width: 68, height: 68, borderRadius: 23, alignSelf: 'center' as const, alignItems: 'center' as const, justifyContent: 'center' as const, marginBottom: 15, backgroundColor: glass.opaqueControl };
-  const titleStyle = { color: glass.text, fontSize: 23, lineHeight: 29, fontWeight: '800' as const, textAlign: 'center' as const };
-  const bodyStyle = { color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 9, textAlign: 'center' as const };
+  const titleStyle = { color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '800' as const, textAlign: 'center' as const };
+  const bodyStyle = { color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: 'center' as const };
+  // `.cta` в столбик (подтверждение выхода): 48, r24, на всю ширину.
+  const stackButton = { minHeight: 48, borderRadius: 24, paddingHorizontal: 16, paddingVertical: 10, alignItems: 'center' as const, justifyContent: 'center' as const, overflow: 'hidden' as const };
   const ctaText = { fontSize: 16, fontWeight: '700' as const, textAlign: 'center' as const };
 
   return (
@@ -208,13 +213,13 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             Прокрутка теперь общая для всех трёх стадий (крупный шрифт тоже переполняет). */}
         <ScrollView
           decelerationRate="fast"
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)' }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 20 }}
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
           showsVerticalScrollIndicator={false}
         >
           {stage === 'failed' ? (
             <View style={cardStyle}>
-              <KitGlassLayer radius={25} />
+              <KitGlassLayer radius={26} />
               <View style={stageStyle}>
                 <Ionicons name="lock-closed" size={26} color={glass.text} />
               </View>
@@ -260,10 +265,8 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               accessibilityLiveRegion="polite"
               style={cardStyle}
             >
-              <KitGlassLayer radius={25} />
-              <View style={stageStyle}>
-                <Ionicons name="lock-closed" size={26} color={glass.text} />
-              </View>
+              <KitGlassLayer radius={26} />
+              <ActivityIndicator size="large" color={glass.text} style={{ alignSelf: 'center', marginBottom: 20 }} />
               <Text accessibilityRole="header" style={titleStyle}>
                 {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Saving progress', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
               </Text>
@@ -273,7 +276,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             </View>
           ) : (
             <View style={cardStyle}>
-              <KitGlassLayer radius={25} />
+              <KitGlassLayer radius={26} />
               <Text accessibilityRole="header" style={titleStyle}>
                 {L('Выйти из аккаунта?', 'Вийти з акаунту?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
               </Text>
@@ -305,28 +308,28 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 )}
               </Text>
 
-              <View style={{ flexDirection: 'row', gap: 9, marginTop: 18 }}>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  accessibilityRole="button"
-                  testID="account-logout-cancel"
-                  onPress={() => onStageChange('idle')}
-                  style={[buttonStyle, ghostButton]}
-                >
-                  <Text style={[ctaText, { color: glass.text }]}>
-                    {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                  </Text>
-                </TouchableOpacity>
+              <View style={{ marginTop: 18, gap: 10 }}>
                 <TouchableOpacity
                   activeOpacity={0.8}
                   accessibilityRole="button"
                   testID="account-logout-confirm"
                   onPress={() => { void runLogout(); }}
-                  style={[buttonStyle, { backgroundColor: glass.accent }]}
+                  style={[stackButton, { backgroundColor: glass.accent }]}
                 >
-                  <ThemeAccentFill glass={glass} radius={22} />
+                  <ThemeAccentFill glass={glass} radius={24} />
                   <Text style={[ctaText, { color: glass.accentInk }]}>
                     {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                  testID="account-logout-cancel"
+                  onPress={() => onStageChange('idle')}
+                  style={[stackButton, ghostButton]}
+                >
+                  <Text style={[ctaText, { color: glass.text }]}>
+                    {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                   </Text>
                 </TouchableOpacity>
               </View>

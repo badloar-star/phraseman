@@ -74,6 +74,7 @@ import {
   peekStagedCommunityPackMeta,
   stagedCommunityPackCardsPromise,
 } from '../community_packs/staging';
+import { peekCommunityPackOpen } from '../community_packs/stage_with_retry';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
 import {
@@ -661,6 +662,9 @@ export function useCollectionData(opts: {
    * видит промежуточную заглушку вместо набора (владелец, 2026-08-13).
    */
   const deeplinkPackId = opts.deeplinkPackId ?? null;
+  // зачем (packs-simple-004, мгновенное открытие): экран открыт по тапу ДО загрузки карточек — состояние для скелета
+  // в просмотре и для выхода с тостом, если все тихие повторы вернули пусто.
+  const [deeplinkCardsState, setDeeplinkCardsState] = useState<'idle' | 'pending' | 'ready' | 'failed'>('idle');
   useEffect(() => {
     if (!deeplinkPackId || !communityPacksEnabled) return;
     const sourceId = `DEV:${deeplinkPackId}`;
@@ -671,7 +675,21 @@ export function useCollectionData(opts: {
     const memo = peekStagedCommunityPackCards(deeplinkPackId, studyTarget);
     if (memo) {
       apply(memo);
+      setDeeplinkCardsState('ready');
       return;
+    }
+    const opening = peekCommunityPackOpen(deeplinkPackId, studyTarget);
+    if (opening) {
+      let cancelledOpen = false;
+      setDeeplinkCardsState('pending');
+      const startedAt = Date.now();
+      void opening.then((cards) => {
+        console.warn('[FC-PACK-OPEN] collection:resolved', JSON.stringify({ pack: deeplinkPackId, cards: cards.length, ms: Date.now() - startedAt, cancelled: cancelledOpen })); // guard-ok: временная трассировка packs-simple-004
+        if (cancelledOpen) return;
+        apply(cards);
+        setDeeplinkCardsState(cards.length > 0 ? 'ready' : 'failed');
+      });
+      return () => { cancelledOpen = true; };
     }
     const pending = stagedCommunityPackCardsPromise(deeplinkPackId, studyTarget);
     if (!pending) return;
@@ -685,6 +703,7 @@ export function useCollectionData(opts: {
   }, [communityPacksEnabled, deeplinkPackId, studyTarget]);
 
   return {
+    deeplinkCardsState,
     savedCards,
     customCards,
     marketCards,

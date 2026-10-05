@@ -25,7 +25,7 @@ import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStor
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
 import { getCanonicalUserId } from '../user_id_policy';
-import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from '../community_packs/stage_with_retry';
+import { startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import {
   loadMarketplacePacks,
   peekWarmMarketplacePacks,
@@ -412,23 +412,16 @@ export default function FlashcardsHubScreen() {
   }, []);
 
   const openTopPack = useCallback((pack: FlashcardMarketPack) => {
+    // зачем (packs-simple-004, решено по рекомендации): переход сразу по тапу, карточки догружаются на экране набора
+    // (скелет). Повторный тап по строке не запускает вторую загрузку (реестр открытий) и не толкает второй экран.
     if (openingPackRef.current) return;
     openingPackRef.current = pack.id;
-    setOpeningPackId(pack.id);
-    void (async () => {
-      const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'hub' });
-      if (openingPackRef.current !== pack.id) return;
-      openingPackRef.current = null;
-      setOpeningPackId(null);
-      if (cards.length === 0) {
-        emitPackNotDownloadedToast();
-        return;
-      }
-      router.push({
-        pathname: '/flashcards_collection',
-        params: { pack: pack.id, preview: '1', from: 'hub' },
-      } as never);
-    })();
+    setTimeout(() => { if (openingPackRef.current === pack.id) openingPackRef.current = null; }, 800);
+    void startCommunityPackOpen(pack.id, studyTarget, pack, 'hub');
+    router.push({
+      pathname: '/flashcards_collection',
+      params: { pack: pack.id, preview: '1', from: 'hub' },
+    } as never);
   }, [router, studyTarget]);
 
   const openCreatePack = useCallback(() => {

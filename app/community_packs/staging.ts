@@ -53,6 +53,23 @@ function rememberCommunityPackCards(key: string, cards: CardItem[]): void {
  * компактным progress, чем смонтировать коллекцию без карточек/темы и тут же
  * перестроить весь экран. Memo-путь остаётся практически синхронным.
  */
+/**
+ * зачем (packs-simple-004: открытие ~138 с): у .doc().get() нет своего потолка — повисший запрос держал каждую из трёх
+ * попыток десятки секунд. 8 с на попытку; по таймауту — отказ, тихий повтор решает stage_with_retry.
+ */
+export const PACK_CARDS_FETCH_CEILING_MS = 8_000;
+
+function withPackCardsFetchCeiling<T>(work: Promise<T>, packId: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const ceiling = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      console.warn(`[PACK-OPEN] fetch:timeout packId=${packId} ms=${PACK_CARDS_FETCH_CEILING_MS}`); // guard-ok: таймаут логируется
+      reject(new Error('pack_cards_fetch_timeout'));
+    }, PACK_CARDS_FETCH_CEILING_MS);
+  });
+  return Promise.race([work, ceiling]).finally(() => { if (timer) clearTimeout(timer); });
+}
+
 export async function stageCommunityPackCardsForNavigation(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
@@ -95,7 +112,7 @@ export async function stageCommunityPackCardsForNavigation(
       if (localPack) return localAuthorPackCardItems(localPack);
     }
     console.log(`[PACK-OPEN] net:fetch:start packId=${packId} ms=${Date.now() - t0}`);
-    return fetchCommunityPackCards(packId, studyTarget);
+    return withPackCardsFetchCeiling(fetchCommunityPackCards(packId, studyTarget), packId);
   })()
     .then((next) => {
       console.log(`[PACK-OPEN] fetch:done packId=${packId} cards=${next.length} ms=${Date.now() - t0}`);

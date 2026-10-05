@@ -31,6 +31,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import CommunityPackPreview from './flashcards/CommunityPackPreview';
+import { emitPackNotDownloadedToast } from './community_packs/stage_with_retry';
 import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -571,13 +572,24 @@ export default function FlashcardsScreen() {
     savedCards, customCards, marketCards, marketPackCatalog,
     ownedPackIdList, communityOwnedIdList, accessStableId,
     collectionDataReady, loading, loadError, loadAll,
-    updateSavedCards, updateCustomCards,
+    updateSavedCards, updateCustomCards, deeplinkCardsState,
   } = useCollectionData({
     isDevMarketEnabled,
     onLoaded,
     previewPackId: previewRequested ? packDeeplink : null,
     deeplinkPackId: packDeeplink,
   });
+
+  // зачем (packs-simple-004, мгновенное открытие): тап открыл экран до загрузки карточек; если все тихие повторы
+  // вернули пусто — прежняя мягкая подсказка и назад (раньше её показывала плитка, не уходя со списка).
+  const packOpenFailHandledRef = useRef(false);
+  useEffect(() => {
+    if (deeplinkCardsState !== 'failed' || packOpenFailHandledRef.current) return;
+    packOpenFailHandledRef.current = true;
+    console.warn('[FC-PACK-OPEN] collection:failed → назад', JSON.stringify({ pack: packDeeplink })); // guard-ok: ветка логируется
+    emitPackNotDownloadedToast();
+    leaveCollection();
+  }, [deeplinkCardsState, leaveCollection, packDeeplink]);
 
   useFocusEffect(
     useCallback(() => {
@@ -1332,6 +1344,7 @@ export default function FlashcardsScreen() {
             onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
             onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
             onSpeak={onSpeakCb}
+            cardsLoading={deeplinkCardsState === 'pending' && listCards.length === 0}
           />
         ) : (<>
         {savedSurface ? (

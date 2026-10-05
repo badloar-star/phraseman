@@ -13,7 +13,7 @@
  */
 import type { CardItem } from '../flashcards/types';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
-import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import { actionToastTri, emitAppEvent } from '../events';
 import { stageCommunityPackCardsForNavigation } from './staging';
 
@@ -51,6 +51,43 @@ export async function stageCommunityPackCardsWithSilentRetry(
   }
   console.warn(`[FC-PACK-OPEN] ${tag} ${packId}: тихие повторы исчерпаны — мягкая подсказка`);
   return [];
+}
+
+// ── Мгновенное открытие (packs-simple-004) ──────────────────────────────────
+// зачем (решено по рекомендации, координатор 05.10): тап сразу ведёт на экран набора, подготовка карточек с тихими
+// повторами идёт фоном. Реестр держит промис открытия: повторный тап по той же строке получает тот же промис (второго
+// staging нет), экран коллекции ждёт именно его. Только память процесса.
+type PackOpen = { promise: Promise<CardItem[]>; settled: CardItem[] | null };
+const packOpens = new Map<string, PackOpen>();
+const packOpenKey = (packId: string, studyTarget?: RuntimeStudyTarget) => `${packId}:${storageStudyTarget(studyTarget)}`;
+
+export function startCommunityPackOpen(
+  packId: string,
+  studyTarget: RuntimeStudyTarget | undefined,
+  packMeta: FlashcardMarketPack | undefined,
+  tag: string,
+): Promise<CardItem[]> {
+  const key = packOpenKey(packId, studyTarget);
+  const running = packOpens.get(key);
+  if (running && running.settled === null) {
+    console.warn(`[FC-PACK-OPEN] ${tag} ${packId}: повторный тап — то же открытие, второй загрузки нет`); // guard-ok: защита от двойного тапа
+    return running.promise;
+  }
+  const entry: PackOpen = { promise: Promise.resolve([]), settled: null };
+  entry.promise = stageCommunityPackCardsWithSilentRetry(packId, studyTarget, packMeta, { tag })
+    .then((cards) => { entry.settled = cards; return cards; });
+  packOpens.set(key, entry);
+  return entry.promise;
+}
+
+/** Промис открытия набора (если он запускался с тапа) — для экрана коллекции. */
+export function peekCommunityPackOpen(packId: string, studyTarget?: RuntimeStudyTarget): Promise<CardItem[]> | null {
+  return packOpens.get(packOpenKey(packId, studyTarget))?.promise ?? null;
+}
+
+/** Только для тестов. */
+export function __resetCommunityPackOpensForTests(): void {
+  packOpens.clear();
 }
 
 /** Мягкая подсказка после исчерпанных повторов — без «ошибки» и «не удалось». */

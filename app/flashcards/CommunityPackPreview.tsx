@@ -14,6 +14,7 @@ import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import SkeletonBlock from '../../components/SkeletonShimmer';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -39,6 +40,8 @@ type Props = {
   onRequestPurchase: (pack: FlashcardMarketPack, priceRunes: number) => void;
   onOpenComments: () => void;
   onSpeak: (text: string, opts?: SpeakOpts) => void;
+  /** Экран открыт по тапу до загрузки карточек (packs-simple-004): на месте списка — скелет строк той же высоты. */
+  cardsLoading?: boolean;
 };
 
 const PAD = 20;
@@ -82,7 +85,7 @@ const WordRow = memo(function WordRow({ card, lang, g, onSpeak }: {
 });
 
 export default function CommunityPackPreview({
-  pack, cards, lang, cardContentLang, t, onBack, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak,
+  pack, cards, lang, cardContentLang, t, onBack, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak, cardsLoading = false,
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -153,6 +156,14 @@ export default function CommunityPackPreview({
         keyExtractor={(card) => card.id}
         renderItem={({ item }) => <WordRow card={item} lang={cardContentLang} g={g} onSpeak={onSpeak} />}
         ListHeaderComponent={header}
+        // зачем (packs-simple-004): пока карточки грузятся фоном — строки-заготовки высотой 64 (как WordRow), без прыжка.
+        ListEmptyComponent={cardsLoading ? (
+          <View testID="pack-preview-cards-loading" style={{ gap: 9 }}>
+            {Array.from({ length: Math.min(Math.max(pack.cardCount, 3), 6) }).map((_, index) => (
+              <SkeletonBlock key={index} width="100%" height={64} borderRadius={14} />
+            ))}
+          </View>
+        ) : null}
         ItemSeparatorComponent={RowGap}
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}

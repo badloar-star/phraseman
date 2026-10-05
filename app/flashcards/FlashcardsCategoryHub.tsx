@@ -61,7 +61,7 @@ import { isLowPowerEffective } from './low_power';
 import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { onAppEvent } from '../events';
-import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from '../community_packs/stage_with_retry';
+import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry, startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { topLikedPackIds } from '../community_packs/packSocial';
 import {
@@ -549,23 +549,14 @@ export default function FlashcardsCategoryHub({
    * нельзя (`preview=1`). Карточки подгружаются тем же staging-путём, что и у своих.
    */
   const openPackPreview = useCallback(
-    async (pack: FlashcardMarketPack) => {
+    (pack: FlashcardMarketPack) => {
+      // зачем (packs-simple-004, решено по рекомендации): переход сразу по тапу, карточки догружаются на экране набора
+      // (скелет). Повторный тап по строке не запускает вторую загрузку (реестр открытий) и не толкает второй экран.
       if (openingPackRef.current) return;
-      const requestToken = ++openingRequestGenerationRef.current;
       openingPackRef.current = pack.id;
+      setTimeout(() => { if (openingPackRef.current === pack.id) openingPackRef.current = null; }, 800);
       setUgcReportHintPackId(null);
-      setOpeningPackId(pack.id);
-      const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'category-hub' });
-      if (
-        openingRequestGenerationRef.current !== requestToken
-        || openingPackRef.current !== pack.id
-      ) return;
-      if (cards.length === 0) {
-        openingPackRef.current = null;
-        setOpeningPackId(null);
-        emitPackNotDownloadedToast();
-        return;
-      }
+      void startCommunityPackOpen(pack.id, studyTarget, pack, 'category-hub');
       router.push({
         pathname: '/flashcards_collection',
         params: { pack: pack.id, preview: '1' },

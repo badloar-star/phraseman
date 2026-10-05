@@ -2602,6 +2602,9 @@ export default function LessonsTab({
     state: LearningV2AccordionSessionStateV1;
     traceId: string;
   } | null>(null);
+  // Только для лога подсказки отказа ([V2-LAUNCH] hint:show): было ли окно занятия ещё открыто в момент показа.
+  const selectedLearningV2SessionOpenRef = useRef(false);
+  selectedLearningV2SessionOpenRef.current = selectedLearningV2Session !== null;
   const learningV2CatalogLocator = useMemo(
     () => ({
       environment: "production" as const,
@@ -3417,9 +3420,15 @@ export default function LessonsTab({
     timers.unmount = null;
   }, []);
   useEffect(() => clearLearningV2DenialHintTimers, [clearLearningV2DenialHintTimers]);
+  // зачем (Сверка 05.10: «жму Начать — окно закрылось, сообщения нет», хотя prepare_failed hint=unavailable_now
+  // пишется): лог полного пути подсказки — когда вызвали, когда она реально встала на экран (эффект ниже) и когда
+  // спрятали. Так видно, показывается ли она вообще, на сколько и не перекрыта ли закрывающимся окном.
+  const learningV2DenialHintShownAtRef = useRef<number | null>(null);
   const showLearningV2DenialHint = useCallback(
     (text: string) => {
       clearLearningV2DenialHintTimers();
+      learningV2DenialHintShownAtRef.current = Date.now();
+      console.log(`[V2-LAUNCH] hint:show text="${text.slice(0, 60)}" modalOpenAtShow=${selectedLearningV2SessionOpenRef.current}`);
       setLearningV2DenialHint(text);
       const instant = learningV2ReduceMotionPreference !== false;
       learningV2DenialHintProgress.value = withTiming(1, {
@@ -3432,7 +3441,11 @@ export default function LessonsTab({
           easing: Easing.bezier(0.23, 1, 0.32, 1),
         });
         learningV2DenialHintTimers.current.unmount = setTimeout(
-          () => setLearningV2DenialHint(null),
+          () => {
+            const shownAt = learningV2DenialHintShownAtRef.current;
+            console.log(`[V2-LAUNCH] hint:hidden visibleMs=${shownAt === null ? "unknown" : Date.now() - shownAt}`);
+            setLearningV2DenialHint(null);
+          },
           instant ? 16 : 220,
         );
       }, 2200);

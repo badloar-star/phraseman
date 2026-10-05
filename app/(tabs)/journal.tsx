@@ -3,4 +3,9 @@
 // на главную в app/(tabs)/_layout.tsx (PATHNAME_TO_IDX); сам файл остаётся,
 // чтобы старый URL не падал в not-found. Компонент отсюда больше не рендерится:
 // (tabs)/_layout.tsx не рендерит детей-роутов вовсе.
-export { default } from './lessons';
+// зачем (координатор 05.10, пакет 08:26, цепочка lessons.tsx ← journal.tsx): раньше здесь был реэкспорт './lessons',
+// и роутер, вычисляя файлы маршрутов на старте, тянул экран уроков (~321 мс) до первого кадра. Пустой компонент —
+// URL жив, а экран уроков грузится лениво из (tabs)/_layout.
+export default function JournalLegacyRoute() {
+  return null;
+}

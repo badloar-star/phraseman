@@ -28,7 +28,7 @@ const OVERRIDES = {
   '/(tabs)/friends': ['redesign', 'Сообщество/друзья', 'D39: друзья внутри «Сообщества»'],
   '/(tabs)/community': ['redesign', 'Сообщество', 'D39: новая вкладка «Сообщество»'],
   '/(tabs)/video': ['redesign', 'Видео', 'D39/D50: вкладка «Видео»'],
-  '/(tabs)/journal': ['archive', 'навигация', 'legacy-якорь URL /journal (файл = реэкспорт lessons, не рендерится)'],
+  '/(tabs)/journal': ['archive', 'навигация', 'legacy-якорь URL /journal (файл = пустая заглушка, не рендерится)'],
   '/(tabs)/arena': ['archive', 'навигация', 'D83: legacy-якорь URL /arena, рендерит null'],
   '/achievements_screen': ['keep', 'достижения', 'PM-054 done: достижения удалённых механик сняты, экран остаётся'],
   '/ai_dialog_home': ['keep', 'Диалоги', 'D05/D111: Диалоги остаются (лимит Free 30 ответов/мес)'],

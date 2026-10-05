@@ -264,8 +264,9 @@ describe('шапка каталога сообщества (замечания �
   it('активный фильтр выделен визуально и в accessibilityState', () => {
     for (const sort of ['new', 'popular']) {
       expect(screen).toContain(`accessibilityState={{ selected: communitySort === '${sort}' }}`);
-      // зачем: снимок 2.0 (efe19ae9d) — выделение активного фильтра в палитре стекла g.selected.
-      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: g.selected } : null`);
+      // зачем (макет packs-simple.html кадр 1, `.bar3 .b.on { background: var(--acc); color: var(--on) }`; коммиты d5b6b1672, cef49aa88):
+      // активная вкладка «Новые/Топ» нижней панели каталога красится акцентом темы t.accent, а не g.selected прежнего снимка 2.0 (efe19ae9d).
+      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: t.accent } : null`);
       expect(screen).toContain(`setCommunitySort('${sort}')`);
     }
   });

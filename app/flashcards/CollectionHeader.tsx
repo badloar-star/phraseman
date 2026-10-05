@@ -19,6 +19,7 @@ import React, { useMemo } from 'react';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { ActivityIndicator, Modal, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { useLineScale } from '../../hooks/useLineScale';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useTheme } from '../../components/ThemeContext';
@@ -133,6 +134,8 @@ export default function CollectionHeader({
   onExitSelection,
   onDeleteSelected,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом, но не больше предела maxFontSizeMultiplier самих текстов
+  const lh = useLineScale();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const { width: screenW } = useWindowDimensions();
@@ -320,7 +323,7 @@ export default function CollectionHeader({
         <FlowText testID="fc-collection-title" provenance="external"
           style={{
             fontWeight: '700', letterSpacing: 0.2, color: savedSurface ? g.text : t.textPrimary, fontSize: savedSurface ? 20 : titleFontSize,
-            lineHeight: savedSurface ? 26 : Math.round(titleFontSize * 1.2),
+            lineHeight: lh(savedSurface ? 26 : Math.round(titleFontSize * 1.2), 1.2),
             flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4,
           }}
           maxFontSizeMultiplier={1.2}

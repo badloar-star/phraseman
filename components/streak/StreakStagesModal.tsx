@@ -1,5 +1,6 @@
-import React from 'react';
-import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Modal, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import Animated, { Easing as REasing, cancelAnimation, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../ThemeContext';
@@ -7,7 +8,14 @@ import { useLang } from '../LangContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { hapticTap } from '../../hooks/use-haptics';
+import { KIT_MOTION } from '../../constants/motionHybrid';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import PressableHybrid from '../PressableHybrid';
+
+// зачем (координатор 05.10): у макета нет своего перехода страницы, поэтому страница поднимается
+// единственным движением кита «поверхность снизу» — kit.css:150 `.sheet` 440 мс (.2,1,.3,1) в обе стороны,
+// под ней затемнение `.dim` 260 мс. Анимация целиком на UI-потоке (Reanimated), без setState в кадрах.
+const PAGE_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
 
 // зачем (макет results.html RES-08 «стадии огня 0–10», 30.09): отдельный экран
 // «Стадии серии» — 11 плиток, огонь от 0 до 10 дней становится крупнее и ярче.
@@ -73,29 +81,61 @@ export default function StreakStagesModal({
     tr: 'Serinin her gününde alev dolar — 10. günde tamamen dolu olur',
     pl: 'Z każdym dniem serii płomień się wypełnia — po 10 dniach jest pełny',
   });
+  const { height: viewportHeight } = useWindowDimensions();
+  const reduceMotion = useReduceMotion();
+  const [presented, setPresented] = useState(visible);
+  const dim = useSharedValue(0);
+  const slide = useSharedValue(1); // 1 — за нижним краем, 0 — на месте
+
+  useEffect(() => {
+    const sheetMs = reduceMotion ? 0 : KIT_MOTION.sheetMs;
+    const dimMs = reduceMotion ? 0 : KIT_MOTION.dimMs;
+    if (visible) {
+      setPresented(true);
+      slide.value = 1;
+      dim.value = withTiming(1, { duration: dimMs });
+      slide.value = withTiming(0, { duration: sheetMs, easing: PAGE_EASE });
+      return () => { cancelAnimation(slide); cancelAnimation(dim); };
+    }
+    // Уход: страница доезжает вниз, и только потом снимаем Modal.
+    const finish = () => setPresented(false);
+    dim.value = withTiming(0, { duration: dimMs });
+    slide.value = withTiming(1, { duration: sheetMs, easing: PAGE_EASE }, (finished) => {
+      if (finished) runOnJS(finish)();
+    });
+    return () => { cancelAnimation(slide); cancelAnimation(dim); };
+  }, [visible, reduceMotion, dim, slide]);
+
+  const dimStyle = useAnimatedStyle(() => ({ opacity: dim.value }));
+  const pageStyle = useAnimatedStyle(() => ({ transform: [{ translateY: slide.value * viewportHeight }] }));
+
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
 
   return (
-    <Modal visible={visible} animationType="slide" onRequestClose={onClose} statusBarTranslucent>
+    <Modal visible={presented} transparent animationType="none" onRequestClose={onClose} statusBarTranslucent>
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: `rgba(0,0,0,${KIT_MOTION.dimOpacity})` }, dimStyle]} />
+      <Animated.View style={[{ flex: 1 }, pageStyle]}>
       <LinearGradient colors={[glass.bgTop, glass.bgBottom]} style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 24, paddingHorizontal: 20 }}
           showsVerticalScrollIndicator={false}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 44 }}>
-            <Pressable
+            {/* зачем (kit.css:64–65 `.t.down`): «Назад» вжимается до .97 общим нажатием, а не гаснет. */}
+            <PressableHybrid
               testID="streak-stages-back"
               accessibilityRole="button"
               accessibilityLabel={backLabel}
-              onPress={() => { hapticTap(); onClose(); }}
+              onPress={onClose}
               hitSlop={8}
-              style={({ pressed }) => ({
-                width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center',
-                backgroundColor: glass.opaqueControl, opacity: pressed ? 0.8 : 1,
-              })}
+              variant="icon"
+              pressScaleTo={KIT_MOTION.pressScale}
+              withSound={false}
+              style={{ width: 44, height: 44, alignSelf: 'auto' }}
+              contentStyle={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
             >
               <Ionicons name="chevron-back" size={22} color={glass.text} />
-            </Pressable>
+            </PressableHybrid>
             <Text accessibilityRole="header" style={{ flex: 1, color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700' }}>
               {title}
             </Text>
@@ -131,6 +171,7 @@ export default function StreakStagesModal({
           </View>
         </ScrollView>
       </LinearGradient>
+      </Animated.View>
     </Modal>
   );
 }

@@ -30,7 +30,7 @@ import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import { packTitleForInterface, type FlashcardMarketPack } from './flashcards/marketplace';
-import { formatLingmanVideoDate } from './lingman_youtube';
+import { formatRelativeVideoDate } from '../components/video/formatRelativeVideoDate';
 import { safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
@@ -112,7 +112,7 @@ export default function LingmanVideoWatchScreen() {
     close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij film' }),
     packOverline: triLang(lang, { ru: 'Набор к ролику', uk: 'Набір до ролика', en: 'Video pack', es: 'Pack del vídeo', 'pt-BR': 'Pacote do vídeo', vi: 'Bộ thẻ của video', id: 'Paket video', tr: 'Video paketi', pl: 'Zestaw do filmu' }),
   };
-  const meta = [channelName, video?.publishedAt ? formatLingmanVideoDate(video.publishedAt) : '', formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
+  const meta = [channelName, formatRelativeVideoDate(video?.publishedAt, lang), formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
   const packMeta = pack ? [
     triLang(lang, {
       ru: `${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'карточка', few: 'карточки', many: 'карточек' })}`,

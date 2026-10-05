@@ -5,7 +5,7 @@ import { Image } from 'expo-image';
 import Animated from 'react-native-reanimated';
 import { VIDEO_PLAYER_REVEAL } from '../video/videoMotion';
 import type { YoutubeVideoSnapshot } from '../../shared/youtube_catalog_contract';
-import { formatLingmanVideoDate } from '../../app/lingman_youtube';
+import { formatRelativeVideoDate } from '../video/formatRelativeVideoDate';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
@@ -59,7 +59,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   const saveLabel = saved
     ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' })
     : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' });
-  const metaParts = [video.publishedAt ? formatLingmanVideoDate(video.publishedAt) : '', views, savedLine].filter(Boolean);
+  // зачем (Сверка video-009, макет «2 дня назад»): дата относительная, по языку интерфейса.
+  const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views, savedLine].filter(Boolean);
   const content = (
     <>
       <View style={[styles.thumbWrap, compactLayout && styles.thumbCompact, { borderColor: g.glassEdge }]}>
@@ -78,7 +79,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
         {!!stateLabel && <View style={[styles.state, { backgroundColor: g.selected }]}><Ionicons name={video.state === 'live' ? 'radio' : 'time-outline'} size={13} color={g.text} /><Text style={[styles.stateText, { color: g.text }]}>{stateLabel}</Text></View>}
         <View style={styles.titleRow}>
           <View style={styles.titleCopy}>
-            <Text style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{video.title}</Text>
+            <Text numberOfLines={compactLayout ? 2 : undefined} style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{video.title}</Text>
             {metaParts.length > 0 && <Text style={[styles.meta, { color: g.secondary }]}>{metaParts.join(' · ')}</Text>}
           </View>
           {onToggleSave ? (

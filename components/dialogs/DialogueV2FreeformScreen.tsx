@@ -204,7 +204,8 @@ export function DialogueV2FreeformScreen({
             <Text
               testID="dialogue-v2-freeform-voice-notice"
               accessibilityLiveRegion="polite"
-              style={{ color: glass.mutedText, fontSize: 14, lineHeight: 19, marginTop: 8, paddingHorizontal: 4 }}
+              // зачем (D145, храповик 05.10): служебная строка о голосе — малый размер шкалы 13 (в макете её нет).
+              style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 8, paddingHorizontal: 4 }}
             >
               {voiceNotice}
             </Text>

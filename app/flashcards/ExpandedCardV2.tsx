@@ -14,6 +14,7 @@ import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, w
 import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 
 import { KitCard, KitCta } from '../../components/cards-grid/CardsKit';
+import { useLineScale } from '../../components/cards-grid/useLineScale';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { bevelShadow, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
@@ -75,6 +76,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
   const copy = useMemo(() => copyFor(lang), [lang]);
   const { width: screenW } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
+  const lh = useLineScale();
   const w = screenW - SIDE * 2;
   const [a, b] = themePair(g);
   const unfold = useSharedValue(reduceMotion ? 1 : 0);
@@ -149,14 +151,14 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
       {/* зачем: при крупном шрифте стопка (карточка + пример + кнопки) может не поместиться — прокручивается, а не обрезается */}
       <ScrollView pointerEvents="box-none" style={StyleSheet.absoluteFill} contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} bounces={false}>
         <View pointerEvents="box-none" style={styles.stack}>
-          <Text style={[styles.overline, { color: g.secondary }]}>{overline}</Text>
+          <Text style={[styles.overline, { color: g.secondary, lineHeight: lh(16) }]}>{overline}</Text>
           <Animated.View style={[styles.cardWrap, { height: cardH }, unfoldStyle]}>
             <Pressable testID="fc-expanded-card-flip" accessibilityRole="button" accessibilityLabel={flipped ? card.back : card.front} onPress={toggleFlip} style={styles.card}>
               <Animated.View style={[styles.face, frontStyle]}>
                 {faceLayers(`${card.id}f`)}
                 <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={styles.en}>{card.front}</Text>
-                  {card.ipa ? <Text style={styles.ipa}>{card.ipa}</Text> : null}
+                  <Text style={[styles.en, { lineHeight: lh(40) }]}>{card.front}</Text>
+                  {card.ipa ? <Text style={[styles.ipa, { lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
                 </View>
                 <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={styles.speak}>
                   <Ionicons name="volume-high" size={16} color="#FFFFFF" />
@@ -171,7 +173,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
               <Animated.View style={[styles.face, styles.faceBack, backStyle]}>
                 {faceLayers(`${card.id}b`)}
                 <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={styles.ru}>{card.back}</Text>
+                  <Text style={[styles.ru, { lineHeight: lh(36) }]}>{card.back}</Text>
                 </View>
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
               </Animated.View>
@@ -181,9 +183,9 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
             <View style={styles.exampleWrap}>
               <KitCard g={g} style={styles.example}>
                 <View style={styles.examplePad}>
-                  <Text style={[styles.exampleLabel, { color: g.secondary }]}>{copy.example}</Text>
-                  <Text style={[styles.exampleText, { color: g.text }]}>{card.example}</Text>
-                  {card.exampleTr ? <Text style={[styles.exampleTr, { color: g.secondary }]}>{card.exampleTr}</Text> : null}
+                  <Text style={[styles.exampleLabel, { color: g.secondary, lineHeight: lh(16) }]}>{copy.example}</Text>
+                  <Text style={[styles.exampleText, { color: g.text, lineHeight: lh(23) }]}>{card.example}</Text>
+                  {card.exampleTr ? <Text style={[styles.exampleTr, { color: g.secondary, lineHeight: lh(20) }]}>{card.exampleTr}</Text> : null}
                 </View>
               </KitCard>
             </View>
@@ -207,12 +209,13 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
 }
 
 function ActTile({ g, icon, label, onPress, testID }: Readonly<{ g: ReturnType<typeof useLv2Glass>; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID: string }>) {
+  const lh = useLineScale();
   return (
     <View style={styles.act}>
       <KitCard g={g} solid="#202022" onPress={onPress} testID={testID} accessibilityLabel={label} style={styles.actCard}>
         <View style={styles.actInner}>
           <Ionicons name={icon} size={22} color={g.text} />
-          <Text style={[styles.actText, { color: g.text }]}>{label}</Text>
+          <Text style={[styles.actText, { color: g.text, lineHeight: lh(20) }]}>{label}</Text>
         </View>
       </KitCard>
     </View>

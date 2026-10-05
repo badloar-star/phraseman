@@ -1372,6 +1372,15 @@ function neutralLearningV2SessionOutcomeKind(
   return "can_do";
 }
 
+// зачем (learn-3/4/8, «сперва логи»): строки из рендера печатаются ОДИН раз на комбинацию ключа — без спама на каждый кадр.
+const lessonsLoggedKeys = new Set<string>();
+function logOncePerKey(tag: string, key: string, payload: Record<string, unknown>): void {
+  const fullKey = `${tag}|${key}`;
+  if (lessonsLoggedKeys.has(fullKey)) return;
+  lessonsLoggedKeys.add(fullKey);
+  console.warn(tag, JSON.stringify(payload)); // guard-ok: временная трассировка learn-3/4/8, один раз на комбинацию
+}
+
 // зачем (learn-(1), Дизайн/координатор 05.10: «Free видит "Ещё рано" вместо пейвола» — потеря выручки, «сперва логи»): каждое
 // решение ворот урока печатает все входы resolveLessonAccess и что показано. devMode = DEV_CONTENT_UNLOCK снимает
 // Plus-ветку в dev-сборке — его значение в строке обязательно. Без uid.
@@ -4477,6 +4486,11 @@ export default function LessonsTab({
                   tr: `${lvl} seviyesindeki tüm dersleri 4.5+ ile tamamla`,
                   pl: `Ukończ wszystkie lekcje ${lvl} na 4,5+`,
                 });
+    // зачем (learn-4/8, Сверка: Free видит «Почти — 0%» вместо «Откроется с Plus»): какие входы решили статус экзамена.
+    logOncePerKey('[LESSONS-EXAM] status', `${lvl}|${subLine}`, {
+      level: lvl, hasResult: Boolean(result), resultPct: result?.pct ?? null, passed: result?.passed ?? null,
+      examSourceAvailable, allDone, examPremiumRequired, isPremium, chosen: subLine,
+    });
     return (
       <LessonsListGlassExamCard
         key={`e-${lvl}`}
@@ -5750,6 +5764,10 @@ export default function LessonsTab({
                     item.label !== "A1";
                   // зачем: `.lvh` макета — «A1» кеглем 22 и счётчик «1 из 8» (пройденные уроки
                   // уровня по тем же progCounts, что и карточки). В поиске счётчика нет (A3).
+                  // зачем (learn-3): замок у заголовка уровня — по макету только у Free; печатаем, что его решило.
+                  logOncePerKey('[LESSONS-HEADER] lock', `${item.label}|${premiumLocked}`, {
+                    label: item.label, locked: premiumLocked, isPremium, devMode: effectiveDevContentUnlock, noLimits: effectiveNoLimits,
+                  });
                   const [levelFrom, levelTo] = COURSE_LEVEL_RANGES[item.label];
                   const levelDone = progCounts
                     .slice(levelFrom - 1, levelTo)

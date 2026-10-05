@@ -87,7 +87,10 @@ function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVa
 
 const GRAPHITE: BaseGlassTokens = Object.freeze({
   bg: '#0C0D10', bgTop: '#181A1F', bgBottom: '#16181D',
-  opaqueCard: '#222429', opaqueSheet: '#222429', opaqueControl: '#222429',
+  // зачем (гейт «приложение = макет», паритет Learn 05.10): карточка «Затмения» = `--card #151517`
+  // kit.css (макеты 2.0: learn.html, хаб «Карточки» и др.); было #222429 — светлее макета.
+  // Плашки/контролы/шторки (#222429) не тронуты — их сверка отдельно.
+  opaqueCard: '#151517', opaqueSheet: '#222429', opaqueControl: '#222429',
   card: '#1D1E2161', sheet: '#16171ABD', glassEdge: '#FFFFFF24', lightTint: '#F4F5F8EB',
   cta: '#F2F1F6', ctaInk: '#0B0C0E', text: '#FFFFFF', secondary: '#B8B9BD',
   mutedText: '#B8B9BD', line: '#FFFFFF17', selected: '#B4BCCF30',

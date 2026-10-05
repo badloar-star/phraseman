@@ -409,7 +409,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const storedIntensity = pairs[3]?.[1] ?? null;
       const migration = migrateStoredLiquidGlassIntensity(storedIntensity, storedLevel);
       if (IS_DEV) {
+        // зачем (паритет Learn 05.10: «кнопка “Начать” лавандовая»): у Графита cta белая на любой
+        // насыщенности — лавандовая бывает только у другой темы. Лог показывает, КАКАЯ тема реально
+        // применена и откуда (хранилище / уже выбранная в этом процессе), чтобы не чинить наугад.
         console.log('[THEME-INTENSITY] hydrate', {
+          storedThemeId: storedId, appliedThemeId: touchedRef.current.theme ? 'kept_user_choice' : resolved,
+          storedAppearance: pairs[2]?.[1] ?? null,
           storedIntensity, storedLevel, source: migration.source, intensity: migration.intensity,
           skippedBecauseTouched: touchedRef.current.level,
         });

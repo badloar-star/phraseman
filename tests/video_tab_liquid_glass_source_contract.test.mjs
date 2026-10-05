@@ -38,7 +38,10 @@ test('video.html: video card has the round play badge and localized short view c
   assert.ok(kit.includes('rgba(0,0,0,0.5)') && kit.includes('rgba(255,255,255,0.25)'), 'badge colors from `.thumb .pl`');
   assert.ok(views.includes("ru: { thousand: ' тыс.'"), 'ru abbreviation');
   assert.ok(card.includes('formatViewCount(video.viewCount, lang)'), 'card uses the localized formatter');
-  assert.ok(!card.includes('duration'), 'no invented duration: the catalog snapshot has none');
+  // зачем (05.10, 84418b35d): длительность теперь приходит из каталога (durationSec) — показываем только её, без вымысла.
+  assert.ok(card.includes('formatVideoDuration(video.durationSec)'), 'duration only from the catalog durationSec');
+  assert.ok(card.includes('{duration ? <View style={styles.duration}'), 'no badge when the catalog has no duration');
+  assert.ok(!/duration\s*[:=]\s*['"`]\d/.test(card), 'no hard-coded duration text');
 });
 
 test('video.html: premiere hero uses glass card, state pill on the frame and mockup buttons', () => {

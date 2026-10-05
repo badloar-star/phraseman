@@ -20,6 +20,7 @@ import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
 import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audio_runtime_arbiter';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlowText } from '../text-integrity';
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
@@ -79,7 +80,9 @@ export default function YoutubeInlinePlayer({
   startSec,
 }: YoutubeInlinePlayerProps) {
   const { lang } = useLang();
-  const { theme: t, isDark, themeMode } = useTheme();
+  const { theme: t, isDark, themeMode, liquidGlassThemeId } = useTheme();
+  // зачем (Сверка video-011): вокруг плеера была толстая светлая рамка старой палитры — в 2.0 только 1 px glassEdge.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
@@ -308,18 +311,18 @@ export default function YoutubeInlinePlayer({
   }
 
   return (
-    <View testID="lingman-inline-player" style={[styles.shell, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+    <View testID="lingman-inline-player" style={[styles.shell, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}>
       <View style={styles.header}>
-        <FlowText testID="lingman-inline-player-title" provenance="external" style={[styles.title, { color: t.textPrimary }]}>{title}</FlowText>
+        <FlowText testID="lingman-inline-player-title" provenance="external" style={[styles.title, { color: glass.text }]}>{title}</FlowText>
         {onClose ? (
           <TouchableOpacity
             testID="lingman-inline-player-close"
             accessibilityRole="button"
             accessibilityLabel={copy.close}
             onPress={onClose}
-            style={[styles.roundButton, { backgroundColor: chrome.quietButtonBg }]}
+            style={[styles.roundButton, { backgroundColor: glass.opaqueControl }]}
           >
-            <Ionicons name="close" size={22} color={t.textPrimary} />
+            <Ionicons name="close" size={22} color={glass.text} />
           </TouchableOpacity>
         ) : null}
       </View>
@@ -329,7 +332,7 @@ export default function YoutubeInlinePlayer({
 }
 
 const styles = StyleSheet.create({
-  shell: { borderRadius: 20, borderWidth: 1, overflow: 'hidden', marginBottom: 12 },
+  shell: { borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden', marginBottom: 12 }, // guard-ok: 1 px полупрозрачная кромка 2.0
   previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' },
   header: { minHeight: 56, paddingHorizontal: 12, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },

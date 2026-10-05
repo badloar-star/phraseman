@@ -92,7 +92,7 @@ export default function LingmanPlaylistScreen() {
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView testID="youtube-playlist-detail" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <View style={styles.topbar}>
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.card, borderColor: g.glassEdge }]}><Ionicons name="chevron-back" size={22} color={g.text} /></TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.card, borderColor: g.glassEdge }]}><Ionicons name="arrow-back" size={20} color={g.text} /></TouchableOpacity>
         </View>
         {!playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
@@ -129,7 +129,8 @@ const styles = StyleSheet.create({
   // зачем: паритет с макетом video.html — поля экрана 20 (`--pad`), как у вкладки «Видео».
   container: { flex: 1, paddingHorizontal: 20, paddingTop: 12 },
   topbar: { height: 44, flexDirection: 'row', alignItems: 'center' },
-  back: { width: 44, height: 44, borderRadius: 22, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка круглой кнопки, как `.rb` макета
+  // зачем (Сверка video-009, video.html topbar .rb + arrowL): стрелка «←» в круге 42.
+  back: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка круглой кнопки, как `.rb` макета
   loading: { gap: 14, marginTop: 14 },
   content: { paddingBottom: 32 },
   title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700' },

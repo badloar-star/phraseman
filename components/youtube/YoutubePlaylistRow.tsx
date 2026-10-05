@@ -27,7 +27,8 @@ export default function YoutubePlaylistRow({ playlist, onPress }: { playlist: Yo
         <View style={[styles.stackOne, { backgroundColor: g.opaqueControl }]} /><View style={[styles.stackTwo, { backgroundColor: g.opaqueCard }]} />
       </View>
       <View style={styles.body}>
-        <Text style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
+        {/* зачем (Сверка video-008): названия с YouTube тянулись в 3–5 строк и раздували строку — максимум 2 строки. */}
+        <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
         <Text style={[styles.count, { color: g.secondary }]}>{playlist.itemCount} {countLabel}</Text>
       </View>
       <Ionicons name="chevron-forward" size={20} color={g.secondary} />

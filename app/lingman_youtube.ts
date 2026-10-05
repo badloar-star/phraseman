@@ -401,7 +401,9 @@ async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
     if (parsed.channelId && parsed.channelId !== activeChannelId) return null;
     const videos = Array.isArray(parsed.videos) ? parsed.videos.filter(isLingmanLongFormVideo) : [];
     return videos.length ? videos : null;
-  } catch {
+  } catch (error) {
+    // зачем (правило «немой catch запрещён»): битый кэш ленты — причина в журнале, значение прежнее (null).
+    console.warn('[HOME-COLD] video_cache:read_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
     return null;
   }
 }
@@ -458,8 +460,12 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
   // и не «застревает» в кэше канала.
   const pinned = getPinnedFeedVideos();
 
+  // зачем (Сверка 06:01: серые превью видео на холодном старте ~30 с): лента сначала идёт в сеть и берёт кэш только при
+  // сбое сети. Трассировка: сколько шла сеть, чем кончилась, был ли кэш. Поведение не меняется.
+  const networkStartedAt = Date.now();
   try {
     const feed = await fetchLingmanYoutubeVideos();
+    console.warn('[HOME-COLD] video_feed:network_ok', JSON.stringify({ ms: Date.now() - networkStartedAt, videos: feed.length })); // guard-ok: временная трассировка холодного старта
     void cacheSuccessfulVideos(feed);
     const videos = mergePinnedVideos(pinned, feed);
     const latestVideoId = videos[0]?.id ?? null;
@@ -474,7 +480,14 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
     // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
     // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
     const isDefaultChannel = !getActiveYoutubeChannel().isOverride;
-    const feed = (await readCachedVideos()) ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
+    const cached = await readCachedVideos();
+    console.warn('[HOME-COLD] video_feed:network_failed', JSON.stringify({
+      ms: Date.now() - networkStartedAt,
+      reason: error instanceof Error ? error.message : String(error),
+      cache: cached ? cached.length : 'miss',
+      fallback: cached ? 'none' : (isDefaultChannel ? 'builtin' : 'empty'),
+    })); // guard-ok: сбой сети логируется
+    const feed = cached ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
     const videos = mergePinnedVideos(pinned, feed);
     const latestVideoId = videos[0]?.id ?? null;
     return {

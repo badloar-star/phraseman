@@ -457,6 +457,7 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
 const homeModuleEvaluatedAt = Date.now();
 let homeFirstRenderStartedAt = 0;
 let homeFirstRenderLogged = false;
+let homeColdFirstFrameLogged = false;
 function logHomeFirstRenderTiming(): void {
   if (homeFirstRenderLogged) return;
   homeFirstRenderLogged = true;
@@ -732,6 +733,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homeV2VideoNoChannel, setHomeV2VideoNoChannel] = useState(() => (
         homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget)?.source === 'no_channel_for_target'
     ));
+    // зачем (Сверка 06:01: на холодном старте карточка урока — заглушки, превью видео — серые блоки): что было на первом
+    // кадре и откуда. Один раз за запуск (флаг модуля), без setState.
+    useLayoutEffect(() => {
+        if (homeColdFirstFrameLogged) return;
+        homeColdFirstFrameLogged = true;
+        console.warn('[HOME-COLD] first_frame', JSON.stringify({
+            lessonCard: lastLesson ? 'memory' : 'empty',
+            lessonId: lastLesson?.id ?? null,
+            hydrationInMemory: peekHomeScreenHydration(studyTarget) !== null,
+            videos: homeV2Videos.length,
+            videoStatus: homeV2VideoStatus,
+            catalogRail: homeVideoRailUsesCatalog(studyTarget),
+        })); // guard-ok: одна строка за запуск
+    }, []);
     const latestVideoIdRef = useRef<string | null>(null);
     // зачем (владелец 2026-09-14/15): плитка «Мои ошибки» больше не подменяет
     // «Продолжить урок» — вход в раздел живёт кнопкой у заголовка «Сегодня».
@@ -870,11 +885,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (владелец 2026-09-15): вход в видео переехал из шапки в ряд «Сегодня»,
     // поэтому счётчик непросмотренных читается здесь. Локальный снапшот, без сети.
     useEffect(() => {
-        if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
+        if (!homeRuntimeActive || !isVideoButtonEnabled()) {
+            // зачем (Сверка 06:01, серые превью видео на холодном старте): ранний выход обязан говорить причину.
+            console.warn('[HOME-COLD] video:skip', JSON.stringify({ homeRuntimeActive, videoButtonEnabled: isVideoButtonEnabled() })); // guard-ok: ранний выход логируется
+            return undefined;
+        }
         let alive = true;
+        const videoLoadStartedAt = Date.now();
+        console.warn('[HOME-COLD] video:start', JSON.stringify({ sinceFirstRenderMs: videoLoadStartedAt - homeFirstRenderStartedAt, catalogRail: homeVideoRailUsesCatalog(studyTarget) })); // guard-ok: временная трассировка холодного старта
         void import('../lingman_youtube')
             .then((m) => m.getLingmanYoutubeSnapshot())
             .then((snapshot) => {
+                console.warn('[HOME-COLD] video:resolved', JSON.stringify({
+                    alive, ms: Date.now() - videoLoadStartedAt, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt,
+                    videos: snapshot.videos.length, error: snapshot.error ?? null,
+                })); // guard-ok: временная трассировка холодного старта
                 if (!alive) return;
                 latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
                 // зачем D130: язык с лентой из каталога берёт видео своего канала (эффект ниже),
@@ -1627,6 +1652,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 if (!lastLessonShownRef.current) {
                     // Performance Bible: вставка в поток после первого кадра — только плавно.
                     if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:late_insert', JSON.stringify({ lastId, correct }));
+                    // зачем (Сверка 06:01, пустая карточка урока на холодном старте): когда карточка получила данные и
+                    // что было на первом кадре — данных в памяти процесса не было, пришли из loadData.
+                    console.warn('[HOME-COLD] lesson_card:late', JSON.stringify({ source: 'loadData', lastId, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt })); // guard-ok: временная трассировка холодного старта
                     animateNextLayoutTransition();
                 }
                 setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
@@ -1636,6 +1664,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // Урока нет — заготовка уходит плавно, а не рывком.
                 if (!continueResolvedRef.current) {
                     if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:none — заготовка снята');
+                    console.warn('[HOME-COLD] lesson_card:none', JSON.stringify({ lastId: lastId ?? null, sinceFirstRenderMs: Date.now() - homeFirstRenderStartedAt })); // guard-ok: временная трассировка холодного старта
                     animateNextLayoutTransition();
                 }
                 setLastLesson(null);

@@ -40,8 +40,9 @@ describe('home counters: real numbers on the first frame', () => {
     // зачем (разбор красного 03.10; эмулятор 01.10, [HOME-COINS]): неизвестные монеты теперь undefined, а не 0,
     // поэтому присваивание стало условным («оба неизвестны → undefined, иначе Math.max»). Суть охраны прежняя —
     // диск НИКОГДА не снижает более свежий баланс из снимка, — потому проверяем сам Math.max, а не форму присваивания.
-    expect(bootstrap).toContain('Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0)');
-    expect(bootstrap).toContain('Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0)');
+    // зачем (05.10, 2680e8266): формула вынесена в mergeBootRunesIntoProgress(progress, bootRunes) — смысл тот же.
+    expect(bootstrap).toContain('Math.max(bootRunes?.balance ?? 0, progress?.stars ?? 0)');
+    expect(bootstrap).toContain('Math.max(bootRunes?.earnedTotal ?? 0, progress?.starsEarnedTotal ?? 0)');
   });
 
   it('does not read the removed pearl balance on startup (PM-289, D70)', () => {

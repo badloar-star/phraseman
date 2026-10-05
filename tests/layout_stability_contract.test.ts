@@ -259,7 +259,10 @@ describe('Главная: первый кадр без нуля монет и б
       expect(source).not.toMatch(/stars: current(Snapshot)?\.?progress\?\.stars \?\? 0/);
       expect(source).not.toMatch(/stars: currentProgress\?\.stars \?\? 0/);
     }
-    expect(bootstrap).toContain('bootRunes === null && current.progress?.stars === undefined');
+    // зачем (05.10, 2680e8266): слияние рун вынесено в mergeBootRunesIntoProgress — и для публикации, и для патча рун.
+    expect(bootstrap).toContain('bootRunes === null && progress?.stars === undefined');
+    expect(bootstrap).toContain('...mergeBootRunesIntoProgress(current.progress, bootRunes)');
+    expect(bootstrap).toContain('mergeBootRunesIntoProgress(current.progress, runes)');
     expect(home).toContain('useState(() => getAppSnapshot().progress?.stars !== undefined)');
     expect(home).not.toContain('useState(() => getAppSnapshot().progress != null)');
   });

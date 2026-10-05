@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
-import { View, Text, ScrollView, Pressable, TouchableOpacity, Platform, Share, StyleSheet, } from 'react-native';
+import { View, Text, ScrollView, Pressable, TouchableOpacity, Share, StyleSheet, } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -2213,6 +2213,41 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           </Reanimated.View>
         );
     })();
+    // зачем (results.html back(), решение владельца 04.10 (б)): голая «‹» и заголовок 34 под ней, без линии снизу.
+    const statsHeader = (
+        <View style={{ paddingHorizontal: 20, paddingTop: embedded ? 4 : 2, paddingBottom: 4, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
+          <View style={{ alignItems: 'flex-start' }}>
+          {!embedded && (<TapScale
+            onPress={() => {
+              safeRouterBack(router, '/(tabs)/home' as any);
+            }}
+            hitSlop={10}
+            style={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
+          >
+            <Ionicons name="chevron-back" size={21} color={statsGlass.text}/>
+          </TapScale>)}
+          <FlowText
+            testID="stats-header-title"
+            provenance="authored"
+            style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10 }}
+          >
+            {triLang(lang, {
+              ru: 'Серия и результаты',
+              uk: 'Серія і результати',
+              en: 'Streak and results',
+              es: 'Racha y resultados',
+              'pt-BR': 'Sequência e resultados',
+              vi: 'Chuỗi và kết quả',
+              id: 'Rangkaian dan hasil',
+              tr: 'Seri ve sonuçlar',
+              pl: 'Seria i wyniki',
+          })}
+          </FlowText>
+          {/* зачем (D49, владелец 2026-10-01): кнопка «Подарки» показывала только подарки
+              «Дневного пути» — фича удалена целиком, кнопку убрали вместе с ней. */}
+          </View>
+        </View>
+    );
     return (
         <View style={{ flex: 1, backgroundColor: statsGlass.bg }}>
             <FeatureIntroEntry id="statistics_first_visit" enabled={statsRuntimeActive} />
@@ -2221,39 +2256,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
               <ContentWrap>
               <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-              {/* зачем (results.html back(), решение владельца 04.10 (б)): голая «‹» и заголовок 34 под ней, без линии снизу. */}
-              <View style={{ paddingHorizontal: 20, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 4, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
-                <View style={{ alignItems: 'flex-start' }}>
-                {!embedded && (<TapScale
-                  onPress={() => {
-                    safeRouterBack(router, '/(tabs)/home' as any);
-                  }}
-                  hitSlop={10}
-                  style={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-                >
-                  <Ionicons name="chevron-back" size={21} color={statsGlass.text}/>
-                </TapScale>)}
-                <FlowText
-                  testID="stats-header-title"
-                  provenance="authored"
-                  style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10 }}
-                >
-                  {triLang(lang, {
-                    ru: 'Серия и результаты',
-                    uk: 'Серія і результати',
-                    en: 'Streak and results',
-                    es: 'Racha y resultados',
-                    'pt-BR': 'Sequência e resultados',
-                    vi: 'Chuỗi và kết quả',
-                    id: 'Rangkaian dan hasil',
-                    tr: 'Seri ve sonuçlar',
-                    pl: 'Seria i wyniki',
-                })}
-                </FlowText>
-                {/* зачем (D49, владелец 2026-10-01): кнопка «Подарки» показывала только подарки
-                    «Дневного пути» — фича удалена целиком, кнопку убрали вместе с ней. */}
-                </View>
-              </View>
+              {/* зачем (Сверка results-007 🔴, 05.10): в макете «‹» и заголовок лежат ВНУТРИ прокрутки (.scr > .in) и уезжают
+                  вместе с контентом. Неподвижный заголовок 34 без фона выглядел налезающим на прокрученные блоки.
+                  Пока данных нет (заготовка / «Сейчас недоступно») прокрутка не принимает касаний — тогда шапка снаружи,
+                  чтобы «назад» работала (D158). */}
+              {!statsReady ? statsHeader : null}
 
               {/* зачем: раньше при statsReady=false ScrollView рендерился с opacity:0 —
                   первый кадр был полностью пустым (только шапка), а весь контент
@@ -2283,6 +2290,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               ) : null}
               <BouncyWrap>
               <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+                {/* шапка в прокрутке: компенсируем поля контейнера 16, зазор до первой карточки прежний (4 + 16) */}
+                {statsReady ? <View style={{ marginHorizontal: -16, marginTop: -16, marginBottom: 16 }}>{statsHeader}</View> : null}
                 <View style={{ gap: 12 }}>
                 {/* зачем (PM-191): карточка «Закреплено фраз» (CefrLine, testID
                     journal-memory-card) удалена целиком — непонятная метрика без

@@ -3621,6 +3621,8 @@ export default function LessonsTab({
       state: LearningV2AccordionSessionStateV1,
     ) => {
       if (!learningV2LessonIsAccessible(selectedLesson, isPremium) && !learningV2DevUnlockAllActive) {
+        // зачем (learning-v2-013, «сперва логи»): каждый ранний выход тапа говорит, какая ветка и почему.
+        console.warn('[V2-TAP] denied:plus', JSON.stringify({ lesson: selectedLesson, session: sessionOrdinal, state, isPremium })); // guard-ok: ранний выход логируется
         showLearningV2DenialHint(triLang(lang, {
           ru: "Уроки 3+ доступны в Plus",
           en: "Lessons 3+ are available in Plus",
@@ -3642,6 +3644,7 @@ export default function LessonsTab({
         studyTarget === "en" &&
         !learningV2FactoryNativeSessionIds.has(selectedCourseSessionId)
       ) {
+        console.warn('[V2-TAP] denied:wip', JSON.stringify({ courseSessionId: selectedCourseSessionId, state })); // guard-ok: ранний выход логируется
         showLearningV2DenialHint(triLang(lang, {
           ru: "Сессия ещё в работе",
           en: "This session is still in progress",
@@ -3672,6 +3675,12 @@ export default function LessonsTab({
           currentMatch && Number(currentMatch[1]) === selectedLesson
             ? Number(currentMatch[2])
             : null;
+        // зачем (learning-v2-013): здесь тап по закрытому занятию уходит в подсказку, а окно «Закрытое занятие»
+        // (learning-v2.html 2.4) не открывается. Печатаем значения, решившие ветку.
+        console.warn('[V2-TAP] denied:locked', JSON.stringify({
+          courseSessionId: selectedCourseSessionId, state, devUnlock: learningV2DevUnlockAllActive,
+          currentSessionId: learningV2Progress.currentSessionId ?? null, currentOrdinal, shown: 'hint_toast',
+        })); // guard-ok: ранний выход логируется
         showLearningV2DenialHint(
           currentOrdinal !== null
             ? triLang(lang, {

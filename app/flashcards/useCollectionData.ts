@@ -414,6 +414,7 @@ export function useCollectionData(opts: {
   );
 
   const loadAll = useCallback(async () => {
+    const loadAllStartedAt = Date.now();
     const accountToken = captureAccountGeneration();
     try {
       const userSid = await getCanonicalUserId().catch(noteSwallowedAs('useCollectionData:promise_7', null));
@@ -537,14 +538,21 @@ export function useCollectionData(opts: {
       })();
 
       const marketPromise = (async () => {
+        // зачем (packs-simple-004: просмотр набора открывался ~138 с): время каждого шага, пока открыт просмотр.
+        const pvStartedAt = Date.now();
+        const pvParts: Record<string, number> = {};
+        const pvMark = <T,>(name: string, work: Promise<T>): Promise<T> => work.finally(() => { pvParts[name] = Date.now() - pvStartedAt; });
         const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw, localAuthored] = await Promise.all([
-          loadAccessiblePackIds(studyTarget),
-          loadMarketplacePacks(studyTarget),
-          loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_10', swallowedError); return []; }),
-          loadPublishedCommunityMarketPacks(studyTarget).catch((swallowedError: unknown): FlashcardMarketPack[] => { noteSwallowed('useCollectionData:promise_11', swallowedError); return []; }),
+          pvMark('accessibleIds', loadAccessiblePackIds(studyTarget)),
+          pvMark('marketplace', loadMarketplacePacks(studyTarget)),
+          pvMark('communityOwned', loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_10', swallowedError); return []; })),
+          pvMark('communityPublished', loadPublishedCommunityMarketPacks(studyTarget).catch((swallowedError: unknown): FlashcardMarketPack[] => { noteSwallowed('useCollectionData:promise_11', swallowedError); return []; })),
           isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
-          loadLocalAuthorPacks(studyTarget).catch((swallowedError: unknown) => { noteSwallowed('useCollectionData:promise_12', swallowedError); return []; }),
+          pvMark('localAuthored', loadLocalAuthorPacks(studyTarget).catch((swallowedError: unknown) => { noteSwallowed('useCollectionData:promise_12', swallowedError); return []; })),
         ]);
+        if (previewPackIdRef.current) {
+          console.warn('[FC-PREVIEW] loaders', JSON.stringify({ pack: previewPackIdRef.current, ...pvParts, marketStartAfterLoadAllMs: pvStartedAt - loadAllStartedAt, inCatalog: communityPublished.some((pack) => pack.id === previewPackIdRef.current), communityOwned: communityOwnedIds.length })); // guard-ok: временная трассировка packs-simple-004
+        }
         /** Свои наборы с устройства: доступны сразу после «Сохранить», без ожидания модерации. */
         if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
         const localAuthoredMarket = localAuthored.map(pack => localAuthorPackToMarketPack(pack, pack.studyTarget));
@@ -586,10 +594,17 @@ export function useCollectionData(opts: {
         const previewPackId = previewPackIdRef.current;
         const previewIdsToLoad =
           previewPackId && !communityIdsToLoad.includes(previewPackId) ? [previewPackId] : [];
+        const pvCardsStartedAt = Date.now();
         const [communityCardLists, previewCardLists] = await Promise.all([
           Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_13', swallowedError); return []; }))),
           Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_14', swallowedError); return []; }))),
         ]);
+        if (previewPackId) {
+          console.warn('[FC-PREVIEW] cards', JSON.stringify({
+            pack: previewPackId, ownCommunityPacks: communityIdsToLoad.length, previewFetched: previewIdsToLoad.length,
+            previewCards: previewCardLists.flat().length, cardsMs: Date.now() - pvCardsStartedAt, totalMs: Date.now() - pvStartedAt,
+          })); // guard-ok: временная трассировка packs-simple-004
+        }
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
         if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
         // Финальный состав маркета почти всегда совпадает с тем, что уже показано

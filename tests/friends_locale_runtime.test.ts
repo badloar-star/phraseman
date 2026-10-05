@@ -48,10 +48,11 @@ describe('friends tab locale runtime', () => {
 
     expect(source).toContain('testID="friends-code-input"');
     expect(source).toContain('placeholder=""');
-    // Добавление в друзья — только по имени (поиск по коду остаётся молчаливым fallback,
-    // но в UI код больше не показываем и не предлагаем вводить, чтобы не путать с реф-кодом).
-    expect(source).toContain('Введите имя друга');
-    expect(source).toContain('Введіть імʼя друга');
+    // зачем (05.10, Дизайн): правило 13.06 «только по имени, код не показываем» снято — с 25.07 код один
+    // («один код», реферальный = код друга), а макет community.html (04.10) прямо подписывает поле «Имя или код»
+    // и даёт «Поделиться своим кодом». Образцов-подсказок в поле по-прежнему нет.
+    expect(source).toContain("'Имя или код'");
+    expect(source).toContain("'Імʼя або код'");
     expect(source).not.toContain('PKVQGP / Nick');
     expect(source).not.toContain('Введите код или ник');
     expect(source).not.toContain('Введіть код або нік');

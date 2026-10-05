@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput,
-  Share, Keyboard, StyleSheet, Modal, InteractionManager,
+  Share, Keyboard, StyleSheet, Modal, InteractionManager, Pressable,
 } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Reanimated, {
@@ -617,7 +617,7 @@ function AddFriendModal({
   visible, onClose,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
   isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
-  lang,
+  lang, onShareCode,
 }: {
   visible: boolean; onClose: () => void;
   codeInput: string; setCodeInput: (v: string) => void;
@@ -625,6 +625,8 @@ function AddFriendModal({
   isAdding: boolean; addFeedback: string | null;
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
   lang: string;
+  /** «Поделиться своим кодом» (community.html find); null — реферальный вход скрыт, кнопки нет. */
+  onShareCode: (() => void) | null;
 }) {
   const L = (
     ru: string,
@@ -649,7 +651,10 @@ function AddFriendModal({
     const id = setTimeout(() => searchInputRef.current?.focus(), 260);
     return () => clearTimeout(id);
   }, [visible]);
-  const inputLabel = L('Введи имя друга', 'Введи імʼя друга', 'Enter your friend\'s name', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego');
+  // зачем (Сверка community-007, community.html find 04.10): подпись «Имя или код» — поиск по коду уже есть (isFriendCodeQuery).
+  const inputLabel = L('Имя или код', 'Імʼя або код', 'Name or code', 'Nombre o código', 'Nome ou código', 'Tên hoặc mã', 'Nama atau kode', 'Ad veya kod', 'Imię lub kod');
+  const subtitle = L('Найдите по имени или коду', 'Знайдіть за імʼям або кодом', 'Find by name or code', 'Busca por nombre o código', 'Encontre por nome ou código', 'Tìm theo tên hoặc mã', 'Cari dengan nama atau kode', 'Ad veya kodla bul', 'Znajdź po imieniu lub kodzie');
+  const shareLabel = L('Поделиться своим кодом', 'Поділитися своїм кодом', 'Share your code', 'Compartir tu código', 'Compartilhar seu código', 'Chia sẻ mã của bạn', 'Bagikan kodemu', 'Kodunu paylaş', 'Udostępnij swój kod');
   // зачем: владелец (2026-07-26) — окно «Добавить друга» должно появляться ПОСРЕДИ
   // экрана и быть полностью независимым от клавиатуры: клавиатура выезжает под ним
   // и не двигает его. Раньше был нижний шит (ReferralSheetShell), который рос
@@ -666,6 +671,7 @@ function AddFriendModal({
       closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
       <View style={{ gap: 14, paddingBottom: 4 }}>
+            <Text style={{ color: glass.secondary, fontSize: 16 * textScale, lineHeight: 21 * textScale, marginTop: -6 }}>{subtitle}</Text>
             <View
               testID="friends-code-search-card"
               style={{
@@ -710,7 +716,6 @@ function AddFriendModal({
                   onPress={onSearch}
                   disabled={!searchReady || isSearching}
                   size={54}
-                  radius={14}
                   label={L('Найти друга по имени', 'Знайти друга за імʼям', 'Search for a friend by name', 'Buscar amigo por nombre', 'Encontrar amigo por nome', 'Tìm bạn theo tên', 'Cari teman dengan nama', 'Adıyla arkadaş bul', 'Znajdź znajomego po imieniu')}
                 />
               </View>
@@ -748,6 +753,23 @@ function AddFriendModal({
             {addFeedback && (
               <FriendsFeedbackRow testID="friends-add-feedback" tone="success" text={addFeedback} textScale={textScale} />
             )}
+
+            {onShareCode ? (
+              // `.cta.gh` «Поделиться своим кодом» — то же приглашение по коду («один код», решение 25.07).
+              <Pressable
+                testID="friends-share-code"
+                accessibilityRole="button"
+                accessibilityLabel={shareLabel}
+                onPress={onShareCode}
+                style={({ pressed }) => ({
+                  minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center',
+                  borderWidth: 1, // guard-ok: контур .cta.gh (исключение 2.0)
+                  borderColor: glass.glassEdge, opacity: pressed ? 0.72 : 1, marginTop: 0,
+                })}
+              >
+                <Text style={{ color: glass.text, fontSize: 16 * textScale, fontWeight: '700' }}>{shareLabel}</Text>
+              </Pressable>
+            ) : null}
       </View>
     </CenteredDialogShell>
   );
@@ -2232,6 +2254,7 @@ export default function FriendsTabScreen() {
       <AddFriendModal
         visible={addModalOpen}
         onClose={() => setAddModalOpen(false)}
+        onShareCode={referralMarketingVisible ? () => { void handleReferralInvite(); } : null}
         codeInput={codeInput}
         setCodeInput={setCodeInput}
         isSearching={isSearching}

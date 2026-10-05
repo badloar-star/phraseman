@@ -50,7 +50,6 @@ import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import EnergyBar from '../components/EnergyBar';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
@@ -114,12 +113,13 @@ const BAD = '#E05050';
  * подкраской 12 % поверх тёмного стекла (исключение 2.0 владельца 24.09 разрешает 1px), текст
  * остаётся основным белым — контраст тот же, что у обычного варианта.
  */
-const ANSWER_OK_SURFACE = 'rgba(111,208,140,0.12)';
-const ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.12)';
+// зачем (владелец 05.10, решение 4: главный макет Блица — cards-section, cards-glass.css `.opt.ok/.opt.no`): подкраска ответа 14 %.
+const ANSWER_OK_SURFACE = 'rgba(111,208,140,0.14)';
+const ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.14)';
+/** cards-section `.opt.fade`: после ответа остальные варианты гаснут до .38. */
+const ANSWER_FADE_OPACITY = 0.38;
 const ANSWER_OK_EDGE = '#6FD08C';
 const ANSWER_BAD_EDGE = BAD;
-/** Заполнение полосы времени — светлое, как `.trk > i` макета; в последние секунды краснеет. */
-const TIMER_FILL = '#E9E9EB';
 /** Последние секунды — таймер краснеет, добавляя азарта. */
 const DANGER_SEC = 10;
 
@@ -1449,11 +1449,10 @@ export default function FlashcardsBlitzSession() {
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
               {/* зачем (Сверка practice-001, practice.html `.hd .su` nowrap): справа три пилюли (энергия, сердца, монеты), места мало —
                   горизонтальная прокрутка срезала «Все карточк» без намёка. Одна строка с многоточием. */}
-              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: lh(21), marginTop: 2 }}>{deckTitle}</Text>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: lh(20), marginTop: 2 }}>{deckTitle}</Text>{/* d145-mockup: cards-section.html sessHead подпись 15 */}
             </PracticeHeaderTitle>
-            {/* зачем (practice.html `.hd`): справа энергия (у Plus скрыта), сердца и монеты через 6. */}
+            {/* зачем (решение 4, cards-section `sessHead` Блица): справа только сердца и монеты через 6 — пилюли энергии в макете нет. */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <EnergyBar ownerActive glass />
               <SessionAttemptsHud
                 remaining={attempts.state.remainingAttempts}
                 locale={lang}
@@ -1477,7 +1476,8 @@ export default function FlashcardsBlitzSession() {
             <Reanimated.View
               style={[
                 styles.timerFill,
-                { backgroundColor: danger ? BAD : TIMER_FILL, transformOrigin: 'left' },
+                // зачем (решение 4, cards-glass.css `.trk i`): полоса — цвет акцента темы; в последние секунды — красная.
+                { backgroundColor: danger ? BAD : blitzGlass.accent, transformOrigin: 'left' },
                 timerBarStyle,
               ]}
             />
@@ -1488,14 +1488,14 @@ export default function FlashcardsBlitzSession() {
             <PracticeTimerPill
               testID="fc-blitz-timer"
               glass={blitzGlass}
-              color={danger ? BAD : blitzGlass.secondary} // зачем (practice.html `.prog`): цифры таймера вторичным тоном, как в макете
+              color={danger ? BAD : t.textPrimary} // зачем (решение 4, cards-section `.pill.timer`): цифры основным цветом пилюли
               text={`${mm}:${ss}`}
             />
           </View>
 
           {/* Вопрос + 4 варианта. зачем (practice.html): карточка вопроса стоит сверху (38 от строки таймера), варианты
               через 23 и между собой 13 — не по центру экрана. */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 38, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled">
             <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
               <BlitzGlassSurface radius={16} />
               {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}
@@ -1521,7 +1521,9 @@ export default function FlashcardsBlitzSession() {
                 // полупрозрачная обводка; ответ — цветная обводка + подкраска 12 % ПОВЕРХ стекла
                 // (основа карточки остаётся), текст основной, значок ✓/✕ — цветом состояния.
                 const tint = state === 'correct' ? ANSWER_OK_SURFACE : state === 'wrong' ? ANSWER_BAD_SURFACE : null;
-                const edge = state === 'correct' ? ANSWER_OK_EDGE : state === 'wrong' ? ANSWER_BAD_EDGE : blitzGlass.glassEdge;
+                // зачем (решение 4, kit `--outline` .30): контур варианта светлее кромки карточек; после ответа прочие гаснут.
+                const edge = state === 'correct' ? ANSWER_OK_EDGE : state === 'wrong' ? ANSWER_BAD_EDGE : `${blitzGlass.text}4D`;
+                const faded = state === 'idle' && btnStates.some((st) => st !== 'idle');
                 return (
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
@@ -1534,7 +1536,7 @@ export default function FlashcardsBlitzSession() {
                     onPress={() => pick(i)}
                     disabled={locked}
                     activeOpacity={0.75}
-                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: edge }]} // guard-ok: исключение 2.0 — 1px полупрозрачная обводка .opt
+                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: edge }, faded ? { opacity: ANSWER_FADE_OPACITY } : null]} // guard-ok: исключение 2.0 — 1px полупрозрачная обводка .opt
                   >
                     <BlitzGlassSurface radius={14} sheen={state === 'idle'} />
                     {tint ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} /> : null}

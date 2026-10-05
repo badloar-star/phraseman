@@ -142,6 +142,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   subtitle: { fontSize: 16, lineHeight: 22, marginTop: 2 },
   timer: { minHeight: 38, borderRadius: 19, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  timerText: { fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  timerText: { fontSize: 18, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] }, // d145-mockup: cards-section.html .timer 18 (решение 4)
   mark: { position: 'absolute', right: 16, top: 0, bottom: 0, justifyContent: 'center' },
 });

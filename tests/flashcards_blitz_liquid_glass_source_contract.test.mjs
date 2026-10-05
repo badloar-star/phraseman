@@ -30,10 +30,12 @@ assert.match(source, /import \{ KitGlassLayer \} from '\.\.\/components\/v2\/Kit
 assert.match(source, /function BlitzGlassSurface\(\{ radius, sheen = true \}[\s\S]*<KitGlassLayer radius=\{radius\} rim=\{sheen\} \/>/);
 // зачем (PM-129, practice.html .opt.ok/.opt.no): ответ = цветная обводка 1px + подкраска 12 % поверх
 // стекла (исключение 2.0 от 24.09); текст остаётся основным, контраст = контраст обычного варианта.
-assert.match(source, /ANSWER_OK_SURFACE = 'rgba\(111,208,140,0\.12\)'/);
-assert.match(source, /ANSWER_BAD_SURFACE = 'rgba\(224,80,80,0\.12\)'/);
+// 05.10 (решение 4: главный макет Блица — cards-section, cards-glass.css): подкраска 14 %, прочие варианты гаснут до .38.
+assert.match(source, /ANSWER_OK_SURFACE = 'rgba\(111,208,140,0\.14\)'/);
+assert.match(source, /ANSWER_BAD_SURFACE = 'rgba\(224,80,80,0\.14\)'/);
+assert.match(source, /ANSWER_FADE_OPACITY = 0\.38/);
 assert.match(activeGame, /const tint = state === 'correct' \? ANSWER_OK_SURFACE : state === 'wrong' \? ANSWER_BAD_SURFACE : null;/);
-assert.match(activeGame, /backgroundColor: blitzGlass\.card, borderColor: edge/);
+assert.match(activeGame, /backgroundColor: blitzGlass\.card, borderColor: edge \}, faded \? \{ opacity: ANSWER_FADE_OPACITY \} : null/);
 assert.match(activeGame, /color: t\.textPrimary, fontSize: f\.body/);
 assert.match(activeGame, /<BlitzGlassSurface radius=\{14\} sheen=\{state === 'idle'\} \/>/);
 assert.doesNotMatch(source.slice(source.indexOf('glassSurface:'), source.indexOf('questionText:')), /borderWidth/);

@@ -26940,6 +26940,834 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l31",
+      "lessonOrdinal": 31,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_doch_response_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1"
+        ],
+        "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+        "noExpansion": "Permit only neutral-register reformulation with already licensed grammar: deshalb plus verb-second contrasted with already introduced weil plus finite-final; doch only as a response to an explicit negative proposition; formal subject Sie with lowercase sich only in the established sich vorbereiten frame; the closed L29 Genitiv whole die Nummer des Antrags only in the pre-final C5 mediation step; the already licensed L22 relative gender-and-case mapping only in the C6 repair step; and the L30 active modal-Perfekt frame hat or haben warten müssen with warten müssen. The C7 final transfer integrates exactly register repair, connector topology, corrective doch, formal Sie with lowercase sich, and the limited modal Perfekt; C7 contains no Genitiv or relative-clause surface. Do not introduce dass, ob, indirect speech, Konjunktiv reporting, another connector or introducer, generic yes, modal-particle or connective doch, a universal du-or-Sie workplace rule, Ihnen, Ihr, capital Sich, a new reflexive paradigm, another modal or infinitive, another cluster order, a counterfactual or general modal-Perfekt paradigm, another Genitiv, relative, preposition or case form, imperative, passive, future, broader narrative expansion, a certificate claim, functional-B1 integration, L32 integration, Task 6 lexical adjudication, learner-facing RU or UK content, release, audio, mockup, HANDOVER, or English-contour reuse."
+      },
+      "chapters": [
+        {
+          "id": "de_l31_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l31_ch01",
+          "lessonOutcome": "identify the main point and register relationship in a misunderstanding",
+          "packetIds": [
+            "de_l31_c01_s01",
+            "de_l31_c01_s02",
+            "de_l31_c01_s03",
+            "de_l31_c01_s04",
+            "de_l31_c01_s05",
+            "de_l31_c01_s06",
+            "de_l31_c01_s07",
+            "de_l31_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "community-room-register-disagreement",
+            "participants": "volunteer-coordinator-frau-keller-and-herr-weber",
+            "goal": "identify-the-main-point-and-register-relationship",
+            "contextSignature": "community-room-two-position-register-identification"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Frau Keller sagt: Die Besprechung ist morgen. Herr Weber sagt: Die Besprechung ist heute. Das sind zwei Standpunkte. Frau Keller, Sie bereiten sich heute vor. Tom, du bereitest dich heute vor.",
+            "exit": "Das sind zwei Standpunkte. Frau Keller, Sie bereiten sich heute vor. Tom, du bereitest dich heute vor.",
+            "independentEvidenceByPacketId": "de_l31_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "introduction",
+              "packetId": "de_l31_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l31_c01_s03", "de_l31_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l31_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c01_standpunkt_v1",
+                "semanticIdentity": "standpunkt|position stated in a misunderstanding",
+                "lemmaOrExpression": "Standpunkt",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Standpunkt",
+                  "plural": "Standpunkte"
+                },
+                "nounPackageIdentity": "der|standpunkt|standpunkte",
+                "verbPackage": null,
+                "senseGloss": "position stated in a misunderstanding",
+                "communicativeUse": "Die Standpunkte sind verschieden. Frau Keller nennt einen Standpunkt, Herr Weber nennt einen anderen Standpunkt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch01",
+                  "checkpointPacketId": "de_l31_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-identify-the-main-point-and-register-relationship",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l31_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-office-register-disagreement",
+              "participants": "volunteer-organizer-and-two-new-volunteers",
+              "goal": "independently-identify-the-main-point-and-register-relationship",
+              "contextSignature": "volunteer-office-register-identification-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l19_c01", "de_l14_c01"],
+            "targetsFutureChapterIds": ["de_l31_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s49"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l31_ch02",
+          "lessonOutcome": "ask a neutral clarification question",
+          "packetIds": [
+            "de_l31_c02_s09",
+            "de_l31_c02_s10",
+            "de_l31_c02_s11",
+            "de_l31_c02_s12",
+            "de_l31_c02_s13",
+            "de_l31_c02_s14",
+            "de_l31_c02_s15",
+            "de_l31_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "workplace-schedule-disagreement",
+            "participants": "frau-keller-and-scheduling-colleague",
+            "goal": "ask-a-neutral-question-about-the-disputed-date",
+            "contextSignature": "workplace-schedule-neutral-clarification"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Die Frage ist: Ist die Besprechung morgen? Frau Keller, ist die Besprechung morgen?",
+            "exit": "Frau Keller, ist die Besprechung morgen?",
+            "independentEvidenceByPacketId": "de_l31_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "guided",
+              "packetId": "de_l31_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l31_c02_s11", "de_l31_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l31_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c02_frage_v1",
+                "semanticIdentity": "frage|clarifying question used to confirm the disputed date",
+                "lemmaOrExpression": "Frage",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Frage",
+                  "plural": "Fragen"
+                },
+                "nounPackageIdentity": "die|frage|fragen",
+                "verbPackage": null,
+                "senseGloss": "clarifying question used to confirm the disputed date",
+                "communicativeUse": "Die Frage klärt das Datum: Frau Keller, ist die Besprechung morgen?",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch02",
+                  "checkpointPacketId": "de_l31_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-ask-a-neutral-clarification-question",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l31_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-desk-schedule-clarification",
+              "participants": "community-desk-volunteer-and-coordinator",
+              "goal": "independently-ask-a-neutral-clarification-question",
+              "contextSignature": "community-desk-neutral-question-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l05_c03", "de_l31_c01"],
+            "targetsFutureChapterIds": ["de_l31_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s50"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l31_ch03",
+          "lessonOutcome": "reformulate one person's spoken or written digital information for another",
+          "packetIds": [
+            "de_l31_c03_s17",
+            "de_l31_c03_s18",
+            "de_l31_c03_s19",
+            "de_l31_c03_s20",
+            "de_l31_c03_s21",
+            "de_l31_c03_s22",
+            "de_l31_c03_s23",
+            "de_l31_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "work-chat-message-relay",
+            "participants": "frau-keller-herr-weber-and-work-chat-mediator",
+            "goal": "relay-the-main-point-without-changing-it",
+            "contextSignature": "work-chat-neutral-message-reformulation"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Nachricht von Frau Keller: Die Besprechung ist morgen. Nachricht an Herrn Weber: Die Besprechung ist morgen.",
+            "exit": "Nachricht an Herrn Weber: Die Besprechung ist morgen.",
+            "independentEvidenceByPacketId": "de_l31_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "retrieval",
+              "packetId": "de_l31_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l31_c03_s19", "de_l31_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l31_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c03_nachricht_v1",
+                "semanticIdentity": "nachricht|written digital message whose main point is relayed neutrally",
+                "lemmaOrExpression": "Nachricht",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Nachricht",
+                  "plural": "Nachrichten"
+                },
+                "nounPackageIdentity": "die|nachricht|nachrichten",
+                "verbPackage": null,
+                "senseGloss": "written digital message whose main point is relayed neutrally",
+                "communicativeUse": "Die Nachricht von Frau Keller wird neutral als Nachricht an Herrn Weber weitergegeben.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch03",
+                  "checkpointPacketId": "de_l31_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-relay-a-digital-message-neutrally",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l31_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-chat-message-relay",
+              "participants": "volunteer-writer-recipient-and-mediator",
+              "goal": "independently-relay-a-digital-message-neutrally",
+              "contextSignature": "volunteer-chat-message-relay-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l04_c03", "de_l31_c02"],
+            "targetsFutureChapterIds": ["de_l31_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l31_ch04",
+          "lessonOutcome": "correct a negative assumption without escalating tone",
+          "packetIds": [
+            "de_l31_c04_s25",
+            "de_l31_c04_s26",
+            "de_l31_c04_s27",
+            "de_l31_c04_s28",
+            "de_l31_c04_s29",
+            "de_l31_c04_s30",
+            "de_l31_c04_s31",
+            "de_l31_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "team-calendar-negative-assumption",
+            "participants": "frau-keller-herr-weber-and-team-colleague",
+            "goal": "correct-the-negative-assumption-calmly",
+            "contextSignature": "team-calendar-doch-correction"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Herr Weber: Die Besprechung ist nicht morgen. Frau Keller: Doch, die Besprechung ist morgen. Der Ton bleibt ruhig.",
+            "exit": "Doch, die Besprechung ist morgen. Der Ton bleibt ruhig.",
+            "independentEvidenceByPacketId": "de_l31_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "production",
+              "packetId": "de_l31_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l31_c04_s27", "de_l31_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l31_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c04_ton_v1",
+                "semanticIdentity": "ton|interpersonal tone kept neutral during correction",
+                "lemmaOrExpression": "Ton",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Ton",
+                  "plural": "Töne"
+                },
+                "nounPackageIdentity": "der|ton|tone",
+                "verbPackage": null,
+                "senseGloss": "interpersonal tone kept neutral during correction",
+                "communicativeUse": "Der Ton bleibt ruhig, wenn Frau Keller die negative Annahme korrigiert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch04",
+                  "checkpointPacketId": "de_l31_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "politeness_choice",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-correct-a-negative-assumption-with-neutral-tone",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l31_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-calendar-negative-assumption",
+              "participants": "community-organizer-and-two-volunteers",
+              "goal": "independently-correct-a-negative-assumption-with-neutral-tone",
+              "contextSignature": "community-calendar-neutral-doch-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c04", "de_l31_c03"],
+            "targetsFutureChapterIds": ["de_l31_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l31_ch05",
+          "lessonOutcome": "mediate a workable next step between two positions",
+          "packetIds": [
+            "de_l31_c05_s33",
+            "de_l31_c05_s34",
+            "de_l31_c05_s35",
+            "de_l31_c05_s36",
+            "de_l31_c05_s37",
+            "de_l31_c05_s38",
+            "de_l31_c05_s39",
+            "de_l31_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "workplace-two-position-next-step",
+            "participants": "frau-keller-herr-weber-and-workplace-mediator",
+            "goal": "select-a-workable-next-step-between-two-positions",
+            "contextSignature": "workplace-two-position-solution"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Standpunkt eins: Die Besprechung ist heute. Standpunkt zwei: Die Besprechung ist morgen. Die Nummer des Antrags ist da. Die Lösung: Die Besprechung ist morgen. Deshalb bereiten Sie sich heute vor.",
+            "exit": "Die Nummer des Antrags ist da. Die Lösung: Die Besprechung ist morgen. Deshalb bereiten Sie sich heute vor.",
+            "independentEvidenceByPacketId": "de_l31_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l31_c05_s35", "de_l31_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l31_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c05_losung_v1",
+                "semanticIdentity": "losung|workable solution selected between two positions",
+                "lemmaOrExpression": "Lösung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Lösung",
+                  "plural": "Lösungen"
+                },
+                "nounPackageIdentity": "die|losung|losungen",
+                "verbPackage": null,
+                "senseGloss": "workable solution selected between two positions",
+                "communicativeUse": "Die Nummer des Antrags ist da. Die Lösung verbindet die zwei Standpunkte und nennt den nächsten Schritt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch05",
+                  "checkpointPacketId": "de_l31_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-mediate-a-workable-next-step",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l31_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-two-position-next-step",
+              "participants": "volunteer-coordinator-and-two-group-members",
+              "goal": "independently-mediate-a-workable-next-step",
+              "contextSignature": "volunteer-two-position-solution-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l19_c05",
+              "de_l29_c05",
+              "de_l31_c04"
+            ],
+            "targetsFutureChapterIds": ["de_l31_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l31_ch06",
+          "lessonOutcome": "repair address choice reference or connector topology",
+          "packetIds": [
+            "de_l31_c06_s41",
+            "de_l31_c06_s42",
+            "de_l31_c06_s43",
+            "de_l31_c06_s44",
+            "de_l31_c06_s45",
+            "de_l31_c06_s46",
+            "de_l31_c06_s47",
+            "de_l31_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "mixed-register-wording-repair",
+            "participants": "frau-keller-adviser-and-language-mediator",
+            "goal": "repair-address-reference-and-connector-topology",
+            "contextSignature": "mixed-register-three-part-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Frau Keller, sie bereiten sich heute vor. → Frau Keller, Sie bereiten sich heute vor. [2] Deshalb Sie bereiten sich heute vor. → Deshalb bereiten Sie sich heute vor. [3] Das ist der Berater, den Frau Keller hilft. → Das ist der Berater, dem Frau Keller hilft. Der Bezug ist jetzt klar.",
+            "exit": "Frau Keller, Sie bereiten sich heute vor. Deshalb bereiten Sie sich heute vor. Das ist der Berater, dem Frau Keller hilft. Der Bezug ist jetzt klar.",
+            "independentEvidenceByPacketId": "de_l31_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "transfer",
+              "packetId": "de_l31_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l31_c06_s43", "de_l31_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l31_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_limited_functional_genitive_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c06_bezug_v1",
+                "semanticIdentity": "bezug|reference link repaired between an address form and a person",
+                "lemmaOrExpression": "Bezug",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Bezug",
+                  "plural": "Bezüge"
+                },
+                "nounPackageIdentity": "der|bezug|bezuge",
+                "verbPackage": null,
+                "senseGloss": "reference link repaired between an address form and a person",
+                "communicativeUse": "Der Bezug ist klar, nachdem die Anrede und die Personenreferenz repariert sind.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch06",
+                  "checkpointPacketId": "de_l31_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_limited_functional_genitive_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-address-reference-and-connector-wording",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l31_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-message-wording-repair",
+              "participants": "community-coordinator-adviser-and-message-editor",
+              "goal": "independently-repair-address-reference-and-connector-wording",
+              "contextSignature": "community-message-three-part-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l18_c06",
+              "de_l19_c06",
+              "de_l22_c06",
+              "de_l31_c05"
+            ],
+            "targetsFutureChapterIds": ["de_l31_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l31_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l31_ch07",
+          "lessonOutcome": "transfer neutral mediation to a new mixed-register dispute through a short digital reply and spoken follow-up",
+          "packetIds": [
+            "de_l31_c07_s49",
+            "de_l31_c07_s50",
+            "de_l31_c07_s51",
+            "de_l31_c07_s52",
+            "de_l31_c07_s53",
+            "de_l31_c07_s54",
+            "de_l31_c07_s55",
+            "de_l31_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_formal_sie_sich_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+          "situation": {
+            "setting": "unfamiliar-service-message-dispute",
+            "participants": "frau-keller-herr-weber-and-service-mediator",
+            "goal": "mediate-the-message-dispute-and-relay-the-next-step",
+            "contextSignature": "unfamiliar-service-digital-spoken-mediation"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Herr Weber hat warten müssen, weil die Nummer nicht da war. Frau Keller: Die Nummer ist nicht da. Herr Weber: Doch, die Nummer ist da. Die Einigung: Frau Keller, Sie bereiten sich morgen vor. Deshalb prüft die Sachbearbeiterin den Antrag morgen.",
+            "exit": "Herr Weber hat warten müssen, weil die Nummer nicht da war. Frau Keller: Die Nummer ist nicht da. Herr Weber: Doch, die Nummer ist da. Die Einigung: Frau Keller, Sie bereiten sich morgen vor. Deshalb prüft die Sachbearbeiterin den Antrag morgen.",
+            "independentEvidenceByPacketId": "de_l31_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_limited_modal_perfekt_v1",
+              "stage": "delayed",
+              "packetId": "de_l31_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l31_c07_s51",
+            "de_l31_c07_s52",
+            "de_l31_c07_s53",
+            "de_l31_c07_s54",
+            "de_l31_c07_s55",
+            "de_l31_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l31_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_formal_sie_sich_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l31_c07_einigung_v1",
+                "semanticIdentity": "einigung|agreement containing the relayed next step",
+                "lemmaOrExpression": "Einigung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Einigung",
+                  "plural": "Einigungen"
+                },
+                "nounPackageIdentity": "die|einigung|einigungen",
+                "verbPackage": null,
+                "senseGloss": "agreement containing the relayed next step",
+                "communicativeUse": "Die Einigung nennt den nächsten Schritt für Frau Keller und Herrn Weber.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l31_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l31_ch07",
+                  "checkpointPacketId": "de_l31_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_formal_sie_sich_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-transfer-neutral-digital-and-spoken-mediation",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l31_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "unfamiliar-community-message-dispute",
+              "participants": "community-administrator-two-participants-and-mediator",
+              "goal": "independently-transfer-neutral-digital-and-spoken-mediation",
+              "contextSignature": "unfamiliar-community-final-mediation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l30_c07", "de_l31_c06"],
+            "targetsFutureChapterIds": ["de_l32_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

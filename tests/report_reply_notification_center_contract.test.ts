@@ -48,8 +48,9 @@ describe('report replies in home notification center', () => {
     expect(button).toContain("ru: 'монет'");
     expect(button).not.toContain("ru: 'рун'");
     expect(button).toContain("import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
-    expect(button).toContain("import MotionModal from './MotionModal'");
-    expect(button).toContain('<MotionModal');
+    // зачем (Сверка system-014/015, 05.10): входящие — нижняя шторка кита (system.html inbox), не полноэкранное окно.
+    expect(button).toContain("import { KitSheetModal } from './v2/KitSheetModal'");
+    expect(button).toContain('<KitSheetModal');
     expect(button).not.toContain('<Modal');
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS');

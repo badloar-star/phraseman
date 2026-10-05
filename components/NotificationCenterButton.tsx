@@ -9,7 +9,6 @@ import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
 import {
@@ -40,7 +39,7 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
-import MotionModal from './MotionModal';
+import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
 
 /**
@@ -176,8 +175,6 @@ function NotificationCenterButton({
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
-  const insets = useStableSafeAreaInsets();
-  const topInset = Math.max(18, insets.top + 8);
   const copy = useMemo(() => ({ ...centerCopy(lang as Lang), ...reportReplyCopy(lang as Lang) }), [lang]);
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -470,7 +467,7 @@ function NotificationCenterButton({
     const title = reward.title || row.text || copy.reportReply;
     const body = reward.body || row.text || '';
     return (
-      <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
+      <ScrollView decelerationRate="fast" style={styles.sheetList} contentContainerStyle={styles.detailContent}>
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
@@ -632,8 +629,14 @@ function NotificationCenterButton({
       </PressableScale>
       </View>
 
-      <MotionModal visible={visible} onRequestClose={close} testID="notification-center-motion-modal">
-        <View testID="notification-center-screen" style={{ flex: 1, backgroundColor: t.bgCard, paddingTop: topInset }}>
+      {/* зачем (координатор 05.10, Сверка system-014/015): входящие — шторка снизу поверх раздела (system.html inbox),
+          а не полноэкранное окно. Список, деталь ответа и «Вернуть» — внутри шторки; данные и прочтение не тронуты. */}
+      <KitSheetModal
+        visible={visible}
+        onRequestClose={close}
+        closeLabel={copy.close}
+        testID="notification-center-motion-modal"
+        header={(
           <View style={styles.header}>
             {selected ? (
               <TouchableOpacity
@@ -665,9 +668,12 @@ function NotificationCenterButton({
               hitSlop={5}
               style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
             >
-              <Ionicons name="close" size={22} color={t.textPrimary} />
+              <Ionicons name="close" size={18} color={t.textPrimary} />
             </TouchableOpacity>
           </View>
+        )}
+      >
+        <View testID="notification-center-screen" style={styles.sheetBody}>
           {selected ? renderReportReplyDetail(selected) : (
           <FlatList decelerationRate="fast"
             // зачем (FINAL_PHASE п.4): «Показать ещё» растит список страницами — первый кадр
@@ -707,13 +713,14 @@ function NotificationCenterButton({
                 </Text>
               </View>
             ) : null}
-            style={{ flex: 1 }}
-            contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: Math.max(24, insets.bottom + 24), gap: 8 }}
+            // зачем: в шторке список растёт по содержимому до её предела (пусто — шторка низкая, как в макете).
+            style={styles.sheetList}
+            contentContainerStyle={{ paddingTop: 10, paddingBottom: 8, gap: 8 }}
             showsVerticalScrollIndicator={false}
           />
           )}
           {pendingDeletion ? (
-            <View style={[styles.notificationUndo, { bottom: Math.max(12, insets.bottom + 8), backgroundColor: t.bgSurface }]}>
+            <View style={[styles.notificationUndo, { bottom: 0, backgroundColor: t.bgSurface }]}>
               <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>Уведомление удалено</Text>
               <TouchableOpacity accessibilityRole="button" onPress={undoDelete} style={styles.notificationUndoButton}>
                 <Text style={[styles.notificationUndoAction, { color: t.accent }]}>Вернуть</Text>
@@ -721,7 +728,7 @@ function NotificationCenterButton({
             </View>
           ) : null}
         </View>
-      </MotionModal>
+      </KitSheetModal>
     </>
   );
 }
@@ -763,13 +770,15 @@ const styles = StyleSheet.create({
   },
   header: {
     minHeight: 46,
-    paddingHorizontal: 16,
-    paddingBottom: 8,
+    paddingHorizontal: 4,
+    paddingBottom: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 10,
   },
+  sheetBody: { flexShrink: 1, minHeight: 0 },
+  sheetList: { flexGrow: 0, flexShrink: 1 },
   // `Сообщения` 22/700 и подзаголовок 14 --sec через 2 (system.html inbox).
   headerTitle: {
     fontSize: 22,
@@ -862,7 +871,8 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   detailContent: {
-    paddingHorizontal: 18,
+    // в шторке поля даёт .sheet (18); здесь — как у шапки.
+    paddingHorizontal: 4,
     paddingBottom: 28,
   },
   detailMeta: {

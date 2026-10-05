@@ -102,6 +102,22 @@ export const SHEET = {
   dragReturn: { damping: 22, stiffness: 300 },
 } as const;
 
+/**
+ * Движение кита 2.0 (kit.css, гейт владельца 04.10 «анимации в точности как на макетах»):
+ * шторка .sheet — выезд 440 мс cubic-bezier(.2,1,.3,1), уход короче входа; затемнение как у гибрида.
+ */
+export const KIT_MOTION = {
+  sheetInMs: 440,
+  sheetOutMs: LUM.exitMs,
+  backdropMs: LUM.backdropMs,
+  /** cubic-bezier(.2,1,.3,1) */
+  sheetEase: [0.2, 1, 0.3, 1] as const,
+  /** Закрытие перетаскиванием — как у общих шторок. */
+  dragClosePx: 88,
+  dragCloseVelocity: 900,
+  dragResist: 0.12,
+} as const;
+
 /** Тосты: вход/выход и жёсткая ошибка. */
 export const TOAST = {
   enterMs: LUM.contentMs,

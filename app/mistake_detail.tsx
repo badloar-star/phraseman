@@ -155,6 +155,11 @@ export default function MistakeDetailScreen() {
       hasGiven: detail.given !== null,
       hasMeaning: detail.meaning !== null,
       hasPractice: detail.hasPractice,
+      // зачем (Дизайн 05.10, 007/017: нет «послушать», шаги исправления «не засчитаны»): от чего зависят кнопка и шаги.
+      hasAudio: detail.audioRef !== null,
+      qualifyingDays: detail.qualifyingDays,
+      timelineKinds: detail.timeline.reduce<Record<string, number>>((acc, entry) => ({ ...acc, [entry.kind]: (acc[entry.kind] ?? 0) + 1 }), {}),
+      shows: detail.hasPractice ? 'steps_and_history' : 'why',
     }));
   }, [detail]);
 

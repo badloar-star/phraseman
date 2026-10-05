@@ -18,7 +18,10 @@ test('all four campaign overlays read the active 13-theme Liquid Glass tokens', 
     assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)') || source.includes('= announcementGlass'), `${name}: liquidGlassTokens`);
     assert.doesNotMatch(source, LEGACY_HEX, `${name}: no legacy brand hex`);
     assert.doesNotMatch(source, /borderWidth:\s*([2-9]|\d{2,})/, `${name}: no thick borders`);
-    assert.doesNotMatch(source, /borderColor/, `${name}: no coloured outlines`);
+    // зачем (координатор 05.10, правило 2.0 от 24.09): тонкий 1 px контур общим токеном glassEdge разрешён там, где он
+    // есть в макете (`.cta.gh`, напр. «Фраза сохранена» в video.html). Цветные и толстые рамки сторож ловит по-прежнему.
+    const withoutHairline = source.replace(/borderWidth:\s*1,\s*borderColor:\s*glass\.glassEdge\b/g, '');
+    assert.doesNotMatch(withoutHairline, /borderColor/, `${name}: no coloured outlines`);
     assert.doesNotMatch(source, /adjustsFontSizeToFit/, `${name}: no font shrinking`);
   }
 });

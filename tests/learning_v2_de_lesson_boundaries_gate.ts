@@ -305,6 +305,18 @@ const L31_PLAN_RECALL_AUTHORITY = [
       "reuse correction without treating disagreement as hostility",
   },
   {
+    fromLessonId: "de_l22",
+    constructIds: ["de_gc_relative_clause_gender_case_v1"],
+    responsibility:
+      "keep antecedent gender-number agreement separate from clause-internal case while repairing one reference, without introducing a new relative-clause operation",
+  },
+  {
+    fromLessonId: "de_l29",
+    constructIds: ["de_gc_limited_functional_genitive_v1"],
+    responsibility:
+      "reuse only the closed L29 Genitiv wholes in the pre-final mediation step, without expanding the approved Genitiv inventory or carrying Genitiv into the final transfer",
+  },
+  {
     fromLessonId: "de_l30",
     constructIds: ["de_gc_limited_modal_perfekt_v1"],
     responsibility:
@@ -312,7 +324,7 @@ const L31_PLAN_RECALL_AUTHORITY = [
   },
 ] as const;
 const L31_PLAN_RECALL_AUTHORITY_SHA256 =
-  "690ee83181d4637f14df842202b0434336bb002a8f5699c4625a0d665ce3a738";
+  "4bae9d6eaea0835bf39eca79f447113a6a6444fb7de23908145e76be087fcdb7";
 const L31_EVIDENCE_IDS = [
   "DE-RSCH-CEFR-002",
   "DE-RSCH-CEFR-008",
@@ -430,7 +442,7 @@ const L31_SESSION_56_FINAL = {
 const L31_SESSION_56_FINAL_SHA256 =
   "a7d5aa7b88c02a3c98ed19a7750f34a5fd12dff1cc1b9db3190bc2ca29f11593";
 const L31_CANONICAL_OBJECT_SHA256 =
-  "914369c6dd4f0255c2745fc4fd9358e866cfe95c75cf697549802cf0750a0d22";
+  "6090121f5518966a377235d5adc8e450beb7e7c5717d8595eb7026b64277f9e9";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -2068,158 +2080,191 @@ assert.equal(
 assert.equal(
   hasExactL31PlanRecallAuthority(clone(L31_PLAN_RECALL_AUTHORITY)),
   true,
-  "L31 authority must pass only for the exact ordered three-row contract",
+  "L31 authority must pass only for the exact ordered five-row contract",
 );
 validateBlueprint(raw, constructs);
 
+let l31HostileCount = 0;
 const expectL31Failure = (
   mutate: (lesson31: JsonRecord) => void,
   expected: RegExp,
-): void =>
+): void => {
+  l31HostileCount += 1;
   expectFailure(
     raw,
     constructs,
     (candidate) => mutate((candidate.lessons as JsonRecord[])[30]),
     expected,
   );
+};
 
+const l31RecallFailure = /^l31_plan_recall_authority_invalid$/u;
 // H01-H04: exact L19 recall row.
 expectL31Failure((lesson) => {
-  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
-    (row) => row.fromLessonId !== "de_l19",
-  );
-}, /^l31_plan_recall_authority_invalid$/u);
+  (lesson.crossLessonRecall as JsonRecord[]).splice(0, 1);
+}, l31RecallFailure); // H01
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[0].fromLessonId = "de_l18";
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H02
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[0].constructIds = [
     "de_gc_connector_topology_contrast_v1",
   ];
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H03
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[0].responsibility =
     "maintain formal reference";
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H04
 
 // H05-H08: exact L14 recall row.
 expectL31Failure((lesson) => {
-  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
-    (row) => row.fromLessonId !== "de_l14",
-  );
-}, /^l31_plan_recall_authority_invalid$/u);
+  (lesson.crossLessonRecall as JsonRecord[]).splice(1, 1);
+}, l31RecallFailure); // H05
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[1].fromLessonId = "de_l13";
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H06
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[1].constructIds = [
     "de_gc_formal_sie_sich_v1",
   ];
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H07
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[1].responsibility =
     "reuse correction";
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H08
 
-// H09-H12: exact L30 recall row.
+// H09-H12: exact L22 recall row.
 expectL31Failure((lesson) => {
-  lesson.crossLessonRecall = (lesson.crossLessonRecall as JsonRecord[]).filter(
-    (row) => row.fromLessonId !== "de_l30",
-  );
-}, /^l31_plan_recall_authority_invalid$/u);
+  (lesson.crossLessonRecall as JsonRecord[]).splice(2, 1);
+}, l31RecallFailure); // H09
 expectL31Failure((lesson) => {
-  (lesson.crossLessonRecall as JsonRecord[])[2].fromLessonId = "de_l29";
-}, /^l31_plan_recall_authority_invalid$/u);
+  (lesson.crossLessonRecall as JsonRecord[])[2].fromLessonId = "de_l21";
+}, l31RecallFailure); // H10
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[2].constructIds = [
-    "de_gc_limited_functional_genitive_v1",
+    "de_gc_connector_topology_contrast_v1",
   ];
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H11
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[])[2].responsibility =
-    "reformulate a missed-obligation account";
-}, /^l31_plan_recall_authority_invalid$/u);
+    "repair one reference";
+}, l31RecallFailure); // H12
 
-// H13-H14: recall order and exact cardinality.
+// H13-H16: exact L29 recall row.
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[]).splice(3, 1);
+}, l31RecallFailure); // H13
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[3].fromLessonId = "de_l28";
+}, l31RecallFailure); // H14
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[3].constructIds = [
+    "de_gc_relative_clause_gender_case_v1",
+  ];
+}, l31RecallFailure); // H15
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[3].responsibility =
+    "reuse Genitiv";
+}, l31RecallFailure); // H16
+
+// H17-H20: exact L30 recall row.
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[]).splice(4, 1);
+}, l31RecallFailure); // H17
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[4].fromLessonId = "de_l29";
+}, l31RecallFailure); // H18
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[4].constructIds = [
+    "de_gc_limited_functional_genitive_v1",
+  ];
+}, l31RecallFailure); // H19
+expectL31Failure((lesson) => {
+  (lesson.crossLessonRecall as JsonRecord[])[4].responsibility =
+    "reformulate a missed-obligation account";
+}, l31RecallFailure); // H20
+
+// H21-H22: exact recall order and cardinality.
 expectL31Failure((lesson) => {
   const rows = lesson.crossLessonRecall as JsonRecord[];
-  lesson.crossLessonRecall = [rows[1], rows[0], rows[2]];
-}, /^l31_plan_recall_authority_invalid$/u);
+  lesson.crossLessonRecall = [rows[1], rows[0], ...rows.slice(2)];
+}, l31RecallFailure); // H21
 expectL31Failure((lesson) => {
   (lesson.crossLessonRecall as JsonRecord[]).push({
     fromLessonId: "de_l01",
     constructIds: ["de_gc_statement_v2_v1"],
     responsibility: "extra recall row",
   });
-}, /^l31_plan_recall_authority_invalid$/u);
+}, l31RecallFailure); // H22
 
-// H15-H20: evidence omissions, order and exact cardinality.
+// H23-H28: exact evidence authority.
 for (const evidenceId of L31_EVIDENCE_IDS)
   expectL31Failure((lesson) => {
     lesson.evidenceIds = (lesson.evidenceIds as string[]).filter(
       (id) => id !== evidenceId,
     );
-  }, /^l31_evidence_authority_invalid$/u);
+  }, /^l31_evidence_authority_invalid$/u); // H23-H26, one fresh clone each
 expectL31Failure((lesson) => {
   const evidence = lesson.evidenceIds as string[];
   lesson.evidenceIds = [evidence[1], evidence[0], evidence[2], evidence[3]];
-}, /^l31_evidence_authority_invalid$/u);
+}, /^l31_evidence_authority_invalid$/u); // H27
 expectL31Failure((lesson) => {
   (lesson.evidenceIds as string[]).push("DE-GRM-MODALPERF-001");
-}, /^l31_evidence_authority_invalid$/u);
+}, /^l31_evidence_authority_invalid$/u); // H28
 
-// H21-H24: exact construct-role sets and order.
+// H29-H32: exact construct-role sets.
 expectL31Failure((lesson) => {
   lesson.introducedConstructIds = [];
-}, /^l31_introduced_construct_set_invalid$/u);
+}, /^l31_introduced_construct_set_invalid$/u); // H29
 expectL31Failure((lesson) => {
   const ids = lesson.extendedConstructIds as string[];
   lesson.extendedConstructIds = [ids[1], ids[0], ids[2]];
-}, /^l31_extended_construct_set_invalid$/u);
+}, /^l31_extended_construct_set_invalid$/u); // H30
 expectL31Failure((lesson) => {
   const ids = lesson.reviewedConstructIds as string[];
   lesson.reviewedConstructIds = [ids[1], ids[0], ids[2]];
-}, /^l31_reviewed_construct_set_invalid$/u);
+}, /^l31_reviewed_construct_set_invalid$/u); // H31
 expectL31Failure((lesson) => {
   lesson.prohibitedConstructIds = [];
-}, /^l31_prohibited_construct_set_invalid$/u);
+}, /^l31_prohibited_construct_set_invalid$/u); // H32
 
-// H25-H27: productive, receptive and excluded grammar boundaries.
+// H33-H35: exact grammar boundary.
 expectL31Failure((lesson) => {
   (lesson.grammarBoundary as JsonRecord).productive =
     "general register repair with new grammar";
-}, /^l31_productive_boundary_invalid$/u);
+}, /^l31_productive_boundary_invalid$/u); // H33
 expectL31Failure((lesson) => {
   (lesson.grammarBoundary as JsonRecord).receptive =
     "all positions and requests that need mediation";
-}, /^l31_receptive_boundary_invalid$/u);
+}, /^l31_receptive_boundary_invalid$/u); // H34
 expectL31Failure((lesson) => {
   (lesson.grammarBoundary as JsonRecord).excluded =
     "a universal du-or-Sie workplace rule";
-}, /^l31_excluded_boundary_invalid$/u);
+}, /^l31_excluded_boundary_invalid$/u); // H35
 
-// H28-H32: outcomes, pragmatics, final and fallback canonical identity.
+// H36-H40: outcomes, pragmatics, final and canonical identity.
 expectL31Failure((lesson) => {
   (lesson.chapterOutcomes as JsonRecord[])[0].outcome =
     "identify any relationship in any misunderstanding";
-}, /^l31_chapter_outcomes_invalid$/u);
+}, /^l31_chapter_outcomes_invalid$/u); // H36
 expectL31Failure((lesson) => {
   lesson.pragmatics = "choose the correct address form for every workplace";
-}, /^l31_pragmatics_register_invalid$/u);
+}, /^l31_pragmatics_register_invalid$/u); // H37
 expectL31Failure((lesson) => {
   const final = lesson.session56Final as JsonRecord;
   final.requiredConstructIds = (final.requiredConstructIds as string[]).filter(
     (id) => id !== "de_gc_limited_modal_perfekt_v1",
   );
-}, /^l31_final_required_constructs_invalid$/u);
+}, /^l31_final_required_constructs_invalid$/u); // H38
 expectL31Failure((lesson) => {
   (lesson.session56Final as JsonRecord).transferSituation =
     "mediate the same memorized exchange";
-}, /^l31_final_transfer_evidence_invalid$/u);
+}, /^l31_final_transfer_evidence_invalid$/u); // H39
 expectL31Failure((lesson) => {
   lesson.title = "Missverständnisse lösen";
-}, /^l31_canonical_object_identity_invalid$/u);
+}, /^l31_canonical_object_identity_invalid$/u); // H40
 
+assert.equal(l31HostileCount, 40, "l31_hostile_corpus_count");
 expectFailure(
   raw,
   constructs,

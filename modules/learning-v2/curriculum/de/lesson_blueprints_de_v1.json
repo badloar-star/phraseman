@@ -3704,6 +3704,16 @@
           "responsibility": "reuse correction without treating disagreement as hostility"
         },
         {
+          "fromLessonId": "de_l22",
+          "constructIds": ["de_gc_relative_clause_gender_case_v1"],
+          "responsibility": "keep antecedent gender-number agreement separate from clause-internal case while repairing one reference, without introducing a new relative-clause operation"
+        },
+        {
+          "fromLessonId": "de_l29",
+          "constructIds": ["de_gc_limited_functional_genitive_v1"],
+          "responsibility": "reuse only the closed L29 Genitiv wholes in the pre-final mediation step, without expanding the approved Genitiv inventory or carrying Genitiv into the final transfer"
+        },
+        {
           "fromLessonId": "de_l30",
           "constructIds": ["de_gc_limited_modal_perfekt_v1"],
           "responsibility": "reformulate a bounded missed-obligation account without forcing the cluster into every response"

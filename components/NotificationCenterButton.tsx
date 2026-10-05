@@ -64,20 +64,41 @@ type NotificationCenterButtonProps = {
 function centerCopy(lang: Lang) {
   return {
     showMore: triLang(lang, { ru: 'Показать ещё', uk: 'Показати ще', en: 'Show more', es: 'Mostrar más', 'pt-BR': 'Mostrar mais', vi: 'Xem thêm', id: 'Tampilkan lagi', tr: 'Daha fazla göster', pl: 'Pokaż więcej' }),
-    title: triLang(lang, { ru: 'Уведомления', en: 'Notifications', uk: 'Сповіщення', es: 'Notificaciones', 'pt-BR': 'Notificações', vi: 'Thông báo', id: 'Notifikasi', tr: 'Bildirimler', pl: 'Powiadomienia' }),
-    empty: triLang(lang, {
-      ru: 'Здесь пока тихо',
-      en: "It's quiet here for now",
-      uk: 'Тут поки тихо',
-      es: 'Aquí todo está tranquilo',
-      'pt-BR': 'Tudo tranquilo por aqui',
-      vi: 'Ở đây vẫn yên tĩnh',
-      id: 'Masih sepi di sini',
-      tr: 'Burası şimdilik sessiz',
-      pl: 'Na razie jest tu cicho',
+    // зачем (Сверка system-014/015, system.html inbox): «Сообщения» + подзаголовок «Все прочитаны» / «N новых»;
+    // пустое — «Сообщений нет» и пояснение (было «Уведомления» и «Здесь пока тихо» без пояснения).
+    title: triLang(lang, { ru: 'Сообщения', en: 'Messages', uk: 'Повідомлення', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
+    allRead: triLang(lang, { ru: 'Все прочитаны', en: 'All read', uk: 'Усі прочитані', es: 'Todo leído', 'pt-BR': 'Tudo lido', vi: 'Đã đọc hết', id: 'Semua sudah dibaca', tr: 'Hepsi okundu', pl: 'Wszystko przeczytane' }),
+    empty: triLang(lang, { ru: 'Сообщений нет', en: 'No messages', uk: 'Повідомлень немає', es: 'No hay mensajes', 'pt-BR': 'Nenhuma mensagem', vi: 'Chưa có tin nhắn', id: 'Belum ada pesan', tr: 'Mesaj yok', pl: 'Brak wiadomości' }),
+    emptyHint: triLang(lang, {
+      ru: 'Здесь появятся новости от команды.',
+      en: 'News from the team will appear here.',
+      uk: 'Тут з’являться новини від команди.',
+      es: 'Aquí aparecerán las novedades del equipo.',
+      'pt-BR': 'As novidades da equipe aparecerão aqui.',
+      vi: 'Tin tức từ đội ngũ sẽ xuất hiện ở đây.',
+      id: 'Kabar dari tim akan muncul di sini.',
+      tr: 'Ekipten haberler burada görünecek.',
+      pl: 'Tu pojawią się wiadomości od zespołu.',
     }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
   };
+}
+
+// «2 новых» (макет): ru/uk — 1 новое / 2 новых; остальные — короткая форма.
+function newCountLabel(lang: Lang, n: number): string {
+  const n10 = n % 10; const n100 = n % 100;
+  const one = n10 === 1 && n100 !== 11;
+  return triLang(lang, {
+    ru: `${n} ${one ? 'новое' : 'новых'}`,
+    uk: `${n} ${one ? 'нове' : 'нових'}`,
+    en: `${n} new`,
+    es: `${n} ${n === 1 ? 'nuevo' : 'nuevos'}`,
+    'pt-BR': `${n} ${n === 1 ? 'nova' : 'novas'}`,
+    vi: `${n} mới`,
+    id: `${n} baru`,
+    tr: `${n} yeni`,
+    pl: `${n} ${n === 1 ? 'nowa' : 'nowe'}`,
+  });
 }
 
 function reportReplyCopy(lang: Lang) {
@@ -620,19 +641,28 @@ function NotificationCenterButton({
                 accessibilityRole="button"
                 accessibilityLabel={copy.back}
                 onPress={backToList}
-                style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+                hitSlop={5}
+              style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
               >
                 <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
               </TouchableOpacity>
             ) : null}
-            <Text allowFontScaling={false} numberOfLines={1} style={[styles.headerTitle, { color: t.textPrimary }]}>
-              {selected ? copy.reportReply : copy.title}
-            </Text>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text allowFontScaling={false} numberOfLines={1} style={[styles.headerTitle, { color: t.textPrimary }]}>
+                {selected ? copy.reportReply : copy.title}
+              </Text>
+              {selected ? null : (
+                <Text numberOfLines={1} style={[styles.headerSub, { color: t.textMuted }]}>
+                  {combinedUnreadCount > 0 ? newCountLabel(lang as Lang, combinedUnreadCount) : copy.allRead}
+                </Text>
+              )}
+            </View>
             <TouchableOpacity
               activeOpacity={0.76}
               accessibilityRole="button"
               accessibilityLabel={copy.close}
               onPress={close}
+              hitSlop={5}
               style={[styles.closeButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
             >
               <Ionicons name="close" size={22} color={t.textPrimary} />
@@ -663,10 +693,17 @@ function NotificationCenterButton({
               </TouchableOpacity>
             ) : null}
             ListEmptyComponent={!teamDetailOpen && teamMessageCount === 0 ? (
-              <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
-                <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
-                <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
+              // `.center` пустого состояния: поля 50/20/20, плитка 55 (r14, #2A2A2C) со значком 24, заголовок 18/700 через 14,
+              // пояснение --sec 15 → D145 16/22 через 6.
+              <View style={{ alignItems: 'center', paddingTop: 50, paddingHorizontal: 20, paddingBottom: 20 }}>
+                <View style={{ width: 55, height: 55, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
+                  <Ionicons name="chatbubble-outline" size={24} color={t.textPrimary} />
+                </View>
+                <Text style={{ color: t.textPrimary, fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center', marginTop: 14 }}>
                   {copy.empty}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 6 }}>
+                  {copy.emptyHint}
                 </Text>
               </View>
             ) : null}
@@ -733,17 +770,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10,
   },
+  // `Сообщения` 22/700 и подзаголовок 14 --sec через 2 (system.html inbox).
   headerTitle: {
-    flex: 1,
-    minWidth: 0,
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 22,
+    lineHeight: 28,
     fontWeight: '700',
   },
+  headerSub: {
+    fontSize: 14,
+    lineHeight: 18,
+    marginTop: 2,
+  },
+  // `.rb.fill` 35 — круг с крестиком.
   closeButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 35,
+    height: 35,
+    borderRadius: 18,
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',

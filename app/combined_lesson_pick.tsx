@@ -138,7 +138,7 @@ export default function CombinedLessonPickScreen() {
           />
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: lh(34), fontWeight: '700', letterSpacing: -0.4 }}
+            style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: lh(34, 1.3), fontWeight: '700', letterSpacing: -0.4 }}
           >
             {triLang(lang, {
               ru: 'Смешать темы', en: 'Mix topics', uk: 'Змішати теми', es: 'Mezclar temas',
@@ -151,7 +151,7 @@ export default function CombinedLessonPickScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 20, paddingTop: 22, paddingBottom: 16 }}>
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: lh(22), fontWeight: '600' }}
+            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: lh(22, 1.3), fontWeight: '600' }}
           >
             {picked.length === 0
               ? triLang(lang, {
@@ -252,7 +252,7 @@ export default function CombinedLessonPickScreen() {
                   maxFontSizeMultiplier={1.3}
                   numberOfLines={1}
                   ellipsizeMode="tail"
-                  style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}
+                  style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 16, lineHeight: lh(21, 1.3), fontWeight: '700' }}
                 >
                   {name}
                 </Text>

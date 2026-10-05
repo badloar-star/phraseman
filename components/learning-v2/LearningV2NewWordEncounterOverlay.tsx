@@ -34,6 +34,7 @@ import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../m
 import { useTheme } from "../ThemeContext";
 import { Lv2Cta, Lv2Explain, useLv2Glass } from "./LearningV2Glass";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
+import { useLineScale } from '../../hooks/useLineScale';
 
 export const NEW_WORD_AUTO_FLIP_MS = 3_000;
 const NEW_WORD_FLIP_MS = 180;
@@ -87,6 +88,7 @@ export default function LearningV2NewWordEncounterOverlay({
   onPlayAudio,
   measurePocketTarget,
 }: LearningV2NewWordEncounterOverlayProps) {
+  const lh = useLineScale();
   const { theme: t, f } = useTheme();
   // зачем (learning-v2.html, wordCard): окно нового слова — плита стекла (`g`), CTA и статус
   // сохранения из общего набора Learning V2; `t` остаётся только общей карточке слова
@@ -351,10 +353,10 @@ export default function LearningV2NewWordEncounterOverlay({
         ]}
       >
         <View style={styles.header}>
-          <Text style={[styles.label, { color: g.text }]}>
+          <Text style={[styles.label, { color: g.text, lineHeight: lh(26) }]}>
             {copy.label}
           </Text>
-          <Text style={[styles.counter, { color: g.secondary }]}>
+          <Text style={[styles.counter, { color: g.secondary, lineHeight: lh(21) }]}>
             {copy.counter}
           </Text>
         </View>
@@ -431,7 +433,7 @@ export default function LearningV2NewWordEncounterOverlay({
 
         <Text
           testID="learning-v2-new-word-definition"
-          style={[styles.editorialDefinition, { color: g.text }]}
+          style={[styles.editorialDefinition, { color: g.text, lineHeight: lh(24) }]}
         >
           {editorialDefinition}
         </Text>
@@ -439,7 +441,7 @@ export default function LearningV2NewWordEncounterOverlay({
         <RNAnimated.Text
           style={[
             styles.flipHint,
-            { color: g.secondary },
+            { color: g.secondary, lineHeight: lh(19) },
             {
               opacity: hintPulse.interpolate({
                 inputRange: [0, 1],
@@ -524,23 +526,28 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     fontWeight: "700",
   },
+  // зачем (learning-v2.html wordCard, «1 из 4» 15/600 --sec; D145 → 16).
   counter: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: "700",
+    fontWeight: "600",
   },
+  // `.fliph` 14/600, в 16 от определения (gap 14 + 2).
   flipHint: {
     fontSize: 13,
     lineHeight: 19,
-    fontWeight: "700",
+    fontWeight: "600",
     textAlign: "center",
+    marginTop: 2,
   },
   editorialDefinition: {
+    // `.defn` 17/24, в 20 от карточки (gap 14 + 6; D145 → 16).
     paddingHorizontal: 8,
     fontSize: 16,
-    lineHeight: 23,
+    lineHeight: 24,
     fontWeight: "400",
     textAlign: "center",
+    marginTop: 6,
   },
   cardWrap: {
     position: "relative",

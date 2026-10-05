@@ -31,22 +31,37 @@ function extract(path, name, bindings = {}) {
   return run(`${found}\nmodule.exports = ${name};`, {}, bindings);
 }
 const languages = file('app/flashcards/pack_languages.ts');
+// зачем (05.10): чистые модули без зависимостей — грузим настоящие, а не подделки.
+const customCardAccess = file('app/flashcards/custom_card_access.ts');
+const myPacksDataIntegrity = file('app/flashcards/myPacksDataIntegrity.ts');
 function device() {
   const storage = new Map();
   let fail = false;
   const token = { stableId: 'test-account' };
+  const asyncStorage = { default: {
+    getItem: async key => storage.get(key) ?? null,
+    setItem: async (key, value) => { if (fail) throw Error('disk full'); storage.set(key, value); },
+    removeItem: async key => storage.delete(key),
+  } };
+  const accountGeneration = { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() };
+  // зачем (05.10): журнал удалений — настоящий модуль на том же подставном диске устройства.
+  const deletionJournal = file('app/flashcards/card_deletion_journal.ts', {
+    '@react-native-async-storage/async-storage': asyncStorage,
+    '../account_generation': accountGeneration,
+  });
   const api = file('hooks/use-flashcards.ts', {
-    '@react-native-async-storage/async-storage': { default: {
-      getItem: async key => storage.get(key) ?? null,
-      setItem: async (key, value) => { if (fail) throw Error('disk full'); storage.set(key, value); },
-      removeItem: async key => storage.delete(key),
-    } },
+    '@react-native-async-storage/async-storage': asyncStorage,
+    '../app/flashcards/card_deletion_journal': deletionJournal,
+    '../app/swallow_log': { noteSwallowed: () => {}, noteSwallowedAs: (_tag, fallback) => () => fallback },
     '../app/premium_guard': { getVerifiedPremiumStatus: async () => true },
     '../app/feature_gates': { isFeatureFreeForEveryone: () => true },
     '../app/target_storage_keys': { flashcardsSavedKey: t => t === 'fr' ? 'fr' : 'en', storageStudyTarget: t => t === 'fr' ? 'fr' : 'en' },
     '../app/account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() },
     '../app/account_scope_key': { accountScopeKey: () => 'test-account' },
     '../app/flashcards/pack_languages': languages,
+    // зачем (05.10, account-authority S6a/S7): клиент v2 выключен — как в проде при выключенном флаге.
+    '../app/accounts_v2_client_flag': { captureAccountsV2OwnerUid: () => null, produceAccountsV2ChangeIfEnabled: () => {} },
+    '../app/flashcards/custom_card_access': customCardAccess,
   });
   return { api, storage, failWrites: () => { fail = true; } };
 }
@@ -101,6 +116,7 @@ test('drafts follow the requested pack language without losing another language'
     '../target_storage_keys': { communityPackCreateDraftKey: (target,locale) => `${target}:${locale}` },
     '../debug-logger': { DebugLogger: { error: () => {} } }, '../flashcards/pack_languages': languages,
     '../account_generation': { captureAccountGeneration: () => ({}), isCurrentAccountGeneration: () => true, withAccountTransitionLock: fn => fn() },
+    '../swallow_log': { noteSwallowed: () => {}, noteSwallowedAs: (_tag, fallback) => () => fallback },
   });
   const draft = { title: 'English', description: 'Trip', themeIdx: 0, packLanguage: 'en', rows: [], addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftNote: '', draftPlannedTranslation: '' };
   await drafts.saveCommunityPackCreateDraft(draft, 'en', 'ru');
@@ -130,7 +146,8 @@ test('same-title cloud pack cannot hide another language or private local pack',
 test('saved video origin and Ukrainian translation survive editor and pack adapter', () => {
   const labels = file('app/flashcards/source_labels.ts', { '../../constants/i18n': { triLang: (lang, copy) => copy[lang] ?? copy.ru } });
   const rowFromCard = extract('app/community_pack_create.tsx', 'rowFromStagedSavedCard', { ...languages, ...labels });
-  const adapt = extract('app/community_packs/communityFirestore.ts', 'communityPackCardsToCardItems', languages);
+  // зачем (05.10): адаптер теперь читает таймкод видео — в этом тесте таймкодов нет, нужен только сам помощник.
+  const adapt = extract('app/community_packs/communityFirestore.ts', 'communityPackCardsToCardItems', { ...languages, cardVideoStartSecFromRaw: (value) => (typeof value === 'number' ? value : undefined) });
   const row = rowFromCard({ ...card, source: 'video_phrase', sourceTitle: 'A video' }, 'fr', 'uk');
   const result = adapt('pack', [row], 'fr')[0];
   assert.equal(result.uk, card.uk);
@@ -176,6 +193,8 @@ for (const action of ['approve', 'reject', 'request_changes']) {
       HttpsError: class extends Error {}, admin: { firestore: () => db },
       trimModeratorMessage: text => text ?? '', moderatorMessageOrNull: text => text || null,
       COMMUNITY_PACKS: 'community_packs', COMMUNITY_SUBMISSIONS: 'community_pack_submissions', LISTING_ADMIN_REMOVED: 'admin_removed',
+      // зачем (05.10): модерация проверяет язык набора настоящим помощником сервера (чистый модуль).
+      ...file('functions/src/community_pack_language.ts'),
     });
     const result = await moderate({ auth: { token: { admin: true } }, data: { submissionId: 'review', action } });
     assert.equal(submission.status, 'cancelled');
@@ -188,10 +207,15 @@ test('local saves serialize, preserve other contours and persist publication ide
   const token = { stableId: 'u' };
   const local = file('app/community_packs/localAuthorPacks.ts', {
     '@react-native-async-storage/async-storage': { default: { getItem: async k => disk.get(k) ?? null, setItem: async (k,v) => { disk.set(k,v); } } },
-    '../target_storage_keys': { flashcardsLocalAuthorPacksKey: t => t === 'fr' ? 'fr' : 'en', storageStudyTarget: t => t === 'fr' ? 'fr' : 'en' },
+    // зачем (05.10): локальные наборы читаются по всем 5 языкам — у каждого свой ключ (как в target_storage_keys), иначе es/de/it читали бы ключ en повторно.
+    '../target_storage_keys': { flashcardsLocalAuthorPacksKey: t => t || 'en', storageStudyTarget: t => t || 'en' },
     '../flashcards/marketplace': { derivePackCodeName: id => id }, './communityFirestore': { communityPackCardsToCardItems: () => [] },
     '../flashcards/pack_languages': languages,
     '../account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() },
+    '../learning_language_contour': { LEARNING_LANGUAGE_TARGETS: ['en', 'es', 'fr', 'de', 'it'] },
+    '../flashcards/myPacksDataIntegrity': myPacksDataIntegrity,
+    '../account_scope_key': { accountScopeKey: t => t?.stableId ?? null },
+    '../swallow_log': { noteSwallowed: () => {}, noteSwallowedAs: (_tag, fallback) => () => fallback },
   });
   const payload = { title: 'Travel', description: 'Trip', cards: Array(10).fill(card), packLanguage: 'fr', publishToCommunity: true };
   await Promise.all([
@@ -206,7 +230,8 @@ test('local saves serialize, preserve other contours and persist publication ide
   assert.equal(after.find(p => p.id === 'local_pack_fr').publicationKey, identity);
   assert.equal(JSON.parse(disk.get('fr'))[0].title, 'Voyage');
   assert.equal(JSON.parse(disk.get('en')).length, 1);
-  const newIds = await Promise.all([local.saveLocalAuthorPack(payload), local.saveLocalAuthorPack(payload)]);
+  // зачем (05.10): с 30.09 у бесплатного автора лимит 3 набора (FREE_AUTHOR_PACK_LIMIT) — эта проверка про разные id новых наборов, поэтому автор с Plus.
+  const newIds = await Promise.all([local.saveLocalAuthorPack(payload, { isPremium: true }), local.saveLocalAuthorPack(payload, { isPremium: true })]);
   assert.notEqual(newIds[0], newIds[1]);
 });
 test('front speech uses the explicit French/German language', () => {
@@ -220,6 +245,7 @@ test('front speech uses the explicit French/German language', () => {
 
 test('explicit pack languages are independent from the active course at server access checks', () => {
   const requireTarget = extract('functions/src/community_packs.ts', 'requireMatchingPackStudyTarget', {
+    ...file('functions/src/community_pack_language.ts'),
     normalizeCommunityPackStudyTarget: value => value === 'fr' ? 'fr' : 'en',
     HttpsError: class extends Error {},
   });

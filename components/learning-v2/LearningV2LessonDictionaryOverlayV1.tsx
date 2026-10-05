@@ -269,34 +269,27 @@ export default function LearningV2LessonDictionaryOverlayV1({
       const translation = encounter.save.meaningByLocale[lang];
       const active = speakingId === word.lexicalItemId;
       return (
-        <View style={styles.row}>
+        // зачем (learning-v2.html `.wrow`): строка 66 с линией снизу; слово 19/600, транскрипция и перевод --sec;
+        // справа круглая кнопка звука 38 (#262628, без кромки) и закладка 22 в карточки.
+        <View style={[styles.row, { borderBottomColor: g.line }]}>
+          <View style={styles.wordCopy}>
+            {/* зачем: 19 из макета с учётом выбранного размера шрифта (f.bodyLg = 16 × масштаб). */}
+            <Text style={[styles.target, { color: g.text, fontSize: Math.round((19 * f.bodyLg) / 16), lineHeight: Math.round((24 * f.bodyLg) / 16) }]}>{target}</Text>
+            <Text style={[styles.meta, { color: g.secondary }]}>
+              {encounter.transcription} · {translation}
+            </Text>
+          </View>
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={listenLabel(target)}
             onPress={() => replay(word)}
+            hitSlop={4}
             style={({ pressed }) => [
-              styles.wordAction,
-              { backgroundColor: active || pressed ? g.selected : "transparent" },
+              styles.speak,
+              { backgroundColor: active || pressed ? g.selected : g.opaqueControl },
             ]}
           >
-            <View style={styles.wordCopy}>
-              <Text
-                style={[
-                  styles.target,
-                  { color: g.text, fontSize: f.bodyLg },
-                ]}
-              >
-                {target}
-              </Text>
-              <Text style={[styles.meta, { color: g.secondary }]}>
-                {encounter.transcription} · {translation}
-              </Text>
-            </View>
-            <Ionicons
-              name={active ? "volume-high" : "volume-medium-outline"}
-              size={21}
-              color={active ? g.text : g.secondary}
-            />
+            <Ionicons name={active ? "volume-high" : "volume-medium"} size={18} color={g.text} />
           </Pressable>
           <AddToFlashcard
             en={target}
@@ -312,7 +305,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
             }}
             source="lesson"
             sourceId={word.lexicalItemId}
-            size={21}
+            size={22}
           />
         </View>
       );
@@ -352,10 +345,10 @@ export default function LearningV2LessonDictionaryOverlayV1({
           hitSlop={10}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
+            { borderColor: g.glassEdge, opacity: pressed ? 0.7 : 1 },
           ]}
         >
-          <Ionicons name="close" size={22} color={g.text} />
+          <Ionicons name="close" size={18} color={g.text} />
         </Pressable>
       </View>
 
@@ -413,66 +406,64 @@ const styles = StyleSheet.create({
   overlay: { flex: 1 },
   header: {
     minHeight: 104,
-    paddingHorizontal: 20,
-    paddingTop: 22,
+    marginHorizontal: 20,
+    // зачем (`.scr > .in` padding-top 52 ≈ 8 под статус-баром; `.dh` линия 1 px внутри полей страницы).
+    paddingTop: 8,
     paddingBottom: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: 1,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-between",
   },
   headerCopy: { gap: 0 },
-  eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4 },
+  eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 3 },
   title: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: "700", letterSpacing: -0.5 },
   count: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: "400" },
-  close: { marginTop: 8, width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center" },
+  // `.rb.sq`: 36, r12, без заливки, кромка --line-2.
+  close: { marginTop: 8, width: 36, height: 36, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center" },
   listContent: { paddingBottom: 44 },
   // Поиск: тон подложки, без обводки контейнера (закон владельца).
   searchRow: {
-    marginHorizontal: 18,
+    marginHorizontal: 20,
     marginTop: 16,
-    marginBottom: 4,
-    minHeight: 46,
+    height: 46,
     borderRadius: 14,
-    paddingHorizontal: 13,
+    paddingHorizontal: 14,
     flexDirection: "row",
     alignItems: "center",
-    gap: 9,
+    gap: 10,
   },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: "400", paddingVertical: 0 },
   // Заголовок урока внутри списка. Он же служит разделителем секций, поэтому
   // отдельная линия-разделитель между словами больше не нужна.
   lessonHeading: {
-    paddingTop: 22,
+    // `.dsec` margin 26px 2px 8px внутри полей 20.
+    paddingTop: 26,
     paddingBottom: 8,
-    paddingHorizontal: 24,
+    paddingHorizontal: 22,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 10,
   },
-  lessonHeadingText: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4 },
+  lessonHeadingText: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4, textTransform: "uppercase" },
   lessonHeadingCount: { fontSize: 13, lineHeight: 17, fontWeight: "700" },
   row: {
-    minHeight: 76,
-    paddingLeft: 18,
-    paddingRight: 14,
+    marginHorizontal: 20,
+    minHeight: 66,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 2,
+    paddingRight: 6,
+    borderBottomWidth: 1,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 14,
   },
-  wordAction: {
-    flex: 1,
-    minHeight: 58,
-    borderRadius: 14,
-    paddingHorizontal: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  wordCopy: { flex: 1 },
+  speak: { width: 38, height: 38, borderRadius: 19, alignItems: "center", justifyContent: "center" },
+  wordCopy: { flex: 1, minWidth: 0 },
   target: { fontWeight: "600" },
   meta: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: "400" },
-  empty: { paddingTop: 120, paddingHorizontal: 34, alignItems: "center", gap: 12 },
+  empty: { paddingTop: 120, paddingHorizontal: 30, alignItems: "center", gap: 14 },
   emptyText: { maxWidth: 320, fontSize: 16, lineHeight: 22, fontWeight: "400", textAlign: "center" },
 });

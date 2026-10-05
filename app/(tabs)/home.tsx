@@ -1206,7 +1206,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setHomeOnboardingDone(stored.get(HOME_ONBOARDING_DONE_KEY) === '1');
                 setHomeFeatureTipsHydrated(true);
             })
-            .catch(() => {
+            .catch((error: unknown) => {
+                // зачем (правило «немой catch запрещён»): отсюда же поднимается флаг онбординга, от которого зависит
+                // homeRuntimeActive, — сбой чтения обязан оставлять причину. Поведение прежнее: подсказки считаются загруженными.
+                noteSwallowedHandler('home:featureTips.multiGet')(error);
                 if (cancelled) return;
                 setHomeFeatureTipsHydrated(true);
             });
@@ -1415,7 +1418,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 readCurrentStreakWeekMarkers(),
                 Promise.resolve(0),
                 AsyncStorage.multiGet(['premium_active']),
-                hydratePersonalProgress().catch(() => getPersonalProgressSnapshot()),
+                // зачем (немой catch запрещён): сбой гидрации прогресса пишет причину; значение — прежний снимок.
+                hydratePersonalProgress().catch((error: unknown) => {
+                    noteSwallowedHandler('home:loadData.hydratePersonalProgress')(error);
+                    return getPersonalProgressSnapshot();
+                }),
             ]);
             step('parallel6');
             const homeStorage = new Map(homeStoragePairs);
@@ -1495,7 +1502,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         setWeekDone(new Array(7).fill(false));
                     }
                 }
-                catch {
+                catch (error) {
+                    // зачем (немой catch запрещён): битая запись недели — причина в журнале, точки недели пустые, как раньше.
+                    noteSwallowedHandler('home:loadData.weekDoneParse')(error);
                     setWeekDone(new Array(7).fill(false));
                 }
             }

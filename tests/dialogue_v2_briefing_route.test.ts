@@ -174,7 +174,7 @@ describe('Dialogue V2 briefing route', () => {
     expect(mockConfirmSpendOne).not.toHaveBeenCalled();
     expect(mockPush).toHaveBeenCalledWith({
       pathname: '/premium_modal',
-      params: { context: 'dialog_limit', source: 'dialogue_v2_briefing' },
+      params: { context: 'dialog_limit', source: 'ai_dialog_briefing_direct' },
     });
   });
 

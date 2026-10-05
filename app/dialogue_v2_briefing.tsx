@@ -243,7 +243,8 @@ export default function DialogueV2BriefingRoute() {
           console.warn('[DIALOGUE-V2] start blocked: monthly replies exhausted → limit screen, energy not spent', { scenarioId });
           router.push({
             pathname: '/premium_modal',
-            params: { context: 'dialog_limit', source: 'dialogue_v2_briefing' },
+            // зачем (сторож paywall_entry_callsite_registry): source — только из PAYWALL_SOURCE_VALUES; неизвестный терял атрибуцию покупки.
+            params: { context: 'dialog_limit', source: 'ai_dialog_briefing_direct' },
           } as never);
           return;
         }

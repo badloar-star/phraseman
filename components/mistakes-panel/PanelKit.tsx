@@ -17,6 +17,11 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { DIAG_150, MP_COLORS, mixDark, ringShadow, themePair } from './panelPaint';
 import { GlassRim } from './GlassRim';
 
+/** `.ph .rb` (cards-glass.css): фон круглой кнопки — 7 % от цвета текста темы (в светлой теме тоже виден). */
+export function glassButtonFill(g: Lv2Glass): string {
+  return g.text.length === 7 ? `${g.text}12` : g.opaqueControl;
+}
+
 export const BackButton = memo(function BackButton({ g, onPress, label }: Readonly<{ g: Lv2Glass; onPress: () => void; label: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -27,7 +32,8 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
       accessibilityLabel={label}
       hitSlop={8}
       onPress={onPress}
-      style={({ pressed }) => [styles.back, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+      // зачем (Сверка mistakes-panel-007, cards-glass.css .ph .rb): круглая кнопка — стекло 7 % поверх шапки, а не сплошной тёмный круг.
+      style={({ pressed }) => [styles.back, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
       <Ionicons name="chevron-back" size={20} color={g.text} />
       <GlassRim radius={21} />
     </Pressable>

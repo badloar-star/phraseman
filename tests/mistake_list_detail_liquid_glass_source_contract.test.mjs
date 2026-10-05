@@ -10,7 +10,9 @@ test('active mistake list and detail use Liquid Glass without text truncation', 
     // 30.09 (2.0): стекло непрозрачное (память владельца «стекло 2.0 = непрозрачное»),
     // экраны ошибок переведены на useLv2Glass + g.opaque* (efe19ae9d); полупрозрачный glassFill снят.
     assert.match(source, /useLv2Glass\(\)/);
-    assert.match(source, /g\.opaque(Card|Control|Sheet)/);
+    // 05.10 (Сверка mistakes-panel-007, cards-glass.css .ph .rb): круглые кнопки без текста — стекло 7 % (glassButtonFill);
+    // правило «непрозрачное стекло» — для поверхностей с текстом, оно по-прежнему проверяется (opaque*).
+    assert.match(source, /g\.opaque(Card|Control|Sheet)|glassButtonFill\(g\)/);
     assert.doesNotMatch(source, /numberOfLines/);
   }
 });

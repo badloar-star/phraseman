@@ -13,7 +13,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
+import { BackButton, glassButtonFill, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { MP_COLORS, mixDark, themePair } from '../components/mistakes-panel/panelPaint';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -214,7 +214,7 @@ export default function MistakeDetailScreen() {
                 <View style={styles.heroBar}>
                   <BackButton g={g} label={copy.back} onPress={goBack} />
                   {detail.status === 'active' ? (
-                    <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+                    <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
                       <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
                       <GlassRim radius={21} />
                     </Pressable>

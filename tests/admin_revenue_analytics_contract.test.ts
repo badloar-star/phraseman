@@ -1,17 +1,18 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('admin revenue analytics contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const adminHtml = normalizeEol(fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8'));
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
-  const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
-  const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
+  const firebaseSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8'));
+  const premiumModalSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8'));
   // 2026-09-30: пейволы A–G удалены — источник показа несёт единственный пейвол Plus.
-  const paywallPlusSource = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
-  const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
-  const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
-  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+  const paywallPlusSource = normalizeEol(fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8'));
+  const onboardingSource = normalizeEol(fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8'));
+  const shardsShopSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8'));
+  const firestoreIndexes = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'))) as {
     fieldOverrides?: Array<Record<string, unknown>>;
   };
 

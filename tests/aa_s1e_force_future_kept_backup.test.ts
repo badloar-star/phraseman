@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account Authority 2.0, этап S1e — силовой перенос перед сменой аккаунта не теряет локальную
@@ -324,7 +325,7 @@ describe('S1e — облачная версия «из будущего» при
 });
 
 describe('S1e — встройка (cloud_sync, auth_provider)', () => {
-  const read = (file: string): string => fs.readFileSync(path.join(ROOT, 'app', file), 'utf8').split('\r\n').join('\n');
+  const read = (file: string): string => normalizeEol(fs.readFileSync(path.join(ROOT, 'app', file), 'utf8')).split('\r\n').join('\n');
   const bodyOf = (source: string, name: string): string => {
     const start = source.indexOf(`async function ${name}(`);
     expect(start).toBeGreaterThan(0);

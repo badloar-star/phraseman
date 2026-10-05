@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.join(__dirname, '..');
-const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8');
+const read = (relative: string): string => normalizeEol(fs.readFileSync(path.join(root, relative), 'utf8'));
 
 describe('Settings account deletion immediate clean-onboarding handoff', () => {
   test('closes and clears the native dialog before mounting onboarding, without awaiting completion', () => {

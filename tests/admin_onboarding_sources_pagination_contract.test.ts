@@ -1,14 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('admin onboarding source statistics pagination contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
+  const adminHtml = normalizeEol(fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8'));
   const fetchSource = adminHtml.match(
     /async function onboardingSourceFetchRows[\s\S]*?(?=\n  function onboardingSourceRowsCard)/,
   )?.[0] ?? '';
   const firestoreIndexes = JSON.parse(
-    fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'),
+    normalizeEol(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')),
   ) as {
     indexes?: Array<{
       collectionGroup?: string;

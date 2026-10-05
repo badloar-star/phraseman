@@ -28,6 +28,7 @@ import {
   accountAuthorityRemoteDeleteQueueState,
   resolveAccountAuthorityRemoteDeleteByLegacy,
 } from '../modules/account-authority-v2/account_authority_remote_delete_queue';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * AA S4a (клиент): удаление аккаунта local-first.
@@ -784,7 +785,7 @@ describe('AA S4a: транспорт начала удаления', () => {
 describe('AA S4a раунд 4 (L-1): доказательство старым удалением — фаза server_enqueued', () => {
   test('метка ставится только после advanceAccountDeletePendingAuthLock(server_enqueued), снятие — по метке, не по result.ok', () => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8') as string;
+    const source = normalizeEol(require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8')) as string;
     const advance = source.indexOf("advanceAccountDeletePendingAuthLock(\n        pendingDeleteLock,\n        'server_enqueued',");
     const mark = source.indexOf('legacyDeletionServerEnqueuedOperations.add(pendingDeleteLock.operationId);');
     const anonymousBranch = source.indexOf('// зачем: для анонима ждём только отправки запроса');

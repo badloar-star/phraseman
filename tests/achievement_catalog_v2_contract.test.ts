@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'app', 'achievements.ts'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(root, 'app', 'achievements.ts'), 'utf8'));
 
 test('removed legacy catalog entries are physically absent', () => {
   expect(source).not.toContain('LEGACY_LEARNING_ACHIEVEMENT_PREFIXES');

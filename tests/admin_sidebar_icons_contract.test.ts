@@ -1,10 +1,11 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
 
 describe('admin sidebar icons', () => {
-  const html = readFileSync(path.join(root, 'admin/index.html'), 'utf8');
+  const html = normalizeEol(readFileSync(path.join(root, 'admin/index.html'), 'utf8'));
 
   test('sidebar tabs render compact SVG icons next to text labels', () => {
     expect(html).toContain('.admin-tab-icon');

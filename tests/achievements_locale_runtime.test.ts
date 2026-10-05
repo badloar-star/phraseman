@@ -6,10 +6,11 @@ import {
   achievementDescForLang,
   achievementNameForLang,
 } from '../app/achievements';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const ACHIEVEMENTS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'achievements.ts'), 'utf8');
-const ACHIEVEMENTS_SCREEN_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'achievements_screen.tsx'), 'utf8');
+const ACHIEVEMENTS_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'achievements.ts'), 'utf8'));
+const ACHIEVEMENTS_SCREEN_SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'achievements_screen.tsx'), 'utf8'));
 // PM-053: AchievementToast удалён целиком — проверка его копии убрана вместе с ним.
 const LEGACY_RUNTIME_RE =
   /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;

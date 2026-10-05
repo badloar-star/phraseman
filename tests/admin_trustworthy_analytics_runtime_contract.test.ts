@@ -1,16 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
-const liveHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+const liveHtml = normalizeEol(fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8'));
 const an2Block = liveHtml.match(/\/\/ Analytics v2[\s\S]*?window\.an2RenderPayingUsers = an2RenderPayingUsers;/)?.[0] ?? '';
 const onboardingExitBlock = liveHtml.match(/window\.loadOnboardingExits = async function loadOnboardingExits[\s\S]*?\n  };/)?.[0] ?? '';
 const revenueViewWrapper = liveHtml.match(/function pmApplyRevenueView\(view\)[\s\S]*?window\.pmApplyRevenueView = pmApplyRevenueView;/)?.[0] ?? '';
 const revenueFilterWrapper = liveHtml.match(/function pmSyncRevenueFilters\(\)[\s\S]*?\n  }/)?.[0] ?? '';
-const functionsPackage = JSON.parse(fs.readFileSync(path.join(root, 'functions', 'package.json'), 'utf8')) as {
+const functionsPackage = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'functions', 'package.json'), 'utf8'))) as {
   scripts?: Record<string, string>;
 };
-const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+const firestoreIndexes = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'))) as {
   indexes?: Array<{
     collectionGroup?: string;
     queryScope?: string;

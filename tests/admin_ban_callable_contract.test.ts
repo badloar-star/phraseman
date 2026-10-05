@@ -1,10 +1,11 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
-const source = readFileSync(
+const source = normalizeEol(readFileSync(
   path.resolve(__dirname, "../admin/v2/legacy.html"),
   "utf8",
-);
+));
 
 function handler(
   name: "banUser" | "unbanUser" | "unbanFromList" | "banByUidPrompt",

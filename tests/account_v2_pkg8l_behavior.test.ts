@@ -9,6 +9,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 type GetImpl = () => Promise<{ docs: { id: string; data: () => Record<string, unknown> }[] }>;
 
@@ -112,8 +113,8 @@ describe('8L-1: author packs last-known cache', () => {
   });
 
   it('wiring: both withdraw/delete paths forget the pack', () => {
-    const publish = fs.readFileSync(path.join(__dirname, '..', 'app', 'community_packs', 'publishLocalPack.ts'), 'utf8');
-    const screen = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_my_packs.tsx'), 'utf8');
+    const publish = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'community_packs', 'publishLocalPack.ts'), 'utf8'));
+    const screen = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_my_packs.tsx'), 'utf8'));
     const withdrawBody = publish.slice(publish.indexOf('export async function withdrawLocalAuthorPack'));
     expect(withdrawBody).toMatch(/forgetAuthorPackLastKnown\(local\.cloudPackId\)/);
     expect(withdrawBody).toMatch(/forgetAuthorPackLastKnown\(local\.id\)/);
@@ -122,7 +123,7 @@ describe('8L-1: author packs last-known cache', () => {
 });
 
 describe('8L-2: no silent catch around author packs and the count publication', () => {
-  const read = (file: string): string => fs.readFileSync(path.join(__dirname, '..', 'app', file), 'utf8');
+  const read = (file: string): string => normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', file), 'utf8'));
 
   it('author packs reads log the reason instead of returning [] silently', () => {
     for (const file of ['flashcards_packs.tsx', 'flashcards_swipe.tsx']) {
@@ -200,7 +201,7 @@ describe('8L-5: confirm before «switch without saving» when cards are not uplo
   });
 
   it('settings wiring: the forced path asks first, «save and switch» retries the normal attempt', () => {
-    const source = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8'));
     expect(source).toContain('readAccountSwitchUnsavedCardsDecision(');
     expect(source).toContain("decision.kind === 'confirm_unsaved_cards'");
     expect(source).toContain('Несохранённые карточки будут удалены с этого телефона');

@@ -1,24 +1,25 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
 
 describe('account deletion rebuilt flow contract', () => {
-  const authProvider = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
-  const accountDeleteQuarantineSource = fs.readFileSync(
+  const authProvider = normalizeEol(fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8'));
+  const accountDeleteQuarantineSource = normalizeEol(fs.readFileSync(
     path.join(root, 'app', 'account_delete_quarantine.ts'),
     'utf8',
-  );
+  ));
   const functionsPackage = JSON.parse(
-    fs.readFileSync(path.join(root, 'functions', 'package.json'), 'utf8'),
+    normalizeEol(fs.readFileSync(path.join(root, 'functions', 'package.json'), 'utf8')),
   ) as { scripts?: { 'deploy:safe'?: string } };
-  const timeoutSource = fs.readFileSync(path.join(root, 'app', 'account_delete_timeout.ts'), 'utf8');
-  const modalSource = fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8');
-  const functionSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8');
-  const functionJobSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete_job.ts'), 'utf8');
-  const firestoreRules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
-  const rootLayoutSource = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
-  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+  const timeoutSource = normalizeEol(fs.readFileSync(path.join(root, 'app', 'account_delete_timeout.ts'), 'utf8'));
+  const modalSource = normalizeEol(fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8'));
+  const functionSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8'));
+  const functionJobSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete_job.ts'), 'utf8'));
+  const firestoreRules = normalizeEol(fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8'));
+  const rootLayoutSource = normalizeEol(fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8'));
+  const firestoreIndexes = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'))) as {
     fieldOverrides?: {
       collectionGroup?: string;
       fieldPath?: string;
@@ -151,7 +152,7 @@ describe('account deletion rebuilt flow contract', () => {
   });
 
   it('keeps the legacy callable while exporting durable enqueue and worker endpoints', () => {
-    const indexSource = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
+    const indexSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8'));
     expect(indexSource).toContain('exports.accountDeleteMine = accountDeleteMine;');
     expect(indexSource).toContain('exports.accountDeleteEnqueue = accountDeleteEnqueue;');
     expect(indexSource).toContain('exports.accountDeleteWorker = accountDeleteWorker;');
@@ -175,7 +176,7 @@ describe('account deletion rebuilt flow contract', () => {
     // т. е. все экспорты index.ts). Цель сторожа прежняя — эти шесть функций обязаны выкладываться:
     // проверяем экспорт и то, что основной deploy не сужен до списка без них.
     const deploy = (functionsPackage.scripts as Record<string, string> | undefined)?.deploy ?? '';
-    const indexSource = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
+    const indexSource = normalizeEol(fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8'));
     expect(deploy).toMatch(/firebase deploy --only functions$/);
     for (const functionName of [
       'accountMergeOutboxWorker',
@@ -385,7 +386,7 @@ describe('account deletion rebuilt flow contract', () => {
     // Ключи онбординга дублируются литералами намеренно: вынос в общую константу
     // с импортом в CleanOnboarding создал цикл, модуль падал с ReferenceError и
     // кнопка «Удалить» переставала работать (боевой лог 2026-07-27).
-    const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+    const onboarding = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8'));
     expect(onboarding).toContain("const FLOW_VERSION_KEY = 'onboarding_flow_version_v1'");
     expect(onboarding).toContain("const STEP_KEY = 'onboarding_step'");
     expect(onboarding).toContain("const DONE_KEY = 'onboarding_done'");
@@ -509,7 +510,7 @@ describe('account deletion rebuilt flow contract', () => {
    * эту привязку — выйти из ловушки изнутри приложения было нельзя.
    */
   it('rotates a stale stable id instead of failing every cloud call forever', () => {
-    const cloudSync = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
+    const cloudSync = normalizeEol(fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8'));
     const boot = cloudSync.slice(
       cloudSync.indexOf('export async function ensureStableAuthLink()'),
     ).slice(0, 1600);
@@ -522,7 +523,7 @@ describe('account deletion rebuilt flow contract', () => {
 });
 
 test('one exported coordinator owns startup and fail-closed retired recovery', () => {
-  const source = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
+  const source = normalizeEol(fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8'));
   expect(source).toContain('export async function ensureFreshPostDeletionIdentity(');
   expect(source).toContain("trigger: 'delete' | 'startup' | 'foreground' | 'identity_retired'");
   const resume = source.slice(

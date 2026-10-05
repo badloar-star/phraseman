@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 /**
  * зачем: Q5 (координатор 01.10) — старые аватары-картинки и «Студия персонажа»
@@ -8,7 +9,7 @@ import path from 'path';
  * берётся из public_profiles, который adminUserBriefs уже читает (без +1 чтения
  * на строку). Прежний контракт отрисовки avatarImg снят вместе с функцией.
  */
-const html = fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+const html = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8'));
 
 function extractInitials(): (name: string) => string {
   const start = html.indexOf('function adminUserInitials(');

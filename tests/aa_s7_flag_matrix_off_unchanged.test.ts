@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account Authority 2.0, этап S7 (TG-E7105CAE3E22): выключенная система ничего не меняет.
@@ -479,7 +480,7 @@ describe('AA S7: перепись загрузки modules/account-authority-v2 
   const census = (): Record<string, string[]> => {
     const result: Record<string, string[]> = {};
     for (const file of SCAN_DIRS.flatMap((dir) => walk(path.join(ROOT, dir)))) {
-      const source = fs.readFileSync(file, 'utf8');
+      const source = normalizeEol(fs.readFileSync(file, 'utf8'));
       const found = new Set<string>();
       const staticImport = /^import\s+(?!type\b)[^;]*?from\s+'[^']*account-authority-v2\/([\w]+)'/gm;
       const lazyRequire = /require\('[^']*account-authority-v2\/([\w]+)'\)/g;
@@ -504,7 +505,7 @@ describe('AA S7: перепись загрузки modules/account-authority-v2 
 
   test('разрешённые на старом пути модули AA — только память: без SecureStore, хранилища, сети и других AA', () => {
     for (const name of ['account_authority_anon_merge_nonce', 'account_authority_logger']) {
-      const source = fs.readFileSync(path.join(ROOT, AA_DIR, `${name}.ts`), 'utf8');
+      const source = normalizeEol(fs.readFileSync(path.join(ROOT, AA_DIR, `${name}.ts`), 'utf8'));
       // Комментарии не в счёт (nonce-модуль прямо пишет «не пишется ни в AsyncStorage, ни в SecureStore»).
       const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
       expect(code).not.toMatch(/expo-secure-store|AsyncStorage|SecureStore|httpsCallable|@react-native-firebase|require\(/);
@@ -514,7 +515,7 @@ describe('AA S7: перепись загрузки modules/account-authority-v2 
   });
 
   test('ленивые require AA в шве живут только в драйвере продления, а он вызывается только за воротами cutover', () => {
-    const gate = fs.readFileSync(path.join(ROOT, 'app/accounts_v2_client_flag.ts'), 'utf8');
+    const gate = normalizeEol(fs.readFileSync(path.join(ROOT, 'app/accounts_v2_client_flag.ts'), 'utf8'));
     const driverStart = gate.indexOf('function accountAuthorityRenewalDriver(');
     const driverEnd = gate.indexOf('function installAccountAuthorityForegroundRenewal(');
     expect(driverStart).toBeGreaterThan(-1);

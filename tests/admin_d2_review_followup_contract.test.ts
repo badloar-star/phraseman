@@ -1,16 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
-const html = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
-const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
-const server = fs.readFileSync(path.join(root, 'functions/src/admin_global_broadcast.ts'), 'utf8');
-const jarvis = fs.readFileSync(path.join(root, 'functions/src/jarvis/jarvis_data_contract_guard.test.ts'), 'utf8');
-const functionsPackage = JSON.parse(fs.readFileSync(path.join(root, 'functions/package.json'), 'utf8')) as {
+const html = normalizeEol(fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8'));
+const rules = normalizeEol(fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8'));
+const server = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/admin_global_broadcast.ts'), 'utf8'));
+const jarvis = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/jarvis/jarvis_data_contract_guard.test.ts'), 'utf8'));
+const functionsPackage = JSON.parse(normalizeEol(fs.readFileSync(path.join(root, 'functions/package.json'), 'utf8'))) as {
   scripts: Record<string, string>;
 };
-const appBroadcast = fs.readFileSync(path.join(root, 'app/global_broadcast_modal.ts'), 'utf8');
-const publicServer = fs.readFileSync(path.join(root, 'functions/src/global_broadcast_public.ts'), 'utf8');
+const appBroadcast = normalizeEol(fs.readFileSync(path.join(root, 'app/global_broadcast_modal.ts'), 'utf8'));
+const publicServer = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/global_broadcast_public.ts'), 'utf8'));
 
 function block(start: string, end: string): string {
   const from = html.indexOf(start);
@@ -39,7 +40,7 @@ describe('Admin D2 post-review security and truth contracts', () => {
   });
 
   test('global broadcast privacy scrub is owner-only, audited, cursor-bounded, and deployed in safe stages', () => {
-    const index = fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8');
+    const index = normalizeEol(fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8'));
     expect(server).toContain('FORBIDDEN_GLOBAL_BROADCAST_METADATA_FIELDS');
     expect(server).toContain("role !== 'owner'");
     expect(server).toContain("action: 'global_broadcast_metadata_scrub'");

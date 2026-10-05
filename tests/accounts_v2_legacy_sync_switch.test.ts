@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account V2, Пакет 7A (OD19) — сторож выключателя старой синхронизации.
@@ -258,7 +259,7 @@ describe('7A r2 — метка гидрации принадлежит акка�
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const switchModule = require('../app/accounts_v2_legacy_sync_switch') as typeof import('../app/accounts_v2_legacy_sync_switch');
     expect(switchModule.ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY).toBe(ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY);
-    const text = fs.readFileSync(path.join(ROOT, 'app', 'accounts_v2_legacy_sync_switch.ts'), 'utf8');
+    const text = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'accounts_v2_legacy_sync_switch.ts'), 'utf8'));
     expect(text).not.toMatch(/^import[^;]*account-session-v2/m);
   });
 
@@ -284,7 +285,7 @@ describe('7A r2 — метка гидрации принадлежит акка�
 describe('7A switch — писатели старого облака (структура cloud_sync)', () => {
   // зачем (8H-2): рабочая копия cloud_sync.ts в CRLF — без нормализации поиск многострочных
   // фрагментов с переводом строки промахивался, и два теста были красными независимо от кода.
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+  const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8')).split('\r\n').join('\n');
   const body = (name: string): string => {
     const start = source.indexOf(`async function ${name}(`);
     expect(start).toBeGreaterThan(0);
@@ -407,7 +408,7 @@ describe('8H — логи старой синхронизации V2-ключе�
   });
 
   test('doSyncToCloud зовёт лог V2-ключей до записи страниц и патча', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8')).split('\r\n').join('\n');
     const body = source.slice(source.indexOf('async function doSyncToCloud('));
     const logAt = body.indexOf('logAccountsV2LegacySyncKeys(storedData, data, previousSnapshot, cloudSyncSnapshotValueMatches);');
     expect(logAt).toBeGreaterThan(0);

@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const rules = readFileSync(resolve(__dirname, '../firestore.rules'), 'utf8');
+const rules = normalizeEol(readFileSync(resolve(__dirname, '../firestore.rules'), 'utf8'));
 
 describe('Telegram owner alerts Firestore boundary', () => {
   test('outbox is Admin SDK only and excluded from browser-admin catch-all', () => {

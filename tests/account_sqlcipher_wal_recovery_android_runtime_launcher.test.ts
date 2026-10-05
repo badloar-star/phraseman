@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 const PROBE_DIR = path.join(ROOT, 'runtime-probes/android-account-sqlcipher-recovery');
@@ -21,7 +22,7 @@ function expectRefused(result: ReturnType<typeof spawnSync>, code: string): void
 }
 
 function source(file: string): string {
-  return fs.readFileSync(file, 'utf8');
+  return normalizeEol(fs.readFileSync(file, 'utf8'));
 }
 
 // зачем: владелец 2026-09-30 разрешил WAL-кампанию на эмуляторе, но по умолчанию и лаунчер,

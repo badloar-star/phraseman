@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (relative: string) => fs.readFileSync(path.join(process.cwd(), relative), 'utf8');
+const read = (relative: string) => normalizeEol(fs.readFileSync(path.join(process.cwd(), relative), 'utf8'));
 
 describe('admin explanation cache access contract', () => {
   it('keeps mistake explanations private and routes the admin list through an authorized callable', () => {

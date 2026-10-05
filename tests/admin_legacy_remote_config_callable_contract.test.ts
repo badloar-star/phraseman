@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
-const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+const legacy = normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8'));
 
 // зачем (04.10): в живой админке порядок секций поменялся, поэтому конец функции ищем
 // по закрытию на втором отступе, а не по соседнему комментарию.

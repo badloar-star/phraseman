@@ -26,3 +26,27 @@ describe('formatRelativeVideoDate', () => {
     expect(formatRelativeVideoDate(new Date(NOW + 86_400_000).toISOString(), 'ru', NOW)).toBe('сегодня');
   });
 });
+
+describe('formatVideoDuration + durationSec in the catalog contract', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { formatVideoDuration } = require('../components/video/formatVideoDuration');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { parseYoutubeVideoSnapshot } = require('../shared/youtube_catalog_contract');
+  const base = {
+    id: 'abcdefghijk', channelId: 'phraseman_en', title: 'T', description: '', state: 'video',
+    thumbnailUrl: 'https://i.ytimg.com/vi/abcdefghijk/hqdefault.jpg', watchUrl: 'https://www.youtube.com/watch?v=abcdefghijk', playlistIds: [],
+  };
+
+  it('formats like the mockup and hides missing values', () => {
+    expect(formatVideoDuration(754)).toBe('12:34');
+    expect(formatVideoDuration(3723)).toBe('1:02:03');
+    expect(formatVideoDuration(undefined)).toBe('');
+    expect(formatVideoDuration(0)).toBe('');
+  });
+
+  it('keeps a valid durationSec and drops a broken one without failing the video', () => {
+    expect(parseYoutubeVideoSnapshot({ ...base, durationSec: 754 }).durationSec).toBe(754);
+    expect(parseYoutubeVideoSnapshot({ ...base, durationSec: 'x' }).durationSec).toBeUndefined();
+    expect(parseYoutubeVideoSnapshot(base).durationSec).toBeUndefined();
+  });
+});

@@ -106,6 +106,8 @@ export function mergeYoutubeVideoSources(input: {
     const scheduledStartTime = activeOverride?.scheduledStartOverride ?? source?.liveStreamingDetails?.scheduledStartTime;
     const actualStartTime = source?.liveStreamingDetails?.actualStartTime;
     const actualEndTime = source?.liveStreamingDetails?.actualEndTime;
+    // зачем (video-009, макет «12:34» на обложке): длительность уже приходит тем же videos.list — кладём в снимок.
+    const durationSec = parseYoutubeDurationSeconds(source?.duration);
     output.push({
       id,
       channelId: input.channelId,
@@ -115,6 +117,7 @@ export function mergeYoutubeVideoSources(input: {
       watchUrl: `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`,
       ...(source?.publishedAt ? { publishedAt: source.publishedAt } : {}),
       ...(source?.viewCount == null ? {} : { viewCount: source.viewCount }),
+      ...(durationSec && durationSec > 0 ? { durationSec } : {}),
       state: classifyYoutubeVideo({ scheduledStartTime, actualStartTime, actualEndTime }, input.nowMs),
       ...(scheduledStartTime ? { scheduledStartTime } : {}),
       ...(actualStartTime ? { actualStartTime } : {}),

@@ -78,6 +78,8 @@ export type YoutubeVideoSnapshot = {
   watchUrl: string;
   publishedAt?: string;
   viewCount?: number;
+  /** Длительность ролика в секундах (contentDetails.duration). Нет у старых снимков и премьер. */
+  durationSec?: number;
   state: YoutubeVideoState;
   scheduledStartTime?: string;
   actualStartTime?: string;
@@ -465,6 +467,9 @@ export function parseYoutubeVideoSnapshot(value: unknown): YoutubeVideoSnapshot 
   if (state === 'completed' && !actualEndTime) fail('completed_video_actual_end_required');
   const publishedAt = optionalIsoDate(source.publishedAt, 'video_published_at_invalid');
   const viewCount = source.viewCount == null ? undefined : finiteNumber(source.viewCount, 'video_view_count_invalid');
+  // зачем (video-009, координатор 05.10): длительность необязательна; битое значение не роняет весь ролик — просто без бейджа.
+  const durationSec = typeof source.durationSec === 'number' && Number.isFinite(source.durationSec)
+    && source.durationSec > 0 && source.durationSec <= 86_400 * 7 ? Math.floor(source.durationSec) : undefined;
   return {
     id: videoId(source.id, 'video_id_invalid'),
     channelId: internalId(source.channelId, 'video_channel_id_invalid'),
@@ -476,6 +481,7 @@ export function parseYoutubeVideoSnapshot(value: unknown): YoutubeVideoSnapshot 
     watchUrl: youtubeUrl(source.watchUrl, 'video_watch_url_invalid'),
     ...(publishedAt ? { publishedAt } : {}),
     ...(viewCount == null ? {} : { viewCount }),
+    ...(durationSec == null ? {} : { durationSec }),
     state,
     ...(scheduledStartTime ? { scheduledStartTime } : {}),
     ...(actualStartTime ? { actualStartTime } : {}),

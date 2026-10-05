@@ -6,6 +6,7 @@ import Animated from 'react-native-reanimated';
 import { VIDEO_PLAYER_REVEAL } from '../video/videoMotion';
 import type { YoutubeVideoSnapshot } from '../../shared/youtube_catalog_contract';
 import { formatRelativeVideoDate } from '../video/formatRelativeVideoDate';
+import { formatVideoDuration } from '../video/formatVideoDuration';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
@@ -60,6 +61,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
     ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' })
     : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' });
   // зачем (Сверка video-009, макет «2 дня назад»): дата относительная, по языку интерфейса.
+  const duration = formatVideoDuration(video.durationSec);
   const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views, savedLine].filter(Boolean);
   const content = (
     <>
@@ -72,6 +74,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
             <View style={styles.scrim} />
             {/* зачем: `.thumb .pl` макета — круглая «play» слева-снизу кадра; кадр целиком и есть кнопка «Смотреть». */}
             <VideoPlayBadge small={compactLayout} />
+            {/* зачем (video-009): `.du` макета — длительность справа внизу; без данных (старый сервер, премьера) бейджа нет. */}
+            {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
           </>
         )}
       </View>
@@ -139,6 +143,9 @@ const styles = StyleSheet.create({
   bodyCompact: { flex: 1, minWidth: 0, paddingTop: 0, paddingBottom: 0 },
   bodyPlaying: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 14 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  // `.du`: 22 высота, поля 7, радиус 7, чёрный 72%, 12/700 → 13 по D145.
+  duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' },
+  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 16, fontWeight: '700' },
   titleCompact: { fontSize: 16, lineHeight: 21 },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },

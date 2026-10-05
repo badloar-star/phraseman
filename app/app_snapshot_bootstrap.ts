@@ -164,12 +164,26 @@ function buildProgressSnapshot(
     streak: readInt(values.get('streak_count')),
     studyTarget: storageStudyTarget(studyTarget),
     // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
-    stars: bootRunes === null && current.progress?.stars === undefined
+    ...mergeBootRunesIntoProgress(current.progress, bootRunes),
+  };
+}
+
+/**
+ * Руны с диска поверх снимка: null — прочитать не вышло, прежнее значение не трогаем (никогда 0 поверх
+ * неизвестного); иначе берём БОЛЬШЕЕ из диска и памяти (свежее начисление спина не занижается).
+ * зачем (пакет 10:26): та же формула нужна и для отдельного патча рун после публикации снимка.
+ */
+export function mergeBootRunesIntoProgress(
+  progress: Readonly<{ stars?: number; starsEarnedTotal?: number }> | undefined,
+  bootRunes: Readonly<{ balance: number; earnedTotal: number }> | null,
+): { stars: number | undefined; starsEarnedTotal: number | undefined } {
+  return {
+    stars: bootRunes === null && progress?.stars === undefined
       ? undefined
-      : Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0),
-    starsEarnedTotal: bootRunes === null && current.progress?.starsEarnedTotal === undefined
+      : Math.max(bootRunes?.balance ?? 0, progress?.stars ?? 0),
+    starsEarnedTotal: bootRunes === null && progress?.starsEarnedTotal === undefined
       ? undefined
-      : Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0),
+      : Math.max(bootRunes?.earnedTotal ?? 0, progress?.starsEarnedTotal ?? 0),
   };
 }
 
@@ -262,23 +276,23 @@ export async function primeAppSnapshotFromStorage(
   const partsStartedAt = Date.now();
   const parts: Record<string, number> = {};
   const mark = (name: string) => { parts[name] = Date.now() - partsStartedAt; };
-  const [storageRead, , bootRunes] = await Promise.all([
+  // зачем (пакет 10:26: runesImport 2,1–2,9 с держал публикацию при multiGet 60–200 мс): руны читаются параллельно,
+  // но публикацию не держат — досылаются отдельным патчем ниже.
+  const bootRunesPromise = import('./level_spin_star_grants')
+    .then((module) => { mark('runesImportMs'); return module.peekStoredLevelSpinStarsForBoot(accountGeneration); })
+    .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null))
+    .finally(() => mark('runesPeekMs'));
+  const [storageRead] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
       (pairs) => { mark('multiGetMs'); return { ok: true as const, pairs }; },
       () => { mark('multiGetMs'); return { ok: false as const, pairs: [] as [string, string | null][] }; },
     ),
     hydrateUserSettingsFromStorage(settingsBootReadScope).catch(noteSwallowedHandler('app_snapshot_bootstrap:hydrateUserSettingsFromStorage')).finally(() => mark('settingsMs')),
     // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
-    // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
-    // стал длиннее ни на один лишний последовательный поход в хранилище.
-    // Импорт ленивый: модуль грантов весит ~740 строк, и тянуть его в стартовый
-    // бандл ради одного getItem противоречит Performance Bible (_layout.tsx
-    // подключает его тем же `await import`).
-    import('./level_spin_star_grants')
-      .then((module) => { mark('runesImportMs'); return module.peekStoredLevelSpinStarsForBoot(accountGeneration); })
-      .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null))
-      .finally(() => mark('runesPeekMs')),
+    // (level_spin_star_projection_v1:<uid>). Импорт ленивый: модуль грантов весит ~740 строк, и тянуть его в
+    // стартовый бандл ради одного getItem противоречит Performance Bible. Читаются выше (bootRunesPromise).
   ]);
+  const bootRunes = null;
   console.warn('[BOOT-SNAPSHOT] parts', JSON.stringify({ ...parts, keys: keys.length, sincePrimeStartMs: Date.now() - now })); // guard-ok: временная трассировка HOME-COLD
 
   if (!isAccountCurrent()) { exit('account_changed:multiget'); return; }
@@ -328,6 +342,18 @@ export async function primeAppSnapshotFromStorage(
       lessonProgressKeysFound: lessonProgressKeys.filter((key) => values.get(key) != null).length,
     })); // guard-ok: временная трассировка HOME-COLD, одна строка за запуск
   }
+  // зачем (пакет 10:26): руны досылаются отдельным патчем, когда доедет модуль монет; правила слияния те же.
+  void bootRunesPromise.then((runes) => {
+    if (!isAccountCurrent()) { exit('account_changed:runes_patch'); return; }
+    if (runes === null) {
+      console.warn('[BOOT-SNAPSHOT] runes_patch:skip', JSON.stringify({ reason: 'runes_unreadable', ms: Date.now() - now })); // guard-ok: ранний выход логируется
+      return;
+    }
+    patchAppSnapshot((current) => (current.progress
+      ? { progress: { ...current.progress, ...mergeBootRunesIntoProgress(current.progress, runes) } }
+      : {}));
+    console.warn('[BOOT-SNAPSHOT] runes_patched', JSON.stringify({ ms: Date.now() - now })); // guard-ok: временная трассировка HOME-COLD
+  });
   // зачем: PM-211 — после публикации, не в критическом пути первого кадра (см. primeFriendsSnapshot).
   void primeFriendsSnapshot();
 }

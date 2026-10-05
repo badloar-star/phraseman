@@ -458,6 +458,20 @@ const homeModuleEvaluatedAt = Date.now();
 let homeFirstRenderStartedAt = 0;
 let homeFirstRenderLogged = false;
 let homeColdFirstFrameLogged = false;
+// [HOME-EFFECTS] (в): окно после фиксации первого монтирования — эффекты детей + планирование, затем свои эффекты Главной.
+let homeFirstCommittedAt = 0;
+let homeFirstPassiveStartedAt = 0;
+let homeEffectsLogged = false;
+function logHomeFirstMountEffectsTiming(): void {
+  if (homeEffectsLogged || homeFirstPassiveStartedAt === 0) return;
+  homeEffectsLogged = true;
+  const doneAt = Date.now();
+  console.warn('[HOME-EFFECTS] first_mount', JSON.stringify({
+    sinceCommitMs: homeFirstCommittedAt ? homeFirstPassiveStartedAt - homeFirstCommittedAt : null,
+    ownPassiveMs: doneAt - homeFirstPassiveStartedAt,
+    doneEpochMs: doneAt,
+  })); // guard-ok: одна строка за запуск, временная трассировка старта
+}
 // зачем (пакет 07:26 [HOME-COLD]: videos=0 на первом кадре, сеть до 10 с): последний показанный снимок ленты (RSS-путь) —
 // повторный вход на Главную берёт его в первом кадре; сеть ходит один раз за запуск, флаг ставится только при успехе.
 let homeVideoSnapshotMemo: Readonly<{ videos: readonly LingmanYoutubeVideo[]; latestVideoId: string | null; error: boolean }> | null = null;
@@ -466,6 +480,7 @@ function logHomeFirstRenderTiming(): void {
   if (homeFirstRenderLogged) return;
   homeFirstRenderLogged = true;
   const committedAt = Date.now();
+  homeFirstCommittedAt = committedAt;
   console.warn('[HOME-RENDER] first', JSON.stringify({
     moduleToRenderMs: homeFirstRenderStartedAt - homeModuleEvaluatedAt,
     renderToCommitMs: committedAt - homeFirstRenderStartedAt,
@@ -479,6 +494,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
   // самого горячего экрана обязано быть чистым. Исключение — одна проверка числа ниже: после первого рендера
   // она ничего не делает (координатор 05.10, [HOME-RENDER]).
   if (homeFirstRenderStartedAt === 0) homeFirstRenderStartedAt = Date.now();
+  // зачем ((в), пакет 07:26: фиксация +5,6 с → кадр +8,1 с): ПЕРВЫЙ объявленный пассивный эффект Главной. Пассивные
+  // эффекты идут по порядку объявления, дочерние — раньше родителя; пара с последним эффектом ниже делит окно.
+  useEffect(() => { if (homeFirstPassiveStartedAt === 0) homeFirstPassiveStartedAt = Date.now(); }, []);
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
@@ -2316,6 +2334,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             tr: `${earnedTitles.length}/${allTitles.length} acildi`,
             pl: `${earnedTitles.length} z ${allTitles.length} odblokowane`,
         });
+    // зачем ((в)): ПОСЛЕДНИЙ объявленный пассивный эффект Главной — к нему все её эффекты первого монтирования уже отработали.
+    useEffect(() => { logHomeFirstMountEffectsTiming(); }, []);
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>
       <View style={{ flex: 1 }}>

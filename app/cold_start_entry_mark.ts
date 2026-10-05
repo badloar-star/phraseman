@@ -91,7 +91,9 @@ export function takeModuleEvalReport(
       while (cursor && chain.length < 7) { chain.push(cursor); cursor = firstRequirer.get(cursor) ?? null; }
       return chain.join(' ← ');
     })
-    .join(' || ');
+    .join(' || ')
+    // logcat режет строки ~4000 символов — держим запас.
+    .slice(0, 3500);
   const report = { modules: moduleCount, selfSumMs, self: fmt(moduleSelfMs), total: fmt(moduleTotalMs), chains };
   moduleSelfMs.clear();
   moduleTotalMs.clear();

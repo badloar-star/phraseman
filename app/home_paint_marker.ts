@@ -37,7 +37,10 @@ export function markHomeFirstPaint(): void {
     // Дев: что исполнялось между концом импортов корня и кадром Главной (ленивый чанк Главной и т.п.).
     const moduleReport = takeModuleEvalReport(15, { stop: true });
     if (moduleReport) {
-      console.warn(`[COLD-START] home_paint.module_eval ${JSON.stringify(moduleReport)}`);
+      // зачем (координатор 05.10): logcat режет строки ~4000 символов — цепочки требователей отдельной строкой.
+      const { chains, ...rest } = moduleReport;
+      console.warn(`[COLD-START] home_paint.module_eval ${JSON.stringify(rest)}`);
+      console.warn(`[COLD-START] home_paint.module_eval:chains ${chains}`);
     }
     if (typeof paintHolder.__phrasemanHomePaintedAt !== 'number') {
       paintHolder.__phrasemanHomePaintedAt = Date.now();

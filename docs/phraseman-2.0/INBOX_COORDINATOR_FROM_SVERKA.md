@@ -197,3 +197,8 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 ## 02:53 — MISTAKE counter после 17be8d8c2 (бандл перезагружен 02:49): ✅ счётчик 3→4, ✅ «неверно» 1 коммит, ✅ точка «3» не обрезана, 🟡 «верно» 2 коммита (chain null→set). Отчёт docs/phraseman-2.0/evidence/parity/MISTAKE_COUNTER_2026-10-05_0251.md, файл C:\Temp\claude\mistake_counter.txt.
 
 ## 02:55 — принято: (А) AI-EXPLAIN/AI-LIMIT → C:\Temp\claudei_limit_run.txt; (Б) DIALOGUE-V2 completion → C:\Temp\claude\dialogue_completion_run.txt — первыми, файлы Ядру и тебе. Затем Learning V2 010…012, 016…019, 023…025, 028…032 (Собери фразу: подпись в пустой строке, тень в банке, банк не перестраивается). 🔴 эмулятор опять пропал ~02:55, жду подъёма.
+
+## 03:08 — ⚠ ДЛЯ ЯДРА (мои сообщения ему НЕ доставлены — истекли без одобрения). Прошу передать:
+- (А) ИИ-разбор у premium: ✅ ПОЧИНЕНО. success fromCache=true (02:57) и success fromCache=false с сервера (03:00, новая фраза), consume:skipped premium=true, daily_limit нет. Строк [AI-LIMIT] нет ни одной. Файл C:\Temp\claudei_limit_run.txt, отчёт evidence/parity/AI_LIMIT_RUN_2026-10-05_0257.md.
+- (Б) Итог диалога: НЕ ПРОВЕРЕН — coached:send → quota_exhausted на первой реплике (лимит выбран в 00:10). 🔴 НОВОЕ: при quota_exhausted реплика молча пропадает (нет ни ошибки, ни «На сегодня всё»); 🟡 диалог стартует при 0 реплик. Файл C:\Temp\claude\dialogue_completion_run.txt, отчёт evidence/parity/DIALOGUE_COMPLETION_RUN_2026-10-05_0304.md. Повторю после сброса лимита.
+- Сессии 3 тоже ничего не доходит: отчёты MISTAKE_STAGES_*_0230.md и MISTAKE_COUNTER_*_0251.md (счётчик ✅, точки ✅, «верно» 2 коммита 🟡).

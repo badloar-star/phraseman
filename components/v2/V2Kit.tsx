@@ -36,6 +36,7 @@ import V2Pressable from './V2Pressable';
 import { V2GlassSheen, V2IconTile, useV2GlassStyle } from './V2Glass';
 import { useV2Palette } from './useV2Palette';
 import { V2, V2_TYPE } from '../../constants/v2Style';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -100,7 +101,7 @@ export const V2IconButton = memo(function V2IconButton({ icon, onPress, accessib
       scaleTo={0.92}
       hitSlop={8}
       style={[
-        s.round,
+        styles.round,
         { width: size, height: size, borderRadius: size / 2, borderColor: p.stroke }, // guard-ok: D43
         variant === 'glass' ? { backgroundColor: p.glassRaised } : { backgroundColor: 'transparent' },
       ]}
@@ -125,6 +126,7 @@ type ScreenHeaderProps = {
 /** «‹ Отрицание с To Be / Теория к уроку … ⋯» — заголовок рядом со стрелкой. */
 export function V2ScreenHeader({ title, subtitle, onBack, backLabel = 'Back', right, testID }: ScreenHeaderProps) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View testID={testID} style={s.header}>
       {onBack ? <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={backLabel} testID={testID ? `${testID}-back` : undefined} /> : null}
@@ -140,6 +142,7 @@ export function V2ScreenHeader({ title, subtitle, onBack, backLabel = 'Back', ri
 /** Крупный заголовок экрана («Карточки», «Диалоги») с подписью. */
 export function V2LargeTitle({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View style={s.largeTitleRow}>
       <View style={{ flex: 1, minWidth: 0 }}>
@@ -154,6 +157,7 @@ export function V2LargeTitle({ title, subtitle, right }: { title: string; subtit
 /** «Лучшее у сообщества ……… Смотреть все ›» */
 export function V2SectionHeader({ title, actionLabel, onAction, count }: { title: string; actionLabel?: string; onAction?: () => void; count?: number }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View style={s.sectionRow}>
       <Text accessibilityRole="header" style={[s.sectionTitle, { color: p.text }]}>
@@ -196,6 +200,7 @@ type RowProps = {
 
 export const V2Row = memo(function V2Row({ title, subtitle, icon, iconShape = 'square', leading, trailing, badge, chevron = true, onPress, onLongPress, dimmed, seed = 0, testID, disabled, flat }: RowProps) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   const content = (
     <>
       {leading ?? (icon ? <V2IconTile name={icon} shape={iconShape} size={V2.rowIcon} iconSize={21} /> : null)}
@@ -241,6 +246,7 @@ type ButtonProps = {
 
 export const V2Button = memo(function V2Button({ label, onPress, variant = 'primary', icon, iconPosition = 'trailing', loading, disabled, size = 'large', testID, style }: ButtonProps) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   const height = size === 'large' ? V2.cta.height : 40;
   const fg = variant === 'primary' || variant === 'accent' ? p.ctaText : p.text;
   const bg = variant === 'primary' ? p.cta : variant === 'accent' ? p.accentFill : 'transparent';
@@ -277,6 +283,7 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
 
 export const V2Badge = memo(function V2Badge({ label, tone = 'glass' }: { label: string; tone?: 'glass' | 'outline' }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View
       style={[s.badge, tone === 'glass' ? { backgroundColor: p.control } : { borderWidth: 1, borderColor: p.stroke }]} // guard-ok: D43
@@ -290,14 +297,15 @@ export const V2ProgressBar = memo(function V2ProgressBar({ value, style }: { val
   const p = useV2Palette();
   const ratio = Math.max(0, Math.min(1, Number.isFinite(value) ? value : 0));
   return (
-    <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: 100, now: Math.round(ratio * 100) }} style={[s.track, { backgroundColor: p.track }, style]}>
-      <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />
+    <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: 100, now: Math.round(ratio * 100) }} style={[styles.track, { backgroundColor: p.track }, style]}>
+      <View style={[styles.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />
     </View>
   );
 });
 
 export function V2SearchField(props: TextInputProps & { onFilterPress?: () => void; filterLabel?: string }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   const glass = useV2GlassStyle();
   const { onFilterPress, filterLabel = 'Filter', style, ...input } = props;
   return (
@@ -324,6 +332,7 @@ export function V2SearchField(props: TextInputProps & { onFilterPress?: () => vo
 /** «Небольшой совет» / «ГЛАВНОЕ ПРАВИЛО»: плашка-значок + оверлайн + текст. */
 export function V2InfoCard({ icon, overline, title, body, onPress, seed = 2 }: { icon: IconName; overline?: string; title?: string; body?: React.ReactNode; onPress?: () => void; seed?: number }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <V2Card seed={seed} onPress={onPress} style={s.info}>
       <V2IconTile name={icon} size={52} iconSize={24} />
@@ -342,6 +351,7 @@ export type V2Stat = Readonly<{ icon: IconName; label: string; value: string }>;
 /** «Урок 8 из 12 | Карточек 50 | Время ~12 мин | Сложность Легко» */
 export function V2StatStrip({ stats }: { stats: readonly V2Stat[] }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View style={s.statStrip}>
       {stats.map((stat, i) => (
@@ -365,6 +375,7 @@ type AnswerState = 'idle' | 'correct' | 'wrong' | 'dimmed';
 /** Вариант ответа в тренировках — контур, текст по центру (референс «Блиц»). */
 export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, state = 'idle', disabled, testID }: { label: string; onPress?: () => void; state?: AnswerState; disabled?: boolean; testID?: string }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   const border = state === 'correct' ? p.correct : state === 'wrong' ? p.wrong : p.outline;
   const bg = state === 'correct' ? `${p.correct}22` : state === 'wrong' ? `${p.wrong}22` : 'transparent';
   return (
@@ -384,6 +395,7 @@ export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, sta
 /** Каркас нижней шторки: ручка, заголовок + подпись, ✕. Сам лист — стекло. */
 export function V2SheetFrame({ title, subtitle, onClose, closeLabel = 'Close', children, bottomInset = 0 }: { title?: string; subtitle?: string; onClose?: () => void; closeLabel?: string; children: React.ReactNode; bottomInset?: number }) {
   const p = useV2Palette();
+  const s = useScaledTextStyles(styles);
   return (
     <View
       style={[s.sheet, { backgroundColor: p.sheet, borderColor: p.stroke, paddingBottom: 16 + bottomInset }]} // guard-ok: D43
@@ -404,7 +416,9 @@ export function V2SheetFrame({ title, subtitle, onClose, closeLabel = 'Close', c
   );
 }
 
-const s = StyleSheet.create({
+// зачем (FONTSCALE2, координатор 05.10): при крупном системном шрифте межстрочный растёт вместе с ним, иначе низ букв
+// срезается; шрифт не сжимаем. При 1.0 useScaledTextStyles отдаёт ЭТОТ ЖЕ объект — вид по макету без изменений.
+const styles = StyleSheet.create({
   round: { alignItems: 'center', justifyContent: 'center', borderWidth: 1, overflow: 'hidden' }, // guard-ok: D43
   header: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: V2.iconButton + 8 },
   headerCopy: { flex: 1, minWidth: 0 },
@@ -430,7 +444,7 @@ const s = StyleSheet.create({
   track: { height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },
   searchRow: { flexDirection: 'row', gap: 10 },
-  search: { flex: 1, height: 50, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14 },
+  search: { flex: 1, minHeight: 50, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14 },
   searchInput: { flex: 1, fontSize: 16, paddingVertical: 0 },
   searchFilter: { width: 50, height: 50, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   info: { flexDirection: 'row', alignItems: 'center', gap: 16, padding: 16 },

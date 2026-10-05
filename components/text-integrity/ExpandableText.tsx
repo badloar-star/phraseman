@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { Pressable, type StyleProp, type TextProps, type TextStyle } from 'react-native';
+import { Pressable, StyleSheet, type StyleProp, type TextProps, type TextStyle } from 'react-native';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import { InternalFlowText } from './FlowText';
+import { useLineScale } from '../../hooks/useLineScale';
 
 type ExpandableProvenance = 'user' | 'external';
 type UnsafeNativeTextProp = 'numberOfLines' | 'ellipsizeMode' | 'allowFontScaling' | 'adjustsFontSizeToFit' | 'minimumFontScale';
@@ -14,6 +15,11 @@ export type ExpandableTextProps = Omit<TextProps, UnsafeNativeTextProp | 'childr
   provenance: ExpandableProvenance;
   previewCharacterBudget?: number;
   style?: StyleProp<TextStyle>;
+  /**
+   * Цвет подписи «Показать полностью / Свернуть» — токен темы экрана (например glass.text).
+   * Не задан — берётся цвет самого текста, чтобы подпись никогда не оказалась тёмной на тёмном.
+   */
+  toggleColor?: string;
 };
 
 export function expandableTextLabels(lang: Lang, expanded: boolean): string {
@@ -121,12 +127,14 @@ export function ExpandableText({
   testID,
   provenance,
   previewCharacterBudget = 160,
+  toggleColor,
   ...textProps
 }: ExpandableTextProps) {
   if (provenance !== 'user' && provenance !== 'external') {
     throw new Error('ExpandableText requires user or external provenance');
   }
   const { lang } = useLang();
+  const lh = useLineScale();
   const normalizedBudget = safeBudget(previewCharacterBudget);
   const preview = useMemo(
     () => buildExpandablePreview(text, normalizedBudget),
@@ -150,6 +158,8 @@ export function ExpandableText({
   const needsControl = preview !== text;
   const visible = expanded || !needsControl ? text : preview;
   const label = expandableTextLabels(lang, expanded);
+  // зачем (Сверка 05.10, video-009 🔴): подпись кнопки шла без цвета и на тёмных темах была невидима.
+  const labelColor = toggleColor ?? (StyleSheet.flatten(textProps.style)?.color as string | undefined);
 
   return (
     <>
@@ -172,7 +182,7 @@ export function ExpandableText({
           accessibilityState={{ expanded }}
           aria-label={label}
           aria-expanded={expanded}
-          style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}
+          style={{ minWidth: 44, minHeight: 44, alignSelf: 'flex-start', alignItems: 'center', justifyContent: 'center' }}
           onPress={() => setExpansion({
             text,
             testID,
@@ -181,7 +191,12 @@ export function ExpandableText({
             expanded: !expanded,
           })}
         >
-          <InternalFlowText testID={`${testID}-toggle-label`} provenance="authored" semanticMode="flow">
+          <InternalFlowText
+            testID={`${testID}-toggle-label`}
+            provenance="authored"
+            semanticMode="flow"
+            style={{ color: labelColor, fontSize: 16, lineHeight: lh(22), fontWeight: '600' }}
+          >
             {label}
           </InternalFlowText>
         </Pressable>

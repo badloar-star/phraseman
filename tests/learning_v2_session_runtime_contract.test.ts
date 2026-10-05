@@ -7,6 +7,7 @@ import {
 } from "../modules/learning-v2/content/legacy_lesson_payload";
 import { compileV2RequiredSessions } from "../modules/learning-v2/content/session_compiler";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 import {
   getLesson1SessionRuntime,
   getLesson1SourcePayload,
@@ -80,6 +81,9 @@ test("background completion transport stays outside the active session route", (
     "app/learning_v2_completion_background_scheduler.ts",
   );
   const functionsIndex = source("functions/src/index.ts");
+  // зачем (05.10): с 478b03750 (23.08) контент-фабрика Learning V2 — своя кодбаза functions-content; экспорт
+  // каталога и выдачи сессии живёт в functions-content/index.ts, не в основной.
+  const contentFunctionsIndex = source("functions-content/index.ts");
   const sync = source("app/learning_v2_required_session_completion_sync.ts");
   expect(runtime).not.toContain("required_session_completion_sync");
   expect(sync).toContain("'submitLearningV2RequiredSessionCompletion'");
@@ -101,7 +105,10 @@ test("background completion transport stays outside the active session route", (
   expect(functionsIndex).not.toContain(
     "submitLearningV2ActivityReleasedSessionV2",
   );
-  expect(functionsIndex).toContain("learningV2CourseActiveCatalogGetV1");
+  expect(contentFunctionsIndex).not.toContain(
+    "submitLearningV2ActivityReleasedSessionV2",
+  );
+  expect(contentFunctionsIndex).toContain("learningV2CourseActiveCatalogGetV1");
   const catalogContract = source(
     "modules/learning-v2/runtime/course_active_catalog_v1.ts",
   );
@@ -183,8 +190,10 @@ test("released render drives the full task surface without switching transport m
 test("an interrupted session always remounts from the intro with a new run id", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");
   expect(runtime).toContain("const [cardIndex, setCardIndex] = useState(3)");
+  // зачем (05.10): интро по-прежнему не пройдено при старте; единственное исключение — явный skipTheory=1 из
+  // окна карты (интро считается пройденным, слоты 1–3 помечаются skipped). Раньше было useState(false).
   expect(runtime).toContain(
-    "const [introComplete, setIntroComplete] = useState(false)",
+    "const [introComplete, setIntroComplete] = useState(() => skipTheory)",
   );
   expect(runtime).toContain(
     "const sessionRunIdRef = useRef(Crypto.randomUUID())",
@@ -228,11 +237,14 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   expect(runtime).toContain("setPracticeIndex(0)");
   expect(runtime).toContain("key={sessionRunIdRef.current}");
   expect(runtime).not.toMatch(/restore.*practiceIndex|resume.*practiceIndex/iu);
-  expect(runtime).toContain("prepareCurrentLearningV2CourseSessionV3({");
-  expect(runtime).toContain(
-    "resolveLearningV2CourseSessionReadyMaterialV3(handle)",
+  // зачем (05.10): подготовка занятия переехала из плеера на вкладку «Уроки» (1d70c8fc5): карта готовит занятие до
+  // перехода, плеер получает готовый handle и берёт из него материал. Завершение больше не требует handle —
+  // у авторского предпросмотра его нет; обязательны прогон и его сводка.
+  expect(lessons).toContain("mod.prepareCurrentLearningV2CourseSessionV3({");
+  expect(runtime).toContain("resolveLearningV2CourseSessionReadyMaterialV3(");
+  expect(finishBody).toContain(
+    "if (!run || finishing || finishingRef.current || !runSummary) return;",
   );
-  expect(runtime).toContain("if (!readyHandle || !run || !runSummary");
   expect(runtime).toContain(
     "resolveLearningV2CourseSessionSelectableAudioV1({",
   );
@@ -248,16 +260,19 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   expect(functionsIndex).not.toContain(
     "submitLearningV2ActivityReleasedSessionV2",
   );
-  expect(functionsIndex).toContain("learningV2CourseReleasedSessionGetV3");
+  expect(source("functions-content/index.ts")).toContain("learningV2CourseReleasedSessionGetV3");
   expect(functionsIndex).not.toContain("server_active_release_answer_sequence");
 });
 
 test("the real session exposes an accessible zero-star skip without transport work", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");
+  // зачем (05.10): прежняя граница среза «if (!session || !item» из кода ушла — срез тянул хвост файла до конца
+  // и ловил чужие await. Граница — следующая за skip функция.
   const skipBody = runtime.slice(
     runtime.indexOf("const skip = () =>"),
-    runtime.indexOf("if (!session || !item"),
+    runtime.indexOf("const resetLearningV2RouteAfterSessionRuneForfeit = useCallback"),
   );
+  expect(skipBody.length).toBeGreaterThan(0);
   expect(runtime).toContain("accessibilityLabel={copy.skipTask}");
   expect(runtime).toContain("accessibilityHint={copy.skipHint}");
   expect(skipBody).toContain('disposition: "skipped"');
@@ -275,7 +290,8 @@ test("Lesson 1 runtime is a bounded frozen cache shared by map warm-up and sessi
 
   expect(first).toBe(second);
   expect(first.payload).toBe(getLesson1SourcePayload());
-  expect(first.compiled.sessions).toHaveLength(12);
+  // зачем (05.10): урок — 56 сессий по 12 заданий (владелец 16.08, ee3e4d297); число — из топологии курса.
+  expect(first.compiled.sessions).toHaveLength(LEARNING_V2_LESSON_SESSION_COUNT_V1);
   expect(
     first.compiled.sessions.every((session) => session.cards.length === 12),
   ).toBe(true);

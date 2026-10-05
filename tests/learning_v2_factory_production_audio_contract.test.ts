@@ -20,7 +20,9 @@ const lessonPack = readFileSync("app/learning_v2_lesson_audio_pack_v1.ts", "utf8
 
 assert.match(client, /buildLearningV2FactoryBundledAudioChildV1\(factory\.learnerChild\)/);
 assert.doesNotMatch(client, /audioDelivery: audioChild \? "published_mp3" as const : "device_speech" as const/);
-assert.match(client, /if \(!audioChild\) return null;/);
+// зачем (05.10): с f2259e1e9 между условием и возвратом стоит лог [V2-BUNDLED] null step=audio_child — правило то же:
+// без полной озвучки сессия НЕ выдаётся (никакой подмены речью устройства).
+assert.match(client, /if \(!audioChild\) \{\s*console\.warn\(`\[V2-BUNDLED\] null step=audio_child[\s\S]{0,400}?\);\s*return null;\s*\}/);
 assert.match(preload, /resolvePreparedLearningV2VoiceAudioOfflineFileV1/);
 assert.doesNotMatch(preload, /downloadLearningV2ActivityAudioBytesV1|Asset\.fromModule/);
 assert.match(preload, /all_selected_mp3_verified_before_session_start/);

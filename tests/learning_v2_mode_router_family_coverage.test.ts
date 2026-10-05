@@ -9,6 +9,15 @@
  * роутере", без раздувания до полноценного e2e.
  */
 
+// зачем (05.10): mode_router_v1.tsx импортирует компоненты режимов, а те тянут цепочку UI-модулей (иконки в ESM,
+// анимации, стекло, хуки фокуса) — сюит падал до первой проверки. Тест проверяет только ТАБЛИЦЫ роутера и
+// компоненты не рендерит, поэтому сами компоненты режимов заменены пустыми.
+jest.mock("../modules/learning-v2/modes/phrase_builder_mode_v1", () => ({ __esModule: true, default: () => null }));
+jest.mock("../modules/learning-v2/modes/listen_choose_mode_v1", () => ({ __esModule: true, default: () => null }));
+jest.mock("../modules/learning-v2/modes/listen_build_dictation_mode_v1", () => ({ __esModule: true, default: () => null }));
+jest.mock("../modules/learning-v2/modes/context_gap_grammar_mode_v1", () => ({ __esModule: true, default: () => null }));
+jest.mock("../modules/learning-v2/modes/speed_match_mode_v1", () => ({ __esModule: true, default: () => null }));
+
 import { SESSION_KIND_FAMILIES } from "../modules/learning-v2/content/source/episode_01_session_map_v1";
 import type { LearningV2ActivityFamilyCode } from "../modules/learning-v2/telemetry";
 import {
@@ -48,8 +57,11 @@ describe("Learning V2 mode router — family coverage guard", () => {
   it("MODE_ROUTER_IMPLEMENTED_FAMILIES_V1 covers every non-voice family used by content", () => {
     // scripted_repeat_compare сознательно исключена (см. комментарий выше) —
     // остальные 6 обязаны быть в роутере, если контент их использует.
+    // зачем (05.10): sound_contrast удалён из роутера НАМЕРЕННО (50eea79a4; подпись в роутере «Удалённый режим (не
+    // назначать)») — такие задания плеер рисует универсальной карточкой. Старая карта сессий эпизода 1 всё ещё его
+    // называет — это вопрос контента (передано координатору), не дыра роутера.
     const nonVoiceFamiliesInContent = ALL_FAMILIES_IN_CONTENT.filter(
-      (family) => family !== "scripted_repeat_compare",
+      (family) => family !== "scripted_repeat_compare" && family !== "sound_contrast",
     );
     for (const family of nonVoiceFamiliesInContent) {
       expect(MODE_ROUTER_IMPLEMENTED_FAMILIES_V1).toContain(family);

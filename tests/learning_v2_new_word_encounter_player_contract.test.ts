@@ -7,25 +7,28 @@ const read = (relativePath: string) =>
 describe("Learning V2 new-word encounter player wiring", () => {
   const player = read("app/learning_v2_direct_session_player_v1.tsx");
 
-  test("starts the blocking encounter queue after intro and renders the real overlay", () => {
+  // зачем (05.10): блокирующая очередь ВСЕХ новых слов сразу после интро (событие intro_completed) заменена
+  // перемежающимся потоком (createLearningV2InterleavedNewWordFlowV1, с 50eea79a4): карточка слова встаёт в момент
+  // задания, где слово встречается (событие practice_reached). Правило сторожа то же: пока карточка показана,
+  // задание под ней и микрофон неактивны.
+  test("shows a new word right before the task that uses it and renders the real overlay", () => {
     expect(player).toContain("getLearningV2CourseSessionNewWordEncountersV1");
-    expect(player).toContain(
-      'dispatchNewWordEvent({ kind: "intro_completed" })',
-    );
+    expect(player).toContain("createLearningV2InterleavedNewWordFlowV1");
+    expect(player).toMatch(/dispatchNewWordEvent\(\{\s*kind: "practice_reached"/u);
     expect(player).toContain("<LearningV2NewWordEncounterOverlay");
     expect(player).toContain('dispatchNewWordEvent({ kind: "continue" })');
   });
 
-  test("keeps the underlying task and microphone inert until the queue is complete", () => {
+  test("keeps the underlying task and microphone inert while a word card is presenting", () => {
     expect(player).toContain(
-      'const practiceActivated = introDone && newWordFlow.kind === "completed"',
+      'const practiceActivated = introDone && newWordFlow.kind !== "presenting"',
     );
-    expect(player).toMatch(/enabled:\s*practiceActivated\s*&&/u);
-    expect(player).toContain(
-      'pointerEvents={practiceActivated ? "auto" : "none"}',
+    expect(player).toMatch(/const voiceFooterDisabled =\s*!practiceActivated \|\|/u);
+    expect(player).toMatch(
+      /pointerEvents=\{\s*practiceActivated &&[^}]*\?\s*"auto"\s*:\s*"none"\s*\}/u,
     );
-    expect(player).toContain(
-      'practiceActivated ? "auto" : "no-hide-descendants"',
+    expect(player).toMatch(
+      /importantForAccessibility=\{\s*practiceActivated &&[^}]*\?\s*"auto"\s*:\s*"no-hide-descendants"\s*\}/u,
     );
   });
 

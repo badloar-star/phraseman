@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = process.cwd();
 const giftPagePath = path.join(root, 'knowly-www', 'gift', 'index.html');
-const giftPage = fs.readFileSync(giftPagePath, 'utf8');
+const giftPage = normalizeEol(fs.readFileSync(giftPagePath, 'utf8'));
 
 const certificateAssets = {
   monthly: 'gift-certificate-monthly.webp',

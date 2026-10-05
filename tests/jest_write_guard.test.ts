@@ -2,6 +2,7 @@ import { spawnSync } from 'child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
 
@@ -31,7 +32,7 @@ describe('Jest source write guard', () => {
     try {
       fs.writeFileSync(fixturePath, 'fixture\n', 'utf8');
 
-      expect(fs.readFileSync(fixturePath, 'utf8')).toBe('fixture\n');
+      expect(normalizeEol(fs.readFileSync(fixturePath, 'utf8'))).toBe('fixture\n');
     } finally {
       fs.rmSync(tempDir, { recursive: true, force: true });
     }

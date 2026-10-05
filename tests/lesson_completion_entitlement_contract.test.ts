@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const read = (file: string) => fs.readFileSync(path.join(process.cwd(), 'app', file), 'utf8');
+const read = (file: string) => normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app', file), 'utf8'));
 const lesson = read('lesson1.tsx');
 const completion = read('lesson_complete.tsx');
 

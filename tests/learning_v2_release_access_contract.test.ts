@@ -6,12 +6,13 @@ import {
   isPulseLessonMapAvailable,
   isPulseLessonWorkInProgress,
 } from '../components/learning-v2/learningV2PulseGeometry';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
 // test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
 // исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 async function main(): Promise<void> {
-const read = (file: string) => readFileSync(join(process.cwd(), file), 'utf8');
+const read = (file: string) => normalizeEol(readFileSync(join(process.cwd(), file), 'utf8'));
 
 assert.equal(isPulseLessonMapAvailable(1), true);
 assert.equal(isPulseLessonMapAvailable(32), true);

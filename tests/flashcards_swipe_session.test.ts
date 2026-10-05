@@ -19,6 +19,7 @@ import {
   swipeDistanceThresholdPx,
 } from '../app/flashcards_swipe_session';
 import { flashcardsSwipeSessionDraftKey } from '../app/target_storage_keys';
+import { normalizeEol } from './helpers/read_source';
 
 const storage = AsyncStorage as typeof AsyncStorage & { __reset?: () => void };
 const sourcePath = path.join(__dirname, '../app/flashcards_swipe_session.ts');
@@ -86,7 +87,7 @@ beforeEach(async () => {
 
 describe('flashcards swipe session draft', () => {
   it('keeps runtime parsing free of legacy locale fallback markers', () => {
-    const source = fs.readFileSync(sourcePath, 'utf8');
+    const source = normalizeEol(fs.readFileSync(sourcePath, 'utf8'));
 
     expect(source).not.toMatch(LEGACY_RUNTIME_RE);
   });

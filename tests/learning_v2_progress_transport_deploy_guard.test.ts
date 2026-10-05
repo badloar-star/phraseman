@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 const GUARD_PATH = path.join(ROOT, 'scripts', 'deploy_v2_progress_transport.mjs');
@@ -73,7 +74,7 @@ function loadTransportEntry(environment: Record<string, string | undefined>): ()
 
 describe('Learning V2 progress transport deploy guard', () => {
   itLegacyHarness('rejects an omitted project even when Firebase would inherit the production default', () => {
-    const firebaserc = JSON.parse(fs.readFileSync(path.join(ROOT, '.firebaserc'), 'utf8'));
+    const firebaserc = JSON.parse(normalizeEol(fs.readFileSync(path.join(ROOT, '.firebaserc'), 'utf8')));
     expect(firebaserc.projects.default).toBe('phraseman-ea0b3');
 
     const result = runGuard(
@@ -140,7 +141,7 @@ describe('Learning V2 progress transport deploy guard', () => {
 
   itLegacyHarness('makes the config predeploy hook require wrapper validation and the exact resolved project', () => {
     const config = JSON.parse(
-      fs.readFileSync(path.join(ROOT, 'firebase.v2-progress-transport.json'), 'utf8'),
+      normalizeEol(fs.readFileSync(path.join(ROOT, 'firebase.v2-progress-transport.json'), 'utf8')),
     );
     expect(config.functions.source).toBe('functions/.codex-tmp/v2-progress-transport');
     expect(config.functions.predeploy).toBe(
@@ -173,7 +174,7 @@ describe('Learning V2 progress transport deploy guard', () => {
     expect(rawDisposable.status).not.toBe(0);
     expect(wrappedDisposable.status).toBe(0);
 
-    const guardSource = fs.readFileSync(GUARD_PATH, 'utf8');
+    const guardSource = normalizeEol(fs.readFileSync(GUARD_PATH, 'utf8'));
     const firebaseInvocation = guardSource.slice(
       guardSource.indexOf('run("firebase"'),
       guardSource.indexOf('], firebaseEnvironment);') + '], firebaseEnvironment);'.length,
@@ -230,10 +231,10 @@ describe('Learning V2 progress transport deploy guard', () => {
   });
 
   it('keeps the transport out of the production Functions index', () => {
-    const productionIndex = fs.readFileSync(
+    const productionIndex = normalizeEol(fs.readFileSync(
       path.join(ROOT, 'functions', 'src', 'index.ts'),
       'utf8',
-    );
+    ));
 
     expect(productionIndex).not.toContain('v2ProgressTransport');
     expect(productionIndex).not.toContain('progress_callable_transport_entry');

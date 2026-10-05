@@ -8,6 +8,7 @@ import { getLessonIntroScreens, LESSON_DATA } from '../app/lesson_data_all';
 import { EXTRA_INTRO_SCREENS } from '../app/lesson_intro_screens_9_32';
 import { LESSON_9_INTRO_SCREENS } from '../app/lesson_intro_screens_lesson9_v2';
 import type { LessonIntroScreen } from '../app/lesson_data_types';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -71,7 +72,7 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('uses explicit singular and plural problem examples in lesson 9', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens_lesson9_v2.ts'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens_lesson9_v2.ts'), 'utf8'));
     const examples = LESSON_9_INTRO_SCREENS.flatMap((screen) => screen.examples ?? []);
     const byEnglish = (english: string) => examples.find((example) => (
       Array.isArray(example.en)
@@ -98,8 +99,8 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('keeps rich intro color semantics separate from background fills', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
+    const richSource = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8'));
 
     expect(source).toContain('<RichIntroLineView');
     expect(richSource).toContain('const semanticLineBg');
@@ -111,8 +112,8 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('keeps the absolute intro header below the top safe area', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
+    const richSource = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8'));
 
     expect(source).toContain('const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;');
     expect(source).toContain('edges={[\'bottom\']}');
@@ -124,7 +125,7 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('masks scrolled intro content under the header instead of leaking into the status bar', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
 
     // Размытый верхний край через общий компонент TopFadeMask.
     expect(source).toContain("import TopFadeMask from '../components/TopFadeMask'");
@@ -132,7 +133,7 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('keeps the intro back button before the lesson badge in the header', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
     const headerStart = source.indexOf('<Animated.View', source.indexOf('Шапка: Back'));
     const headerEnd = source.indexOf('</Animated.View>', headerStart);
     const headerSource = source.slice(headerStart, headerEnd);
@@ -143,7 +144,7 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('names the final intro CTA as training because it starts the practice flow', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
 
     expect(source).toContain("ru: 'Начать тренировку'");
     expect(source).toContain("es: 'Comenzar práctica'");
@@ -152,8 +153,8 @@ describe('lesson intro screens (es locale fields)', () => {
   });
 
   it('does not route planned intro UI locales through RU/UK/ES runtime fallbacks', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8'));
+    const richSource = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8'));
     const legacyRuntimeFallback = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimeFallback);

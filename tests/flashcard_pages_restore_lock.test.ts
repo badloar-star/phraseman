@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { normalizeEol } from './helpers/read_source';
 
 /*
  * Account V2, Пакет 8J — restore при ошибке чтения страниц карточек и замок записи.
@@ -201,7 +202,7 @@ describe('8J — снятие замка не теряет карточки, д�
 });
 
 describe('8J — doSyncToCloud и restore (структура cloud_sync)', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+  const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8')).split('\r\n').join('\n');
   const bodyOf = (name: string): string => {
     const start = source.indexOf(`async function ${name}(`);
     expect(start).toBeGreaterThan(0);
@@ -211,7 +212,7 @@ describe('8J — doSyncToCloud и restore (структура cloud_sync)', () =
   test('синк: запертый ключ не пишет страниц и не уходит в документ', () => {
     // 8K: цикл выгрузки карточек живёт в общем пути uploadFlashcardListsToPages
     // (app/flashcards_cloud_upload.ts) — его зовут и doSyncToCloud, и forceSyncToCloud.
-    const helperSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8').split('\r\n').join('\n');
+    const helperSource = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8')).split('\r\n').join('\n');
     const start = helperSource.indexOf('export async function uploadFlashcardListsToPages(');
     expect(start).toBeGreaterThan(0);
     const body = helperSource.slice(start, helperSource.indexOf('\n}\n', start));

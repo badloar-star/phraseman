@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8'));
 
 describe('home interaction contract', () => {
   const helperStart = source.indexOf('function TouchableOpacity(');
@@ -23,7 +24,7 @@ describe('home interaction contract', () => {
   });
 
   it('never sends an undefined transform to Fabric', () => {
-    const lessonMenu = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
+    const lessonMenu = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8'));
     expect(lessonMenu).not.toMatch(/transform\s*:\s*[^\n]*\?\s*undefined/);
   });
 

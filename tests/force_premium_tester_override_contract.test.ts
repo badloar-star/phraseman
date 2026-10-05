@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 /**
  * Dev-обход FORCE_PREMIUM тестерским флагом.
@@ -15,8 +16,8 @@ import path from 'path';
  * (force_premium_prod_guard.test.ts) при этом не ослабляется.
  */
 describe('FORCE_PREMIUM tester override contract', () => {
-  const guardSrc = fs.readFileSync(path.join(process.cwd(), 'app', 'premium_guard.ts'), 'utf8');
-  const ctxSrc = fs.readFileSync(path.join(process.cwd(), 'components', 'PremiumContext.tsx'), 'utf8');
+  const guardSrc = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app', 'premium_guard.ts'), 'utf8'));
+  const ctxSrc = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'components', 'PremiumContext.tsx'), 'utf8'));
 
   it('premium_guard exposes an async forcePremiumActive() helper', () => {
     expect(guardSrc).toMatch(/export\s+async\s+function\s+forcePremiumActive\s*\(/);

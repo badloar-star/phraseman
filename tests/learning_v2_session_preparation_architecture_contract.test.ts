@@ -1,28 +1,29 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
 // test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
 // исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 async function main(): Promise<void> {
-const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
-const rootLayout = readFileSync("app/_layout.tsx", "utf8");
-const pulse = readFileSync(
+const lessons = normalizeEol(readFileSync("app/(tabs)/lessons.tsx", "utf8"));
+const rootLayout = normalizeEol(readFileSync("app/_layout.tsx", "utf8"));
+const pulse = normalizeEol(readFileSync(
   "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "utf8",
-);
-const sheet = readFileSync(
+));
+const sheet = normalizeEol(readFileSync(
   "components/LearningV2SessionOutcomeSheet.tsx",
   "utf8",
-);
-const client = readFileSync(
+));
+const client = normalizeEol(readFileSync(
   "app/learning_v2_course_released_session_client_v3.ts",
   "utf8",
-);
-const audio = readFileSync(
+));
+const audio = normalizeEol(readFileSync(
   "app/learning_v2_course_session_audio_preload_v1.ts",
   "utf8",
-);
+));
 
 assert.match(
   rootLayout,

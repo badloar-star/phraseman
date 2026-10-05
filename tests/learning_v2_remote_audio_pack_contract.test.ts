@@ -3,13 +3,14 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 import { LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1 } from "../app/learning_v2_factory_lesson_audio_index_v1.generated";
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
 // test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
 // исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 async function main(): Promise<void> {
 const root = process.cwd();
-const read = (path: string) => readFileSync(join(root, path), "utf8");
+const read = (path: string) => normalizeEol(readFileSync(join(root, path), "utf8"));
 const bootstrapModulePath = "app/learning_v2_bootstrap_audio_assets_v1.generated.ts";
 const bootstrapSeedPath = "app/learning_v2_bootstrap_audio_seed_v1.ts";
 const bootstrapDirectory = "assets/audio/learning-v2-bootstrap-v1";
@@ -73,7 +74,7 @@ for (const lessonName of readdirSync(releaseRoot).filter((name) => /^l\d{2}$/u.t
   for (const sessionName of readdirSync(join(releaseRoot, lessonName)).filter((name) => /^s\d{2}$/u.test(name)).sort()) {
     const learnerPath = join(releaseRoot, lessonName, sessionName, "learner.json");
     if (!existsSync(learnerPath)) continue;
-    const learner = JSON.parse(readFileSync(learnerPath, "utf8")) as { interactions: unknown };
+    const learner = JSON.parse(normalizeEol(readFileSync(learnerPath, "utf8"))) as { interactions: unknown };
     const transcripts = new Set<string>();
     const visit = (value: unknown): void => {
       if (Array.isArray(value)) return value.forEach(visit);

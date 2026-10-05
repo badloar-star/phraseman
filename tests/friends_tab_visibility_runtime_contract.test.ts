@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('friends tab visibility runtime guard', () => {
   it('does not start heavy friend maintenance while the tab is hidden', () => {
-    const source = fs.readFileSync(
+    const source = normalizeEol(fs.readFileSync(
       path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx'),
       'utf8',
-    );
+    ));
 
     const syncIndex = source.indexOf('void syncMyInviteCode(() => cancelled);');
     expect(syncIndex).toBeGreaterThanOrEqual(0);

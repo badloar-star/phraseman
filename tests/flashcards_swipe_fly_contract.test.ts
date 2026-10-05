@@ -13,11 +13,12 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(
+const source = normalizeEol(fs.readFileSync(
   path.join(__dirname, '../app/flashcards_swipe.tsx'),
   'utf8',
-);
+));
 
 /** Тело функции `finish()` внутри settleCard — то самое место гонки. */
 function finishBody(): string {

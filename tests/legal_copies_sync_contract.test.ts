@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 // зачем: аудит 2026-08-24 нашёл дрейф юридических копий — одна сессия дописала
 // блок «MAX voice privacy summary» только в app/legal/, другая — абзац про
@@ -12,7 +13,7 @@ import path from 'node:path';
 // текстов — только синхронность копий.
 
 const ROOT = path.resolve(__dirname, '..');
-const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
+const read = (...parts: string[]) => normalizeEol(fs.readFileSync(path.join(ROOT, ...parts), 'utf8'));
 
 const LEGAL_JSON_NAMES = [
   'terms_of_use_en.json',

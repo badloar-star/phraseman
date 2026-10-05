@@ -9,6 +9,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const COMPONENTS_DIR = path.join(process.cwd(), 'components/friends_together');
 const FRIENDS_TAB_FILE = path.join(process.cwd(), 'app/(tabs)/friends.tsx');
@@ -20,7 +21,7 @@ const COMPONENT_FILES = [
 ];
 
 function readComponent(name: string): string {
-  return fs.readFileSync(path.join(COMPONENTS_DIR, name), 'utf8');
+  return normalizeEol(fs.readFileSync(path.join(COMPONENTS_DIR, name), 'utf8'));
 }
 
 const LANG_KEYS = ["ru", "uk", "es", "'pt-BR'", 'vi', 'id', 'tr', 'pl'];
@@ -74,42 +75,42 @@ describe('friends_together UI contract', () => {
   // 01.10 (Q6, координатор, D09/D78): окно «уровень дружбы вырос» с пустой фанфарой сундука удалено.
   test('friend level-up modal is removed for good', () => {
     expect(fs.existsSync(path.join(COMPONENTS_DIR, 'FriendLevelUpModal.tsx'))).toBe(false);
-    expect(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8')).not.toContain('FriendLevelUpModal');
+    expect(normalizeEol(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8'))).not.toContain('FriendLevelUpModal');
   });
 
   test('use_reward_impact_hybrid engine itself gates on useReduceMotion', () => {
-    const engine = fs.readFileSync(
+    const engine = normalizeEol(fs.readFileSync(
       path.join(process.cwd(), 'components/celebration/use_reward_impact_hybrid.ts'),
       'utf8',
-    );
+    ));
     expect(engine).toContain('useReduceMotion');
   });
 
   test('friends.tsx gates the new UI behind useFriendsTogetherEnabled', () => {
-    const source = fs.readFileSync(FRIENDS_TAB_FILE, 'utf8');
+    const source = normalizeEol(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8'));
     expect(source).toContain('useFriendsTogetherEnabled');
     expect(source).toContain("from '../friends_together/together_config'");
   });
 
   test('friends.tsx wires the data flow: prime on mount, refresh after profiles batch', () => {
-    const source = fs.readFileSync(FRIENDS_TAB_FILE, 'utf8');
+    const source = normalizeEol(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8'));
     expect(source).toContain('primeFriendsTogetherSnapshot');
     expect(source).toContain('refreshFriendsTogether');
   });
 
   test('friends.tsx imports the new components', () => {
-    const source = fs.readFileSync(FRIENDS_TAB_FILE, 'utf8');
+    const source = normalizeEol(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8'));
     expect(source).toContain("from '../../components/friends_together/FriendTogetherSheet'");
   });
 
   test('settings_notifications.tsx has a "Друзья" toggle bound to prefs.categories.friends', () => {
-    const source = fs.readFileSync(SETTINGS_FILE, 'utf8');
+    const source = normalizeEol(fs.readFileSync(SETTINGS_FILE, 'utf8'));
     expect(source).toContain("prefs.categories.friends");
     expect(source).toContain("toggleCategory('friends')");
   });
 
   test('_layout.tsx calls syncFriendsPushPrefIfChanged once at boot', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app/_layout.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app/_layout.tsx'), 'utf8'));
     expect(source).toContain('syncFriendsPushPrefIfChanged');
   });
 

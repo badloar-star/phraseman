@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson_menu.tsx'), 'utf8');
+const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson_menu.tsx'), 'utf8'));
 
 describe('lesson menu access check is fail-closed', () => {
   it('starts locked and treats the pending access check as launch-blocking', () => {

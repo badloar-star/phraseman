@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.resolve(__dirname, '..');
-const SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardListItem.tsx'), 'utf8');
+const SOURCE = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardListItem.tsx'), 'utf8'));
 const PLANNED_LABELS = [
   "'pt-BR': { collapse: 'Ocultar detalhes', expand: 'Mostrar detalhes' }",
   "vi: { collapse: 'Ẩn chi tiết', expand: 'Hiện chi tiết' }",

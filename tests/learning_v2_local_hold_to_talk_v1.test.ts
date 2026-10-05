@@ -1,10 +1,11 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
-const source = readFileSync(
+const source = normalizeEol(readFileSync(
   join(__dirname, "..", "hooks/use_learning_v2_local_hold_to_talk_v1.ts"),
   "utf8",
-);
+));
 
 test("Learning V2 hold-to-talk is ephemeral, lifecycle-owned and can use the phone recognizer", () => {
   expect(source).toContain("useRuntimeActive()");
@@ -24,10 +25,10 @@ test("Learning V2 hold-to-talk is ephemeral, lifecycle-owned and can use the pho
 });
 
 test("Learning V2 direct player exposes the shared Oral microphone on the task screen", () => {
-  const player = readFileSync(
+  const player = normalizeEol(readFileSync(
     join(__dirname, "..", "app/learning_v2_direct_session_player_v1.tsx"),
     "utf8",
-  );
+  ));
   expect(player).not.toContain("useLearningV2LocalHoldToTalkV1({");
   expect(player).toContain("<SpeakingPanel");
   expect(player).toContain("<SpeakHoldButton");

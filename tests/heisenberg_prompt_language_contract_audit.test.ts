@@ -5,6 +5,7 @@ import {
   buildHeisenbergPromptLanguageContractAudit,
   writeHeisenbergPromptLanguageContractAudit,
 } from '../scripts/heisenberg_prompt_language_contract_audit';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
 const RUN_ROOT_RELATIVE = '.codex-tmp/heisenberg/tests/prompt-language-contract-audit';
@@ -222,10 +223,10 @@ describe('heisenberg prompt language contract audit', () => {
     expect(result.report.status).toBe('PASS');
 
     // Source fixtures are unchanged (read-only guarantee).
-    const explainPromptsAfter = fs.readFileSync(
+    const explainPromptsAfter = normalizeEol(fs.readFileSync(
       abs(`${scenario}/functions/src/explain/explain_prompts.ts`),
       'utf8',
-    );
+    ));
     expect(explainPromptsAfter).toBe(FULL_PROMPT_LANGUAGES);
   });
 

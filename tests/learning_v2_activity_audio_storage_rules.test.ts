@@ -1,10 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
-const rules = fs.readFileSync(
+const rules = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), "storage.rules"),
   "utf8",
-);
+));
 
 describe("Learning V2 voice-audio Storage boundary", () => {
   it("allows only authenticated exact-object reads and denies list/write", () => {

@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { normalizeEol } from './helpers/read_source';
 
 const root = path.resolve(__dirname, '..');
-const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8');
+const read = (relative: string): string => normalizeEol(fs.readFileSync(path.join(root, relative), 'utf8'));
 
 /**
  * Правило владельца «сперва логи, потом починка»: цепочка входа в тренировку

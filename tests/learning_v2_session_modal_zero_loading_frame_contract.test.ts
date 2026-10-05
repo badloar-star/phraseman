@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { normalizeEol } from './helpers/read_source';
 
 // зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
 // test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
 // исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 async function main(): Promise<void> {
-const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
+const lessons = normalizeEol(readFileSync("app/(tabs)/lessons.tsx", "utf8"));
 
 const sheetUsage =
   lessons.match(/<LearningV2SessionOutcomeSheet[\s\S]*?\n\s*\/>/)?.[0] ?? "";

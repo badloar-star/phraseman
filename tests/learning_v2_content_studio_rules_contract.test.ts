@@ -1,7 +1,8 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { normalizeEol } from './helpers/read_source';
 
-const rules = readFileSync(path.join(process.cwd(), "firestore.rules"), "utf8");
+const rules = normalizeEol(readFileSync(path.join(process.cwd(), "firestore.rules"), "utf8"));
 
 const SERVER_ONLY_CONTENT_ROOTS = [
   "content_mode_templates",

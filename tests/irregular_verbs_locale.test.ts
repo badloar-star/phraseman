@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { HEISENBERG_BATCH_SOURCE_LOCALES } from '../app/source_locales';
 import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
+import { normalizeEol } from './helpers/read_source';
 
 describe('irregular verb locale glosses', () => {
   it('keeps every lesson irregular verb covered for Spanish UI', () => {
@@ -36,7 +37,7 @@ describe('irregular verb locale glosses', () => {
   });
 
   it('does not silently fall back to Russian for Spanish irregular-verb UI labels', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app/lesson_irregular_verbs.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(process.cwd(), 'app/lesson_irregular_verbs.tsx'), 'utf8'));
 
     expect(source).not.toMatch(/if \(lang === 'es'\) return [^\n]*verb\.ru/);
   });

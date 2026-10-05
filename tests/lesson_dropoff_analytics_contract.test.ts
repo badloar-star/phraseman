@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
-const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
+const read = (file: string) => normalizeEol(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 
 describe('lesson drop-off analytics contract', () => {
   it('adds numeric checkpoints to lesson answers', () => {

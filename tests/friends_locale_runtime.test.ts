@@ -1,16 +1,17 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 
 describe('friends tab locale runtime', () => {
   it('does not route planned friend activity copy through legacy runtime markers', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);
   });
 
   it('keeps incoming friend gift labels wired for every Heisenberg locale', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
 
     for (const field of ['giftLabelPtBr', 'giftLabelVi', 'giftLabelId', 'giftLabelTr', 'giftLabelPl']) {
       expect(source).toContain(field);
@@ -21,9 +22,9 @@ describe('friends tab locale runtime', () => {
   });
 
   it('keeps the empty-friends add action as a single compact glass button', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
-    const empty = fs.readFileSync(path.join(__dirname, '../components/friends/FriendsEmptyState.tsx'), 'utf8');
-    const kit = fs.readFileSync(path.join(__dirname, '../components/friends/FriendsGlassKit.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
+    const empty = normalizeEol(fs.readFileSync(path.join(__dirname, '../components/friends/FriendsEmptyState.tsx'), 'utf8'));
+    const kit = normalizeEol(fs.readFileSync(path.join(__dirname, '../components/friends/FriendsGlassKit.tsx'), 'utf8'));
 
     // зачем (владелец 2026-09-29): пустой список переведён на макет community.html#COM-04-EMPTY —
     // одна компактная главная кнопка в отдельном компоненте, а не блок внутри экрана.
@@ -43,7 +44,7 @@ describe('friends tab locale runtime', () => {
   });
 
   it('keeps the friend search input free of hard-coded sample text', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
 
     expect(source).toContain('testID="friends-code-input"');
     expect(source).toContain('placeholder=""');
@@ -57,7 +58,7 @@ describe('friends tab locale runtime', () => {
   });
 
   it('no longer renders the friend code card inside the add-friend modal (single code policy)', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
 
     // Карточка «Мой код» (friend-код) больше не РЕНДЕРИТСЯ в модалке добавления друга:
     // показываем пользователю только ОДИН код — реферальный — чтобы не путать два разных кода.
@@ -65,7 +66,7 @@ describe('friends tab locale runtime', () => {
   });
 
   it('keeps referral mechanics warm in friends without rendering referral UI', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
 
     // UI рулетки/приглашений из «Друзей» убран полностью (owner 2026-07-24):
     // ни мегафон-иконки, ни empty-state оффера, ни переходов на реферальные экраны.
@@ -89,7 +90,7 @@ describe('friends tab locale runtime', () => {
     ];
 
     for (const file of files) {
-      const source = fs.readFileSync(path.join(__dirname, file), 'utf8');
+      const source = normalizeEol(fs.readFileSync(path.join(__dirname, file), 'utf8'));
       const legacyLocalePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b)\b/u;
       expect(source).not.toMatch(legacyLocalePattern);
     }

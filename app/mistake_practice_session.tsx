@@ -790,6 +790,27 @@ function MistakePracticeSessionScreen() {
     });
   }, [lang, session, studyTarget]);
 
+  // зачем (координатор 05.10, «направление задания RU→EN вместо EN→RU», по правилу «сперва логи»): что показано в задании — алфавит вопроса и ответа.
+  useEffect(() => {
+    if (!entry) return;
+    const script = (value: string | null | undefined): string => {
+      if (!value) return 'none';
+      if (/[Ѐ-ӿ]/.test(value)) return 'cyrillic';
+      if (/[A-Za-z]/.test(value)) return 'latin';
+      return 'other';
+    };
+    console.log('[MISTAKE-SESSION] exercise:direction', JSON.stringify({
+      cursor: session?.cursor ?? null,
+      mode: entry.exercise.mode,
+      facet: entry.facet,
+      promptScript: script(entry.exercise.prompt),
+      answerScript: script(entry.exercise.correctAnswer),
+      optionScripts: (entry.exercise.options ?? []).map(script),
+      direction: `${script(entry.exercise.prompt)}->${script(entry.exercise.correctAnswer)}`,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- печатаем при смене задания
+  }, [entry?.exercise.exerciseId, session?.cursor]);
+
   // коммит шторки и первый кадр после него — когда человек реально видит вердикт
   useEffect(() => {
     if (!feedback || !verdictTapAtRef.current) return;

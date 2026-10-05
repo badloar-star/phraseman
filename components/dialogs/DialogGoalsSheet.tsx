@@ -143,7 +143,8 @@ export default function DialogGoalsSheet({
                       style={{
                         color: done ? glass.secondary : glass.text,
                         fontSize: f.body,
-                        fontWeight: done ? '400' : '700',
+                        // зачем (сверка dialogs-019, макет `.obj`): задания обычным весом (`.obj` без жирности), выполненные — вторичным цветом; жирными они были «заголовком»
+                        fontWeight: '400',
                         lineHeight: Math.round(f.body * 1.35),
                       }}
                       maxFontSizeMultiplier={1.2}
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
     minHeight: 54,
     paddingVertical: 11,
   },
-  badge: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  badge: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   rowText: { flex: 1 },
   ctaHit: { marginTop: 18 },
   cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },

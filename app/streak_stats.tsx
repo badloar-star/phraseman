@@ -1879,6 +1879,19 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [time7Percentile, setTime7Percentile] = useState<number | null>(null);
     const [myTime7ms, setMyTime7ms] = useState(0);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
+    // зачем (Сверка results-007: неделя «Вт…Пн», в макете «Пн…Вс»; подпись ритма «Лучший день…» против
+    // «Короткие занятия без больших пауз»): какие дни попали в столбики и какая подпись выбрана — одна строка на изменение.
+    const resultsWeekTraceKey = `${coachMetrics.rhythmDays.slice(-7).map((d) => `${d.date}:${d.minutes}`).join(',')}|${coachMetrics.status}|${coachMetrics.rhythmSummary}|${lang}`;
+    useEffect(() => {
+        console.warn('[RESULTS-WEEK] bars', JSON.stringify({
+            lang,
+            days: coachMetrics.rhythmDays.slice(-7).map((d) => ({ date: d.date, label: d.shortLabel, min: d.minutes, today: d.isToday, active: d.active })),
+            status: coachMetrics.status,
+            rhythmSummary: coachMetrics.rhythmSummary,
+            source: allDays.length > 0 ? 'allDays' : 'days',
+        })); // guard-ok: временная трассировка results-007
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [resultsWeekTraceKey]);
     const learningInsights = useMemo(() => {
         const timeByDate = new Map(allTimeDays.map((day) => [day.date, day.ms]));
         return buildStatsLearningInsights((allDays.length > 0 ? allDays : days).map((day) => ({

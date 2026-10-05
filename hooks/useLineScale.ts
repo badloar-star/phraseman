@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useWindowDimensions } from 'react-native';
 
 /**
@@ -25,4 +25,24 @@ export function useLineScale(): (lineHeight: number) => number {
   const { fontScale } = useWindowDimensions();
   const factor = lineScaleFactor(fontScale);
   return useCallback((lineHeight: number) => (factor === 1 ? lineHeight : Math.round(lineHeight * factor)), [factor]);
+}
+
+/**
+ * Копия набора стилей, где у каждого стиля с `lineHeight` межстрочный масштабирован под системный шрифт.
+ * При шрифте 1.0 возвращает ТОТ ЖЕ объект (ссылка не меняется) — разметка гарантированно прежняя; пересчёт только при смене размера шрифта.
+ */
+export function useScaledTextStyles<T extends Record<string, unknown>>(styles: T): T {
+  const { fontScale } = useWindowDimensions();
+  const factor = lineScaleFactor(fontScale);
+  return useMemo(() => {
+    if (factor === 1) return styles;
+    const out: Record<string, unknown> = {};
+    for (const key of Object.keys(styles)) {
+      const style = styles[key];
+      out[key] = style && typeof style === 'object' && typeof (style as { lineHeight?: unknown }).lineHeight === 'number'
+        ? { ...(style as object), lineHeight: Math.round((style as { lineHeight: number }).lineHeight * factor) }
+        : style;
+    }
+    return out as T;
+  }, [factor, styles]);
 }

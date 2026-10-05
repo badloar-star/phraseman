@@ -9,6 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitCard, KitCheck, KitCta, KitEmpty, KitIconTile, KitSectionHead, KitSegment, KitTitle } from '../../components/cards-grid/CardsKit';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -65,6 +66,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function TrainingSetupV2Inner(props: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом (при 1.0 тот же объект стилей — вид прежний)
+  const styles = useScaledTextStyles(baseStyles);
   const { lang, title, subtitle, limitLabel, status, resetText, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -173,11 +176,11 @@ function TrainingSetupV2Inner(props: Props) {
 
 export const TrainingSetupV2 = memo(TrainingSetupV2Inner);
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
-  top: { height: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
+  top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
   pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   selected: { marginTop: 30, marginBottom: 14, fontSize: 14, lineHeight: 17 },

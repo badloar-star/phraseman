@@ -13,6 +13,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
@@ -57,6 +58,8 @@ export default function FlashcardsTrainingModeSheet({
   onRetry,
   limitLabel = null,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом (при 1.0 тот же объект стилей — вид прежний)
+  const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -258,7 +261,7 @@ export default function FlashcardsTrainingModeSheet({
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   modalRoot: { flex: 1, justifyContent: 'flex-end' },
   backdrop: { backgroundColor: '#00000099' },
   sheet: { width: '100%', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
@@ -268,7 +271,7 @@ const styles = StyleSheet.create({
   headCopy: { flex: 1, minWidth: 0 },
   heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4 },
-  limitPill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
+  limitPill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
   limitText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },

@@ -19,4 +19,10 @@ describe('useLineScale', () => {
     expect(source).toContain('useWindowDimensions');
     expect(source).toMatch(/useCallback\([\s\S]*\[factor\]\)/);
   });
+  test('useScaledTextStyles returns the very same style object at 1.0 and rescales lineHeight only', () => {
+    const fs = require('node:fs') as typeof import('node:fs');
+    const source = fs.readFileSync('hooks/useLineScale.ts', 'utf8');
+    expect(source).toContain('if (factor === 1) return styles;');
+    expect(source).toMatch(/typeof \(style as \{ lineHeight\?: unknown \}\)\.lineHeight === 'number'/);
+  });
 });

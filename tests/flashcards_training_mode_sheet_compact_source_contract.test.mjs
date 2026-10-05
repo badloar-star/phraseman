@@ -10,7 +10,7 @@ const source = normalizeEol(fs.readFileSync(
   path.join(process.cwd(), 'app', 'flashcards', 'FlashcardsTrainingModeSheet.tsx'),
   'utf8',
 ));
-const styles = source.slice(source.indexOf('const styles = StyleSheet.create'));
+const styles = source.slice(source.indexOf('const baseStyles = StyleSheet.create'));
 const styleBlock = (name, nextName) => {
   const start = styles.indexOf(`\n  ${name}:`);
   const end = styles.indexOf(`\n  ${nextName}:`, start + 1);

@@ -13,6 +13,7 @@ import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
 import { bevelShadow, mixDark, themePair } from '../mistakes-panel/panelPaint';
+import { useLineScale } from '../../hooks/useLineScale';
 
 const DROP = [{ offsetX: 0, offsetY: 10, blurRadius: 28, spreadDistance: -12, color: 'rgba(0,0,0,0.7)' }] as const;
 const SHEEN_COLORS = ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.035)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.02)', 'rgba(255,255,255,0.055)'] as const;
@@ -92,9 +93,10 @@ export const KitIconTile = memo(function KitIconTile({ g, icon }: Readonly<{ g: 
 
 /** «.cntp» макета: пилюля с числом, 24 высотой. */
 export const CountPill = memo(function CountPill({ g, value }: Readonly<{ g: GlassTokens; value: number }>) {
+  const lh = useLineScale();
   return (
     <View style={styles.pill}>
-      <Text style={[styles.pillText, { color: g.text }]}>{value}</Text>
+      <Text style={[styles.pillText, { color: g.text, lineHeight: lh(18) }]}>{value}</Text>
       <Sheen radius={12} />
     </View>
   );
@@ -113,13 +115,14 @@ export const KitPackRow = memo(function KitPackRow({ g, icon, title, subtitle, c
   accessibilityLabel?: string;
   disabled?: boolean;
 }>) {
+  const lh = useLineScale();
   return (
     <KitCard g={g} onPress={onPress} onLongPress={onLongPress} testID={testID} accessibilityLabel={accessibilityLabel ?? `${title}, ${subtitle}, ${count}`} disabled={disabled}>
       <View style={styles.row}>
         <KitIconTile g={g} icon={icon} />
         <View style={styles.rowText}>
-          <Text style={[styles.rowTitle, { color: g.text }]}>{title}</Text>
-          <Text style={[styles.rowSub, { color: g.secondary }]}>{subtitle}</Text>
+          <Text style={[styles.rowTitle, { color: g.text, lineHeight: lh(22) }]}>{title}</Text>
+          <Text style={[styles.rowSub, { color: g.secondary, lineHeight: lh(19) }]}>{subtitle}</Text>
         </View>
         <CountPill g={g} value={count} />
         <Ionicons name="chevron-forward" size={20} color={g.secondary} />
@@ -130,20 +133,22 @@ export const KitPackRow = memo(function KitPackRow({ g, icon, title, subtitle, c
 
 /** «.sec»: название раздела 20/700 и число рядом 20/600 приглушённым. */
 export const KitSectionHead = memo(function KitSectionHead({ g, title, count, hideCount }: Readonly<{ g: GlassTokens; title: string; count: number; hideCount?: boolean }>) {
+  const lh = useLineScale();
   return (
     <View accessible accessibilityRole="header" accessibilityLabel={hideCount ? title : `${title}, ${count}`} style={styles.sec}>
-      <Text style={[styles.secTitle, { color: g.text }]}>{title}</Text>
-      {hideCount ? null : <Text style={styles.secCount}>{count}</Text>}
+      <Text style={[styles.secTitle, { color: g.text, lineHeight: lh(26) }]}>{title}</Text>
+      {hideCount ? null : <Text style={[styles.secCount, { lineHeight: lh(26) }]}>{count}</Text>}
     </View>
   );
 });
 
 /** Заголовок экрана 40/46 и необязательная подпись 16/22. */
 export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: Readonly<{ g: GlassTokens; title: string; subtitle?: string | null; testID?: string }>) {
+  const lh = useLineScale();
   return (
     <View>
-      <Text testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-      {subtitle ? <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text> : null}
+      <Text testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
+      {subtitle ? <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text> : null}
     </View>
   );
 });
@@ -213,7 +218,8 @@ export const KitSearchField = memo(function KitSearchField({ g, value, onChangeT
 
 /** «Найдено · N» — мятная строка 12/700 с разрядкой над результатами поиска (`.ov`). */
 export const KitFound = memo(function KitFound({ g, label }: Readonly<{ g: GlassTokens; label: string }>) {
-  return <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{label}</Text>;
+  const lh = useLineScale();
+  return <Text testID="fc-search-found" style={[styles.found, { color: g.accent, lineHeight: lh(16) }]}>{label}</Text>;
 });
 
 /** Переключатель из N сегментов (`.seg3`): плашка 50, сегменты 40, активный — мятный. */
@@ -224,6 +230,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
   onChange: (id: string) => void;
   testIDPrefix?: string;
 }>) {
+  const lh = useLineScale();
   return (
     <KitSurface g={g} style={styles.segWrap}>
       {options.map((option) => {
@@ -236,7 +243,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
             accessibilityState={{ selected: on }}
             onPress={() => onChange(option.id)}
             style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.12)' }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: 'rgba(0,0,0,0.8)' }] }]}>
-            <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary }]}>{option.label}</Text>
+            <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary, lineHeight: lh(20) }]}>{option.label}</Text>
           </Pressable>
         );
       })}
@@ -273,6 +280,7 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   hideAction?: boolean;
 }>) {
   const { height } = useWindowDimensions();
+  const lh = useLineScale();
   const holder = useRef<View>(null);
   const [pageTop, setPageTop] = useState<number | null>(null);
   const measure = useCallback(() => {
@@ -284,8 +292,8 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
         <View style={styles.emptyTile}>
           <Ionicons name={icon} size={28} color="#E9E9EB" />
         </View>
-        <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text }]}>{title}</Text>
-        <Text style={[styles.emptyDetail, { color: g.secondary }]}>{detail}</Text>
+        <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text, lineHeight: lh(30) }]}>{title}</Text>
+        <Text style={[styles.emptyDetail, { color: g.secondary, lineHeight: lh(22) }]}>{detail}</Text>
         {hideAction ? null : (
           <View style={styles.emptyCtaWrap}>
             <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
@@ -301,7 +309,7 @@ const styles = StyleSheet.create({
   card: { minHeight: 65, borderRadius: 14, justifyContent: 'center' },
   cardFill: { borderRadius: 14 },
   tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  pill: { minWidth: 36, height: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' },
+  pill: { minWidth: 36, minHeight: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   row: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 10, paddingLeft: 19, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },
@@ -312,11 +320,11 @@ const styles = StyleSheet.create({
   secCount: { fontSize: 20, lineHeight: 26, fontWeight: '600', color: '#6E6E72' },
   title: { fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
-  search: { height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  search: { minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   found: { marginTop: 22, marginBottom: 12, marginLeft: 4, fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
-  segWrap: { height: 50, padding: 4, flexDirection: 'row' },
-  seg: { flex: 1, height: 42, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  segWrap: { minHeight: 50, padding: 4, flexDirection: 'row' },
+  seg: { flex: 1, minHeight: 42, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   segText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   check: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   checkOn: { backgroundColor: '#E9E9EB' },
@@ -326,6 +334,6 @@ const styles = StyleSheet.create({
   emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },
   emptyDetail: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },
   emptyCtaWrap: { marginTop: 26 },
-  cta: { height: 48, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
+  cta: { minHeight: 48, paddingVertical: 6, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   ctaText: { fontSize: 17, fontWeight: '700' },
 });

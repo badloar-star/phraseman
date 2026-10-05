@@ -24,7 +24,8 @@ function catalogHeaderBlock() {
 test('new list blocks are built from the 13-theme Liquid Glass tokens only', () => {
   assert.match(kit, /import type \{ liquidGlassTokens \} from '..\/..\/constants\/liquidGlassThemePalette'/);
   assert.match(kit, /backgroundColor: glass\.opaqueCard/);
-  assert.match(kit, /borderColor: glass\.glassEdge/);
+  // зачем (Сверка learn-002, 05.10): кромка карточки урока — --line (kit .card), не glassEdge.
+  assert.match(kit, /borderColor: glass\.line/);
   for (const source of newBlocks) {
     assert.doesNotMatch(source, /OLIVE_|oliveShadow|GOLD_|GoldBevel|goldShadow|PlusBadge|bookPalette|darkenHex/, 'no olive/gold/book palette');
     assert.doesNotMatch(source, /adjustsFontSizeToFit/, 'font is never squeezed');

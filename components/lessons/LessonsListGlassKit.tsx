@@ -26,7 +26,8 @@ export function lessonsGlassCardStyle(glass: LessonsListGlass, radius: number): 
     borderRadius: radius,
     backgroundColor: glass.opaqueCard,
     borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка PhraseMan 2.0, как в макете
-    borderColor: glass.glassEdge, // guard-ok: 1 px кромка стекла 2.0
+    // зачем (Сверка learn-002: кромка светлее/толще макета): у `.card` кромка --line, а не более светлая glassEdge.
+    borderColor: glass.line, // guard-ok: 1 px кромка стекла 2.0
     overflow: 'hidden',
   };
 }

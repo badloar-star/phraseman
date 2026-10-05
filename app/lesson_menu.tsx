@@ -1014,7 +1014,8 @@ function LessonMenu() {
             tr: 'Bu dersin düzensiz fiilleri',
             pl: 'Czasowniki nieregularne z tej lekcji',
           }),
-      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'flash-outline' as const,
+      // зачем (Сверка learn-020, learn.html menuRow): значки строк по макету — глаголы «swap», предлоги «key», теория «list».
+      icon: frenchAuxiliarySourceGated ? 'shield-checkmark-outline' as const : 'swap-horizontal-outline' as const,
       pct: (() => {
         if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
@@ -1072,7 +1073,7 @@ function LessonMenu() {
             tr: 'Bu dersin edatları',
             pl: 'Przyimki z tej lekcji',
           }),
-      icon: prepositionSourceGated ? 'shield-checkmark-outline' as const : 'funnel-outline' as const,
+      icon: prepositionSourceGated ? 'shield-checkmark-outline' as const : 'key-outline' as const,
       pct: prepositionSourceGated
         ? undefined
         : prepositionTotal > 0 ? Math.round(prepositionAnswered / prepositionTotal * 100) : undefined,
@@ -1137,7 +1138,7 @@ function LessonMenu() {
   tr: 'Kurallar ve açıklamalar',
   pl: 'Zasady i wyjaśnienia',
 }),
-      icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'book-outline' as const,
+      icon: frenchTheorySourceGated ? 'shield-checkmark-outline' as const : 'list-outline' as const,
       // Кольцо отражает просмотренные разделы теории и не гейтит закрытие урока.
       pct: frenchTheorySourceGated ? undefined : theoryProgressPct,
       onPress: () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
-import { LinearGradient } from '../SafeLinearGradient';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { lessonsGlassCardStyle, type LessonsListGlass } from './LessonsListGlassKit';
 
 // зачем (владелец 2026-09-30): карточки конца уровня из learn.html — `.exc` (экзамен уровня:
@@ -10,7 +10,6 @@ import { lessonsGlassCardStyle, type LessonsListGlass } from './LessonsListGlass
 // и `.attest` (B2 / CEFR · Аттестация). Медальных точек и золотых фасок в 2.0 нет.
 // Что делает нажатие, решает прежний обработчик из app/(tabs)/lessons.tsx.
 
-const SHEEN = { position: 'absolute' as const, top: 0, right: 0, bottom: 0, left: 0 };
 
 function Tile({ glass, size, radius, icon, iconSize }: {
   glass: LessonsListGlass;
@@ -71,7 +70,8 @@ export const LessonsListGlassExamCard = React.memo(function LessonsListGlassExam
         { minHeight: 84, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 14 },
       ]}
     >
-      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={SHEEN} />
+      {/* зачем (Сверка learn-007): подкраска glass.selected делала карточку светлее уроков — в макете .card.c2 со стандартным стеклом. */}
+      <KitGlassLayer radius={22} />
       <View style={{ opacity: faint ? 0.6 : 1 }}>
         <Tile glass={glass} size={46} radius={12} icon="document-text" iconSize={22} />
       </View>
@@ -108,7 +108,8 @@ export const LessonsListGlassAttestationCard = React.memo(function LessonsListGl
         { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 18, paddingHorizontal: 16 },
       ]}
     >
-      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={SHEEN} />
+      {/* зачем (Сверка learn-007): подкраска glass.selected делала карточку светлее уроков — в макете .card.c2 со стандартным стеклом. */}
+      <KitGlassLayer radius={22} />
       <Tile glass={glass} size={55} radius={14} icon="school-outline" iconSize={26} />
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text

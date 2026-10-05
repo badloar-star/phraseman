@@ -86,7 +86,20 @@ async function reserveFreeDailyGenCap(
       throw error;
     }
   }
-  return enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP, nowMs);
+  // зачем (Сверка 05.10: daily_limit у телефона с Plus): explain_free_daily_limit бывает только здесь. Печатаем,
+  // что сервер НЕ признал Plus и чей лимит считается — так видно расхождение с телефоном (без uid целиком).
+  try {
+    return await enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP, nowMs);
+  } catch (error) {
+    console.warn('[AI-LIMIT] mistake_explain free path refused', {
+      isPremium: false,
+      reason: error instanceof HttpsError ? error.message : 'limit_check_failed',
+      cap: FREE_DAILY_CAP,
+      stableUidPrefix: stableUid.slice(0, 6),
+      authDiffersFromStable: authUid !== stableUid,
+    });
+    throw error;
+  }
 }
 
 /** PM-231: запрет немого catch — сбой отката кредита/лока пишет причину. */

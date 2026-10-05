@@ -223,7 +223,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   // зачем (решение B6, 2026-09-30): сервер (functions/src/mistake_explain.ts) пропускает Plus
   // без дневного лимита — клиент не должен останавливать Plus на 3 разборах и списывать их.
   // Источник — сырое hasPremiumAccess, ровно как resolvePremiumAccess на сервере.
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, isPremium: premiumStore, isVip: premiumVip, isIntroFullAccess, devLocalPlusOverride } = usePremium();
   const [explainRuneBalance, setExplainRuneBalance] = useState(0);
   const [paidUnlockedForPhrase, setPaidUnlockedForPhrase] = useState<string | null>(null);
   const explainBuyingRef = useRef(false);
@@ -610,7 +610,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         }
         setAiMistakeText(null);
         if (isFreeDailyLimitError(error)) {
-          console.log(`[AI-EXPLAIN] mistake:daily_limit phrase=${phraseId}`); // guard-ok
+          // зачем (Сверка 05.10, MISTAKE_RUN_2026-10-04_2233: daily_limit при premium=true freeLeft=3): сервер отдаёт
+          // explain_free_daily_limit только на БЕСПЛАТНОМ пути — он не признал Plus. Печатаем, из какого источника
+          // Plus у телефона (стор / VIP / вводный доступ / локальная выдача разработчика) и что ответил сервер.
+          console.log(`[AI-EXPLAIN] mistake:daily_limit phrase=${phraseId} client=${JSON.stringify({
+            hasPremiumAccess, store: premiumStore, vip: premiumVip, intro: isIntroFullAccess,
+            devOverride: devLocalPlusOverride, dev: typeof __DEV__ !== 'undefined' && __DEV__,
+          })} server=${JSON.stringify(mistakeExplainErrorText(error).slice(0, 160))}`); // guard-ok
           await markAiMistakeLimitNoticeShownToday();
           if (!isCurrentRequest()) return;
           setAiMistakeState('limit');
@@ -636,7 +642,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         releaseInFlight();
       }
     },
-    [aiMistakeState, phraseKey, phraseId, buildArgs, buildFallbackText, isExplanationScopeCurrent, scheduleMistakeRetry, hasPremiumAccess, paidUnlockedForPhrase],
+    [aiMistakeState, phraseKey, phraseId, buildArgs, buildFallbackText, isExplanationScopeCurrent, scheduleMistakeRetry, hasPremiumAccess, paidUnlockedForPhrase, premiumStore, premiumVip, isIntroFullAccess, devLocalPlusOverride],
   );
 
   explainRef.current = (withHaptic = true, backgroundRetry = false) => {

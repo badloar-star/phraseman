@@ -23,6 +23,7 @@ import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contrac
 import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { safeRouterBack } from './navigation_back';
 import { peekStableId } from './stable_id';
 
@@ -129,7 +130,8 @@ export default function MistakesHubScreen() {
     });
   }, [load]);
 
-  const items = snapshot?.items ?? [];
+  // зачем (аудит Optimistic UI п.2): строки без локально скрытых — запись журнала могла ещё не дойти.
+  const items = withoutLocallyHiddenMistakes(snapshot?.items ?? []);
   const active = snapshot?.insights.active ?? 0;
   const corrected = snapshot?.insights.corrected ?? 0;
   const readyCount = snapshot?.readyCount ?? 0;

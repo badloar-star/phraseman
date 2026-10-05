@@ -24,6 +24,7 @@ import { mistakeSourceLabel } from './mistake_facet_copy';
 import { mistakeFacetExplanation } from './mistake_facet_explanations';
 import { loadMistakeDetail, type MistakeDetail, type MistakeTimelineEntry } from './mistake_detail_model';
 import { hideMistake, type MistakeHideReason } from './mistake_hide';
+import { markMistakeHiddenLocally, unmarkMistakeHiddenLocally } from './mistake_local_hidden';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { actionToastTri, emitAppEvent } from './events';
@@ -173,11 +174,14 @@ export default function MistakeDetailScreen() {
     hapticTap();
     setMenuOpen(false);
     trackMistakePracticeEvent('mistake_practice_hidden', { study_target: target, reason });
+    // зачем (аудит Optimistic UI п.2): список после «назад» не показывает скрытую ни на кадр — пометка до записи журнала.
+    markMistakeHiddenLocally(detail.mistakeId);
     goBack();
     void (async () => {
       const accountScope = await getStableId();
       const result = await hideMistake({ accountScope, studyTarget: target, mistakeId: detail.mistakeId, reason });
       if (!result.ok && result.reason === 'write_failed') {
+        unmarkMistakeHiddenLocally(detail.mistakeId);
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: copy.hideFailed, uk: copyFor('uk').hideFailed, en: copyFor('en').hideFailed, es: copyFor('es').hideFailed,
           'pt-BR': copyFor('pt-BR').hideFailed, vi: copyFor('vi').hideFailed, id: copyFor('id').hideFailed, tr: copyFor('tr').hideFailed, pl: copyFor('pl').hideFailed,

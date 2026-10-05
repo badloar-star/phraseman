@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
@@ -63,7 +64,11 @@ export default function MistakesListScreen() {
   const [searching, setSearching] = useState(false);
   const [limit, setLimit] = useState(PAGE);
   // зачем (аудит 04.10): первый кадр — из снимка хаба (если он есть для этого аккаунта/цели/языка), загрузка идёт фоном и заменяет строки.
-  const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(() => peekMistakesHubSnapshot(target, lang)?.items ?? null);
+  // зачем (аудит Optimistic UI п.2): локально скрытые (запись журнала ещё идёт) не показываем ни в первом кадре, ни после перечитывания.
+  const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(() => {
+    const peeked = peekMistakesHubSnapshot(target, lang)?.items;
+    return peeked ? withoutLocallyHiddenMistakes(peeked) : null;
+  });
   const openingRef = useRef(false);
   const gate = useMistakePracticeStartGate('mistakes_hub_start');
 
@@ -71,7 +76,7 @@ export default function MistakesListScreen() {
     let cancelled = false;
     openingRef.current = false;
     void loadMistakePracticeHubSnapshot(target)
-      .then((snapshot) => { if (!cancelled) setItems(snapshot.items); })
+      .then((snapshot) => { if (!cancelled) setItems(withoutLocallyHiddenMistakes(snapshot.items)); })
       .catch((error: unknown) => {
         // guard-ok: лог в catch обязателен
         console.warn('[MISTAKES-HUB] list:catch', error instanceof Error ? error.message : String(error));

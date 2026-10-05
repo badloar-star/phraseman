@@ -212,3 +212,5 @@ learn.html (cc99dc0ca, одобрен) — замок ЗАЛИТЫЙ (lockF). В
 - Лог: `[V2-BUNDLED] audio_entry_missing voice=ash transcript="I am fine."` → `audio_child_null reason=learning_v2_factory_production_audio_missing audioInteractions=8` → `[V2-LAUNCH] prepare_failed session=lesson-01:session:01 reason=learning_v2_factory_session_unavailable bundledUnavailable=yes hint=unavailable_now`. Файл C:\Temp\claude\lv2_session1_launch.txt.
 - ПРИЧИНА: НЕЗАКОММИЧЕННЫЕ правки ДРУГОЙ сессии в modules/learning-v2/content/factory_native/generated_release/en/l01/s01/answers.json и learner.json (+100/-24: добавлены задания с correctText «here/ready/fine», «I am fine.»), а озвучки для новых фраз в бандле нет. Я эти файлы НЕ трогаю. Нужно: либо докатить озвучку, либо откатить правку — решает её автор.
 - Это ровно класс «сессия написана ≠ сессия открывается» из CLAUDE.md. Learning V2 023–032 (вопросы, «Собери фразу») снять нельзя, пока занятие не открывается.
+
+## 03:41 — 🔴 эмулятор упал в 03:38 на кнопке «‹» назад из карты Learning V2 (после 2 тапов по dev-замку в шапке: вкл→выкл, оба ок). Время для сверки с журналом Windows.

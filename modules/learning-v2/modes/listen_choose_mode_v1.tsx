@@ -35,6 +35,7 @@ import { useLearningV2CompactPractice } from "../../../components/learning-v2/Le
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Lv2Explain, Lv2Option, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
+import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
@@ -44,7 +45,9 @@ import { learningV2ListenChooseOptionLabelV1 } from "./listen_choose_option_labe
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const RING_RADIUS = 54;
+// `.playb` 128 + svg.rg viewBox 128, r 60, stroke 5: кольцо лежит по краю самой кнопки.
+const RING_VIEW = 128;
+const RING_RADIUS = 60;
 const RING_LEN = 2 * Math.PI * RING_RADIUS;
 
 function ListenChoosePlayButtonV1({
@@ -55,7 +58,6 @@ function ListenChoosePlayButtonV1({
   accessibilityLabel,
   onPress,
   accent,
-  correct,
   surface,
   track,
 }: {
@@ -92,9 +94,10 @@ function ListenChoosePlayButtonV1({
         easing: Easing.linear,
       });
     } else {
-      progress.value = withTiming(0, { duration: reducedMotion ? 1 : 120 });
+      // зачем (learning-v2.html lc-3…5, ring: 1): прослушанная фраза — полное кольцо, а не сброс в ноль.
+      progress.value = withTiming(hasPlayedOnce ? 1 : 0, { duration: reducedMotion ? 1 : 120 });
     }
-  }, [playing, reducedMotion, progress]);
+  }, [hasPlayedOnce, playing, reducedMotion, progress]);
 
   // Пульс — единственная ВЕЧНАЯ анимация здесь, только она подчиняется
   // runtimeActive и гаснет при уходе с экрана либо сворачивании приложения.
@@ -125,28 +128,6 @@ function ListenChoosePlayButtonV1({
 
   return (
     <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
-      <Svg width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox="0 0 116 116" style={StyleSheet.absoluteFill}>
-        <Circle
-          cx={58}
-          cy={58}
-          r={RING_RADIUS}
-          stroke={track}
-          strokeWidth={5}
-          fill="none"
-        />
-        <AnimatedCircle
-          cx={58}
-          cy={58}
-          r={RING_RADIUS}
-          stroke={playing ? accent : correct}
-          strokeWidth={5}
-          strokeLinecap="round"
-          fill="none"
-          strokeDasharray={RING_LEN}
-          animatedProps={ringProps}
-          transform={`rotate(-90 58 58)`}
-        />
-      </Svg>
       <Animated.View style={btnStyle}>
         <Pressable
           accessibilityRole="button"
@@ -158,11 +139,34 @@ function ListenChoosePlayButtonV1({
             void hapticLightImpact();
             onPress();
           }}
-          style={[styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+          style={[styles.playBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
         >
           <Ionicons name={playing ? "volume-high" : "play"} size={44} color={accent} />
         </Pressable>
       </Animated.View>
+      {/* Кольцо поверх круга кнопки (svg.rg в макете), цвет #E9E9EB — текст темы; дорожка --track. */}
+      <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
+        <Circle
+          cx={RING_VIEW / 2}
+          cy={RING_VIEW / 2}
+          r={RING_RADIUS}
+          stroke={track}
+          strokeWidth={5}
+          fill="none"
+        />
+        <AnimatedCircle
+          cx={RING_VIEW / 2}
+          cy={RING_VIEW / 2}
+          r={RING_RADIUS}
+          stroke={accent}
+          strokeWidth={5}
+          strokeLinecap="round"
+          fill="none"
+          strokeDasharray={RING_LEN}
+          animatedProps={ringProps}
+          transform={`rotate(-90 ${RING_VIEW / 2} ${RING_VIEW / 2})`}
+        />
+      </Svg>
     </View>
   );
 }
@@ -211,7 +215,7 @@ function ListenChooseOptionV1({
   }, [nudgeToken, reducedMotion, nudge]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: dimmed ? 0.82 : 1,
+    opacity: 1,
     transform: [
       { translateY: lift.value * -2 },
       { translateX: nudge.value },
@@ -229,7 +233,7 @@ function ListenChooseOptionV1({
         onPress={onPress}
         selected={selected}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
-        style={dimmed ? { opacity: 0.6 } : undefined}
+        style={dimmed ? { opacity: 0.45 } : undefined}
         textStyle={textColor ? { color: textColor } : undefined}
         label={label}
       />
@@ -289,11 +293,16 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
     if (phase !== "success") announcedRef.current = false;
   }, [phase, reducedMotion, prompt]);
 
-  const hasSelection = selectedChoiceId !== null;
+  const sx = useScaledTextStyles(styles);
+  // зачем (learning-v2.html lc-3/lc-5): после верного ответа или разбора фраза раскрывается текстом под кнопкой.
+  const revealText = resolved && modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript ?? null : null;
 
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
+    // зачем (сверка с learning-v2.html lc, 05.10): заголовок слева 600; кнопка 128 по центру в 26; подпись 14; варианты в 26
+    // через 13; затемнение .45 только у вариантов, не участвовавших в разборе.
+    <View style={sx.root}>
+      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
+      <View style={[sx.playRow, compact && { marginTop: 8 }]}>
 
       <ListenChoosePlayButtonV1
         playing={playing}
@@ -307,7 +316,8 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
         surface={g.opaqueCard}
         track={g.opaqueControl}
       />
-      <Text style={[styles.playSub, { color: g.secondary }]}>
+      </View>
+      <Text style={[sx.playSub, { color: g.secondary }, compact && { marginTop: 6 }]}>
         {!onPlayFullPhraseAudio
           ? audioCopy.unavailable
           : loading
@@ -318,8 +328,11 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               ? audioCopy.replay
               : audioCopy.play}
       </Text>
+      {revealText ? (
+        <Text testID="learning-v2-listen-choose-reveal" style={[sx.reveal, { color: g.text }]}>{revealText}</Text>
+      ) : null}
 
-      <View style={[styles.options, compact && { gap: 6, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }]}>
+      <View style={[sx.options, compact && { marginTop: 10, gap: 6, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }]}>
         {options.map((option) => {
           const authoredChoice = modePayload?.family === "listen_choose"
             ? modePayload.localizedMeaningChoices.find(
@@ -345,7 +358,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               label={label}
               selected={selected}
               verdict={verdict}
-              dimmed={hasSelection && !selected}
+              dimmed={resolved && phase !== "success" && verdict === "none" && !selected}
               nudgeToken={wrongNudge.responseId === option.responseId ? wrongNudge.token : 0}
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
@@ -358,7 +371,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
         })}
       </View>
 
-      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
+      {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
     </View>
   );
 }
@@ -366,22 +379,27 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
 export default ListenChooseModeV1;
 
 const styles = StyleSheet.create({
-  root: { gap: 14, alignItems: "center" },
+  root: {},
+  // `.tlab` 15/600 --sec, слева (D145 → 16).
   taskLabel: {
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: "700",
-    textAlign: "center",
+    fontWeight: "600",
   },
+  playRow: { alignItems: "center", marginTop: 26 },
   playWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
   playBtn: {
-    width: 104,
-    height: 104,
-    borderRadius: 52,
+    width: 128,
+    height: 128,
+    borderRadius: 64,
     alignItems: "center",
     justifyContent: "center",
   },
-  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
-  options: { width: "100%", gap: 10 },
-  feedbackLane: { width: "100%" },
+  // `.psub` 15/600 по центру, margin-top 14.
+  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "600", textAlign: "center", marginTop: 14 },
+  // `.reveal` 24/700 по центру, margin-top 18.
+  reveal: { fontSize: 24, lineHeight: 30, fontWeight: "700", letterSpacing: -0.3, textAlign: "center", marginTop: 18 },
+  // `.stack.g13` margin-top 26.
+  options: { width: "100%", gap: 13, marginTop: 26 },
+  feedbackLane: { width: "100%", marginTop: 18 },
 });

@@ -15533,13 +15533,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/system-010.png",
+      "evidence_at": "2026-10-05T07:06:00.593Z",
+      "evidence_sha256": "f38f201ae7066ed3fa52f237715e6d20304985b5d2bc24014a4771136cf2d24c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Телефон макета 12 (подпись строки «Технические работы» сдвинута на 2)",
+        "Совпадает: значок ✕ в плитке, «Что-то пошло не так», «Попробуй открыть экран ещё раз.», кнопка «Попробовать снова»",
+        "Блок «Технические детали» растянут на 10 строк со стеком и адресом сборщика; в макете одна строка сообщения",
+        "Блок деталей без стеклянной кромки и тени; кнопка без тени",
+        "Снято на реальной ошибке (Год в Серии), dev-сборка"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

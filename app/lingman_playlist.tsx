@@ -8,7 +8,6 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
-import { ExpandableText } from '../components/text-integrity';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -98,7 +97,7 @@ export default function LingmanPlaylistScreen() {
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
-            {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: g.secondary }]} toggleColor={g.text} />}
+            {/* зачем (Сверка video-009, координатор 05.10): в макете под заголовком сразу «Воспроизвести всё» — блока описания нет. */}
             {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.cta }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.ctaInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
             <View style={styles.videoList}>{videos.length ? videos.map((video) => (
               <YoutubeVideoCard
@@ -135,7 +134,6 @@ const styles = StyleSheet.create({
   content: { paddingBottom: 32 },
   title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700' },
   subtitle: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: '400' },
-  description: { marginTop: 10, fontSize: 13, lineHeight: 18, fontWeight: '400' },
   playAll: { minHeight: 48, marginTop: 18, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   playAllText: { fontSize: 16, fontWeight: '700' },
   videoList: { marginTop: 20 },

@@ -6,12 +6,15 @@
  */
 import React, { memo, useEffect } from 'react';
 import { BackHandler, Pressable, StyleSheet, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
 export const PanelSheet = memo(function PanelSheet({ visible, onClose, children, testID }: Readonly<{ visible: boolean; onClose: () => void; children: React.ReactNode; testID?: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const insets = useStableSafeAreaInsets();
   useEffect(() => {
     if (!visible) return undefined;
@@ -42,7 +45,7 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   );
 });
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   dim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
   sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18, backgroundColor: '#1B1B1D' },
   edge: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },

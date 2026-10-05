@@ -4,6 +4,7 @@ import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_p
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
@@ -51,6 +52,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function ListenRound({ g, audioRef, label }: Readonly<{ g: Lv2Glass; audioRef: string; label: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const player = useAudioPlayer({ uri: audioRef });
   // зачем (аудит карты владения звуком, 2026-09-15): плеер играл МИМО общего владения аудиотрактом — не глушился записью микрофона, не уважал
   // тумблер голоса в настройках и не уступал звук другому экрану. Управляемый плеер вводит его в ту же границу владения, что и вся озвучка.
@@ -69,6 +72,8 @@ function ListenRound({ g, audioRef, label }: Readonly<{ g: Lv2Glass; audioRef: s
 }
 
 function AnswerRow({ g, label, value, color, strike, right, first }: Readonly<{ g: Lv2Glass; label: string; value: string; color: string; strike?: boolean; right?: React.ReactNode; first?: boolean }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.answerRow}>
       {first ? null : <View pointerEvents="none" style={styles.histLine} />}
@@ -80,6 +85,8 @@ function AnswerRow({ g, label, value, color, strike, right, first }: Readonly<{ 
 }
 
 export default function MistakeDetailScreen() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const router = useRouter();
   const params = useLocalSearchParams<{ mistakeId?: string }>();
   const g = useLv2Glass();
@@ -294,16 +301,16 @@ ${detail.meaning}` : ''}`}
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingBottom: 140 },
   pressed: { opacity: 0.82 },
   plain: { paddingHorizontal: 20 },
-  topbar: { height: 44, flexDirection: 'row', alignItems: 'center' },
+  topbar: { minHeight: 44, flexDirection: 'row', alignItems: 'center' },
   missing: { marginTop: 40, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   hero: { paddingHorizontal: 24, paddingBottom: 28, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
   heroEdge: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36 },
-  heroBar: { height: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  heroBar: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   phrase: { marginTop: 14, fontSize: 42, lineHeight: 46, fontWeight: '700', letterSpacing: -1 },
   meaning: { marginTop: 6, fontSize: 20, lineHeight: 24, color: 'rgba(255,255,255,0.8)' },

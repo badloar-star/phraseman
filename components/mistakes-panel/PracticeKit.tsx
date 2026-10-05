@@ -8,6 +8,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import type { MistakeDiffSegment } from '../../app/mistake_answer_diff';
@@ -16,6 +17,8 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { MP_COLORS, bevelShadow, mixDark, ringShadow, themePair } from './panelPaint';
 
 export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID?: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <Pressable
       testID={testID}
@@ -31,6 +34,8 @@ export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, 
 
 /** Вопрос по центру: подпись вида задания и само задание; кегль подбирается по длине, чтобы длинная фраза переносилась, а не ужималась. */
 export const QuestionBlock = memo(function QuestionBlock({ g, kind, value, hint }: Readonly<{ g: Lv2Glass; kind: string; value: string; hint?: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const len = value.length;
   const size = len <= 14 ? { fontSize: 44, lineHeight: 50, letterSpacing: -1 } : len <= 26 ? { fontSize: 36, lineHeight: 42, letterSpacing: -0.8 } : { fontSize: 28, lineHeight: 34, letterSpacing: -0.4 };
   return (
@@ -44,6 +49,8 @@ export const QuestionBlock = memo(function QuestionBlock({ g, kind, value, hint 
 
 /** «Стакан»: панель внизу экрана с ответами, градиент цвета темы и подсветка верхней кромки. */
 export const Tray = memo(function Tray({ g, children, testID }: Readonly<{ g: Lv2Glass; children: React.ReactNode; testID?: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const insets = useStableSafeAreaInsets();
   const [a] = themePair(g);
   return (
@@ -65,6 +72,8 @@ export type OptionMark = 'ok' | 'no' | undefined;
 
 /** Варианты ответа сеткой 2 колонки; после ответа верный подсвечен зелёным, выбранный неверный — красным. */
 export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, disabled }: Readonly<{ g: Lv2Glass; options: readonly string[]; marks?: Readonly<Record<string, OptionMark>>; onPick?: (option: string) => void; disabled?: boolean }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.grid}>
       {options.map((option) => {
@@ -92,10 +101,14 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
 
 /** Область собранной фразы (конструктор): капсула 20 с внутренним кольцом. */
 export const AnswerSlot = memo(function AnswerSlot({ children, style }: Readonly<{ children: React.ReactNode; style?: StyleProp<ViewStyle> }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return <View style={[styles.slot, style]}>{children}</View>;
 });
 
 export const Token = memo(function Token({ g, label, used, onPress }: Readonly<{ g: Lv2Glass; label: string; used?: boolean; onPress?: () => void }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <Pressable disabled={used || !onPress} accessibilityState={{ disabled: !!(used || !onPress) }} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.token, used && styles.tokenUsed, pressed && styles.pressed]}>
       <Text style={[styles.tokenText, { color: g.text }]}>{label}</Text>
@@ -106,6 +119,8 @@ export const Token = memo(function Token({ g, label, used, onPress }: Readonly<{
 
 /** Рамка поля ввода: высота от 60, капсула 18, внутреннее кольцо; сам TextInput (стиль fieldInputStyle) кладёт экран внутрь. */
 export const AnswerField = memo(function AnswerField({ children }: Readonly<{ children: React.ReactNode }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return <View style={styles.field}>{children}</View>;
 });
 export const fieldInputStyle = { flex: 1, minHeight: 60, fontSize: 20, paddingVertical: 0 } as const;
@@ -130,6 +145,8 @@ export const DiffValue = memo(function DiffValue({ g, segments, baseColor, style
 
 /** Строка результата: кружок 40 с иконкой, «Верно» / «Почти», справа — шаги. */
 export const ResultRow = memo(function ResultRow({ g, ok, label, right }: Readonly<{ g: Lv2Glass; ok: boolean; label: string; right?: React.ReactNode }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const tone = ok ? MP_COLORS.ok : MP_COLORS.bad;
   return (
     <View style={styles.result}>
@@ -144,6 +161,8 @@ export const ResultRow = memo(function ResultRow({ g, ok, label, right }: Readon
 
 /** Три шага цепочки дней (кружок 26, линии 2): закрашены те, что засчитаны. */
 export const StepDots = memo(function StepDots({ g, n }: Readonly<{ g: Lv2Glass; n: number }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.steps}>
       {[0, 1, 2].map((index) => {
@@ -161,7 +180,7 @@ export const StepDots = memo(function StepDots({ g, n }: Readonly<{ g: Lv2Glass;
   );
 });
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   field: { minHeight: 60, borderRadius: 18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.08)', boxShadow: ringShadow('rgba(255,255,255,0.1)') },
@@ -175,7 +194,7 @@ const styles = StyleSheet.create({
   cell: { width: '48.6%', flexGrow: 1, minHeight: 62, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
   cellText: { fontSize: 18, lineHeight: 24, fontWeight: '600', textAlign: 'center' },
   slot: { minHeight: 70, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center', padding: 12, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: ringShadow('rgba(255,255,255,0.08)') },
-  token: { height: 46, paddingHorizontal: 17, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
+  token: { minHeight: 46, paddingHorizontal: 17, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
   tokenUsed: { opacity: 0.22 },
   tokenEdge: { borderRadius: 14 },
   tokenText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },

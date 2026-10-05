@@ -8,6 +8,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Svg, { Circle } from 'react-native-svg';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
@@ -16,6 +17,8 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { DIAG_150, MP_COLORS, mixDark, ringShadow, themePair } from './panelPaint';
 
 export const BackButton = memo(function BackButton({ g, onPress, label }: Readonly<{ g: Lv2Glass; onPress: () => void; label: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <Pressable
       testID="mp-back"
@@ -30,11 +33,15 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
 });
 
 export const ScreenTitle = memo(function ScreenTitle({ g, text }: Readonly<{ g: Lv2Glass; text: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{text}</Text>;
 });
 
 /** Кольцо прогресса: большое 236 (хаб, итог) и малое 150 (вход). Внутри — центр (проценты и подпись). */
 export const PanelRing = memo(function PanelRing({ g, progress, big = true, children }: Readonly<{ g: Lv2Glass; progress: number; big?: boolean; children?: React.ReactNode }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const size = big ? 236 : 150;
   const r = big ? 100 : 62;
   const w = big ? 16 : 12;
@@ -67,6 +74,8 @@ export type PanelChip = Readonly<{ id: string; label: string }>;
 
 /** Лента-фильтр: чипы 38 высотой, активный на цвете акцента; лента листается вбок и уходит за край экрана, как в макете. */
 export const FilterChips = memo(function FilterChips({ g, chips, activeId, onChange, testIDPrefix }: Readonly<{ g: Lv2Glass; chips: readonly PanelChip[]; activeId: string; onChange: (id: string) => void; testIDPrefix: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipsScroll} contentContainerStyle={styles.chips}>
       {/* guard-ok: лента из 3–5 коротких чипов, виртуализация не нужна */ chips.map((chip) => {
@@ -89,6 +98,8 @@ export const FilterChips = memo(function FilterChips({ g, chips, activeId, onCha
 
 /** Панель: одна карточка-список с градиентом цвета темы и внутренним кольцом 1px. */
 export const Panel = memo(function Panel({ g, children, style }: Readonly<{ g: Lv2Glass; children: React.ReactNode; style?: StyleProp<ViewStyle> }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const [a] = themePair(g);
   return (
     <View style={[styles.panel, style]}>
@@ -107,6 +118,8 @@ export const Panel = memo(function Panel({ g, children, style }: Readonly<{ g: L
 
 /** Три полоски прогресса дней (14×6): закрашены те, что уже «верные». */
 export const MiniDots = memo(function MiniDots({ g, n }: Readonly<{ g: Lv2Glass; n: number }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.mini}>
       {/* guard-ok: ровно три полоски */ [0, 1, 2].map((i) => <View key={i} style={[styles.miniDot, { backgroundColor: i < n ? g.accent : 'rgba(255,255,255,0.14)' }]} />)}
@@ -116,6 +129,8 @@ export const MiniDots = memo(function MiniDots({ g, n }: Readonly<{ g: Lv2Glass;
 
 /** Ряд панели: слово 18/700, под ним перевод 14, справа — произвольное (полоски, число). Между рядами — тонкая линия. */
 export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, first, onPress, testID, danger }: Readonly<{ g: Lv2Glass; title: string; subtitle?: string | null; right?: React.ReactNode; first?: boolean; onPress?: () => void; testID?: string; danger?: boolean }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const body = (
     <>
       {first ? null : <View pointerEvents="none" style={styles.rowLine} />}
@@ -135,6 +150,8 @@ export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, firs
 
 /** Главная кнопка: 52 высотой, цвет акцента, внутренняя подсветка сверху и свечение снизу (как «ac-cta» макета). */
 export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disabled, flex, ghost, trailing }: Readonly<{ g: Lv2Glass; label: string; onPress: () => void; testID?: string; disabled?: boolean; flex?: boolean; ghost?: boolean; trailing?: React.ReactNode }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <Pressable
       testID={testID}
@@ -160,6 +177,8 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
 
 /** Нижняя панель экрана: кнопки поверх плавного затемнения (макет «.bot2»). */
 export const PanelDock = memo(function PanelDock({ children }: Readonly<{ children: React.ReactNode }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const insets = useStableSafeAreaInsets();
   return (
     <View style={styles.dock} pointerEvents="box-none">
@@ -176,6 +195,8 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
 
 /** Строка шторки-меню: плитка с иконкой и название (макет «.gl.opt»). */
 export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; title: string; danger?: boolean; onPress: () => void; testID: string }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const [a] = themePair(g);
   return (
     <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
@@ -189,7 +210,7 @@ export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
   back: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
@@ -198,7 +219,7 @@ const styles = StyleSheet.create({
   ringCenter: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
   chipsScroll: { marginHorizontal: -20, flexGrow: 0, marginTop: 22, marginBottom: 8 },
   chips: { paddingHorizontal: 20, gap: 8 },
-  chip: { height: 38, paddingHorizontal: 16, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  chip: { minHeight: 38, paddingHorizontal: 16, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   chipText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
   panel: { borderRadius: 24, paddingHorizontal: 18, paddingVertical: 4, overflow: 'hidden' },
   panelEdge: { borderRadius: 24 },
@@ -209,7 +230,7 @@ const styles = StyleSheet.create({
   rowSub: { marginTop: 2, fontSize: 14, lineHeight: 17 },
   mini: { flexDirection: 'row', gap: 4, marginLeft: 'auto' },
   miniDot: { width: 14, height: 6, borderRadius: 3 },
-  cta: { height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, paddingHorizontal: 24 },
+  cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, paddingHorizontal: 24 },
   ctaFlex: { flex: 1 },
   ctaDisabled: { opacity: 0.5 },
   ctaEdge: { borderRadius: 26 },

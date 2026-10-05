@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
@@ -66,6 +67,8 @@ const SECONDS_PER_MISTAKE = 20;
 type HubMode = 'loading' | 'failed' | 'fresh' | 'allFixed' | 'todayDone' | 'normal';
 
 export default function MistakesHubScreen() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const router = useRouter();
   const g = useLv2Glass();
   const { lang } = useLang();
@@ -351,11 +354,11 @@ export default function MistakesHubScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   // зачем: нижний отступ под панель-кнопку (52 + поля), чтобы последняя строка не уходила под неё.
   content: { paddingHorizontal: 20, paddingBottom: 140 },
-  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center' },
+  topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center' },
   percent: { fontSize: 60, lineHeight: 62, fontWeight: '800', letterSpacing: -1.5 },
   percentLabel: { marginTop: 2, fontSize: 15, lineHeight: 19 },
   legend: { marginTop: 14, flexDirection: 'row', justifyContent: 'center', gap: 22 },

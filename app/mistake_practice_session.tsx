@@ -22,6 +22,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -309,6 +310,8 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
   foreground: string;
   accessibilityLabel: string;
 }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const player = useAudioPlayer({ uri: audioRef });
   // зачем (аудит карты владения звуком, 2026-09-15): этот плеер играл МИМО
   // общего владения аудиотрактом. На ЭТОМ ЖЕ экране живёт микрофон
@@ -332,6 +335,8 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
 // зачем (D158 / PM-214, 04.10): первый кадр загрузки = геометрия задания (шапка, вопрос, варианты),
 // а не спиннер на весь экран — правило владельца «нет спиннера на весь экран» и Performance Bible.
 function MistakePracticeLoadingSkeleton() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   return (
     <View accessibilityRole="progressbar" testID="mistake-practice-loading" style={{ flex: 1 }}>
       <View style={styles.topbar}>
@@ -359,6 +364,8 @@ function MistakePracticeScreenFrame({ children, centered = false }: Readonly<{
   children: React.ReactNode;
   centered?: boolean;
 }>) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   // зачем (сверка mistakes-panel-010, 04.10): SafeAreaView из react-native на Android не даёт отступов —
   // шапка задания (✕, счётчик, ⋯) лежала под часами и значками строки состояния. Отступы — из стабильных
   // safe-area insets проекта (Performance Bible: insets только через useStableSafeAreaInsets).
@@ -373,6 +380,8 @@ function MistakePracticeScreenFrame({ children, centered = false }: Readonly<{
 }
 
 function MistakePracticeSessionScreen() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const router = useRouter();
   const params = useLocalSearchParams<{
     length?: string;
@@ -1520,11 +1529,11 @@ OK: ${entry.exercise.correctAnswer}`}
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   screen: { flex: 1 },
   center: { alignItems: 'center', justifyContent: 'center', padding: 28, gap: 18 },
-  header: { height: 62, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  topbar: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  header: { minHeight: 62, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  topbar: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   topRight: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   skelTray: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 18, paddingHorizontal: 16, paddingBottom: 34 },
   skelGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },

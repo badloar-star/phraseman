@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
@@ -47,6 +48,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 function MistakeSessionFinale({
   lang, answered, total, wrong, fixed, onDone, onMore,
 }: Props) {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const base = Math.max(total, answered, 0);
@@ -96,10 +99,10 @@ function MistakeSessionFinale({
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: 20, paddingBottom: 140 },
-  topbar: { height: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center' },
+  topbar: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center' },
   big: { fontSize: 58, lineHeight: 60, fontWeight: '800', letterSpacing: -1.5 },
   bigLabel: { marginTop: 2, fontSize: 15, lineHeight: 19 },
   counts: { marginTop: 22 },

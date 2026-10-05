@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
@@ -45,6 +46,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 const PAGE = 40;
 
 export default function MistakesListScreen() {
+  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
+  const styles = useScaledTextStyles(baseStyles);
   const router = useRouter();
   const params = useLocalSearchParams<{ filter?: string }>();
   const g = useLv2Glass();
@@ -238,17 +241,17 @@ export default function MistakesListScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingHorizontal: 20, paddingBottom: 140 },
-  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
-  field: { flex: 1, height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.08)' },
+  field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.08)' },
   fieldInput: { flex: 1, fontSize: 17, paddingVertical: 0 },
   tabs: { marginTop: 18, flexDirection: 'row', gap: 8 },
-  tab: { height: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  tab: { minHeight: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   tabText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
   empty: { minHeight: 72, alignItems: 'center', justifyContent: 'center' },
   emptyText: { fontSize: 16, lineHeight: 22 },

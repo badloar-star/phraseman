@@ -71,8 +71,9 @@ test('session C6/C23: «Задания» sheet lists briefing goals without stat
   assert.match(session, /showStatus=\{false\}/);
   assert.match(sessionRoute, /objectives=\{model\.objectives\}/);
   assert.doesNotMatch(session, /objectivesMet=\{new Set|done.*objective/i);
-  // C23: выход из начатого разговора — ThemedConfirmModal (как в app/exam.tsx), кнопка и аппаратный «назад».
-  assert.match(session, /<ThemedConfirmModal/);
+  // C23 (макет dialogs.html exitSheet, сверка dialogs-036): выход из начатого разговора — шторка снизу DialogueGlassExitSheet (ручка, ✕, заголовок слева,
+  // «Остаться» главной, «Выйти» ниже), а не ThemedConfirmModal по центру; кнопка и аппаратный «назад» прежние.
+  assert.match(session, /<DialogueGlassExitSheet/);
   assert.match(session, /onPress=\{requestBack\}/);
   assert.match(session, /hardwareBackPress/);
   assert.match(session, /if \(hasConversation && bottom !== 'summary'\) setExitOpen\(true\);\s*else onBack\(\);/);

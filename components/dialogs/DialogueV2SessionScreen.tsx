@@ -40,7 +40,7 @@ import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
 import DialogWhySheet from './DialogWhySheet';
-import ThemedConfirmModal from '../ThemedConfirmModal';
+import { DialogueGlassExitSheet } from './glass/DialogueGlassExitSheet';
 
 // зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C24 (Liquid Glass):
 // шапка `.dh` (круглая «‹», название сцены + настроение собеседника, пилюля месячного остатка
@@ -635,15 +635,15 @@ export function DialogueV2SessionScreen({
           testID="dialogue-v2-session-why"
         />
       ) : null}
-      <ThemedConfirmModal
+      <DialogueGlassExitSheet
+        glass={glass}
         visible={exitOpen}
         title={labels.exitTitle}
         message={labels.exitMessage}
-        cancelLabel={labels.exitStay}
-        confirmLabel={labels.exitLeave}
-        onCancel={() => setExitOpen(false)}
-        onConfirm={() => { setExitOpen(false); onBack(); }}
-        confirmVariant="accent"
+        stayLabel={labels.exitStay}
+        leaveLabel={labels.exitLeave}
+        onStay={() => setExitOpen(false)}
+        onLeave={() => { setExitOpen(false); onBack(); }}
         testIDPrefix="dialogue-v2-session-exit"
       />
     </KeyboardAvoidingView>

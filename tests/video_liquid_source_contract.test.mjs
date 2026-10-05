@@ -33,9 +33,10 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(kit.includes('styles.stateActionText, { color: g.accentInk }'), 'retry label follows current theme CTA');
   assert.ok(!kit.includes("color: '#071015'"), 'retry label has no graphite-only fallback');
   assert.ok(screen.includes('paddingBottom: tabContentBottomPad'), 'tab content clears bottom navigation');
-  // The HTML language pill is visual reference only: Video has no native language setter,
-  // so the native header must keep only its wired channel and YouTube actions.
+  // 05.10 (владелец, решение 5): пилюля языка video.html `.lang` перенесена и РАБОЧАЯ — ведёт на выбор
+  // языка обучения (канал задаётся языком); кнопка YouTube остаётся там, где пилюли нет.
   assert.ok(header.includes('onOpenChannels'), 'channel action remains wired');
   assert.ok(header.includes('onOpenYoutube'), 'YouTube action remains wired');
-  assert.ok(!header.includes('onOpenLanguage'), 'no non-functional native language control');
+  assert.ok(header.includes('onOpenLanguage'), 'language pill is wired');
+  assert.ok(screen.includes("router.push('/settings_language' as any)"), 'language pill opens the study-language screen');
 });

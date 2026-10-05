@@ -571,6 +571,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           title={inTab ? copy.tabTitle : savedOnly ? copy.savedVideos : undefined}
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
+          studyTarget={studyTarget}
+          // зачем (решение 5, video.html): на вкладке справа пилюля языка — она ведёт на выбор языка обучения.
+          onOpenLanguage={inTab ? () => { hapticTap(); router.push('/settings_language' as any); } : undefined}
         />
         {savedOnly ? null : <YoutubeChannelTabs value={tab} onChange={changeTab} />}
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}

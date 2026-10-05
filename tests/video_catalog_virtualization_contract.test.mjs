@@ -20,7 +20,8 @@ test('Video chrome follows the reference hierarchy without inert controls', () =
   assert.ok(header.includes('styles.channelPill'), 'channel is a labeled pill below the title');
   assert.ok(header.includes('testID="youtube-all-channels"'), 'the channel pill keeps its real action');
   assert.ok(header.includes('accessibilityLabel="YouTube"'), 'the real YouTube action remains available');
-  assert.ok(!header.includes('onOpenLanguage'), 'no inert language selector is introduced');
+  // 05.10 (решение 5): пилюля языка есть, но только с настоящим действием — без onOpenLanguage рисуется YouTube.
+  assert.ok(header.includes('onOpenLanguage && studyTarget ?'), 'language pill renders only when it has a real action');
 });
 
 test('Video tab strip gives every long localized label a responsive share of a narrow screen', () => {

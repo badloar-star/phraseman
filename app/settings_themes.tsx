@@ -14,6 +14,7 @@ import { useTheme } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { useLineScale } from '../hooks/useLineScale';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   LIQUID_GLASS_GRADIENT_THEME_IDS,
@@ -121,6 +122,8 @@ const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, 
   // Радио выбранной темы: в «Спокойно» — нейтральное (белое в тёмном, чернильное в светлом),
   // в «Акценте/Максимуме» — цвет темы.
   const mark = glass.level === 'calm' ? (glass.isLight ? glass.text : glass.lightTint) : glass.accentBorder;
+  // зачем (FONTSCALE2, 05.10): межстрочный растёт с системным шрифтом — иначе низ букв срезается; при 1.0 значение прежнее.
+  const lh = useLineScale();
   return (
     <PressableHybrid
       testID={`theme-tile-${option.mode}`}
@@ -137,7 +140,7 @@ const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, 
       <View style={styles.rowText}>
         {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
             длинное имя темы переносится, а не режется троеточием. */}
-        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text }]}>{label}</FlowText>
+        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text, lineHeight: lh(styles.rowName.lineHeight) }]}>{label}</FlowText>
       </View>
       <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* guard-ok: кольцо радио */}
         {applied ? <View style={[styles.radioDot, { backgroundColor: mark }]} /> : null}
@@ -160,6 +163,7 @@ export default function SettingsThemes() {
     setLiquidGlassAppearance,
   } = useTheme();
   const { lang } = useLang();
+  const lh = useLineScale();
 
   // зачем: примерки больше нет, но старая примерка (если осталась с прошлой версии
   // экрана) не должна пережить уход — всегда возвращаем применённую тему.
@@ -213,7 +217,7 @@ export default function SettingsThemes() {
               <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
             <View style={styles.head}>
-              <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
+              <Text accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>
                 {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
               </Text>
               <AppearanceToggle glass={glass} lang={lang} value={liquidGlassAppearance} onChange={onAppearance} />

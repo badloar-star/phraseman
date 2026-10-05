@@ -23635,13 +23635,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-007.png",
+      "evidence_at": "2026-10-05T05:51:02.616Z",
+      "evidence_sha256": "6a9ee3ab99a4b788cf8877168f65e187dea7ee52352285b1723f25a69d112974",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Совпадает: «Пока пусто», «Сохраняйте слова в уроках», кнопка «Найти наборы» по ширине текста (цвет темы не сравниваю)",
+        "🟡 Заголовок экрана «Карточки»; в макете «Сохранённые» — человек не видит, в каком разделе",
+        "Значок закладки залитый; в макете контурный",
+        "Пустой блок ниже макетного (значок ≈ на 65 px ниже)",
+        "Справа в шапке «⋮» — в макете верх обрезан, сверить отдельно"
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null

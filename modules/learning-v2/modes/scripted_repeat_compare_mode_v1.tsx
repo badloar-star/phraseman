@@ -34,6 +34,7 @@ import Svg, { Circle } from "react-native-svg";
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
+import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
@@ -141,14 +142,17 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     AccessibilityInfo.announceForAccessibility?.(copy.listening);
   }, [copy.listening, recording]);
 
+  const sx = useScaledTextStyles(styles);
   return (
-    <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
+    // зачем (сверка с learning-v2.html rc, 05.10): заголовок слева 600; эталон 22; фраза 24; подсказка 10; разбор 18;
+    // вердикт 16 (раньше ровный gap 14 и всё по центру). Сама кнопка эталона — решение владельца 26.08, не меняю.
+    <View style={sx.root}>
+      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
       {onPlayFullPhraseAudio && (
         // зачем (learning-v2.html, rc): эталон — круглая кнопка на токенах стекла с кольцом хода
         // звука (прежнее решение владельца 26.08 сохранено), значок динамика/паузы вместо текстовых
         // символов; реальное состояние аудио по-прежнему берётся из referenceAudioState.
-        <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
+        <View style={[sx.playWrap, compact && { width: 80, height: 80, marginTop: 8 }]}>
           <Svg
             width={compact ? 80 : 116}
             height={compact ? 80 : 116}
@@ -186,7 +190,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               hitSlop={10}
               onPress={onPlayFullPhraseAudio}
               style={[
-                styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
+                sx.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
                 {
                   backgroundColor: g.opaqueCard,
                   opacity: referenceDisabled ? 0.45 : 1,
@@ -199,23 +203,23 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
         </View>
       )}
 
-      <Text style={[styles.targetPhrase, compact && { fontSize: 26, lineHeight: 31 }, { color: g.text }]}>
+      <Text style={[sx.targetPhrase, compact && { fontSize: 26, lineHeight: 31, marginTop: 10 }, { color: g.text }]}>
         {modePayload?.family === "scripted_repeat_compare"
           ? modePayload.targetPhrase
           : ""}
       </Text>
 
       {instruction && (
-        <Text style={[styles.instruction, { color: g.secondary }]}>{instruction}</Text>
+        <Text style={[sx.instruction, { color: g.secondary }]}>{instruction}</Text>
       )}
 
-      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
+      {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
       {resolved && (
         // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст
         // зелёным по центру, без плашки-заливки.
-        <View accessibilityLiveRegion="polite" style={styles.verdict}>
+        <View accessibilityLiveRegion="polite" style={sx.verdict}>
           <Ionicons name="checkmark" size={20} color={g.good} />
-          <Text style={[styles.verdictText, { color: g.good }]}>{copy.success}</Text>
+          <Text style={[sx.verdictText, { color: g.good }]}>{copy.success}</Text>
         </View>
       )}
     </View>
@@ -225,14 +229,15 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 export default ScriptedRepeatCompareModeV1;
 
 const styles = StyleSheet.create({
-  root: { gap: 14, alignItems: "center" },
+  root: { alignItems: "center" },
+  // `.tlab` 15/600 --sec, слева (D145 → 16).
   taskLabel: {
+    alignSelf: "stretch",
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: "700",
-    textAlign: "center",
+    fontWeight: "600",
   },
-  playWrap: { width: 116, height: 116, alignItems: "center", justifyContent: "center" },
+  playWrap: { width: 116, height: 116, alignItems: "center", justifyContent: "center", marginTop: 22 },
   playBtn: {
     width: 92,
     height: 92,
@@ -247,15 +252,19 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: -0.3,
     textAlign: "center",
+    marginTop: 24,
   },
+  // `.scene` по центру, margin-top 10.
   instruction: {
     width: "100%",
     fontSize: 16,
     fontWeight: "400",
     lineHeight: 22,
     textAlign: "center",
+    marginTop: 10,
   },
-  feedbackLane: { width: "100%" },
-  verdict: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, minHeight: 22 },
+  feedbackLane: { width: "100%", marginTop: 18 },
+  // `.verdict` margin-top 16.
+  verdict: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, minHeight: 22, marginTop: 16 },
   verdictText: { fontSize: 16, lineHeight: 22, fontWeight: "600", flexShrink: 1 },
 });

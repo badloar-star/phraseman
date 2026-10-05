@@ -2190,7 +2190,18 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
       <NoEnergyModal variant="course"
         visible={gate === "denied"}
         activity="learning_v2_session"
-        onClose={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
+        onClose={() => {
+          console.log("[NO-ENERGY] learning_v2: close → lessons (reason=user_closed)");
+          safeRouterBack(router, "/(tabs)/lessons" as never);
+        }}
+        // зачем (координатор 05.10): человек ждал таймер, чтобы продолжить. Ворота энергии стоят на ВХОДЕ
+        // (проверка баланса и −1 на первом задании), поэтому при восстановлении пускаем в занятие сразу —
+        // тот же запуск (sessionRunId → тот же operationId): гейт списывает ровно один раз, повтор дедуплицируется.
+        onEnergyRestored={() => {
+          console.log("[NO-ENERGY] learning_v2: restored → continue into session (same run, single charge)");
+          setFirstQuestionShown(false);
+          setGate("ok");
+        }}
       />
     </View>
   );

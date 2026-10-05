@@ -49,6 +49,11 @@ export type NoEnergyVariant = 'dialogs' | 'learn' | 'course';
 interface Props {
   /** Чей макет рисуем — см. NoEnergyVariant. Значения по умолчанию нет намеренно. */
   variant: NoEnergyVariant;
+  /**
+   * Окно 'course': энергия восстановилась, пока окно открыто. Задано — экран продолжает сам (пускает в занятие);
+   * не задано — окно закрывается через onClose.
+   */
+  onEnergyRestored?: () => void;
   visible: boolean;
   onClose: () => void;
   /**
@@ -79,6 +84,7 @@ interface Props {
 
 function NoEnergyModal({
   variant,
+  onEnergyRestored,
   visible,
   onClose,
   onGotIt,
@@ -393,9 +399,11 @@ function NoEnergyModal({
     if (totalAvailable < requiredEnergy) { openedShortRef.current = true; return; }
     if (variant !== 'course' || !openedShortRef.current) return;
     openedShortRef.current = false;
-    console.log('[NO-ENERGY] restored_while_open', JSON.stringify({ variant, totalAvailable, requiredEnergy, activity: activity ?? null }));
-    onClose();
-  }, [activity, modalVisible, onClose, requiredEnergy, totalAvailable, variant]);
+    const action = onEnergyRestored ? 'continue' : 'close';
+    console.log('[NO-ENERGY] restored_while_open', JSON.stringify({ variant, action, totalAvailable, requiredEnergy, activity: activity ?? null }));
+    if (onEnergyRestored) onEnergyRestored();
+    else onClose();
+  }, [activity, modalVisible, onClose, onEnergyRestored, requiredEnergy, totalAvailable, variant]);
 
   // зачем: Liquid Glass 1 в 1 с макета dialogs.html B5 — по центру круг с молнией, заголовок,
   // одна строка про восстановление и в ряд «Позже» (контур) + «Получить Plus» (светлая кнопка).

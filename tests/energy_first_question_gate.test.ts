@@ -224,6 +224,27 @@ describe('energy first-question gate (D72/D87/PM-084)', () => {
     expect(ledger.balance).toBe(0);
   });
 
+  // зачем (координатор 05.10): окно курса «нет энергии» при восстановлении энергии сразу пускает в занятие
+  // (тот же запуск, тот же operationId, плеер монтируется заново) — списание обязано пройти ровно один раз.
+  it('energy restored while the no-energy window is open: re-entry of the same run charges exactly once', async () => {
+    const ledger = freshLedger(0);
+    const deps = makeDeps(ledger);
+    const attempt = intent('lv2-run-1');
+
+    await expect(chargeFirstQuestion(deps, { activity: 'learning_v2_session', intent: attempt, screen: 'learning_v2_session' })).resolves.toBe('insufficient');
+    ledger.balance = 1; // таймер дошёл: +1
+    const [first, remount] = await Promise.all([
+      chargeFirstQuestion(deps, { activity: 'learning_v2_session', intent: attempt, screen: 'learning_v2_session' }),
+      chargeFirstQuestion(deps, { activity: 'learning_v2_session', intent: attempt, screen: 'learning_v2_session' }),
+    ]);
+    await markFirstQuestionShown(deps, attempt.operationId);
+    const late = await chargeFirstQuestion(deps, { activity: 'learning_v2_session', intent: attempt, screen: 'learning_v2_session' });
+
+    expect([first, remount, late]).toEqual(['spent', 'spent', 'spent']);
+    expect(ledger.charged.size).toBe(1);
+    expect(ledger.balance).toBe(0);
+  });
+
   it('on next app start refunds a charge from a previous boot whose question was never shown (idempotent)', async () => {
     const ledger = freshLedger(4);
     ledger.charged.add('energy:lesson:crashed');

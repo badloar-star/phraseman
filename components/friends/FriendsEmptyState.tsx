@@ -7,7 +7,9 @@ import { FriendsGlassButton, useFriendsGlass } from './FriendsGlassKit';
 
 // зачем (владелец 2026-09-29): пустой список 1 в 1 по макету community.html#COM-04-EMPTY
 // (`friendsEmpty()`): плитка 61 со значком «люди», заголовок 20/26 по центру и одна компактная
-// главная кнопка «Добавить друга». Длинную подсказку макета не переносим (PM-163: без пояснений).
+// главная кнопка «Добавить друга».
+// зачем (Сверка community-020, макет 04.10 новее PM-163): под заголовком короткое пояснение `.empty-state p` 14/20 --sec
+// (D145 → 13/19), max-width 280: «Найдите друга по имени или поделитесь своим кодом.» / при ошибке — про сохранённый список.
 
 // зачем (макет community.html#COM-04-OFFLINE): тот же каркас, но при ошибке обновления —
 // значок «нет связи», «Связь пропала» и «Повторить» вместо «Добавить друга».
@@ -44,16 +46,41 @@ export default function FriendsEmptyState({
     tr: 'Bağlantı koptu',
     pl: 'Utracono połączenie',
   });
+  const hint = triLang(lang, {
+    ru: 'Найдите друга по имени или поделитесь своим кодом.',
+    uk: 'Знайдіть друга за імʼям або поділіться своїм кодом.',
+    en: 'Find a friend by name or share your code.',
+    es: 'Busca a un amigo por nombre o comparte tu código.',
+    'pt-BR': 'Encontre um amigo pelo nome ou compartilhe seu código.',
+    vi: 'Tìm bạn theo tên hoặc chia sẻ mã của bạn.',
+    id: 'Cari teman dengan nama atau bagikan kodemu.',
+    tr: 'Bir arkadaşını adıyla bul ya da kodunu paylaş.',
+    pl: 'Znajdź znajomego po imieniu albo udostępnij swój kod.',
+  });
+  const offlineHint = triLang(lang, {
+    ru: 'Список сохранён на устройстве. Проверьте интернет и повторите обновление.',
+    uk: 'Список збережено на пристрої. Перевірте інтернет і повторіть оновлення.',
+    en: 'The list is saved on your device. Check your connection and refresh again.',
+    es: 'La lista está guardada en el dispositivo. Revisa la conexión y vuelve a actualizar.',
+    'pt-BR': 'A lista está salva no aparelho. Verifique a internet e atualize de novo.',
+    vi: 'Danh sách đã lưu trên thiết bị. Kiểm tra mạng rồi làm mới lại.',
+    id: 'Daftar tersimpan di perangkat. Periksa internet lalu muat ulang.',
+    tr: 'Liste cihazında kayıtlı. İnternetini kontrol edip yeniden yenile.',
+    pl: 'Lista jest zapisana na urządzeniu. Sprawdź internet i odśwież ponownie.',
+  });
   const retry = triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' });
   const showError = error && !!onRetry;
   const add = triLang(lang, { ru: 'Добавить друга', uk: 'Додати друга', en: 'Add friend', es: 'Agregar amigo', 'pt-BR': 'Adicionar amigo', vi: 'Thêm bạn', id: 'Tambah teman', tr: 'Arkadaş ekle', pl: 'Dodaj znajomego' });
   return (
-    <View testID={showError ? 'friends-list-offline' : 'friends-list-empty'} style={{ alignItems: 'center', paddingTop: 48, paddingBottom: 8, paddingHorizontal: 24 }}>
+    <View testID={showError ? 'friends-list-offline' : 'friends-list-empty'} style={{ alignItems: 'center', paddingTop: 68, paddingBottom: 8, paddingHorizontal: 24 }}>
       <View style={{ width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}>
         <Ionicons name={showError ? 'cloud-offline-outline' : 'people-outline'} size={26} color={glass.lightTint} accessible accessibilityLabel={showError ? offlineTitle : 'Friends'} />
       </View>
       <Text accessibilityRole="header" style={{ marginTop: 17, color: glass.text, fontSize: 20 * textScale, lineHeight: 26 * textScale, fontWeight: '700', textAlign: 'center' }}>
         {showError ? offlineTitle : title}
+      </Text>
+      <Text style={{ marginTop: 7, maxWidth: 280, color: glass.secondary, fontSize: 13 * textScale, lineHeight: 19 * textScale, textAlign: 'center' }}>
+        {showError ? offlineHint : hint}
       </Text>
       <FriendsGlassButton
         glass={glass}

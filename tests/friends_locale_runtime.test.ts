@@ -29,7 +29,9 @@ describe('friends tab locale runtime', () => {
     // зачем (владелец 2026-09-29): пустой список переведён на макет community.html#COM-04-EMPTY —
     // одна компактная главная кнопка в отдельном компоненте, а не блок внутри экрана.
     expect(source).toContain('<FriendsEmptyState');
-    expect(empty).toContain('testID="friends-empty-add"');
+    // зачем: testID выбирается выражением (пусто/офлайн) — проверяем сам идентификатор кнопки.
+    expect(empty).toContain("'friends-empty-add'");
+    expect(empty).toContain('compact');
     // Реферальные CTA убраны из empty-state (owner 2026-07-24): приглашения живут в настройках.
     expect(source).not.toContain('testID="friends-empty-invite"');
     expect(source).not.toContain('testID="friends-empty-enter-code"');

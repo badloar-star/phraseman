@@ -631,6 +631,31 @@ function unacknowledgedTotal(projection: LevelSpinStarProjection): number {
   ), 0);
 }
 
+/**
+ * Только для лога: из чего складывается неподтверждённая разница — по схемам операций (число, сумма, возраст
+ * самой старой). Без сумм нельзя понять, какие траты ещё ждут подтверждения сервера и не застряли ли они.
+ */
+function unacknowledgedBreakdown(
+  projection: LevelSpinStarProjection,
+  nowMs: number,
+): Record<string, { count: number; amount: number; oldestAgeMin: number }> {
+  const out: Record<string, { count: number; amount: number; oldestAgeMin: number }> = {};
+  for (const operation of projection.operations) {
+    const isGrant = operation.schemaVersion === 'client-level-spin-star-operation.v1'
+      || operation.schemaVersion === 'client-practice-rune-operation.v1';
+    if (isGrant && projection.acknowledged[operation.operationId] === operation.requestFingerprint) continue;
+    const amount = isGrant ? operation.amount : (operation as { runeDelta: number }).runeDelta;
+    const ageMin = Math.max(0, Math.round((nowMs - operation.createdAtMs) / 60_000));
+    const row = out[operation.schemaVersion] ?? { count: 0, amount: 0, oldestAgeMin: 0 };
+    out[operation.schemaVersion] = {
+      count: row.count + 1,
+      amount: row.amount + amount,
+      oldestAgeMin: Math.max(row.oldestAgeMin, ageMin),
+    };
+  }
+  return out;
+}
+
 function unacknowledgedPracticeEarnedTotal(projection: LevelSpinStarProjection): number {
   return projection.operations.reduce((total, operation) => (
     operation.schemaVersion === 'client-practice-rune-operation.v1'
@@ -852,6 +877,9 @@ function publishProjection(token: AccountGenerationToken, projection: LevelSpinS
       serverSeq: projection.serverSeq,
       operations: projection.operations.length,
       unacknowledged: unacknowledgedTotal(projection),
+      // зачем (Сверка 05.10: «serverBalance 10315, unacknowledged −8470» после повышения ранга): из чего состоит разница —
+      // какие траты ждут подтверждения сервера, сколько и как давно; застрявшая трата видна по возрасту.
+      unacknowledgedBySchema: unacknowledgedBreakdown(projection, Date.now()),
       dropToZero: Boolean(before && (before.stars ?? 0) > 0 && visible.balance === 0),
       caller: (new Error().stack ?? '').split('\n').slice(2, 5).map((line) => line.trim()).join(' <- '),
     }));

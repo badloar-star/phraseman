@@ -928,6 +928,10 @@ const LessonCard = React.memo(function LessonCard({
               noLimits,
               legacyFreeLessonCap,
             });
+            logLessonGateDecision('card', {
+              lesson: num, access, isPremium, devMode: effectiveDevContentUnlock, noLimits, purchased: purchasedLesson,
+              unlocked: isUnlocked, cap: legacyFreeLessonCap ?? null, levelLockedByExam: Boolean(levelLockedByExam && prevLessonLevel),
+            });
             if (access === "available") {
               void prefetchLessonMenuCache(num, studyTarget);
               router.push({ pathname: "/lesson_menu", params: { id: num } });
@@ -1363,6 +1367,24 @@ function neutralLearningV2SessionOutcomeKind(
   if (sessionOrdinal <= 4) return "understand";
   if (sessionOrdinal <= 8) return "learn";
   return "can_do";
+}
+
+// зачем (learn-(1), Дизайн/координатор 05.10: «Free видит "Ещё рано" вместо пейвола» — потеря выручки, «сперва логи»): каждое
+// решение ворот урока печатает все входы resolveLessonAccess и что показано. devMode = DEV_CONTENT_UNLOCK снимает
+// Plus-ветку в dev-сборке — его значение в строке обязательно. Без uid.
+function logLessonGateDecision(
+  source: 'card' | 'list',
+  input: Readonly<{
+    lesson: number; access: string; isPremium: boolean; devMode: boolean; noLimits: boolean;
+    purchased: boolean; unlocked: boolean; cap: number | null; levelLockedByExam: boolean;
+  }>,
+): void {
+  const shown = input.access === 'available' ? 'lesson_menu'
+    : input.access === 'premium_required' ? 'paywall'
+      : input.levelLockedByExam ? 'gate_level' : 'gate_lesson_too_early';
+  console.warn('[LESSON-GATE] decision', JSON.stringify({
+    source, ...input, requiresPremium: requiresPremiumForLesson(input.lesson, input.cap ?? undefined), shown,
+  })); // guard-ok: решение ворот (выручка) логируется и в релизе; только чтение флагов, ничего не меняет
 }
 
 function learningV2SessionOutcomeTitle(
@@ -4275,6 +4297,11 @@ export default function LessonsTab({
         devMode: effectiveDevContentUnlock,
         noLimits: effectiveNoLimits,
         legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+      });
+      logLessonGateDecision('list', {
+        lesson: num, access, isPremium, devMode: effectiveDevContentUnlock, noLimits: effectiveNoLimits,
+        purchased: purchasedLessons.includes(num), unlocked: Boolean(unlockedLessons[num - 1]),
+        cap: effectiveLegacyFreeLessonCap ?? null, levelLockedByExam: false,
       });
       if (access === "available") {
         void prefetchLessonMenuCache(num, studyTarget);

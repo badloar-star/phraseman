@@ -40,12 +40,12 @@ type Props = Readonly<{
   onCreate: () => void;
   onTrain: () => void;
   trainButtonRef?: React.Ref<View>;
-  labels: Readonly<{ back: string; create: string; trainA11y: string   /**
+  labels: Readonly<{ back: string; create: string; trainA11y: string }>;
+  /**
    * Новичок: своих карточек и наборов нет (макет cards-section-extra.js hubNewS). Вместо стопки — стеклянная карточка
    * «Начните с готового», главная кнопка — «Выбрать набор» (а не тренировка, тренировать пока нечего).
    */
   fresh?: Readonly<{ title: string; sub: string; cta: string; onPress: () => void }>;
-}>;
 }>;
 
 /** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */

@@ -6,13 +6,16 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useState } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
-import { V2 } from '../../constants/v2Style';
 import { PressableScale } from '../feedback/PressableScale';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+
+/** Ступени тона поверх карточки категории: строка +5 % белого, плитка +9 % (макет dialogs.html A4: #161618 → #1D1D1F → #28282A). */
+const ROW_TONE = 'rgba(255,255,255,0.045)';
+const TILE_TONE = 'rgba(255,255,255,0.09)';
 
 export type DialogueV2CatalogueRowStatus = 'available' | 'done' | 'locked';
 
@@ -90,7 +93,8 @@ export function DialogueV2CatalogueSection({
   };
 
   return (
-    <View testID="dialogue-v2-catalogue-section" style={{ gap: 13, marginTop: 20 }}>
+    // зачем (dialogs.html A1 `.stack.g13`): категории через 13, первая — 32 под шапкой хаба.
+    <View testID="dialogue-v2-catalogue-section" style={{ gap: 13, marginTop: 32 }}>
       {groups.map(({ world, items: worldItems }) => {
         const expanded = activeWorldId === world.id;
         // зачем (сверка с dialogs.html A1–A2, 04.10): карточка категории по макету несёт «пройдено N / всего M»
@@ -104,7 +108,10 @@ export function DialogueV2CatalogueSection({
           <View
             key={world.id}
             testID={`dialogue-v2-world-${world.id}`}
-            style={[dialogueGlassCardStyle(glass, 24), { paddingHorizontal: 14, paddingTop: 14, paddingBottom: expanded ? 16 : 14 }]}
+            // зачем: свёрнутая — `.card.c2` хаба (A1: r22, поля 16/16/18); раскрытая — карточка кадра A4 (r24, поля 14/14/16).
+            style={[dialogueGlassCardStyle(glass, expanded ? 24 : 22), expanded
+              ? { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 16 }
+              : { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 18 }]}
           >
             <PressableScale
               testID={`dialogue-v2-world-toggle-${world.id}`}
@@ -113,33 +120,39 @@ export function DialogueV2CatalogueSection({
               accessibilityLabel={`${world.title}, ${doneCount}/${totalCount}`}
               onPress={() => toggleWorld(world.id)}
               variant="flat"
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 16, minHeight: 55 }}
+              style={{ flexDirection: 'row', alignItems: 'center', gap: expanded ? 16 : 22, minHeight: 55 }}
             >
-              <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+              {/* зачем (сверка dialogs-004/-002, «плитка категории и строки без карточки/плитки»): в макете ступени тона — карточка категории #161618 → строка #1D1D1F (+5 %) → плитка #28282A (+9 %).
+                  Токены темы (opaqueControl/opaqueCard) в тёмных темах почти равны фону карточки, и плитки/строки сливались; тон считаем от белого — ступени видны в любой теме. */}
+              <View style={{ width: 55, height: 55, borderRadius: 14, backgroundColor: TILE_TONE, alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={worldIcon(world.id)} size={26} color={glass.text} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
+                <Text style={{ color: glass.text, fontSize: expanded ? 20 : 19, lineHeight: expanded ? 25 : 24, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
                   {world.title}
                 </Text>
-                {subtitle ? (
-                  <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }} maxFontSizeMultiplier={1.3}>{/* guard-ok: исключение 2.0 — короткая строка категории из макета dialogs.html A1 */}
+                {subtitle && !expanded ? (
+                  // A1: подпись 15 вторичным, отступ 6 — шкала D145: 16/20.
+                  <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 20, marginTop: 6 }} maxFontSizeMultiplier={1.3}>{/* guard-ok: исключение 2.0 — короткая строка категории из макета dialogs.html A1 */}
                     {subtitle}
                   </Text>
                 ) : null}
               </View>
-              <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>
+              {/* `.frac`: «пройдено» 28/700, «/всего» 16 вторичным с отступом 3. */}
+              <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>
                 {doneCount}
-                <Text style={{ color: glass.secondary, fontSize: 13, fontWeight: '500' }}>/{totalCount}</Text>
+                <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '400' }}>{' '}/{totalCount}</Text>
               </Text>
               <Ionicons name={expanded ? 'chevron-up' : 'chevron-forward'} size={20} color={glass.secondary} />
             </PressableScale>
-            <View style={{ height: 6, borderRadius: 3, backgroundColor: glass.line, marginTop: 12, overflow: 'hidden' }}>
-              <View style={{ height: 6, minWidth: 6, width: `${Math.round(progress * 100)}%`, borderRadius: 3, backgroundColor: glass.text }} />
+            {/* `.trk.dot`: дорожка 7, на ней белая точка 8 там, где «пройдено» (не заливка). */}
+            <View style={{ height: 7, borderRadius: 4, backgroundColor: glass.line, marginTop: expanded ? 16 : 18, marginHorizontal: expanded ? 6 : 4 }}>
+              <View style={{ position: 'absolute', top: -0.5, width: 8, height: 8, borderRadius: 4, backgroundColor: glass.text, left: `${Math.round(progress * 100)}%`, marginLeft: doneCount > 0 ? -8 : 0 }} />
             </View>
 
             {expanded ? (
-              <View style={{ marginTop: 18, gap: V2.gapTight }}>
+              // A4 `.stack`: строки через 9.
+              <View style={{ marginTop: 18, gap: 9 }}>
                 {worldItems.map((item) => {
                   const locked = item.status === 'locked';
                   const done = item.status === 'done';
@@ -158,18 +171,19 @@ export function DialogueV2CatalogueSection({
                       onPress={() => onPressItem(item)}
                       variant="flat"
                       style={{
+                        // A4 `.dl`: высота 60, радиус 14, поля 0·14·0·10.
                         minHeight: 60,
-                        borderRadius: 16,
-                        backgroundColor: glass.opaqueControl,
+                        borderRadius: 14,
+                        backgroundColor: ROW_TONE,
                         paddingLeft: 10,
                         paddingRight: 14,
-                        paddingVertical: 7,
+                        paddingVertical: 6,
                         flexDirection: 'row',
                         alignItems: 'center',
                         gap: 16,
                       }}
                     >
-                      <View style={{ width: 46, height: 46, borderRadius: 13, backgroundColor: glass.opaqueCard, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ width: 46, height: 46, borderRadius: 12, backgroundColor: TILE_TONE, alignItems: 'center', justifyContent: 'center' }}>
                         {locked ? (
                           <Ionicons name="lock-closed" size={20} color={glass.mutedText} />
                         ) : (
@@ -178,7 +192,8 @@ export function DialogueV2CatalogueSection({
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text
-                          style={{ color: locked ? glass.secondary : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
+                          // A4: 17/22/600 — шкала D145: 16/22, вес 600.
+                          style={{ color: locked ? glass.secondary : glass.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}
                           maxFontSizeMultiplier={1.3}
                         >
                           {item.title}
@@ -197,7 +212,8 @@ export function DialogueV2CatalogueSection({
                         ) : null}
                       </View>
 
-                      <View style={{ backgroundColor: glass.opaqueCard, borderRadius: 9, paddingHorizontal: 9, paddingVertical: 4 }}>
+                      {/* `.lvl`: 38×26, радиус 8, поля 0·9, тон control с тонкой кромкой. */}
+                      <View style={{ minWidth: 38, height: 26, backgroundColor: glass.opaqueCard, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, borderColor: glass.line }}>{/* guard-ok: 1px кромка `.lvl` (исключение 2.0) */}
                         <Text style={{ color: glass.text, fontSize: 13, lineHeight: 17, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
                           {item.cefr}
                         </Text>

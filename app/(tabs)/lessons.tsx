@@ -79,6 +79,7 @@ import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens } from "../../constants/liquidGlassThemePalette";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
+import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
 import {
   LessonsListGlassAttestationCard,
   LessonsListGlassExamCard,
@@ -4815,7 +4816,7 @@ export default function LessonsTab({
           // ширины пилюля монет растягивалась до 201 dp и выталкивала HUD под заголовок.
           width: "auto",
           height: 30,
-          paddingHorizontal: 12,
+          paddingHorizontal: 13,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
@@ -4827,17 +4828,19 @@ export default function LessonsTab({
           colors={[learnGlass.opaqueControl, learnGlass.opaqueCard]}
           style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
         />
+        {/* зачем (сверка learn-002 п.4, kit.css `.pill` + стекло): пилюля монет — блик сверху и светлая кромка, не плоская. */}
+        <KitGlassLayer radius={15} />
         {legacyCoinRankSource ? (
           <Image
             testID="legacy-lessons-coin-rank-asset"
             source={legacyCoinRankSource}
-            style={{ width: 18, height: 18 }}
+            style={{ width: 20, height: 20 }}
             contentFit="contain"
           />
         ) : (
           <View
             testID="legacy-lessons-coin-rank-loading"
-            style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: learnGlass.line }}
+            style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: learnGlass.line }}
           />
         )}
         <Text
@@ -5418,8 +5421,12 @@ export default function LessonsTab({
                       paddingHorizontal: 0,
                       alignItems: "center",
                       justifyContent: "center",
+                      borderRadius: 20,
+                      overflow: "hidden",
                     }}
                   >
+                    {/* зачем (сверка learn-002 п.5, kit.css `.rb` + стекло): круг — блик сверху и светлая кромка. */}
+                    <KitGlassLayer radius={20} />
                     <Ionicons name="shuffle" size={20} color={learnGlass.text} />
                   </PressableHybrid>
                   {/* зачем (learn.html, spec_learn «Удалено в 2.0»): чип «Новые уроки» в шапке
@@ -5459,8 +5466,11 @@ export default function LessonsTab({
                         paddingHorizontal: 0,
                         alignItems: "center",
                         justifyContent: "center",
+                        borderRadius: 20,
+                        overflow: "hidden",
                       }}
                     >
+                      <KitGlassLayer radius={20} />
                       <Ionicons name="sparkles" size={20} color={learnGlass.text} />
                     </PressableHybrid>
                   ) : null}

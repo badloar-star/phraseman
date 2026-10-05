@@ -155,8 +155,9 @@ function NumberCircle({ glass, num, state, current }: {
       {done ? (
         <Ionicons name="checkmark" size={20} color={glass.ctaInk} />
       ) : locked ? (
-        // зачем: замок в макете (redesign-round-2 I.lock) — контур, не заливка.
-        <Ionicons name="lock-closed-outline" size={18} color={glass.secondary} />
+        // зачем (сверка learn-002 п.3, learn.html `.num.lk` + kit lockF): замок маленький и залитый, тон --sec;
+        // глиф lockF занимает 14 из 24 — Ionicons 14 даёт ту же видимую величину.
+        <Ionicons name="lock-closed" size={14} color={glass.secondary} />
       ) : (
         <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
           {num}
@@ -167,7 +168,9 @@ function NumberCircle({ glass, num, state, current }: {
 }
 
 function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang; state: LessonsListCardState }) {
-  const muted = { color: glass.secondary, fontSize: 13, fontWeight: '700' as const };
+  // зачем (learn.html `.pct` 600, `.lkt` обычный): «Пройден»/проценты — полужирные, «Открыт»/«Пройди урок…» — обычные.
+  const muted = { color: glass.secondary, fontSize: 13, fontWeight: '600' as const };
+  const lkt = { color: glass.secondary, fontSize: 13, fontWeight: '400' as const };
   if (state.kind === 'done') {
     return (
       <>
@@ -190,13 +193,13 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
   if (state.kind === 'plus') {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 }}>
-        <Ionicons name="lock-closed-outline" size={16} color={glass.secondary} />
-        <Text style={[muted, { flexShrink: 1 }]}>{lessonsListCopy.plus(lang)}</Text>
+        <Ionicons name="lock-closed" size={12} color={glass.secondary} />
+        <Text style={[lkt, { flexShrink: 1 }]}>{lessonsListCopy.plus(lang)}</Text>
       </View>
     );
   }
   const text = state.kind === 'open' ? lessonsListCopy.open(lang) : lessonsListCopy.lockPrev(lang, state.prevNum);
-  return <Text style={[muted, { flexShrink: 1 }]}>{text}</Text>;
+  return <Text style={[lkt, { flexShrink: 1 }]}>{text}</Text>;
 }
 
 export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
@@ -257,7 +260,8 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
           {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
         </View>
       </View>
-      <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
+      {/* зачем (learn.html `.lc` → `.ch` без своего цвета): шеврон наследует цвет текста карточки и не приглушается у закрытых. */}
+      <Ionicons name="chevron-forward" size={20} color={glass.text} />
     </PressableHybrid>
   );
 });

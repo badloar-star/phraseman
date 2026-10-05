@@ -25,7 +25,7 @@ import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
 import { beginAccountDeletion } from '../app/auth_provider';
-import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
+import { enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
 import {
@@ -119,6 +119,10 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const [deleting, setDeleting] = useState(false);
   const [footerWidth, setFooterWidth] = useState(0);
   const deleteInFlightRef = useRef(false);
+  // зачем (65б, макет OR-ACCOUNT-DELETE-PRECOMMIT-REJECTED): «Повторить» в окне отказа запускает удаление снова без
+  // повторного ввода слова — его уже ввели, а поле сброшено закрытием окна. Флаг одноразовый: сгорает на первом вызове.
+  const retryApprovedRef = useRef(false);
+  const confirmDeleteRef = useRef<(() => Promise<void>) | null>(null);
   // зачем: toLocaleUpperCase(String(lang)) бросал RangeError, когда lang не был
   // валидным языковым тегом (undefined/null из контекста до гидрации, служебное
   // значение). Исключение летело прямо из рендера модалки — экран настроек
@@ -157,7 +161,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
 
   const enqueueInfoAlert = useCallback(
     (title: string, message: string) => {
-      void enqueueThemedBlockingInfoAlert(title || L({
+      void enqueueThemedBlockingChoiceAlert(title || L({
         ru: 'Сообщение',
         uk: 'Повідомлення',
         es: 'Message',
@@ -167,7 +171,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         tr: 'Mesaj',
         pl: 'Wiadomość',
         // зачем (Сверка overlays-runtime 039–041): стадии удаления — плитка с замком, как в макете.
-      }), message, 'OK', { icon: 'lock-closed' });
+      }), message, [
+        { value: 'close', ghost: true, label: L({ ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }) },
+        { value: 'retry', label: L({ ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' }) },
+      ], { icon: 'lock-closed' }).then((choice) => {
+        // Оба окна отказа — до точки невозврата (аккаунт не изменён), поэтому повтор разрешён макетом.
+        console.warn('[ACCOUNT-DELETE-UI] reject_alert:choice', JSON.stringify({ choice })); // guard-ok: выбор логируется
+        if (choice !== 'retry') return;
+        retryApprovedRef.current = true;
+        void confirmDeleteRef.current?.();
+      });
     },
     [L],
   );
@@ -186,7 +199,14 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   );
 
   const handleConfirmDelete = useCallback(async () => {
-    if (deleteInFlightRef.current || deleting || !deleteConfirmMatches) return;
+    const retryApproved = retryApprovedRef.current;
+    retryApprovedRef.current = false;
+    if (deleteInFlightRef.current || deleting || (!deleteConfirmMatches && !retryApproved)) {
+      if (retryApproved) {
+        console.warn('[ACCOUNT-DELETE-UI] retry:skipped', JSON.stringify({ inFlight: deleteInFlightRef.current, deleting })); // guard-ok: ранний выход логируется
+      }
+      return;
+    }
     deleteInFlightRef.current = true;
     startAccountDeleteUiTrace();
     if (isHybrid) {
@@ -313,6 +333,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       setDeleting(false);
     }
   }, [L, deleteConfirmMatches, deleting, isHybrid, onRequestClose, runDangerShake, showInfoAlert]);
+  confirmDeleteRef.current = handleConfirmDelete;
 
   const handleCancel = useCallback(() => {
     if (deleting) return;

@@ -520,6 +520,22 @@ describe('account deletion rebuilt flow contract', () => {
     // Новый якорь обязан отличаться от застрявшего, иначе цикл повторится.
     expect(boot).toContain('rotated === stableId');
   });
+
+  // зачем (65б, макет OR-ACCOUNT-DELETE-PRECOMMIT-REJECTED): окно отказа ДО точки невозврата — «Закрыть» / «Повторить»;
+  // повтор идёт тем же обработчиком (защита от двойного тапа общая), без повторного ввода слова, одноразовым флагом.
+  it('pre-commit delete failure offers Close / Retry and retries through the same guarded handler', () => {
+    const enqueue = modalSource.slice(modalSource.indexOf('const enqueueInfoAlert'), modalSource.indexOf('const showInfoAlert'));
+    expect(enqueue).toContain('enqueueThemedBlockingChoiceAlert(');
+    expect(enqueue).toMatch(/value: 'close', ghost: true/);
+    expect(enqueue).toMatch(/value: 'retry'/);
+    expect(enqueue).toContain("if (choice !== 'retry') return;");
+    expect(enqueue.indexOf('retryApprovedRef.current = true;')).toBeLessThan(enqueue.indexOf('confirmDeleteRef.current?.()'));
+    const confirm = modalSource.slice(modalSource.indexOf('const handleConfirmDelete'), modalSource.indexOf('const handleCancel'));
+    expect(confirm).toContain('retryApprovedRef.current = false;');
+    expect(confirm).toContain('(!deleteConfirmMatches && !retryApproved)');
+    expect(confirm.indexOf('retryApprovedRef.current = false;')).toBeLessThan(confirm.indexOf('deleteInFlightRef.current = true;'));
+    expect(modalSource).toContain('confirmDeleteRef.current = handleConfirmDelete;');
+  });
 });
 
 test('one exported coordinator owns startup and fail-closed retired recovery', () => {

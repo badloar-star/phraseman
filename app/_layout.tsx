@@ -345,6 +345,8 @@ function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'
   if (moduleReport) {
     coldStartMark('layout.module_eval:self_top', '_layout', { modules: moduleReport.modules, selfSumMs: moduleReport.selfSumMs, top: moduleReport.self });
     coldStartMark('layout.module_eval:total_top', '_layout', { top: moduleReport.total });
+    // зачем ((б)): кто потребовал самые дорогие модули корня (lessons/journal/home) — цепочки require.
+    coldStartMark('layout.module_eval:chains', '_layout', { chains: moduleReport.chains });
   }
 }
 

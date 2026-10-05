@@ -27,6 +27,9 @@ type Frame = { name: string; startedAt: number; childMs: number };
 const moduleSelfMs = new Map<string, number>();
 const moduleTotalMs = new Map<string, number>();
 const frames: Frame[] = [];
+// зачем ((б), пакет 07:26: lessons.tsx/journal.tsx по 321 мс в графе корня, home.tsx вычислен вместе с корнем — хотя
+// (tabs)/_layout держит их лениво): кто ПЕРВЫМ потребовал модуль. В отчёте — цепочки «модуль ← требователь ← …».
+const firstRequirer = new Map<string, string | null>();
 let moduleCount = 0;
 let tracing = false;
 
@@ -42,7 +45,9 @@ if (holder.__DEV__ === true) {
     beginEvent: (name?: string) => {
       previous?.beginEvent?.(name);
       if (!tracing || typeof name !== 'string' || !name.startsWith('JS_require_')) return;
-      frames.push({ name: shortName(name), startedAt: Date.now(), childMs: 0 });
+      const short = shortName(name);
+      if (!firstRequirer.has(short)) firstRequirer.set(short, frames[frames.length - 1]?.name ?? null);
+      frames.push({ name: short, startedAt: Date.now(), childMs: 0 });
     },
     endEvent: () => {
       previous?.endEvent?.();
@@ -67,7 +72,7 @@ if (holder.__DEV__ === true) {
 export function takeModuleEvalReport(
   top = 15,
   options: Readonly<{ stop?: boolean }> = {},
-): Readonly<{ modules: number; selfSumMs: number; self: string; total: string }> | null {
+): Readonly<{ modules: number; selfSumMs: number; self: string; total: string; chains: string }> | null {
   if (!tracing) return null;
   const fmt = (map: Map<string, number>) => [...map.entries()]
     .sort((a, b) => b[1] - a[1])
@@ -76,7 +81,18 @@ export function takeModuleEvalReport(
     .join(' | ');
   let selfSumMs = 0;
   moduleSelfMs.forEach((ms) => { selfSumMs += ms; });
-  const report = { modules: moduleCount, selfSumMs, self: fmt(moduleSelfMs), total: fmt(moduleTotalMs) };
+  // Цепочки требователей для top-8 по полному времени (до 6 уровней вверх).
+  const chains = [...moduleTotalMs.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([name]) => {
+      const chain = [name];
+      let cursor = firstRequirer.get(name) ?? null;
+      while (cursor && chain.length < 7) { chain.push(cursor); cursor = firstRequirer.get(cursor) ?? null; }
+      return chain.join(' ← ');
+    })
+    .join(' || ');
+  const report = { modules: moduleCount, selfSumMs, self: fmt(moduleSelfMs), total: fmt(moduleTotalMs), chains };
   moduleSelfMs.clear();
   moduleTotalMs.clear();
   moduleCount = 0;

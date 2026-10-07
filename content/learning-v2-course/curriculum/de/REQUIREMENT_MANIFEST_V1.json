@@ -25,7 +25,7 @@
     },
     {
       "sourcePath": "repo/AGENTS.md",
-      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784"
+      "sha256": "4ccd0c94f0d9aba516e8004e9f06e21c5fb6fd32247b90d4e6f8998276009b10"
     },
     {
       "sourcePath": "repo/docs/superpowers/specs/2026-09-19-learning-v2-german-grammar-first-course-design.md",
@@ -57,7 +57,7 @@
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-04.md",
-      "sha256": "79163af4a08a645794df1a7e6b837cfafd10a02d08ed32c1b7484db3c15594e1"
+      "sha256": "2919f71309c1615be9e9ad54d7a4fac90e60a10d8cebfae0032766265e730d6d"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
@@ -149,7 +149,7 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/author.md",
-      "sha256": "4665a0e7dabca36ec01eafdb94bc518258259b6bcb3f18c68783c8f1d4123140"
+      "sha256": "e9f0ab0d57ea295e09269df52c5339969401da664f60795fc72cebd1c3185f3c"
     },
     {
       "sourcePath": "factory/pipeline/prompts/editor.md",
@@ -161,27 +161,27 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_learner.md",
-      "sha256": "902731ebba5b9693d2afb9feae87d798b0d9b00ba53eb8d42b9482fc324c2d65"
+      "sha256": "9656bbcdfae883dbe4f559e9f338e99fad0234f0c91ba04c80f30c794ace0326"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_nonsense.md",
-      "sha256": "0897be8da50267458fa8d94279528336ac48e05cfbad93211d1a7a3c2223a1b1"
+      "sha256": "2a80c5a0c5924e091105691501c78674221c73268ac52ec35ea3d612c2d3d4e4"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_pedagogy.md",
-      "sha256": "660af6cee646441389214e59f4d8144df0a585995de9cdb6f6f14de184518f63"
+      "sha256": "9426cd7ef86be48802bc82cc1669105abd56970d1753055ed1fce243a8c16dee"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_progression.md",
-      "sha256": "66b30265694ca7b283bc4729bf6a64e3cf77f1b4a4b25bcb3724e20471e9bc2b"
+      "sha256": "359a3b33935ffc638e64751ed1a502cbb7f39ad3573340147f6348b504caef67"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_reader.md",
-      "sha256": "f8256cb683b44435c2260b17b2bc49ba9d1bab914c860bbb8e9dfb1c7c9f0384"
+      "sha256": "d758d370cca97f73dc19a3547ab654557af6546c2ffdf378c30cc9578b1bf2ff"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_taste.md",
-      "sha256": "03dd81acb3c00b544b936c29a5d34c41a880121b24d1444e629edf4708cef166"
+      "sha256": "dbbdb0a642359a4e9ca3892a39f17b53d02d12ec072fd03205280eb4f31067d3"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale.md",
@@ -290,7 +290,7 @@
       "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
       "applicability": "always",
       "severity": "HOLD",
-      "assertion": "PENDING owner decisions не выдаются за подтверждённые и не расширяют approved blueprint.",
+      "assertion": "Немецкий OWNER_DECISIONS является самостоятельной нормативной authority: PENDING owner decisions не выдаются за подтверждённые и не расширяют approved blueprint; English-specific wording и citations в shared factory prompts служат только calibration/placeholders, должны быть target-adapted к exact German packet и не могут override немецкие решения или authorize English content.",
       "family": "work_method"
     },
     {

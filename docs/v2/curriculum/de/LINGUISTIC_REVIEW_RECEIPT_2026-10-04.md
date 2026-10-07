@@ -2,13 +2,14 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` through `de_l30` closure across cumulative
-Stages A–D already recorded below, plus L27, L28, L29 and L30 Stage A (Task 4
-authority repair) and Stage B (Task 5 chapter blueprint plus fail-closed
-chapter gate).
+**Scope:** the bounded `de_l24` through `de_l32` closure across cumulative
+Stages A–D already recorded below, plus L27–L30 Stage A (Task 4 authority
+repair) and Stage B (Task 5 chapter blueprint plus fail-closed chapter gate),
+L31 Stage A authority repair and Task 5 closure, and L32 Task 5 closure.
 **Mode:** fresh independent read-only reviews after each GREEN. Cumulative
 Stages B–D and L27/L28/L29/L30 Stage B used exact-spec and native-German semantic
-judges. No reviewer authored or mutated the reviewed files.
+judges; L31 and L32 closure used fresh exact-spec and native-German reviews.
+No reviewer authored or mutated the reviewed files.
 **Reviewed commits:** cumulative Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
 `eadfba9fe2225a9205eb9242a62f74496685e3fc`; Stage C
@@ -21,7 +22,10 @@ judges. No reviewer authored or mutated the reviewed files.
 `9b3de41e021f87969eef9c820b42c091d8859d3b`; L29 Stage B
 `f4d8b0b5cf8074b72b766d9c85ceec4f6da62241`; L30 Stage A
 `8cd2b0e56092d2a97b3f2691de5424694d635c0d`; L30 Stage B
-`66b08395634b794c67ec3555bb7aaf3253587815`.
+`66b08395634b794c67ec3555bb7aaf3253587815`; L31 Stage A
+`0fad5983ab41b48c5baf95ac9479c6438e3def18`; L31 Task 5
+`7bd38fc3d57c28bb939dca5f937ad544c41c3ba1`; L32 Task 5
+`30472efb65bd6717fa41f3579be8dd5b33cef4a1`.
 
 ## Stable authority identities
 
@@ -678,3 +682,65 @@ weakens the separate recenter hash gate or handover obligation.
 Any byte change in a reviewed cumulative Stage A–D, L27 Stage A/B, L28 Stage
 A/B, L29 Stage A/B or L30 Stage A/B identity invalidates the corresponding
 verdict and requires fresh independent review.
+
+## L31/L32 cumulative closure — Task 5 complete
+
+| Closure artifact                 | Exact identity                                                     |
+| -------------------------------- | ------------------------------------------------------------------ |
+| final chapter blueprint registry | `494ABD91C59C88ED652B3B4CDAAEAA118BC53EF64BEB57FF54F735433612EB29` |
+| final chapter gate               | `E372D23E7B69772500658C0F1C29348BD82C3CC1D637C83E8238B62CB820C737` |
+| L31 Task 4 authority object      | `6090121F5518966A377235D5ADC8E450BEB7E7C5717D8595EB7026B64277F9E9` |
+| L31 Task 4 recall authority      | `4BAE9D6EAEA0835BF39ECA79F447113A6A6444FB7DE23908145E76BE087FCDB7` |
+| L31 Task 4 session-56 final      | `A7D5AA7B88C02A3C98ED19A7750F34A5FD12DFF1CC1B9DB3190BC2CA29F11593` |
+| L31 Task 5 semantic object       | `1DD16F8AB5DBAB505A1BD152E78953DC30A6DCB4B57F120B62A547797EEC0DF4` |
+| L32 Task 4 authority object      | `823A46887ADA299EE93CA64AE73EE3A31E42AFA729770816CADCD9504C96F343` |
+| L32 Task 4 session-56 final      | `0B5718C31A4C4B858BB73458362921DE59D74F99C1ECFCB9912D79DF80284DC3` |
+| L32 Task 5 semantic object       | `37DD8F7BBD72A11C1C075F376A8B49D3087DC4F795FBB3BD426EBE3701D096FB` |
+
+L31 Stage A authority repair is commit
+`0fad5983ab41b48c5baf95ac9479c6438e3def18`; the materialized L31 Task 5
+chapter blueprint is commit `7bd38fc3d57c28bb939dca5f937ad544c41c3ba1`. The
+materialized L32 Task 5 chapter blueprint is commit
+`30472efb65bd6717fa41f3579be8dd5b33cef4a1`. The present registry declares
+`COMPLETE_TASK5`: it contains exactly 32 lessons, 224 chapters and 1,792
+packet IDs. Focused current gates pass for L31 and L32 (7 chapters and 56
+packet IDs each), and the prefix-32 gate passes for the full 224/1,792 set.
+
+L31 introduces register-repair while integrating the closed L14/L18/L19/L22/L29/L30
+resources, including the L18 connector topology; its final transfer deliberately
+excludes L29 Genitiv and relative-clause surfaces. L32 is the terminal integration
+lesson: apart from its newly introduced functional-B1 integration wrapper, its
+surface constructs are already introduced and context-selected. Its C7 is a bounded
+functional-B1/register-repair mediation transfer with the single context-required
+modal-Perfekt meaning. Neither closure licenses Task 6,
+learner-facing RU+UK sessions, audio, release, mockup, HANDOVER changes or any
+English-contour work.
+
+The L32 native postwrite closure explicitly verified the final live byte
+identities above after deleting one stale _untracked generated_ JavaScript
+shadow of the TypeScript gate. The live TypeScript gate, focused L32 and
+prefix-32 gates, Prettier and ESLint then passed. This receipt records the
+reviewed blueprint boundary only; it does not claim a learner-facing release.
+
+## German shared-prompt adapter and precedence
+
+German `OWNER_DECISIONS.md` and `DE-INTERACTION-001` are standalone
+normative authority for the German contour. English owner citations, English
+content and hardcoded English wording that appear in shared factory prompts are
+calibration/placeholders only: they must be target-adapted to the exact German
+packet and can never authorize English content or override a German owner
+decision. An unadapted shared-prompt invocation is `HOLD`.
+
+## Closed authority boundary and next authorized step — superseding status
+
+- Task 5 is now complete for all 32 German lessons; its live registry is
+  `COMPLETE_TASK5` and the exact final identities are recorded above.
+- Task 6 lexical reconciliation remains mandatory before any exact
+  learner-facing packet authoring. Its work must begin with a fresh independent
+  instruction/authority reread and a current recenter receipt.
+- RU+UK learner sessions, audio, release, German owner mockup, English-contour
+  work and HANDOVER updates remain `HOLD` until Task 6 and every downstream
+  gate required by the German contour close.
+- The receipt still excludes the requirement-manifest identity: the manifest
+  binds this receipt SHA-256 after this text is finalized. This one-way binding
+  avoids a receipt↔manifest content-address cycle.

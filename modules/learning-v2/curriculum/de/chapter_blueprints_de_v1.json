@@ -1,7 +1,7 @@
 {
   "schemaVersion": "learning-v2-german-chapter-blueprints.v1",
   "targetLanguage": "de",
-  "buildStatus": "INCREMENTAL_TASK5",
+  "buildStatus": "COMPLETE_TASK5",
   "topology": {
     "lessons": 32,
     "chaptersPerLesson": 7,
@@ -27764,6 +27764,825 @@
             "futureDelayedProbe": {
               "kind": "COURSE_PACKET",
               "packetId": "de_l32_c07_s55"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "lessonId": "de_l32",
+      "lessonOrdinal": 32,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1"
+        ],
+        "prohibitedConstructIds": [],
+        "noExpansion": "Integrate only the context-required subset of already introduced Standard German resources. C1-C6 remain inside the closed twelve-construct L32 inventory. C7 requires only functional-B1 integration and register-repair mediation; the limited modal Perfekt is the single context-selected construct because the changed access disruption explicitly requires the bounded past-modal meaning wir haben warten müssen. Never turn the six Task4 contextSelectedConstructIds into a checklist, and never select more than two. Do not introduce a new connector, case relation, passive meaning, werden meaning, relative mapping, narrative form, Genitiv frame, modal or infinitive, reported-speech system, Konjunktiv, future grammar, certificate-readiness claim, dialect production, unlabelled Austrian or Swiss form, Task 6 registry, learner-facing RU or UK content, audio, release, mockup, HANDOVER, English-contour reuse or local OpenAI API use."
+      },
+      "chapters": [
+        {
+          "id": "de_l32_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l32_ch01",
+          "lessonOutcome": "understand the main points of clear familiar-domain speech and text",
+          "packetIds": [
+            "de_l32_c01_s01",
+            "de_l32_c01_s02",
+            "de_l32_c01_s03",
+            "de_l32_c01_s04",
+            "de_l32_c01_s05",
+            "de_l32_c01_s06",
+            "de_l32_c01_s07",
+            "de_l32_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-house-spoken-and-written-access-update",
+            "participants": "community-coordinator-frau-keller-and-service-desk",
+            "goal": "identify-the-linked-main-points-from-spoken-and-written-updates",
+            "contextSignature": "community-house-dual-mode-main-point-reception"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Gesprochene Information am Telefon: Frau Keller sagt: „Der Haupteingang ist gesperrt.“ Digitale Mitteilung: „Die Sperrung des Haupteingangs gilt bis heute Abend. Der Seiteneingang ist offen.“ Die beiden Hauptpunkte: Der Haupteingang ist bis heute Abend gesperrt; der Seiteneingang ist offen.",
+            "exit": "Am Telefon sagt Frau Keller: „Der Haupteingang ist gesperrt.“ In der digitalen Mitteilung steht: „Die Sperrung des Haupteingangs gilt bis heute Abend. Der Seiteneingang ist offen.“ Die Hauptpunkte: Haupteingang bis heute Abend gesperrt; Seiteneingang offen.",
+            "independentEvidenceByPacketId": "de_l32_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "introduction",
+              "packetId": "de_l32_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l32_c01_s03", "de_l32_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l32_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_limited_functional_genitive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c01_sperrung_v1",
+                "semanticIdentity": "sperrung|temporary closure named in a familiar community service update",
+                "lemmaOrExpression": "Sperrung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Sperrung",
+                  "plural": "Sperrungen"
+                },
+                "nounPackageIdentity": "die|sperrung|sperrungen",
+                "verbPackage": null,
+                "senseGloss": "temporary closure named in a familiar community service update",
+                "communicativeUse": "Die gesprochene Information und die digitale Mitteilung erklären die Sperrung: Der Haupteingang ist bis heute Abend gesperrt, der Seiteneingang ist offen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch01",
+                  "checkpointPacketId": "de_l32_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_limited_functional_genitive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-identify-the-linked-main-points-from-spoken-and-written-updates",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l32_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-hall-spoken-and-written-access-update",
+              "participants": "sports-group-member-caretaker-and-service-desk",
+              "goal": "independently-identify-the-linked-main-points-from-spoken-and-written-updates",
+              "contextSignature": "sports-hall-dual-mode-main-point-reception-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l31_c01", "de_l31_c07"],
+            "targetsFutureChapterIds": ["de_l32_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c03_s17"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l32_ch02",
+          "lessonOutcome": "produce a connected account of an experience plan or goal",
+          "packetIds": [
+            "de_l32_c02_s09",
+            "de_l32_c02_s10",
+            "de_l32_c02_s11",
+            "de_l32_c02_s12",
+            "de_l32_c02_s13",
+            "de_l32_c02_s14",
+            "de_l32_c02_s15",
+            "de_l32_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-house-changed-plan-account",
+            "participants": "community-coordinator-caretaker-and-volunteer-team",
+            "goal": "explain-how-feedback-changed-the-plan",
+            "contextSignature": "community-house-connected-plan-account"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Am Morgen kam die Rückmeldung vom Hausmeister. Danach änderten wir den Plan: Wir treffen uns am Seiteneingang und beginnen um zehn Uhr.",
+            "exit": "Die Rückmeldung kam am Morgen. Danach änderten wir den Plan: Treffpunkt ist der Seiteneingang, Beginn ist um zehn Uhr.",
+            "independentEvidenceByPacketId": "de_l32_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "guided",
+              "packetId": "de_l32_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l32_c02_s11", "de_l32_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l32_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_broader_narrative_preterite_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c02_ruckmeldung_v1",
+                "semanticIdentity": "ruckmeldung|response that causes a familiar plan to change",
+                "lemmaOrExpression": "Rückmeldung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Rückmeldung",
+                  "plural": "Rückmeldungen"
+                },
+                "nounPackageIdentity": "die|ruckmeldung|ruckmeldungen",
+                "verbPackage": null,
+                "senseGloss": "response that causes a familiar plan to change",
+                "communicativeUse": "Nach der Rückmeldung vom Hausmeister änderte das Team den Plan.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch02",
+                  "checkpointPacketId": "de_l32_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_broader_narrative_preterite_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-how-new-feedback-changed-a-plan",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l32_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-room-changed-plan-account",
+              "participants": "library-coordinator-caretaker-and-study-group",
+              "goal": "independently-explain-how-new-feedback-changed-a-plan",
+              "contextSignature": "library-room-connected-plan-account-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l28_c07", "de_l32_c01"],
+            "targetsFutureChapterIds": ["de_l32_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c04_s25"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l32_ch03",
+          "lessonOutcome": "enter and sustain an unprepared familiar-domain interaction in speech and a short written digital exchange",
+          "packetIds": [
+            "de_l32_c03_s17",
+            "de_l32_c03_s18",
+            "de_l32_c03_s19",
+            "de_l32_c03_s20",
+            "de_l32_c03_s21",
+            "de_l32_c03_s22",
+            "de_l32_c03_s23",
+            "de_l32_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-room-availability-inquiry",
+            "participants": "volunteer-lea-service-coordinator-and-phone-contact",
+            "goal": "clarify-one-open-point-in-writing-and-speech",
+            "contextSignature": "community-room-digital-spoken-inquiry"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Anfrage von Lea: Ist der Raum ab zehn Uhr frei? Antwort: Der Raum ist ab zehn Uhr frei. Am Telefon fragt Lea nach dem Seiteneingang; der Koordinator beantwortet die Anfrage.",
+            "exit": "Anfrage: Ist der Raum ab zehn Uhr frei? Antwort: Der Raum ist frei. Am Telefon klärt Lea den Seiteneingang.",
+            "independentEvidenceByPacketId": "de_l32_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "retrieval",
+              "packetId": "de_l32_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l32_c03_s19", "de_l32_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l32_c03_s24",
+            "integratedConstructIds": ["de_gc_functional_b1_integration_v1"],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c03_anfrage_v1",
+                "semanticIdentity": "anfrage|request for specific information in a short digital and spoken exchange",
+                "lemmaOrExpression": "Anfrage",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Anfrage",
+                  "plural": "Anfragen"
+                },
+                "nounPackageIdentity": "die|anfrage|anfragen",
+                "verbPackage": null,
+                "senseGloss": "request for specific information in a short digital and spoken exchange",
+                "communicativeUse": "Lea schreibt eine Anfrage zur Raumzeit und klärt danach den Eingang am Telefon.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch03",
+                  "checkpointPacketId": "de_l32_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1"
+                  ],
+                  "utilityRole": "interaction_opening",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sustain-a-new-digital-and-spoken-inquiry",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l32_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "workshop-room-availability-inquiry",
+              "participants": "workshop-participant-office-contact-and-phone-contact",
+              "goal": "independently-sustain-a-new-digital-and-spoken-inquiry",
+              "contextSignature": "workshop-room-digital-spoken-inquiry-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l31_c02",
+              "de_l31_c03",
+              "de_l32_c02"
+            ],
+            "targetsFutureChapterIds": ["de_l32_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c05_s33"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l32_ch04",
+          "lessonOutcome": "relay essential information and collaborate on a simple task",
+          "packetIds": [
+            "de_l32_c04_s25",
+            "de_l32_c04_s26",
+            "de_l32_c04_s27",
+            "de_l32_c04_s28",
+            "de_l32_c04_s29",
+            "de_l32_c04_s30",
+            "de_l32_c04_s31",
+            "de_l32_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-key-information-relay",
+            "participants": "service-desk-mia-karim-and-team-coordinator",
+            "goal": "relay-the-key-information-and-divide-the-task",
+            "contextSignature": "community-key-relay-collaboration"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Auskunft vom Servicebüro: Der Schlüssel liegt am Seiteneingang. Nachricht an das Team: Der Schlüssel liegt am Seiteneingang. Mia holt ihn ab, und Karim öffnet den Raum.",
+            "exit": "Der Schlüssel liegt am Seiteneingang. Mia holt ihn ab, Karim öffnet den Raum.",
+            "independentEvidenceByPacketId": "de_l32_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "production",
+              "packetId": "de_l32_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l32_c04_s27", "de_l32_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l32_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_register_repair_mediation_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c04_auskunft_v1",
+                "semanticIdentity": "auskunft|essential service information relayed to collaborators",
+                "lemmaOrExpression": "Auskunft",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Auskunft",
+                  "plural": "Auskünfte"
+                },
+                "nounPackageIdentity": "die|auskunft|auskunfte",
+                "verbPackage": null,
+                "senseGloss": "essential service information relayed to collaborators",
+                "communicativeUse": "Die Auskunft vom Servicebüro nennt den Ort des Schlüssels und ermöglicht die Aufgabenverteilung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch04",
+                  "checkpointPacketId": "de_l32_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_register_repair_mediation_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-relay-essential-information-and-divide-a-new-task",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l32_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighborhood-equipment-information-relay",
+              "participants": "rental-desk-two-neighbors-and-group-coordinator",
+              "goal": "independently-relay-essential-information-and-divide-a-new-task",
+              "contextSignature": "neighborhood-equipment-relay-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l31_c03",
+              "de_l31_c05",
+              "de_l32_c03"
+            ],
+            "targetsFutureChapterIds": ["de_l32_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c06_s41"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l32_ch05",
+          "lessonOutcome": "repair misunderstanding and keep communication intelligible",
+          "packetIds": [
+            "de_l32_c05_s33",
+            "de_l32_c05_s34",
+            "de_l32_c05_s35",
+            "de_l32_c05_s36",
+            "de_l32_c05_s37",
+            "de_l32_c05_s38",
+            "de_l32_c05_s39",
+            "de_l32_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-entrance-misunderstanding",
+            "participants": "frau-keller-herr-weber-and-community-coordinator",
+            "goal": "repair-the-entrance-misunderstanding-clearly",
+            "contextSignature": "community-entrance-clarification"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Herr Weber: Der Haupteingang ist offen. Frau Keller: Nein, der Haupteingang ist gesperrt; offen ist der Seiteneingang. Die Klarstellung verhindert den falschen Treffpunkt.",
+            "exit": "Der Haupteingang ist gesperrt; offen ist der Seiteneingang. Diese Klarstellung verhindert den falschen Treffpunkt.",
+            "independentEvidenceByPacketId": "de_l32_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l32_c05_s35", "de_l32_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l32_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_register_repair_mediation_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c05_klarstellung_v1",
+                "semanticIdentity": "klarstellung|explicit clarification that repairs a location misunderstanding",
+                "lemmaOrExpression": "Klarstellung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Klarstellung",
+                  "plural": "Klarstellungen"
+                },
+                "nounPackageIdentity": "die|klarstellung|klarstellungen",
+                "verbPackage": null,
+                "senseGloss": "explicit clarification that repairs a location misunderstanding",
+                "communicativeUse": "Die Klarstellung trennt den gesperrten Haupteingang vom offenen Seiteneingang.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch05",
+                  "checkpointPacketId": "de_l32_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_register_repair_mediation_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-a-new-location-misunderstanding",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l32_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "service-counter-location-misunderstanding",
+              "participants": "customer-clerk-and-service-coordinator",
+              "goal": "independently-repair-a-new-location-misunderstanding",
+              "contextSignature": "service-counter-clarification-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l31_c04",
+              "de_l31_c06",
+              "de_l32_c04"
+            ],
+            "targetsFutureChapterIds": ["de_l32_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c06_s47"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l32_ch06",
+          "lessonOutcome": "choose a neutral register and justify a plan or opinion briefly",
+          "packetIds": [
+            "de_l32_c06_s41",
+            "de_l32_c06_s42",
+            "de_l32_c06_s43",
+            "de_l32_c06_s44",
+            "de_l32_c06_s45",
+            "de_l32_c06_s46",
+            "de_l32_c06_s47",
+            "de_l32_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1",
+            "de_gc_limited_modal_perfekt_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_perfekt_sein_classes_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-meeting-mixed-audience-register-choice",
+            "participants": "community-coordinator-frau-keller-volunteer-team-and-new-participant",
+            "goal": "choose-and-justify-a-neutral-form-for-a-mixed-audience",
+            "contextSignature": "community-mixed-audience-register-choice"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Zwei Formulierungen stehen zur Wahl. A: „Tom, du kommst um zehn Uhr zum Seiteneingang.“ B: „Wir treffen uns um zehn Uhr am Seiteneingang.“ Für diese gemischte Runde aus Frau Keller, dem Team und einem neuen Teilnehmer formuliert Frau Keller A neu und wählt die neutrale Wortwahl B. Die Wortwahl ist sinnvoll, weil sie den gemeinsamen Plan nennt und alle Beteiligten einbezieht.",
+            "exit": "Gemischte Runde: Frau Keller, das Team und ein neuer Teilnehmer. A: „Tom, du kommst um zehn Uhr zum Seiteneingang.“ B: „Wir treffen uns um zehn Uhr am Seiteneingang.“ Frau Keller wählt die neutrale Wortwahl B. Begründung: Die Wortwahl nennt den gemeinsamen Plan und bezieht alle Beteiligten ein.",
+            "independentEvidenceByPacketId": "de_l32_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "transfer",
+              "packetId": "de_l32_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l32_c06_s43", "de_l32_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l32_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_register_repair_mediation_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c06_wortwahl_v1",
+                "semanticIdentity": "wortwahl|choice of words selected to keep a shared plan neutral for a mixed audience",
+                "lemmaOrExpression": "Wortwahl",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Wortwahl",
+                  "plural": "Wortwahlen"
+                },
+                "nounPackageIdentity": "die|wortwahl|wortwahlen",
+                "verbPackage": null,
+                "senseGloss": "choice of words selected to keep a shared plan neutral for a mixed audience",
+                "communicativeUse": "Frau Keller wählt für die gemischte Runde die neutrale Wortwahl „Wir treffen uns um zehn Uhr am Seiteneingang“ und begründet sie: Die Form nennt den gemeinsamen Plan und bezieht alle ein.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch06",
+                  "checkpointPacketId": "de_l32_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_register_repair_mediation_v1"
+                  ],
+                  "utilityRole": "politeness_choice",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-choose-and-justify-a-neutral-form-for-a-mixed-audience",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l32_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "work-team-mixed-audience-register-choice",
+              "participants": "team-coordinator-familiar-colleague-and-new-participant",
+              "goal": "independently-choose-and-justify-a-neutral-form-for-a-mixed-audience",
+              "contextSignature": "work-team-mixed-audience-register-choice-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l31_c01",
+              "de_l31_c05",
+              "de_l32_c05"
+            ],
+            "targetsFutureChapterIds": ["de_l32_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l32_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l32_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l32_ch07",
+          "lessonOutcome": "transfer the integrated repertoire to a changed familiar situation",
+          "packetIds": [
+            "de_l32_c07_s49",
+            "de_l32_c07_s50",
+            "de_l32_c07_s51",
+            "de_l32_c07_s52",
+            "de_l32_c07_s53",
+            "de_l32_c07_s54",
+            "de_l32_c07_s55",
+            "de_l32_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_limited_modal_perfekt_v1"
+          ],
+          "prohibitedConstructIds": [],
+          "situation": {
+            "setting": "community-center-post-delay-access-resolution",
+            "participants": "service-coordinator-frau-keller-herr-weber-and-volunteer-team",
+            "goal": "complete-four-evidence-strands-after-a-completed-access-delay-and-relay-the-rescheduled-start",
+            "contextSignature": "post-delay-community-final-integrated-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Digitale Aktualisierung um elf Uhr: Der Seiteneingang ist jetzt offen. Kurze Antwort: Danke für die Aktualisierung. Wir gehen jetzt zum Seiteneingang. Rückblick im Gespräch: Herr Weber sagt: „Der Seiteneingang ist um zehn Uhr offen.“ Frau Keller: „Nein, erst seit elf Uhr. Wir haben bis elf Uhr warten müssen.“ Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr. Begründung: Diese Lösung ist sinnvoll, weil alle dieselbe bestätigte Zeit erhalten.",
+            "exit": "Aktualisierung um elf Uhr: Der Seiteneingang ist jetzt offen. Antwort: Danke für die Aktualisierung. Wir gehen jetzt zum Seiteneingang. Rückblick im Gespräch: Nein, erst seit elf Uhr; wir haben bis elf Uhr warten müssen. Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr. Begründung: Diese Lösung ist sinnvoll: Der Seiteneingang ist jetzt offen, und alle erhalten dieselbe bestätigte Zeit.",
+            "independentEvidenceByPacketId": "de_l32_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_register_repair_mediation_v1",
+              "stage": "delayed",
+              "packetId": "de_l32_c07_s49"
+            },
+            {
+              "constructId": "de_gc_functional_b1_integration_v1",
+              "stage": "delayed",
+              "packetId": "de_l32_c07_s51"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l32_c07_s51",
+            "de_l32_c07_s52",
+            "de_l32_c07_s53",
+            "de_l32_c07_s54",
+            "de_l32_c07_s55",
+            "de_l32_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l32_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_functional_b1_integration_v1",
+              "de_gc_register_repair_mediation_v1",
+              "de_gc_limited_modal_perfekt_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l32_c07_bestatigung_v1",
+                "semanticIdentity": "bestatigung|confirmation that closes the changed multi channel agreement",
+                "lemmaOrExpression": "Bestätigung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Bestätigung",
+                  "plural": "Bestätigungen"
+                },
+                "nounPackageIdentity": "die|bestatigung|bestatigungen",
+                "verbPackage": null,
+                "senseGloss": "confirmation that closes the changed multi-channel agreement",
+                "communicativeUse": "Die Bestätigung nennt den neuen Beginn und hält die digitale, mündliche und weitergeleitete Information zusammen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l32_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l32_ch07",
+                  "checkpointPacketId": "de_l32_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_functional_b1_integration_v1",
+                    "de_gc_register_repair_mediation_v1",
+                    "de_gc_limited_modal_perfekt_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-complete-four-strand-transfer-after-a-completed-delay-and-confirm-the-rescheduled-start",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l32_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "service-center-post-delay-access-resolution",
+              "participants": "service-center-clerk-two-visitors-and-neighborhood-team",
+              "goal": "independently-complete-four-strand-transfer-after-a-completed-delay-and-confirm-the-rescheduled-start",
+              "contextSignature": "post-delay-service-center-final-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": [
+              "de_l30_c07",
+              "de_l31_c01",
+              "de_l31_c02",
+              "de_l31_c03",
+              "de_l31_c04",
+              "de_l31_c05",
+              "de_l31_c06",
+              "de_l31_c07",
+              "de_l32_c06"
+            ],
+            "targetsFutureChapterIds": [],
+            "futureDelayedProbe": {
+              "kind": "POST_COURSE_REVIEW_OWNER",
+              "reviewOwnerId": "de_l32_post_course_review_owner_v1"
             }
           }
         }

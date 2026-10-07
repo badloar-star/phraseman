@@ -13819,6 +13819,1396 @@ function validateL31SemanticContract(
     throw new Error("l31_semantic_contract_invalid:identity");
 }
 
+function validateL32SemanticContract(
+  raw: R,
+  planOverride?: R,
+  grammarOverride?: R[],
+): void {
+  const plan =
+    planOverride ??
+    ((json(LESSONS) as { lessons: R[] }).lessons.find(
+      (x) => x.id === "de_l32",
+    ) as R);
+  const lesson = ((raw.lessons as R[]).find((x) => x.lessonId === "de_l32") ??
+    (raw.lessons as R[]).find((x) => x.lessonOrdinal === 32)) as R;
+  const expected = {
+    lessonId: "de_l32",
+    lessonOrdinal: 32,
+    grammarBoundary: {
+      allowedConstructIds: [
+        "de_gc_functional_b1_integration_v1",
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_state_passive_v1",
+        "de_gc_werden_infinitive_meanings_v1",
+        "de_gc_broader_narrative_preterite_v1",
+        "de_gc_limited_functional_genitive_v1",
+        "de_gc_limited_modal_perfekt_v1",
+        "de_gc_register_repair_mediation_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_two_object_case_contrast_v1",
+        "de_gc_perfekt_haben_classes_v1",
+        "de_gc_perfekt_sein_classes_v1",
+      ],
+      prohibitedConstructIds: [],
+      noExpansion:
+        "Integrate only the context-required subset of already introduced Standard German resources. C1-C6 remain inside the closed twelve-construct L32 inventory. C7 requires only functional-B1 integration and register-repair mediation; the limited modal Perfekt is the single context-selected construct because the changed access disruption explicitly requires the bounded past-modal meaning wir haben warten müssen. Never turn the six Task4 contextSelectedConstructIds into a checklist, and never select more than two. Do not introduce a new connector, case relation, passive meaning, werden meaning, relative mapping, narrative form, Genitiv frame, modal or infinitive, reported-speech system, Konjunktiv, future grammar, certificate-readiness claim, dialect production, unlabelled Austrian or Swiss form, Task 6 registry, learner-facing RU or UK content, audio, release, mockup, HANDOVER, English-contour reuse or local OpenAI API use.",
+    },
+    chapters: [
+      {
+        id: "de_l32_c01",
+        ordinal: 1,
+        lessonOutcomeId: "de_l32_ch01",
+        lessonOutcome:
+          "understand the main points of clear familiar-domain speech and text",
+        packetIds: [
+          "de_l32_c01_s01",
+          "de_l32_c01_s02",
+          "de_l32_c01_s03",
+          "de_l32_c01_s04",
+          "de_l32_c01_s05",
+          "de_l32_c01_s06",
+          "de_l32_c01_s07",
+          "de_l32_c01_s08",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-house-spoken-and-written-access-update",
+          participants: "community-coordinator-frau-keller-and-service-desk",
+          goal: "identify-the-linked-main-points-from-spoken-and-written-updates",
+          contextSignature: "community-house-dual-mode-main-point-reception",
+        },
+        supportFading: {
+          entryLevel: 5,
+          exitLevel: 2,
+          entry:
+            "Gesprochene Information am Telefon: Frau Keller sagt: „Der Haupteingang ist gesperrt.“ Digitale Mitteilung: „Die Sperrung des Haupteingangs gilt bis heute Abend. Der Seiteneingang ist offen.“ Die beiden Hauptpunkte: Der Haupteingang ist bis heute Abend gesperrt; der Seiteneingang ist offen.",
+          exit: "Am Telefon sagt Frau Keller: „Der Haupteingang ist gesperrt.“ In der digitalen Mitteilung steht: „Die Sperrung des Haupteingangs gilt bis heute Abend. Der Seiteneingang ist offen.“ Die Hauptpunkte: Haupteingang bis heute Abend gesperrt; Seiteneingang offen.",
+          independentEvidenceByPacketId: "de_l32_c01_s08",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "introduction",
+            packetId: "de_l32_c01_s01",
+          },
+        ],
+        chapterEvidencePacketIds: ["de_l32_c01_s03", "de_l32_c01_s04"],
+        checkpoint: {
+          packetId: "de_l32_c01_s08",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_limited_functional_genitive_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c01_sperrung_v1",
+              semanticIdentity:
+                "sperrung|temporary closure named in a familiar community service update",
+              lemmaOrExpression: "Sperrung",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Sperrung",
+                plural: "Sperrungen",
+              },
+              nounPackageIdentity: "die|sperrung|sperrungen",
+              verbPackage: null,
+              senseGloss:
+                "temporary closure named in a familiar community service update",
+              communicativeUse:
+                "Die gesprochene Information und die digitale Mitteilung erklären die Sperrung: Der Haupteingang ist bis heute Abend gesperrt, der Seiteneingang ist offen.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch01",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch01",
+                checkpointPacketId: "de_l32_c01_s08",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_state_passive_v1",
+                  "de_gc_limited_functional_genitive_v1",
+                ],
+                utilityRole: "scene_grounding",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-identify-the-linked-main-points-from-spoken-and-written-updates",
+                necessityClass: "OUTCOME_UNACHIEVABLE",
+                plannedUsePacketIds: ["de_l32_c01_s08"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "sports-hall-spoken-and-written-access-update",
+            participants: "sports-group-member-caretaker-and-service-desk",
+            goal: "independently-identify-the-linked-main-points-from-spoken-and-written-updates",
+            contextSignature:
+              "sports-hall-dual-mode-main-point-reception-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l31_c01", "de_l31_c07"],
+          targetsFutureChapterIds: ["de_l32_c02"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c03_s17",
+          },
+        },
+      },
+      {
+        id: "de_l32_c02",
+        ordinal: 2,
+        lessonOutcomeId: "de_l32_ch02",
+        lessonOutcome:
+          "produce a connected account of an experience plan or goal",
+        packetIds: [
+          "de_l32_c02_s09",
+          "de_l32_c02_s10",
+          "de_l32_c02_s11",
+          "de_l32_c02_s12",
+          "de_l32_c02_s13",
+          "de_l32_c02_s14",
+          "de_l32_c02_s15",
+          "de_l32_c02_s16",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-house-changed-plan-account",
+          participants: "community-coordinator-caretaker-and-volunteer-team",
+          goal: "explain-how-feedback-changed-the-plan",
+          contextSignature: "community-house-connected-plan-account",
+        },
+        supportFading: {
+          entryLevel: 5,
+          exitLevel: 2,
+          entry:
+            "Am Morgen kam die Rückmeldung vom Hausmeister. Danach änderten wir den Plan: Wir treffen uns am Seiteneingang und beginnen um zehn Uhr.",
+          exit: "Die Rückmeldung kam am Morgen. Danach änderten wir den Plan: Treffpunkt ist der Seiteneingang, Beginn ist um zehn Uhr.",
+          independentEvidenceByPacketId: "de_l32_c02_s16",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "guided",
+            packetId: "de_l32_c02_s09",
+          },
+        ],
+        chapterEvidencePacketIds: ["de_l32_c02_s11", "de_l32_c02_s12"],
+        checkpoint: {
+          packetId: "de_l32_c02_s16",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_broader_narrative_preterite_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c02_ruckmeldung_v1",
+              semanticIdentity:
+                "ruckmeldung|response that causes a familiar plan to change",
+              lemmaOrExpression: "Rückmeldung",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Rückmeldung",
+                plural: "Rückmeldungen",
+              },
+              nounPackageIdentity: "die|ruckmeldung|ruckmeldungen",
+              verbPackage: null,
+              senseGloss: "response that causes a familiar plan to change",
+              communicativeUse:
+                "Nach der Rückmeldung vom Hausmeister änderte das Team den Plan.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch02",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch02",
+                checkpointPacketId: "de_l32_c02_s16",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_broader_narrative_preterite_v1",
+                ],
+                utilityRole: "discourse",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-explain-how-new-feedback-changed-a-plan",
+                necessityClass: "OUTCOME_UNACHIEVABLE",
+                plannedUsePacketIds: ["de_l32_c02_s16"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "library-room-changed-plan-account",
+            participants: "library-coordinator-caretaker-and-study-group",
+            goal: "independently-explain-how-new-feedback-changed-a-plan",
+            contextSignature: "library-room-connected-plan-account-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l28_c07", "de_l32_c01"],
+          targetsFutureChapterIds: ["de_l32_c03"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c04_s25",
+          },
+        },
+      },
+      {
+        id: "de_l32_c03",
+        ordinal: 3,
+        lessonOutcomeId: "de_l32_ch03",
+        lessonOutcome:
+          "enter and sustain an unprepared familiar-domain interaction in speech and a short written digital exchange",
+        packetIds: [
+          "de_l32_c03_s17",
+          "de_l32_c03_s18",
+          "de_l32_c03_s19",
+          "de_l32_c03_s20",
+          "de_l32_c03_s21",
+          "de_l32_c03_s22",
+          "de_l32_c03_s23",
+          "de_l32_c03_s24",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-room-availability-inquiry",
+          participants: "volunteer-lea-service-coordinator-and-phone-contact",
+          goal: "clarify-one-open-point-in-writing-and-speech",
+          contextSignature: "community-room-digital-spoken-inquiry",
+        },
+        supportFading: {
+          entryLevel: 4,
+          exitLevel: 1,
+          entry:
+            "Anfrage von Lea: Ist der Raum ab zehn Uhr frei? Antwort: Der Raum ist ab zehn Uhr frei. Am Telefon fragt Lea nach dem Seiteneingang; der Koordinator beantwortet die Anfrage.",
+          exit: "Anfrage: Ist der Raum ab zehn Uhr frei? Antwort: Der Raum ist frei. Am Telefon klärt Lea den Seiteneingang.",
+          independentEvidenceByPacketId: "de_l32_c03_s24",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "retrieval",
+            packetId: "de_l32_c03_s17",
+          },
+        ],
+        chapterEvidencePacketIds: ["de_l32_c03_s19", "de_l32_c03_s20"],
+        checkpoint: {
+          packetId: "de_l32_c03_s24",
+          integratedConstructIds: ["de_gc_functional_b1_integration_v1"],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c03_anfrage_v1",
+              semanticIdentity:
+                "anfrage|request for specific information in a short digital and spoken exchange",
+              lemmaOrExpression: "Anfrage",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Anfrage",
+                plural: "Anfragen",
+              },
+              nounPackageIdentity: "die|anfrage|anfragen",
+              verbPackage: null,
+              senseGloss:
+                "request for specific information in a short digital and spoken exchange",
+              communicativeUse:
+                "Lea schreibt eine Anfrage zur Raumzeit und klärt danach den Eingang am Telefon.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch03",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch03",
+                checkpointPacketId: "de_l32_c03_s24",
+                integratedConstructIds: ["de_gc_functional_b1_integration_v1"],
+                utilityRole: "interaction_opening",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-sustain-a-new-digital-and-spoken-inquiry",
+                necessityClass: "PRAGMATIC_CHOICE_UNAVAILABLE",
+                plannedUsePacketIds: ["de_l32_c03_s24"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "workshop-room-availability-inquiry",
+            participants:
+              "workshop-participant-office-contact-and-phone-contact",
+            goal: "independently-sustain-a-new-digital-and-spoken-inquiry",
+            contextSignature: "workshop-room-digital-spoken-inquiry-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l31_c02", "de_l31_c03", "de_l32_c02"],
+          targetsFutureChapterIds: ["de_l32_c04"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c05_s33",
+          },
+        },
+      },
+      {
+        id: "de_l32_c04",
+        ordinal: 4,
+        lessonOutcomeId: "de_l32_ch04",
+        lessonOutcome:
+          "relay essential information and collaborate on a simple task",
+        packetIds: [
+          "de_l32_c04_s25",
+          "de_l32_c04_s26",
+          "de_l32_c04_s27",
+          "de_l32_c04_s28",
+          "de_l32_c04_s29",
+          "de_l32_c04_s30",
+          "de_l32_c04_s31",
+          "de_l32_c04_s32",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-key-information-relay",
+          participants: "service-desk-mia-karim-and-team-coordinator",
+          goal: "relay-the-key-information-and-divide-the-task",
+          contextSignature: "community-key-relay-collaboration",
+        },
+        supportFading: {
+          entryLevel: 4,
+          exitLevel: 1,
+          entry:
+            "Auskunft vom Servicebüro: Der Schlüssel liegt am Seiteneingang. Nachricht an das Team: Der Schlüssel liegt am Seiteneingang. Mia holt ihn ab, und Karim öffnet den Raum.",
+          exit: "Der Schlüssel liegt am Seiteneingang. Mia holt ihn ab, Karim öffnet den Raum.",
+          independentEvidenceByPacketId: "de_l32_c04_s32",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "production",
+            packetId: "de_l32_c04_s25",
+          },
+        ],
+        chapterEvidencePacketIds: ["de_l32_c04_s27", "de_l32_c04_s28"],
+        checkpoint: {
+          packetId: "de_l32_c04_s32",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_register_repair_mediation_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c04_auskunft_v1",
+              semanticIdentity:
+                "auskunft|essential service information relayed to collaborators",
+              lemmaOrExpression: "Auskunft",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Auskunft",
+                plural: "Auskünfte",
+              },
+              nounPackageIdentity: "die|auskunft|auskunfte",
+              verbPackage: null,
+              senseGloss:
+                "essential service information relayed to collaborators",
+              communicativeUse:
+                "Die Auskunft vom Servicebüro nennt den Ort des Schlüssels und ermöglicht die Aufgabenverteilung.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch04",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch04",
+                checkpointPacketId: "de_l32_c04_s32",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_register_repair_mediation_v1",
+                ],
+                utilityRole: "mediation",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-relay-essential-information-and-divide-a-new-task",
+                necessityClass: "OUTCOME_UNACHIEVABLE",
+                plannedUsePacketIds: ["de_l32_c04_s32"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "neighborhood-equipment-information-relay",
+            participants: "rental-desk-two-neighbors-and-group-coordinator",
+            goal: "independently-relay-essential-information-and-divide-a-new-task",
+            contextSignature: "neighborhood-equipment-relay-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l31_c03", "de_l31_c05", "de_l32_c03"],
+          targetsFutureChapterIds: ["de_l32_c05"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c06_s41",
+          },
+        },
+      },
+      {
+        id: "de_l32_c05",
+        ordinal: 5,
+        lessonOutcomeId: "de_l32_ch05",
+        lessonOutcome:
+          "repair misunderstanding and keep communication intelligible",
+        packetIds: [
+          "de_l32_c05_s33",
+          "de_l32_c05_s34",
+          "de_l32_c05_s35",
+          "de_l32_c05_s36",
+          "de_l32_c05_s37",
+          "de_l32_c05_s38",
+          "de_l32_c05_s39",
+          "de_l32_c05_s40",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-entrance-misunderstanding",
+          participants: "frau-keller-herr-weber-and-community-coordinator",
+          goal: "repair-the-entrance-misunderstanding-clearly",
+          contextSignature: "community-entrance-clarification",
+        },
+        supportFading: {
+          entryLevel: 3,
+          exitLevel: 1,
+          entry:
+            "Herr Weber: Der Haupteingang ist offen. Frau Keller: Nein, der Haupteingang ist gesperrt; offen ist der Seiteneingang. Die Klarstellung verhindert den falschen Treffpunkt.",
+          exit: "Der Haupteingang ist gesperrt; offen ist der Seiteneingang. Diese Klarstellung verhindert den falschen Treffpunkt.",
+          independentEvidenceByPacketId: "de_l32_c05_s40",
+        },
+        lifecycleAnchors: [],
+        chapterEvidencePacketIds: ["de_l32_c05_s35", "de_l32_c05_s36"],
+        checkpoint: {
+          packetId: "de_l32_c05_s40",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_register_repair_mediation_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c05_klarstellung_v1",
+              semanticIdentity:
+                "klarstellung|explicit clarification that repairs a location misunderstanding",
+              lemmaOrExpression: "Klarstellung",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Klarstellung",
+                plural: "Klarstellungen",
+              },
+              nounPackageIdentity: "die|klarstellung|klarstellungen",
+              verbPackage: null,
+              senseGloss:
+                "explicit clarification that repairs a location misunderstanding",
+              communicativeUse:
+                "Die Klarstellung trennt den gesperrten Haupteingang vom offenen Seiteneingang.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch05",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch05",
+                checkpointPacketId: "de_l32_c05_s40",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_state_passive_v1",
+                  "de_gc_register_repair_mediation_v1",
+                ],
+                utilityRole: "repair",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-repair-a-new-location-misunderstanding",
+                necessityClass: "REPAIR_UNAVAILABLE",
+                plannedUsePacketIds: ["de_l32_c05_s40"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "service-counter-location-misunderstanding",
+            participants: "customer-clerk-and-service-coordinator",
+            goal: "independently-repair-a-new-location-misunderstanding",
+            contextSignature: "service-counter-clarification-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l31_c04", "de_l31_c06", "de_l32_c04"],
+          targetsFutureChapterIds: ["de_l32_c06"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c06_s47",
+          },
+        },
+      },
+      {
+        id: "de_l32_c06",
+        ordinal: 6,
+        lessonOutcomeId: "de_l32_ch06",
+        lessonOutcome:
+          "choose a neutral register and justify a plan or opinion briefly",
+        packetIds: [
+          "de_l32_c06_s41",
+          "de_l32_c06_s42",
+          "de_l32_c06_s43",
+          "de_l32_c06_s44",
+          "de_l32_c06_s45",
+          "de_l32_c06_s46",
+          "de_l32_c06_s47",
+          "de_l32_c06_s48",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1",
+          "de_gc_limited_modal_perfekt_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_perfekt_sein_classes_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-meeting-mixed-audience-register-choice",
+          participants:
+            "community-coordinator-frau-keller-volunteer-team-and-new-participant",
+          goal: "choose-and-justify-a-neutral-form-for-a-mixed-audience",
+          contextSignature: "community-mixed-audience-register-choice",
+        },
+        supportFading: {
+          entryLevel: 3,
+          exitLevel: 1,
+          entry:
+            "Zwei Formulierungen stehen zur Wahl. A: „Tom, du kommst um zehn Uhr zum Seiteneingang.“ B: „Wir treffen uns um zehn Uhr am Seiteneingang.“ Für diese gemischte Runde aus Frau Keller, dem Team und einem neuen Teilnehmer formuliert Frau Keller A neu und wählt die neutrale Wortwahl B. Die Wortwahl ist sinnvoll, weil sie den gemeinsamen Plan nennt und alle Beteiligten einbezieht.",
+          exit: "Gemischte Runde: Frau Keller, das Team und ein neuer Teilnehmer. A: „Tom, du kommst um zehn Uhr zum Seiteneingang.“ B: „Wir treffen uns um zehn Uhr am Seiteneingang.“ Frau Keller wählt die neutrale Wortwahl B. Begründung: Die Wortwahl nennt den gemeinsamen Plan und bezieht alle Beteiligten ein.",
+          independentEvidenceByPacketId: "de_l32_c06_s48",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "transfer",
+            packetId: "de_l32_c06_s41",
+          },
+        ],
+        chapterEvidencePacketIds: ["de_l32_c06_s43", "de_l32_c06_s44"],
+        checkpoint: {
+          packetId: "de_l32_c06_s48",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_register_repair_mediation_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c06_wortwahl_v1",
+              semanticIdentity:
+                "wortwahl|choice of words selected to keep a shared plan neutral for a mixed audience",
+              lemmaOrExpression: "Wortwahl",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Wortwahl",
+                plural: "Wortwahlen",
+              },
+              nounPackageIdentity: "die|wortwahl|wortwahlen",
+              verbPackage: null,
+              senseGloss:
+                "choice of words selected to keep a shared plan neutral for a mixed audience",
+              communicativeUse:
+                "Frau Keller wählt für die gemischte Runde die neutrale Wortwahl „Wir treffen uns um zehn Uhr am Seiteneingang“ und begründet sie: Die Form nennt den gemeinsamen Plan und bezieht alle ein.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch06",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch06",
+                checkpointPacketId: "de_l32_c06_s48",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_register_repair_mediation_v1",
+                ],
+                utilityRole: "politeness_choice",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-choose-and-justify-a-neutral-form-for-a-mixed-audience",
+                necessityClass: "PRAGMATIC_CHOICE_UNAVAILABLE",
+                plannedUsePacketIds: ["de_l32_c06_s48"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "work-team-mixed-audience-register-choice",
+            participants:
+              "team-coordinator-familiar-colleague-and-new-participant",
+            goal: "independently-choose-and-justify-a-neutral-form-for-a-mixed-audience",
+            contextSignature: "work-team-mixed-audience-register-choice-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: ["de_l31_c01", "de_l31_c05", "de_l32_c05"],
+          targetsFutureChapterIds: ["de_l32_c07"],
+          futureDelayedProbe: {
+            kind: "COURSE_PACKET",
+            packetId: "de_l32_c07_s56",
+          },
+        },
+      },
+      {
+        id: "de_l32_c07",
+        ordinal: 7,
+        lessonOutcomeId: "de_l32_ch07",
+        lessonOutcome:
+          "transfer the integrated repertoire to a changed familiar situation",
+        packetIds: [
+          "de_l32_c07_s49",
+          "de_l32_c07_s50",
+          "de_l32_c07_s51",
+          "de_l32_c07_s52",
+          "de_l32_c07_s53",
+          "de_l32_c07_s54",
+          "de_l32_c07_s55",
+          "de_l32_c07_s56",
+        ],
+        allowedConstructIds: [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_limited_modal_perfekt_v1",
+        ],
+        prohibitedConstructIds: [],
+        situation: {
+          setting: "community-center-post-delay-access-resolution",
+          participants:
+            "service-coordinator-frau-keller-herr-weber-and-volunteer-team",
+          goal: "complete-four-evidence-strands-after-a-completed-access-delay-and-relay-the-rescheduled-start",
+          contextSignature: "post-delay-community-final-integrated-transfer",
+        },
+        supportFading: {
+          entryLevel: 2,
+          exitLevel: 0,
+          entry:
+            "Digitale Aktualisierung um elf Uhr: Der Seiteneingang ist jetzt offen. Kurze Antwort: Danke für die Aktualisierung. Wir gehen jetzt zum Seiteneingang. Rückblick im Gespräch: Herr Weber sagt: „Der Seiteneingang ist um zehn Uhr offen.“ Frau Keller: „Nein, erst seit elf Uhr. Wir haben bis elf Uhr warten müssen.“ Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr. Begründung: Diese Lösung ist sinnvoll, weil alle dieselbe bestätigte Zeit erhalten.",
+          exit: "Aktualisierung um elf Uhr: Der Seiteneingang ist jetzt offen. Antwort: Danke für die Aktualisierung. Wir gehen jetzt zum Seiteneingang. Rückblick im Gespräch: Nein, erst seit elf Uhr; wir haben bis elf Uhr warten müssen. Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr. Begründung: Diese Lösung ist sinnvoll: Der Seiteneingang ist jetzt offen, und alle erhalten dieselbe bestätigte Zeit.",
+          independentEvidenceByPacketId: "de_l32_c07_s56",
+        },
+        lifecycleAnchors: [
+          {
+            constructId: "de_gc_register_repair_mediation_v1",
+            stage: "delayed",
+            packetId: "de_l32_c07_s49",
+          },
+          {
+            constructId: "de_gc_functional_b1_integration_v1",
+            stage: "delayed",
+            packetId: "de_l32_c07_s51",
+          },
+        ],
+        chapterEvidencePacketIds: [
+          "de_l32_c07_s51",
+          "de_l32_c07_s52",
+          "de_l32_c07_s53",
+          "de_l32_c07_s54",
+          "de_l32_c07_s55",
+          "de_l32_c07_s56",
+        ],
+        checkpoint: {
+          packetId: "de_l32_c07_s56",
+          integratedConstructIds: [
+            "de_gc_functional_b1_integration_v1",
+            "de_gc_register_repair_mediation_v1",
+            "de_gc_limited_modal_perfekt_v1",
+          ],
+          plannedNewLexicalSenses: [
+            {
+              id: "de_lex_plan_l32_c07_bestatigung_v1",
+              semanticIdentity:
+                "bestatigung|confirmation that closes the changed multi channel agreement",
+              lemmaOrExpression: "Bestätigung",
+              partOfSpeech: "noun",
+              lexicalKind: "NOUN_LEXEME",
+              nounPackage: {
+                article: "die",
+                singular: "Bestätigung",
+                plural: "Bestätigungen",
+              },
+              nounPackageIdentity: "die|bestatigung|bestatigungen",
+              verbPackage: null,
+              senseGloss:
+                "confirmation that closes the changed multi-channel agreement",
+              communicativeUse:
+                "Die Bestätigung nennt den neuen Beginn und hält die digitale, mündliche und weitergeleitete Information zusammen.",
+              lemmaStatus: "FIRST_MEANING",
+              contrastsWithSenseId: null,
+              contrastEvidence: null,
+              chapterOutcomeId: "de_l32_ch07",
+              utilityProof: {
+                chapterOutcomeId: "de_l32_ch07",
+                checkpointPacketId: "de_l32_c07_s56",
+                integratedConstructIds: [
+                  "de_gc_functional_b1_integration_v1",
+                  "de_gc_register_repair_mediation_v1",
+                  "de_gc_limited_modal_perfekt_v1",
+                ],
+                utilityRole: "transfer",
+                situationFacet: "goal",
+                facetValue:
+                  "independently-complete-four-strand-transfer-after-a-completed-delay-and-confirm-the-rescheduled-start",
+                necessityClass: "TRANSFER_UNAVAILABLE",
+                plannedUsePacketIds: ["de_l32_c07_s56"],
+              },
+            },
+          ],
+          lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+          newSituation: {
+            setting: "service-center-post-delay-access-resolution",
+            participants:
+              "service-center-clerk-two-visitors-and-neighborhood-team",
+            goal: "independently-complete-four-strand-transfer-after-a-completed-delay-and-confirm-the-rescheduled-start",
+            contextSignature: "post-delay-service-center-final-transfer-check",
+          },
+        },
+        recallSchedule: {
+          entryException: null,
+          retrievesFromChapterIds: [
+            "de_l30_c07",
+            "de_l31_c01",
+            "de_l31_c02",
+            "de_l31_c03",
+            "de_l31_c04",
+            "de_l31_c05",
+            "de_l31_c06",
+            "de_l31_c07",
+            "de_l32_c06",
+          ],
+          targetsFutureChapterIds: [],
+          futureDelayedProbe: {
+            kind: "POST_COURSE_REVIEW_OWNER",
+            reviewOwnerId: "de_l32_post_course_review_owner_v1",
+          },
+        },
+      },
+    ],
+  } as R;
+  const expectedPlan = {
+    id: "de_l32",
+    ordinal: 32,
+    cefrBand: "B1",
+    title: "Handlungsfähig auf B1",
+    scenario:
+      "solving a changed everyday-work-community problem by understanding, explaining, negotiating and relaying information",
+    scenarioDomain: "community",
+    canDoTerritory:
+      "integrate a context-selected subset of introduced resources across spoken and written-digital reception, production, interaction and mediation",
+    grammarBoundary: {
+      productive:
+        "connected Standard German using only the small subset of introduced Task 3 resources naturally required by each evidence strand",
+      receptive:
+        "clear Standard German on familiar everyday travel service work and community topics, including explicitly labelled regional reception only if later approved",
+      excluded:
+        "certificate-readiness claims, new hidden grammar, dialect production and unlabelled AT or CH items",
+    },
+    introducedConstructIds: ["de_gc_functional_b1_integration_v1"],
+    extendedConstructIds: [
+      "de_gc_relative_clause_gender_case_v1",
+      "de_gc_state_passive_v1",
+      "de_gc_werden_infinitive_meanings_v1",
+      "de_gc_broader_narrative_preterite_v1",
+      "de_gc_limited_functional_genitive_v1",
+      "de_gc_limited_modal_perfekt_v1",
+      "de_gc_register_repair_mediation_v1",
+    ],
+    reviewedConstructIds: [
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_two_object_case_contrast_v1",
+      "de_gc_perfekt_haben_classes_v1",
+      "de_gc_perfekt_sein_classes_v1",
+    ],
+    prohibitedConstructIds: [],
+    prerequisiteLessonIds: [
+      "de_l01",
+      "de_l02",
+      "de_l03",
+      "de_l04",
+      "de_l05",
+      "de_l06",
+      "de_l07",
+      "de_l08",
+      "de_l09",
+      "de_l10",
+      "de_l12",
+      "de_l13",
+      "de_l14",
+      "de_l15",
+      "de_l16",
+      "de_l17",
+      "de_l18",
+      "de_l20",
+      "de_l22",
+      "de_l24",
+      "de_l25",
+      "de_l26",
+      "de_l28",
+      "de_l29",
+      "de_l30",
+      "de_l31",
+    ],
+    chapterOutcomes: [
+      {
+        id: "de_l32_ch01",
+        ordinal: 1,
+        outcome:
+          "understand the main points of clear familiar-domain speech and text",
+      },
+      {
+        id: "de_l32_ch02",
+        ordinal: 2,
+        outcome: "produce a connected account of an experience plan or goal",
+      },
+      {
+        id: "de_l32_ch03",
+        ordinal: 3,
+        outcome:
+          "enter and sustain an unprepared familiar-domain interaction in speech and a short written digital exchange",
+      },
+      {
+        id: "de_l32_ch04",
+        ordinal: 4,
+        outcome: "relay essential information and collaborate on a simple task",
+      },
+      {
+        id: "de_l32_ch05",
+        ordinal: 5,
+        outcome: "repair misunderstanding and keep communication intelligible",
+      },
+      {
+        id: "de_l32_ch06",
+        ordinal: 6,
+        outcome:
+          "choose a neutral register and justify a plan or opinion briefly",
+      },
+      {
+        id: "de_l32_ch07",
+        ordinal: 7,
+        outcome:
+          "transfer the integrated repertoire to a changed familiar situation",
+      },
+    ],
+    lexicalDomains: [
+      "everyday problem solving",
+      "travel",
+      "services",
+      "work",
+      "community coordination",
+    ],
+    plannedPronunciationTargetIds: [
+      "de_pron_plan_intelligibility_integration_v1",
+      "de_pron_plan_connected_account_chunking_v1",
+      "de_pron_plan_repair_intonation_v1",
+    ],
+    pronunciationPlanStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+    pragmatics:
+      "maintain neutral register, mark uncertainty, invite repair and distinguish relayed information from personal endorsement",
+    crossLessonRecall: [
+      {
+        fromLessonId: "de_l31",
+        constructIds: ["de_gc_register_repair_mediation_v1"],
+        responsibility:
+          "reuse repair mediation and register under a changed integrated task",
+      },
+      {
+        fromLessonId: "de_l30",
+        constructIds: ["de_gc_limited_modal_perfekt_v1"],
+        responsibility:
+          "use the late cluster only where its bounded past-modal meaning is required",
+      },
+      {
+        fromLessonId: "de_l28",
+        constructIds: ["de_gc_broader_narrative_preterite_v1"],
+        responsibility:
+          "select narrative register only when the task requires a connected past account",
+      },
+    ],
+    session56Final: {
+      sessionId: "de_l32_c07_s56",
+      transferSituation:
+        "read a new familiar-topic digital update, write a concise interactive reply, negotiate the changed problem orally, repair one misunderstanding and relay the agreed outcome across separate evidence strands",
+      requiredConstructIds: [
+        "de_gc_functional_b1_integration_v1",
+        "de_gc_register_repair_mediation_v1",
+      ],
+      evidenceDimensions: [
+        "reception",
+        "production",
+        "interaction",
+        "mediation",
+        "repair",
+        "register",
+        "changed_context_transfer",
+      ],
+      evidenceModes: [
+        "written_digital_interaction",
+        "spoken_interaction",
+        "typed_mediation",
+        "spoken_or_typed_production",
+      ],
+      assessmentStrands: [
+        {
+          id: "de_l32_s56_strand_written_digital",
+          mode: "written_digital_interaction",
+          task: "read a short familiar-topic update and write a concise neutral reply that answers the open point and keeps the exchange moving",
+          evidenceDimensions: [
+            "reception",
+            "production",
+            "interaction",
+            "register",
+          ],
+        },
+        {
+          id: "de_l32_s56_strand_spoken_repair",
+          mode: "spoken_interaction",
+          task: "negotiate one changed condition and repair a misunderstanding without abandoning the shared task",
+          evidenceDimensions: [
+            "reception",
+            "interaction",
+            "repair",
+            "register",
+          ],
+        },
+        {
+          id: "de_l32_s56_strand_mediation",
+          mode: "typed_mediation",
+          task: "relay the essential agreed information to a third person in a new but familiar context",
+          evidenceDimensions: [
+            "reception",
+            "mediation",
+            "changed_context_transfer",
+          ],
+        },
+        {
+          id: "de_l32_s56_strand_connected_production",
+          mode: "spoken_or_typed_production",
+          task: "give a short connected explanation of the selected response and its reason",
+          evidenceDimensions: ["production", "changed_context_transfer"],
+        },
+      ],
+      contextSelectedConstructIds: [
+        "de_gc_relative_clause_gender_case_v1",
+        "de_gc_state_passive_v1",
+        "de_gc_werden_infinitive_meanings_v1",
+        "de_gc_broader_narrative_preterite_v1",
+        "de_gc_limited_functional_genitive_v1",
+        "de_gc_limited_modal_perfekt_v1",
+      ],
+      contextSelectionRule: {
+        minimum: 0,
+        maximum: 2,
+        policy: "CONTEXT_REQUIRED_NOT_CHECKLIST",
+      },
+      independent: true,
+      changedContextRequired: true,
+    },
+    accessibilityAlternative:
+      "offer equivalent readable and typed evidence paths for every audio speech drag or timed element without lowering the can-do demand",
+    evidenceIds: [
+      "DE-RSCH-CEFR-002",
+      "DE-RSCH-CEFR-004",
+      "DE-RSCH-CEFR-005",
+      "DE-RSCH-CEFR-006",
+      "DE-RSCH-CEFR-007",
+      "DE-RSCH-CEFR-008",
+      "DE-RSCH-CEFR-009",
+    ],
+    uncertaintyStatus: "RESOLVED_WITHIN_TASK4",
+  } as R;
+  const eq = (a: unknown, b: unknown) =>
+    JSON.stringify(a) === JSON.stringify(b);
+  if (
+    !eq(plan.crossLessonRecall, expectedPlan.crossLessonRecall) ||
+    !eq(
+      (plan.session56Final as R).evidenceModes,
+      (expectedPlan.session56Final as R).evidenceModes,
+    ) ||
+    !eq(
+      (plan.session56Final as R).assessmentStrands,
+      (expectedPlan.session56Final as R).assessmentStrands,
+    ) ||
+    !eq(
+      (plan.session56Final as R).contextSelectedConstructIds,
+      (expectedPlan.session56Final as R).contextSelectedConstructIds,
+    ) ||
+    !eq(
+      (plan.session56Final as R).contextSelectionRule,
+      (expectedPlan.session56Final as R).contextSelectionRule,
+    ) ||
+    !eq(
+      (plan.session56Final as R).requiredConstructIds,
+      (expectedPlan.session56Final as R).requiredConstructIds,
+    ) ||
+    (plan.session56Final as R).changedContextRequired !==
+      (expectedPlan.session56Final as R).changedContextRequired
+  )
+    throw new Error("l32_plan_authority_invalid");
+  if (
+    lesson.lessonId !== expected.lessonId ||
+    lesson.lessonOrdinal !== expected.lessonOrdinal ||
+    !eq(
+      (lesson.chapters as R[]).map((c) => ({
+        id: c.id,
+        ordinal: c.ordinal,
+        lessonOutcomeId: c.lessonOutcomeId,
+        packetIds: c.packetIds,
+      })),
+      (expected.chapters as R[]).map((c) => ({
+        id: c.id,
+        ordinal: c.ordinal,
+        lessonOutcomeId: c.lessonOutcomeId,
+        packetIds: c.packetIds,
+      })),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:identity");
+  validateL32PlanAuthority(plan);
+  if (
+    !eq(
+      (lesson.grammarBoundary as R).noExpansion,
+      (expected.grammarBoundary as R).noExpansion,
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:no_expansion");
+  validateL32FinalContext(raw, plan);
+  const l32Surface = JSON.stringify(lesson.chapters).toLocaleLowerCase("de-DE");
+  const leaks: readonly [string, string][] = [
+    ["dassprobe", "l32_hidden_subordinate_operation_leak"],
+    ["indirectspeechprobe", "l32_indirect_reporting_leak"],
+    [
+      "universalDusieprobe".toLocaleLowerCase("de-DE"),
+      "l32_register_rule_leak",
+    ],
+    ["anothermodalprobe", "l32_modal_expansion_leak"],
+    ["newgenitiveprobe", "l32_genitive_expansion_leak"],
+    ["eventpassiveprobe", "l32_passive_inventory_leak"],
+    ["certificateprobe", "l32_certificate_claim_leak"],
+    ["task6probe", "l32_task6_or_learner_surface_leak"],
+    ["englishcontourprobe", "l32_english_contour_leak"],
+    ["unlabelleddachprobe", "l32_unlabelled_dach_or_dialect_leak"],
+  ];
+  for (const [probe, diagnostic] of leaks)
+    if (l32Surface.includes(probe)) throw new Error(diagnostic);
+  const c1Support = (lesson.chapters as R[])[0].supportFading as R;
+  const c1Surface = (
+    String(c1Support.entry) +
+    "\n" +
+    String(c1Support.exit)
+  ).toLocaleLowerCase("de-DE");
+  if (!c1Surface.includes("am telefon") || !c1Surface.includes("frau keller"))
+    throw new Error("l32_c01_spoken_reception_missing");
+  if (!c1Surface.includes("digitale mitteilung"))
+    throw new Error("l32_c01_written_reception_missing");
+  const c6Surface = JSON.stringify(
+    (lesson.chapters as R[])[5].supportFading,
+  ).toLocaleLowerCase("de-DE");
+  if (
+    !c6Surface.includes("gemischte runde") ||
+    !c6Surface.includes("neuen teilnehmer")
+  )
+    throw new Error("l32_c06_mixed_audience_choice_cue_missing");
+  if (
+    !c6Surface.includes("a:") ||
+    !c6Surface.includes("b:") ||
+    !c6Surface.includes("wählt die neutrale wortwahl b") ||
+    !c6Surface.includes("formuliert")
+  )
+    throw new Error("l32_c06_register_contrast_reformulation_missing");
+  const c7Surface = JSON.stringify(
+    (lesson.chapters as R[])[6].supportFading,
+  ).toLocaleLowerCase("de-DE");
+  if (
+    !c7Surface.includes("rückblick") ||
+    !c7Surface.includes("um elf uhr") ||
+    !c7Surface.includes("seit elf uhr") ||
+    !c7Surface.includes("bis elf uhr")
+  )
+    throw new Error("l32_c07_modal_temporal_grounding_missing");
+  if (
+    c7Surface.includes("öffnet erst um elf uhr") ||
+    c7Surface.includes("wir kommen um elf uhr")
+  )
+    throw new Error("l32_c07_modal_chronology_invalid");
+  const c7Exit = String(((lesson.chapters as R[])[6].supportFading as R).exit);
+  if (!c7Exit.includes("Antwort: Danke für die Aktualisierung."))
+    throw new Error("written_digital_exit_missing");
+  if (
+    !c7Exit.includes(
+      "Rückblick im Gespräch: Nein, erst seit elf Uhr; wir haben bis elf Uhr warten müssen.",
+    )
+  )
+    throw new Error("spoken_repair_exit_missing");
+  if (
+    !c7Exit.includes(
+      "Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr.",
+    )
+  )
+    throw new Error("mediation_exit_missing");
+  if (
+    !c7Exit.includes(
+      "Begründung: Diese Lösung ist sinnvoll: Der Seiteneingang ist jetzt offen, und alle erhalten dieselbe bestätigte Zeit.",
+    )
+  )
+    throw new Error("connected_justification_exit_missing");
+  const expectedCheckpointIntegrations = [
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_state_passive_v1",
+      "de_gc_limited_functional_genitive_v1",
+    ],
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_broader_narrative_preterite_v1",
+    ],
+    ["de_gc_functional_b1_integration_v1"],
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_register_repair_mediation_v1",
+    ],
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_state_passive_v1",
+      "de_gc_register_repair_mediation_v1",
+    ],
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_register_repair_mediation_v1",
+    ],
+    [
+      "de_gc_functional_b1_integration_v1",
+      "de_gc_register_repair_mediation_v1",
+      "de_gc_limited_modal_perfekt_v1",
+    ],
+  ];
+  if (
+    !(lesson.chapters as R[]).every((chapter, index) =>
+      eq(
+        (chapter.checkpoint as R).integratedConstructIds,
+        expectedCheckpointIntegrations[index],
+      ),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:sets");
+  if (
+    !(lesson.chapters as R[]).every((chapter, index) => {
+      const sense = (
+        (chapter.checkpoint as R).plannedNewLexicalSenses as R[]
+      )[0];
+      return (
+        Boolean(sense) &&
+        eq(
+          (sense.utilityProof as R).integratedConstructIds,
+          expectedCheckpointIntegrations[index],
+        )
+      );
+    })
+  )
+    throw new Error("l32_semantic_contract_invalid:lexical_packages");
+  if (
+    !eq(
+      (lesson.grammarBoundary as R).allowedConstructIds,
+      (expected.grammarBoundary as R).allowedConstructIds,
+    ) ||
+    !eq(
+      (lesson.grammarBoundary as R).prohibitedConstructIds,
+      (expected.grammarBoundary as R).prohibitedConstructIds,
+    ) ||
+    !(lesson.chapters as R[]).every(
+      (c, i) =>
+        eq(
+          c.allowedConstructIds,
+          (expected.chapters as R[])[i].allowedConstructIds,
+        ) &&
+        eq(
+          (c.checkpoint as R).integratedConstructIds,
+          ((expected.chapters as R[])[i].checkpoint as R)
+            .integratedConstructIds,
+        ),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:sets");
+  if (
+    !(lesson.chapters as R[]).every((c, i) =>
+      eq(c.lifecycleAnchors, (expected.chapters as R[])[i].lifecycleAnchors),
+    )
+  )
+    throw new Error("l32_lifecycle_anchor_invalid");
+  const terminalRecall = (lesson.chapters as R[])[6].recallSchedule as R;
+  if ((terminalRecall.targetsFutureChapterIds as unknown[]).length !== 0)
+    throw new Error("l32_terminal_future_target_invalid");
+  if (
+    (terminalRecall.futureDelayedProbe as R).kind !==
+      "POST_COURSE_REVIEW_OWNER" ||
+    (terminalRecall.futureDelayedProbe as R).reviewOwnerId !==
+      "de_l32_post_course_review_owner_v1"
+  )
+    throw new Error("l32_terminal_owner_probe_invalid");
+  if (
+    !(lesson.chapters as R[]).every((c, i) =>
+      eq(c.recallSchedule, (expected.chapters as R[])[i].recallSchedule),
+    )
+  )
+    throw new Error("l32_recall_provenance_invalid");
+  if (
+    !(lesson.chapters as R[]).every(
+      (c, i) =>
+        eq(c.situation, (expected.chapters as R[])[i].situation) &&
+        eq(
+          (c.checkpoint as R).newSituation,
+          ((expected.chapters as R[])[i].checkpoint as R).newSituation,
+        ),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:situations");
+  if (
+    !(lesson.chapters as R[]).every((c, i) =>
+      eq(c.supportFading, (expected.chapters as R[])[i].supportFading),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:support_fading");
+  const grammar = grammarOverride ?? (json(GRAMMAR) as R[]);
+  const delayed = (id: string) =>
+    (grammar.find((item) => item.id === id) as R).delayedTargetPacketIds;
+  if (
+    !(delayed("de_gc_functional_b1_integration_v1") as string[]).includes(
+      "de_l32_c07_s51",
+    ) ||
+    !(delayed("de_gc_register_repair_mediation_v1") as string[]).includes(
+      "de_l32_c07_s49",
+    )
+  )
+    throw new Error("l32_registry_anchor_mismatch");
+  const final = (lesson.chapters as R[])[6],
+    expFinal = (expected.chapters as R[])[6];
+  if (
+    !eq(
+      (final.checkpoint as R).packetId,
+      (expFinal.checkpoint as R).packetId,
+    ) ||
+    !eq(final.lessonOutcome, expFinal.lessonOutcome) ||
+    !eq(
+      (plan.session56Final as R).evidenceDimensions,
+      (expectedPlan.session56Final as R).evidenceDimensions,
+    )
+  )
+    throw new Error("l32_final_transfer_invalid");
+  if (
+    !(lesson.chapters as R[]).every((c, i) =>
+      eq(
+        c.chapterEvidencePacketIds,
+        (expected.chapters as R[])[i].chapterEvidencePacketIds,
+      ),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:evidence");
+  if (
+    !(lesson.chapters as R[]).every((c, i) =>
+      eq(
+        (c.checkpoint as R).plannedNewLexicalSenses as R[],
+        ((expected.chapters as R[])[i].checkpoint as R)
+          .plannedNewLexicalSenses as R[],
+      ),
+    )
+  )
+    throw new Error("l32_semantic_contract_invalid:lexical_packages");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -13986,6 +15376,11 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l31")
   )
     validateL31SemanticContract(raw, l31Plan);
+  const l32Plan = (json(LESSONS) as { lessons: R[] }).lessons.find(
+    (x) => x.id === "de_l32",
+  );
+  if (l32Plan && (raw.lessons as R[]).some((x) => x.lessonId === "de_l32"))
+    validateL32SemanticContract(raw, l32Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -14076,6 +15471,24 @@ function validate(raw: unknown): {
       });
       strings(cv.allowedConstructIds, "chapter.allowed");
       strings(cv.prohibitedConstructIds, "chapter.prohibited");
+      const l32C7 = ln === 32 && cn === 7;
+      const l32Core = l32C7 ? plan.session56Final.requiredConstructIds : [];
+      const l32Allowed = l32C7 ? (cv.allowedConstructIds as string[]) : [];
+      const l32ContextSelected = l32C7
+        ? ((plan.session56Final as R).contextSelectedConstructIds as string[])
+        : [];
+      const l32Optional = l32C7
+        ? l32Allowed.filter((id) => !l32Core.includes(id))
+        : [];
+      const l32C7SelectionIsValid =
+        !l32C7 ||
+        (new Set(l32Allowed).size === l32Allowed.length &&
+          l32Core.every(
+            (id) =>
+              l32Allowed.filter((candidate) => candidate === id).length === 1,
+          ) &&
+          l32Optional.length <= 2 &&
+          l32Optional.every((id) => l32ContextSelected.includes(id)));
       const chapterAllowed =
         ln === 24 && cn < 7
           ? [
@@ -14083,9 +15496,11 @@ function validate(raw: unknown): {
               "de_gc_controlled_partizip_ii_v1",
               "de_gc_perfekt_haben_classes_v1",
             ]
-          : cn === 7
-            ? plan.session56Final.requiredConstructIds
-            : allowed;
+          : l32C7 && l32C7SelectionIsValid
+            ? cv.allowedConstructIds
+            : cn === 7
+              ? plan.session56Final.requiredConstructIds
+              : allowed;
       if (
         !cv.allowedConstructIds.length ||
         JSON.stringify(sort(cv.allowedConstructIds)) !==
@@ -14162,10 +15577,21 @@ function validate(raw: unknown): {
       )
         throw new Error(`checkpoint_contract_invalid:${cv.id}`);
       strings(cv.checkpoint.integratedConstructIds, "checkpoint.integrated");
+      const l32PartialIntegration = ln === 32 && cn < 7;
+      const l32PartialIntegrated = cv.checkpoint
+        .integratedConstructIds as string[];
       if (
-        !cv.checkpoint.integratedConstructIds.length ||
-        JSON.stringify(sort(cv.checkpoint.integratedConstructIds)) !==
-          JSON.stringify(sort(chapterAllowed))
+        l32PartialIntegration
+          ? !l32PartialIntegrated.length ||
+            new Set(l32PartialIntegrated).size !==
+              l32PartialIntegrated.length ||
+            !l32PartialIntegrated.includes(
+              "de_gc_functional_b1_integration_v1",
+            ) ||
+            !l32PartialIntegrated.every((id) => chapterAllowed.includes(id))
+          : !cv.checkpoint.integratedConstructIds.length ||
+            JSON.stringify(sort(cv.checkpoint.integratedConstructIds)) !==
+              JSON.stringify(sort(chapterAllowed))
       )
         throw new Error(`checkpoint_integrated_grammar_invalid:${cv.id}`);
       array(cv.checkpoint.plannedNewLexicalSenses, "plannedSenses");
@@ -14480,10 +15906,25 @@ function validate(raw: unknown): {
         throw new Error(`task4_session56_final_mismatch:${lv.lessonId}`);
       if (
         cn === 7 &&
-        JSON.stringify(sort(cv.allowedConstructIds)) !==
-          JSON.stringify(sort(plan.session56Final.requiredConstructIds))
+        !(l32C7
+          ? l32C7SelectionIsValid &&
+            JSON.stringify(sort(cv.checkpoint.integratedConstructIds)) ===
+              JSON.stringify(sort(cv.allowedConstructIds))
+          : JSON.stringify(sort(cv.allowedConstructIds)) ===
+            JSON.stringify(sort(plan.session56Final.requiredConstructIds)))
       )
         throw new Error(`task4_session56_grammar_mismatch:${lv.lessonId}`);
+      if (
+        l32C7 &&
+        (JSON.stringify(sort(l32Optional)) !==
+          JSON.stringify(["de_gc_limited_modal_perfekt_v1"]) ||
+          !/\bhaben(?:\s+\p{L}+){0,4}\s+warten müssen\b/iu.test(
+            String(cv.supportFading.entry) +
+              "\n" +
+              String(cv.supportFading.exit),
+          ))
+      )
+        throw new Error(`l32_c07_modal_context_selection_invalid:${cv.id}`);
     });
   });
   const required = requiredAnchors(grammar, lessonIds);
@@ -15102,7 +16543,10 @@ function fixtures(): void {
       "de_l99_c01_s01";
   }, /packet_chapter_arithmetic_invalid/u);
   expect((raw) => {
-    raw.buildStatus = "COMPLETE_TASK5";
+    raw.buildStatus =
+      raw.buildStatus === "COMPLETE_TASK5"
+        ? "INCREMENTAL_TASK5"
+        : "COMPLETE_TASK5";
   }, /complete_status_not_exactly_full_registry/u);
   expectExact((raw) => {
     const l8 = (raw.lessons as R[]).find(
@@ -17073,6 +18517,7 @@ function fixtures(): void {
   }, /packet_identity_invalid/u);
   const prematureL16 = clone(json(FILE)) as R;
   prematureL16.lessons = (prematureL16.lessons as R[]).slice(0, 16);
+  prematureL16.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL16);
     if (
@@ -17175,6 +18620,8 @@ function fixtures(): void {
   }, /packet_identity_invalid/u);
   const prematureL17 = clone(json(FILE)) as R;
   prematureL17.lessons = (prematureL17.lessons as R[]).slice(0, 17);
+
+  prematureL17.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL17);
     if (
@@ -17273,6 +18720,8 @@ function fixtures(): void {
   }, /packet_identity_invalid/u);
   const prematureL18 = clone(json(FILE)) as R;
   prematureL18.lessons = (prematureL18.lessons as R[]).slice(0, 18);
+
+  prematureL18.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL18);
     if (
@@ -17391,6 +18840,8 @@ function fixtures(): void {
   }, "l19_semantic_contract_invalid:identity");
   const prematureL19 = clone(json(FILE)) as R;
   prematureL19.lessons = (prematureL19.lessons as R[]).slice(0, 19);
+
+  prematureL19.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL19);
     if (
@@ -17501,6 +18952,8 @@ function fixtures(): void {
   }, "l20_c07_formal_sie_sich_missing");
   const prematureL20 = clone(json(FILE)) as R;
   prematureL20.lessons = (prematureL20.lessons as R[]).slice(0, 20);
+
+  prematureL20.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL20);
     if (
@@ -17619,6 +19072,8 @@ function fixtures(): void {
   }, "l21_english_contour_leak");
   const prematureL21 = clone(json(FILE)) as R;
   prematureL21.lessons = (prematureL21.lessons as R[]).slice(0, 21);
+
+  prematureL21.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL21);
     if (
@@ -17751,6 +19206,8 @@ function fixtures(): void {
   }, "l22_english_contour_leak");
   const prematureL22 = clone(json(FILE)) as R;
   prematureL22.lessons = (prematureL22.lessons as R[]).slice(0, 22);
+
+  prematureL22.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL22);
     if (
@@ -19792,6 +21249,8 @@ function fixtures(): void {
   for (const [diagnostic, mutate] of cases) expectL28(mutate, diagnostic);
   const prematureL23 = clone(json(FILE)) as R;
   prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);
+
+  prematureL23.buildStatus = "INCREMENTAL_TASK5";
   assert.throws(() => {
     const result = validate(prematureL23);
     if (
@@ -21109,7 +22568,729 @@ function l31Fixtures(): void {
   }
 }
 
-void l31Fixtures;
+function validateL32FinalContext(raw: R, planOverride?: R): void {
+  const plan =
+    planOverride ??
+    ((json(LESSONS) as { lessons: R[] }).lessons.find(
+      (value) => value.id === "de_l32",
+    ) as R);
+  const lesson = (raw.lessons as R[]).find(
+    (value) => value.lessonId === "de_l32",
+  ) as R;
+  const final = lesson.chapters[6] as R;
+  const core = (plan.session56Final as R).requiredConstructIds as string[];
+  const inventory = (plan.session56Final as R)
+    .contextSelectedConstructIds as string[];
+  const actual = final.allowedConstructIds as string[];
+  if (!actual.includes("de_gc_functional_b1_integration_v1"))
+    throw new Error("l32_final_required_core_invalid");
+  if (!actual.includes("de_gc_register_repair_mediation_v1"))
+    throw new Error("l32_final_required_core_invalid");
+  const selected = actual.filter((id) => !core.includes(id));
+  if (selected.length > 2)
+    throw new Error("l32_final_context_selected_maximum_invalid");
+  if (selected.some((id) => !inventory.includes(id)))
+    throw new Error("l32_final_context_selected_inventory_invalid");
+  if (
+    JSON.stringify(selected) !==
+    JSON.stringify(["de_gc_limited_modal_perfekt_v1"])
+  )
+    throw new Error("l32_final_context_selected_identity_invalid");
+  if (
+    JSON.stringify((final.checkpoint as R).integratedConstructIds) !==
+    JSON.stringify(actual)
+  )
+    throw new Error("l32_final_checkpoint_integration_invalid");
+  const support = final.supportFading as R;
+  const surfaces = String(support.entry) + "\n" + String(support.exit);
+  if (!/\bhaben(?:\s+\p{L}+){0,4}\s+warten müssen\b/iu.test(surfaces))
+    throw new Error("l32_final_selected_modal_surface_missing");
+  if (
+    /\b(?:die Nummer des Antrags|der Berater, dem|wird geprüft)\b/iu.test(
+      surfaces,
+    )
+  )
+    throw new Error("l32_final_undeclared_context_surface");
+}
+function validateL32PlanAuthority(plan: R): void {
+  const final = plan.session56Final as R;
+  const rule = final.contextSelectionRule as R;
+  const core = final.requiredConstructIds as string[];
+  const inventory = final.contextSelectedConstructIds as string[];
+  if (
+    rule.minimum !== 0 ||
+    rule.maximum !== 2 ||
+    rule.policy !== "CONTEXT_REQUIRED_NOT_CHECKLIST" ||
+    !final.changedContextRequired ||
+    JSON.stringify(core) !==
+      JSON.stringify([
+        "de_gc_functional_b1_integration_v1",
+        "de_gc_register_repair_mediation_v1",
+      ]) ||
+    !Array.isArray(inventory) ||
+    inventory.length !== 6 ||
+    inventory.includes("de_gc_functional_b1_integration_v1") ||
+    inventory.includes("de_gc_register_repair_mediation_v1")
+  ) {
+    throw new Error("l32_plan_authority_invalid");
+  }
+}
+function l32Fixtures(): void {
+  type Case = {
+    id: string;
+    diagnostic: string;
+    mutate: (raw: R, plan: R, grammar?: R[]) => void;
+  };
+  const legacyH129H140: Case[] = [
+    {
+      id: "H129",
+      diagnostic: "l32_final_required_core_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        c.allowedConstructIds = (c.allowedConstructIds as string[]).filter(
+          (x) => x !== "de_gc_functional_b1_integration_v1",
+        );
+      },
+    },
+    {
+      id: "H130",
+      diagnostic: "l32_final_required_core_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        c.allowedConstructIds = (c.allowedConstructIds as string[]).filter(
+          (x) => x !== "de_gc_register_repair_mediation_v1",
+        );
+      },
+    },
+    {
+      id: "H131",
+      diagnostic: "l32_final_context_selected_identity_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        c.allowedConstructIds = (c.allowedConstructIds as string[]).filter(
+          (x) => x !== "de_gc_limited_modal_perfekt_v1",
+        );
+      },
+    },
+    {
+      id: "H132",
+      diagnostic: "l32_final_context_selected_identity_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        c.allowedConstructIds = [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_relative_clause_gender_case_v1",
+        ];
+      },
+    },
+    {
+      id: "H133",
+      diagnostic: "l32_final_context_selected_maximum_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        (c.allowedConstructIds as string[]).push(
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_state_passive_v1",
+        );
+      },
+    },
+    {
+      id: "H134",
+      diagnostic: "l32_final_context_selected_inventory_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        c.allowedConstructIds = [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_register_repair_mediation_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ];
+      },
+    },
+    {
+      id: "H135",
+      diagnostic: "l32_final_checkpoint_integration_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        (c.checkpoint as R).integratedConstructIds = [
+          "de_gc_functional_b1_integration_v1",
+          "de_gc_register_repair_mediation_v1",
+        ];
+      },
+    },
+    {
+      id: "H136",
+      diagnostic: "l32_final_checkpoint_integration_invalid",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        ((c.checkpoint as R).integratedConstructIds as string[]).push(
+          "de_gc_relative_clause_gender_case_v1",
+        );
+      },
+    },
+    {
+      id: "H137",
+      diagnostic: "l32_final_selected_modal_surface_missing",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        const support = c.supportFading as R;
+        const modal = /haben(?:\s+\p{L}+){0,4}\s+warten müssen/giu;
+        support.entry = String(support.entry).replace(modal, "haben gewartet");
+        support.exit = String(support.exit).replace(modal, "haben gewartet");
+      },
+    },
+    {
+      id: "H138",
+      diagnostic: "l32_final_undeclared_context_surface",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R
+        ).chapters[6] as R;
+        (c.supportFading as R).exit =
+          String((c.supportFading as R).exit) +
+          " Die Nummer des Antrags bleibt hier.";
+      },
+    },
+    {
+      id: "H139",
+      diagnostic: "l32_plan_authority_invalid",
+      mutate: (_raw, plan) => {
+        ((plan.session56Final as R).contextSelectionRule as R).maximum = 3;
+      },
+    },
+    {
+      id: "H140",
+      diagnostic: "l31_semantic_contract_invalid:sets",
+      mutate: (raw) => {
+        const c = (
+          (raw.lessons as R[]).find((x) => x.lessonId === "de_l31") as R
+        ).chapters[6] as R;
+        (c.allowedConstructIds as string[]).push(
+          "de_gc_limited_modal_perfekt_v1",
+        );
+      },
+    },
+  ];
+  const prefixed: Case[] = [];
+  const add = (
+    diagnostic: string,
+    mutate: (raw: R, plan: R, grammar?: R[]) => void,
+  ) => {
+    const ordinal = prefixed.length + 1;
+    const id = ordinal <= 128 ? ordinal : ordinal + 12;
+    prefixed.push({
+      id: "H" + String(id).padStart(3, "0"),
+      diagnostic,
+      mutate,
+    });
+  };
+  for (let i = 0; i < 3; i += 1) {
+    add("l32_plan_authority_invalid", (_raw, plan) =>
+      (plan.crossLessonRecall as R[]).splice(i, 1),
+    );
+    add(
+      "l32_plan_authority_invalid",
+      (_raw, plan) =>
+        (((plan.crossLessonRecall as R[])[i] as R).fromLessonId = "de_l01"),
+    );
+    add(
+      "l32_plan_authority_invalid",
+      (_raw, plan) =>
+        ((
+          ((plan.crossLessonRecall as R[])[i] as R).constructIds as string[]
+        )[0] = "x"),
+    );
+    add(
+      "l32_plan_authority_invalid",
+      (_raw, plan) =>
+        (((plan.crossLessonRecall as R[])[i] as R).responsibility = "x"),
+    );
+  }
+  const finalPlan = (plan: R) => plan.session56Final as R;
+  add("l32_plan_authority_invalid", (_r, p) =>
+    (finalPlan(p).evidenceModes as unknown[]).pop(),
+  );
+  add("l32_plan_authority_invalid", (_r, p) =>
+    (finalPlan(p).assessmentStrands as unknown[]).pop(),
+  );
+  add("l32_plan_authority_invalid", (_r, p) =>
+    (finalPlan(p).contextSelectedConstructIds as unknown[]).pop(),
+  );
+  add(
+    "l32_plan_authority_invalid",
+    (_r, p) => ((finalPlan(p).contextSelectionRule as R).minimum = 1),
+  );
+  add(
+    "l32_plan_authority_invalid",
+    (_r, p) => ((finalPlan(p).contextSelectionRule as R).maximum = 3),
+  );
+  add(
+    "l32_plan_authority_invalid",
+    (_r, p) => ((finalPlan(p).contextSelectionRule as R).policy = "x"),
+  );
+  add("l32_plan_authority_invalid", (_r, p) =>
+    (finalPlan(p).requiredConstructIds as unknown[]).pop(),
+  );
+  add(
+    "l32_plan_authority_invalid",
+    (_r, p) => (finalPlan(p).changedContextRequired = false),
+  );
+  const lesson = (raw: R) =>
+    (raw.lessons as R[]).find((x) => x.lessonId === "de_l32") as R;
+  const chapter = (raw: R, i: number) => (lesson(raw).chapters as R[])[i];
+  add(
+    "l32_semantic_contract_invalid:identity",
+    (r) => (lesson(r).lessonId = "x"),
+  );
+  add(
+    "l32_semantic_contract_invalid:identity",
+    (r) => (lesson(r).lessonOrdinal = 0),
+  );
+  add("l32_semantic_contract_invalid:identity", (r) =>
+    (lesson(r).chapters as R[]).pop(),
+  );
+  for (let i = 0; i < 7; i += 1)
+    add(
+      "l32_semantic_contract_invalid:identity",
+      (r) => (chapter(r, i).lessonOutcomeId = "x"),
+    );
+  add("l32_semantic_contract_invalid:identity", (r) =>
+    (chapter(r, 0).packetIds as unknown[]).pop(),
+  );
+  add("l32_semantic_contract_invalid:identity", (r) => {
+    const p = chapter(r, 1).packetIds as string[];
+    p[1] = p[0];
+  });
+  add(
+    "l32_semantic_contract_invalid:no_expansion",
+    (r) => ((lesson(r).grammarBoundary as R).noExpansion = "x"),
+  );
+  add(
+    "l32_semantic_contract_invalid:no_expansion",
+    (r) => delete (lesson(r).grammarBoundary as R).noExpansion,
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    ((lesson(r).grammarBoundary as R).allowedConstructIds as unknown[]).pop(),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    ((lesson(r).grammarBoundary as R).prohibitedConstructIds as unknown[]).push(
+      "x",
+    ),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    (chapter(r, 0).allowedConstructIds as unknown[]).pop(),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    ((chapter(r, 0).checkpoint as R).integratedConstructIds as unknown[]).pop(),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    (chapter(r, 5).allowedConstructIds as unknown[]).reverse(),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    (
+      (chapter(r, 5).checkpoint as R).integratedConstructIds as unknown[]
+    ).reverse(),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    (chapter(r, 1).allowedConstructIds as unknown[]).unshift("x"),
+  );
+  add("l32_semantic_contract_invalid:sets", (r) =>
+    (
+      (chapter(r, 1).checkpoint as R).integratedConstructIds as unknown[]
+    ).unshift("x"),
+  );
+  add(
+    "l32_final_transfer_invalid",
+    (r) => ((chapter(r, 6).checkpoint as R).packetId = "x"),
+  );
+  add("l32_final_transfer_invalid", (r) => (chapter(r, 6).lessonOutcome = "x"));
+  add("l32_final_transfer_invalid", (_r, p) =>
+    (finalPlan(p).evidenceDimensions as unknown[]).pop(),
+  );
+  for (const [chapterIndex, anchorIndex] of [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [5, 0],
+    [6, 0],
+    [6, 1],
+  ])
+    add(
+      "l32_lifecycle_anchor_invalid",
+      (r) =>
+        ((
+          (chapter(r, chapterIndex).lifecycleAnchors as R[])[anchorIndex] as R
+        ).packetId = "de_l32_c01_s08"),
+    );
+  add(
+    "l32_lifecycle_anchor_invalid",
+    (r) => (((chapter(r, 0).lifecycleAnchors as R[])[0] as R).stage = "guided"),
+  );
+  add("l32_lifecycle_anchor_invalid", (r) =>
+    (chapter(r, 0).lifecycleAnchors as R[]).pop(),
+  );
+  add("l32_registry_anchor_mismatch", (_r, _p, grammar) => {
+    const item = (grammar as R[]).find(
+      (x) => x.id === "de_gc_functional_b1_integration_v1",
+    ) as R;
+    const delayed = item.delayedTargetPacketIds as string[];
+    delayed.splice(delayed.indexOf("de_l32_c07_s51"), 1);
+  });
+  add("l32_registry_anchor_mismatch", (_r, _p, grammar) => {
+    const item = (grammar as R[]).find(
+      (x) => x.id === "de_gc_register_repair_mediation_v1",
+    ) as R;
+    const delayed = item.delayedTargetPacketIds as string[];
+    delayed.splice(delayed.indexOf("de_l32_c07_s49"), 1);
+  });
+  for (let i = 0; i < 3; i += 1) {
+    add(
+      "l32_recall_provenance_invalid",
+      (r) => ((chapter(r, i).recallSchedule as R).retrievesFromChapterIds = []),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        ((chapter(r, i).recallSchedule as R).targetsFutureChapterIds = [
+          "de_l32_c01",
+        ]),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        ((
+          (chapter(r, i).recallSchedule as R).futureDelayedProbe as R
+        ).packetId = "de_l32_c01_s08"),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        (((chapter(r, i).recallSchedule as R).futureDelayedProbe as R).kind =
+          "LESSON_PACKET"),
+    );
+  }
+  for (let i = 3; i < 5; i += 1) {
+    add(
+      "l32_recall_provenance_invalid",
+      (r) => ((chapter(r, i).recallSchedule as R).retrievesFromChapterIds = []),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        ((chapter(r, i).recallSchedule as R).targetsFutureChapterIds = [
+          "de_l32_c01",
+        ]),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        ((
+          (chapter(r, i).recallSchedule as R).futureDelayedProbe as R
+        ).packetId = "de_l32_c01_s08"),
+    );
+    add(
+      "l32_recall_provenance_invalid",
+      (r) =>
+        (((chapter(r, i).recallSchedule as R).futureDelayedProbe as R).kind =
+          "LESSON_PACKET"),
+    );
+  }
+  add(
+    "l32_recall_provenance_invalid",
+    (r) => ((chapter(r, 5).recallSchedule as R).retrievesFromChapterIds = []),
+  );
+  add(
+    "l32_recall_provenance_invalid",
+    (r) =>
+      ((chapter(r, 5).recallSchedule as R).targetsFutureChapterIds = [
+        "de_l32_c01",
+      ]),
+  );
+  add(
+    "l32_recall_provenance_invalid",
+    (r) =>
+      (((chapter(r, 5).recallSchedule as R).futureDelayedProbe as R).packetId =
+        "de_l32_c01_s08"),
+  );
+  add(
+    "l32_recall_provenance_invalid",
+    (r) =>
+      (((chapter(r, 5).recallSchedule as R).futureDelayedProbe as R).kind =
+        "LESSON_PACKET"),
+  );
+  add(
+    "l32_recall_provenance_invalid",
+    (r) => ((chapter(r, 6).recallSchedule as R).retrievesFromChapterIds = []),
+  );
+  add("l32_recall_provenance_invalid", (r) =>
+    (
+      (chapter(r, 6).recallSchedule as R).retrievesFromChapterIds as string[]
+    ).splice(0, 1),
+  );
+  add("l32_recall_provenance_invalid", (r) => {
+    const rows = (chapter(r, 6).recallSchedule as R)
+      .retrievesFromChapterIds as string[];
+    [rows[1], rows[2]] = [rows[2], rows[1]];
+  });
+  add("l32_recall_provenance_invalid", (r) => {
+    const rows = (chapter(r, 6).recallSchedule as R)
+      .retrievesFromChapterIds as string[];
+    rows[rows.length - 1] = "de_l32_c05";
+  });
+  for (let i = 0; i < 7; i += 1) {
+    add(
+      "l32_semantic_contract_invalid:situations",
+      (r) => ((chapter(r, i).situation as R).setting = "x"),
+    );
+    add(
+      "l32_semantic_contract_invalid:situations",
+      (r) => (((chapter(r, i).checkpoint as R).newSituation as R).goal = "x"),
+    );
+  }
+  add("written_digital_exit_missing", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    s.exit = String(s.exit).replace(
+      "Antwort: Danke für die Aktualisierung. ",
+      "",
+    );
+  });
+  add("spoken_repair_exit_missing", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    s.exit = String(s.exit).replace(
+      "Rückblick im Gespräch: Nein, erst seit elf Uhr; wir haben bis elf Uhr warten müssen. ",
+      "",
+    );
+  });
+  add("mediation_exit_missing", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    s.exit = String(s.exit).replace(
+      "Bestätigung an das Team: Der Seiteneingang ist jetzt offen; der neue Beginn ist um 11.15 Uhr. ",
+      "",
+    );
+  });
+  add("connected_justification_exit_missing", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    s.exit = String(s.exit).replace(
+      "Begründung: Diese Lösung ist sinnvoll: Der Seiteneingang ist jetzt offen, und alle erhalten dieselbe bestätigte Zeit.",
+      "",
+    );
+  });
+  for (let i = 4; i < 7; i += 1)
+    add(
+      "l32_semantic_contract_invalid:support_fading",
+      (r) => ((chapter(r, i).supportFading as R).entryLevel = 0),
+    );
+  for (let i = 0; i < 3; i += 1)
+    add(
+      "l32_semantic_contract_invalid:support_fading",
+      (r) =>
+        ((chapter(r, i).supportFading as R).independentEvidenceByPacketId =
+          "de_l32_c07_s56"),
+    );
+  for (let i = 0; i < 7; i += 1)
+    add("l32_semantic_contract_invalid:evidence", (r) =>
+      (chapter(r, i).chapterEvidencePacketIds as unknown[]).pop(),
+    );
+  for (let i = 0; i < 7; i += 1)
+    add(
+      "l32_semantic_contract_invalid:lexical_packages",
+      (r) =>
+        ((
+          (
+            (chapter(r, i).checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).lemmaOrExpression = "x"),
+    );
+  add(
+    "l32_semantic_contract_invalid:lexical_packages",
+    (r) =>
+      ((
+        (
+          (
+            (chapter(r, 0).checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).utilityProof as R
+      ).facetValue = "x"),
+  );
+  add(
+    "l32_semantic_contract_invalid:lexical_packages",
+    (r) =>
+      ((
+        ((chapter(r, 0).checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+      ).communicativeUse = "x"),
+  );
+  add(
+    "l32_semantic_contract_invalid:lexical_packages",
+    (r) =>
+      ((
+        (
+          (
+            (chapter(r, 1).checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).nounPackage as R
+      ).plural = ""),
+  );
+  add(
+    "l32_semantic_contract_invalid:lexical_packages",
+    (r) =>
+      ((
+        ((chapter(r, 2).checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+      ).nounPackageIdentity = "x"),
+  );
+  add(
+    "l32_semantic_contract_invalid:lexical_packages",
+    (r) =>
+      ((
+        ((chapter(r, 3).checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+      ).lemmaStatus = "x"),
+  );
+  add("l32_semantic_contract_invalid:lexical_packages", (r) =>
+    ((chapter(r, 4).checkpoint as R).plannedNewLexicalSenses as R[]).pop(),
+  );
+  for (const [probe, diagnostic] of [
+    ["dassProbe", "l32_hidden_subordinate_operation_leak"],
+    ["indirectSpeechProbe", "l32_indirect_reporting_leak"],
+    ["universalDuSieProbe", "l32_register_rule_leak"],
+    ["anotherModalProbe", "l32_modal_expansion_leak"],
+    ["newGenitiveProbe", "l32_genitive_expansion_leak"],
+    ["eventPassiveProbe", "l32_passive_inventory_leak"],
+    ["certificateProbe", "l32_certificate_claim_leak"],
+    ["task6Probe", "l32_task6_or_learner_surface_leak"],
+    ["englishContourProbe", "l32_english_contour_leak"],
+    ["unlabelledDachProbe", "l32_unlabelled_dach_or_dialect_leak"],
+  ] as const)
+    add(
+      diagnostic,
+      (r) =>
+        ((chapter(r, 0).supportFading as R).entry =
+          String((chapter(r, 0).supportFading as R).entry) + " " + probe),
+    );
+  add("l32_c01_spoken_reception_missing", (r) => {
+    const s = chapter(r, 0).supportFading as R;
+    s.entry = "Digitale Mitteilung";
+    s.exit = "Digitale Mitteilung";
+  });
+  add("l32_c01_written_reception_missing", (r) => {
+    const s = chapter(r, 0).supportFading as R;
+    s.entry = "Am Telefon Frau Keller";
+    s.exit = "Am Telefon Frau Keller";
+  });
+  add("l32_c06_mixed_audience_choice_cue_missing", (r) => {
+    const s = chapter(r, 5).supportFading as R;
+    s.entry = String(s.entry)
+      .replaceAll("gemischte Runde", "Runde")
+      .replaceAll("neuen Teilnehmer", "Teilnehmer");
+    s.exit = String(s.exit)
+      .replaceAll("Gemischte Runde", "Runde")
+      .replaceAll("neuer Teilnehmer", "Teilnehmer");
+  });
+  add("l32_c06_register_contrast_reformulation_missing", (r) => {
+    const s = chapter(r, 5).supportFading as R;
+    s.entry = "Gemischte Runde mit einem neuen Teilnehmer.";
+    s.exit = "Gemischte Runde mit einem neuen Teilnehmer.";
+  });
+  add("l32_c07_modal_temporal_grounding_missing", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    for (const field of ["entry", "exit"] as const)
+      s[field] = String(s[field])
+        .replaceAll("um elf Uhr", "heute")
+        .replaceAll("seit elf Uhr", "später")
+        .replaceAll("bis elf Uhr", "länger");
+  });
+  add("l32_c07_modal_chronology_invalid", (r) => {
+    const s = chapter(r, 6).supportFading as R;
+    s.entry =
+      String(s.entry) +
+      " Der Seiteneingang öffnet erst um elf Uhr. Wir kommen um elf Uhr.";
+  });
+  add(
+    "complete_status_not_exactly_full_registry",
+    (r) => (r.buildStatus = "INCREMENTAL_TASK5"),
+  );
+  add(
+    "l32_terminal_future_target_invalid",
+    (r) =>
+      ((chapter(r, 6).recallSchedule as R).targetsFutureChapterIds = [
+        "de_l32_c07",
+      ]),
+  );
+  add(
+    "l32_terminal_owner_probe_invalid",
+    (r) =>
+      (((chapter(r, 6).recallSchedule as R).futureDelayedProbe as R).kind =
+        "COURSE_PACKET"),
+  );
+  add(
+    "l32_terminal_owner_probe_invalid",
+    (r) =>
+      ((
+        (chapter(r, 6).recallSchedule as R).futureDelayedProbe as R
+      ).reviewOwnerId = "x"),
+  );
+  prefixed.splice(128, 0, ...legacyH129H140);
+  const cases: Case[] = prefixed;
+  assert.equal(cases.length, 160, "l32_h001_h160_count");
+  assert.equal(
+    new Set(cases.map((testCase) => testCase.id)).size,
+    160,
+    "l32_h001_h160_unique_ids",
+  );
+  assert.deepEqual(
+    cases.map((testCase) => testCase.id),
+    Array.from(
+      { length: 160 },
+      (_, index) => "H" + String(index + 1).padStart(3, "0"),
+    ),
+    "l32_h001_h160_sequential_ids",
+  );
+  for (const testCase of cases) {
+    const raw = clone(json(FILE)) as R;
+    const plan = clone(
+      (json(LESSONS) as { lessons: R[] }).lessons.find(
+        (value) => value.id === "de_l32",
+      ) as R,
+    );
+    const grammar = clone(json(GRAMMAR) as R[]);
+    testCase.mutate(raw, plan, grammar);
+    let thrown: unknown;
+    try {
+      if (testCase.id === "H140" || testCase.id === "H157") validate(raw);
+      else if (
+        /^H(?:0(?:0[1-9]|[1-9][0-9])|1(?:[0-5][0-9]|60))$/u.test(testCase.id)
+      )
+        validateL32SemanticContract(raw, plan, grammar);
+      else validateL32FinalContext(raw, plan);
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, testCase.id + " must throw");
+    assert.equal(
+      thrown.message,
+      testCase.diagnostic,
+      testCase.id + " diagnostic",
+    );
+  }
+}
+void l32Fixtures;
 
 function scope(a: readonly string[]): {
   lesson: string | null;
@@ -21130,6 +23311,7 @@ fixtures();
 l29Fixtures();
 l30Fixtures();
 l31Fixtures();
+l32Fixtures();
 if (selected.lesson) {
   if (!result.ids.has(selected.lesson))
     throw new Error(`requested_lesson_not_materialized:${selected.lesson}`);

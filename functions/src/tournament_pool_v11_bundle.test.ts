@@ -334,7 +334,7 @@ describe('finalizeTournamentV11Bundle', () => {
 
     const changedReceipts = new Map(fullReceipts);
     const changed = receiptFor(firstTask);
-    const changedPrimaryModel = 'gpt-4.1-nano' as const;
+    const changedPrimaryModel = 'gpt-4o-mini' as const;
     changedReceipts.set(firstTask.contentSha256, {
       ...changed,
       primaryModel: changedPrimaryModel,
@@ -421,7 +421,7 @@ describe('finalizeTournamentV11Bundle', () => {
     });
     for (const jobBinding of [
       { ...bundleJobBinding, jobId: `tsj_${'3'.repeat(64)}`, queueSha256: '4'.repeat(64) },
-      { ...bundleJobBinding, primaryModel: 'gpt-4.1-nano' },
+      { ...bundleJobBinding, primaryModel: 'gpt-4o-mini' },
     ]) await expect(finalizeTournamentV11Bundle({
       finalized, runtimeAudit, jobBinding, persistence, maxOperations: 1,
     })).rejects.toThrow('publication_plan_conflict');

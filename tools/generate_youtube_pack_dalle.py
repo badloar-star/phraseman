@@ -182,7 +182,7 @@ THUMBNAILS = [
 
 def generate_image(prompt: str, filename: str) -> bool:
     payload = json.dumps({
-        "model": "gpt-image-1",
+        "model": "gpt-image-2.5-flare",
         "prompt": prompt,
         "n": 1,
         "size": "1536x1024",

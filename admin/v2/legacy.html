@@ -12532,7 +12532,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <label style="display:grid;gap:5px;min-width:200px;color:#cbd5e1;font-size:12px;font-weight:700">
         Модель диалога
         <select id="cp-ai-dialog-model" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;min-height:38px">
-          <option value="gpt-4.1-nano">GPT-4.1 nano</option>
           <option value="gpt-4.1-mini">GPT-4.1 mini</option>
           <option value="gpt-4.1">GPT-4.1</option>
           <option value="gpt-4o-mini">GPT-4o mini</option>
@@ -17179,7 +17178,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <option value="90">90 дней</option>
       </select>
       <select id="openai-dialog-model" title="Theo model">
-        <option value="gpt-4.1-nano">Theo: GPT-4.1 nano</option>
         <option value="gpt-4.1-mini">Theo: GPT-4.1 mini</option>
         <option value="gpt-4.1">Theo: GPT-4.1</option>
         <option value="gpt-4o-mini">Theo: GPT-4o mini</option>
@@ -38043,7 +38041,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   // ── Пульт: фоновые ИИ-джобы (weekly/stats/explain) — openAiJobsConfig ──────
-  const CP_AI_JOB_MODELS = ['gpt-4.1-nano','gpt-4.1-mini','gpt-4.1','gpt-4o-mini'];
+  const CP_AI_JOB_MODELS = ['gpt-4.1-mini','gpt-4.1','gpt-4o-mini'];
   const CP_AI_JOBS = [
     { key: 'weekly',  label: 'Недельный разбор' },
     { key: 'stats',   label: 'Инсайты статистики' },
@@ -40971,7 +40969,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const callable = getOpenAiDialogModelConfigCallable();
       const res = await callable({ action: 'get' });
       const data = res?.data || {};
-      const model = String(data.activeModel || data.defaultModel || 'gpt-4.1-nano');
+      const model = String(data.activeModel || data.defaultModel || 'gpt-4o-mini');
       const select = document.getElementById('openai-dialog-model');
       if (select) select.value = model;
       const configured = data.configuredModel ? 'saved in admin config' : 'fallback default/env';

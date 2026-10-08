@@ -84,11 +84,11 @@ async function generate(apiKey) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({
-      // gpt-image-1 — та же модель, что уже используют другие генераторы
+      // gpt-image-2.5-flare — та же модель, что уже используют другие генераторы
       // проекта. Её главное преимущество здесь: нативная прозрачность
       // (background: 'transparent'), поэтому фон не приходится вырезать по
       // яркости — контур получается точным на тонких деталях оправы.
-      model: 'gpt-image-1',
+      model: 'gpt-image-2.5-flare',
       prompt: PROMPT,
       n: 1,
       size: '1024x1024',
@@ -157,7 +157,7 @@ async function main() {
   const raw = await generate(apiKey);
   await writeFile(resolve(TMP_DIR, `${REWARD_ID}-raw.png`), raw);
 
-  // gpt-image-1 отдаёт прозрачность сам. Вырезание по яркости включаем ТОЛЬКО
+  // gpt-image-2.5-flare отдаёт прозрачность сам. Вырезание по яркости включаем ТОЛЬКО
   // если фон непрозрачный: на уже прозрачной картинке оно бы прогрызло тёмные
   // участки самого объекта (тиснёное основание у него почти чёрное).
   const stats = await sharp(raw).stats();

@@ -1,3 +1,4 @@
+import { DEFAULT_TEXT_MODEL } from './openai_model_policy';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
@@ -90,7 +91,7 @@ const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
 
 export const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL_DEFAULT = 'gpt-4.1-nano';
+const MODEL_DEFAULT = DEFAULT_TEXT_MODEL;
 
 type ChatRole = 'system' | 'user' | 'assistant';
 
@@ -1047,7 +1048,7 @@ export const premiumDialogSend = onCall({
   // Игровой режим (есть под-цели): просим JSON-конверт и разбираем его. Конверт
   // длиннее обычной реплики → больше токенов на вывод. ВКЛЮЧАЕМ только если
   // модель надёжно поддерживает response_format json_object — иначе запрос упал
-  // бы HTTP 400 (дефолтная gpt-4.1-nano его не поддерживает; аудит C1). Для
+  // бы HTTP 400 (неподдерживаемая модель не должна включать JSON-игру). Для
   // неподдерживающих моделей диалог идёт обычным текстом без игровой механики.
   const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
   if (mode === 'scenario' && isGameMode(data) && !gameMode) {
@@ -1535,7 +1536,7 @@ export const premiumDialogTranslate = onCall({
   // Результат кэшируется в Firestore НАВСЕГДА (см. TRANSLATE_PROMPT_VERSION выше) —
   // цена модели платится один раз за уникальную (фраза, язык), не на каждое чтение.
   // При регрессии качества перевода идиом откат — одна константа здесь.
-  const translateModel = 'gpt-4.1-nano';
+  const translateModel = DEFAULT_TEXT_MODEL;
 
   // зачем: без правила про идиомы фразовые глаголы переводились дословно — реплика
   // кассира «Let me ring that up for you» («сейчас пробью на кассе») превращалась в

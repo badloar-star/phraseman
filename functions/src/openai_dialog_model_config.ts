@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { migrateRetiredTextModel } from './openai_model_policy';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
@@ -6,10 +7,7 @@ const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_dialog_model';
 const QUOTA_CONFIG_DOC = 'openai_dialog_quota';
-// Дефолт диалога = gpt-4o-mini: поддерживает response_format json_object, нужный
-// «диалогу как игре» (gpt-4.1-nano его НЕ поддерживает → игра бы не включилась;
-// аудит C1). Цена 4o-mini сопоставима с nano, остальные json-функции проекта
-// (stats_insights/weekly_review/explain_choice) тоже на 4o-mini.
+// GPT-4o mini keeps the existing JSON game envelope and chat request schema.
 const MODEL_DEFAULT = 'gpt-4o-mini';
 // зачем: владелец 2026-08-23 поднял дневные капы — фри 3→10 реплик (3 реплики
 // это меньше одного связного диалога, человек упирался в лимит, не увидев
@@ -21,7 +19,6 @@ export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200;
 const DIALOG_DAILY_REPLIES_MAX = 10000;
 
 export const ALLOWED_DIALOG_MODELS = [
-  'gpt-4.1-nano',
   'gpt-4.1-mini',
   'gpt-4.1',
   'gpt-4o-mini',
@@ -29,21 +26,11 @@ export const ALLOWED_DIALOG_MODELS = [
 
 type DialogModel = typeof ALLOWED_DIALOG_MODELS[number];
 
-/**
- * Какие диалоговые модели надёжно поддерживают `response_format: json_object`.
- * Нужно для «диалога как игры»: он просит модель вернуть строгий JSON-конверт.
- * Дефолтная `gpt-4.1-nano` — самая урезанная, JSON mode на ней ненадёжен →
- * НЕ включаем для неё игровой режим (упал бы HTTP 400, см. аудит C1). Для таких
- * моделей диалог идёт обычным текстом без игровой механики (мягкая деградация).
- *
- * Источник истины: остальные json_object-функции проекта (stats_insights,
- * weekly_review, explain_choice) намеренно работают на gpt-4o-mini.
- */
+/** Only supported, allowed models may enable the JSON game envelope. */
 const JSON_OBJECT_SUPPORTED_MODELS: Readonly<Record<DialogModel, boolean>> = {
   'gpt-4o-mini': true,
   'gpt-4.1': true,
   'gpt-4.1-mini': true,
-  'gpt-4.1-nano': false,
 };
 
 /** true — модель надёжно поддерживает response_format json_object. */
@@ -65,7 +52,7 @@ function isAllowedDialogModel(model: string): model is DialogModel {
 }
 
 function normalizeDialogModel(value: unknown): DialogModel | null {
-  const model = text(value, 80);
+  const model = migrateRetiredTextModel(text(value, 80));
   return isAllowedDialogModel(model) ? model : null;
 }
 
@@ -160,7 +147,8 @@ export const openAiDialogModelConfig = onCall({ region: REGION, enforceAppCheck:
   const action = text(request.data?.action, 20) || 'get';
 
   if (action === 'set') {
-    const model = normalizeDialogModel(request.data?.model);
+    const requested = text(request.data?.model, 80);
+    const model = isAllowedDialogModel(requested) ? requested : null;
     if (!model) {
       throw new HttpsError('invalid-argument', 'unsupported_dialog_model');
     }

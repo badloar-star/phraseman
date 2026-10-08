@@ -74,7 +74,7 @@ function promptFor(description) {
 
 async function generateOne(apiKey, filename, prompt) {
   const body = {
-    model: 'gpt-image-1',
+    model: 'gpt-image-2.5-flare',
     prompt,
     size: '1024x1024',
     quality: 'low',
@@ -165,7 +165,7 @@ async function main() {
   }
   await fs.writeFile(manifestPath, JSON.stringify({
     generatedAt: new Date().toISOString(),
-    model: apiKey ? 'gpt-image-1' : 'local-fallback',
+    model: apiKey ? 'gpt-image-2.5-flare' : 'local-fallback',
     count: manifest.length,
     assets: manifest,
   }, null, 2));

@@ -126,8 +126,8 @@ function buildEnricherDependencies(db: FirebaseFirestore.Firestore, model: strin
     recordResult: (input) => recordEnrichmentResult({
       db, contentHash: input.contentHash, narrative: input.narrative, nowMs: input.nowMs,
     }),
-    estimateCostUsd: estimateEnrichmentCostUsd,
-    actualCostUsd: actualEnrichmentCostUsd,
+    estimateCostUsd: () => estimateEnrichmentCostUsd(model),
+    actualCostUsd: (usage) => actualEnrichmentCostUsd(usage, model),
     nowMs: () => Date.now(),
   };
 }

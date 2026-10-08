@@ -1,3 +1,4 @@
+import { DEFAULT_TEXT_MODEL } from './openai_model_policy';
 // ═══════════════════════════════════════════════════════════════════════════
 // support_inbox.ts — входящая почта поддержки (support.phraseman@gmail.com) в
 // админке + ИИ-черновики ответов. Спека: specs/gmail-support-inbox.md.
@@ -3201,7 +3202,7 @@ async function buildCouncilReviewedSupportReply(input: {
       actualCostUsd: actualEnrichmentCostUsd({
         promptTokens: draftResult.promptTokens + reviewPromptTokens,
         completionTokens: draftResult.completionTokens + reviewCompletionTokens,
-      }),
+      }, input.model),
     }).catch(() => undefined);
     const selected = selectFinalAutoReply({
       issue, risk, context: draftResult.context, draft: draftResult.envelope, review,
@@ -3943,7 +3944,7 @@ async function generateSaveAndDispatchAutoReply(input: {
     });
     return 'noop';
   }
-  let model = 'gpt-4.1-nano';
+  let model: string = DEFAULT_TEXT_MODEL;
   let ownerInstructions: SupportOwnerInstructionsSnapshot | null = null;
   let council: SupportCouncilOutcome;
   try {
@@ -4474,7 +4475,7 @@ async function buildCouncilReviewedSupportRevision(input: {
       actualCostUsd: actualEnrichmentCostUsd({
         promptTokens: candidate.promptTokens + reviewPromptTokens,
         completionTokens: candidate.completionTokens + reviewCompletionTokens,
-      }),
+      }, input.model),
     }).catch(() => undefined);
     const selected = selectFinalAutoReply({
       issue, risk, context, draft: candidate.envelope, review, ownerInstructions,
@@ -6781,7 +6782,7 @@ export const supportInboxOnNewMail = onDocumentCreated(
     try {
       const prompt = buildSpamTriagePrompt({ subject: doc.subject, bodyText: doc.bodyText, fromEmail: doc.fromEmail });
       const spamResult = await openAiChat({
-        apiKey, model: 'gpt-4.1-nano',
+        apiKey, model: DEFAULT_TEXT_MODEL,
         messages: [{ role: 'system', content: prompt.system }, { role: 'user', content: prompt.user }],
         maxTokens: 150, temperature: 0,
       });

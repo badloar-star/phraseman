@@ -1,3 +1,4 @@
+import { resolveImageModel, DEFAULT_IMAGE_MODEL } from './openai_model_policy';
 import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
@@ -92,9 +93,9 @@ export function normalizeAssetJobInput(data: unknown): {
   });
 }
 
-export function buildOpenAiImageRequest(job: ReturnType<typeof normalizeAssetJobInput>): Row {
+export function buildOpenAiImageRequest(job: ReturnType<typeof normalizeAssetJobInput>, model: unknown = DEFAULT_IMAGE_MODEL): Row {
   return {
-    model: 'gpt-image-1',
+    model: resolveImageModel(model),
     prompt: job.prompt,
     size: job.size,
     quality: job.quality,
@@ -162,11 +163,11 @@ async function withFreshPreviewUrls(job: Row): Promise<Row> {
   return { ...job, results };
 }
 
-async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAssetJobInput>): Promise<Buffer> {
+async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAssetJobInput>, model: unknown): Promise<Buffer> {
   const response = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(buildOpenAiImageRequest(job)),
+    body: JSON.stringify(buildOpenAiImageRequest(job, model)),
   });
   if (!response.ok) {
     await response.text().catch(() => '');
@@ -280,7 +281,7 @@ export const adminRunAssetJob = onCall(
       const bucket = admin.storage().bucket();
       const results = [...existingResults];
       for (const slot of slots) {
-        const png = await generateImage(apiKey, job);
+        const png = await generateImage(apiKey, job, cfg.model);
         const objectPath = `admin-asset-studio/${jobId}/generated-${slot}.png`;
         const file = bucket.file(objectPath);
         await file.save(png, { resumable: false, contentType: 'image/png', metadata: { cacheControl: 'private, max-age=0' } });
@@ -309,3 +310,5 @@ export const adminRunAssetJob = onCall(
     return { ok: true, job: await withFreshPreviewUrls(projectAssetJob(jobId, done.data() as Row)) };
   },
 );
+
+export const __assetStudioTestHooks = { generateImage };

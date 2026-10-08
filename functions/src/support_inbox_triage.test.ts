@@ -23,7 +23,7 @@ const secretValues = new Map<string, string>();
 const mockOpenAiChat = jest.fn<Promise<{ text: string; promptTokens: number; completionTokens: number }>, unknown[]>();
 const mockSendTelegramAlert = jest.fn<Promise<boolean>, unknown[]>(async () => true);
 const mockSendJarvisDigest = jest.fn<Promise<boolean>, unknown[]>(async () => true);
-const mockResolveJobConfig = jest.fn<Promise<{ model: string; enabled: boolean }>, unknown[]>(async () => ({ model: 'gpt-4.1-nano', enabled: true }));
+const mockResolveJobConfig = jest.fn<Promise<{ model: string; enabled: boolean }>, unknown[]>(async () => ({ model: 'gpt-4o-mini', enabled: true }));
 const mockAssertJobEnabled = jest.fn<void, unknown[]>();
 const mockSmtpVerify = jest.fn<Promise<unknown>, unknown[]>(async () => true);
 const mockSmtpSendMail = jest.fn<Promise<{ messageId: string }>, unknown[]>(async () => ({ messageId: '<smtp-accepted@example.test>' }));
@@ -346,6 +346,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await supportInboxOnNewMail(makeEvent('m2', {
       fromEmail: 'seo@spam-shop.example', subject: 'Купите ссылки', bodyText: 'дёшево', status: 'new',
     }));
+    expect(mockOpenAiChat).toHaveBeenCalledWith(expect.objectContaining({ model: 'gpt-4o-mini', maxTokens: 150, temperature: 0 }));
     expect(store.get('support_inbox/m2')?.status).toBe('archived');
     expect(store.get('support_inbox/m2')?.triageState).toBe('quarantined');
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);

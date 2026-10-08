@@ -64,6 +64,13 @@ const receipt: Extract<TournamentSemanticReceipt, { decision: 'PASS' }> = {
 };
 
 describe('tournament semantic receipt store', () => {
+  it('still validates immutable evidence produced before nano retirement', () => {
+    const historical = {
+      ...receipt, primaryModel: 'gpt-4.1-nano',
+      primaryVerdict: verdict('primary', 'gpt-4.1-nano'),
+    };
+    expect(() => validateTournamentSemanticReceipt(historical, candidate)).not.toThrow();
+  });
   it('uses deterministic create-only parent receipts and reuses only byte-equal evidence', async () => {
     const persistence = new MemoryPersistence();
     const store = createTournamentSemanticReceiptStore(persistence);

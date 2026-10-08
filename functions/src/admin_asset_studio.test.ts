@@ -78,7 +78,7 @@ describe('admin asset studio contract', () => {
     });
 
     expect(buildOpenAiImageRequest(job)).toEqual({
-      model: 'gpt-image-1',
+      model: 'gpt-image-2.5-flare',
       prompt: 'Generate a small app icon, no text',
       size: '1024x1024',
       quality: 'low',
@@ -88,7 +88,7 @@ describe('admin asset studio contract', () => {
 
   test('uses the real image model in generated OpenAI requests', () => {
     const job = normalizeAssetJobInput({ prompt: 'Generate an app asset' });
-    expect(buildOpenAiImageRequest(job).model).toBe('gpt-image-1');
+    expect(buildOpenAiImageRequest(job).model).toBe('gpt-image-2.5-flare');
   });
 
   test('allows a stale running lease to be reclaimed but blocks a fresh running lease', () => {
@@ -144,5 +144,38 @@ describe('admin asset studio contract', () => {
     });
     expect(JSON.stringify(projected)).not.toContain('rawResponse');
     expect(JSON.stringify(projected)).not.toContain('hidden');
+  });
+});
+
+describe('supported image request compatibility', () => {
+  test.each(['gpt-image-2.5-flare', 'gpt-image-2.5-sunburst'])('%s preserves PNG/size/quality without legacy response_format', (model) => {
+    const request = buildOpenAiImageRequest(normalizeAssetJobInput({ prompt: 'Icon', quality: 'high' }), model);
+    expect(request).toEqual({ model, prompt: 'Icon', size: '1024x1024', quality: 'high', output_format: 'png' });
+    expect(request).not.toHaveProperty('response_format');
+  });
+  test('a retired image override cannot reach OpenAI', () => {
+    expect(buildOpenAiImageRequest(normalizeAssetJobInput({ prompt: 'Icon' }), 'gpt-image-1').model)
+      .toBe('gpt-image-2.5-flare');
+  });
+});
+
+describe('image HTTP transport regression', () => {
+  const originalFetch = global.fetch;
+  afterEach(() => { global.fetch = originalFetch; });
+  test('passes selected Sunburst to the real request builder and decodes the existing b64 contract', async () => {
+    const { __assetStudioTestHooks } = await import('./admin_asset_studio');
+    const fetchMock = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ data: [{ b64_json: Buffer.from('png-fixture').toString('base64') }] }) });
+    global.fetch = fetchMock;
+    const result = await __assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 'gpt-image-2.5-sunburst');
+    expect(result.toString()).toBe('png-fixture');
+    const [url, options] = fetchMock.mock.calls[0];
+    expect(url).toBe('https://api.openai.com/v1/images/generations');
+    expect(JSON.parse(options.body)).toMatchObject({ model: 'gpt-image-2.5-sunburst', output_format: 'png', size: '1024x1024', quality: 'low' });
+  });
+  test('missing image bytes remain an explicit failure', async () => {
+    const { __assetStudioTestHooks } = await import('./admin_asset_studio');
+    global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ data: [] }) });
+    await expect(__assetStudioTestHooks.generateImage('test-only-key', normalizeAssetJobInput({ prompt: 'Icon' }), 'gpt-image-2.5-flare'))
+      .rejects.toThrow('image_api_no_b64');
   });
 });

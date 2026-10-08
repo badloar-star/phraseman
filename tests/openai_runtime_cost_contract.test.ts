@@ -151,7 +151,7 @@ describe("OpenAI runtime cost controls", () => {
     expect(premiumDialog).toContain("modelSupportsJsonObject(dialogModel)");
     expect(modelConfig).toContain("const MODEL_DEFAULT = 'gpt-4o-mini'");
     expect(modelConfig).toContain("ALLOWED_DIALOG_MODELS");
-    expect(modelConfig).toContain("'gpt-4.1-nano': false");
+    expect(modelConfig).not.toContain("  'gpt-4.1-nano',");
     expect(modelConfig).toContain("DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10");
     expect(modelConfig).toContain("DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200");
     expect(modelConfig).toContain("admin_runtime_config");

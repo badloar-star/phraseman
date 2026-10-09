@@ -21,14 +21,16 @@ describe("OpenAI runtime cost controls", () => {
     expect(companion).not.toContain("(start the conversation: greet me warmly");
   });
 
-  test("weekly review callable is Plus-only and stats insights remain local", () => {
-    const weekly = read("app/weekly_review_client.ts");
+  test("weekly review enforces Plus before AI work and stats insights remain local", () => {
+    const weekly = read("functions/src/weekly_review.ts");
     const stats = read("app/stats_insights_client.ts");
+    const callable = weekly.slice(weekly.indexOf("export const weeklyReviewGenerate"));
 
-    expect(weekly).toContain("'weeklyReviewGenerate'");
-    expect(weekly).toContain("if (!options.isPremium)");
-    expect(weekly.indexOf("if (!options.isPremium)")).toBeLessThan(
-      weekly.indexOf("import('@react-native-firebase/functions')"),
+    expect(weekly).toContain("if (!isPremium) dependencies.rejectFree()");
+    expect(weekly).toContain("weekly_review_plus_required");
+    expect(callable).toContain("await runWeeklyReviewPreflight(");
+    expect(callable.indexOf("await runWeeklyReviewPreflight(")).toBeLessThan(
+      callable.indexOf("await resolveJobConfig(db, 'weekly')"),
     );
     expect(stats).toContain("buildLocalStatsInsights");
     expect(stats).not.toContain("statsInsightsGenerate'");
@@ -111,12 +113,12 @@ describe("OpenAI runtime cost controls", () => {
         callable: "explainChoice",
       },
     ]) {
-      expect(source).toContain(
-        "import { withExplainCallableTimeout } from './explain_callable_timeout'",
+      expect(source).toMatch(
+        /import\s*\{[^}]*\bwithExplainCallableTimeout\b[^}]*\}\s*from\s*['"]\.\/explain_callable_timeout['"]/,
       );
       expect(source).toMatch(
         new RegExp(
-          `withExplainCallableTimeout\\(\\s*fn\\(req\\),\\s*'${callable}'`,
+          `withExplainCallableTimeout\\(\\s*fn\\((?:req|normalizedReq)\\),\\s*'${callable}'`,
         ),
       );
       expect(source).toContain("finally(() =>");

@@ -95,6 +95,18 @@ Nano → 4o-mini означает примерно **+50%** на тот же о�
 - https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst
 - https://developers.openai.com/api/docs/api-reference/images
 
+## Дополнительная проверка 9 октября 2026
+
+Устранены устаревшие тестовые контракты, выявленные при проверке миграции:
+
+- В `admin_tournament_tasks.test.ts` fixtures содержат обязательный `studyTarget`, а проверка экспорта использует фактическую кодовую базу `functions-admin`. Проверки App Check, permissions и отсутствия legacy generation сохранены.
+- В `openai_runtime_cost_contract.test.ts` Plus проверяется в серверном preflight до AI-конфигурации; удалённый клиентский модуль не используется. Контракт таймаутов учитывает текущие retry wrappers и нормализованный запрос.
+- Typed Jest: `admin_tournament_tasks` + `weekly_review` — **54/54 passed**; корневые `openai_runtime_cost_contract` + `admin_single_surface_contract` — **13/13 passed**. Всего **67 тестов в 4 suites**, snapshots не изменялись. Выполнено на Node 24.19.0; проверки сборки миграции на Node 22 описаны выше. Исходники runtime в этом дополнении не менялись.
+- `git diff --check` прошёл. Генерируемый `tournament_content.json` по-прежнему отсутствует в репозитории; полный corpus integration gate не подтверждён и данные для него не подменялись.
+- Проверены доступные подключения и локальная авторизация: Firebase/GCP/Firestore connector и авторизованная cloud-сессия не обнаружены. Доступные GitHub Actions не подтверждают выпуск этой миграции. Production Firestore/env/revisions, доступ моделей в OpenAI project и staging smoke tests **не проверены**.
+
+Это закрывает доступные регрессии исходников, но не заменяет пункты 1–5 и 7 release checklist. Production deployment не выполнялся. Для следующего шага необходим авторизованный read-only доступ к Firebase/GCP и разрешённый staging прогон; ключи нельзя передавать в чат. Локальные платные OpenAI-вызовы запрещены OpenAI firewall в `AGENTS.md`.
+
 ## Находки и предложения
 
 Критический риск — production ещё не проверен и не обновлён. Следующий необходимый шаг — авторизованная read-only проверка runtime и разрешённый staging прогон. Срочная миграция сохраняет текущие endpoint/response contracts; отдельный переход на Luna имеет смысл после сравнительных измерений качества и бюджета. Для image assets стоит отдельно добавить фактическое usage/USD accounting, не смешивая эту задачу с изменением модели.

@@ -60,6 +60,7 @@ describe('старый текстовый генератор', () => {
 describe('adminFillTournamentPool v11 router', () => {
   const batch = {
     jobId: `tsj_${'a'.repeat(64)}`,
+    studyTarget: 'en' as const,
     poolVersion: 'tpool_20260808_v11',
     state: 'running' as const,
     revision: 2,
@@ -85,6 +86,7 @@ describe('adminFillTournamentPool v11 router', () => {
       async dryRun(input) {
         calls.push(`dry:${input.poolVersion}`);
         return {
+          studyTarget: 'en' as const,
           poolVersion: input.poolVersion,
           sourceCandidates: 20,
           hardGateRejections: 1,
@@ -151,6 +153,7 @@ describe('adminFillTournamentPool v11 router', () => {
   it('never reports a feasible dry-run or an incomplete publication as ready', async () => {
     const deps = dependencies();
     deps.dryRun = async (input) => ({
+      studyTarget: 'en' as const,
       poolVersion: input.poolVersion,
       sourceCandidates: 4_000, hardGateRejections: 0, duplicateRejections: 0,
       historicalExclusions: 0, eligibleCandidates: 4_000, cachePasses: 4_000,
@@ -213,7 +216,7 @@ describe('adminFillTournamentPool v11 router', () => {
     const start = source.indexOf('export const adminFillTournamentPool = onCall(');
     const end = source.indexOf('// ── Проценты распределения типов по раундам', start);
     const callable = source.slice(start, end);
-    const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
+    const indexSource = fs.readFileSync(path.join(__dirname, '../../functions-admin/index.ts'), 'utf8');
 
     expect(start).toBeGreaterThan(-1);
     expect(end).toBeGreaterThan(start);

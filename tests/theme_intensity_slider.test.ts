@@ -95,11 +95,12 @@ describe('palette along the slider', () => {
     const calmDark = liquidGlassTokens('sage', { level: 'calm', appearance: 'dark', intensity: 0 });
     const accent = liquidGlassTokens('sage', { level: 'accent', appearance: 'dark' });
     const max = liquidGlassTokens('sage', { level: 'max', appearance: 'dark' });
-    const { intensity: _a, ...accentNoI } = accent;
-    const { intensity: _m, ...maxNoI } = max;
-    void _a; void _m;
-    const calmBase = { ...calmDark } as Record<string, unknown>;
-    delete calmBase.intensity;
+    // зачем (10.10): токены поверхностей (liquidGlassSurfaceRoles) добавляются поверх построителя и считаются из итоговых полей — сравниваем только его выход.
+    const SURFACE = ['deepBase', 'deepBaseAlt', 'mediaScrim', 'mediaInk', 'mediaInkSoft', 'bevelHi', 'bevelLo', 'dropShadow', 'hairlineSoft'];
+    const strip = (o: object) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'intensity' && !SURFACE.includes(k)));
+    const accentNoI = strip(accent);
+    const maxNoI = strip(max);
+    const calmBase = strip(calmDark) as Record<string, unknown>;
     expect(accentNoI).toEqual(buildLiquidGlassVariant('sage', calmBase as never, { level: 'accent', appearance: 'dark' }));
     expect(maxNoI).toEqual(buildLiquidGlassVariant('sage', calmBase as never, { level: 'max', appearance: 'dark' }));
   });

@@ -1,5 +1,6 @@
 import type { Theme } from './theme';
 import { alpha, oklchToHex } from './liquidGlassColor';
+import { deriveLiquidGlassSurfaceRoles, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
   resolveLiquidGlassAppearance,
@@ -73,7 +74,8 @@ type BaseGlassTokens = LiquidGlassBaseTokens;
  * Neutral theme tokens + colour roles of the current level/appearance (see liquidGlassThemeVariants.ts).
  * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
  */
-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & Readonly<{ intensity: number }>;
+// зачем (замечание владельца 10.10): + токены поверхностей для экранов с зашитыми под макет цветами (liquidGlassSurfaceRoles.ts).
+export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & Readonly<{ intensity: number }>;
 
 /** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
 function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
@@ -150,8 +152,10 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const key = `${themeId}|${variant.intensity}|${variant.appearance}`;
   const cached = variantCache.get(key);
   if (cached) return cached;
+  const built = buildThemeTokens(themeId, variant);
   const tokens: GlassTokens = Object.freeze({
-    ...buildThemeTokens(themeId, variant),
+    ...built,
+    ...deriveLiquidGlassSurfaceRoles(built),
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);

@@ -2617,3 +2617,100 @@ PM-034 A2: старые экраны за фасадом НЕ найдены —
 - **Кнопки без EAS** — 🟢: недоступный провайдер скрыт, без пустот; нет ни одного — понятная строка (онбординг ru, окно входа 9 языков); 🟡 кнопки появляются после асинхронной проверки (сдвиг раскладки).
 - **Тексты входа/сеть** — 🟢: describeAuthError — 9 языков, «Связь пропала. Попробуй ещё раз.», «Вход затянулся…», отдельные тексты для удаляемого/удалённого аккаунта и Apple; Optimistic UI — e514aadff, 4ae7caca5.
 - **Сторож .mjs** — 🟢 fefc955c1: правило в юнит-наборе aa_guest_server_delete (10/10), .mjs удалён.
+
+## §CORE-GATES — 2026-10-10 ночь: Ядро — ответы на запросы координатора 20:18 / 21:05 / 21:08 / 23:00 / 23:05
+
+### 1. «Две поломки контента» — уточнение (ошибка формулировки в §CORE-RED, приношу извинения)
+- **Урок 9: переводы целы.** «?» — отдельная плитка знака вопроса в английской сборке (wordsEn).
+  - Добавлена сознательно коммитом 15e14f408 (04.10, «question mark token»), как «?» в испанской сборке.
+  - Сторож ждал сборку без неё. Обновлён — f34f28db0.
+- **lesson_intro_final_check_catalog — не поломка.**
+  - Это сторож, «красный по плану» с 08.08, для функции, которую так и не сделали.
+  - Файла shared/lesson_intro_final_checks.ts нет ни в одной ветке, ссылок в коде нет.
+  - Снят в 7c1310250.
+
+### 2. Статус no_release_surface в гейте сверки — сделано, 91924d5b0
+- **Требования к строке:** reviewed_by и release_surface_proof.
+- **«Маршрут вырезан»:** `{ kind: 'store_route_excluded', routes: ['app/....tsx'] }`.
+  - Гейт сам читает регулярку стор-ветки router.ctx.js и проверяет каждый маршрут.
+- **«Экран за флагом»:** `{ kind: 'flag_off', flag, flag_source, guard_test }`.
+  - Источник флага обязан требовать явного `=== true`.
+  - Тест-сторож должен существовать и упоминать флаг.
+- **Пример для Шпиля:** `{ kind:'flag_off', flag:'spire_tab_enabled', flag_source:'app/spire_tab_flag.ts', guard_test:'tests/spire_tab_gate_source_contract.test.mjs' }`.
+- **Реестр:** статус добавлен только в массив statuses. Строки реестра не тронуты — проставление за тобой.
+- **Тест:**
+  - 7 новых случаев зелёные;
+  - 2 красных в tests/visual_parity_gate.test.mjs — давняя строка overlays-runtime-024 со статусом `removed` (зона Сверки), к правке не относится.
+
+### 3. Ворота release_precheck (прогон 10.10 ночью): красных — 3
+| Ворота | Причина | Что нужно | Кто |
+|---|---|---|---|
+| приложение = макет (visual_parity_gate) | 842 строки: match 0, pending 646, no_mockup 109, blocked 83, removed 1 | Проставить no_release_surface 105 недостижимым; снять и проверить 737 достижимых; overlays-runtime-024: removed → removed_by_owner или pending | Координатор / Сверка / Дизайн |
+| исходник = выпуск Learning V2 (learning_v2_release_parity_gate) | Совпадение версий прошло (186/186/186); сверка смысла (ru, uk) и доказательства качества — красные (BLOCKED): нет отзыва на верный ответ — 1258, аудио не подтверждено — 588, всего 1846 | Learning V2 в стор-сборке **вырезан**. Решить: блокируют ли эти ворота стор-сборку или только внутренние | Владелец + Codex |
+| озвучка Learning V2 (learning_v2_audio_coverage_gate) | Встроенные занятия не собираются: нет записей озвучки (voice=ash, «I am fine.», «You are early.» и др.) | Перегенерировать озвучку и таблицу ЛИБО откатить перегенерацию контента factory_native. Тот же вопрос про стор-сборку | Codex |
+| версии production-профиля | Локально нет EXPO_PUBLIC_RC_IOS (секрет EAS) | Ничего: на сервере EAS он есть, precheck печатает «пропущено» | — |
+| ключи и конфиги | OK | — | — |
+
+Те же ворота стоят в eas-build-post-install: пока они красные, облачная сборка сгорит на сервере.
+
+### 4. Входы в Learning V2 в стор-сборке — проверено, одна дыра закрыта (5208af074)
+- **Чип «Новые уроки» и открытие занятия** закрыты константой `LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE`.
+  - Сторожа: lessons_entry_opens_legacy_guard, store_release_learning_v2_bundle_exclusion, learning_v2_release_access_contract.
+- **Главная и уведомления** живых входов в /learning-v2/* не имеют.
+- **Дыра была одна:** внешняя ссылка `phraseman://learning-v2/…` или `/learning_v2_…` уходила в несуществующий маршрут.
+  - Теперь в стор-сборке ведёт на /(tabs)/lessons.
+  - Сторож: tests/native_intent_referral.test.ts (стор → уроки, не-стор → как было).
+
+### 5. Удаление гостя и политика
+- Правку удаления по кнопке не трогаю — это §AA-36, сессия 5.
+- **ТЗ серверной очистки брошенных гостей (после релиза):** docs/work/tasks/guest-retention-cleanup-spec-2026-10-10.md.
+  - 400 дней бездействия — срок решает владелец.
+  - Не больше 200 удалений за запуск.
+  - Только гости без входа и без денег.
+  - Флаг выключен по умолчанию, первая неделя — «сухой прогон».
+  - Стоимость — центы в сутки.
+- **Политика, раздел 19,** уже честная: «We do not promise automatic deletion after a fixed inactivity period unless
+  such a deletion job is implemented and active». Правка сейчас не нужна; строка для включения есть в ТЗ.
+- **Раздел 20** обещает гостю удаление серверных данных «no later than at the end of the 14-day grace period».
+  - Это держится на правке §AA-36, без неё обещание ложное.
+  - До релиза §AA-36 обязателен.
+
+### 6. Точные имена сторожей зоны Codex (для владельца)
+- **Learning V2 (74):** learning_v2_activity_post_terminal_card_catalog_v1, learning_v2_activity_released_session_submission_spool_v2, learning_v2_all_ready_tasks_runtime_audit, learning_v2_authored_sessions_reach_the_player, learning_v2_bootstrap_audio_seed_v1, learning_v2_content_quality_gate_wiring, learning_v2_course_lesson_audio_release_index_v1, learning_v2_course_session_audio_preload_v1, learning_v2_course_session_audio_readback_v1, learning_v2_course_session_audio_release_extension_v1, learning_v2_course_session_completed_spool_v1, learning_v2_course_session_save_card_v1, learning_v2_e1_content_compiler, learning_v2_english_l4_curriculum_contract, learning_v2_episode_01_session_01_source, learning_v2_episode_01_session_02_source, learning_v2_episode_01_session_03_source, learning_v2_episode_01_session_04_source, learning_v2_episode_01_session_05_source, learning_v2_episode_01_session_06_source, learning_v2_episode_01_session_07_source, learning_v2_episode_01_session_09_source, learning_v2_episode_01_session_10_source, learning_v2_episode_01_session_11_source, learning_v2_episode_01_session_12_source, learning_v2_episode_01_session_13_source, learning_v2_episode_01_session_14_source, learning_v2_episode_01_session_15_source, learning_v2_episode_01_session_16_source, learning_v2_episode_01_session_17_source, learning_v2_episode_01_session_18_source, learning_v2_episode_01_session_19_source, learning_v2_episode_01_session_20_source, learning_v2_episode_01_session_21_source, learning_v2_episode_01_session_22_source, learning_v2_episode_01_session_23_source, learning_v2_episode_01_session_24_source, learning_v2_episode_01_session_map, learning_v2_episode_01_sessions_25_32_source, learning_v2_episode_01_sessions_33_40_intro_data, learning_v2_episode_01_sessions_33_40_source, learning_v2_episode_01_sessions_41_48_source, learning_v2_episode_01_sessions_49_56_source, learning_v2_episode_01_to_be_only, learning_v2_es_bundle_reachability_guard, learning_v2_factory_native_projection_v1, learning_v2_factory_production_audio_contract, learning_v2_generator_course_manifest, learning_v2_generator_session_shard, learning_v2_intro_colour_bridge, learning_v2_intro_reader_fixture_contract, learning_v2_intro_semantic_runs_contract, learning_v2_intro_theme_contract, learning_v2_lesson1_bundle_builds, learning_v2_lesson1_chapter_gate, learning_v2_lesson1_real_session_mock, learning_v2_lesson_map_screen_contract, learning_v2_lexical_density_policy_v2, learning_v2_listen_choose_option_label_v1, learning_v2_mistake_loop, learning_v2_neutral_qa_hostile_red_matrix_v1, learning_v2_neutral_qa_session_e2e_harness_v1, learning_v2_new_word_encounter_projection_v1, learning_v2_new_word_encounter_save_v1, learning_v2_owner_repository_runtime, learning_v2_p0_p1_smoke, learning_v2_progress_transport_deploy_guard, learning_v2_reference_evidence_contract, learning_v2_remote_audio_pack_contract, learning_v2_session_compiler, learning_v2_session_contract, learning_v2_session_skip_interaction, learning_v2_voice_physical_device_runner_v1, learning_v2_wallet_balance_store
+- **gustav (25):** gustav_builder_work_orders, gustav_exact_approval_wait_state_contract, gustav_feature_parity_matrix, gustav_flashcard_pack_generator_contract, gustav_fr_ai_prompt_parity_gate, gustav_fr_collectible_candidate_bridge_gate, gustav_fr_collectible_cards_v1, gustav_fr_full_surface_closeout_work_order, gustav_fr_lesson_llm_review_decision_schema_gate, gustav_fr_lesson_llm_review_launch_contract, gustav_fr_non_lesson_surface_backlog_gate, gustav_french_app_surface_parity_v2_packet, gustav_french_curriculum_contract, gustav_french_final_blocker_dependency_map_v2_packet, gustav_french_lesson_runtime_source_gate, gustav_french_notifications_target_isolation, gustav_french_post_remote_verify_transition_v2_packet, gustav_french_remote_verify_pass_completion_simulation_v2_packet, gustav_french_vocabulary_target_gate, gustav_lesson_runtime_target_isolation, gustav_onboarding_server_prefetch_contract_v2_packet, gustav_research_best_practices_work_order, gustav_surface_target_switch, gustav_trusted_brain_contract, gustav_validator_p1a_stale_preapply
+- **Шпиль / курс-паки:**
+  - client_reports_delivery_contract (кнопка жалобы Шпиля);
+  - course_pack_runtime_contract;
+  - course_pack_download_idempotent_contract;
+  - lesson1_release_parity;
+  - spire_tab_gate_source_contract (node:test).
+- **Плюс в коде:**
+  - kimi_voice_capture_session_lifecycle (learning-v2-lab, поведенческий отказ после починки мока);
+  - отсечение FlatList в LearningV2Horizons;
+  - 5 мест квадратной тени в Learning V2;
+  - воронка Learning V2 вне SQL админ-аналитики.
+
+### 7. ForceUpdateGate.tsx / UpdateModal.tsx — чьи незакоммиченные правки?
+- В обоих файлах лежат чужие правки:
+  - ForceUpdateGate: +16/−8 (паритет system.html, «Это Компас…»);
+  - UpdateModal: +7/−5.
+- Похоже на Дизайн или Сверку — **просьба владельцу этих правок закоммитить их**.
+- Ядро не трогает. После коммита переведу их квадратную тень на noAndroidOutline.
+
+### 8. E4 — инструкция сборки релиза
+- docs/phraseman-2.0/RELEASE_BUILD_E4.md — команды eas, без секретов.
+
+### 9. Полная проверка типов
+- Поставлена в очередь: ждёт ≥4 ГБ свободной памяти и одиночества на ПК. Результат допишу строкой.
+
+### Список «после релиза» (Ядро)
+1. **Серверная очистка брошенных гостей** — по ТЗ выше.
+2. **Мёртвый код v1-диалогов:**
+   - app/ai_dialog_session.tsx, app/ai_companion_session.tsx;
+   - app/ai_dialog_briefing.tsx (тонкая обёртка);
+   - DialogsTabContentBody — недостижимы из интерфейса.
+3. **Временные трассировки** [ROUTE-EVAL], [LESSONS-*], [BOOT-SNAPSHOT] — убрать после замера.
+4. **Воронка Learning V2 в SQL админ-аналитики:** строка learning_v2_session, панель, выкладка (Codex + Ядро).
+5. **startup_settings_boot_integration:** разобрать 3 расхождения в порядке чтения настроек при старте.
+6. **Темы:** сторожа старой системы тем (theme_*, olive_*, sage_*, onboarding_graphite_*, midnight_*) — переписать
+   или снять под Liquid Glass (сессия «Темы»).

@@ -348,28 +348,6 @@
       "build_number",
       "occurred_at_ms"
     ],
-    "arenaFeature": [
-      "feature",
-      "source"
-    ],
-    "arenaAction": [
-      "feature",
-      "operation",
-      "mode"
-    ],
-    "arenaRun": [
-      "feature",
-      "mode",
-      "outcome",
-      "correct_count",
-      "duration_bucket"
-    ],
-    "arenaStore": [
-      "operation",
-      "item_id",
-      "slot",
-      "price_bucket"
-    ],
     "learningV2Session": [
       "lesson_ordinal",
       "session_ordinal",
@@ -599,30 +577,6 @@
       "fieldSet": "paywall"
     },
     {
-      "name": "arena_feature_open",
-      "entity": "event",
-      "warehouse": "product",
-      "fieldSet": "arenaFeature"
-    },
-    {
-      "name": "arena_action",
-      "entity": "event",
-      "warehouse": "product",
-      "fieldSet": "arenaAction"
-    },
-    {
-      "name": "arena_run_complete",
-      "entity": "attempt",
-      "warehouse": "product",
-      "fieldSet": "arenaRun"
-    },
-    {
-      "name": "arena_store_action",
-      "entity": "event",
-      "warehouse": "product",
-      "fieldSet": "arenaStore"
-    },
-    {
       "name": "learning_v2_session_start",
       "entity": "attempt",
       "warehouse": "product",
@@ -777,20 +731,6 @@
       "rowKinds": [
         "operation_failure",
         "release_adoption"
-      ]
-    },
-    {
-      "id": "arena.engagement.v1",
-      "events": [
-        "arena_feature_open",
-        "arena_action",
-        "arena_run_complete",
-        "arena_store_action"
-      ],
-      "rowKinds": [
-        "arena_funnel",
-        "arena_run",
-        "arena_store"
       ]
     },
     {

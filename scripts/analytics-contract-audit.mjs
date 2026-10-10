@@ -85,6 +85,21 @@ function onboardingWrapperEvidence() {
   };
 }
 
+// зачем (10.10): курс Learning V2 шлёт события через мост trackLearningV2Telemetry(descriptor) — имя события лежит
+// в дескрипторе (`event: '...'`), а не литералом в trackEvent. Без этого доказательства аудит считал их «без вызова».
+function learningV2TelemetryEvidence() {
+  const bridge = readText('app/learning_v2_telemetry.ts');
+  const descriptors = readText('modules/learning-v2/telemetry.ts');
+  const bridgePresent = /trackEvent\(descriptor\.event\b/.test(bridge);
+  const events = bridgePresent
+    ? [...descriptors.matchAll(/\bevent:\s*'([A-Za-z][A-Za-z0-9_]*)'/g)].map(match => match[1])
+    : [];
+  return {
+    events: [...new Set(events)].sort(),
+    errors: bridgePresent ? [] : ['learning_v2_analytics_bridge_missing'],
+  };
+}
+
 function warehousedEvents() {
   const source = readText('functions/src/admin_product_analytics.ts');
   const start = source.indexOf(ALLOWLIST_START);
@@ -125,12 +140,14 @@ function buildReport() {
   const literalCalled = calledEvents();
   const runtimeEvidence = dynamicRuntimeEvidence();
   const onboardingEvidence = onboardingWrapperEvidence();
+  const learningV2Evidence = learningV2TelemetryEvidence();
   const warehoused = warehousedEvents();
   const rowKinds = warehouseRowKinds();
   const canonicalCalled = new Set([
     ...literalCalled.map(canonical),
     ...runtimeEvidence.events.map(canonical),
     ...onboardingEvidence.events.map(canonical),
+    ...learningV2Evidence.events.map(canonical),
   ].filter(name => declared.has(name)));
   const unknownCalled = [...new Set([...literalCalled, ...onboardingEvidence.events])]
     .filter(name => !declared.has(canonical(name)))
@@ -167,6 +184,7 @@ function buildReport() {
   const errors = [
     ...runtimeEvidence.errors,
     ...onboardingEvidence.errors,
+    ...learningV2Evidence.errors,
     ...unknownWarehoused.map(name => `unknown_warehouse_event:${name}`),
     ...catalogWarehouseMissingFromSql.map(name => `catalog_event_missing_from_sql:${name}`),
     ...declaredWithoutCallSite.map(name => `declared_event_without_call_evidence:${name}`),

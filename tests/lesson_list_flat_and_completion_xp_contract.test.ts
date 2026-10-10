@@ -32,12 +32,14 @@ describe('lesson list and completion contracts', () => {
 
   it('preserves the computed lesson pass status in the completion fallback', () => {
     const lesson = read('app', 'lesson1.tsx');
+    // зачем (10.10): завершение переехало из setTimeout(async …) в именованную runLessonCompletionNavigation,
+    // которую зовёт settle эха или фолбэк-таймер — ровно один раз (ref забирается и обнуляется до вызова).
     const navigationStart = lesson.indexOf('const navigate = async () => {');
-    const completionTimerStart = lesson.lastIndexOf('setTimeout(async () => {', navigationStart);
+    const completionTimerStart = lesson.lastIndexOf('const runLessonCompletionNavigation = async () => {', navigationStart);
     const completionTryStart = lesson.indexOf('try {', completionTimerStart);
     const finalScoreStart = lesson.indexOf('let finalScore =', completionTimerStart);
     const fallbackStart = lesson.indexOf('} catch (e) {', navigationStart);
-    const fallbackEnd = lesson.indexOf('      }, 1500);', fallbackStart);
+    const fallbackEnd = lesson.indexOf('\n      };', fallbackStart);
 
     expect(navigationStart).toBeGreaterThan(-1);
     expect(completionTimerStart).toBeGreaterThan(-1);
@@ -50,5 +52,9 @@ describe('lesson list and completion contracts', () => {
     const fallback = lesson.slice(fallbackStart, fallbackEnd);
     expect(fallback).toContain("passed: finalScore >= 2.5 ? '1' : '0'");
     expect(fallback).not.toContain("passed: '0'");
+
+    // Переход на lesson_complete — один раз: и settle, и фолбэк-таймер забирают ref и обнуляют его до вызова.
+    expect(lesson).toMatch(/const navigate = lessonCompletionNavigateRef\.current;\s*if \(!navigate\) return;\s*lessonCompletionNavigateRef\.current = null;/);
+    expect(lesson).toMatch(/const navigate = lessonCompletionNavigateRef\.current;\s*lessonCompletionNavigateRef\.current = null;\s*navigate\?\.\(\);/);
   });
 });

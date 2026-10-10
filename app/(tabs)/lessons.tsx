@@ -3961,13 +3961,13 @@ export default function LessonsTab({
     void loadScores();
   }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores, page]);
   const lessons = useMemo(() => {
-    const fallback = lessonNamesForStudyTarget(lang, studyTarget);
+    const legacyTitles = lessonNamesForStudyTarget(lang, studyTarget);
     // System currently owns one exact reviewed title set. Keep it intact for
     // every interface locale until owner-reviewed title translations exist;
     // generated fallback labels such as “English · Lesson 1” are forbidden.
     if (page === "v2" && studyTarget === "en") return LEARNING_V2_OWNER_EN_TITLES_RU;
-    if (page !== "v2" || !learningV2Catalog) return fallback;
-    return fallback.map(
+    if (page !== "v2" || !learningV2Catalog) return legacyTitles;
+    return legacyTitles.map(
       (name, index) => learningV2Catalog.lessons[index]?.title ?? name,
     );
   }, [lang, learningV2Catalog, page, studyTarget]);

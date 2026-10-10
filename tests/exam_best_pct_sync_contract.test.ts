@@ -25,7 +25,8 @@ describe('zero-cost exam best-pct sync wiring', () => {
     const source = read('app/_layout.tsx');
     expect(source.match(/restoreFromCloudWithRecoveryDetails\(coldExamBestPctRestoreOptions\)/g)).toHaveLength(1);
     expect(source).toContain('restore: restoreCloudForBoot');
-    expect(source).toContain('return restoreCloudForBoot()');
+    // зачем (10.10): после снятия App Check (4a1c787b4) обёртка стала стрелкой без тела — тот же вызов.
+    expect(source).toContain('restore: () => restoreCloudForBoot()');
     expect(source).toContain("AppState.currentState === 'active'");
     expect(source).toContain('isExamBestPctColdRestoreTabSafe()');
   });

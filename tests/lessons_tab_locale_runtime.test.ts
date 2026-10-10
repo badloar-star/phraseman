@@ -10,7 +10,18 @@ const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s
 
 describe('lessons tab planned locale runtime copy', () => {
   it('does not keep RU/UK/ES runtime branch fallbacks in the lessons tab', () => {
-    expect(SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
+    // зачем (10.10): сторожим исполняемый код (комментарии не в счёт). Единый проверенный набор названий курса
+    // (решение владельца 13.09, 123aaf87a: «одни названия для всех языков») — не ветка по языку: разрешена ровно
+    // эта строка, и её условие не зависит от языка интерфейса.
+    const ONE_TITLE_SET_LINE = 'if (page === "v2" && studyTarget === "en") return LEARNING_V2_OWNER_EN_TITLES_RU;';
+    expect(SOURCE).toContain(ONE_TITLE_SET_LINE);
+    expect(ONE_TITLE_SET_LINE).not.toMatch(/\blang\b/);
+    expect(SOURCE.split('LEARNING_V2_OWNER_EN_TITLES_RU').length - 1).toBe(2); // импорт + одна строка
+    const runtime = SOURCE
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1')
+      .replace(ONE_TITLE_SET_LINE, '');
+    expect(runtime).not.toMatch(LEGACY_RUNTIME_RE);
   });
 
   it('keeps exam cards and gate messages explicit for planned locales', () => {

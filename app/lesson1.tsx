@@ -136,6 +136,8 @@ import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import EnergyBar from '../components/EnergyBar';
+import { PracticeCta } from '../components/practice/PracticeStates';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
@@ -316,6 +318,16 @@ function shuffleLessonPhraseOrder(phraseCount: number): number[] {
     [order[i], order[j]] = [order[j], order[i]];
   }
   return order.slice(0, count);
+}
+
+/**
+ * зачем (Сверка learn-028/029, макет learn.html `lhead`: «⚡ N» в шапке урока): пилюля энергии показывается всегда, кроме безлимита
+ * (у Plus в макете её нет — `o.plus ? ''`). Только показ баланса: списание 20 ⚡ при входе и замки урока не затронуты.
+ */
+function LessonEnergyPill() {
+  const { isUnlimited } = useEnergy();
+  if (isUnlimited) return null;
+  return <EnergyBar glass size={30} />;
 }
 
 type LessonPressableProps = React.ComponentProps<typeof Pressable> & {
@@ -1043,6 +1055,8 @@ const LessonContent = React.memo(function LessonContent({
             columnGap: isSmallScreen ? 4 : 8,
           }}
         >
+          <LessonEnergyPill />
+
           <SessionAttemptsHud
             remaining={attemptsRemaining}
             locale={lang}
@@ -1485,7 +1499,8 @@ const LessonContent = React.memo(function LessonContent({
         </View>
 
         {/* ФУТЕР */}
-        <View style={{ flexDirection: 'row', paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, paddingHorizontal: 11 }}>
+        <View style={{ paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, paddingHorizontal: 11 }}>
+        <View style={{ flexDirection: 'row' }}>
           {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
               Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
               нечего, кнопка висела бесполезно. */}
@@ -1722,12 +1737,13 @@ const LessonContent = React.memo(function LessonContent({
             </LessonPressable>
           )}
 
+          {/* зачем (Сверка learn-031, макет learn.html D4): в результате вместо пятой иконки — большая кнопка «Дальше →» под рядом инструментов (ниже) */}
+          {status !== 'result' && (
           <LessonPressable
-            testID={status === 'result' ? 'lesson1-next' : 'lesson1-undo'}
+            testID="lesson1-undo"
             style={{ ...toolChip, opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
               fk.tap();
-              if (status === 'result') { goNext(); return; }
               if (settings.hardMode) {
                 const words = typedText.trim().split(/\s+/);
                 words.pop();
@@ -1737,18 +1753,10 @@ const LessonContent = React.memo(function LessonContent({
               if (selectedWords.length > 0) { undoLastWord(); return; }
             }}
           >
-            {status === 'result' ? (
-              <>
-                <Ionicons name="play-forward" size={26} color={glass.text} />
-                <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
-              </>
-            ) : (
-              <>
-                <Ionicons name="arrow-undo" size={26} color={glass.text} />
-                <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
-              </>
-            )}
+            <Ionicons name="arrow-undo" size={26} color={glass.text} />
+            <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
           </LessonPressable>
+          )}
 
           {/* Check Button - видна только когда все слова введены и autoCheck выключен */}
           {canManuallyCheckAnswer && (
@@ -1765,6 +1773,17 @@ const LessonContent = React.memo(function LessonContent({
               <Text style={{ color: t.correct, fontSize: f.label, marginTop: 4 }}>{s.lesson.check}</Text>
             </LessonPressable>
           )}
+        </View>
+        {status === 'result' && (
+          <PracticeCta
+            glass={glass}
+            testID="lesson1-next"
+            trailingArrow
+            label={triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp theo', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' })}
+            onPress={() => { fk.tap(); goNext(); }}
+            style={{ marginTop: 12 }}
+          />
+        )}
         </View>
 
         {__DEV__ && (

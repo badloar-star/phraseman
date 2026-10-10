@@ -252,8 +252,8 @@ export function toneStyle(tone: IntroTextTone | undefined, t: any, accent: strin
     success: t.correct,
     danger: t.wrong,
     warning: t.gold,
-    formula: isLight ? '#6D28D9' : '#C4B5FD',
-    code: isLight ? '#0369A1' : '#7DD3FC',
+    formula: isLight ? '#6D28D9' : '#C4B5FD', // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
+    code: isLight ? '#0369A1' : '#7DD3FC', // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
   };
   const weightByTone: Record<IntroTextTone, '400' | '600' | '700' | '800'> = {
     normal: '400',
@@ -324,7 +324,7 @@ export function RichIntroLineView({
               ? t.gold
               : 'transparent';
   const isFramed = line.type === 'wrong' || line.type === 'correct' || line.type === 'formula' || line.type === 'step' || line.type === 'tip';
-  const semanticLineBg = isLight ? '#FFFFFFD9' : 'rgba(0,0,0,0.20)';
+  const semanticLineBg = isLight ? '#FFFFFFD9' : 'rgba(0,0,0,0.20)'; // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
 
   return (
     <View
@@ -594,10 +594,10 @@ export function lessonLevelLabel(lessonId: number): 'A1' | 'A2' | 'B1' | 'B2' {
 }
 
 export function levelColor(lessonId: number, isLight: boolean): string {
-  if (lessonId <= 8) return isLight ? '#15803D' : '#4CAF72';
-  if (lessonId <= 18) return isLight ? '#0369A1' : '#40B4E8';
-  if (lessonId <= 28) return isLight ? '#92400E' : '#D4A017';
-  return isLight ? '#9A3412' : '#DC6428';
+  if (lessonId <= 8) return isLight ? '#15803D' : '#4CAF72'; // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
+  if (lessonId <= 18) return isLight ? '#0369A1' : '#40B4E8'; // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
+  if (lessonId <= 28) return isLight ? '#92400E' : '#D4A017'; // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
+  return isLight ? '#9A3412' : '#DC6428'; // theme-exempt: интро урока: пары светлая/тёмная заданы по режиму темы, цвет блока по группе уроков (токены — у «Тем»)
 }
 
 const styles = StyleSheet.create({

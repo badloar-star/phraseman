@@ -87,9 +87,9 @@ type FormKey = typeof FORM_SEQ[number];
 function formRowMeta(lang: Lang, themeMode: ThemeMode): Record<FormKey, { label: string; color: string; bg: string }> {
   const sv = stringsForLang(lang).verbs;
   return {
-    base: { label: `V1 · ${sv.base}`, color: '#4CAF50', bg: 'rgba(76,175,80,0.14)' },
-    past: { label: `V2 · ${sv.past}`, color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)' },
-    pp:   { label: `V3 · ${sv.pp}`, color: '#C084FC', bg: 'rgba(192,132,252,0.14)' },
+    base: { label: `V1 · ${sv.base}`, color: '#4CAF50', bg: 'rgba(76,175,80,0.14)' }, // theme-exempt: неправильные глаголы: цвета форм V1/V2/V3 — смысловая палитра
+    past: { label: `V2 · ${sv.past}`, color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)' }, // theme-exempt: неправильные глаголы: цвета форм V1/V2/V3 — смысловая палитра
+    pp:   { label: `V3 · ${sv.pp}`, color: '#C084FC', bg: 'rgba(192,132,252,0.14)' }, // theme-exempt: неправильные глаголы: цвета форм V1/V2/V3 — смысловая палитра
   };
 }
 

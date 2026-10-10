@@ -2726,10 +2726,10 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
 /** Скелет тренировки (макет wordsLoading): те же размеры, что у готового экрана — без прыжка раскладки. */
 // зачем (practice.html `.opt.ok/.opt.no`, как в «Блице»): верный — зелёная кромка + 12 % подкраска, неверный — красная.
-const WORD_ANSWER_OK_SURFACE = 'rgba(111,208,140,0.12)';
-const WORD_ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.12)';
-const WORD_ANSWER_OK_EDGE = '#6FD08C';
-const WORD_ANSWER_BAD_EDGE = '#E05050';
+const WORD_ANSWER_OK_SURFACE = 'rgba(111,208,140,0.12)'; // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
+const WORD_ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.12)'; // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
+const WORD_ANSWER_OK_EDGE = '#6FD08C'; // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
+const WORD_ANSWER_BAD_EDGE = '#E05050'; // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
 
 function WordsTrainingSkeleton({ glass, kicker, header }: { glass: ReturnType<typeof liquidGlassTokens>; kicker: string; header?: React.ReactNode }) {
   return (
@@ -3217,8 +3217,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     },
     context: {
       label: pickTriLang(lang, { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' }),
-      color: '#4A9EFF',
-      bg: 'rgba(74,158,255,0.14)',
+      color: '#4A9EFF', // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
+      bg: 'rgba(74,158,255,0.14)', // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
       icon: 'text-outline',
     },
   };

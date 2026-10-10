@@ -893,7 +893,7 @@ export const scheduleIntroExpiringNotification = async (
       'pt-BR': 'Seu Plus expira em 2 horas',
       vi: 'Plus của bạn hết hạn sau 2 giờ',
       id: 'Plus kamu berakhir dalam 2 jam',
-      tr: 'Plusiniz 2 saat sonra bitiyor',
+      tr: "Plus'ın 2 saat sonra bitiyor",
       pl: 'Twoje Plus wygasa za 2 godziny',
     }));
     const body = pickNotif(lang, notificationCopy({

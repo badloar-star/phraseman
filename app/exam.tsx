@@ -958,8 +958,8 @@ export default function ExamScreen() {
         <ExamTile glass={glass} icon="ribbon-outline" />
         <Text style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' }}>
           {t3(
-            'Награда готова — добавьте имя',
-            'Нагорода готова — додайте імʼя',
+            'Награда готова — добавь имя',
+            'Нагорода готова — додай імʼя',
             'Your diploma is ready — add your name',
             'Tu diploma está listo — añade tu nombre',
             'Seu diploma está pronto — adicione o nome',
@@ -971,8 +971,8 @@ export default function ExamScreen() {
         </Text>
         <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center' }}>
           {t3(
-            `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nУкажите имя — и сертификат появится ниже.`,
-            `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nВкажіть імʼя — і сертифікат зʼявиться нижче.`,
+            `Твой результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nУкажи имя — и сертификат появится ниже.`,
+            `Твій результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nВкажи імʼя — і сертифікат зʼявиться нижче.`,
             `Your result: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nAdd your name and the certificate will appear below.`,
             `Tu resultado: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nIndica tu nombre y el certificado aparecerá abajo.`,
             `Seu resultado: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nInforme o nome e o certificado aparecerá abaixo.`,

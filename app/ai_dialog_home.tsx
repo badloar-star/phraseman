@@ -38,8 +38,8 @@ export default function AiDialogHome() {
     'pt-BR': 'Diálogos', vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
   });
   const subtitle = triLang(lang, {
-    ru: 'Практикуйте язык в жизненных ситуациях',
-    uk: 'Практикуйте мову в життєвих ситуаціях',
+    ru: 'Практикуй язык в жизненных ситуациях',
+    uk: 'Практикуй мову в життєвих ситуаціях',
     en: 'Practice the language in real-life situations',
     es: 'Practica el idioma en situaciones de la vida real',
     'pt-BR': 'Pratique o idioma em situações reais',

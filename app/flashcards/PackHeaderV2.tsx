@@ -15,8 +15,8 @@ import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../../constants/i18n';
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', menu: 'Меню', you: 'Вы', onlyYou: 'Только вы', inYou: 'У вас', inCommunity: 'В сообществе', card: 'Карточка', train: 'Тренировать', cards: 'Карточки' },
-  uk: { back: 'Назад', menu: 'Меню', you: 'Ви', onlyYou: 'Тільки ви', inYou: 'У вас', inCommunity: 'У спільноті', card: 'Картка', train: 'Тренувати', cards: 'Картки' },
+  ru: { back: 'Назад', menu: 'Меню', you: 'Ты', onlyYou: 'Только ты', inYou: 'У тебя', inCommunity: 'В сообществе', card: 'Карточка', train: 'Тренировать', cards: 'Карточки' },
+  uk: { back: 'Назад', menu: 'Меню', you: 'Ти', onlyYou: 'Тільки ти', inYou: 'У тебе', inCommunity: 'У спільноті', card: 'Картка', train: 'Тренувати', cards: 'Картки' },
   en: { back: 'Back', menu: 'Menu', you: 'You', onlyYou: 'Only you', inYou: 'In yours', inCommunity: 'In the community', card: 'Card', train: 'Train', cards: 'Cards' },
   es: { back: 'Atrás', menu: 'Menú', you: 'Tú', onlyYou: 'Solo tú', inYou: 'En los tuyos', inCommunity: 'En la comunidad', card: 'Tarjeta', train: 'Entrenar', cards: 'Tarjetas' },
   'pt-BR': { back: 'Voltar', menu: 'Menu', you: 'Você', onlyYou: 'Só você', inYou: 'Nos seus', inCommunity: 'Na comunidade', card: 'Cartão', train: 'Treinar', cards: 'Cartões' },

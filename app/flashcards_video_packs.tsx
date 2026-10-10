@@ -240,7 +240,7 @@ export default function FlashcardsVideoPacksScreen() {
       'pt-BR': 'Nada encontrado', vi: 'Không tìm thấy', id: 'Tidak ditemukan', tr: 'Bulunamadı', pl: 'Nic nie znaleziono',
     }),
     notFoundBody: triLang(lang, {
-      ru: 'Попробуйте другое слово.', uk: 'Спробуйте інше слово.', en: 'Try another word.',
+      ru: 'Попробуй другое слово.', uk: 'Спробуй інше слово.', en: 'Try another word.',
       es: 'Prueba otra palabra.', 'pt-BR': 'Tente outra palavra.', vi: 'Thử từ khác.',
       id: 'Coba kata lain.', tr: 'Başka bir kelime deneyin.', pl: 'Spróbuj innego słowa.',
     }),
@@ -253,7 +253,7 @@ export default function FlashcardsVideoPacksScreen() {
       'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
     }),
     checkInternet: triLang(lang, {
-      ru: 'Проверьте интернет', uk: 'Перевірте інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
+      ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
       'pt-BR': 'Verifique sua conexão', vi: 'Kiểm tra kết nối', id: 'Periksa koneksi', tr: 'Bağlantını kontrol et', pl: 'Sprawdź połączenie',
     }),
     menu: triLang(lang, {

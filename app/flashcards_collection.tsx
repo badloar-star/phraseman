@@ -877,7 +877,7 @@ export default function FlashcardsScreen() {
       exitSelectionMode();
       router.push({ pathname: '/community_pack_create', params: { fresh: '1', stage: stageKey, origin: 'saved' } } as never);
     } catch {
-      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуйте ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуйте ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.' }));
+      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.' }));
     } finally {
       setSelectionCreateBusy(false);
     }

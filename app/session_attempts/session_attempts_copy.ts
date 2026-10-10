@@ -21,7 +21,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
   ru: {
     attemptsStatus: (remaining, total) => `Попытки: ${remaining} из ${total}`,
     exhaustedTitle: 'Попытки закончились',
-    exhaustedBody: 'Восстановите все 3 попытки и повторите этот вопрос.',
+    exhaustedBody: 'Восстанови все 3 попытки и повтори этот вопрос.',
     restoreForRunes: 'Восстановить · 25 монет',
     restartWithEnergy: 'Начать заново',
     endSession: 'Завершить сессию',
@@ -30,7 +30,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
   uk: {
     attemptsStatus: (remaining, total) => `Спроби: ${remaining} із ${total}`,
     exhaustedTitle: 'Спроби закінчилися',
-    exhaustedBody: 'Відновіть усі 3 спроби й повторіть це запитання.',
+    exhaustedBody: 'Віднови всі 3 спроби й повтори це запитання.',
     restoreForRunes: 'Відновити · 25 монет',
     restartWithEnergy: 'Почати заново',
     endSession: 'Завершити сесію',

@@ -25,7 +25,7 @@ describe('session attempts copy', () => {
   test('uses the owner-approved Russian naming and price', () => {
     const copy = getSessionAttemptsCopy('ru');
     expect(copy.exhaustedTitle).toBe('Попытки закончились');
-    expect(copy.exhaustedBody).toBe('Восстановите все 3 попытки и повторите этот вопрос.');
+    expect(copy.exhaustedBody).toBe('Восстанови все 3 попытки и повтори этот вопрос.');
     expect(copy.restoreForRunes).toBe('Восстановить · 25 монет');
     expect(copy.restartWithEnergy).toBe('Начать заново');
     expect(copy.endSession).toBe('Завершить сессию');

@@ -107,14 +107,14 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
       </Text>
       <Text style={[styles.declinedBody, { color: glass.secondary }]}>
         {triLang(lang, {
-          ru: 'Вы выключили AI-диалоги в настройках приватности. Их можно включить в любой момент.',
-          uk: 'Ви вимкнули AI-діалоги в налаштуваннях конфіденційності. Їх можна ввімкнути будь-коли.',
+          ru: 'AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.',
+          uk: 'AI-діалоги вимкнено в налаштуваннях конфіденційності. Їх можна ввімкнути будь-коли.',
           en: 'You turned off AI dialogues in Privacy settings. You can turn them back on at any time.',
           es: 'Desactivaste los diálogos con IA en los ajustes de privacidad. Puedes activarlos de nuevo cuando quieras.',
           'pt-BR': 'Você desativou os diálogos com IA nos ajustes de privacidade. Pode ativá-los novamente a qualquer momento.',
           vi: 'Bạn đã tắt hội thoại AI trong phần quyền riêng tư. Bạn có thể bật lại bất cứ lúc nào.',
-          id: 'Anda mematikan dialog AI di pengaturan privasi. Anda dapat menyalakannya lagi kapan saja.',
-          tr: 'Yapay zeka diyaloglarını Gizlilik ayarlarından kapattınız. İstediğiniz zaman yeniden açabilirsiniz.',
+          id: 'Kamu mematikan dialog AI di pengaturan privasi. Kamu dapat menyalakannya lagi kapan saja.',
+          tr: 'Yapay zeka diyaloglarını Gizlilik ayarlarından kapattın. İstediğin zaman yeniden açabilirsin.',
           pl: 'Wyłączono dialogi AI w ustawieniach prywatności. Możesz je włączyć ponownie w każdej chwili.',
         })}
       </Text>

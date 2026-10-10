@@ -1421,12 +1421,12 @@ function learningV2SessionOutcomeTitle(
     return triLang(lang, {
       ru: "Что ты поймёшь",
       en: "What you'll understand",
-      uk: "Що ви зрозумієте",
+      uk: "Що ти зрозумієш",
       es: "Qué entenderás",
       "pt-BR": "O que você vai entender",
       vi: "Bạn sẽ hiểu gì",
       id: "Yang akan kamu pahami",
-      tr: "Ne anlayacaksınız",
+      tr: "Ne anlayacaksın",
       pl: "Co zrozumiesz",
     });
   }
@@ -1434,24 +1434,24 @@ function learningV2SessionOutcomeTitle(
     return triLang(lang, {
       ru: "Чему научишься",
       en: "What you'll learn",
-      uk: "Чого ви навчитеся",
+      uk: "Чого ти навчишся",
       es: "Qué aprenderás",
       "pt-BR": "O que você vai aprender",
       vi: "Bạn sẽ học gì",
       id: "Yang akan kamu pelajari",
-      tr: "Ne öğreneceksiniz",
+      tr: "Ne öğreneceksin",
       pl: "Czego się nauczysz",
     });
   }
   return triLang(lang, {
     ru: "Что сможешь делать",
     en: "What you'll be able to do",
-    uk: "Що ви зможете робити",
+    uk: "Що ти зможеш робити",
     es: "Qué podrás hacer",
     "pt-BR": "O que você conseguirá fazer",
     vi: "Bạn sẽ làm được gì",
     id: "Yang akan bisa kamu lakukan",
-    tr: "Ne yapabileceksiniz",
+    tr: "Ne yapabileceksin",
     pl: "Co będziesz umieć zrobić",
   });
 }
@@ -4517,7 +4517,7 @@ export default function LessonsTab({
               : triLang(lang, {
                   ru: `Заверши все уроки ${lvl} на 4.5+`,
                   en: `Complete all ${lvl} lessons with 4.5+`,
-                  uk: `Завершіть усі уроки ${lvl} на 4.5+`,
+                  uk: `Заверши всі уроки ${lvl} на 4.5+`,
                   es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
                   "pt-BR": `Conclua todas as lições ${lvl} com 4,5+`,
                   vi: `Hoàn thành tất cả bài học ${lvl} với 4.5+`,
@@ -5096,7 +5096,7 @@ export default function LessonsTab({
                     if (options.length <= 1) {
                       Alert.alert(
                         "Dev: язык обучения",
-                        "Испанский/французский доступны только при русском или украинском языке интерфейса. Смените язык интерфейса в настройках, чтобы переключить сюда.",
+                        "Испанский/французский доступны только при русском или украинском языке интерфейса. Смени язык интерфейса в настройках, чтобы переключить сюда.",
                       );
                       return;
                     }
@@ -6183,7 +6183,7 @@ export default function LessonsTab({
               ? triLang(lang, {
                   ru: `Пройди все уроки ${gateModal.level} с оценкой 4.5+, чтобы открыть`,
                   en: `Complete all ${gateModal.level} lessons with 4.5+ to unlock`,
-                  uk: `Пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+, щоб відкрити`,
+                  uk: `Пройди всі уроки ${gateModal.level} з оцінкою 4.5+, щоб відкрити`,
                   es: `Completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5 para desbloquear`,
                   "pt-BR": `Conclua todas as lições ${gateModal.level} com nota 4,5+ para desbloquear`,
                   vi: `Hoàn thành tất cả bài học ${gateModal.level} với điểm 4.5+ để mở khóa`,
@@ -6195,7 +6195,7 @@ export default function LessonsTab({
                 ? triLang(lang, {
                     ru: `Чтобы открыть уровень ${gateModal.level}, сначала сдай зачёт ${gateModal.prevLevel}.`,
                     en: `To unlock level ${gateModal.level}, first pass the ${gateModal.prevLevel} exam.`,
-                    uk: `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`,
+                    uk: `Щоб відкрити рівень ${gateModal.level}, спочатку склади залік ${gateModal.prevLevel}.`,
                     es: `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`,
                     "pt-BR": `Para abrir o nível ${gateModal.level}, primeiro passe no exame ${gateModal.prevLevel}.`,
                     vi: `Để mở cấp độ ${gateModal.level}, trước tiên hãy vượt qua bài kiểm tra ${gateModal.prevLevel}.`,
@@ -6211,7 +6211,7 @@ export default function LessonsTab({
                           // Остальные 8 языков всё это время были написаны верно.
                           ru: `Пройди урок ${gateModal.prevNum} на 2★, чтобы открыть этот`,
                       en: `Complete lesson ${gateModal.prevNum} with 2★ to unlock`,
-                      uk: `Пройдіть урок ${gateModal.prevNum} на 2★, щоб відкрити`,
+                      uk: `Пройди урок ${gateModal.prevNum} на 2★, щоб відкрити`,
                       es: `Completa la lección ${gateModal.prevNum} con 2★ para desbloquear`,
                       "pt-BR": `Conclua a lição ${gateModal.prevNum} com 2★ para desbloquear`,
                       vi: `Hoàn thành bài học ${gateModal.prevNum} với 2★ để mở khóa`,

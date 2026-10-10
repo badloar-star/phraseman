@@ -108,7 +108,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const titleId = String(data.titleId ?? '').trim() || 'Pesan dari tim';
   const titleTr = String(data.titleTr ?? '').trim() || 'Ekipten mesaj';
   const titlePl = String(data.titlePl ?? '').trim() || 'Wiadomość od zespołu';
-  const messageRu = String(data.messageRu ?? '').trim() || 'Спасибо, что вы с нами.';
+  const messageRu = String(data.messageRu ?? '').trim() || 'Спасибо, что ты с нами.';
   const messageUk = String(data.messageUk ?? '').trim() || messageRu;
   const messageEs = String(data.messageEs ?? '').trim() || messageRu;
   const messagePtBr = String(data.messagePtBr ?? '').trim() || 'Obrigado por estar conosco.';

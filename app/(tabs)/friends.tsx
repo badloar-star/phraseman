@@ -654,7 +654,7 @@ function AddFriendModal({
   }, [visible]);
   // зачем (Сверка community-007, community.html find 04.10): подпись «Имя или код» — поиск по коду уже есть (isFriendCodeQuery).
   const inputLabel = L('Имя или код', 'Імʼя або код', 'Name or code', 'Nombre o código', 'Nome ou código', 'Tên hoặc mã', 'Nama atau kode', 'Ad veya kod', 'Imię lub kod');
-  const subtitle = L('Найдите по имени или коду', 'Знайдіть за імʼям або кодом', 'Find by name or code', 'Busca por nombre o código', 'Encontre por nome ou código', 'Tìm theo tên hoặc mã', 'Cari dengan nama atau kode', 'Ad veya kodla bul', 'Znajdź po imieniu lub kodzie');
+  const subtitle = L('Найди по имени или коду', 'Знайди за імʼям або кодом', 'Find by name or code', 'Busca por nombre o código', 'Encontre por nome ou código', 'Tìm theo tên hoặc mã', 'Cari dengan nama atau kode', 'Ad veya kodla bul', 'Znajdź po imieniu lub kodzie');
   const shareLabel = L('Поделиться своим кодом', 'Поділитися своїм кодом', 'Share your code', 'Compartir tu código', 'Compartilhar seu código', 'Chia sẻ mã của bạn', 'Bagikan kodemu', 'Kodunu paylaş', 'Udostępnij swój kod');
   // зачем: владелец (2026-07-26) уходил от нижнего шита, потому что тот рос паддингом под клавиатурой и «ездил».
   // Макет 04.10 снова шторка — FriendsAddSheetShell фиксированной высоты, над клавиатурой поднимается целиком
@@ -1590,7 +1590,7 @@ export default function FriendsTabScreen() {
         });
         setSearchError(L(
           'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
-          'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
+          'Профіль знайдено, але ще не синхронізовано. Відкрий профіль на другому пристрої та спробуй ще раз.',
           'Profile found, but not synced yet. Open the profile on the other device and try again.',
           'Perfil encontrado, pero aún no está sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
           'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
@@ -2105,7 +2105,7 @@ export default function FriendsTabScreen() {
 
   const hasRequests = requests.length > 0;
   const hasFriendRows = sortedFriends.length > 0;
-  const yourFriendsTitle = L('Ваши друзья', 'Ваші друзі', 'Your friends', 'Tus amigos', 'Seus amigos', 'Bạn bè của bạn', 'Teman kamu', 'Arkadaşların', 'Twoi znajomi');
+  const yourFriendsTitle = L('Твои друзья', 'Твої друзі', 'Your friends', 'Tus amigos', 'Seus amigos', 'Bạn bè của bạn', 'Teman kamu', 'Arkadaşların', 'Twoi znajomi');
 
   // зачем (владелец 2026-09-29): вкладка встроена в «Сообщество» (заголовок + переключатель уже там), поэтому
   // собственную шапку «Друзья» и кнопку «назад» убрали. По макету community.html#COM-04 остаётся первая
@@ -2456,7 +2456,7 @@ export default function FriendsTabScreen() {
                 emitAppEvent('action_toast', {
                   type: 'error',
                   messageRu: 'Не получилось убрать друга. Попробуй ещё раз',
-                  messageUk: 'Помилка видалення. Спробуйте ще раз',
+                  messageUk: 'Помилка видалення. Спробуй ще раз',
                   messageEs: 'Error al eliminar. Inténtalo de nuevo',
                   messagePtBr: 'Erro ao remover. Tente novamente',
                   messageVi: 'Không xóa được. Hãy thử lại',

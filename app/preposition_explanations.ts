@@ -409,8 +409,8 @@ const phraseRules: Rule[] = [
     preposition: 'to',
     matches: [/\b(am|is|are|was|were|been|being|get|gets|got|getting)\s+(not\s+)?used\s+to\b/],
     explain: {
-      ru: '"Be used to + N / V-ing" - устойчивая конструкция: "привык к чему-то / к тому, что..." После "used to" идёт существительное или глагол с "-ing", а не инфинитив. Не путайте с "used to + инфинитив" (когда-то делал).',
-      uk: '"Be used to + N / V-ing" - стала конструкція: "звик до чогось / до того, що..." Після "used to" іде іменник або дієслово з "-ing", а не інфінітив. Не плутайте з "used to + інфінітив" (колись робив).',
+      ru: '"Be used to + N / V-ing" - устойчивая конструкция: "привык к чему-то / к тому, что..." После "used to" идёт существительное или глагол с "-ing", а не инфинитив. Не путай с "used to + инфинитив" (когда-то делал).',
+      uk: '"Be used to + N / V-ing" - стала конструкція: "звик до чогось / до того, що..." Після "used to" іде іменник або дієслово з "-ing", а не інфінітив. Не плутай з "used to + інфінітив" (колись робив).',
       es: 'Estructura habitual «be used to + noun / gerund»: «estar acostumbrado a». No confundir con «used to + infinitive» (acción habitual en el pasado).',
     },
   },
@@ -480,8 +480,8 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     const onChunk = chunkUntil(sentence, 'on', /^(yet|now|today|tomorrow|yesterday|already|still|soon|early|late|please|here|there|too|carefully)$/);
     if (new RegExp(`\\bon ${descriptor}${onTransportPublic.source}\\b`).test(normalized)) {
       return {
-        ru: `С общественным транспортом используем "on": "${onChunk}" - речь не о поверхности, а о том, что человек находится внутри транспорта во время поездки. Сравните: on the bus, on the train, on the plane.`,
-        uk: `З громадським транспортом використовуємо "on": "${onChunk}" - ідеться не про поверхню, а про те, що людина знаходиться всередині транспорту під час поїздки. Порівняйте: on the bus, on the train, on the plane.`,
+        ru: `С общественным транспортом используем "on": "${onChunk}" - речь не о поверхности, а о том, что человек находится внутри транспорта во время поездки. Сравни: on the bus, on the train, on the plane.`,
+        uk: `З громадським транспортом використовуємо "on": "${onChunk}" - ідеться не про поверхню, а про те, що людина знаходиться всередині транспорту під час поїздки. Порівняй: on the bus, on the train, on the plane.`,
         es: `En transporte público se usa «on» («${onChunk}»): no es contacto con la «cubierta» de un avión, sino viajar montado en ese vehículo (on the bus, on the plane).`,
         'pt-BR': planned['pt-BR'],
         ptBr: planned.ptBr,

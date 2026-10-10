@@ -1680,9 +1680,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         pl: "Zwrot",
       }),
       startNoSelection: triLang(lang, {
-        ru: 'Выберите набор ниже',
+        ru: 'Выбери набор ниже',
         en: 'Choose a pack below',
-        uk: 'Виберіть набір нижче',
+        uk: 'Вибери набір нижче',
         es: 'Elige un pack abajo',
         'pt-BR': 'Escolha um pacote abaixo',
         vi: 'Chọn bộ thẻ bên dưới',
@@ -2577,9 +2577,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           openMonthlyTrainingLimit();
         } else {
           setLoadError(triLang(lang, {
-            ru: 'Не удалось проверить лимит тренировки. Попробуйте ещё раз.',
+            ru: 'Не удалось проверить лимит тренировки. Попробуй ещё раз.',
             en: 'Could not verify the training limit. Please try again.',
-            uk: 'Не вдалося перевірити ліміт тренування. Спробуйте ще раз.',
+            uk: 'Не вдалося перевірити ліміт тренування. Спробуй ще раз.',
             es: 'No se pudo verificar el límite. Inténtalo de nuevo.',
             'pt-BR': 'Não foi possível verificar o limite. Tente novamente.',
             vi: 'Không thể kiểm tra giới hạn. Vui lòng thử lại.',

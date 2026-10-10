@@ -204,7 +204,7 @@ export default function FlashcardsHubScreen() {
       vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty',
     }),
     subtitle: triLang(lang, {
-      ru: 'Учите слова и фразы эффективнее', uk: 'Вивчайте слова й фрази ефективніше',
+      ru: 'Учи слова и фразы эффективнее', uk: 'Вивчай слова й фрази ефективніше',
       en: 'Learn words and phrases more effectively', es: 'Aprende palabras y frases de forma más eficaz',
       'pt-BR': 'Aprenda palavras e frases com mais eficiência', vi: 'Học từ và cụm từ hiệu quả hơn',
       id: 'Pelajari kata dan frasa dengan lebih efektif', tr: 'Kelimeleri ve ifadeleri daha etkili öğren',
@@ -229,8 +229,8 @@ export default function FlashcardsHubScreen() {
       'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność',
     }),
     library: triLang(lang, {
-      ru: 'Ваши карточки', uk: 'Ваші картки', en: 'Your cards', es: 'Tus tarjetas',
-      'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartu Anda', tr: 'Kartların', pl: 'Twoje karty',
+      ru: 'Твои карточки', uk: 'Твої картки', en: 'Your cards', es: 'Tus tarjetas',
+      'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartumu', tr: 'Kartların', pl: 'Twoje karty',
     }),
     saved: triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
@@ -638,8 +638,8 @@ export default function FlashcardsHubScreen() {
   // хаб новичка: «Начните с готового» и «Выбрать набор» ведёт в каталог сообщества. Раньше показывалась выдуманная «Boarding pass».
   const fresh = savedCount === 0 && myPackCount === 0
     ? {
-      title: triLang(lang, { ru: 'Начните с готового', uk: 'Почніть із готового', en: 'Start with a ready pack', es: 'Empieza con algo listo', 'pt-BR': 'Comece com algo pronto', vi: 'Bắt đầu với bộ có sẵn', id: 'Mulai dari yang siap pakai', tr: 'Hazır bir setle başla', pl: 'Zacznij od gotowego' }),
-      sub: triLang(lang, { ru: 'Добавьте набор из сообщества или из видео', uk: 'Додайте набір зі спільноти або з відео', en: 'Add a pack from the community or from a video', es: 'Añade un pack de la comunidad o de un vídeo', 'pt-BR': 'Adicione um pacote da comunidade ou de um vídeo', vi: 'Thêm bộ thẻ từ cộng đồng hoặc từ video', id: 'Tambahkan paket dari komunitas atau dari video', tr: 'Topluluktan ya da videodan bir paket ekle', pl: 'Dodaj zestaw od społeczności lub z wideo' }),
+      title: triLang(lang, { ru: 'Начни с готового', uk: 'Почни з готового', en: 'Start with a ready pack', es: 'Empieza con algo listo', 'pt-BR': 'Comece com algo pronto', vi: 'Bắt đầu với bộ có sẵn', id: 'Mulai dari yang siap pakai', tr: 'Hazır bir setle başla', pl: 'Zacznij od gotowego' }),
+      sub: triLang(lang, { ru: 'Добавь набор из сообщества или из видео', uk: 'Додай набір зі спільноти або з відео', en: 'Add a pack from the community or from a video', es: 'Añade un pack de la comunidad o de un vídeo', 'pt-BR': 'Adicione um pacote da comunidade ou de um vídeo', vi: 'Thêm bộ thẻ từ cộng đồng hoặc từ video', id: 'Tambahkan paket dari komunitas atau dari video', tr: 'Topluluktan ya da videodan bir paket ekle', pl: 'Dodaj zestaw od społeczności lub z wideo' }),
       cta: triLang(lang, { ru: 'Выбрать набор', uk: 'Обрати набір', en: 'Choose a pack', es: 'Elegir un pack', 'pt-BR': 'Escolher um pacote', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybierz zestaw' }),
       onPress: () => router.push('/flashcards_packs' as never),
     }

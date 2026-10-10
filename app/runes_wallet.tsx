@@ -100,7 +100,7 @@ export default function RunesWalletScreen() {
   const rankLabel = tl('Текущий ранг', 'Поточний ранг', 'Current rank', 'Rango actual');
   const rankWord = tl('ранг', 'ранг', 'rank', 'rango');
   const untilNext = tl('До следующего повышения', 'До наступного підвищення', 'Until the next upgrade', 'Hasta la siguiente mejora');
-  const startPractice = tl('Начните практику', 'Почніть практику', 'Start practicing', 'Empieza a practicar');
+  const startPractice = tl('Начни практику', 'Почни практику', 'Start practicing', 'Empieza a practicar');
   const earnedTitle = tl('Получено за всё время', 'Отримано за весь час', 'Received all-time', 'Recibido en total');
   const earnedNote = tl('Локальная история начислений', 'Локальна історія нарахувань', 'Local accrual history', 'Historial local de abonos');
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
@@ -235,7 +235,6 @@ const styles = StyleSheet.create({
   earnedCopy: { flex: 1, minWidth: 0 },
   earnedTitle: { ...V2_TYPE.headline },
   earnedNote: { ...V2_TYPE.subtitle, marginTop: 1 },
-  // `.value`: вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145).
-  earnedValue: { fontSize: 14, // d145-mockup: coins.html .value 14
-    lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
+  // `.value`: вторичный тон; макет 14, шкала D145 — 13.
+  earnedValue: { fontSize: 13, lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
 });

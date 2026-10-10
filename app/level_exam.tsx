@@ -702,7 +702,7 @@ export default function LevelExam() {
           ? triLang(lang, {
             ru: `Чтобы открыть уровень ${examLevel}, сначала сдай зачёт ${prevLevel}.`,
             en: `To unlock level ${examLevel}, first pass the ${prevLevel} exam.`,
-            uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
+            uk: `Щоб відкрити рівень ${examLevel}, спочатку склади залік ${prevLevel}.`,
             es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
             'pt-BR': `Para abrir o nível ${examLevel}, primeiro passe no teste ${prevLevel}.`,
             vi: `Để mở cấp độ ${examLevel}, trước tiên hãy vượt qua bài kiểm tra ${prevLevel}.`,
@@ -736,7 +736,7 @@ export default function LevelExam() {
         setBlockedText(triLang(lang, {
           ru: 'Доступ к зачёту не проверился. Попробуй открыть его ещё раз.',
           en: 'Could not verify exam access. Try opening it again.',
-          uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
+          uk: 'Не вдалося перевірити доступ до заліку. Спробуй відкрити його ще раз.',
           es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
           'pt-BR': "Não foi possível verificar o acesso ao teste. Tente abri-lo de novo.",
           vi: "Không thể kiểm tra quyền truy cập vào bài kiểm tra. Hãy thử mở lại.",

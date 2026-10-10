@@ -389,8 +389,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         emitAppEvent('action_toast', {
           kind: 'info',
           text: triLang(lang, {
-            ru: 'Сначала добавьте набор себе — потом можно написать.',
-            uk: 'Спершу додайте набір собі — потім можна написати.',
+            ru: 'Сначала добавь набор себе — потом можно написать.',
+            uk: 'Спершу додай набір собі — потім можна написати.',
             en: 'Add the pack first, then you can write.',
             es: 'Primero añade el pack; después podrás escribir.',
             'pt-BR': 'Primeiro adicione o pacote; depois você pode escrever.',
@@ -410,7 +410,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       id: tempId,
       packId,
       authorId: myUserId,
-      authorName: triLang(lang, { ru: 'Вы', uk: 'Ви', en: 'You', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Anda', tr: 'Sen', pl: 'Ty' }),
+      authorName: triLang(lang, { ru: 'Ты', uk: 'Ти', en: 'You', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' }),
       text,
       createdAtMs: Date.now(),
       pinned: false,

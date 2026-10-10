@@ -196,7 +196,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       // зачем: «не вистачає» управляет родовим — «не вистачає ще 1 монети».
       shortageRemaining: (n: number) => `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
       needLabel: 'Потрібно',
-      youHaveLabel: 'У вас',
+      youHaveLabel: 'У тебе',
       costLabel: 'Вартість',
       shardsUnit: 'монет',
       waitBusy: '',

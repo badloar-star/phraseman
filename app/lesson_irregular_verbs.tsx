@@ -676,7 +676,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         feedbackSlot={continuationFailed ? (
           <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, textAlign: 'center' }}>
             {triLang(lang, {
-              ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
+              ru: 'Не удалось сохранить награду. Нажми ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисни ще раз.',
               en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
               'pt-BR': 'Não foi possível salvar a recompensa. Toque novamente.', vi: 'Chưa lưu được phần thưởng. Hãy nhấn lại.',
               id: 'Hadiah belum tersimpan. Ketuk lagi.', tr: 'Ödül kaydedilemedi. Tekrar dokunun.', pl: 'Nie udało się zapisać nagrody. Naciśnij ponownie.',

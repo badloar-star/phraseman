@@ -342,7 +342,7 @@ export default function PromoCodeEntryScreen() {
                 autoCorrect={false}
                 returnKeyType="done"
                 onSubmitEditing={() => { if (canSubmit) void submit(); }}
-                placeholder={L('Введите промокод', 'Введіть промокод', 'Enter the promo code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+                placeholder={L('Введи промокод', 'Введи промокод', 'Enter the promo code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
                 placeholderTextColor={g.mutedText}
                 style={{
                   minHeight: 56, borderRadius: 16, paddingHorizontal: 16,

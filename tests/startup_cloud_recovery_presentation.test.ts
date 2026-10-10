@@ -79,7 +79,7 @@ describe('startup cloud recovery presentation policy', () => {
     expect(toastStart).toBeGreaterThan(-1);
     expect(toastEnd).toBeGreaterThan(toastStart);
     expect(toastSource).toContain(
-      'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
+      'Облако сейчас недоступно. Открой приложение позже, чтобы повторить восстановление.',
     );
     expect(toastSource).toContain(
       'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',

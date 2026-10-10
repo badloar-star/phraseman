@@ -128,14 +128,14 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
         pl: 'z',
       })} ${total}`,
     outcomeTitle: triLang(lang, {
-      ru: 'Что вы теперь умеете',
-      uk: 'Що ви тепер умієте',
+      ru: 'Что ты теперь умеешь',
+      uk: 'Що ти тепер умієш',
       en: 'What you can do now',
       es: 'Lo que ya sabes hacer',
       'pt-BR': 'O que você já sabe fazer',
       vi: 'Những gì bạn đã làm được',
       id: 'Yang sekarang kamu bisa',
-      tr: 'Artık neler yapabiliyorsunuz',
+      tr: 'Artık neler yapabiliyorsun',
       pl: 'Co już potrafisz',
     }),
     confirmed: triLang(lang, {

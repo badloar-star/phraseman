@@ -1088,7 +1088,7 @@ function LessonMenu() {
             emitAppEvent('action_toast', {
               type: 'error',
               messageRu: 'Не хватает энергии. Подожди восстановления или используй бонусную.',
-              messageUk: 'Недостатньо енергії. Дочекайтесь відновлення або використайте бонусну енергію.',
+              messageUk: 'Недостатньо енергії. Дочекайся відновлення або використай бонусну енергію.',
               messageEs: 'No tienes suficiente energía. Espera a que se recargue o usa energía bonus.',
             });
             return;

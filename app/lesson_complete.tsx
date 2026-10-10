@@ -363,7 +363,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Nova lição liberada', vi: 'Đã mở bài học mới', id: 'Pelajaran baru terbuka', tr: 'Yeni ders açıldı', pl: 'Nowa lekcja otwarta',
     });
     modalSub = triLang(lang, {
-      ru: 'Продолжайте обучение, когда будете готовы.', en: 'Keep learning whenever you are ready.', uk: 'Продовжуйте навчання, коли будете готові.',
+      ru: 'Продолжай обучение, когда захочешь.', en: 'Keep learning whenever you are ready.', uk: 'Продовжуй навчання, коли захочеш.',
       es: 'Sigue aprendiendo cuando estés listo.', 'pt-BR': 'Continue estudando quando estiver pronto.', vi: 'Tiếp tục học khi bạn sẵn sàng.',
       id: 'Lanjutkan belajar kapan pun kamu siap.', tr: 'Hazır olduğunda öğrenmeye devam et.', pl: 'Ucz się dalej, kiedy będziesz gotowy.',
     });
@@ -373,7 +373,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Exame de nível liberado', vi: 'Đã mở bài thi cấp độ', id: 'Ujian level terbuka', tr: 'Seviye sınavı açıldı', pl: 'Egzamin poziomu otwarty',
     });
     modalSub = triLang(lang, {
-      ru: 'Проверьте знания для следующего шага.', en: 'Check your knowledge before the next step.', uk: 'Перевірте знання для наступного кроку.',
+      ru: 'Проверь знания для следующего шага.', en: 'Check your knowledge before the next step.', uk: 'Перевір знання для наступного кроку.',
       es: 'Comprueba lo que sabes para el siguiente paso.', 'pt-BR': 'Teste seus conhecimentos para o próximo passo.', vi: 'Kiểm tra kiến thức cho bước tiếp theo.',
       id: 'Uji pengetahuanmu untuk langkah berikutnya.', tr: 'Bir sonraki adım için bilgini sına.', pl: 'Sprawdź wiedzę przed kolejnym krokiem.',
     });
@@ -383,7 +383,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Exame Lingman liberado', vi: 'Đã mở bài thi Lingman', id: 'Ujian Lingman terbuka', tr: 'Lingman sınavı açıldı', pl: 'Egzamin Lingman otwarty',
     });
     modalSub = triLang(lang, {
-      ru: 'Новый срез знаний доступен в вашем пути.', en: 'A new knowledge check is available on your path.', uk: 'Новий зріз знань доступний у вашому шляху.',
+      ru: 'Новый срез знаний доступен на твоём пути.', en: 'A new knowledge check is available on your path.', uk: 'Новий зріз знань доступний на твоєму шляху.',
       es: 'Hay una nueva prueba de conocimientos en tu camino.', 'pt-BR': 'Uma nova avaliação está disponível no seu caminho.', vi: 'Một bài kiểm tra kiến thức mới đã có trên hành trình của bạn.',
       id: 'Tes pengetahuan baru tersedia di jalurmu.', tr: 'Yolunda yeni bir bilgi ölçümü seni bekliyor.', pl: 'Na Twojej ścieżce czeka nowy sprawdzian wiedzy.',
     });

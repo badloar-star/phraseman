@@ -1139,8 +1139,8 @@ function MistakePracticeSessionScreen() {
       // (событие могло не записаться), пишем причину и говорим пользователю.
       console.warn('[MISTAKES-GATE] hide:failed', error instanceof Error ? error.message : String(error));
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось скрыть ошибку. Попробуйте ещё раз.',
-        uk: 'Не вдалося приховати помилку. Спробуйте ще раз.',
+        ru: 'Не удалось скрыть ошибку. Попробуй ещё раз.',
+        uk: 'Не вдалося приховати помилку. Спробуй ще раз.',
         es: 'No se pudo ocultar el error. Inténtalo de nuevo.',
       }));
     } finally {
@@ -1187,8 +1187,8 @@ function MistakePracticeSessionScreen() {
     } catch (error: unknown) {
       console.warn('[MISTAKES-GATE] restore:failed', error instanceof Error ? error.message : String(error));
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось вернуть ошибку. Попробуйте ещё раз.',
-        uk: 'Не вдалося повернути помилку. Спробуйте ще раз.',
+        ru: 'Не удалось вернуть ошибку. Попробуй ещё раз.',
+        uk: 'Не вдалося повернути помилку. Спробуй ще раз.',
         es: 'No se pudo restaurar el error. Inténtalo de nuevo.',
       }));
     } finally {

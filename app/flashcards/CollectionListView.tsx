@@ -671,8 +671,8 @@ export default function CollectionListView({
             <Ionicons name="trash-outline" size={18} color={g.secondary} />
             <Text style={{ flex: 1, color: g.text, fontSize: f.sub, lineHeight: 18 }}>
               {triLang(lang, {
-                ru: 'Зажмите карточку, чтобы удалить её',
-                uk: 'Затисніть картку, щоб видалити її',
+                ru: 'Зажми карточку, чтобы удалить её',
+                uk: 'Затисни картку, щоб видалити її',
                 en: 'Hold a card to delete it',
                 es: 'Mantén pulsada la tarjeta para eliminarla',
                 'pt-BR': 'Segure o cartão para excluí-lo',

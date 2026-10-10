@@ -181,8 +181,8 @@ function explainTriple(
   const serEst = /^(soy|eres|es|somos|son)\b/i.test(choice) !== /^(soy|eres|es|somos|son)\b/i.test(key);
   if (serEst && (skill === 'estar_ser' || norm(key).includes('est') || norm(key).includes('ser'))) {
     return {
-      ru: 'Ошибка: проверьте, нужен ser (идентичность, классификация) или estar (состояние, место).',
-      uk: 'Помилка: перевірте ser проти estar (ідентичність чи стан/місце).',
+      ru: 'Ошибка: проверь, нужен ser (идентичность, классификация) или estar (состояние, место).',
+      uk: 'Помилка: перевір ser проти estar (ідентичність чи стан/місце).',
       es: 'No encaja: repasa si toca ser (identidad) o estar (estado/ubicación).',
       'pt-BR': 'Não encaixa: revise se deve ser ser (identidade) ou estar (estado/localização).',
       vi: 'Chưa khớp: hãy kiểm tra cần ser (danh tính) hay estar (trạng thái/vị trí).',
@@ -204,8 +204,8 @@ function explainTriple(
     };
   }
   return {
-    ru: 'Ошибка: смотрите согласование, артикль или время глагола в этом уроке.',
-    uk: 'Помилка: перевірте узгодження, артикль або час дієслова.',
+    ru: 'Ошибка: смотри согласование, артикль или время глагола в этом уроке.',
+    uk: 'Помилка: перевір узгодження, артикль або час дієслова.',
     es: 'No encaja: revisa concordancia, artículo o tiempo verbal del tema.',
     'pt-BR': 'Não encaixa: revise concordância, artigo ou tempo verbal do tema.',
     vi: 'Chưa khớp: hãy xem lại sự hòa hợp, mạo từ hoặc thì của chủ đề.',

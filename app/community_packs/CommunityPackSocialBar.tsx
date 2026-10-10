@@ -216,8 +216,8 @@ export default function CommunityPackSocialBar({
     emitAppEvent(
       'action_toast',
       actionToastTri('info', {
-        ru: 'Сначала добавьте набор себе — потом можно поставить лайк.',
-        uk: 'Спершу додайте набір собі — потім можна поставити лайк.',
+        ru: 'Сначала добавь набор себе — потом можно поставить лайк.',
+        uk: 'Спершу додай набір собі — потім можна поставити лайк.',
         es: 'Primero añade el pack; después podrás darle me gusta.',
         'pt-BR': 'Primeiro adicione o pacote; depois você pode curtir.',
         vi: 'Hãy thêm bộ thẻ trước, sau đó bạn có thể thích.',
@@ -316,8 +316,8 @@ export default function CommunityPackSocialBar({
       console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res}`); // guard-ok
       setSnapshot(before);
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось добавить набор. Проверьте связь и попробуйте ещё раз.',
-        uk: 'Не вдалося додати набір. Перевірте зв’язок і спробуйте ще раз.',
+        ru: 'Не удалось добавить набор. Проверь связь и попробуй ещё раз.',
+        uk: 'Не вдалося додати набір. Перевір зв’язок і спробуй ще раз.',
         es: 'No se pudo añadir el pack. Comprueba la conexión e inténtalo de nuevo.',
       }));
     })();
@@ -518,8 +518,8 @@ export default function CommunityPackSocialBar({
         }}
       >
         {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
-        {/* зачем: макет 17/700 (решение (Б) 05.10 — макет главнее D145). d145-mockup: packs-simple.html кнопка 17/700 */}
-        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 17, /* d145-mockup: packs-simple.html кнопка 17/700 */ lineHeight: lh(22), fontWeight: '700' }}>
+        {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
+        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
           {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         </Text>
       </TouchableOpacity>

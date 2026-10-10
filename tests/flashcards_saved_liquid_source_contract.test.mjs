@@ -90,7 +90,7 @@ test('Saved card faces retain live gestures while using the approved translucent
 test('Saved one-time delete hint stays a bottom glass toast and bulk confirmation stays real', () => {
   const list = read('app/flashcards/CollectionListView.tsx');
   const route = read('app/flashcards_collection.tsx');
-  assert.ok(list.includes('Зажмите карточку, чтобы удалить её'));
+  assert.ok(list.includes('Зажми карточку, чтобы удалить её'));
   assert.ok(list.includes('bottom: 14'));
   assert.ok(list.includes('backgroundColor: g.sheet'));
   assert.ok(route.includes('visible={batchDeleteConfirmOpen}'));

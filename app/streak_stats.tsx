@@ -2190,8 +2190,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             setFreezeActive(previous.freezeActive);
             setStreakAtRisk(previous.streakAtRisk);
             emitAppEvent('action_toast', actionToastTri('error', {
-                ru: 'Не удалось включить заморозку. Попробуйте ещё раз.',
-                uk: 'Не вдалося увімкнути заморозку. Спробуйте ще раз.',
+                ru: 'Не удалось включить заморозку. Попробуй ещё раз.',
+                uk: 'Не вдалося увімкнути заморозку. Спробуй ще раз.',
                 es: 'No se pudo activar la congelación. Inténtalo de nuevo.',
             }));
         } finally {
@@ -2399,7 +2399,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <View testID="stats-week-spark" style={{ borderRadius: 14, padding: 18, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .card */ }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: 19, lineHeight: 24, fontWeight: '700' }}>
-                      {triLang(lang, { ru: 'Ваша неделя', uk: 'Ваш тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
+                      {triLang(lang, { ru: 'Твоя неделя', uk: 'Твій тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
                     </Text>
                     {/* зачем (`.value`): вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145). d145-mockup: results.html .value 14 */}
                     <Text style={{ color: statsGlass.secondary, fontSize: 14, /* d145-mockup: results.html .value 14 */ lineHeight: 18 }}>{humanMinutes(coachMetrics.calendarWeekDays.reduce((sum, day) => sum + day.minutes, 0), lang)}</Text>

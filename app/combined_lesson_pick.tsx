@@ -104,9 +104,9 @@ export default function CombinedLessonPickScreen() {
         pl: 'Zacznij',
       })
     : triLang(lang, {
-        ru: `Выберите ещё ${missing}`,
+        ru: `Выбери ещё ${missing}`,
         en: `Pick ${missing} more`,
-        uk: `Оберіть ще ${missing}`,
+        uk: `Обери ще ${missing}`,
         es: `Elige ${missing} más`,
         'pt-BR': `Escolha mais ${missing}`,
         vi: `Chọn thêm ${missing}`,
@@ -155,9 +155,9 @@ export default function CombinedLessonPickScreen() {
           >
             {picked.length === 0
               ? triLang(lang, {
-                  ru: `Отметьте от ${COMBINED_LESSON_MIN_TOPICS} до ${COMBINED_LESSON_MAX_TOPICS} тем`,
+                  ru: `Отметь от ${COMBINED_LESSON_MIN_TOPICS} до ${COMBINED_LESSON_MAX_TOPICS} тем`,
                   en: `Pick ${COMBINED_LESSON_MIN_TOPICS} to ${COMBINED_LESSON_MAX_TOPICS} topics`,
-                  uk: `Позначте від ${COMBINED_LESSON_MIN_TOPICS} до ${COMBINED_LESSON_MAX_TOPICS} тем`,
+                  uk: `Познач від ${COMBINED_LESSON_MIN_TOPICS} до ${COMBINED_LESSON_MAX_TOPICS} тем`,
                   es: `Elige de ${COMBINED_LESSON_MIN_TOPICS} a ${COMBINED_LESSON_MAX_TOPICS} temas`,
                   'pt-BR': `Escolha de ${COMBINED_LESSON_MIN_TOPICS} a ${COMBINED_LESSON_MAX_TOPICS} temas`,
                   vi: `Chọn từ ${COMBINED_LESSON_MIN_TOPICS} đến ${COMBINED_LESSON_MAX_TOPICS} chủ đề`,

@@ -156,7 +156,7 @@ export default function FlashcardsTrainingModeSheet({
           ru: 'Устно', uk: 'Усно', en: 'Speaking', es: 'Oral', 'pt-BR': 'Falando',
           vi: 'Nói', id: 'Lisan', tr: 'Sözlü', pl: 'Ustnie',
         }),
-        description: triLang(lang, { ru: 'Говорите вслух', uk: 'Говоріть уголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }),
+        description: triLang(lang, { ru: 'Говори вслух', uk: 'Говори вголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }),
       },
       {
         mode: 'truefalse',
@@ -178,7 +178,7 @@ export default function FlashcardsTrainingModeSheet({
           'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
           tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
         }),
-        description: triLang(lang, { ru: 'Пишите по памяти', uk: 'Пишіть із пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }),
+        description: triLang(lang, { ru: 'Пиши по памяти', uk: 'Пиши з пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }),
       },
     ];
     return allRows;

@@ -13,7 +13,8 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   ['2e5bd5812deeae94c75a593b252a5f6d850c40e051d27bab4c4ac8aea009683c', 1],
   ['c672a0ca30eabc1cf5e35c47fb0a74178bafe7936fb26fe6d46e9516739299ac', 1],
   ['cfa87d9160e3cefca9ac33d1d81c837569c7bbcff22273d4abe19927359e62b7', 1],
-  ['0cd8274691c731d0ce61163881c8e3c6ee65650f74f5741bd99b0f73a2bfd87f', 1],
+  // 05.10: подзаголовок «Расскажи, что случилось» — обращение на «ты» (решение владельца).
+  ['c8549378ce6e70b48466971ec4a17030bce509a3384558d345296b6c6cda1749', 1],
   ['82e705d4b06ea723b06d2685c20af2dfdb52170b819e8557b1c534745f65dbce', 2],
   // 04.10 (profile.html PRF-09, abc8be429): подсказка и строка диагностики сокращены, длинный абзац про бонус убран.
   ['8469e87365fb0da35574e4fbe22959a7e383db894493e4f434ea81798731197b', 1],
@@ -27,7 +28,7 @@ const EXPECTED_L_CALL_COUNTS = new Map([
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const RUNTIME_COPY = {
   title: ['Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc'],
-  subtitle: ['Расскажите, что случилось', 'Розкажіть, що сталося', 'Tell us what happened', 'Cuéntanos qué pasó', 'Conte o que aconteceu', 'Hãy cho chúng tôi biết chuyện gì xảy ra', 'Ceritakan apa yang terjadi', 'Ne olduğunu anlatın', 'Opisz, co się stało'],
+  subtitle: ['Расскажи, что случилось', 'Розкажи, що сталося', 'Tell us what happened', 'Cuéntanos qué pasó', 'Conte o que aconteceu', 'Hãy cho chúng tôi biết chuyện gì xảy ra', 'Ceritakan apa yang terjadi', 'Ne olduğunu anlat', 'Opisz, co się stało'],
   sentTitle: ['Обращение отправлено', 'Звернення надіслано', 'Request sent', 'Solicitud enviada', 'Solicitação enviada', 'Đã gửi yêu cầu', 'Laporan terkirim', 'Talep gönderildi', 'Zgłoszenie wysłane'],
   done: ['Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Bitti', 'Gotowe'],
 };

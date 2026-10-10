@@ -346,7 +346,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     void favorites.toggle(videoId).then((outcome) => {
       if (outcome === 'ok') return;
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить, попробуйте ещё раз', uk: 'Не вдалося зберегти, спробуйте ще раз', en: 'Couldn’t save, please try again',
+        ru: 'Не удалось сохранить, попробуй ещё раз', uk: 'Не вдалося зберегти, спробуй ще раз', en: 'Couldn’t save, please try again',
         es: 'No se pudo guardar, inténtalo de nuevo', 'pt-BR': 'Não foi possível salvar, tente de novo', vi: 'Không lưu được, hãy thử lại',
         id: 'Gagal menyimpan, coba lagi', tr: 'Kaydedilemedi, tekrar dene', pl: 'Nie udało się zapisać, spróbuj ponownie',
       }));

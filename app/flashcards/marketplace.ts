@@ -633,8 +633,8 @@ const PACK_CARD_TEMPLATES = [
   },
   {
     en: 'Let us align on the next steps.',
-    ru: 'Давайте согласуем следующие шаги.',
-    uk: 'Давайте узгодимо наступні кроки.',
+    ru: 'Давай согласуем следующие шаги.',
+    uk: 'Давай узгодимо наступні кроки.',
     es: 'Pongámonos de acuerdo sobre los próximos pasos.',
     'pt-BR': 'Vamos alinhar os próximos passos.',
     vi: 'Hãy thống nhất các bước tiếp theo.',

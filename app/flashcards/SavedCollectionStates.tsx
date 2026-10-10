@@ -104,7 +104,7 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
     ru: 'Попробуй другое слово.', uk: 'Спробуй інше слово.', en: 'Try another word.', es: 'Prueba con otra palabra.',
     'pt-BR': 'Tente outra palavra.', vi: 'Thử từ khác.', id: 'Coba kata lain.', tr: 'Başka bir kelime dene.', pl: 'Spróbuj innego słowa.',
   }) : triLang(lang, {
-    ru: 'Сохраняйте слова в уроках', uk: 'Зберігайте слова в уроках', en: 'Save words in lessons', es: 'Guarda palabras en las lecciones',
+    ru: 'Сохраняй слова в уроках', uk: 'Зберігай слова в уроках', en: 'Save words in lessons', es: 'Guarda palabras en las lecciones',
     'pt-BR': 'Salve palavras nas aulas', vi: 'Lưu từ trong bài học', id: 'Simpan kata di pelajaran',
     tr: 'Derslerde kelime kaydet', pl: 'Zapisuj słowa w lekcjach',
   });

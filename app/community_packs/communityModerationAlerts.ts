@@ -26,10 +26,10 @@ function moderationTitle(result: string, lang: string): string {
   switch (result) {
     case 'approved':
       if (es) return 'Tu pack fue aprobado';
-      return uk ? 'Ваш набір схвалено' : 'Ваш набор одобрен';
+      return uk ? 'Твій набір схвалено' : 'Твой набор одобрен';
     case 'rejected':
       if (es) return 'Tu pack fue rechazado';
-      return uk ? 'Ваш набір відхилено' : 'Ваш набор отклонён';
+      return uk ? 'Твій набір відхилено' : 'Твой набор отклонён';
     case 'revision_requested':
       if (es) return 'Se necesitan cambios';
       return uk ? 'Потрібні правки' : 'Нужна доработка';
@@ -79,8 +79,8 @@ function moderationBody(ev: Record<string, unknown>, lang: string): string {
       es
         ? 'Actualiza el pack y envíalo de nuevo.'
         : uk
-        ? 'Оновіть набір і надішліть знову.'
-        : 'Доработайте набор и отправьте снова.',
+        ? 'Онови набір і надішли знову.'
+        : 'Доработай набор и отправь снова.',
     );
   } else if (result === 'approved') {
     lines.push(es ? 'Sin comentario adicional.' : uk ? 'Без додаткового коментаря.' : 'Без дополнительного комментария.');

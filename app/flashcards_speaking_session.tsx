@@ -1343,8 +1343,8 @@ export default function FlashcardsSpeakingSession() {
         tr: 'Setleri seç', pl: 'Wybierz zestawy',
       }),
       empty: triLang(lang, {
-        ru: 'Здесь пока нечего говорить — выберите наборы',
-        uk: 'Тут поки нема чого говорити — оберіть набори',
+        ru: 'Здесь пока нечего говорить — выбери наборы',
+        uk: 'Тут поки нема чого говорити — обери набори',
         en: 'Nothing to say here yet — pick some packs',
         es: 'Aún no hay nada que decir: elige los packs',
         'pt-BR': 'Ainda não há o que falar: escolha os pacotes',

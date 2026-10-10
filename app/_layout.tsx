@@ -2199,8 +2199,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             // без единого слова. Возвращаем исходный текст без обещания автоповтора.
             emitAppEvent('action_toast', {
               type: 'info',
-              messageRu: 'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
-              messageUk: 'Хмара зараз недоступна. Відкрийте застосунок пізніше, щоб повторити відновлення.',
+              messageRu: 'Облако сейчас недоступно. Открой приложение позже, чтобы повторить восстановление.',
+              messageUk: 'Хмара зараз недоступна. Відкрий застосунок пізніше, щоб повторити відновлення.',
               messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
               messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
               messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
@@ -3401,7 +3401,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', en: 'Account blocked', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
           </Text>
           <Text style={{ color: '#9ca3af', fontSize: 13, textAlign: 'center', lineHeight: 18, marginBottom: 16 }}>
-            {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєте блокування помилковим — напишіть у підтримку.', en: "Access to the app is restricted. If you think this block is a mistake, contact support.", es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
+            {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаешь блокировку ошибочной — напиши в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєш блокування помилковим — напиши в підтримку.', en: "Access to the app is restricted. If you think this block is a mistake, contact support.", es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
           </Text>
           <TouchableOpacity
             onPress={() => checkBanStatus(true)}

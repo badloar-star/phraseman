@@ -1922,12 +1922,12 @@ export default function LearningV2DirectSessionPlayerV1() {
               "pt-BR": "aprovado", vi: "đã đạt", id: "lulus", tr: "geçti", pl: "zaliczone",
             })
           : triLang(lang, {
-              ru: "попробуйте ещё раз", uk: "спробуйте ще раз", en: "try again", es: "inténtalo de nuevo",
+              ru: "попробуй ещё раз", uk: "спробуй ще раз", en: "try again", es: "inténtalo de nuevo",
               "pt-BR": "tente novamente", vi: "thử lại", id: "coba lagi", tr: "tekrar dene", pl: "spróbuj ponownie",
             });
         return triLang(lang, {
-          ru: `${stars} из 3 звёзд, ${verdict}. Вы сказали: ${voiceAttemptResult.transcript}`,
-          uk: `${stars} з 3 зірок, ${verdict}. Ви сказали: ${voiceAttemptResult.transcript}`,
+          ru: `${stars} из 3 звёзд, ${verdict}. Ты сказал(а): ${voiceAttemptResult.transcript}`,
+          uk: `${stars} з 3 зірок, ${verdict}. Ти сказав(ла): ${voiceAttemptResult.transcript}`,
           en: `${stars} of 3 stars, ${verdict}. You said: ${voiceAttemptResult.transcript}`,
           es: `${stars} de 3 estrellas, ${verdict}. Dijiste: ${voiceAttemptResult.transcript}`,
           "pt-BR": `${stars} de 3 estrelas, ${verdict}. Você disse: ${voiceAttemptResult.transcript}`,
@@ -3321,7 +3321,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   />
                   <Text style={[styles.voiceHeardLabel, { color: g.secondary }]}>
                     {triLang(lang, {
-                      ru: "Вы сказали", uk: "Ви сказали", en: "You said", es: "Dijiste",
+                      ru: "Ты сказал(а)", uk: "Ти сказав(ла)", en: "You said", es: "Dijiste",
                       "pt-BR": "Você disse", vi: "Bạn đã nói", id: "Kamu berkata", tr: "Şunu söyledin", pl: "Powiedziano",
                     })}
                   </Text>

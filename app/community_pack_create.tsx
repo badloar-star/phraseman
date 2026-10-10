@@ -217,8 +217,8 @@ function communityPackValidationToast(
       };
     case 'title_or_desc':
       return {
-        ru: 'Укажите название и описание набора.',
-        uk: 'Вкажіть назву й опис набору.',
+        ru: 'Укажи название и описание набора.',
+        uk: 'Вкажи назву й опис набору.',
         es: 'Indica el título y la descripción del pack.',
         'pt-BR': 'Informe o título e a descrição do pacote.',
         vi: 'Nhập tên và mô tả của bộ thẻ.',
@@ -694,8 +694,8 @@ export default function CommunityPackCreateScreen() {
     const translation = draftTranslation.trim();
     if (!en || !translation) {
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Заполните английский текст и перевод.',
-        uk: 'Заповніть англійський текст і переклад.',
+        ru: 'Заполни английский текст и перевод.',
+        uk: 'Заповни англійський текст і переклад.',
         es: 'Completa el texto en inglés y la traducción.',
         'pt-BR': 'Preencha o texto em inglês e a tradução.',
         vi: 'Nhập văn bản tiếng Anh và bản dịch.',
@@ -890,8 +890,8 @@ export default function CommunityPackCreateScreen() {
         }
         if (publishResult !== 'submitted') {
           emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Набор сохранён на устройстве. Публикация не завершена — нажмите «Сохранить» ещё раз при подключении.',
-            uk: 'Набір збережено на пристрої. Для публікації натисніть «Зберегти» ще раз після підключення.',
+            ru: 'Набор сохранён на устройстве. Публикация не завершена — нажми «Сохранить» ещё раз при подключении.',
+            uk: 'Набір збережено на пристрої. Для публікації натисни «Зберегти» ще раз після підключення.',
             en: 'Saved on this device. Publication is pending — save again when connected.',
             es: 'Guardado en este dispositivo. Vuelve a guardar con conexión para publicarlo.',
           }));

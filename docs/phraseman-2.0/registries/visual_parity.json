@@ -24258,9 +24258,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 14,
+        "phone": 15,
         "label": "Верно",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10b"
       },
       "screen": "Верно",
       "state": "Верно",
@@ -24290,9 +24290,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 15,
+        "phone": 16,
         "label": "Неверно",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10b"
       },
       "screen": "Неверно",
       "state": "Неверно",

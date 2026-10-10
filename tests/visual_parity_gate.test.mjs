@@ -167,11 +167,13 @@ test('CLI: боевой реестр (все pending) → код 1; синтет
   assert.match(clean.stdout, /OK/);
 });
 
-test('подключение: гейт в release:precheck и в eas-build-post-install', () => {
+test('подключение: гейт в release:precheck (локально), НЕ в eas-build-post-install', () => {
+  // зачем (координатор 11.10 03:05, вариант а): на сервере EAS нет docs/ (.easignore) — реестра и склеек там нет,
+  // честно пройти гейт нельзя. Сверка макетов — перед сборкой на машине владельца: npm run release:precheck.
   const precheck = fs.readFileSync(path.join(ROOT, 'scripts/release_precheck.mjs'), 'utf8');
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
   assert.ok(precheck.includes('scripts/visual_parity_gate.mjs'));
-  assert.ok(pkg.scripts['eas-build-post-install'].includes('scripts/visual_parity_gate.mjs'));
+  assert.ok(!pkg.scripts['eas-build-post-install'].includes('visual_parity_gate'));
   assert.ok(pkg.scripts['parity:gate'] && pkg.scripts['parity:build'] && pkg.scripts['parity:shot']);
 });
 

@@ -115,8 +115,20 @@ test('нет реестра (архив EAS без docs/): без обхода �
 
 test('.easignore пропускает в архив EAS каждый скрипт, который запускает eas-build-post-install', () => {
   const easignore = fs.readFileSync(path.join(ROOT, '.easignore'), 'utf8');
-  for (const script of ['learning_v2_audio_coverage_gate.mjs', 'visual_parity_gate.mjs', 'store_release_surface.mjs',
-    'release_keys_gate.mjs', 'eas_production_version_gate.mjs']) {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const postInstall = String(pkg.scripts['eas-build-post-install']);
+  const direct = [...postInstall.matchAll(/node scripts\/([\w.-]+\.mjs)/g)].map((m) => m[1]);
+  assert.ok(direct.length > 0);
+  // помощник, который импортируют ворота озвучки, тоже обязан быть в архиве
+  for (const script of [...direct, 'store_release_surface.mjs']) {
     assert.ok(easignore.includes(`!scripts/${script}`), `${script} не разрешён в .easignore — на сервере EAS будет «модуль не найден»`);
   }
+});
+
+test('ворота паритета макетов не запускаются на сервере EAS, но строгие в release:precheck', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  assert.ok(!String(pkg.scripts['eas-build-post-install']).includes('visual_parity_gate'),
+    'post-install без docs/ не может пройти паритет честно — он проверяется локально в release:precheck');
+  const precheck = fs.readFileSync(path.join(ROOT, 'scripts', 'release_precheck.mjs'), 'utf8');
+  assert.ok(precheck.includes('scripts/visual_parity_gate.mjs'));
 });

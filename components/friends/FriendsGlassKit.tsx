@@ -214,10 +214,18 @@ export function FriendsFeedbackRow({ tone, text, testID, textScale, style }: {
 }) {
   const { theme: t } = useTheme();
   const color = tone === 'error' ? t.wrong : t.correct;
+  const nl = text.indexOf('\n');
+  const title = nl < 0 ? text : text.slice(0, nl);
+  const hint = nl < 0 ? '' : text.slice(nl + 1).trim();
   return (
     <View testID={testID} accessibilityRole="alert" accessibilityLiveRegion="polite" style={[{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }, style]}>
       <Ionicons name={tone === 'error' ? 'flag-outline' : 'checkmark-circle-outline'} size={18} color={color} />
-      <Text style={{ flex: 1, color, fontSize: 13 * textScale, lineHeight: 18 * textScale }}>{text}</Text>
+      {/* зачем (community.html, телефон 9 «Ответы поиска»): ответ = заголовок + короткая подсказка;
+          вторая строка приходит через \n, без неё остаётся прежний однострочный вид. */}
+      <View style={{ flex: 1 }}>
+        <Text style={{ color, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: hint ? '700' : '400' }}>{title}</Text>
+        {hint ? <Text style={{ color, opacity: 0.8, fontSize: 13 * textScale, lineHeight: 18 * textScale }}>{hint}</Text> : null}
+      </View>
     </View>
   );
 }

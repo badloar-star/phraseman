@@ -12,7 +12,7 @@
 //   • Throttle 30 c (спільний з user_reports).
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Keyboard,
@@ -30,6 +30,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hideCommunityPackOnDevice } from '../app/community_packs/communityPackHiddenStorage';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
+import { actionToastTri, emitAppEvent } from '../app/events';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
@@ -104,8 +105,16 @@ function ReportPackModal({
     onClose();
   };
 
+  // зачем: «Отправить» сразу показывает «готово» (Optimistic UI); ref-замок не даёт второму тапу
+  // в том же кадре отправить жалобу дважды, а откат больше не молчит — человек видит причину.
+  const sendInFlightRef = useRef(false);
   const handleSend = async () => {
     if (!selected) return;
+    if (sendInFlightRef.current) {
+      console.warn('[REPORT-PACK] send: уже в пути — повторный тап пропущен');
+      return;
+    }
+    sendInFlightRef.current = true;
     const payload = {
       packId,
       packTitle,
@@ -128,10 +137,19 @@ function ReportPackModal({
         return;
       }
       if (r === 'failed') throw new Error('pack_report_failed');
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[REPORT-PACK] send: не удалось — откат', error instanceof Error ? error.message : String(error));
       setLoading(false);
       setDone(false);
       hapticError();
+      emitAppEvent('action_toast', actionToastTri('error', {
+  ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
+  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+  vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
+  pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
+}));
+    } finally {
+      sendInFlightRef.current = false;
     }
   };
 

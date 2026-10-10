@@ -19,6 +19,7 @@ import { useGlassSheetContentMaxHeight } from '../../components/modal_fx/useGlas
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { submitPackCommentReport, type PackReportReason } from '../user_report';
+import { actionToastTri, emitAppEvent } from '../events';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import type { PackComment } from './packComments';
@@ -80,30 +81,59 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
 
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
+  // зачем: «Отправить» сразу показывает «готово» (Optimistic UI); ref-замок не даёт второму тапу
+  // в том же кадре отправить жалобу дважды, а откат больше не молчит — человек видит причину.
+  const sendInFlightRef = useRef(false);
   const handleSend = async () => {
     if (!selected || !comment) return;
+    if (sendInFlightRef.current) {
+      console.warn('[REPORT-COMMENT] send: уже в пути — повторный тап пропущен');
+      return;
+    }
+    sendInFlightRef.current = true;
     hapticTap();
     setThrottled(false);
     setDone(true);
     hapticSuccess();
-    const r = await submitPackCommentReport({
-      packId,
-      packTitle,
-      commentId: comment.id,
-      commentAuthorStableId: comment.authorId,
-      commentText: comment.text,
-      reason: selected,
-      comment: note.trim(),
-    });
-    if (r === 'throttled') {
+    try {
+      const r = await submitPackCommentReport({
+        packId,
+        packTitle,
+        commentId: comment.id,
+        commentAuthorStableId: comment.authorId,
+        commentText: comment.text,
+        reason: selected,
+        comment: note.trim(),
+      });
+      if (r === 'throttled') {
+        setDone(false);
+        setThrottled(true);
+        hapticError();
+        return;
+      }
+      if (r === 'failed') {
+        console.warn('[REPORT-COMMENT] send: сервер вернул failed — откат');
+        setDone(false);
+        hapticError();
+        emitAppEvent('action_toast', actionToastTri('error', {
+  ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
+  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+  vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
+  pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
+}));
+      }
+    } catch (error: unknown) {
+      console.warn('[REPORT-COMMENT] send: исключение — откат', error instanceof Error ? error.message : String(error));
       setDone(false);
-      setThrottled(true);
       hapticError();
-      return;
-    }
-    if (r === 'failed') {
-      setDone(false);
-      hapticError();
+      emitAppEvent('action_toast', actionToastTri('error', {
+  ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
+  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+  vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
+  pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
+}));
+    } finally {
+      sendInFlightRef.current = false;
     }
   };
 

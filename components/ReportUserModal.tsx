@@ -140,7 +140,15 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     }),
   };
 
+  // зачем: «Отправить» меняет состояние на «готово» сразу (Optimistic UI), но state обновляется после
+  // рендера — второй тап в том же кадре отправил бы жалобу дважды; ref-замок синхронный.
+  const sendInFlightRef = useRef(false);
   const handleSend = async () => {
+    if (sendInFlightRef.current) {
+      console.warn('[REPORT-USER] send: уже в пути — повторный тап пропущен');
+      return;
+    }
+    sendInFlightRef.current = true;
     try {
       hapticTap();
       setLoading(false);
@@ -173,7 +181,15 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         messageRu: 'Жалоба не отправилась',
         messageUk: 'Скаргу не надіслано',
         messageEs: 'No se pudo enviar el reporte',
+        messageEn: "Couldn't send the report",
+        messagePtBr: 'Não foi possível enviar a denúncia',
+        messageVi: 'Không gửi được báo cáo',
+        messageId: 'Laporan gagal dikirim',
+        messageTr: 'Şikayet gönderilemedi',
+        messagePl: 'Nie udało się wysłać zgłoszenia',
       });
+    } finally {
+      sendInFlightRef.current = false;
     }
   };
 

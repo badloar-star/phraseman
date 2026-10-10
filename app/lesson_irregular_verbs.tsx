@@ -1,3 +1,4 @@
+import KitProgressFill from '../components/KitProgressFill';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -1112,7 +1113,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
       {/* Полоса выученного (макет verbsDict): «6 / 18 выучено» */}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, marginTop: 22 }}>
         <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
-          <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0 }] }} />
+          <KitProgressFill ratio={allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0} style={{ backgroundColor: glass.accent }} />
         </View>
         <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
           {`${learnedTotal} / ${allVerbs.length} ${triLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidos', 'pt-BR': 'aprendidos', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'opanowano' })}`}

@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, {
+  Easing,
   useSharedValue,
   useAnimatedStyle,
   withDelay,
-  withSpring,
+  withTiming,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { KIT_MOTION } from '../../constants/motionHybrid';
 import { StatCountUpText } from './StatCountUpText';
 
 type StatProgressRowProps = {
@@ -55,7 +57,8 @@ export function StatProgressRow({
 
   useEffect(() => {
     fill.value = 0;
-    fill.value = withDelay(delayMs, withSpring(clamped / 100, { damping: 15, stiffness: 120, mass: 0.8 }));
+    // зачем (координатор 10.10): полоса — kit.css `.trk > i`: 800 мс cubic-bezier(.2,.8,.2,1) вместо пружины.
+    fill.value = withDelay(delayMs, withTiming(clamped / 100, { duration: KIT_MOTION.progressMs, easing: Easing.bezier(KIT_MOTION.progressEase[0], KIT_MOTION.progressEase[1], KIT_MOTION.progressEase[2], KIT_MOTION.progressEase[3]) }));
     return () => cancelAnimation(fill);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clamped, delayMs]);

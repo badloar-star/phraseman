@@ -1,3 +1,4 @@
+import KitProgressFill from '../KitProgressFill';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -154,12 +155,7 @@ export function PracticeProgressRow({
   return (
     <View testID={testID} style={flush ? null : styles.progressWrap}>
       <View style={[styles.track, { backgroundColor: glass.opaqueControl }]}>
-        <View
-          style={[
-            styles.fill,
-            { backgroundColor: fillColor ?? glass.cta, transform: [{ scaleX: ratio }] },
-          ]}
-        />
+        <KitProgressFill ratio={ratio} style={[styles.fill, { backgroundColor: fillColor ?? glass.cta }]} />
       </View>
       {hasRow ? (
         <View style={styles.progressRow}>

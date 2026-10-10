@@ -15,6 +15,7 @@ import { dailyPollPercents, pickDailyPollText, type DailyPollVote } from '../../
 import { DebugLogger } from '../../app/debug-logger';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { triLang } from '../../constants/i18n';
+import { KIT_MOTION } from '../../constants/motionHybrid';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
@@ -33,7 +34,8 @@ type Props = Readonly<{
   active: boolean;
 }>;
 
-const REVEAL_MS = 420;
+// зачем (координатор 10.10): полосы результатов — kit.css `.trk > i`: 800 мс cubic-bezier(.2,.8,.2,1).
+const REVEAL_MS = KIT_MOTION.progressMs;
 
 export default function DailyPollCard({ active }: Props) {
   const { lang } = useLang();
@@ -191,7 +193,7 @@ const DailyPollOptionButton = React.memo(function DailyPollOptionButton({
   const reveal = useSharedValue(showResults ? 1 : 0);
 
   useEffect(() => {
-    reveal.value = showResults ? withTiming(1, { duration: REVEAL_MS, easing: Easing.out(Easing.cubic) }) : 0;
+    reveal.value = showResults ? withTiming(1, { duration: REVEAL_MS, easing: Easing.bezier(KIT_MOTION.progressEase[0], KIT_MOTION.progressEase[1], KIT_MOTION.progressEase[2], KIT_MOTION.progressEase[3]) }) : 0;
   }, [showResults, reveal]);
 
   const barStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: reveal.value }] }));

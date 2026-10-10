@@ -1,3 +1,4 @@
+import KitProgressFill from '../KitProgressFill';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
@@ -615,17 +616,11 @@ function SurveyProgress({ current, total, accent, track }: {
           ))}
         </View>
       ) : (
-        <View
+        <KitProgressFill
           testID="survey-sheet-progress-fill"
           accessible={false}
-          style={[
-            styles.progressFill,
-            {
-              backgroundColor: accent,
-              transformOrigin: 'left center',
-              transform: [{ scaleX: ratio }],
-            },
-          ]}
+          ratio={ratio}
+          style={[styles.progressFill, { backgroundColor: accent, transformOrigin: 'left center' }]}
         />
       )}
     </View>

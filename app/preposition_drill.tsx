@@ -1,3 +1,4 @@
+import KitProgressFill from '../components/KitProgressFill';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -404,7 +405,7 @@ function PrepositionDrillScreen() {
               {/* Полоса прогресса + «Вызов 3 / 12» (макет prep) */}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 22 }}>
                 <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
-                  <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: total > 0 ? (itemIdx + 1) / total : 0 }] }} />
+                  <KitProgressFill ratio={total > 0 ? (itemIdx + 1) / total : 0} style={{ backgroundColor: glass.accent }} />
                 </View>
                 <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
                   {triLang(lang, {

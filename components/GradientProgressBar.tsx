@@ -9,7 +9,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
-import { LUM } from '../constants/motionHybrid';
+import { KIT_MOTION } from '../constants/motionHybrid';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
@@ -86,7 +86,8 @@ export function GradientProgressBar({
       scale.value = pct;
       return;
     }
-    scale.value = withTiming(pct, { duration: LUM.resolveMs, easing: Easing.out(Easing.quad) });
+    // зачем (координатор 10.10): полоса — kit.css `.trk > i`: 800 мс cubic-bezier(.2,.8,.2,1), числа из KIT_MOTION.
+    scale.value = withTiming(pct, { duration: KIT_MOTION.progressMs, easing: Easing.bezier(KIT_MOTION.progressEase[0], KIT_MOTION.progressEase[1], KIT_MOTION.progressEase[2], KIT_MOTION.progressEase[3]) });
     return () => cancelAnimation(scale);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pct, reduceMotion]);

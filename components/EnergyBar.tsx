@@ -102,7 +102,8 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
     previousCurrentRef.current = current;
     if (!glass || reducedMotion || !focused || !ownerActive || current >= previous) return;
     drop.value = withSequence(
-      withTiming(1, { duration: DROP_IN_MS, easing: Easing.out(Easing.quad) }),
+      // зачем (координатор 10.10): в CSS animation-timing-function действует на КАЖДЫЙ интервал ключевых кадров — обе половины на кривой kit.
+      withTiming(1, { duration: DROP_IN_MS, easing: DROP_EASE }),
       withTiming(0, { duration: DROP_OUT_MS, easing: DROP_EASE }),
     );
   }, [current, drop, focused, glass, ownerActive, reducedMotion]);

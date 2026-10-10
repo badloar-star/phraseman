@@ -231,6 +231,21 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     };
   }, [reloadNonce, studyTarget]);
 
+  // ВРЕМЕННО ([DIALOGS-OPEN], Сверка 22:46: first_commit 445 → 680 мс, render_cost nested-update 126 мс до него):
+  // какой вход хаба сменился на каждой перерисовке — найти, кто запускает повторную отрисовку на первом коммите.
+  const traceRenderRef = useRef<{ n: number; prev: Record<string, unknown> | null }>({ n: 0, prev: null });
+  {
+    const inputs: Record<string, unknown> = {
+      state, studyTarget, lang, accessResolved, hasPremiumAccess, localCoinRank, palette, quotaRemaining, reloadNonce, onPressItem, showQuotaRow,
+    };
+    const trace = traceRenderRef.current;
+    trace.n += 1;
+    const previousInputs = trace.prev;
+    const changed = previousInputs ? Object.keys(inputs).filter((key) => !Object.is(inputs[key], previousInputs[key])) : ['first'];
+    console.log('[DIALOGS-OPEN] hub:render', JSON.stringify({ n: trace.n, sinceFirstRenderMs: Math.round(dialogsOpenNow() - renderStartRef.current), changed }));
+    trace.prev = inputs;
+  }
+
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
     const input = { studyTarget, localCoinRank, worldHeadings: headings };

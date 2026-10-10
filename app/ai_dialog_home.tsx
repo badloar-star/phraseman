@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -73,6 +73,18 @@ export default function AiDialogHome() {
   const quota = useDialogueHubQuota();
   const dialogueGlass = useDialogueGlass();
   const hubCopy = dialogueV2HubCopy(lang);
+  // ВРЕМЕННО ([DIALOGS-OPEN], Сверка 22:46): что заставляет весь экран «Диалоги» перерисоваться после открытия —
+  // каждая такая перерисовка тянет за собой каталог (render_cost 36/47 мс вслед за home:render).
+  const traceHomeRef = useRef<{ n: number; prev: Record<string, unknown> | null }>({ n: 0, prev: null });
+  {
+    const inputs: Record<string, unknown> = { lang, router, width, fontScale, quota, dialogueGlass };
+    const trace = traceHomeRef.current;
+    trace.n += 1;
+    const previousInputs = trace.prev;
+    const changed = previousInputs ? Object.keys(inputs).filter((key) => !Object.is(inputs[key], previousInputs[key])) : ['first'];
+    console.log('[DIALOGS-OPEN] home:rerender', JSON.stringify({ n: trace.n, changed }));
+    trace.prev = inputs;
+  }
   const headerRight = (
     <View style={{ alignItems: 'flex-end', gap: 14 }}>
       {/* зачем (эмулятор 30.09): без glass тут жила старая тёмная капсула — в светлой теме чёрное пятно. */}

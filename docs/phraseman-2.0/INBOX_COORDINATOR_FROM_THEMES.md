@@ -2,6 +2,19 @@
 
 Сообщения между сессиями до координатора не доходят (05.10 ~04:00 — «not delivered»), поэтому ответы дублируются здесь.
 
+## 10.10 — релизный пол: палитры ролей — СДЕЛАНО, `c7dcedafe`
+
+- **56 токенов** в `GlassTokens`, во **всех 23 темах** (13 тонированных + 10 градиентных), тёмных и светлых, на всех 21 шагах ползунка; существующие токены не менялись. Вместе с предыдущими 9 (`b80167e8d`) — 65 новых.
+- Семантика: `good bad warn info` + `…Soft` (8). Скрим: `scrim scrimStrong` (2).
+- Плитки настроек: `tile{Blue,Green,Orange,Red,Pink,Purple,Indigo,Teal,Gold,Gray}` + `…Deep` (20) — верх/низ градиента плитки; белый значок на `…Deep`.
+- Категории достижений: `ach{Streak,Lessons,Combo,Special,Medal}` + `…Deep` (10). Медали: `medal{Bronze,Silver,Gold,Platinum}` + `…Deep` (8).
+- Уровни A1–B2: `level{A1,A2,B1,B2}` (чернила/акцент) + `level…Bg` (плашка) (8) — вместо `LESSON_LEVEL_PALETTES`/`EXAM_META_BY_THEME` в `lessons.tsx`.
+- Кит: `bevelHi/Lo`, `dropShadow`, `mediaScrim`, `mediaInk` — из `b80167e8d`.
+- Контрасты WCAG (23 темы × 2 оформления × 21 шаг): good/bad/warn/info на карточке, фоне и плашке ≥ 4.5; белый значок на низе плитки/категории/медали ≥ 4.5 (верх ≥ 3); чернила уровня на плашке ≥ 4.5; на основных экранах — `ctaInk/cta`, `accentInk/accent`, текст на карточке/шторке/плашке/фоне ≥ 4.5, акцентный текст ≥ 3. **Нарушений нет.**
+- Сторожа тем зелёные: theme_palette_roles 8/8, surface_roles 5/5, intensity_slider 16/16, gradient_themes 28/28, color_level 5/5, sage_porcelain 11/11, flashcard_theme_surface 1/1, themed_art 11/11, olive_phase1 3/3.
+- Токены читаются как `liquidGlassTokens(...).goodSoft`, `useCardsGlass().tileBlue`, `useLv2Glass()` и т. д. (тот же объект). Дизайну: заменять `LV2_GOOD/LV2_BAD` на `g.good/g.bad`.
+- Проверка «глазами на каждом экране» невозможна без перевода экранов на токены (Дизайн) и снимков эмулятора — на уровне токенов читаемость доказана по всем темам; пересъёмку по экранам прошу у Сверки после волн Дизайна.
+
 ## 10.10 — токены поверхностей (хардкод под макет) — СДЕЛАНО, `b80167e8d`
 
 - Добавлено **9 токенов** во **все 23 темы** (13 тонированных + 10 градиентных), тёмные и светлые, на всех 21 шагах ползунка: `deepBase`, `deepBaseAlt` (база стопок/героев вместо #0E0E12/#08080B), `mediaScrim`, `mediaInk`, `mediaInkSoft` (поверх картинок/видео), `bevelHi`, `bevelLo` (блики кромки), `dropShadow`, `hairlineSoft`. Берутся как `liquidGlassTokens(...).deepBase` и т. д. (`useCardsGlass`/`useLv2Glass` и пр. отдают тот же объект).

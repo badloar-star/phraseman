@@ -23,13 +23,11 @@ describe('Dev Hub lesson reward preview', () => {
     expect(sheet).toContain("visible={!visible && preview?.type === 'lesson-results'}");
     expect(sheet).toContain('<ResultsSequence');
     expect(sheet).toContain('stars={3}');
-    expect(sheet).toContain('xp={120}');
-    expect(sheet).toContain('spinReward={{ amount: 1, receiptId: `dev-lesson-spin-${preview.run}` }}');
+    // зачем (10.10): итог урока 2.0 без опыта, спина и множителей XP — превью показывает только звёзды и подарок.
+    expect(sheet).not.toContain('xp={');
+    expect(sheet).not.toContain('spinReward=');
+    expect(sheet).not.toContain('multipliers: [');
     expect(sheet).toContain("activeGift: { label: 'Активный подарок: +1 подсказка' }");
-    expect(sheet).toContain('multipliers: [');
-    expect(sheet).toContain("{ label: 'Множитель XP ×1.5', xpDelta: 15 }");
-    expect(sheet).toContain("{ label: 'Множитель XP ×2', xpDelta: 20 }");
-    expect(sheet).toContain("{ label: 'Множитель XP ×3', xpDelta: 30 }");
     expect(sheet).toContain('title="DEV · Учебный пример"');
     expect(sheet).toContain('ctaPrimaryLabel="Вернуться в Dev Hub"');
     expect(sheet).toContain('onCtaPrimary={closePreview}');

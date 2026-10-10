@@ -83,7 +83,8 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('TonalSurface');
     expect(source).toContain('dailyPhraseChromeFor(themeMode)');
     expect(source).toContain('radius={24} tone="raised"');
-    expect(source).toContain('radius={18} tone="subtle"');
+    // зачем (10.10): шторка по скрину владельца (322b0f847, 01.10) — три одинаковые карточки на radius 16, без radius 18.
+    expect(source.split('radius={16} tone="subtle"').length - 1).toBeGreaterThanOrEqual(3);
     expect(source).toContain('radius={16} tone="subtle"');
   });
 
@@ -189,7 +190,8 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('styles.optionMarker');
     expect(source).toContain('{optionIndex + 1}');
     expect(source).toContain('accessibilityLabel={`${optionIndex + 1}. ${option.text}`}');
-    expect(source).toContain('styles.explanationRail');
+    // зачем (10.10): полоска-«рельс» убрана владельцем (322b0f847) — разбор идёт тремя карточками.
+    expect(source).not.toContain('styles.explanationRail');
   });
 
   it('uses one-shot native-driver motion that respects reduced-motion preferences', () => {

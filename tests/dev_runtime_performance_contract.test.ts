@@ -15,8 +15,9 @@ describe('dev runtime performance contract', () => {
   it('keeps expensive XP stack tracing behind an explicit debug flag', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'hall_of_fame_utils.ts'), 'utf8');
 
-    expect(source).toContain("process.env.EXPO_PUBLIC_DEBUG_XP_TRACE === '1'");
-    expect(source).toContain('debugXpTraceEnabled');
+    // зачем (10.10): трассировка стека XP удалена целиком снимком 2.0 (efe19ae9d) — дорогой стек не собирается вовсе.
+    expect(source).not.toContain('new Error().stack');
+    expect(source).not.toContain('console.trace(');
   });
 
   it('offers a fast Android emulator launch mode for responsiveness checks', () => {

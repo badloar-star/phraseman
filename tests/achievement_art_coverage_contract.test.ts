@@ -37,19 +37,18 @@ describe('achievement art coverage', () => {
     }
   });
 
-  it('ровно 70 активных V2 статуэток имеют WebP на диске', () => {
+  it('ровно 70 активных V2 статуэток подключены; на диске лежит ровно ядро', () => {
     expect(ACTIVE_IDS).toHaveLength(70);
     expect(manifest.assets.every((row) => row.status === 'connected')).toBe(true);
 
-    for (const id of ACTIVE_IDS) {
-      expect(fs.existsSync(path.join(ROOT, `assets/images/achievements/${id}.webp`))).toBe(true);
-    }
-
+    // зачем (10.10): исходники некорневого арта сняты из репозитория снимком 2.0 (efe19ae9d, 30.09) — он
+    // живёт в Storage. На диске обязано остаться ядро, и ничего сверх набора V2.
     const files = fs.readdirSync(path.join(ROOT, 'assets/images/achievements'))
       .filter((name) => name.endsWith('.webp'))
       .map((name) => name.slice(0, -5))
       .sort();
-    expect(files).toEqual(ACTIVE_IDS);
+    expect(files).toEqual(CORE_IDS.filter((id) => ACTIVE_IDS.includes(id)).sort());
+    for (const id of files) expect(ACTIVE_IDS).toContain(id);
   });
 
   it('в бандле остаётся ТОЛЬКО ядро — остальной арт стримится из Storage', () => {
@@ -81,10 +80,13 @@ describe('achievement art coverage', () => {
     expect(layout).toMatch(/runAfterInteractions\(\(\) => \{\s*prefetchAchievementArtInBackground\(\);/);
   });
 
-  it('событийный прогрев подключён: экран достижений и повышение уровня', () => {
+  it('событийный прогрев подключён: экран достижений и возврат из фона', () => {
     // зачем (правило владельца): греем ПО СОБЫТИЯМ, а не по таймеру — к моменту
     // награды арт уже на диске, и щит-заглушка пользователю не показывается.
+    // 10.10: событие level_up_pending больше никто не шлёт (полноэкранное повышение уровня снято, празднование
+    // живёт на Главной), подписка в _layout ушла вместе с ним. Остались вход на экран достижений и возврат из фона.
     expect(read('app/achievements_screen.tsx')).toContain('prefetchAllAchievementArt()');
-    expect(read('app/_layout.tsx')).toContain('prefetchAllAchievementArt()');
+    const prefetchSrc = read('app/achievement_art_prefetch.ts');
+    expect(prefetchSrc).toMatch(/if \(state === 'active'\) prefetchAllAchievementArt\(\);/);
   });
 });

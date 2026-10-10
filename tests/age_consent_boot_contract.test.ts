@@ -10,11 +10,10 @@ describe('age consent durable boot delivery contract', () => {
     const importLine = "import { resumePendingAgeConsent } from './age_consent_cloud';";
     const restoreStart = layout.indexOf('const restoreCloudForBoot = async () => {');
     const authReady = layout.indexOf('await ensureAnonUser();', restoreStart);
-    const onboardingResume = layout.indexOf(
-      'void resumePendingOnboardingFunnel().catch(() => {});',
-      restoreStart,
-    );
-    const resumeCall = 'void resumePendingAgeConsent().catch(() => {});';
+    // зачем (10.10): PM-229 заменил немой .catch(() => {}) на noteSwallowedHandler — причина отказа пишется в журнал.
+    // Сторож проверяет порядок и единственность вызова, а не текст обработчика.
+    const onboardingResume = layout.indexOf('void resumePendingOnboardingFunnel().catch(', restoreStart);
+    const resumeCall = 'void resumePendingAgeConsent().catch(';
     const consentResume = layout.indexOf(resumeCall, restoreStart);
 
     expect(layout).toContain(importLine);
@@ -24,6 +23,7 @@ describe('age consent durable boot delivery contract', () => {
     expect(consentResume).toBeGreaterThan(onboardingResume);
     expect(layout.split(resumeCall)).toHaveLength(2);
     expect(layout).not.toContain('await resumePendingAgeConsent()');
+    expect(layout).not.toContain('void resumePendingAgeConsent().catch(() => {})');
     expect(client).not.toContain('setInterval(');
   });
 });

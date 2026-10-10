@@ -93,12 +93,15 @@ describe('app snapshot bootstrap account boundary', () => {
     const { primeAppSnapshotFromStorage } = await import('../app/app_snapshot_bootstrap');
     await primeAppSnapshotFromStorage('en');
 
-    expect(patchAppSnapshot).toHaveBeenCalledWith(expect.objectContaining({
+    // зачем (10.10): снимок публикуется функциональным патчем (значение берётся на момент применения) —
+    // применяем каждый патч к пустому снимку, как это делает хранилище, и ищем профиль среди результатов.
+    const applied = patchAppSnapshot.mock.calls.map(([arg]) => (typeof arg === 'function' ? arg({}) : arg));
+    expect(applied).toEqual(expect.arrayContaining([expect.objectContaining({
       profile: expect.objectContaining({
         premiumActive: true,
         premiumPlan: 'lifetime',
       }),
-    }));
+    })]));
   });
 
   it('does not publish zero/default profile data when the storage read fails', async () => {

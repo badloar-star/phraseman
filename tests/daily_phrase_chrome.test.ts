@@ -4,19 +4,17 @@ import {
 } from '../app/daily_phrase_chrome';
 import type { ThemeMode } from '../constants/theme';
 
+// зачем (10.10): набор тем сужен в 2.0 (minimalDark/business/businessLight/candyBlue сняты из ThemeMode) — список
+// совпадает с объединением ThemeMode в constants/theme.ts.
 const THEME_MODES: ThemeMode[] = [
   'dark',
   'gold',
   'olive',
-  'minimalDark',
-  'business',
-  'businessLight',
   'sagePorcelain',
   'midnight',
   'ember',
   'aurora',
   'volt',
-  'candyBlue',
   'indigo',
 ];
 

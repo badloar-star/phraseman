@@ -313,9 +313,10 @@ it('creates one deterministic legacy migration only when no journal or PhoneStat
     cloudSelection: { avatarValue: '4', frameId: 'frame-4', storedAuraSelection: 'aura-new-cloud', level: 4 },
   }, deps);
 
-  expect(first.operation.operationId).toBe('customization_legacy_v1');
+  // зачем (10.10): resolveCustomizationSelectionAuthority возвращает саму операцию (operationId + selection), не обёртку.
+  expect(first.operationId).toBe('customization_legacy_v1');
   expect(first.selection).toMatchObject({ avatarValue: '18', frameId: 'frame-18', storedAuraSelection: 'aura-local' });
-  expect(second.operation.operationId).toBe(first.operation.operationId);
+  expect(second.operationId).toBe(first.operationId);
   expect(second.selection).toEqual(first.selection);
   expect(Object.keys(storage.values).filter((key) => key.includes('customization_selection_operation_v1'))).toHaveLength(1);
 });

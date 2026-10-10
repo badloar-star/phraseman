@@ -57,8 +57,9 @@ describe('DialogVictoryCelebration contract', () => {
     expect(SOURCE).toContain('hapticMediumImpact');
   });
 
-  it('hides the XP row when nothing was awarded (repeat anti-farm)', () => {
-    expect(SOURCE).toContain('xp > 0 && (');
+  it('shows no XP row at all — 2.0 removed XP for dialogues', () => {
+    // зачем (10.10): опыт за диалог снят в 2.0 — строки опыта в салюте нет совсем, а не «прячется при нуле».
+    expect(SOURCE).not.toMatch(/\bxp\s*>\s*0/);
   });
 
   it('does not statically import heavy generated content', () => {

@@ -1,4 +1,5 @@
 import { FRENCH_TARGET_SYNC_KEYS, getRuntimeSyncKeys, SYNC_KEYS } from '../app/cloud_sync';
+import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from '../app/retired_account_local_keys';
 import {
   legacyFreeLessonCapKey,
   legacyFreeLessonMigrationKey,
@@ -71,8 +72,12 @@ describe('cloud sync storage key lists', () => {
     expect(runtimeKeys).not.toContain('dev_study_target_lang');
   });
 
-  test('syncs the queued wager-use count alongside the legacy presence key', () => {
-    expect(SYNC_KEYS).toEqual(expect.arrayContaining([
+  test('retired wager discount keys are no longer synced and are wiped as retired 2.0 economy', () => {
+    // зачем (10.10): скидка-ставка снята экономикой 2.0 — ключи переехали в RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS
+    // (стираются при смене аккаунта) и больше не синхронизируются.
+    expect(SYNC_KEYS).not.toContain('wager_discount');
+    expect(SYNC_KEYS).not.toContain('wager_discount_uses_v1');
+    expect(RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS).toEqual(expect.arrayContaining([
       'wager_discount',
       'wager_discount_uses_v1',
     ]));

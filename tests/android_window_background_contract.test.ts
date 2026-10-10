@@ -24,7 +24,8 @@ describe('Android window background contract', () => {
     const layout = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
 
     expect(layout).toMatch(/import \{[^}]*\bStatusBar\b[^}]*\} from 'react-native';/);
-    expect(layout).toContain("const { theme: tTheme, themeMode, statusBarLight } = useTheme();");
+    // зачем (10.10): корень дополнительно читает liquidGlassChoiceReady (выбор темы 2.0) — проверяем нужные поля, а не всю строку.
+    expect(layout).toMatch(/const \{ theme: tTheme, themeMode, statusBarLight(?:, [A-Za-z]+)* \} = useTheme\(\);/);
     expect(layout).toContain('<StatusBar');
     expect(layout).toContain("barStyle={statusBarLight ? 'light-content' : 'dark-content'}");
     expect(layout).toContain('backgroundColor="transparent"');

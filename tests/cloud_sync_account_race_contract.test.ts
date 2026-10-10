@@ -74,7 +74,8 @@ describe('cloud sync account-transition race contract', () => {
     expect(localWipe).toBeLessThan(storageClear);
     expect(storageClear).toBeLessThan(strictReadback);
     expect(authProviderSource).toContain('const postDeleteLocalWipeFlights = new Map');
-    expect(authProviderSource).toContain('return withLocalStepDeadline(() => flight!, false);');
+    // зачем (10.10): результат полёта теперь ждётся с логом отказа по сроку ([ACCOUNT-DELETE-LOCAL]) — проверяем срок, а не форму return (потолок срока может быть своим).
+    expect(authProviderSource).toMatch(/(?:return|const result = await) withLocalStepDeadline\(\s*\(\) => flight!,\s*false(?:,\s*[A-Z_]+)?,?\s*\);/);
     expect(drainHelper).toContain('waitForPremiumAccountWorkIdleWithDeadline(');
     expect(finishFlow).toContain('drainEntitlementSafeAccountTransition()');
     expect(finishFlow.indexOf('waitForRestoreApplicationIdleWithDeadline(')).toBeGreaterThan(

@@ -21,6 +21,8 @@ jest.mock('../app/account_generation', () => ({
   withRestoreApplicationLock: async (fn: () => unknown) => fn(),
   beginInitialAccountGeneration: () => {},
   invalidateAccountGeneration: () => {},
+  // зачем (10.10): community_packs чистит кэш авторских наборов при смене аккаунта — модуль подписывается при загрузке.
+  subscribeAccountGeneration: () => ({ remove: () => {} }),
 }));
 
 const payload = (title: string, publish?: boolean): CommunityPackSubmissionPayload => ({

@@ -1,0 +1,3 @@
+10-10 22:44:22.000  4036  4086 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":true,"out":"/(tabs)/video"}'
+10-10 22:44:23.061  4036  4086 W ReactNativeJS: '[LESSON-EXIT] layout:pathname_root_or_empty pathname="/" lastPath=null ready=false rootNavigationReady=false', { [Stack] name: 'Stack' }
+10-10 22:44:27.274  4036  4086 W ReactNativeJS: '[LESSON-EXIT] layout:rootIndex_replace_home pathname="/" ready=true rootNavigationReady=true effectiveShowOnboarding=false isBanned=false target=/(tabs)/video', { [Stack] name: 'Stack' }

@@ -144,7 +144,7 @@ import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
-import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { KIT_MOTION, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
@@ -280,7 +280,10 @@ const TOTAL = 50;
 const SETTINGS_KEY = 'user_settings';
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const LESSON_ENTER_MS = MOTION_DURATION.normal;
-const PRESS_IN_MS = 70;
+// зачем (координатор 10.10, «ощущаемый» стандарт kit.css `.t`): вдавливание 90 мс до 0.97, отпускание 240 мс cubic-bezier(.3,1.4,.5,1) —
+// как у остальных кнопок приложения; раньше 70 мс до 0.975 и пружина.
+const PRESS_IN_MS = KIT_MOTION.pressDownMs;
+const PRESS_RELEASE_EASING = Easing.bezier(...KIT_MOTION.pressEase);
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
 const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
 const WORD_DISPATCH_LOCK_MS = 90;
@@ -325,7 +328,7 @@ function LessonPressable({
   disabled,
   onPressIn,
   onPressOut,
-  pressScale = 0.975,
+  pressScale = KIT_MOTION.pressScale,
   suppressFeedback = false,
   style,
   ...props
@@ -352,11 +355,11 @@ function LessonPressable({
       }}
       onPressOut={(event) => {
         if (!disabled && !suppressFeedback) {
-          Animated.spring(scale, {
+          Animated.timing(scale, {
             toValue: 1,
+            duration: KIT_MOTION.pressMs,
+            easing: PRESS_RELEASE_EASING,
             useNativeDriver: true,
-            tension: 260,
-            friction: 12,
           }).start();
         }
         onPressOut?.(event);

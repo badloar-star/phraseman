@@ -22,6 +22,14 @@ jest.mock('react-native', () => ({
   Text: 'Text',
   Platform: { OS: 'ios' },
   StyleSheet: { flatten: (style: unknown) => style },
+  // зачем (11.10): перепроверка каталога стартует после анимации входа (runAfterInteractions); в тесте анимаций нет —
+  // колбэк сразу, отмена — как у настоящего InteractionManager.
+  InteractionManager: {
+    runAfterInteractions: (task: () => void) => {
+      task();
+      return { cancel: () => undefined };
+    },
+  },
 }));
 // Переводы названий проверяет свой тест модуля; здесь — только проекция каталога.
 jest.mock('../app/dialogue_v2_ui_copy', () => ({ dialogueV2UiCopy: () => null, dialogueV2UiWorldTitle: () => null }));

@@ -1,6 +1,6 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { Profiler, memo, useCallback, useEffect, useMemo, useState, useRef } from 'react';
-import { Text, View } from 'react-native';
+import { InteractionManager, Text, View } from 'react-native';
 
 import {
   projectAuthorizedDialogueV2Catalogue,
@@ -201,8 +201,18 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     // Вход в хаб: сеть только если кэш старше 12 ч (окно — в клиенте каталога).
     // зачем (ВРЕМЕННО, Сверка 21:55 «JS стоит 2,7 + 2,3 с после открытия Диалогов»; сперва логи): сколько идёт
     // запрос каталога и приходит ли НОВЫЙ объект (тогда проекция и все 76 карточек перерисовываются заново).
+    // зачем (Сверка cold5a/b 23:30): пауза кадров при входе (580 / 2605 мс) оба раза кончалась ровно к ответу функции
+    // каталога (586 / 2607 мс). Каталог уже на экране из кэша/встроенного снимка, перепроверка нужна раз в 12 ч —
+    // поэтому она стартует ПОСЛЕ анимации входа (как прогрев), а уход с экрана до этого её отменяет.
+    // Сужение «поддержанный язык» из проверки выше внутрь объявленной функции не переходит — фиксируем его здесь.
+    const revalidationTarget = studyTarget;
+    const interaction = InteractionManager.runAfterInteractions(() => {
+      if (!active) return;
+      startRevalidation();
+    });
+    function startRevalidation(): void {
     const fetchStart = dialogsOpenNow();
-    void fetchReleasedDialogueV2Catalogue(studyTarget, { awaitRefresh: true }).then((envelope) => {
+    void fetchReleasedDialogueV2Catalogue(revalidationTarget, { awaitRefresh: true }).then((envelope) => {
       console.log('[DIALOGS-OPEN] hub:fetch_done', JSON.stringify({ studyTarget, active, ms: Math.round(dialogsOpenNow() - fetchStart), hasEnvelope: Boolean(envelope), packets: envelope?.packets.length ?? null }));
       if (!active) return;
       if (!envelope) {
@@ -225,8 +235,10 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
       // Клиент каталога не бросает; сюда попадём только при поломке самого кода.
       console.warn('[DIALOGUE-V2] hub:catalogue → unexpected rejection', { studyTarget, active, error: error instanceof Error ? error.name : String(error) });
     });
+    }
     return () => {
       active = false;
+      interaction.cancel();
       if (retryTimer) clearTimeout(retryTimer);
     };
   }, [reloadNonce, studyTarget]);

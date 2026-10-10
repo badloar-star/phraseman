@@ -77,3 +77,4 @@ Governance-ID: TG-26FBEB1554D0
 Governance-ID: TG-E3076A219FC2 — сторож account_delete_anonymous_no_guard_gate.mjs переписан под новое правило (гостю замок best-effort, без proof-less постановки).
 Governance-ID: TG-99B2CEA44E10 — REVISE ревью: прямой путь гостя ждёт ответ сервера (потолок) перед выходом, а не только начало отправки.
 Governance-ID: TG-6CD62769D76A — коммит правки удаления гостя после APPROVE (cloud_sync — только свой ханк).
+Governance-ID: TG-6CD62769D76A (прод.) — политика: абзац про удаление гостевого аккаунта (раздел 20), legal:sync.

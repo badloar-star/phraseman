@@ -169,7 +169,7 @@ export function usePlayerProfileSocial(
     'pt-BR': 'Solicitação enviada!', vi: 'Đã gửi lời mời!', id: 'Permintaan terkirim!', tr: 'İstek gönderildi!', pl: 'Zaproszenie wysłane!',
   });
   const requestFailedText = triLang(L, {
-    ru: 'Не отправилось. Попробуй позже', uk: 'Не вдалося надіслати. Спробуйте пізніше', es: 'No se pudo enviar. Inténtalo más tarde',
+    ru: 'Не отправилось. Попробуй позже', uk: 'Не вдалося надіслати. Спробуй пізніше', es: 'No se pudo enviar. Inténtalo más tarde',
     en: 'Failed to send. Try again later', 'pt-BR': 'Não foi possível enviar. Tente mais tarde', vi: 'Không gửi được. Hãy thử lại sau',
     id: 'Tidak dapat dikirim. Coba lagi nanti', tr: 'Gönderilemedi. Daha sonra tekrar dene', pl: 'Nie udało się wysłać. Spróbuj później',
   });
@@ -354,7 +354,7 @@ export function usePlayerProfileSocial(
 
   const relationshipText = (() => {
     switch (profileState) {
-      case 'self': return t4(L, { ru: 'Ваша визитка', uk: 'Ваша візитка', en: 'Your player card', es: 'Tu tarjeta' });
+      case 'self': return t4(L, { ru: 'Твоя визитка', uk: 'Твоя візитка', en: 'Your player card', es: 'Tu tarjeta' });
       case 'readonly': return t4(L, { ru: 'Профиль доступен только для просмотра', uk: 'Профіль доступний лише для перегляду', en: 'View-only profile', es: 'Perfil disponible solo para ver' });
       case 'add-busy': return t4(L, { ru: 'Отправляем заявку…', uk: 'Надсилаємо заявку…', en: 'Sending request…', es: 'Enviando solicitud…' });
       case 'request-sent': return t4(L, PC.requestSent);

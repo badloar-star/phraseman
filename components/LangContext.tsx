@@ -170,7 +170,7 @@ const UK: typeof RU = {
   lesson: {
     undo: 'Скасувати', cheat: 'Шпаргалка', theory: 'Теорія',
     oral: 'Усно', next: 'Далі', check: 'Перевірити',
-    typeHere: 'Введіть відповідь...', listenTitle: 'Слухаю...',
+    typeHere: 'Введи відповідь...', listenTitle: 'Слухаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Підказка після помилки',
   },
@@ -192,7 +192,7 @@ const UK: typeof RU = {
     help: 'Допомога',
     premium: 'Plus', premiumSub: 'Уроки, ліміти й практика — за підпискою',
     changeName: 'Змінити ім\'я', cancel: 'Скасувати', save: 'Зберегти',
-    nameError: 'Введіть ім\'я', namePlaceholder: 'Введіть ім\'я...',
+    nameError: 'Введи ім\'я', namePlaceholder: 'Введи ім\'я...',
   },
   edu: {
     title: 'Налаштування навчання',
@@ -224,14 +224,14 @@ const UK: typeof RU = {
   },
   diagnostic: {
     title: 'Діагностика рівня',
-    prevResult: 'Ваш останній результат',
+    prevResult: 'Твій останній результат',
     examReadinessTitle: 'Готовність до іспиту',
     start: 'Тест рівня англійської',
     startTest: 'Почати тест',
     yourLevel: 'Орієнтир за рівнем',
-    currentEnglishLevelTitle: 'Ваш поточний рівень англійської',
+    currentEnglishLevelTitle: 'Твій поточний рівень англійської',
     currentEnglishLevelHintBeforeTest:
-      'Пройдіть тест, щоб дізнатися свій рівень.',
+      'Пройди тест, щоб дізнатися свій рівень.',
     correct: 'Правильних відповідей',
     skipped: (n: number) => `Пропущено (таймер): ${n}`,
     again: 'Пройти ще раз',
@@ -242,11 +242,11 @@ const UK: typeof RU = {
       'Тест показав орієнтовний рівень. Почни з відповідних тем у курсі або повтори базу, якщо хочеш закріпити матеріал.',
   },
   onboarding: {
-    chooseLang: 'Оберіть мову',
-    enterName: 'Введіть ваше ім\'я або нікнейм',
-    placeholder: 'Ваше ім\'я...',
+    chooseLang: 'Обери мову',
+    enterName: 'Введи своє ім\'я або нікнейм',
+    placeholder: 'Твоє ім\'я...',
     next: 'Продовжити',
-    nameError: 'Введіть ім\'я щоб продовжити',
+    nameError: 'Введи ім\'я щоб продовжити',
   },
   premium: {
     locked: 'Plus відкриває уроки після перших 3',

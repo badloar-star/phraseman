@@ -47,8 +47,8 @@ export default function FriendsEmptyState({
     pl: 'Utracono połączenie',
   });
   const hint = triLang(lang, {
-    ru: 'Найдите друга по имени или поделитесь своим кодом.',
-    uk: 'Знайдіть друга за імʼям або поділіться своїм кодом.',
+    ru: 'Найди друга по имени или поделись своим кодом.',
+    uk: 'Знайди друга за імʼям або поділись своїм кодом.',
     en: 'Find a friend by name or share your code.',
     es: 'Busca a un amigo por nombre o comparte tu código.',
     'pt-BR': 'Encontre um amigo pelo nome ou compartilhe seu código.',
@@ -58,8 +58,8 @@ export default function FriendsEmptyState({
     pl: 'Znajdź znajomego po imieniu albo udostępnij swój kod.',
   });
   const offlineHint = triLang(lang, {
-    ru: 'Список сохранён на устройстве. Проверьте интернет и повторите обновление.',
-    uk: 'Список збережено на пристрої. Перевірте інтернет і повторіть оновлення.',
+    ru: 'Список сохранён на устройстве. Проверь интернет и повтори обновление.',
+    uk: 'Список збережено на пристрої. Перевір інтернет і повтори оновлення.',
     en: 'The list is saved on your device. Check your connection and refresh again.',
     es: 'La lista está guardada en el dispositivo. Revisa la conexión y vuelve a actualizar.',
     'pt-BR': 'A lista está salva no aparelho. Verifique a internet e atualize de novo.',

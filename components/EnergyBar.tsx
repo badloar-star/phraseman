@@ -113,7 +113,7 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
   const accessibilityLabel = useMemo(() => {
     if (isUnlimited) {
       return triLang(lang, {
-        ru: 'Безлимитная энергия. Нажмите, чтобы узнать подробнее.', uk: 'Безлімітна енергія. Натисніть, щоб дізнатися більше.',
+        ru: 'Безлимитная энергия. Нажми, чтобы узнать подробнее.', uk: 'Безлімітна енергія. Натисни, щоб дізнатися більше.',
         en: 'Unlimited energy. Tap for details.', es: 'Energía ilimitada. Toca para ver detalles.',
         'pt-BR': 'Energia ilimitada. Toque para ver detalhes.', vi: 'Năng lượng không giới hạn. Nhấn để xem chi tiết.',
         id: 'Energi tanpa batas. Ketuk untuk detail.', tr: 'Sınırsız enerji. Ayrıntılar için dokunun.',
@@ -121,8 +121,8 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
       });
     }
     return triLang(lang, {
-      ru: `Энергия ${current} из ${activeCap}.${lowCharge ? ' Низкий заряд.' : ''} Нажмите, чтобы узнать подробнее.`,
-      uk: `Енергія ${current} з ${activeCap}. Натисніть, щоб дізнатися більше.`,
+      ru: `Энергия ${current} из ${activeCap}.${lowCharge ? ' Низкий заряд.' : ''} Нажми, чтобы узнать подробнее.`,
+      uk: `Енергія ${current} з ${activeCap}. Натисни, щоб дізнатися більше.`,
       en: `Energy ${current} of ${activeCap}. Tap for details.`, es: `Energía ${current} de ${activeCap}. Toca para ver detalles.`,
       'pt-BR': `Energia ${current} de ${activeCap}. Toque para ver detalhes.`, vi: `Năng lượng ${current} trên ${activeCap}. Nhấn để xem chi tiết.`,
       id: `Energi ${current} dari ${activeCap}. Ketuk untuk detail.`, tr: `Enerji ${current} / ${activeCap}. Ayrıntılar için dokunun.`,

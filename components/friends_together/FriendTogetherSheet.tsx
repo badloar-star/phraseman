@@ -107,14 +107,14 @@ function FriendTogetherSheet({
   const nudgeLabel = together?.nudged
     ? L('Уже приглашены сегодня', 'Вже запрошені сьогодні', 'Already invited today', 'Ya invitado hoy', 'Já convidado hoje', 'Đã mời hôm nay', 'Sudah diundang hari ini', 'Bugün zaten davet edildi', 'Już zaproszono dziś')
     : together?.learnedToday
-      ? L('Вы уже занимались сегодня', 'Ви вже займалися сьогодні', 'You already studied today', 'Ya estudiaste hoy', 'Você já estudou hoje', 'Bạn đã học hôm nay', 'Kamu sudah belajar hari ini', 'Bugün zaten çalıştın', 'Dziś już się uczyłeś')
+      ? L('Ты уже занимался(ась) сегодня', 'Ти вже займався(лась) сьогодні', 'You already studied today', 'Ya estudiaste hoy', 'Você já estudou hoje', 'Bạn đã học hôm nay', 'Kamu sudah belajar hari ini', 'Bugün zaten çalıştın', 'Dziś już się uczyłeś')
       : L('Позвать учиться', 'Покликати вчитися', 'Invite to study', 'Invitar a estudiar', 'Convidar para estudar', 'Mời cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zaproś do nauki');
   const highFiveLabel = highFived
     ? L('Дай пять отправлено', 'П’ять відправлено', 'High five sent', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đập tay đã gửi', 'Tos sudah dikirim', 'Çak gönderildi', 'Piątka wysłana')
     : L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę');
   const blockLabel = L('Заблокировать', 'Заблокувати', 'Block', 'Bloquear', 'Bloquear', 'Chặn', 'Blokir', 'Engelle', 'Zablokuj');
   const deleteLabel = L('Удалить из друзей', 'Видалити з друзів', 'Remove from friends', 'Eliminar de amigos', 'Remover dos amigos', 'Xóa khỏi bạn bè', 'Hapus dari teman', 'Arkadaşlardan kaldır', 'Usuń ze znajomych');
-  const incomingLabel = L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас займатися сьогодні.', 'Your friend is inviting you to study today.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
+  const incomingLabel = L('Друг зовёт тебя заниматься сегодня.', 'Друг кличе тебе займатися сьогодні.', 'Your friend is inviting you to study today.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
 
   // зачем: недельные очки и место в рейтинге не являются частью Together UI.
   // Осталась только серия дней, одной крупной строкой без контейнера и без подписи

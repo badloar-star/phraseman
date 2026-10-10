@@ -95,8 +95,8 @@ export default function LearningV2FounderPassModal({
         pl: "KURS JEST W TRAKCIE TWORZENIA",
       }),
       title: triLang(lang, {
-        ru: "Войдите раньше остальных",
-        uk: "Увійдіть раніше за інших",
+        ru: "Войди раньше остальных",
+        uk: "Увійди раніше за інших",
         en: "Come in before everyone else",
         es: "Entra antes que los demás",
         "pt-BR": "Entre antes de todo mundo",
@@ -106,8 +106,8 @@ export default function LearningV2FounderPassModal({
         pl: "Wejdź przed innymi",
       }),
       body: triLang(lang, {
-        ru: "Мы открыли курс до завершения работ, потому что очень хотим узнать ваше мнение. Попробуйте готовые сессии и помогите нам сделать следующие лучше.",
-        uk: "Ми відкрили курс до завершення робіт, бо дуже хочемо дізнатися вашу думку. Спробуйте готові сесії та допоможіть нам зробити наступні кращими.",
+        ru: "Мы открыли курс до завершения работ, потому что очень хотим узнать твоё мнение. Попробуй готовые сессии и помоги нам сделать следующие лучше.",
+        uk: "Ми відкрили курс до завершення робіт, бо дуже хочемо дізнатися твою думку. Спробуй готові сесії та допоможи нам зробити наступні кращими.",
         en: "We opened the course before it is finished because we truly want your opinion. Try the ready sessions and help us make the next ones better.",
         es: "Abrimos el curso antes de terminarlo porque queremos conocer de verdad tu opinión. Prueba las sesiones listas y ayúdanos a mejorar las siguientes.",
         "pt-BR": "Abrimos o curso antes de concluí-lo porque queremos muito saber a sua opinião. Experimente as sessões prontas e ajude a melhorar as próximas.",

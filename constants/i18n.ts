@@ -233,9 +233,9 @@ export const T = {
     help:       'Допомога',
     oral:       'Усно',
     next:       'Далі',
-    typeAnswer: 'Введіть відповідь...',
+    typeAnswer: 'Введи відповідь...',
 
-    selectLevel:  'Оберіть рівень',
+    selectLevel:  'Обери рівень',
     easy:         'Легко',
     medium:       'Середньо',
     hard:         'Складно',
@@ -266,11 +266,11 @@ export const T = {
     fast:           'Швидко',
     helpMenu:       'Допомога',
 
-    chooseLanguage: 'Оберіть мову',
-    enterName:      'Введіть ваше ім\'я або нікнейм',
-    namePlaceholder:'Ваше ім\'я...',
+    chooseLanguage: 'Обери мову',
+    enterName:      'Введи своє ім\'я або нікнейм',
+    namePlaceholder:'Твоє ім\'я...',
     continueBtn:    'Продовжити',
-    nameRequired:   'Введіть ім\'я щоб продовжити',
+    nameRequired:   'Введи ім\'я щоб продовжити',
 
     // Онбординг: цель
     whyLearnEnglish: 'Навіщо ти вчиш англійську?',

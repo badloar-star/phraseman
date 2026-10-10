@@ -369,7 +369,7 @@ function ReportErrorButton({
                   <Text style={[styles.successTitle, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, {
                       ru: 'Подожди минуту',
-                      uk: 'Зачекайте хвилину',
+                      uk: 'Зачекай хвилину',
                       en: 'Wait a minute',
                       es: 'Espera un minuto',
                       'pt-BR': 'Espere um minuto',
@@ -382,7 +382,7 @@ function ReportErrorButton({
                   <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
                       ru: 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.',
-                      uk: 'Ви вже надіслали репорт менше хвилини тому. Спробуйте за хвилину.',
+                      uk: 'Ти вже надіслав(ла) репорт менше хвилини тому. Спробуй за хвилину.',
                       en: 'You sent a report less than a minute ago. Try again in a moment.',
                       es: 'Enviaste un informe hace menos de un minuto. Espera un momento antes de volver a intentarlo.',
                       'pt-BR': 'Você enviou um relatório há menos de um minuto. Tente novamente daqui a pouco.',

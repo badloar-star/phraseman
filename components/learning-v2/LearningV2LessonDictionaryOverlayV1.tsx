@@ -163,8 +163,8 @@ export default function LearningV2LessonDictionaryOverlayV1({
       pl: "Zamknij słownik",
     }),
     empty: triLang(lang, {
-      ru: "Здесь появятся только слова, которые вы уже встретили.",
-      uk: "Тут з’являться лише слова, які ви вже зустріли.",
+      ru: "Здесь появятся только слова, которые тебе уже встречались.",
+      uk: "Тут з’являться лише слова, які тобі вже траплялися.",
       en: "Only words you have already met will appear here.",
       es: "Aquí aparecerán solo las palabras que ya hayas visto.",
       "pt-BR": "Aqui aparecerão apenas as palavras que você já encontrou.",

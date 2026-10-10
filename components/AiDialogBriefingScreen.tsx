@@ -62,7 +62,7 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
     vi: 'Mục tiêu hội thoại', id: 'Tujuan dialog', tr: 'Diyalog hedefi', pl: 'Cel dialogu',
   }),
   firstPromptLabel: triLang(lang, {
-    ru: 'Начните с этого', uk: 'Почніть із цього', en: 'Start with this', es: 'Empieza con esto', 'pt-BR': 'Comece por aqui',
+    ru: 'Начни с этого', uk: 'Почни з цього', en: 'Start with this', es: 'Empieza con esto', 'pt-BR': 'Comece por aqui',
     vi: 'Bắt đầu từ đây', id: 'Mulai dari sini', tr: 'Buradan başlayın', pl: 'Zacznij od tego',
   }),
   start: triLang(lang, {
@@ -95,7 +95,7 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
   }),
   // Занятое хранилище/сбой: говорим что делать, а не просто «ошибка».
   retry: triLang(lang, {
-    ru: 'Не успели — нажмите ещё раз', uk: 'Не встигли — натисніть ще раз',
+    ru: 'Не успел(а) — нажми ещё раз', uk: 'Не встиг(ла) — натисни ще раз',
     en: 'Took too long — tap again', es: 'Tardó demasiado: toca otra vez',
     'pt-BR': 'Demorou demais — toque de novo', vi: 'Quá lâu — hãy nhấn lại',
     id: 'Terlalu lama — ketuk lagi', tr: 'Çok uzun sürdü — tekrar dokun', pl: 'Trwało za długo — naciśnij ponownie',

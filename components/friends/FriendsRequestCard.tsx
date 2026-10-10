@@ -29,8 +29,8 @@ function FriendsRequestCard({ profile, onAccept, onDecline }: {
   const accept = triLang(lang, { ru: 'Принять', uk: 'Прийняти', en: 'Accept', es: 'Aceptar', 'pt-BR': 'Aceitar', vi: 'Chấp nhận', id: 'Terima', tr: 'Kabul et', pl: 'Przyjmij' });
   const decline = triLang(lang, { ru: 'Отклонить', uk: 'Відхилити', en: 'Decline', es: 'Rechazar', 'pt-BR': 'Recusar', vi: 'Từ chối', id: 'Tolak', tr: 'Reddet', pl: 'Odrzuć' });
   const wants = triLang(lang, {
-    ru: 'Хочет добавить вас в друзья',
-    uk: 'Хоче додати вас у друзі',
+    ru: 'Хочет добавить тебя в друзья',
+    uk: 'Хоче додати тебе в друзі',
     en: 'Wants to add you as a friend',
     es: 'Quiere agregarte como amigo',
     'pt-BR': 'Quer adicionar você como amigo',

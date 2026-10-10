@@ -170,7 +170,7 @@ export const COPY = {
     'Diperpanjang tiap bulan · Batalkan kapan saja', 'Her ay yenilenir · İstediğin zaman iptal',
     'Odnawia się co miesiąc · Anuluj w każdej chwili',
   ),
-  wait: LP('Подождите…', 'Зачекайте…', 'Please wait…', 'Espera…', 'Aguarde…', 'Vui lòng chờ…', 'Mohon tunggu…', 'Lütfen bekle…', 'Chwileczkę…'),
+  wait: LP('Подожди…', 'Зачекай…', 'Please wait…', 'Espera…', 'Aguarde…', 'Vui lòng chờ…', 'Mohon tunggu…', 'Lütfen bekle…', 'Chwileczkę…'),
   // зачем (D158): тихие строки без красного и без иконки ошибки — цены недоступны, кнопка всё равно жива.
   unavailable: LP('Сейчас недоступно', 'Зараз недоступно', 'Not available right now', 'No disponible ahora', 'Indisponível agora', 'Hiện chưa khả dụng', 'Sedang tidak tersedia', 'Şu an kullanılamıyor', 'Chwilowo niedostępne'),
   tryInMinute: LP('Попробуй через минуту', 'Спробуй за хвилину', 'Try again in a minute', 'Inténtalo en un minuto', 'Tente de novo em um minuto', 'Hãy thử lại sau một phút', 'Coba lagi dalam semenit', 'Bir dakika sonra tekrar dene', 'Spróbuj za minutę'),
@@ -189,15 +189,15 @@ export const COPY = {
   privacy: LP('Конфиденциальность', 'Конфіденційність', 'Privacy', 'Privacidad', 'Privacidade', 'Quyền riêng tư', 'Privasi', 'Gizlilik', 'Prywatność'),
   // Экран после покупки (макет AB).
   afterTitle: LP(
-    'Plus ваш. Напомнить о конце пробного периода?', 'Plus ваш. Нагадати про кінець пробного періоду?',
+    'Plus твой. Напомнить о конце пробного периода?', 'Plus твій. Нагадати про кінець пробного періоду?',
     'Plus is yours. Remind you before the trial ends?', 'Plus es tuyo. ¿Te avisamos antes de que acabe la prueba?',
     'O Plus é seu. Quer um lembrete antes do fim do teste?', 'Plus là của bạn. Nhắc bạn trước khi hết dùng thử?',
     'Plus milikmu. Mau diingatkan sebelum uji coba berakhir?', 'Plus artık senin. Deneme bitmeden hatırlatalım mı?',
     'Plus jest Twój. Przypomnieć przed końcem okresu próbnego?',
   ),
   afterBody: LP(
-    'Пришлём одно уведомление за 2 дня до списания — чтобы вы спокойно решили, оставлять ли подписку.',
-    'Надішлемо одне сповіщення за 2 дні до списання — щоб ви спокійно вирішили, чи залишати підписку.',
+    'Пришлём одно уведомление за 2 дня до списания — чтобы ты спокойно решил(а), оставлять ли подписку.',
+    'Надішлемо одне сповіщення за 2 дні до списання — щоб ти спокійно вирішив(ла), чи залишати підписку.',
     "We'll send one notification 2 days before the charge so you can decide calmly whether to keep the subscription.",
     'Te enviaremos un aviso 2 días antes del cobro para que decidas con calma si mantienes la suscripción.',
     'Enviaremos uma notificação 2 dias antes da cobrança para você decidir com calma se mantém a assinatura.',

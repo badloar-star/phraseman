@@ -500,8 +500,8 @@ function DialogsTabContentBody({
   }, []);
 
   const briefingLongPressHint = triLang(lang, {
-    ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
-    uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
+    ru: 'Нажми и удерживай, чтобы открыть вводную к сценарию.',
+    uk: 'Натисни і утримуй, щоб відкрити вступ до сценарію.',
     en: 'Press and hold to open the scenario intro.',
     es: 'Mantén pulsado para abrir la introducción del escenario.',
     'pt-BR': 'Mantenha pressionado para abrir a introdução do cenário.',
@@ -531,8 +531,8 @@ function DialogsTabContentBody({
           });
     const accessibilityHint = locked
       ? triLang(lang, {
-          ru: 'Нажмите, чтобы узнать, как открыть сценарий.',
-          uk: 'Натисніть, щоб дізнатися, як відкрити сценарій.',
+          ru: 'Нажми, чтобы узнать, как открыть сценарий.',
+          uk: 'Натисни, щоб дізнатися, як відкрити сценарій.',
           en: 'Tap to find out how to unlock the scenario.',
           es: 'Pulsa para saber cómo desbloquear el escenario.',
           'pt-BR': 'Toque para saber como desbloquear o cenário.',

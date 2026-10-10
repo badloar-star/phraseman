@@ -21,8 +21,8 @@ const TITLE_COPY = [
 ];
 
 const BODY_COPY = [
-  'Друг зовёт вас заниматься сегодня.',
-  'Друг кличе вас позайматися сьогодні.',
+  'Друг зовёт тебя заниматься сегодня.',
+  'Друг кличе тебе позайматися сьогодні.',
   'A friend is inviting you to study today.',
   'Un amigo te invita a estudiar hoy.',
   'Um amigo está convidando você para estudar hoje.',

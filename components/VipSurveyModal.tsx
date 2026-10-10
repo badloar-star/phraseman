@@ -180,11 +180,11 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
     next: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
     optional: triLang(lang, { ru: 'Необязательно', uk: 'Необовʼязково', en: 'Optional', es: 'Opcional', 'pt-BR': 'Opcional', vi: 'Không bắt buộc', id: 'Opsional', tr: 'İsteğe bağlı', pl: 'Opcjonalnie' }),
     commentPlaceholder: triLang(lang, { ru: 'Можно добавить комментарий', uk: 'Можна додати коментар', en: 'You can add a comment', es: 'Puedes añadir un comentario', 'pt-BR': 'Você pode adicionar um comentário', vi: 'Bạn có thể thêm nhận xét', id: 'Kamu bisa menambahkan komentar', tr: 'Bir yorum ekleyebilirsin', pl: 'Możesz dodać komentarz' }),
-    textPlaceholder: triLang(lang, { ru: 'Напиши ответ', uk: 'Напишіть відповідь', en: 'Write an answer', es: 'Escribe tu respuesta', 'pt-BR': 'Escreva sua resposta', vi: 'Viết câu trả lời của bạn', id: 'Tulis jawabanmu', tr: 'Cevabını yaz', pl: 'Napisz odpowiedź' }),
+    textPlaceholder: triLang(lang, { ru: 'Напиши ответ', uk: 'Напиши відповідь', en: 'Write an answer', es: 'Escribe tu respuesta', 'pt-BR': 'Escreva sua resposta', vi: 'Viết câu trả lời của bạn', id: 'Tulis jawabanmu', tr: 'Cevabını yaz', pl: 'Napisz odpowiedź' }),
     introTitle: triLang(lang, { ru: 'Что такое Plus?', uk: 'Що таке Plus?', en: 'What is Plus?', es: '¿Qué es Plus?', 'pt-BR': 'O que é Plus?', vi: 'Plus là gì?', id: 'Apa itu Plus?', tr: 'Plus nedir?', pl: 'Czym jest Plus?' }),
     introBody: triLang(lang, {
       ru: 'Plus — это полный доступ ко всем функциям. После опроса ты получишь зелёную ауру и зелёный ник.',
-      uk: 'Plus — це повний доступ до всіх функцій. Після опитування ви отримаєте зелену ауру й зелений нік.',
+      uk: 'Plus — це повний доступ до всіх функцій. Після опитування ти отримаєш зелену ауру й зелений нік.',
       en: 'Plus gives full access to all features. After the survey you’ll get a green aura and green nickname.',
       es: 'Plus es acceso completo a todas las funciones. Tras la encuesta recibirás un aura verde y un nombre verde.',
       'pt-BR': 'Plus é acesso completo a todos os recursos. Após a pesquisa, você ganha uma aura verde e um nome verde.',

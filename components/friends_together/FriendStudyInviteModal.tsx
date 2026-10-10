@@ -59,7 +59,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           {L('Пять минут на английский?', 'П’ять хвилин на англійську?', 'Five minutes of English?', '¿Cinco minutos de inglés?', 'Cinco minutos de inglês?', 'Năm phút học tiếng Anh?', 'Lima menit bahasa Inggris?', 'Beş dakika İngilizce?', 'Pięć minut angielskiego?')}
         </Text>
         <Text style={[styles.body, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
-          {L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}
+          {L('Друг зовёт тебя заниматься сегодня.', 'Друг кличе тебе позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}
         </Text>
         <DuoPressable
           testID="friend-study-start"

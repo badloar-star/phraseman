@@ -105,7 +105,7 @@ function reportReplyCopy(lang: Lang) {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Reply to your report', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claim: triLang(lang, { ru: 'Получить', uk: 'Отримати', en: 'Claim', es: 'Recibir', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' }),
-    claimError: triLang(lang, { ru: 'Не получилось начислить награду. Попробуйте ещё раз.', uk: 'Не вдалося нарахувати нагороду. Спробуйте ще раз.', en: 'Could not apply the reward. Please try again.', es: 'No se pudo entregar la recompensa. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível entregar a recompensa. Tente de novo.', vi: 'Không thể trao thưởng. Hãy thử lại.', id: 'Hadiah belum dapat diberikan. Coba lagi.', tr: 'Ödül verilemedi. Tekrar deneyin.', pl: 'Nie udało się przyznać nagrody. Spróbuj ponownie.' }),
+    claimError: triLang(lang, { ru: 'Не получилось начислить награду. Попробуй ещё раз.', uk: 'Не вдалося нарахувати нагороду. Спробуй ще раз.', en: 'Could not apply the reward. Please try again.', es: 'No se pudo entregar la recompensa. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível entregar a recompensa. Tente de novo.', vi: 'Không thể trao thưởng. Hãy thử lại.', id: 'Hadiah belum dapat diberikan. Coba lagi.', tr: 'Ödül verilemedi. Tekrar deneyin.', pl: 'Nie udało się przyznać nagrody. Spróbuj ponownie.' }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward claimed', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
@@ -115,11 +115,11 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
     case 'friend_request':
       return triLang(lang, { ru: 'заявка в друзья', uk: 'заявка в друзі', en: 'friend request', es: 'solicitud de amistad', 'pt-BR': 'pedido de amizade', vi: 'lời mời kết bạn', id: 'permintaan pertemanan', tr: 'arkadaşlık isteği', pl: 'zaproszenie do znajomych' });
     case 'friend_accepted':
-      return triLang(lang, { ru: 'принял(а) вашу заявку', uk: 'прийняв(ла) вашу заявку', en: 'accepted your request', es: 'aceptó tu solicitud', 'pt-BR': 'aceitou seu pedido', vi: 'đã chấp nhận lời mời', id: 'menerima permintaanmu', tr: 'isteğini kabul etti', pl: 'przyjął(ęła) zaproszenie' });
+      return triLang(lang, { ru: 'принял(а) твою заявку', uk: 'прийняв(ла) твою заявку', en: 'accepted your request', es: 'aceptó tu solicitud', 'pt-BR': 'aceitou seu pedido', vi: 'đã chấp nhận lời mời', id: 'menerima permintaanmu', tr: 'isteğini kabul etti', pl: 'przyjął(ęła) zaproszenie' });
     case 'activity_like':
-      return triLang(lang, { ru: 'поставил(а) вам лайк', uk: 'поставив(ла) вам лайк', en: 'liked you', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
+      return triLang(lang, { ru: 'поставил(а) тебе лайк', uk: 'поставив(ла) тобі лайк', en: 'liked you', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
     case 'arena_partner_invite':
-      return triLang(lang, { ru: 'отправил(а) вам приглашение', uk: 'надіслав(ла) вам запрошення', en: 'sent you an invitation', es: 'te envió una invitación', 'pt-BR': 'enviou um convite', vi: 'đã gửi lời mời cho bạn', id: 'mengirimimu undangan', tr: 'sana davet gönderdi', pl: 'wysłał(a) ci zaproszenie' });
+      return triLang(lang, { ru: 'отправил(а) тебе приглашение', uk: 'надіслав(ла) тобі запрошення', en: 'sent you an invitation', es: 'te envió una invitación', 'pt-BR': 'enviou um convite', vi: 'đã gửi lời mời cho bạn', id: 'mengirimimu undangan', tr: 'sana davet gönderdi', pl: 'wysłał(a) ci zaproszenie' });
     case 'arena_partner_nudge':
       return triLang(lang, { ru: 'напомнил(а) о себе', uk: 'нагадав(ла) про себе', en: 'sent you a reminder', es: 'te envió un recordatorio', 'pt-BR': 'enviou um lembrete', vi: 'đã nhắc bạn', id: 'mengirimimu pengingat', tr: 'sana hatırlatma gönderdi', pl: 'przypomniał(a) o sobie' });
     case 'friend_nudge':

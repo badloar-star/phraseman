@@ -34,7 +34,7 @@ test('public props, lifecycle, audio and close rules stay intact', () => {
 
 test('mock states covered: intro / benefits / finale / promo with only confirmed benefit', () => {
   for (const s of ["'intro'", "'benefits'", "'finale'", "'promo'"]) assert.ok(src.includes(s));
-  for (const s of ['Доступ подтверждён', 'Занимайтесь без ожидания', 'Без расхода энергии', 'Всё готово', 'Промокод применён', 'К занятиям', 'Пропустить'])
+  for (const s of ['Доступ подтверждён', 'Занимайся без ожидания', 'Без расхода энергии', 'Всё готово', 'Промокод применён', 'К занятиям', 'Пропустить'])
     assert.ok(copy.includes(s), `copy: ${s}`);
   for (const lang of ['uk:', 'en:', 'es:', "'pt-BR':", 'vi:', 'id:', 'tr:', 'pl:'])
     assert.ok(copy.includes(lang));

@@ -47,8 +47,8 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'ok',
         text: L(
-          'Код уже привязан к вашему аккаунту.',
-          'Код уже прив’язаний до вашого акаунта.',
+          'Код уже привязан к твоему аккаунту.',
+          'Код уже прив’язаний до твого акаунта.',
           'This code is already linked to your account.',
           'El código ya está vinculado a tu cuenta.',
           'O código já está vinculado à sua conta.',
@@ -62,7 +62,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Проверьте код: он слишком короткий.',
+          'Проверь код: он слишком короткий.',
           'Перевірте код: він закороткий.',
           'Check the code: it\'s too short.',
           'Revisa el código: es demasiado corto.',
@@ -77,8 +77,8 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Такой код не найден. Убедитесь, что это код приглашения Phraseman.',
-          'Такий код не знайдено. Переконайтеся, що це код запрошення Phraseman.',
+          'Такой код не найден. Убедись, что это код приглашения Phraseman.',
+          'Такий код не знайдено. Переконайся, що це код запрошення Phraseman.',
           'We couldn\'t find that code. Make sure it\'s a Phraseman invite code.',
           'No encontramos ese código. Verifica que sea un código de invitación de Phraseman.',
           'Não encontramos esse código. Confira se é um convite do Phraseman.',
@@ -107,8 +107,8 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Это ваш код. Его нужно отправить другу.',
-          'Це ваш код. Його потрібно надіслати другу.',
+          'Это твой код. Его нужно отправить другу.',
+          'Це твій код. Його потрібно надіслати другу.',
           'This is your code. Send it to a friend.',
           'Es tu código. Envíalo a un amigo.',
           'Esse é o seu código. Envie para um amigo.',
@@ -137,8 +137,8 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Приглашения сейчас недоступны. Попробуйте позже.',
-          'Запрошення зараз недоступні. Спробуйте пізніше.',
+          'Приглашения сейчас недоступны. Попробуй позже.',
+          'Запрошення зараз недоступні. Спробуй пізніше.',
           'Invitations are unavailable right now. Try again later.',
           'Las invitaciones no están disponibles ahora.',
           'Os convites não estão disponíveis agora.',
@@ -153,8 +153,8 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'error',
         text: L(
-          'Не получилось применить код. Проверьте интернет и попробуйте ещё раз.',
-          'Не вдалося застосувати код. Перевірте інтернет і спробуйте ще раз.',
+          'Не получилось применить код. Проверь интернет и попробуй ещё раз.',
+          'Не вдалося застосувати код. Перевір інтернет і спробуй ще раз.',
           'Couldn\'t apply the code. Check your internet and try again.',
           'No pudimos aplicar el código. Revisa internet e inténtalo de nuevo.',
           'Não foi possível aplicar o código. Confira a internet e tente de novo.',
@@ -240,8 +240,8 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           'Wpisz kod i kup Plus lub Pro, aby znajomy dostał klucz.',
         )}
       </Text>
-      {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700 (решение (Б) 05.10 — макет главнее D145). d145-mockup: overlays-more.html .om-field-label 12 */}
-      <Text style={{ color: glass.secondary, fontSize: 12, /* d145-mockup: overlays-more.html .om-field-label 12 */ lineHeight: 18, fontWeight: '700', marginTop: 14, marginBottom: 7 }}>
+      {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700, шкала D145 — 13. */}
+      <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', marginTop: 14, marginBottom: 7 }}>
         {L('Код приглашения', 'Код запрошення', 'Invite code', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
       </Text>
       <TextInput
@@ -251,7 +251,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         onChangeText={setCode}
         autoCapitalize="characters"
         autoCorrect={false}
-        placeholder={L('Введите код', 'Введіть код', 'Enter the code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+        placeholder={L('Введи код', 'Введи код', 'Enter the code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
         placeholderTextColor={glass.mutedText}
         // зачем (`.field`): 48 высотой, радиус 14, поля 14, тонкая кромка, обычный вес.
         style={{

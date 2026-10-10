@@ -381,8 +381,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           </Text>
           <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginBottom: 8 }}>
             {L({
-              ru: 'Введите «УДАЛИТЬ» для подтверждения:',
-              uk: 'Введіть «ВИДАЛИТИ» для підтвердження:',
+              ru: 'Введи «УДАЛИТЬ» для подтверждения:',
+              uk: 'Введи «ВИДАЛИТИ» для підтвердження:',
               es: 'Escribe «ELIMINAR» para confirmar:',
               'pt-BR': 'Digite «EXCLUIR» para confirmar:',
               vi: 'Nhập "XÓA" để xác nhận:',

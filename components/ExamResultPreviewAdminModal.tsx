@@ -412,7 +412,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                   {triLang(lang, {
                     ru: 'Укажи имя — и твой сертификат появится здесь. Без имени награда не показывается.',
                     en: "Add your name and your certificate will appear here. Without a name, the reward isn't shown.",
-                    uk: 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
+                    uk: 'Вкажи ім\u02BCя — і твій сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
                     es: 'Indica tu nombre y tu diploma aparecerá aquí. Sin nombre no mostramos la recompensa.',
                     'pt-BR': 'Informe seu nome e o certificado aparecerá aqui. Sem nome, a recompensa não é exibida.',
                     vi: 'Nhập tên của bạn, chứng chỉ sẽ xuất hiện ở đây. Không có tên thì phần thưởng không hiển thị.',

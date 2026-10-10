@@ -86,8 +86,8 @@ function inboxText(lang: Lang) {
     vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', en: 'Plus survey', es: 'Encuesta Plus', 'pt-BR': 'Pesquisa Plus', vi: 'Khảo sát Plus', id: 'Survei Plus', tr: 'Plus anketi', pl: 'Ankieta Plus' }),
     vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', en: 'Take survey', es: 'Responder encuesta', 'pt-BR': 'Responder pesquisa', vi: 'Làm khảo sát', id: 'Ikuti survei', tr: 'Ankete katıl', pl: 'Wypełnij ankietę' }),
     vipSurveyHint: triLang(lang, {
-      ru: 'Ответьте на несколько вопросов и активируйте месяц Plus.',
-      uk: 'Дайте відповідь на кілька запитань і активуйте місяць Plus.',
+      ru: 'Ответь на несколько вопросов и активируй месяц Plus.',
+      uk: 'Дай відповідь на кілька запитань і активуй місяць Plus.',
       en: 'Answer a few questions and activate a month of Plus.',
       es: 'Responde algunas preguntas y activa un mes de Plus.',
       'pt-BR': 'Responda algumas perguntas e ative um mês de Plus.',
@@ -1516,7 +1516,8 @@ const styles = StyleSheet.create({
   },
   modalSub: {
     marginTop: 2,
-    fontSize: 14, // d145-mockup: system.html system_17 подпись 14 (решение (Б) 05.10 — макет главнее D145)
+    // зачем: макет 14, но шкала владельца D145 (01.10, новее макета) — подписи 13.
+    fontSize: 13,
     lineHeight: 18,
     fontWeight: '400',
   },
@@ -1583,7 +1584,8 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   messageDate: {
-    fontSize: 12, // d145-mockup: system.html system_17 дата 12 (решение (Б) 05.10 — макет главнее D145)
+    // зачем: макет 12, шкала D145 — 13.
+    fontSize: 13,
     fontWeight: '600',
   },
   pollBadge: {
@@ -1613,7 +1615,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   messagePreview: {
-    fontSize: 14, // d145-mockup: system.html system_17 текст 14 (решение (Б) 05.10 — макет главнее D145)
+    // зачем: макет 14, но шкала владельца D145 (01.10, новее макета) — подписи 13.
+    fontSize: 13,
     lineHeight: 18,
     fontWeight: '400',
   },
@@ -1656,12 +1659,14 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     marginTop: 6,
-    fontSize: 18, // d145-mockup: system.html system_17 заголовок 18 жирный (решение (Б) 05.10 — макет главнее D145)
+    // зачем: макет 18 жирный; по D145 это не заголовок раздела (<19) — 16, иерархия весом.
+    fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
   },
   emptyBody: {
-    fontSize: 15, // d145-mockup: system.html system_17 пусто 15 (решение (Б) 05.10 — макет главнее D145)
+    // зачем: макет 15, шкала D145 — 16.
+    fontSize: 16,
     lineHeight: 22,
     textAlign: 'center',
     fontWeight: '400',

@@ -143,7 +143,7 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
       'pt-BR': 'Seu lugar',
       vi: 'Vị trí của bạn',
       id: 'Posisimu',
-      tr: 'Yeriniz',
+      tr: 'Yerin',
       pl: 'Twoje miejsce',
     })} chrome={chrome}>
       <View style={S.pctRow}>

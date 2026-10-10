@@ -15,13 +15,16 @@ const THEMES = [
   'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
 ];
 const DEPENDENCY_HASHES = {
-  'app/feedback_client.ts': 'd98cd59ae633c8fbb73d23996d5dc7cdc762e76b1b9d37cb7827e44a0861798e',
+  'app/feedback_client.ts': /* 10.10: App Check снят навсегда (4a1c787b4, пломба владельца) */ '25e7478401d2c77c0b63be9ddb1b42e880118e2f16ef42bb02040d53801568c6',
   'app/feedback_outbox.ts': '26deee2c37a146ce580dcfe1103a3308cd82fa5ca0ccb32bf47e05ad0daeaca4',
-  'app/analytics.ts': 'a5f0c9143133b481949f914b2497e4ca88ab91c314f64dbac68abacb09687070',
-  'app/stable_id.ts': '274fe5889b3f291eb4f474ce14670a05125a75bc3525c2f4b52f002525d99acd',
+  // 10.10: осознанные правки 0e7e610d2 (обрезка параметров Firebase), 33636dd55 (D136–D140), edea8fec7 (PM-229).
+  'app/analytics.ts': '00301b11c671af37fc9ee39c0d92b9b611f8feb3b0e34f0af95343408a298dfe',
+  // 10.10: account-authority S2c/S2d (5c0c5e234, ebc1a860d) и PM-229 (1c6ba0f4e).
+  'app/stable_id.ts': 'ac879721fd8fbcebf9e3ca3e68dadcedf6f50e5d149ad81c292164eeb5b61cc2',
   'hooks/use-haptics.ts': 'fbb8366e985889400c4736f097ed12532cd06e3d5b6e2a997129e776e66ab208',
   // зачем (30.09): +контракт диагностики PM-226 (DiagnosticErrorInput, [DIAG]) в efe19ae9d — только добавление, путь доставки отзыва не тронут.
-  'app/debug-logger.ts': '1f88bdcb74fb5a22c270f3ba745d6e74bed3462cc461895a508d258f6d52772b',
+  // 10.10: PM-228 (лимит журнала, 0d6609bd2) и PM-229 (c0b7e4b1e).
+  'app/debug-logger.ts': 'c674fd3f4f3670ea6754978be2045c0dbe3d11dd485b0502d2ae201ef6515d04',
 };
 const PROTECTED_AST = { count: 7, digest: '80f60e74868c26136e37247854b52212f0b48c7962a26106d0e4418b92342a22' };
 const LEGACY_RENDER_HASHES = {

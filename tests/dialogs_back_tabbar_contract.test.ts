@@ -16,19 +16,26 @@ describe('dialogs back and tab chrome navigation contract', () => {
     expect(lessons).toContain('onPress={handleLessonsBack}');
   });
 
+  // зачем (владелец 24.09, V2TabBar «Тёплая кромка»): капсула вынесена в components/v2/V2TabBar, ref переименован —
+  // смысл тот же: любая смена видимой вкладки сразу разворачивает сжатую капсулу.
   it('expands tab chrome for every actual visual tab change, including context navigation', () => {
     const layout = source(path.join('app', '(tabs)', '_layout.tsx'));
 
     expect(layout).toMatch(
-      /const previousVisualTabIdxRef = useRef\(visualIdx\);[\s\S]*?useLayoutEffect\(\(\) => \{\s*if \(previousVisualTabIdxRef\.current === visualIdx\) return;\s*previousVisualTabIdxRef\.current = visualIdx;\s*tabScrollLastYRef\.current = 0;\s*animateTabChrome\(false, true\);\s*\}, \[animateTabChrome, visualIdx\]\);/,
+      /const previousVisualIdxRef = useRef\(visualIdx\);[\s\S]*?useLayoutEffect\(\(\) => \{\s*if \(previousVisualIdxRef\.current === visualIdx\) return;\s*previousVisualIdxRef\.current = visualIdx;\s*tabScrollLastYRef\.current = 0;\s*animateTabChrome\(false, true\);\s*\}, \[animateTabChrome, visualIdx\]\);/,
     );
   });
 
+  // зачем: значки рисует V2TabBar; при сжатии сжимается вся капсула (scale/translate), значки не прячутся.
   it('keeps every icon visible while the whole capsule compacts', () => {
     const layout = source(path.join('app', '(tabs)', '_layout.tsx'));
-    expect(layout).toContain('<Ionicons name={visuallyFocused ? tab.active : tab.icon}');
-    expect(layout).not.toContain('tabIconOpacity');
-    expect(layout).not.toContain('tabIconVisibilityStyle');
-    expect(layout).not.toContain('tab-collapsed-orb');
+    const bar = source(path.join('components', 'v2', 'V2TabBar.tsx'));
+    expect(bar).toContain('<Ionicons name={on ? item.activeIcon : item.icon}');
+    expect(layout).toContain("collapseStyle={{ transformOrigin: '50% 100%', transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }] }}");
+    for (const src of [layout, bar]) {
+      expect(src).not.toContain('tabIconOpacity');
+      expect(src).not.toContain('tabIconVisibilityStyle');
+      expect(src).not.toContain('tab-collapsed-orb');
+    }
   });
 });

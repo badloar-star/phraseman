@@ -12,7 +12,10 @@ describe('lessons full-bleed safe-area contract', () => {
     expect(lessons).toContain('<ScreenGradient forceFullBleed>');
     expect(lessons).toContain('const headerTopPad = isRetainedTab ? 12 : insets.top + 12;');
     expect(lessons).toContain('paddingTop: headerTopPad');
-    expect(tabsLayout).toContain('<ScreenGradient artBackdrop="home" style={{ flex: 1 }}');
+    // зачем: полоса под строкой состояния красится фоном видимой вкладки («Уроки» — свой фон), чтобы арт Главной
+    // не просвечивал над списком уроков; фон по-прежнему во весь экран, отступ — у обёртки.
+    expect(tabsLayout).toContain("const scaffoldArtBackdrop = visualIdx === 1 ? 'lessons' : 'home';");
+    expect(tabsLayout).toMatch(/<ScreenGradient\s+artBackdrop=\{scaffoldArtBackdrop\}\s+style=\{\{ flex: 1 \}\}/);
     expect(tabsLayout).toContain('style={{ flex: 1, paddingTop: insets.top }}');
 
     const tabScaffoldSource = tabsLayout.slice(tabsLayout.indexOf('function TabScaffold'));

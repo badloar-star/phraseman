@@ -7,12 +7,18 @@ const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 
 describe('lesson list and completion contracts', () => {
   it('keeps the complete lesson path permanently visible in one flat list', () => {
     const source = read('app', '(tabs)', 'lessons.tsx');
+    // зачем (05.10): файл отформатирован двойными кавычками; список — тот же один плоский ListItem
+    // (урок / экзамен / аттестация), рендер идёт через поиск по урокам (legacyFilteredListData из listData).
+    const listItemType = source.slice(source.indexOf('type ListItem ='), source.indexOf('const listData: ListItem[]'));
 
-    expect(source).toContain("kind: 'lesson'");
-    expect(source).toContain("kind: 'exam'");
-    expect(source).toContain("kind: 'attestation'");
-    expect(source).toContain("data={listData}");
-    expect(source).not.toContain("kind: 'chapter'");
+    expect(listItemType).toMatch(/kind: ["']lesson["']/);
+    expect(listItemType).toMatch(/kind: ["']exam["']/);
+    expect(listItemType).toMatch(/kind: ["']attestation["']/);
+    // строка «глава» Learning V2 — свой вид v2_chapter; отдельного вида "chapter" (свёрнутые главы) в плоском списке нет.
+    expect(listItemType).not.toMatch(/kind: ["']chapter["'];/);
+    expect(source).toContain('const listData: ListItem[] = useMemo(');
+    expect(source).toMatch(/legacyFilteredListData = useMemo\([\s\S]{0,1200}listData/);
+    expect(source).toContain('data={legacyFilteredListData}');
   });
 
   it('grants first-completion pearls only after lesson1 passes the lesson', () => {

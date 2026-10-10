@@ -74,6 +74,23 @@ function safeEnvelope(value: unknown): DialogueV2CatalogueReleaseEnvelope | null
   });
 }
 
+/**
+ * Тот же выпуск по содержимому. Каталог ~95 КБ — сравнение строк занимает миллисекунды.
+ * зачем (Сверка cold5a/b 23:30: fetch_apply sameEnvelope=false → проекция 90–122 мс и перерисовка хаба при КАЖДОМ
+ * приходе из сети, хотя выпуск не менялся): равный по содержимому конверт отдаём тем же объектом, что уже на экране.
+ */
+function samePackets(left: DialogueV2CatalogueReleaseEnvelope, right: DialogueV2CatalogueReleaseEnvelope): boolean {
+  if (left === right) return true;
+  if (left.packets.length !== right.packets.length) return false;
+  try {
+    return JSON.stringify(left.packets) === JSON.stringify(right.packets);
+  } catch (error: unknown) {
+    // Несериализуемый пакет — считаем разными: лучше лишняя перерисовка, чем устаревший каталог.
+    console.warn('[DIALOGUE-V2] catalogue:compare_failed', error instanceof Error ? error.message : String(error));
+    return false;
+  }
+}
+
 function envelopeFromPackets(packets: unknown): DialogueV2CatalogueReleaseEnvelope | null {
   return Array.isArray(packets) && packets.length === FULL_CATALOGUE_SIZE
     ? Object.freeze({ ok: true as const, packets: Object.freeze([...packets]) })
@@ -133,12 +150,17 @@ export async function fetchDialogueV2CatalogueFromNetwork(
   if (!safeStudyTarget(studyTarget)) return null;
 
   try {
+    // ВРЕМЕННО ([DIALOGS-OPEN], Сверка cold5b: JS стоит 2605 мс и отпускает ровно к fetch_done 2607 мс): по стадиям —
+    // сколько стоит синхронная подготовка вызова и сколько идёт ожидание ответа. Снять после разбора.
+    const prepareStart = Date.now();
     const callable = httpsCallable<Readonly<{ studyTarget: DialogueV2CatalogueStudyTarget }>, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2Catalogue',
     );
     const startedAt = Date.now();
+    console.log('[DIALOGS-OPEN] fetch:callable_ready', JSON.stringify({ studyTarget, prepareMs: startedAt - prepareStart }));
     const response = await callable(Object.freeze({ studyTarget }));
+    console.log('[DIALOGS-OPEN] fetch:response', JSON.stringify({ studyTarget, awaitMs: Date.now() - startedAt }));
     const envelope = safeEnvelope(response.data);
     // зачем (правило «сперва логи»): отказ формы ответа раньше молча давал «Диалоги недоступны».
     if (!envelope) {
@@ -247,15 +269,22 @@ function refreshFromNetwork(
   const previous = memoryCache.get(studyTarget)?.envelope ?? null;
   const refresh = fetchDialogueV2CatalogueFromNetwork(studyTarget)
     .then((network) => {
-      const envelope = network ? envelopeFromPackets(network.packets) : null;
-      if (network && !envelope) {
+      const fresh = network ? envelopeFromPackets(network.packets) : null;
+      // Тот же выпуск — тот же объект, что уже на экране (кэш этого запуска или встроенный снимок): хаб сравнивает
+      // конверты по ссылке и не пересчитывает проекцию и не перерисовывается.
+      const shown = bestAvailable(studyTarget).envelope;
+      const compareStart = Date.now();
+      const sameAsShown = Boolean(fresh && shown && samePackets(shown, fresh));
+      const envelope = sameAsShown ? shown : fresh;
+      console.log('[DIALOGS-OPEN] fetch:compare', JSON.stringify({ studyTarget, sameAsShown, compareMs: Date.now() - compareStart }));
+      if (network && !fresh) {
         console.warn('[DIALOGUE-V2] catalogue:network_incomplete', JSON.stringify({
           studyTarget, packets: network.packets.length,
         }));
       }
       persistCacheEntry(studyTarget, { checkedAtMs: nowMs, envelope: envelope ?? previous });
       console.info('[DIALOGUE-V2] catalogue:refresh', JSON.stringify({
-        studyTarget, result: envelope ? 'network' : 'kept_previous', hadPrevious: Boolean(previous),
+        studyTarget, result: envelope ? 'network' : 'kept_previous', hadPrevious: Boolean(previous), sameAsShown,
       }));
       return envelope;
     })
@@ -293,7 +322,10 @@ export async function fetchReleasedDialogueV2Catalogue(
     return null;
   }
   const nowMs = options.nowMs ?? Date.now();
+  const hydrateStart = Date.now();
   const entry = await hydrateCache(studyTarget);
+  // ВРЕМЕННО ([DIALOGS-OPEN]): чтение кэша с диска — одна из стадий до сети.
+  console.log('[DIALOGS-OPEN] fetch:hydrated', JSON.stringify({ studyTarget, ms: Date.now() - hydrateStart, cached: Boolean(entry) }));
   const ageMs = entry ? nowMs - entry.checkedAtMs : null;
   const stale = ageMs === null || ageMs < 0 || ageMs >= DIALOGUE_V2_CATALOGUE_REFRESH_MS;
   if (stale) {

@@ -128,7 +128,9 @@ describe('Dialogue V2 catalogue: cache → embedded → background', () => {
 
     const first = await fetchReleasedDialogueV2Catalogue('es', { awaitRefresh: true, nowMs: NOW });
     expect(first?.packets).toEqual(network.packets);
-    expect(first).not.toBe(getEmbeddedDialogueV2Catalogue('es'));
+    // зачем (Сверка 23:30): тот же выпуск по содержимому отдаётся ТЕМ ЖЕ объектом, что уже на экране, — хаб не
+    // пересчитывает проекцию и не перерисовывается. Кэш при этом всё равно пишется (окно 12 ч).
+    expect(first).toBe(getEmbeddedDialogueV2Catalogue('es'));
     expect(storage.setItem).toHaveBeenCalledWith('dialogue_v2_catalogue_cache_v1:es', expect.any(String));
 
     // Новый запуск приложения: память пуста, кэш на диске свежий.
@@ -138,6 +140,15 @@ describe('Dialogue V2 catalogue: cache → embedded → background', () => {
     expect(second?.packets).toEqual(network.packets);
     expect(mockCallableRun).not.toHaveBeenCalled();
     expect(peekDialogueV2Catalogue('es')).toBe(second);
+  });
+
+  it('a changed release replaces the shown catalogue with a new object', async () => {
+    const network = networkEnvelopeFrom('fr');
+    (network.packets[0] as { studyTarget: string; changedForTest?: boolean }).changedForTest = true;
+    mockCallableRun.mockResolvedValue({ data: network });
+    const served = await fetchReleasedDialogueV2Catalogue('fr', { awaitRefresh: true, nowMs: NOW });
+    expect(served).not.toBe(getEmbeddedDialogueV2Catalogue('fr'));
+    expect(served?.packets).toEqual(network.packets);
   });
 
   it('a stale cache is served immediately and refreshed in the background', async () => {

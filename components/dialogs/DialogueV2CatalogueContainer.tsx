@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { Profiler, useCallback, useEffect, useMemo, useState, useRef } from 'react';
+import React, { Profiler, memo, useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { Text, View } from 'react-native';
 
 import {
@@ -112,7 +112,7 @@ function logCatalogueRender(id: string, phase: string, actualDuration: number, b
   console.log('[DIALOGS-OPEN] hub:render_cost', JSON.stringify({ id, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration) }));
 }
 
-export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
+function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
@@ -344,5 +344,10 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     </>
   );
 }
+
+// зачем (Сверка cold5a/b 23:30): экран «Диалоги» перерисовывается после открытия (home:rerender changed=[] и
+// changed=["quota"]), а шапка — новый JSX в каждом рендере. Без memo каждая такая перерисовка тянула весь каталог
+// (render_cost 19–53 мс). Пропсы контейнера — стабильный onPressItem и булево showQuotaRow.
+export const DialogueV2CatalogueContainer = memo(DialogueV2CatalogueContainerImpl);
 
 export default DialogueV2CatalogueContainer;

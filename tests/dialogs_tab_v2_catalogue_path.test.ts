@@ -22,4 +22,15 @@ describe('DialogsTabContent live V2 catalogue path', () => {
     expect(livePath).not.toContain('runes');
     expect(livePath).not.toContain('Plus');
   });
+
+  // зачем (Сверка cold5a/b 23:30): onPressItem менялся в КАЖДОМ рендере экрана, и каталог перерисовывался вслед за
+  // шапкой. Держим стабильную ссылку (useCallback) и memo контейнера — иначе лишние перерисовки вернутся молча.
+  it('passes a stable onPressItem to a memoized catalogue container', () => {
+    const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'DialogsTabContent.tsx'), 'utf8');
+    const container = fs.readFileSync(path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueContainer.tsx'), 'utf8');
+    expect(source).toMatch(/const onPressCatalogueItem = useCallback\(/);
+    expect(source).toContain('onPressItem={onPressCatalogueItem}');
+    expect(source).not.toMatch(/onPressItem=\{\(/);
+    expect(container).toContain('export const DialogueV2CatalogueContainer = memo(DialogueV2CatalogueContainerImpl);');
+  });
 });

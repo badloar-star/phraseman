@@ -80,7 +80,8 @@ export function DialogueGlassGoalCard({
   glass, kicker, label, hintLabel, onOpen, onHint, testID,
 }: Readonly<{
   glass: DialogueGlass; kicker: string; label: string; hintLabel: string;
-  onOpen: () => void; onHint: () => void; testID?: string;
+  // зачем (dialogs-015/017): onHint нет — подсказки пока нет; кнопку не рисуем, а не оставляем мёртвой.
+  onOpen: () => void; onHint?: () => void; testID?: string;
 }>) {
   return (
     <PressableHybrid
@@ -102,7 +103,7 @@ export function DialogueGlassGoalCard({
         <Text maxFontSizeMultiplier={1.3} style={[styles.goalKicker, { color: glass.secondary }]}>{kicker}</Text>
         <Text maxFontSizeMultiplier={1.3} style={[styles.goalLabel, { color: glass.text }]}>{label}</Text>
       </View>
-      <PressableHybrid
+      {onHint ? <PressableHybrid
         testID={testID ? `${testID}-hint` : undefined}
         accessibilityRole="button"
         accessibilityLabel={hintLabel}
@@ -113,7 +114,7 @@ export function DialogueGlassGoalCard({
         contentStyle={[styles.hintButton, { backgroundColor: glassTone(glass.text, 0.08) }]}
       >
         <Ionicons name="bulb-outline" size={20} color={glass.text} />
-      </PressableHybrid>
+      </PressableHybrid> : null}
       <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
     </PressableHybrid>
   );

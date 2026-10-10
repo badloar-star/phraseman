@@ -582,7 +582,8 @@ function SessionContent() {
         kicker: coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
         label: currentObjective.label,
       } : null}
-      hintText={coaching.hint ?? currentObjective?.label ?? null}
+      // зачем (dialogs-015/017): подсказка — только из разбора хода; подмена текстом цели дублировала карточку цели.
+      hintText={coaching.hint ?? null}
       translatedIds={coaching.translatedIds}
       onToggleTranslation={coaching.toggleTranslation}
       whyTarget={whyMessage && whyMessage.explanation ? {

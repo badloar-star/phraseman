@@ -347,7 +347,7 @@ export function DialogueV2SessionScreen({
               label={goal.label}
               hintLabel={coachingLabels.hint}
               onOpen={openGoals}
-              onHint={openHint}
+              onHint={hintText ? openHint : undefined}
             />
           ) : null}
         </View>

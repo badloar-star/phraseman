@@ -40,14 +40,15 @@ describe('Fabric background layout guard', () => {
     expect(topFadeMask).not.toContain('dimezisBlurView');
     expect(topFadeMask).not.toContain('FEATHER_INTENSITY_STOPS');
     expect(topFadeMask).not.toContain('feather-');
-    // 2.0 (D39/D43): таббар — непрозрачная панель во всю ширину, без блюра.
-    expect(tabLayout).toContain('style={[s.tabBarWrap, { height: tabDockHeight }]}');
-    expect(tabLayout).toContain('backgroundColor: v2.tabBar,');
+    // 2.0: таббар — плавающая капсула «Тёплая кромка» (6c5c8326f, 24.09) поверх прозрачной обёртки без блюра.
+    // зачем (10.10): прежняя непрозрачная панель во всю ширину (D39/D43) заменена владельцем; обёртка резервирует
+    // место под тень капсулы, overflow не режет тень.
+    expect(tabLayout).toContain('style={[s.tabBarWrap, { height: tabBarBottom + V2_TAB_BAR_HEIGHT + TAB_BAR_WRAP_SHADOW_ROOM }]}');
+    expect(tabLayout).toContain("backgroundColor: 'transparent',");
     expect(tabLayout).not.toContain("from 'expo-blur'");
     expect(tabLayout).not.toContain('<BlurView');
     expect(tabLayout).toContain("position: 'absolute'");
     expect(tabLayout).toContain('bottom: 0');
-    expect(tabLayout).toContain("overflow: 'hidden'");
     expect(tabLayout).not.toContain('tabBarBackdropBlur');
     expect(tabLayout).not.toContain('tabBarBackdropTint');
     expect(tabLayout).not.toContain('tabBarBottomFill');

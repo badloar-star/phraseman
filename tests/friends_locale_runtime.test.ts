@@ -10,15 +10,11 @@ describe('friends tab locale runtime', () => {
     expect(source).not.toMatch(legacyRuntimePattern);
   });
 
-  it('keeps incoming friend gift labels wired for every Heisenberg locale', () => {
+  it('carries no friend gift labels — gifts were retired into coins in 2.0', () => {
+    // зачем (10.10): подарки друзьям сняты экономикой 2.0 (подарки → монеты, RETIRED_GIFTS_TO_COINS_*);
+    // ярлыков входящих подарков на вкладке «Друзья» больше нет ни на одном языке.
     const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
-
-    for (const field of ['giftLabelPtBr', 'giftLabelVi', 'giftLabelId', 'giftLabelTr', 'giftLabelPl']) {
-      expect(source).toContain(field);
-    }
-    for (const field of ['labelPtBr', 'labelVi', 'labelId', 'labelTr', 'labelPl']) {
-      expect(source).toContain(field);
-    }
+    expect(source).not.toMatch(/giftLabel(?:PtBr|Vi|Id|Tr|Pl)\b/);
   });
 
   it('keeps the empty-friends add action as a single compact glass button', () => {

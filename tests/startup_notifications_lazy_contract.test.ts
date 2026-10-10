@@ -5,7 +5,7 @@ const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'),
 const tapHandler = fs.readFileSync(path.join(__dirname, '..', 'app', 'notification_tap_handler.ts'), 'utf8');
 const energy = fs.readFileSync(path.join(__dirname, '..', 'components', 'EnergyContext.tsx'), 'utf8');
 const intro = fs.readFileSync(path.join(__dirname, '..', 'app', 'intro_full_access.ts'), 'utf8');
-const xp = fs.readFileSync(path.join(__dirname, '..', 'app', 'xp_manager.ts'), 'utf8');
+// зачем (10.10): xp_manager снят в 2.0 (опыта нет) — его строки из сторожа убраны, остальные вызыватели те же.
 const hallOfFame = fs.readFileSync(path.join(__dirname, '..', 'app', 'hall_of_fame_utils.ts'), 'utf8');
 
 test('boot keeps push taps available without statically evaluating the scheduling catalog', () => {
@@ -19,10 +19,8 @@ test('boot keeps push taps available without statically evaluating the schedulin
 test('secondary notification callers load the catalog on demand', () => {
   expect(energy).not.toMatch(/from\s+['"]\.\.\/app\/notifications['"]/);
   expect(intro).not.toMatch(/from\s+['"]\.\/notifications['"]/);
-  expect(xp).not.toMatch(/from\s+['"]\.\/notifications['"]/);
   expect(hallOfFame).not.toMatch(/from\s+['"]\.\/notifications['"]/);
   expect(energy).toContain("import('../app/notifications')");
   expect(intro).toContain("import('./notifications')");
-  expect(xp).toContain("import('./notifications')");
   expect(hallOfFame).toContain("import('./notifications')");
 });

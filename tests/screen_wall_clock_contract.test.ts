@@ -22,14 +22,5 @@ describe('screen wall-clock ownership', () => {
     expect(source).toContain('lastPublishedAt !== null && nextNow - lastPublishedAt < cadenceMs');
   });
 
-  it('keeps the leaderboard clock visible-only and leaves retired XP boost timers unmounted', () => {
-    const leaderboard = read('app/arena_leaderboard.tsx');
-    const streak = read('app/streak_stats.tsx');
-    expect(leaderboard).not.toContain('setInterval(() => setNowTs');
-    expect(leaderboard).toContain('useVisibleWallClock(leaderboardRuntimeActive, 60_000)');
-    expect(streak).not.toContain('setInterval(updateBoostCountdowns');
-    expect(streak).toContain('const statsRuntimeActive = useRuntimeActive()');
-    expect(streak).not.toContain('useVisibleWallClock(');
-    expect(streak).not.toContain('updateBoostCountdowns');
-  });
+  // снято 10.10: таблица лидеров Арены удалена (D74/D83), таймеров XP-бустов в 2.0 нет
 });

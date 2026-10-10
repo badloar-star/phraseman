@@ -34,8 +34,10 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     );
     expect(home).not.toContain('subscribeRunesBalance');
     expect(home).toContain('subscribeAppSnapshot');
-    // Главная 2.0 берёт из HomeRuneBalance только иконку (полёт частиц) — чипа V1 нет.
-    expect(home).toContain("import { HOME_RUNE_ICON_SOURCE } from '../../components/home/HomeRuneBalance';");
+    // зачем (10.10): полёт частиц на Главной снят (PM-052, D75, 9ecb23d94) — монеты летят там, где заработаны;
+    // иконка валюты Главной больше не нужна, а очереди полёта на Главной быть не должно.
+    expect(home).not.toContain('HOME_RUNE_ICON_SOURCE');
+    expect(home).not.toContain('reward_flight_queue');
     expect(home).toContain('const [runesBalance, setRunesBalance] = useState(() => peekRunes());');
     expect(home).toContain('const unsubscribeRunesSnapshot = subscribeAppSnapshot');
     expect(home).toContain('const runesAccountSubscription = subscribeAccountGeneration');

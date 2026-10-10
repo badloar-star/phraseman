@@ -4,7 +4,9 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 
 function read(relativePath: string): string {
-  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+  // зачем (10.10): в файле экрана смешаны концы строк (правки разных сессий) — многострочные маркеры
+  // ищем по нормализованному тексту, иначе сторож краснеет от формата, а не от смысла.
+  return fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 }
 
 function extract(source: string, startMarker: string, endMarker: string): string {

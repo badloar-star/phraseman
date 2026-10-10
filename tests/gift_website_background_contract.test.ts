@@ -12,17 +12,5 @@ describe('gift website background contract', () => {
     expect(fs.existsSync(path.join(process.cwd(), assetPath))).toBe(true);
   });
 
-  it('renders the asset as an accessible, readable, responsive page backdrop', () => {
-    const html = read('knowly-www/gift/index.html');
-    const css = read('knowly-www/assets/site-background.css');
-
-    expect(html).toContain(
-      '<link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />',
-    );
-    expect(html).not.toContain('gift-backdrop');
-    expect(css).toContain('/assets/gift-background-champagne-glass-v3.webp');
-    expect(css).toContain('position: fixed;');
-    expect(css).toContain('background-size: cover;');
-    expect(css).toContain('linear-gradient(rgba(255, 255, 255, .34), rgba(255, 255, 255, .24))');
-  });
+  // снято 10.10: страница подарка перерисована редизайном сайта 21de22f31 (16.08, «синий акцент») — фон-шампанское, gift-wrap и site-background.css больше не используются
 });

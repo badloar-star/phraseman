@@ -15,7 +15,8 @@ jest.mock('react-native', () => {
   const React = require('react');
   const Text: any = {};
   Text.render = (props: any) => React.createElement('RNText', props);
-  return { Text };
+  // зачем (10.10): патч ставится только вне web (shouldInstallNativeTextRenderPatch(Platform.OS)).
+  return { Text, Platform: { OS: 'ios' } };
 });
 
 // typography.ts грузит .ttf через require() — в node-окружении это падает.

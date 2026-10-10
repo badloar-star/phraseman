@@ -8,9 +8,11 @@ import {
 } from '../functions/src/home_hints';
 
 describe('home hint catalog', () => {
-  it('contains 300 ideas with exactly three Russian variants', () => {
-    expect(HOME_HINT_CATALOG).toHaveLength(300);
-    expect(new Set(HOME_HINT_CATALOG.map((item) => item.id)).size).toBe(300);
+  it('contains 280 ideas with exactly three Russian variants', () => {
+    // зачем (10.10): категория league (20 идей) снята вместе с Лигами (D54/D83) в снимке efe19ae9d — 14 категорий × 20.
+    expect(HOME_HINT_CATALOG).toHaveLength(280);
+    expect(new Set(HOME_HINT_CATALOG.map((item) => item.id)).size).toBe(280);
+    expect(HOME_HINT_CATALOG.some((item) => String(item.category) === 'league')).toBe(false);
     for (const item of HOME_HINT_CATALOG) {
       expect(item.variantsRu).toHaveLength(3);
       expect(item.variantsRu.every((text) => text.trim().length > 0)).toBe(true);

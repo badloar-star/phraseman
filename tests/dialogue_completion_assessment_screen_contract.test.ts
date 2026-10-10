@@ -46,6 +46,7 @@ describe('dialogue completion assessment screen', () => {
   it('confirms a saved dialogue branch only for a Plus-safe V2 checkpoint receipt', () => {
     expect(source).toContain("review?.v2Memory?.scenarioCheckpointStored === true && !locked");
     expect(source).toContain("ru: 'Ветка диалога сохранена'");
-    expect(source).toContain('backgroundColor: t.bgCard');
+    // зачем (10.10): плашка в стиле стекла 2.0 — тон карточки темы с прозрачностью, а не сплошной bgCard.
+    expect(source).toContain('backgroundColor: glassFill(t.bgCard, 0.46)');
   });
 });

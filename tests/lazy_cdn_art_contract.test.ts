@@ -77,9 +77,11 @@ describe('ленивая CDN-загрузка арта: путь заливки 
 });
 
 describe('ленивая CDN-загрузка арта: прогрев по событиям, а не по таймеру', () => {
-  it('достижения греются на входе на экран и при повышении уровня', () => {
+  it('достижения греются на входе на экран и при возврате из фона', () => {
+    // зачем (10.10): событие level_up_pending никто не шлёт (полноэкранное повышение уровня снято) — подписка
+    // в _layout ушла вместе с ним; повтор прогрева идёт при возврате приложения из фона.
     expect(read('app/achievements_screen.tsx')).toContain('prefetchAllAchievementArt()');
-    expect(read('app/_layout.tsx')).toContain('prefetchAllAchievementArt()');
+    expect(read('app/achievement_art_prefetch.ts')).toContain("if (state === 'active') prefetchAllAchievementArt();");
   });
 
   it('каталог достижений греется в фоне после первого кадра', () => {

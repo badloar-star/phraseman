@@ -109,10 +109,14 @@ describe('friends_together DEV bots', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app/(tabs)/friends.tsx'), 'utf8');
     const devBotsSource = fs.readFileSync(path.join(process.cwd(), 'app/friends_together/dev_bots.ts'), 'utf8');
     const togetherDisplayStart = source.indexOf('const togetherDisplay = pair && friendsTogetherUiEnabled');
-    const togetherSheetEnd = source.indexOf('{friendsTogetherPolicy.enabled && levelUpModal', togetherDisplayStart);
+    // зачем (10.10): «Вместе» выключен в релизном контуре (5249a7a6e, 30.09) — флаг стал константой false,
+    // окно повышения уровня «Вместе» снято; шторка по-прежнему получает данные через togetherDisplay.
+    const togetherSheetEnd = source.indexOf('</FriendTogetherSheet>', togetherDisplayStart) > -1
+      ? source.indexOf('</FriendTogetherSheet>', togetherDisplayStart)
+      : source.indexOf('/>', source.indexOf('<FriendTogetherSheet', togetherDisplayStart));
     const togetherSheet = source.slice(togetherDisplayStart, togetherSheetEnd);
 
-    expect(source).toContain('const friendsTogetherUiEnabled = friendsTogetherPolicy.enabled || (ENABLE_DEV_TOOLS && devBots.length > 0)');
+    expect(source).toContain('const friendsTogetherUiEnabled = false;');
     expect(source).toMatch(/\{ENABLE_DEV_TOOLS\s*&&\s*\(\s*<TouchableOpacity[\s\S]*?testID="friends-together-dev-open"/);
     expect(devBotsSource).toContain("import { ENABLE_DEV_TOOLS } from '../config'");
     expect(devBotsSource).toContain('return ENABLE_DEV_TOOLS;');

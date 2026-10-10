@@ -32,9 +32,11 @@ test('a target switch discards old mounted ownership before the new interactive 
 });
 
 test('catalogue and briefing mount their state inside the target boundary', () => {
-  for (const file of ['components/DialogsTabContent.tsx', 'app/ai_dialog_briefing.tsx']) {
-    expect(fs.readFileSync(path.resolve(__dirname, '..', file), 'utf8')).toContain('<DialogueTargetBoundary target={studyTarget}>');
-  }
-  const briefing = fs.readFileSync(path.resolve(__dirname, '../app/ai_dialog_briefing.tsx'), 'utf8');
-  expect(briefing).toContain('openSessionRef.current = null');
+  // зачем (10.10): каталог переписан под V2 (1e2f77929, D111) — старого тела каталога со своим состоянием
+  // больше нет, каталог V2 читает снимок по studyTarget. Граница цели остаётся у брифинга.
+  expect(fs.readFileSync(path.resolve(__dirname, '../app/ai_dialog_briefing.tsx'), 'utf8'))
+    .toContain('<DialogueTargetBoundary target={studyTarget}>');
+  expect(fs.readFileSync(path.resolve(__dirname, '../components/DialogsTabContent.tsx'), 'utf8'))
+    .not.toContain('<DialogsTabContentBody');
+  // зачем (10.10): брифинг v1 стал тонкой обёрткой над AiDialogBriefingScreen — своего openSessionRef в нём нет.
 });

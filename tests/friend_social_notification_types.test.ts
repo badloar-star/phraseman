@@ -52,13 +52,19 @@ describe('friend social notification contract', () => {
   });
 
   it('keeps only a supported optional Arena target on friend-event navigation', () => {
+    // зачем (10.10): итальянский стал поддерживаемой целью (D154) — неподдерживаемый пример теперь 'xx',
+    // а 'it' обязан сохраниться.
     expect(parseUserNotificationNav({
       kind: 'friend_event', actorStableUid: 'friend-1', eventId: 'event-1',
-      action: 'duel_state', inviteId: 'invite-1', studyTarget: 'it',
+      action: 'duel_state', inviteId: 'invite-1', studyTarget: 'xx',
     })).toEqual({
       kind: 'friend_event', actorStableUid: 'friend-1', eventId: 'event-1',
       action: 'duel_state', inviteId: 'invite-1',
     });
+    expect(parseUserNotificationNav({
+      kind: 'friend_event', actorStableUid: 'friend-1', eventId: 'event-1',
+      action: 'duel_state', inviteId: 'invite-1', studyTarget: 'it',
+    })).toEqual(expect.objectContaining({ studyTarget: 'it' }));
   });
 
   it('fails closed for incomplete or unknown friend-event navigation', () => {

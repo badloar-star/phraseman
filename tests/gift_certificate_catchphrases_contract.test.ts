@@ -19,8 +19,10 @@ function loadBrowserCatalog(): typeof GIFT_CERTIFICATE_PHRASES {
     path.join(root, 'knowly-www', 'assets', 'gift-certificate-phrases.js'),
     'utf8',
   );
-  const window: Record<string, unknown> = {};
-  vm.runInNewContext(source, { window, Object });
+  // зачем (10.10): каталог сайта выбирает язык (site i18n a0b9b88fc); без location он падал в английский.
+  // Серверный каталог — русский, поэтому страница открывается с ?lang=ru.
+  const window: Record<string, unknown> = { location: { search: '?lang=ru' } };
+  vm.runInNewContext(source, { window, Object, URLSearchParams });
   return window.PHRASEMAN_GIFT_PHRASES as typeof GIFT_CERTIFICATE_PHRASES;
 }
 

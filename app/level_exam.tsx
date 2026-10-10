@@ -1194,16 +1194,17 @@ export default function LevelExam() {
           tr: "Seviye konularında çok iyi: tempoyu korumak için zayıf dersleri pekiştir.",
           pl: "Bardzo dobrze z tematów tego poziomu: utrwal słabsze lekcje, żeby utrzymać formę.",
         })
+        // зачем (Сверка learn-091 K6, макет learn.html): текст сданного зачёта <90 % — «закрепи слабые уроки…»; подсказка про золото вынесена в кнопку «Пересдать на 90%+»
         : triLang(lang, {
-          ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
-          uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
-          en: `Test passed (${PASS_PCT}%+) — if you like, aim for ${90}% to earn gold.`,
-          es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
-          'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
-          vi: `Đã đạt (${PASS_PCT}%+); nếu muốn, hãy nhắm tới ${90}% để lấy vàng.`,
-          id: `Lulus (${PASS_PCT}%+); kalau mau, kejar ${90}% untuk emas.`,
-          tr: `Geçtin (%${PASS_PCT}+); istersen altın için %${90} hedefle.`,
-          pl: `Zaliczone (${PASS_PCT}%+); jeśli chcesz, celuj w ${90}% na złoto.`,
+          ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы двигаться дальше уверенно.',
+          uk: 'Чудово за темами рівня — закріпи слабкі уроки, щоб рухатися далі впевнено.',
+          en: 'Great on the level topics — reinforce your weaker lessons to move on with confidence.',
+          es: 'Muy bien por temas del nivel: refuerza las lecciones más flojas para avanzar con seguridad.',
+          'pt-BR': 'Muito bem nos temas do nível: reforce as aulas mais fracas para avançar com segurança.',
+          vi: 'Bạn làm rất tốt ở các chủ đề của cấp độ này: hãy củng cố các bài còn yếu để tiến tiếp thật vững.',
+          id: 'Bagus sekali untuk topik level ini: perkuat pelajaran yang masih lemah agar melangkah dengan percaya diri.',
+          tr: 'Seviye konularında çok iyi: ilerlemek için zayıf dersleri pekiştir.',
+          pl: 'Bardzo dobrze z tematów tego poziomu: utrwal słabsze lekcje, żeby iść dalej pewnie.',
         });
     return (
       <>
@@ -1301,7 +1302,13 @@ export default function LevelExam() {
             {passed ? (
               <>
                 <PracticeCta glass={glass} label={toLessonsLabel} trailingArrow onPress={() => { void leaveResultAfterReview(); }} />
-                <ExamQuietButton glass={glass} label={retryLabel} onPress={() => { hapticTap(); void startExam(); }} />
+                <ExamQuietButton
+                  glass={glass}
+                  label={pct < 90
+                    ? triLang(lang, { ru: 'Пересдать на 90%+', uk: 'Перездати на 90%+', en: 'Retake for 90%+', es: 'Repetir para 90 %+', 'pt-BR': 'Refazer para 90%+', vi: 'Làm lại để đạt 90%+', id: 'Ulangi untuk 90%+', tr: '%90+ için tekrar dene', pl: 'Powtórz na 90%+' })
+                    : retryLabel}
+                  onPress={() => { hapticTap(); void startExam(); }}
+                />
               </>
             ) : (
               <>

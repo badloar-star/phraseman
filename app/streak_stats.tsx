@@ -1,6 +1,7 @@
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { KIT_MOTION } from '../constants/motionHybrid';
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -1359,7 +1360,8 @@ function AnimatedFillBar({ ratio, color, trackColor, height = 10, delayMs = 0, b
     const width = useSharedValue(0);
     useEffect(() => {
         width.value = 0;
-        width.value = withDelay(delayMs, withTiming(clamped, { duration: 620, easing: Easing.out(Easing.cubic) }));
+        // зачем (координатор 10.10): полосы статистики — kit.css `.trk > i`, 800 мс cubic-bezier(.2,.8,.2,1).
+        width.value = withDelay(delayMs, withTiming(clamped, { duration: KIT_MOTION.progressMs, easing: Easing.bezier(KIT_MOTION.progressEase[0], KIT_MOTION.progressEase[1], KIT_MOTION.progressEase[2], KIT_MOTION.progressEase[3]) }));
         return () => { cancelAnimation(width); };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [clamped, delayMs]);

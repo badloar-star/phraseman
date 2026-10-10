@@ -12,7 +12,8 @@
  * Первый кадр — синхронно из снапшота (peekRunesBalance): никакого «0 и прыжка».
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, Text, View } from 'react-native';
+import KitProgressFill from '../components/KitProgressFill';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -32,6 +33,9 @@ import { coinRankRowForDisplay, coinRankTitle, nextCoinRankRow } from './coin_ra
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
+
+const COUNT_PULSE_MS = 700;
+const COUNT_PULSE_EASE = Easing.bezier(0.2, 1.25, 0.4, 1);
 
 function formatCoins(value: number): string {
   return Math.max(0, Math.trunc(value)).toLocaleString('ru-RU').replace(/ /g, ' ');
@@ -61,15 +65,12 @@ export default function RunesWalletScreen() {
       setWallet(next);
       if (delta > 0) {
         bumpScale.setValue(1);
-        Animated.spring(bumpScale, {
-          toValue: 1,
-          useNativeDriver: true,
-          // Короткий подхват: вверх и назад одной пружиной через velocity —
-          // прерываемо и без каскада sequence.
-          velocity: 3,
-          speed: 18,
-          bounciness: 9,
-        }).start();
+        // зачем (координатор 10.10, extension.css `.anim-count`): пульс баланса 700 мс cubic-bezier(.2,1.25,.4,1) вверх до 1.1
+        // и столько же назад (iteration 2 alternate) вместо прежней пружины.
+        Animated.sequence([
+          Animated.timing(bumpScale, { toValue: 1.1, duration: COUNT_PULSE_MS, easing: COUNT_PULSE_EASE, useNativeDriver: true }),
+          Animated.timing(bumpScale, { toValue: 1, duration: COUNT_PULSE_MS, easing: COUNT_PULSE_EASE, useNativeDriver: true }),
+        ]).start();
       }
     });
     // Авторитетная проекция с диска (без чтений Firestore). Поздний ответ не
@@ -181,7 +182,8 @@ export default function RunesWalletScreen() {
             {next ? (
               <>
                 <View style={[styles.track, { backgroundColor: g.opaqueControl }]}>
-                  <View style={[styles.fill, { width: `${progress * 100}%`, backgroundColor: p.progressFill }]} />
+                  {/* зачем (координатор 10.10, kit `.trk > i`): полоса до следующего ранга растёт 800 мс, а не прыгает. */}
+                  <KitProgressFill ratio={progress} style={[styles.fill, { backgroundColor: p.progressFill }]} />
                 </View>
                 <View style={styles.rankFoot}>
                   <Text style={[styles.footText, { color: p.textSecondary }]}>{isZero ? startPractice : untilNext}</Text>

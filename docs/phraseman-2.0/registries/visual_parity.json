@@ -15633,9 +15633,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-002",
@@ -15661,9 +15662,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-003",
@@ -15689,9 +15691,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-004",
@@ -15717,9 +15720,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-005",
@@ -15745,9 +15749,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-006",
@@ -15773,9 +15778,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-007",
@@ -15801,9 +15807,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): единственный пейвол Plus — «Честный пробный период» (paywall-v3.html); пейволы A–G удалены"
     },
     {
       "id": "paywalls-008",

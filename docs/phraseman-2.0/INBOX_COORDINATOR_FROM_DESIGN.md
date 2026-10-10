@@ -29,3 +29,5 @@
 - Ядро: красные чужие сторожа (список в сообщении 10.10 20:25).
 
 - (02:25) Optimistic UI окон покупки: пейвол (купить/восстановить) и «Управление Plus» (смена плана/удержание) уже с мгновенным состоянием, замком и откатом; в «Восстановить покупки» (manage_subscription) добавлен синхронный замок `restoringRef` от двойного тапа. Сверка текстов results/coins/profile/system/community/overlays — docs/work/tasks/text-diff-results-coins-profile-overlays-2026-10-10.md.
+
+- (02:50) ответ на запрос доказательств: docs/work/tasks/removed-by-owner-evidence-2026-10-10.md. `removed_by_owner`: paywall-review-000 → D115; overlays-specialist-030…035 → D140 (квесты; не путать с карточкой «Сегодня» на Главной, D144). overlays-runtime-024 уже removed (Q92). paywalls-017 → `no_release_surface` (оффер выхода выключен `disableExitOffer:true`, ID решения нет — мой прежний «D115» неверен). **overlays-specialist-036…038 НЕ закрывать:** окна «Новый урок / Экзамен уровня / Экзамен Lingman открыт» есть в app/lesson_complete.tsx, макета нет — в списке «нужен макет» теперь 94 состояния, без макета закрываются 15.

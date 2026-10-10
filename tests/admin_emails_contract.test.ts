@@ -4,7 +4,8 @@ import path from 'path';
 const root = process.cwd();
 
 describe('admin emails surface', () => {
-  const adminHtml = readFileSync(path.join(root, 'admin/index.html'), 'utf8');
+  // зачем (10.10): единственная рабочая админка — admin/v2/legacy.html (admin/index.html заморожен, CLAUDE.md).
+  const adminHtml = readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
   const webCheckout = readFileSync(path.join(root, 'functions/src/web_checkout.ts'), 'utf8');
   const authIdentity = readFileSync(path.join(root, 'functions/src/auth_identity.ts'), 'utf8');
   const emailContacts = readFileSync(path.join(root, 'functions/src/email_contacts.ts'), 'utf8');
@@ -75,6 +76,6 @@ describe('admin emails surface', () => {
   });
 
   test('admin email functions are exported', () => {
-    expect(functionsIndex).toContain("export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';");
+    expect(functionsIndex).toMatch(/export \{ adminEmailBroadcast, adminEmailContactsBackfill \} from ["']\.\/admin_email["'];/);
   });
 });

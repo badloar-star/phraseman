@@ -38,56 +38,25 @@ describe('removed Coral theme regression guard', () => {
     );
   });
 
-  it('allows Coral only in the migration tombstone and unrelated named content', () => {
-    const filesWithCoral = SOURCE_ROOTS.flatMap(walkFiles)
-      .filter((relativePath) => !/(?:^|\/)(?:__tests__|generated)\/|\.(?:spec|test)\.[^.]+$/i.test(relativePath))
-      .filter((relativePath) => {
-        const source = normalizeEol(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
-        return /coral/i.test(source);
-      })
-      .sort();
-
-    expect(filesWithCoral).toEqual([
-      'components/ThemeContext.tsx',
-      'constants/avatar_auras.ts',
-      'constants/custom_avatars.ts',
-      'scripts/build_lingman_wednesday_audio_assets.mjs',
-      'scripts/generate-flashcard-back-assets.mjs',
-      'scripts/patch_lingman_two_word_into_existing_capcut.mjs',
-    ]);
-  });
-
-  it('keeps the only theme occurrence as a persisted-value migration tombstone', () => {
-    const themeContext = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8'));
-    const themePalette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'theme.ts'), 'utf8'));
+  // зачем (10.10): с 30.09 (00d854736) сохранённая тема проходит БЕЛЫЙ СПИСОК LIQUID_GLASS_THEME_IDS с откатом в
+  // graphite — отдельное «надгробие» REMOVED_THEME_MODES больше не нужно. Поиск слова «coral» по всему дереву ловил
+  // испанское слово «coral» в контенте курса (аудио, генерируемые файлы) — шум, а не тему. Сторож держит суть:
+  // Coral нет среди тем, и любое неизвестное сохранённое имя сводится к теме по умолчанию.
+  it('keeps Coral out of the theme registry and theme settings', () => {
+    const palette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'liquidGlassThemePalette.ts'), 'utf8'));
     const themeSettings = normalizeEol(fs.readFileSync(path.join(ROOT, 'app', 'settings_themes.tsx'), 'utf8'));
-
-    expect(themeContext.match(/coral/gi)).toHaveLength(1);
-    expect(themeContext).toMatch(/REMOVED_THEME_MODES[^\n]*'coral'/);
-    expect(themePalette).not.toMatch(/coral/i);
+    const legacyPalette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'theme.ts'), 'utf8'));
+    expect(palette).not.toMatch(/coral/i);
     expect(themeSettings).not.toMatch(/coral/i);
+    expect(legacyPalette).not.toMatch(/coral/i);
   });
 
-  it('preserves only the two unrelated Coral Sunset card-back assets', () => {
-    const coralAssets: string[] = [];
-    const assetsRoot = path.join(ROOT, 'assets');
-
-    const visit = (directory: string) => {
-      for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-        const absolutePath = path.join(directory, entry.name);
-        if (entry.isDirectory()) {
-          visit(absolutePath);
-        } else {
-          const relativePath = normalize(path.relative(assetsRoot, absolutePath));
-          if (/coral/i.test(relativePath)) coralAssets.push(relativePath);
-        }
-      }
-    };
-
-    visit(assetsRoot);
-    expect(coralAssets.sort()).toEqual([
-      'images/flashcard_backs/community_02_coral_sunset.webp',
-      'images/flashcard_backs/community_02_coral_sunset_fan.webp',
-    ]);
+  it('resolves any stored theme through the whitelist with a graphite fallback', () => {
+    const palette = normalizeEol(fs.readFileSync(path.join(ROOT, 'constants', 'liquidGlassThemePalette.ts'), 'utf8'));
+    const themeContext = normalizeEol(fs.readFileSync(path.join(ROOT, 'components', 'ThemeContext.tsx'), 'utf8'));
+    expect(palette).toMatch(/export function resolveLiquidGlassTheme[\s\S]{0,200}LIQUID_GLASS_THEME_IDS\.includes\(id[\s\S]{0,80}: 'graphite';/);
+    expect(themeContext).toContain('resolveLiquidGlassTheme(');
+    expect(themeContext).toContain("const THEME_STORAGE_KEY = 'liquid_glass_theme';");
   });
+
 });

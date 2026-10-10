@@ -149,7 +149,7 @@ describe('повтор отправки диалога остаётся стро
     // параллельно — они в разных документах), и привязка к `await` ловила бы
     // форму записи, а не охраняемый порядок «квота раньше генерации».
     const body = handlerBody(read('functions/src/premium_dialog.ts'), 'premiumDialogSend');
-    const quotaCharge = body.indexOf('enforceDailyQuota(');
+    const quotaCharge = body.indexOf('enforceMonthlyQuota(') /* D111: месячный лимит, 1e2f77929 */;
     const generation = body.indexOf('fetch(OPENAI_CHAT_URL');
     expect(quotaCharge).toBeGreaterThan(-1);
     expect(generation).toBeGreaterThan(-1);
@@ -161,7 +161,7 @@ describe('повтор отправки диалога остаётся стро
     // об идемпотентности там точно такое же: клиент падает в фолбэк только по
     // notStarted, и это безопасно ровно потому, что квота снимается заранее.
     const stream = read('functions/src/premium_dialog_stream.ts');
-    const quotaCharge = stream.indexOf('enforceDailyQuota(');
+    const quotaCharge = stream.indexOf('enforceMonthlyQuota(') /* D111: месячный лимит, 1e2f77929 */;
     const generation = stream.indexOf('fetch(OPENAI_CHAT_URL');
     expect(quotaCharge).toBeGreaterThan(-1);
     expect(generation).toBeGreaterThan(-1);
@@ -179,7 +179,7 @@ describe('повтор отправки диалога остаётся стро
     // а не быть жёстким false. (Кадр `error` внутри уже идущего потока — другой
     // случай: там false верен, поток шёл, сервер работу начал.)
     const onload = client.slice(client.indexOf('xhr.onload'), client.indexOf('xhr.onerror'));
-    expect(onload).toContain('new DialogStreamError(code, functionMissing)');
+    expect(onload).toContain('new DialogStreamError(code, functionMissing, quota)'); // ошибка несёт остаток квоты
     expect(onload).not.toContain('new DialogStreamError(code, false)');
   });
 

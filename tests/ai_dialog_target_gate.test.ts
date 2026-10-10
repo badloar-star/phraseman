@@ -43,10 +43,14 @@ describe('AI dialogue target activation gate', () => {
     const companion = read('app/ai_companion_session.tsx');
 
     expect(session).toContain('const dialogueRuntimeOpen = aiDialogGateOpen && promptScenario !== null && presentation !== null;');
-    expect(session).toContain('if (!dialogueRuntimeOpen || !dialogEnergyReady || dialogEntryChargedRef.current) return;');
-    expect(session.indexOf('const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);'))
-      .toBeLessThan(session.indexOf('const { confirmSpendOne: confirmDialogEnergy'));
-    expect(companion).toContain('if (!companionGateOpen || !accessResolved || (!hasPremiumAccess && dailyQuotaGate !== \'open\')) return;');
+    // зачем (10.10): энергия за диалог списывается на «Начать» в брифинге V2 (решение владельца 30.09; d41a81887 снял
+    // списание из сессии v1). Каталог открывает только брифинг V2, v1-сессия из интерфейса недоступна. Сессия v1 сама
+    // энергию не тратит, а брифинг V2 тратит её через confirmSpendOne.
+    expect(session).not.toContain('confirmSpendOne');
+    const briefingV2 = read('app/dialogue_v2_briefing.tsx');
+    expect(briefingV2).toContain('await confirmSpendOne(energyIntent)');
+    // компаньон v1 (ai_companion_session) из интерфейса недоступен — его ветка в DialogsTabContentBody не используется.
+    void companion;
   });
 
   it('does not render English catalogue worlds for a blocked target', () => {

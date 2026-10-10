@@ -109,22 +109,7 @@ describe('currency icon assets', () => {
     expect(keys.filter((key) => !modes.includes(key))).toEqual([]);
   });
 
-  it('отдельные жемчужины существуют только для девяти подключённых тем', () => {
-    const assets = requiredThemeAssets(coinIconsSource());
-    const selectable = selectableThemeModes();
-
-    expect(assets).toHaveLength(themeModes().length);
-    expect(assets.map((asset) => asset.theme).sort()).toEqual([...selectable].sort());
-    expect(new Set(assets.map((asset) => asset.relativePath)).size).toBe(selectable.length);
-
-    const bundled = fs.readdirSync(path.join(ROOT, 'assets', 'images', 'currency'))
-      .filter((name) => /^pearl_.*\.webp$/.test(name))
-      .sort();
-    expect(bundled).toEqual(selectable.map((theme) => `pearl_${theme}.webp`).sort());
-  });
-
-  it('генератор следует реальному порядку тем из пользовательского селектора', () => {
-    expect(generatedThemeModes()).toEqual(selectableThemeModes());
-  });
+  // зачем (10.10): жемчуг удалён в 2.0 (D70/D103), темы живут в реестре Liquid Glass — связки «жемчужина ↔ старый
+  // селектор тем» сняты. Защита от краша бандла (require → валидный WebP на диске) остаётся выше.
 
 });

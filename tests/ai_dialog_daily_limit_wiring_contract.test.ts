@@ -77,7 +77,7 @@ describe('ИИ-диалог — месячный лимит обычного а�
     expect(session).toContain("useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' })");
     expect(session).toContain('if (!voiceInputGate.canStartAttempt()) {');
     expect(session).toContain('voiceInputGate.commitStartedAttempt();');
-    expect(session).toContain('{voiceInputGate.locked && (');
+    expect(session).toContain('{voiceInputGate.locked && !speechNa && ('); // устройство без распознавателя (§SPEECH-NA)
   });
 
   // D124 (владелец 2026-09-30): закрытый сценарий открывает только ранг — тап

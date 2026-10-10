@@ -9,7 +9,7 @@ describe('ai dialog TTS button contract', () => {
     // Новое решение владельца: под репликой обязательны все три кнопки —
     // озвучить, перевести, объяснить (DialogBubbleActions). Августовский запрет
     // отменён; инвариант здесь — голос выбранного изучаемого языка.
-    expect(scenarioSource).toContain('speak(stripMarkers(m.text)');
+    expect(scenarioSource).toContain('speakDialogue(stripMarkers(m.text))'); // строгий голос диалога (§SPEECH-NA, 83300f8d5)
     for (const source of [scenarioSource, companionSource]) {
       expect(source).toContain('language: dialogueSpeechLocale');
       expect(source).toContain('dialogueLanguageMeta(dialogueTarget).speechLocale');
@@ -20,7 +20,8 @@ describe('ai dialog TTS button contract', () => {
     // Подчёркнутая ключевая фраза остаётся кликабельной: speak(seg.text) читает
     // саму фразу, а не реплику вокруг неё. Это учебная суть экрана.
     for (const source of [scenarioSource, companionSource]) {
-      expect(source).toContain('speak(seg.text, undefined');
+      expect(source).toContain('speakDialogue(seg.text)');
+      expect(source).toContain('legacySpeak(text, undefined');
       expect(source).toContain("voice: ''");
     }
   });

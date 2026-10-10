@@ -48,7 +48,8 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('onPress={() => setVerdictReady(true)}');
     expect(source).toContain('top: VERDICT_SKIP_LAYER_TOP');
     // Награда идёт по ФАКТУ конца диалога, а не по показу модалки.
-    expect(source).toContain('void awardDialogXp(ts.outcome)');
+    // зачем (10.10): XP удалён в 2.0 — по факту конца остаётся отметка «пройдено», только при успехе.
+    expect(source).not.toContain('awardDialogXp');
     expect(source).toContain('void markDialogCompleted(studyTarget, scenario.id)');
   });
 

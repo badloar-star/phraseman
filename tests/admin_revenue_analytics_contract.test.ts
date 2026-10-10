@@ -480,13 +480,13 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-ugc-purchases .report-card span[style*="background"]');
     expect(adminHtml).toContain('#tab-community-packs .report-card button');
     expect(adminHtml).toContain('applyCleanUgcPurchasesChrome');
-    expect(adminHtml).toContain('class="report-card ugc-purchase-card"');
-    expect(adminHtml).toContain('Loading UGC purchases...');
-    expect(adminHtml).toContain('No purchases for this filter.');
+    // зачем (10.10): ранний рендер карточками удалён как мёртвая копия (f11cbe011); живой — таблица pmRenderUgcPurchases.
+    expect(adminHtml).toContain('<table class="pm-data-table" aria-label="Покупки community pack">');
+    expect(adminHtml).toContain('<strong>Ничего не найдено</strong>');
     // зачем: D110 — возврат покупки набора удалён, кнопки возврата в карточке покупки нет.
     expect(adminHtml).not.toContain('class="ugc-purchase-refund"');
-    expect(countOccurrences(adminHtml, 'window.renderUgcPurchases = function renderUgcPurchases()')).toBe(1);
-    expect(adminHtml.lastIndexOf('Total purchases')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderUgcPurchases = function renderUgcPurchases()'));
+    expect(countOccurrences(adminHtml, 'window.renderUgcPurchases = function')).toBe(1);
+    expect(adminHtml).toContain('window.renderUgcPurchases = function pmRenderUgcPurchases()');
   });
 
   it('unifies App Health, archive, audit, and ops log diagnostics sections', () => {

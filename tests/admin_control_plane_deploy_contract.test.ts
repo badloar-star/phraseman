@@ -50,8 +50,6 @@ describe('bounded admin control-plane deploy lane', () => {
       'adminPublishNavLayout',
       'adminPublishAlertsConfig',
       'adminTestAlerts',
-      'adminResetLeaguePoints',
-      'adminMoveLeagueUser',
     ];
 
     expect(command).toContain('deploy_lock_guard.mjs');

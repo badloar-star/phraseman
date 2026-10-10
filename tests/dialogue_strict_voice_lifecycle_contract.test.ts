@@ -26,8 +26,8 @@ describe('Dialogue strict voice lifecycle contract', () => {
     expect(scenario).not.toContain('scoreSpeechPronunciationTranscript');
   });
 
-  it('keeps companion and tutor playback-only', () => {
-    for (const path of ['app/ai_companion_session.tsx', 'app/ai_dialog_tutor_session.tsx']) {
+  it('keeps companion playback-only', () => {
+    for (const path of ['app/ai_companion_session.tsx'] /* тьютор удалён в efe19ae9d */) {
       const source = read(path);
       expect(source).not.toContain('loadSpeechRecognitionModule');
       expect(source).not.toContain('speechModule.start');
@@ -36,8 +36,7 @@ describe('Dialogue strict voice lifecycle contract', () => {
 
   it('exposes rather than hides unavailable strict playback on every dialogue surface', () => {
     expect(read('components/dialogs/DialogBubbleActions.tsx')).toContain('speakUnavailable');
-    expect(read('components/dialogs/TutorBoard.tsx')).toContain('speakUnavailable');
-    for (const path of ['app/ai_dialog_session.tsx', 'app/ai_companion_session.tsx', 'app/ai_dialog_tutor_session.tsx']) {
+    for (const path of ['app/ai_dialog_session.tsx', 'app/ai_companion_session.tsx']) {
       expect(read(path)).toContain('strictPlaybackUnavailable');
     }
   });

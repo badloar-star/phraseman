@@ -19,9 +19,11 @@ describe('ai dialog Phraseman copy contract', () => {
       .replace(/\/\/.*$/gm, '')
       .replace(/outcome === 'success' \? '[^']+' : outcome === 'lost_patience' \? '[^']+' : '[^']+'/g, '');
     expect(scenarioCopy).not.toMatch(EMOJI_RE);
-    expect(companionSource).not.toMatch(EMOJI_RE);
-    expect(homeSource).not.toMatch(EMOJI_RE);
-    expect(dialogsContentSource).not.toMatch(EMOJI_RE);
+    // зачем (10.10): эмодзи в комментариях — не текст интерфейса; комментарии вырезаем у всех файлов одинаково.
+    const stripComments = (src: string) => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    expect(stripComments(companionSource)).not.toMatch(EMOJI_RE);
+    expect(stripComments(homeSource)).not.toMatch(EMOJI_RE);
+    expect(stripComments(dialogsContentSource)).not.toMatch(EMOJI_RE);
   });
 
   it('does not show an empty-dialog success summary', () => {

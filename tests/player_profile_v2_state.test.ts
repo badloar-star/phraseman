@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
+// зачем (10.10): файл *.test.ts запускает основной юнит-раннер — глобальный test вместо node:test (иначе «0 тестов»).
 
 import {
   resolvePlayerProfileV2State,

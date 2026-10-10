@@ -34,7 +34,7 @@ const parse = candidate => ts.createSourceFile(SOURCE_PATH, candidate, ts.Script
 
 const PROTECTED_AST = {
   scopeType: 'a6dc75774aa6b9164e3a5417b48851c67feb3741372e1052a9b8295bd4486411',
-  scopeState: '3f0946e3390d4d4d522030fefd8afe575d05a7e0b3f22696b98bf2a801da994d',
+  scopeState: '1e8dccf8bc4a5b2d80859ba992a79e58380621a50c9e117955fbad3439cfffba',
   scope: '89a6e9e4a887a052206fb134e814dad8bcae18f651c1ca3f789ec3ceba2fb35d',
   routeScopeKey: '467b6b376e80121521404b2908942d24e6552231d400f37ce09b1f443e4a3a76',
   survey: '0e5dadc1d6e44650c621c487ab811a384ce56a4ffc309bf958d9990aa176c7f9',
@@ -50,7 +50,7 @@ const PROTECTED_AST = {
   fallbackClose: '51e89556dce9ce90627bb8a14cceb9a6f6a475cc5d6dd1eb15d40c1fb247d4c7',
   sharedSheet: '2bf422a86200e6edc2338c714f533c6f28bbe9063e13cbc8442406df2fe0a30c',
   effects: [
-    '0706771279589810ef76520f00a6356406cb170024d54648374d9ae70e826e12',
+    'f3d6c283a61d46534095cac5dd2901d8b9ab9ccdabfc322e4b9977b0a4e6976c',
     '3f5ad1b366ba22aa0e9cc333e3ccbe89dd82028dc3ace53d37424601fe9d5965',
   ],
 };
@@ -61,8 +61,10 @@ const PROTECTED_FILES = new Map([
   ['app/survey_handoff.ts', 'b93b86591466a6b7514340828964231245d32e1fb2529f04b2d0072b7b13ff6f'],
   // зачем (30.09): награда жемчугом за опрос удалена (PM-058/D70, efe19ae9d) — законно.
   ['app/survey_flow_controller.ts', '420e4a04cc27a63cf45ea604e2b00f19b87eef5d300d0d5acf0a7133b2977b30'],
-  ['app/account_generation.ts', '2a6880b410038e868f4bf32266e80a7a55c0fe31e2aaa8f8e49178ba2a113004'],
-  ['app/user_id_policy.ts', 'e221004d0932220f3221d3372df69872e3ba478bfd7b404b113a53f83d41e464'],
+    // зачем (10.10): диагностика замка аккаунта [ACCOUNT-LOCK] 04–05.10 (9b22f79fa, 3b156c292 и др.) — логика не менялась.
+  ['app/account_generation.ts', 'b0dae31f5b17d14385b01777e4c4d0928d3980d20bd80aa6ce370971fa9fd1e7'],
+    // зачем (10.10): модульный API Firebase (8798dc612) — getAuth через rnfbInstance.
+  ['app/user_id_policy.ts', '7267cf972c901610f06266655f46fe5a5bff3175a06b08eb1a6454371f6a600c'],
 ]);
 
 function protectedAst(candidate) {
@@ -183,6 +185,10 @@ function createHarness({ candidate = source, lang = 'ru', themeId = 'graphite', 
       captureAccountGeneration: () => ({ phase: 'active', stableId: 'account-a', generation: 1 }),
       subscribeAccountGeneration: () => ({ remove() {} }),
     },
+    // зачем (10.10): 83cc65a5e (мгновенное открытие) добавил синхронную сверку личности; стенд идёт прежним путём
+    // «checking», который и проверяют тесты недоступного маршрута.
+    './config': { CLOUD_SYNC_ENABLED: false },
+    './stable_id': { peekStableId: () => null },
     './local_date': { getUtcDayKey: () => '2099-01-01' },
     './navigation_back': { safeRouterBack: (...args) => calls.back.push(args) },
     './stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ top: 11, right: 12, bottom: 13, left: 14 }) },
@@ -256,8 +262,9 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
     backgroundColor: harness.glass.opaqueControl, borderWidth: 1, borderColor: harness.glass.glassEdge,
   });
   const closeIcon = visit(close).find(node => node.type === 'Ionicons');
-  assert.equal(closeIcon.props.name, 'close');
-  assert.equal(closeIcon.props.size, 20);
+  // зачем (10.10): паритет с макетом profile.html (abc8be429) — «назад» шевроном вместо крестика.
+  assert.equal(closeIcon.props.name, 'chevron-back');
+  assert.equal(closeIcon.props.size, 22);
 
   const scale = 1.3 / 1.15 * 1.2;
   const titleStyle = flatStyle(byId('survey-fallback-title').props.style);
@@ -298,7 +305,7 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
   assert.equal(flatStyle(ok.props.style).marginTop, 20);
   assert.equal(flatStyle(ok.props.contentStyle).minHeight, 48);
   assert.equal(flatStyle(ok.props.contentStyle).borderRadius, 24);
-  assert.equal(strings(ok.props.children).join(''), 'OK');
+  assert.equal(strings(ok.props.children).join(''), 'Вернуться'); // макет PRF-13 (abc8be429): «Вернуться» вместо «OK»
   for (const node of nodes.filter(item => item.type === 'FlowText')) {
     assert.equal(node.props.numberOfLines, undefined);
     assert.equal(node.props.adjustsFontSizeToFit, undefined);

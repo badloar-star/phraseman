@@ -26,8 +26,9 @@ const ENGLISH_LIQUID_GLASS_NAMES = {
   polar: 'Frost',
   slate: 'Storm',
   ink: 'Twilight',
-  lavender: 'Lilac',
-  iris: 'Orchid',
+  // зачем (10.10): выбор владельца 04.10 (a6a9ee295) — «Сирень»/«Орхидея» → «Туманность»/«Комета».
+  lavender: 'Nebula',
+  iris: 'Comet',
   rose: 'Dawn',
   terracotta: 'Sunset',
   taupe: 'Dune',
@@ -37,8 +38,8 @@ const ENGLISH_LIQUID_GLASS_NAMES = {
   marine: 'Ocean',
 };
 const RUSSIAN_LIQUID_GLASS_NAMES = {
-  graphite: 'Затмение', polar: 'Иней', slate: 'Шторм', ink: 'Сумерки', lavender: 'Сирень',
-  iris: 'Орхидея', rose: 'Рассвет', terracotta: 'Закат', taupe: 'Дюна', olive: 'Саванна',
+  graphite: 'Затмение', polar: 'Иней', slate: 'Шторм', ink: 'Сумерки', lavender: 'Туманность',
+  iris: 'Комета', rose: 'Рассвет', terracotta: 'Закат', taupe: 'Дюна', olive: 'Саванна',
   sage: 'Мята', eucalyptus: 'Лагуна', marine: 'Океан',
 };
 

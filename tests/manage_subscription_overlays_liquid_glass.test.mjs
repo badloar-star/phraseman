@@ -42,7 +42,8 @@ const DEPENDENCIES = {
   'components/DuoPressable.tsx': '510c7cbf2767cd24ec4fa2c357123318c94e29f84cacc1858bfac63b286d11f9',
   'components/PressableHybrid.tsx': '7efcde3c06d26c0edeb3e13e1da69f81f143f529acdfa0d49f27e8345ac3e0eb',
   'app/manage_subscription_save_offer.ts': '6f4b7f84f662f1af2a3314df4ae838f519819f0214736609931bed286fc072cf',
-  'app/manage_subscription_purchase.ts': '958d3393d0574e2283f4c0b1b01ae09d9f9426cc7b55b420b763105bb1359ddb',
+  // 10.10: осознанные правки f5447d10c (PM-229, логи вместо немых catch) и ebc1a860d (S2d, withPurchaseFlow).
+  'app/manage_subscription_purchase.ts': 'fd85c1c6e7cd523a7599deb61a17b892729861e1304f227bf0ef14cc4bb25106',
 };
 
 const visit = node => Array.isArray(node) ? node.flatMap(visit) : node && typeof node === 'object' ? [node, ...visit(node.props?.children)] : [];
@@ -173,6 +174,9 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     './firebase': { logCancelSurvey: () => {}, logChangePlanStarted: () => {} }, './analytics': { trackEvent: () => {} },
     './navigation_back': { safeRouterBack: () => {} }, '../hooks/use-haptics': { hapticTap: () => { calls.haptics += 1; } },
     './events': { emitAppEvent: () => {} }, './premium_guard': { invalidatePremiumCache: () => {} },
+    // зачем (10.10): ebc1a860d (S2d) обернул операции подписки в withPurchaseFlow — стенд выполняет операцию как есть.
+    './swallow_log': { noteSwallowedHandler: () => () => {} },
+    './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => ({ status: 'stale' }), isManageSubscriptionOperationCurrent: () => true },
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => null },

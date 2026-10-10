@@ -39,7 +39,7 @@ const PROTECTED = {
     // зачем (PM-229, db985607f, проверено по диффу): в этих трёх функциях изменились ТОЛЬКО немые `.catch(() => {})` → `.catch(noteSwallowedHandler(...))`:
     // причина сбоя пишется в журнал, значение по умолчанию и порядок платёжных шагов прежние. Хеши перечислены заново после этого осмотра.
     handleChangePlan: '1c022e9a9f992f4656295b8578a42ca2196ac26806beac5448c7e7322d492e0d',
-    handleRestore: '402469dd7ed58fa86e2abd0c69ce693b037c7e64f6ee5e3ae23f3df7a2e7a244',
+    handleRestore: '19f9cfee240e628564c17bbffe04b9d2cf1385e9093784d6060dca04dfa1b7df',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
     openStoreCancel: '0b2945979dcd63ecc9bc77f93c13c0cc8d1a52b33711b824c8481112f3b71720',
@@ -206,6 +206,8 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.backs.push(fallback) },
     '../hooks/use-haptics': { hapticTap: () => { calls.haptics += 1; } },
     './events': { emitAppEvent: () => {} }, './premium_guard': { invalidatePremiumCache: () => {} },
+    // зачем (10.10): ebc1a860d (S2d) обернул операции подписки в withPurchaseFlow — стенд выполняет операцию как есть.
+    './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => { calls.change += 1; return { status: 'changed', customerInfo: { _plan: 'yearly' }, plan: 'yearly' }; }, isManageSubscriptionOperationCurrent: () => true },
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => customerInfo },

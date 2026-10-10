@@ -60,6 +60,13 @@ Module._load = function loadVideoCatalogWithStubs(request, parent, isMain) {
       normalizePackLanguage: (value) => ['en', 'fr', 'de', 'es'].includes(value) ? value : 'en',
     };
   }
+  // зачем (10.10): d16c86212 (accounts-v2 8L) — кэш наборов сбрасывается при смене аккаунта; стенд — один активный аккаунт.
+  if (request === '../account_generation') {
+    return {
+      captureAccountGeneration: () => ({ phase: 'active', stableId: 'stable-a', token: 1 }),
+      subscribeAccountGeneration: () => ({ remove() {} }),
+    };
+  }
   if (request === '../debug-logger') {
     return { DebugLogger: { error() {}, info() {}, warn() {} } };
   }

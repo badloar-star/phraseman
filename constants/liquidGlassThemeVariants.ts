@@ -219,6 +219,26 @@ function lightBase(v: LiquidGlassVivid, level: LiquidGlassColorLevel): LiquidGla
   });
 }
 
+/**
+ * Цвет заданного оттенка и насыщенности не светлее `maxL`, при котором белый текст даёт контраст ≥ 4.55 (запас над AA 4.5).
+ * зачем (аудит читаемости 10.10): зелёные и бирюзовые тона при той же светлоте OKLCH ярче по восприятию — фиксированный L .55–.58
+ * давал белому тексту на градиентной кнопке 4.27–4.46 < 4.5 (Шалфей, Сланец, Чернила, Графит…).
+ */
+function whiteSafe(maxL: number, chroma: number, hue: number): string {
+  const lum = (hex: string) => {
+    const n = Number.parseInt(hex.slice(1, 7), 16);
+    const ch = (s: number) => { const v = ((n >> s) & 255) / 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * ch(16) + 0.7152 * ch(8) + 0.0722 * ch(0);
+  };
+  let l = maxL;
+  let color = oklchToHex(l, chroma, hue);
+  while (l > 0.2 && 1.05 / (lum(color) + 0.05) < 4.55) {
+    l -= 0.005;
+    color = oklchToHex(l, chroma, hue);
+  }
+  return color;
+}
+
 function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: LiquidGlassColorLevel): LiquidGlassAccentRoles {
   const { fam, h, h2, c } = v;
   const tn = Math.max(0.006, Math.min(0.016, c * 0.11));
@@ -247,7 +267,8 @@ function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: Liquid
   const cc = fam === 'night' ? c * 1.3 + 0.02 : c * 1.05 + 0.02;
   // зачем: цветная кнопка не светлее L .58 — белый текст на ней читается (решение владельца).
   const a = oklchToHex(0.52, cc, h);
-  const aHi = oklchToHex(0.58, cc, h);
+  // зачем (аудит 10.10): верх градиента L .58 давал белому тексту 4.39–4.46 < 4.5 у Сланца/Чернил/Шалфея на «Акценте»/«Максимуме»; .55 проходит.
+  const aHi = whiteSafe(0.55, cc, h);
   const aLo = oklchToHex(0.45, cc, h);
   // зачем (PM-033): текст цветом темы на светлом фоне — на ступень темнее кнопки; у зелёно-бирюзовых
   // тонов (Шалфей/Эвкалипт/Марина) цвет кнопки L .52 давал тексту 4.06–4.34 < 4.5. Кнопка не меняется.
@@ -256,7 +277,9 @@ function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: Liquid
   const byFam = {
     gem: { g: [aHi, a, aLo], deg: 172, p: [aLo, aHi] },
     metal: {
-      g: [oklchToHex(0.58, c * 0.9 + 0.02, h), oklchToHex(0.45, c + 0.02, h), oklchToHex(0.56, c * 0.8 + 0.02, h2), oklchToHex(0.43, c + 0.02, h)],
+      // зачем (аудит читаемости 10.10, пункт 3 координатора): первая точка градиента L .58 при малой насыщенности металла (Графит/Сланец/Чернила/
+      // Роза/Таупе/Олива/Шалфей) давала белому тексту кнопки 4.27–4.46 < 4.5 на «Акценте»/«Максимуме» в светлом; L .55 — все 21 шаг проходят.
+      g: [whiteSafe(0.55, c * 0.9 + 0.02, h), oklchToHex(0.45, c + 0.02, h), oklchToHex(0.56, c * 0.8 + 0.02, h2), oklchToHex(0.43, c + 0.02, h)],
       deg: 112,
       p: [oklchToHex(0.46, c + 0.02, h), oklchToHex(0.60, c * 0.8 + 0.02, h2), oklchToHex(0.50, c + 0.02, h)],
     },

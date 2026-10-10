@@ -8,7 +8,24 @@ describe('canonical PressableScale motion contract', () => {
   test('offers the four approved interaction variants', () => {
     expect(source).toContain("export type PressableScaleVariant = 'icon' | 'flat' | 'card' | 'primary'");
     expect(source).toContain('variant?: PressableScaleVariant');
-    expect(source).toContain("const pressedScale = scaleTo ?? (variant ? VARIANT_SCALE[variant] : 0.94)");
+    expect(source).toContain("const pressedScale = pressScaleTo ?? scaleTo ?? (variant ? VARIANT_SCALE[variant] : KIT_PRESS_SCALE)");
+  });
+
+  // зачем (координатор 10.10, гейт «приложение = макет»): три общие обёртки нажатия держат ОДНО движение кита
+  // (kit.css `.t`: вдавливание 90 мс до .97 + opacity .86, отпускание 240 мс cubic-bezier(.3,1.4,.5,1)) через constants/kitPress.
+  test('all shared press wrappers use the single kit press motion (no per-wrapper springs)', () => {
+    const kit = fs.readFileSync(path.join(ROOT, 'constants', 'kitPress.ts'), 'utf8');
+    expect(kit).toContain('KIT_MOTION.pressDownMs');
+    expect(kit).toContain('KIT_MOTION.pressMs');
+    expect(kit).toContain('KIT_MOTION.pressEase');
+    expect(kit).toContain('KIT_MOTION.pressOpacity');
+    for (const file of ['PressableScale.tsx', 'TapScale.tsx', 'PressableHybrid.tsx']) {
+      const wrapper = fs.readFileSync(path.join(ROOT, 'components', file), 'utf8');
+      expect(wrapper).toContain("from '../constants/kitPress'");
+      expect(wrapper).toContain('...KIT_PRESS_DOWN');
+      expect(wrapper).toContain('...KIT_PRESS_UP');
+      expect(wrapper).not.toContain('Animated.spring');
+    }
   });
 
   test('keeps feedback event-driven, accessible, and reduced-motion aware', () => {

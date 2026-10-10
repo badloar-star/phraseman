@@ -3,6 +3,7 @@ import { Animated, Easing, Pressable, type PressableProps, StyleProp, ViewStyle 
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { PRESS } from '../constants/motionHybrid';
+import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../constants/kitPress';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
@@ -58,7 +59,8 @@ function PressableHybrid({
   const opacity = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReduceMotion();
   const unavailable = Boolean(disabled || busy);
-  const pressedScale = pressScaleTo ?? PRESS.scale[variant];
+  // зачем (координатор 10.10): сила вжатия — эталон кита (.97) для всех ролей; PRESS.scale остаётся в словаре для старых мест.
+  const pressedScale = pressScaleTo ?? KIT_PRESS_SCALE;
 
   useEffect(() => () => {
     scale.stopAnimation();
@@ -70,12 +72,10 @@ function PressableHybrid({
     if (reduceMotion) {
       Animated.timing(opacity, { toValue: 0.82, duration: PRESS.reducedDownMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
     } else {
-      Animated.timing(scale, {
-        toValue: pressedScale,
-        duration: PRESS.downMs,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }).start();
+      Animated.parallel([
+        Animated.timing(scale, { toValue: pressedScale, ...KIT_PRESS_DOWN, useNativeDriver: true }),
+        Animated.timing(opacity, { ...KIT_PRESS_OPACITY_DOWN, useNativeDriver: true }),
+      ]).start();
     }
     // Visual-first: native haptic cold-start must never delay the first frame.
     if (!silent && withHaptic) hapticTap();
@@ -96,17 +96,13 @@ function PressableHybrid({
       Animated.timing(opacity, { toValue: 1, duration: PRESS.reducedUpMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
       return;
     }
-    // Перелёт (~6%) только у primary — PRESS.releasePrimary; остальным —
-    // PRESS.release без перелёта (закон №1: удар/вес — только у кульминаций).
-    const spring = variant === 'primary' ? PRESS.releasePrimary : PRESS.release;
-    Animated.spring(scale, {
-      toValue: 1,
-      stiffness: spring.stiffness,
-      damping: spring.damping,
-      mass: spring.mass,
-      useNativeDriver: true,
-    }).start();
-  }, [opacity, reduceMotion, scale, variant]);
+    // зачем (координатор 10.10): отпускание — 240 мс cubic-bezier(.3,1.4,.5,1) как `.t` кита (перелёт даёт сама кривая,
+    // у всех ролей одинаково), вместо прежней пружины с перелётом только у primary.
+    Animated.parallel([
+      Animated.timing(scale, { toValue: 1, ...KIT_PRESS_UP, useNativeDriver: true }),
+      Animated.timing(opacity, { ...KIT_PRESS_OPACITY_UP, useNativeDriver: true }),
+    ]).start();
+  }, [opacity, reduceMotion, scale]);
 
   return (
     <Pressable

@@ -318,19 +318,19 @@ function loadShell(material, themeId = 'graphite') {
     react: { __esModule: true, default: hooks.React, ...hooks.React },
     'expo-blur': { BlurView: 'BlurView' },
     'react-native': {
-      InteractionManager: { runAfterInteractions: fn => ({ cancel() {}, fn }) }, Modal: 'Modal', Platform: { OS: 'ios' }, Pressable: 'Pressable', View: 'View',
+      Dimensions: { get: () => ({ width: 400, height: 800 }) }, InteractionManager: { runAfterInteractions: fn => ({ cancel() {}, fn }) }, Modal: 'Modal', Platform: { OS: 'ios' }, Pressable: 'Pressable', View: 'View',
       StyleSheet: { create: value => value, absoluteFill: { position: 'absolute', inset: 0 }, absoluteFillObject: { position: 'absolute', inset: 0 } },
     },
     'react-native-gesture-handler': { Gesture: { Pan: chain }, GestureDetector: 'GestureDetector', GestureHandlerRootView: 'GestureHandlerRootView' },
     'react-native-reanimated': {
-      __esModule: true, default: { View: 'Animated.View' }, cancelAnimation() {}, Easing: { out: value => value, cubic: 'cubic' }, runOnJS: fn => fn,
+      __esModule: true, default: { View: 'Animated.View' }, cancelAnimation() {}, Easing: { out: value => value, cubic: 'cubic', ease: 'ease', bezier: (...points) => points }, runOnJS: fn => fn,
       useAnimatedStyle: fn => fn(), useSharedValue: value => ({ value }), withSpring: value => value, withTiming: value => value,
     },
     '../../app/stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ bottom: 19 }) },
     '../../hooks/use-screen': { normalizeSafeAreaBottomInset: value => value },
     '../../app/safe_modal_navigation': { NATIVE_MODAL_DISMISS_GAP_MS: 1 },
     '../../hooks/use-haptics': { hapticTap() {} },
-    '../../constants/motionHybrid': { LUM: { backdropMs: 1, resolveMs: 1, settle: {}, exitMs: 1 }, SHEET: { dragReturn: {} } },
+    '../../constants/motionHybrid': { KIT_MOTION: { dimMs: 1, sheetMs: 1, sheetEase: [0.2, 1, 0.3, 1] }, LUM: { backdropMs: 1, resolveMs: 1, settle: {}, exitMs: 1 }, SHEET: { dragReturn: {} } },
     '../../hooks/use_reduce_motion': { useReduceMotion: () => true },
     '../keyboardAvoidance': { useKeyboardBottomInset: () => 0 },
     '../ThemeContext': { useTheme: () => ({ theme: { bgCard: 'legacy-card', accent: 'legacy-accent', border: 'legacy-border' }, liquidGlassThemeId: themeId }) },
@@ -361,7 +361,9 @@ test('protects pre-edit business, classic, default tile, and dependency contract
   assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '87d893860d8ef451c51f5c8b5dfbfd33549456a1e2807041b419a71b1f22ca6c');
   assert.deepEqual(protectedShellCoordination(shellSource), {
     count: 32,
-    hash: '0792bd1aeb8ab2d9f40b1a6a0fd871dbcf6fbeccce5e2064e1911b15480ee850',
+    // зачем (координатор 10.10, гейт «приложение = макет»): хэш обновлён — вход и выход шторки перешли на kit.css `.sheet`
+    // (440 мс cubic-bezier(.2,1,.3,1), затемнение 260 мс, без выцветания); порядок и логика закрытия не менялись.
+    hash: 'c8ca72f5dac0ce348649e64a818fcc1f39e07335a73b73dc44b330ab3ecdf9ba',
   });
   assert.deepEqual(
     {
@@ -372,7 +374,8 @@ test('protects pre-edit business, classic, default tile, and dependency contract
     {
       selection: '36983768bb30e47df6fcd07687ec40aac2c89791293dbc1584cd2ff5832c99ce',
       prefs: 'c429dbc2fe16bc9c0d962494ed3c389fcf7a85ae64c686adc769e3aa73c80ae0',
-      pressable: '7efcde3c06d26c0edeb3e13e1da69f81f143f529acdfa0d49f27e8345ac3e0eb',
+      // хэш обновлён 10.10: PressableHybrid перешёл на общее движение кита (constants/kitPress) — см. press-standard-and-sheet-timing-2026-10-10.
+      pressable: '6321f8fdef1d67a253119d0e46165ff39231f6e51b065b96b40c5e30bb60962b',
     },
   );
 });

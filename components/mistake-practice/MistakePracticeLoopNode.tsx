@@ -38,6 +38,8 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
           pressed && styles.pressed,
         ]}
       >
+        {/* зачем (координатор 10.10): красный значок «повтор» осознанный — узел называется «Ошибки», красный
+            тон здесь = тема «ошибки → повторить», а не статус сбоя; не менять на нейтральный без макета. */}
         <View style={[styles.icon, { backgroundColor: t.wrongBg }]}>
           <Ionicons name="refresh" size={23} color={t.wrong} />
         </View>

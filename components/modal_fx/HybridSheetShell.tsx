@@ -11,6 +11,9 @@
  * паттерн components/referral_sheet_shell.tsx (тяга вниз 1:1, вверх резина
  * ×0.12, закрытие 88px/velocityY 900).
  *
+ * ОБНОВЛЕНО 10.10 (гейт «приложение = макет»): движение шторки — kit.css `.sheet` (440 мс cubic-bezier(.2,1,.3,1), затемнение 260 мс),
+ * числа в KIT_MOTION; прежний «выход из света» (settle 150/22) снят.
+ *
  * Один каркас — пять потребителей содержимого (children каскадом по LUM.ladder
  * сами решают, что показывать). Токены темы; fontWeight только 400/700; без
  * обводок (тон, TonalSurface).
@@ -18,6 +21,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BlurView } from 'expo-blur';
 import {
+  Dimensions,
   InteractionManager,
   Modal,
   Platform,
@@ -40,7 +44,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { NATIVE_MODAL_DISMISS_GAP_MS } from '../../app/safe_modal_navigation';
 import { hapticTap } from '../../hooks/use-haptics';
-import { LUM, SHEET } from '../../constants/motionHybrid';
+import { KIT_MOTION, SHEET } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useKeyboardBottomInset } from '../keyboardAvoidance';
 import { useTheme } from '../ThemeContext';
@@ -54,7 +58,11 @@ import {
 } from './native_modal_dismiss_coordinator';
 import { DebugLogger } from '../../app/debug-logger';
 
-const SHEET_HIDDEN = 320;
+// зачем (координатор 10.10, гейт «приложение = макет»): kit.css `.sheet` — translateY(105%) → 0, 440 мс cubic-bezier(.2,1,.3,1)
+// в обе стороны, затемнение 260 мс. Шторка стартует за нижним краем экрана (а не с 320 px с выцветанием, как раньше).
+const SHEET_HIDDEN = Dimensions.get('window').height;
+const SHEET_EASE = REasing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+const DIM_EASE = REasing.ease;
 
 interface HybridSheetShellProps {
   visible: boolean;
@@ -212,10 +220,10 @@ export default function HybridSheetShell({
     // Вход «из света»: подложка расцветает, лист поднимается БЕЗ отскока
     // (settle 150/22 — закон базы Световода, не пружина-перелёт старой версии).
     dragTranslateY.value = 0;
-    backdropO.value = withTiming(1, { duration: LUM.backdropMs, easing: REasing.out(REasing.cubic) });
+    backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs, easing: DIM_EASE });
     sheetY.value = SHEET_HIDDEN;
-    sheetOpacity.value = withTiming(1, { duration: LUM.resolveMs });
-    sheetY.value = withSpring(0, LUM.settle);
+    sheetOpacity.value = 1;
+    sheetY.value = withTiming(0, { duration: KIT_MOTION.sheetMs, easing: SHEET_EASE });
     // зачем: аудит 2026-08-17 — единственный вход без очистки среди гибридов.
     // Если шторку закрыть в середине появления (быстрый жест, переход экрана),
     // пружина продолжала считаться на UI-потоке уже без потребителя.
@@ -273,13 +281,12 @@ export default function HybridSheetShell({
       completeDismiss();
       return;
     }
-    backdropO.value = withTiming(0, { duration: LUM.exitMs });
-    sheetOpacity.value = withTiming(0, { duration: LUM.exitMs });
+    backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs, easing: DIM_EASE });
     // зачем: страховка на случай finished=false (жест/отмена) — колбэк
     // Reanimated не всегда долетает, шит не должен «зависать открытым».
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-    dismissFallbackRef.current = setTimeout(completeDismiss, LUM.exitMs + 80);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) }, (finished) => {
+    dismissFallbackRef.current = setTimeout(completeDismiss, KIT_MOTION.sheetMs + 80);
+    sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: SHEET_EASE }, (finished) => {
       if (finished) runOnJS(completeDismiss)();
     });
   }, [backdropO, completeDismiss, dismissDisabled, onDismissRequested, reduceMotion, sheetOpacity, sheetY]);

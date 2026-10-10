@@ -1,7 +1,7 @@
 import React, { memo, useRef, useCallback } from 'react';
 import { Animated, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
-import { MOTION_SPRING_LEGACY } from '../constants/motion';
+import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../constants/kitPress';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
 // Пробрасываем все нативные пропсы Pressable (включая accessibilityLabel/Role/
@@ -18,7 +18,7 @@ interface Props extends PassthroughPressableProps {
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
   disabled?: boolean;
-  /** Scale factor on press. Default 0.88 — tighter than PressableScale (0.94) for small elements */
+  /** Scale factor on press. Default — эталон кита (`.t.down` scale .97, constants/kitPress); явный scaleTo — осознанное исключение. */
   scaleTo?: number;
   withHaptic?: boolean;
   hitSlop?: PressableProps['hitSlop'];
@@ -28,7 +28,8 @@ interface Props extends PassthroughPressableProps {
  * Lightweight press feedback for icon buttons, small controls, inline taps.
  * Use PressableScale for full-width cards/buttons; TapScale for icons and small elements.
  *
- * Telegram pattern: scale + opacity together, spring back on release.
+ * зачем (координатор 10.10, гейт «приложение = макет»): движение — эталон кита (kit.css `.t`): вдавливание 90 мс до .97
+ * и opacity .86, отпускание 240 мс cubic-bezier(.3,1.4,.5,1) — числа в constants/kitPress, одни на все обёртки.
  */
 function TapScale({
   onPress,
@@ -36,7 +37,7 @@ function TapScale({
   style,
   children,
   disabled,
-  scaleTo = 0.88,
+  scaleTo = KIT_PRESS_SCALE,
   withHaptic = true,
   hitSlop = 8,
   ...rest
@@ -46,15 +47,13 @@ function TapScale({
 
   const pressIn = useCallback(() => {
     Animated.parallel([
-      Animated.spring(scale, {
+      Animated.timing(scale, {
         toValue: scaleTo,
+        ...KIT_PRESS_DOWN,
         useNativeDriver: true,
-        friction: MOTION_SPRING_LEGACY.micro.friction,
-        tension: MOTION_SPRING_LEGACY.micro.tension,
       }),
       Animated.timing(opacity, {
-        toValue: 0.6,
-        duration: 60,
+        ...KIT_PRESS_OPACITY_DOWN,
         useNativeDriver: true,
       }),
     ]).start();
@@ -63,15 +62,13 @@ function TapScale({
 
   const pressOut = useCallback(() => {
     Animated.parallel([
-      Animated.spring(scale, {
+      Animated.timing(scale, {
         toValue: 1,
+        ...KIT_PRESS_UP,
         useNativeDriver: true,
-        friction: MOTION_SPRING_LEGACY.micro.friction,
-        tension: MOTION_SPRING_LEGACY.micro.tension,
       }),
       Animated.timing(opacity, {
-        toValue: 1,
-        duration: 120,
+        ...KIT_PRESS_OPACITY_UP,
         useNativeDriver: true,
       }),
     ]).start();

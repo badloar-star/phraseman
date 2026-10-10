@@ -40,7 +40,8 @@ const sha = file => crypto.createHash('sha256').update(fs.readFileSync(file)).di
 const DEPENDENCIES = {
   'components/feedback/FullscreenHybridEntrance.tsx': 'b0263a57569cf2cd6dcb399c9d72c165078f4780f1f1b6b86305e133eeb056b9',
   'components/DuoPressable.tsx': '510c7cbf2767cd24ec4fa2c357123318c94e29f84cacc1858bfac63b286d11f9',
-  'components/PressableHybrid.tsx': '7efcde3c06d26c0edeb3e13e1da69f81f143f529acdfa0d49f27e8345ac3e0eb',
+  // хэш обновлён 10.10: PressableHybrid перешёл на общее движение кита (constants/kitPress).
+  'components/PressableHybrid.tsx': '6321f8fdef1d67a253119d0e46165ff39231f6e51b065b96b40c5e30bb60962b',
   'app/manage_subscription_save_offer.ts': '6f4b7f84f662f1af2a3314df4ae838f519819f0214736609931bed286fc072cf',
   // 10.10: осознанные правки f5447d10c (PM-229, логи вместо немых catch) и ebc1a860d (S2d, withPurchaseFlow).
   'app/manage_subscription_purchase.ts': 'fd85c1c6e7cd523a7599deb61a17b892729861e1304f227bf0ef14cc4bb25106',

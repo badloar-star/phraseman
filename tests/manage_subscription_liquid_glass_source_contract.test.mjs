@@ -39,7 +39,8 @@ const PROTECTED = {
     // зачем (PM-229, db985607f, проверено по диффу): в этих трёх функциях изменились ТОЛЬКО немые `.catch(() => {})` → `.catch(noteSwallowedHandler(...))`:
     // причина сбоя пишется в журнал, значение по умолчанию и порядок платёжных шагов прежние. Хеши перечислены заново после этого осмотра.
     handleChangePlan: '1c022e9a9f992f4656295b8578a42ca2196ac26806beac5448c7e7322d492e0d',
-    handleRestore: '19f9cfee240e628564c17bbffe04b9d2cf1385e9093784d6060dca04dfa1b7df',
+    // хэш обновлён 10.10: в handleRestore добавлен синхронный замок restoringRef от двойного тапа (деньги/активация не менялись).
+    handleRestore: '4c5bf95c1a31d05e13d9a41cfd4f313d0a140a2bef4f21aa8d4a3c780b845497',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
     openStoreCancel: '0b2945979dcd63ecc9bc77f93c13c0cc8d1a52b33711b824c8481112f3b71720',

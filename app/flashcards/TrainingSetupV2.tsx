@@ -148,11 +148,12 @@ function TrainingSetupV2Inner(props: Props) {
       {status === 'unavailable' ? (
         <KitEmpty g={g} testID="fc-training-setup-unavailable" icon="cloud-offline-outline" title={copy.unavailable} detail={copy.checkNet} action={copy.retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-training-setup-try-again" />
       ) : null}
+      {/* зачем (координатор 10.10): «лимит исчерпан» и «режим недоступен» были тупиками без кнопки — теперь главная «Назад». */}
       {status === 'exhausted' ? (
-        <KitEmpty g={g} testID="fc-training-setup-exhausted" icon="lock-closed-outline" title={copy.limit} detail={resetText} action="" onAction={onBack} hideAction />
+        <KitEmpty g={g} testID="fc-training-setup-exhausted" icon="lock-closed-outline" title={copy.limit} detail={resetText} action={copy.back} onAction={onBack} actionTestID="fc-training-setup-exhausted-back" />
       ) : null}
       {status === 'invalid' ? (
-        <KitEmpty g={g} testID="fc-training-setup-error" icon="alert-circle-outline" title={invalidText} detail="" action="" onAction={onBack} hideAction />
+        <KitEmpty g={g} testID="fc-training-setup-error" icon="alert-circle-outline" title={invalidText} detail="" action={copy.back} onAction={onBack} actionTestID="fc-training-setup-error-back" />
       ) : null}
 
       {showList ? (

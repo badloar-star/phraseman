@@ -1,7 +1,7 @@
 import React, { memo, useRef, useCallback, useEffect } from 'react';
 import { Animated, Pressable, type PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
-import { MOTION_SPRING_LEGACY } from '../constants/motion';
+import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../constants/kitPress';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
@@ -36,11 +36,13 @@ interface Props extends PassthroughPressableProps {
   pressScaleTo?: number;
 };
 
+// зачем (координатор 10.10): в ките нажатие одно для всех (`.t.down` scale .97) — роли больше не различаются по силе вжатия;
+// явный scaleTo/pressScaleTo остаётся осознанным исключением вызывающего места.
 const VARIANT_SCALE: Record<PressableScaleVariant, number> = {
-  icon: 0.95,
-  flat: 0.98,
-  card: 0.988,
-  primary: 0.97,
+  icon: KIT_PRESS_SCALE,
+  flat: KIT_PRESS_SCALE,
+  card: KIT_PRESS_SCALE,
+  primary: KIT_PRESS_SCALE,
 };
 
 function PressableScale({
@@ -64,7 +66,7 @@ function PressableScale({
   const opacity = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReduceMotion();
   const unavailable = Boolean(disabled || busy);
-  const pressedScale = pressScaleTo ?? scaleTo ?? (variant ? VARIANT_SCALE[variant] : 0.94);
+  const pressedScale = pressScaleTo ?? scaleTo ?? (variant ? VARIANT_SCALE[variant] : KIT_PRESS_SCALE);
 
   useEffect(() => () => {
     scale.stopAnimation();
@@ -86,12 +88,10 @@ function PressableScale({
     if (reduceMotion) {
       Animated.timing(opacity, { toValue: 0.82, duration: 70, useNativeDriver: true }).start();
     } else {
-      Animated.spring(scale, {
-        toValue: pressedScale,
-        useNativeDriver: true,
-        friction: MOTION_SPRING_LEGACY.press.friction,
-        tension: MOTION_SPRING_LEGACY.press.tension,
-      }).start();
+      Animated.parallel([
+        Animated.timing(scale, { toValue: pressedScale, ...KIT_PRESS_DOWN, useNativeDriver: true }),
+        Animated.timing(opacity, { ...KIT_PRESS_OPACITY_DOWN, useNativeDriver: true }),
+      ]).start();
     }
     onPressIn?.(event);
     if (!silent && !unavailable && withHaptic) hapticTap();
@@ -101,12 +101,10 @@ function PressableScale({
     if (reduceMotion) {
       Animated.timing(opacity, { toValue: 1, duration: 90, useNativeDriver: true }).start();
     } else {
-      Animated.spring(scale, {
-        toValue: 1,
-        useNativeDriver: true,
-        friction: MOTION_SPRING_LEGACY.press.friction,
-        tension: MOTION_SPRING_LEGACY.press.tension,
-      }).start();
+      Animated.parallel([
+        Animated.timing(scale, { toValue: 1, ...KIT_PRESS_UP, useNativeDriver: true }),
+        Animated.timing(opacity, { ...KIT_PRESS_OPACITY_UP, useNativeDriver: true }),
+      ]).start();
     }
     onPressOut?.(event);
   }, [onPressOut, opacity, reduceMotion, scale]);

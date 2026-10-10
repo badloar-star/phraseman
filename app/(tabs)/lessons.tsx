@@ -102,7 +102,7 @@ import {
 import { OLIVE_GRADIENTS, oliveShadow } from "../../constants/oliveTheme";
 import { isLightThemeMode, type ThemeMode } from "../../constants/theme";
 import GoldBevel from "../../components/GoldBevel";
-import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG } from "../config";
+import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG, IS_STORE_RELEASE } from "../config";
 import {
   devStudyTargetsForUiLang,
   emitDevStudyTargetChanged,
@@ -1361,7 +1361,12 @@ type LessonsTabProps = {
 // можно изучать, а незавершённость показывается значком ремонта на самих уроках
 // и сессиях. Дев-кнопка массовой разблокировки остаётся отдельной и релизной
 // доступностью не управляет.
-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true;
+//
+// зачем (релизный пол, координатор 10.10): в СТОР-сборке маршруты Learning V2 физически вырезаны (router.ctx.js — `*learning[_-]v2*`,
+// осознанно с 1.6.15), а занятие открывается через `/learning-v2/session/[id]`. Значит чип «Новые уроки» в магазинной сборке вёл бы на
+// страницу, из которой любая сессия падает в «неизвестный маршрут». Поэтому в стор-сборке вход закрыт (чипа нет вовсе — «незаконченное
+// не видно»); во всех остальных сборках решение владельца от 2026-09-19 действует как прежде.
+const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE;
 
 /**
  * Потолок ожидания подготовки занятия.

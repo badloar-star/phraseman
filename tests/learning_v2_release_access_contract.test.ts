@@ -35,7 +35,9 @@ const lessons = read('app/(tabs)/lessons.tsx');
 
 assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)|<Redirect/u);
 assert.doesNotMatch(layout, /isBlockedLearningV2RoutePath/u);
-assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true/u);
+// зачем (релизный пол, координатор 10.10): в стор-сборке маршруты Learning V2 вырезаны router.ctx.js (осознанно, с 1.6.15), поэтому чип «Новые уроки»
+// там скрыт: константа = !IS_STORE_RELEASE (не стор-сборки — решение владельца 2026-09-19 без изменений).
+assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !IS_STORE_RELEASE/u);
 assert.doesNotMatch(
   lessons,
   /\{ENABLE_DEV_TOOLS \? \(\s*<TabUnderlineButton\s*\n\s*label="V2"/u,

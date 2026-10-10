@@ -2,6 +2,12 @@
 
 Сообщения между сессиями до координатора не доходят (05.10 ~04:00 — «not delivered»), поэтому ответы дублируются здесь.
 
+## 10.10 21:45 — отмена по Learning V2 принята; храповик 207 → 193 (`c6f07db5b`)
+
+- Задача по двум экранам Learning V2 отменена (стор-сборка их вырезает); инструкция для владельца помечена Cancelled, скрипт `scripts/codemod_lv2_session_theme_tokens.mjs` (по умолчанию только просмотр) оставлен на случай возврата.
+- Вне Learning V2 осталось 37 → меньше после `c6f07db5b` (hex в комментариях → `0x…`, фон вспышки урока 1 из `glass.warn`). Что осталось: файлы с чужими правками (`UpdateModal`, `ForceUpdateGate`, `GlobalBroadcastModal`, `NotificationPermissionModalHybrid`), Главная (`DailyPhraseCard`), Spire*, `flashcards_speaking_session`, бренд-кнопка входа, 1 градиент онбординга — не мои зоны.
+- Токены и AA — без изменений (`f75c97248`), цветовых находок Сверки в работе нет.
+
 ## 10.10 21:30 — очередь 20:36: пункты 1–3 выполнены; взято из входящих Сверки
 
 - Пункт 1: `bba982f4a` (207), `scripts/theme_colors_baseline_head.mjs` Дизайна принят как счётчик. Пункт 2: `f75c97248` — `docs/work/tasks/theme-contrast-audit-2026-10-10.md` (23 темы × 2 оформления × 21 шаг, нарушений нет; 5 пар с запасом ≤ 0.1 перечислены). Пункт 3: `5a4543def` + `docs/work/tasks/2026-10-10_owner_lv2_session_theme_migration_commands.md`.

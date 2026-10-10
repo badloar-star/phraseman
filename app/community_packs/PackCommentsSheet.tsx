@@ -793,7 +793,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 6, textAlign: 'center' }}>{emptyBody}</Text>
             </View>
           ) : (
-            <FlatList
+            <FlatList removeClippedSubviews={false}
               ref={listRef}
               data={comments}
               keyExtractor={(item) => item.id}

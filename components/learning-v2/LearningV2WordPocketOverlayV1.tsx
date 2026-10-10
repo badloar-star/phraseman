@@ -141,7 +141,7 @@ export default function LearningV2WordPocketOverlayV1({
           )}
         />
       ) : cards.length ? (
-        <FlatList
+        <FlatList removeClippedSubviews={false}
           testID="learning-v2-pulse-word-list"
           data={cards}
           keyExtractor={card => card.id}

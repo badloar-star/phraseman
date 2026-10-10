@@ -75,7 +75,7 @@ export default function LearningV2AuthoringPreviewScreen() {
         </View>
       </View>
 
-      <FlatList decelerationRate="fast"
+      <FlatList removeClippedSubviews={false} decelerationRate="fast"
         data={rows}
         keyExtractor={(row) => row.courseSessionId}
         contentContainerStyle={[

@@ -385,7 +385,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
         </View>
       ) : null}
 
-      <FlatList
+      <FlatList removeClippedSubviews={false}
         data={rows}
         keyExtractor={dictionaryRowKey}
         contentContainerStyle={sx.listContent}

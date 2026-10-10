@@ -171,7 +171,7 @@ export default function CommunityPackPreview({
         maxToRenderPerBatch={10}
         updateCellsBatchingPeriod={32}
         windowSize={7}
-        removeClippedSubviews={Platform.OS === 'android'}
+        removeClippedSubviews={false} // зачем: сторож краша Android ReactClippingViewManager — отсечение выключено
         onLayout={(e) => {
           if (firstLayoutLoggedRef.current) return;
           firstLayoutLoggedRef.current = true;

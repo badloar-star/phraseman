@@ -807,7 +807,7 @@ function AppMessagesInbox({
           <Text style={[styles.emptyBody, { color: chrome.muted }]}>{copy.emptyBody}</Text>
         </View>
       ) : (
-        <FlatList
+        <FlatList removeClippedSubviews={false}
           decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.listContent}

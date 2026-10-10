@@ -2515,7 +2515,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <FlatList
+          <FlatList removeClippedSubviews={false}
             ref={scrollRef}
             decelerationRate="fast"
             style={{ flex: 1 }}

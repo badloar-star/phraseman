@@ -682,7 +682,7 @@ function NotificationCenterButton({
       >
         <View testID="notification-center-screen" style={styles.sheetBody}>
           {selected ? renderReportReplyDetail(selected) : (
-          <FlatList decelerationRate="fast"
+          <FlatList removeClippedSubviews={false} decelerationRate="fast"
             // зачем (FINAL_PHASE п.4): «Показать ещё» растит список страницами — первый кадр
             // рисует только видимое, дальнее не держим в памяти. Высоты строк разные, getItemLayout нет.
             initialNumToRender={10}

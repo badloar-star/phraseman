@@ -115,7 +115,8 @@ test('реестр: уникальные id, допустимые статусы
   assert.ok(registry.rows.filter((row) => row.source === 'STATE_CHECKLIST').length >= 758);
   // зачем (владелец 04.10, «новый макет = эталон»): эталон «Моих ошибок» — mistakes-panel (MISTAKES_LOCKED); строки mistakes-v2 ушли законно (66bb7b933).
   assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-v2-')).length, 0);
-  assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-panel-')).length, 20);
+  // 11.10: 21 телефон макета mistakes-panel.html — после перепривязки 014–020 по подписям телефон 14 «Меню задания» получил строку 021.
+  assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-panel-')).length, 21);
   assert.equal(registry.rows.filter((row) => row.id.startsWith('themes-gradient-')).length, 3);
   // зачем: Карточки перешли на утверждённый макет cards-section (de6a828f8); cards-v2 из реестра ушли законно.
   assert.equal(registry.rows.filter((row) => row.id.startsWith('cards-section-')).length, 57, 'макет cards-section (04.10) должен быть в реестре');

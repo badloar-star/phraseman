@@ -22,7 +22,9 @@ import { DebugLogger } from './debug-logger';
 // зачем (AA S2d 🔴1): [PLUS-TRANSFER] — перенос Plus после смены аккаунта (тихое восстановление покупок).
 export type IdentityTracePrefix = '[AUTH-LINK-GOOGLE]' | '[PROFILE-FLIP]' | '[ACC-SWITCH-WIPE]' | '[PLUS-TRANSFER]'
   // зачем (AA S2d раунд 3): долив копии гостя A в B после подтверждённого merge.
-  | '[ACC-BACKUP-MERGE]';
+  | '[ACC-BACKUP-MERGE]'
+  // зачем (10.10, ревью «Авторизации»): причины сбоя синхронных peek привязки и даты аккаунта.
+  | '[AUTH-PEEK]';
 
 export type IdentityTraceValue = string | number | boolean | null;
 

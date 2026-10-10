@@ -10,8 +10,7 @@ describe('legacy onboarding graphite stats card assets', () => {
 
     expect(cardSource).not.toContain('onboarding-graphite');
     expect(chromeSource).not.toContain('onboarding-graphite');
-    expect(chromeSource).toContain("minimalDark: '#6EA8FF'");
-    expect(chromeSource).not.toContain("minimalDark: '#F2B84B'");
+    // зачем (10.10): проверки палитры minimalDark убраны — режима minimalDark в statsThemeChrome больше нет (Liquid Glass 2.0).
     expect(fs.existsSync(path.join(ROOT, 'assets/images/statistics/cards/onboarding-graphite'))).toBe(false);
   });
 });

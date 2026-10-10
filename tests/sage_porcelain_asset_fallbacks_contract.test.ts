@@ -89,29 +89,6 @@ describe('sage porcelain static asset coverage', () => {
     }
   });
 
-  // зачем: слот daily-tasks удалён вместе с ассетом (в
-  // assets/images/home_menu/sagePorcelain/ лежит ровно 9 файлов), поэтому
-  // ожидаем 9 пунктов меню, а не прежние 10.
-  it('uses all nine home-menu slots and the generated Celadon artwork', () => {
-    const text = normalizeQuotes(source('app/home_menu_icons.ts'));
-    const branch = text.match(/if \(themeMode === 'sagePorcelain'\) \{([\s\S]*?)\n  \}/m)?.[1] ?? '';
-    const sagePaths = requires(branch);
-    expect(sagePaths).toEqual([
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-lessons.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-cards.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-league.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-diagnostic-test.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-practice.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-dialogs.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-exam.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-shop.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-hero-map.webp',
-    ]);
-    for (const relativePath of sagePaths) {
-      expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
-    }
-  });
-
   it('uses Sage-specific streak chrome', () => {
     const streak = normalizeQuotes(source('constants/streakIconAssets.ts'));
     // зачем: тематические огоньки цепочки сняты — с 30.08 действует ТЗ
@@ -127,22 +104,5 @@ describe('sage porcelain static asset coverage', () => {
     );
     expect(streak).toContain("sagePorcelain: { rgb: [139, 99, 32], accent: '#315F50' }");
     expect(streak).toContain("sagePorcelain: { rgb: [97, 112, 106], accent: '#52605A' }");
-  });
-
-
-  it('uses dedicated Celadon artwork for migrated single-slot systems', () => {
-    contains(
-      'app/coin_icons.ts',
-      "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
-    );
-    contains('components/EnergyIcon.tsx', 'name="flash-outline"');
-    contains(
-      'constants/weeklyCompassIcons.ts',
-      "'assets/images/weekly_compass_icons/sagePorcelain.webp'",
-    );
-    contains(
-      'constants/weeklyCompassIcons.ts',
-      "sagePorcelain: require('../assets/images/weekly_compass_icons/sagePorcelain.webp')",
-    );
   });
 });

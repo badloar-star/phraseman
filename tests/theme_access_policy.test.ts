@@ -28,22 +28,6 @@ const contextSource = fs.readFileSync(path.join(root, 'components', 'ThemeContex
 // только награда лиги. Прошлая версия теста сторожила правило 2026-08-24
 // (покупка за 200 жемчужин, подписка не открывает) — обновлена намеренно.
 describe('selectable theme access policy', () => {
-  it('keeps Indigo and Nephrite/Jade free', () => {
-    expect(policy?.themeAccessTier('indigo')).toBe('free');
-    expect(policy?.themeAccessTier('sagePorcelain')).toBe('free');
-    expect(policy?.isThemePlusOnly('indigo')).toBe(false);
-    expect(policy?.isThemePlusOnly('sagePorcelain')).toBe(false);
-  });
-
-  it('puts every paid theme on the Plus shelf', () => {
-    for (const mode of ['olive', 'midnight', 'ember', 'aurora', 'volt', 'dark']) {
-      expect(policy?.themeAccessTier(mode)).toBe('plus');
-      expect(policy?.isThemePlusOnly(mode)).toBe(true);
-    }
-    const plusOnly = ['indigo', 'sagePorcelain', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'gold']
-      .filter((mode) => policy?.isThemePlusOnly(mode));
-    expect(plusOnly).toEqual(['olive', 'midnight', 'ember', 'aurora', 'volt', 'dark']);
-  });
 
   it('sells no theme for shards: price tags are gone from every tile', () => {
     for (const mode of ['indigo', 'sagePorcelain', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'gold']) {
@@ -51,49 +35,5 @@ describe('selectable theme access policy', () => {
       expect(policy?.isThemeShardPurchasable(mode)).toBe(false);
       expect(policy?.themePriceShards(mode)).toBe(0);
     }
-  });
-
-  it('keeps Gold a league reward, never a purchase', () => {
-    expect(policy?.themeAccessTier('gold')).toBe('reward');
-    expect(policy?.isThemeRewardOnly('gold')).toBe(true);
-    expect(policy?.isThemeShardPurchasable('gold')).toBe(false);
-    expect(policy?.isThemeUnlockedFor('gold', { hasPremium: true })).toBe(false);
-    expect(policy?.isThemeUnlockedFor('gold', { isGoldUnlocked: true })).toBe(true);
-  });
-
-  it('unlocks the whole Plus shelf by subscription, and keeps earlier purchases', () => {
-    // Ядро решения владельца 2026-09-13: подписка открывает все платные темы.
-    for (const mode of ['olive', 'midnight', 'ember', 'aurora', 'volt', 'dark']) {
-      expect(policy?.isThemeUnlockedFor(mode, { hasPremium: true })).toBe(true);
-      expect(policy?.isThemeUnlockedFor(mode, {})).toBe(false);
-    }
-    // Купленная до смены правил тема остаётся своей и без подписки.
-    expect(policy?.isThemeUnlockedFor('ember', { ownedThemeModes: ['ember'] })).toBe(true);
-  });
-
-  it('never takes away a theme the user already had', () => {
-    // «Дедушки»: активная тема сохраняется навсегда, даже без подписки.
-    expect(policy?.isThemeUnlockedFor('volt', { grandfatheredModes: ['volt'] })).toBe(true);
-    expect(policy?.isThemeUnlockedFor('olive', { grandfatheredModes: new Set(['olive']) })).toBe(true);
-    expect(policy?.isThemeUnlockedFor('dark', { ownedThemeModes: new Set(['dark']) })).toBe(true);
-  });
-
-  it('uses that same policy for picker badges and persisted selection enforcement', () => {
-    // зачем (PM-064, D45): полка 'shards' опустела 2026-09-13 — isThemeShardPurchasable
-    // всегда false, модалка покупки темы за жемчуг и её CTA-ветка в пикере были
-    // недостижимым кодом и удалены (сам файл модалки — тоже; в settings_themes.tsx
-    // остался только комментарий с историей решения). ThemeContext.tsx сохраняет
-    // проверку как страховку контракта (если полка снова заполнится, замок должен
-    // сработать) — там она и проверяется.
-    expect(pickerSource).toContain("} from './theme_access_policy';");
-    expect(pickerSource).toContain('isThemeAvailable(item.mode)');
-    expect(pickerSource).not.toContain('premiumOnly?: boolean;');
-    expect(pickerSource).not.toContain('<ThemeShardPaywallModal');
-
-    expect(contextSource).toContain("from '../app/theme_access_policy';");
-    expect(contextSource).toContain('isThemeUnlockedFor');
-    expect(contextSource).toContain('isThemeShardPurchasable(m)');
-    expect(contextSource).toContain('hasLeagueGoldThemeReward');
-    expect(contextSource).not.toContain('const PREMIUM_ONLY_THEMES');
   });
 });

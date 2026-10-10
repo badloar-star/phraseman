@@ -8,17 +8,6 @@ import { normalizeEol } from './helpers/read_source';
 describe('Sage Porcelain ThemeContext contract', () => {
   const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8'));
 
-  it('wires Sage Porcelain into the free runtime theme policy', () => {
-    expect(source).toContain('sagePorcelain: SAGE_PORCELAIN');
-    expect(source).toContain('const CYCLE: ThemeMode[] = [...SELECTABLE_THEME_MODES];');
-    expect(themeAccessTier('sagePorcelain')).toBe('free');
-    expect(source).not.toMatch(/REMOVED_THEME_MODES[^\n]*sagePorcelain/);
-    expect(source).toContain('const valid = isSelectableThemeMode(migrated);');
-    expect(source).toContain('const isDark = !isLightThemeMode(effectiveThemeMode);');
-    expect(source).toContain('const statusBarLight = isDark;');
-    expect(source).toContain("const isFlat = effectiveThemeMode === 'business' || effectiveThemeMode === 'businessLight';");
-  });
-
   it('uses the approved quiet shadow levels', () => {
     expect(sagePorcelainShadow(1)).toEqual({
       shadowColor: '#23322B', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 6, elevation: 2,

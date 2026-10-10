@@ -10,7 +10,7 @@ const PHASE_2C_ROUTES = [
   ['/flashcards', 'flashcards'],
   ['/progress_map', 'progressMap'],
   ['/shards_shop', 'shardsShop'],
-  ['/level_gifts_inventory', 'levelGifts'],
+  // зачем (10.10): маршрут /level_gifts_inventory удалён из приложения вместе с экраном — запись убрана, остальные маршруты проверяются как прежде.
   ['/streak_stats', 'statistics'],
 ] as const;
 

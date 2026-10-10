@@ -352,7 +352,8 @@
       "<rootDir>/tests/**/*.test.ts",
       "<rootDir>/tests/coin_reward_flight_lifecycle.test.tsx",
       "<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx",
-      "<rootDir>/tests/home_rune_balance_render.test.tsx"
+      "<rootDir>/tests/home_rune_balance_render.test.tsx",
+      "<rootDir>/tests/theme_selection_runtime.test.tsx"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

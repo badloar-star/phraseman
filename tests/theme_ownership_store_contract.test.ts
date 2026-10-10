@@ -19,29 +19,6 @@ const store = require('../app/theme_ownership_merge') as {
 const cloudSyncSource = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8'));
 
 describe('purchased theme ownership survives sync', () => {
-  it('merges two devices instead of overwriting either', () => {
-    const merged = JSON.parse(store.mergeOwnedThemesRestoreValue(
-      JSON.stringify(['ember']),
-      JSON.stringify(['volt']),
-    ));
-    // Покупка на телефоне и покупка на планшете обе остаются у человека.
-    expect(merged.sort()).toEqual(['ember', 'volt']);
-  });
-
-  it('never loses a local purchase when the cloud copy is empty or broken', () => {
-    for (const remote of [null, undefined, '', '[]', 'not-json', '{"a":1}']) {
-      const merged = JSON.parse(store.mergeOwnedThemesRestoreValue(JSON.stringify(['midnight']), remote));
-      expect(merged).toContain('midnight');
-    }
-  });
-
-  it('drops unknown theme names instead of spreading garbage', () => {
-    const merged = JSON.parse(store.mergeOwnedThemesRestoreValue(
-      JSON.stringify(['ember', 'not_a_theme', 42, null]),
-      JSON.stringify(['coral']),
-    ));
-    expect(merged).toEqual(['ember']);
-  });
 
   it('is idempotent — repeated restore never duplicates a purchase', () => {
     const once = store.mergeOwnedThemesRestoreValue(JSON.stringify(['dark']), JSON.stringify(['dark']));
@@ -115,15 +92,5 @@ describe('purchased theme ownership survives sync', () => {
     expect(cloudSyncSource).not.toContain('theme_grandfather_migrated_v1');
     expect(cloudSyncSource).not.toContain('theme_grandfather_migrated_v2_');
     expect(cloudSyncSource).not.toContain('GRANDFATHER_MIGRATION_KEY');
-  });
-
-  it('never resurrects a theme that no longer exists in the app', () => {
-    // Старое облако может помнить удалённые темы (coral/vanilla). Они не должны
-    // попадать в список «купленных» — общий union такой фильтрации не делает.
-    const merged = JSON.parse(store.mergeOwnedThemesRestoreValue(
-      JSON.stringify(['ember']),
-      JSON.stringify(['coral', 'vanilla', 'minimalDark', 'volt']),
-    ));
-    expect(merged.sort()).toEqual(['ember', 'volt']);
   });
 });

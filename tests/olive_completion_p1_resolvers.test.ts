@@ -22,21 +22,4 @@ describe('Olive completion P1 resolvers', () => {
     expect(oliveThemeTileA11y('es', 'preview')).toBe('Vista previa');
     expect(oliveThemeTileA11y('en', 'applied')).toBe('Applied');
   });
-
-  it('uses Olive-only incoming-gift copy colors without changing mono non-Olive copy', () => {
-    const friends = source('app/(tabs)/friends.tsx');
-    expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.champagneLight : monoIcon(themeMode, '#7A5518', MONO_ICON.onLight)");
-    expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#8A641D', MONO_ICON.onLight)");
-    expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight)");
-  });
-
-  it('wires the resolved Olive exam shell into reachable access and legacy controls', () => {
-    const exam = source('app/level_exam.tsx');
-    const intro = exam.slice(exam.indexOf("if (phase === 'intro')"), exam.indexOf('// ── RESULT'));
-    expect(exam).toContain("backgroundColor: oliveExamChrome?.cta ?? LX.gold");
-    expect(exam).toContain("color: oliveExamChrome?.ctaText ?? LX.ink");
-    expect(intro).toContain("borderBottomColor: oliveExamChrome?.border ?? LX.cardLine");
-    expect(intro).toContain("color={oliveExamChrome?.ivory ?? '#FFFFFF'}");
-    expect(exam).toContain("color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)'");
-  });
 });

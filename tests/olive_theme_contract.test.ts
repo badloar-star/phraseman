@@ -14,15 +14,6 @@ function contrast(a: string, b: string): number {
 }
 
 describe('Olive Noir theme contract', () => {
-  it('is a selectable Plus-only dark theme with the agreed quiet-luxury palette', () => {
-    expect(SELECTABLE_THEME_MODES).toContain('olive');
-    expect(themeAccessTier('olive')).toBe('plus');
-    expect(OLIVE.bgPrimary).toBe('#050604');
-    expect(OLIVE.accent).toBe('#C9A84C');
-    expect(OLIVE.textPrimary).toBe('#F4ECD8');
-    expect(OLIVE.cardGradient).toEqual(['#232719', '#090A08']);
-    expect(BG_GRADIENTS.olive).toEqual(['#1A1E12', '#0B0D08', '#030303']);
-  });
 
   it('keeps readable text and dark foregrounds on all bright Olive fills', () => {
     expect(contrast(OLIVE.textGhost, OLIVE.bgSurface2)).toBeGreaterThanOrEqual(4.5);

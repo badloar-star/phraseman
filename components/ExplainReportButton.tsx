@@ -149,6 +149,10 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
     hapticTap();
     setFailed(false);
     setSending(true);
+    // зачем (координатор 11.10, Optimistic UI): форма закрывается и значок «отправлено» появляется сразу, не ждём ответ сервера;
+    // при сбое откат: форма открывается снова с теми же причиной и текстом и с понятной ошибкой.
+    setSent(true);
+    setFormOpen(false);
     try {
       await callSubmitExplainReport({
         kind,
@@ -164,13 +168,13 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
       console.warn('[EXPLAIN-REPORT] отправка: исключение — показываем «не отправилось»', error instanceof Error ? error.message : String(error));
       sendLockRef.current = false;
       setSending(false);
+      setSent(false);
       setFailed(true);
+      setFormOpen(true);
       return;
     }
     sendLockRef.current = false;
     setSending(false);
-    setSent(true);
-    setFormOpen(false);
   };
 
   return (

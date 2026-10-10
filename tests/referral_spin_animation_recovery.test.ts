@@ -58,7 +58,7 @@ describe('referral reward animation recovery', () => {
 
   it('keeps the claim button free of loading spinners during the reveal', () => {
     const buttonAt = REFERRALS.indexOf('testID="referrals-roulette-spin"');
-    const buttonEnd = REFERRALS.indexOf('</TouchableOpacity>', buttonAt);
+    const buttonEnd = REFERRALS.indexOf('</KitTouchable>', buttonAt);
     const buttonBlock = REFERRALS.slice(buttonAt, buttonEnd);
 
     expect(buttonAt).toBeGreaterThan(-1);

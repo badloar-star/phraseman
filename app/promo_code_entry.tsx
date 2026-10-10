@@ -6,9 +6,9 @@ import {
   ScrollView,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from '../components/KitTouchable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -238,16 +238,32 @@ export default function PromoCodeEntryScreen() {
   const inputValid = /^[A-Z0-9_-]{3,32}$/.test(normalizedCode);
   const canSubmit = inputValid && !busy;
 
+  // зачем (координатор 10.10, Optimistic UI): замок от двойного тапа ставится синхронно — state busy обновляется после рендера,
+  // второй тап в том же кадре успел бы отправить код дважды; снимается в finally.
+  const redeemInFlightRef = useRef(false);
   const runRedeem = useCallback(async (rawCode: string) => {
+    if (redeemInFlightRef.current) {
+      console.warn('[PROMO] redeem: уже в пути — повторный тап пропущен');
+      return;
+    }
+    redeemInFlightRef.current = true;
     hapticTap();
     setBusy(true);
     setFeedback(null);
     try {
       const stableId = await ensureAnonUser();
       const generation = captureAccountGeneration();
-      if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return;
+      if (!stableId || !isCurrentAccountGeneration(generation, stableId)) {
+        // зачем: раньше выход без единого слова — кнопка отпускалась, а человек не понимал, что произошло
+        console.warn('[PROMO] redeem: нет анонимного входа или сменился аккаунт — показываем «не получилось»', { hasStableId: Boolean(stableId) });
+        setFeedback(feedbackForStatus('error', undefined, undefined, L));
+        return;
+      }
       const res = await redeemPromoCode(rawCode);
-      if (!isCurrentAccountGeneration(generation, stableId)) return;
+      if (!isCurrentAccountGeneration(generation, stableId)) {
+        console.warn('[PROMO] redeem: аккаунт сменился во время запроса — результат отброшен');
+        return;
+      }
       setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       if (res.status === 'redeemed') {
         const marker = await persistRedeemedPromoAccess({
@@ -266,7 +282,12 @@ export default function PromoCodeEntryScreen() {
         emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
         setCelebrationVisible(true);
       }
+    } catch (error: unknown) {
+      // зачем: исключение сети/хранилища оставляло экран без ответа (async-обработчик onPress никто не ловит)
+      console.warn('[PROMO] redeem: исключение', error instanceof Error ? error.message : String(error));
+      setFeedback(feedbackForStatus('error', undefined, undefined, L));
     } finally {
+      redeemInFlightRef.current = false;
       setBusy(false);
     }
   }, [L]);
@@ -351,7 +372,7 @@ export default function PromoCodeEntryScreen() {
                   fontSize: f.body ?? 16, fontWeight: '900', letterSpacing: 1,
                 }}
               />
-              <TouchableOpacity
+              <KitTouchable
                 testID="promo-code-submit"
                 accessibilityRole="button"
                 accessibilityState={{ disabled: !canSubmit, busy }}
@@ -375,7 +396,7 @@ export default function PromoCodeEntryScreen() {
                     ? L('Активируем…', 'Активуємо…', 'Activating…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
                     : L('Активировать', 'Активувати', 'Activate', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
                 </Text>
-              </TouchableOpacity>
+              </KitTouchable>
               {feedback && (
                 // зачем: макет OS-ONB-PROMO-*: итог проверки — стеклянная плашка со значком, не цветной текст.
                 <View

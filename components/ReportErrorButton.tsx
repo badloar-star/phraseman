@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { ENABLE_DEV_TOOLS } from '../app/config';
-import React, { memo, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -11,9 +11,9 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
@@ -177,8 +177,12 @@ function ReportErrorButton({
   const commentTrimmed = comment.trim();
   const commentOk = commentTrimmed.length >= ERROR_REPORT_COMMENT_MIN_LEN;
 
+  // зачем (координатор 10.10, Optimistic UI): state sending обновляется после рендера — второй тап в том же кадре отправил бы жалобу
+  // дважды; ref-замок синхронный, снимается вместе с sending.
+  const sendLockRef = useRef(false);
   const handleSend = () => {
     if (sending) return;
+    if (sendLockRef.current) return;
     if (!commentOk) {
       setCommentRequiredError(true);
       return;
@@ -189,6 +193,7 @@ function ReportErrorButton({
     setThrottled(false);
     setSent(true);
     setSending(true);
+    sendLockRef.current = true;
 
     void (async () => {
       let result: Awaited<ReturnType<typeof submitErrorReport>> = 'failed';
@@ -216,9 +221,11 @@ function ReportErrorButton({
             langRaw,
           );
         }
-      } catch {
+      } catch (error: unknown) {
+        console.warn('[REPORT-ERROR] отправка: исключение — показываем «не отправилось»', error instanceof Error ? error.message : String(error));
         result = 'failed';
       }
+      sendLockRef.current = false;
       setSending(false);
       if (result === 'invalid_comment') {
         setSent(false);
@@ -274,7 +281,7 @@ function ReportErrorButton({
   return (
     <>
       {hideTrigger ? null : (
-      <TouchableOpacity
+      <KitTouchable
         testID={testID}
         onPress={handleOpen}
         style={[isFlag ? styles.triggerFlag : styles.trigger, style]}
@@ -302,7 +309,7 @@ function ReportErrorButton({
             })}
           </Text>
         )}
-      </TouchableOpacity>
+      </KitTouchable>
       )}
 
       <Modal visible={visible} transparent animationType="fade" onRequestClose={() => setVisible(false)}>
@@ -351,7 +358,7 @@ function ReportErrorButton({
                       pl: 'Nie wysłano. Spróbuj ponownie.',
                     })}
                   </Text>
-                  <TouchableOpacity
+                  <KitTouchable
                     onPress={() => {
                       setFailed(false);
                       setSending(false);
@@ -362,7 +369,7 @@ function ReportErrorButton({
                     <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
                     </Text>
-                  </TouchableOpacity>
+                  </KitTouchable>
                 </View>
               ) : throttled ? (
                 <View style={styles.successBox}>
@@ -392,7 +399,7 @@ function ReportErrorButton({
                       pl: 'Wysłano już zgłoszenie mniej niż minutę temu. Spróbuj ponownie za chwilę.',
                     })}
                   </Text>
-                  <TouchableOpacity
+                  <KitTouchable
                     onPress={() => setVisible(false)}
                     style={[styles.btnSend, { backgroundColor: glass.accent, marginTop: 8, alignSelf: 'stretch' }]}
                     accessibilityRole="button"
@@ -400,7 +407,7 @@ function ReportErrorButton({
                     <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                     </Text>
-                  </TouchableOpacity>
+                  </KitTouchable>
                 </View>
               ) : sent ? (
                 <View style={styles.successBox}>
@@ -430,7 +437,7 @@ function ReportErrorButton({
                       </Text>
                     </View>
                   ) : null}
-                  <TouchableOpacity
+                  <KitTouchable
                     onPress={() => setVisible(false)}
                     style={[styles.btnSend, { backgroundColor: glass.accent, marginTop: 8, alignSelf: 'stretch' }]}
                     accessibilityRole="button"
@@ -438,7 +445,7 @@ function ReportErrorButton({
                     <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
                     </Text>
-                  </TouchableOpacity>
+                  </KitTouchable>
                 </View>
               ) : (
                 <>
@@ -516,7 +523,7 @@ function ReportErrorButton({
                   ) : null}
 
                   <View style={styles.row}>
-                    <TouchableOpacity
+                    <KitTouchable
                       onPress={() => setVisible(false)}
                       style={[styles.btnCancel, { backgroundColor: glass.opaqueControl }]}
                       accessibilityRole="button"
@@ -524,8 +531,8 @@ function ReportErrorButton({
                       <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>
                         {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                       </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+                    </KitTouchable>
+                    <KitTouchable
                       onPress={handleSend}
                       disabled={sending}
                       accessibilityRole="button"
@@ -540,7 +547,7 @@ function ReportErrorButton({
                             : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                         </Text>
                       </View>
-                    </TouchableOpacity>
+                    </KitTouchable>
                   </View>
                 </>
               )}

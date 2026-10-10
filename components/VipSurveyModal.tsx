@@ -11,10 +11,10 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   useWindowDimensions,
   View,
 } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -464,7 +464,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                 />
               </View>
             </View>
-            <TouchableOpacity
+            <KitTouchable
               disabled={busy}
               activeOpacity={0.75}
               accessibilityRole="button"
@@ -473,7 +473,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               style={[styles.roundButton, { backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
               <Ionicons name="close" size={20} color={chrome.text} />
-            </TouchableOpacity>
+            </KitTouchable>
           </View>
 
           <ScrollView
@@ -504,7 +504,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                     {question.options.map((option) => {
                       const selected = answers[question.id]?.optionId === option.id;
                       return (
-                        <TouchableOpacity
+                        <KitTouchable
                           key={option.id}
                           testID={`vip-survey-option-${question.id}-${option.id}`}
                           activeOpacity={0.84}
@@ -521,7 +521,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                           <Text style={[styles.optionText, { color: selected ? accent.text : chrome.text }]}>
                             {pickVipSurveyText(option.text, lang)}
                           </Text>
-                        </TouchableOpacity>
+                        </KitTouchable>
                       );
                     })}
                   </View>

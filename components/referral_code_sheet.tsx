@@ -7,7 +7,8 @@
  * идемпотентность и валидация — внутри referral_bootstrap).
  */
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TextInput } from 'react-native';
+import KitTouchable from './KitTouchable';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
 import { useLang } from './LangContext';
@@ -266,7 +267,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           fontWeight: '500',
         }}
       />
-      <TouchableOpacity
+      <KitTouchable
         testID="referral-code-sheet-submit"
         accessibilityRole="button"
         accessibilityState={{ disabled: !canSubmit }}
@@ -292,7 +293,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
             ? L('Применяем…', 'Застосовуємо…', 'Applying…', 'Aplicando…', 'Aplicando…', 'Đang áp dụng…', 'Menerapkan…', 'Uygulanıyor…', 'Stosowanie…')
             : L('Применить код', 'Застосувати код', 'Apply code', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
         </Text>
-      </TouchableOpacity>
+      </KitTouchable>
       {feedback && (
         // зачем (новый макет = эталон, владелец 04.10; overlays-more.html кадры 19–30, `.om-feedback`): результат —
         // простая строка 13/19 жирным светлым тоном, без стеклянной плашки (стекло снято владельцем 04.10).

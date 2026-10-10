@@ -17,9 +17,9 @@ import {
   ScrollView,
   Share,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from '../components/KitTouchable';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -682,7 +682,7 @@ export default function ReferralsScreen() {
                 </Text>
               )}
 
-              <TouchableOpacity
+              <KitTouchable
                 testID="referrals-roulette-spin"
                 accessibilityRole="button"
                 accessibilityState={{ disabled: spinning || spinCredits <= 0 }}
@@ -698,10 +698,10 @@ export default function ReferralsScreen() {
                 <Text style={{ color: spinCredits > 0 || spinning ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                   {spinCtaLabel}
                 </Text>
-              </TouchableOpacity>
+              </KitTouchable>
 
               {marketingVisible && (
-                <TouchableOpacity
+                <KitTouchable
                   testID="referrals-invite"
                   accessibilityRole="button"
                   accessibilityState={{ disabled: inviteBusy }}
@@ -725,14 +725,14 @@ export default function ReferralsScreen() {
                   <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.correctText, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
                   </Text>
-                </TouchableOpacity>
+                </KitTouchable>
               )}
 
               {/* зачем: владелец (2026-07-26) — ряд «Ввести реферальный код» убран из
                   настроек, а тихая строка внизу экрана не находилась. Ввод кода —
                   полноценная кнопка прямо в hero, под «Пригласить друга». */}
               {marketingVisible && (
-                <TouchableOpacity
+                <KitTouchable
                   testID="referrals-enter-code"
                   accessibilityRole="button"
                   activeOpacity={0.8}
@@ -758,7 +758,7 @@ export default function ReferralsScreen() {
                   <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Ввести код друга', 'Ввести код друга', 'Enter a friend\'s code', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
                   </Text>
-                </TouchableOpacity>
+                </KitTouchable>
               )}
 
               {drainVisible && drain.latestPendingDeadlineMs > 0 && (
@@ -791,7 +791,7 @@ export default function ReferralsScreen() {
                 </Text>
               </View>
               <View style={{ flexDirection: 'row', gap: 8 }}>
-                <TouchableOpacity
+                <KitTouchable
                   activeOpacity={0.8}
                   onPress={copyReferralCode}
                   accessibilityRole="button"
@@ -801,8 +801,8 @@ export default function ReferralsScreen() {
                   <Text testID="referrals-my-code-value" style={{ color: t.accent, fontSize: f.h2 ?? 22, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
                     {referralCode}
                   </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                </KitTouchable>
+                <KitTouchable
                   activeOpacity={0.84}
                   onPress={copyReferralCode}
                   accessibilityRole="button"
@@ -810,7 +810,7 @@ export default function ReferralsScreen() {
                   style={{ width: 56, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: codeCopied ? t.accentBg : t.bgSurface }}
                 >
                   <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={codeCopied ? t.accent : t.textSecond} />
-                </TouchableOpacity>
+                </KitTouchable>
               </View>
             </TonalSurface>
           ) : null}

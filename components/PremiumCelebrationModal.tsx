@@ -21,9 +21,9 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Reanimated, {
   Easing as REasing,
   cancelAnimation,
@@ -338,7 +338,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         >
           <View style={styles.topRow}>
             <Text style={[styles.step, { color: glass.secondary, fontSize: f.caption }]}>{stepText}</Text>
-            <TouchableOpacity
+            <KitTouchable
               testID={`${variant}-celebration-skip`}
               accessibilityRole="button"
               accessibilityLabel={skipLabel}
@@ -347,7 +347,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
               style={[styles.skip, { backgroundColor: glass.opaqueControl }]}
             >
               <Text style={[styles.skipText, { color: glass.secondary, fontSize: f.sub }]}>{skipLabel}</Text>
-            </TouchableOpacity>
+            </KitTouchable>
           </View>
 
           {/* Аура: плитка с иконкой и лёгкие искры — без градиентов и обводок. */}
@@ -392,7 +392,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
           <View style={styles.spacer} />
 
           <Reanimated.View style={[styles.ctaWrap, ctaStyle]}>
-            <TouchableOpacity
+            <KitTouchable
               testID={`${variant}-celebration-cta`}
               accessibilityRole="button"
               accessibilityLabel={primaryLabel}
@@ -401,7 +401,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
               style={[styles.cta, { backgroundColor: glass.accent }]}
             >
               <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{primaryLabel}</Text>
-            </TouchableOpacity>
+            </KitTouchable>
           </Reanimated.View>
         </ScrollView>
       </View>

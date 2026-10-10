@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, View } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
@@ -242,7 +243,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                 {([['offensive_nickname', tx.reasonNick], ['offensive_profile_text', tx.reasonText]] as const).map(([value, label]) => {
                   const on = reason === value;
                   return (
-                    <TouchableOpacity
+                    <KitTouchable
                       key={value}
                       testID={`report-user-reason-${value}`}
                       accessibilityRole="radio"
@@ -259,7 +260,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                           {`«${reportedProfileText.trim()}»`}
                         </FlowText>
                       ) : null}
-                    </TouchableOpacity>
+                    </KitTouchable>
                   );
                 })}
               </View>
@@ -267,7 +268,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
           </CascadeItem>
           <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
             <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
-              <TouchableOpacity
+              <KitTouchable
                 onPress={() => {
                   hapticTap();
                   handleClose();
@@ -281,8 +282,8 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                 <Text style={{ color: glass.text, textAlign: 'center', fontSize: f.body, fontWeight: '700' }}>
                   {tx.cancel}
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </KitTouchable>
+              <KitTouchable
                 onPress={handleSend}
                 disabled={loading}
                 style={{ flex: 1, minHeight: 48, paddingVertical: 11, borderRadius: 24, justifyContent: 'center', backgroundColor: glass.accent, overflow: 'hidden' }}
@@ -292,7 +293,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                       {tx.send}
                     </Text>
                 }
-              </TouchableOpacity>
+              </KitTouchable>
             </View>
           </CascadeItem>
         </>
@@ -340,7 +341,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-        <TouchableOpacity
+        <KitTouchable
           style={{
             flexGrow: 1,
             width: '100%',
@@ -353,10 +354,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             handleClose();
         }}
       >
-        <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
+        <KitTouchable activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
           {panelContent}
-        </TouchableOpacity>
-      </TouchableOpacity>
+        </KitTouchable>
+      </KitTouchable>
         </ScrollView>
       </KeyboardAvoidingView>
     </Modal>

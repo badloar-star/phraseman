@@ -24,7 +24,7 @@ const print = (node, file) => printer.printNode(ts.EmitHint.Unspecified, node, f
 const CALLER_HASHES = {
   // 04.10 (владелец: «очки из Блица убирай вообще, только монеты считаем») — из вызова итога снят scoreText.
   'app/flashcards_blitz_session.tsx': '9f7e401a67c5456295b0e1d60aece1ec5920bdbcaab3a6b0db40d54c6f66abf7',
-  'app/flashcards_recall_session.tsx': 'cc8ca99af4e3c2ec90a35c7f9b9997b2d9f5f1df1b48d05bdf395a6e941e0ecc',
+  'app/flashcards_recall_session.tsx': '5e514e2e6a32cb30bd9aea95a8dcbfc17571e1ad44fff4a4ebc4aee0a7738501',
   // 04.10 (PM-134, 2c8a7b95f): обработчик «Готово» переименован openSettings → exitFromResult, пропсы те же.
   'app/flashcards_swipe.tsx': 'ddf57868f7a045920e14c9eb0da2f3b045adf600d39bba42f82ebe49a1d11f69',
   'app/flashcards_speaking_session.tsx': 'c187dbef27bd751353d4b03c84417359ec039b2d56babf715f6b57d7ced9096d',

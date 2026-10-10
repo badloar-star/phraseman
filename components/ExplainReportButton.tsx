@@ -24,9 +24,9 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -168,7 +168,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
 
   return (
     <>
-      <TouchableOpacity
+      <KitTouchable
         onPress={openForm}
         disabled={sent}
         style={[styles.trigger, sent && styles.triggerMuted]}
@@ -187,7 +187,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
         })}
       >
         <Ionicons name={sent ? 'checkmark-circle' : 'flag'} size={18} color={sent ? glass.text : t.wrong} />
-      </TouchableOpacity>
+      </KitTouchable>
 
       {/* Мини-форма жалобы: причина + необязательный комментарий */}
       <Modal visible={formOpen} transparent animationType="fade" onRequestClose={() => setFormOpen(false)}>
@@ -290,7 +290,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               ) : null}
 
               <View style={styles.row}>
-                <TouchableOpacity
+                <KitTouchable
                   onPress={() => setFormOpen(false)}
                   style={[styles.btn, styles.btnCancel, { backgroundColor: glass.opaqueControl }]}
                   accessibilityRole="button"
@@ -298,8 +298,8 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                   <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>
                     {triLang(uiLang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                   </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                </KitTouchable>
+                <KitTouchable
                   onPress={handleSend}
                   disabled={sending}
                   accessibilityRole="button"
@@ -314,7 +314,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                         : triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                     </Text>
                   </View>
-                </TouchableOpacity>
+                </KitTouchable>
               </View>
               </ScrollView>
             </Pressable>

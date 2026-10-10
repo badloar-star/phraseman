@@ -5,10 +5,18 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity, Animated, Easing,
-  type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
-  type ViewStyle, type StyleProp,
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  Easing,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  type ViewStyle,
+  type StyleProp,
 } from 'react-native';
+import KitTouchable from '../KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 
@@ -344,13 +352,13 @@ export function PaywallCloseButton({ onPress, chrome, style }: {
   style?: object;
 }) {
   return (
-    <TouchableOpacity
+    <KitTouchable
       onPress={onPress}
       style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }, style]}
       hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
     >
       <Ionicons name="close" size={18} color={chrome.textMuted} />
-    </TouchableOpacity>
+    </KitTouchable>
   );
 }
 
@@ -434,7 +442,7 @@ export function PaywallStickyBar({
         <Text style={[S.stickyTitle, { color: chrome.textPrimary }]}>{title}</Text>
         <Text style={[S.stickySub, { color: chrome.textMuted }]}>{sub}</Text>
       </View>
-      <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
+      <KitTouchable activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
         {chrome.themeMode === 'midnight' ? (
           <LinearGradient
             colors={['#D7E0FF', '#8FA0FF', '#A95BFF']} // theme-exempt: фирменный градиент кнопки пейвола темы «Полночь»
@@ -445,7 +453,7 @@ export function PaywallStickyBar({
           />
         ) : null}
         <Text style={[S.stickyBtnText, { color: tc.ctaText }]}>{button}</Text>
-      </TouchableOpacity>
+      </KitTouchable>
     </View>
   );
 }

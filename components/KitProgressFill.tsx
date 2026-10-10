@@ -1,25 +1,7 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Easing, type StyleProp, type ViewStyle } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Easing, type StyleProp, type ViewStyle } from 'react-native';
 import { KIT_MOTION } from '../constants/motionHybrid';
-
-// зачем: «уменьшить движение» читаем прямо из AccessibilityInfo, без app-хука: цепочка hooks/use_reduce_motion → логгер → firebase →
-// конфиг тянет Platform и ломает тесты, которые импортируют экран с урезанным react-native.
-function useSystemReduceMotion(): boolean {
-  const [reduce, setReduce] = useState(false);
-  useEffect(() => {
-    let alive = true;
-    const info = AccessibilityInfo;
-    if (!info?.isReduceMotionEnabled) return undefined;
-    info.isReduceMotionEnabled()
-      .then((value) => { if (alive) setReduce(Boolean(value)); })
-      .catch((error: unknown) => {
-        console.warn('[KIT-PROGRESS] не удалось прочитать «уменьшить движение», остаётся анимация', error instanceof Error ? error.message : String(error));
-      });
-    const subscription = info.addEventListener?.('reduceMotionChanged', (value: boolean) => { if (alive) setReduce(Boolean(value)); });
-    return () => { alive = false; subscription?.remove?.(); };
-  }, []);
-  return reduce;
-}
+import { useSystemReduceMotion } from '../hooks/use_system_reduce_motion';
 
 // зачем: кривая создаётся лениво, при первом запуске анимации, а не при загрузке модуля — тесты, которые импортируют экран
 // с урезанным react-native (без Easing), не должны падать на импорте.

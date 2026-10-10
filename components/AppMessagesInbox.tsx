@@ -10,9 +10,9 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
 import { useIsFocused } from '@react-navigation/native';
@@ -699,7 +699,7 @@ function AppMessagesInbox({
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 120);
             return (
-              <TouchableOpacity
+              <KitTouchable
                 key={message.id}
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
@@ -715,7 +715,7 @@ function AppMessagesInbox({
                   ) : null}
                   <Text style={[styles.embeddedDate, { color: chrome.soft }]}>{formatMessageDate(message.createdAtMs)}</Text>
                 </View>
-                <TouchableOpacity
+                <KitTouchable
                   testID={`team-message-dismiss-${message.id}`}
                   activeOpacity={0.72}
                   accessibilityRole="button"
@@ -727,14 +727,14 @@ function AppMessagesInbox({
                   style={styles.embeddedDismiss}
                 >
                   <Ionicons name="close" size={19} color={chrome.soft} />
-                </TouchableOpacity>
-              </TouchableOpacity>
+                </KitTouchable>
+              </KitTouchable>
             );
           })}
         </View>
         {maxEmbeddedPage > 0 ? (
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 10 }}>
-            <TouchableOpacity
+            <KitTouchable
               accessibilityRole="button"
               accessibilityLabel={copy.previousPage}
               disabled={safeEmbeddedPage === 0}
@@ -743,11 +743,11 @@ function AppMessagesInbox({
               style={[styles.roundIcon, { opacity: safeEmbeddedPage === 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
               <Ionicons name="chevron-back" size={20} color={chrome.text} />
-            </TouchableOpacity>
+            </KitTouchable>
             <Text style={[styles.embeddedSectionMeta, { color: chrome.soft }]}>
               {safeEmbeddedPage + 1}/{maxEmbeddedPage + 1}
             </Text>
-            <TouchableOpacity
+            <KitTouchable
               accessibilityRole="button"
               accessibilityLabel={copy.nextPage}
               disabled={safeEmbeddedPage === maxEmbeddedPage}
@@ -756,13 +756,13 @@ function AppMessagesInbox({
               style={[styles.roundIcon, { opacity: safeEmbeddedPage === maxEmbeddedPage ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
               <Ionicons name="chevron-forward" size={20} color={chrome.text} />
-            </TouchableOpacity>
+            </KitTouchable>
           </View>
         ) : null}
         {undoMessage ? (
           <View style={[styles.undoBar, { backgroundColor: chrome.cardStrong }]}>
             <Text style={[styles.undoText, { color: chrome.muted }]}>{copy.deleted}</Text>
-            <TouchableOpacity
+            <KitTouchable
               testID="team-message-undo"
               activeOpacity={0.75}
               accessibilityRole="button"
@@ -771,7 +771,7 @@ function AppMessagesInbox({
               style={styles.undoButton}
             >
               <Text style={[styles.undoButtonText, { color: glass.text }]}>{copy.undo}</Text>
-            </TouchableOpacity>
+            </KitTouchable>
           </View>
         ) : null}
       </View>
@@ -787,7 +787,7 @@ function AppMessagesInbox({
             {unreadCount > 0 ? copy.newCount(unreadCount) : copy.allRead}
           </Text>
         </View>
-        <TouchableOpacity
+        <KitTouchable
           accessibilityRole="button"
           accessibilityLabel={copy.close}
           activeOpacity={0.75}
@@ -796,7 +796,7 @@ function AppMessagesInbox({
           style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
         >
           <Ionicons name="close" size={21} color={chrome.text} />
-        </TouchableOpacity>
+        </KitTouchable>
       </View>
 
       {messages.length === 0 ? (
@@ -826,7 +826,7 @@ function AppMessagesInbox({
             const rowTitleColor = chrome.text;
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
             return (
-              <TouchableOpacity
+              <KitTouchable
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
@@ -873,7 +873,7 @@ function AppMessagesInbox({
                 </Text>
                 {message.kind === 'vip_survey' ? (
                   <View style={styles.messageRowActions}>
-                    <TouchableOpacity
+                    <KitTouchable
                       testID="vip-survey-inbox-cta"
                       activeOpacity={0.86}
                       accessibilityRole="button"
@@ -886,10 +886,10 @@ function AppMessagesInbox({
                     >
                       <Ionicons name="chatbubbles-outline" size={15} color={vipSurveyAccentText} />
                       <Text style={[styles.messageRowCtaText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
-                    </TouchableOpacity>
+                    </KitTouchable>
                   </View>
                 ) : null}
-              </TouchableOpacity>
+              </KitTouchable>
             );
           }}
         />
@@ -921,7 +921,7 @@ function AppMessagesInbox({
             const optionColor = chrome.text;
             const accent = selectedOption ? glass.text : chrome.soft;
             return (
-              <TouchableOpacity
+              <KitTouchable
                 key={option.id}
                 activeOpacity={0.84}
                 onPress={() => voteOnSelectedPoll(option.id)}
@@ -953,7 +953,7 @@ function AppMessagesInbox({
                     <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? glass.cta : glass.mutedText }]} />
                   </View>
                 ) : null}
-              </TouchableOpacity>
+              </KitTouchable>
             );
           })}
         </View>
@@ -984,7 +984,7 @@ function AppMessagesInbox({
           </View>
         </View>
         {!reward.claimed ? (
-          <TouchableOpacity
+          <KitTouchable
             testID="report-reply-claim-cta"
             activeOpacity={0.86}
             accessibilityRole="button"
@@ -994,7 +994,7 @@ function AppMessagesInbox({
           >
             <Ionicons name="gift-outline" size={17} color={glass.ctaInk} />
             <Text style={[styles.vipSurveyButtonText, { color: glass.accentInk }]}>{copy.claim}</Text>
-          </TouchableOpacity>
+          </KitTouchable>
         ) : null}
       </View>
     );
@@ -1013,7 +1013,7 @@ function AppMessagesInbox({
             <Text style={[styles.vipSurveyBody, { color: chrome.muted }]}>{copy.vipSurveyHint}</Text>
           </View>
         </View>
-        <TouchableOpacity
+        <KitTouchable
           testID="vip-survey-detail-cta"
           activeOpacity={0.86}
           accessibilityRole="button"
@@ -1023,7 +1023,7 @@ function AppMessagesInbox({
         >
           <Ionicons name="chatbubbles-outline" size={17} color={vipSurveyAccentText} />
           <Text style={[styles.vipSurveyButtonText, { color: vipSurveyAccentText }]}>{copy.vipSurveyCta}</Text>
-        </TouchableOpacity>
+        </KitTouchable>
       </View>
     );
   };
@@ -1034,7 +1034,7 @@ function AppMessagesInbox({
     return (
       <>
         <View style={styles.modalHeader}>
-          <TouchableOpacity
+          <KitTouchable
             accessibilityRole="button"
             accessibilityLabel={copy.back}
             activeOpacity={0.75}
@@ -1046,7 +1046,7 @@ function AppMessagesInbox({
             style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
-          </TouchableOpacity>
+          </KitTouchable>
         </View>
         <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
@@ -1057,7 +1057,7 @@ function AppMessagesInbox({
           {renderPoll(selected)}
 
           {selected.kind === 'vip_survey' ? null : <View style={styles.reactions}>
-            <TouchableOpacity
+            <KitTouchable
               activeOpacity={0.82}
               onPress={() => reactToSelected('like')}
               style={[
@@ -1070,8 +1070,8 @@ function AppMessagesInbox({
             >
               <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? glass.text : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? glass.text : chrome.muted }]}>{copy.like}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </KitTouchable>
+            <KitTouchable
               activeOpacity={0.82}
               onPress={() => reactToSelected('dislike')}
               style={[
@@ -1084,7 +1084,7 @@ function AppMessagesInbox({
             >
               <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? dangerColor : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
-            </TouchableOpacity>
+            </KitTouchable>
           </View>}
         </ScrollView>
       </>
@@ -1097,7 +1097,7 @@ function AppMessagesInbox({
     return (
       <View testID="notification-center-team-detail" style={styles.embeddedDetail}>
         <View style={styles.embeddedDetailHeader}>
-          <TouchableOpacity
+          <KitTouchable
             testID="notification-center-team-detail-back"
             accessibilityRole="button"
             accessibilityLabel={copy.back}
@@ -1109,7 +1109,7 @@ function AppMessagesInbox({
             style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
-          </TouchableOpacity>
+          </KitTouchable>
           <Text style={[styles.embeddedSectionTitle, { color: chrome.text }]}>{copy.team}</Text>
         </View>
         <View style={styles.detailContent}>
@@ -1121,7 +1121,7 @@ function AppMessagesInbox({
           {renderPoll(selected)}
           {selected.kind === 'vip_survey' ? null : (
             <View style={styles.reactions}>
-              <TouchableOpacity
+              <KitTouchable
                 activeOpacity={0.82}
                 onPress={() => reactToSelected('like')}
                 style={[
@@ -1134,8 +1134,8 @@ function AppMessagesInbox({
               >
                 <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? glass.text : chrome.muted} />
                 <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? glass.text : chrome.muted }]}>{copy.like}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </KitTouchable>
+              <KitTouchable
                 activeOpacity={0.82}
                 onPress={() => reactToSelected('dislike')}
                 style={[
@@ -1148,7 +1148,7 @@ function AppMessagesInbox({
               >
                 <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? dangerColor : chrome.muted} />
                 <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
-              </TouchableOpacity>
+              </KitTouchable>
             </View>
           )}
         </View>
@@ -1161,7 +1161,7 @@ function AppMessagesInbox({
   return (
     <>
       {mode === 'notification-center' ? renderEmbeddedSection() : (
-      <TouchableOpacity
+      <KitTouchable
         ref={buttonRef}
         onLayout={measureIcon}
         testID="home-app-messages-button"
@@ -1185,7 +1185,7 @@ function AppMessagesInbox({
             <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
           </Animated.View>
         )}
-      </TouchableOpacity>
+      </KitTouchable>
       )}
 
       {flying ? (() => {

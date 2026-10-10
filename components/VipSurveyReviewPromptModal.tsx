@@ -1,6 +1,7 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import KitTouchable from './KitTouchable';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: окно отзыва после VIP-опроса на токенах стекла (макет overlays-specialist)
@@ -119,7 +120,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           <Text style={[styles.buttonText, { color: g.accentInk }]}>{writeLabel}</Text>
         </DuoPressable>
       ) : (
-        <TouchableOpacity
+        <KitTouchable
           testID="vip-survey-review-write"
           activeOpacity={0.88}
           accessibilityRole="button"
@@ -128,7 +129,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           style={[styles.primaryButton, styles.fullWidth, { backgroundColor: g.accent, marginTop: 18 }]}
         >
           <Text style={[styles.buttonText, { color: g.accentInk }]}>{writeLabel}</Text>
-        </TouchableOpacity>
+        </KitTouchable>
       )}
       {isHybrid ? (
         <PressableHybrid
@@ -143,7 +144,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           <Text style={[styles.buttonText, { color: g.text }]}>{laterLabel}</Text>
         </PressableHybrid>
       ) : (
-        <TouchableOpacity
+        <KitTouchable
           testID="vip-survey-review-later"
           activeOpacity={0.7}
           accessibilityRole="button"
@@ -152,7 +153,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           style={[styles.laterButton, styles.fullWidth, { backgroundColor: g.card, marginTop: 10 }]}
         >
           <Text style={[styles.buttonText, { color: g.text }]}>{laterLabel}</Text>
-        </TouchableOpacity>
+        </KitTouchable>
       )}
     </View>
   );

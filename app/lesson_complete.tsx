@@ -6,7 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedMotion } from 'react-native-reanimated';
-import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, Text, View } from 'react-native';
+import KitTouchable from '../components/KitTouchable';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
@@ -210,7 +211,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                 {variant.subtitle}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
-                <TouchableOpacity
+                <KitTouchable
                   style={{
                     flex: 1,
                     minHeight: 52,
@@ -227,8 +228,8 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                   onPress={handleNo}
                 >
                   <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                </KitTouchable>
+                <KitTouchable
                   style={{
                     flex: 1,
                     minHeight: 52,
@@ -259,7 +260,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                     </Text>
                   </View>
                   <Text style={{ position: 'absolute', right: 16, fontSize: 16, lineHeight: 20 }}>⭐</Text>
-                </TouchableOpacity>
+                </KitTouchable>
               </View>
             </>
           ) : (
@@ -443,7 +444,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
           )}
 
           {/* Share button */}
-          <TouchableOpacity
+          <KitTouchable
             accessibilityRole="button"
             accessibilityLabel={shareLabel}
             activeOpacity={0.8}
@@ -468,10 +469,10 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
             <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
               {shareLabel}
             </Text>
-          </TouchableOpacity>
+          </KitTouchable>
 
           {/* Dismiss */}
-          <TouchableOpacity
+          <KitTouchable
             accessibilityRole="button"
             accessibilityLabel={greatLabel}
             activeOpacity={0.85}
@@ -490,7 +491,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
             <Text style={{ color: glass.accentInk, fontWeight: '800', fontSize: f.bodyLg }}>
               {greatLabel}
             </Text>
-          </TouchableOpacity>
+          </KitTouchable>
         </ScrollView>
       </Animated.View>
     </Animated.View>
@@ -1506,7 +1507,7 @@ export default function LessonComplete() {
                 transform: [{ scale: premiumBannerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] }) }],
               }}
             >
-              <TouchableOpacity
+              <KitTouchable
                 activeOpacity={0.88}
                 style={{
                   width: '100%',
@@ -1539,8 +1540,8 @@ export default function LessonComplete() {
                 <Text style={{ color: t.correctText, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </KitTouchable>
+              <KitTouchable
                 activeOpacity={0.7}
                 style={{ paddingVertical: 8, alignItems: 'center' }}
                 onPress={() => {
@@ -1552,7 +1553,7 @@ export default function LessonComplete() {
                 <Text style={{ color: t.textGhost, fontSize: f.caption, textDecorationLine: 'underline' }}>
                   {triLang(lang, { ru: 'Остаться на обычном аккаунте', en: 'Stay on free', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
                 </Text>
-              </TouchableOpacity>
+              </KitTouchable>
             </Animated.View>
           )}
 
@@ -1585,7 +1586,7 @@ export default function LessonComplete() {
           </View>
 
           {/* Поделиться результатом */}
-          <TouchableOpacity
+          <KitTouchable
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -1613,9 +1614,9 @@ export default function LessonComplete() {
             <Text style={{ color: t.textSecond, fontSize: 13 }}>
               {c.shareResult}
             </Text>
-          </TouchableOpacity>
+          </KitTouchable>
 
-          <TouchableOpacity
+          <KitTouchable
             testID="lesson-complete-back-home"
             style={{
               padding: 14,
@@ -1628,7 +1629,7 @@ export default function LessonComplete() {
             onPress={() => { hapticTap(); markNextNavigationAsReplace(); router.replace('/(tabs)/home' as any); }}
           >
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
-          </TouchableOpacity>
+          </KitTouchable>
         </Animated.View>
 
       </BouncyScrollView>

@@ -9,7 +9,8 @@ import { MAIN_COURSE_PLUS_DESCRIPTION } from '../../app/main_course_plus_copy';
 // paywall_testimonials (пока их нет — секции нет; не выдумываем).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, LayoutAnimation } from 'react-native';
+import { View, Text, StyleSheet, LayoutAnimation } from 'react-native';
+import KitTouchable from '../KitTouchable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../SafeLinearGradient';
@@ -498,7 +499,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       {qa.map((item, i) => {
         const isOpen = open === i;
         return (
-          <TouchableOpacity
+          <KitTouchable
             key={item.q}
             activeOpacity={0.7}
             onPress={() => {
@@ -513,7 +514,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
               <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={15} color={chrome.textMuted} />
             </View>
             {isOpen && <Text style={[S.faqA, { color: chrome.textMuted }]}>{item.a}</Text>}
-          </TouchableOpacity>
+          </KitTouchable>
         );
       })}
     </ProofCard>

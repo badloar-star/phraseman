@@ -48,11 +48,11 @@ const DROP_EASE = Easing.bezier(0.3, 1.4, 0.5, 1);
 const LOW_CHARGE_SHARE = 0.2;
 
 const COLORS = Object.freeze({
-  background: '#0D1123',
-  normal: '#9187FF',
-  low: '#FF786F',
-  overcharge: '#F5C451',
-  value: '#FFFFFF',
+  background: '#0D1123', // theme-exempt: собственный тёмный фон капсулы энергии (белое значение читается на нём в любой теме)
+  normal: '#9187FF', // theme-exempt: фирменный цвет заряда энергии
+  low: '#FF786F', // theme-exempt: цвет «мало энергии»
+  overcharge: '#F5C451', // theme-exempt: цвет перезаряда
+  value: '#FFFFFF', // theme-exempt: значение на собственном тёмном фоне капсулы
 });
 
 function EnergyBar({ ownerActive = true, glass = false }: Props) {

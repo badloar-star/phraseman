@@ -57,13 +57,13 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
         tc: base,
         themeMode: mode,
         bgColors: screenBgTuple(mode),
-        textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF',
-        textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)',
-        divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)',
+        textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF', // theme-exempt: палитра пейвола тёмного режима (светлый — SAGE_PORCELAIN выше по строке)
+        textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)', // theme-exempt: палитра пейвола тёмного режима
+        divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)', // theme-exempt: палитра пейвола по режиму
         cardBg: base.panelBg,
         cardBgStrong: base.panelBgStrong,
-        cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)',
-        uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)',
+        cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)', // theme-exempt: палитра пейвола по режиму
+        uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)', // theme-exempt: палитра пейвола по режиму
       };
     }
     // Every live Plus screen uses this hook. Keep its content and store flow
@@ -79,7 +79,7 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
       panelBgStrong: glassAlpha(theme.bgSurface2, 'F0'),
       selectedCardShadow: theme.accent,
       ctaBg: theme.accent,
-      ctaText: theme.textOnGold ?? '#111318',
+      ctaText: theme.textOnGold ?? '#111318', // theme-exempt: запасной тёмный текст на золотой кнопке
       ctaShadow: theme.accent,
       pillBg: glassAlpha(theme.accent, '22'),
       pillText: theme.accent,
@@ -94,7 +94,7 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
       bgColors: [theme.bgPrimary, theme.bgSurface, theme.bgPrimary],
       textPrimary: light ? SAGE_PORCELAIN.textPrimary : theme.textPrimary,
       textMuted: light ? SAGE_PORCELAIN.textMuted : theme.textMuted,
-      divider: light ? 'rgba(23,32,29,0.08)' : glassAlpha(theme.border, 'AA'),
+      divider: light ? 'rgba(23,32,29,0.08)' : glassAlpha(theme.border, 'AA'), // theme-exempt: палитра пейвола по режиму
       cardBg: tc.panelBg,
       cardBgStrong: tc.panelBgStrong,
       cardBorder: light ? SAGE_PORCELAIN.border : glassAlpha(theme.border, 'E6'),
@@ -199,7 +199,7 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
   if (isOnboarding) {
     return (
       <LinearGradient
-        colors={['#010102', '#050713', '#0A1025']}
+        colors={['#010102', '#050713', '#0A1025']} // theme-exempt: фирменный тёмный фон экрана пейвола в онбординге
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
         style={[{ flex: 1 }, style]}
@@ -208,7 +208,7 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
         <View pointerEvents="none" style={S.onboardingLiquidGlowB} />
         <Animated.View
           pointerEvents="none"
-          style={[StyleSheet.absoluteFill, { backgroundColor: '#010102', opacity: dim }]}
+          style={[StyleSheet.absoluteFill, { backgroundColor: '#010102', opacity: dim }]} // theme-exempt: затемнение фона пейвола в онбординге
         />
         {children}
       </LinearGradient>
@@ -424,7 +424,7 @@ export function PaywallStickyBar({
   const { tc } = chrome;
   return (
     <View style={[S.sticky, {
-      backgroundColor: 'rgba(22,20,15,0.94)',
+      backgroundColor: 'rgba(22,20,15,0.94)', // theme-exempt: тёмная плашка пейвола поверх фона
       borderColor: tc.selectedCardBorder,
     }]}>
       <View style={S.stickyTextWrap}>
@@ -437,7 +437,7 @@ export function PaywallStickyBar({
       <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
         {chrome.themeMode === 'midnight' ? (
           <LinearGradient
-            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']}
+            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']} // theme-exempt: фирменный градиент кнопки пейвола темы «Полночь»
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
@@ -509,7 +509,7 @@ const S = StyleSheet.create({
     width: 330,
     height: 330,
     borderRadius: 165,
-    backgroundColor: 'rgba(91,124,255,0.26)',
+    backgroundColor: 'rgba(91,124,255,0.26)', // theme-exempt: фирменное свечение пейвола
     opacity: 0.9,
     transform: [{ rotate: '18deg' }],
   },
@@ -520,7 +520,7 @@ const S = StyleSheet.create({
     width: 380,
     height: 380,
     borderRadius: 190,
-    backgroundColor: 'rgba(169,91,255,0.24)',
+    backgroundColor: 'rgba(169,91,255,0.24)', // theme-exempt: фирменное свечение пейвола
     opacity: 0.86,
     transform: [{ rotate: '-12deg' }],
   },
@@ -581,7 +581,7 @@ const S = StyleSheet.create({
     // зачем: фон sticky-панели приходит из темы (может быть полупрозрачным),
     // а radius 20 + elevation давали квадрат под панелью на Android.
     // Радиус 16 — потолок DESIGN.md (perf-guard).
-    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 16,
+    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 16, // theme-exempt: тень кнопки пейвола — чёрная в любой теме
     ...noAndroidOutline,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },

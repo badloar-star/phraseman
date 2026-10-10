@@ -145,13 +145,17 @@ const CATEGORY_LABEL = {
 } as const;
 
 
+const SHOP_HOT_INK = '#FFFFFF'; // theme-exempt: белый текст на красном бейдже «hot» — в любой теме
+const WALLET_ICON_BG = '#6B551F'; // theme-exempt: тёмное золото плашки кошелька (бренд валюты)
+const WALLET_ICON_INK = '#E3CC88'; // theme-exempt: светлое золото значка валюты (бренд валюты)
+
 /** Медальоны товаров: тон задаёт категорию, обводок нет — только перелив. */
 const MEDAL_TONES: Record<ShopItem['tone'], readonly [string, string, string]> = {
-  spin: ['#7C5CE0', '#3A2678', '#DCD0FF'],
-  theme: ['#b0562b', '#4d2413', '#FFC7A6'],
-  cards: ['#2f5fb0', '#16294f', '#B7D0FF'],
-  plus: ['#C9A84C', '#6B551F', '#23190A'],
-  aura: ['#a8397e', '#4a1637', '#FFB6DF'],
+  spin: ['#7C5CE0', '#3A2678', '#DCD0FF'], // theme-exempt: медальон товара — бренд-палитра категории
+  theme: ['#b0562b', '#4d2413', '#FFC7A6'], // theme-exempt: медальон товара — бренд-палитра категории
+  cards: ['#2f5fb0', '#16294f', '#B7D0FF'], // theme-exempt: медальон товара — бренд-палитра категории
+  plus: ['#C9A84C', '#6B551F', '#23190A'], // theme-exempt: медальон товара — бренд-палитра категории
+  aura: ['#a8397e', '#4a1637', '#FFB6DF'], // theme-exempt: медальон товара — бренд-палитра категории
 };
 
 // зачем (владелец 01.10; D70/D78): единственная валюта магазина — монета.
@@ -183,7 +187,7 @@ function ShopTile({ item, onPress }: TileProps) {
     >
       {item.badge ? (
         <View style={[styles.badge, { backgroundColor: item.badge === 'hot' ? t.wrong : t.gold }]}>
-          <Text style={[styles.badgeText, { color: item.badge === 'hot' ? '#FFFFFF' : t.textOnGold }]}>
+          <Text style={[styles.badgeText, { color: item.badge === 'hot' ? SHOP_HOT_INK : t.textOnGold }]}>
             {triLang(lang, item.badge === 'hot' ? COPY.badgeNew : COPY.badgeBest)}
           </Text>
         </View>
@@ -355,8 +359,8 @@ function ShopScreenImpl() {
               { backgroundColor: t.bgSurface, transform: [{ scale: pressed ? 0.975 : 1 }] },
             ]}
           >
-            <View style={[styles.walletIcon, { backgroundColor: '#6B551F' }]}>
-              <CurrencyMark currency={currency} size={17} color={'#E3CC88'} />
+            <View style={[styles.walletIcon, { backgroundColor: WALLET_ICON_BG }]}>
+              <CurrencyMark currency={currency} size={17} color={WALLET_ICON_INK} />
             </View>
             <Text style={[styles.walletAmount, { color: t.textPrimary, fontSize: f.h3 }]}>
               {runes}
@@ -614,7 +618,7 @@ const styles = StyleSheet.create({
   emptyBody: { textAlign: 'center', lineHeight: 19 },
   toast: { position: 'absolute', left: 16, right: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12 },
   toastText: { fontWeight: '800', textAlign: 'center' },
-  dockScrim: { backgroundColor: '#000000', zIndex: 5 },
+  dockScrim: { backgroundColor: '#000000', zIndex: 5 }, // theme-exempt: затемнение под нижним меню — тёмный скрим в любой теме
   dockMenu: { position: 'absolute', left: 14, right: 14, gap: DOCK.rowGap, zIndex: 6 },
   dockRow: {
     flexDirection: 'row', alignItems: 'center', gap: 11,
@@ -627,11 +631,11 @@ const styles = StyleSheet.create({
   capsule: {
     flexDirection: 'row', alignItems: 'center', gap: 10,
     minHeight: DOCK.capsuleMinHeight, paddingHorizontal: 18, borderRadius: 26,
-    shadowColor: '#000000', shadowOpacity: 0.34, shadowRadius: 14,
+    shadowColor: '#000000', shadowOpacity: 0.34, shadowRadius: 14, // theme-exempt: тень капсулы — чёрная в любой теме
     shadowOffset: { width: 0, height: 8 }, elevation: 8,
   },
   capsuleLabel: { fontWeight: '900' },
-  sheetScrim: { backgroundColor: 'rgba(6,8,18,0.68)', zIndex: 8 },
+  sheetScrim: { backgroundColor: 'rgba(6,8,18,0.68)', zIndex: 8 }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
   sheet: {
     position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 9,
     borderTopLeftRadius: 26, borderTopRightRadius: 26,

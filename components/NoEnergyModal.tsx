@@ -627,8 +627,8 @@ function NoEnergyModal({
       <HybridAlertShell
         visible={modalVisible}
         onRequestClose={onClose}
-        shadowColor="#000000"
-        backdropColor="rgba(0,0,0,0.6)"
+        shadowColor="#000000" // theme-exempt: тень окна — чёрная в любой теме
+        backdropColor="rgba(0,0,0,0.6)" // theme-exempt: затемнение под окном — тёмный скрим в любой теме
         testID="no-energy-modal-hybrid-backdrop"
       >
         <View style={[sx.card, sx.hybridCard, cardSurface, variantCard, variantContent]}>{cardBody}</View>
@@ -648,7 +648,7 @@ function NoEnergyModal({
         style={[
           sx.overlay,
           {
-            backgroundColor: variant === 'course' ? 'rgba(0,0,0,0.68)' : 'rgba(0,0,0,0.6)',
+            backgroundColor: variant === 'course' ? 'rgba(0,0,0,0.68)' : 'rgba(0,0,0,0.6)', // theme-exempt: затемнение под окном — тёмный скрим в любой теме
             paddingTop: Math.max(24, insets.top),
             paddingBottom: Math.max(24, insets.bottom),
             paddingLeft: Math.max(24, insets.left),
@@ -760,7 +760,7 @@ const styles = StyleSheet.create({
   },
   classicCard: {
     maxHeight: '100%',
-    shadowColor: '#000000',
+    shadowColor: '#000000', // theme-exempt: тень окна — чёрная в любой теме
     shadowOpacity: 0.35,
     shadowRadius: 24,
     shadowOffset: { width: 0, height: 8 },

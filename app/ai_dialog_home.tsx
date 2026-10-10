@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -19,6 +19,24 @@ import { safeRouterBack } from './navigation_back';
 export default function AiDialogHome() {
   // зачем (Сверка dialogs-001, «пустой кадр ~3 с»; сперва логи): момент монтирования экрана — сравнить с [DIALOGS-OPEN] hub:* и с тапом на Главной.
   console.log('[DIALOGS-OPEN] home:render', JSON.stringify({ at: Date.now() }));
+  // зачем (Сверка 21:00: пустой кадр ПОСЛЕ first_commit, данные ни при чём): первые 6 с пишем разрывы между кадрами JS-потока (> 120 мс) —
+  // видно, держит ли пустоту занятый JS (тяжёлая отрисовка/работа) или она нативная (слой, переход, графика эмулятора).
+  useEffect(() => {
+    const t0 = Date.now();
+    let last = t0;
+    let frames = 0;
+    let raf = 0;
+    const tick = () => {
+      const now = Date.now();
+      frames += 1;
+      if (now - last > 120) console.log('[DIALOGS-OPEN] home:js_gap', JSON.stringify({ gapMs: now - last, sinceMountMs: now - t0, frame: frames }));
+      last = now;
+      if (now - t0 < 6000) raf = requestAnimationFrame(tick);
+      else console.log('[DIALOGS-OPEN] home:js_frames', JSON.stringify({ frames, over: 'ms', spanMs: now - t0 }));
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
   const { lang } = useLang();
   const router = useRouter();
   const { width, fontScale } = useWindowDimensions();

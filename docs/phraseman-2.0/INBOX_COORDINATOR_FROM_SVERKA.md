@@ -361,3 +361,10 @@ cards-section-032 после 1d993b5c4 почти совпадает (шторк
 
 ## 18:45 — dialogs-036: приложение право (по координатору)
 При выходе из диалога разговор реально не сохраняется — текст «Переписка не сохранится» верен. Макет C23 «Разговор сохранится» — ошибка макета; отличием НЕ считать. Форма окна (шторка снизу, ✕, «Остаться» главной) совпадает.
+
+## 19:36 — «Мои ошибки»: логи по просьбе (энергия ⚡1 потрачена, разрешено)
+- [MISTAKE-SESSION] exercise:direction: cursor 11 и 12, mode=arena_guess_phrase, facet=meaning, promptScript=cyrillic, answerScript=latin, optionScripts=latin×6, direction=cyrillic->latin (RU→EN — вопрос «Бабуля», варианты на английском).
+- [MISTAKE-DETAIL] direction: 2 детали (ad27e5d7, 08f12092): correctRowShows=phrase, phraseScript=latin, meaningScript=cyrillic, hasAudio=false (озвучки у карточек нет), hasPractice=true, qualifyingDays=0.
+- Файл: C:\Temp\claude\mistake_logs_for_core.txt (4 строки).
+- Верный ответ в отработке в шаги «1 2 3» не засчитался (qualifyingDays=0, точки серые).
+- Монеты не тронуты (6848), потрачено только ⚡1. Отработку закрыла крестиком.

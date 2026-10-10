@@ -1,0 +1,28 @@
+diff --git a/scripts/learning_v2_release_parity_gate.mjs b/scripts/learning_v2_release_parity_gate.mjs
+index 24c9690..36f76cd 100644
+--- a/scripts/learning_v2_release_parity_gate.mjs
++++ b/scripts/learning_v2_release_parity_gate.mjs
+@@ -553,6 +553,16 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
+     console.error("Learning V2 release parity: BLOCKED (UNSUPPORTED_ARGUMENTS: production roots cannot be overridden)");
+     process.exitCode = 1;
+   } else {
++    // зачем (Ядро, координатор 00:12): в стор-сборке Learning V2 вырезан router.ctx.js — паритет его выпуска сборку
++    // не блокирует, но только при доказанном вырезании всех маршрутов (scripts/store_release_surface.mjs), как у
++    // ворот озвучки V2. Без этого eas-build-post-install падал бы на сервере EAS на контенте, которого нет в сборке.
++    const surface = await import("./store_release_surface.mjs").catch((error) => {
++      console.warn(`[V2-RELEASE-PARITY] помощник поверхности стор-сборки не загрузился (${error instanceof Error ? error.message : String(error)}) — ворота строгие`);
++      return null;
++    });
++    if (surface && surface.announceLearningV2StoreSkip("[V2-RELEASE-PARITY]", PROJECT_ROOT)) {
++      process.exitCode = 0;
++    } else {
+     const scopeResult = validateEnglishReleaseScope();
+     const semanticResult = runSourceReleaseSemanticParity();
+     const qualityResult = validateReleaseQuality();
+@@ -562,5 +572,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
+     printQualityResult(qualityResult);
+     printResult(copyResult);
+     process.exitCode = scopeResult.ready && semanticResult.ready && qualityResult.ready && copyResult.ready ? 0 : 1;
++    }
+   }
+ }

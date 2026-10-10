@@ -132,3 +132,35 @@ test('ворота паритета макетов не запускаются �
   const precheck = fs.readFileSync(path.join(ROOT, 'scripts', 'release_precheck.mjs'), 'utf8');
   assert.ok(precheck.includes('scripts/visual_parity_gate.mjs'));
 });
+
+// зачем (координатор 00:12): ворота Learning V2 в стор-сборке обязаны пропускаться через announceLearningV2StoreSkip —
+// иначе eas-build-post-install падает на сервере EAS на контенте, которого в сборке нет (так было бы с
+// learning_v2_release_parity_gate без пропуска). Сторож разворачивает `npm run X` в package.json и проверяет КАЖДЫЙ
+// скрипт с learning_v2/learning-v2 в имени — и на сервере, и в локальной предрелизной проверке.
+function scriptsOfShellChain(chain, pkgScripts, depth = 0) {
+  if (depth > 3) return [];
+  const out = [];
+  for (const step of String(chain).split('&&').map((part) => part.trim())) {
+    const node = /^node\s+(scripts\/[\w./-]+\.mjs)/.exec(step);
+    if (node) { out.push(node[1]); continue; }
+    const npm = /^npm run\s+([\w:.-]+)/.exec(step);
+    if (npm && pkgScripts[npm[1]]) out.push(...scriptsOfShellChain(pkgScripts[npm[1]], pkgScripts, depth + 1));
+  }
+  return out;
+}
+
+test('каждые ворота Learning V2 в eas-build-post-install и release:precheck пропускаются в стор-режиме', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const postInstall = scriptsOfShellChain(pkg.scripts['eas-build-post-install'], pkg.scripts);
+  const precheck = fs.readFileSync(path.join(ROOT, 'scripts', 'release_precheck.mjs'), 'utf8');
+  const precheckScripts = [...precheck.matchAll(/script:\s*'(scripts\/[\w./-]+\.mjs)'/g)].map((m) => m[1]);
+  const v2Gates = [...new Set([...postInstall, ...precheckScripts])].filter((file) => /learning[_-]v2/.test(file));
+  assert.ok(v2Gates.includes('scripts/learning_v2_audio_coverage_gate.mjs'), 'ворота озвучки V2 на месте');
+  for (const gate of v2Gates) {
+    const source = fs.readFileSync(path.join(ROOT, gate), 'utf8');
+    assert.ok(
+      source.includes('announceLearningV2StoreSkip'),
+      `${gate}: нет пропуска в стор-режиме — на сервере EAS упадёт сборка без Learning V2 (патч-образец: docs/work/tasks/learning-v2-gate-store-skip.patch)`,
+    );
+  }
+});

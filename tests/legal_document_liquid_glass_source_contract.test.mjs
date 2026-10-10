@@ -36,8 +36,9 @@ const LEGAL_FILES = [
   // зачем (30.09): политика обновлена по «да» владельца (визитка Про, опрос дня, Шпиль, D128 озвучка) — хеши сдвинуты осознанно.
   // зачем (владелец 04.10, §124 PM-252): §19 — журналы ошибок и активности удаляются через 90 дней; дата 4 октября.
   // 10.10: политика правилась осознанно — fe079cd49, 15feb3642 (04.10), 472f8715e (недельные монеты Шпиля, D162).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'c02dbe65a3389dc28375cad9f559e7038d0ee711570946c7e7ff2871f2c214f3'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '96fd1b1fbeb1803ff41ebc0c965ee05906eb72078098400e260a1faa02aa7736'],
+  // 11.10: политика правилась осознанно по решениям координатора (21:12, 00:50) — 0af36379f (§20: удаление гостевого аккаунта), a350f04ba (§3: прогресс гостя привязан к установке).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'dd81d9a1defa954968263770aa53a26f02b29e9be0ad6700693686f145eac2f5'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '09500089f9142ec4b99ded194f80665e92c52caacacfef67bcd579557f253087'],
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '41074944d0d737fc9fa2cf670e172df0c2e56fdc4dd51a9666b40a3678c046b9'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '936e2e7b62c86cd0b551de5a69ab045bc83b73e631e19e727957d821e3e813cd'],
 ];

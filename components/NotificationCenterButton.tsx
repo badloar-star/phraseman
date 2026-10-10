@@ -705,7 +705,7 @@ function NotificationCenterButton({
                 <View style={{ width: 55, height: 55, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
                   <Ionicons name="chatbubble-outline" size={24} color={t.textPrimary} />
                 </View>
-                <Text style={{ color: t.textPrimary, fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center', marginTop: 14 }}>
+                <Text style={{ color: t.textPrimary, fontSize: 16, lineHeight: 24, fontWeight: '700', textAlign: 'center', marginTop: 14 }}>
                   {copy.empty}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 6 }}>
@@ -786,7 +786,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   headerSub: {
-    fontSize: 14,
+    fontSize: 13,
     lineHeight: 18,
     marginTop: 2,
   },

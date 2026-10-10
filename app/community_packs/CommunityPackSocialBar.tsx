@@ -491,7 +491,7 @@ export default function CommunityPackSocialBar({
       >
         {isAdded
           ? <Ionicons name="checkmark" size={16} color={g.text} />
-          : <Text style={{ color: t.correctText, fontSize: 14, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
+          : <Text style={{ color: t.correctText, fontSize: 13, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
       </TouchableOpacity>
     );
   }

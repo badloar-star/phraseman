@@ -259,10 +259,10 @@ const baseStyles = StyleSheet.create({
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
   field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.08)' },
-  fieldInput: { flex: 1, fontSize: 17, paddingVertical: 0 },
+  fieldInput: { flex: 1, fontSize: 16, paddingVertical: 0 },
   tabs: { marginTop: 18, flexDirection: 'row', gap: 8 },
   tab: { minHeight: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
-  tabText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  tabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   empty: { minHeight: 72, alignItems: 'center', justifyContent: 'center' },
   emptyText: { fontSize: 16, lineHeight: 22 },
   skelRow: { minHeight: 64, justifyContent: 'center' },

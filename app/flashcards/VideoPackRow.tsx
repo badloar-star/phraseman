@@ -234,9 +234,9 @@ const baseStyles = StyleSheet.create({
     paddingVertical: 1,
     backgroundColor: 'rgba(0,0,0,0.72)',
   },
-  durationText: { fontSize: 11, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' },
+  durationText: { fontSize: 13, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' },
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  title: { fontSize: 15, lineHeight: 19, fontWeight: '700' },
-  count: { marginTop: 4, fontSize: 14, lineHeight: 17 },
+  title: { fontSize: 16, lineHeight: 19, fontWeight: '700' },
+  count: { marginTop: 4, fontSize: 13, lineHeight: 17 },
 });

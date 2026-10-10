@@ -233,10 +233,10 @@ const baseStyles = StyleSheet.create({
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
-  langLabel: { fontSize: 15, lineHeight: 20 },
+  langLabel: { fontSize: 16, lineHeight: 20 },
   sheetHead: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, paddingBottom: 18 },
   sheetHeadText: { flex: 1, minWidth: 0 },
   sheetTitle: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
-  sheetSub: { marginTop: 4, fontSize: 15, lineHeight: 20 },
+  sheetSub: { marginTop: 4, fontSize: 16, lineHeight: 20 },
   closeBtn: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: '#2A2A2C' },
 });

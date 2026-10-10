@@ -1076,7 +1076,7 @@ export default function CommunityPackCreateScreen() {
     saveDraftCard();
     setAddCardFormOpen(true);
   };
-  const fieldInput = { color: kg.text, fontSize: 18, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
+  const fieldInput = { color: kg.text, fontSize: 16, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
 
   return (
     <CardsGlassScreen g={g}>

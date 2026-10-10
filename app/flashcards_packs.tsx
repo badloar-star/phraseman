@@ -736,7 +736,7 @@ const baseStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bottomTabText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  bottomTabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   bottomCreateTab: {
     width: 48,
     height: 48,

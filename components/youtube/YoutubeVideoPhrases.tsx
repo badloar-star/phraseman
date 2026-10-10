@@ -311,8 +311,8 @@ function formatTimecode(totalSec: number): string {
 const styles = StyleSheet.create({
   block: { marginTop: 4, marginBottom: 16 },
   toggle: { minHeight: 44, paddingHorizontal: 2, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  title: { fontSize: 18, lineHeight: 24, fontWeight: '700' },
-  count: { flex: 1, marginLeft: 0, fontSize: 18, lineHeight: 24, fontWeight: '600' },
+  title: { fontSize: 16, lineHeight: 24, fontWeight: '700' },
+  count: { flex: 1, marginLeft: 0, fontSize: 16, lineHeight: 24, fontWeight: '600' },
   row: { minHeight: 64, borderRadius: 14, paddingLeft: 12, paddingRight: 4, marginTop: 2, flexDirection: 'row', alignItems: 'center' },
   rowCopyPressable: { flex: 1, minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: 12 },
   rowCopy: { flex: 1, paddingVertical: 12, paddingRight: 8 },

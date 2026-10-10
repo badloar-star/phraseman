@@ -45,5 +45,5 @@ export default function SpeechUnavailableNote({
 
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 10, alignSelf: 'stretch' },
-  text: { flex: 1, fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  text: { flex: 1, fontSize: 16, lineHeight: 20, fontWeight: '600' },
 });

@@ -318,7 +318,7 @@ const baseStyles = StyleSheet.create({
   heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4 },
   limitPill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
-  limitText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  limitText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
   content: { paddingTop: 10, paddingBottom: 0 },
@@ -327,7 +327,7 @@ const baseStyles = StyleSheet.create({
   rowLine: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(255,255,255,0.12)' }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
   icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 18, lineHeight: 23, fontWeight: '700' },
+  rowTitle: { fontSize: 16, lineHeight: 23, fontWeight: '700' },
   retry: { alignSelf: 'flex-start', marginTop: 4 },
   retryText: { marginTop: 0, fontWeight: '700' },
   description: { fontSize: 16, lineHeight: 20, marginTop: 3 },

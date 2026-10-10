@@ -380,7 +380,7 @@ const baseStyles = StyleSheet.create({
   histText: { flex: 1, fontSize: 16, lineHeight: 20 },
   histDate: { fontSize: 16, lineHeight: 20 },
   whyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
-  whyTitle: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  whyTitle: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   whyText: { paddingBottom: 16, fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
   listen: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
 });

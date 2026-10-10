@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   pill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  pillText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
   stack: { height: 250, marginTop: 26 },
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
   cta: { marginTop: 14, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
   ctaLocked: { opacity: 0.55 },
-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   ctaIcon: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
@@ -282,5 +282,5 @@ const styles = StyleSheet.create({
   freshSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
-  tileCount: { fontSize: 15, lineHeight: 19 },
+  tileCount: { fontSize: 16, lineHeight: 19 },
 });

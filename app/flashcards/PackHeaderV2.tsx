@@ -135,7 +135,7 @@ const baseStyles = StyleSheet.create({
   ava: { width: 24, height: 24, borderRadius: 12, backgroundColor: '#2A2A2C', alignItems: 'center', justifyContent: 'center' },
   author: { flexShrink: 1, fontSize: 16, lineHeight: 22 },
   badge: { marginLeft: 'auto', minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.08)' },
-  badgeText: { fontSize: 15, lineHeight: 20, fontWeight: '600', color: '#DADADC' },
+  badgeText: { fontSize: 16, lineHeight: 20, fontWeight: '600', color: '#DADADC' },
   actions: { marginTop: 16, minHeight: 42, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   actionLeft: { flexShrink: 1, flexDirection: 'row', alignItems: 'center' },
   train: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -143,6 +143,6 @@ const baseStyles = StyleSheet.create({
   ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
   ghostText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   divider: { marginTop: 22, height: 1, backgroundColor: 'rgba(255,255,255,0.09)' },
-  cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 17, lineHeight: 20, fontWeight: '600' },
+  cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 16, lineHeight: 20, fontWeight: '600' },
   cardsCount: { color: '#6E6E72' },
 });

@@ -2,6 +2,7 @@ import React, { forwardRef, memo, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
@@ -10,6 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { runeAmount } from '../constants/runes';
+import { KIT_MOTION } from '../constants/motionHybrid';
 import { triLang, type Lang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import AnimatedCountUpText from './AnimatedCountUpText';
@@ -62,10 +64,14 @@ function earnedLabel(lang: Lang, runes: number): string {
   return `${prefix}: ${runeAmount(lang, runes)}`;
 }
 
+const NUM_BUMP_EASE = Easing.bezier(KIT_MOTION.pressEase[0], KIT_MOTION.pressEase[1], KIT_MOTION.pressEase[2], KIT_MOTION.pressEase[3]);
+
 export const PracticeRuneCounter = memo(forwardRef<View, Props>(
   function PracticeRuneCounter({ runes, lang, backgroundColor, color, testID }, ref) {
     const reducedMotion = useReducedMotion();
-    const bump = useSharedValue(1);
+    // зачем (координатор 10.10, kit.css `.pill .num.up`): при начислении «подпрыгивает» ЧИСЛО (−5 px, scale 1.22 на 35 %
+    // из 650 мс, кривая cubic-bezier(.3,1.4,.5,1)), а не вся пилюля, как было (scale 1.28 за 360 мс).
+    const bump = useSharedValue(0);
     const runeScale = useSharedValue(1);
     const runeLift = useSharedValue(0);
     const previousRunes = useRef(runes);
@@ -105,13 +111,13 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
       soundDirector.request('pm.reward.rune_count_done', { scope: 'rune-counter' });
       if (reducedMotion) return;
       bump.value = withSequence(
-        withTiming(1.28, { duration: 140 }),
-        withTiming(1, { duration: 220 }),
+        withTiming(1, { duration: KIT_MOTION.counterMs * 0.35, easing: NUM_BUMP_EASE }),
+        withTiming(0, { duration: KIT_MOTION.counterMs * 0.65, easing: NUM_BUMP_EASE }),
       );
     }, [bump, reducedMotion, runes]);
 
-    const bumpStyle = useAnimatedStyle(() => ({
-      transform: [{ scale: bump.value }],
+    const numBumpStyle = useAnimatedStyle(() => ({
+      transform: [{ translateY: -5 * bump.value }, { scale: 1 + 0.22 * bump.value }],
     }));
     const runeMotionStyle = useAnimatedStyle(() => ({
       transform: [
@@ -121,7 +127,7 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
     }));
 
     return (
-      <Animated.View style={bumpStyle}>
+      <View>
         <View
           ref={ref}
           collapsable={false}
@@ -143,9 +149,11 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
               importantForAccessibility="no"
             />
           </Animated.View>
-          <AnimatedCountUpText value={runes} durationMs={900} style={[styles.value, { color }]} />
+          <Animated.View style={numBumpStyle}>
+            <AnimatedCountUpText value={runes} durationMs={KIT_MOTION.counterMs} style={[styles.value, { color }]} />
+          </Animated.View>
         </View>
-      </Animated.View>
+      </View>
     );
   },
 ));

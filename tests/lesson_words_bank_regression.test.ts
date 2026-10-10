@@ -11,6 +11,8 @@ jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
 // зачем: итог слов теперь общий экран 2.0 (тянет expo-image); тест — про банк слов, итог не нужен.
 jest.mock('../components/completion/V2DoneScreen', () => () => null);
 // зачем: экран слов теперь тянет UI-обвязку 2.0 (reanimated, монеты, счётчик); тест про банк слов, ей достаточно заглушек.
+// зачем (10.10): заливка полосы прогресса берёт Animated/Easing из react-native, а в этой среде он урезан до заглушки — полоса тесту не нужна.
+jest.mock('../components/KitProgressFill', () => ({ __esModule: true, default: () => null, KitProgressFill: () => null }));
 jest.mock('../components/practice/PracticeStates', () => ({ PracticeCta: () => null, PracticeProgressRow: () => null, PracticeQuestionCard: () => null }));
 jest.mock('../components/session_attempts/SessionAttemptsHud', () => () => null);
 jest.mock('../components/PracticeRuneCounter', () => () => null);

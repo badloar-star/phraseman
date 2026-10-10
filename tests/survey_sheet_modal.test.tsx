@@ -874,7 +874,9 @@ describe('SurveySheetModal', () => {
     expect(sheet).toContain("variant=\"card\"");
     expect(combined).not.toMatch(/withRepeat|setInterval|SoundDirector|\brings?\b|\bdust\b/i);
     expect(sheet).not.toMatch(/Animated\.(?:timing|spring)[\s\S]{0,120}(?:width|height)/);
-    expect(sheet).toContain('transform: [{ scaleX:');
+    // зачем (10.10): заливка полосы — общий KitProgressFill (scaleX внутри, 800 мс по kit .trk), а не локальный мгновенный scaleX.
+    expect(sheet).toContain('<KitProgressFill');
+    expect(fs.readFileSync(path.join(ROOT, 'components/KitProgressFill.tsx'), 'utf8')).toContain('scaleX');
   });
 });
 

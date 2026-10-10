@@ -51,3 +51,9 @@ Contain: расхождения, требующие макета или реше
 | `AnimatedCountUpText` по умолчанию 900 мс, `count_up.ts` 620 мс | разные длительности | 900/700 мс в practice.html, в `KIT_MOTION` числа нет |
 | Сердца в худе (`SessionAttemptsHud`, `SESSION_ATTEMPTS_MOTION`) | тряска каждого сердца 5 × 60 мс, ±3 px | тряска пилюли 520 мс cubic-bezier(.3,1.4,.5,1), ±5/±5/∓3/±3 px (practice.html `.pill.shake`) — закреплено сторожем Learning V2, не менял |
 | `components/ui/v2_ui.tsx` | `v2motion.slow` 320 мс | старое семейство «турнира» (Арена удалена), не трогал |
+
+## Дополнение (10.10, по решению координатора 04:50)
+
+- Count-up практики (`PracticeRuneCounter`) — 650 мс (`KIT_MOTION.counterMs`, было 900). Бамп при начислении теперь на ЧИСЛЕ (translateY −5 px, scale 1.22, 35 %/65 % от 650 мс, кривая cubic-bezier(.3,1.4,.5,1) — kit `.num.up`), а не на всей пилюле. Убыль рун (владельческая анимация руны) не менял. Общий `AnimatedCountUpText` по умолчанию остался 900 мс — им пользуется Learning V2 (вне релиза); `count_up.ts` нигде не импортируется.
+- Тряска сердец (5×60 мс) — не трогать (сторож Learning V2, в релиз не идёт).
+- `KitProgressFill` переписан на core `Animated` (нативный драйвер): Reanimated в окружениях, где тесты импортируют экраны (урезанный мок react-native / частичный мок reanimated), падал. Проверено: `kit_progress_fill_contract`, `daily_poll_card_contract`, `practice_rune_counter`, `lesson_words_bank_regression` (мок заливки), `survey_sheet_modal` (RNTL, обновлена одна строка про scaleX), `irregular_verbs_attempts_integration`, `lesson_words_attempts_integration`, `survey_offer_render`, `session_attempts_hud`, `home_rune_balance_render` — зелёные. Красные не из-за меня: `report_error_button_locale` (подпись «Suscripción, compra o fragmentos»), `gustav_french_vocabulary_target_gate` (`lesson_words` без `shouldBlockLessonAccess`).

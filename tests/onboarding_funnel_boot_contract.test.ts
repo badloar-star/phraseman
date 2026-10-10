@@ -10,7 +10,9 @@ describe('onboarding funnel durable boot delivery contract', () => {
     expect(layout).toContain("import { resumePendingOnboardingFunnel } from './onboarding_funnel';");
     const restoreStart = layout.indexOf('const restoreCloudForBoot = async () => {');
     const authReady = layout.indexOf('await ensureAnonUser();', restoreStart);
-    const resumeCall = 'void resumePendingOnboardingFunnel().catch(() => {});';
+    // зачем (10.10): PM-229 заменил немой .catch(() => {}) на noteSwallowedHandler — проверяем порядок и
+    // единственность вызова, а немой catch запрещаем явно.
+    const resumeCall = 'void resumePendingOnboardingFunnel().catch(';
     const resume = layout.indexOf(resumeCall, restoreStart);
 
     expect(restoreStart).toBeGreaterThan(-1);
@@ -18,6 +20,7 @@ describe('onboarding funnel durable boot delivery contract', () => {
     expect(resume).toBeGreaterThan(authReady);
     expect(layout.split(resumeCall)).toHaveLength(2);
     expect(layout).not.toContain('await resumePendingOnboardingFunnel()');
+    expect(layout).not.toContain('void resumePendingOnboardingFunnel().catch(() => {})');
     expect(client).toContain('export function resumePendingOnboardingFunnel');
     expect(client).not.toContain('setInterval(');
   });

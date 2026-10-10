@@ -39,7 +39,9 @@ describe('ни один экран восстановления не запир�
     // Любой другой `return` снова оставил бы человека с пустым каркасом.
     // зачем (04.10): считаем только код — комментарии ветки сами рассказывают про `return`
     // («раньше ОБРЫВАЛ старт (`return`)», «без return»), и счётчик видел 3 вместо 1.
-    const code = branchBody.split(/\r?\n/).map((line) => line.replace(/\/\/.*$/, '')).join('\n');
+    // зачем (10.10): в _layout встречаются строки с двойным CR (\r\r\n — правки разных сессий); хвостовой \r
+    // мешал вырезать комментарий, и «без return» из комментария считался кодом.
+    const code = branchBody.split(/\r?\n/).map((line) => line.replace(/\r/g, '').replace(/\/\/.*$/, '')).join('\n');
     const returns = code.match(/\breturn\b/g) ?? [];
     expect(returns).toHaveLength(1);
     expect(branchBody).toContain('scheduleAuthRecoveryBootRetry()');

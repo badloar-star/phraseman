@@ -75,6 +75,10 @@ describe('two actual startup settings consumers', () => {
       buildProgressSnapshot: () => ({}), buildCustomizationSnapshot: () => ({}),
       buildSettingsSnapshot: () => store.getUserSettingsSnapshot(),
       patchAppSnapshot: (make: (current: object) => Record<string, unknown>) => primed.push(make({})),
+      // зачем (10.10): PM-229 заменил немые catch в старте на noteSwallowedAs/noteSwallowedHandler — песочнице
+      // нужны те же имена, иначе код падает ReferenceError ещё до проверки.
+      noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
+      noteSwallowedHandler: (_tag: string) => () => undefined,
     };
     instantTasks.forEach((name) => { context[name] = async () => { calls.push(name); }; });
     // Execute the real prime function and real root hydration block. Only unrelated

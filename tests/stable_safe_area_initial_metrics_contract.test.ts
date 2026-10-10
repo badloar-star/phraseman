@@ -27,9 +27,13 @@ describe('stable safe-area initial metrics contract', () => {
   it('keeps retained tab content on root-owned stable insets without a nested provider', () => {
     const source = readProjectFile('app', '(tabs)', 'friends.tsx');
 
-    expect(source).toContain("import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';");
-    expect(source).toContain('const insets = useStableSafeAreaInsets();');
+    // зачем (10.10): вкладка «Друзья» 2.0 (5249a7a6e) отступы сама не читает — их держит каркас вкладок. Правило
+    // прежнее: никаких «живых» отступов и вложенного провайдера; если отступы понадобятся — только стабильные.
+    expect(source).not.toContain('useSafeAreaInsets(');
     expect(source).not.toContain('SafeAreaProvider');
+    if (source.includes('insets')) {
+      expect(source).toContain("import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';");
+    }
   });
 
   it('reserves the status-bar top inset before native safe-area updates arrive', () => {

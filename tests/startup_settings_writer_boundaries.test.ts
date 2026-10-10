@@ -139,10 +139,16 @@ describe('actual native-write boundaries invalidate settings boot reuse', () => 
   });
 
   test('all cloud and backup native batch writes remain within the audited boundaries', () => {
-    for (const fileName of ['app/cloud_sync.ts', 'app/account_switch_backup_restore.ts']) {
+    // зачем (10.10): в cloud_sync осталась одна пакетная запись (вторая ушла в снимке 2.0) — число задаём по файлу,
+    // правило прежнее: каждая пакетная запись живёт внутри границы finishSettingsMutation.
+    const expectedWrites: Record<string, number> = {
+      'app/cloud_sync.ts': 1,
+      'app/account_switch_backup_restore.ts': 2,
+    };
+    for (const fileName of Object.keys(expectedWrites)) {
       const file = source(fileName);
       const writes = nodes(file, (node) => ts.isCallExpression(node) && node.expression.getText(file) === 'AsyncStorage.multiSet');
-      expect(writes).toHaveLength(2);
+      expect(writes).toHaveLength(expectedWrites[fileName]);
       for (const write of writes) {
         let boundary: ts.Node = write;
         while (boundary.parent && !ts.isTryStatement(boundary)) boundary = boundary.parent;

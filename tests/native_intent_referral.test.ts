@@ -62,3 +62,29 @@ test('redirectSystemPath приводит ссылки на вкладки к в
   expect(redirect('/settings')).toBe('/(tabs)/settings');
   expect(redirect('phraseman://friends')).toBe('/(tabs)/friends');
 });
+
+// зачем (координатор 10.10 21:05): в стор-сборке Learning V2 вырезан — внешние ссылки ведут на обычные уроки,
+// во внутренних сборках маршрут остаётся как есть (V2 там жив).
+test('store build sends Learning V2 deep links to the regular lessons tab', () => {
+  const previous = process.env.EXPO_PUBLIC_STORE_RELEASE;
+  process.env.EXPO_PUBLIC_STORE_RELEASE = '1';
+  try {
+    expect(redirect('phraseman://learning-v2/course')).toBe('/(tabs)/lessons');
+    expect(redirect('phraseman://learning-v2/session/en-l01-s01')).toBe('/(tabs)/lessons');
+    expect(redirect('/learning_v2_direct_session_player_v1?id=x')).toBe('/(tabs)/lessons');
+    expect(redirect('phraseman://lessons')).not.toBe('/(tabs)/lessons-v2');
+  } finally {
+    if (previous === undefined) delete process.env.EXPO_PUBLIC_STORE_RELEASE;
+    else process.env.EXPO_PUBLIC_STORE_RELEASE = previous;
+  }
+});
+
+test('non-store builds keep Learning V2 deep links untouched', () => {
+  const previous = process.env.EXPO_PUBLIC_STORE_RELEASE;
+  delete process.env.EXPO_PUBLIC_STORE_RELEASE;
+  try {
+    expect(redirect('phraseman://learning-v2/course')).toBe('/learning-v2/course');
+  } finally {
+    if (previous !== undefined) process.env.EXPO_PUBLIC_STORE_RELEASE = previous;
+  }
+});

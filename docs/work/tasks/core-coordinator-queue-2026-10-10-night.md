@@ -13,10 +13,12 @@ Owner: сессия 1 · ЯДРО
      не существовал ни в одной ветке) — снят в 7c1310250. Это не поломка контента.
 2. Статус no_release_surface в scripts/visual_parity_gate.mjs со строгой проверкой доказательства + тест.
 3. ТЗ серверной очистки гостей (после релиза) + сверка обещания в политике.
+4. Входы в Learning V2 в стор-сборке (запрос 21:05): внешняя ссылка phraseman://learning-v2/... в стор-сборке ведёт
+   на обычные уроки, а не на «маршрут не найден» (app/+native-intent.tsx + тест). Красные ворота release_precheck — отчётом.
 
 ## Scope
 
-tests/lesson_phrases_regression.test.ts; scripts/visual_parity_gate.mjs; tests/visual_parity_gate.test.mjs;
+tests/lesson_phrases_regression.test.ts; app/+native-intent.tsx; tests/native_intent_referral.test.ts; scripts/visual_parity_gate.mjs; tests/visual_parity_gate.test.mjs;
 docs/work/tasks/guest-retention-cleanup-spec-2026-10-10.md; INBOX_COORDINATOR_FROM_CORE.md (строка).
 Реестр docs/phraseman-2.0/evidence/parity/visual_parity.json и статусы строк НЕ трогаю (решение координатора).
 

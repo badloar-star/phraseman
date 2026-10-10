@@ -54,6 +54,13 @@ function redirectSystemPathInner({
     return '/home';
   }
 
+  // зачем (координатор 10.10 21:05): в СТОР-сборке маршруты Learning V2 вырезаны router.ctx.js (`*learning[_-]v2*`) —
+  // внешняя ссылка в /learning-v2/… или /learning_v2_… вела бы на «маршрут не найден». Ведём на обычные уроки.
+  // Флаг читаем в момент вызова (как router.ctx.js), а не через app/config — так модуль остаётся лёгким.
+  if (process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && /^\/?learning[-_]v2(?:[/_?#]|$)/i.test(raw)) {
+    return '/(tabs)/lessons';
+  }
+
   // зачем (владелец 2026-09-30): пейволы A–G удалены, остался один пейвол Plus
   // за диспетчером /premium_modal. Старые внешние ссылки /paywall_a…/paywall_g
   // (с их query — context/source) открывают его, а не «Unmatched Route».

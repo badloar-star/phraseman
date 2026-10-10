@@ -38,6 +38,9 @@ jest.mock('react-native', () => ({
 const mockSignInWithProvider = jest.fn();
 const mockGoogleAvailability = jest.fn();
 const mockAppleAvailability = jest.fn();
+// зачем (TG-AA6EC9A6D998): Google теперь синхронный, Apple — peek (null = iOS ещё не ответил).
+const mockApplePeek = jest.fn();
+const mockPeekLinkedAuth = jest.fn();
 const mockEmitAppEvent = jest.fn();
 const mockLogEvent = jest.fn();
 const mockCreateCleanInstallRecoveryFlow = jest.fn();
@@ -56,7 +59,9 @@ jest.mock('../app/auth_provider', () => ({
   signInWithProvider: (...args: unknown[]) => mockSignInWithProvider(...args),
   signOutAndWipeForAccountSwitch: jest.fn(async () => ({ ok: true })),
   isAppleSignInAvailable: () => mockAppleAvailability(),
-  isGoogleSignInAvailable: () => mockGoogleAvailability(),
+  isGoogleSignInAvailableSync: () => mockGoogleAvailability(),
+  peekAppleSignInAvailability: () => mockApplePeek(),
+  peekLinkedAuthFromCurrentUser: () => mockPeekLinkedAuth(),
   AUTH_PROMPT_SHOWN_KEY: 'auth_prompt_shown_v1',
   APPLE_ANDROID_MISSING_SERVICE_ID: 'apple_android_missing_service_id',
 }));
@@ -171,6 +176,9 @@ jest.mock('../components/AuthProviderButtons', () => {
         mockReact.createElement(MockText, null, 'Apple'),
       )
     ),
+    AuthProviderButtonPlaceholder: ({ testID }: { testID?: string }) => (
+      mockReact.createElement('View', { testID: testID ?? 'auth-provider-button-placeholder' })
+    ),
   };
 });
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
@@ -198,12 +206,16 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockGoogleAvailability.mockReset();
   mockAppleAvailability.mockReset();
+  mockApplePeek.mockReset();
+  mockPeekLinkedAuth.mockReset();
   mockSignInWithProvider.mockReset();
   mockCreateCleanInstallRecoveryFlow.mockReset();
   mockGoogleOnPress = null;
   require('@react-native-async-storage/async-storage').__reset();
-  mockGoogleAvailability.mockResolvedValue(true);
+  mockGoogleAvailability.mockReturnValue(true);
   mockAppleAvailability.mockResolvedValue(false);
+  mockApplePeek.mockReturnValue(false);
+  mockPeekLinkedAuth.mockReturnValue(null);
   mockSignInWithProvider.mockResolvedValue({
     result: 'created_new',
     email: 'user@example.test',
@@ -220,30 +232,36 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-test('deferred provider availability from a hidden render cannot overwrite the reopened modal', async () => {
+// зачем (TG-AA6EC9A6D998): гонка «поздний ответ скрытого показа» теперь живёт только у Apple на iOS
+// (Google синхронный) — проверяем её там же; заглушка держит место до ответа.
+test('deferred Apple availability from a hidden render cannot overwrite the reopened modal', async () => {
   const oldAvailability = controlledThenable<boolean>();
   const newAvailability = controlledThenable<boolean>();
-  mockGoogleAvailability
+  mockApplePeek.mockReturnValue(null);
+  mockAppleAvailability
     .mockReturnValueOnce(oldAvailability.value)
     .mockReturnValueOnce(newAvailability.value);
   const onClose = jest.fn();
   const screen = await render(
     React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose }),
   );
-  expect(mockGoogleAvailability).toHaveBeenCalledTimes(1);
+  expect(mockAppleAvailability).toHaveBeenCalledTimes(1);
+  expect(screen.getByTestId('provider-google')).toBeTruthy();
+  expect(screen.getByTestId('provider-apple-placeholder')).toBeTruthy();
 
   await screen.rerender(React.createElement(RegistrationPromptModal, { visible: false, context: 'settings', onClose }));
   await screen.rerender(React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose }));
-  expect(mockGoogleAvailability).toHaveBeenCalledTimes(2);
+  expect(mockAppleAvailability).toHaveBeenCalledTimes(2);
   await act(() => {
     newAvailability.resolve(true);
   });
-  expect(screen.getByTestId('provider-google')).toBeTruthy();
+  expect(screen.getByTestId('provider-apple')).toBeTruthy();
+  expect(screen.queryByTestId('provider-apple-placeholder')).toBeNull();
 
   await act(() => {
     oldAvailability.resolve(false);
   });
-  expect(screen.getByTestId('provider-google')).toBeTruthy();
+  expect(screen.getByTestId('provider-apple')).toBeTruthy();
 });
 
 test('provider success after hide or unmount starts no marker write and no modal continuation', async () => {
@@ -344,6 +362,39 @@ test('provider sign-in is the only recovery path: recovery entries stay hidden',
   expect(screen.queryByTestId('auth-recovery-entry')).toBeNull();
   expect(screen.queryByTestId('auth-clean-recovery-entry')).toBeNull();
   expect(mockCreateCleanInstallRecoveryFlow).not.toHaveBeenCalled();
+});
+
+// зачем (TG-AA6EC9A6D998): окно после переустановки не обещает «вернём прогресс», пока
+// привязка не доказана: сессия Google/Apple → прежний текст, аноним → нейтральный без «вернём».
+test('startup recovery with a provider session keeps the reassuring copy', async () => {
+  mockPeekLinkedAuth.mockReturnValue({ provider: 'google' });
+  const screen = await render(
+    React.createElement(RegistrationPromptModal, { visible: true, context: 'startup_recovery', onClose: jest.fn() }),
+  );
+  expect(screen.getByText('Всё в безопасности')).toBeTruthy();
+  expect(screen.getByText('Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.')).toBeTruthy();
+});
+
+test('startup recovery without proof of a provider link shows neutral copy and no saved-journey promise', async () => {
+  mockPeekLinkedAuth.mockReturnValue(null);
+  const screen = await render(
+    React.createElement(RegistrationPromptModal, { visible: true, context: 'startup_recovery', onClose: jest.fn() }),
+  );
+  expect(screen.queryByText('Всё в безопасности')).toBeNull();
+  expect(screen.getByText('Был ли вход раньше?')).toBeTruthy();
+  expect(screen.getByText('Войди тем способом, которым входил раньше. Если входа не было, этот прогресс вернуть нельзя.')).toBeTruthy();
+  expect(screen.queryByText('Твой путь сохранится и дождётся тебя')).toBeNull();
+});
+
+test('first frame reserves the Apple slot while iOS has not answered; no "no provider" flash', async () => {
+  mockGoogleAvailability.mockReturnValue(false);
+  mockApplePeek.mockReturnValue(null);
+  mockAppleAvailability.mockReturnValue(new Promise<boolean>(() => undefined));
+  const screen = await render(
+    React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose: jest.fn() }),
+  );
+  expect(screen.getByTestId('provider-apple-placeholder')).toBeTruthy();
+  expect(screen.queryByText('Ни один провайдер не доступен на этом устройстве.')).toBeNull();
 });
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports

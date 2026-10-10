@@ -450,6 +450,9 @@ beforeEach(() => {
  * экспортируется (внутренняя деталь), поэтому берём её значение из файла:
  * следующее изменение бюджета тесты переживут сами.
  */
+// зачем (11.10, решение координатора): после потолка быстрая фаза ждёт ИДУЩИЙ полёт стирания ещё до 10 с
+// (окно сбоя не должно показываться поверх уже стираемых данных) — зависший wipe отказывает после обоих.
+const LOCAL_WIPE_GRACE_MS = 10_000;
 const LOCAL_WIPE_DEADLINE_MS = (() => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const source = require('fs').readFileSync(
@@ -1507,13 +1510,13 @@ test('timed-out local wipe remains a single joined flight and cannot clear a fre
     // зачем: полный локальный wipe — цепочка нативных шагов, и её бюджет
     // намеренно поднят до 5 с (одна секунда давала ложный таймаут на реальном
     // iOS). Тест обязан перематывать ВЕСЬ бюджет, иначе висит на первом await.
-    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS);
+    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS + LOCAL_WIPE_GRACE_MS);
     await expect(first).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
 
     const retry = authProvider.beginAccountDeletion();
     await Promise.resolve();
     expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS);
+    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS + LOCAL_WIPE_GRACE_MS);
     await expect(retry).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
     expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
     expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();

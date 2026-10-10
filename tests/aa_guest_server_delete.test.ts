@@ -456,3 +456,12 @@ describe('окно удаления прогревает модуль храни
     expect(modal).toContain('phone_state_prewarm failed reason=');
   });
 });
+
+describe('окно сбоя удаления не показывается поверх уже стираемых данных (решение координатора 11.10 00:50)', () => {
+  test('после потолка 5 с быстрая фаза дожидается идущего полёта стирания (до 10 с), а не отказывает сразу', () => {
+    const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8') as string;
+    expect(source).toContain('const ACCOUNT_DELETE_LOCAL_WIPE_GRACE_MS = 10_000;');
+    expect(source).toMatch(/if \(!locallyWiped\) \{[\s\S]{0,600}locallyWiped = await awaitInFlightLocalWipe\(pendingDeleteLock, pendingDeleteStableId\);/);
+    expect(source).toContain("traceAccountDeleteLocal('grace_result=0 source=no_flight')");
+  });
+});

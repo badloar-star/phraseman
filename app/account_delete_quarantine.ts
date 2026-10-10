@@ -358,6 +358,29 @@ function anchorMatchesLock(
   );
 }
 
+/** Имена расходящихся полей якоря и записи — для журнала, без значений (идентификаторы не печатаем). */
+function describeAnchorLockMismatch(
+  anchor: AccountDeletePendingAuthAnchor,
+  lock: AccountDeletePendingAuthLock,
+): string {
+  const diff: string[] = [];
+  if (anchor.operationId !== lock.operationId) diff.push('operationId');
+  if (anchor.providerUid !== lock.providerUid) diff.push('providerUid');
+  if (anchor.deletedStableId !== lock.stableId) diff.push('stableId');
+  if (anchor.serverRetiredStableId !== lock.serverRetiredStableId) diff.push('serverRetiredStableId');
+  if (anchor.source !== lock.source) diff.push('source');
+  if (anchor.createdAt !== lock.createdAt) diff.push('createdAt');
+  if (anchor.retiredSubject !== lock.retiredSubject) diff.push('retiredSubject');
+  if (anchor.credentialSafeCapability && anchor.credentialSafeCapability !== lock.credentialSafeCapability) diff.push('credentialSafeCapability');
+  if (anchor.version === 3) {
+    if (lock.phase !== 'ready') diff.push(`phase_not_ready(${lock.phase})`);
+    if (lock.cleanupAuthorized !== true) diff.push('cleanupAuthorized');
+    if (anchor.freshAuthUid !== lock.freshAuthUid) diff.push('freshAuthUid');
+    if (anchor.freshStableId !== lock.freshStableId) diff.push('freshStableId');
+  }
+  return diff.length ? diff.join('+') : 'none';
+}
+
 function preparedLockFromAnchor(anchor: AccountDeletePendingAuthAnchor): AccountDeletePendingAuthLock {
   if (anchor.version === 3) {
     return {
@@ -438,7 +461,23 @@ async function exactSecureWrite(
   }
 }
 
+// зачем (прогон 10.10 22:05, «сперва логи»): якорь пишется РАНЬШЕ записи — проверяем гипотезу,
+// что чтение между двумя записями видит расхождение и выбрасывает живой замок. Счётчик идущих записей
+// печатается в журнале расхождения; поведение не меняется.
+let guardPersistsInFlight = 0;
+
 export async function persistAccountDeletePendingAuthLock(
+  lock: AccountDeletePendingAuthLock,
+): Promise<boolean> {
+  guardPersistsInFlight += 1;
+  try {
+    return await persistAccountDeletePendingAuthLockInner(lock);
+  } finally {
+    guardPersistsInFlight -= 1;
+  }
+}
+
+async function persistAccountDeletePendingAuthLockInner(
   lock: AccountDeletePendingAuthLock,
 ): Promise<boolean> {
   const secureStore = getSecureStore();
@@ -922,6 +961,11 @@ async function readAccountDeletePendingAuthRawFromStorage(): Promise<string | nu
     // одного. Прошлое «самолечение» чинило лишь совпадающие операции, а
     // реальный случай пришёл с разными. Больше не разбираемся, чей след
     // сломан: локальный замок утратил право решать судьбу входа.
+    // зачем (живой прогон 10.10 22:05, «сперва логи»): после удаления гостя без сети замок
+    // выбрасывался как «сломанный» (anchorV=3 phase=stable_link_verified) — повтор удаления на
+    // сервере терялся. Печатаем, КАКИЕ поля разошлись (только имена/фазы, без идентификаторов),
+    // чтобы отличить гонку «запись между двумя половинами» от настоящей порчи.
+    console.warn(`[ACCOUNT-DELETE-GUARD] disagreement fields=${describeAnchorLockMismatch(anchor, recordLock)} anchorV=${anchor.version} phase=${recordLock.phase} cleanup=${recordLock.cleanupAuthorized === true ? 1 : 0} persists_in_flight=${guardPersistsInFlight}`);
     reportBrokenGuard('disagreement', `anchorV=${anchor.version} phase=${recordLock.phase}`);
     await discardBrokenGuardRecords(secureStore);
     return null;

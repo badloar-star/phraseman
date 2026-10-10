@@ -19,7 +19,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
+import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { StreakChainIcon } from './StreakChainIcon';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -36,7 +36,9 @@ import {
   signInWithProvider,
   signOutAndWipeForAccountSwitch,
   isAppleSignInAvailable,
-  isGoogleSignInAvailable,
+  isGoogleSignInAvailableSync,
+  peekAppleSignInAvailability,
+  peekLinkedAuthFromCurrentUser,
   AUTH_PROMPT_SHOWN_KEY,
   APPLE_ANDROID_MISSING_SERVICE_ID,
   type SignInResult,
@@ -52,6 +54,11 @@ import {
   KNOWLY_LEGAL_TERMS_URL,
 } from '../app/config';
 import { triLang, type Lang } from '../constants/i18n';
+import {
+  getStartupRecoveryHonestCopy,
+  resolveStartupRecoveryLinkState,
+  shouldShowSavedJourneyLine,
+} from './startup_recovery_link_copy';
 import { noticeAccountDeletedForever, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
@@ -226,8 +233,12 @@ function RegistrationPromptModal({
   const { height: viewportHeight } = useWindowDimensions();
   const screenFocused = useIsScreenFocused();
 
-  const [appleAvail, setAppleAvail] = useState(false);
-  const [googleAvail, setGoogleAvail] = useState(false);
+  // зачем (TG-AA6EC9A6D998, кнопки входа без сдвига): Google известен синхронно (модуль +
+  // переменная) — считаем к первому кадру открытия; только при visible, чтобы скрытая
+  // модалка в корневом layout не тянула модуль Google на холодном старте.
+  // Apple: null = iOS ещё не ответил → на его месте невидимая заглушка той же высоты.
+  const googleAvail = useMemo(() => (visible ? isGoogleSignInAvailableSync() : false), [visible]);
+  const [appleAvail, setAppleAvail] = useState<boolean | null>(peekAppleSignInAvailability);
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
   const [signInSlow, setSignInSlow] = useState(false);
   const [inlineError, setInlineError] = useState<string | null>(null);
@@ -391,12 +402,16 @@ function RegistrationPromptModal({
       restore: () => restoreFromCloudDetailed(),
     });
     let active = true;
-    void isAppleSignInAvailable().then((available) => {
-      if (active) setAppleAvail(available);
-    });
-    void isGoogleSignInAvailable().then((available) => {
-      if (active) setGoogleAvail(available);
-    });
+    // зачем (TG-AA6EC9A6D998): известный синхронно ответ ставим сразу; иначе спрашиваем iOS,
+    // а прежнее значение (или заглушка) держит место — поздний ответ скрытого показа не пишет.
+    const applePeek = peekAppleSignInAvailability();
+    if (applePeek !== null) {
+      setAppleAvail(applePeek);
+    } else {
+      void isAppleSignInAvailable().then((available) => {
+        if (active) setAppleAvail(available);
+      });
+    }
     void AsyncStorage.getItem(STREAK_COUNT_KEY)
       .then((v) => {
         if (!active) return;
@@ -567,8 +582,33 @@ function RegistrationPromptModal({
         : 'Szybkie logowanie. Postępy synchronizują się między urządzeniami.',
   });
 
-  const finalTitle = title ?? defaultTitle;
-  const finalSubtitle = subtitle ?? defaultSubtitle;
+  // зачем (TG-AA6EC9A6D998): окно после переустановки не обещает «вернём прогресс», пока
+  // привязка Google/Apple не доказана. Признак — провайдер ТЕКУЩЕЙ сессии (синхронный peek)
+  // или подсказка сервера linked:true; без них — нейтральный текст (см. startup_recovery_link_copy).
+  const sessionLinkedProvider = useMemo(
+    () => (visible && context === 'startup_recovery' ? peekLinkedAuthFromCurrentUser()?.provider ?? null : null),
+    [visible, context],
+  );
+  const recoveryLinkDecision = resolveStartupRecoveryLinkState({
+    sessionProvider: sessionLinkedProvider,
+    hintLinked: recoveryHint?.linked === true,
+  });
+  const recoveryHonestCopy = context === 'startup_recovery'
+    ? getStartupRecoveryHonestCopy(lang, recoveryLinkDecision.state)
+    : null;
+  const showSavedJourneyLine = shouldShowSavedJourneyLine(context, recoveryLinkDecision.state);
+  useEffect(() => {
+    if (!visible || context !== 'startup_recovery') return;
+    // зачем: лог [AUTH-RECOVERY-COPY] — какой текст увидел человек и какое значение это решило.
+    console.log(
+      `[AUTH-RECOVERY-COPY] state=${recoveryLinkDecision.state} decidedBy=${recoveryLinkDecision.decidedBy}`
+        + ` sessionProvider=${String(sessionLinkedProvider)} hintLinked=${String(recoveryHint?.linked === true)}`
+        + ` customTitle=${String(title !== undefined)} customSubtitle=${String(subtitle !== undefined)}`,
+    );
+  }, [visible, context, recoveryLinkDecision.state, recoveryLinkDecision.decidedBy, sessionLinkedProvider, recoveryHint?.linked, title, subtitle]);
+
+  const finalTitle = title ?? recoveryHonestCopy?.title ?? defaultTitle;
+  const finalSubtitle = subtitle ?? recoveryHonestCopy?.subtitle ?? defaultSubtitle;
   // зачем (overlay.css `.ov-title` 25/31): заголовок окна входа фиксированного кегля, как в макете.
   const titleLineHeight = 31;
   const bodyLineHeight = Math.round(f.body * 1.32);
@@ -1504,16 +1544,20 @@ function RegistrationPromptModal({
               <Text style={[styles.title, { color: glass.text, fontSize: 25, lineHeight: titleLineHeight }]} numberOfLines={2}>
                 {finalTitle}
               </Text>
-              <Text style={[styles.daysLine, { color: glass.secondary, fontSize: f.caption }]} numberOfLines={2}>
-                {daysLine ? (
-                  <>
-                    <Text style={{ color: glass.text, fontWeight: '700' }}>{daysLine.accent}</Text>
-                    {daysLine.rest}
-                  </>
-                ) : (
-                  labelNoStreak
-                )}
-              </Text>
+              {/* зачем (TG-AA6EC9A6D998): строка — обещание сохранности; без доказанной привязки
+                  в окне восстановления её нет (решение известно к первому кадру). */}
+              {showSavedJourneyLine && (
+                <Text style={[styles.daysLine, { color: glass.secondary, fontSize: f.caption }]} numberOfLines={2}>
+                  {daysLine ? (
+                    <>
+                      <Text style={{ color: glass.text, fontWeight: '700' }}>{daysLine.accent}</Text>
+                      {daysLine.rest}
+                    </>
+                  ) : (
+                    labelNoStreak
+                  )}
+                </Text>
+              )}
             </View>
           </Animated.View>
 
@@ -1542,7 +1586,7 @@ function RegistrationPromptModal({
             )}
           </Animated.View>
           <Animated.View style={[styles.buttons, rise3]}>
-            {appleAvail && (
+            {appleAvail === true && (
               <AppleSignInButton
                 onPress={() => handleSignIn('apple')}
                 loading={loadingProvider === 'apple'}
@@ -1551,6 +1595,8 @@ function RegistrationPromptModal({
                 shape="sheet"
               />
             )}
+            {/* зачем (TG-AA6EC9A6D998): пока iOS не ответил про Apple — место под кнопку уже занято. */}
+            {appleAvail === null && <AuthProviderButtonPlaceholder shape="sheet" testID="provider-apple-placeholder" />}
           </Animated.View>
 
           {loadingProvider !== null && (
@@ -1574,7 +1620,7 @@ function RegistrationPromptModal({
             </View>
           )}
 
-          {!googleAvail && !appleAvail && (
+          {!googleAvail && appleAvail === false && (
             <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
               {triLang(lang, {
                 ru: 'Ни один провайдер не доступен на этом устройстве.',
@@ -1886,7 +1932,7 @@ function RegistrationPromptModal({
                         </Text>
                       </Pressable>
                     )}
-                    {appleAvail && (
+                    {appleAvail === true && (
                       <Pressable
                         onPress={() => { void handleCleanRecoveryStart('apple'); }}
                         disabled={cleanRecoveryBusy}
@@ -2024,7 +2070,7 @@ function RegistrationPromptModal({
                           </Text>
                         </Pressable>
                       )}
-                      {appleAvail && (
+                      {appleAvail === true && (
                         <Pressable
                           onPress={() => { void handleRecoveryStart('apple'); }}
                           disabled={recoveryBusy}

@@ -1035,7 +1035,10 @@ export default function SettingsMain() {
     ? undefined
     : linkedAuth
       ? L('аккаунт привязан', 'акаунт прив’язано', 'account linked', 'cuenta vinculada', 'conta vinculada', 'đã liên kết tài khoản', 'akun tertaut', 'hesap bağlı', 'konto połączone')
-      : L('аккаунт не привязан', 'акаунт не прив’язано', 'account not linked', 'cuenta sin vincular', 'conta não vinculada', 'chưa liên kết tài khoản', 'akun belum ditautkan', 'hesap bağlı değil', 'konto niepołączone');
+      // зачем (TG-AA6EC9A6D998, решение координатора 00:50): гостю — честное следствие, а не
+      // технический статус: без входа прогресс привязан к этому телефону (копия в облаке есть, но на другой телефон не переносится) и теряется при
+      // переустановке. Регистр строчный — строка идёт после звания через « · », как в макете.
+      : L('прогресс привязан к этому телефону', 'прогрес прив’язаний до цього телефона', 'progress is tied to this phone', 'progreso vinculado a este teléfono', 'progresso vinculado a este celular', 'tiến độ gắn với điện thoại này', 'progres terikat ke ponsel ini', 'ilerleme bu telefona bağlı', 'postęp przypisany do tego telefonu');
   // зачем (PM-128): звание на языке интерфейса, а не всегда по-русски.
   const profileCardSub = [myCoinRankRow ? coinRankTitle(myCoinRankRow.rank, lang) : undefined, accountLinkedSub].filter(Boolean).join(' · ');
   const profileCardName = userName.trim() || L('Профиль', 'Профіль', 'Profile', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil');

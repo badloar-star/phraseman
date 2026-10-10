@@ -467,14 +467,25 @@ function configureGoogleSignin(): boolean {
  * • Android: кнопка видна при облачной сборке; OAuth в Custom Tabs требует
  *   EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID и return URL в Apple Developer (см. getAppleAndroidRedirectUri).
  */
+// зачем (TG-AA6EC9A6D998, кнопки входа без сдвига): нативный ответ iOS об Apple
+// запоминается на процесс — второе открытие окна входа знает ответ уже в первом кадре.
+let iosAppleSignInAvailabilityCache: boolean | null = null;
+
 export async function isAppleSignInAvailable(): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
   if (Platform.OS === 'ios') {
     const mod = getAppleAuth();
-    if (!mod) return false;
+    if (!mod) {
+      iosAppleSignInAvailabilityCache = false;
+      return false;
+    }
     try {
-      return await mod.isAvailableAsync();
-    } catch {
+      const available = await mod.isAvailableAsync();
+      iosAppleSignInAvailabilityCache = available === true;
+      return iosAppleSignInAvailabilityCache;
+    } catch (error) {
+      // зачем: не немой catch — причина видна; кэш не пишем, следующее открытие спросит снова.
+      identityTrace('[AUTH-AVAIL]', 'apple_is_available_failed', { code: identityErrorCode(error) });
       return false;
     }
   }
@@ -485,16 +496,41 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
 }
 
 /**
- * Доступен ли Google Sign-In на текущем устройстве.
+ * Синхронный ответ «доступен ли Apple»: true/false, когда он известен без
+ * нативного вызова (Android/web — по переменной, iOS — после первого ответа
+ * isAppleSignInAvailable), и null, пока iOS ещё не ответил.
+ *
+ * зачем (TG-AA6EC9A6D998, Performance Bible «первый кадр = финальная геометрия»):
+ * экраны входа держат место под кнопкой Apple, пока здесь null, и не двигают
+ * раскладку, когда приходит асинхронный ответ.
+ */
+export function peekAppleSignInAvailability(): boolean | null {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
+  if (Platform.OS === 'ios') return iosAppleSignInAvailabilityCache;
+  if (Platform.OS === 'android') return !!getAppleAndroidServiceId();
+  return false;
+}
+
+/**
+ * Доступен ли Google Sign-In на текущем устройстве — синхронно.
  * Проверяет только наличие встроенного модуля и Web Client ID. На Android
  * Play Services проверяются после нажатия (с системным диалогом обновления) в
  * runGoogleNativeSignIn: временный сбой preflight не должен убирать все точки входа.
+ *
+ * зачем (TG-AA6EC9A6D998): проверка и раньше не ждала ничего асинхронного, но
+ * экраны узнавали ответ через промис — первый кадр рисовался без кнопки Google,
+ * а следующий вставлял её и сдвигал всё ниже. Синхронная версия даёт ответ до
+ * первого кадра.
  */
-export async function isGoogleSignInAvailable(): Promise<boolean> {
+export function isGoogleSignInAvailableSync(): boolean {
   const mod = getGoogleSignin();
   if (!mod) return false;
   if (!process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID) return false;
   return true;
+}
+
+export async function isGoogleSignInAvailable(): Promise<boolean> {
+  return isGoogleSignInAvailableSync();
 }
 
 /** Чтение users/{stableId} не должно блокировать настройки бесконечно при «зависшем» клиенте Firestore. */
@@ -924,6 +960,29 @@ async function wipeAndVerifyPostDeleteLocalData(
     ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS,
   );
   traceAccountDeleteLocal(`flight_deadline_result=${result ? 1 : 0}`);
+  return result;
+}
+
+const ACCOUNT_DELETE_LOCAL_WIPE_GRACE_MS = 10_000;
+
+/** Дождаться уже идущего полёта стирания (после истечения быстрого потолка), не запуская новый. */
+async function awaitInFlightLocalWipe(
+  lock: AccountDeletePendingAuthLock | null,
+  stableId: string | null,
+): Promise<boolean> {
+  const flightKey = lock?.operationId ?? `anonymous:${stableId ?? 'none'}`;
+  if (verifiedPostDeleteLocalWipes.has(flightKey)) {
+    traceAccountDeleteLocal('grace_result=1 source=verified_after_deadline');
+    return true;
+  }
+  const flight = postDeleteLocalWipeFlights.get(flightKey);
+  if (!flight) {
+    traceAccountDeleteLocal('grace_result=0 source=no_flight');
+    return false;
+  }
+  const startedAt = Date.now();
+  const result = await withLocalStepDeadline(() => flight, false, ACCOUNT_DELETE_LOCAL_WIPE_GRACE_MS);
+  traceAccountDeleteLocal(`grace_result=${result ? 1 : 0} waited_ms=${Date.now() - startedAt}`);
   return result;
 }
 
@@ -4114,10 +4173,17 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
   // AsyncStorage.clear() снимает и прогресс, и onboarding_step/done/version —
   // без этого онбординг восстановил бы старый шаг вместо первого экрана.
   try {
-    const locallyWiped = await wipeAndVerifyPostDeleteLocalData(
+    let locallyWiped = await wipeAndVerifyPostDeleteLocalData(
       pendingDeleteLock,
       pendingDeleteStableId,
     );
+    if (!locallyWiped) {
+      // зачем (живой прогон 10.10 21:35, решение координатора 00:50): потолок 5 с истёк, а полёт
+      // стирания продолжал работу и стёр данные уже ПОСЛЕ окна «Не вышло» — человек видел
+      // «аккаунт защищён» поверх стёртого имени. Если полёт ещё идёт, дожидаемся его (кнопка
+      // в это время крутится); окно сбоя — только если стирание действительно не подтвердилось.
+      locallyWiped = await awaitInFlightLocalWipe(pendingDeleteLock, pendingDeleteStableId);
+    }
     if (!locallyWiped) return 'local_wipe_unverified';
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: local wipe failed', e);

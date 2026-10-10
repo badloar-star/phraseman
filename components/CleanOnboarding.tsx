@@ -45,7 +45,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
-import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
+import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -107,7 +107,8 @@ import {
 } from '../app/types/user_profile';
 import {
   isAppleSignInAvailable,
-  isGoogleSignInAvailable,
+  isGoogleSignInAvailableSync,
+  peekAppleSignInAvailability,
   peekLinkedAuthFromCurrentUser,
   signInWithProvider,
   type AuthProviderId,
@@ -2332,8 +2333,10 @@ function CleanOnboarding({
   // вопрос «такого аккаунта нет, создать?» вместо кнопок входа. Пустая строка —
   // валидное значение (провайдер не отдал email), поэтому признак именно null/не-null.
   const [unknownAccountEmail, setUnknownAccountEmail] = useState<string | null>(null);
-  const [googleAvailable, setGoogleAvailable] = useState(false);
-  const [appleAvailable, setAppleAvailable] = useState(false);
+  // зачем (TG-AA6EC9A6D998, кнопки входа без сдвига): Google известен синхронно — к первому
+  // кадру; Apple: null = iOS ещё не ответил → на месте кнопки невидимая заглушка той же высоты.
+  const [googleAvailable] = useState(isGoogleSignInAvailableSync);
+  const [appleAvailable, setAppleAvailable] = useState<boolean | null>(peekAppleSignInAvailability);
   const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
@@ -2556,10 +2559,18 @@ function CleanOnboarding({
   }, [restored]);
 
   useEffect(() => {
+    if (appleAvailable !== null) return undefined;
     let active = true;
-    isGoogleSignInAvailable().then((ok) => { if (active) setGoogleAvailable(ok); }).catch(() => { if (active) setGoogleAvailable(false); });
-    isAppleSignInAvailable().then((ok) => { if (active) setAppleAvailable(ok); }).catch(() => { if (active) setAppleAvailable(false); });
+    isAppleSignInAvailable()
+      .then((ok) => { if (active) setAppleAvailable(ok); })
+      .catch((error: unknown) => {
+        // зачем: не немой catch — причина видна; заглушка уступает место «нет Apple».
+        console.warn(`[ONBOARDING-AUTH] apple_availability_failed reason=${error instanceof Error ? error.message : String(error)}`);
+        if (active) setAppleAvailable(false);
+      });
     return () => { active = false; };
+    // зачем: спрашиваем iOS один раз за монтирование; повторный ответ не нужен.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // зачем: владелец 2026-08-22 — прогрев серверных функций входа, пока юзер ещё
@@ -3280,15 +3291,18 @@ function CleanOnboarding({
                   onPress={() => { void handleAuth('google'); }}
                 />
               ) : null}
-              {appleAvailable ? (
+              {appleAvailable === true ? (
                 <AppleSignInButton
                   label="Войти через Apple"
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('apple'); }}
                 />
+              ) : appleAvailable === null ? (
+                // зачем (TG-AA6EC9A6D998): место под Apple занято до ответа iOS — без сдвига.
+                <AuthProviderButtonPlaceholder testID="onboarding-apple-placeholder" />
               ) : null}
-              {!googleAvailable && !appleAvailable ? (
+              {!googleAvailable && appleAvailable === false ? (
                 <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
               ) : null}
               {authSlow ? (
@@ -3346,7 +3360,7 @@ function CleanOnboarding({
       onBack={back}
       footer={(
         <>
-          {appleAvailable ? (
+          {appleAvailable === true ? (
             <AppleSignInButton
               label="Продолжить с Apple"
               shape="pill"
@@ -3354,6 +3368,9 @@ function CleanOnboarding({
               disabled={!!authLoading}
               onPress={() => { void authFromPrivacy('apple'); }}
             />
+          ) : appleAvailable === null ? (
+            // зачем (TG-AA6EC9A6D998): место под Apple занято до ответа iOS — без сдвига.
+            <AuthProviderButtonPlaceholder shape="pill" testID="onboarding-privacy-apple-placeholder" />
           ) : null}
           {googleAvailable ? (
             <GoogleSignInButton

@@ -115,6 +115,34 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
   );
 }
 
+/** Высота кнопки входа по форме — для резерва места до ответа о доступности провайдера. */
+export const AUTH_PROVIDER_BUTTON_HEIGHT: Readonly<Record<'default' | 'pill' | 'sheet', number>> = {
+  default: HEIGHT,
+  pill: PILL_HEIGHT,
+  sheet: SHEET_HEIGHT,
+};
+
+/**
+ * Невидимая заглушка ровно под кнопку входа.
+ *
+ * зачем (TG-AA6EC9A6D998, Performance Bible «первый кадр = финальная геометрия»):
+ * доступность Apple на iOS приходит асинхронно; без заглушки кнопка «вставлялась»
+ * вторым кадром и сдвигала всё ниже. Заглушка не видна, не нажимается и не читается
+ * экранным диктором — она только держит высоту.
+ */
+export function AuthProviderButtonPlaceholder({ shape = 'default', testID }: { shape?: 'default' | 'pill' | 'sheet'; testID?: string }) {
+  return (
+    <View
+      testID={testID ?? 'auth-provider-button-placeholder'}
+      pointerEvents="none"
+      accessible={false}
+      importantForAccessibility="no-hide-descendants"
+      accessibilityElementsHidden
+      style={{ height: AUTH_PROVIDER_BUTTON_HEIGHT[shape], width: '100%' }}
+    />
+  );
+}
+
 const styles = StyleSheet.create({
   button: {
     height: HEIGHT,

@@ -2325,6 +2325,7 @@ function CleanOnboarding({
   const [restored, setRestored] = useState(false);
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
+  const authInFlightRef = useRef(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
   // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
@@ -2570,7 +2571,13 @@ function CleanOnboarding({
   }, [step]);
 
   const handleAuth = useCallback(async (provider: AuthProviderId) => {
-    if (authLoading) return;
+    // зачем (Optimistic UI, 10.10): authLoading — состояние, два тапа в одном кадре видят
+    // старое null и запускают два входа (и два окна смены аккаунта). Ссылка ставится синхронно.
+    if (authLoading || authInFlightRef.current) {
+      console.log(`[ONBOARDING-AUTH] tap ignored provider=${provider} reason=${authInFlightRef.current ? 'in_flight_ref' : 'loading_state'}`);
+      return;
+    }
+    authInFlightRef.current = true;
     setAuthLoading(provider);
     setAuthError(null);
     setAuthSlow(false);
@@ -2662,6 +2669,7 @@ function CleanOnboarding({
       const detail = error instanceof Error ? error.message : String(error);
       setAuthError(describeAuthError(detail, lang));
     } finally {
+      authInFlightRef.current = false;
       setAuthSlow(false);
       setAuthLoading(null);
     }
@@ -2672,7 +2680,13 @@ function CleanOnboarding({
   // после чего идём дальше по онбордингу; найденный существующий аккаунт
   // завершает онбординг сразу (прогресс уже есть).
   const authFromPrivacy = useCallback(async (provider: AuthProviderId) => {
-    if (authLoading) return;
+    // зачем (Optimistic UI, 10.10): authLoading — состояние, два тапа в одном кадре видят
+    // старое null и запускают два входа (и два окна смены аккаунта). Ссылка ставится синхронно.
+    if (authLoading || authInFlightRef.current) {
+      console.log(`[ONBOARDING-AUTH] tap ignored provider=${provider} reason=${authInFlightRef.current ? 'in_flight_ref' : 'loading_state'}`);
+      return;
+    }
+    authInFlightRef.current = true;
     setAuthLoading(provider);
     setAuthError(null);
     setAuthSlow(false);
@@ -2758,6 +2772,7 @@ function CleanOnboarding({
       const detail = error instanceof Error ? error.message : String(error);
       setAuthError(describeAuthError(detail, lang));
     } finally {
+      authInFlightRef.current = false;
       setAuthSlow(false);
       setAuthLoading(null);
     }

@@ -160,6 +160,16 @@ describe('удаление гостя: шаг закрытия хранилищ�
   });
 });
 
+describe('Optimistic UI: вход в онбординге не запускается дважды', () => {
+  it('оба обработчика входа держат синхронную ссылку и снимают её в finally', () => {
+    const onboarding = read('components/CleanOnboarding.tsx');
+    expect(onboarding).toContain('const authInFlightRef = useRef(false);');
+    expect(onboarding.match(/if \(authLoading \|\| authInFlightRef\.current\) \{/g)).toHaveLength(2);
+    expect(onboarding.match(/authInFlightRef\.current = true;/g)).toHaveLength(2);
+    expect(onboarding.match(/\} finally \{\r?\n\s+authInFlightRef\.current = false;/g)).toHaveLength(2);
+  });
+});
+
 describe('тихий спиннер догрузки после входа', () => {
   it('флаг включается на время догрузки и гаснет; повторное завершение безвредно', () => {
     const endA = beginCloudProfileRefresh('a');

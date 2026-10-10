@@ -53,3 +53,4 @@ Governance-ID: TG-8E777FB3CDB5 — прогон: перезапуск сборщ
 Governance-ID: TG-8E777FB3CDB5 (прод.) — НАХОДКА прогона: удаление гостя отклонено local_wipe_unverified (phone_state_retired=0 за потолок 1 с); логи-замеры в retirePhoneStateForDeletion / retirePhoneStateAfterDeletion.
 Governance-ID: TG-8E777FB3CDB5 (прод.) — итог живого прогона в INBOX §AA-34 (прогон); находки: потолок 1 с на закрытии хранилища, серверное удаление гостя не ставится (proof_missing).
 Governance-ID: TG-056EF729BB63 — ревью APPROVE потолка retire; след «retire завершился после отказа» (M-1 ревью), решение о дожатии удаления — координатору.
+Governance-ID: TG-20707BD701DC (прод.) — Optimistic UI: защита ссылкой от двойного тапа входа в онбординге (CleanOnboarding handleAuth/authFromPrivacy).

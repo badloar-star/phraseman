@@ -14,7 +14,7 @@ const L17_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 0,  // "I am working right now"
     wordTraps: [
       { wordIndex: 1, hint: 'С "I" → "am" (не "is" или "are").' },
-      { wordIndex: 2, hint: 'V-ing форма: "working" (добавьте -ing).' },
+      { wordIndex: 2, hint: 'V-ing форма: "working" (добавь -ing).' },
     ],
     generalRule: 'Present Continuous: am/is/are + V-ing. (I am working...)',
     traps: []

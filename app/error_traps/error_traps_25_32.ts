@@ -21,7 +21,7 @@ const L25_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 1,  // "They were having a meeting at noon"
     wordTraps: [
       { wordIndex: 1, hint: 'С "They" → "were" (прошедшее от "are").' },
-      { wordIndex: 2, hint: 'Добавьте -ing к глаголу: "having" (не "have").' },
+      { wordIndex: 2, hint: 'Добавь -ing к глаголу: "having" (не "have").' },
     ],
     generalRule: 'They were + V-ing. (They were having...)',
     traps: []
@@ -39,7 +39,7 @@ const L25_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 3,  // "We were waiting for two hours"
     wordTraps: [
       { wordIndex: 1, hint: 'С "We" → "were".' },
-      { wordIndex: 2, hint: 'V-ing: "waiting" (добавьте -ing).' },
+      { wordIndex: 2, hint: 'V-ing: "waiting" (добавь -ing).' },
     ],
     generalRule: 'We were + V-ing. (We were waiting...)',
     traps: []
@@ -83,7 +83,7 @@ const L26_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 1,  // "He has been here for an hour"
     wordTraps: [
       { wordIndex: 1, hint: 'С "He" → "has".' },
-      { wordIndex: 2, hint: 'Используйте "been" (причастие от "be").' },
+      { wordIndex: 2, hint: 'Используй "been" (причастие от "be").' },
     ],
     generalRule: 'He has + been. (He has been here...)',
     traps: []
@@ -108,7 +108,7 @@ const L27_TRAPS: readonly PhraseErrorTraps[] = [
   {
     phraseIndex: 0,  // "She said that she was tired"
     wordTraps: [
-      { wordIndex: 0, hint: 'Начните с глагола речи: "said".' },
+      { wordIndex: 0, hint: 'Начни с глагола речи: "said".' },
       { wordIndex: 1, hint: 'После "said" идёт "that".' },
       { wordIndex: 2, hint: 'Сама по себе фраза: "that she".' },
       { wordIndex: 3, hint: 'Время меняется: настоящее (am) → прошедшее (was).' },
@@ -138,7 +138,7 @@ const L28_TRAPS: readonly PhraseErrorTraps[] = [
   {
     phraseIndex: 0,  // "If I had more time I would study more"
     wordTraps: [
-      { wordIndex: 0, hint: 'Начните с условия: "If...".' },
+      { wordIndex: 0, hint: 'Начни с условия: "If...".' },
       { wordIndex: 2, hint: 'После "if" в 2 conditional: Past Simple форма (had, не have).' },
       { wordIndex: 4, hint: 'Главное предложение: "would" + базовая форма глагола.' },
       { wordIndex: 5, hint: 'Глагол в базовой форме: "study" (не "studied").' },
@@ -182,7 +182,7 @@ const L30_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 0,  // "The man who lives here is a doctor"
     wordTraps: [
       { wordIndex: 0, hint: 'Главное существительное: "The man".' },
-      { wordIndex: 2, hint: 'Для людей используйте "who" (не "that" в формальной речи).' },
+      { wordIndex: 2, hint: 'Для людей используй "who" (не "that" в формальной речи).' },
       { wordIndex: 5, hint: 'Глагол в придаточном: "is" (согласование с who = he).' },
     ],
     generalRule: 'The man who... (для людей who).',
@@ -192,7 +192,7 @@ const L30_TRAPS: readonly PhraseErrorTraps[] = [
     phraseIndex: 5,  // "The book which I read was interesting"
     wordTraps: [
       { wordIndex: 0, hint: 'Главное существительное: "The book".' },
-      { wordIndex: 2, hint: 'Для вещей используйте "which" (или "that").' },
+      { wordIndex: 2, hint: 'Для вещей используй "which" (или "that").' },
       { wordIndex: 6, hint: 'Глагол в главном предложении: "was".' },
     ],
     generalRule: 'The book which... (для вещей which).',

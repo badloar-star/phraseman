@@ -28,9 +28,12 @@ function Row({ label, icon, onPress, tone = 'default', testID }: { label: string
   const color = tone === 'danger' ? t.wrong : t.accent;
   return (
     <TapScale testID={testID} onPress={onPress} style={[styles.row, { backgroundColor: t.bgSurface }]} accessibilityLabel={label}>
-      <Ionicons name={icon} size={16} color={color} />
-      <Text style={{ color: t.textPrimary, fontSize: f.body ?? 14, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1 }}>{label}</Text>
-      <Ionicons name="chevron-forward" size={14} color={t.textGhost} />
+      {/* зачем (ловушка TapScale 10.10): строка раскладки — во внутреннем View, стиль TapScale на детей не действует */}
+      <View style={styles.rowInner}>
+        <Ionicons name={icon} size={16} color={color} />
+        <Text style={{ color: t.textPrimary, fontSize: f.body ?? 14, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1 }}>{label}</Text>
+        <Ionicons name="chevron-forward" size={14} color={t.textGhost} />
+      </View>
     </TapScale>
   );
 }
@@ -92,7 +95,8 @@ const styles = StyleSheet.create({
   eyebrow: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase', fontWeight: '700', marginBottom: 8 },
   header: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 2, marginBottom: 12 },
   closeBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 48, borderRadius: 14, paddingHorizontal: 14, marginBottom: 8 },
+  row: { justifyContent: 'center', minHeight: 48, borderRadius: 14, paddingHorizontal: 14, marginBottom: 8 },
+  rowInner: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   botCard: { borderRadius: 14, padding: 12, marginBottom: 8 },
   statuses: { flexDirection: 'row', gap: 6, marginTop: 8, flexWrap: 'wrap' },
   status: { minHeight: 24, paddingHorizontal: 8, borderRadius: 8, textAlignVertical: 'center', fontSize: 11, fontWeight: '700' },

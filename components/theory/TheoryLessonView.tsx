@@ -186,25 +186,29 @@ function AccordionSection({ section, index, total, open, onToggle, renderBlock }
         accessibilityLabel={section.title}
         style={styles.sectionHeader}
       >
-        <Text
-          style={[
-            styles.sectionNum,
-            { color: open ? glass.text : glass.mutedText },
-          ]}
-        >
-          {section.num}
-        </Text>
-        <View style={styles.sectionHeadText}>
-          <Text style={[styles.sectionTitle, { color: glass.text }]}>
-            {section.title}
+        {/* зачем (ловушка TapScale 10.10): стиль идёт на внешний Pressable, а дети лежат в обёртке анимации, поэтому row/gap здесь
+            не действовали — номер, заголовок и шеврон вставали столбиком. Строка раскладки — во внутреннем View. */}
+        <View style={styles.sectionHeaderRow}>
+          <Text
+            style={[
+              styles.sectionNum,
+              { color: open ? glass.text : glass.mutedText },
+            ]}
+          >
+            {section.num}
           </Text>
-          {!!metaText && (
-            <Text style={[styles.sectionMeta, { color: glass.secondary }]}>{metaText}</Text>
-          )}
+          <View style={styles.sectionHeadText}>
+            <Text style={[styles.sectionTitle, { color: glass.text }]}>
+              {section.title}
+            </Text>
+            {!!metaText && (
+              <Text style={[styles.sectionMeta, { color: glass.secondary }]}>{metaText}</Text>
+            )}
+          </View>
+          <Animated.View style={{ transform: [{ rotate: chevronRotate }] }}>
+            <Ionicons name="chevron-down" size={20} color={glass.secondary} />
+          </Animated.View>
         </View>
-        <Animated.View style={{ transform: [{ rotate: chevronRotate }] }}>
-          <Ionicons name="chevron-down" size={20} color={glass.secondary} />
-        </Animated.View>
       </TapScale>
 
       {open && (
@@ -787,11 +791,14 @@ const styles = StyleSheet.create({
   },
   section: {},
   sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 4,
     minHeight: 60,
+  },
+  sectionHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 14,
   },
   sectionNum: {

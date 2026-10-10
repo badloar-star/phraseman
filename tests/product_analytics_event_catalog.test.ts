@@ -18,11 +18,8 @@ describe('product analytics event catalog', () => {
   });
 
   it('declares the product events consumed by the current warehouse query', () => {
+    // зачем (11.10): события Арены ушли из каталога вместе с Ареной (D54/D74/D83, 1fa8ce3d4) — склад их больше не ждёт.
     expect([...PRODUCT_ANALYTICS_WAREHOUSE_EVENTS].sort()).toEqual([
-      'arena_action',
-      'arena_feature_open',
-      'arena_run_complete',
-      'arena_store_action',
       'exit_trial_offer_accepted',
       'exit_trial_offer_declined',
       'exit_trial_offer_shown',
@@ -75,17 +72,11 @@ describe('product analytics event catalog', () => {
     expect(PRODUCT_ANALYTICS_FIELD_REGISTRY.error.description.toLowerCase()).toContain('normalized');
   });
 
-  it('governs Arena funnels without identity, content, exact rating, or wallet fields', () => {
-    const arenaEvents = PRODUCT_ANALYTICS_EVENT_CATALOG.filter(event => event.name.startsWith('arena_'));
-    expect(arenaEvents.map(event => event.name).sort()).toEqual([
-      'arena_action', 'arena_feature_open', 'arena_run_complete', 'arena_store_action',
-    ]);
-    const fields = new Set(arenaEvents.flatMap(event => [...event.allowedFields]));
-    expect([...fields]).toEqual(expect.arrayContaining([
-      'feature', 'source', 'operation', 'mode', 'outcome', 'correct_count',
-      'duration_bucket', 'item_id', 'slot', 'price_bucket',
-    ]));
-    expect([...fields].join('|')).not.toMatch(/uid|token|answer|opponent|wallet|rating|error|task/);
+  // зачем (11.10): Арена удалена (D54/D74/D83) — её воронки в каталоге быть не должно; сторож не даёт ей вернуться
+  // в каталог молча (вместе с ней ушли поля соперника и рейтинга).
+  it('keeps the retired Arena funnel out of the catalog', () => {
+    expect(PRODUCT_ANALYTICS_EVENT_CATALOG.filter(event => event.name.startsWith('arena_'))).toEqual([]);
+    expect(PRODUCT_ANALYTICS_WAREHOUSE_EVENTS.filter(name => name.startsWith('arena_'))).toEqual([]);
   });
 
   it('rejects fields outside the centrally reviewed registry', () => {

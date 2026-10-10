@@ -113,5 +113,5 @@ const styles = StyleSheet.create({
   // video.html `.lang`: высота 35, поля 10/12, r18, зазор 8, текст 15/700; флаг 24×15 r3
   langPill: { height: 35, borderRadius: 18, paddingLeft: 10, paddingRight: 12, flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
   langFlag: { width: 24, height: 15, borderRadius: 3 },
-  langText: { fontSize: 15, fontWeight: '700' }, // d145-mockup: video.html .lang 15/700
+  langText: { fontSize: 16, fontWeight: '700' },
 });

@@ -2,10 +2,6 @@
 // Экранов сотни, переводим пачками. Этот сторож-«храповик» считает в коде размеры текста меньше 19,
 // которые не 13 и не 16, и не даёт их числу расти: базу можно только уменьшать.
 // Обновить базу после пачки: node tests/typography_two_sizes_ratchet.test.mjs --update
-// зачем (владелец 05.10 11:10 через координатора, пункт 68 «D145 против макетов» → решение (Б)): где макет
-// docs/design/v2-app рисует другой кегль, главнее макет. База поднята осознанно до текущего состояния, а новая
-// строка с размером из макета помечается «d145-mockup: <файл макета> <селектор>» и не считается — в любом файле.
-// Без пометки по-прежнему только 16/13: размер без макета не придумываем.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
@@ -27,7 +23,6 @@ const ALLOWED = new Set([13, 16]);
 // но ТОЛЬКО в этих файлах: в любом другом файле пометка игнорируется, чтобы не стать лазейкой.
 const MICRO_MARKER = /d145-micro:\s*\S/;
 const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx']);
-const MOCKUP_MARKER = /d145-mockup:\s*\S+\.html/;
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);
@@ -56,7 +51,6 @@ function offenders() {
         const size = Number(m[1]);
         if (size >= 19 || ALLOWED.has(size)) continue;
         if (MICRO_FILES.has(rel) && MICRO_MARKER.test(lineAt(src, m.index))) continue;
-        if (MOCKUP_MARKER.test(lineAt(src, m.index))) continue;
         n++;
       }
       if (n > 0) counts[rel] = n;

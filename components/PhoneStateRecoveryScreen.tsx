@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   entrance: { width: '100%' },
   indicatorWrap: { alignItems: 'center', minHeight: 48 },
-  // зачем: паритет с макетом system.html system_11 — заголовок 22/700, текст серым 15 (решение (Б) 05.10 — макет главнее D145), отступы 22 и 8.
+  // зачем: паритет с макетом system.html system_11 — заголовок 22/700, текст серым (15 → 16/22 по D145), отступы 22 и 8.
   title: { marginTop: 22, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
-  body: { width: '100%', maxWidth: 300, alignSelf: 'center', marginTop: 8, fontSize: 15, lineHeight: 21, textAlign: 'center' }, // d145-mockup: system.html system_11 текст 15
+  body: { width: '100%', maxWidth: 300, alignSelf: 'center', marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
 });

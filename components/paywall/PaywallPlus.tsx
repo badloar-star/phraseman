@@ -371,13 +371,13 @@ const S = StyleSheet.create({
   planGap: { marginTop: 10 },
   // overlay-more.css `.om-promo`: поля 14, r18; `.om-kicker` 11/800 по центру; цена 21/800; обычная 13/700 зачёркнута; «далее» 14/21
   promo: { padding: 14, borderRadius: 18, marginBottom: 12, alignItems: 'center' },
-  promoKicker: { fontSize: 11, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' }, // d145-mockup: overlays-more.html .om-kicker 11
+  promoKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' },
   promoRow: { flexDirection: 'row', alignItems: 'baseline', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 8 },
   promoPill: { height: 35, borderRadius: 18, paddingHorizontal: 17, justifyContent: 'center', alignSelf: 'center' },
-  promoPct: { fontSize: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }, // d145-mockup: overlays-more.html .pill 17
+  promoPct: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   promoPrice: { fontSize: 21, fontWeight: '800', fontVariant: ['tabular-nums'] },
   promoStandard: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },
-  promoThen: { fontSize: 14, lineHeight: 21, marginTop: 9, textAlign: 'center' }, // d145-mockup: overlays-more.html .om-copy 14/21
+  promoThen: { fontSize: 13, lineHeight: 21, marginTop: 9, textAlign: 'center' },
   planTop: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   planMid: { flex: 1, minWidth: 0 },
   planNameRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 },

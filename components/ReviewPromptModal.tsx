@@ -113,8 +113,8 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   const panelBody = (
     <>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        {/* зачем: кикер `.ov` макета system_20 (12/3px; решение (Б) 05.10 — макет главнее D145). d145-mockup: system.html .ov 12 */}
-        <Text style={{ color: glass.secondary, fontSize: 12, /* d145-mockup: system.html .ov 12 */ lineHeight: 16, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
+        {/* зачем: кикер `.ov` макета system_20 (12/3px), размер по шкале D145 (01.10, новее макета) — 13. */}
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
           {labelForContext(context === 'streak_milestone' ? 'level_exam_pass' : context, lang)}
         </Text>
       </CascadeItem>

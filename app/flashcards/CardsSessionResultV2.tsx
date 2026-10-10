@@ -273,16 +273,16 @@ const s = StyleSheet.create({
   // kit `.tile.t61`
   okTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   // kit `.ov`
-  ov: { fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase', textAlign: 'center' }, // d145-mockup: cards-section.html .ov (kit.css 12/16)
+  ov: { fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase', textAlign: 'center' },
   // cards-section `.big`
   big: { fontSize: 64, lineHeight: 70, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
-  sub: { fontSize: 17, lineHeight: 22, marginTop: 4, textAlign: 'center' }, // d145-mockup: cards-section.html result sub 17
+  sub: { fontSize: 16, lineHeight: 22, marginTop: 4, textAlign: 'center' },
   // guard-ok: 1px кромка `.card.c2` — по макету 2.0
   stats: { flexDirection: 'row', marginTop: 30, borderRadius: 22, borderWidth: 1, paddingVertical: 18, paddingHorizontal: 8 },
   stat: { flex: 1, minWidth: 0, alignItems: 'center' },
   statDivider: { borderLeftWidth: 1 },
   statNum: { fontSize: 22, lineHeight: 28, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  statLabel: { fontSize: 14, marginTop: 2 }, // d145-mockup: cards-section.html .stats span 14
+  statLabel: { fontSize: 13, marginTop: 2 },
   coinLine: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   plusNum: { flexDirection: 'row', alignItems: 'center' },
   coin: { width: 20, height: 20 },
@@ -294,8 +294,8 @@ const s = StyleSheet.create({
   // guard-ok: 1px кромка `.card` — по макету 2.0
   fixRow: { minHeight: 68, borderRadius: 14, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 9, paddingLeft: 18, paddingRight: 16 },
   fixText: { flex: 1, minWidth: 0 },
-  fixWord: { fontSize: 17, lineHeight: 22, fontWeight: '600' }, // d145-mockup: cards-section.html wordRow .tt (kit.css 17/22)
-  fixTr: { fontSize: 15, lineHeight: 19, marginTop: 1 }, // d145-mockup: cards-section.html wordRow .st (kit.css 15/19)
+  fixWord: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
+  fixTr: { fontSize: 16, lineHeight: 19, marginTop: 1 },
   volHit: { width: 35, height: 35, alignSelf: 'auto' },
   // guard-ok: 1px кромка `.rb.fill` — по макету 2.0
   vol: { width: 35, height: 35, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
@@ -307,5 +307,5 @@ const s = StyleSheet.create({
   cta: { height: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, overflow: 'hidden' },
   // guard-ok: контур `.cta.gh` 1px — по макету 2.0
   ghost: { borderWidth: 1, backgroundColor: 'transparent' },
-  ctaText: { fontSize: 17, fontWeight: '700' }, // d145-mockup: cards-section.html .cta (kit.css 17)
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });

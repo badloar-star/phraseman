@@ -511,16 +511,16 @@ const styles = StyleSheet.create({
   priceCoin: { width: 20, height: 20 },
   priceText: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 16 },
-  // `.value`: вторичный тон; макет 14 (решение (Б) 05.10 — макет главнее D145).
-  balanceValue: { fontSize: 14, // d145-mockup: coins.html .value 14
+  // `.value`: вторичный тон; макет 14; шкала D145 (16/13) главнее макета.
+  balanceValue: { fontSize: 13,
     lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
   // зачем (65в): `.status-card` макета — отступы 14/16, заголовок 15 жирный, текст 14/20 (общий для «Не хватает…» и «Проверяем…»).
   statusCard: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
   statusIcon: { marginTop: 2 },
   statusCopy: { flex: 1, minWidth: 0 },
-  statusTitle: { fontSize: 15, // d145-mockup: coins.html .status-card strong 15 (extension.css)
+  statusTitle: { fontSize: 16,
     lineHeight: 20, fontWeight: '700' },
-  statusNote: { fontSize: 14, // d145-mockup: coins.html .status-card 14/20 (extension.css)
+  statusNote: { fontSize: 13,
     lineHeight: 20, marginTop: 2 },
   maxState: { minHeight: 120, alignItems: 'center', justifyContent: 'center', gap: 12 },
   maxTitle: { ...V2_TYPE.headline, textAlign: 'center' },

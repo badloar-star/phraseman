@@ -260,9 +260,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // `.om-kicker` 11/800, разрядка 1.2 (решение (Б) 05.10 — макет главнее D145).
+  // `.om-kicker` 11/800, разрядка 1.2; шкала D145 — 13.
   kicker: {
-    fontSize: 11, // d145-mockup: overlays-more.html .om-kicker 11
+    fontSize: 13,
     lineHeight: 16,
     fontWeight: '800',
     letterSpacing: 1.2,
@@ -277,10 +277,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
   },
-  // `.om-copy` 14/21 (решение (Б) 05.10 — макет главнее D145).
+  // `.om-copy` 14/21; шкала D145 — 16/22.
   body: {
-    fontSize: 14, // d145-mockup: overlays-more.html .om-copy 14/21
-    lineHeight: 21,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '400',
     letterSpacing: 0,
     textAlign: 'center',

@@ -178,17 +178,15 @@ const styles = StyleSheet.create({
   close: { position: 'absolute', top: 12, right: 12, width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.55)' },
   content: { paddingHorizontal: 20, paddingBottom: 32 },
   title: { marginTop: 16, fontSize: 20, lineHeight: 26, fontWeight: '700' },
-  // зачем: `.vm` макета 14 (решение (Б) 05.10 — макет главнее D145).
-  meta: { marginTop: 4, fontSize: 14, // d145-mockup: video.html .vm 14
-    lineHeight: 18, fontWeight: '400' },
+  // зачем: `.vm` макета 14 → 13 по шкале D145.
+  meta: { marginTop: 4, fontSize: 13, lineHeight: 18, fontWeight: '400' },
   pack: { marginTop: 16, borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, padding: 16 }, // guard-ok: `.pack` макета — 1px полупрозрачная кромка 2.0
   packRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   packArt: { width: 58, height: 58, borderRadius: 12 },
   packCopy: { flex: 1, minWidth: 0 },
   packOverline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
-  // зачем: макет 17/700 (решение (Б) 05.10 — макет главнее D145).
-  packTitle: { marginTop: 4, fontSize: 17, // d145-mockup: video.html набор 17/700
-    lineHeight: 21, fontWeight: '700' },
+  // зачем: макет 17/700 → 16 по D145.
+  packTitle: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: '700' },
   packCta: { marginTop: 14 },
   phrases: { marginTop: 24 },
 });

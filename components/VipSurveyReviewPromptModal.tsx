@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   kicker: {
-    // зачем: `.ov` макета 12/3px (решение (Б) 05.10 — макет главнее D145).
-    fontSize: 12, // d145-mockup: system.html .ov 12
+    // зачем: `.ov` макета 12/3px; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 13.
+    fontSize: 13,
     lineHeight: 16,
     fontWeight: '700',
     letterSpacing: 3,

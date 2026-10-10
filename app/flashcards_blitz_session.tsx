@@ -1449,7 +1449,7 @@ export default function FlashcardsBlitzSession() {
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
               {/* зачем (Сверка practice-001, practice.html `.hd .su` nowrap): справа три пилюли (энергия, сердца, монеты), места мало —
                   горизонтальная прокрутка срезала «Все карточк» без намёка. Одна строка с многоточием. */}
-              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: lh(20), marginTop: 2 }}>{deckTitle}</Text>{/* d145-mockup: cards-section.html sessHead подпись 15 */}
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: lh(20), marginTop: 2 }}>{deckTitle}</Text>{}
             </PracticeHeaderTitle>
             {/* зачем (решение 4, cards-section `sessHead` Блица): справа только сердца и монеты через 6 — пилюли энергии в макете нет. */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>

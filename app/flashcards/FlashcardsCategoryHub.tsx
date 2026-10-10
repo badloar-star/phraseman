@@ -239,9 +239,8 @@ type CommunityPackRowProps = {
 
 /** packs-simple.html кадр 2: шторка долгого нажатия — заголовок набора и строки `.card .row` с плиткой 41. */
 const baseSheetStyles = StyleSheet.create({
-  // зачем: макет 18/700 (решение (Б) 05.10 — макет главнее D145).
-  title: { fontSize: 18, // d145-mockup: cards-section.html заголовок 18/700
-    lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 },
+  // зачем: макет 18/700; шкала D145 (решение владельца 04.10) — 16 жирным.
+  title: { fontSize: 16, lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 },
   row: {
     minHeight: 63,
     borderRadius: 14,
@@ -254,7 +253,7 @@ const baseSheetStyles = StyleSheet.create({
     paddingRight: 16,
   },
   tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  rowText: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '600' }, // d145-mockup: cards-section.html строка 17/600 (решение (Б) 05.10 — макет главнее D145)
+  rowText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' }, // зачем: макет 17/600, D145 — 16
 });
 
 /** packs-simple.html (замок 04.10): размеры строки `.card .row`, плашки `.cntp`, метки `.tag2`. */
@@ -272,14 +271,13 @@ const baseRowStyles = StyleSheet.create({
     overflow: 'hidden',
   },
   titleLine: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
-  // зачем: макет 17/22 жирный (решение (Б) 05.10 — макет главнее D145).
-  title: { flexShrink: 1, fontSize: 17, // d145-mockup: cards-section.html .tt 17/22
-    lineHeight: 22, fontWeight: '700' },
+  // зачем: макет 17/22 жирный; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
+  title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   topTag: { minHeight: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
-  topTagText: { fontSize: 12, lineHeight: 16, fontWeight: '700' }, // d145-mockup: cards-section.html метка 12 (решение (Б) 05.10 — макет главнее D145)
+  topTagText: { fontSize: 13, lineHeight: 16, fontWeight: '700' }, // зачем: макет 12, D145 — 13
   author: { fontSize: 16, lineHeight: 19, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
   pill: { minWidth: 33, minHeight: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  pillText: { fontSize: 14, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // d145-mockup: cards-section.html пилюля 14 (решение (Б) 05.10 — макет главнее D145)
+  pillText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
 });
 
 /**

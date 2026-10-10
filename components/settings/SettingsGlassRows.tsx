@@ -39,8 +39,8 @@ export function SettingsGlassEyebrow({ title, glass, wide = false }: { title: st
   return (
     <Text
       accessibilityRole="header"
-      // wide — заголовок раздела макета A (`.ov` 12/16, разрядка 3, отступ 26; решение (Б) 05.10 — макет главнее D145); остальные экраны — как было. d145-mockup: profile.html .ov 12
-      style={{ color: glass.secondary, fontSize: wide ? 12 : 13, lineHeight: wide ? 16 : 18, fontWeight: '700', letterSpacing: wide ? 3 : 1.7, marginTop: wide ? 26 : 24, marginHorizontal: 4, marginBottom: 10 }}
+      // wide — заголовок раздела макета A (`.ov` 12/16, разрядка 3, отступ 26; D145: 13); остальные экраны — как было.
+      style={{ color: glass.secondary, fontSize: 13, lineHeight: wide ? 16 : 18, fontWeight: '700', letterSpacing: wide ? 3 : 1.7, marginTop: wide ? 26 : 24, marginHorizontal: 4, marginBottom: 10 }}
     >
       {title}
     </Text>

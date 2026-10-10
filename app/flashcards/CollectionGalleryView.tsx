@@ -153,7 +153,7 @@ export default function CollectionGalleryView({
           keyboardShouldPersistTaps="handled">
           {header}
           {!selectionMode && activeCat === 'custom' && allowAddCustomCard ? (
-            <Pressable testID="fc-create-card" accessibilityRole="button" onPress={onCreateCard} style={({ pressed }) => [styles.addBtn, pressed && { opacity: 0.82 }]}>
+            <Pressable testID="fc-create-card" accessibilityRole="button" onPress={onCreateCard} style={({ pressed }) => [styles.addBtn, { backgroundColor: g.hairlineSoft }, pressed && { opacity: 0.82 }]}>
               <Ionicons name="add" size={20} color={g.text} />
               <Text style={[styles.addText, { color: g.text }]}>{copy.add}</Text>
             </Pressable>
@@ -178,7 +178,7 @@ export default function CollectionGalleryView({
             />
           </View>
           {!selectionMode && hiddenByLimitCount > 0 ? (
-            <Pressable testID="flashcards-free-limit-section" accessibilityRole="button" onPress={onOpenPremiumLimit} style={[styles.limit, { backgroundColor: 'rgba(255,255,255,0.07)' }]}>
+            <Pressable testID="flashcards-free-limit-section" accessibilityRole="button" onPress={onOpenPremiumLimit} style={[styles.limit, { backgroundColor: g.hairlineSoft }]}>
               <Ionicons name="lock-closed" size={24} color={g.text} />
               <Text style={[styles.limitTitle, { color: g.text }]}>{copy.hidden(hiddenByLimitCount)}</Text>
               <Text style={[styles.limitSub, { color: g.secondary }]}>{copy.free}</Text>
@@ -196,7 +196,7 @@ export default function CollectionGalleryView({
       </GestureDetector>
 
       {!selectionMode && showDeleteHint ? (
-        <View style={[styles.hint, { backgroundColor: '#1B1B1D' }]}>
+        <View style={[styles.hint, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name="trash-outline" size={18} color={g.secondary} />
           <Text style={[styles.hintText, { color: g.text }]}>{copy.hint}</Text>
           <Pressable accessibilityRole="button" accessibilityLabel={copy.close} hitSlop={12} onPress={dismissHint}>
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   gridWrap: { marginTop: 16 },
   gridWrapFound: { marginTop: 12 },
   found: { marginTop: 22, marginLeft: 4, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
-  addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(255,255,255,0.06)' },
+  addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },
   addText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   limit: { marginTop: 16, borderRadius: 24, paddingVertical: 22, paddingHorizontal: 20, alignItems: 'center', gap: 6 },
   limitTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },

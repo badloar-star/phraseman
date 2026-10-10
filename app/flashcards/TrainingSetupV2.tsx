@@ -79,7 +79,7 @@ function TrainingSetupV2Inner(props: Props) {
         <View style={styles.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
           {limitLabel ? (
-            <View testID="fc-training-setup-monthly-limit" style={styles.pill}>
+            <View testID="fc-training-setup-monthly-limit" style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>
               <Ionicons name="copy-outline" size={16} color={g.text} />
               <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
             </View>
@@ -95,7 +95,7 @@ function TrainingSetupV2Inner(props: Props) {
             </View>
             {status === 'loading' ? (
               <View testID="fc-training-setup-loading" style={styles.stack}>
-                {[0, 1, 2].map((i) => <View key={`sk${i}`} /* guard-ok: три статичные заглушки */ style={styles.skeleton} />)}
+                {[0, 1, 2].map((i) => <View key={`sk${i}`} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { backgroundColor: g.hairlineSoft }]} />)}
               </View>
             ) : (
               <View style={styles.stack}>
@@ -180,12 +180,12 @@ const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
   top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
+  pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   selected: { marginTop: 30, marginBottom: 14, fontSize: 13, lineHeight: 17 },
   stack: { gap: 9 },
-  skeleton: { height: 65, borderRadius: 14, backgroundColor: 'rgba(255,255,255,0.05)' },
+  skeleton: { height: 65, borderRadius: 14 },
   dim: { opacity: 0.45 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 10, paddingLeft: 19, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },

@@ -1472,7 +1472,7 @@ export default function FlashcardsBlitzSession() {
           </View>
 
           {/* Таймер-полоса: растёт по прошедшему времени (scaleX 0 → 1), origin слева (practice.html). */}
-          <View style={[styles.timerTrack, { backgroundColor: '#2C2C2E' }]}>
+          <View style={[styles.timerTrack, { backgroundColor: blitzGlass.opaqueControl }]}>
             <Reanimated.View
               style={[
                 styles.timerFill,

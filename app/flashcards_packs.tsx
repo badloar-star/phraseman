@@ -503,7 +503,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 <Ionicons name="chevron-back" size={20} color={g.text} />
               </TouchableOpacity>
             ) : null}
-            <View style={[styles.headerSearchField, embedded ? styles.headerSearchFieldEmbedded : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
+            <View style={[styles.headerSearchField, embedded ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.hairlineSoft }] : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
               {embedded ? null : <CatalogGlass tint={g.selected} edge={g.glassEdge} />}
               <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.text : t.accent} />
               <TextInput
@@ -789,7 +789,7 @@ const baseStyles = StyleSheet.create({
   },
   // зачем: во вкладке «Сообщество» слой стоит на месте строки вкладок: «назад» 42 + поле 46 (кадр 2).
   headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  headerSearchFieldEmbedded: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0, backgroundColor: 'rgba(255,255,255,0.08)' },
+  headerSearchFieldEmbedded: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0 },
   // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
   headerSearchInputEmbedded: { height: 44, fontSize: 16 },
   headerSearchField: {

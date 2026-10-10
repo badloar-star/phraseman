@@ -54,6 +54,7 @@ import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { mixDark } from '../components/mistakes-panel/panelPaint'; // зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
@@ -129,8 +130,6 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
-/** Заливка полосы прогресса — светлая, как `.trk > i` в practice.html (PM-130). */
-const PROGRESS_FILL = '#E9E9EB';
 const CARD_MIN_H = 200;
 const SPEAKING_CARD_PRESENTATION = Object.freeze({
   borderRadius: 16,
@@ -1606,7 +1605,7 @@ RU: ${card.translation}`}
                 styles.progressFill,
                 // зачем (PM-130, practice.html `.trk > i`): заливка светлая, как у Блица, — цвет режима
                 // не спорит с карточкой и микрофоном.
-                { backgroundColor: PROGRESS_FILL, width: `${(progress.position / progress.total) * 100}%` },
+                { backgroundColor: mixDark(speakingGlass.text, '#000000', 0.91), width: `${(progress.position / progress.total) * 100}%` },
               ]}
             />
           </View>

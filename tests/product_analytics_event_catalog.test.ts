@@ -25,13 +25,6 @@ describe('product analytics event catalog', () => {
       'exit_trial_offer_shown',
       'experiment_exposure',
       'product_operation_failure',
-      // зачем 2026-08-22 (техдолг Phase 12): у курса Learning V2 не было ни
-      // одного события — воронка была слепой. События несут только координаты
-      // курса, коды и грубые бакеты: ни личности, ни текста заданий, ни ответов.
-      'learning_v2_session_abandon',
-      'learning_v2_session_complete',
-      'learning_v2_session_start',
-      'learning_v2_task_result',
       'lesson_abandoned',
       'lesson_answer',
       'onboarding_complete',
@@ -60,6 +53,18 @@ describe('product analytics event catalog', () => {
       'purchase_started',
       'trial_started',
     ].sort());
+  });
+
+  // зачем (координатор 00:02, 11.10): Learning V2 в релиз не идёт — его 4 события сняты со склада (telemetry_only),
+  // серверный SQL склада и метрику сейчас не трогаем. ВЕРНУТЬ вместе с включением V2: warehouse "product" + события
+  // в SQL functions/src/admin_product_analytics.ts + метрика (выкладка — владелец). События сами по себе остаются:
+  // только координаты курса, коды и грубые бакеты (техдолг Phase 12, 2026-08-22).
+  it('keeps the Learning V2 funnel out of the warehouse until V2 ships', () => {
+    const v2 = PRODUCT_ANALYTICS_EVENT_CATALOG.filter(event => event.name.startsWith('learning_v2_'));
+    expect(v2.map(event => event.name).sort()).toEqual([
+      'learning_v2_session_abandon', 'learning_v2_session_complete', 'learning_v2_session_start', 'learning_v2_task_result',
+    ]);
+    expect(v2.every(event => event.warehouse === 'telemetry_only')).toBe(true);
   });
 
   it('uses centrally classified safe fields and includes terminal lesson duration', () => {

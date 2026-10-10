@@ -579,25 +579,25 @@
     {
       "name": "learning_v2_session_start",
       "entity": "attempt",
-      "warehouse": "product",
+      "warehouse": "telemetry_only",
       "fieldSet": "learningV2Session"
     },
     {
       "name": "learning_v2_session_complete",
       "entity": "attempt",
-      "warehouse": "product",
+      "warehouse": "telemetry_only",
       "fieldSet": "learningV2SessionComplete"
     },
     {
       "name": "learning_v2_session_abandon",
       "entity": "attempt",
-      "warehouse": "product",
+      "warehouse": "telemetry_only",
       "fieldSet": "learningV2SessionAbandon"
     },
     {
       "name": "learning_v2_task_result",
       "entity": "attempt",
-      "warehouse": "product",
+      "warehouse": "telemetry_only",
       "fieldSet": "learningV2Task"
     }
   ],
@@ -731,18 +731,6 @@
       "rowKinds": [
         "operation_failure",
         "release_adoption"
-      ]
-    },
-    {
-      "id": "learning_v2.funnel.v1",
-      "events": [
-        "learning_v2_session_start",
-        "learning_v2_session_complete",
-        "learning_v2_session_abandon",
-        "learning_v2_task_result"
-      ],
-      "rowKinds": [
-        "learning_v2_session"
       ]
     }
   ]

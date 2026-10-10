@@ -12,8 +12,17 @@ describe('analytics contract audit', () => {
 
     expect(report.errors).toEqual([]);
     expect(report.summary.called).toBe(report.summary.declared);
-    expect(report.summary.warehoused).toBe(report.summary.declared);
-    expect(report.summary.measured).toBe(report.summary.declared);
+    // зачем (координатор 00:02, 11.10): события с warehouse "telemetry_only" (Learning V2 до его включения) на склад
+    // не идут — склад и метрики считаются без них. Вернуть V2 на склад: warehouse "product" + SQL + метрика.
+    const governance = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'app/product_analytics_governance.json'), 'utf8')) as {
+      events: Array<{ name: string; warehouse: string }>;
+    };
+    const telemetryOnly = governance.events.filter(event => event.warehouse === 'telemetry_only').map(event => event.name).sort();
+    expect(telemetryOnly).toEqual([
+      'learning_v2_session_abandon', 'learning_v2_session_complete', 'learning_v2_session_start', 'learning_v2_task_result',
+    ]);
+    expect(report.summary.warehoused).toBe(report.summary.declared - telemetryOnly.length);
+    expect(report.summary.measured).toBe(report.summary.declared - telemetryOnly.length);
     expect(report.catalogWarehouseMissingFromSql).toEqual([]);
     expect(report.declaredWithoutCallSite).toEqual([]);
     expect(report.warehousedWithoutMetric).toEqual([]);

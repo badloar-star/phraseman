@@ -15605,9 +15605,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D115 (OWNER_FINAL 2026-09-30): пейволы A–G удалены, страницы-галереи пейволов в docs/design/v2-app нет (доказательства: docs/work/tasks/removed-by-owner-evidence-2026-10-10.md)"
     },
     {
       "id": "paywalls-001",
@@ -20387,10 +20388,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "removed",
-      "reviewed_by": null,
-      "reviewed_at": null,
-      "note": "OR-BANNER-REPORT-REPLY: компонент удалён 01.10 (Q92) — по указанию координатора 04.10"
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "note": "OR-BANNER-REPORT-REPLY: компонент удалён 01.10 (Q92) — по указанию координатора 04.10",
+      "removed_reason": "Решено координатором по поручению владельца «решения по рекомендации» (Q92, INBOX_COORDINATOR_FROM_CORE §46): ReportReplyHomeBanner удалён, git grep пусто"
     },
     {
       "id": "overlays-runtime-025",
@@ -23126,9 +23128,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-031",
@@ -23152,9 +23155,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-032",
@@ -23178,9 +23182,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-033",
@@ -23204,9 +23209,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-034",
@@ -23230,9 +23236,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-035",
@@ -23256,9 +23263,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "removed_by_owner",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "removed_reason": "D140 (OWNER_FINAL 2026-10-01): «Квесты и коллекции — убрать оба»; окно заданий QuestSheetModal/QuestTaskCard удалено коммитом 33636dd55 (git grep пусто); карточка «Сегодня» на Главной — другой экран (D144)"
     },
     {
       "id": "overlays-specialist-036",
@@ -23271,7 +23279,9 @@
       },
       "screen": "Уведомления открытия",
       "state": "Открыт следующий урок",
-      "code": [],
+      "code": [
+        "app/lesson_complete.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": null,
       "anim_notes": [],
@@ -23297,7 +23307,9 @@
       },
       "screen": "Уведомления открытия",
       "state": "Открыт экзамен уровня",
-      "code": [],
+      "code": [
+        "app/lesson_complete.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": null,
       "anim_notes": [],
@@ -23323,7 +23335,9 @@
       },
       "screen": "Уведомления открытия",
       "state": "Открыт экзамен Lingman",
-      "code": [],
+      "code": [
+        "app/lesson_complete.tsx"
+      ],
       "matrix_status": "🟠",
       "has_animation": null,
       "anim_notes": [],

@@ -117,7 +117,7 @@ function TrainingSetupV2Inner(props: Props) {
                           <Text style={[styles.rowTitle, { color: g.text }]}>{deck.title}</Text>
                           <Text style={[styles.rowSub, { color: g.secondary }]}>{countLabelFor(deck.count)}</Text>
                         </View>
-                        <KitCheck on={on} />
+                        <KitCheck g={g} on={on} />
                       </View>
                     </KitCard>
                   );

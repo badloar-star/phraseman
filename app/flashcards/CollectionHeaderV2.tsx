@@ -76,8 +76,9 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
   onCreate?: () => void;
 }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
   if (selectionMode) {
     return (
@@ -94,17 +95,17 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
       <BackButton g={g} label={copy.back} onPress={onBack} />
       <View style={styles.topRight}>
         {limitLabel ? (
-          <View testID="fc-collection-limit" style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.07)' }]}>
+          <View testID="fc-collection-limit" style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>
             <Ionicons name="albums-outline" size={16} color={g.text} />
             <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
           </View>
         ) : null}
         {onCreate ? (
-          <Pressable testID="fc-collection-create" accessibilityRole="button" hitSlop={8} onPress={onCreate} style={({ pressed }) => [styles.round, { backgroundColor: 'rgba(255,255,255,0.07)' }, pressed && styles.pressed]}>
+          <Pressable testID="fc-collection-create" accessibilityRole="button" hitSlop={8} onPress={onCreate} style={({ pressed }) => [styles.round, { backgroundColor: g.hairlineSoft }, pressed && styles.pressed]}>
             <Ionicons name="add" size={22} color={g.text} />
           </Pressable>
         ) : null}
-        <Pressable testID="fc-saved-actions" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={onMenu} style={({ pressed }) => [styles.square, { backgroundColor: 'rgba(255,255,255,0.07)' }, pressed && styles.pressed]}>
+        <Pressable testID="fc-saved-actions" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={onMenu} style={({ pressed }) => [styles.square, { backgroundColor: g.hairlineSoft }, pressed && styles.pressed]}>
           <Ionicons name="ellipsis-vertical" size={18} color={g.text} />
         </Pressable>
       </View>
@@ -132,8 +133,9 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
   onSearchInput: (value: string) => void;
 }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const { f } = useTheme();
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
@@ -142,14 +144,14 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
       {titleOnly ? null : <Text style={[styles.subtitle, { color: g.secondary }]}>{`${cardCount} ${pluralWord(lang, cardCount, copy.cards)}`}</Text>}
       {showSearch && !titleOnly ? (
         <View style={styles.search}>
-          <Ionicons name="search" size={18} color="#6E6E72" />
+          <Ionicons name="search" size={18} color={g.mutedText} />
           <TextInput
             testID="fc-search-input"
             accessibilityLabel={copy.search}
             value={searchInput}
             onChangeText={onSearchInput}
             placeholder={big ? copy.search : copy.searchPlaceholder}
-            placeholderTextColor="#6E6E72"
+            placeholderTextColor={g.mutedText}
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="search"
@@ -157,7 +159,7 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
           />
           {searchInput.length > 0 ? (
             <Pressable testID="fc-search-clear" accessibilityRole="button" accessibilityLabel={copy.clear} hitSlop={10} onPress={() => onSearchInput('')}>
-              <Ionicons name="close" size={18} color="#6E6E72" />
+              <Ionicons name="close" size={18} color={g.mutedText} />
             </Pressable>
           ) : null}
         </View>
@@ -169,8 +171,9 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
 /** Шторка меню «⋯»: всё, что в макете списка не нарисовано, но в продукте есть. */
 export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, onClose, menu }: Readonly<{ visible: boolean; onClose: () => void; menu: CollectionMenuProps }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const { theme: t } = useTheme();
   const copy = useMemo(() => copyFor(menu.lang), [menu.lang]);
   const run = (action?: () => void) => () => { onClose(); action?.(); };
@@ -223,7 +226,7 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
   );
 });
 
-const baseStyles = StyleSheet.create({
+const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   pressed: { opacity: 0.82 },
   top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -237,7 +240,7 @@ const baseStyles = StyleSheet.create({
   titleBig: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
   subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
-  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft },
   searchInput: { flex: 1, paddingVertical: 0, minHeight: 44 },
   langRow: { marginTop: 12, minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   langLabel: { fontSize: 16, lineHeight: 22 },

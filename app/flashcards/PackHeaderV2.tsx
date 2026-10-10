@@ -29,8 +29,9 @@ const copyFor = (lang: Lang) => triLang(lang, {
 /** Верхняя панель: «назад» без круга (30×42) и квадратная «⋮» 36 (`.rb.bare` + `.rb.sq`). */
 export const PackTopBar = memo(function PackTopBar({ lang, onBack, onMenu }: Readonly<{ lang: Lang; onBack: () => void; onMenu: () => void }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
     <View style={styles.top}>
@@ -60,8 +61,9 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
   cardCount: number;
 }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
   const badgeLabel = badge === 'only_you' ? copy.onlyYou : badge === 'in_you' ? copy.inYou : badge === 'community' ? copy.inCommunity : null;
   const badgeIcon = badge === 'only_you' ? 'lock-closed' : badge === 'in_you' ? 'checkmark' : 'globe-outline';
@@ -73,13 +75,13 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
         <View style={styles.authorRow}>
           {authorName !== null ? (
             <>
-              <View style={styles.ava}><Ionicons name="person" size={14} color="#8C8C90" /></View>
+              <View style={styles.ava}><Ionicons name="person" size={14} color={g.mutedText} /></View>
               <Text style={[styles.author, { color: g.secondary }]}>{mine ? copy.you : authorName}</Text>
             </>
           ) : null}
           {badgeLabel ? (
             <View style={styles.badge}>
-              <Ionicons name={badgeIcon} size={16} color="#DADADC" />
+              <Ionicons name={badgeIcon} size={16} color={g.secondary} />
               <Text style={styles.badgeText}>{badgeLabel}</Text>
             </View>
           ) : null}
@@ -97,7 +99,7 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
             style={({ pressed }) => [styles.train, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && styles.pressed]}>
             <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
             <Ionicons name="arrow-forward" size={18} color={g.accentInk} />
-            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 21, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }] }]} />
+            <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 21, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />
           </Pressable>
         ) : null}
       </View>
@@ -113,8 +115,9 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
 /** «＋ Карточка» — прозрачная кнопка с тонкой кромкой (`.cta.sm.gh`). */
 export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress }: Readonly<{ lang: Lang; onPress: () => void }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
   return (
     <Pressable testID="fc-pack-add-card" hitSlop={4} accessibilityRole="button" accessibilityLabel={copy.card} onPress={onPress} style={({ pressed }) => [styles.ghost, pressed && styles.pressed]}>
@@ -124,25 +127,25 @@ export const PackAddCardButton = memo(function PackAddCardButton({ lang, onPress
   );
 });
 
-const baseStyles = StyleSheet.create({
+const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   pressed: { opacity: 0.82 },
   top: { minHeight: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   bare: { width: 30, height: 42, justifyContent: 'center' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] },
   info: { paddingHorizontal: 20 },
   title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
   authorRow: { marginTop: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  ava: { width: 24, height: 24, borderRadius: 12, backgroundColor: '#2A2A2C', alignItems: 'center', justifyContent: 'center' },
+  ava: { width: 24, height: 24, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' },
   author: { flexShrink: 1, fontSize: 16, lineHeight: 22 },
-  badge: { marginLeft: 'auto', minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.08)' },
-  badgeText: { fontSize: 16, lineHeight: 20, fontWeight: '600', color: '#DADADC' },
+  badge: { marginLeft: 'auto', minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: g.hairlineSoft },
+  badgeText: { fontSize: 16, lineHeight: 20, fontWeight: '600', color: g.secondary },
   actions: { marginTop: 16, minHeight: 42, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   actionLeft: { flexShrink: 1, flexDirection: 'row', alignItems: 'center' },
   train: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
   trainText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
+  ghost: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] },
   ghostText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  divider: { marginTop: 22, height: 1, backgroundColor: 'rgba(255,255,255,0.09)' },
+  divider: { marginTop: 22, height: 1, backgroundColor: g.line },
   cardsLabel: { marginTop: 22, marginBottom: 14, fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  cardsCount: { color: '#6E6E72' },
+  cardsCount: { color: g.mutedText },
 });

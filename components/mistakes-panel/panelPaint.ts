@@ -33,11 +33,20 @@ export const ringShadow = (ring: string): BoxShadowValue[] => [
 ];
 
 /** Подсветка сверху-слева + тень снизу-справа + кольцо — как у карточек макета. */
-export const bevelShadow = (hi: string, ring: string): BoxShadowValue[] => [
+// зачем (замечание владельца 10.10): нижняя кромка — токен темы (bevelLo); литерал остался только значением по умолчанию для старых вызовов.
+export const bevelShadow = (hi: string, ring: string, lo: string = 'rgba(0,0,0,0.45)' /* theme-exempt: значение по умолчанию */): BoxShadowValue[] => [
   { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: hi },
-  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(0,0,0,0.45)' },
+  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: lo },
   { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: ring },
 ];
+
+/** Заливка стеклянной карточки 150°: цвета темы в тёмной базе темы (deepBase), середина — база с альфой 0.58. */
+export const glassFillColors = (g: GlassTokens, a: string, b: string) =>
+  [`${mixDark(a, g.deepBase, 0.17)}B0`, `${g.deepBase}94`, `${mixDark(b, g.deepBase, 0.17)}A3`] as const;
+
+/** Заливка плитки-значка 145°: цвет темы 60 % / 32 % в базах темы. */
+export const iconTileColors = (g: GlassTokens, a: string, b: string) =>
+  [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
 
 /** Диагонали 150° и 170° макета в долях бокса. */
 export const DIAG_150 = { start: { x: 0.25, y: 0.07 }, end: { x: 0.75, y: 0.93 } } as const;

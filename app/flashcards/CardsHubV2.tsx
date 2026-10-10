@@ -51,7 +51,7 @@ type Props = Readonly<{
 /** Смешивает цвет темы с тёмным основанием (как color-mix макета: доля темы + тёмный). */
 function mixDark(hex: string, base: string, t: number): string {
   const c = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-  const a = c(hex.length >= 7 ? hex : '#888888');
+  const a = c(hex.length >= 7 ? hex : '#888888'); // theme-exempt: запасной серый при битом входе функции смешивания
   const b = c(base);
   return `#${a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)).toString(16).padStart(2, '0')).join('')}`;
 }
@@ -71,29 +71,40 @@ function themePair(g: GlassTokens): readonly [string, string] {
 
 // зачем (макет cards-section.css: границ у карточек НЕТ, «кромка» — внутренние тени): подсветка сверху-слева, тень снизу-справа и
 // тонкое кольцо 1px. Рисуем отдельным слоем поверх заливки (внутренняя тень лежит под детьми, а градиент перекрыл бы её).
-const bevel = (hi: string, ring: string): BoxShadowValue[] => [
+// зачем (замечание владельца 10.10): все цвета — токены выбранной темы (bevelHi/bevelLo/dropShadow/hairlineSoft/deepBase…), а не литералы под скриншот «Авроры».
+const bevel = (g: GlassTokens, hi: string, ring: string): BoxShadowValue[] => [
   { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: hi },
-  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(0,0,0,0.45)' },
+  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelLo },
   { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: ring },
 ];
 
-const DROP: BoxShadowValue[] = [{ offsetX: 0, offsetY: 14, blurRadius: 26, spreadDistance: -12, color: 'rgba(0,0,0,0.85)' }];
+const dropShadow = (g: GlassTokens): BoxShadowValue[] => [{ offsetX: 0, offsetY: 14, blurRadius: 26, spreadDistance: -12, color: g.dropShadow }];
+const tileShadow = (g: GlassTokens): BoxShadowValue[] => [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: g.dropShadow }];
+/** Градиент заливки стеклянной плитки: цвета темы в тёмной базе темы, середина — база с альфой 0.58. */
+const tileGlass = (g: GlassTokens, a: string, b: string) =>
+  [`${mixDark(a, g.deepBase, 0.17)}B0`, `${g.deepBase}94`, `${mixDark(b, g.deepBase, 0.17)}A3`] as const;
+/** Градиент плитки-значка: цвет темы 60 % / 32 % в базах темы. */
+const iconGlass = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
+const iconBevel = (g: GlassTokens): BoxShadowValue[] => [
+  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi },
+  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: g.hairlineSoft },
+];
 
 const Edge = ({ radius, shadows }: { radius: number; shadows: BoxShadowValue[] }) => (
   <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: shadows }]} />
 );
 
 /** Заливка карточки стопки: 145°, доля цвета темы 50 %/38 % в тёмном — как «.mc.solid» макета. */
-const stackFill = (a: string, b: string) => [mixDark(a, '#0D0D12', 0.5), '#08080B', mixDark(b, '#08080B', 0.38)] as const;
+const stackFill = (g: GlassTokens, a: string, b: string) => [mixDark(a, g.deepBase, 0.5), g.deepBaseAlt, mixDark(b, g.deepBaseAlt, 0.38)] as const;
 const DIAG_START = { x: 0.21, y: 0.09 } as const;
 const DIAG_END = { x: 0.79, y: 0.91 } as const;
 
 const StackCard = ({ g, style, radius, opacity }: { g: GlassTokens; style: StyleProp<ViewStyle>; radius: number; opacity: number }) => {
   const [a, b] = themePair(g);
   return (
-    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: DROP }]}>
-      <LinearGradient colors={stackFill(a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-      <Edge radius={radius} shadows={bevel('rgba(255,255,255,0.30)', `${a}59`)} />
+    <View pointerEvents="none" style={[styles.stackCard, style, { borderRadius: radius, opacity, boxShadow: dropShadow(g) }]}>
+      <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+      <Edge radius={radius} shadows={bevel(g, g.bevelHi, `${a}59`)} />
     </View>
   );
 };
@@ -153,37 +164,34 @@ function CardsHubV2Inner({
       {fresh ? (
         // зачем (Сверка cards-section-003, hubNewS): у новичка не было этого состояния — стопка показывала выдуманную
         // карточку «Boarding pass», которой у человека нет. Карточка по центру: плитка 64/r20, 24/700, подпись 16.
-        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.85)' }] }]}>
+        <View testID="fc-cards-hub-fresh" style={[styles.fresh, { minHeight: stackH, boxShadow: tileShadow(g) }]}>
           <LinearGradient
             pointerEvents="none"
-            colors={[`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`]}
+            colors={tileGlass(g, a, b)}
             locations={[0, 0.6, 1]}
             start={{ x: 0.25, y: 0.067 }}
             end={{ x: 0.75, y: 0.933 }}
             style={[StyleSheet.absoluteFill, styles.tileFill]}
           />
           <View style={styles.freshIcon}>
-            <LinearGradient pointerEvents="none" colors={[mixDark(a, '#1E1E20', 0.6), mixDark(b, '#08080B', 0.32)]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-            <Ionicons name="people-outline" size={28} color="#FFFFFF" />
-            <Edge radius={20} shadows={[
-              { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' },
-              { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' },
-            ]} />
+            <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+            <Ionicons name="people-outline" size={28} color={g.mediaInk} />
+            <Edge radius={20} shadows={iconBevel(g)} />
           </View>
           <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
           <Text style={[styles.freshSub, { color: g.secondary, lineHeight: lh(22) }]}>{fresh.sub}</Text>
-          <Edge radius={26} shadows={bevel('rgba(255,255,255,0.26)', 'rgba(255,255,255,0.07)')} />
+          <Edge radius={26} shadows={bevel(g, g.bevelHi, g.hairlineSoft)} />
         </View>
       ) : (
       <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
         <StackCard g={g} opacity={0.7} radius={28} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
         <StackCard g={g} opacity={0.9} radius={28} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
-        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: DROP }, floatStyle]} pointerEvents="none">
-          <LinearGradient colors={stackFill(a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: dropShadow(g) }, floatStyle]} pointerEvents="none">
+          <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
           {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
-          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
-          {topIpa ? <Text style={[styles.topIpa, { lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
-          <Edge radius={30} shadows={bevel('rgba(255,255,255,0.30)', `${a}59`)} />
+          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: g.mediaInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
+          {topIpa ? <Text style={[styles.topIpa, { color: g.mediaInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
+          <Edge radius={30} shadows={bevel(g, g.bevelHi, `${a}59`)} />
         </Reanimated.View>
       </View>
       )}
@@ -200,7 +208,7 @@ function CardsHubV2Inner({
         <View style={styles.ctaIcon}>
           <Ionicons name={!fresh && trainLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.accentInk} />
         </View>
-        <Edge radius={26} shadows={[{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }]} />
+        <Edge radius={26} shadows={[{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }]} />
       </Pressable>
 
       <View style={styles.tiles}>
@@ -208,31 +216,28 @@ function CardsHubV2Inner({
           <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
             style={({ pressed }) => [
               styles.tile,
-              { minHeight: tileH, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -18, color: 'rgba(0,0,0,0.85)' }] },
+              { minHeight: tileH, boxShadow: tileShadow(g) },
               pressed && styles.pressed,
             ]}>
             {/* зачем: заливка плитки макета «.gl.pad» — 150°, цвета темы и тёмная середина; прозрачность оставляет пятна фона */}
             <LinearGradient
               pointerEvents="none"
-              colors={[`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`]}
+              colors={tileGlass(g, a, b)}
               locations={[0, 0.6, 1]}
               start={{ x: 0.25, y: 0.067 }}
               end={{ x: 0.75, y: 0.933 }}
               style={[StyleSheet.absoluteFill, styles.tileFill]}
             />
             <View style={styles.tileIcon}>
-              <LinearGradient pointerEvents="none" colors={[mixDark(a, '#1E1E20', 0.6), mixDark(b, '#08080B', 0.32)]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-              <Ionicons name={t.icon} size={24} color="#FFFFFF" />
-              <Edge radius={15} shadows={[
-                { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' },
-                { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' },
-              ]} />
+              <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
+              <Ionicons name={t.icon} size={24} color={g.mediaInk} />
+              <Edge radius={15} shadows={iconBevel(g)} />
             </View>
             <View>
               <Text style={[styles.tileTitle, { color: g.text, lineHeight: lh(25) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.title}</Text>
               <Text style={[styles.tileCount, { color: g.secondary, lineHeight: lh(19) }]} numberOfLines={fs > 1 ? undefined : 1}>{t.count === '' ? ' ' : t.count}</Text>
             </View>
-            <Edge radius={26} shadows={bevel('rgba(255,255,255,0.26)', 'rgba(255,255,255,0.07)')} />
+            <Edge radius={26} shadows={bevel(g, g.bevelHi, g.hairlineSoft)} />
           </Pressable>
         ))}
       </View>
@@ -264,9 +269,9 @@ const styles = StyleSheet.create({
   stackBack2: { left: 38, right: 38, top: 0, height: 110 },
   stackBack1: { left: 19, right: 19, top: 18, height: 130 },
   stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  topWord: { color: '#FFFFFF', fontSize: 36, lineHeight: 44, fontWeight: '700', paddingHorizontal: 16 },
+  topWord: { fontSize: 36, lineHeight: 44, fontWeight: '700', paddingHorizontal: 16 },
   topWordWrap: { textAlign: 'center' },
-  topIpa: { marginTop: 8, color: 'rgba(255,255,255,0.65)', fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
+  topIpa: { marginTop: 8, fontSize: 16, lineHeight: 20, fontStyle: 'italic' },
   // зачем: текст кнопки не обрезается («осталось 28 и…» на эмуляторе) — меньше боковые поля и перенос строки вместо многоточия; кегль не ужимаем
   cta: { marginTop: 14, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 8 },
   ctaLocked: { opacity: 0.55 },

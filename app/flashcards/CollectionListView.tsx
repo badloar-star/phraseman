@@ -24,6 +24,7 @@ import DuoPressable from '../../components/DuoPressable';
 import { FlowText } from '../../components/text-integrity';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -425,19 +426,19 @@ export default function CollectionListView({
           width: 96,
           marginLeft: 12,
           borderRadius: 20,
-          backgroundColor: '#D32F2F',
+          backgroundColor: LV2_BAD, // зачем (замечание владельца 10.10): красный удаления — семантический токен, не литерал
           alignItems: 'center',
           justifyContent: 'center',
           alignSelf: 'stretch',
         }}
       >
-        <Ionicons name="trash-outline" size={24} color="#fff" />
-        <Text style={{ color: '#fff', fontSize: f.caption, fontWeight: '700', marginTop: 4 }}>
+        <Ionicons name="trash-outline" size={24} color={g.mediaInk} />
+        <Text style={{ color: g.mediaInk, fontSize: f.caption, fontWeight: '700', marginTop: 4 }}>
           {deleteLabel}
         </Text>
       </View>
     ),
-    [f.caption, deleteLabel],
+    [f.caption, deleteLabel, g.mediaInk],
   );
 
   const reduceMotion = useReduceMotion();
@@ -642,9 +643,9 @@ export default function CollectionListView({
               deleteHintAnim.setValue(0);
               onSetShowDeleteHint(true);
             }}
-            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' }}
+            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' /* theme-exempt: DEV-кнопка, в магазинной сборке её нет */ }}
           >
-            <Text style={{ fontSize: 13, color: '#FF6B00', fontWeight: '700' }}>
+            <Text style={{ fontSize: 13, color: '#FF6B00' /* theme-exempt: DEV-кнопка */, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', en: 'DEV: show hint', es: 'DEV: mostrar ayuda',
                 'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż podpowiedź',
@@ -948,18 +949,18 @@ export function UndoDeleteSnackbar({
           borderRadius: 18,
           paddingLeft: 18,
           paddingRight: 8,
-          boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -14, color: 'rgba(0,0,0,0.9)' }],
+          boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -14, color: g.dropShadow }],
         }}
       >
         <LinearGradient
           pointerEvents="none"
-          colors={[`${mixDark(ta, '#12121A', 0.2)}E2`, 'rgba(18,18,22,0.85)']}
+          colors={[`${mixDark(ta, g.deepBase, 0.2)}E2`, `${g.deepBase}D9`]}
           start={{ x: 0.25, y: 0.07 }}
           end={{ x: 0.75, y: 0.93 }}
           style={[StyleSheet.absoluteFill, { borderRadius: 18 }]}
         />
-        <Ionicons name="trash-outline" size={18} color="#FFFFFF" />
-        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: '#FFFFFF', fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
+        <Ionicons name="trash-outline" size={18} color={g.text} />
+        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: g.text, fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
           {triLang(lang, {
               ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
               'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
@@ -974,13 +975,13 @@ export function UndoDeleteSnackbar({
           style={{
             height: 42,
             borderRadius: 21,
-            backgroundColor: '#343437',
+            backgroundColor: g.opaqueControl,
             paddingHorizontal: 16,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Text style={{ color: '#FFFFFF', fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
+          <Text style={{ color: g.text, fontSize: 16, lineHeight: 20, fontWeight: '600' }}>
             {triLang(lang, {
               ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer',
               'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Batalkan', tr: 'Geri al', pl: 'Cofnij',

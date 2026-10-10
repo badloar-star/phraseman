@@ -121,11 +121,13 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
   const dimStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, unfold.value / 0.3) }));
 
   if (!card) return null;
-  const colors = [`${mixDark(a, '#0A0A0E', 0.46)}E6`, '#08080CDB', `${mixDark(b, '#08080C', 0.4)}DB`] as const;
+  const faceShadow = [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: g.dropShadow }];
+  // зачем (замечание владельца 10.10): базы карточки — токены темы (deepBase/deepBaseAlt), а не литералы под «Аврору».
+  const colors = [`${mixDark(a, g.deepBase, 0.46)}E6`, `${g.deepBaseAlt}DB`, `${mixDark(b, g.deepBaseAlt, 0.4)}DB`] as const;
   const faceLayers = (key: string) => (
     <>
       <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.56, 1]} start={{ x: 0.18, y: 0.0 }} end={{ x: 0.82, y: 1 }} style={StyleSheet.absoluteFill} />
-      <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.16)', 'rgba(255,255,255,0.04)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.05)']} locations={[0, 0.28, 0.54, 1]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
+      <LinearGradient pointerEvents="none" colors={[`${g.mediaInk}29`, `${g.mediaInk}0A`, `${g.mediaInk}00`, `${g.mediaInk}0D`]} locations={[0, 0.28, 0.54, 1]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
       <View pointerEvents="none" style={styles.glow}>
         <Svg width="100%" height="100%" viewBox="0 0 100 100">
           <Defs>
@@ -154,28 +156,28 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
           <Text style={[styles.overline, { color: g.secondary, lineHeight: lh(16) }]}>{overline}</Text>
           <Animated.View style={[styles.cardWrap, { height: cardH }, unfoldStyle]}>
             <Pressable testID="fc-expanded-card-flip" accessibilityRole="button" accessibilityLabel={flipped ? card.back : card.front} onPress={toggleFlip} style={styles.card}>
-              <Animated.View style={[styles.face, frontStyle]}>
+              <Animated.View style={[styles.face, { boxShadow: faceShadow }, frontStyle]}>
                 {faceLayers(`${card.id}f`)}
                 <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.en, { lineHeight: lh(40) }]}>{card.front}</Text>
-                  {card.ipa ? <Text style={[styles.ipa, { lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
+                  <Text style={[styles.en, { color: g.mediaInk, lineHeight: lh(40) }]}>{card.front}</Text>
+                  {card.ipa ? <Text style={[styles.ipa, { color: g.mediaInkSoft, lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
                 </View>
-                <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={styles.speak}>
-                  <Ionicons name="volume-high" size={16} color="#FFFFFF" />
+                <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: `${g.mediaInk}1F` }]}>
+                  <Ionicons name="volume-high" size={16} color={g.mediaInk} />
                 </Pressable>
                 {card.dots ? (
                   <View style={styles.dots} pointerEvents="none">
-                    {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : 'rgba(255,255,255,0.22)' }]} />)}
+                    {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : `${g.mediaInk}38` }]} />)}
                   </View>
                 ) : null}
-                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
+                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
               </Animated.View>
-              <Animated.View style={[styles.face, styles.faceBack, backStyle]}>
+              <Animated.View style={[styles.face, styles.faceBack, { boxShadow: faceShadow }, backStyle]}>
                 {faceLayers(`${card.id}b`)}
                 <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.ru, { lineHeight: lh(36) }]}>{card.back}</Text>
+                  <Text style={[styles.ru, { color: g.mediaInk, lineHeight: lh(36) }]}>{card.back}</Text>
                 </View>
-                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
+                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
               </Animated.View>
             </Pressable>
           </Animated.View>
@@ -212,7 +214,7 @@ function ActTile({ g, icon, label, onPress, testID }: Readonly<{ g: ReturnType<t
   const lh = useLineScale();
   return (
     <View style={styles.act}>
-      <KitCard g={g} solid="#202022" onPress={onPress} testID={testID} accessibilityLabel={label} style={styles.actCard}>
+      <KitCard g={g} solid={g.opaqueControl} onPress={onPress} testID={testID} accessibilityLabel={label} style={styles.actCard}>
         <View style={styles.actInner}>
           <Ionicons name={icon} size={22} color={g.text} />
           <Text style={[styles.actText, { color: g.text, lineHeight: lh(20) }]}>{label}</Text>
@@ -225,7 +227,7 @@ function ActTile({ g, icon, label, onPress, testID }: Readonly<{ g: ReturnType<t
 export const ExpandedCardV2 = memo(ExpandedCardInner);
 
 const styles = StyleSheet.create({
-  dim: { backgroundColor: 'rgba(2,2,4,0.72)' },
+  dim: { backgroundColor: 'rgba(2,2,4,0.72)' }, // theme-exempt: затемнение под карточкой — тёмный скрим в любой теме
   center: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: SIDE, paddingVertical: 24 },
   stack: { alignSelf: 'stretch' },
   overline: { textAlign: 'center', marginBottom: 12, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
@@ -233,13 +235,13 @@ const styles = StyleSheet.create({
   // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
   faceText: { alignSelf: 'stretch', alignItems: 'center' },
   card: { flex: 1 },
-  face: { ...StyleSheet.absoluteFillObject, borderRadius: 28, padding: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backfaceVisibility: 'hidden', boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: 'rgba(0,0,0,0.8)' }] },
+  face: { ...StyleSheet.absoluteFillObject, borderRadius: 28, padding: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backfaceVisibility: 'hidden' },
   faceBack: {},
   glow: { position: 'absolute', width: '80%', aspectRatio: 1, right: '-30%', top: '-40%', opacity: 0.55 },
-  en: { width: '100%', textAlign: 'center', color: '#FFFFFF', fontSize: 34, lineHeight: 40, fontWeight: '600', letterSpacing: -0.2 },
-  ipa: { marginTop: 8, fontSize: 16, lineHeight: 22, fontStyle: 'italic', color: 'rgba(255,255,255,0.62)', textAlign: 'center' },
-  ru: { width: '100%', textAlign: 'center', color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '600' },
-  speak: { position: 'absolute', right: 14, top: 14, width: 32, height: 32, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' },
+  en: { width: '100%', textAlign: 'center', fontSize: 34, lineHeight: 40, fontWeight: '600', letterSpacing: -0.2 },
+  ipa: { marginTop: 8, fontSize: 16, lineHeight: 22, fontStyle: 'italic', textAlign: 'center' },
+  ru: { width: '100%', textAlign: 'center', fontSize: 30, lineHeight: 36, fontWeight: '600' },
+  speak: { position: 'absolute', right: 14, top: 14, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   dots: { position: 'absolute', left: 20, bottom: 18, flexDirection: 'row', gap: 4 },
   dot: { width: 6, height: 6, borderRadius: 3 },
   exampleWrap: { marginTop: 14 },

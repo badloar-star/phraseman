@@ -20,7 +20,7 @@ import PressableHybrid from '../../components/PressableHybrid';
 import { KIT_MOTION, LUM } from '../../constants/motionHybrid';
 import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
-import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
+import { iconTileColors, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -221,11 +221,12 @@ export default function FlashcardsTrainingModeSheet({
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         </Pressable>
-        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40, insets.bottom + 8) }, sheetStyle]}>
+        <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { backgroundColor: g.opaqueSheet, maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40, insets.bottom + 8) }, sheetStyle]}>
           {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
-              Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → #101014 на 55 % → второй цвет темы 14 %, без альфы. */}
-          <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1A1A20', 0.16), '#101014', mixDark(gb, '#101014', 0.14)]} locations={[0, 0.55, 1]} start={{ x: 0.33, y: 0.03 }} end={{ x: 0.67, y: 0.97 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
-          <View style={styles.grabber} />
+              Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → подложка шторки темы (opaqueSheet) на 55 % → второй цвет темы 14 %, без альфы.
+              Замечание владельца 10.10: подложка и блики — токены выбранной темы, не литералы под «Аврору». */}
+          <LinearGradient pointerEvents="none" colors={[mixDark(ga, g.opaqueSheet, 0.16), g.opaqueSheet, mixDark(gb, g.opaqueSheet, 0.14)]} locations={[0, 0.55, 1]} start={{ x: 0.33, y: 0.03 }} end={{ x: 0.67, y: 0.97 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+          <View style={[styles.grabber, { backgroundColor: `${g.text}40` }]} />
           <View style={styles.headRow}>
             <View style={styles.headCopy}>
               <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
@@ -254,7 +255,7 @@ export default function FlashcardsTrainingModeSheet({
               ) : null}
             </View>
             {limitLabel ? (
-              <View style={styles.limitPill}>
+              <View style={[styles.limitPill, { backgroundColor: g.hairlineSoft }]}>
                 <Ionicons name="copy-outline" size={16} color={g.text} />
                 <Text style={[styles.limitText, { color: g.text }]}>{limitLabel}</Text>
               </View>
@@ -279,12 +280,12 @@ export default function FlashcardsTrainingModeSheet({
                     accessibilityState={{ disabled }}
                     disabled={disabled}
                     onPress={() => onSelect(row.mode)}
-                    style={({ pressed }) => [styles.row, rowIndex > 0 && styles.rowLine, { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
+                    style={({ pressed }) => [styles.row, rowIndex > 0 && [styles.rowLine, { borderTopColor: g.line }], { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
                   >
                     <View style={styles.icon}>
-                      <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1A1A20', 0.62), mixDark(gb, '#0B0B0F', 0.3)]} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
+                      <LinearGradient pointerEvents="none" colors={iconTileColors(g, ga, gb)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
                       <Ionicons name={rowIcon} size={24} color={g.text} />
-                      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, boxShadow: [{ inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' }] }]} />
+                      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, boxShadow: [{ inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: g.hairlineSoft }] }]} />
                     </View>
                     <View style={styles.copy}>
                       <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
@@ -296,7 +297,7 @@ export default function FlashcardsTrainingModeSheet({
               })}
             </View>
           </ScrollView>
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.2)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.05)' }] }]} />
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]} />
         </Animated.View>
       </View>
     </Modal>
@@ -307,24 +308,24 @@ const baseStyles = StyleSheet.create({
   modalRoot: { flex: 1, justifyContent: 'flex-end' },
   // зачем (Сверка cards-section-032): в макете хаб под шторкой приглушён до .3 и накрыт `.dim` rgba(2,2,4,.62) —
   // итог ≈ .88 чёрного; прежние .6 оставляли хаб почти ярким.
-  backdrop: { backgroundColor: 'rgba(2,2,4,0.88)' },
-  sheet: { width: '100%', backgroundColor: '#101014', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
+  backdrop: { backgroundColor: 'rgba(2,2,4,0.88)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме (kit `.dim`)
+  sheet: { width: '100%', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
   // зачем (Сверка cards-section-032, kit.css `.sheet` поля 12/18/40 и `.grab` 44×5 + 26): шторка была ~15 px выше макета —
   // лишние нижние поля (системный отступ + 16 + 4). Теперь низ 40 (системная полоса ложится поверх, как в макете), под хватателем 26.
-  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 26, backgroundColor: '#4A4A4E' },
+  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 26 },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 },
   headCopy: { flex: 1, minWidth: 0 },
   heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4 },
-  limitPill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
+  limitPill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
   limitText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
   content: { paddingTop: 10, paddingBottom: 0 },
   // cards-section `mode()`: поля 16/4, промежуток 20 — высота строки 16 + 57 + 16.
   row: { minHeight: 89, paddingVertical: 16, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 20 },
-  rowLine: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(255,255,255,0.12)' }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
+  rowLine: { borderTopWidth: StyleSheet.hairlineWidth }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
   icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 23, fontWeight: '700' },

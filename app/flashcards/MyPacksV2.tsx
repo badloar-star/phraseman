@@ -66,9 +66,10 @@ const isPublished = (pack: FlashcardMarketPack): boolean => pack.listingStatus =
 
 function MyPacksV2Inner(props: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const styles = useScaledTextStyles(baseStyles);
-  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
   const g = useLv2Glass();
+  // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
+  const { lang, created, added, totalCount, status, labelFor, openingPackId, query, onQueryChange, sort, onSortChange, packLanguage, onPackLanguageChange, onBack, onCreate, onOpen, onTrain, onEdit, onPublish, onDelete, onRetry } = props;
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -116,14 +117,14 @@ function MyPacksV2Inner(props: Props) {
         <KitTitle g={g} title={titleFor(lang)} subtitle={subtitle} testID="fc-my-packs-title" />
         {showSearch ? (
           <View style={styles.search}>
-            <Ionicons name="search" size={18} color="#6E6E72" />
+            <Ionicons name="search" size={18} color={g.mutedText} />
             <TextInput
               testID="fc-my-packs-search"
               accessibilityLabel={copy.search}
               value={query}
               onChangeText={onQueryChange}
               placeholder={copy.searchPlaceholder}
-              placeholderTextColor="#6E6E72"
+              placeholderTextColor={g.mutedText}
               autoCorrect={false}
               autoCapitalize="none"
               returnKeyType="search"
@@ -131,7 +132,7 @@ function MyPacksV2Inner(props: Props) {
             />
             {query.length > 0 ? (
               <Pressable testID="fc-my-packs-search-clear" accessibilityRole="button" accessibilityLabel={copy.close} hitSlop={10} onPress={() => onQueryChange('')}>
-                <Ionicons name="close" size={18} color="#6E6E72" />
+                <Ionicons name="close" size={18} color={g.mutedText} />
               </Pressable>
             ) : null}
           </View>
@@ -218,18 +219,18 @@ const titleFor = (lang: Lang): string => triLang(lang, {
 
 export const MyPacksV2 = memo(MyPacksV2Inner);
 
-const baseStyles = StyleSheet.create({
+const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   root: { flex: 1 },
   scroll: { flex: 1 },
   content: { paddingHorizontal: 20 },
   pressed: { opacity: 0.82 },
   top: { minHeight: 44, marginTop: 4, marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' },
-  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: g.hairlineSoft },
+  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   stack: { gap: 9 },
   loading: { marginTop: 30, gap: 9 },
-  skeleton: { height: 65, borderRadius: 14, backgroundColor: 'rgba(255,255,255,0.05)' },
+  skeleton: { height: 65, borderRadius: 14, backgroundColor: g.hairlineSoft },
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },
@@ -238,5 +239,5 @@ const baseStyles = StyleSheet.create({
   sheetHeadText: { flex: 1, minWidth: 0 },
   sheetTitle: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
   sheetSub: { marginTop: 4, fontSize: 16, lineHeight: 20 },
-  closeBtn: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: '#2A2A2C' },
+  closeBtn: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl },
 });

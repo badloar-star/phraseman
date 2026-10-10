@@ -19,7 +19,7 @@ import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 export const EditorHeader = memo(function EditorHeader({ g, title, closeLabel, onClose, right }: Readonly<{ g: GlassTokens; title: string; closeLabel: string; onClose: () => void; right?: React.ReactNode }>) {
   return (
     <View style={styles.header}>
-      <Pressable testID="ugc-pack-back" accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={6} onPress={onClose} style={({ pressed }) => [styles.round, pressed && styles.pressed]}>
+      <Pressable testID="ugc-pack-back" accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={6} onPress={onClose} style={({ pressed }) => [styles.round, { backgroundColor: g.hairlineSoft }, pressed && styles.pressed]}>
         <Ionicons name="close" size={20} color={g.text} />
       </Pressable>
       <Text accessibilityRole="header" style={[styles.headerTitle, { color: g.text }]}>{title}</Text>
@@ -57,7 +57,7 @@ export const VisibilitySegment = memo(function VisibilitySegment({ g, label, val
       accessibilityState={{ selected: on, disabled: !!disabled }}
       disabled={disabled}
       onPress={() => onChange(next)}
-      style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.12)' }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: 'rgba(0,0,0,0.8)' }] }, disabled && styles.segDisabled]}>
+      style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}1F` }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: g.dropShadow }] }, disabled && styles.segDisabled]}>
       <Ionicons name={icon} size={16} color={on ? g.accentInk : g.secondary} />
       <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary }]}>{text}</Text>
     </Pressable>
@@ -127,16 +127,16 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
         entering={SlideInDown.duration(260).easing(Easing.bezier(0.23, 1, 0.32, 1))}
         exiting={SlideOutDown.duration(200)}
         style={[styles.sheet, { bottom: bottomInset, paddingBottom: bottomInset > 0 ? 18 : 28 }]}>
-        <LinearGradient pointerEvents="none" colors={[`${mixDark(a, '#101014', 0.17)}EA`, 'rgba(16,16,20,0.9)']} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
-        <View style={styles.grab} />
+        <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.opaqueSheet, 0.17)}EA`, `${g.opaqueSheet}E6`]} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+        <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         <View style={styles.sheetHead}>
           <Text accessibilityRole="header" style={[styles.sheetTitle, { color: g.text }]}>{title}</Text>
-          <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={8} onPress={onClose} style={({ pressed }) => [styles.closeBtn, pressed && styles.pressed]}>
+          <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} hitSlop={8} onPress={onClose} style={({ pressed }) => [styles.closeBtn, { backgroundColor: g.glassEdge }, pressed && styles.pressed]}>
             <Ionicons name="close" size={18} color={g.text} />
           </Pressable>
         </View>
         {children}
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.2)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.05)' }] }]} />
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]} />
       </Animated.View>
     </View>
   );
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   pressed: { opacity: 0.82 },
   dim: { opacity: 0.45 },
   header: { marginTop: 4, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 16, minHeight: 46 },
-  round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' },
+  round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   headerTitle: { flex: 1, minWidth: 0, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   flab: { marginLeft: 4, marginBottom: 8, fontSize: 13, lineHeight: 16, fontWeight: '600' },
   field: { minHeight: 56, paddingHorizontal: 16, justifyContent: 'center' },
@@ -160,11 +160,11 @@ const styles = StyleSheet.create({
   cardRowText: { flex: 1, minWidth: 0 },
   cardRowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   cardRowSub: { fontSize: 16, lineHeight: 19 },
-  dimLayer: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
+  dimLayer: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
   sheet: { position: 'absolute', left: 0, right: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
-  grab: { width: 44, height: 5, borderRadius: 3, backgroundColor: '#4A4A4E', alignSelf: 'center', marginBottom: 20 },
+  grab: { width: 44, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 20 },
   sheetHead: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, marginBottom: 20 },
   sheetTitle: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '700' },
-  closeBtn: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.14)' },
+  closeBtn: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });

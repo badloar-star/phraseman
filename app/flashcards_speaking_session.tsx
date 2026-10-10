@@ -129,7 +129,7 @@ import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
-const ACCENT = '#22B8A8';
+const ACCENT = '#22B8A8'; // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
 const CARD_MIN_H = 200;
 const SPEAKING_CARD_PRESENTATION = Object.freeze({
   borderRadius: 16,
@@ -1605,7 +1605,7 @@ RU: ${card.translation}`}
                 styles.progressFill,
                 // зачем (PM-130, practice.html `.trk > i`): заливка светлая, как у Блица, — цвет режима
                 // не спорит с карточкой и микрофоном.
-                { backgroundColor: mixDark(speakingGlass.text, '#000000', 0.91), width: `${(progress.position / progress.total) * 100}%` },
+                { backgroundColor: mixDark(speakingGlass.text, '#000000', 0.91), width: `${(progress.position / progress.total) * 100}%` }, // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
               ]}
             />
           </View>

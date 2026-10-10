@@ -42,6 +42,8 @@ interface GoogleButtonProps extends ProviderButtonProps {
   variant?: 'light' | 'dark';
 }
 
+const APPLE_INK = '#FFFFFF'; // theme-exempt: фирменная кнопка «Войти через Apple» — чёрная с белым значком в любой теме (требование бренда)
+
 export function GoogleSignInButton({ onPress, loading, disabled, label, variant = 'light', shape = 'default' }: GoogleButtonProps) {
   const isDark = variant === 'dark';
   const bg = isDark ? '#1F1F1F' : '#FFFFFF'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
@@ -103,7 +105,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
       accessibilityLabel={label}
     >
       <View style={styles.iconWrap}>
-        {loading ? <ActivityIndicator size="small" color="#FFFFFF" /> : <AppleIcon size={22} color="#FFFFFF" />}
+        {loading ? <ActivityIndicator size="small" color={APPLE_INK} /> : <AppleIcon size={22} color={APPLE_INK} />}
       </View>
       <Text style={[styles.label, { color: '#FFFFFF' }]} numberOfLines={1}>{/* theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.) */}
         {label}

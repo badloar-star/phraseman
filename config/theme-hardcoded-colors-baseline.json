@@ -1,11 +1,9 @@
 {
-  "total": 193,
+  "total": 189,
   "files": {
-    "app/flashcards_speaking_session.tsx": 2,
     "app/language_welcome.tsx": 1,
     "app/learning_v2_session_intro_check.tsx": 52,
     "app/learning-v2/session/[id].tsx": 118,
-    "components/AuthProviderButtons.tsx": 2,
     "components/DailyPhraseCard.tsx": 2,
     "components/ForceUpdateGate.tsx": 3,
     "components/GlobalBroadcastModal.tsx": 1,

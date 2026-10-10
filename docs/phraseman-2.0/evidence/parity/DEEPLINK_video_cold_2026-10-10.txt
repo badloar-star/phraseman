@@ -1,0 +1,3 @@
+10-10 20:54:50.323 10710 10757 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":true,"out":"/video"}'
+10-10 20:55:08.648 10710 10757 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":false,"out":"/video"}'
+10-10 20:55:08.650 10710 10757 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":false,"out":"/video"}'

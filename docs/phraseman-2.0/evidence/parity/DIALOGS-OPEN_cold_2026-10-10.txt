@@ -1,0 +1,6 @@
+10-10 20:54:12.865 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] home:render', '{"at":1791662052865}'
+10-10 20:54:13.109 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] hub:initial_state', '{"studyTarget":"en","kind":"available","ms":47}'
+10-10 20:54:13.216 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] hub:projection', '{"studyTarget":"en","ok":true,"items":76,"packets":76,"ms":78}'
+10-10 20:54:13.411 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] hub:first_commit', '{"sinceFirstRenderMs":349,"stateKind":"available"}'
+10-10 20:54:13.535 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] home:render', '{"at":1791662053534}'
+10-10 20:54:13.740 10387 10457 I ReactNativeJS: '[DIALOGS-OPEN] home:render', '{"at":1791662053740}'

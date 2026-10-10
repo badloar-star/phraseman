@@ -44,11 +44,16 @@ describe('level exam v2 route contract', () => {
 
   it('validates exam content before it can debit energy and gates unavailable locales visibly', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
+    // зачем (11.10): D72/D87 — энергия списывается не на «Начать», а в момент показа первого вопроса через единый
+    // гейт (operationId = попытка, повтор не спишет дважды). Содержимое собирается и проверяется в startExam ДО этого.
     const start = route.indexOf('const startExam');
     const build = route.indexOf('buildLevelExamBlueprint', start);
-    const debit = route.indexOf('await spendAmount(ENERGY_COST)', start);
+    const begin = route.indexOf('const beginQuiz', start);
+    const debit = route.indexOf('await levelExamEnergyGate.charge()', begin);
     expect(build).toBeGreaterThan(start);
-    expect(debit).toBeGreaterThan(build);
+    expect(begin).toBeGreaterThan(build);
+    expect(debit).toBeGreaterThan(begin);
+    expect(route.slice(start, begin)).not.toMatch(/spendAmount|levelExamEnergyGate\.charge/);
     expect(route).toContain('setContentUnavailable(true)');
     expect(route).toContain('Энергия не списана');
   });
@@ -58,12 +63,14 @@ describe('level exam v2 route contract', () => {
     const legacyRoute = read('app/level_exam.tsx');
     const intro = read('components/level-exam/LevelExamIntro.tsx');
     expect(route).toContain('const unlimitedEnergy = isUnlimited || hasPremiumAccess');
-    expect(route).toContain('if (!unlimitedEnergy)');
-    expect(route).toContain('!await spendAmount(ENERGY_COST)');
+    expect(route).toMatch(/if \(!unlimitedEnergy\) \{\s*const energyResult = await levelExamEnergyGate\.charge\(\);/);
     expect(route).toContain('unlimitedEnergy={unlimitedEnergy}');
-    expect(intro).toContain('{!unlimitedEnergy ? <View style={[styles.energyPill');
-    expect(intro).toContain('{!unlimitedEnergy ? <View style={styles.costBadge}>');
-    expect(intro).toContain("? copy.startCta");
+    // зачем (11.10): интро перерисовано в стекле 2.0 — у Plus пилюля энергии показывает «∞», а ценник на кнопке
+    // снят совсем (PM-086); стоимость остаётся только в гейте списания.
+    expect(intro).toContain('{unlimitedEnergy ? (');
+    expect(intro).toContain('>∞</Text>');
+    expect(intro).not.toContain('styles.costBadge');
+    expect(intro).toContain('label={copy.startCta}');
     expect(legacyRoute).toContain("import { usePremium } from '../components/PremiumContext'");
     expect(legacyRoute).toContain('const { hasPremiumAccess } = usePremium()');
     expect(legacyRoute).toContain('const examEnergyUnlimited = energyUnlimited || hasPremiumAccess');

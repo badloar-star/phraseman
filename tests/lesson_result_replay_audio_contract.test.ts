@@ -14,7 +14,8 @@ describe('lesson result phrase audio replay', () => {
 
   it('manual replay uses the central voice path that is blocked when voice-out is disabled', () => {
     const start = lessonSource.indexOf('const replayResultPhraseAudio = useCallback');
-    const end = lessonSource.indexOf('// Pulsing animation for to-be hint');
+    // зачем (11.10): подсказка to-be с пульсацией снята — блок повтора теперь заканчивается перед списком пройденных фраз.
+    const end = lessonSource.indexOf('const reviewPhrases', start);
     const replayBlock = lessonSource.slice(start, end);
 
     expect(start).toBeGreaterThan(-1);

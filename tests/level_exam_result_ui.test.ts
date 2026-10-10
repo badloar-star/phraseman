@@ -10,9 +10,12 @@ describe('level exam result UI', () => {
     })).toMatchObject({
       title: 'Экзамен сдан',
       primaryAction: 'Продолжить обучение',
-      rewardEarned: '+1 спин за первое успешное прохождение',
-      rewardPending: 'Спин будет начислен после синхронизации',
+      // зачем (11.10): спинов в 2.0 нет — за сдачу честное признание, без обещания спина и без «начислится позже».
+      rewardEarned: 'Уровень подтверждён — так держать!',
     });
+    expect(getLevelExamResultCopy('ru', {
+      passed: true, neededForPass: 0, energyCost: 20, unlimitedEnergy: false,
+    })).not.toHaveProperty('rewardPending', expect.stringMatching(/спин/i));
     expect(getLevelExamResultCopy('ru', {
       passed: false, neededForPass: 3, energyCost: 20, unlimitedEnergy: false,
     })).toMatchObject({

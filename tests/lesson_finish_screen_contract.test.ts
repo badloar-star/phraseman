@@ -24,7 +24,8 @@ describe('lesson finish screen contract', () => {
     expect(replayEnd).toBeGreaterThan(replayStart);
     const replayBlock = source.slice(replayStart, replayEnd);
 
-    expect(replayBlock).toContain('!isPlanPhraseLessonTask');
+    // зачем (11.10): задачи личного плана удалены вместе с планом — исключение для них больше не нужно.
+    expect(replayBlock).not.toContain('isPlanPhraseLessonTask');
     expect(replayBlock).toContain('errorQueueRef.current.length > 0');
     expect(replayBlock).toContain('questionsSinceErrorRef.current = Math.max(questionsSinceErrorRef.current, ERROR_REPLAY_DELAY_ANSWERS - 1);');
     expect(replayBlock).toContain('persistErrorReplayToStorage(overridePhraseCell);');

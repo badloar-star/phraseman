@@ -47,7 +47,8 @@ describe('lesson screen bootstrap storage recovery', () => {
   it('does not render a fallback first phrase before hydration completes', () => {
     const source = readFileSync(join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
 
-    expect(source).toContain('phrase={lessonHydrated && planPhraseContentReady ? phrase : null}');
+    // зачем (11.10): ожидание контента личного плана снято вместе с планом — фраза ждёт только гидратации урока.
+    expect(source).toContain('phrase={lessonHydrated ? phrase : null}');
   });
 
   it('does not cap the lesson prompt text so the full assignment remains visible', () => {

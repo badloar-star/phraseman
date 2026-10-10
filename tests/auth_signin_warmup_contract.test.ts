@@ -32,10 +32,12 @@ function callableSlice(source: string, exportName: string): string {
 }
 
 describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
-  test('authEnsureStableLink keeps one warm instance on top of HOT options', () => {
+  // зачем (10.10): ревизия тёплых инстансов 29.08 (519de9ff0) — постоянный тёплый инстанс снят ради денег; вход
+  // прогревает клиентский пинг (тест ниже). Сторож держит HOT-опции и явный осознанный minInstances: 0.
+  test('authEnsureStableLink runs on HOT options without a paid always-warm instance', () => {
     const slice = callableSlice(authIdentitySource, 'authEnsureStableLink');
     expect(slice).toContain('...HOT_CALLABLE_OPTIONS');
-    expect(slice).toContain('minInstances: 1');
+    expect(slice).toContain('minInstances: 0');
   });
 
   test.each([
@@ -60,7 +62,8 @@ describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
     expect(slice).toContain("'authStampAnonOwnership'");
     expect(slice).toContain("'authMergeStableAccounts'");
     expect(slice).toContain('AUTH_WARMUP_THROTTLE_MS');
-    expect(slice).toContain('.catch(() => {})');
+    // ошибка прогрева не глушится молча (правило «ни одного немого catch»), но и не мешает входу.
+    expect(slice).toContain(".catch(swallowError('cloud_sync:warmAuthSignInCallables'))");
     expect(slice).toContain('{ warmup: true }');
   });
 

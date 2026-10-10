@@ -11,7 +11,8 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     // Without allowAnonRelink, assertStableOwner throws stable_id_mismatch → nameReserve
     // fails with "Имя не проверилось".
     expect(source).toContain('const allowAnonRelink = !allowProviderRelink;');
-    expect(source).toContain('allowAnonRelink }');
+    // зачем (10.10): опции relink дополнены nonce слияния анонима (AA S-работы) — флаг по-прежнему передаётся.
+    expect(source).toMatch(/const relinkOptions = \{ allowProviderRelink, allowAnonRelink[,\s}]/);
   });
 
   test('assertStableOwner option type includes allowAnonRelink', () => {
@@ -56,7 +57,7 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     expect(source).toContain('assertStableAccountMergeNotPending');
     expect(source).toContain("throw new HttpsError('failed-precondition', 'account_merge_pending')");
     expect(source).toMatch(
-      /await assertStableAccountMergeNotPending\(db, selection\.sourceStableIds\)[\s\S]{0,260}repairIdentityDocumentsAtomically/,
+      /await assertStableAccountMergeNotPending\(db, selection\.sourceStableIds\)[\s\S]{0,600}repairIdentityDocumentsAtomically/,
     );
   });
 });

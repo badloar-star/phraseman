@@ -112,13 +112,9 @@ describe('instant interaction response contract', () => {
     expect(lessonMenu).not.toContain('await primeLessonScreenFromStorage');
     expect(lessonMenu).not.toContain('await prefetchLessonMenuCache');
     expect(lessonComplete).not.toContain('await prefetchLessonMenuCache');
-    const flashStart = flashcards.slice(
-      flashcards.indexOf('const startDeckSession'),
-      flashcards.indexOf('const startDeckTraining'),
-    );
-    expect(flashStart).not.toContain('await getLastPreset');
-    expect(flashStart).toContain('router.push');
-    expect(flashStart).toContain("size: 'preset'");
+    // зачем (10.10): старт тренировки из коллекции убран (2.0: запуск через экран настройки тренировки); сессии читают
+    // пресет сами в эффекте после монтирования. Суть сторожа — коллекция не ждёт чтения пресета перед переходом.
+    expect(flashcards).not.toContain('await getLastPreset');
     const dialogStart = dialogs.slice(
       dialogs.indexOf('const openScenarioDestination'),
       dialogs.indexOf('const openCourseScenario'),

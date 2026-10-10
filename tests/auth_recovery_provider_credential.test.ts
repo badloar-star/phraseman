@@ -6,7 +6,9 @@ const source = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'a
 
 function recoveryCredentialSource(): string {
   const start = source.indexOf('export async function acquireAuthRecoveryNativeCredential');
-  const end = source.indexOf('\nexport ', start + 1);
+  // зачем (10.10): после шва account-authority вставил НЕэкспортируемую runAccountAuthorityCredentialSignIn (законно
+  // зовёт getAuth) — срез «до следующего export» захватывал её. Режем ровно по концу функции шва.
+  const end = source.indexOf('\n}\n', start) + 2;
   expect(start).toBeGreaterThanOrEqual(0);
   return source.slice(start, end >= 0 ? end : source.length);
 }

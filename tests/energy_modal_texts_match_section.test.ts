@@ -16,6 +16,7 @@ import {
 } from '../app/energy_activity_titles';
 import type { EnergyActivityKey } from '../app/energy_contract';
 
+// зачем (10.10): max_call (MAX удалён 04.10) и personal_plan_exercise сняты из EnergyActivityKey — их не проверяем.
 const ALL_ACTIVITIES: EnergyActivityKey[] = [
   'flashcards',
   'lesson_words',
@@ -25,7 +26,6 @@ const ALL_ACTIVITIES: EnergyActivityKey[] = [
   'classic_lesson',
   'learning_v2_session',
   'ai_dialog',
-  'personal_plan_exercise',
   'diagnostic_test',
   'level_exam',
   'arena_match',
@@ -33,7 +33,6 @@ const ALL_ACTIVITIES: EnergyActivityKey[] = [
   'theory',
   'reading',
   'video',
-  'max_call',
 ];
 
 describe('тексты окна энергии соответствуют разделу', () => {

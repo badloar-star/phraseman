@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { InteractionManager, View } from 'react-native';
+import { View } from 'react-native';
 import { useRootNavigationState, useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 
@@ -14,16 +14,12 @@ export function DeferredRedirect({ href }: DeferredRedirectProps) {
 
   useEffect(() => {
     if (!rootNavigationReady) return;
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    const task = InteractionManager.runAfterInteractions(() => {
-      timer = setTimeout(() => {
-        router.replace(href);
-      }, 0);
+    // зачем (правило «каждый раздел мгновенно»): replace — в следующем кадре после готовности навигации, а не после
+    // ВСЕХ анимаций (runAfterInteractions держал пустой фон, пока шла любая анимация входа или шторки).
+    const frame = requestAnimationFrame(() => {
+      router.replace(href);
     });
-    return () => {
-      if (timer) clearTimeout(timer);
-      task.cancel?.();
-    };
+    return () => cancelAnimationFrame(frame);
   }, [href, rootNavigationReady, router]);
 
   // зачем: фикс-тёмный филлер давал «чёрный кадр» на светлой sagePorcelain во

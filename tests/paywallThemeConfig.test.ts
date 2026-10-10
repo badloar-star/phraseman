@@ -5,15 +5,11 @@ import {
 } from '../components/paywallThemeConfig';
 import type { ThemeMode } from '../constants/theme';
 
-const ALL_THEMES: ThemeMode[] = [
-  'dark', 'gold', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo', 'sagePorcelain',
-];
+// зачем (10.10): набор тем сменился (снимок 24.08, 96c32bb97) — minimalDark/business/businessLight/candyBlue сняты,
+// добавлена olive. Сторож проверяет полноту конфига пейвола для ТЕКУЩИХ тем.
+const ALL_THEMES: ThemeMode[] = ['dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo', 'sagePorcelain'];
 
-const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
-  'dark', 'gold', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo', 'sagePorcelain',
-];
+const DISTINCT_ACCENT_THEMES: ThemeMode[] = ALL_THEMES;
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
   'heroAccent',
@@ -45,7 +41,7 @@ const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
 ];
 
 describe('PAYWALL_THEME_CONFIG — полнота', () => {
-  it('все 7 тем присутствуют в конфиге', () => {
+  it('все темы приложения присутствуют в конфиге', () => {
     for (const theme of ALL_THEMES) {
       expect(PAYWALL_THEME_CONFIG[theme]).toBeDefined();
     }
@@ -120,10 +116,6 @@ describe('PAYWALL_THEME_CONFIG — тематическая корректнос
 
   
 
-  it('minimalDark: CTA синий', () => {
-    const { ctaBg } = PAYWALL_THEME_CONFIG.minimalDark;
-    expect(ctaBg.toLowerCase()).toContain('6ea8ff');
-  });
 
   
 });

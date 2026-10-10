@@ -6,17 +6,9 @@ import {
 } from '../components/paywallThemeConfig';
 
 const ROOT = path.join(__dirname, '..');
-const THEME_MODES = [
-  'dark',
-  'gold',
-  'minimalDark',
-  'business',
-  'businessLight',
-  'midnight',
-  'ember',
-  'aurora',
-  'volt',
-] as const;
+// зачем (10.10): набор тем приложения сменился (снимок 24.08) — minimalDark/business/businessLight сняты; проверяем текущие.
+// sagePorcelain — светлая тема с непрозрачной фарфоровой панелью #FCFDF9 (аудит 02.08), точно проверена в paywallThemeConfig.test.
+const THEME_MODES = ['dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo'] as const;
 
 function alphaOf(rgba: string): number {
   const match = rgba.match(/rgba\([^,]+,[^,]+,[^,]+,\s*([0-9.]+)\s*\)/i);

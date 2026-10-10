@@ -7,11 +7,14 @@ const bootstrapEnd = layout.indexOf("const sub = onAppEvent('achievement_unlocke
 const bootstrap = layout.slice(bootstrapStart, bootstrapEnd);
 
 describe('startup account generation activation', () => {
-  it('activates the resolved local identity only on proceed and before UI or cloud work', () => {
+  // зачем (10.10): восстановление входа больше не стена (владелец 16.08 «ни один юзер не должен увидеть такого») —
+  // заблокированная ветка показывает закрываемое окно и падает в обычный старт. Сторож держит то, что важно сейчас:
+  // сама ветка блокировки не активирует личность, а активация идёт до облака, страховочного таймера и восстановления.
+  it('activates the resolved local identity after the recovery gate and before UI or cloud work', () => {
     const recoveryGate = bootstrap.indexOf('await runAuthRecoveryBootGate(');
     const blockedBranch = bootstrap.indexOf("if (recoveryGate.result !== 'proceed')", recoveryGate);
     const blockedBranchEnd = bootstrap.indexOf('clearAuthRecoveryBootRetry();', blockedBranch);
-    const activationRead = bootstrap.indexOf('const startupStableId = await getStableId();', blockedBranchEnd);
+    const activationRead = bootstrap.indexOf('startupStableId = await getStableId();', blockedBranchEnd);
     const activation = bootstrap.indexOf('beginInitialAccountGeneration(startupStableId);', activationRead);
     const cloudAllowed = bootstrap.indexOf('recoveryBootAllowsCloud = true;', activation);
     const revealTimer = bootstrap.indexOf('safetyTimer = setTimeout', cloudAllowed);

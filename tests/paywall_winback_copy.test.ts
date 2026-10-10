@@ -15,12 +15,13 @@ describe('paywall win-back copy', () => {
     expect(applyWinBackCopy(base, 'flashcard_limit', false)).toBe(base);
   });
 
+  // зачем (10.10): тексты возврата переписаны по решению владельца 22.09 (114baf437): «цело ли то, что учил».
   it('replaces a first-time feature title with win-back for a returning user', () => {
     const base = getPaywallCopy('flashcard_limit');
     const out = applyWinBackCopy(base, 'flashcard_limit', true);
-    expect(out.titleRu).toBe('Верни полный доступ Plus');
-    expect(out.titleUk).toBe('Поверни повний доступ Plus');
-    expect(out.titleEs).toBe('Recupera tu acceso Plus completo');
+    expect(out.titleRu).toBe('Всё на месте — продолжим?');
+    expect(out.titleUk).toBe('Усе на місці — продовжимо?');
+    expect(out.titleEs).toBe('Todo sigue ahí, ¿continuamos?');
   });
 
   it('keeps the subtitle untouched (it describes what Premium gives)', () => {
@@ -42,15 +43,15 @@ describe('paywall win-back copy', () => {
     for (const ctx of ['flashcard_training', 'flashcard_limit', 'streak']) {
       const base = getPaywallCopy(ctx);
       const out = applyWinBackCopy(base, ctx, true);
-      expect(out.titleRu).toBe('Верни полный доступ Plus');
+      expect(out.titleRu).toBe('Всё на месте — продолжим?');
     }
   });
 
   it('swaps planned-locale title for returning user, keeps planned subtitle', () => {
     const planned = getHeroPlannedCopy('flashcard_limit', 0);
     const out = applyWinBackPlannedCopy(planned, 'flashcard_limit', true);
-    expect(out.title['pt-BR']).toBe('Recupere seu acesso Plus completo');
-    expect(out.title.tr).toBe('Tüm Plus erişimini geri kazan');
+    expect(out.title['pt-BR']).toBe('Está tudo aqui — vamos continuar?');
+    expect(out.title.tr).toBe('Her şey yerinde — devam edelim mi?');
     expect(out.subtitle).toBe(planned.subtitle);
   });
 

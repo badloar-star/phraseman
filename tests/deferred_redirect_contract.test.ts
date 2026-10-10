@@ -14,8 +14,11 @@ describe('deferred redirect route contract', () => {
     expect(source).toContain('useEffect');
     expect(source).toContain('useRootNavigationState');
     expect(source).toContain('rootNavigationReady');
-    expect(source).toContain('InteractionManager.runAfterInteractions');
-    expect(source).toContain('setTimeout');
+    // зачем (10.10): правило «каждый раздел мгновенно» (04.10) и interaction_responsiveness — не ждать анимаций;
+    // replace уходит в следующем кадре (не в кадре монтирования), с отменой при размонтировании.
+    expect(source).not.toContain('InteractionManager.runAfterInteractions');
+    expect(source).toContain('requestAnimationFrame(');
+    expect(source).toContain('cancelAnimationFrame(frame)');
     expect(source).toContain('router.replace(href)');
     expect(source).toContain('return <View');
     expect(source.indexOf('if (!rootNavigationReady) return')).toBeLessThan(source.indexOf('router.replace(href)'));
@@ -27,7 +30,6 @@ describe('deferred redirect route contract', () => {
     'app/index.tsx',
     'app/(tabs)/index.tsx',
     'app/+not-found.tsx',
-    'app/league_screen.tsx',
     'app/lesson_verbs.tsx',
     'app/pos_analytics_audit.tsx',
   ])('%s avoids calling router.replace in render', (relativePath) => {

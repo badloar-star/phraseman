@@ -24,8 +24,6 @@ const MAIN_COURSE_CONTEXTS = [
   'notification_upsell',
 ] as const;
 
-const PAYWALL_RENDERERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'] as const;
-
 const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('active paywalls wire truthful English main-course copy', () => {
@@ -60,7 +58,7 @@ describe('active paywalls wire truthful English main-course copy', () => {
       planned.title.en ?? copy.titleRu,
       copy.titleEs,
       planned.title,
-    )).toBe(context === 'notification_upsell' ? MAIN_COURSE_PLUS_TITLE.en : 'Restore full Plus access');
+    )).toBe(context === 'notification_upsell' ? MAIN_COURSE_PLUS_TITLE.en : 'Everything is still here — shall we go on?'); // тексты возврата 22.09 (114baf437)
     expect(LP(
       copy.subtitleRu,
       copy.subtitleUk,
@@ -70,12 +68,7 @@ describe('active paywalls wire truthful English main-course copy', () => {
     )).toBe(MAIN_COURSE_PLUS_DESCRIPTION.en);
   });
 
-  test.each(PAYWALL_RENDERERS)('paywall_%s sends .en hero strings to the English makeLP slot', (variant) => {
-    const source = read(`app/paywall_${variant}.tsx`);
-
-    expect(source).toContain('planned.title.en ?? copy.titleRu');
-    expect(source).toContain('planned.subtitle.en ?? copy.subtitleRu');
-  });
+  // зачем (10.10): пейволы A–G удалены (60155883a, единственный пейвол Plus) — проверка их рендеров снята.
 
   test('shared benefits send b.en to the English makeLP slot', () => {
     const source = read('components/paywall/paywallShared.tsx');

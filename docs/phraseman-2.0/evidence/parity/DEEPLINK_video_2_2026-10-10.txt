@@ -1,0 +1,6 @@
+10-10 21:51:44.790 17925 17974 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":true,"out":"/(tabs)/video"}'
+10-10 21:51:45.726 17925 17974 W ReactNativeJS: '[LESSON-EXIT] layout:pathname_root_or_empty pathname="/" lastPath=null ready=false rootNavigationReady=false', { [Stack] name: 'Stack' }
+10-10 21:51:48.089 17925 17974 W ReactNativeJS: '[LESSON-EXIT] layout:rootIndex_replace_home pathname="/" ready=true rootNavigationReady=true effectiveShowOnboarding=false isBanned=false', { [Stack] name: 'Stack' }
+10-10 21:52:06.396 17925 17974 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":false,"out":"/(tabs)/video"}'
+10-10 21:52:06.397 17925 17974 I ReactNativeJS: '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://video","initial":false,"out":"/(tabs)/video"}'
+10-10 21:52:06.515 17925 17974 W ReactNativeJS: '[LESSON-EXIT] layout:deeplink_tabs_replace target=/(tabs)/video', { [Stack] name: 'Stack' }

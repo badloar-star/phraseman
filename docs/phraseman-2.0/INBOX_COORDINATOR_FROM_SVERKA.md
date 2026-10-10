@@ -504,3 +504,10 @@ cards-section-032 после 1d993b5c4 почти совпадает (шторк
 - 21:46–21:48: после возврата эмулятора приложение показало красный экран «SyntaxError 186896:74 ':' expected in property initialization» (код вкладок с TAB_SCROLL_*, чужая правка в момент сборки); через ~2 мин сборка собралась, красный экран лечился только force-stop + запуск (Reload по меню не помогал, LogBox закрывал меню). Теперь тёмная «Аврора», Главная, урок 1 на 2/50 (после снимка 21:31 прогресс слегка другой).
 
 - **practice-001/002/003 (Блиц в игре, тёмная): СОВПАЛИ** по форме/составу/порядку; пометка: нет пилюли энергии ⚡ в шапке (Plus: блиц безлимитен). Кандидаты на match. Светлую не снимала.
+
+## 2026-10-10 ~21:55 · СВЕРКА — логи для Дизайна (после 595e26159 и 57e739e96)
+**[DEEPLINK] `phraseman://video`:** redirectSystemPath теперь отдаёт `/(tabs)/video` (раньше `/video`).
+- ХОЛОДНО (force-stop): initial=true out=/(tabs)/video, затем `[LESSON-EXIT] layout:pathname_root_or_empty pathname="/" ready=false` и через 2,4 с `layout:rootIndex_replace_home pathname="/" ready=true` → в итоге открывается ГЛАВНАЯ, не «Видео». 🔴 холодный диплинк всё ещё сбрасывается на Главную (rootIndex_replace_home перекрывает deeplink).
+- ТЁПЛО: initial=false out=/(tabs)/video (дважды) и `layout:deeplink_tabs_replace target=/(tabs)/video` → вкладка «Видео» открывается ✅ (экран «Видео»: «Professor Lingman», «Главная/Плейлисты», «Наборы из видео», «Новые видео»).
+**[DIALOGS-OPEN] холодный вход в «Диалоги»:** hub:initial_state 44 мс, projection 133 мс, first_commit 445 мс от рендера; но `home:js_gap` gapMs=2707 (frame 1) и gapMs=2324 (frame 2, sinceMount 5031 мс) — JS-поток стоит ~2,7 и ~2,3 с подряд на Главной при открытии «Диалогов» → это и есть пустой кадр ~3 с: данные готовы за 0,4 с, но JS занят. Файлы: `DIALOGS-OPEN_cold2_2026-10-10.txt`, `DEEPLINK_video_2_2026-10-10.txt`.
+Дальше: переснимаю урок 1 в обеих темах на новой сборке (выключаю autoAdvance).

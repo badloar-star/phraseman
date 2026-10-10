@@ -501,7 +501,7 @@ export default function FlashcardsVideoPacksScreen() {
               accessibilityLabel={copy.menu}
               hitSlop={8}
               onPress={() => setMenuOpen(true)}
-              style={({ pressed }) => [styles.square, { opacity: pressed ? 0.82 : 1 }]}
+              style={({ pressed }) => [styles.square, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }], opacity: pressed ? 0.82 : 1 }]}
             >
               <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
             </Pressable>
@@ -537,7 +537,7 @@ export default function FlashcardsVideoPacksScreen() {
              */
             <View style={styles.listContent}>
               {[0, 1, 2].map((i) => (
-                <View key={`sk${i}`} style={styles.skeletonRow}>
+                <View key={`sk${i}`} style={[styles.skeletonRow, { backgroundColor: g.hairlineSoft }]}>
                   <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
                   <View style={styles.skeletonLines}>
                     <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '80%' }]} />
@@ -599,13 +599,13 @@ function RowGap() {
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
   top: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   headBlock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row' },
   searchWrap: { marginTop: 16 },
   listContent: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 32, gap: 10 },
   /** Геометрия скелета = геометрия строки (карточка 87, кадр 112×63) — без прыжка. */
-  skeletonRow: { height: 87, borderRadius: 14, paddingVertical: 12, paddingLeft: 12, flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'rgba(255,255,255,0.04)' },
+  skeletonRow: { height: 87, borderRadius: 14, paddingVertical: 12, paddingLeft: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   skeletonThumb: { width: 112, height: 63, borderRadius: 12 },
   skeletonLines: { flex: 1, paddingRight: 14 },
   skeletonLine: { height: 14, borderRadius: 5 },

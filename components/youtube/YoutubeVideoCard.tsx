@@ -133,10 +133,10 @@ const styles = StyleSheet.create({
   gridCard: { borderRadius: 16, borderWidth: 1, marginBottom: 20 },
   compactCard: { borderRadius: 12, borderWidth: 1, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 16 },
   playingCard: { borderRadius: 20, borderWidth: 1, overflow: 'hidden' },
-  thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505', borderRadius: 16, overflow: 'hidden', borderWidth: 1 },
+  thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505', borderRadius: 16, overflow: 'hidden', borderWidth: 1 }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   thumbCompact: { width: 150, aspectRatio: 16 / 9, borderRadius: 12 },
   thumb: { ...StyleSheet.absoluteFillObject },
-  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.10)' },
+  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.10)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   state: { alignSelf: 'flex-start', minHeight: 27, borderRadius: 14, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 9 },
   stateText: { fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
   body: { paddingTop: 10, paddingBottom: 2 },
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
   bodyPlaying: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 14 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   // `.du`: 22 высота, поля 7, радиус 7, чёрный 72%, 12/700 → 13 по D145.
-  duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' },
-  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 16, fontWeight: '700' },
+  duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 16, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   titleCompact: { fontSize: 16, lineHeight: 21 },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },

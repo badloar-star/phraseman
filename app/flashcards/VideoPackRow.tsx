@@ -29,6 +29,8 @@ import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import { DebugLogger } from '../debug-logger';
 
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
 /** Превью 16:9 — те же числа, что в макете. */
 const THUMB_W = 112;
 const THUMB_H = 63;
@@ -162,7 +164,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               />
             ) : null}
             <View style={styles.playCircle} pointerEvents="none">
-              <Ionicons name="play" size={16} color="#FFFFFF" />
+              <Ionicons name="play" size={16} color={MEDIA_INK} />
             </View>
             {duration ? (
               <View style={styles.duration} pointerEvents="none">
@@ -224,7 +226,7 @@ const baseStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  playCircle: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.45)' },
+  playCircle: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.45)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   duration: {
     position: 'absolute',
     right: 5,
@@ -232,9 +234,9 @@ const baseStyles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 5,
     paddingVertical: 1,
-    backgroundColor: 'rgba(0,0,0,0.72)',
+    backgroundColor: 'rgba(0,0,0,0.72)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   },
-  durationText: { fontSize: 13, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' },
+  durationText: { fontSize: 13, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
   title: { fontSize: 16, lineHeight: 19, fontWeight: '700' },

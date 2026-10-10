@@ -1100,7 +1100,7 @@ export default function CommunityPackCreateScreen() {
                 accessibilityLabel={menuLabel}
                 hitSlop={8}
                 onPress={() => setPackMenuOpen(true)}
-                style={{ width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] }}
+                style={{ width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: kg.glassEdge }] }}
               >
                 <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
               </TouchableOpacity>
@@ -1131,7 +1131,7 @@ export default function CommunityPackCreateScreen() {
                     onChangeText={setTitle}
                     onFocus={bindScrollOnFocus(titleInputRef)}
                     placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
-                    placeholderTextColor="#6E6E72"
+                    placeholderTextColor={kg.mutedText}
                     style={fieldInput}
                   />
                 </EditorField>
@@ -1159,7 +1159,7 @@ export default function CommunityPackCreateScreen() {
                         onChangeText={setDescription}
                         onFocus={bindScrollOnFocus(descriptionInputRef)}
                         placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
-                        placeholderTextColor="#6E6E72"
+                        placeholderTextColor={kg.mutedText}
                         multiline
                         style={[fieldInput, { fontSize: 16, lineHeight: 22, minHeight: 60, textAlignVertical: 'top' }]}
                       />
@@ -1238,7 +1238,7 @@ export default function CommunityPackCreateScreen() {
               {...getTextInputSystemEditMenuProps()}
               value={draftEn}
               onChangeText={setDraftEn}
-              placeholderTextColor="#6E6E72"
+              placeholderTextColor={kg.mutedText}
               style={fieldInput}
             />
           </EditorField>
@@ -1251,7 +1251,7 @@ export default function CommunityPackCreateScreen() {
                 {...getTextInputSystemEditMenuProps()}
                 value={draftTranslation}
                 onChangeText={setDraftTranslation}
-                placeholderTextColor="#6E6E72"
+                placeholderTextColor={kg.mutedText}
                 style={fieldInput}
               />
             </EditorField>
@@ -1264,7 +1264,7 @@ export default function CommunityPackCreateScreen() {
                 {...getTextInputSystemEditMenuProps()}
                 value={draftNote}
                 onChangeText={setDraftNote}
-                placeholderTextColor="#6E6E72"
+                placeholderTextColor={kg.mutedText}
                 style={fieldInput}
               />
             </EditorField>

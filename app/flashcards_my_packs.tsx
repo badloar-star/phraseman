@@ -808,7 +808,7 @@ export default function FlashcardsMyPacksScreen() {
           onRetry={() => { void hapticTap(); myPacksGate.retryNow('tap'); }}
         />
         <Modal visible={!!deletePackTarget} transparent animationType="fade" statusBarTranslucent onRequestClose={() => { if (!deletePackBusy) setDeletePackTarget(null); }}>
-          <View style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#00000099' }}>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#00000099' /* theme-exempt: затемнение под окном удаления — тёмный скрим в любой теме */ }}>
             <Pressable accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => { if (!deletePackBusy) setDeletePackTarget(null); }} style={StyleSheet.absoluteFill} />
             <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
               <MyPacksGlass tint={g.selected} edge={g.glassEdge} />

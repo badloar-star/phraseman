@@ -653,11 +653,11 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
               «+» по центру — круг 48 цвета темы. kit.css даёт `.bar3` блик и кромку (::after), а тень --lg-drop
               страница перебивает своим box-shadow: кольцо inset 1px белое .08 (styles.bottomTabs). */}
-          <View style={styles.bottomTabs}>
+          <View style={[styles.bottomTabs, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]}>
             {/* зачем (`.bar3` background): почти непрозрачная пилюля (.94) — список под ней не просвечивает. */}
             <LinearGradient
               pointerEvents="none"
-              colors={['rgba(28,28,34,0.94)', 'rgba(16,16,20,0.94)']}
+              colors={[`${g.opaqueControl}F0`, `${g.deepBase}F0`]}
               start={{ x: 0.25, y: 0.067 }}
               end={{ x: 0.75, y: 0.933 }}
               style={StyleSheet.absoluteFill}
@@ -727,7 +727,6 @@ const baseStyles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     overflow: 'hidden',
-    boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.08)' }],
   },
   bottomTab: {
     minHeight: 44,

@@ -23,6 +23,8 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlowText } from '../text-integrity';
 
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
   'https://youtube.com',
@@ -298,7 +300,7 @@ export default function YoutubeInlinePlayer({
               onPress={onClose}
               style={styles.previewButton}
             >
-              <Ionicons name="close" size={22} color="#FFFFFF" />
+              <Ionicons name="close" size={22} color={MEDIA_INK} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -333,16 +335,16 @@ export default function YoutubeInlinePlayer({
 
 const styles = StyleSheet.create({
   shell: { borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden', marginBottom: 12 }, // guard-ok: 1 px полупрозрачная кромка 2.0
-  previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' },
+  previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   header: { minHeight: 56, paddingHorizontal: 12, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   roundButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  playerWrap: { width: '100%', backgroundColor: '#000000' },
+  playerWrap: { width: '100%', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   cardPlayerWrap: { aspectRatio: 16 / 9 },
   previewPlayerWrap: { flex: 1 },
-  webview: { flex: 1, backgroundColor: '#000000' },
-  playerLoading: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' },
+  webview: { flex: 1, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  playerLoading: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   error: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   previewActions: { position: 'absolute', top: 8, right: 8, zIndex: 2, flexDirection: 'row', gap: 8 },
-  previewButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(5,8,18,0.82)' },
+  previewButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(5,8,18,0.82)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
 });

@@ -23,6 +23,8 @@ import { DebugLogger } from '../debug-logger';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
 import type { FlashcardMarketPack } from './marketplace';
 
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
 type Props = {
   pack: FlashcardMarketPack;
   lang: Lang;
@@ -108,7 +110,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
       <View style={styles.scrim} pointerEvents="none" />
 
       <View style={styles.playBadge}>
-        <Ionicons name="play" size={24} color="#FFFFFF" />
+        <Ionicons name="play" size={24} color={MEDIA_INK} />
       </View>
 
       {/* зачем: паритет с макетом video-packs-from-video-mockup.html кадр 2 — на кадре только круг «play», подписи нет. */}
@@ -134,15 +136,15 @@ const styles = StyleSheet.create({
   },
   scrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(3,6,4,0.28)',
+    backgroundColor: 'rgba(3,6,4,0.28)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   },
   playBadge: {
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: 'rgba(0,0,0,0.55)',
+    backgroundColor: 'rgba(0,0,0,0.55)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(255,255,255,0.25)',
+    borderColor: 'rgba(255,255,255,0.25)', // theme-exempt: белый значок/текст поверх видео — в любой теме
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(0,0,0,0.7)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   },
-  durationText: { fontSize: 13, fontWeight: '700', color: '#FFFFFF' },
+  durationText: { fontSize: 13, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
 });

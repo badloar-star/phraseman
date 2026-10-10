@@ -5,6 +5,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
 // зачем (владелец 2026-09-29): вкладка «Видео» переносится 1 в 1 по макету video.html
 // (Liquid Glass). Общие кирпичи собраны здесь один раз: стеклянный блик плашки, круглая
 // кнопка «play» поверх кадра, центрированное состояние (плитка + фраза + «Повторить»),
@@ -43,7 +45,7 @@ export function VideoPlayBadge({ small = false }: { small?: boolean }) {
         { width: size, height: size, borderRadius: size / 2 },
       ]}
     >
-      <Ionicons name="play" size={small ? 14 : 22} color="#FFFFFF" style={styles.playGlyph} />
+      <Ionicons name="play" size={small ? 14 : 22} color={MEDIA_INK} style={styles.playGlyph} />
     </View>
   );
 }
@@ -104,9 +106,9 @@ const styles = StyleSheet.create({
     bottom: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
     borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка круга, как `.thumb .pl` макета
-    borderColor: 'rgba(255,255,255,0.25)',
+    borderColor: 'rgba(255,255,255,0.25)', // theme-exempt: белый значок/текст поверх видео — в любой теме
   },
   playBadgeSmall: { left: 8, bottom: 7 },
   playGlyph: { marginLeft: 2 },

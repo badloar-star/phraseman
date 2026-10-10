@@ -694,5 +694,5 @@ const styles = StyleSheet.create({
   packsSub: { fontSize: 13, lineHeight: 18, marginTop: 2 },
   trainCta: { minHeight: 52, borderRadius: 26, marginTop: 4, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   trainText: { fontSize: 16, fontWeight: '700' },
-  heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' },
+  heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
 });

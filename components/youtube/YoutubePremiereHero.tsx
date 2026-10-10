@@ -20,6 +20,8 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoGlassSheen, VideoPlayBadge } from '../video/VideoGlassKit';
+
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const PREMIERE_INTRO_DURATION_MS = 1100;
@@ -146,7 +148,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
         {/* зачем: `.hero .badge` макета — тёмная пилюля состояния на кадре, слева-сверху. */}
         <View testID="youtube-premiere-state" style={styles.state}>
-          {live ? <View style={styles.liveDot} /> : <Ionicons name="flag-outline" size={16} color="#FFFFFF" />}
+          {live ? <View style={styles.liveDot} /> : <Ionicons name="flag-outline" size={16} color={MEDIA_INK} />}
           <Text style={styles.badgeText}>{live ? copy.liveNow : copy.upcoming}</Text>
         </View>
         <VideoPlayBadge />
@@ -181,13 +183,13 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
 const styles = StyleSheet.create({
   // зачем: `.hero` макета — плашка радиус 22, поля 12, кадр внутри радиусом 14.
   hero: { borderRadius: 22, borderWidth: 1, overflow: 'hidden', padding: 12, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая 1 px кромка стекла, как в макете
-  thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden', backgroundColor: '#050505' },
+  thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden', backgroundColor: '#050505' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
   image: { ...StyleSheet.absoluteFillObject },
-  sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' },
+  sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   details: { paddingTop: 12 },
-  state: { position: 'absolute', left: 12, top: 12, minHeight: 26, borderRadius: 13, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(0,0,0,0.6)' },
-  liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#FFFFFF' },
-  badgeText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
+  state: { position: 'absolute', left: 12, top: 12, minHeight: 26, borderRadius: 13, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  badgeText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3 }, // theme-exempt: белый значок/текст поверх видео — в любой теме
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   countdown: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },

@@ -95,9 +95,9 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
 }
 
 const styles = StyleSheet.create({
-  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.56)' },
+  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.56)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '78%', borderTopLeftRadius: 28, borderTopRightRadius: 28, padding: 18, paddingBottom: 32 },
-  handle: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2, backgroundColor: 'rgba(128,128,128,0.45)', marginBottom: 16 },
+  handle: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2, backgroundColor: 'rgba(128,128,128,0.45)', marginBottom: 16 }, // theme-exempt: нейтрально-серая ручка шторки видимая на любой теме
   title: { fontSize: 22, fontWeight: '900', marginBottom: 14 },
   list: { gap: 9 },
   row: { minHeight: 60, borderRadius: 18, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 11 },

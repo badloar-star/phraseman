@@ -35,6 +35,8 @@ import { safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
 
+const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+
 const LOG = '[VIDEO-SCREEN]';
 
 type Params = { videoId?: string; channelId?: string; title?: string; source?: string; startSec?: string };
@@ -133,7 +135,7 @@ export default function LingmanVideoWatchScreen() {
           ) : null}
           {/* зачем: ✕ макета — круг 34 на тёмной подложке в 12 от края; плеер свою кнопку не рисует (onClose не передан). */}
           <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.close} onPress={close} hitSlop={8} style={styles.close}>
-            <Ionicons name="close" size={16} color="#FFFFFF" />
+            <Ionicons name="close" size={16} color={MEDIA_INK} />
           </Pressable>
         </View>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
@@ -174,8 +176,8 @@ export default function LingmanVideoWatchScreen() {
 const styles = StyleSheet.create({
   // зачем: поля экрана 20 (`--pad` макета); плеер выходит за них на всю ширину (`.player { margin: 0 -20px }`).
   container: { flex: 1 },
-  player: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#000000' },
-  close: { position: 'absolute', top: 12, right: 12, width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.55)' },
+  player: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  close: { position: 'absolute', top: 12, right: 12, width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.55)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   content: { paddingHorizontal: 20, paddingBottom: 32 },
   title: { marginTop: 16, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   // зачем: `.vm` макета 14 → 13 по шкале D145.

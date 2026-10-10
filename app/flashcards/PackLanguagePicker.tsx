@@ -110,7 +110,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
         onPress={open}
         hitSlop={4}
         style={({ pressed }) => [styles.trigger, pill ? styles.triggerPill : null, {
-          backgroundColor: visible ? g.selected : pill ? 'rgba(255,255,255,0.09)' : g.opaqueControl,
+          backgroundColor: visible ? g.selected : pill ? g.hairlineSoft : g.opaqueControl,
           opacity: disabled ? 0.55 : pressed ? 0.78 : 1,
         }]}
       >
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
     paddingHorizontal: 16,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)', // theme-exempt: затемнение под выпадающим списком — тёмный скрим в любой теме
   },
   sheet: {
     width: 230,

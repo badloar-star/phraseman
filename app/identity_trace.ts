@@ -24,7 +24,8 @@ export type IdentityTracePrefix = '[AUTH-LINK-GOOGLE]' | '[PROFILE-FLIP]' | '[AC
   // зачем (AA S2d раунд 3): долив копии гостя A в B после подтверждённого merge.
   | '[ACC-BACKUP-MERGE]'
   // зачем (10.10, ревью «Авторизации»): причины сбоя синхронных peek привязки и даты аккаунта.
-  | '[AUTH-PEEK]';
+  | '[AUTH-PEEK]'
+  | '[AUTH-AVAIL]'; // зачем (11.10): сбой проверки «доступен ли вход через Apple» больше не немой
 
 export type IdentityTraceValue = string | number | boolean | null;
 

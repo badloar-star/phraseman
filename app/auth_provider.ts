@@ -930,10 +930,17 @@ const phoneStateRetirementFlights = new Map<string, Promise<boolean>>();
 async function retirePhoneStateForDeletion(stableId: string | null): Promise<boolean> {
   if (!stableId) return true;
   let flight = phoneStateRetirementFlights.get(stableId);
+  // зачем (живой прогон 10.10, «сперва логи»): удаление гостя на эмуляторе отказало
+  // phone_state_retired=0 без строки о сбое — значит, шаг не уложился в потолок.
+  // Печатаем, сколько он реально идёт и чем кончается, чтобы чинить по факту.
+  const retireStartedAt = Date.now();
   if (!flight) {
     flight = import('./phone_state_bootstrap')
       .then(({ retirePhoneStateAfterDeletion }) => retirePhoneStateAfterDeletion(stableId))
-      .then(() => true)
+      .then(() => {
+        traceAccountDeleteLocal(`phone_state_retire_done_ms=${Date.now() - retireStartedAt}`);
+        return true;
+      })
       .catch((error: unknown) => {
         const detail = error instanceof Error ? error.message : String(error);
         traceAccountDeleteLocal(`phone_state_retire_threw:${detail}`);
@@ -946,7 +953,19 @@ async function retirePhoneStateForDeletion(stableId: string | null): Promise<boo
       }
     });
   }
-  const result = await withLocalStepDeadline(() => flight!, false);
+  // зачем (живой прогон 10.10): общий потолок шага 1 с не вмещал подгрузку модуля
+  // (430–900+ мс) — удаление гостя молча отказывало local_wipe_unverified. Свой потолок
+  // 2,5 с: вместе с ожиданием писателей (≤1,5 с) остаётся в общем потолке стирания 5 с.
+  const result = await withLocalStepDeadline(() => flight!, false, ACCOUNT_DELETE_PHONE_STATE_RETIRE_TIMEOUT_MS);
+  if (!result) {
+    traceAccountDeleteLocal(`phone_state_retire_deadline_or_fail_after_ms=${Date.now() - retireStartedAt}`);
+    // зачем (ревью M-1): поздний успех закрывает хранилище гостя, которому удаление уже
+    // ответило отказом, — смешанное состояние. Пока решение о дожатии не принято, делаем
+    // такие случаи видимыми в журнале.
+    void flight!.then((lateOk) => {
+      if (lateOk) traceAccountDeleteLocal(`phone_state_retired_after_refusal_ms=${Date.now() - retireStartedAt}`);
+    });
+  }
   return result;
 }
 
@@ -3989,6 +4008,7 @@ type PreparedAccountDeletion = {
  * Ни одна локальная запись не имеет права держать пользователя дольше секунды.
  */
 const ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000;
+const ACCOUNT_DELETE_PHONE_STATE_RETIRE_TIMEOUT_MS = 2_500;
 /** Account V2: сколько быстрая фаза удаления ждёт уже начатый ключ V2 (см. prepareAccountDeletion). */
 const ACCOUNTS_V2_KEY_FAST_WAIT_MS = 250;
 // The complete wipe is a sequence of several individually bounded native

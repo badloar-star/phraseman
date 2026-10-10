@@ -147,6 +147,19 @@ describe('смена аккаунта в онбординге — с кнопк�
   });
 });
 
+describe('удаление гостя: шаг закрытия хранилища не упирается в 1 с (живой прогон 10.10)', () => {
+  it('свой потолок 2,5 с; вместе с ожиданием писателей помещается в общий потолок стирания 5 с', () => {
+    const auth = read('app/auth_provider.ts');
+    const num = (name: string) => Number((auth.match(new RegExp(`const ${name} = ([0-9_]+);`)) ?? [])[1]?.replace(/_/g, ''));
+    const retire = num('ACCOUNT_DELETE_PHONE_STATE_RETIRE_TIMEOUT_MS');
+    expect(retire).toBe(2500);
+    expect(num('ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS') + retire).toBeLessThan(num('ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS'));
+    const fn = auth.slice(auth.indexOf('async function retirePhoneStateForDeletion('), auth.indexOf('async function retirePhoneStateThenWipe('));
+    expect(fn).toContain('withLocalStepDeadline(() => flight!, false, ACCOUNT_DELETE_PHONE_STATE_RETIRE_TIMEOUT_MS)');
+    expect(fn).toContain('phone_state_retire_deadline_or_fail_after_ms=');
+  });
+});
+
 describe('тихий спиннер догрузки после входа', () => {
   it('флаг включается на время догрузки и гаснет; повторное завершение безвредно', () => {
     const endA = beginCloudProfileRefresh('a');

@@ -45,3 +45,11 @@ Governance-ID: TG-05DE080A071D — онбординг: «Сменить без �
 Governance-ID: TG-56CE037EEFF6 — живой прогон заблокирован (гость Сверки, нет Google на устройстве); итог в INBOX §AA-34.
 Governance-ID: TG-7ED868A05E5B — сторож account_authority_legacy_callsite_guard: перепись +1 peekStableId (осознанный вызов S1e c0333fe6d, только чтение).
 Governance-ID: TG-7EB44C333037 — LOW из ревью развилки: return await в try, текст о последствиях в окне «Сменить без сохранения».
+Governance-ID: TG-40D0B9F8DDA1 / TG-C6A805A4C548 — дополнение §AA-34: факты сессии «Эмулятор», путь разблокировки живого прогона.
+Governance-ID: TG-542E56A4891C — живой прогон гостя на Pixel_8 (окно координатора 20:08–20:40): снимок → pm clear → гость/выход/удаление/переустановка → возврат снимка.
+Governance-ID: TG-0AE4918142EE — тик цикла, ожидание решения координатора.
+Governance-ID: TG-0024C1CC6BE6 — продолжение живого прогона (снимок, гость).
+Governance-ID: TG-8E777FB3CDB5 — прогон: перезапуск сборщика сессией «Эмулятор», починка устаревшего дампа UI в скрипте.
+Governance-ID: TG-8E777FB3CDB5 (прод.) — НАХОДКА прогона: удаление гостя отклонено local_wipe_unverified (phone_state_retired=0 за потолок 1 с); логи-замеры в retirePhoneStateForDeletion / retirePhoneStateAfterDeletion.
+Governance-ID: TG-8E777FB3CDB5 (прод.) — итог живого прогона в INBOX §AA-34 (прогон); находки: потолок 1 с на закрытии хранилища, серверное удаление гостя не ставится (proof_missing).
+Governance-ID: TG-056EF729BB63 — ревью APPROVE потолка retire; след «retire завершился после отказа» (M-1 ревью), решение о дожатии удаления — координатору.

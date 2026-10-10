@@ -147,7 +147,7 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
           главной»): Арена рисовала САМОДЕЛЬНЫЙ градиент из P.bg — он выходил
           на голый bgPrimary и в тёмных темах читался как чёрный, потому что
           настоящий фон главной — это BG_GRADIENTS[themeMode] (для indigo
-          #14131F→#0C0B16→#010102), заметно синее bgPrimary. Берём ТОТ ЖЕ
+          0x14131F→0x0C0B16→0x010102), заметно синее bgPrimary. Берём ТОТ ЖЕ
           источник, что и ScreenGradient у главной: один общий список цветов,
           одна тема — один фон. Расходиться им больше нечем.
         */}

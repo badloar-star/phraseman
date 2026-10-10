@@ -229,7 +229,7 @@ export default function CombinedLessonPickScreen() {
                   opacity: atCap ? 0.42 : 1,
                 }}
               >
-                {/* зачем (`.tp.on` #202022 поверх #151517): выбранная строка заметно светлее — белая дымка 5 %,
+                {/* зачем (`.tp.on` 0x202022 поверх 0x151517): выбранная строка заметно светлее — белая дымка 5 %,
                     одинаково видна в любой теме (у части тем тон карточки и тон контрола совпадают). */}
                 {selected ? (
                   <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: lessonsGlassAlpha(glass.text, 0.05) }]} />

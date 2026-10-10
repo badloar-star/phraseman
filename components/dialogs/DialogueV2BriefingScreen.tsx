@@ -99,7 +99,7 @@ export function DialogueV2BriefingScreen({
                 key={objective.id}
                 style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : null]}
               >
-                {/* зачем (сверка dialogs-008, макет `.obj .n`): цифра в видимом кружке (control #1C1C1E на карточке #161618) — тон от цвета текста темы, токен opaqueControl сливался с карточкой */}
+                {/* зачем (сверка dialogs-008, макет `.obj .n`): цифра в видимом кружке (control 0x1C1C1E на карточке 0x161618) — тон от цвета текста темы, токен opaqueControl сливался с карточкой */}
                 <View style={[styles.num, { backgroundColor: glassTone(glass.text, 0.10) }]}>
                   <Text maxFontSizeMultiplier={1.2} style={[styles.numText, { color: glass.text }]}>{index + 1}</Text>
                 </View>

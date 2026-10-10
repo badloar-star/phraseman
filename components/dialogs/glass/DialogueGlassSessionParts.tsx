@@ -94,7 +94,7 @@ export function DialogueGlassGoalCard({
       style={styles.goalHit}
       contentStyle={[dialogueGlassCardStyle(glass, 18), styles.goal]}
     >
-      {/* зачем (сверка dialogs-014): в макете плитка флажка и круг лампочки светлее карточки (`--tile` #242426 на #161618); токен opaqueControl в тёмных темах почти
+      {/* зачем (сверка dialogs-014): в макете плитка флажка и круг лампочки светлее карточки (`--tile` 0x242426 на 0x161618); токен opaqueControl в тёмных темах почти
           сливается с карточкой, и плитки не видно — тон считаем от белого: заметен в любой теме */}
       <View style={[styles.goalTile, { backgroundColor: glassTone(glass.text, 0.08) }]}>
         <Ionicons name="flag-outline" size={20} color={glass.text} />

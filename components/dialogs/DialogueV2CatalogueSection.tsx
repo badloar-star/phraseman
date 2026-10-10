@@ -123,7 +123,7 @@ export function DialogueV2CatalogueSection({
               variant="flat"
               style={{ flexDirection: 'row', alignItems: 'center', gap: expanded ? 16 : 22, minHeight: 55 }}
             >
-              {/* зачем (сверка dialogs-004/-002, «плитка категории и строки без карточки/плитки»): в макете ступени тона — карточка категории #161618 → строка #1D1D1F (+5 %) → плитка #28282A (+9 %).
+              {/* зачем (сверка dialogs-004/-002, «плитка категории и строки без карточки/плитки»): в макете ступени тона — карточка категории 0x161618 → строка 0x1D1D1F (+5 %) → плитка 0x28282A (+9 %).
                   Токены темы (opaqueControl/opaqueCard) в тёмных темах почти равны фону карточки, и плитки/строки сливались; тон считаем от белого — ступени видны в любой теме. */}
               <View style={{ width: 55, height: 55, borderRadius: 14, backgroundColor: glassTone(glass.text, TILE_TONE_ALPHA), alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name={worldIcon(world.id)} size={26} color={glass.text} />

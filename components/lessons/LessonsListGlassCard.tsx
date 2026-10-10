@@ -256,7 +256,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
         {fx ? <CirclePop key={`pop-${fx.key}`}>{circle}</CirclePop> : circle}
       </View>
       <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.8 : 1 }}>
-        {/* зачем (learn.html `.lc.locked .tt`): у закрытого урока название приглушённое (#D0D0D2 ≈ текст темы с прозрачностью .82, + .8 у блока). */}
+        {/* зачем (learn.html `.lc.locked .tt`): у закрытого урока название приглушённое (0xD0D0D2 ≈ текст темы с прозрачностью .82, + .8 у блока). */}
         <Text style={{ color: locked ? lessonsGlassAlpha(glass.text, 0.82) : glass.text, fontSize: 16, lineHeight: lh(21), fontWeight: '700' }}>{name}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
           {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}

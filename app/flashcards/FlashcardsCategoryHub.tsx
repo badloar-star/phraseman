@@ -108,6 +108,11 @@ type Props = {
   /** UGC-каталог доступен только с облаком (без Expo Go). */
   cloudCommunityEnabled?: boolean;
   communityPacks?: FlashcardMarketPack[];
+  /**
+   * зачем (Сверка packs-simple-001, 🔴 ~8 с «Здесь появятся наборы после публикации»): пустое состояние каталога показываем
+   * только когда данные РЕАЛЬНО пришли пустыми. Пока снимка нет и сеть не ответила — скелетон строк, а не «пусто».
+   */
+  communityLoaded?: boolean;
   ownedCommunityPackIds?: string[];
   /** Stable id автора — кнопка «редактировать» на своих UGC. */
   hubAuthorStableId?: string | null;
@@ -380,6 +385,7 @@ export default function FlashcardsCategoryHub({
   onMarketRefresh,
   cloudCommunityEnabled = false,
   communityPacks = [],
+  communityLoaded = true,
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
   themeMode,
@@ -925,7 +931,13 @@ export default function FlashcardsCategoryHub({
               <Ionicons name="chevron-forward" size={18} color={g.secondary} accessibilityElementsHidden importantForAccessibility="no" />
             </TouchableOpacity>
           ) : null}
-          {visibleCommunityPacks.length === 0 ? (
+          {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && !communityLoaded ? (
+            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: 12, paddingTop: 8 }}>
+              {[0, 1, 2, 3].map((i) => (
+                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: 74, borderRadius: 22, backgroundColor: g.hairlineSoft }} />
+              ))}
+            </View>
+          ) : visibleCommunityPacks.length === 0 ? (
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
             <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
               <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.opaqueControl, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>

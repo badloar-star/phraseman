@@ -122,13 +122,7 @@ function TrainingSetupV2Inner(props: Props) {
                     </KitCard>
                   );
                 })}
-                <KitCard g={g} onPress={onFindPacks} testID="fc-training-setup-add-pack" accessibilityLabel={copy.addPack}>
-                  <View style={styles.row}>
-                    <KitIconTile g={g} icon="add" />
-                    <Text style={[styles.rowTitle, styles.addTitle, { color: g.text }]}>{copy.addPack}</Text>
-                    <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-                  </View>
-                </KitCard>
+                {/* зачем (Сверка cards-section-033, решение координатора 10.10): строки «Добавить набор ›» в настройке тренировки нет ни в одном макете (setupBlitz/Speak/Tf/Recall) — добавить набор можно из хаба «+» и из пустого состояния. */}
               </View>
             )}
             {status === 'ready' && sizeOptions ? (

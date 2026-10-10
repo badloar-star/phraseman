@@ -162,6 +162,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
      */
     () => peekPublishedCommunityMarketPacks(studyTarget) ?? [],
   );
+  // зачем (Сверка packs-simple-001): флаг «каталог реально пришёл» — до него вместо пустого состояния рисуется скелетон. Тёплый снимок = уже загружен.
+  const [communityLoaded, setCommunityLoaded] = useState<boolean>(() => (peekPublishedCommunityMarketPacks(studyTarget)?.length ?? 0) > 0);
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
@@ -416,7 +418,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   useFocusEffect(
     useCallback(() => {
       primeFlashcardsCollectionCache(studyTarget);
-      void loadHubMarket();
+      void loadHubMarket().finally(() => setCommunityLoaded(true));
     }, [loadHubMarket, studyTarget]),
   );
 
@@ -638,6 +640,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               onMarketRefresh={refreshHubMarketForce}
               cloudCommunityEnabled={cloudCommunityEnabled}
               communityPacks={communityPacks}
+              communityLoaded={communityLoaded}
               ownedCommunityPackIds={ownedCommunityPackIds}
               hubAuthorStableId={hubAuthorStableId}
               studyTarget={studyTarget}

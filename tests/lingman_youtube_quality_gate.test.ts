@@ -61,7 +61,10 @@ describe('lingman YouTube quality gate', () => {
   it('connects the catalog to the Professor Lingman English YouTube channel', () => {
     const combined = [catalogSource(), dataSource()].join('\n');
 
-    expect(dataSource()).toContain("LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg'");
+    // зачем (10.10): id канала переехал в дисковый снимок ленты (lingman_youtube_feed_disk) — модуль данных
+    // берёт его оттуда; проверяем и связку, и само значение.
+    expect(dataSource()).toContain('LINGMAN_CHANNEL_ID = LINGMAN_DEFAULT_CHANNEL_ID');
+    expect(readProjectFile('app/lingman_youtube_feed_disk.ts')).toContain("LINGMAN_DEFAULT_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg'");
     expect(dataSource()).toContain("LINGMAN_CHANNEL_HANDLE = '@professorlingman'");
     expect(dataSource()).toContain('https://www.youtube.com/@professorlingman/videos');
     expect(combined).toContain('LINGMAN_CHANNEL_DISPLAY_NAME');

@@ -25,9 +25,12 @@ describe('premium intro-ended context', () => {
     expect(start).toBeGreaterThan(-1);
     const block = copySrc.slice(start, copySrc.indexOf('PAYWALL_COPY.notification_upsell', start));
 
-    expect(block).toContain('Твой Plus-доступ закончился');
-    expect(block).toContain('Твій Plus-доступ завершився');
-    expect(block).toContain('Tu acceso Plus ha terminado');
+    // зачем (10.10): тексты пейволов переписаны «по-человечески и без вранья» (114baf437) — истёкший доступ
+    // описан как «бесплатный доступ закончился», слово VIP пользователю не показывается.
+    expect(block).toContain('Бесплатный доступ закончился');
+    expect(block).toContain('Безкоштовний доступ завершився');
+    expect(block).toContain('El acceso gratuito ha terminado');
+    expect(block).not.toMatch(/VIP/);
     expect(block).not.toContain('VIP-доступ');
     expect(block).not.toContain('Tu acceso VIP');
   });

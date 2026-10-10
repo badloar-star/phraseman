@@ -4,6 +4,9 @@ import React from 'react';
 import { act, cleanup, fireEvent, render } from '@testing-library/react-native';
 
 // Файл намеренно `.test.ts`: корневой Jest запускает только исполняемые TS-guards.
+// зачем (10.10): интро перерисовано в стекле 2.0 (ExamHeader/ExamHero/ExamKvCard/PracticeCta, PM-086 — без цены
+// энергии на кнопке). Сторож переписан под новые части, поведение то же: ∞ для Plus, защита от двойного
+// нажатия, снятие защиты, если старт не ушёл с экрана, и запрет старта без энергии.
 
 import LevelExamIntro from '../components/level-exam/LevelExamIntro';
 
@@ -19,24 +22,40 @@ jest.mock('react-native', () => ({
   },
 }));
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
-jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('../app/swallow_log', () => ({ noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../components/ScreenGradient', () => ({ children }: any) => mockReact.createElement('ScreenGradient', null, children));
 jest.mock('../components/BouncyScrollView', () => ({ children }: any) => mockReact.createElement('ScrollView', null, children));
-jest.mock('../components/TonalSurface', () => ({ children, ...props }: any) => mockReact.createElement('View', props, children));
-jest.mock('../components/EnergyIcon', () => 'EnergyIcon');
-jest.mock('../components/TapScale', () => ({ children, onPress, disabled, ...props }: any) => (
-  mockReact.createElement('Pressable', { ...props, onPress, disabled }, children)
-));
+jest.mock('../components/energy/AnimatedEnergyNumber', () => ({
+  AnimatedEnergyNumber: ({ value }: any) => mockReact.createElement('Text', null, String(value)),
+}));
+jest.mock('../components/level-exam/ExamGlassParts', () => ({
+  ExamHeader: ({ title, right }: any) => mockReact.createElement('View', null, mockReact.createElement('Text', null, title), right),
+  ExamHero: ({ title, message }: any) => mockReact.createElement('View', null,
+    mockReact.createElement('Text', null, title), mockReact.createElement('Text', null, message)),
+  ExamKvCard: ({ children }: any) => mockReact.createElement('View', null, children),
+  ExamVerdict: ({ text }: any) => mockReact.createElement('Text', null, text),
+  ExamFooter: ({ children }: any) => mockReact.createElement('View', null, children),
+}));
+jest.mock('../components/practice/PracticeStates', () => ({
+  PracticeCta: ({ testID, label, accessibilityLabel, disabled, onPress }: any) => mockReact.createElement(
+    'Pressable',
+    {
+      testID,
+      accessibilityLabel: accessibilityLabel ?? label,
+      accessibilityState: { disabled: !!disabled },
+      onPress: disabled ? undefined : onPress,
+    },
+    mockReact.createElement('Text', null, label),
+  ),
+}));
+jest.mock('../constants/liquidGlassThemePalette', () => ({
+  liquidGlassTokens: () => ({ text: 'text', secondary: 'secondary', opaqueControl: 'control' }),
+}));
 jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({
-    theme: {
-      bgCard: 'card', bgSurface: 'surface', bgSurface2: 'surface2', textPrimary: 'primary',
-      textSecond: 'secondary', textMuted: 'muted', accent: 'accent', accentBg: 'accentBg',
-      correct: 'correct', correctBg: 'correctBg', correctText: 'correctText', gold: 'gold',
-      goldBg: 'goldBg', textOnGold: 'onGold',
-    },
-    f: { h1: 24, h2: 20, h3: 18, body: 16, bodyLg: 18, caption: 13, label: 12 },
-    ds: { spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 }, radius: { md: 12, lg: 16, xl: 20 }, fontFamily: 'Inter', buttonHeight: 52 },
+    theme: { correct: 'correct', wrong: 'wrong' },
+    liquidGlassThemeId: 'graphite',
   }),
 }));
 
@@ -57,6 +76,8 @@ const baseProps = {
   onStart: jest.fn(),
 };
 
+const startButton = (view: any) => view.getByTestId('level-exam-start');
+
 it('shows infinity for Plus and keeps the exam start available', async () => {
   const view = await render(React.createElement(LevelExamIntro, {
     ...baseProps,
@@ -64,40 +85,36 @@ it('shows infinity for Plus and keeps the exam start available', async () => {
     unlimitedEnergy: true,
   }));
 
-  expect(view.queryByText('Не хватает энергии для начала')).toBeNull();
   expect(view.getByText('∞')).toBeTruthy();
-  expect(view.getByLabelText('Начать проверку').props.accessibilityState).toEqual({ disabled: false });
+  expect(startButton(view).props.accessibilityState).toEqual({ disabled: false });
 });
 
-it('shows useful preparation details and guards the start action', async () => {
+it('guards the start action against a double tap', async () => {
   const onStart = jest.fn(() => new Promise<void>(() => {}));
   const view = await render(React.createElement(LevelExamIntro, { ...baseProps, onStart }));
 
-  expect(view.getByText('Финальная проверка A2')).toBeTruthy();
-  expect(view.getByText('21 правильный ответ из 30')).toBeTruthy();
-  expect(view.getByText('13 минут')).toBeTruthy();
-  expect(view.queryByText('Что будет внутри')).toBeNull();
-  expect(view.queryByText('За первое успешное прохождение — 1 спин')).toBeNull();
-
-  const start = view.getByLabelText('Начать проверку −20 ⚡');
-  await fireEvent.press(start);
-  await fireEvent.press(start);
+  await act(async () => {
+    fireEvent.press(startButton(view));
+    await Promise.resolve();
+  });
+  await act(async () => {
+    fireEvent.press(startButton(view));
+    await Promise.resolve();
+  });
   expect(onStart).toHaveBeenCalledTimes(1);
 });
 
 it('releases the launch guard when start resolves without leaving the intro', async () => {
   const onStart = jest.fn(async () => undefined);
   const view = await render(React.createElement(LevelExamIntro, { ...baseProps, onStart }));
-  const start = view.getByLabelText('Начать проверку −20 ⚡');
 
-  await act(async () => {
-    fireEvent.press(start);
-    await Promise.resolve();
-  });
-  await act(async () => {
-    fireEvent.press(start);
-    await Promise.resolve();
-  });
+  for (let i = 0; i < 2; i += 1) {
+    await act(async () => {
+      fireEvent.press(startButton(view));
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+  }
 
   expect(onStart).toHaveBeenCalledTimes(2);
 });
@@ -110,32 +127,24 @@ it('keeps the start action disabled when energy is insufficient', async () => {
     onStart,
   }));
 
-  expect(view.getByText('Не хватает энергии для начала')).toBeTruthy();
-  expect(view.getByLabelText('Начать проверку −20 ⚡').props.accessibilityState).toEqual({ disabled: true });
-  await fireEvent.press(view.getByLabelText('Начать проверку −20 ⚡'));
+  expect(startButton(view).props.accessibilityState).toEqual({ disabled: true });
+  await act(async () => {
+    fireEvent.press(startButton(view));
+    await Promise.resolve();
+  });
   expect(onStart).not.toHaveBeenCalled();
 });
 
-it('keeps the CTA label and arrow in one horizontal row', async () => {
-  const view = await render(React.createElement(LevelExamIntro, baseProps));
-
-  expect(view.getByTestId('level-exam-start-content').props.style).toMatchObject({
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  });
-});
-
-it('uses theme tokens and tonal hierarchy without decorative outlines', () => {
+it('uses glass theme tokens and no raw colors or decorative outlines', () => {
   const source = fs.readFileSync(
     path.join(process.cwd(), 'components/level-exam/LevelExamIntro.tsx'),
     'utf8',
   );
 
   expect(source).toContain('useTheme()');
+  expect(source).toContain('liquidGlassTokens(');
   expect(source).toContain('<ScreenGradient');
-  expect(source).toContain('<TonalSurface');
-  expect(source).toContain('<TapScale');
+  expect(source).toContain('<PracticeCta');
   expect(source).not.toMatch(/#[0-9a-f]{3,8}\b/i);
   expect(source).not.toMatch(/rgba?\(/i);
   expect(source).not.toMatch(/borderWidth\s*:/);

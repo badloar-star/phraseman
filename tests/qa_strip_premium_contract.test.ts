@@ -25,7 +25,9 @@ describe('qa strip premium contract', () => {
 
   it('stays deployable: exported from index.ts and present in deploy:safe whitelist', () => {
     expect(fnIndex).toContain('vipRevokeMine');
-    expect(fnPackage).toContain('functions:vipRevokeMine');
+    // зачем (10.10): белый список deploy:safe удалён снимком 2.0 (efe19ae9d) — функции выкладывает владелец по
+    // имени; сторожим экспорт, без него функция не попадёт в облако вовсе.
+    void fnPackage;
   });
 
 

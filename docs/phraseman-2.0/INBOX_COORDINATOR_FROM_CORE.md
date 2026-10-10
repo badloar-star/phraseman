@@ -2518,3 +2518,48 @@ PM-034 A2: старые экраны за фасадом НЕ найдены —
 - Удаление: двойная защита, телефон стирается мгновенно, сразу онбординг — ок.
 - Смене аккаунта по природе нужно ждать сохранения прогресса — это не нарушение.
 **4. Замок коммитов** — беру всегда; обёртка с повтором при гонке HEAD.
+
+## §CORE-RED — 2026-10-10 21:16: Ядро — полный прогон красных тестов (итог на сейчас)
+
+**Как прогоняли.** Все тесты юнит-раннера по одному процессу, партиями по 25. Затем перепрогон всех красных и ни разу
+не прогнанных (352 файла).
+
+**Найденная поломка инфраструктуры.**
+- Мой старый, ошибочный прогон-зомби продолжал крутиться с 18:xx и запускал проверки поверх чужих.
+- Сторож памяти (`ram_guard.ps1`) считал его «вторым tsc» и снимал любую новую проверку типов у всех сессий: выход 127 без вывода.
+- Зомби убит в 20:46. С тех пор проверка типов проходит.
+
+**Сделано (коммиты Ядра 10.10, вечер):**
+- 166c1486f — 10 списков FlatList без отсечения невидимых view (краш Android ReactClippingViewManager).
+- c9fb5c86a + 00863f6b1 — 16 мест «квадрат вокруг скругления» на Android → `noAndroidOutline`.
+- 1fa8ce3d4 — каталог аналитики без Арены. Аудит видит события Learning V2 через мост телеметрии.
+- bbc35b417 — **скорость старта:** `_layout` снова грузит каталог уведомлений лениво (он попадал в первый кадр). Кнопка «Повторить» в выборе режима тренировки центрирует текст.
+- fdacf49aa, 71b371dd9 — 36 сторожей обновлены под 2.0, 31 снят: модули удалены — личный план, тьютор, сезонный пропуск, Лиги, paywall_a/b/c, /start/, рубашки карточек, аватары D108.
+- Ранее в этот день — части 1–4: 93da14544, c21d0f697, 66edf1af5, af7d97b80.
+
+**Итог перепрогона (до правок частей 5–6):** 327 файлов, 78 зелёных, 249 красных. Из красных:
+- **Зона Codex — 103:** learning_v2_* (74), gustav_* (25), course_pack_* (2), client_reports_delivery (Шпиль), lesson1_release_parity.
+- Плюс к Codex:
+  - kimi_voice_capture (learning-v2-lab, после починки мока виден поведенческий отказ);
+  - android_clipping: LearningV2Horizons;
+  - android_no_square_outline: learning_v2_direct_session_player_v1, _learning_v2_modes_showcase, LearningV2FounderPassModal, LearningV2NewWordEncounterOverlay, LearningV2PulseMapSessionRow;
+  - analytics_contract_audit: воронка Learning V2 не попадает в SQL админ-аналитики. Нужна новая строка склада, панель и выкладка владельцем.
+- **Сессия 5 (Авторизация) — 5:** account_provision_lock_android_runtime_entrypoint, account_sqlite_lease_patch_v2, account_sqlite_lease_patch_activation_v2, account_v2_client_tails_6c_v2, accounts_v2_emulator_e2e_v2.
+- **В чужих незакоммиченных правках (не трогаю):** ForceUpdateGate.tsx, UpdateModal.tsx (квадрат вокруг скругления).
+- **Ядро, ещё в работе — 88 файлов.** Это старые сторожа текста исходников:
+  - уроки и экзамен: lesson_*, level_exam_*;
+  - темы: olive_*, sage_*, theme_*, onboarding_graphite_*;
+  - речь: speech_*, transcription_*;
+  - phone_state_*, сайт website_*;
+  - и др.
+  - Отдельно — две настоящие поломки контента: в `lesson_phrases_regression` перевод фразы урока 9 = «?»; `lesson_intro_final_check_catalog` не покрывает все уроки. Чиню дальше по списку.
+
+**🔴 Удаление гостя — серверные данные не удаляются никогда** (находка 2 из §AA-34; разбор Ядра, сообщение сессии 5 не дошло — истекло):
+- `prepareAccountDeletion` (app/auth_provider.ts ~4046) при `currentUser.isAnonymous` ставит `pendingDeleteLock = null`. Proof нет, и `startCloudDeletionEnqueue` (cloud_sync.ts:5458) бросает `account_delete_credential_proof_missing` до сети.
+- Серверной очистки гостей по сроку (крон, TTL) нет. Документы гостя остаются, а политика обещает удаление.
+- Замок для анонима код уже умеет: `persistAccountDeletePendingAuth` строит якорь `anon:${stableId}`. Комментарий там же называет его «best-effort», а не «не нужен».
+- **Рекомендация:**
+  - для анонима тоже вызывать `persistAccountDeletePendingAuth` под тем же потолком; вернулся null — идти как сейчас;
+  - `requiresDurableServerDeletion` оставить false (UI не ждёт);
+  - тест: гость → `accountDeleteEnqueue` получает proof.
+  - Файл у сессии 5 (в нём её незакоммиченные правки) — правку делает она.

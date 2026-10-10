@@ -3,11 +3,16 @@
  * This prevents "Unmatched Route" on root custom-scheme launches.
  */
 
+import { rememberInitialDeepLinkTarget } from './initial_deep_link_store';
+
 // зачем (Сверка 10.10: `phraseman://video` открывает Главную; сперва логи): каждый вход и выход нормализации ссылки пишется одной строкой —
 // видно, что пришло, холодный ли это старт и куда ссылку отправили. Поиск по префиксу [DEEPLINK].
 export function redirectSystemPath(args: { path: string; initial: boolean }): string {
   const out = redirectSystemPathInner(args);
   console.log('[DEEPLINK] redirectSystemPath', JSON.stringify({ in: String(args.path ?? ''), initial: args.initial, out }));
+  // зачем (Сверка 10.10 21:55): при холодном старте маршрутизатор остаётся на `/`, и стартовый переход на Главную
+  // съедал ссылку. Запоминаем её — переход откроет её вместо Главной (app/initial_deep_link_store.ts).
+  if (args.initial && out && out !== '/home' && !out.startsWith('/home?')) rememberInitialDeepLinkTarget(out);
   return out;
 }
 

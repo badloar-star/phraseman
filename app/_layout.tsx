@@ -250,6 +250,7 @@ import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_sa
 
 import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
+import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -909,6 +910,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
+  // undefined — ссылку холодного старта ещё не забирали; null — забрали, её нет (app/initial_deep_link_store.ts).
+  const initialDeepLinkRef = useRef<string | null | undefined>(undefined);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
@@ -1557,17 +1560,23 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !isRootIndexRoute) return;
     // зачем (§126, [LESSON-EXIT]): пользователя из урока выкидывало на главную без перезапуска процесса. isRootIndexRoute = !pathname ||
     // pathname === '/' — пустой pathname во время перехода тоже считается «корнем». Пишем значение, решившее ветку.
+    // зачем (Сверка 10.10 21:55, холодный `phraseman://video` уходил на Главную): распознанная при холодном старте
+    // ссылка на вкладку открывается вместо Главной — иначе этот переход её съедал.
+    // Забранная ссылка держится в ref: перезапуск эффекта до смены маршрута не должен вернуть Главную.
+    if (initialDeepLinkRef.current === undefined) initialDeepLinkRef.current = consumeInitialDeepLinkTarget();
+    const rootTarget = initialDeepLinkRef.current ?? '/(tabs)/home';
     traceLessonExit('layout:rootIndex_replace_home', {
       pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname),
       ready,
       rootNavigationReady,
       effectiveShowOnboarding,
       isBanned,
+      target: rootTarget.split('?')[0],
     });
-    router.replace('/(tabs)/home');
+    router.replace(rootTarget as Href);
     const retry = setTimeout(() => {
-      traceLessonExit('layout:rootIndex_replace_home_retry', { pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname) });
-      router.replace('/(tabs)/home');
+      traceLessonExit('layout:rootIndex_replace_home_retry', { pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname), target: rootTarget.split('?')[0] });
+      router.replace(rootTarget as Href);
     }, 120);
     return () => clearTimeout(retry);
   }, [effectiveShowOnboarding, isBanned, isRootIndexRoute, ready, rootNavigationReady, router]);

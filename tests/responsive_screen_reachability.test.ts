@@ -19,7 +19,10 @@ describe('short-window action reachability', () => {
       const source = read(`app/${file}.tsx`);
       expect(source).toContain('<ScrollView');
       expect(source).toContain('contentContainerStyle=');
-      expect(source).not.toContain('numberOfLines=');
+      // зачем (11.10): подзаголовок шапки (название набора) — одна строка с многоточием по макету practice.html
+      // (`.hd .su` nowrap, de2a5c40d). Это не прячет действие; содержимое тренировки по-прежнему без обрезки.
+      const withoutHeaderTitle = source.replace(/<PracticeHeaderTitle[\s\S]*?<\/PracticeHeaderTitle>/g, '');
+      expect(withoutHeaderTitle).not.toContain('numberOfLines=');
     }
   });
 

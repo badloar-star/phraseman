@@ -11,7 +11,8 @@ import {
 } from '../components/startup_recovery_link_copy';
 
 const root = process.cwd();
-const read = (rel: string): string => readFileSync(path.join(root, rel), 'utf8');
+// зачем (11.10): рабочая копия в CRLF (autocrlf) — сторож сверяет многострочный текст, нормализуем переносы.
+const read = (rel: string): string => readFileSync(path.join(root, rel), 'utf8').replace(/\r\n/g, '\n');
 
 describe('окно восстановления: выбор текста по признаку привязки', () => {
   test('провайдер текущей сессии = привязка была', () => {

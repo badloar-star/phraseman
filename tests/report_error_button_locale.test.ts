@@ -51,7 +51,8 @@ describe('ReportErrorButton localized categories', () => {
   it('keeps Spanish general report labels in Spanish instead of mixed fallback copy', () => {
     const paymentCategory = reportErrorCategoriesForLang('home', 'es')
       .find(category => category.key === 'payment_premium');
-    expect(paymentCategory?.label).toBe('Suscripción, compra o fragmentos');
+    // зачем (11.10): осколки/руны в 2.0 заменены монетами — из платёжной категории их убрали, текст остался испанским.
+    expect(paymentCategory?.label).toBe('Suscripción o compra');
   });
 
   it('keeps report category localization away from legacy split fallbacks', () => {

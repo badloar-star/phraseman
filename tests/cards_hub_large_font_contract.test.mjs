@@ -4,7 +4,8 @@ import test from 'node:test';
 
 // зачем (координатор 05.10, FONTSCALE2): хаб «Карточки» при системном шрифте 2.0 не режет текст — lineHeight масштабируется тем же коэффициентом,
 // высоты шапки/пилюли становятся minHeight, подписи переносятся, хаб прокручивается. Шрифт не сжимаем; при 1.0 разметка прежняя (макет пиксель в пиксель).
-const source = fs.readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
+// зачем (11.10): рабочая копия в CRLF (autocrlf) — сторож сверяет многострочный текст, нормализуем переносы.
+const source = fs.readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8').replace(/\r\n/g, '\n');
 
 test('line heights scale with the system font; at 1.0 they stay as in the mockup', () => {
   assert.match(source, /const lh = \(n: number\) => \(fs === 1 \? n : Math\.round\(n \* fs\)\)/);

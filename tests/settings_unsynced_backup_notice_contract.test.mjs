@@ -3,7 +3,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const source = fs.readFileSync(new URL('../app/(tabs)/settings.tsx', import.meta.url), 'utf8');
+// зачем (11.10): рабочая копия в CRLF (autocrlf) — сторож сверяет многострочный текст, нормализуем переносы.
+const source = fs.readFileSync(new URL('../app/(tabs)/settings.tsx', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 
 test('окно после выхода без синхронизации: кнопка «Продолжить» и значок закладки', () => {
   const at = source.indexOf("L('Можно выбрать аккаунт'");

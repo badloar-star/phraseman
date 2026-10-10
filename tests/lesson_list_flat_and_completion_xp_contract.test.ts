@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 const root = path.resolve(__dirname, '..');
-const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
+// зачем (11.10): рабочая копия в CRLF (autocrlf) — сторож сверяет многострочный текст, нормализуем переносы.
+const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8').replace(/\r\n/g, '\n');
 
 describe('lesson list and completion contracts', () => {
   it('keeps the complete lesson path permanently visible in one flat list', () => {

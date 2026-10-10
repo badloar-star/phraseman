@@ -3,7 +3,8 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import test from 'node:test';
 
-const read = (...parts) => readFileSync(join(process.cwd(), ...parts), 'utf8');
+// зачем (11.10): рабочая копия в CRLF (autocrlf) — сторож сверяет многострочный текст, нормализуем переносы.
+const read = (...parts) => readFileSync(join(process.cwd(), ...parts), 'utf8').replace(/\r\n/g, '\n');
 
 // зачем (PM-086, владелец 2026-09-24; коммит ac9c8e31d «ценники энергии убраны со всех кнопок», общий снимок efe19ae9d): ценник энергии и кнопки режимов
 // (MODE_BUTTON_SIZE/MODE_ICON_SIZE) из шапки коллекции убраны намеренно — сторожить их размеры больше нечего. Тест теперь стережёт ТЕКУЩУЮ шапку:

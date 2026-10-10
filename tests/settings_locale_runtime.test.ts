@@ -48,13 +48,12 @@ describe('settings planned locale runtime copy', () => {
     expect(SETTINGS_EDU_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
   });
 
-  it('keeps notification weekday labels explicit for planned locales', () => {
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('const DAYS_BY_LANG: Record<Lang, readonly string[]>');
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain("'pt-BR': DAYS_PT_BR");
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('vi: DAYS_VI');
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('id: DAYS_ID');
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('tr: DAYS_TR');
-    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('pl: DAYS_PL');
+  // зачем (11.10): матрицу дней недели заменило одно время на все дни (решение владельца 2026-07-26, шапка
+  // settings_notifications.tsx) — подписей дней больше нет. Держим главное: тексты экрана идут через Record<Lang>,
+  // без старых ветвлений ru/uk/es и без возврата матрицы дней.
+  it('keeps notification copy explicit for planned locales without the retired weekday matrix', () => {
+    expect(SETTINGS_NOTIFICATIONS_SOURCE).toContain('Record<Lang, string>');
+    expect(SETTINGS_NOTIFICATIONS_SOURCE).not.toContain('DAYS_BY_LANG');
     expect(SETTINGS_NOTIFICATIONS_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
   });
 

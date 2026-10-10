@@ -14,7 +14,8 @@ describe('lesson screen priming', () => {
 
     expect(body).toContain('try {');
     expect(body).toContain('await AsyncStorage.multiGet([');
-    expect(body).toContain('} catch {');
+    // зачем (11.10): PM-229 запрещает немой catch — ошибка подготовки пишется в журнал (DebugLogger), навигация не ломается.
+    expect(body).toMatch(/\} catch \(e\) \{[\s\S]{0,400}DebugLogger\.error\('lesson_screen_bootstrap:primeLessonScreenFromStorage'/);
     expect(body).not.toContain('throw ');
   });
 

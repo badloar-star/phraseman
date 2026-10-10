@@ -12,12 +12,13 @@ describe('tester_no_limits precedence and production fuse', () => {
 
   test('central helper makes tester_no_premium win and rejects store releases', () => {
     expect(premiumGuard).toContain('export async function isTesterNoLimitsActive');
-    expect(premiumGuard).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    // зачем (11.10): [COLD-START-IO] (03a76010a) — флаги тестера читаются ОДНИМ общим readTesterFlags (в стор-сборке без хранилища); правило приоритета то же.
+    expect(premiumGuard).toContain('await readTesterFlags()');
     expect(premiumGuard).toContain('!resolveTesterNoPremiumOverride(noPremiumRaw)');
     expect(premiumGuard).toContain("noLimitsRaw === 'true'");
     expect(premiumGuard).toContain('!IS_STORE_RELEASE');
 
-    expect(premiumContext).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    expect(premiumContext).toContain('await readTesterFlags()');
     expect(premiumContext).toContain('!noPremiumTester');
     expect(premiumContext).toContain('!IS_STORE_RELEASE');
   });

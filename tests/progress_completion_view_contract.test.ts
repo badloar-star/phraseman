@@ -12,11 +12,12 @@ describe('visible result presentation', () => {
     expect(sequence).toContain('count={motionPlan.confettiCount}');
     expect(sequence).not.toContain('setInterval');
     expect(sequence).not.toContain('XP_FRAME_MS');
-    expect(sequence).toContain('const xpProgress = useSharedValue(0)');
+    // зачем (11.10): опыта в итоге 2.0 нет — счётчик XP (xpProgress и его зависимость) снят; живой счётчик на
+    // AnimatedTextInput (UI-поток, без setInterval) остаётся для наград.
+    expect(sequence).not.toContain('const xpProgress = useSharedValue(0)');
     expect(sequence).toContain('useAnimatedProps');
     expect(sequence).toContain('AnimatedTextInput');
     expect(sequence).toContain('setShowConfetti(false)');
-    expect(sequence).toMatch(/\}, \[\s*badgeSV,[\s\S]*motionPlan,[\s\S]*xp,[\s\S]*\]\);/);
   });
 
   test('renders all three proof lines from a ready model', () => {

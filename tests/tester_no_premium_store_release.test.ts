@@ -35,7 +35,8 @@ describe('tester_no_premium release boundary', () => {
     expect(guard).toContain("from './tester_premium_override'");
     expect((guard.match(/resolveTesterNoPremiumOverride/g) ?? []).length).toBeGreaterThanOrEqual(4);
     expect(context).toContain("from '../app/tester_premium_override'");
-    expect(context).toContain('resolveTesterNoPremiumOverride(testerValues.tester_no_premium)');
+    // зачем (11.10): [COLD-START-IO] (03a76010a) — флаги тестера читаются ОДНИМ общим readTesterFlags (в стор-сборке без хранилища); правило приоритета то же.
+    expect(context).toContain('resolveTesterNoPremiumOverride(testerFlags.noPremium)');
     expect(activationGuard).toContain('resolveTesterNoPremiumOverride(values.tester_no_premium, isStoreRelease)');
     expect((revenueCat.match(/resolveTesterNoPremiumOverride\(noPremium\)/g) ?? [])).toHaveLength(2);
     expect(stats).toContain('setTesterStripsPremium(resolveTesterNoPremiumOverride(v))');

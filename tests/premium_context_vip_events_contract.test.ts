@@ -51,7 +51,8 @@ describe('PremiumContext VIP event contract', () => {
   });
 
   it('treats non-store tester_no_limits as Premium while tester_no_premium still wins', () => {
-    expect(source).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    // зачем (11.10): [COLD-START-IO] (03a76010a) — флаги тестера читаются ОДНИМ общим readTesterFlags (в стор-сборке без хранилища); правило приоритета то же.
+    expect(source).toContain('await readTesterFlags()');
     expect(source).toContain("noLimitsRaw === 'true' && !IS_STORE_RELEASE");
     expect(source).toContain('const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);');
     expect(source).toContain('const effectiveVip = !noPremiumTester && vip;');

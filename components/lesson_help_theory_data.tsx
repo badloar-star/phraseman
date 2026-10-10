@@ -40,7 +40,7 @@ function Formula({ slots, example, t, f }: { slots: FormulaSlot[]; example?: str
     if (role === 'subject') return { fg: c.roleSubject, bg: c.roleSubjectBg };
     if (role === 'link') return { fg: c.roleLink, bg: c.roleLinkBg };
     if (role === 'verb') return { fg: c.roleVerb, bg: c.roleVerbBg };
-    return { fg: c.muted, bg: isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.05)' };
+    return { fg: c.muted, bg: isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.05)' }; // theme-exempt: полупрозрачная плашка поверх любой поверхности — белая/чёрная дымка
   };
   // Доступность: озвучиваем формулу словами (роль + текст), затем пример.
   const a11y = slots.map((s) => (s.sub ? `${s.text} (${s.sub})` : s.text)).join(' плюс ')

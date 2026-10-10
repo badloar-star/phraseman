@@ -97,6 +97,8 @@ function NormalLayers({ center }: { center: Center }) {
 }
 
 // ── A · Голограмма ───────────────────────────────────────────────────────────
+const GRID_V_COLOR = '#FF4FA3'; // theme-exempt: иллюстрация фона карточки профиля — линии сетки арта
+const GRID_H_COLOR = '#00E5FF'; // theme-exempt: иллюстрация фона карточки профиля — линии сетки арта
 const HOLO_HUES = ['#FF7AB6', '#FFD36E', '#7BFFCF', '#6FB8FF', '#C38BFF', '#FF7AB6'] as const; // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
 const HOLO_STARS: readonly (readonly [number, number, number])[] = [
   [40, 60, 0], [300, 86, 0.8], [62, 230, 1.5], [292, 246, 0.4], [176, 30, 2.1], [26, 150, 2.6],
@@ -496,8 +498,8 @@ function NeonLayers({ center }: { center: Center }) {
         }}
       >
         <Svg width={gridW} height={gridH}>
-          {gridLines.v.map((x) => <Line key={`v${x}`} x1={x} y1={0} x2={x} y2={gridH} stroke="#FF4FA3" strokeOpacity={0.5} strokeWidth={1} />)}
-          {gridLines.h.map((y) => <Line key={`h${y}`} x1={0} y1={y} x2={gridW} y2={y} stroke="#00E5FF" strokeOpacity={0.45} strokeWidth={1} />)}
+          {gridLines.v.map((x) => <Line key={`v${x}`} x1={x} y1={0} x2={x} y2={gridH} stroke={GRID_V_COLOR} strokeOpacity={0.5} strokeWidth={1} />)}
+          {gridLines.h.map((y) => <Line key={`h${y}`} x1={0} y1={y} x2={gridW} y2={y} stroke={GRID_H_COLOR} strokeOpacity={0.45} strokeWidth={1} />)}
         </Svg>
         <LinearGradient
           colors={['#07030D', 'rgba(7,3,13,0)']} // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта

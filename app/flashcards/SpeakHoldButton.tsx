@@ -198,7 +198,7 @@ export default function SpeakHoldButton({
               btnStyle,
             ]}
           >
-            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />
+            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />{/* theme-exempt: тёмный значок на кнопке цвета-акцента — цвет акцента задаёт вызывающий код */}
           </Reanimated.View>
         </Pressable>
         {!speakingAllowed && !speechNa ? (

@@ -827,7 +827,7 @@ export default function FlashcardsMyPacksScreen() {
                   <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: EXEMPT_COLOR_1 }}>
-                  {deletePackBusy ? <ActivityIndicator color={EXEMPT_COLOR_2} /> : <Text style={{ color: '#FFFFFF', fontWeight: '800' }}>{copy.deletePack}</Text>}
+                  {deletePackBusy ? <ActivityIndicator color={EXEMPT_COLOR_2} /> : <Text style={{ color: g.mediaInk, fontWeight: '800' }}>{copy.deletePack}</Text>}
                 </TouchableOpacity>
               </View>
             </View>

@@ -2,6 +2,18 @@
 
 Сообщения между сессиями до координатора не доходят (05.10 ~04:00 — «not delivered»), поэтому ответы дублируются здесь.
 
+## 10.10 23:10 — тесты полосы «Темы» (один процесс, память ≥ 2 ГБ)
+
+- Прогнал 30 файлов полосы: **24 зелёных**, 6 красных. Все 6 красных — **старые сторожа удалённой системы тем** (до Liquid Glass 2.0, краснели и до моих правок; предметы в моих коммитах за сутки не менялись):
+  - `theme_context_default` (7/7 красных) — ждёт `DEFAULT_THEME_MODE = 'indigo'`, Midnight-«дедушку», покупки за жемчуг в `ThemeContext`;
+  - `theme_access_policy` (6/7) — тарифы тем Indigo/Olive/Midnight/Ember/Plus-полка; сейчас все темы бесплатны (решение владельца 30.09);
+  - `theme_ownership_store_contract` (4/9) — слияние купленных тем `ember/volt` между устройствами;
+  - `sage_porcelain_theme_context_contract` (1/3), `sage_porcelain_asset_fallbacks_contract` (2/5) — Sage Porcelain как отдельная тема со своими ассетами;
+  - `settings_locale_runtime` (1/4) — не мой: сторож дней недели в `settings_notifications.tsx` (`DAYS_BY_LANG`), экран переписан Дизайном.
+- **Рекомендация (нужно решение координатора, удалять сторожей сам не стал):** первые пять вывести из набора (предметы заменены `theme_selection_runtime`, `legacy_theme_retirement_compatibility`, `theme_intensity_slider`, `theme_palette_roles`, `theme_contrast_report`, `theme_gradient_plate_contrast`); `settings_locale_runtime` обновить под новый экран уведомлений (Дизайн).
+- Остальные 24 зелёные: legacy_theme_retirement_compatibility, line_scale, layout_stability, olive_phase1, profile_card_v2, removed_candy_blue, removed_onyx, 6 из 8 sage_porcelain, theme_asset_audit, theme_color_level_appearance_runtime, theme_contrast_report, theme_gradient_plate_contrast, theme_gradient_themes, theme_intensity_slider, theme_palette_roles, theme_pearl_builder_background, theme_surface_roles, themed_art.
+- Заметка про флаги: скрипт тестов одного файла уже идёт с `--runInBand`; добавление `--maxWorkers=1` даёт конфликт флагов и справку вместо прогона — не добавлять.
+
 ## 10.10 22:40 — очередь 21:55: пункты 1–3
 
 - **Пункт 1:** `a51358807` — бирюза режима «Устно» и смешение с чёрным (идентичность режима) и белый значок на чёрной кнопке Apple (бренд) → theme-exempt; счёт 193 → 189. `UpdateModal` всё ещё с чужими незакоммиченными правками — не трогал; Главная и Шпиль — не трогал.

@@ -284,6 +284,7 @@ export default function ManageSubscription() {
   // зачем: восстановление покупок — отдельное состояние от смены плана, иначе
   // одна операция гасила бы кнопку другой и человек не понимал бы, что занято.
   const [restoring, setRestoring] = useState(false);
+  const restoringRef = useRef(false);
   const [showRestoreEmpty, setShowRestoreEmpty] = useState(false);
   const [showCancelSheet, setShowCancelSheet] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
@@ -471,7 +472,9 @@ export default function ManageSubscription() {
   // Ряд живёт ЗДЕСЬ, на экране Plus, а не в общих настройках (решение владельца).
   // Виден всегда, в том числе без активной подписки: именно без неё он и нужен.
   const handleRestore = useCallback(async () => {
-    if (restoring) {
+    // зачем: замок от двойного тапа в одном кадре — state `restoring` обновится только после рендера,
+    // второй тап успел бы запустить второе восстановление; ref меняется синхронно.
+    if (restoring || restoringRef.current) {
       // guard-ok: ранний выход обязан объяснять причину навсегда — иначе
       // «кнопка не работает», а она просто занята предыдущей попыткой.
       console.warn('[RESTORE] ignored:already_running');
@@ -490,6 +493,7 @@ export default function ManageSubscription() {
     }
     hapticTap();
     void trackEvent('restore_purchases_started');
+    restoringRef.current = true;
     setRestoring(true);
     const startedAt = Date.now();
     try {
@@ -574,6 +578,8 @@ export default function ManageSubscription() {
         },
       });
     } finally {
+      // зачем: ref снимаем всегда (откат замка), state — только своей генерации аккаунта.
+      restoringRef.current = false;
       if (isOperationCurrent()) setRestoring(false);
     }
   }, [restoring]);

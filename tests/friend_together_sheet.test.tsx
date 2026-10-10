@@ -141,7 +141,8 @@ describe('FriendTogetherSheet', () => {
     const screen = await render(<FriendTogetherSheet {...value} />);
     const action = screen.getByTestId('friend-together-sheet-nudge');
     expect(action.props.accessibilityState.disabled).toBe(true);
-    expect(action.props.accessibilityLabel).toBe('Вы уже занимались сегодня');
+    // зачем (11.10): интерфейс переведён на «ты» (bb416e3cd/a54178f73) — подпись кнопки следует новому обращению.
+    expect(action.props.accessibilityLabel).toBe('Ты уже занимался(ась) сегодня');
     expect(mockPressableProps['friend-together-sheet-nudge'].variant).toBe('secondary');
     // Выключенный «Напомнить» выглядит как обычная кнопка (та же заливка, что у «Дай пять»).
     expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor)

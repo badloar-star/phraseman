@@ -117,6 +117,17 @@ import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_
 import { noticeAccountDeletedForever } from '../app/account_delete_restore_prompt';
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
+import { identityErrorCode } from '../app/identity_trace';
+import {
+  abandonOnboardingAuthAttempt,
+  beginOnboardingAuthAttempt,
+  canQuestionnaireWriteProfile,
+  createOnboardingCompletionState,
+  decideLateOnboardingAuthResult,
+  decideOnboardingAuthLeave,
+  honorLateOnboardingAuthSuccess,
+  isOnboardingAuthAttemptCurrent,
+} from './onboarding_auth_leave';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
@@ -2327,6 +2338,12 @@ function CleanOnboarding({
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
   const authInFlightRef = useRef(false);
+  // зачем (ревью TG-A3996AF645F1): номер попытки входа — уход с экрана при повисшем входе
+  // делает поздний ответ чужим (см. components/onboarding_auth_leave.ts).
+  const authAttemptRef = useRef(0);
+  // зачем (повторное ревью TG-C8E5C56B2F02): onDone ровно один раз на онбординг, а анкета
+  // не пишет профиль/метку автоника поверх засчитанного позднего входа.
+  const authCompletionRef = useRef(createOnboardingCompletionState());
   const [authError, setAuthError] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
   // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
@@ -2581,6 +2598,36 @@ function CleanOnboarding({
     if (step === 'welcome' || step === 'privacy') warmAuthSignInCallables();
   }, [step]);
 
+  // зачем (повторное ревью TG-C8E5C56B2F02): ответ входа пришёл после ухода с экрана.
+  // Успех, сменивший личность, засчитываем (онбординг завершается один раз — аккаунт
+  // восстановлен, анкета новичка ему не нужна); error/cancelled/created_new — отбрасываем.
+  const settleLateOnboardingAuthResult = useCallback(async (
+    provider: AuthProviderId,
+    result: string,
+    attempt: number,
+  ): Promise<void> => {
+    const completion = authCompletionRef.current;
+    const action = decideLateOnboardingAuthResult(result, completion.doneCalled);
+    if (action === 'drop') {
+      console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=${result} reason=user_left`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    await honorLateOnboardingAuthSuccess(completion, result, attempt, {
+      persistDone: async () => {
+        await AsyncStorage.multiSet([
+          [DONE_KEY, '1'],
+          [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
+        ]).catch(noteSwallowedHandler('CleanOnboarding:lateAuth.multiSet'));
+        await AsyncStorage.removeItem(STEP_KEY).catch(noteSwallowedHandler('CleanOnboarding:lateAuth.removeItem'));
+      },
+      clearNicknamePending: async () => {
+        await AsyncStorage.removeItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedHandler('CleanOnboarding:lateAuth.clearNicknamePending'));
+      },
+      onDone,
+      log: (line) => console.log(line), // guard-ok: одно событие на поздний ответ входа
+    });
+  }, [onDone]);
+
   const handleAuth = useCallback(async (provider: AuthProviderId) => {
     // зачем (Optimistic UI, 10.10): authLoading — состояние, два тапа в одном кадре видят
     // старое null и запускают два входа (и два окна смены аккаунта). Ссылка ставится синхронно.
@@ -2589,6 +2636,7 @@ function CleanOnboarding({
       return;
     }
     authInFlightRef.current = true;
+    const attempt = beginOnboardingAuthAttempt(authAttemptRef);
     setAuthLoading(provider);
     setAuthError(null);
     setAuthSlow(false);
@@ -2597,6 +2645,13 @@ function CleanOnboarding({
         signInWithProvider(provider),
         () => setAuthSlow(true),
       );
+      // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
+      // повисшем входе — ни go, ни текста ошибки поверх другого шага; успех, сменивший
+      // личность, засчитывается (онбординг закрывается один раз), остальное отбрасывается.
+      if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+        await settleLateOnboardingAuthResult(provider, result.result, attempt);
+        return;
+      }
       if (result.result === 'cancelled') {
         setAuthSlow(false);
         return;
@@ -2675,16 +2730,29 @@ function CleanOnboarding({
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_2'));
       await AsyncStorage.removeItem(STEP_KEY).catch(noteSwallowedHandler('CleanOnboarding:useCallback.removeItem'));
+      // зачем (TG-C8E5C56B2F02): успех засчитывается и при уходе в эти миллисекунды — сверять
+      // попытку не нужно, но onDone на онбординг ровно один раз.
+      if (authCompletionRef.current.doneCalled) {
+        console.log(`[ONBOARDING-AUTH] success_after_completion provider=${provider} result=${result.result}`); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      authCompletionRef.current.doneCalled = true;
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
+      // зачем (аудит двойного тапа 11.10): catch только показывал текст — причина в логе, кодом без текста.
+      console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=existing_account code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+        console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
+        return;
+      }
       setAuthError(describeAuthError(detail, lang));
     } finally {
       authInFlightRef.current = false;
       setAuthSlow(false);
       setAuthLoading(null);
     }
-  }, [authLoading, onDone]);
+  }, [authLoading, onDone, settleLateOnboardingAuthResult]);
 
   // Вход с экрана-сейфа (паттерн Bevel): для нового пользователя привязка
   // провайдера происходит здесь же (signInWithProvider создаёт/привязывает),
@@ -2698,6 +2766,7 @@ function CleanOnboarding({
       return;
     }
     authInFlightRef.current = true;
+    const attempt = beginOnboardingAuthAttempt(authAttemptRef);
     setAuthLoading(provider);
     setAuthError(null);
     setAuthSlow(false);
@@ -2706,6 +2775,13 @@ function CleanOnboarding({
         signInWithProvider(provider),
         () => setAuthSlow(true),
       );
+      // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
+      // повисшем входе — ни go, ни текста ошибки поверх другого шага; успех, сменивший
+      // личность, засчитывается (онбординг закрывается один раз), остальное отбрасывается.
+      if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+        await settleLateOnboardingAuthResult(provider, result.result, attempt);
+        return;
+      }
       if (result.result === 'cancelled') {
         setAuthSlow(false);
         return;
@@ -2778,16 +2854,43 @@ function CleanOnboarding({
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_3'));
       await AsyncStorage.removeItem(STEP_KEY).catch(noteSwallowedHandler('CleanOnboarding:useCallback.removeItem_2'));
+      if (authCompletionRef.current.doneCalled) {
+        console.log(`[ONBOARDING-AUTH] success_after_completion provider=${provider} result=${result.result}`); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      authCompletionRef.current.doneCalled = true;
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
+      console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=privacy code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
+        console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
+        return;
+      }
       setAuthError(describeAuthError(detail, lang));
     } finally {
       authInFlightRef.current = false;
       setAuthSlow(false);
       setAuthLoading(null);
     }
-  }, [authLoading, go, onDone]);
+  }, [authLoading, go, onDone, settleLateOnboardingAuthResult]);
+
+  // зачем (ревью TG-A3996AF645F1): «Позже»/«Назад» во время входа. До порога «вход идёт
+  // медленно» игнорируем (иначе ответ входа всплывал бы на чужом шаге); после порога —
+  // выпускаем, чтобы повисший вход не запирал человека на первом экране, а поздний ответ
+  // гасим сменой номера попытки. Замок входа не снимаем: второй вход поверх живого нельзя.
+  const allowLeaveDuringAuth = useCallback((action: 'later' | 'back'): boolean => {
+    const decision = decideOnboardingAuthLeave(authInFlightRef.current, authSlow);
+    if (decision === 'ignored_in_flight') {
+      console.log(`[ONBOARDING-AUTH] ${action} ignored reason=in_flight`); // guard-ok: ранний выход пишет причину
+      return false;
+    }
+    if (decision === 'leave_and_drop_result') {
+      abandonOnboardingAuthAttempt(authAttemptRef);
+      console.log(`[ONBOARDING-AUTH] ${action} allowed reason=slow_user_left`); // guard-ok: одно событие на тап
+    }
+    return true;
+  }, [authSlow]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');
@@ -3058,6 +3161,12 @@ function CleanOnboarding({
 
   const finish = useCallback(async () => {
     if (finishingRef.current || paywallTransitionBusyRef.current) return;
+    // зачем (TG-C8E5C56B2F02): поздний вход уже засчитан — аккаунт восстановлен; анкета новичка
+    // не перезаписывает его user_profile и не ставит метку автоника существующему аккаунту.
+    if (!canQuestionnaireWriteProfile(authCompletionRef.current)) {
+      console.log('[ONBOARDING-FINISH] questionnaire skipped reason=late_auth_honored'); // guard-ok: ранний выход пишет причину
+      return;
+    }
     setLegalError(null);
     if (ageAnswer !== 'yes') {
       setLegalError(
@@ -3104,6 +3213,8 @@ function CleanOnboarding({
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
+      // зачем (TG-C8E5C56B2F02): если вход засчитают позже, метку автоника этой анкеты снимут.
+      authCompletionRef.current.questionnaireWritten = true;
       // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
       // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
       // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
@@ -3156,6 +3267,11 @@ function CleanOnboarding({
   const completedRef = useRef(false);
   const completeOnboarding = useCallback(async () => {
     if (finishingRef.current || completedRef.current) return;
+    // зачем (TG-C8E5C56B2F02): онбординг уже закрыт засчитанным поздним входом — второй onDone нельзя.
+    if (authCompletionRef.current.doneCalled) {
+      console.log('[ONBOARDING-FINISH] complete skipped reason=already_done'); // guard-ok: ранний выход пишет причину
+      return;
+    }
     finishingRef.current = true;
     completedRef.current = true;
     try {
@@ -3185,14 +3301,21 @@ function CleanOnboarding({
       }
       // PM-049: приветственная награда и её шторка удалены; первый вход
       // завершается без бонусной выдачи.
+      if (authCompletionRef.current.doneCalled) {
+        // Поздний вход засчитан, пока писали DONE_KEY, — onDone уже был.
+        console.log('[ONBOARDING-FINISH] complete skipped reason=already_done stage=after_persist'); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      authCompletionRef.current.doneCalled = true;
       onDone();
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiRemove'));
       if (notificationChoice === 'allow') {
         void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.scheduleDailyReminder_2'));
       }
-    } catch {
+    } catch (error) {
       // Запись не удалась — даём выходу повториться, а не запираем пейвол навсегда.
+      console.warn(`[ONBOARDING-FINISH] finish_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
       completedRef.current = false;
     } finally {
       finishingRef.current = false;
@@ -3312,7 +3435,13 @@ function CleanOnboarding({
               ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
               <SecondaryButton
                 label="Назад"
-                onPress={() => { setAuthMode(false); setAuthError(null); }}
+                onPress={() => {
+                  // зачем (аудит двойного тапа 11.10 + ревью TG-A3996AF645F1): уход во время входа —
+                  // только после порога «медленно», ответ входа при этом отбрасывается.
+                  if (!allowLeaveDuringAuth('back')) return;
+                  setAuthMode(false);
+                  setAuthError(null);
+                }}
                 testID="onboarding-auth-back"
               />
             </View>
@@ -3357,7 +3486,8 @@ function CleanOnboarding({
       plainTitle
       titleSize="md"
       subtitle="Мы ничего не продаём и никому не передаём. Данные нужны только чтобы сохранить твой прогресс."
-      onBack={back}
+      // зачем (ревью TG-A3996AF645F1): стрелка «назад» с сейфа — тот же уход посреди входа, что и «Позже».
+      onBack={() => { if (allowLeaveDuringAuth('back')) back(); }}
       footer={(
         <>
           {appleAvailable === true ? (
@@ -3387,7 +3517,29 @@ function CleanOnboarding({
               Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.
             </Text>
           ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
-          <SecondaryButton label="Позже" onPress={() => go('niceToMeet')} testID="onboarding-privacy-later" />
+          <SecondaryButton
+            // зачем triLang: обработчик кнопки стал многострочным, и подпись попала в новую строку —
+            // храповик переводов требует переводить тронутую строку, а не двигать базу.
+            label={triLang(lang, {
+              ru: 'Позже',
+              uk: 'Пізніше',
+              en: 'Later',
+              es: 'Más tarde',
+              'pt-BR': 'Mais tarde',
+              vi: 'Để sau',
+              id: 'Nanti',
+              tr: 'Daha sonra',
+              pl: 'Później',
+            })}
+            onPress={() => {
+              // зачем (аудит двойного тапа 11.10 + ревью TG-A3996AF645F1): «Позже» во время входа
+              // уводил дальше, а поздний ответ сам завершал онбординг (onDone) поверх шагов. Теперь
+              // до порога «медленно» — ждём, после — уходим, а поздний ответ отбрасывается.
+              if (!allowLeaveDuringAuth('later')) return;
+              go('niceToMeet');
+            }}
+            testID="onboarding-privacy-later"
+          />
         </>
       )}
     >

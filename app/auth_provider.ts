@@ -678,7 +678,8 @@ async function readPendingAccountDeleteLockForHandoff(): Promise<AccountDeletePe
     return inspection.status === 'active' || inspection.status === 'expired'
       ? inspection.lock
       : null;
-  } catch {
+  } catch (error) {
+    console.warn(`[AUTH-DELETE] swallowed step=read_pending_lock_for_handoff code=${identityErrorCode(error)}`);
     return null;
   }
 }
@@ -711,7 +712,8 @@ async function adoptStaleAccountDeleteLock(
     const sameStableId = stableId !== null && existing.stableId === stableId;
     if (!sameProvider && !sameStableId) return null;
     return existing;
-  } catch {
+  } catch (error) {
+    console.warn(`[AUTH-DELETE] swallowed step=adopt_stale_lock code=${identityErrorCode(error)}`);
     return null;
   }
 }
@@ -1207,6 +1209,8 @@ export async function ensureFreshPostDeletionIdentity(
   try {
     lock = await readPendingDeleteTransition();
   } catch (e) {
+    // зачем (аудит 11.10): отказ чтения замка решал исход молча — теперь причина в логе.
+    console.warn(`[AUTH-DELETE] fresh_identity read_lock_failed trigger=${trigger} code=${identityErrorCode(e)}`);
     if (isAccountDeleteGuardNoLockSeenError(e)) {
       return { status: 'pending_auth', phase: 'prepared' };
     }
@@ -1292,7 +1296,8 @@ export async function ensureFreshPostDeletionIdentity(
           await clearPendingAuthLink();
           resetAnonAuthCacheForSignOut();
           return peekStableId() === null;
-        } catch {
+        } catch (error) {
+          console.warn(`[AUTH-DELETE] swallowed step=fresh_identity_clear_old_stable code=${identityErrorCode(error)}`);
           return false;
         }
       },
@@ -1313,7 +1318,8 @@ export async function ensureFreshPostDeletionIdentity(
         try {
           await setStableId(stableId);
           return peekStableId() === stableId;
-        } catch {
+        } catch (error) {
+          console.warn(`[AUTH-DELETE] swallowed step=fresh_identity_adopt_stable code=${identityErrorCode(error)}`);
           return false;
         }
       },
@@ -1323,7 +1329,8 @@ export async function ensureFreshPostDeletionIdentity(
         try {
           await clearAccountDeletePendingAuthLock();
           return true;
-        } catch {
+        } catch (error) {
+          console.warn(`[AUTH-DELETE] swallowed step=fresh_identity_clear_transition code=${identityErrorCode(error)}`);
           logAuthEvent('auth_account_delete_lock_release_failed');
           return false;
         }
@@ -1396,7 +1403,8 @@ async function ensureFreshStableIdentityForLiveProvider(
             await clearStableId();
             await clearPendingAuthLink();
             resetAnonAuthCacheForSignOut();
-          } catch {
+          } catch (error) {
+            console.warn(`[AUTH-DELETE] swallowed step=live_provider_clear_old_stable code=${identityErrorCode(error)}`);
             return { status: 'fatal_local_guard', phase: lock.phase };
           }
           if (peekStableId() !== null || !await persist('old_stable_cleared')) {
@@ -1451,7 +1459,8 @@ async function ensureFreshStableIdentityForLiveProvider(
         case 'ready':
           try {
             await clearAccountDeletePendingAuthLock();
-          } catch {
+          } catch (error) {
+            console.warn(`[AUTH-DELETE] swallowed step=live_provider_clear_transition code=${identityErrorCode(error)}`);
             logAuthEvent('auth_account_delete_lock_release_failed');
             return { status: 'fatal_local_guard', phase: lock.phase };
           }
@@ -1489,7 +1498,8 @@ async function convergePendingAccountDeleteBeforeCredential(
   let remaining: AccountDeletePendingAuthLock | null;
   try {
     remaining = await readPendingDeleteTransition();
-  } catch {
+  } catch (error) {
+    console.warn(`[AUTH-SIGNIN] swallowed step=converge_read_pending_delete provider=${provider} code=${identityErrorCode(error)}`);
     return false;
   }
   if (!remaining) return true;
@@ -2156,15 +2166,19 @@ export async function signInWithProvider(
 ): Promise<SignInResult> {
   try {
     await assertNoCleanInstallRecoveryTransition();
-  } catch {
+  } catch (transitionError) {
     // A provider tap made after the delete handoff joins that exact durable
     // transition. Other clean-install/recovery mutations remain excluded.
+    // зачем (аудит двойного тапа 11.10): catch был немым — причину отказа замка видно в логе.
+    console.warn(`[AUTH-SIGNIN] transition_guard_busy provider=${provider} code=${identityErrorCode(transitionError)}`);
     const pendingDelete = await readPendingDeleteTransition().catch(swallowAuthAs('[AUTH-SIGNIN]', 'read_pending_delete_transition', null));
     if (!pendingDelete) {
+      console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=clean_recovery_transition_active`);
       return { result: 'error', error: 'clean_recovery_transition_active' };
     }
   }
   if (providerCredentialModeReservation?.mode === 'recovery') {
+    console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=recovery_in_flight`);
     return {
       result: 'error',
       error: `auth_signin_in_progress_recovery_${providerCredentialModeReservation.provider}`,
@@ -2185,6 +2199,7 @@ export async function signInWithProvider(
       googleNativeSignInInFlight = null;
       providerCredentialModeReservation = null;
     } else {
+      console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=native_reservation_held held=${providerCredentialModeReservation.provider}`);
       return {
         result: 'error',
         error: `auth_signin_still_running_${providerCredentialModeReservation.provider}`,
@@ -2196,11 +2211,16 @@ export async function signInWithProvider(
       providerSignInInFlight.provider !== provider
       || providerSignInInFlight.requireCurrentStableIdOwnership !== Boolean(options.requireCurrentStableIdOwnership)
     ) {
+      console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=in_flight_other held=${providerSignInInFlight.provider}`);
       return { result: 'error', error: `auth_signin_in_progress_${providerSignInInFlight.provider}` };
     }
     if (Date.now() - providerSignInInFlight.startedAt >= PROVIDER_SIGN_IN_STALE_MS) {
+      console.warn(`[AUTH-SIGNIN] ignored provider=${provider} reason=in_flight_stale ageMs=${Date.now() - providerSignInInFlight.startedAt}`);
       return { result: 'error', error: `auth_signin_still_running_${provider}` };
     }
+    // зачем (аудит двойного тапа 11.10): повторный тап того же провайдера не запускает второй
+    // вход, а присоединяется к идущему — это видно в логе одной строкой.
+    console.log(`[AUTH-SIGNIN] joined provider=${provider} reason=in_flight`);
     return providerSignInInFlight.task;
   }
   const reservation = createProviderCredentialModeReservation('signin', provider);
@@ -3607,8 +3627,38 @@ export async function signOutAndWipeForAccountSwitch(
       tookMs: Date.now() - startedAt,
     }));
     return result;
+  } catch (error) {
+    // зачем (аудит двойного тапа 11.10): шаг до внутреннего try (возобновление карантина
+    // смены) мог бросить — исключение уходило в Настройки/выход/окно входа, где его не
+    // ловят, и экран застревал в стадии «стираю». Отдаём обычный отказ с причиной: UI
+    // возвращается в исходное состояние, повтор находит маркер и продолжает карантин.
+    const code = identityErrorCode(error);
+    console.warn(`[ACC-MUT] signout:out threw code=${code} tookMs=${Date.now() - startedAt}`);
+    return { ok: false, reason: 'unknown', detail: `threw:${code}` };
   } finally {
     releaseTransitionReservation();
+  }
+}
+
+type AccountSwitchResumeOutcome =
+  | { kind: 'resumed'; resumed: AccountSwitchResumeResult }
+  | { kind: 'threw'; failure: SignOutSwitchResult };
+
+/**
+ * зачем (ревью TG-A3996AF645F1): возобновление карантина идёт ПОСЛЕ записи маркера смены.
+ * Его исключение раньше превращалось в reason 'unknown', а Настройки относят 'unknown' к
+ * исходу «до маркера» и пишут «Аккаунт и локальные данные не изменены» — неправда. Отдаём
+ * recovery_required («перезапусти, чтобы продолжить»): маркер на диске, старт его доведёт.
+ */
+async function resumeAccountSwitchQuarantineForSignOut(
+  stage: 'existing_marker' | 'no_cloud' | 'switch',
+): Promise<AccountSwitchResumeOutcome> {
+  try {
+    return { kind: 'resumed', resumed: await resumePendingAccountSwitchQuarantine() };
+  } catch (error) {
+    const code = identityErrorCode(error);
+    console.warn(`[ACC-MUT] signout:resume_threw stage=${stage} code=${code}`);
+    return { kind: 'threw', failure: { ok: false, reason: 'recovery_required', detail: `resume_threw:${code}` } };
   }
 }
 
@@ -3627,7 +3677,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       beginPremiumAccountTransition();
       return { ok: false, reason: 'recovery_required', detail: 'marker_invalid' };
     }
-    const resumed = await resumePendingAccountSwitchQuarantine();
+    const resumeOutcome = await resumeAccountSwitchQuarantineForSignOut('existing_marker');
+    if (resumeOutcome.kind === 'threw') return resumeOutcome.failure;
+    const resumed = resumeOutcome.resumed;
     return resumed.result === 'completed'
       ? { ok: true, synced: false }
       : resumed.result === 'none'
@@ -3646,7 +3698,9 @@ async function signOutAndWipeForAccountSwitchReserved(
         return { ok: false, reason: 'backup_failed', detail: 'account_switch_backup_unavailable' };
       }
       await prepareDurableAccountSwitch(ownerStableId);
-      const resumed = await resumePendingAccountSwitchQuarantine();
+      const resumeOutcome = await resumeAccountSwitchQuarantineForSignOut('no_cloud');
+      if (resumeOutcome.kind === 'threw') return resumeOutcome.failure;
+      const resumed = resumeOutcome.resumed;
       if (resumed.result !== 'completed') {
         return resumed.result === 'none'
           ? { ok: false, reason: 'recovery_required', detail: 'marker_missing' }
@@ -3834,7 +3888,9 @@ async function signOutAndWipeForAccountSwitchReserved(
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'pending_shard_queue' });
       return { ok: false, reason: 'sync_failed' };
     }
-    const resumed = await resumePendingAccountSwitchQuarantine();
+    const resumeOutcome = await resumeAccountSwitchQuarantineForSignOut('switch');
+    if (resumeOutcome.kind === 'threw') return resumeOutcome.failure;
+    const resumed = resumeOutcome.resumed;
     if (resumed.result !== 'completed') {
       return resumed.result === 'none'
         ? { ok: false, reason: 'recovery_required', detail: 'marker_missing' }
@@ -3936,9 +3992,9 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   console.log('[ACC-MUT] delete:in');
   try {
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
-  } catch {
+  } catch (reserveError) {
     endLocalAccountDeletionAttempt();
-    console.warn('[ACC-MUT] delete:reserve_failed — замок занят, ищем уже идущую попытку');
+    console.warn(`[ACC-MUT] delete:reserve_failed code=${identityErrorCode(reserveError)} — замок занят, ищем уже идущую попытку`);
     // зачем: резервацию мог держать НАШ ЖЕ незавершённый фон (сеть висит) или
     // оборванная прошлая попытка. Раньше это давало пользователю «не удалось
     // подготовить удаление» на каждое повторное нажатие. Повтор может присоединить
@@ -4141,7 +4197,8 @@ async function withLocalStepDeadline<T>(
   let timer: ReturnType<typeof setTimeout> | null = null;
   try {
     return await Promise.race([
-      run().catch(() => onTimeout),
+      // зачем (аудит 11.10): отказ локального шага удаления был немым — причина в логе.
+      run().catch(swallowAuthAs('[AUTH-DELETE]', 'local_step', onTimeout)),
       new Promise<T>((resolve) => {
         timer = setTimeout(() => resolve(onTimeout), timeoutMs);
       }),
@@ -4206,7 +4263,8 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
     }
     if (!locallyWiped) return 'local_wipe_unverified';
   } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: local wipe failed', e);
+    // зачем (аудит 11.10): под __DEV__ причина в релизе пропадала — пишем всегда, без текста ошибки.
+    console.warn(`[AUTH-DELETE] prepare local_wipe_threw code=${identityErrorCode(e)}`);
     return 'local_wipe_unverified';
   }
   if (pendingDeleteLock) {
@@ -4307,13 +4365,14 @@ async function finishAccountDeletion(
       import('./notifications')
         .then(({ cancelAllNotifications }) => cancelAllNotifications())
         .catch((e: unknown) => {
-          if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: notifications cleanup failed', e);
+          // зачем (аудит 11.10): logAuthEvent молчит без согласия на аналитику — причина в лог всегда.
+          console.warn(`[AUTH-DELETE] swallowed step=notifications_cleanup code=${identityErrorCode(e)}`);
           logAuthEvent('auth_account_delete_notifications_cleanup_failed');
         }),
       import('./push_token_registration')
         .then(({ clearPushTokenForServerPush }) => clearPushTokenForServerPush())
         .catch((e: unknown) => {
-          if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: push token cleanup failed', e);
+          console.warn(`[AUTH-DELETE] swallowed step=push_token_cleanup code=${identityErrorCode(e)}`);
           logAuthEvent('auth_account_delete_push_token_cleanup_failed');
         }),
     ]);
@@ -4334,7 +4393,7 @@ async function finishAccountDeletion(
         credentialSafe = ack.authReleased === true && ack.credentialSafe === true;
         logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
       } catch (e) {
-        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue response lost; checking receipt', e);
+        console.warn(`[AUTH-DELETE] enqueue_response_lost code=${identityErrorCode(e)} — проверяем квитанцию`);
       }
       const proof = accountDeleteCredentialProof(pendingDeleteLock);
       if (!credentialSafe && proof) {
@@ -4423,7 +4482,7 @@ async function finishAccountDeletion(
       await signOutCurrentProvider();
     } catch (e) {
       firebaseSignedOut = false;
-      if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: signOut failed', e);
+      console.warn(`[AUTH-DELETE] provider_signout_failed code=${identityErrorCode(e)}`);
     }
 
     // зачем: локальные данные уже стёрты в БЫСТРОЙ фазе (требование владельца —

@@ -100,6 +100,7 @@ import { accountSwitchRequiredCopy, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '.
 import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { identityErrorCode } from '../app/identity_trace';
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
 // обратной связи и без выхода. После ускорения входа (тёплый authEnsureStableLink,
@@ -108,6 +109,14 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // �
 // включаются через 8 с. Задача входа остаётся авторитетной (Promise.race нет),
 // повторный тап держит authOperationGate — контракт stable_link не тронут.
 const SIGN_IN_SLOW_THRESHOLD_MS = 8_000;
+
+/**
+ * зачем (аудит двойного тапа 11.10): catch-блоки восстановления только показывали текст —
+ * причина отказа в лог не попадала. Пишем код без текста ошибки (в тексте может быть почта).
+ */
+function logAuthModalCatch(step: string, error: unknown): void {
+  console.warn(`[AUTH-MODAL] ${step} failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+}
 
 function waitForAuthPromptBusyFrame(): Promise<void> {
   return new Promise((resolve) => {
@@ -800,6 +809,7 @@ function RegistrationPromptModal({
       setRecoveryNow(Date.now());
       setRecoveryCode('');
     } catch (error) {
+      logAuthModalCatch('recovery', error);
       if (!isCurrentRecoveryFlow(flow, generation)) return;
       syncRecoveryState(flow, generation);
       const state = flow.getState();
@@ -830,6 +840,7 @@ function RegistrationPromptModal({
       setRecoveryNow(Date.now());
       setRecoveryCode('');
     } catch (error) {
+      logAuthModalCatch('recovery', error);
       if (!isCurrentRecoveryFlow(existing, generation)) return;
       syncRecoveryState(existing, generation);
       const state = existing.getState();
@@ -857,6 +868,7 @@ function RegistrationPromptModal({
       }
       recoveryCompletionRef.current?.(result.result);
     } catch (error) {
+      logAuthModalCatch('recovery', error);
       if (!isCurrentRecoveryFlow(flow, generation)) return;
       syncRecoveryState(flow, generation);
       const state = flow.getState();
@@ -880,6 +892,7 @@ function RegistrationPromptModal({
       setRecoveryNow(Date.now());
       setRecoveryCode('');
     } catch (error) {
+      logAuthModalCatch('recovery', error);
       if (!isCurrentRecoveryFlow(flow, generation)) return;
       syncRecoveryState(flow, generation);
       const state = flow.getState();
@@ -950,6 +963,7 @@ function RegistrationPromptModal({
         setCleanRecoveryError(recoveryCopy.errorCancelled);
       }
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       const current = flow.getState();
@@ -982,6 +996,7 @@ function RegistrationPromptModal({
       setCleanRecoveryResendAvailableAt(timestamp + Math.max(0, sent.retryAfterSec ?? 0) * 1000);
       setCleanRecoveryCode('');
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       setCleanRecoveryError(getAuthRecoveryErrorMessage(lang, error));
@@ -1007,6 +1022,7 @@ function RegistrationPromptModal({
       }
       recoveryCompletionRef.current?.(result.result);
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       setCleanRecoveryError(getAuthRecoveryErrorMessage(lang, error));
@@ -1029,6 +1045,7 @@ function RegistrationPromptModal({
       }
       recoveryCompletionRef.current?.(result.result);
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       setCleanRecoveryError(getAuthRecoveryErrorMessage(lang, error));
@@ -1055,6 +1072,7 @@ function RegistrationPromptModal({
       setCleanRecoveryResendAvailableAt(timestamp + Math.max(0, sent.retryAfterSec ?? 0) * 1000);
       setCleanRecoveryCode('');
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       setCleanRecoveryError(getAuthRecoveryErrorMessage(lang, error));
@@ -1082,6 +1100,7 @@ function RegistrationPromptModal({
       setCleanRecoveryCode('');
       setCleanRecoveryResendAvailableAt(undefined);
     } catch (error) {
+      logAuthModalCatch('clean_recovery', error);
       if (!isCurrentCleanRecoveryFlow(flow, generation)) return;
       syncCleanRecoveryState(flow, generation);
       setCleanRecoveryError(getAuthRecoveryErrorMessage(lang, error));
@@ -1139,6 +1158,8 @@ function RegistrationPromptModal({
         const result = await signInWithProvider(provider, {
           requireCurrentStableIdOwnership: context === 'startup_recovery',
         });
+        // зачем (аудит 11.10): ранний выход пишет причину; строку возврата ниже сторожит auth_provider_stable_link.
+        if (!isAttemptCurrent(attemptToken)) console.log(`[AUTH-MODAL] sign_in result dropped provider=${provider} result=${result.result} reason=attempt_invalidated`); // guard-ok: ранний выход пишет причину
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
         console.log(`[SIGNIN] ui:returned provider=${provider} result=${result.result} in=${Date.now() - signInStartedAt}ms`);
@@ -1316,9 +1337,11 @@ function RegistrationPromptModal({
         onSignedIn?.(result);
         onClose();
       } catch (e: any) {
+        // зачем (аудит двойного тапа 11.10): причина под __DEV__ в релизе пропадала, а при
+        // закрытом окне catch выходил вовсе немо — пишем всегда, без текста ошибки (там может быть почта).
+        console.warn(`[AUTH-MODAL] sign_in threw provider=${provider} code=${identityErrorCode(e)} current=${isAttemptCurrent(attemptToken) ? 1 : 0}`); // guard-ok: catch пишет причину
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
-        if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
         showInlineError(
           triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'It did not work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
@@ -1363,7 +1386,15 @@ function RegistrationPromptModal({
   // Помогает выйти из «зомби»-состояния после старого battery delete-account-flow,
   // когда auth_links/{providerUid} указывают на удалённый users/{stable_id} и
   // signIn повисает или silently возвращает `cancelled`.
+  // зачем (аудит двойного тапа 11.10): disabled по состоянию видит старое значение в том же
+  // кадре — два тапа запускали два стирания подряд; ссылка ставится синхронно.
+  const resetInFlightRef = useRef(false);
   const handleResetAndRetry = useCallback(async () => {
+    if (resetInFlightRef.current) {
+      console.log('[AUTH-MODAL] reset ignored reason=in_flight'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    resetInFlightRef.current = true;
     setLoadingProvider('google');
     try {
       // DEV-кнопка сброса identity: wipe — сама цель, поэтому не отменяем его
@@ -1374,15 +1405,20 @@ function RegistrationPromptModal({
         'Сброс выполнен',
         'Identity-state очищен. Теперь нажми "Войти через Google" — должен появиться picker аккаунтов.',
       );
+    } catch (error) {
+      // зачем: раньше исключение уходило из onPress необработанным — причина в лог, кнопка снова доступна.
+      console.warn(`[AUTH-MODAL] reset failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
     } finally {
+      resetInFlightRef.current = false;
       setLoadingProvider(null);
     }
   }, [showInlineError]);
 
   const handleLater = useCallback(async () => {
-    if (cleanRecoveryCancellingRef.current) return;
-    if (loadingProvider !== null && !signInSlow) return;
-    if (!recoveryDismissAllowed) return;
+    // зачем (аудит двойного тапа 11.10): отбитый «Позже» был немым — пишем причину.
+    if (cleanRecoveryCancellingRef.current) { console.log('[AUTH-MODAL] later ignored reason=recovery_cancelling'); return; } // guard-ok: ранний выход пишет причину
+    if (loadingProvider !== null && !signInSlow) { console.log(`[AUTH-MODAL] later ignored reason=in_flight provider=${loadingProvider}`); return; } // guard-ok: ранний выход пишет причину
+    if (!recoveryDismissAllowed) { console.log('[AUTH-MODAL] later ignored reason=dismiss_not_allowed'); return; } // guard-ok: ранний выход пишет причину
     logEvent('auth_prompt_dismissed', { context });
     recoveryGenerationRef.current += 1;
     cleanRecoveryGenerationRef.current += 1;

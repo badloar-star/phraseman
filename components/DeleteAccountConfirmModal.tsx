@@ -40,6 +40,8 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
+// зачем (аудит 11.10): запасной toUpperCase в рендере — причину пишем один раз за процесс, а не на каждую букву.
+let localeUpperFallbackLogged = false;
 
 type Props = {
   visible: boolean;
@@ -142,7 +144,11 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         return typeof lang === 'string' && lang.length > 0
           ? base.toLocaleUpperCase(lang)
           : base.toUpperCase();
-      } catch {
+      } catch (error) {
+        if (!localeUpperFallbackLogged) {
+          localeUpperFallbackLogged = true;
+          console.warn(`[ACCOUNT-DELETE-UI] locale_upper_fallback lang=${String(lang).slice(0, 16)} reason=${error instanceof Error ? error.name : typeof error}`); // guard-ok: catch пишет причину
+        }
         return base.toUpperCase();
       }
     },
@@ -222,6 +228,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     if (deleteInFlightRef.current || deleting || (!deleteConfirmMatches && !retryApproved)) {
       if (retryApproved) {
         console.warn('[ACCOUNT-DELETE-UI] retry:skipped', JSON.stringify({ inFlight: deleteInFlightRef.current, deleting })); // guard-ok: ранний выход логируется
+      } else {
+        // зачем (аудит двойного тапа 11.10): отбитый повторный тап «Удалить» был немым — пишем причину.
+        console.log(`[ACCOUNT-DELETE-UI] confirm ignored reason=${deleteInFlightRef.current || deleting ? 'in_flight' : 'word_mismatch'}`); // guard-ok: ранний выход логируется
       }
       return;
     }
@@ -354,7 +363,10 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   confirmDeleteRef.current = handleConfirmDelete;
 
   const handleCancel = useCallback(() => {
-    if (deleting) return;
+    if (deleting) {
+      console.log('[ACCOUNT-DELETE-UI] cancel ignored reason=in_flight'); // guard-ok: ранний выход логируется
+      return;
+    }
     doHaptic();
     onRequestClose();
   }, [deleting, onRequestClose]);

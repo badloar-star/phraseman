@@ -14,6 +14,8 @@ const mockEnergyIntent = {
 let mockAttemptIdFactory = () => 'attempt-stable';
 let mockPendingRecord: Record<string, any> | null = null;
 
+// зачем (10.10): заливка полосы прогресса берёт Animated из react-native, а в этом тесте он урезан до заглушки — полоса тесту не нужна.
+jest.mock('../components/KitProgressFill', () => ({ __esModule: true, default: () => null, KitProgressFill: () => null }));
 jest.mock('react-native', () => ({
   AccessibilityInfo: { setAccessibilityFocus: jest.fn() },
   ActivityIndicator: 'ActivityIndicator', Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar',

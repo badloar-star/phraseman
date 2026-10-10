@@ -13,7 +13,7 @@ describe('progress bars follow kit.css .trk > i', () => {
     expect(src).toContain('KIT_MOTION.progressMs');
     expect(src).toContain('KIT_MOTION.progressEase');
     expect(src).toContain('new Animated.Value(target)');
-    expect(src).toContain('useReduceMotion');
+    expect(src).toContain('reduceMotionChanged');
     expect(src).toContain('useNativeDriver: true');
     expect(src).not.toMatch(/withSpring|react-native-reanimated/);
   });

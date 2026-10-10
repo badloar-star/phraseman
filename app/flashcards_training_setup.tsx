@@ -243,8 +243,8 @@ export default function FlashcardsTrainingSetupScreen() {
   }, [lang, mode]);
 
   const modeUnavailableLabel = triLang(lang, {
-    ru: 'Этот режим сейчас недоступен. Вернитесь и выберите другой режим.',
-    uk: 'Цей режим зараз недоступний. Поверніться та виберіть інший режим.',
+    ru: 'Этот режим сейчас недоступен. Вернись и выбери другой режим.',
+    uk: 'Цей режим зараз недоступний. Повернись та вибери інший режим.',
     en: 'This mode is unavailable right now. Go back and choose another mode.',
     es: 'Este modo no está disponible ahora. Vuelve y elige otro modo.',
     'pt-BR': 'Este modo está indisponível agora. Volte e escolha outro modo.',
@@ -542,7 +542,7 @@ export default function FlashcardsTrainingSetupScreen() {
   });
   /** Витрина на пустом экране: приглашение добавить первый набор. */
   const suggestHeading = triLang(lang, {
-    ru: 'Добавьте первый набор', uk: 'Додайте перший набір', en: 'Add your first pack',
+    ru: 'Добавь первый набор', uk: 'Додай перший набір', en: 'Add your first pack',
     es: 'Añade tu primer pack', 'pt-BR': 'Adicione seu primeiro pacote',
     vi: 'Thêm bộ thẻ đầu tiên', id: 'Tambahkan paket pertama',
     tr: 'İlk paketini ekle', pl: 'Dodaj pierwszy zestaw',
@@ -576,9 +576,9 @@ export default function FlashcardsTrainingSetupScreen() {
   const modeSubtitle = triLang(lang, mode === 'blitz'
     ? { ru: 'Минута на скорость', uk: 'Хвилина на швидкість', en: 'A minute for speed', es: 'Un minuto de velocidad', 'pt-BR': 'Um minuto de velocidade', vi: 'Một phút tốc độ', id: 'Satu menit kilat', tr: 'Hız için bir dakika', pl: 'Minuta na szybkość' }
     : mode === 'speaking'
-      ? { ru: 'Говорите вслух', uk: 'Говоріть уголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }
+      ? { ru: 'Говори вслух', uk: 'Говори вголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }
       : mode === 'recall'
-        ? { ru: 'Пишите по памяти', uk: 'Пишіть із пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }
+        ? { ru: 'Пиши по памяти', uk: 'Пиши з пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }
         : { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' });
   const sizeOptions = mode === 'speaking' || mode === 'recall' || mode === 'truefalse'
     ? [

@@ -1548,7 +1548,8 @@ export default function SettingsMain() {
                 }}
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
-                <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
+                {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
+                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
                   {L('Сменить аккаунт', 'Змінити акаунт', 'Switch account', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
                 </Text>
               </TouchableOpacity>
@@ -1602,7 +1603,7 @@ export default function SettingsMain() {
                 overflow: 'hidden',
               }}
             >
-              <Ionicons name="shield-checkmark" size={28} color={t.correct} />
+              <Ionicons name="shield-checkmark" size={28} color={t.accent} />
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
                 {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
               </Text>
@@ -1984,7 +1985,8 @@ export default function SettingsMain() {
                 }}
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
-                <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
+                {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
+                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
                   {L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
                 </Text>
               </TouchableOpacity>

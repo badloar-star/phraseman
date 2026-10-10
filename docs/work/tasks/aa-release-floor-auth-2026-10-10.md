@@ -37,3 +37,11 @@ Governance-ID: TG-48CE17A2BD68
 - Догрузка после входа → тихий KitSpinner в шапке Главной (флаг в памяти, страховка 30 с).
 - Тесты по одному: aa_release_floor_auth_ui 12/12, restore_prompt 6/6, delete_flow 23, modal_layout 4, onboarding busy 2 / i18n 1, registration lifecycle 4 / recovery 8.
 - Независимое security-ревью: APPROVE. LOW: затяжной pending_shard_spend без развилки «Сменить без сохранения» в онбординге; немой catch в peekLinkedAuthFromCurrentUser (вне правки); окно «удалён навсегда» согласовать с владельцем (правило 22.09).
+
+Governance-ID: TG-C141B0812BAA — отчёт координатору §AA-33 в INBOX (только документ, код не трогается).
+Governance-ID: TG-FA1A1A64910F — очередь координатора: перепрогон 67 своих наборов, живой прогон на эмуляторе (не выполнен: на устройстве нет Google-аккаунта, выход стёр бы аккаунт Сверки).
+Governance-ID: TG-3CFBBB893BC7 — то же, продолжение.
+Governance-ID: TG-05DE080A071D — онбординг: «Сменить без сохранения» при затяжной операции (решение координатора, LOW-1 ревью).
+Governance-ID: TG-56CE037EEFF6 — живой прогон заблокирован (гость Сверки, нет Google на устройстве); итог в INBOX §AA-34.
+Governance-ID: TG-7ED868A05E5B — сторож account_authority_legacy_callsite_guard: перепись +1 peekStableId (осознанный вызов S1e c0333fe6d, только чтение).
+Governance-ID: TG-7EB44C333037 — LOW из ревью развилки: return await в try, текст о последствиях в окне «Сменить без сохранения».

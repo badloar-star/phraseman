@@ -11,6 +11,7 @@
  */
 import { triLang, type Lang } from '../constants/i18n';
 import { accountSwitchRequiredCopy } from './account_switch_copy';
+import { readAccountSwitchUnsavedCardsDecision } from './account_switch_unsaved_cards';
 import { signOutAndWipeForAccountSwitch } from './auth_provider';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from './themed_blocking_alert_queue';
 
@@ -78,6 +79,7 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
     console.log(`[AUTH-SWITCH-OFFER] onboarding cancelled choice=${choice === THEMED_ALERT_DISMISSED ? 'dismiss' : choice}`);
     return { kind: 'cancelled' };
   }
+  const attemptStartedAtMs = Date.now();
   try {
     const result = await signOutAndWipeForAccountSwitch();
     if (result.ok) {
@@ -85,10 +87,84 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
       return { kind: 'switched' };
     }
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_failed reason=${result.reason}`);
+    if (FORCEABLE_SWITCH_REASONS.has(result.reason)) {
+      // зачем (ревью LOW-1): await — чтобы сбой развилки попал в catch с логом ниже.
+      return await offerSwitchWithoutSaving(lang, result.reason, attemptStartedAtMs);
+    }
     return { kind: 'failed', reason: result.reason };
   } catch (error) {
     const reason = error instanceof Error ? error.message.slice(0, 80) : typeof error;
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_threw reason=${reason}`);
     return { kind: 'failed', reason };
   }
+}
+
+/**
+ * зачем (решение координатора 10.10, LOW-1 ревью): при затяжной операции с монетами,
+ * повреждённой очереди или без сети онбординг повторял «попробуй позже» — человек
+ * застревал. Как в Настройках: «Остаться здесь» / «Сменить без сохранения». Аварийная
+ * копия (включая очередь монет) пишется внутри signOutAndWipeForAccountSwitch, поэтому
+ * данные остаются восстановимыми; несохранённые карточки — отдельное предупреждение.
+ */
+const FORCEABLE_SWITCH_REASONS: ReadonlySet<string> = new Set(['sync_failed', 'pending_shard_spend', 'shard_queue_quarantined']);
+
+const STAY_LABEL = { ru: 'Остаться здесь', uk: 'Залишитися тут', en: 'Stay here', es: 'Quedarme aquí', 'pt-BR': 'Ficar aqui', vi: 'Ở lại đây', id: 'Tetap di sini', tr: 'Burada kal', pl: 'Zostań tutaj' } as const;
+const FORCE_LABEL = { ru: 'Сменить без сохранения', uk: 'Змінити без збереження', en: 'Switch without saving', es: 'Cambiar sin guardar', 'pt-BR': 'Trocar sem salvar', vi: 'Đổi mà không lưu', id: 'Ganti tanpa menyimpan', tr: 'Kaydetmeden değiştir', pl: 'Zmień bez zapisywania' } as const;
+
+function forcedSwitchTitle(lang: Lang, reason: string): string {
+  if (reason === 'sync_failed') {
+    return triLang(lang, { ru: 'Прогресс не сохранён', uk: 'Прогрес не збережено', en: 'Progress not saved', es: 'Progreso no guardado', 'pt-BR': 'Progresso não salvo', vi: 'Chưa lưu tiến độ', id: 'Progres belum disimpan', tr: 'İlerleme kaydedilmedi', pl: 'Postęp nie został zapisany' });
+  }
+  if (reason === 'pending_shard_spend') {
+    return triLang(lang, { ru: 'Покупка ещё синхронизируется', uk: 'Покупка ще синхронізується', en: 'The purchase is still syncing', es: 'La compra aún se está sincronizando', 'pt-BR': 'A compra ainda está sincronizando', vi: 'Giao dịch mua vẫn đang đồng bộ', id: 'Pembelian masih disinkronkan', tr: 'Satın alma hâlâ eşitleniyor', pl: 'Zakup nadal się synchronizuje' });
+  }
+  return triLang(lang, { ru: 'Нужна проверка монет', uk: 'Потрібна перевірка монет', en: 'Coins need to be checked', es: 'Se deben revisar las monedas', 'pt-BR': 'É preciso verificar as moedas', vi: 'Cần kiểm tra xu', id: 'Koin perlu diperiksa', tr: 'Jetonların kontrol edilmesi gerekiyor', pl: 'Monety wymagają sprawdzenia' });
+}
+
+/** зачем (ревью LOW-2): рядом с «Сменить без сохранения» честно сказать, что будет потеряно. */
+function forcedSwitchConsequence(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Если сменить без сохранения, то, что не успело сохраниться, исчезнет с этого телефона.',
+    uk: 'Якщо змінити без збереження, те, що не встигло зберегтися, зникне з цього телефона.',
+    en: 'If you switch without saving, anything not yet saved will be removed from this phone.',
+    es: 'Si cambias sin guardar, lo que no se guardó desaparecerá de este teléfono.',
+    'pt-BR': 'Se trocar sem salvar, o que ainda não foi salvo some deste telefone.',
+    vi: 'Nếu đổi mà không lưu, phần chưa kịp lưu sẽ biến mất khỏi điện thoại này.',
+    id: 'Jika ganti tanpa menyimpan, yang belum tersimpan akan hilang dari ponsel ini.',
+    tr: 'Kaydetmeden değiştirirsen, henüz kaydedilmeyenler bu telefondan silinir.',
+    pl: 'Jeśli zmienisz bez zapisywania, to, co nie zostało zapisane, zniknie z tego telefonu.',
+  });
+}
+
+async function askStayOrForce(title: string, body: string, lang: Lang): Promise<boolean> {
+  const choice = await enqueueThemedBlockingChoiceAlert<'stay' | 'force'>(title, body, [
+    { label: triLang(lang, STAY_LABEL), value: 'stay', ghost: true },
+    { label: triLang(lang, FORCE_LABEL), value: 'force' },
+  ]);
+  return choice === 'force';
+}
+
+async function offerSwitchWithoutSaving(lang: Lang, reason: string, attemptStartedAtMs: number): Promise<OnboardingAccountSwitchOutcome> {
+  console.log(`[AUTH-SWITCH-OFFER] onboarding force_offer shown reason=${reason}`);
+  const body = [onboardingAccountSwitchFailureText(lang, reason), forcedSwitchConsequence(lang)].join('\n\n');
+  if (!(await askStayOrForce(forcedSwitchTitle(lang, reason), body, lang))) {
+    console.log(`[AUTH-SWITCH-OFFER] onboarding force_offer stay reason=${reason}`);
+    return { kind: 'cancelled' };
+  }
+  const cards = await readAccountSwitchUnsavedCardsDecision(attemptStartedAtMs);
+  if (cards.kind === 'confirm_unsaved_cards') {
+    console.log(`[AUTH-SWITCH-OFFER] onboarding unsaved_cards_confirm shown reason=${cards.reason}`);
+    const title = triLang(lang, { ru: 'Несохранённые карточки будут удалены с этого телефона', uk: 'Незбережені картки буде видалено з цього телефона', en: 'Unsaved cards will be deleted from this phone', es: 'Las tarjetas sin guardar se eliminarán de este teléfono', 'pt-BR': 'Os cartões não salvos serão apagados deste telefone', vi: 'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này', id: 'Kartu yang belum disimpan akan dihapus dari ponsel ini', tr: 'Kaydedilmemiş kartlar bu telefondan silinecek', pl: 'Niezapisane fiszki zostaną usunięte z tego telefonu' });
+    if (!(await askStayOrForce(title, '', lang))) {
+      console.log('[AUTH-SWITCH-OFFER] onboarding unsaved_cards_confirm stay');
+      return { kind: 'cancelled' };
+    }
+  }
+  const forced = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true });
+  if (forced.ok) {
+    console.log(`[AUTH-SWITCH-OFFER] onboarding forced_switched synced=${forced.synced ? 'yes' : 'no'}`);
+    return { kind: 'switched' };
+  }
+  console.warn(`[AUTH-SWITCH-OFFER] onboarding forced_switch_failed reason=${forced.reason}`);
+  return { kind: 'failed', reason: forced.reason };
 }

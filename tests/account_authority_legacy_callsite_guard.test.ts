@@ -533,7 +533,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
     expect(census).toEqual({
       authProvider: {
         // S2c: +2 — peekStableId только для меток [AUTH-LINK-GOOGLE] (осознанно, без записи).
-        stableIdentityReads: 19,
+        // S1e (c0333fe6d): +1 — peekStableId после возврата в аккаунт: применить локально
+        // сохранённые правки карточек к ключу этого аккаунта (только чтение, без записи).
+        stableIdentityReads: 20,
         stableIdentityWrites: 8,
         authLinkLookups: 1,
         ownerMergeDecisions: 7,
@@ -622,7 +624,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // AA S2c: +2 — peekStableId только для меток трассировки [AUTH-LINK-GOOGLE].
         // AA S2d раунд 2 (H-S2d-2): +2 — аварийная копия гостя и чтение её сводки перед стиранием.
         // AA S2d раунд 3 (§135 ❓2): +2 — откладывание копии без merge, очистка отложенных >30 дн.
-        occurrences: 115,
+        // AA S1e (c0333fe6d): +1 — peekStableId для правок карточек «из будущего» после возврата.
+        occurrences: 116,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -643,7 +646,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 1,
           'call:mergeStableAccountsViaServer': 2,
           'call:onAuthStateChanged': 2,
-          'call:peekStableId': 7,
+          'call:peekStableId': 8,
           'call:pruneShelvedAccountSwitchBackups': 1,
           'call:quiesceCloudSyncForAccountTransition': 4,
           'call:quiesceSyncBeforeStableIdSwap': 3,

@@ -8,6 +8,7 @@ import path from 'path';
 
 const queued: Array<{ title: string; message: string; actions: Array<{ label: string; value: string; ghost?: boolean }> }> = [];
 let nextChoice = 'switch';
+let choiceQueue: string[] = [];
 jest.mock('../app/themed_blocking_alert_queue', () => ({
   THEMED_ALERT_DISMISSED: 'dismiss',
   enqueueThemedBlockingInfoAlert: (title: string, message: string, ok: string) => {
@@ -16,15 +17,17 @@ jest.mock('../app/themed_blocking_alert_queue', () => ({
   },
   enqueueThemedBlockingChoiceAlert: (title: string, message: string, actions: Array<{ label: string; value: string; ghost?: boolean }>) => {
     queued.push({ title, message, actions });
-    return Promise.resolve(nextChoice);
+    return Promise.resolve(choiceQueue.length ? choiceQueue.shift() : nextChoice);
   },
 }));
 const signOutMock = jest.fn();
-jest.mock('../app/auth_provider', () => ({ signOutAndWipeForAccountSwitch: () => signOutMock() }));
+jest.mock('../app/auth_provider', () => ({ signOutAndWipeForAccountSwitch: (...args: unknown[]) => signOutMock(...args) }));
 jest.mock('react-native', () => ({
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   Alert: { alert: jest.fn() },
 }));
+const cardsDecisionMock = jest.fn();
+jest.mock('../app/account_switch_unsaved_cards', () => ({ readAccountSwitchUnsavedCardsDecision: () => cardsDecisionMock() }));
 jest.mock('../app/account_delete_restore_client', () => ({
   fetchAccountDeleteStatus: jest.fn(),
   restoreDeletedAccount: jest.fn(),
@@ -44,7 +47,10 @@ const read = (rel: string) => fs.readFileSync(path.join(root, rel), 'utf8');
 beforeEach(() => {
   queued.length = 0;
   nextChoice = 'switch';
+  choiceQueue = [];
   signOutMock.mockReset();
+  cardsDecisionMock.mockReset();
+  cardsDecisionMock.mockResolvedValue({ kind: 'proceed' });
   __resetCloudProfileRefreshForTests();
 });
 
@@ -95,9 +101,37 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(signOutMock).not.toHaveBeenCalled();
   });
 
-  it('сбой смены — причина наружу, не «успех»', async () => {
+  it('сбой смены без развилки — причина наружу, не «успех»', async () => {
+    signOutMock.mockResolvedValue({ ok: false, reason: 'clean_recovery_transition_active' });
+    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'failed', reason: 'clean_recovery_transition_active' });
+    expect(signOutMock).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(['sync_failed', 'pending_shard_spend', 'shard_queue_quarantined'])('%s → «Остаться здесь» ничего не стирает', async (reason) => {
+    signOutMock.mockResolvedValue({ ok: false, reason });
+    choiceQueue = ['switch', 'stay'];
+    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'cancelled' });
+    expect(signOutMock).toHaveBeenCalledTimes(1);
+    expect(queued[1].actions.map((a) => [a.value, a.ghost === true])).toEqual([['stay', true], ['force', false]]);
+    expect(queued[1].message).toContain('исчезнет с этого телефона');
+  });
+
+  it('«Сменить без сохранения» — та же смена с разрешением стереть без синхронизации, как в Настройках', async () => {
+    signOutMock.mockResolvedValueOnce({ ok: false, reason: 'pending_shard_spend' }).mockResolvedValueOnce({ ok: true, synced: false });
+    choiceQueue = ['switch', 'force'];
+    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'switched' });
+    expect(signOutMock).toHaveBeenCalledTimes(2);
+    expect(signOutMock.mock.calls[0]).toEqual([]);
+    expect(signOutMock.mock.calls[1]).toEqual([{ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }]);
+  });
+
+  it('несохранённые карточки — отдельное предупреждение; «Остаться здесь» ничего не стирает', async () => {
     signOutMock.mockResolvedValue({ ok: false, reason: 'sync_failed' });
-    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'failed', reason: 'sync_failed' });
+    cardsDecisionMock.mockResolvedValue({ kind: 'confirm_unsaved_cards', reason: 'pages_locked' });
+    choiceQueue = ['switch', 'force', 'stay'];
+    await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'cancelled' });
+    expect(queued[2].title).toBe('Несохранённые карточки будут удалены с этого телефона');
+    expect(signOutMock).toHaveBeenCalledTimes(1);
   });
 
   it('оба пути онбординга обрабатывают account_switch_required до общей ошибки', () => {

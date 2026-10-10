@@ -121,5 +121,12 @@
       "community-005"
     ]
   },
-  "total": 105
+  "total": 106,
+  "english_embedded_lessons": {
+    "count": 1,
+    "ids": [
+      "learn-046"
+    ],
+    "gateCheck": "Состояние «Не удалось загрузить урок» (learn.html D18) недостижимо в английском курсе: уроки встроены в приложение; в коде есть только французский remote-failed (lesson1-remote-failed)."
+  }
 }

@@ -14,6 +14,7 @@
 import {
   getTranscription,
   needsTranscriptionRefresh,
+  transcriptionWordSource,
   TRANSCRIPTION_ENGINE_VERSION,
 } from '../app/transcription';
 
@@ -85,16 +86,16 @@ describe('getTranscription: правда или молчание', () => {
       // Пусто — честно. Непусто — обязано совпасть со словарём,
       // а не быть склейкой правил.
       if (actual === '') continue;
-      // В настоящей IPA латинских букв не бывает: их наличие —
-      // верный признак того, что сработали правила, а не словарь.
-      if (/[a-zA-Z]/.test(actual)) {
-        invented.push(`${word} → ${actual}`);
+      // зачем (10.10): латиница в IPA — норма (см. последний случай файла), признак выдумки — источник.
+      // Нерегулярное написание имеет право прийти только из словаря.
+      if (transcriptionWordSource(word) !== 'dictionary') {
+        invented.push(`${word} → ${actual} (${transcriptionWordSource(word)})`);
       }
     }
     expect(invented).toEqual([]);
   });
 
-  it('никогда не возвращает транскрипцию с латиницей внутри', () => {
+  it('фраза получает транскрипцию, только когда каждое слово известно наверняка', () => {
     const phrases = [
       'Where does she put the bag?',
       'How much does it cost?',
@@ -105,7 +106,10 @@ describe('getTranscription: правда или молчание', () => {
     const bad: string[] = [];
     for (const phrase of phrases) {
       const actual = getTranscription(phrase);
-      if (actual !== '' && /[a-zA-Z]/.test(actual)) bad.push(`${phrase} → ${actual}`);
+      if (actual === '') continue;
+      const words = phrase.replace(/[?.!,]/g, '').split(/\s+/);
+      const unsure = words.filter((word) => transcriptionWordSource(word) === 'none');
+      if (unsure.length > 0) bad.push(`${phrase} → ${actual} (без источника: ${unsure.join(', ')})`);
     }
     expect(bad).toEqual([]);
   });

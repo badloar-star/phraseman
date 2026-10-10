@@ -8,7 +8,8 @@ describe('transcription runtime audit markers', () => {
 
     expect(source).not.toContain('fallback');
     expect(source).not.toContain('Fallback');
-    expect(getTranscription('unlistedword')).toMatch(/^\/.+\/$/);
+    // зачем (10.10): «правда или молчание» (21.09) — неизвестное длинное слово не выдумывается, а молчит.
+    expect(getTranscription('unlistedword')).toBe('');
     expect(getTranscription('')).toBe('');
   });
 });

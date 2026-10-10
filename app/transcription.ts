@@ -461,6 +461,19 @@ export function needsTranscriptionRefresh(engineVersion: number | undefined): bo
 }
 
 /**
+ * Откуда берётся транскрипция одного слова: словарь, побуквенные правила или ничего.
+ *
+ * зачем (10.10): сторож «правда или молчание» ловил выдумку по латинице, а правильная IPA сама
+ * содержит латинские буквы (см. 525 из 872 словарных записей). Честный признак — источник ответа.
+ */
+export function transcriptionWordSource(word: string): 'dictionary' | 'rules' | 'none' {
+  const cleaned = word.trim().replace(/[.,!?;:'"()[\]{}]/g, '').toLowerCase();
+  if (!cleaned) return 'none';
+  if (DICT[cleaned]) return 'dictionary';
+  return ruleBasedIPA(cleaned) ? 'rules' : 'none';
+}
+
+/**
  * Returns IPA transcription for any English phrase.
  * Возвращает пустую строку, когда уверенности нет хотя бы в одном слове:
  * карточка тогда показывается без транскрипции.

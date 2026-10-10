@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   channelName: { ...V2_TYPE.body, fontWeight: '700', flexShrink: 1, minWidth: 0 },
   channelChevron: { flexShrink: 0 },
   // video.html `.lang`: высота 35, поля 10/12, r18, зазор 8, текст 15/700; флаг 24×15 r3
-  langPill: { height: 35, borderRadius: 18, justifyContent: 'center', flexShrink: 0 },
+  langPill: { height: 35, borderRadius: 18, justifyContent: 'center', flexShrink: 0 },
   langRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 10, paddingRight: 12 },
   langFlag: { width: 24, height: 15, borderRadius: 3 },
   langText: { fontSize: 16, fontWeight: '700' },

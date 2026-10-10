@@ -9,10 +9,13 @@ describe('visible-result surface integration', () => {
   // удалены вместе с этими фичами; живые экраны ниже сохраняют проверку модели.
   test.each([
     'app/lesson_complete.tsx',
-  ])('%s builds a confirmed completion model', (file) => {
+  ])('%s shows only confirmed completion facts on the shared 2.0 completion screen', (file) => {
+    // зачем (10.10): итог урока — общий экран завершения 2.0 (владелец 01.10: «старые экраны заменить на макетные»);
+    // прежняя модель buildProgressCompletionModel больше не используется. Суть сторожа — показывать только
+    // подтверждённые цифры: неизвестное значение — null, а не выдуманный ноль.
     const source = read(file);
-    expect(source).toContain('buildProgressCompletionModel');
-    expect(source).toMatch(/ProgressCompletionView|ProgressProofBlock/);
+    expect(source).toContain('<V2DoneScreen');
+    expect(source).toContain('correct={lessonCounts?.correct ?? null}');
   });
 
   // зачем: 'arena gates celebration facts...' и 'quiz result keeps...' проверяли

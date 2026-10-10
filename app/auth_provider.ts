@@ -1437,7 +1437,9 @@ function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
 export function peekLinkedAuthFromCurrentUser(): LinkedAuth | null {
   try {
     return getLinkedAuthFromCurrentUser();
-  } catch {
+  } catch (error) {
+    // зачем (ревью «Авторизации» 10.10): немой catch прятал, почему экран «Аккаунт» стартует без привязки.
+    identityTrace('[AUTH-PEEK]', 'linked_auth_peek_failed', { code: identityErrorCode(error) });
     return null;
   }
 }
@@ -1452,7 +1454,8 @@ export function peekAccountCreatedAtMs(): number | null {
     const u = getAuth()?.currentUser;
     const ms = coerceFirebaseMetaTime(u?.metadata?.creationTime, 0);
     return ms > 0 ? ms : null;
-  } catch {
+  } catch (error) {
+    identityTrace('[AUTH-PEEK]', 'created_at_peek_failed', { code: identityErrorCode(error) });
     return null;
   }
 }

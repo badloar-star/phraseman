@@ -6,7 +6,9 @@ const helperSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_com
 
 describe('lesson completion soft upsell integration', () => {
   it('derives first-only candidates from the canonical first-completion grant', () => {
-    expect(source).toContain("firstBonus.status === 'granted'");
+    // зачем (10.10): статус первой отметки передаётся в чистый помощник (candidateAfterLessonGrant),
+    // проверка 'granted' живёт в нём (см. helperSource ниже).
+    expect(source).toMatch(/candidateAfterLessonGrant\(\{\s*status: firstBonus\.status,/);
     expect(helperSource).toMatch(/lessonId === 1[\s\S]*trigger: 'first_lesson'/);
     expect(helperSource).toMatch(/lessonId === freeLessonLimit[\s\S]*trigger: 'free_lessons_complete'/);
     expect(helperSource).not.toMatch(/lessonId\s*>=\s*freeLessonLimit/);

@@ -312,7 +312,8 @@ test('paywall and «Управление подпиской» mark their store o
   const fsMod = require('fs') as typeof import('fs');
   const read = (rel: string) => fsMod.readFileSync(require.resolve('../' + rel), 'utf8');
   expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_purchase', () => Purchases.purchasePackage(pkg))");
-  expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_restore', () => Purchases.restorePurchases())");
+  // зачем (10.10): 65(а) d677a328e — «Проверить статус» (getCustomerInfo) и «Восстановить» идут одним путём; оба внутри метки.
+  expect(read('app/paywall_purchase.ts')).toContain("withPurchaseFlow('paywall_restore', () => (mode === 'check' ? Purchases.getCustomerInfo() : Purchases.restorePurchases()))");
   expect(read('app/manage_subscription_purchase.ts')).toContain("withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any))");
   expect(read('app/manage_subscription.tsx')).toContain("withPurchaseFlow('manage_subscription_restore', () => Purchases.restorePurchases())");
 });

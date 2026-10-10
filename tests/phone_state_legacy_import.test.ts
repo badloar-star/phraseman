@@ -57,7 +57,9 @@ test('snapshot counters use max and sets use union without double count', async 
     }),
     repository,
   });
-  expect(result.projections.xp.total).toBe(120);
+  // зачем (10.10): проекция хранит поле под исходным ключом (projectionFieldName переименовывает только
+  // unlocked_lessons); прежнее имя total снято.
+  expect(result.projections.xp.user_total_xp).toBe(120);
   expect(result.projections.lessons.unlocked).toEqual([1, 2, 3]);
 });
 
@@ -92,13 +94,16 @@ test('repeat import returns the same receipt and preserves journal operation IDs
 });
 
 test('a locally changed register dominates its cloud opening value', async () => {
+  // зачем (10.10): user_name стал внешним чувствительным ключом (scope external, reducer none) и в перенос
+  // не идёт — правило «локальная правка главнее облака» проверяем на портативном регистре app_lang.
   const result = await importLegacyOpeningCheckpoint({
     snapshot: snapshot({
-      local: { user_name: 'New local name' },
-      lastSynced: { user_name: 'Old name' },
-      cloud: { user_name: 'Cloud name' },
+      local: { app_lang: 'uk', user_name: 'New local name' },
+      lastSynced: { app_lang: 'ru', user_name: 'Old name' },
+      cloud: { app_lang: 'es', user_name: 'Cloud name' },
     }),
     repository: memoryRepository(),
   });
-  expect(result.projections.preferences.fields.user_name).toBe('New local name');
+  expect(result.projections.preferences.app_lang).toBe('uk');
+  expect(result.projections.preferences.user_name).toBeUndefined();
 });

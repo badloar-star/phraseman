@@ -59,7 +59,9 @@ function discoverCandidates(rootDir = PROJECT_ROOT) {
     for (const match of text.matchAll(/AsyncStorage\.(?:getItem|setItem|removeItem)\(\s*(['"])([^'"\r\n]+)\1/g)) {
       addCandidate(candidates, match[2], relative);
     }
-    for (const match of text.matchAll(/AsyncStorage\.multi(?:Get|Remove)\(\s*\[([\s\S]{0,8000}?)\]\s*\)/g)) {
+    // зачем (10.10): `multiRemove([...set].map(...))` — вычисляемый массив, а не список строк; ленивый захват
+    // до следующего «])» на 8000 знаков хватал тексты ошибок как ключи (level_spin_star_identity_changed).
+    for (const match of text.matchAll(/AsyncStorage\.multi(?:Get|Remove)\(\s*\[(?!\s*\.\.\.)([\s\S]{0,8000}?)\]\s*\)/g)) {
       for (const value of literalValues(match[1])) addCandidate(candidates, value, relative);
     }
 

@@ -13,8 +13,10 @@ function legacyStorage(initial: Readonly<Record<string, string>>) {
 }
 
 test('comparison classifies known semantic differences per domain', () => {
-  expect(compareDomain('xp', { legacy: 100, phone: 110 })).toEqual({
-    kind: 'phone_ahead', delta: 10,
+  // зачем (10.10): опыта в 2.0 нет — числовой счётчик сравнивается как обычное поле (field_mismatch), отдельной
+  // ветки «телефон впереди на N» больше не производится.
+  expect(compareDomain('streak', { legacy: 3, phone: 4 })).toEqual({
+    kind: 'field_mismatch', counts: { mismatched: 1 },
   });
   expect(compareDomain('lessons', { legacy: [1, 2], phone: [1, 2, 3] }).kind)
     .toBe('phone_superset');
@@ -28,10 +30,12 @@ test('legacy mirror never lowers a legacy monotonic value', async () => {
 
 test('legacy scalar facade is restricted to canonical progress mirrors', async () => {
   const storage = legacyStorage({});
-  await persistLegacyPersonalProgressScalar(storage, 'user_total_xp', 42);
+  // зачем (10.10): из зеркал прогресса остался только streak_count — user_total_xp снят вместе с опытом.
   await persistLegacyPersonalProgressScalar(storage, 'streak_count', 3);
-  expect(await storage.getItem('user_total_xp')).toBe('42');
   expect(await storage.getItem('streak_count')).toBe('3');
+  await expect(persistLegacyPersonalProgressScalar(
+    storage, 'user_total_xp' as never, 42,
+  )).rejects.toThrow('phone_state_legacy_progress_scalar_invalid');
   await expect(persistLegacyPersonalProgressScalar(
     storage, 'week_points' as never, 10,
   )).rejects.toThrow('phone_state_legacy_progress_scalar_invalid');

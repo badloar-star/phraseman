@@ -2597,6 +2597,24 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "low"
+    },
+    {
+      "key": "account_switch_shelved_prune_last_run_v1",
+      "domain": "account",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "progress_reseed_missing_done_v1",
+      "domain": "lessons",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
     }
   ],
   "prefixRules": [
@@ -3076,6 +3094,24 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "account_switch_emergency_backup_shelved_v1:",
+      "domain": "account",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "progress_reseed_missing_done_v1:",
+      "domain": "lessons",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
     }
   ]
 }

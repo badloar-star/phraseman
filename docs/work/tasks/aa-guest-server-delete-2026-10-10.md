@@ -1,6 +1,7 @@
 # Удаление гостя: серверные данные должны удаляться (🔴 релиза 2.0.0)
 
 Governance-ID: TG-20707BD701DC
+Сессия исполнителя (тот же пакет): Governance-ID: TG-C23F1F7BF0C4
 
 ## Outcome
 Гость (анонимный вход), нажавший «Удалить аккаунт», получает удаление серверных данных: надёжно,
@@ -40,3 +41,10 @@ Governance-ID: TG-20707BD701DC
 ## Rollback
 Один коммит; откат `git revert <hash>` возвращает прежнее поведение (локальное стирание без серверного).
 Governance-ID: TG-D81D9F5DBC63 — статус задачи 21:12 в INBOX §AA-36.
+
+## Политика конфиденциальности — черновик правки (применить после итога исполнителя)
+Governance-ID: TG-26FBEB1554D0
+`legal/privacy_policy_en.json` и `_en_ios.json`, раздел «20. Account and data deletion», после абзаца про 14 дней. Сейчас про гостя ничего нет; гостю «войди снова — восстановим» недоступно (способа входа нет).
+Черновик (уточнить по факту кода: срок через очередь = 14 дней; запасной путь `accountDeleteMine` удаляет сразу; есть ли повтор после перезапуска):
+> If you use the App without signing in with Google or Apple (a guest account), the same deletion flow applies, but a guest account has no sign-in method, so it cannot be restored after you delete it. The App clears local data on the device immediately and sends the deletion request in the background; if the device is offline, the App retries the request when it can reach our servers again. Server-side data of a guest account is deleted no later than at the end of the 14-day grace period.
+Затем `npm run legal:sync`, «Last updated» — дата релиза. Публикует владелец.

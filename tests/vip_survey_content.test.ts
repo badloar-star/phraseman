@@ -42,7 +42,8 @@ describe('vip_survey_content', () => {
   it('keeps the weekly priority question in the survey', () => {
     const weeklyQuestion = VIP_SURVEY_QUESTIONS.find((question) => question.id === 'one_thing_week');
 
-    expect(weeklyQuestion?.title.ru).toBe('Что бы вы улучшили прямо на этой неделе?');
+    // зачем (11.10): интерфейс переведён на «ты» (bb416e3cd/a54178f73).
+    expect(weeklyQuestion?.title.ru).toBe('Что бы ты улучшил(а) прямо на этой неделе?');
     expect(weeklyQuestion?.textOnly).toBe(true);
     expect(weeklyQuestion?.options).toEqual([]);
   });

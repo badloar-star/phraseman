@@ -47,8 +47,9 @@ describe("YouTube catalog migration and rollback bridge", () => {
     );
     const legacyRuntime = read("app/lingman_youtube.ts");
     expect(legacyRuntime).toContain("mergePinnedVideos(pinned, feed)");
-    expect(legacyRuntime).toContain(
-      "readCachedVideos()) ?? (isDefaultChannel ? FALLBACK_VIDEOS : [])",
+    // зачем (11.10): чтение кэша вынесено в переменную `cached` — запасной путь тот же: кэш → встроенные видео канала.
+    expect(legacyRuntime).toMatch(
+      /readCachedVideos\(\)\)?;?[\s\S]{0,600}\?\? \(isDefaultChannel \? FALLBACK_VIDEOS : \[\]\)/,
     );
   });
 });

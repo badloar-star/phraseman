@@ -160,11 +160,13 @@ describe('packDescriptionForInterface', () => {
     expect(packDescriptionForInterface(pack, 'es')).toBe('Descripción');
   });
 
-  it('ES community: falls back to UK then RU when descriptionEs empty', () => {
+  // зачем (11.10): у набора сообщества заполнена только локаль автора — показываем его текст как есть
+  // (17b231d7d, communityPackAuthoredDescription: RU → UK → ES → …), иначе описание было бы пустым.
+  it('ES community: falls back to the author description when descriptionEs empty', () => {
     const packUk = basePack({
       descriptionEs: '',
       descriptionUk: 'U',
-      descriptionRu: 'R',
+      descriptionRu: '',
       isCommunityUgc: true,
     });
     expect(packDescriptionForInterface(packUk, 'es')).toBe('U');
@@ -221,7 +223,9 @@ describe('packDescriptionForInterface', () => {
     expect(packDescriptionForInterface(pack, 'pl')).toBe('Opis PL');
   });
 
-  it('planned community descriptions stay empty when no localized metadata exists', () => {
+  // зачем (11.10): то же правило для запланированных языков — UGC показывает текст автора, а не пустоту.
+  // Официальные наборы по-прежнему не берут RU/UK/ES (сторож bundled packs ниже).
+  it('planned community descriptions show the author text when no localized metadata exists', () => {
     const pack = basePack({
       descriptionPtBr: '',
       descriptionVi: '',
@@ -234,11 +238,9 @@ describe('packDescriptionForInterface', () => {
       isCommunityUgc: true,
       isOfficial: false,
     });
-    expect(packDescriptionForInterface(pack, 'pt-BR')).toBe('');
-    expect(packDescriptionForInterface(pack, 'vi')).toBe('');
-    expect(packDescriptionForInterface(pack, 'id')).toBe('');
-    expect(packDescriptionForInterface(pack, 'tr')).toBe('');
-    expect(packDescriptionForInterface(pack, 'pl')).toBe('');
+    for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      expect(packDescriptionForInterface(pack, lang)).toBe('Описание RU');
+    }
   });
 
   it('bundled packs: planned descriptions never reuse RU / UK / ES text', () => {

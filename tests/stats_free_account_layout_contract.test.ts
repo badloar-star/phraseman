@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8');
-const blur = fs.readFileSync(path.join(__dirname, '..', 'components', 'StatsPremiumBlur.tsx'), 'utf8');
+// зачем (11.10): рабочая копия в CRLF — границы блоков ищутся по «\n…», без нормализации block() не находил конец.
+const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8').replace(/\r\n/g, '\n');
+const blur = fs.readFileSync(path.join(__dirname, '..', 'components', 'StatsPremiumBlur.tsx'), 'utf8').replace(/\r\n/g, '\n');
 const activeStart = source.indexOf('<BouncyWrap>');
 const activeEnd = source.indexOf('{false &&', activeStart);
 const activeSurface = source.slice(activeStart, activeEnd);

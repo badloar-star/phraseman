@@ -62,8 +62,12 @@ describe('Rune balance survives every snapshot progress rebuild', () => {
     // не 0 (иначе Главная 22 с показывала «0»). Инвариант прежний: поле stars
     // строится ИЗ текущего значения снапшота, а не теряется.
     const progressBuild = bootstrap.slice(bootstrap.indexOf('function buildProgressSnapshot('));
-    expect(progressBuild).toMatch(/stars:[^\n]*\n?[^\n]*current\.progress\?\.stars/);
-    expect(progressBuild).toMatch(/starsEarnedTotal:[^\n]*\n?[^\n]*current\.progress\?\.starsEarnedTotal/);
+    // зачем (11.10): перенос вынесен в mergeBootRunesIntoProgress(current.progress, bootRunes) — максимум из диска и
+    // снапшота, «неизвестно» = undefined. Проверяем и вызов с текущим progress, и что помощник берёт оба поля из него.
+    expect(progressBuild).toContain('...mergeBootRunesIntoProgress(current.progress, bootRunes)');
+    const merge = bootstrap.slice(bootstrap.indexOf('function mergeBootRunesIntoProgress('));
+    expect(merge).toMatch(/stars:[\s\S]{0,200}progress\?\.stars/);
+    expect(merge).toMatch(/starsEarnedTotal:[\s\S]{0,200}progress\?\.starsEarnedTotal/);
   });
 
   it('home hydration carries stars over', () => {

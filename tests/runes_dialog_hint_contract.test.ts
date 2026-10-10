@@ -16,17 +16,16 @@ describe('Runes dialog hint contract', () => {
     expect(economy).toContain('export const FREE_DIALOG_HINTS_PER_DAY = 3');
   });
 
-  // Главное требование макета: платные ТОЛЬКО готовые ответы. Плата за перевод
-  // заставила бы человека закрыть шторку и потерять обучающую часть целиком.
-  it('never gates the translation or the explanation behind runes', () => {
-    const translationBlock = sheet.slice(
-      sheet.indexOf('coach.translation ?'),
-      sheet.indexOf('coach.suggestions.length > 0'),
-    );
-    expect(translationBlock.length).toBeGreaterThan(0);
-    expect(translationBlock).not.toMatch(/hintEconomy/);
-    const noteBlock = sheet.slice(sheet.indexOf('coach.note ?'), sheet.indexOf('coach.translation ?'));
-    expect(noteBlock).not.toMatch(/hintEconomy/);
+  // зачем (11.10): правило 17.09 «платные только готовые ответы» отменено владельцем 18.09 (48a2f2926: «почему
+  // так — 3 бесплатно в день», лампочка бесплатна). Платная единица — вся шторка разбора; в 2.0 вместо рун замок
+  // Plus (plusGate, D112). Сторож держит: пояснение и перевод открываются ОДНИМ замком (без отдельной платы за
+  // перевод), без tutor-замка шторка открыта, и замок никогда не ходит в сеть.
+  it('opens the explanation and the translation by one shared gate, never a separate translation charge', () => {
+    const sharedGate = '(!gate || gate.revealed) && coach.%s && (!plusGate || plusGate.revealed)';
+    expect(sheet).toContain(sharedGate.replace('%s', 'note'));
+    expect(sheet).toContain(sharedGate.replace('%s', 'translation'));
+    expect(sheet).toContain('`gate` не передан (тьютор) → показываем сразу.');
+    expect(sheet).not.toMatch(/hintEconomy|httpsCallable|fetch\(/);
   });
 
   // Подсказки приезжают вместе с репликой — покупка снимает занавес с уже
@@ -68,7 +67,8 @@ describe('Runes dialog hint contract', () => {
 
   it('logs every early return and swallowed error', () => {
     const catches = economy.match(/catch\s*\(/g) ?? [];
-    const logs = economy.match(/DebugLogger\.(error|info)/g) ?? [];
+    // зачем (11.10): PM-229 добавил noteSwallowedAs — это тоже запись причины в журнал.
+    const logs = economy.match(/DebugLogger\.(error|info)|noteSwallowedAs\(/g) ?? [];
     expect(catches.length).toBeGreaterThan(0);
     expect(logs.length).toBeGreaterThanOrEqual(catches.length);
   });

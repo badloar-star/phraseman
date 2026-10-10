@@ -32,14 +32,18 @@ describe('shard survey idempotency contract', () => {
     expect(repeatedBranch).not.toContain('incrementStats(');
   });
 
-  test('the first grant atomically appends an external fact, response and stats without a balance write', () => {
+  // зачем (11.10): PM-058/D70 — жемчуг за опрос отменён владельцем. Сервер платит SURVEY_SHARD_AMOUNT = 0 и больше не
+  // создаёт экономическое событие (с нулевой дельтой оно бросало бы invalid_external_event_delta). Сторож держит
+  // новую гарантию: первая отправка атомарно пишет claim/ответ/статистику, баланс и экономика не трогаются вовсе.
+  test('the first submission atomically records claim, response and stats with no balance write and no economy event', () => {
     const transactionStart = submit.indexOf('db.runTransaction');
     const transactionEnd = submit.indexOf('\n  return result;', transactionStart);
     const transaction = submit.slice(transactionStart, transactionEnd);
 
     expect(transaction).toContain('tx.set(claimRef');
     expect(transaction).toContain('tx.set(userRef');
-    expect(transaction).toContain('appendExternalEconomyEvent(tx, userRef');
+    expect(serverSource).toContain('const SURVEY_SHARD_AMOUNT = 0;');
+    expect(transaction).not.toContain('appendExternalEconomyEvent(');
     expect(transaction).not.toContain('shards: newBalance');
     expect(transaction).not.toContain('balanceAfter');
     expect(transaction).toContain('tx.set(responseRef');
@@ -57,9 +61,12 @@ describe('shard survey idempotency contract', () => {
     expect(clientSubmit).toContain("'submitShardSurvey', data");
   });
 
-  test('old client receives occurrence id as surveyId and therefore applies a cycle-safe event', () => {
+  // зачем (11.10): клиент больше не применяет событие награды — ненулевой reward от старого сервера только
+  // логируется [SURVEY-REWARD] и НЕ начисляется. Сервер по-прежнему отдаёт occurrence id как surveyId.
+  test('old client receives occurrence id as surveyId and the client never credits a survey reward', () => {
     expect(serverSource).toContain('surveyId: occurrence ? occurrence.occurrenceId : config.surveyId');
     expect(serverSource).toContain('canonicalSurveyId: config.surveyId');
-    expect(controllerSource).toContain('eventId: survey.surveyId');
+    expect(controllerSource).toContain('pearls retired, not credited');
+    expect(controllerSource).not.toMatch(/eventId: survey\.surveyId/);
   });
 });

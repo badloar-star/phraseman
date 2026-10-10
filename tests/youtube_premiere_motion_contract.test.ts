@@ -33,7 +33,8 @@ describe('YouTube premiere premium motion contract', () => {
 
   it('uses dark copy on the bright live CTA and text labels in addition to color', () => {
     // зачем: Liquid Glass — тёмная подпись на светлой кнопке берётся из токена темы, а не из графитового литерала
-    expect(source).toContain('color: g.accentInk');
+    // зачем (11.10): токен тёмной подписи на светлой кнопке переименован в ctaInk (eddde55bd) — смысл тот же.
+    expect(source).toMatch(/color: g\.(?:accentInk|ctaInk)/);
     expect(source).toContain('copy.liveNow');
     expect(source).toContain('copy.upcoming');
   });

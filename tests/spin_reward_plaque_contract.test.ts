@@ -4,30 +4,17 @@ import path from 'path';
 describe('SpinRewardPlaque contract', () => {
   const sourcePath = path.join(process.cwd(), 'components', 'SpinRewardPlaque.tsx');
 
-  test('is the reusable receipt-gated +1 spin presentation standard', () => {
+  // зачем (11.10): Спин удалён в 2.0 (PM-046). Табличка оставлена границей для старых квитанций, которые ещё могут
+  // дойти до экрана итогов, — она обязана НИЧЕГО не показывать и не играть звук награды. Экран итогов не ждёт её
+  // onComplete (только прячет слот), и ни один экран больше не передаёт spinReward.
+  test('is a retired boundary that never renders or plays a spin reward', () => {
     expect(fs.existsSync(sourcePath)).toBe(true);
     const source = fs.readFileSync(sourcePath, 'utf8');
 
     expect(source).toContain('export type SpinRewardPlaqueProps');
-    expect(source).toContain('amount: 1;');
     expect(source).toContain('receiptId: string;');
-    expect(source).toContain('visible: boolean;');
-    expect(source).toContain('onComplete: () => void;');
-    expect(source).toContain("soundDirector.request('pm.reward.small'");
-    expect(source).toContain('useReducedMotion');
-    expect(source).toContain('translateY');
-    expect(source).toContain("name=\"sync\"");
-    expect(source).toContain('const APPEARANCE_DELAY_MS = 280;');
-    expect(source).toContain('const HOLD_MS = 1_100;');
-    expect(source).toContain('const EXIT_MS = 650;');
-    expect(source).toContain('minHeight: 76');
-    expect(source).toContain('width: 52');
-    expect(source).toContain('backgroundColor: theme.bgCard');
-    expect(source).not.toContain('rewardModalSoftSurface');
-    expect(source).toContain('borderWidth: 2');
-    expect(source).toContain('elevation: 24');
-    expect(source).toContain('staticPresentation?: boolean');
-    expect(source).toContain('staticPresentation = false');
-    expect(source).toContain('if (staticPresentation) return undefined');
+    expect(source).toMatch(/export const SpinRewardPlaque = memo\(function SpinRewardPlaque\([^)]*\) \{\s*void props;\s*return null;\s*\}\)/);
+    expect(source).not.toContain('soundDirector');
+    expect(source).not.toContain('Animated');
   });
 });

@@ -35,6 +35,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import AchievementShelfStageArt from './AchievementShelfStageArt';
 import { achievementShelfMaterials } from './achievementShelfMaterials';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 type Props = {
   items: readonly Achievement[];
@@ -342,7 +343,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.28,
     shadowRadius: 18,
-    elevation: 8,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   item: {
     height: 284,

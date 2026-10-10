@@ -41,6 +41,7 @@ import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 const EXEMPT_COLOR_1 = 'rgba(99,217,143,0.35)'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
 const EXEMPT_COLOR_2 = '#2E9E63'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
@@ -860,7 +861,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   notificationUndoText: {
     flex: 1,

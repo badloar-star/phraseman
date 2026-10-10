@@ -25,6 +25,7 @@ import Svg, { Circle, Defs, Path, RadialGradient, Rect, Stop } from 'react-nativ
 
 import { DebugLogger } from '../../app/debug-logger';
 import { CoinImage } from './ProfileCardCoin';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 export const RANK_UP_DURATION_MS = 6500;
 const CLAMP = Extrapolation.CLAMP;
@@ -106,7 +107,7 @@ function SparkDot({ t, spark, inward, cx, cy }: { t: SharedValue<number>; spark:
       style={[{
         position: 'absolute', left: cx - 3.5, top: cy - 3.5, width: 7, height: 7, borderRadius: 3.5,
         backgroundColor: '#FFF3CF', shadowColor: '#FFDC96', shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация повышения ранга на карточке профиля
-        elevation: 3,
+        ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
       }, style]}
     />
   );

@@ -22,6 +22,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 /** Сколько карточек показываем в стопке — больше пяти глаз всё равно не считает. */
 const MAX_VISIBLE_CARDS = 5;
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
 });
 

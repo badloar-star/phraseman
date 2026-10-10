@@ -56,6 +56,7 @@ import { PC, t4 } from './profile-card/profile_card_copy';
 import { usePlayerProfileSocial } from './profile-card/usePlayerProfileSocial';
 import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
 import ReanimatedView from 'react-native-reanimated';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
@@ -633,7 +634,7 @@ const styles = StyleSheet.create({
   banner: {
     height: 38, borderRadius: 19, paddingLeft: 8, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8,
     backgroundColor: 'rgba(255,255,255,0.95)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-    shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, elevation: 8, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+    shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
   },
   bannerText: { color: '#111111', fontSize: 16, fontWeight: '700' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
   dim2: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный

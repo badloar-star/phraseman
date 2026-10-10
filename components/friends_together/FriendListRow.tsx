@@ -9,6 +9,7 @@ import { FlowText } from '../text-integrity';
 import { type Lang, triLang } from '../../constants/i18n';
 import type { FriendSocialEvent } from '../../app/friend_social_events';
 import FriendEventMarker from './FriendEventMarker';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 export interface FriendListRowProps {
   friendUid: string;
@@ -140,7 +141,7 @@ const styles = {
     shadowOpacity: 0.72,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 8,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   bodyTarget: {
     flex: 1,

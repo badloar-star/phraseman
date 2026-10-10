@@ -52,6 +52,7 @@ import { claimVipSurveyReviewPrompt } from '../app/vip_survey_review_prompt';
 import { VIP_SURVEY_ID } from '../app/vip_survey_content';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -1429,7 +1430,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
-    elevation: 10,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   // Треугольный «клапан» конверта — два больших борта сходятся в центре сверху.
   envelopeFlap: {

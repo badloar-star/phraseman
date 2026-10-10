@@ -47,7 +47,8 @@ describe('two actual startup settings consumers', () => {
       'hydrateStatsCacheFromStorage', 'primeRemoteConfigCacheFromStorage',
       'hydrateHapticsTapFromStorage', 'hydrateAnalyticsConsentFromStorage',
       'hydrateAiExplainConsentFromStorage', 'hydrateAiDialogConsentFromStorage',
-      'hydrateAiVoiceConsentFromStorage', 'hydrateAgeGateFromStorage',
+      // зачем (10.10): согласие на голосовой ИИ снято снимком 2.0 (efe19ae9d) — на старте его больше не читают.
+      'hydrateAgeGateFromStorage',
     ];
     const context: Record<string, unknown> = {
       effectDisposed: false, closeStartupSettingsReadScope: null, studyTarget: 'en',
@@ -79,6 +80,17 @@ describe('two actual startup settings consumers', () => {
       // нужны те же имена, иначе код падает ReferenceError ещё до проверки.
       noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
       noteSwallowedHandler: (_tag: string) => () => undefined,
+      // зачем (11.10): снимок старта пишет диагностику [BOOT-SNAPSHOT] через console — без него песочница падала
+      // ReferenceError до второго чтения настроек, и сторож видел «чтение одно» вместо реального поведения.
+      console: { log: () => undefined, warn: () => undefined, error: () => undefined },
+      // зачем (11.10): ускорение старта 05.10 (2680e8266/82cfbc031) добавило в снимок чтение прогресса уроков в том же
+      // multiGet и досылку рун — без этих имён песочница падала ReferenceError, и сторож показывал «нет второго чтения»
+      // вместо реального поведения. Логика чтения настроек здесь настоящая, заглушены только посторонние части.
+      BOOT_LESSON_COUNT: 0,
+      lessonProgressKey: (lesson: number) => `lesson${lesson}_progress`,
+      lastOpenedLessonCorrectFromBoot: () => null,
+      storageStudyTarget: (target: unknown) => target ?? 'en',
+      mergeBootRunesIntoProgress: (progress: unknown) => progress,
     };
     instantTasks.forEach((name) => { context[name] = async () => { calls.push(name); }; });
     // Execute the real prime function and real root hydration block. Only unrelated
@@ -95,7 +107,7 @@ describe('two actual startup settings consumers', () => {
     await Promise.resolve();
     expect(boot.store.getUserSettingsSnapshot().speechRate).toBe(1.3);
     expect(boot.scope.peek()).not.toBeNull();
-    expect(boot.calls).toHaveLength(13); // Other startup tasks already dispatched.
+    expect(boot.calls).toHaveLength(12); // Other startup tasks already dispatched (11 instant + snapshot prime).
     boot.progress.resolve(null);
     await boot.done;
     expect(storage.getItem).toHaveBeenCalledTimes(1);

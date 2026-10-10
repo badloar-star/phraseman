@@ -106,8 +106,9 @@ describe('lesson phrases regression', () => {
     expect(plural).not.toHaveProperty('targetGrammarNumber');
     expect(singular?.words.map((word) => word.correct)).toEqual(['¿', 'Hay', 'un', 'problema', '?']);
     expect(plural?.words.map((word) => word.correct)).toEqual(['¿', 'Hay', 'problemas', '?']);
-    expect(singular?.wordsEn?.map((word) => word.correct)).toEqual(['Is', 'there', 'a', 'problem']);
-    expect(plural?.wordsEn?.map((word) => word.correct)).toEqual(['Are', 'there', 'problems']);
+    // зачем (10.10): английская сборка вопросов получила отдельную плитку «?» (15e14f408, 04.10) — как «?» в испанской.
+    expect(singular?.wordsEn?.map((word) => word.correct)).toEqual(['Is', 'there', 'a', 'problem', '?']);
+    expect(plural?.wordsEn?.map((word) => word.correct)).toEqual(['Are', 'there', 'problems', '?']);
   });
 
   it('reported phrase translations stay aligned with English answers', () => {
@@ -313,6 +314,7 @@ describe('lesson phrases regression', () => {
       'there',
       'much',
       'time',
+      '?',
     ]);
   });
 });

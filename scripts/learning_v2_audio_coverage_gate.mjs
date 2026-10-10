@@ -20,6 +20,14 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LOG = '[V2-AUDIO-GATE]';
 const TEST = 'tests/learning_v2_lesson1_bundle_builds.test.ts';
 
+// зачем (координатор 10.10 02:25): в стор-сборке Learning V2 вырезан router.ctx.js — озвучка его занятий сборку
+// не блокирует, но только при доказанном вырезании всех маршрутов (scripts/lib/store_release_surface.mjs).
+const surface = await import('./store_release_surface.mjs').catch((error) => {
+  console.warn(`${LOG} помощник поверхности стор-сборки не загрузился (${error instanceof Error ? error.message : String(error)}) — ворота строгие`);
+  return null;
+});
+if (surface && surface.announceLearningV2StoreSkip(LOG, ROOT)) process.exit(0);
+
 if (!fs.existsSync(path.join(ROOT, TEST))) {
   console.warn(`${LOG} WARNING: нет файла ${TEST} — гейт озвучки не выполнен (код 0, чтобы не жечь сборку из-за окружения)`);
   process.exit(0);

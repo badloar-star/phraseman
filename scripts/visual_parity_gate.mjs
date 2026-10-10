@@ -236,6 +236,24 @@ export function evaluateRegistry(root, registry, options = {}) {
   return { ok: violations.length === 0, counts, violations };
 }
 
+/**
+ * Явный обход ворот владельцем: PARITY_GATE_WAIVER=owner-YYYY-MM-DD:<причина>.
+ *
+ * зачем (координатор 10.10 02:25): ворота стоят в eas-build-post-install, и пока реестр не сверен, облачная сборка
+ * падает на сервере. По умолчанию ворота СТРОГИЕ; это рычаг только владельца — значение обязано нести дату и причину,
+ * печатается громко с цифрами, а кривое значение — отказ, а не тихий пропуск.
+ * @returns {{ ok: true, date: string, reason: string } | { ok: false, error: string } | null} null — обхода нет.
+ */
+export function parseParityWaiver(raw) {
+  if (raw === undefined || raw === null || String(raw).trim() === '') return null;
+  const match = /^owner-(\d{4}-\d{2}-\d{2}):(.+)$/.exec(String(raw).trim());
+  if (!match) return { ok: false, error: 'формат: owner-YYYY-MM-DD:<причина>' };
+  if (!Number.isFinite(Date.parse(`${match[1]}T00:00:00Z`))) return { ok: false, error: `дата не читается: ${match[1]}` };
+  const reason = match[2].trim();
+  if (reason.length < 5) return { ok: false, error: 'причина обязательна (не короче 5 знаков)' };
+  return { ok: true, date: match[1], reason };
+}
+
 /** Каждая строка матрицы обязана иметь строку реестра (иначе экран можно «потерять» из проверки). */
 export function missingMatrixRows(registry, matrixRows) {
   const pad = (n) => String(n).padStart(3, '0');
@@ -255,6 +273,17 @@ async function main() {
   const maxLines = Number(value('--max-lines', '40'));
 
   if (!fs.existsSync(registryPath)) {
+    // зачем (10.10): на сервере EAS каталога docs/ нет (.easignore) — реестра там не бывает. Без обхода владельца это
+    // отказ, как и раньше; с явным обходом — громкая строка и сборка продолжается.
+    const missingWaiver = parseParityWaiver(process.env.PARITY_GATE_WAIVER);
+    if (missingWaiver && missingWaiver.ok) {
+      console.warn(`${LOG} ВОРОТА ПАРИТЕТА ОБОЙДЕНЫ ВЛАДЕЛЬЦЕМ: реестра нет в этом окружении (${registryPath}) — строки не проверены`);
+      console.warn(`${LOG}   дата обхода: ${missingWaiver.date} · причина: ${missingWaiver.reason}. Сверку делает release:precheck локально.`);
+      return 0;
+    }
+    if (missingWaiver && !missingWaiver.ok) {
+      console.error(`${LOG} ОТКАЗ: PARITY_GATE_WAIVER задан неверно (${missingWaiver.error}) — обход не принят.`);
+    }
     console.error(`${LOG} ОТКАЗ: нет реестра ${registryPath} — релиз запрещён (npm run parity:build)`);
     return 1;
   }
@@ -290,9 +319,23 @@ async function main() {
     console.log(`${LOG} OK: приложение = макет по всем строкам реестра`);
     return 0;
   }
-  console.error(`${LOG} ОТКАЗ: релиз запрещён (CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»). Хоть одно расхождение или несверенный экран.`);
   const byCode = {};
   for (const violation of result.violations) byCode[violation.code] = (byCode[violation.code] ?? 0) + 1;
+  const waiver = parseParityWaiver(process.env.PARITY_GATE_WAIVER);
+  if (waiver && !waiver.ok) {
+    console.error(`${LOG} ОТКАЗ: PARITY_GATE_WAIVER задан неверно (${waiver.error}) — обход не принят, ворота строгие.`);
+  } else if (waiver && waiver.ok) {
+    const notAccepted = counts.total - counts.match - counts.removed_by_owner - counts.no_release_surface;
+    console.warn(`${LOG} ════════════════════════════════════════════════════════════════════`);
+    console.warn(`${LOG} ВОРОТА ПАРИТЕТА ОБОЙДЕНЫ ВЛАДЕЛЬЦЕМ: строк не принято ${notAccepted} из ${counts.total}`);
+    console.warn(`${LOG}   дата обхода: ${waiver.date} · причина: ${waiver.reason}`);
+    console.warn(`${LOG}   match=${counts.match} pending=${counts.pending} no_mockup=${counts.no_mockup} нарушений=${result.violations.length}`);
+    console.warn(`${LOG}   по причинам: ${Object.entries(byCode).map(([code, n]) => `${code}=${n}`).join(' ')}`);
+    console.warn(`${LOG}   Сборка НЕ остановлена. После релиза удалите PARITY_GATE_WAIVER из окружения EAS.`);
+    console.warn(`${LOG} ════════════════════════════════════════════════════════════════════`);
+    return 0;
+  }
+  console.error(`${LOG} ОТКАЗ: релиз запрещён (CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»). Хоть одно расхождение или несверенный экран.`);
   console.error(`${LOG} по причинам: ${Object.entries(byCode).map(([code, n]) => `${code}=${n}`).join(' ')}`);
   for (const violation of result.violations.slice(0, maxLines)) console.error(`${LOG}   ${violation.id} · ${violation.code} · ${violation.detail}`);
   if (result.violations.length > maxLines) console.error(`${LOG}   … и ещё ${result.violations.length - maxLines} (--max-lines=N или --json)`);

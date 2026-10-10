@@ -7,6 +7,10 @@ scripts/*
 !scripts/release_keys_gate.mjs
 !scripts/eas_production_version_gate.mjs
 !scripts/eas_ios_development_entitlements.mjs
+# зачем (Ядро 10.10): eas-build-post-install запускает эти скрипты — без них сборка падает «модуль не найден»
+!scripts/learning_v2_audio_coverage_gate.mjs
+!scripts/visual_parity_gate.mjs
+!scripts/store_release_surface.mjs
 docs/
 qa-artifacts/
 tmp/

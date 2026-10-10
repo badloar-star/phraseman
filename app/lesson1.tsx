@@ -137,6 +137,7 @@ import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './les
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import EnergyBar from '../components/EnergyBar';
+import { lv2Alpha } from '../components/learning-v2/LearningV2Glass';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
@@ -321,8 +322,8 @@ function shuffleLessonPhraseOrder(phraseCount: number): number[] {
 }
 
 /**
- * зачем (Сверка learn-028/029, макет learn.html `lhead`: «⚡ N» в шапке урока): пилюля энергии показывается всегда, кроме безлимита
- * (у Plus в макете её нет — `o.plus ? ''`). Только показ баланса: списание 20 ⚡ при входе и замки урока не затронуты.
+ * зачем (Сверка learn-028/029, макет learn.html lhead: «⚡ N» в шапке урока): пилюля энергии показывается всегда, кроме безлимита
+ * (у Plus в макете её нет). Только показ баланса: списание 20 ⚡ при входе и замки урока не затронуты.
  */
 function LessonEnergyPill() {
   const { isUnlimited } = useEnergy();
@@ -586,6 +587,8 @@ const LessonContent = React.memo(function LessonContent({
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const progressCellTheme = useMemo(() => ({ ...t, bgSurface2: glass.line }), [t, glass.line]);
+  // зачем (Сверка learn-028/029, макет learn.html .pill.hearts): попытки — нейтральная пилюля стекла (светлые сердца, потерянные гаснут до 22 %), как в занятии Learning V2
+  const heartsPill = useMemo(() => ({ fill: glass.text, empty: lv2Alpha(glass.text, 0.22), plate: glass.opaqueControl }), [glass.text, glass.opaqueControl]);
   const toolChip = {
     flex: 1, alignItems: 'center' as const, justifyContent: 'center' as const, minHeight: 56,
     marginHorizontal: 3, paddingVertical: 8, borderRadius: 18, backgroundColor: glass.opaqueControl,
@@ -1061,6 +1064,7 @@ const LessonContent = React.memo(function LessonContent({
             remaining={attemptsRemaining}
             locale={lang}
             testID="lesson1-session-attempts"
+            glassPill={heartsPill}
           />
 
           <View ref={runeFlightCounterRef} collapsable={false}>

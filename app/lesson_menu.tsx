@@ -477,7 +477,7 @@ function LessonMenu() {
   const showReplayCta = finishedOnce && !lessonLaunchBlocked;
   const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
   const lessonPrepHintText = triLang(lang, {
-    ru: 'Загляни в «Словарь» и «Теорию» — там правила, конструкции и новые слова урока. Вернуться можно в любой момент.',
+    ru: 'Загляни в «Слова урока» и «Теорию» — там новые слова, правила и конструкции. Вернуться можно в любой момент.',
     uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
     es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. En «Teoría» encontrarás reglas y estructuras explicadas en detalle. Puedes volver a estos materiales en cualquier momento.',
     en: 'Before the lesson, you can open "Vocabulary" and practice new words. In "Theory" you\'ll find rules and structures explained in detail. You can come back to these materials any time.',
@@ -888,7 +888,8 @@ function LessonMenu() {
     },
     {
       testID: 'lesson-menu-words',
-      label: s.lessonMenu.vocab,
+      // зачем (Сверка learn-020, макет learn.html B): в русском интерфейсе строка называется «Слова урока» (в остальных языках прежние названия — подсказка ниже ссылается на них)
+      label: triLang(lang, { ru: 'Слова урока', uk: s.lessonMenu.vocab, en: s.lessonMenu.vocab, es: s.lessonMenu.vocab, 'pt-BR': s.lessonMenu.vocab, vi: s.lessonMenu.vocab, id: s.lessonMenu.vocab, tr: s.lessonMenu.vocab, pl: s.lessonMenu.vocab }),
       sub: frenchAuxiliarySourceGated
         ? triLang(lang, {
             ru: 'Французский словарь урока пока готовится. Английские слова скрыты.',
@@ -963,7 +964,8 @@ function LessonMenu() {
     {
       testID: 'lesson-menu-irregular-verbs',
       hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
-      label: s.lessonMenu.verbs,
+      // зачем (Сверка learn-020, макет learn.html B2): «Неправильные глаголы» (ru); остальные языки — прежние строки
+      label: triLang(lang, { ru: 'Неправильные глаголы', uk: s.lessonMenu.verbs, en: s.lessonMenu.verbs, es: s.lessonMenu.verbs, 'pt-BR': s.lessonMenu.verbs, vi: s.lessonMenu.verbs, id: s.lessonMenu.verbs, tr: s.lessonMenu.verbs, pl: s.lessonMenu.verbs }),
       sub: frenchAuxiliarySourceGated
         ? triLang(lang, {
             ru: 'Французские глаголы урока пока готовятся. Английский список скрыт.',

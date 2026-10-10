@@ -98,8 +98,12 @@ describe('purpose-specific playback audio modes', () => {
     // Файл записи живёт до следующей попытки/закрытия панели — потом удаляется.
     expect(speakingPanel).toContain('deleteRecordingFile');
     expect(speakingPanel).toContain('persistRecording: true');
-    // AI dialog has no replay and can still opt out completely.
-    expect(aiDialog).toContain('persistRecording: false');
+    // зачем (11.10): в диалоге голосовая реплика стала воспроизводимым сообщением (d41a81887), поэтому запись
+    // сохраняется — но каждая удаляется своим deleteDialogueVoiceRecording (определение + вызовы при смене/закрытии).
+    expect(aiDialog).toContain('persistRecording: true');
+    expect(aiDialog.split('deleteDialogueVoiceRecording(').length - 1).toBeGreaterThanOrEqual(2);
+    // Путь без реплея (слово в SpeakingPanel) по-прежнему не пишет файл совсем.
+    expect(speakingPanel).toContain('persistRecording: false');
   });
 });
 

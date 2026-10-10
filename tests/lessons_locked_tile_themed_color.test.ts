@@ -74,7 +74,10 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
     expect(lockAt).toBeGreaterThan(-1);
     const lockIcon = flat.slice(lockAt, flat.indexOf('/>', lockAt));
     expect(lockIcon).toContain('lockedCardHasLightFill');
-    expect(lockIcon).toContain('"rgba(255,255,255,0.55)"');
+    // зачем (11.10): волна цветов Тем вынесла светлый тон в именованную константу EXEMPT_COLOR_20 (theme-exempt),
+    // значение то же. Проверяем и ссылку в иконке, и само значение константы.
+    expect(lockIcon).toMatch(/"rgba\(255,255,255,0\.55\)"|EXEMPT_COLOR_20/);
+    expect(source).toMatch(/const EXEMPT_COLOR_20 = 'rgba\(255,255,255,0\.55\)';/);
     expect(lockIcon).not.toContain('rgbaHex(lessonAccent,0.46)');
   });
 });

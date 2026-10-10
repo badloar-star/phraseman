@@ -8,7 +8,9 @@ const source = fs.readFileSync(
 
 describe('DEV motion showcase release inventory', () => {
   it('excludes documentation-only notes from the executable hybrid list', () => {
-    expect(source).toContain("item.kind !== 'note'");
+    // зачем (11.10): проверка заметок переписана ранним выходом `if (item.kind === 'note') return false;` — та же
+    // гарантия, другой синтаксис.
+    expect(source).toMatch(/item\.kind !== 'note'|if \(item\.kind === 'note'\) return false;/);
     expect(source).toContain('items.filter(isExecutableHybridItem)');
   });
 });

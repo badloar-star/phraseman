@@ -64,6 +64,10 @@ jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
   whenRecordingAudioReady: jest.fn(async () => true),
 }));
 jest.mock('../app/remote_flags', () => ({ isSpeakingEnabled: () => true }));
+// зачем (11.10): SpeechBeat теперь пишет немые сбои в DebugLogger (PM-229) и спрашивает, есть ли распознавание на
+// устройстве. Настоящие модули тянут firebase/config с Platform.OS, которого нет в урезанной заглушке react-native.
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn(), warn: jest.fn(), info: jest.fn() } }));
+jest.mock('../app/speech_device_availability', () => ({ isSpeechUnavailableOnDevice: () => false }));
 jest.mock('../app/speech_recognition_module', () => ({
   isSpeechRecognitionAvailable: () => true,
   loadSpeechRecognitionModule: () => mockSpeech,

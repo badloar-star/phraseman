@@ -16,7 +16,10 @@ describe('speech capture callbacks stay owned by the session that created them',
     const source = read('components/onboarding_aha/SpeechBeat.tsx');
     expect(source).toMatch(/finishAttempt = useCallback\(\(generation: number\)[\s\S]*generation !== captureGenerationRef\.current/);
     expect(source).toMatch(/addListener\('audioend',[\s\S]{0,180}if \(!isCurrentSession\(\)\) return/);
-    expect(source).toContain('safeCall(() => player.play())');
+    // зачем (11.10): повтор записи создаёт плеер, проверяет актуальность (claim + поколение воспроизведения) и только
+    // потом играет; сбой play() гасит повтор, а не роняет экран.
+    expect(source).toMatch(/if \(!claim\.isCurrent\(\) \|\| playbackGeneration !== playbackGenerationRef\.current\) \{\s*safeCall\(\(\) => player\.release\(\)\);/);
+    expect(source).toContain('try { player.play(); } catch { stopReplay(); }');
   });
 
   test('SpeakingPanel gates word settlement, onPass path, and auto-advance by session', () => {
@@ -25,10 +28,11 @@ describe('speech capture callbacks stay owned by the session that created them',
     expect(source).toMatch(/markCleanedWord = useCallback\([\s\S]*captureGeneration !== captureGenerationRef\.current/);
     expect(source).toMatch(/autoAdvanceRef\.current = setTimeout\([\s\S]{0,180}captureGeneration !== captureGenerationRef\.current/);
     expect(source).toMatch(/finishAttempt = useCallback\([\s\S]{0,300}captureGeneration !== captureGenerationRef\.current/);
-    const audioModeContinuation = source.slice(
-      source.indexOf('await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)'),
-      source.indexOf('// Watchdog:', source.indexOf('await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE)')),
-    );
+    // зачем (11.10): режим записи теперь берётся арендой useManagedRecordingAudio (recordingAudio.begin) вместо
+    // setManagedAudioMode — проверки после него прежние.
+    const audioBegin = source.indexOf('audioReady = await recordingAudio.begin()');
+    expect(audioBegin).toBeGreaterThan(-1);
+    const audioModeContinuation = source.slice(audioBegin, source.indexOf('// Watchdog:', audioBegin));
     expect(audioModeContinuation).toMatch(/if \(!mountedRef\.current \|\| !runtimeActiveRef\.current \|\| captureGeneration !== captureGenerationRef\.current\) return;/);
     expect(audioModeContinuation).toMatch(/if \(!systemHoldPressActiveRef\.current\) \{[\s\S]*cleanupListeners\(\)/);
   });

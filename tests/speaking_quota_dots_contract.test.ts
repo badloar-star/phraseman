@@ -93,7 +93,9 @@ describe('speaking quota dots: подключены ВСЕ микрофоны', 
   it('карточная сессия, оплаченная квотой тренировок, не врёт голосовым остатком', () => {
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
     expect(source).toContain('SESSION_AUTHORIZED_QUOTA');
-    expect(source).toContain('sessionAuthorized ? SESSION_AUTHORIZED_QUOTA : speakingGate.quota');
+    // зачем (11.10): на устройстве без распознавания речи (speechNa) кнопка выключена, и ряд попыток тоже не
+    // показывает «потраченные» точки — это та же правда, что и для оплаченной сессии.
+    expect(source).toMatch(/sessionAuthorized(?: \|\| speechNa)? \? SESSION_AUTHORIZED_QUOTA : speakingGate\.quota/);
   });
 
   it('соседи по транспортному ряду карточек выровнены с учётом точек', () => {

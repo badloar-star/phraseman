@@ -138,7 +138,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'onboardingWelcome',
       'update', 'releaseNotes', 'broadcast', 'notifNudge',
       'introFullAccess', 'levelUp', 'themedAlert',
-      'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
+      'premiumCelebration', 'vipCelebration', 'streakRevive',
       'entitlementExpired', 'referralWelcome',
       'lessonResultsSequence', 'lessonCompleteNotif',
       'reviewPrompt', 'coinsMigration',
@@ -212,9 +212,12 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'onboardingWelcome', 'authRecovery',
     'update', 'releaseNotes', 'broadcast', 'appMessageModal', 'personalAdminMessage', 'notifNudge',
     'introFullAccess', 'levelUp', 'themedAlert',
-    'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
+    'premiumCelebration', 'vipCelebration', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'friendGift',
     'devHub', 'compassBriefing',
+    // зачем (11.10): ключ Арены (D83) ещё живёт в overlay_arbiter_core — удалить его решает владелец (см.
+    // app_events_overlay_registry). Пока он там, классифицируем как в ядре: не force-evictable.
+    'arenaOpponentFound',
     // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
     // но окно закрывает юзер — выселять таймером нельзя.
     'coinsMigration',
@@ -295,7 +298,6 @@ describe('OverlayArbiter native-modal handoff gap', () => {
     // нативная → другая нативная = нужен зазор (present-after-dismiss)
     expect(needsHandoffGap('onboardingWelcome', 'introFullAccess')).toBe(true);
     expect(needsHandoffGap('update', 'releaseNotes')).toBe(true);
-    expect(needsHandoffGap('leagueResult', 'compassBriefing')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'compassBriefing')).toBe(true);
     expect(needsHandoffGap('update', 'notifNudge')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'referralWelcome')).toBe(true);

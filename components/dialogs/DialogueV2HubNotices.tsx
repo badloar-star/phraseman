@@ -31,6 +31,26 @@ export function dialogueV2HubCopy(lang: Lang) {
       pl: `W tym miesiącu zostało 0 z ${total} odpowiedzi.`, fr: `Il reste 0 réponse sur ${total} ce mois-ci.`,
       de: `Diesen Monat noch 0 von ${total} Antworten.`,
     }),
+    // зачем (Сверка dialogs-001, макет dialogs.html `lockedCard`): карточка без действия под каталогом — часть сценариев закрыта рангом.
+    lockedNoteTitle: triLang(lang, {
+      ru: 'Некоторые диалоги пока закрыты', uk: 'Деякі діалоги поки що закриті', en: 'Some dialogues are still locked',
+      es: 'Algunos diálogos aún están bloqueados', 'pt-BR': 'Alguns diálogos ainda estão bloqueados', vi: 'Một số đoạn hội thoại vẫn đang khóa',
+      id: 'Beberapa dialog masih terkunci', tr: 'Bazı diyaloglar henüz kilitli', pl: 'Niektóre dialogi są jeszcze zablokowane',
+      fr: 'Certains dialogues sont encore verrouillés', de: 'Einige Dialoge sind noch gesperrt',
+    }),
+    lockedNoteText: triLang(lang, {
+      ru: 'Продолжай заниматься, чтобы постепенно открывать новые диалоги и расширять практику.',
+      uk: 'Продовжуй займатися, щоб поступово відкривати нові діалоги й розширювати практику.',
+      en: 'Keep practicing to gradually unlock new dialogues and widen your practice.',
+      es: 'Sigue practicando para ir desbloqueando nuevos diálogos y ampliar tu práctica.',
+      'pt-BR': 'Continue praticando para desbloquear novos diálogos aos poucos e ampliar sua prática.',
+      vi: 'Hãy tiếp tục luyện tập để dần mở khóa các đoạn hội thoại mới và mở rộng việc luyện tập.',
+      id: 'Terus berlatih untuk membuka dialog baru secara bertahap dan memperluas latihanmu.',
+      tr: 'Yeni diyaloglara kademeli olarak ulaşmak ve pratiğini genişletmek için çalışmaya devam et.',
+      pl: 'Ćwicz dalej, aby stopniowo odblokowywać nowe dialogi i poszerzać praktykę.',
+      fr: 'Continue à t’entraîner pour débloquer peu à peu de nouveaux dialogues et élargir ta pratique.',
+      de: 'Übe weiter, um nach und nach neue Dialoge freizuschalten und deine Praxis zu erweitern.',
+    }),
     gateTitle: triLang(lang, { ru: 'Диалоги на этом языке ещё проверяются', uk: 'Діалоги цією мовою ще перевіряються', en: 'Dialogues in this language are still being checked', es: 'Los diálogos en este idioma aún se están revisando', 'pt-BR': 'Os diálogos neste idioma ainda estão em revisão', vi: 'Hội thoại cho ngôn ngữ này vẫn đang được kiểm tra', id: 'Dialog dalam bahasa ini masih diperiksa', tr: 'Bu dildeki diyaloglar hâlâ kontrol ediliyor', pl: 'Dialogi w tym języku są jeszcze sprawdzane', fr: 'Les dialogues dans cette langue sont encore en vérification', de: 'Dialoge in dieser Sprache werden noch geprüft' }),
     gateText: triLang(lang, { ru: 'Сценарии, подсказки и озвучка ещё проходят отдельную проверку. Пока можно заниматься уроками.', uk: 'Сценарії, підказки й озвучення ще проходять окрему перевірку. Поки можна займатися уроками.', en: 'Scenarios, hints and audio are still under review. Meanwhile, keep going with lessons.', es: 'Los escenarios, pistas y audios aún se revisan. Mientras tanto, sigue con las lecciones.', 'pt-BR': 'Cenários, dicas e áudio ainda estão em revisão. Enquanto isso, siga com as lições.', vi: 'Kịch bản, gợi ý và âm thanh vẫn đang được kiểm tra. Trong lúc chờ, hãy học bài nhé.', id: 'Skenario, petunjuk, dan audio masih ditinjau. Sementara itu, lanjutkan pelajaran.', tr: 'Senaryolar, ipuçları ve seslendirme hâlâ inceleniyor. Bu arada derslere devam et.', pl: 'Scenariusze, podpowiedzi i nagrania są jeszcze sprawdzane. Na razie ucz się z lekcji.', fr: 'Scénarios, indices et audio sont encore en vérification. En attendant, continue les leçons.', de: 'Szenarien, Tipps und Audio werden noch geprüft. Mach inzwischen mit den Lektionen weiter.' }),
     gateCta: triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A las lecciones', 'pt-BR': 'Para as lições', vi: 'Đến bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji', fr: 'Aux leçons', de: 'Zu den Lektionen' }),
@@ -73,6 +93,22 @@ export function DialogueV2HubExhaustedCard({ title, text, onPress }: Readonly<{ 
   );
 }
 
+/** Карточка-пояснение (макет `lockedCard`): часть диалогов закрыта рангом. Без нажатия — просто объясняет, как открыть остальные. */
+export function DialogueV2HubLockedNote({ title, text }: Readonly<{ title: string; text: string }>) {
+  const glass = useDialogueGlass();
+  return (
+    <View testID="dialogue-v2-hub-locked-note" accessible accessibilityLabel={`${title}. ${text}`} style={[dialogueGlassCardStyle(glass, 22), styles.card, styles.note]}>
+      <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]}>
+        <Ionicons name="lock-open-outline" size={26} color={glass.text} />
+      </View>
+      <View style={styles.cardText}>
+        <Text maxFontSizeMultiplier={1.3} style={[styles.cardTitle, { color: glass.text }]}>{title}</Text>
+        <Text maxFontSizeMultiplier={1.3} style={[styles.cardBody, { color: glass.secondary }]}>{text}</Text>
+      </View>
+    </View>
+  );
+}
+
 /** A6: язык без проверенных диалогов — замок, объяснение и «К урокам». Миры не показываются. */
 export function DialogueV2HubLanguageGate({ title, text, ctaLabel, onPress, icon = 'lock-closed', testID = 'dialogue-v2-hub-language-gate' }: Readonly<{
   title: string; text: string; ctaLabel: string; onPress: () => void;
@@ -98,6 +134,7 @@ export function DialogueV2HubLanguageGate({ title, text, ctaLabel, onPress, icon
 const styles = StyleSheet.create({
   quotaRow: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 4 },
   cardHit: { alignSelf: 'stretch', marginTop: 24 },
+  note: { marginTop: 24, alignItems: 'flex-start' },
   card: { flexDirection: 'row', alignItems: 'center', gap: 18, paddingVertical: 22, paddingLeft: 20, paddingRight: 16 },
   tile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   tileSmall: { width: 55, height: 55, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },

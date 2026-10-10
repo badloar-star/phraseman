@@ -32,12 +32,18 @@ import {
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
 import {
   DialogueV2HubExhaustedCard,
+  DialogueV2HubLockedNote,
   DialogueV2HubLanguageGate,
   DialogueV2HubQuotaRow,
   dialogueV2HubCopy,
 } from './DialogueV2HubNotices';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
+
+// зачем (Сверка dialogs-001, 10.10: «раздел открывается ~3 с пустого тёмного кадра»; правило «сперва логи»): замер, что именно
+// держит первый кадр хаба — синхронное чтение встроенного снимка каталога, проверка проекции или что-то до экрана.
+// Префикс [DIALOGS-OPEN] — вытащить всю цепочку одним поиском в логе сборщика.
+const dialogsOpenNow = (): number => (typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now());
 
 type CatalogueState =
   | Readonly<{ kind: 'loading' }>
@@ -109,7 +115,17 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
   const palette = useV2Palette();
   // зачем (владелец 01.10: «Диалоги не загрузились» не должно быть нигде): первый кадр —
   // сразу из кэша этого запуска или встроенного снимка, без «Загрузка…» и без сети.
-  const [state, setState] = useState<CatalogueState>(() => initialCatalogueState(studyTarget));
+  const renderStartRef = useRef(dialogsOpenNow());
+  const [state, setState] = useState<CatalogueState>(() => {
+    const t0 = dialogsOpenNow();
+    const initial = initialCatalogueState(studyTarget);
+    console.log('[DIALOGS-OPEN] hub:initial_state', JSON.stringify({ studyTarget: String(studyTarget), kind: initial.kind, ms: Math.round(dialogsOpenNow() - t0) }));
+    return initial;
+  });
+  useEffect(() => {
+    console.log('[DIALOGS-OPEN] hub:first_commit', JSON.stringify({ sinceFirstRenderMs: Math.round(dialogsOpenNow() - renderStartRef.current), stateKind: state.kind }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- только момент первого коммита
+  }, []);
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
@@ -206,7 +222,9 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
     const input = { studyTarget, localCoinRank, worldHeadings: headings };
+    const projectStart = dialogsOpenNow();
     const projected = projectAuthorizedDialogueV2Catalogue({ ...input, packets: state.envelope.packets });
+    console.log('[DIALOGS-OPEN] hub:projection', JSON.stringify({ studyTarget, ok: projected !== null, items: projected?.items.length ?? null, packets: state.envelope.packets.length, ms: Math.round(dialogsOpenNow() - projectStart) }));
     if (projected) return projected;
     // зачем: ответ сети/кэша не прошёл повторную проверку — показываем встроенный
     // одобренный каталог, а не карточку ошибки.
@@ -283,6 +301,9 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
         labels={copy}
         onPressItem={onPressItem}
       />
+      {freeTier && quotaRemaining !== 0 && localizedItems.some((item) => item.status === 'locked') ? (
+        <DialogueV2HubLockedNote title={hubCopy.lockedNoteTitle} text={hubCopy.lockedNoteText} />
+      ) : null}
       {freeTier && quotaRemaining === 0 ? (
         <DialogueV2HubExhaustedCard
           title={hubCopy.exhaustedTitle}

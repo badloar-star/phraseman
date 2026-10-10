@@ -17,6 +17,8 @@ import { V2 } from '../constants/v2Style';
 import { safeRouterBack } from './navigation_back';
 
 export default function AiDialogHome() {
+  // зачем (Сверка dialogs-001, «пустой кадр ~3 с»; сперва логи): момент монтирования экрана — сравнить с [DIALOGS-OPEN] hub:* и с тапом на Главной.
+  console.log('[DIALOGS-OPEN] home:render', JSON.stringify({ at: Date.now() }));
   const { lang } = useLang();
   const router = useRouter();
   const { width, fontScale } = useWindowDimensions();

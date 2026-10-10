@@ -120,6 +120,8 @@ describe('PM-195-A1: общая статистика не зависит от ф
     expect(source).toMatch(/const inTab = useMemo\(\(\) => \(items \?\? \[\]\)\.filter\(/);
     expect(source).toMatch(/const visible = useMemo\(\(\) => inTab\.filter\(/);
     // setItems получает полный snapshot.items, а не отфильтрованное.
-    expect(source).toContain('setItems(snapshot.items)');
+    // зачем (11.10, аудит Optimistic UI п.2): из полного списка убираются только локально скрытые (запись журнала
+    // ещё идёт) — фильтр группы по-прежнему не трогает items.
+    expect(source).toContain('setItems(withoutLocallyHiddenMistakes(snapshot.items))');
   });
 });

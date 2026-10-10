@@ -28,7 +28,10 @@ describe('mistake verdict contract', () => {
   test('makes the three-day chain visible and keeps the rule as its source', () => {
     expect(screen).toContain('feedback.chain.corrected ? 3 : feedback.chain.days');
     expect(screen).toContain('afterItem.qualifyingDays.length');
-    expect(screen).toContain('correct && independent && afterItem');
+    // зачем (11.10): цепочка показывается при любом верном ответе, а «засчитан ли день» решает самостоятельность
+    // ответа (gainedToday); сами дни считает проекция журнала (qualifyingDays) — правило осталось источником.
+    expect(screen).toContain('correct && afterItem');
+    expect(screen).toContain('gainedToday: independent');
   });
 
   test('no character, no AI badge, no container outlines on screen', () => {

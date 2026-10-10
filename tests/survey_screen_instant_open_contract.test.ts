@@ -27,6 +27,9 @@ describe('mistakes list first frame', () => {
     const list = read('app/mistakes_list.tsx');
     expect(hub).toContain('export function peekMistakesHubSnapshot(');
     expect(hub).toContain("return `${peekStableId() ?? ''}:${target}:${lang}`;");
-    expect(list).toContain('useState<readonly MistakePracticeListItem[] | null>(() => peekMistakesHubSnapshot(target, lang)?.items ?? null)');
+    // зачем (11.10): первый кадр по-прежнему из снимка хаба; локально скрытые ошибки из него вычитаются.
+    expect(list).toContain('useState<readonly MistakePracticeListItem[] | null>(() => {');
+    expect(list).toContain('const peeked = peekMistakesHubSnapshot(target, lang)?.items;');
+    expect(list).toContain('return peeked ? withoutLocallyHiddenMistakes(peeked) : null;');
   });
 });

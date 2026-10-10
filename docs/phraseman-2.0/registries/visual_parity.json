@@ -17,10 +17,10 @@
       "id": "cards-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 1,
-        "label": "Лимит тренировок исчерпан (free)",
-        "mapping": "label_mismatch"
+        "label": "Хаб — вариант А",
+        "mapping": "manual_rebind"
       },
       "screen": "Хаб и выбор режима",
       "state": "Хаб · четыре раздела",
@@ -40,16 +40,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 1) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-002",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 2,
-        "label": "Сообщество недоступно",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 32,
+        "label": "Режим тренировки",
+        "mapping": "manual_rebind"
       },
       "screen": "Хаб и выбор режима",
       "state": "Выбор режима · окно по центру",
@@ -69,16 +70,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 32) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-003",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 1,
-        "label": "Лимит тренировок исчерпан (free)",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 4,
+        "label": "Хаб — лимит исчерпан (Free)",
+        "mapping": "manual_rebind"
       },
       "screen": "Хаб и выбор режима",
       "state": "Лимит тренировок исчерпан",
@@ -98,7 +100,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 4) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-004",
@@ -133,10 +136,10 @@
       "id": "cards-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 5,
-        "label": "Режим выделения",
-        "mapping": "label_mismatch"
+        "label": "Список",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохранённые",
       "state": "Список",
@@ -161,16 +164,17 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 3 (\"Список\") — склейка снята с 5; переснять"
+      "_remap_note": "телефон макета 3 (\"Список\") — склейка снята с 5; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 5) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 4,
-        "label": "Карточка раскрыта · удаление свайпом · «Вернуть»",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 15,
+        "label": "Карточка удалена — «Вернуть»",
+        "mapping": "manual_rebind"
       },
       "screen": "Сохранённые",
       "state": "Карточка раскрыта · удаление свайпом · «Вернуть»",
@@ -192,7 +196,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 15) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-007",
@@ -259,10 +264,10 @@
       "id": "cards-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 7,
         "label": "Пусто",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "manual_rebind"
       },
       "screen": "Сохранённые",
       "state": "Пусто",
@@ -282,7 +287,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 7) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-010",
@@ -317,10 +323,10 @@
       "id": "cards-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 11,
-        "label": "Пусто",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 9,
+        "label": "Список",
+        "mapping": "manual_rebind"
       },
       "screen": "Мои наборы",
       "state": "Мои наборы",
@@ -343,7 +349,8 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 9 (\"Мои наборы\") — склейка снята с 11; переснять"
+      "_remap_note": "телефон макета 9 (\"Мои наборы\") — склейка снята с 11; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 9) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-012",
@@ -379,10 +386,10 @@
       "id": "cards-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
+        "file": "docs/design/v2-app/cards-section.html",
         "phone": 11,
         "label": "Пусто",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "manual_rebind"
       },
       "screen": "Мои наборы",
       "state": "Пусто",
@@ -402,16 +409,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 11) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 12,
-        "label": "Каталог · «Новые»",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 22,
+        "label": "Каталог",
+        "mapping": "manual_rebind"
       },
       "screen": "Наборы сообщества",
       "state": "Каталог · «Новые»",
@@ -432,7 +440,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-015",
@@ -498,10 +507,10 @@
       "id": "cards-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 17,
-        "label": "Новая карточка",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 23,
+        "label": "Ничего не найдено",
+        "mapping": "manual_rebind"
       },
       "screen": "Наборы сообщества",
       "state": "Поиск без совпадений",
@@ -522,16 +531,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 14,
-        "label": "До добавления · лайк раньше времени",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 13,
+        "label": "Чужой — до добавления",
+        "mapping": "manual_rebind"
       },
       "screen": "Набор",
       "state": "До добавления · лайк раньше времени",
@@ -551,16 +561,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 13) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 15,
-        "label": "Добавлен · отклик",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 14,
+        "label": "Чужой — добавлен, лайк",
+        "mapping": "manual_rebind"
       },
       "screen": "Набор",
       "state": "Добавлен · отклик",
@@ -580,7 +591,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 14) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-020",
@@ -615,10 +627,10 @@
       "id": "cards-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 21,
-        "label": "Выбор наборов",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 20,
+        "label": "Новая карточка",
+        "mapping": "manual_rebind"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новая карточка",
@@ -642,7 +654,8 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 17 (\"Новая карточка\") — склейка снята с 21; переснять"
+      "_remap_note": "телефон макета 17 (\"Новая карточка\") — склейка снята с 21; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 20) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-022",
@@ -678,10 +691,10 @@
       "id": "cards-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 23,
-        "label": "Кнопка языка открыта",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 19,
+        "label": "Новый набор",
+        "mapping": "manual_rebind"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новый набор",
@@ -705,7 +718,8 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 19 (\"Новый набор\") — склейка снята с 23; переснять"
+      "_remap_note": "телефон макета 19 (\"Новый набор\") — склейка снята с 23; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 19) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-024",
@@ -772,10 +786,10 @@
       "id": "cards-026",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 26,
-        "label": "Ошибка",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 37,
+        "label": "Мало карточек",
+        "mapping": "manual_rebind"
       },
       "screen": "Подготовка тренировки",
       "state": "Мало карточек для блица",
@@ -798,7 +812,8 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять"
+      "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-027",
@@ -835,10 +850,10 @@
       "id": "cards-028",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 28,
-        "label": "Меню «⋯»",
-        "mapping": "label_mismatch"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 24,
+        "label": "Список наборов",
+        "mapping": "manual_rebind"
       },
       "screen": "Наборы из видео",
       "state": "Список",
@@ -862,16 +877,17 @@
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 24 (\"Список\") — склейка снята с 28; переснять"
+      "_remap_note": "телефон макета 24 (\"Список\") — склейка снята с 28; переснять",
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 24) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-029",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 25,
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 26,
         "label": "Загрузка",
-        "mapping": "label_remap_2026-10-10"
+        "mapping": "manual_rebind"
       },
       "screen": "Наборы из видео",
       "state": "Загрузка",
@@ -894,16 +910,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 26) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-030",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards.html",
-        "phone": 26,
-        "label": "Ошибка",
-        "mapping": "label_remap_2026-10-10"
+        "file": "docs/design/v2-app/cards-section.html",
+        "phone": 29,
+        "label": "Сейчас недоступно",
+        "mapping": "manual_rebind"
       },
       "screen": "Наборы из видео",
       "state": "Ошибка",
@@ -924,7 +941,8 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 29) — одна съёмка закрывает обе строки"
     },
     {
       "id": "cards-031",
@@ -4745,9 +4763,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 4,
-        "label": "Категория раскрыта — все виды строк",
-        "mapping": "label_mismatch"
+        "phone": 5,
+        "label": "Хаб — лимит исчерпан (0/10)",
+        "mapping": "manual_rebind"
       },
       "screen": "A. Хаб «Диалоги»",
       "state": "Хаб — лимит исчерпан (0/10)",
@@ -4777,16 +4795,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 5 (\"Хаб — лимит исчерпан (0/10)карточка «Plus снимает лимит реплик»\") — склейка снята с 4; переснять"
+      "_remap_note": "телефон макета 5 (\"Хаб — лимит исчерпан (0/10)карточка «Plus снимает лимит реплик»\") — склейка снята с 4; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 5,
-        "label": "Хаб — лимит исчерпан (0/10)",
-        "mapping": "label_mismatch"
+        "phone": 6,
+        "label": "Хаб — язык ещё проверяется",
+        "mapping": "manual_rebind"
       },
       "screen": "A. Хаб «Диалоги»",
       "state": "Хаб — язык ещё проверяется",
@@ -4812,7 +4831,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 6 (\"Хаб — язык ещё проверяетсяизучаемый испанский: миров нет\") — склейка снята с 5; переснять"
+      "_remap_note": "телефон макета 6 (\"Хаб — язык ещё проверяетсяизучаемый испанский: миров нет\") — склейка снята с 5; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-006",
@@ -4880,9 +4900,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 8,
-        "label": "Брифинг — цель и задания",
-        "mapping": "label_mismatch"
+        "phone": 9,
+        "label": "Брифинг — закрыт по рангу",
+        "mapping": "manual_rebind"
       },
       "screen": "B. Брифинг и вход",
       "state": "Брифинг — закрыт по рангу",
@@ -4910,7 +4930,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 9 (\"Брифинг — закрыт по рангувместо «ᚱ 5 000» — ранг монеты; пороги D05 не\") — склейка снята с 8; переснять"
+      "_remap_note": "телефон макета 9 (\"Брифинг — закрыт по рангувместо «ᚱ 5 000» — ранг монеты; пороги D05 не\") — склейка снята с 8; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-009",
@@ -5058,9 +5079,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 14,
-        "label": "Начало — приветствие баристы",
-        "mapping": "label_mismatch"
+        "phone": 15,
+        "label": "Разговор идёт",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Разговор идёт",
@@ -5087,7 +5108,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 15 (\"Разговор идёт\") — склейка снята с 14; переснять"
+      "_remap_note": "телефон макета 15 (\"Разговор идёт\") — склейка снята с 14; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-015",
@@ -5125,9 +5147,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 16,
-        "label": "Перевод показан",
-        "mapping": "label_mismatch"
+        "phone": 17,
+        "label": "Озвучка играет",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Озвучка играет",
@@ -5153,16 +5175,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 17 (\"Озвучка играет\") — склейка снята с 16; переснять"
+      "_remap_note": "телефон макета 17 (\"Озвучка играет\") — склейка снята с 16; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 17,
-        "label": "Озвучка играет",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "Подсказка — окно",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Подсказка — окно",
@@ -5187,16 +5210,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 18 (\"Подсказка — окно\") — склейка снята с 17; переснять"
+      "_remap_note": "телефон макета 18 (\"Подсказка — окно\") — склейка снята с 17; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 18,
-        "label": "Подсказка — окно",
-        "mapping": "label_mismatch"
+        "phone": 19,
+        "label": "Задания — шторка",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Задания — шторка",
@@ -5223,7 +5247,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 19 (\"Задания — шторка\") — склейка снята с 18; переснять"
+      "_remap_note": "телефон макета 19 (\"Задания — шторка\") — склейка снята с 18; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-019",
@@ -5327,9 +5352,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 22,
-        "label": "«Лучше так» — кнопка и раскрытый вариант",
-        "mapping": "label_mismatch"
+        "phone": 23,
+        "label": "Ввод текстом с клавиатурой",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Ввод текстом с клавиатурой",
@@ -5355,16 +5380,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 23 (\"Ввод текстом с клавиатурой\") — склейка снята с 22; переснять"
+      "_remap_note": "телефон макета 23 (\"Ввод текстом с клавиатурой\") — склейка снята с 22; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 23,
-        "label": "Ввод текстом с клавиатурой",
-        "mapping": "label_mismatch"
+        "phone": 24,
+        "label": "Настроение собеседника упало",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Сессия диалога",
       "state": "Настроение собеседника упало",
@@ -5389,7 +5415,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 24 (\"Настроение собеседника упалозначок лица в шапке; цель не сдвинулась\") — склейка снята с 23; переснять"
+      "_remap_note": "телефон макета 24 (\"Настроение собеседника упалозначок лица в шапке; цель не сдвинулась\") — склейка снята с 23; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-024",
@@ -5575,9 +5602,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 30,
-        "label": "ИИ печатает",
-        "mapping": "label_mismatch"
+        "phone": 31,
+        "label": "Ответ пришёл",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Ожидание и ошибки",
       "state": "Ответ пришёл",
@@ -5607,16 +5634,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 31 (\"Ответ пришёл\") — склейка снята с 30; переснять"
+      "_remap_note": "телефон макета 31 (\"Ответ пришёл\") — склейка снята с 30; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-031",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 31,
-        "label": "Ответ пришёл",
-        "mapping": "label_mismatch"
+        "phone": 32,
+        "label": "Сетевая ошибка — «Повторить»",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Ожидание и ошибки",
       "state": "Сетевая ошибка — «Повторить»",
@@ -5646,7 +5674,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 32 (\"Сетевая ошибка — «Повторить»\") — склейка снята с 31; переснять"
+      "_remap_note": "телефон макета 32 (\"Сетевая ошибка — «Повторить»\") — склейка снята с 31; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-032",
@@ -5738,9 +5767,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 35,
-        "label": "Лимит — последняя реплика (1/10)",
-        "mapping": "label_mismatch"
+        "phone": 36,
+        "label": "Лимит закончился — «На сегодня всё»",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Лимит закончился — «На сегодня всё»",
@@ -5764,16 +5793,17 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 36 (\"Лимит закончился — «На сегодня всё»\") — склейка снята с 35; переснять"
+      "_remap_note": "телефон макета 36 (\"Лимит закончился — «На сегодня всё»\") — склейка снята с 35; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-036",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 36,
-        "label": "Лимит закончился — «На сегодня всё»",
-        "mapping": "label_mismatch"
+        "phone": 37,
+        "label": "Выход из диалога — подтверждение",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Выход из диалога — подтверждение",
@@ -5797,7 +5827,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 37 (\"Выход из диалога — подтверждение\") — склейка снята с 36; переснять"
+      "_remap_note": "телефон макета 37 (\"Выход из диалога — подтверждение\") — склейка снята с 36; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-037",
@@ -5830,9 +5861,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 38,
-        "label": "Диалог завершён — финальная реплика",
-        "mapping": "label_mismatch"
+        "phone": 39,
+        "label": "Переписка после итога — пилюля «Итоги»",
+        "mapping": "manual_rebind"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Переписка после итога — пилюля «Итоги»",
@@ -5856,7 +5887,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 39 (\"Переписка после итога — пилюля «Итоги»\") — склейка снята с 38; переснять"
+      "_remap_note": "телефон макета 39 (\"Переписка после итога — пилюля «Итоги»\") — склейка снята с 38; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "dialogs-039",
@@ -6106,7 +6138,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 1,
         "label": "A1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A1",
@@ -6133,7 +6165,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-002",
@@ -6142,7 +6175,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 2,
         "label": "A2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A2",
@@ -6171,7 +6204,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-003",
@@ -6180,7 +6214,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 3,
         "label": "A3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A3",
@@ -6208,7 +6242,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-004",
@@ -6217,7 +6252,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 4,
         "label": "A4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A4",
@@ -6245,7 +6280,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-005",
@@ -6254,7 +6290,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 5,
         "label": "A5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A5",
@@ -6276,7 +6312,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-006",
@@ -6285,7 +6322,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 6,
         "label": "A6",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A6",
@@ -6307,7 +6344,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-007",
@@ -6316,7 +6354,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 7,
         "label": "A7",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A7",
@@ -6343,7 +6381,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-008",
@@ -6352,7 +6391,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 8,
         "label": "A8",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A8",
@@ -6376,7 +6415,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-009",
@@ -6416,7 +6456,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 10,
         "label": "A9",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "A. Список уроков",
       "state": "A9",
@@ -6438,7 +6478,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-011",
@@ -6704,7 +6745,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 19,
         "label": "B1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "B. Меню урока",
       "state": "B1",
@@ -6724,7 +6765,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-020",
@@ -6733,7 +6775,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 20,
         "label": "B2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "B. Меню урока",
       "state": "B2",
@@ -6758,7 +6800,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-021",
@@ -6767,7 +6810,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 21,
         "label": "B3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "B. Меню урока",
       "state": "B3",
@@ -6787,7 +6830,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-022",
@@ -6796,7 +6840,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 22,
         "label": "B4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "B. Меню урока",
       "state": "B4",
@@ -6816,7 +6860,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-023",
@@ -6825,7 +6870,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 23,
         "label": "B5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "B. Меню урока",
       "state": "B5",
@@ -6845,7 +6890,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-024",
@@ -6854,7 +6900,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 24,
         "label": "C1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "C. Интро урока",
       "state": "C1",
@@ -6878,7 +6924,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-025",
@@ -6887,7 +6934,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 25,
         "label": "C2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "C. Интро урока",
       "state": "C2",
@@ -6907,7 +6954,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-026",
@@ -6916,7 +6964,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 26,
         "label": "C3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "C. Интро урока",
       "state": "C3",
@@ -6940,7 +6988,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-027",
@@ -6949,7 +6998,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 27,
         "label": "C4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "C. Интро урока",
       "state": "C4",
@@ -6971,7 +7020,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-028",
@@ -6980,7 +7030,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 28,
         "label": "D1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D1",
@@ -7005,7 +7055,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-029",
@@ -7014,7 +7065,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 29,
         "label": "D2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D2",
@@ -7036,7 +7087,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-030",
@@ -7045,7 +7097,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 30,
         "label": "D3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D3",
@@ -7065,7 +7117,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-031",
@@ -7074,7 +7127,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 31,
         "label": "D4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D4",
@@ -7088,17 +7141,20 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-031.png",
-      "evidence_at": "2026-10-10T20:05:13.714Z",
-      "evidence_sha256": "25f19474698ee81d028ef4b5bb690a5ed0efead532d0dcd99a1f40cda362ec35",
+      "evidence_at": "2026-10-10T20:21:31.622Z",
+      "evidence_sha256": "25fc6892145115f234836d7c31c417cd267c77aeaab13f048eca96eb3aa3af91",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "ТЁМНАЯ (21:04): снят экран нового задания «Это пусто» (не «Верно» — ответ ушёл мгновенно). Состояние «Верно + монеты» (D4) отдельно не поймано: после верного ответа задание переключилось быстрее съёмки (<0,6 с). Нужна запись экрана/замедление."
+        "«Верно» поймано записью экрана (21:21, тёмная «Аврора», кадр из adb screenrecord): введённая фраза «it's empty» зелёная с закладкой, сердца и монеты на месте, внизу панель «Теория · Назад · Объясн… · Повтор · Дальше»; задание само сменилось через ~2,5 с.",
+        "ОТЛИЧИЕ: у макета D4 — ответ зелёным + МОНЕТА над словом (анимация награды) и большая белая кнопка «Дальше →» внизу; у приложения кнопки «Дальше →» нет (панель из 5 иконок, «Объясн…» обрезано), монетки награды в кадре нет, шапка без пилюли энергии.",
+        "Анимацию награды надо сверять отдельно (запись есть: C:Tempclaudesv\rec2.mp4, кадры за 1,5 с)."
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-032",
@@ -7107,7 +7163,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 32,
         "label": "D5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D5",
@@ -7137,7 +7193,8 @@
       "status": "pending",
       "note": "блок разбора (AiMistakeCard) сверять по redesign-round-2, телефон 4 (A); остальной кадр — по learn.html",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-033",
@@ -7146,7 +7203,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 33,
         "label": "D6",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D6",
@@ -7168,7 +7225,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-034",
@@ -7177,7 +7235,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 34,
         "label": "D7",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D7",
@@ -7200,7 +7258,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-035",
@@ -7209,7 +7268,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 35,
         "label": "D8",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D8",
@@ -7229,7 +7288,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-036",
@@ -7238,7 +7298,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 36,
         "label": "D9",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "D. Урок — сборка фразы",
       "state": "D9",
@@ -7257,7 +7317,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-037",
@@ -7568,7 +7629,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 47,
         "label": "E1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "E. Итог урока — общий экран завершения (D36)",
       "state": "E1",
@@ -7591,7 +7652,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-048",
@@ -7600,7 +7662,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 48,
         "label": "E2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "E. Итог урока — общий экран завершения (D36)",
       "state": "E2",
@@ -7623,7 +7685,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-049",
@@ -7632,7 +7695,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 49,
         "label": "E3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "E. Итог урока — общий экран завершения (D36)",
       "state": "E3",
@@ -7655,7 +7718,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-050",
@@ -7664,7 +7728,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 50,
         "label": "E4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "E. Итог урока — общий экран завершения (D36)",
       "state": "E4",
@@ -7687,7 +7751,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-051",
@@ -7930,7 +7995,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 59,
         "label": "G1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "G. Теория",
       "state": "G1",
@@ -7950,7 +8015,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-060",
@@ -7959,7 +8025,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 60,
         "label": "G2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "G. Теория",
       "state": "G2",
@@ -7979,7 +8045,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-061",
@@ -7988,7 +8055,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 61,
         "label": "G3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "G. Теория",
       "state": "G3",
@@ -8008,7 +8075,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-062",
@@ -8017,7 +8085,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 62,
         "label": "G4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "G. Теория",
       "state": "G4",
@@ -8037,7 +8105,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-063",
@@ -8046,7 +8115,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 63,
         "label": "G5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "G. Теория",
       "state": "G5",
@@ -8066,7 +8135,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-064",
@@ -8075,7 +8145,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 64,
         "label": "H1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "H. Неправильные глаголы",
       "state": "H1",
@@ -8094,7 +8164,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-065",
@@ -8103,7 +8174,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 65,
         "label": "H2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "H. Неправильные глаголы",
       "state": "H2",
@@ -8122,7 +8193,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-066",
@@ -8131,7 +8203,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 66,
         "label": "H3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "H. Неправильные глаголы",
       "state": "H3",
@@ -8150,7 +8222,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-067",
@@ -8159,7 +8232,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 67,
         "label": "H4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "H. Неправильные глаголы",
       "state": "H4",
@@ -8178,7 +8251,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-068",
@@ -8215,7 +8289,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 69,
         "label": "H5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "H. Неправильные глаголы",
       "state": "H5",
@@ -8236,7 +8310,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-070",
@@ -8245,7 +8320,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 70,
         "label": "I1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "I. Тренажёр предлогов",
       "state": "I1",
@@ -8264,7 +8339,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-071",
@@ -8273,7 +8349,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 71,
         "label": "I2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "I. Тренажёр предлогов",
       "state": "I2",
@@ -8292,7 +8368,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-072",
@@ -8301,7 +8378,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 72,
         "label": "I3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "I. Тренажёр предлогов",
       "state": "I3",
@@ -8320,7 +8397,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-073",
@@ -8329,7 +8407,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 73,
         "label": "I4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "I. Тренажёр предлогов",
       "state": "I4",
@@ -8350,7 +8428,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-074",
@@ -8359,7 +8438,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 74,
         "label": "I5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "I. Тренажёр предлогов",
       "state": "I5",
@@ -8378,7 +8457,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-075",
@@ -8387,7 +8467,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 75,
         "label": "J1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J1",
@@ -8407,7 +8487,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-076",
@@ -8416,7 +8497,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 76,
         "label": "J2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J2",
@@ -8436,7 +8517,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-077",
@@ -8445,7 +8527,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 77,
         "label": "J3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J3",
@@ -8467,7 +8549,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-078",
@@ -8476,7 +8559,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 78,
         "label": "J4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J4",
@@ -8496,7 +8579,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-079",
@@ -8505,7 +8589,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 79,
         "label": "J5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J5",
@@ -8525,7 +8609,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-080",
@@ -8534,7 +8619,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 80,
         "label": "J6",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J6",
@@ -8556,7 +8641,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-081",
@@ -8565,7 +8651,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 81,
         "label": "J7",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J7",
@@ -8585,7 +8671,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-082",
@@ -8594,7 +8681,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 82,
         "label": "J8",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J8",
@@ -8614,7 +8701,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-083",
@@ -8623,7 +8711,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 83,
         "label": "J9",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "J. Диагностика",
       "state": "J9",
@@ -8643,7 +8731,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-084",
@@ -8681,7 +8770,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 85,
         "label": "K1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K1",
@@ -8700,7 +8789,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-086",
@@ -8709,7 +8799,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 86,
         "label": "K2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K2",
@@ -8728,7 +8818,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-087",
@@ -8737,7 +8828,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 87,
         "label": "K3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K3",
@@ -8756,7 +8847,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-088",
@@ -8765,7 +8857,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 88,
         "label": "K4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K4",
@@ -8784,7 +8876,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-089",
@@ -8793,7 +8886,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 89,
         "label": "K5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K5",
@@ -8812,7 +8905,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-090",
@@ -8849,7 +8943,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 91,
         "label": "K6",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K6",
@@ -8868,7 +8962,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-092",
@@ -8877,7 +8972,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 92,
         "label": "K7",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K7",
@@ -8896,7 +8991,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-093",
@@ -8905,7 +9001,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 93,
         "label": "K8",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "K. Зачёт уровня",
       "state": "K8",
@@ -8925,7 +9021,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-094",
@@ -8934,7 +9031,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 94,
         "label": "L1",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L1",
@@ -8953,7 +9050,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-095",
@@ -8962,7 +9060,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 95,
         "label": "L2",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L2",
@@ -8981,7 +9079,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-096",
@@ -8990,7 +9089,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 96,
         "label": "L3",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L3",
@@ -9012,7 +9111,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-097",
@@ -9021,7 +9121,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 97,
         "label": "L4",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L4",
@@ -9040,7 +9140,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-098",
@@ -9049,7 +9150,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 98,
         "label": "L5",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L5",
@@ -9068,7 +9169,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-099",
@@ -9077,7 +9179,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 99,
         "label": "L6",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L6",
@@ -9096,7 +9198,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-100",
@@ -9105,7 +9208,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 100,
         "label": "L7",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L7",
@@ -9124,7 +9227,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-101",
@@ -9133,7 +9237,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 101,
         "label": "L8",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L8",
@@ -9152,7 +9256,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-102",
@@ -9161,7 +9266,7 @@
         "file": "docs/design/v2-app/learn.html",
         "phone": 102,
         "label": "L9",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "L. Финальный экзамен",
       "state": "L9",
@@ -9182,7 +9287,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "learn-103",
@@ -12040,7 +12146,7 @@
         "file": "docs/design/v2-app/community.html",
         "phone": 7,
         "label": "поиск друга · шторка",
-        "mapping": "label_mismatch"
+        "mapping": "label_match"
       },
       "screen": "Друзья",
       "state": "добавить друга · центрированное окно",
@@ -12065,7 +12171,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "community-008",
@@ -12123,15 +12230,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-010",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 10,
-        "label": "пустой список",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12152,15 +12260,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 11,
-        "label": "ошибка обновления / офлайн",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12181,15 +12290,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 12,
-        "label": "отношения с другом · шторка",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12210,15 +12320,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 13,
-        "label": "приглашение на занятие · модалка",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12239,15 +12350,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 14,
-        "label": "активность и опрос дня",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12267,15 +12379,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 15,
-        "label": "подтверждение удаления",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12296,15 +12409,16 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 16,
-        "label": "каталог наборов",
+        "phone": 9,
+        "label": "поиск · отдельные исходы",
         "mapping": "label_mismatch"
       },
       "screen": "Друзья",
@@ -12325,7 +12439,8 @@
       "diffs": [],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён"
     },
     {
       "id": "community-017",
@@ -12879,9 +12994,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 10,
-        "label": "Privacy Policy · прокручиваемый документ",
-        "mapping": "label_mismatch"
+        "phone": 9,
+        "label": "приватность и данные",
+        "mapping": "manual_rebind"
       },
       "screen": "Обучение и внешний вид",
       "state": "приватность и данные · включено",
@@ -12902,7 +13017,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "profile-011",
@@ -13003,9 +13119,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 14,
-        "label": "приглашение друга",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "форма поддержки",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "форма поддержки · диагностика раскрыта",
@@ -13026,16 +13142,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "profile-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 15,
-        "label": "опрос · пустое состояние",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "форма поддержки",
+        "mapping": "manual_rebind"
       },
       "screen": "Помощь и подписка",
       "state": "форма поддержки · отправлено",
@@ -13056,7 +13173,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "profile-016",
@@ -15580,9 +15698,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 10,
-        "label": "Технические работы",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "Что-то пошло не так",
+        "mapping": "manual_rebind"
       },
       "screen": "Экраны-заглушки",
       "state": "Что-то пошло не так",
@@ -15608,7 +15726,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 12 (\"Что-то пошло не так\") — склейка снята с 10; переснять"
+      "_remap_note": "телефон макета 12 (\"Что-то пошло не так\") — склейка снята с 10; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "system-011",
@@ -15645,9 +15764,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 12,
-        "label": "Что-то пошло не так",
-        "mapping": "label_mismatch"
+        "phone": 15,
+        "label": "Сообщение команды",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщения",
       "state": "Сообщение команды",
@@ -15674,7 +15793,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 15 (\"Сообщение команды\") — склейка снята с 12; переснять"
+      "_remap_note": "телефон макета 15 (\"Сообщение команды\") — склейка снята с 12; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "system-013",
@@ -15737,9 +15857,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 15,
-        "label": "Сообщение команды",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "Входящие — пусто",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщения",
       "state": "Входящие — пусто",
@@ -15765,7 +15885,8 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "_remap_note": "телефон макета 18 (\"Входящие — пусто\") — склейка снята с 15; переснять"
+      "_remap_note": "телефон макета 18 (\"Входящие — пусто\") — склейка снята с 15; переснять",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
     },
     {
       "id": "system-016",

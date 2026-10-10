@@ -1060,10 +1060,18 @@ function RegistrationPromptModal({
         || loadingProvider !== null
         || recoveryFlowRef.current !== null
         || cleanRecoveryFlowRef.current !== null
-      ) return;
+      ) {
+        // зачем (правило «каждый ранний выход пишет причину»): отбитый тап входа был немым.
+        console.log(`[AUTH-MODAL] sign_in ignored provider=${provider} reason=${loadingProvider !== null ? 'loading' : 'recovery_busy'}`);
+        return;
+      }
       const attemptToken = attemptLifecycle.startAttempt();
-      if (attemptToken === null) return;
+      if (attemptToken === null) {
+        console.log(`[AUTH-MODAL] sign_in ignored provider=${provider} reason=attempt_active`);
+        return;
+      }
       if (!authOperationGateRef.current.tryBegin('provider')) {
+        console.log(`[AUTH-MODAL] sign_in ignored provider=${provider} reason=operation_gate_busy`);
         attemptLifecycle.completeAttempt(attemptToken);
         return;
       }

@@ -5,6 +5,7 @@
 // пишет, сколько ещё нужно, и выключена.
 import React, { memo, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import KitTouchable from '../KitTouchable';
 
 import type { Lang } from '../../constants/i18n';
 import {
@@ -45,7 +46,7 @@ function Swatch({ style, selected, onPress, lang, ring }: {
 }) {
   const tokens = PROFILE_CARD_LOOKS[style];
   return (
-    <Pressable
+    <KitTouchable
       testID={`profile-card-style-${style}`}
       accessibilityRole="button"
       accessibilityLabel={`${t4(lang, PC.styleA11y)} ${profileCardLookName(style, lang)}`}
@@ -59,7 +60,7 @@ function Swatch({ style, selected, onPress, lang, ring }: {
           <ProfileCardBackdrop look={style} width={56} height={56} cy={0.5} animate={false} k={1} />
         </View>
       </View>
-    </Pressable>
+    </KitTouchable>
   );
 }
 

@@ -1284,7 +1284,8 @@ const LessonContent = React.memo(function LessonContent({
                 <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, borderWidth: 1, borderColor: glass.glassEdge }}>
                   <Text
                     testID="lesson1-correct-answer-on-wrong"
-                    style={{ color: t.correct, fontWeight: '600', fontSize: interactiveAnswerFont, textAlign: 'center' }}
+                    // зачем (Сверка 21:05, светлая тема): зелёный t.correct на розовой плашке ошибки почти не читается — в светлой берём цвет текста темы
+                    style={{ color: glass.isLight ? glass.text : t.correct, fontWeight: '600', fontSize: interactiveAnswerFont, textAlign: 'center' }}
                   >
                     {resultCorrectLine}
                   </Text>

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const routes = [
-  'index.html', 'app/index.html', 'download/index.html', 'start/index.html',
+  'index.html', 'app/index.html', 'download/index.html', /* start/ снят в 1d70c8fc5 (19.09) */
   'gift/index.html', 'contact/index.html', 'faq/index.html',
 ].map((file) => `knowly-www/${file}`);
 const css = [

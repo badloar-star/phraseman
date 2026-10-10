@@ -2390,3 +2390,23 @@ PM-034 A2: старые экраны за фасадом НЕ найдены —
 - ЯДРО: 5 красных проверок по исходнику разошлись с их правками: aa_s2d_plus_transfer (paywall_purchase withPurchaseFlow), auth_identity_anon_relink и auth_signin_warmup_contract (functions authEnsureStableLink: allowAnonRelink / minInstances:1), auth_bootstrap_account_generation (порядок activation в boot), auth_recovery_provider_credential (getAuth( в seam восстановления). + давний legacy_callsite_guard (peekStableId 8).
 **🟡 Видно пользователю, нужен макет (не правлю без него):** онбординг на account_switch_required просит «подтверди смену», но кнопки нет; identity_retired в окне входа молча закрывает окно; после входа данные догружаются в фоне до 20 с без индикатора.
 **Ключи прода (ставит владелец), для релиза с cutover OFF:** remote_config/app: `accounts_v2_client_enabled=false`, `accounts_v2_legacy_sync_disabled=false`, `phone_state_emergency_stop=true` (остальные phone_state_* выкл.); Firestore `config/accounts_v2` — всё выкл. (по умолчанию); EAS prod env: `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` (без него нет кнопки Google!), `EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID` + redirect/callback (иначе Apple на Android скрыт); серверные callables входа/удаления выложены (authEnsureStableLink, authStampAnonOwnership, authMergeStableAccounts, authRecoveryHint, accountDeleteMine, accountDeleteStatusMine, accountDeleteRestoreMine).
+
+## §AA-33 — 2026-10-10: Авторизация — решения координатора 1–3 сделаны (f96f8beb3), готов к эмулятору
+
+- Коммит f96f8beb3: 11 своих файлов, чужого нет. Security-ревью: APPROVE.
+- **Окно удаления:**
+  - при входе через Google/Apple — текст про 14 дней (9 языков);
+  - гостю — «Прогресс удалится безвозвратно. Подписка… не отменится автоматически.»: войти снова ему нечем, обещание было бы ложью (ревью M-1).
+- **Смена аккаунта в онбординге:** окно выбора кита «Отмена»/«Сменить». При сбое показываем причину: нет сети / идёт другая операция / общая.
+- **identity_retired:** инфо-окно очереди «Этот аккаунт удалён безвозвратно. Войди другим способом или начни заново.» — в окне входа и на обоих путях онбординга.
+- **Догрузка после входа:** тихий KitSpinner 22 вместо значков в шапке Главной, экран не блокируется, страховка 30 с.
+- **Тесты по одному, все зелёные:**
+  - aa_release_floor_auth_ui 12/12, restore_prompt 6/6;
+  - delete_flow 23, modal_layout 4;
+  - onboarding 2+1, registration 4+8.
+- **Красные — только 6 сьютов полосы Ядра:** aa_s2d_plus_transfer, account_authority_legacy_callsite_guard, auth_bootstrap_account_generation, auth_identity_anon_relink, auth_recovery_provider_credential, auth_signin_warmup_contract.
+- **НУЖНО РЕШЕНИЕ:** окно «удалён навсегда» расходится с правилом владельца 22.09 «никаких уведомлений об удалении». Окно стоит вне процесса удаления и сделано по заказу координатора, но решать, оставить ли его, — тебе. Там же: алерт Ядра «Закрыть/Повторить» в окне удаления (45064c030) прямо спорит с этим правилом.
+- **LOW из ревью:**
+  - при затяжном pending_shard_spend в онбординге нет развилки «Сменить без сохранения», как в Настройках;
+  - немой catch в peekLinkedAuthFromCurrentUser (файл Ядра).
+- **Эмулятор:** жду 25 минут, которые отдаст Сверка. Прогон только на одноразовом гостевом аккаунте: гость → вход → выход → удаление (+Повторить) → восстановление. Прямые сообщения сессии координатора удерживаются, поэтому ответ «бери» нужен сюда или в сессию 5.

@@ -62,9 +62,13 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
         <FlowText testID="youtube-channel-title" provenance={title ? 'authored' : 'external'} accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title ?? channel.displayName}</FlowText>
         {onOpenLanguage && studyTarget ? (
           <TapScale testID="youtube-study-language" accessibilityRole="button" accessibilityLabel={`${languageLabel}: ${studyTarget.toUpperCase()}`} onPress={onOpenLanguage} style={[styles.langPill, { backgroundColor: g.opaqueControl }]}>
-            <Image source={STUDY_FLAG[studyTarget]} style={styles.langFlag} contentFit="cover" accessible={false} />
-            <Text style={[styles.langText, { color: g.text }]}>{studyTarget.toUpperCase()}</Text>
-            <Ionicons name="chevron-down" size={16} color={g.text} />
+            {/* зачем (Сверка video-001 🔴): TapScale кладёт детей в обёртку анимации, а стиль — на внешний Pressable, поэтому
+                flexDirection:'row' пилюли не действовал и флаг/EN/⌄ вставали столбиком. Строка — во внутреннем View. */}
+            <View style={styles.langRow}>
+              <Image source={STUDY_FLAG[studyTarget]} style={styles.langFlag} contentFit="cover" accessible={false} />
+              <Text style={[styles.langText, { color: g.text }]}>{studyTarget.toUpperCase()}</Text>
+              <Ionicons name="chevron-down" size={16} color={g.text} />
+            </View>
           </TapScale>
         ) : (
           <TapScale accessibilityRole="button" accessibilityLabel="YouTube" onPress={onOpenYoutube} style={actionButton}>
@@ -111,7 +115,8 @@ const styles = StyleSheet.create({
   channelName: { ...V2_TYPE.body, fontWeight: '700', flexShrink: 1, minWidth: 0 },
   channelChevron: { flexShrink: 0 },
   // video.html `.lang`: высота 35, поля 10/12, r18, зазор 8, текст 15/700; флаг 24×15 r3
-  langPill: { height: 35, borderRadius: 18, paddingLeft: 10, paddingRight: 12, flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
+  langPill: { height: 35, borderRadius: 18, justifyContent: 'center', flexShrink: 0 },
+  langRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 10, paddingRight: 12 },
   langFlag: { width: 24, height: 15, borderRadius: 3 },
   langText: { fontSize: 16, fontWeight: '700' },
 });

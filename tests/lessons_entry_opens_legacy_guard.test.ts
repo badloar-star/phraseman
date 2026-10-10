@@ -64,12 +64,15 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
     expect(lessons).not.toContain('ru: "Старые уроки"');
   });
 
-  test('единственный оставшийся переключатель на V2 закрыт дев-флагом', () => {
-    // Вкладка «V2» в шапке уже жила под ENABLE_DEV_TOOLS; следим, чтобы в файле
-    // не завёлся ещё один безусловный вход на страницу курса.
+  test('единственный оставшийся переключатель на V2 закрыт той же константой, что и чип', () => {
+    // Следим, чтобы в файле не завёлся ещё один безусловный вход на страницу курса.
     const unconditionalSwitches = lessons.match(/setPage\("v2"\)/g) ?? [];
-    // Ровно два: дев-вкладка в шапке и ветка внутри openNewLessons.
+    // Ровно два: вкладка «V2» в шапке и ветка внутри openNewLessons.
     expect(unconditionalSwitches).toHaveLength(2);
+    // зачем (координатор 23:25, practice-027): прежний сторож только считал вызовы и не заметил, что 1d70c8fc5 снял
+    // условие с кнопки «V2» — в стор-сборке она вела в вырезанный маршрут. Теперь проверяем само условие у кнопки.
+    expect(lessons).toMatch(/\{LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY \? \(\s*<TabUnderlineButton\s+label="V2"/);
+    expect(lessons).not.toMatch(/\{\(\s*<TabUnderlineButton\s+label="V2"/);
   });
 
   test('недоступность показана тоном, а не обводкой (запрет владельца)', () => {

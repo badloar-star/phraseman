@@ -5234,7 +5234,10 @@ export default function LessonsTab({
                 onPress={openDialogs}
               />
             ) : null}
-            {(
+            {/* зачем (координатор 23:25, practice-027): в стор-сборке маршруты Learning V2 вырезаны (router.ctx.js) — кнопка «V2»
+                вела «карта → занятие → Начать → неизвестный маршрут». Условие ENABLE_DEV_TOOLS сняли в 1d70c8fc5 (19.09),
+                а релизный пол 10.10 закрыл только чип «Новые уроки»; кнопка — под той же константой. */}
+            {LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
               <TabUnderlineButton
                 label="V2"
                 active={page === "v2"}
@@ -5254,7 +5257,7 @@ export default function LessonsTab({
                   }
                 }}
               />
-            )}
+            ) : null}
           </View>
         </View>
 

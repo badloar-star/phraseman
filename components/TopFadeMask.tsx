@@ -4,6 +4,9 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from './SafeLinearGradient';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,1)'; // theme-exempt: маска затухания: цвет задаёт только альфу, не вид
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0)'; // theme-exempt: маска затухания: цвет задаёт только альфу, не вид
+
 const DEFAULT_FEATHER_HEIGHT = 36;
 
 export interface TopFadeMaskProps {
@@ -82,7 +85,7 @@ export default function TopFadeMask({
         style={StyleSheet.absoluteFill}
         maskElement={
           <LinearGradient
-            colors={['rgba(0,0,0,1)', 'rgba(0,0,0,1)', 'rgba(0,0,0,0)']}
+            colors={[EXEMPT_COLOR_1, 'rgba(0,0,0,1)', EXEMPT_COLOR_2]}
             locations={[0, featherStart, 1]}
             style={StyleSheet.absoluteFill}
           />

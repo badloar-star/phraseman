@@ -29,6 +29,11 @@ import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
+const EXEMPT_COLOR_1 = '#211D17'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
+const EXEMPT_COLOR_2 = '#15120E'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
+const EXEMPT_COLOR_3 = '#29241D'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
+const EXEMPT_COLOR_4 = '#1C1812'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
+
 const YEAR_DAYS = 365;
 const YEAR_GRID_ROWS = 7;
 const YEAR_GRID_COLS = 53;
@@ -172,10 +177,10 @@ function CanonicalYearHeatmap({
   const { width } = useWindowDimensions();
   const palette = heatPalette(themeMode);
   const activityMapSurface = themeMode === 'gold'
-    ? ['#211D17', '#15120E']
+    ? [EXEMPT_COLOR_1, EXEMPT_COLOR_2]
     : [withAlpha(t.bgSurface2, 0.98), withAlpha(t.bgCard, 0.94)];
   const activityNudgeSurface = themeMode === 'gold'
-    ? ['#29241D', '#1C1812']
+    ? [EXEMPT_COLOR_3, EXEMPT_COLOR_4]
     : [withAlpha(t.accent, 0.12), withAlpha(t.bgSurface2, 0.94)];
   const usableWidth = Math.max(260, width - 64);
   const cellSize = Math.max(

@@ -122,7 +122,7 @@ export const Cta = memo(function Cta({
 
   const bg = ghost ? P.elev : danger ? P.danger : P.accent;
   const shelf = ghost ? P.card : danger ? P.dangerDark : P.accentDark;
-  const fg = ghost ? P.text : danger ? '#FFFFFF' : P.accentText;
+  const fg = ghost ? P.text : danger ? '#FFFFFF' : P.accentText; // theme-exempt: белый текст на красной кнопке опасного действия, тень и затемнение — постоянные
 
   const handlePressIn = useCallback(() => {
     depth.value = withTiming(4, { duration: 70 });
@@ -209,7 +209,7 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     borderRadius: radius.lg,
     overflow: 'hidden',
     // Тень вместо обводки: отделяет карточку от фона мягко.
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: белый текст на красной кнопке опасного действия, тень и затемнение — постоянные
     shadowOpacity: 0.35,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 8 },
@@ -237,7 +237,7 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   },
   sheetBackdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // theme-exempt: белый текст на красной кнопке опасного действия, тень и затемнение — постоянные
   },
   sheet: {
     backgroundColor: P.elev,

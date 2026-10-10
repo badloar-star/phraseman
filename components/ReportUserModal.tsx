@@ -12,6 +12,10 @@ import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.53)'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.53)'; // theme-exempt: тень и затемнение окна — постоянные
+
 interface Props {
   visible: boolean;
   reportedUid: string;
@@ -285,8 +289,8 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
       <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={handleClose}
-        shadowColor="#000000"
-        backdropColor="rgba(0,0,0,0.53)"
+        shadowColor={EXEMPT_COLOR_1}
+        backdropColor={EXEMPT_COLOR_2}
         testID="report-user-modal-hybrid"
       >
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%', maxHeight: '100%' }}>
@@ -315,7 +319,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             жалобу нельзя было отправить. keyboardShouldPersistTaps сохраняет
             закрытие по тапу мимо формы. */}
         <ScrollView decelerationRate="fast"
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.53)' }}
+          style={{ flex: 1, backgroundColor: EXEMPT_COLOR_3 }}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 22, paddingVertical: 18 }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"

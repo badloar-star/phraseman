@@ -17,6 +17,10 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
+const EXEMPT_COLOR_1 = '#3A1E1C'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
+const EXEMPT_COLOR_2 = '#FF8C82'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
+const EXEMPT_COLOR_3 = '#000000'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
+
 type Props = {
   visible: boolean;
   title: string;
@@ -82,12 +86,12 @@ function ThemedConfirmModal({
   // текстом (#FF8C82). Эти значения рассчитаны на тёмный графит; в светлой теме берём красные роли темы.
   const darkDanger = liquidGlassAppearance === 'dark';
   const confirmBackground = destructive
-    ? (darkDanger ? '#3A1E1C' : t.wrongBg)
+    ? (darkDanger ? EXEMPT_COLOR_1 : t.wrongBg)
     : confirmVariant === 'accent'
       ? glass.cta
       : glass.opaqueControl;
   const confirmForeground = destructive
-    ? (darkDanger ? '#FF8C82' : t.wrong)
+    ? (darkDanger ? EXEMPT_COLOR_2 : t.wrong)
     : confirmVariant === 'accent'
       ? glass.ctaInk
       : glass.text;
@@ -249,7 +253,7 @@ function ThemedConfirmModal({
         visible={visible}
         onRequestClose={onCancel}
         scrollContent={false}
-        shadowColor="#000000"
+        shadowColor={EXEMPT_COLOR_3}
         testID={testIDPrefix ? `${testIDPrefix}-modal-hybrid` : 'themed-confirm-modal-hybrid'}
       >
         {panelContent}
@@ -319,7 +323,7 @@ const styles = StyleSheet.create({
   actionLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
   classicBackdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.68)',
+    backgroundColor: 'rgba(0,0,0,0.68)', // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,

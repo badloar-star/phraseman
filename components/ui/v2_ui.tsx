@@ -32,6 +32,9 @@ import { METAL, radius, useTournamentPalette, v2motion, type TournamentV2 } from
 import { StarGlyph } from './V2Fx';
 import { useTheme } from '../ThemeContext';
 
+const EXEMPT_COLOR_1 = 'rgba(227,204,136,0.14)'; // theme-exempt: заливка автопрогресса и тень — постоянные
+const EXEMPT_COLOR_2 = 'rgba(255,255,255,0.22)'; // theme-exempt: заливка автопрогресса и тень — постоянные
+
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 // Диагональ 160° из макета: from/end подобраны так, чтобы совпасть с CSS.
@@ -142,7 +145,7 @@ export const V2Cta = memo(function V2Cta({
         ) : null}
         {!disabled ? <View style={[styles.topHi, { backgroundColor: P.ctaHi }]} pointerEvents="none" /> : null}
         {autoNext ? (
-          <Animated.View style={[styles.autoFill, { backgroundColor: isOlive ? 'rgba(227,204,136,0.14)' : 'rgba(255,255,255,0.22)' }, fillStyle]} pointerEvents="none" />
+          <Animated.View style={[styles.autoFill, { backgroundColor: isOlive ? EXEMPT_COLOR_1 : EXEMPT_COLOR_2 }, fillStyle]} pointerEvents="none" />
         ) : null}
         <View style={styles.ctaRow}>
           {left}
@@ -480,7 +483,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: radius.lg - 2,
     overflow: 'hidden',
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: заливка автопрогресса и тень — постоянные
     shadowOpacity: 0.4,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 10 },

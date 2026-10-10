@@ -11,6 +11,8 @@ import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
+
 export type ThemedChoice = {
   label: string;
   onPress: () => void;
@@ -49,7 +51,7 @@ function ThemedChoiceModal({
   onRequestClose,
   motionVariant = 'hybrid',
 }: Props) {
-  const { liquidGlassThemeId } = useTheme();
+  const { theme: t, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -96,8 +98,11 @@ function ThemedChoiceModal({
               const destructive = c.variant === 'destructive';
               const primary = c.variant !== 'secondary' && !destructive;
               // зачем: макет system.html system_23 — приглушённо-красная плашка и коралловый текст для необратимого действия.
-              const background = destructive ? '#3A1E1C' : primary ? glass.opaqueControl : glass.selected;
-              const foreground = destructive ? '#FF8C82' : primary ? glass.text : glass.secondary;
+              // зачем (10.10, замечание владельца о цвете не от темы): в светлой теме «красное» берём из ролей темы, как в ThemedConfirmModal;
+              // приглушённая пара макета рассчитана на тёмный графит.
+              const darkDanger = liquidGlassAppearance === 'dark';
+              const background = destructive ? (darkDanger ? DANGER_BG_DARK : t.wrongBg) : primary ? glass.opaqueControl : glass.selected;
+              const foreground = destructive ? (darkDanger ? DANGER_INK_DARK : t.wrong) : primary ? glass.text : glass.secondary;
               return (
                 <TouchableOpacity
                   key={index}
@@ -146,7 +151,7 @@ function ThemedChoiceModal({
         onRequestClose={onRequestClose}
         placement="bottom"
         scrollContent={false}
-        shadowColor="#000000"
+        shadowColor={EXEMPT_COLOR_1}
         testID="themed-choice-modal-hybrid"
       >
         {panelContent}
@@ -174,6 +179,9 @@ function ThemedChoiceModal({
     </Modal>
   );
 }
+
+const DANGER_BG_DARK = '#3A1E1C'; // theme-exempt: приглушённо-красная плашка макета system_23 — только для тёмного оформления
+const DANGER_INK_DARK = '#FF8C82'; // theme-exempt: коралловый текст макета system_23 — только для тёмного оформления
 
 const styles = StyleSheet.create({
   sheet: {
@@ -206,7 +214,7 @@ const styles = StyleSheet.create({
   choiceLabel: { flex: 1, fontSize: 16, fontWeight: '600' },
   classicBackdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.68)',
+    backgroundColor: 'rgba(0,0,0,0.68)', // theme-exempt: тень и затемнение окна — постоянные
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingTop: 24,

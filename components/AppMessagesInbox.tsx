@@ -1425,7 +1425,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     overflow: 'hidden',
-    shadowColor: 'black',
+    shadowColor: 'black', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     shadowOpacity: 0.3,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
@@ -1451,7 +1451,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 8,
     borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.55)',
+    backgroundColor: 'rgba(255,255,255,0.55)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     transform: [{ rotate: '-18deg' }],
   },
   badge: {
@@ -1473,7 +1473,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.56)',
+    backgroundColor: 'rgba(0,0,0,0.56)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
   },
   // Нижняя шторка (макет SYS-10): прижата к низу, сверху отступ под safe area.
   modalWrap: {
@@ -1536,7 +1536,7 @@ const styles = StyleSheet.create({
   messageRow: {
     position: 'relative',
     borderBottomWidth: StyleSheet.hairlineWidth, // guard-ok: разделитель строк, а не рамка контейнера
-    borderBottomColor: 'rgba(255,255,255,0.09)',
+    borderBottomColor: 'rgba(255,255,255,0.09)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     paddingVertical: 14,
     paddingLeft: 22,
     paddingRight: 4,

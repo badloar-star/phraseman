@@ -10,7 +10,10 @@ describe('mistake practice session screen', () => {
     expect(screen).toContain("import ScreenGradient from '../components/ScreenGradient';");
     expect(screen).toContain('function MistakePracticeScreenFrame');
     expect(screen).toContain('<ScreenGradient>');
-    expect(screen).toContain('<SafeAreaView style={styles.screen}>');
+    // зачем (10.10, Дизайн): с 04.10 отступы идут из useStableSafeAreaInsets (SafeAreaView из react-native на Android не даёт отступов),
+    // фон остаётся на ScreenGradient во весь экран — проверяем это, а не старую обёртку.
+    expect(screen).toContain('useStableSafeAreaInsets()');
+    expect(screen).toMatch(/<View style=\{\[styles\.screen, \{ paddingTop: insets\.top, paddingBottom: insets\.bottom \}\]\}>/);
     expect(screen).not.toMatch(/<SafeAreaView[^>]*backgroundColor/);
   });
 

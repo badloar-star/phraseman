@@ -75,7 +75,7 @@ function TonalSurface({
         colors={[
           alpha(t.accent, glowTop),
           alpha(t.accent, glowMid),
-          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)', // theme-exempt: блик тональной поверхности — белая дымка и прозрачный конец градиента
         ]}
         locations={[0, 0.34, 1]}
         start={{ x: 0.08, y: 0 }}
@@ -85,9 +85,9 @@ function TonalSurface({
       <LinearGradient
         pointerEvents="none"
         colors={[
-          'rgba(255,255,255,0.13)',
-          'rgba(255,255,255,0.035)',
-          'rgba(255,255,255,0)',
+          'rgba(255,255,255,0.13)', // theme-exempt: блик тональной поверхности — белая дымка и прозрачный конец градиента
+          'rgba(255,255,255,0.035)', // theme-exempt: блик тональной поверхности — белая дымка и прозрачный конец градиента
+          'rgba(255,255,255,0)', // theme-exempt: блик тональной поверхности — белая дымка и прозрачный конец градиента
         ]}
         locations={[0, 0.24, 1]}
         start={{ x: 0, y: 0 }}

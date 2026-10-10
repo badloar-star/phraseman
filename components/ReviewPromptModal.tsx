@@ -16,6 +16,10 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.62)'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_2 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.62)'; // theme-exempt: тень и затемнение окна — постоянные
+
 type Props = {
   visible: boolean;
   context: ReviewContext;
@@ -240,7 +244,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
         <Pressable
           onPress={close}
           accessible={false}
-          style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingTop: topInset + 12, backgroundColor: 'rgba(0,0,0,0.62)' }}
+          style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', paddingTop: topInset + 12, backgroundColor: EXEMPT_COLOR_1 }}
         >
           {/* guard-ok: останавливает всплытие тапа из sheet в скрим. */}
           <Pressable onPress={(event) => event.stopPropagation()} accessible={false} style={panelStyle}>
@@ -256,7 +260,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
       <HybridAlertShell
         visible={overlayVisible}
         onRequestClose={close}
-        shadowColor="#000000"
+        shadowColor={EXEMPT_COLOR_2}
         testID="review-prompt-modal-hybrid"
       >
         <View style={panelStyle}>{panelContent}</View>
@@ -271,7 +275,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
       <Pressable
         onPress={close}
         accessible={false}
-        style={{ flex: 1, justifyContent: bottomSheet ? 'flex-end' : 'center', alignItems: 'center', paddingHorizontal: bottomSheet ? 0 : 20, backgroundColor: 'rgba(0,0,0,0.62)' }}
+        style={{ flex: 1, justifyContent: bottomSheet ? 'flex-end' : 'center', alignItems: 'center', paddingHorizontal: bottomSheet ? 0 : 20, backgroundColor: EXEMPT_COLOR_3 }}
       >
         {/* guard-ok: чисто структурная обёртка, гасит всплытие тапа до скрима. */}
         <Pressable

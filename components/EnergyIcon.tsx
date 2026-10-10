@@ -8,6 +8,9 @@ import { LUM } from "../constants/motionHybrid";
 import { useReduceMotion } from "../hooks/use_reduce_motion";
 import { useRuntimeActive } from "../hooks/use_runtime_active";
 
+const EXEMPT_COLOR_1 = '#000'; // theme-exempt: цвета значка энергии — бренд-палитра валюты
+const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: цвета значка энергии — бренд-палитра валюты
+
 interface EnergyIconProps {
   filled: boolean;
   themeColor: string;
@@ -157,7 +160,7 @@ function EnergyIcon({
             <Ionicons
               name="flash-outline"
               size={size}
-              color="#000"
+              color={EXEMPT_COLOR_1}
               accessible={false}
               importantForAccessibility="no"
             />
@@ -169,7 +172,7 @@ function EnergyIcon({
               style={[styles.sweep, { width: size, height: Math.max(6, size * 0.72), transform: [{ translateY: sweepTranslateY }] }]}
             >
               <LinearGradient
-                colors={['transparent', '#FFFFFF', 'transparent']}
+                colors={['transparent', EXEMPT_COLOR_2, 'transparent']}
                 start={{ x: 0, y: 1 }}
                 end={{ x: 0, y: 0 }}
                 style={StyleSheet.absoluteFillObject}
@@ -205,7 +208,7 @@ function EnergyIcon({
             StyleSheet.absoluteFillObject,
             styles.glow,
             {
-              backgroundColor: "#FFD37A",
+              backgroundColor: "#FFD37A", // theme-exempt: цвета значка энергии — бренд-палитра валюты
               opacity: glowAnim,
               transform: [{ scale: 1.6 }],
             },

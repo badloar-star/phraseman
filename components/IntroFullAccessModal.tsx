@@ -11,6 +11,9 @@ import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.58)'; // theme-exempt: тень и затемнение окна — постоянные
+
 // зачем: владелец 2026-09-29 — перенос окна на Liquid Glass «1 в 1 с макета»
 // (overlays-more.html OM-FULL-WELCOME / OM-FULL-ENDED). Без градиентов и россыпи
 // hex: непрозрачная основа и нейтральный CTA из токенов темы (13 тем). Старые
@@ -168,8 +171,8 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
         scrollContent={false}
         visible={visible}
         onRequestClose={onSecondaryPress ?? onPrimaryPress}
-        shadowColor="rgba(0,0,0,0.5)"
-        backdropColor="rgba(0,0,0,0.58)"
+        shadowColor={EXEMPT_COLOR_1}
+        backdropColor={EXEMPT_COLOR_2}
         testID={isWelcome ? 'intro-full-access-welcome-backdrop' : 'intro-full-access-ended-backdrop'}
       >
         <ScrollView
@@ -216,7 +219,7 @@ export default memo(IntroFullAccessModal);
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.58)',
+    backgroundColor: 'rgba(0,0,0,0.58)', // theme-exempt: тень и затемнение окна — постоянные
   },
   safeScroll: {
     flex: 1,

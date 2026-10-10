@@ -3340,9 +3340,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "practice-028",
@@ -3403,9 +3412,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-002",
@@ -3433,9 +3448,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-003",
@@ -3463,9 +3484,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-004",
@@ -3496,9 +3523,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-005",
@@ -3531,9 +3564,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-006",
@@ -3562,9 +3601,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-007",
@@ -3593,9 +3638,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-008",
@@ -3625,9 +3676,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-009",
@@ -3655,9 +3712,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-010",
@@ -3688,9 +3751,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-011",
@@ -3720,9 +3789,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-012",
@@ -3753,9 +3828,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-013",
@@ -3785,9 +3866,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-014",
@@ -3818,9 +3905,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-015",
@@ -3851,9 +3944,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-016",
@@ -3883,9 +3982,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "spire-017",
@@ -3915,9 +4020,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "video-001",
@@ -9341,9 +9452,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-002",
@@ -9369,9 +9489,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-003",
@@ -9402,10 +9531,19 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
+      "status": "no_release_surface",
       "mockup_pinned": "owner 04.10: переведено на новый макет",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-004",
@@ -9433,9 +9571,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-005",
@@ -9466,9 +9613,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-006",
@@ -9499,9 +9655,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-007",
@@ -9530,9 +9695,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-008",
@@ -9560,9 +9734,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-009",
@@ -9590,9 +9773,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-010",
@@ -9628,9 +9820,18 @@
         "Шапка карты: замок/книга/монета 7845 вместо одной книги; нет плашки урока «6/56 · Первый день в новом офисе»",
         "Снято на Сессии 1 (в макете Сессия 7) — данные"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-011",
@@ -9661,9 +9862,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-012",
@@ -9695,9 +9905,18 @@
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3",
         "Не снято: «Проверка главы» закрыта, по тапу ничего не открывается — нужен прогресс главы 1 (8 занятий)"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-013",
@@ -9729,9 +9948,18 @@
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3",
         "🟡 Тап по закрытому занятию 2 и по закрытой «Проверке главы» НЕ даёт никакого отклика: ни окна «Закрытое занятие» (макет кадр 13), ни вибрации, ни подсказки; логов нет (03:22–03:23)"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-014",
@@ -9762,9 +9990,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-015",
@@ -9795,9 +10032,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-016",
@@ -9826,9 +10072,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-017",
@@ -9859,9 +10114,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-018",
@@ -9891,9 +10155,18 @@
         "Совпадает по раскладке и текстам; мелочь: заливка фона ровная, в макете лёгкий градиент/виньетка",
         "Ячейки 016/017/019 (слова/поиск/ничего не нашлось) не сняты — у аккаунта 0 открытых слов, нужен пройденный урок"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-019",
@@ -9924,9 +10197,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-020",
@@ -9957,9 +10239,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-021",
@@ -9988,9 +10279,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-022",
@@ -10018,9 +10318,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-023",
@@ -10049,9 +10358,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-024",
@@ -10080,9 +10398,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-025",
@@ -10111,9 +10438,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-026",
@@ -10142,9 +10478,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-027",
@@ -10173,9 +10518,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-028",
@@ -10205,9 +10559,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-029",
@@ -10237,9 +10600,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-030",
@@ -10269,9 +10641,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-031",
@@ -10301,9 +10682,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-032",
@@ -10333,9 +10723,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-033",
@@ -10365,9 +10764,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-034",
@@ -10399,9 +10807,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-035",
@@ -10431,9 +10848,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-036",
@@ -10463,9 +10889,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-037",
@@ -10495,9 +10930,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-038",
@@ -10527,9 +10971,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-039",
@@ -10559,9 +11012,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-040",
@@ -10591,9 +11053,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-041",
@@ -10623,9 +11094,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-042",
@@ -10655,9 +11135,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-043",
@@ -10687,9 +11176,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-044",
@@ -10719,9 +11217,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-045",
@@ -10751,9 +11258,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-046",
@@ -10783,9 +11299,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-047",
@@ -10815,9 +11340,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-048",
@@ -10847,9 +11381,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-049",
@@ -10878,9 +11421,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-050",
@@ -10910,9 +11462,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-051",
@@ -10941,9 +11502,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-052",
@@ -10973,9 +11543,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-053",
@@ -11007,9 +11586,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-054",
@@ -11039,9 +11627,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-055",
@@ -11071,9 +11668,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-056",
@@ -11103,9 +11709,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-057",
@@ -11134,9 +11749,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-058",
@@ -11165,9 +11789,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-059",
@@ -11196,9 +11829,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-060",
@@ -11229,9 +11871,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-061",
@@ -11262,9 +11913,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-062",
@@ -11295,9 +11955,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-063",
@@ -11326,9 +11995,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-064",
@@ -11357,9 +12035,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-065",
@@ -11387,9 +12074,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-066",
@@ -11418,9 +12114,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-067",
@@ -11449,9 +12154,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-068",
@@ -11480,9 +12194,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-069",
@@ -11514,9 +12237,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-070",
@@ -11548,9 +12280,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-071",
@@ -11582,9 +12323,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-072",
@@ -11616,9 +12366,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-073",
@@ -11650,9 +12409,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-074",
@@ -11684,9 +12452,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-075",
@@ -11718,9 +12495,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-076",
@@ -11751,9 +12537,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-077",
@@ -11784,9 +12579,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-078",
@@ -11817,9 +12621,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-079",
@@ -11850,9 +12663,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-080",
@@ -11883,9 +12705,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-081",
@@ -11916,9 +12747,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "learning-v2-082",
@@ -11948,9 +12788,18 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "store_route_excluded",
+        "routes": [
+          "app/learning-v2/course.tsx",
+          "app/learning-v2/session/[id].tsx",
+          "app/learning-v2/intro-reader-fixture.tsx",
+          "app/learning_v2_authoring_preview.tsx"
+        ]
+      }
     },
     {
       "id": "community-001",
@@ -11977,9 +12826,15 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "community-002",
@@ -12011,9 +12866,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "community-003",
@@ -12041,9 +12902,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "community-004",
@@ -12071,9 +12938,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "community-005",
@@ -12101,9 +12974,15 @@
       "diffs": [
         "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
+      "status": "no_release_surface",
+      "reviewed_by": "coordinator",
+      "reviewed_at": "2026-10-10",
+      "release_surface_proof": {
+        "kind": "flag_off",
+        "flag": "spire_tab_enabled",
+        "flag_source": "app/spire_tab_flag.ts",
+        "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
+      }
     },
     {
       "id": "community-006",

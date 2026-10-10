@@ -59,6 +59,10 @@ import type { RuntimeStudyTarget } from '../target_storage_keys';
 import DuoPressable from '../../components/DuoPressable';
 import PressableHybrid from '../../components/PressableHybrid';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0)'; // theme-exempt: прозрачный конец градиента (нулевая альфа) — не цвет
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0)'; // theme-exempt: прозрачный конец градиента (нулевая альфа) — не цвет
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0)'; // theme-exempt: прозрачный конец градиента (нулевая альфа) — не цвет
+
 export type CardPackPaywallMode = 'confirm' | 'insufficient' | 'voucher';
 
 type Props = {
@@ -1049,7 +1053,7 @@ export default function CardPackShardPaywallModal({
                         <>
                           <View style={{ position: 'relative', marginBottom: 10 }}>
                             <AnimatedLinearGradient
-                              colors={[paywallVisual.ctaGlowTop, 'rgba(0,0,0,0)']}
+                              colors={[paywallVisual.ctaGlowTop, EXEMPT_COLOR_1]}
                               start={{ x: 0.5, y: 0 }}
                               end={{ x: 0.5, y: 1 }}
                               style={[
@@ -1091,7 +1095,7 @@ export default function CardPackShardPaywallModal({
                         <>
                           <View style={{ position: 'relative' }}>
                             <AnimatedLinearGradient
-                              colors={[`${t.gold}55`, 'rgba(0,0,0,0)']}
+                              colors={[`${t.gold}55`, EXEMPT_COLOR_2]}
                               start={{ x: 0.5, y: 0 }}
                               end={{ x: 0.5, y: 1 }}
                               style={[
@@ -1148,7 +1152,7 @@ export default function CardPackShardPaywallModal({
                         <>
                           <View style={{ position: 'relative' }}>
                             <AnimatedLinearGradient
-                              colors={[paywallVisual.ctaGlowTop, 'rgba(0,0,0,0)']}
+                              colors={[paywallVisual.ctaGlowTop, EXEMPT_COLOR_3]}
                               start={{ x: 0.5, y: 0 }}
                               end={{ x: 0.5, y: 1 }}
                               style={[

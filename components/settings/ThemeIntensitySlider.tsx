@@ -190,7 +190,7 @@ function ThemeIntensitySliderImpl({ glass, themeId, value, label, onPreview, onC
           <Animated.View
             style={[
               styles.thumb,
-              { backgroundColor: glass.isLight ? '#FFFFFF' : glass.text, shadowColor: glass.isLight ? glass.shadowTint : '#000000' },
+              { backgroundColor: glass.isLight ? '#FFFFFF' : glass.text, shadowColor: glass.isLight ? glass.shadowTint : '#000000' }, // theme-exempt: ручка ползунка: белая заливка и чёрная тень — постоянные
               thumbStyle,
             ]}
           />

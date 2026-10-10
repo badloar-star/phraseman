@@ -83,9 +83,9 @@ import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 
 const MAX_INPUT_LENGTH = 220;
-const FEEDBACK_OK_SURFACE = '#185C3A';
-const FEEDBACK_BAD_SURFACE = '#702B35';
-const FEEDBACK_TEXT = '#FFFFFF';
+const FEEDBACK_OK_SURFACE = '#185C3A'; // theme-exempt: белый текст обратной связи на цветной плашке верно/неверно
+const FEEDBACK_BAD_SURFACE = '#702B35'; // theme-exempt: белый текст обратной связи на цветной плашке верно/неверно
+const FEEDBACK_TEXT = '#FFFFFF'; // theme-exempt: белый текст обратной связи на цветной плашке верно/неверно
 
 type RecallFeedback = Readonly<{
   kind: 'correct' | 'typo' | 'wrong';

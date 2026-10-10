@@ -39,6 +39,8 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
+
 type Props = {
   visible: boolean;
   onRequestClose: () => void;
@@ -542,7 +544,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         onRequestClose={() => {
           if (!deleting) onRequestClose();
         }}
-        shadowColor="#000000"
+        shadowColor={EXEMPT_COLOR_1}
         testID="delete-account-modal-hybrid"
         scrollContent={false}
         avoidKeyboard
@@ -586,7 +588,7 @@ const styles = StyleSheet.create({
   },
   classicModalViewport: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(0,0,0,0.7)', // theme-exempt: тень и затемнение окна — чёрные в любой теме
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient, RadialGradient, Stop } from 'react-native-svg';
 import { themeSwatchSpec } from '../../constants/liquidGlassThemeSwatch';
 
+const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: кромка образца темы — белая 14% на цвете образца
+
 type Props = { id: string; vivid: boolean; size?: number };
 
 export const ThemeSwatch = memo(function ThemeSwatch({ id, vivid, size = 32 }: Props) {
@@ -21,7 +23,7 @@ export const ThemeSwatch = memo(function ThemeSwatch({ id, vivid, size = 32 }: P
         </Defs>
         <Circle cx={r} cy={r} r={r} fill={`url(#${gid})`} />
         {/* макет: тонкая светлая кромка кружка (.12–.35) */}
-        <Circle cx={r} cy={r} r={r - 0.5} fill="none" stroke="#FFFFFF" strokeOpacity={0.14} strokeWidth={1} />
+        <Circle cx={r} cy={r} r={r - 0.5} fill="none" stroke={EXEMPT_COLOR_1} strokeOpacity={0.14} strokeWidth={1} />
       </Svg>
     </View>
   );

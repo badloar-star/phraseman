@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.58)',
+    backgroundColor: 'rgba(0,0,0,0.58)', // theme-exempt: затемнение под окном — тёмный скрим в любой теме
   },
   sheet: {
     width: '100%',

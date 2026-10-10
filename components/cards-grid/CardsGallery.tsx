@@ -26,6 +26,16 @@ import {
   galleryVisibleRange,
 } from './cardsGalleryLayout';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.8)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_2 = 'rgba(255,255,255,0.16)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.04)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_4 = 'rgba(255,255,255,0)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_5 = 'rgba(255,255,255,0.05)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_6 = '#FFFFFF'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_7 = 'rgba(255,255,255,0.22)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_8 = 'rgba(255,255,255,0.28)'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+const EXEMPT_COLOR_9 = '#04261D'; // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+
 export type GalleryCard = Readonly<{
   id: string;
   front: string;
@@ -98,7 +108,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
   const mid = useMemo(() => galleryLayoutFor((lvl + 0.5) / 4, width), [lvl, width]);
   const pts = useMemo(() => cssGradientPoints(145, mid.w, mid.h), [mid.h, mid.w]);
   const colors = useMemo(
-    () => [`${mixDark(a, '#0A0A0E', 0.46)}${FACE_ALPHA_TOP}`, `#08080C${FACE_ALPHA_MID}`, `${mixDark(b, '#08080C', 0.4)}${FACE_ALPHA_MID}`] as const,
+    () => [`${mixDark(a, '#0A0A0E', 0.46)}${FACE_ALPHA_TOP}`, `#08080C${FACE_ALPHA_MID}`, `${mixDark(b, '#08080C', 0.4)}${FACE_ALPHA_MID}`] as const, // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
     [a, b],
   );
   const showIpa = lvl <= 1 && !!card.ipa;
@@ -111,11 +121,11 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
         accessibilityLabel={card.front}
         onPress={() => onOpen(card.id)}
         onLongPress={onLongPress ? () => onLongPress(card.id) : undefined}
-        style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: 'rgba(0,0,0,0.8)' }] }, pressed && styles.pressed]}>
+        style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: EXEMPT_COLOR_1 }] }, pressed && styles.pressed]}>
         <View style={[styles.face, { borderRadius: radius, padding: pad }]}>
           <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.56, 1]} start={pts.start} end={pts.end} style={StyleSheet.absoluteFill} />
           {/* блик 150°: белый 16 % → 0 к 54 % */}
-          <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.16)', 'rgba(255,255,255,0.04)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.05)']} locations={[0, 0.28, 0.54, 1]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
+          <LinearGradient pointerEvents="none" colors={[EXEMPT_COLOR_2, EXEMPT_COLOR_3, EXEMPT_COLOR_4, EXEMPT_COLOR_5]} locations={[0, 0.28, 0.54, 1]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
           {/* свечение цвета темы в правом верхнем углу */}
           <View pointerEvents="none" style={styles.glow}>
             <Svg width="100%" height="100%" viewBox="0 0 100 100">
@@ -137,18 +147,18 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
               hitSlop={8}
               onPress={() => onSpeak(card.id)}
               style={styles.speak}>
-              <Ionicons name="volume-high" size={16} color="#FFFFFF" />
+              <Ionicons name="volume-high" size={16} color={EXEMPT_COLOR_6} />
             </Pressable>
           ) : null}
           {full && card.dots ? (
             <View style={styles.dots} pointerEvents="none">
-              {[0, 1, 2, 3].map((d) => <View key={d} style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? accent : 'rgba(255,255,255,0.22)' }]} />)}
+              {[0, 1, 2, 3].map((d) => <View key={d} style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? accent : EXEMPT_COLOR_7 }]} />)}
             </View>
           ) : null}
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: bevelShadow('rgba(255,255,255,0.28)', `${a}66`) }]} />
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: bevelShadow(EXEMPT_COLOR_8, `${a}66`) }]} />
           {selected !== undefined ? (
             <View pointerEvents="none" style={[styles.check, selected ? { backgroundColor: accent } : styles.checkOff]}>
-              {selected ? <Ionicons name="checkmark" size={16} color="#04261D" /> : null}
+              {selected ? <Ionicons name="checkmark" size={16} color={EXEMPT_COLOR_9} /> : null}
             </View>
           ) : null}
         </View>
@@ -203,12 +213,12 @@ const styles = StyleSheet.create({
   pressed: { transform: [{ scale: 0.965 }] },
   face: { flex: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   glow: { position: 'absolute', width: '80%', aspectRatio: 1, right: '-30%', top: '-40%', opacity: 0.55 },
-  en: { width: '100%', textAlign: 'center', color: '#FFFFFF', fontWeight: '500', letterSpacing: -0.2 },
+  en: { width: '100%', textAlign: 'center', color: '#FFFFFF', fontWeight: '500', letterSpacing: -0.2 }, // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
   match: { textDecorationLine: 'underline' },
-  ipa: { marginTop: 6, fontStyle: 'italic', color: 'rgba(255,255,255,0.62)', textAlign: 'center' },
-  speak: { position: 'absolute', right: 10, top: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' },
+  ipa: { marginTop: 6, fontStyle: 'italic', color: 'rgba(255,255,255,0.62)', textAlign: 'center' }, // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
+  speak: { position: 'absolute', right: 10, top: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
   dots: { position: 'absolute', left: 14, bottom: 11, flexDirection: 'row', gap: 4 },
   dot: { width: 6, height: 6, borderRadius: 3 },
   check: { position: 'absolute', left: 10, top: 10, width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  checkOff: { backgroundColor: 'rgba(255,255,255,0.14)' },
+  checkOff: { backgroundColor: 'rgba(255,255,255,0.14)' }, // theme-exempt: плитка галереи — тёмное лицо карточки с цветом темы и светлым текстом, читаемо в любой теме по замыслу макета
 });

@@ -27,6 +27,9 @@ import { ThemeIntensitySlider } from '../components/settings/ThemeIntensitySlide
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
+
+const EXEMPT_COLOR_1 = 'rgba(255,255,255,0.12)'; // theme-exempt: выбранный сегмент тёмного «Спокойно» — светлая плашка по макету (светлая тема — выше по функции, из токенов)
+const EXEMPT_COLOR_2 = 'rgba(255,255,255,0.14)'; // theme-exempt: выбранный сегмент тёмного «Спокойно» — светлая плашка по макету (светлая тема — выше по функции, из токенов)
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // модалка покупки темы за жемчуг удалена целиком (D45).
 
@@ -76,7 +79,7 @@ function selectedChip(glass: GlassTokens): { box: ViewStyle; ink: string } {
     };
   }
   if (glass.level === 'calm') {
-    return { box: { backgroundColor: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.14)' }, ink: glass.text }; // guard-ok: 1px кромка 2.0
+    return { box: { backgroundColor: EXEMPT_COLOR_1, borderColor: EXEMPT_COLOR_2 }, ink: glass.text }; // guard-ok: 1px кромка 2.0
   }
   return { box: { backgroundColor: `${glass.accentCap}38`, borderColor: `${glass.accentCap}4D` }, ink: glass.accentBright }; // guard-ok: 1px кромка 2.0
 }

@@ -411,7 +411,7 @@ export default function CollectionDeckView({
   if (!card) return null;
 
   const shadow = {
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: тень — чёрная в любой теме
     shadowOpacity: 0.3,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },

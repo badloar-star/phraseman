@@ -86,6 +86,9 @@ import {
   MissingPackCache,
   MY_PACKS_MISSING_TTL_MS,
 } from './flashcards/myPacksDataIntegrity';
+
+const EXEMPT_COLOR_1 = '#D9565D'; // theme-exempt: белый текст на красной кнопке «Удалить набор»
+const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: белый текст на красной кнопке «Удалить набор»
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 function MyPacksGlass({ tint, edge }: { tint: string; edge: string }) {
@@ -823,8 +826,8 @@ export default function FlashcardsMyPacksScreen() {
                 <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card }}>
                   <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: '#D9565D' }}>
-                  {deletePackBusy ? <ActivityIndicator color="#FFFFFF" /> : <Text style={{ color: '#FFFFFF', fontWeight: '800' }}>{copy.deletePack}</Text>}
+                <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: EXEMPT_COLOR_1 }}>
+                  {deletePackBusy ? <ActivityIndicator color={EXEMPT_COLOR_2} /> : <Text style={{ color: '#FFFFFF', fontWeight: '800' }}>{copy.deletePack}</Text>}
                 </TouchableOpacity>
               </View>
             </View>

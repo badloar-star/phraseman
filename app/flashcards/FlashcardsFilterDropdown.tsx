@@ -54,7 +54,7 @@ export default function FlashcardsFilterDropdown({
           overflow: 'hidden',
           minWidth: 200,
           maxHeight: 420,
-          shadowColor: '#000',
+          shadowColor: '#000', // theme-exempt: тень выпадающего меню — чёрная в любой теме
           shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.25,
           shadowRadius: 12,

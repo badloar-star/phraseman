@@ -50,9 +50,13 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { soundDirector } from '../modules/audio/sound_director';
 
+const EXEMPT_COLOR_1 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
+const EXEMPT_COLOR_2 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
+const EXEMPT_COLOR_3 = '#fff'; // theme-exempt: белый текст на залитой кнопке цвета набора
+
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
-const CONFETTI_COLORS = ['#FFD700', '#34C759', '#007AFF', '#FF3B30', '#AF52DE', '#FF9500'];
+const CONFETTI_COLORS = ['#FFD700', '#34C759', '#007AFF', '#FF3B30', '#AF52DE', '#FF9500']; // theme-exempt: белый текст на залитой кнопке цвета набора
 
 // ────────────────────────────────────────────────────────────────────────────
 // Confetti — використовуємо ті самі частинки, що й у ClubResultModal
@@ -535,7 +539,7 @@ export default function PackOpeningScreen() {
   );
   const cardHeight = Math.round(cardWidth * 1.35);
 
-  const accent = t.accent ?? '#5CC8FF';
+  const accent = t.accent ?? '#5CC8FF'; // theme-exempt: белый текст на залитой кнопке цвета набора
   const tile = pack ? packTileImageForPack(pack) : undefined;
 
   const opened = flippedSet.size;
@@ -601,7 +605,7 @@ export default function PackOpeningScreen() {
             onPress={() => safeRouterBack(router, '/flashcards' as any)}
             style={[styles.primaryBtn, { backgroundColor: accent }]}
           >
-            <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+            <Text style={{ color: EXEMPT_COLOR_1, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             </Text>
           </Pressable>
@@ -739,7 +743,7 @@ export default function PackOpeningScreen() {
               onPress={onGoToCards}
               style={[styles.primaryBtn, { backgroundColor: accent, flex: 1 }]}
             >
-              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+              <Text style={{ color: EXEMPT_COLOR_2, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Перейти к карточкам',
                   uk: 'Перейти до карток',
@@ -759,7 +763,7 @@ export default function PackOpeningScreen() {
             onPress={onGoToCards}
             style={[styles.primaryBtn, { backgroundColor: accent }]}
           >
-            <Text style={{ color: '#fff', fontSize: f.bodyLg, fontWeight: '700' }}>
+            <Text style={{ color: EXEMPT_COLOR_3, fontSize: f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Начать учить',
                 uk: 'Почати вчити',

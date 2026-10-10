@@ -22,6 +22,8 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.6)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
+
 export type LogoutStage = 'idle' | 'confirm' | 'wiping' | 'failed';
 
 interface AccountLogoutFlowProps {
@@ -213,7 +215,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             Прокрутка теперь общая для всех трёх стадий (крупный шрифт тоже переполняет). */}
         <ScrollView
           decelerationRate="fast"
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }}
+          style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1 }}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
           showsVerticalScrollIndicator={false}
         >

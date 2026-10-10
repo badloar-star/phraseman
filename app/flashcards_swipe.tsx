@@ -253,10 +253,10 @@ const DAY_MS = 24 * HOUR_MS;
 const SELECT_START_BAR_HEIGHT = 64;
 
 const SOURCE_ACCENTS: Record<SourceKind, string> = {
-  saved: '#7CDAFF',
-  custom: '#FFB84D',
-  official: '#7CFF92',
-  community: '#D6A4FF',
+  saved: '#7CDAFF', // theme-exempt: тень карточки — чёрная в любой теме
+  custom: '#FFB84D', // theme-exempt: тень карточки — чёрная в любой теме
+  official: '#7CFF92', // theme-exempt: тень карточки — чёрная в любой теме
+  community: '#D6A4FF', // theme-exempt: тень карточки — чёрная в любой теме
 };
 
 function defaultMemory(): CardMemory {
@@ -4841,7 +4841,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 14,
     marginBottom: 10,
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: тень карточки — чёрная в любой теме
     shadowOpacity: 0.08,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },

@@ -12,6 +12,8 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CARDS_GLASS_DANGER, CardsGlassSurface, type CardsGlassTokens } from '../flashcards/CardsGlassKit';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.45)'; // theme-exempt: затемнение — тёмный скрим в любой теме
+
 /** Переключатель 50×30 из макета: заливка cta + тёмная «пуговка». */
 export function PackSwitch({ g, on, disabled = false }: { g: CardsGlassTokens; on: boolean; disabled?: boolean }) {
   return (
@@ -114,7 +116,7 @@ export function PackPopoverMenu({
         accessibilityRole="button"
         accessibilityLabel={closeLabel}
         onPress={onClose}
-        style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.45)' }]}
+        style={[StyleSheet.absoluteFill, { backgroundColor: EXEMPT_COLOR_1 }]}
       />
       <View
         style={{

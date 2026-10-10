@@ -34,6 +34,10 @@ import { formatVideoMoment } from './video_moment';
 import type { WordStrength } from './word_strength';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
 
+const EXEMPT_COLOR_1 = '#D32F2F'; // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
+const EXEMPT_COLOR_2 = '#fff'; // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
+const EXEMPT_COLOR_3 = '#fff'; // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
+
 
 /** Розбір «абревіатура — пояснення» для EN-шифра (поля `abbrev` / `expansion` або з рядка `en`). */
 function splitAbbrevMarketplaceEn(
@@ -1214,7 +1218,7 @@ function FlashcardListItemImpl({
             justifyContent: 'center',
             alignItems: 'center',
             opacity: overlayOpacity,
-            backgroundColor: 'rgba(0,0,0,0.55)',
+            backgroundColor: 'rgba(0,0,0,0.55)', // theme-exempt: скрим и белый значок на красном действии «Удалить» — постоянные
           }}
         >
           <TouchableOpacity
@@ -1228,10 +1232,10 @@ function FlashcardListItemImpl({
                 <TouchableOpacity
                   onPress={() => onDeleteCard(item, itemIdx)}
                   activeOpacity={0.8}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: '#D32F2F', paddingHorizontal: 28, paddingVertical: 14, borderRadius: 14 }}
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: EXEMPT_COLOR_1, paddingHorizontal: 28, paddingVertical: 14, borderRadius: 14 }}
                 >
-                  <Ionicons name="trash-outline" size={22} color="#fff" />
-                  <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</Text>
+                  <Ionicons name="trash-outline" size={22} color={EXEMPT_COLOR_2} />
+                  <Text style={{ color: EXEMPT_COLOR_3, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</Text>
                 </TouchableOpacity>
               </Animated.View>
             </View>

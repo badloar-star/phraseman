@@ -97,6 +97,15 @@ function redirectSystemPathInner({
     return `/home?openPhrase=${encodeURIComponent(phraseMatch[1])}${play}`;
   }
 
+  // зачем (Сверка 10.10, 🔴 `phraseman://video` открывал Главную, а на тёплом старте — пустой экран): вкладки лежат в группе (tabs),
+  // а «голый» путь /video не был похож на маршрут группы — тёплый слушатель в _layout открывал его push-ом поверх стека, а на холодном
+  // старте корневой эффект уводил на Главную. Вкладочные ссылки приводим к виду группы: дальше их ведёт общий путь
+  // `isTabsGroupRoutePath` → router.replace. Запрос и хэш сохраняются.
+  const tabLink = raw.match(/^\/?(video|community|settings|friends)(?=[/?#]|$)/i);
+  if (tabLink?.[1]) {
+    return `/(tabs)/${tabLink[1].toLowerCase()}${raw.slice(tabLink[0].length)}`;
+  }
+
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
 

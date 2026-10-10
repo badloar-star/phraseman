@@ -55,3 +55,10 @@ test('redirectSystemPath handles triple-slash custom-scheme duel links', () => {
 test('redirectSystemPath handles authority-form custom-scheme duel links', () => {
   expect(redirect('phraseman://duel/ROOM42')).toBe('/home');
 });
+
+test('redirectSystemPath приводит ссылки на вкладки к виду группы (tabs)', () => {
+  expect(redirect('phraseman://video')).toBe('/(tabs)/video');
+  expect(redirect('phraseman://community?section=spire')).toBe('/(tabs)/community?section=spire');
+  expect(redirect('/settings')).toBe('/(tabs)/settings');
+  expect(redirect('phraseman://friends')).toBe('/(tabs)/friends');
+});

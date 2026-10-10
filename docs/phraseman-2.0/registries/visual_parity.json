@@ -6745,18 +6745,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-020.png",
-      "evidence_at": "2026-10-05T01:44:52.441Z",
-      "evidence_sha256": "6c7c88f7dd68913d709cefd4cd942230b56ea4277df8f0621c9eff7dc06e61d4",
+      "evidence_at": "2026-10-10T19:59:12.516Z",
+      "evidence_sha256": "31615c69d32cf30f1e4dab370db7645e8ee7721bcc74beee987b0cab87524bea",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Нет плашки энергии «⚡ 5» в шапке (Plus-аккаунт — возможно верно, проверить на Free)",
-        "Под названием звёзды «★☆☆ 1/50 фраз» вместо полосы прогресса «17/50»",
-        "Набор строк другой: Перепройти/Словарь/Неправильные формы/Теория; в макете Продолжить/Слова урока/Теория (урок в процессе → в макете «Продолжить», у нас «Перепройти» при 1/50)",
-        "Значки «Словарь» и «Теория» одинаковые (книга); в макете разные (лист/список)",
-        "Нет блока «Небольшой совет»",
-        "Карточки-строки уже со стеклом и кромкой — исправлено с прошлой сверки"
+        "Светлая «Аврора» (21:00) против тёмного макета (макет только тёмный — сверяю состав, форму, порядок). Урок 1 «Местоимения и глагол To Be».",
+        "ОТЛИЧИЕ: макет — заголовок «Урок 3 / A1», пилюля энергии ⚡5, шестерёнка, название урока, ПОЛОСА прогресса «17 / 50», строки «Продолжить 17/50 фраз», «Слова урока 9/24 слов», «Теория», карточка «Небольшой совет». Приложение — «Урок 1 / A1», шестерёнка без энергии, три звезды «1 / 50 фраз» вместо полосы, строки «Перепройти», «Словарь 7/37 слов», «Неправильные формы глаголов 0/1», «Теория»; карточки «Небольшой совет» нет.",
+        "Сверить в тёмной (пересъёмка) и решить: «Словарь/Неправильные формы» вместо «Слова урока» — функции приложения или отличие макета."
       ],
       "status": "pending",
       "reviewed_by": null,
@@ -6869,13 +6866,15 @@
       "anim_notes": [
         "bob 1.6s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-024.png",
+      "evidence_at": "2026-10-10T19:59:18.506Z",
+      "evidence_sha256": "b40a2d173d21b034ac47da0c7b12c46fd485d48b609213b978573a34fa62b3fa",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Светлая (21:00): тап «Перепройти» открыл сразу задание «Собери фразу» (Урок 1), экрана «Интро» (макет C1: «Зачем эта тема», карточка текста, «Коснитесь, чтобы увидеть дальше») при повторном прохождении нет — по логике приложения интро показывается только на первом заходе. Интро отдельно не снято. Не отличие вёрстки, а состояние."
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -6993,13 +6992,15 @@
       "anim_notes": [
         "blink 1s steps(1) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-028.png",
+      "evidence_at": "2026-10-10T20:00:04.974Z",
+      "evidence_sha256": "672ff4cedd0d162d42953b27f9adf6780f3746bd68e7297139d9accb42ed91c3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Светлая (21:01): задание «Собери фразу: Ты опаздываешь», поле ответа с курсором, 6 вариантов слов 2×3, подсказки 50/50 · Теория · Устно · Отменить, полоса фраз 4/50. Макет (тёмный) D1 — пустое задание: сверка по составу/порядку. ОТЛИЧИЕ: в макете вверху пилюли энергии, сердец и монет в шапке; в приложении сердца и пилюля «3» с монетой, без энергии. Тёмный вид — пересъёмка."
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -7022,13 +7023,15 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-029.png",
+      "evidence_at": "2026-10-10T20:00:07.116Z",
+      "evidence_sha256": "b5073af9c5a408af6d8856c4cb22f0e63c0e4d33f0b5242779861363d06565b2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Светлая (21:01): после выбора слов «You're short» в поле, внизу зелёное «Проверить». Сверка с D2 макета — по составу. Тёмный вид — пересъёмка."
+      ],
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null
@@ -7115,13 +7118,18 @@
         "blink 1s steps(1) infinite",
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-032.png",
+      "evidence_at": "2026-10-10T20:00:09.078Z",
+      "evidence_sha256": "62c840ce31951a53715f4f5349ae563b556517135e8d46846c540e888947be16",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
+      "diffs": [
+        "Светлая (21:01), неверный ответ: слово «short» зачёркнуто красным, правильная фраза «You are late» на розовой плашке ЗЕЛЁНЫМ текстом, блок «Разбор промаха AI» со скелетоном и «разбираю твой ответ…», внизу панель «Теория · Назад · Объясн… · Повтор · Дальше».",
+        "ОТЛИЧИЕ: у макета D5 — строка ответа красным, карточка «Разбор промаха» с кнопками «Разобрать мой ответ» и «ОБЪЯСНИТЬ ПРОЩЕ», внизу большая белая кнопка «Дальше →»; у приложения вместо неё панель из 5 иконок, подпись «Объясн…» обрезана.",
+        "🟡 цвет: зелёный текст на розовой плашке в светлой теме — слабый контраст.",
+        "Тёмный вид — пересъёмка."
+      ],
       "status": "pending",
       "note": "блок разбора (AiMistakeCard) сверять по redesign-round-2, телефон 4 (A); остальной кадр — по learn.html",
       "reviewed_by": null,
@@ -7929,9 +7937,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-059.png",
+      "evidence_at": "2026-10-10T19:59:16.606Z",
+      "evidence_sha256": "c5a62d7fac805981c11b2929f4bd89a57a21851ff6ef89caa9b8f019b1a1ce2f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -8073,9 +8081,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-064.png",
+      "evidence_at": "2026-10-10T19:59:14.546Z",
+      "evidence_sha256": "fbf98a8e1b205f5b40c7fabff3f040953774b9b10d7722292982c172c7e12f32",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

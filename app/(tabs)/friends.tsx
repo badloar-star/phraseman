@@ -616,13 +616,13 @@ function isFriendSearchReady(value: string): boolean {
 function AddFriendModal({
   visible, onClose,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
-  isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
+  isAdding, addFeedback, addFeedbackTone, onSearch, onAddFound, onCloseFoundUser,
   lang, onShareCode,
 }: {
   visible: boolean; onClose: () => void;
   codeInput: string; setCodeInput: (v: string) => void;
   isSearching: boolean; foundUser: FriendProfile | null; searchError: string | null;
-  isAdding: boolean; addFeedback: string | null;
+  isAdding: boolean; addFeedback: string | null; addFeedbackTone: 'success' | 'error';
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
   lang: string;
   /** «Поделиться своим кодом» (community.html find); null — реферальный вход скрыт, кнопки нет. */
@@ -751,7 +751,7 @@ function AddFriendModal({
             )}
 
             {addFeedback && (
-              <FriendsFeedbackRow testID="friends-add-feedback" tone="success" text={addFeedback} textScale={textScale} />
+              <FriendsFeedbackRow testID="friends-add-feedback" tone={addFeedbackTone} text={addFeedback} textScale={textScale} />
             )}
 
             {onShareCode ? (
@@ -1155,6 +1155,7 @@ export default function FriendsTabScreen() {
   const [searchError, setSearchError] = useState<string | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [addFeedback, setAddFeedback] = useState<string | null>(null);
+  const [addFeedbackTone, setAddFeedbackTone] = useState<'success' | 'error'>('success');
 
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -1513,7 +1514,10 @@ export default function FriendsTabScreen() {
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
-  const showFeedback = useCallback((msg: string) => {
+  // зачем: ошибки (сеть, откат принятия/блока/удаления) шли тем же рядом, что и успех, и рисовались зелёным
+  // тоном успеха; тон теперь передаётся вместе с текстом (владелец/координатор 03:15).
+  const showFeedback = useCallback((msg: string, tone: 'success' | 'error' = 'success') => {
+    setAddFeedbackTone(tone);
     setAddFeedback(msg);
     if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
     feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
@@ -1558,7 +1562,7 @@ export default function FriendsTabScreen() {
           result: 'blocked',
           tags: { reason: 'not_found', queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
         });
-        setSearchError(L('Пользователь не найден', 'Користувача не знайдено', 'User not found', 'Usuario no encontrado', 'Usuário não encontrado', 'Không tìm thấy người dùng', 'Pengguna tidak ditemukan', 'Kullanıcı bulunamadı', 'Nie znaleziono użytkownika')+'\n'+L('Проверьте код или имя.', 'Перевірте код або ім’я.', 'Check the code or name.', 'Revisa el código o el nombre.', 'Verifique o código ou o nome.', 'Hãy kiểm tra mã hoặc tên.', 'Periksa kode atau nama.', 'Kodu veya adı kontrol edin.', 'Sprawdź kod lub nazwę.'));
+        setSearchError(L('Пользователь не найден', 'Користувача не знайдено', 'User not found', 'Usuario no encontrado', 'Usuário não encontrado', 'Không tìm thấy người dùng', 'Pengguna tidak ditemukan', 'Kullanıcı bulunamadı', 'Nie znaleziono użytkownika')+'\n'+L('Проверь код или имя.', 'Перевір код або ім’я.', 'Check the code or name.', 'Revisa el código o el nombre.', 'Verifique o código ou o nome.', 'Hãy kiểm tra mã hoặc tên.', 'Periksa kode atau nama.', 'Kodu veya adı kontrol edin.', 'Sprawdź kod lub nazwę.'));
         return;
       }
       const myUid = await ensureAnonUser();
@@ -1644,7 +1648,7 @@ export default function FriendsTabScreen() {
         },
       });
       setSearchError(isTransient
-        ? L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверьте интернет и попробуйте ещё раз.', 'Перевірте інтернет і спробуйте ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.')
+        ? L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверь интернет и попробуй ещё раз.', 'Перевір інтернет і спробуй ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.')
         : L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
@@ -1700,7 +1704,7 @@ export default function FriendsTabScreen() {
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', 'Request sent!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!')+'\n'+L('Ответ появится в активных заявках.', 'Відповідь з’явиться в активних заявках.', 'The reply will appear in active requests.', 'La respuesta aparecerá en las solicitudes activas.', 'A resposta aparecerá nas solicitações ativas.', 'Phản hồi sẽ hiện trong lời mời đang hoạt động.', 'Balasan akan muncul di permintaan aktif.', 'Yanıt etkin isteklerde görünecek.', 'Odpowiedź pojawi się w aktywnych zaproszeniach.'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
-        showFeedback(L('Уже друзья', 'Уже друзі', 'Already friends', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi')+'\n'+L('Профиль уже есть в вашем списке.', 'Профіль уже є у вашому списку.', 'The profile is already in your list.', 'El perfil ya está en tu lista.', 'O perfil já está na sua lista.', 'Hồ sơ đã có trong danh sách của bạn.', 'Profil sudah ada di daftarmu.', 'Profil zaten listende.', 'Profil jest już na Twojej liście.'));
+        showFeedback(L('Уже друзья', 'Уже друзі', 'Already friends', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi')+'\n'+L('Профиль уже есть в твоём списке.', 'Профіль уже є у твоєму списку.', 'The profile is already in your list.', 'El perfil ya está en tu lista.', 'O perfil já está na sua lista.', 'Hồ sơ đã có trong danh sách của bạn.', 'Profil sudah ada di daftarmu.', 'Profil zaten listende.', 'Profil jest już na Twojej liście.'));
       } else if (result === 'already_sent') {
         setFoundUser(null);
         showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Request already sent', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane')+'\n'+L('Она остаётся в ожидании ответа.', 'Вона чекає на відповідь.', 'It is still waiting for a reply.', 'Sigue esperando respuesta.', 'Ainda aguarda resposta.', 'Lời mời vẫn đang chờ phản hồi.', 'Masih menunggu balasan.', 'Yanıt bekliyor.', 'Wciąż czeka na odpowiedź.'));
@@ -1711,11 +1715,11 @@ export default function FriendsTabScreen() {
         // зачем (PM-162): при сбое сети честная причина вместо общего «что-то пошло не так».
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверьте интернет и попробуйте ещё раз.', 'Перевірте інтернет і спробуйте ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.'));
+        showFeedback(L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверь интернет и попробуй ещё раз.', 'Перевір інтернет і спробуй ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.'), 'error');
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
+        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
       }
     } catch (e) {
       void import('../app_health')
@@ -1736,7 +1740,7 @@ export default function FriendsTabScreen() {
       });
       setFoundUser(targetUser);
       setCodeInput(previousCodeInput);
-      showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
+      showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
     } finally {
       addRequestInFlightRef.current = false;
       setIsAdding(false);
@@ -1774,7 +1778,7 @@ export default function FriendsTabScreen() {
         if (!hadFriend) {
           setFriends(prev => prev.filter(friend => friend.uid !== request.fromUid));
         }
-        showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'Could not accept. Try again', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'));
+        showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'Could not accept. Try again', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'), 'error');
       })
       .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, friends, showFeedback]);
@@ -1791,7 +1795,7 @@ export default function FriendsTabScreen() {
       .catch((error: unknown) => {
         console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
-        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
+        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
       })
       .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, showFeedback]);
@@ -1845,12 +1849,12 @@ export default function FriendsTabScreen() {
       rollback();
       showFeedback(result === 'limit'
         ? L('Достигнут предел списка', 'Досягнуто межі списку', 'Block list is full', 'La lista está llena', 'A lista está cheia', 'Danh sách đã đầy', 'Daftar sudah penuh', 'Liste dolu', 'Lista jest pełna')
-        : L('Не получилось заблокировать. Попробуй ещё раз', 'Не вдалося заблокувати. Спробуй ще раз', 'Could not block. Try again', 'No se pudo bloquear. Inténtalo de nuevo', 'Não deu para bloquear. Tente novamente', 'Chưa chặn được. Hãy thử lại', 'Belum bisa diblokir. Coba lagi', 'Engellenemedi. Tekrar dene', 'Nie udało się zablokować. Spróbuj ponownie'));
+        : L('Не получилось заблокировать. Попробуй ещё раз', 'Не вдалося заблокувати. Спробуй ще раз', 'Could not block. Try again', 'No se pudo bloquear. Inténtalo de nuevo', 'Não deu para bloquear. Tente novamente', 'Chưa chặn được. Hãy thử lại', 'Belum bisa diblokir. Coba lagi', 'Engellenemedi. Tekrar dene', 'Nie udało się zablokować. Spróbuj ponownie'), 'error');
     }).catch((error: unknown) => {
       // зачем: blockUser по контракту возвращает код, но сбой стора не должен оставить друга скрытым без объяснения
       console.warn('[FRIEND-BLOCK] ui: block threw — откат', error instanceof Error ? error.message : String(error));
       rollback();
-      showFeedback(L('Не получилось заблокировать. Попробуй ещё раз', 'Не вдалося заблокувати. Спробуй ще раз', 'Could not block. Try again', 'No se pudo bloquear. Inténtalo de nuevo', 'Não foi possível bloquear. Tente de novo', 'Không chặn được. Hãy thử lại', 'Gagal memblokir. Coba lagi', 'Engellenemedi. Tekrar dene', 'Nie udało się zablokować. Spróbuj ponownie'));
+      showFeedback(L('Не получилось заблокировать. Попробуй ещё раз', 'Не вдалося заблокувати. Спробуй ще раз', 'Could not block. Try again', 'No se pudo bloquear. Inténtalo de nuevo', 'Não foi possível bloquear. Tente de novo', 'Không chặn được. Hãy thử lại', 'Gagal memblokir. Coba lagi', 'Engellenemedi. Tekrar dene', 'Nie udało się zablokować. Spróbuj ponownie'), 'error');
     }).finally(() => { friendRemovalInFlightRef.current.delete(target.uid); });
   }, [L, friends, showFeedback]);
 
@@ -2225,7 +2229,7 @@ export default function FriendsTabScreen() {
   const listFooter = (
     <>
         {addFeedback && !addModalOpen && (
-          <FriendsFeedbackRow testID="friends-feedback" tone="success" text={addFeedback} textScale={textScale} style={{ marginTop: 4, marginBottom: 10, paddingHorizontal: 4 }} />
+          <FriendsFeedbackRow testID="friends-feedback" tone={addFeedbackTone} text={addFeedback} textScale={textScale} style={{ marginTop: 4, marginBottom: 10, paddingHorizontal: 4 }} />
         )}
 
         <View style={{ alignItems: 'center', paddingVertical: 16 }}>
@@ -2284,6 +2288,7 @@ export default function FriendsTabScreen() {
         searchError={searchError}
         isAdding={isAdding}
         addFeedback={addFeedback}
+        addFeedbackTone={addFeedbackTone}
         onSearch={handleSearch}
         onAddFound={handleAddFound}
         onCloseFoundUser={() => setFoundUser(null)}
@@ -2477,7 +2482,7 @@ export default function FriendsTabScreen() {
                 if (previousFriend) {
                   setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
                 }
-                showFeedback(L('Не получилось убрать друга. Попробуй ещё раз', 'Не вдалося прибрати друга. Спробуй ще раз', 'Could not remove. Try again', 'No se pudo quitar. Inténtalo de nuevo', 'Não deu para remover. Tente novamente', 'Chưa gỡ được. Hãy thử lại', 'Belum bisa dihapus. Coba lagi', 'Kaldırılamadı. Tekrar dene', 'Nie udało się usunąć. Spróbuj ponownie'));
+                showFeedback(L('Не получилось убрать друга. Попробуй ещё раз', 'Не вдалося прибрати друга. Спробуй ще раз', 'Could not remove. Try again', 'No se pudo quitar. Inténtalo de nuevo', 'Não deu para remover. Tente novamente', 'Chưa gỡ được. Hãy thử lại', 'Belum bisa dihapus. Coba lagi', 'Kaldırılamadı. Tekrar dene', 'Nie udało się usunąć. Spróbuj ponownie'), 'error');
                 emitAppEvent('action_toast', {
                   type: 'error',
                   messageRu: 'Не получилось убрать друга. Попробуй ещё раз',

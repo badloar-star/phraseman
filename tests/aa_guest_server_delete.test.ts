@@ -448,3 +448,11 @@ describe('сторож исходника: гостю пишется замок,
     expect(source).toMatch(/getAuth\(\)\?\.currentUser\?\.uid === lock!\.providerUid\s*\) return retryGuestServerDeletionOnce\(lock!\);/);
   });
 });
+
+describe('окно удаления прогревает модуль хранилища телефона (живой прогон 10.10)', () => {
+  test('при открытии окна грузится phone_state_bootstrap, сбой пишет причину', () => {
+    const modal = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8') as string;
+    expect(modal).toContain("void import('../app/phone_state_bootstrap').then(");
+    expect(modal).toContain('phone_state_prewarm failed reason=');
+  });
+});

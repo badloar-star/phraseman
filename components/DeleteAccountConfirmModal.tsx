@@ -150,6 +150,19 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   );
   const deleteConfirmMatches = normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
 
+  // зачем (живой прогон 10.10, 21:35): шаг «закрыть хранилище телефона» в удалении грузит модуль
+  // phone_state_bootstrap; холодная загрузка заняла 1923 мс против 163 мс тёплой — и весь полёт
+  // стирания не уложился в 5 с (отказ local_wipe_unverified). Прогреваем модуль, пока человек вводит
+  // слово подтверждения, чтобы нажатие «Удалить» шло уже по тёплому пути.
+  useEffect(() => {
+    if (!visible) return;
+    const startedAt = Date.now();
+    void import('../app/phone_state_bootstrap').then(
+      () => console.log(`[ACCOUNT-DELETE-UI] phone_state_prewarm ok ms=${Date.now() - startedAt}`), // guard-ok: разовый лог при открытии окна удаления
+      (error: unknown) => console.warn(`[ACCOUNT-DELETE-UI] phone_state_prewarm failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`), // guard-ok: сбой пишет причину всегда (правило владельца)
+    );
+  }, [visible]);
+
   useEffect(() => {
     if (visible && !deleting && deleteConfirmMatches) {
       Keyboard.dismiss();

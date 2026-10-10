@@ -14658,7 +14658,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 1,
         "label": "хаб ошибок",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "хаб ошибок",
@@ -14688,7 +14688,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 2,
         "label": "ошибок пока нет",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "ошибок пока нет",
@@ -14718,7 +14718,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 3,
         "label": "список ошибок",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "список ошибок",
@@ -14748,7 +14748,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 4,
         "label": "деталь ошибки",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "деталь ошибки",
@@ -14778,7 +14778,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 5,
         "label": "повторная практика",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "повторная практика",
@@ -14806,7 +14806,7 @@
         "file": "docs/design/v2-app/results.html",
         "phone": 6,
         "label": "финал практики ошибок",
-        "mapping": "label_match"
+        "mapping": "outdated_mockup"
       },
       "screen": "Ошибки",
       "state": "финал практики ошибок",
@@ -15096,7 +15096,7 @@
       "screen": "Кошелёк и ранги",
       "state": "кошелёк",
       "code": [
-        "app/coin_rank.tsx"
+        "app/runes_wallet.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -15128,7 +15128,7 @@
       "screen": "Кошелёк и ранги",
       "state": "кошелёк · нулевой баланс",
       "code": [
-        "app/coin_rank.tsx"
+        "app/runes_wallet.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,

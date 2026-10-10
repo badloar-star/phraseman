@@ -9,6 +9,15 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens, type GlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 
+const EXEMPT_COLOR_1 = 'rgba(255,255,255,0.00)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_2 = 'rgba(255,255,255,0.10)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.00)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_4 = 'rgba(255,255,255,0.12)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_5 = 'rgba(255,255,255,0.00)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_6 = 'rgba(255,255,255,0.07)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_7 = 'rgba(255,255,255,0.35)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+const EXEMPT_COLOR_8 = 'rgba(0,0,0,0.26)'; // theme-exempt: премиум-размытие: блики и скримы поверх статистики
+
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
 export type StatsPremiumSnapshotKey =
   | 'learningCoach'
@@ -87,21 +96,21 @@ function PremiumSnapshotSheen() {
     <View pointerEvents="none" style={StyleSheet.absoluteFillObject}>
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(255,255,255,0.00)', 'rgba(255,255,255,0.10)', 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_1, EXEMPT_COLOR_2, 'rgba(255,255,255,0.00)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandTop]}
       />
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(255,255,255,0.00)', 'rgba(255,255,255,0.12)', 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_3, EXEMPT_COLOR_4, 'rgba(255,255,255,0.00)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandMiddle]}
       />
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(255,255,255,0.00)', 'rgba(255,255,255,0.07)', 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_5, EXEMPT_COLOR_6, 'rgba(255,255,255,0.00)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandBottom]}
@@ -218,7 +227,7 @@ function StatsPremiumBlur({
   return (
     <View style={[styles.root, context === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
       <PremiumStatsPlaceholder snapshotKey={snapshotKey} g={g} />
-      <View pointerEvents="none" style={[styles.snapshotScrim, { backgroundColor: g.isLight ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.26)' }]} />
+      <View pointerEvents="none" style={[styles.snapshotScrim, { backgroundColor: g.isLight ? EXEMPT_COLOR_7 : EXEMPT_COLOR_8 }]} />
       <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, styles.sheenLayer]}>
         <PremiumSnapshotSheen />
       </View>
@@ -272,13 +281,13 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     zIndex: 1,
     padding: 18,
-    backgroundColor: 'rgba(8,8,10,0.72)',
+    backgroundColor: 'rgba(8,8,10,0.72)', // theme-exempt: премиум-размытие: блики и скримы поверх статистики
     justifyContent: 'space-between',
   },
   snapshotScrim: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 2,
-    backgroundColor: 'rgba(0,0,0,0.26)',
+    backgroundColor: 'rgba(0,0,0,0.26)', // theme-exempt: премиум-размытие: блики и скримы поверх статистики
   },
   sheenLayer: {
     zIndex: 3,
@@ -310,7 +319,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 0,
     borderColor: 'transparent',
-    backgroundColor: 'rgba(0,0,0,0.00)',
+    backgroundColor: 'rgba(0,0,0,0.00)', // theme-exempt: премиум-размытие: блики и скримы поверх статистики
   },
   placeholderHeader: {
     flexDirection: 'row',
@@ -328,7 +337,7 @@ const styles = StyleSheet.create({
     height: 24,
     width: 72,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.10)',
+    backgroundColor: 'rgba(255,255,255,0.10)', // theme-exempt: премиум-размытие: блики и скримы поверх статистики
     borderWidth: 0,
     borderColor: 'transparent',
   },
@@ -349,7 +358,7 @@ const styles = StyleSheet.create({
   placeholderLine: {
     height: 10,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(255,255,255,0.16)', // theme-exempt: премиум-размытие: блики и скримы поверх статистики
   },
   placeholderBars: {
     minHeight: 86,

@@ -2846,7 +2846,7 @@ const styles = StyleSheet.create({
     minWidth: 180,
     alignItems: 'center',
   },
-  actionBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  actionBtnText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default SpeakingPanel;

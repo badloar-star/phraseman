@@ -61,6 +61,8 @@ type Props = {
   reduceMotion: boolean;
 };
 
+const RIM_SHEEN = '#FFFFFF'; // theme-exempt: белый блик кромки и заливки плашки таб-бара — как на утверждённом варианте «В · Тёплая кромка»
+
 const BarRim = memo(function BarRim({ width, color }: { width: number; color: string }) {
   const h = V2_TAB_BAR_HEIGHT;
   return (
@@ -69,8 +71,8 @@ const BarRim = memo(function BarRim({ width, color }: { width: number; color: st
         <SvgLinearGradient id="v2TabRim" x1="0" y1="0" x2="1" y2="0">
           <Stop offset="0" stopColor={color} stopOpacity={0.62} />
           <Stop offset="0.22" stopColor={color} stopOpacity={0.24} />
-          <Stop offset="0.55" stopColor="#FFFFFF" stopOpacity={0.1} />
-          <Stop offset="0.8" stopColor="#FFFFFF" stopOpacity={0.08} />
+          <Stop offset="0.55" stopColor={RIM_SHEEN} stopOpacity={0.1} />
+          <Stop offset="0.8" stopColor={RIM_SHEEN} stopOpacity={0.08} />
           <Stop offset="1" stopColor={color} stopOpacity={0.24} />
         </SvgLinearGradient>
       </Defs>
@@ -86,7 +88,7 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
         <RadialGradient id="v2TabCapFill" cx="22%" cy="0%" rx="120%" ry="95%" fx="22%" fy="0%">
           <Stop offset="0" stopColor={color} stopOpacity={0.32} />
           <Stop offset="0.55" stopColor={color} stopOpacity={0.08} />
-          <Stop offset="1" stopColor="#FFFFFF" stopOpacity={0.03} />
+          <Stop offset="1" stopColor={RIM_SHEEN} stopOpacity={0.03} />
         </RadialGradient>
         <SvgLinearGradient id="v2TabCapRim" x1="0" y1="0" x2="1" y2="1">
           <Stop offset="0" stopColor={color} stopOpacity={0.8} />
@@ -363,7 +365,7 @@ const s = StyleSheet.create({
     borderRadius: V2_TAB_BAR_HEIGHT / 2,
     // Android рисует тень elevation только у вида с фоном.
     backgroundColor: 'transparent',
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: тень капсулы таб-бара — чёрная в любой теме
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.55,
     shadowRadius: 20, // guard-ok: только iOS, на Android тень даёт elevation
@@ -378,7 +380,7 @@ const s = StyleSheet.create({
     bottom: 5,
     borderRadius: V2_TAB_BAR_HEIGHT / 2 - 5,
     borderWidth: 1, // guard-ok: D43 вторая кромка «толщины стекла», как на референсе
-    borderColor: 'rgba(255,255,255,0.045)', // guard-ok: D43
+    borderColor: 'rgba(255,255,255,0.045)', // guard-ok: D43 // theme-exempt: вторая кромка «толщины стекла» таб-бара (D43), белая тонкая
   },
   cap: {
     position: 'absolute',
@@ -386,12 +388,12 @@ const s = StyleSheet.create({
     left: 0,
     height: CAP_H,
     borderRadius: CAP_RADIUS,
-    shadowColor: '#000000',
+    shadowColor: '#000000', // theme-exempt: тень плашки активной вкладки — чёрная в любой теме
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.22,
     shadowRadius: 11,
   },
-  capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' },
+  capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' }, // theme-exempt: яркая вспышка плашки при нажатии — белая в любой теме
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   badge: { position: 'absolute', top: -1, right: -3, width: 12, height: 12, borderRadius: 6, borderWidth: 2 },

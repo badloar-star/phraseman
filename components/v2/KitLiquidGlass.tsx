@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { StyleSheet, View, type BoxShadowValue } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useTheme } from '../ThemeContext';
 
 /**
  * «Жидкое стекло» макетов 2.0 — один в один с docs/design/v2-app/kit.css (блок «LIQUID GLASS»):
@@ -12,42 +14,45 @@ import { LinearGradient } from '../SafeLinearGradient';
  * ответа — стекло с бликом по верхне-левой кромке и тёмной нижней (толщина стекла), а в приложении они были
  * плоскими. Слой ложится поверх заливки, но ПОД содержимым (ставить первым ребёнком), ничего не перекрывает.
  * Статично: ноль работы после первого кадра (без размытия — Android BlurView даёт артефакты).
+ *
+ * зачем (замечание владельца 10.10): блик, кромка и тень берутся из токенов выбранной темы (mediaInk / bevelHi / bevelLo /
+ * hairlineSoft / dropShadow), а не белым и чёрным «под Аврору». Константы KIT_GLASS_* ниже — значения по умолчанию
+ * для мест без доступа к теме; слой стекла и глянец кнопки читают тему сами.
  */
 
 // зачем: CSS 150deg = направление вниз-вправо (sin150, cos150 по оси Y вниз) → точки начала/конца в долях блока.
 const SHEEN_START = { x: 0.25, y: 0.067 } as const;
 const SHEEN_END = { x: 0.75, y: 0.933 } as const;
-const SHEEN_COLORS = [
-  'rgba(255,255,255,0.10)',
-  'rgba(255,255,255,0.035)',
-  'rgba(255,255,255,0)',
-  'rgba(255,255,255,0.02)',
-  'rgba(255,255,255,0.055)',
-] as const;
+const sheenColors = (ink: string) => [`${ink}1A`, `${ink}09`, `${ink}00`, `${ink}05`, `${ink}0E`] as const;
 const SHEEN_LOCATIONS = [0, 0.26, 0.52, 0.78, 1] as const;
 
+/** Кромка стекла из токенов темы. */
+export const kitGlassRim = (t: { bevelHi: string; bevelLo: string; hairlineSoft: string }): BoxShadowValue[] => [
+  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: t.bevelHi },
+  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: t.bevelLo },
+  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: t.hairlineSoft },
+];
+
+/** Кромка по умолчанию (тёмные темы) для мест без доступа к теме. */
 export const KIT_GLASS_RIM: BoxShadowValue[] = [
-  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.22)' },
-  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(0,0,0,0.45)' },
-  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.055)' },
+  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.22)' }, // theme-exempt: значение по умолчанию без темы
+  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(0,0,0,0.45)' }, // theme-exempt: значение по умолчанию без темы
+  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.055)' }, // theme-exempt: значение по умолчанию без темы
 ];
 
 /** Тень крупных поверхностей (`--lg-drop`). Ставить на САМ контейнер: `boxShadow: KIT_GLASS_DROP`. */
 export const KIT_GLASS_DROP: BoxShadowValue[] = [
-  { offsetX: 0, offsetY: 10, blurRadius: 28, spreadDistance: -12, color: 'rgba(0,0,0,0.7)' },
+  { offsetX: 0, offsetY: 10, blurRadius: 28, spreadDistance: -12, color: 'rgba(0,0,0,0.7)' }, // theme-exempt: значение по умолчанию без темы
 ];
 
 /** Главная белая кнопка (`.cta`): светлее сверху, блик по верхней кромке, тень снизу. */
-export const KIT_CTA_GRADIENT = ['#FFFFFF', '#F2F1F6', '#E3E2E8'] as const;
+export const KIT_CTA_GRADIENT = ['#FFFFFF', '#F2F1F6', '#E3E2E8'] as const; // theme-exempt: эталон глянца для cta #F2F1F6 («Спокойно»); у других тем градиент считается от их cta
 export const KIT_CTA_GRADIENT_LOCATIONS = [0, 0.48, 1] as const;
-export const KIT_CTA_SHADOW: BoxShadowValue[] = [
-  { inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,1)' },
-  { inset: true, offsetX: 0, offsetY: -1.5, blurRadius: 0, spreadDistance: 0, color: 'rgba(0,0,0,0.10)' },
-  { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -10, color: 'rgba(0,0,0,0.75)' },
+const ctaInner = (ink: string): BoxShadowValue[] => [
+  { inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: ink },
+  { inset: true, offsetX: 0, offsetY: -1.5, blurRadius: 0, spreadDistance: 0, color: 'rgba(0,0,0,0.10)' }, // theme-exempt: лёгкая тёмная нижняя кромка глянца
 ];
-
-const KIT_CTA_INNER: BoxShadowValue[] = KIT_CTA_SHADOW.filter((s) => s.inset);
-const KIT_CTA_DROP: BoxShadowValue[] = KIT_CTA_SHADOW.filter((s) => !s.inset);
+const ctaDrop = (shadow: string): BoxShadowValue[] => [{ offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -10, color: shadow }];
 
 const mixHex6 = (hex: string, to: number, k: number): string => {
   const n = Number.parseInt(hex.replace('#', '').slice(0, 6), 16);
@@ -73,8 +78,10 @@ export function kitCtaGlossColors(cta: string): readonly [string, string, string
  * «Начать» и все главные кнопки в «Спокойно-тёмном» были плоскими. Тень обрежется, если у кнопки overflow: hidden.
  */
 export const KitCtaGloss = memo(function KitCtaGloss({ cta, radius }: { cta: string; radius: number }) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   return (
-    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: KIT_CTA_DROP }]}>
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: ctaDrop(g.dropShadow) }]}>
       <LinearGradient
         colors={kitCtaGlossColors(cta)}
         locations={KIT_CTA_GRADIENT_LOCATIONS}
@@ -83,7 +90,7 @@ export const KitCtaGloss = memo(function KitCtaGloss({ cta, radius }: { cta: str
         style={[StyleSheet.absoluteFill, { borderRadius: radius }]}
       />
       {/* зачем: внутренние блики — отдельным слоем ПОВЕРХ градиента, иначе градиент их закроет. */}
-      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: KIT_CTA_INNER }]} />
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: ctaInner(g.mediaInk) }]} />
     </View>
   );
 });
@@ -93,16 +100,18 @@ export const KitCtaGloss = memo(function KitCtaGloss({ cta, radius }: { cta: str
  * `rim={false}` — только блик (для элементов, у которых своя цветная кромка, например «верно/неверно»).
  */
 export const KitGlassLayer = memo(function KitGlassLayer({ radius, rim = true }: { radius: number; rim?: boolean }) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   return (
     <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: 'hidden' }]}>
       <LinearGradient
-        colors={SHEEN_COLORS}
+        colors={sheenColors(g.mediaInk)}
         locations={SHEEN_LOCATIONS}
         start={SHEEN_START}
         end={SHEEN_END}
         style={StyleSheet.absoluteFill}
       />
-      {rim ? <View style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: KIT_GLASS_RIM }]} /> : null}
+      {rim ? <View style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: kitGlassRim(g) }]} /> : null}
     </View>
   );
 });

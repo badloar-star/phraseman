@@ -89,6 +89,11 @@ import {
   voiceOutLabel,
   voiceOutSub,
 } from '../feedback/feedback_i18n';
+
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.75)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
+const EXEMPT_COLOR_4 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
@@ -1492,7 +1497,7 @@ export default function SettingsMain() {
       />
 
       <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+        <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View
             style={[
               {
@@ -1582,7 +1587,7 @@ export default function SettingsMain() {
         onRequestClose={() => { if (switchAccountStage === 'confirm') setSwitchAccountStage('idle'); }}
       >
         {switchAccountStage === 'wiping' ? (
-          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
+          <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_2, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
             <View
               style={{
                 width: '100%',
@@ -1604,7 +1609,7 @@ export default function SettingsMain() {
             </View>
           </View>
         ) : (
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+        <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_3, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View
             style={[
               {
@@ -1994,7 +1999,7 @@ export default function SettingsMain() {
         onRequestClose={closeNameModal}
       >
         <Pressable
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
+          style={{ flex: 1, backgroundColor: EXEMPT_COLOR_4, justifyContent: 'center', alignItems: 'center' }}
           onPress={closeNameModal}
         >
           <Pressable onPress={(e) => e.stopPropagation()}>

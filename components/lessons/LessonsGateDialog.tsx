@@ -16,6 +16,8 @@ import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень окна — чёрная в любой теме
+
 export type LessonsGateDialogIcon = 'lock' | 'school';
 
 type Props = Readonly<{
@@ -32,7 +34,7 @@ function LessonsGateDialogBase({ visible, icon, title, message, closeLabel, onCl
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const lh = useLineScale();
   return (
-    <HybridAlertShell visible={visible} onRequestClose={onClose} placement="center" shadowColor="#000000" testID="lessons-gate-dialog">
+    <HybridAlertShell visible={visible} onRequestClose={onClose} placement="center" shadowColor={EXEMPT_COLOR_1} testID="lessons-gate-dialog">
       <View style={[styles.dlg, { backgroundColor: glass.opaqueSheet, borderColor: glass.line }]}>{/* guard-ok: 1 px кромка .dlg */}
         <KitGlassLayer radius={24} />
         <View style={[styles.icon, { backgroundColor: glass.opaqueControl }]}>

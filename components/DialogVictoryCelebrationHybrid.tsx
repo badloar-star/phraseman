@@ -45,6 +45,8 @@ import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
 
+const EXEMPT_COLOR_1 = 'rgba(255,206,120,0.0)'; // theme-exempt: палитра празднования победы в диалоге
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 // зачем: числовое значение ведём по UI-потоку через animatedProps (как счётчик места
 // в лиге) — обёртка над Text нужна именно для этого, ре-рендеров JS не будет.
@@ -366,7 +368,7 @@ export function DialogVictoryCelebrationHybrid({
       <Animated.View style={[styles.stage, sceneStyle]}>
         <Animated.View style={[styles.glowOrb, bloomStyle]} pointerEvents="none">
           <LinearGradient
-            colors={[PALETTE.glow, 'rgba(255,206,120,0.0)']}
+            colors={[PALETTE.glow, EXEMPT_COLOR_1]}
             style={StyleSheet.absoluteFill}
             start={{ x: 0.5, y: 0.5 }}
             end={{ x: 1, y: 1 }}

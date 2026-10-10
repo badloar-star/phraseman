@@ -138,16 +138,19 @@ import { peekStableId } from './stable_id';
 export { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+const EXEMPT_COLOR_2 = 'rgba(2,3,6,0.72)'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+
 // ── Цвет категории ────────────────────────────────────────────────────────────
 export const CAT_COLOR: Record<string, string> = {
-  streak:  '#FF6B35',
-  lessons: '#3B82F6',
-  combo:   '#EC4899',
-  special: '#10B981',
-  medal:   '#E11D48',
+  streak:  '#FF6B35', // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+  lessons: '#3B82F6', // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+  combo:   '#EC4899', // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+  special: '#10B981', // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+  medal:   '#E11D48', // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
 };
 function achievementCategoryColor(cat: string, _themeMode?: string): string {
-  return CAT_COLOR[cat] ?? '#888';
+  return CAT_COLOR[cat] ?? '#888'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
 }
 const CAT_ICON: Record<string, any> = {
   streak:  'flame',
@@ -512,10 +515,10 @@ function BadgeShieldInner({
 
   const isLocked  = !unlocked && !inProgress;
   // В светлых темах заблокированный щит — светло-серый, иконка чуть темнее
-  const lockedTint  = isDark ? '#383838' : '#B0B0C0';
-  const lockedIcon  = isDark ? '#383838' : '#FFFFFF';
+  const lockedTint  = isDark ? '#383838' : '#B0B0C0'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
+  const lockedIcon  = isDark ? '#383838' : '#FFFFFF'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
   const tintColor = isLocked ? lockedTint : inProgress ? color + (isDark ? '55' : '88') : color;
-  const iconColor = isLocked ? lockedIcon : inProgress ? color + (isDark ? 'BB' : 'CC') : '#fff';
+  const iconColor = isLocked ? lockedIcon : inProgress ? color + (isDark ? 'BB' : 'CC') : '#fff'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
   // зачем: ACHIEVEMENT_IMAGE содержит только «ядро» (бандл). Остальной арт живёт
   // в Storage, поэтому источник берём через achievementImageSource — она вернёт
   // либо бандл-ресурс, либо {uri} из прогретого дискового кэша.
@@ -617,8 +620,8 @@ function AchievementModal({
     <HybridAlertShell scrollContent={false}
       visible
       onRequestClose={onClose}
-      shadowColor="rgba(0,0,0,0.5)"
-      backdropColor="rgba(2,3,6,0.72)"
+      shadowColor={EXEMPT_COLOR_1}
+      backdropColor={EXEMPT_COLOR_2}
       testID="achievement-dossier-backdrop"
     >
       <View

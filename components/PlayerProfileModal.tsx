@@ -57,6 +57,10 @@ import { usePlayerProfileSocial } from './profile-card/usePlayerProfileSocial';
 import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
 import ReanimatedView from 'react-native-reanimated';
 
+const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.14)'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+
 const LOG = '[PROFILE-CARD]';
 
 export interface PlayerInfo {
@@ -275,7 +279,7 @@ function PlayerProfileModalBody({
       onPress={onPress}
       style={({ pressed }) => [styles.topIcon, { opacity: pressed ? 0.7 : 1 }]}
     >
-      <Ionicons name={icon} size={20} color="#FFFFFF" />
+      <Ionicons name={icon} size={20} color={EXEMPT_COLOR_1} />
     </Pressable>
   );
 
@@ -349,7 +353,7 @@ function PlayerProfileModalBody({
                   onPress={onClose}
                   style={({ pressed }) => [styles.topIcon, { opacity: pressed ? 0.7 : 1 }]}
                 >
-                  <Ionicons name="close" size={20} color="#FFFFFF" />
+                  <Ionicons name="close" size={20} color={EXEMPT_COLOR_2} />
                 </Pressable>
               </View>
             </View>
@@ -600,14 +604,14 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
 
 const styles = StyleSheet.create({
   modalFill: { flex: 1 },
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.58)' },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.58)' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
   card: {
     position: 'absolute',
     left: 10,
     right: 10,
     borderRadius: CARD_RADIUS,
     overflow: 'hidden',
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
     shadowOpacity: 0.6,
     shadowRadius: 40, // guard-ok: одна тень визитки (.vz-card box-shadow 0 30 80)
     shadowOffset: { width: 0, height: 30 },
@@ -622,17 +626,17 @@ const styles = StyleSheet.create({
   topGroup: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44 },
   topIcon: {
     width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.34)',
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)', // guard-ok: .vz-ic hairline из макета
+    backgroundColor: 'rgba(0,0,0,0.34)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+    borderWidth: 1, borderColor: EXEMPT_COLOR_3, // guard-ok: .vz-ic hairline из макета
   },
   bannerWrap: { position: 'absolute', top: 66, left: 0, right: 0, alignItems: 'center', zIndex: 13 },
   banner: {
     height: 38, borderRadius: 19, paddingLeft: 8, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: 'rgba(255,255,255,0.95)',
-    shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, elevation: 8,
+    backgroundColor: 'rgba(255,255,255,0.95)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+    shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, elevation: 8, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
   },
-  bannerText: { color: '#111111', fontSize: 16, fontWeight: '700' },
-  dim2: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' },
+  bannerText: { color: '#111111', fontSize: 16, fontWeight: '700' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+  dim2: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 });
 
 export default memo(PlayerProfileModal);

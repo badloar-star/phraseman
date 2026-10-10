@@ -4,6 +4,9 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { FlowText } from '../text-integrity/FlowText';
 import type { Theme } from '../../constants/theme';
 
+const COVER_INK = 'rgba(255,255,255,0.92)'; // theme-exempt: белая подпись на цветной обложке полки — в любой теме
+const COVER_BADGE_BG = 'rgba(6,7,10,0.72)'; // theme-exempt: тёмная плашка поверх обложки
+
 /**
  * Полки главного экрана раздела «Карточки» (макет flashcards-screens.html,
  * экран A1: `.shelf-t` / `.cont-grid` / `.mini-row` / `.theme-row`).
@@ -101,11 +104,11 @@ function FlashcardsShelvesBase({
                   end={{ x: 1, y: 1 }}
                   style={{ height: 52, alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <Text style={{ fontSize: 26, fontWeight: '900', color: 'rgba(255,255,255,0.92)' }}>
+                  <Text style={{ fontSize: 26, fontWeight: '900', color: COVER_INK }}>
                     {p.mono}
                   </Text>
                   {!!p.trial && (
-                    <View style={{ position: 'absolute', top: 7, right: 7, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(6,7,10,0.72)' }}>
+                    <View style={{ position: 'absolute', top: 7, right: 7, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: COVER_BADGE_BG }}>
                       <Text style={{ fontSize: 13, fontWeight: '700', color: t.gold, fontVariant: ['tabular-nums'] }}>
                         ⏳ {p.trial}
                       </Text>
@@ -154,7 +157,7 @@ function FlashcardsShelvesBase({
                   end={{ x: 1, y: 1 }}
                   style={{ height: 52, borderRadius: 13, alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <Text style={{ fontSize: 16, fontWeight: '900', color: 'rgba(255,255,255,0.9)' }}>{p.mono}</Text>
+                  <Text style={{ fontSize: 16, fontWeight: '900', color: COVER_INK }}>{p.mono}</Text>
                 </LinearGradient>
                 <FlowText testID={`flashcards-shelf-cinema-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 13, fontWeight: '700', marginTop: 5 }}>
                   {p.title}

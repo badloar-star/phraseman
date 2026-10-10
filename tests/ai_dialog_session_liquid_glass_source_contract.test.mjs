@@ -10,7 +10,9 @@ test('active dialogue chat uses Liquid Glass for neutral controls without rewrit
   assert.ok((source.match(/glassFill\(t\.bgCard, 0\.46\)/g) ?? []).length >= 7);
   assert.match(source, /onPress=\{finishDialog\}/);
   assert.match(source, /onPress=\{\(\) => send\(input\)\}/);
-  assert.match(source, /onPress=\{handleBuyExtraReplies\}/);
+  // зачем (10.10, Дизайн): докупка реплик удалена из экрана целиком (комментарий у месячного лимита в ai_dialog_session.tsx) —
+  // проверяем, что кнопка не вернулась, а не её наличие.
+  assert.doesNotMatch(source, /handleBuyExtraReplies/);
 });
 
 test('dialogue session still owns the full safe screen', () => {

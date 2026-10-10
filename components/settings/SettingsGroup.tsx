@@ -20,6 +20,30 @@ import TonalSurface from '../TonalSurface';
 import { FlowText } from '../text-integrity/FlowText';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
 
+const EXEMPT_COLOR_1 = '#5E8FD0'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_2 = '#43689F'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_3 = '#5FA981'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_4 = '#41815F'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_5 = '#D99A57'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_6 = '#B57634'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_7 = '#CF7A6E'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_8 = '#A85A50'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_9 = '#9A87CB'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_10 = '#75629F'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_11 = '#5FA8AF'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_12 = '#42828A'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_13 = '#C77E9B'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_14 = '#9E5C79'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_15 = '#7B82C4'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_16 = '#5A6099'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_17 = '#8E959E'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_18 = '#6B727B'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_19 = '#CBA65A'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_20 = '#A88238'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_21 = 'rgba(255,255,255,0.10)'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_22 = 'rgba(255,255,255,0)'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+const EXEMPT_COLOR_23 = '#FFFFFF'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
+
 /**
  * Палитра плиток-иконок.
  *
@@ -33,23 +57,23 @@ import { OLIVE_RICH } from '../../constants/oliveTheme';
  * плитки (светлее сверху → глубже снизу), вместо плоской iOS-заливки.
  */
 export const SETTINGS_TILE_COLORS = {
-  blue:   ['#5E8FD0', '#43689F'] as const, // припылённый синий
-  green:  ['#5FA981', '#41815F'] as const, // шалфейный зелёный
-  orange: ['#D99A57', '#B57634'] as const, // мягкий янтарь
-  red:    ['#CF7A6E', '#A85A50'] as const, // глиняный коралл
-  purple: ['#9A87CB', '#75629F'] as const, // пыльная лаванда
-  teal:   ['#5FA8AF', '#42828A'] as const, // морской туман
-  pink:   ['#C77E9B', '#9E5C79'] as const, // увядшая роза
-  indigo: ['#7B82C4', '#5A6099'] as const, // сумеречный индиго
-  gray:   ['#8E959E', '#6B727B'] as const, // тёплый графит
-  yellow: ['#CBA65A', '#A88238'] as const, // приглушённое золото
+  blue:   [EXEMPT_COLOR_1, EXEMPT_COLOR_2] as const, // припылённый синий
+  green:  [EXEMPT_COLOR_3, EXEMPT_COLOR_4] as const, // шалфейный зелёный
+  orange: [EXEMPT_COLOR_5, EXEMPT_COLOR_6] as const, // мягкий янтарь
+  red:    [EXEMPT_COLOR_7, EXEMPT_COLOR_8] as const, // глиняный коралл
+  purple: [EXEMPT_COLOR_9, EXEMPT_COLOR_10] as const, // пыльная лаванда
+  teal:   [EXEMPT_COLOR_11, EXEMPT_COLOR_12] as const, // морской туман
+  pink:   [EXEMPT_COLOR_13, EXEMPT_COLOR_14] as const, // увядшая роза
+  indigo: [EXEMPT_COLOR_15, EXEMPT_COLOR_16] as const, // сумеречный индиго
+  gray:   [EXEMPT_COLOR_17, EXEMPT_COLOR_18] as const, // тёплый графит
+  yellow: [EXEMPT_COLOR_19, EXEMPT_COLOR_20] as const, // приглушённое золото
 } as const satisfies Record<string, readonly [string, string]>;
 
 export type SettingsTileColor = keyof typeof SETTINGS_TILE_COLORS;
 
 /** Цвет плитки для danger-рядов. Типизирован, чтобы переименование ключа в палитре
  *  ловилось компилятором, а не падало в рантайме на `SETTINGS_TILE_COLORS[undefined]`. */
-const DANGER_TILE_COLOR: SettingsTileColor = 'red';
+const DANGER_TILE_COLOR: SettingsTileColor = 'red'; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
 
 /**
  * Глифы плиток. Намеренно сдвинуты с дефолтных «filled» Ionicons, которые
@@ -95,7 +119,7 @@ interface SettingsIconTileProps {
  * верхним бликом и hairline-рамкой. Намеренно отличается от плоской
  * iOS-плитки: чуть круглее (0.32 против ~0.22 у Apple) + объём.
  */
-const SETTINGS_TILE_OLIVE: readonly [string, string] = ['#2A301D', '#14180F'];
+const SETTINGS_TILE_OLIVE: readonly [string, string] = ['#2A301D', '#14180F']; // theme-exempt: палитра плиток настроек (токены — у «Тем»)
 
 export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIconTileProps) {
   const { themeMode } = useTheme();
@@ -124,12 +148,12 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
       {/* зачем: чистый вид по референсу — блик почти невидим (0.10 вместо 0.28),
           плитка читается спокойной заливкой, а не «глянцевой конфетой». */}
       <LinearGradient
-        colors={['rgba(255,255,255,0.10)', 'rgba(255,255,255,0)']}
+        colors={[EXEMPT_COLOR_21, EXEMPT_COLOR_22]}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
       />
-      <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color={themeMode === 'olive' ? OLIVE_RICH.ivory : '#FFFFFF'} />
+      <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color={themeMode === 'olive' ? OLIVE_RICH.ivory : EXEMPT_COLOR_23} />
     </View>
   );
 }

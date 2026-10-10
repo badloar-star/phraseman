@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // theme-exempt: затемнение под окном — тёмный скрим в любой теме
   },
   centerer: {
     flex: 1,

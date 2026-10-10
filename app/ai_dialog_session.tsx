@@ -2158,7 +2158,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -2187,7 +2187,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
             }}
             style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
           >
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
             </Text>
           </TouchableOpacity>

@@ -305,11 +305,11 @@ function RankChangeBanner({
     }
   }
 
-  const bg = isUp ? '#10381e' : '#3a2a14';
-  const border = isUp ? '#34d399' : '#f59e0b';
-  const titleColor = isUp ? '#34d399' : '#fbbf24';
-  const bodyColor = isUp ? '#D8FBE8' : '#FFE9B5';
-  const closeColor = 'rgba(255,255,255,0.68)';
+  const bg = isUp ? '#10381e' : '#3a2a14'; // theme-exempt: семантика повышения/понижения ранга (токен good/warn — у «Тем»)
+  const border = isUp ? '#34d399' : '#f59e0b'; // theme-exempt: семантика повышения/понижения ранга (токен good/warn — у «Тем»)
+  const titleColor = isUp ? '#34d399' : '#fbbf24'; // theme-exempt: семантика повышения/понижения ранга (токен good/warn — у «Тем»)
+  const bodyColor = isUp ? '#D8FBE8' : '#FFE9B5'; // theme-exempt: семантика повышения/понижения ранга (токен good/warn — у «Тем»)
+  const closeColor = 'rgba(255,255,255,0.68)'; // theme-exempt: семантика повышения/понижения ранга (токен good/warn — у «Тем»)
 
   if (isHybrid) {
     return (

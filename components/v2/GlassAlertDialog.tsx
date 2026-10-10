@@ -21,6 +21,9 @@ import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from './KitLiquidGlass';
 import { ThemeAccentFill } from './ThemeAccentFill';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
+const EXEMPT_COLOR_2 = '#000000'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
+
 export type GlassAlertAction = Readonly<{
   label: string;
   onPress: () => void;
@@ -109,8 +112,8 @@ function GlassAlertDialogBase({ visible, onRequestClose, ...card }: DialogProps)
       visible={visible}
       onRequestClose={onRequestClose ?? noop}
       placement="center"
-      backdropColor="rgba(0,0,0,0.62)"
-      shadowColor="#000000"
+      backdropColor={EXEMPT_COLOR_1}
+      shadowColor={EXEMPT_COLOR_2}
       testID={card.testID ? `${card.testID}-shell` : 'glass-alert-dialog'}
     >
       {/* ключ и по тексту: очередь окон может сменить сообщение, не закрывая окно */}

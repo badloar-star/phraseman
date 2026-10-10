@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, type StyleProp, type ViewStyle } from 'react-native';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useTheme } from '../ThemeContext';
 
 // зачем (65в, макет coins.html №4 «Проверяем повышение»): системный спиннер кита `.spin` — кольцо 22, линия 2.5,
 // дорожка rgba(255,255,255,.18), верх белый, оборот 0.8 с линейно (cards-states.html / system.html / dialogs.html).
@@ -16,7 +18,12 @@ type Props = Readonly<{
   testID?: string;
 }>;
 
-function KitSpinner({ color = '#FFFFFF', trackColor = 'rgba(255,255,255,0.18)', style, testID }: Props) {
+function KitSpinner({ color, trackColor, style, testID }: Props) {
+  // зачем (замечание владельца 10.10): белое кольцо на светлой теме не видно — по умолчанию цвет текста темы, дорожка — её кромка.
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const ringColor = color ?? g.text;
+  const ringTrack = trackColor ?? g.glassEdge;
   const turn = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     // Вечный цикл допустим: это индикатор загрузки (motion_allowlist), снимается вместе с компонентом.
@@ -34,7 +41,7 @@ function KitSpinner({ color = '#FFFFFF', trackColor = 'rgba(255,255,255,0.18)', 
       style={[
         styles.ring,
         // Кольцо спиннера, а не обводка контейнера: дорожка + цветная верхняя дуга, как `.spin` макета.
-        { borderColor: trackColor, borderTopColor: color, transform: [{ rotate }] }, // guard-ok: кольцо спиннера, не контейнер
+        { borderColor: ringTrack, borderTopColor: ringColor, transform: [{ rotate }] }, // guard-ok: кольцо спиннера, не контейнер
         style,
       ]}
     />

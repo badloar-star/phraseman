@@ -692,7 +692,7 @@ function AiCompanionSession() {
                 opacity: input.trim() && !sending ? 1 : 0.5,
               }}
             >
-              <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>→</Text>
+              <Text style={{ color: input.trim() && !sending ? t.correctText : t.textSecond, fontWeight: '800', fontSize: f.body }}>→</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

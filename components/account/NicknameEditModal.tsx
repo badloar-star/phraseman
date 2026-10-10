@@ -53,6 +53,10 @@ import { LUM } from '../../constants/motionHybrid';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
+const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
+
 // зачем (владелец, 2026-09-13): «сперва логи». Экран настроек замирал после
 // смены имени, а путь был нем: ни один ранний return не оставлял следа, и нельзя
 // было понять, дошло ли дело до брони и какой ответ пришёл. Баг ловится ТОЛЬКО
@@ -554,8 +558,8 @@ export default function NicknameEditModal({
       <HybridAlertShell
         visible={visible}
         onRequestClose={close}
-        shadowColor="#000000"
-        backdropColor="rgba(0,0,0,0.7)"
+        shadowColor={EXEMPT_COLOR_1}
+        backdropColor={EXEMPT_COLOR_2}
         placement="bottom"
         testID="nickname-edit-modal-hybrid"
       >
@@ -567,7 +571,7 @@ export default function NicknameEditModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={close}>
       <Pressable
-        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
+        style={{ flex: 1, backgroundColor: EXEMPT_COLOR_3, justifyContent: 'center', alignItems: 'center' }}
         onPress={close}
       >
         <Pressable onPress={(e) => e.stopPropagation()}>

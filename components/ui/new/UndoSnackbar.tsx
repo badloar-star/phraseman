@@ -148,7 +148,7 @@ export default function UndoSnackbar({
       <View style={[styles.card, { backgroundColor: t.bgSurface }]}>
         <View style={styles.ring}>
           <Svg width={34} height={34} viewBox="0 0 34 34">
-            <Circle cx={17} cy={17} r={RING_R} stroke="rgba(255,255,255,0.10)" strokeWidth={3} fill="none" />
+            <Circle cx={17} cy={17} r={RING_R} stroke={t.border} strokeWidth={3} fill="none" />
             <AnimatedCircle
               cx={17}
               cy={17}

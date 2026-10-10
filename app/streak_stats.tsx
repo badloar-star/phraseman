@@ -66,6 +66,12 @@ import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { noAndroidOutline } from '../constants/androidGlow';
+
+const EXEMPT_COLOR_1 = '#35D07F'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
+const EXEMPT_COLOR_2 = '#35D07F'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
+const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
+const EXEMPT_COLOR_4 = 'rgba(23,32,29,0.45)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
+const EXEMPT_COLOR_5 = 'rgba(255,255,255,0.45)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 const CHART_H = 110;
 const DAYS_SHOW = 14;
@@ -399,7 +405,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
     const isWarmup = shouldUsePracticeWarmup({ active7, totalStreak, minutes7 });
     let scoreLabel = String(score);
     let scoreSubLabel = '/100';
-    let scoreColor = score >= 76 ? '#35D07F' : score >= 50 ? '#FFB020' : '#FF6B6B';
+    let scoreColor = score >= 76 ? '#35D07F' : score >= 50 ? '#FFB020' : '#FF6B6B'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
     let status = score >= 76
         ? triLang(lang, {
             ru: 'Стабильный ритм',
@@ -487,7 +493,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             tr: "g.",
             pl: "d.",
         });
-        scoreColor = '#4F8FF7';
+        scoreColor = '#4F8FF7'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
         status = triLang(lang, {
             ru: 'Начало положено',
             uk: 'Гарний старт',
@@ -1279,8 +1285,8 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
         </View>) : null}
       {weekDeltaMinutes !== null && Math.abs(weekDeltaMinutes) >= 5 ? (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
-          <Ionicons name={weekDeltaMinutes > 0 ? 'trending-up-outline' : 'trending-down-outline'} size={16} color={weekDeltaMinutes > 0 ? '#35D07F' : t.textMuted}/>
-          <Text style={{ color: weekDeltaMinutes > 0 ? '#35D07F' : t.textMuted, fontSize: f.sub, fontWeight: '700', flex: 1 }} numberOfLines={1}>
+          <Ionicons name={weekDeltaMinutes > 0 ? 'trending-up-outline' : 'trending-down-outline'} size={16} color={weekDeltaMinutes > 0 ? EXEMPT_COLOR_1 : t.textMuted}/>
+          <Text style={{ color: weekDeltaMinutes > 0 ? EXEMPT_COLOR_2 : t.textMuted, fontSize: f.sub, fontWeight: '700', flex: 1 }} numberOfLines={1}>
             {triLang(lang, {
                 ru: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'больше' : 'меньше'}, чем неделю назад`,
                 uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}, ніж тиждень тому`,
@@ -1442,7 +1448,7 @@ function StreakHeroCard({
                   accessibilityRole="button"
                   accessibilityLabel={triLang(lang, { ru: 'Стадии серии', uk: 'Стадії серії', en: 'Streak stages', es: 'Etapas de la racha', 'pt-BR': 'Etapas da sequência', vi: 'Các giai đoạn chuỗi', id: 'Tahap rangkaian', tr: 'Seri aşamaları', pl: 'Etapy serii' })}
                   onPress={() => setStagesOpen(true)}
-                  style={({ pressed }) => [{ width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : 'rgba(255,255,255,0.08)' }, pressed && { opacity: 0.85 }]}
+                  style={({ pressed }) => [{ width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : EXEMPT_COLOR_3 }, pressed && { opacity: 0.85 }]}
                 >
                     {/* зачем (PM-044, координатор 01.10): огонь, заполняемый до 10 дней; заморозка — свой значок. */}
                     {freezeActive
@@ -1803,7 +1809,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // зачем (results.html «Серия и статистика»): фон страницы и кнопка «назад» — токены стекла темы.
     const statsGlass = liquidGlassTokens(liquidGlassThemeId);
     const isGoldTheme = themeMode === 'gold';
-    const purpleColor = isGoldTheme ? GOLD_RICH.paleGold : isDark ? '#9B59F5' : '#6B21D4';
+    const purpleColor = isGoldTheme ? GOLD_RICH.paleGold : isDark ? '#9B59F5' : '#6B21D4'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
     const wdays = streakCalendarShortWeekdays(lang, REPORT_SCREENS_RUSSIAN_ONLY);
@@ -2512,7 +2518,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 })}
                       </Text>
                     </View>
-                    <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color={isLightThemeMode(themeMode) ? 'rgba(23,32,29,0.45)' : 'rgba(255,255,255,0.45)'}/>
+                    <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color={isLightThemeMode(themeMode) ? EXEMPT_COLOR_4 : EXEMPT_COLOR_5}/>
                   </StatsCardArtSurface>
                 </TouchableOpacity>
 
@@ -2650,9 +2656,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             borderRadius: 14,
                             paddingVertical: 12,
                             paddingHorizontal: 14,
-                            backgroundColor: 'rgba(255, 180, 60, 0.14)',
+                            backgroundColor: 'rgba(255, 180, 60, 0.14)', // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
                             borderWidth: 0,
-                            borderColor: 'rgba(255, 160, 40, 0.45)',
+                            borderColor: 'rgba(255, 160, 40, 0.45)', // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
                         }}>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                       {triLang(lang, {

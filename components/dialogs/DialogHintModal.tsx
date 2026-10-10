@@ -20,6 +20,8 @@ import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень окна — чёрная в любой теме
+
 interface DialogHintModalProps {
   visible: boolean;
   onClose: () => void;
@@ -36,7 +38,7 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
   return (
     // зачем HybridAlertShell: общий гибридный вход окон по центру (вуаль, «выход из света»,
     // закрытие тапом по фону, Android «назад», доступность модального окна).
-    <HybridAlertShell visible={visible} onRequestClose={onClose} shadowColor="#000000" scrollContent={false}>
+    <HybridAlertShell visible={visible} onRequestClose={onClose} shadowColor={EXEMPT_COLOR_1} scrollContent={false}>
       <View
         testID={testID}
         // зачем: VoiceOver не достаёт до фона — жест «escape» закрывает окно.

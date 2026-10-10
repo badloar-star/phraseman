@@ -85,6 +85,8 @@ import {
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
@@ -185,7 +187,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={handleNo}>
-      <Animated.View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end', opacity: fadeAnim }}>
+      <Animated.View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1, justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{
           backgroundColor: glassFill(t.bgCard, 0.46),
@@ -398,7 +400,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
     <Animated.View style={{
       position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
       opacity, justifyContent: 'center', alignItems: 'center',
-      backgroundColor: 'rgba(2,3,6,0.72)',
+      backgroundColor: 'rgba(2,3,6,0.72)', // theme-exempt: затемнение под окном — тёмный скрим в любой теме
     }}>
       <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} accessibilityRole="button" accessibilityLabel={greatLabel} />
       <Animated.View style={{
@@ -1392,8 +1394,8 @@ export default function LessonComplete() {
               contentFit="contain"
             />
           ) : (
-            <View style={{ width: 110, height: 110, borderRadius: 55, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ fontSize: 40, color: '#555' }}>?</Text>
+            <View style={{ width: 110, height: 110, borderRadius: 55, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ fontSize: 40, color: t.textMuted }}>?</Text>
             </View>
           )}
           {medalImproved && (

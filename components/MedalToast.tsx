@@ -25,16 +25,16 @@ interface MedalPalette {
 
 const TIER_PALETTES: Record<Exclude<MedalTier, 'none'>, MedalPalette> = {
   bronze: {
-    primary: '#D08C4A',
-    glow: 'rgba(208,140,74,0.45)',
+    primary: '#D08C4A', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
+    glow: 'rgba(208,140,74,0.45)', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
   },
   silver: {
-    primary: '#72D8FF',
-    glow: 'rgba(114,216,255,0.45)',
+    primary: '#72D8FF', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
+    glow: 'rgba(114,216,255,0.45)', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
   },
   gold: {
-    primary: '#F2C44A',
-    glow: 'rgba(242,196,74,0.55)',
+    primary: '#F2C44A', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
+    glow: 'rgba(242,196,74,0.55)', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
   },
 };
 
@@ -470,7 +470,7 @@ const styles = StyleSheet.create({
     // плашка остаётся приподнятой над фоном, но без ореола.
     // зачем: карточка внутри скруглена на 22 и с overflow:hidden, а фон даёт
     // тема — Android заливал квадрат вокруг плашки медали.
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: цвета медалей — бренд-палитра (токены категорий — у «Тем»)
     shadowOpacity: 0.28,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },

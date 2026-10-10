@@ -429,7 +429,7 @@ export default function DialogHowToSaySheet({
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.55)' },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.55)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
   avoider: { flex: 1, justifyContent: 'flex-end' },
   sheet: {
     borderTopLeftRadius: 24,

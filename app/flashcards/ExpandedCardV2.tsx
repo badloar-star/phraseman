@@ -121,6 +121,10 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
   const dimStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, unfold.value / 0.3) }));
 
   if (!card) return null;
+  // зачем (Сверка 10.10, светлая тема): лицо карточки на светлых темах светлое — белый текст на нём не читался; в светлой берём текст темы,
+  // в тёмных остаётся прежний (mediaInk).
+  const faceInk = g.isLight ? g.text : g.mediaInk;
+  const faceInkSoft = g.isLight ? g.secondary : g.mediaInkSoft;
   const faceShadow = [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: g.dropShadow }];
   // зачем (замечание владельца 10.10): базы карточки — токены темы (deepBase/deepBaseAlt), а не литералы под «Аврору».
   const colors = [`${mixDark(a, g.deepBase, 0.46)}E6`, `${g.deepBaseAlt}DB`, `${mixDark(b, g.deepBaseAlt, 0.4)}DB`] as const;
@@ -159,15 +163,15 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
               <Animated.View style={[styles.face, { boxShadow: faceShadow }, frontStyle]}>
                 {faceLayers(`${card.id}f`)}
                 <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.en, { color: g.mediaInk, lineHeight: lh(40) }]}>{card.front}</Text>
-                  {card.ipa ? <Text style={[styles.ipa, { color: g.mediaInkSoft, lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
+                  <Text style={[styles.en, { color: faceInk, lineHeight: lh(40) }]}>{card.front}</Text>
+                  {card.ipa ? <Text style={[styles.ipa, { color: faceInkSoft, lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
                 </View>
-                <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: `${g.mediaInk}1F` }]}>
-                  <Ionicons name="volume-high" size={16} color={g.mediaInk} />
+                <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: `${faceInk}1F` }]}>
+                  <Ionicons name="volume-high" size={16} color={faceInk} />
                 </Pressable>
                 {card.dots ? (
                   <View style={styles.dots} pointerEvents="none">
-                    {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : `${g.mediaInk}38` }]} />)}
+                    {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : `${faceInk}38` }]} />)}
                   </View>
                 ) : null}
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
@@ -175,7 +179,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
               <Animated.View style={[styles.face, styles.faceBack, { boxShadow: faceShadow }, backStyle]}>
                 {faceLayers(`${card.id}b`)}
                 <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.ru, { color: g.mediaInk, lineHeight: lh(36) }]}>{card.back}</Text>
+                  <Text style={[styles.ru, { color: faceInk, lineHeight: lh(36) }]}>{card.back}</Text>
                 </View>
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 28, boxShadow: bevelShadow(g.bevelHi, `${a}66`, g.bevelLo) }]} />
               </Animated.View>

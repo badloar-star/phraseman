@@ -1331,12 +1331,12 @@ function MistakePracticeSessionScreen() {
               </View>
             ) : null}
             {/* зачем (Сверка mistakes-panel-016, .pr + .pr): строки панели «Почему» разделены линией 1 px */}
-            <View style={[styles.whyRowText, feedback.userAnswer.trim() ? styles.whyDivider : null]}>
-              <Text testID="mistake-verdict-explanation" style={styles.whyBody}>
+            <View style={[styles.whyRowText, feedback.userAnswer.trim() ? [styles.whyDivider, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft }] }] : null]}>
+              <Text testID="mistake-verdict-explanation" style={[styles.whyBody, { color: g.text }]}>
                 {whyText || (mistakeExplain.aiMistakeState === 'loading' ? pcopy.thinking : '')}
               </Text>
             </View>
-            <View style={[styles.whyRow, styles.whyDivider]}>
+            <View style={[styles.whyRow, styles.whyDivider, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft }] }]}>
               <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
               <DiffValue g={g} segments={diff.correct} baseColor={MP_COLORS.okText} style={styles.whyValue} />
             </View>
@@ -1367,7 +1367,7 @@ function MistakePracticeSessionScreen() {
                   <Text style={[styles.whyValue, { color: MP_COLORS.okText }]}>{feedback.answer}</Text>
                 </View>
               ) : null}
-              <Text testID="mistake-verdict-text" style={styles.trayWhy}>{whyText}</Text>
+              <Text testID="mistake-verdict-text" style={[styles.trayWhy, { color: g.text }]}>{whyText}</Text>
               <View style={styles.trayRow}>
                 {/* зачем (Сверка mistakes-panel-015/016, .row2 .cta2 flex:1): «Почему» / «Объясни проще» делят строку 50/50 с главной кнопкой */}
                 <PanelCta g={g} ghost flex testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
@@ -1590,16 +1590,16 @@ const baseStyles = StyleSheet.create({
   trayRow: { flexDirection: 'row', gap: 10 },
   trayRowGap: { marginTop: 16 },
   trayCtaGap: { marginTop: 16 },
-  trayWhy: { marginTop: 14, marginBottom: 16, paddingHorizontal: 2, fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
+  trayWhy: { marginTop: 14, marginBottom: 16, paddingHorizontal: 2, fontSize: 16, lineHeight: 23 },
   trayStop: { marginTop: 12, fontSize: 13, lineHeight: 20, textAlign: 'center' },
   whyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 12 },
   whyTitle: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '700' },
   whyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14 },
   whyRowText: { paddingVertical: 12 },
-  whyDivider: { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.07)' }] },
+  whyDivider: {},
   whyLabel: { width: 90, fontSize: 16, lineHeight: 20 },
   whyValue: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
-  whyBody: { fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
+  whyBody: { fontSize: 16, lineHeight: 23 },
   strike: { textDecorationLine: 'line-through' },
   answerLine: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
   tokenPool: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16 },

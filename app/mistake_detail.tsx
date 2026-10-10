@@ -68,7 +68,7 @@ function ListenRound({ g, audioRef, label }: Readonly<{ g: Lv2Glass; audioRef: s
       accessibilityLabel={label}
       hitSlop={8}
       onPress={() => { hapticTap(); void managedPlayer.playFromStart(); }}
-      style={({ pressed }) => [styles.listen, pressed && styles.pressed]}>
+      style={({ pressed }) => [styles.listen, { backgroundColor: g.hairlineSoft }, pressed && styles.pressed]}>
       <Ionicons name="volume-high" size={18} color={g.text} />
     </Pressable>
   );
@@ -79,7 +79,7 @@ function AnswerRow({ g, label, value, color, strike, right, first }: Readonly<{ 
   const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.answerRow}>
-      {first ? null : <View pointerEvents="none" style={styles.histLine} />}
+      {first ? null : <View pointerEvents="none" style={[styles.histLine, { backgroundColor: g.hairlineSoft }]} />}
       <Text style={[styles.answerLabel, { color: g.secondary }]}>{label}</Text>
       <Text style={[styles.answerValue, { color }, strike && styles.strike]}>{value}</Text>
       {right}
@@ -219,7 +219,7 @@ export default function MistakeDetailScreen() {
               <View style={[styles.hero, { paddingTop: insets.top + 18 }]}>
                 <LinearGradient
                   pointerEvents="none"
-                  colors={[mixDark(accentA, '#0B0B0F', 0.55), mixDark(accentB, '#0A0A0D', 0.38)]}
+                  colors={[mixDark(accentA, g.deepBase, 0.55), mixDark(accentB, g.deepBaseAlt, 0.38)]}
                   start={{ x: 0.42, y: 0.01 }}
                   end={{ x: 0.58, y: 0.99 }}
                   style={StyleSheet.absoluteFill}
@@ -234,7 +234,7 @@ export default function MistakeDetailScreen() {
                   ) : <View style={styles.round} />}
                 </View>
                 <Text style={[styles.phrase, { color: g.text }]}>{shown.phrase}</Text>
-                {shown.meaning ? <Text style={styles.meaning}>{shown.meaning}</Text> : null}
+                {shown.meaning ? <Text style={[styles.meaning, { color: `${g.text}CC` }]}>{shown.meaning}</Text> : null}
                 <View style={styles.stats}>
                   <View style={styles.stat}>
                     <Text style={[styles.statNum, { color: g.text }]}>{`×${shown.captureCount}`}</Text>
@@ -278,8 +278,8 @@ export default function MistakeDetailScreen() {
                           const done = index < (detail.status === 'corrected' ? 3 : detail.qualifyingDays);
                           return (
                             <React.Fragment key={`step-${index}`}>
-                              {index > 0 ? <View style={[styles.stepLine, { backgroundColor: done ? g.accent : 'rgba(255,255,255,0.12)' }]} /> : null}
-                              <View style={[styles.stepDot, { backgroundColor: done ? g.accent : MP_COLORS.ghost }]}>
+                              {index > 0 ? <View style={[styles.stepLine, { backgroundColor: done ? g.accent : g.hairlineSoft }]} /> : null}
+                              <View style={[styles.stepDot, { backgroundColor: done ? g.accent : g.glassEdge }]}>
                                 {done ? <Ionicons name="checkmark" size={15} color={g.accentInk} /> : <Text style={[styles.stepNum, { color: g.secondary }]}>{index + 1}</Text>}
                               </View>
                             </React.Fragment>
@@ -309,7 +309,7 @@ export default function MistakeDetailScreen() {
                       <Text style={[styles.whyTitle, { color: g.text }]}>{copy.why}</Text>
                       <Ionicons name={whyOpen ? 'chevron-down' : 'chevron-forward'} size={18} color={g.secondary} />
                     </Pressable>
-                    {whyOpen ? <Text style={styles.whyText}>{mistakeFacetExplanation(lang, detail.facet)}</Text> : null}
+                    {whyOpen ? <Text style={[styles.whyText, { color: g.text }]}>{mistakeFacetExplanation(lang, detail.facet)}</Text> : null}
                   </Panel>
                 )}
               </View>
@@ -356,7 +356,7 @@ const baseStyles = StyleSheet.create({
   heroBar: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   phrase: { marginTop: 14, fontSize: 42, lineHeight: 46, fontWeight: '700', letterSpacing: -1 },
-  meaning: { marginTop: 6, fontSize: 20, lineHeight: 24, color: 'rgba(255,255,255,0.8)' },
+  meaning: { marginTop: 6, fontSize: 20, lineHeight: 24 },
   stats: { marginTop: 22, flexDirection: 'row' },
   stat: { flex: 1 },
   statSep: { paddingLeft: 16, borderLeftWidth: 0 },
@@ -368,7 +368,7 @@ const baseStyles = StyleSheet.create({
   answerLabel: { width: 90, fontSize: 16, lineHeight: 20 },
   answerValue: { flex: 1, fontSize: 20, lineHeight: 24, fontWeight: '700' },
   strike: { textDecorationLine: 'line-through' },
-  histLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
+  histLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1 },
   fixHead: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   fixTitle: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   fixCount: { fontSize: 16, lineHeight: 20 },
@@ -381,6 +381,6 @@ const baseStyles = StyleSheet.create({
   histDate: { fontSize: 16, lineHeight: 20 },
   whyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   whyTitle: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  whyText: { paddingBottom: 16, fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
-  listen: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
+  whyText: { paddingBottom: 16, fontSize: 16, lineHeight: 23 },
+  listen: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
 });

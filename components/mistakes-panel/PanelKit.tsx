@@ -12,7 +12,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Svg, { Circle } from 'react-native-svg';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
-import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { DIAG_150, MP_COLORS, mixDark, ringShadow, themePair } from './panelPaint';
 import { GlassRim } from './GlassRim';
@@ -58,7 +58,7 @@ export const PanelRing = memo(function PanelRing({ g, progress, big = true, chil
   return (
     <View style={[styles.ring, { width: size, height: size }, big && styles.ringBig]}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-        <Circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={MP_COLORS.track} strokeWidth={w} />
+        <Circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={g.line} strokeWidth={w} />
         {p > 0 ? (
           <Circle
             cx={size / 2}
@@ -95,7 +95,7 @@ export const FilterChips = memo(function FilterChips({ g, chips, activeId, onCha
             accessibilityRole="tab"
             accessibilityState={{ selected: on }}
             onPress={() => onChange(chip.id)}
-            style={({ pressed }) => [styles.chip, { backgroundColor: on ? g.accent : MP_COLORS.chip }, pressed && styles.pressed]}>
+            style={({ pressed }) => [styles.chip, { backgroundColor: on ? g.accent : g.hairlineSoft }, pressed && styles.pressed]}>
             <Text style={[styles.chipText, { color: on ? g.accentInk : g.secondary }]}>{chip.label}</Text>
           </Pressable>
         );
@@ -113,13 +113,13 @@ export const Panel = memo(function Panel({ g, children, style }: Readonly<{ g: L
     <View style={[styles.panel, style]}>
       <LinearGradient
         pointerEvents="none"
-        colors={[`${mixDark(a, '#18181E', 0.14)}B3`, 'rgba(14,14,18,0.7)']}
+        colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]}
         start={DIAG_150.start}
         end={DIAG_150.end}
         style={StyleSheet.absoluteFill}
       />
       {children}
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.panelEdge, { boxShadow: ringShadow(MP_COLORS.hairline) }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.panelEdge, { boxShadow: ringShadow(g.hairlineSoft) }]} />
     </View>
   );
 });
@@ -130,7 +130,7 @@ export const MiniDots = memo(function MiniDots({ g, n }: Readonly<{ g: Lv2Glass;
   const styles = useScaledTextStyles(baseStyles);
   return (
     <View style={styles.mini}>
-      {/* guard-ok: ровно три полоски */ [0, 1, 2].map((i) => <View key={i} style={[styles.miniDot, { backgroundColor: i < n ? g.accent : 'rgba(255,255,255,0.14)' }]} />)}
+      {/* guard-ok: ровно три полоски */ [0, 1, 2].map((i) => <View key={i} style={[styles.miniDot, { backgroundColor: i < n ? g.accent : g.glassEdge }]} />)}
     </View>
   );
 });
@@ -141,7 +141,7 @@ export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, firs
   const styles = useScaledTextStyles(baseStyles);
   const body = (
     <>
-      {first ? null : <View pointerEvents="none" style={styles.rowLine} />}
+      {first ? null : <View pointerEvents="none" style={[styles.rowLine, { backgroundColor: g.hairlineSoft }]} />}
       <View style={styles.rowText}>
         <Text style={[styles.rowTitle, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
         {subtitle ? <Text style={[styles.rowSub, { color: g.secondary }]}>{subtitle}</Text> : null}
@@ -171,14 +171,14 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
         styles.cta,
         flex && styles.ctaFlex,
         ghost
-          ? { backgroundColor: 'rgba(255,255,255,0.1)', boxShadow: ringShadow('rgba(255,255,255,0.12)') }
+          ? { backgroundColor: g.hairlineSoft, boxShadow: ringShadow(g.glassEdge) }
           : { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
         disabled && styles.ctaDisabled,
         pressed && styles.pressed,
       ]}>
-      <Text style={[styles.ctaText, { color: ghost ? '#FFFFFF' : g.accentInk }]}>{label}</Text>
+      <Text style={[styles.ctaText, { color: ghost ? g.text : g.accentInk }]}>{label}</Text>
       {trailing}
-      {ghost ? null : <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.ctaEdge, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }] }]} />}
+      {ghost ? null : <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.ctaEdge, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />}
     </Pressable>
   );
 });
@@ -188,11 +188,13 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   const insets = useStableSafeAreaInsets();
+  // зачем (замечание владельца 10.10): затухание под кнопками — от фона темы, а не литерал под «Аврору»
+  const g = useLv2Glass();
   return (
     <View style={styles.dock} pointerEvents="box-none">
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(12,12,13,0)', 'rgba(12,12,13,0.92)', 'rgba(12,12,13,0.92)']}
+        colors={[`${g.bg}00`, `${g.bg}EB`, `${g.bg}EB`]}
         locations={[0, 0.4, 1]}
         style={StyleSheet.absoluteFill}
       />
@@ -208,12 +210,12 @@ export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{
   const [a] = themePair(g);
   return (
     <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
-      <LinearGradient pointerEvents="none" colors={[`${mixDark(a, '#18181E', 0.14)}B3`, 'rgba(14,14,18,0.7)']} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
-      <View style={styles.menuTile}>
+      <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
+      <View style={[styles.menuTile, { backgroundColor: g.hairlineSoft }]}>
         <Ionicons name={icon} size={20} color={danger ? MP_COLORS.bad : g.text} />
       </View>
       <Text style={[styles.menuText, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(MP_COLORS.hairline) }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(g.hairlineSoft) }]} />
     </Pressable>
   );
 }
@@ -232,7 +234,7 @@ const baseStyles = StyleSheet.create({
   panel: { borderRadius: 24, paddingHorizontal: 18, paddingVertical: 4, overflow: 'hidden' },
   panelEdge: { borderRadius: 24 },
   row: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14 },
-  rowLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
+  rowLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1 },
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   rowSub: { marginTop: 2, fontSize: 13, lineHeight: 17 },
@@ -245,7 +247,7 @@ const baseStyles = StyleSheet.create({
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   menuRow: { minHeight: 62, marginTop: 10, borderRadius: 20, overflow: 'hidden', flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingLeft: 10, paddingRight: 16 },
   menuEdge: { borderRadius: 20 },
-  menuTile: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
+  menuTile: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   menuText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 20 },
 });

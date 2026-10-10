@@ -13,7 +13,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
-import { MP_COLORS } from '../components/mistakes-panel/panelPaint';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -170,7 +169,7 @@ export default function MistakesListScreen() {
           {searching ? (
             <View style={styles.topbar}>
               <BackButton g={g} label={copy.back} onPress={closeSearch} />
-              <View style={styles.field}>
+              <View style={[styles.field, { backgroundColor: g.hairlineSoft }]}>
                 <Ionicons name="search" size={20} color={g.secondary} />
                 <TextInput
                   testID="mistakes-list-search"
@@ -209,7 +208,7 @@ export default function MistakesListScreen() {
                   accessibilityRole="tab"
                   accessibilityState={{ selected: on }}
                   onPress={() => { hapticTap(); setTab(entry.id); setGroup('all'); setLimit(PAGE); }}
-                  style={({ pressed }) => [styles.tab, { backgroundColor: on ? g.accent : MP_COLORS.chip }, pressed && styles.pressed]}>
+                  style={({ pressed }) => [styles.tab, { backgroundColor: on ? g.accent : g.hairlineSoft }, pressed && styles.pressed]}>
                   <Text style={[styles.tabText, { color: on ? g.accentInk : g.secondary }]}>{entry.label}</Text>
                 </Pressable>
               );
@@ -222,9 +221,9 @@ export default function MistakesListScreen() {
             ) : null}
             {items === null ? [0, 1, 2, 3, 4].map((index) => (
               <View key={`sk-${index}`} style={styles.skelRow}>
-                {index > 0 ? <View pointerEvents="none" style={styles.skelLine} /> : null}
-                <View style={[styles.skel, { height: 16, width: '50%' }]} />
-                <View style={[styles.skel, { height: 12, width: '30%', marginTop: 8 }]} />
+                {index > 0 ? <View pointerEvents="none" style={[styles.skelLine, { backgroundColor: g.hairlineSoft }]} /> : null}
+                <View style={[styles.skel, { backgroundColor: g.line, height: 16, width: '50%' }]} />
+                <View style={[styles.skel, { backgroundColor: g.line, height: 12, width: '30%', marginTop: 8 }]} />
               </View>
             )) : visible.slice(0, limit).map((item, index) => (
               <PanelRow
@@ -258,7 +257,7 @@ const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
-  field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.08)' },
+  field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
   fieldInput: { flex: 1, fontSize: 16, paddingVertical: 0 },
   tabs: { marginTop: 18, flexDirection: 'row', gap: 8 },
   tab: { minHeight: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
@@ -266,6 +265,6 @@ const baseStyles = StyleSheet.create({
   empty: { minHeight: 72, alignItems: 'center', justifyContent: 'center' },
   emptyText: { fontSize: 16, lineHeight: 22 },
   skelRow: { minHeight: 64, justifyContent: 'center' },
-  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
-  skel: { borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.09)' },
+  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1 },
+  skel: { borderRadius: 10 },
 });

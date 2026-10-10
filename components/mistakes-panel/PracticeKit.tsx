@@ -12,7 +12,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import type { MistakeDiffSegment } from '../../app/mistake_answer_diff';
-import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { MP_COLORS, bevelShadow, mixDark, ringShadow, themePair } from './panelPaint';
 import { GlassRim } from './GlassRim';
@@ -59,13 +59,13 @@ export const Tray = memo(function Tray({ g, children, testID }: Readonly<{ g: Lv
     <View testID={testID} style={[styles.tray, { paddingBottom: Math.max(20, insets.bottom + 12) }]}>
       <LinearGradient
         pointerEvents="none"
-        colors={[`${mixDark(a, '#1A1A20', 0.16)}F5`, 'rgba(14,14,18,0.97)']}
+        colors={[`${mixDark(a, g.deepBase, 0.16)}F5`, `${g.deepBase}F7`]}
         start={{ x: 0.42, y: 0.01 }}
         end={{ x: 0.58, y: 0.99 }}
         style={StyleSheet.absoluteFill}
       />
       {children}
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.trayEdge, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.12)' }] }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.trayEdge, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.bevelHi }] }]} />
     </View>
   );
 });
@@ -89,8 +89,10 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
             onPress={() => onPick?.(option)}
             style={({ pressed }) => [
               styles.cell,
-              mark === 'ok' && { backgroundColor: 'rgba(111,208,140,0.2)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: 'rgba(111,208,140,0.7)' }] },
-              mark === 'no' && { backgroundColor: 'rgba(242,118,107,0.18)', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: 'rgba(242,118,107,0.7)' }] },
+              { backgroundColor: g.hairlineSoft },
+              // зачем (замечание владельца 10.10): верно/неверно — семантика MP_COLORS.ok / .bad с альфой, а не отдельные литералы rgba
+              mark === 'ok' && { backgroundColor: `${MP_COLORS.ok}33`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${MP_COLORS.ok}B3` }] },
+              mark === 'no' && { backgroundColor: `${MP_COLORS.bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${MP_COLORS.bad}B3` }] },
               pressed && styles.pressed,
             ]}>
             <Text style={[styles.cellText, { color: g.text }]}>{option}</Text>
@@ -105,16 +107,17 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
 export const AnswerSlot = memo(function AnswerSlot({ children, style }: Readonly<{ children: React.ReactNode; style?: StyleProp<ViewStyle> }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  return <View style={[styles.slot, style]}>{children}</View>;
+  const g = useLv2Glass();
+  return <View style={[styles.slot, { backgroundColor: g.hairlineSoft, boxShadow: ringShadow(g.hairlineSoft) }, style]}>{children}</View>;
 });
 
 export const Token = memo(function Token({ g, label, used, onPress }: Readonly<{ g: Lv2Glass; label: string; used?: boolean; onPress?: () => void }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <Pressable disabled={used || !onPress} accessibilityState={{ disabled: !!(used || !onPress) }} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.token, used && styles.tokenUsed, pressed && styles.pressed]}>
+    <Pressable disabled={used || !onPress} accessibilityState={{ disabled: !!(used || !onPress) }} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.token, { backgroundColor: g.hairlineSoft }, used && styles.tokenUsed, pressed && styles.pressed]}>
       <Text style={[styles.tokenText, { color: g.text }]}>{label}</Text>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.tokenEdge, { boxShadow: bevelShadow('rgba(255,255,255,0.22)', 'rgba(255,255,255,0)') }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.tokenEdge, { boxShadow: bevelShadow(g.bevelHi, 'transparent', g.bevelLo) }]} />
     </Pressable>
   );
 });
@@ -123,7 +126,8 @@ export const Token = memo(function Token({ g, label, used, onPress }: Readonly<{
 export const AnswerField = memo(function AnswerField({ children }: Readonly<{ children: React.ReactNode }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  return <View style={styles.field}>{children}</View>;
+  const g = useLv2Glass();
+  return <View style={[styles.field, { backgroundColor: g.hairlineSoft, boxShadow: ringShadow(g.glassEdge) }]}>{children}</View>;
 });
 export const fieldInputStyle = { flex: 1, minHeight: 60, fontSize: 20, paddingVertical: 0 } as const;
 
@@ -152,7 +156,7 @@ export const ResultRow = memo(function ResultRow({ g, ok, label, right }: Readon
   const tone = ok ? MP_COLORS.ok : MP_COLORS.bad;
   return (
     <View style={styles.result}>
-      <View style={[styles.resultDot, { backgroundColor: ok ? 'rgba(111,208,140,0.22)' : 'rgba(242,118,107,0.22)' }]}>
+      <View style={[styles.resultDot, { backgroundColor: ok ? `${MP_COLORS.ok}38` : `${MP_COLORS.bad}38` }]}>
         <Ionicons name={ok ? 'checkmark' : 'close'} size={20} color={tone} />
       </View>
       <Text style={[styles.resultText, { color: g.text }]}>{label}</Text>
@@ -171,8 +175,8 @@ export const StepDots = memo(function StepDots({ g, n, compact }: Readonly<{ g: 
         const done = index < n;
         return (
           <React.Fragment key={`step-${index}`}>
-            {index > 0 ? <View style={[styles.stepLine, { backgroundColor: done ? g.accent : 'rgba(255,255,255,0.12)' }]} /> : null}
-            <View style={[styles.stepDot, compact && styles.stepDotCompact, { backgroundColor: done ? g.accent : MP_COLORS.ghost }]}>
+            {index > 0 ? <View style={[styles.stepLine, { backgroundColor: done ? g.accent : g.hairlineSoft }]} /> : null}
+            <View style={[styles.stepDot, compact && styles.stepDotCompact, { backgroundColor: done ? g.accent : g.glassEdge }]}>
               {done ? <Ionicons name="checkmark" size={compact ? 11 : 14} color={g.accentInk} /> : <Text style={[styles.stepNum, compact && styles.stepNumCompact, { color: g.secondary }]}>{index + 1}</Text>}
             </View>
           </React.Fragment>
@@ -185,7 +189,7 @@ export const StepDots = memo(function StepDots({ g, n, compact }: Readonly<{ g: 
 const baseStyles = StyleSheet.create({
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
-  field: { minHeight: 60, borderRadius: 18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.08)', boxShadow: ringShadow('rgba(255,255,255,0.1)') },
+  field: { minHeight: 60, borderRadius: 18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center' },
   question: { marginTop: 30, alignItems: 'center' },
   kind: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
   value: { marginTop: 10, fontWeight: '700', textAlign: 'center' },
@@ -193,10 +197,10 @@ const baseStyles = StyleSheet.create({
   tray: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 18, paddingHorizontal: 16, borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden' },
   trayEdge: { borderTopLeftRadius: 30, borderTopRightRadius: 30 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  cell: { width: '48.6%', flexGrow: 1, minHeight: 62, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
+  cell: { width: '48.6%', flexGrow: 1, minHeight: 62, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center' },
   cellText: { fontSize: 16, lineHeight: 24, fontWeight: '600', textAlign: 'center' },
-  slot: { minHeight: 70, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center', padding: 12, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.06)', boxShadow: ringShadow('rgba(255,255,255,0.08)') },
-  token: { minHeight: 46, paddingHorizontal: 17, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
+  slot: { minHeight: 70, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center', padding: 12, borderRadius: 20 },
+  token: { minHeight: 46, paddingHorizontal: 17, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   tokenUsed: { opacity: 0.22 },
   tokenEdge: { borderRadius: 14 },
   tokenText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },

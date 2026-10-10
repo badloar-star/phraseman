@@ -12,6 +12,7 @@ import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 're
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 
 const SHEET_EASE = Easing.bezier(...KIT_MOTION.sheetEase);
 
@@ -19,6 +20,8 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   const insets = useStableSafeAreaInsets();
+  // зачем (замечание владельца 10.10): подложка шторки и кромка — токены выбранной темы, а не #1B1B1D под «Аврору»
+  const g = useLv2Glass();
   // зачем: Reduce Motion = один финальный кадр (AGENTS.md Motion п.6)
   const reduceMotion = useReduceMotion();
   const dimMs = reduceMotion ? 0 : KIT_MOTION.dimMs;
@@ -38,13 +41,13 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
       <Animated.View
         entering={SlideInDown.duration(sheetMs).easing(SHEET_EASE)}
         exiting={SlideOutDown.duration(sheetMs).easing(SHEET_EASE)}
-        style={[styles.sheet, { paddingBottom: Math.max(24, insets.bottom + 16) }]}>
-        <View style={styles.grab} />
+        style={[styles.sheet, { backgroundColor: g.opaqueSheet, paddingBottom: Math.max(24, insets.bottom + 16) }]}>
+        <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         {children}
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.edge, {
           boxShadow: [
-            { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.2)' },
-            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.05)' },
+            { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi },
+            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft },
           ],
         }]} />
       </Animated.View>
@@ -53,8 +56,8 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
 });
 
 const baseStyles = StyleSheet.create({
-  dim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
-  sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18, backgroundColor: '#1B1B1D' },
+  dim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
+  sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18 },
   edge: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
-  grab: { width: 44, height: 5, borderRadius: 3, backgroundColor: '#4A4A4E', alignSelf: 'center', marginBottom: 26 },
+  grab: { width: 44, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 26 },
 });

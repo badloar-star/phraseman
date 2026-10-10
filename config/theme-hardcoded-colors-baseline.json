@@ -1,5 +1,5 @@
 {
-  "total": 1638,
+  "total": 1578,
   "files": {
     "app/(tabs)/lessons.tsx": 109,
     "app/(tabs)/settings.tsx": 4,
@@ -43,10 +43,6 @@
     "app/lingman_videos.tsx": 1,
     "app/lingman_video_watch.tsx": 3,
     "app/manage_subscription.tsx": 1,
-    "app/mistakes_hub.tsx": 5,
-    "app/mistakes_list.tsx": 2,
-    "app/mistake_detail.tsx": 6,
-    "app/mistake_practice_session.tsx": 3,
     "app/pack_opening.tsx": 10,
     "app/premium_modal_v2.tsx": 2,
     "app/referral_access_ended_modal.tsx": 1,
@@ -119,10 +115,6 @@
     "components/level_up/MintSparks.tsx": 1,
     "components/MedalToast.tsx": 7,
     "components/MistakeEli5Modal.tsx": 1,
-    "components/mistakes-panel/GlassRim.tsx": 8,
-    "components/mistakes-panel/PanelKit.tsx": 13,
-    "components/mistakes-panel/PanelSheet.tsx": 5,
-    "components/mistakes-panel/PracticeKit.tsx": 18,
     "components/modal_fx/HybridAlertShell.tsx": 2,
     "components/modal_fx/HybridSheetShell.tsx": 1,
     "components/MotionModal.tsx": 1,

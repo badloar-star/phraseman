@@ -209,8 +209,8 @@ export default function MistakesHubScreen() {
   const [accentA, accentB] = themePair(g);
   const iconTile = (name: keyof typeof Ionicons.glyphMap, color: string) => (
     <View style={styles.bigTile}>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentA, '#1E1E20', 0.6) }]} />
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentB, '#08080B', 0.32), opacity: 0.55 }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentA, g.deepBase, 0.6) }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentB, g.deepBaseAlt, 0.32), opacity: 0.55 }]} />
       <Ionicons name={name} size={32} color={color} />
     </View>
   );
@@ -226,7 +226,7 @@ export default function MistakesHubScreen() {
         <Text style={[styles.legendText, { color: g.secondary }]}>{`${corrected} ${copy.fixedN}`}</Text>
       </Pressable>
       <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('all')} style={styles.legendItem}>
-        <View style={[styles.legendDot, { backgroundColor: 'rgba(255,255,255,0.25)' }]} />
+        <View style={[styles.legendDot, { backgroundColor: `${g.text}40` }]} />
         <Text style={[styles.legendText, { color: g.secondary }]}>{`${active} ${copy.waitN}`}</Text>
       </Pressable>
     </View>
@@ -242,9 +242,9 @@ export default function MistakesHubScreen() {
           <Panel g={g}>
             {[0, 1, 2].map((i) => (
               <View key={`sk-${i}`} style={styles.skelRow}>
-                {i > 0 ? <View pointerEvents="none" style={styles.skelLine} /> : null}
-                <View style={[styles.skel, { height: 16, width: '50%' }]} />
-                <View style={[styles.skel, { height: 12, width: '30%', marginTop: 8 }]} />
+                {i > 0 ? <View pointerEvents="none" style={[styles.skelLine, { backgroundColor: g.hairlineSoft }]} /> : null}
+                <View style={[styles.skel, { backgroundColor: g.line, height: 16, width: '50%' }]} />
+                <View style={[styles.skel, { backgroundColor: g.line, height: 12, width: '30%', marginTop: 8 }]} />
               </View>
             ))}
           </Panel>
@@ -333,7 +333,7 @@ export default function MistakesHubScreen() {
         {showDock ? <PanelDock>{dockCta}</PanelDock> : null}
         <PanelSheet visible={sheetOpen} onClose={closeSheet} testID="mistakes-hub-sheet">
           <View style={styles.sheetHead}>
-            <Text style={styles.sheetTitle}>{copy.sheetTitle}</Text>
+            <Text style={[styles.sheetTitle, { color: g.text }]}>{copy.sheetTitle}</Text>
             <Text style={[styles.sheetSub, { color: g.secondary }]}>
               {`${sheetReady} ${pluralWord(lang, sheetReady, copy.mistakes)} · ${copy.about} ${minutes} ${pluralWord(lang, minutes, copy.mins)}`}
             </Text>
@@ -374,8 +374,8 @@ const baseStyles = StyleSheet.create({
   loadingText: { marginTop: 14, fontSize: 16, lineHeight: 19, textAlign: 'center' },
   dimmed: { opacity: 0.5 },
   skelRow: { minHeight: 64, justifyContent: 'center' },
-  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
-  skel: { borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.09)' },
+  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1 },
+  skel: { borderRadius: 10 },
   stateWrap: { alignItems: 'stretch' },
   stateTitle: { marginTop: 24, fontSize: 26, lineHeight: 32, fontWeight: '700', textAlign: 'center' },
   stateSub: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
@@ -383,7 +383,7 @@ const baseStyles = StyleSheet.create({
   waitNum: { marginLeft: 'auto', fontSize: 22, lineHeight: 28, fontWeight: '700' },
   bigTile: { width: 76, height: 76, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   sheetHead: { alignItems: 'center' },
-  sheetTitle: { color: '#FFFFFF', fontSize: 24, lineHeight: 30, fontWeight: '700' },
+  sheetTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700' },
   sheetSub: { marginTop: 6, fontSize: 16, lineHeight: 22 },
   sheetCta: { marginTop: 10 },
   energy: { flexDirection: 'row', alignItems: 'center', gap: 2 },

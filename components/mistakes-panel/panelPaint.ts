@@ -52,13 +52,11 @@ export const iconTileColors = (g: GlassTokens, a: string, b: string) =>
 export const DIAG_150 = { start: { x: 0.25, y: 0.07 }, end: { x: 0.75, y: 0.93 } } as const;
 export const DIAG_170 = { start: { x: 0.42, y: 0.01 }, end: { x: 0.58, y: 0.99 } } as const;
 
+// зачем (замечание владельца 10.10): здесь остались только семантические цвета «верно/неверно» (как LV2_GOOD/LV2_BAD);
+// полупрозрачные белые (hairline/chip/track/ghost) заменены токенами темы (hairlineSoft/line/glassEdge) на экранах.
 export const MP_COLORS = {
   ok: '#6FD08C',
   okText: '#8DEBB0',
   bad: '#F2766B',
   badText: '#FF9C93',
-  hairline: 'rgba(255,255,255,0.07)',
-  chip: 'rgba(255,255,255,0.07)',
-  track: 'rgba(255,255,255,0.1)',
-  ghost: 'rgba(255,255,255,0.1)',
 } as const;

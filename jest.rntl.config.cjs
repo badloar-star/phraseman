@@ -11,6 +11,7 @@ module.exports = {
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/survey_offer_render.test.tsx',
     '<rootDir>/tests/survey_sheet_modal.test.tsx',
+    '<rootDir>/tests/kit_touchable.test.tsx',
     '<rootDir>/tests/survey_flow_controller.test.tsx',
     '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
     '<rootDir>/tests/hybrid_sheet_shell_observer_runtime.test.tsx',

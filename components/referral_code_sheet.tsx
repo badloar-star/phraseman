@@ -6,7 +6,7 @@
  * Логика применения кода не менялась: applyManualReferralCode (офлайн-очередь,
  * идемпотентность и валидация — внутри referral_bootstrap).
  */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput } from 'react-native';
 import KitTouchable from './KitTouchable';
 import { useTheme } from './ThemeContext';
@@ -190,8 +190,16 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
 
   const canSubmit = code.trim().length >= 4 && !busy;
 
+  // зачем (координатор 10.10, Optimistic UI): state busy обновляется после рендера — второй тап в том же кадре применил бы код дважды
+  // (и дважды слал заявку в друзья); ref-замок синхронный, снимается в finally.
+  const submitLockRef = useRef(false);
   const submit = useCallback(async () => {
     if (!canSubmit) return;
+    if (submitLockRef.current) {
+      console.warn('[REFERRAL-CODE] применение: повторный тап пропущен');
+      return;
+    }
+    submitLockRef.current = true;
     hapticTap();
     setBusy(true);
     setFeedback(null);
@@ -214,7 +222,12 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       DebugLogger.error('referral_code_sheet:res', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       }
+    } catch (error: unknown) {
+      // зачем: исключение (сеть, хранилище) уходило наверх без ответа — экран просто «отпускал» кнопку
+      console.warn('[REFERRAL-CODE] применение: исключение', error instanceof Error ? error.message : String(error));
+      setFeedback(feedbackForStatus('error', L));
     } finally {
+      submitLockRef.current = false;
       setBusy(false);
     }
   }, [L, canSubmit, code]);

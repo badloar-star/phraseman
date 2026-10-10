@@ -1,23 +1,22 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
-  AccessibilityInfo,
   Animated,
   Easing,
-  Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
-import { MOTION_DURATION } from '../constants/motion';
+import { KIT_MOTION } from '../constants/motionHybrid';
+import { useSystemReduceMotion } from '../hooks/use_system_reduce_motion';
+import KitTouchable from './KitTouchable';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
-import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type AiLimitUpsellCardProps = {
   lang: Lang;
@@ -40,84 +39,24 @@ export default function AiLimitUpsellCard({
   const router = useRouter();
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(14)).current;
-  const translateX = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(0.94)).current;
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const reduceMotion = useSystemReduceMotion();
+  // зачем (координатор 10.10, деньги): router.push на пейвол — второй тап в том же кадре открыл бы пейвол дважды
+  const openLockRef = useRef(false);
 
-  useEffect(() => {
-    let mounted = true;
-    void AccessibilityInfo.isReduceMotionEnabled()
-      .then((enabled) => {
-        if (mounted) setReduceMotion(Boolean(enabled));
-      })
-      .catch(noteSwallowedHandler('AiLimitUpsellCard:useEffect.isReduceMotionEnabled'));
-    const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
-    return () => {
-      mounted = false;
-      sub.remove();
-    };
-  }, []);
-
+  // зачем (координатор 10.10, «дизайн везде»): карточка предложения появлялась с пружинным «подпрыгиванием» и тряской по горизонтали —
+  // назойливо для денежного предложения и не из словаря кита. Теперь спокойный подъём `.anim-rise` (extension.css: 620 мс
+  // cubic-bezier(.2,1,.3,1), opacity 0→1, сдвиг вверх); при «уменьшить движение» — только проявление.
   useEffect(() => {
     opacity.setValue(0);
     translateY.setValue(reduceMotion ? 0 : 14);
-    translateX.setValue(0);
-    scale.setValue(reduceMotion ? 1 : 0.94);
-
-    const anim = reduceMotion
-      ? Animated.timing(opacity, {
-        toValue: 1,
-        duration: MOTION_DURATION.fast,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      })
-      : Animated.sequence([
-        Animated.parallel([
-          Animated.timing(opacity, {
-            toValue: 1,
-            duration: MOTION_DURATION.normal,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateY, {
-            toValue: -4,
-            duration: MOTION_DURATION.normal,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-          Animated.spring(scale, {
-            toValue: 1.04,
-            tension: 220,
-            friction: 9,
-            useNativeDriver: true,
-          }),
-        ]),
-        Animated.parallel([
-          Animated.timing(translateY, {
-            toValue: 0,
-            duration: 110,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-          }),
-          Animated.spring(scale, {
-            toValue: 1,
-            tension: 260,
-            friction: 11,
-            useNativeDriver: true,
-          }),
-        ]),
-        Animated.sequence([
-          Animated.timing(translateX, { toValue: -8, duration: 46, useNativeDriver: true }),
-          Animated.timing(translateX, { toValue: 7, duration: 58, useNativeDriver: true }),
-          Animated.timing(translateX, { toValue: -4, duration: 50, useNativeDriver: true }),
-          Animated.timing(translateX, { toValue: 2, duration: 42, useNativeDriver: true }),
-          Animated.timing(translateX, { toValue: 0, duration: 34, useNativeDriver: true }),
-        ]),
-      ]);
-
+    const ease = Easing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+    const anim = Animated.parallel([
+      Animated.timing(opacity, { toValue: 1, duration: reduceMotion ? 160 : 620, easing: ease, useNativeDriver: true }),
+      Animated.timing(translateY, { toValue: 0, duration: reduceMotion ? 0 : 620, easing: ease, useNativeDriver: true }),
+    ]);
     anim.start();
     return () => anim.stop();
-  }, [opacity, reduceMotion, scale, translateX, translateY]);
+  }, [opacity, reduceMotion, translateY]);
 
   const ctaLabel = triLang(lang, {
     ru: 'Посмотреть Plus',
@@ -139,7 +78,7 @@ export default function AiLimitUpsellCard({
         {
           opacity,
           shadowColor: glass.bg,
-          transform: [{ translateY }, { translateX }, { scale }],
+          transform: [{ translateY }],
         },
       ]}
     >
@@ -153,25 +92,27 @@ export default function AiLimitUpsellCard({
           </Text>
         </View>
 
-        <Pressable
+        <KitTouchable
           testID={`${testID}-full-access-button`}
           accessibilityRole="button"
           accessibilityLabel={ctaLabel}
           onPress={() => {
+            if (openLockRef.current) {
+              console.warn('[AI-LIMIT-UPSELL] открытие пейвола: повторный тап пропущен');
+              return;
+            }
+            openLockRef.current = true;
+            setTimeout(() => { openLockRef.current = false; }, 900);
             hapticTap();
             router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: paywallSource } } as never);
           }}
-          style={({ pressed }) => [
-            styles.cta,
-            { backgroundColor: glass.accent },
-            pressed && styles.pressed,
-          ]}
+          style={[styles.cta, { backgroundColor: glass.accent }]}
         >
           <Text style={[styles.ctaLabel, { color: glass.accentInk, fontSize: f.label }]}>
             {ctaLabel}
           </Text>
           <Ionicons name="arrow-forward" size={17} color={glass.ctaInk} />
-        </Pressable>
+        </KitTouchable>
       </TonalSurface>
     </Animated.View>
   );
@@ -223,8 +164,5 @@ const styles = StyleSheet.create({
   ctaLabel: {
     flexShrink: 1,
     fontWeight: '800',
-  },
-  pressed: {
-    opacity: 0.82,
   },
 });

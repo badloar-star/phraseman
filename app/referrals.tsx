@@ -490,10 +490,13 @@ export default function ReferralsScreen() {
 
   /** «Пригласить» — системный Share; с кэшированным кодом открывается мгновенно. */
   const [inviteBusy, setInviteBusy] = useState(false);
+  // зачем (координатор 10.10, Optimistic UI): state inviteBusy обновляется после рендера — второй тап в том же кадре открыл бы два системных «Поделиться»
+  const inviteLockRef = useRef(false);
   const handleInvite = useCallback(async () => {
-    if (inviteBusy) return;
+    if (inviteBusy || inviteLockRef.current) return;
+    inviteLockRef.current = true;
     const requestToken = captureAccountGeneration();
-    if (accountScopeKey(requestToken) !== renderAccountScope) return;
+    if (accountScopeKey(requestToken) !== renderAccountScope) { inviteLockRef.current = false; return; }
     hapticTap();
     setInviteBusy(true);
     try {
@@ -517,7 +520,10 @@ export default function ReferralsScreen() {
           'Twój kod jest jeszcze przygotowywany — sprawdź sieć i spróbuj za kilka sekund.',
         ));
       }
+    } catch (error: unknown) {
+      console.warn('[REFERRALS] приглашение: системное «Поделиться» не открылось', error instanceof Error ? error.message : String(error));
     } finally {
+      inviteLockRef.current = false;
       setInviteBusy(false);
     }
   }, [L, inviteBusy, lang, renderAccountScope]);

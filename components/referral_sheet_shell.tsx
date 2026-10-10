@@ -15,10 +15,12 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
   useWindowDimensions,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KIT_MOTION } from '../constants/motionHybrid';
 import Animated, {
   Easing as REasing,
   runOnJS,
@@ -34,7 +36,15 @@ import { useKeyboardBottomInset } from './keyboardAvoidance';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
 
-const SHEET_HIDDEN = 320;
+// зачем (координатор 10.10, гейт «приложение = макет»): движение шторки — kit.css `.sheet`: 440 мс cubic-bezier(.2,1,.3,1) в обе стороны,
+// затемнение 260 мс; шторка стартует за нижним краем экрана без выцветания (как общий HybridSheetShell).
+const SHEET_HIDDEN = Dimensions.get('window').height;
+let sheetEaseCache: ((t: number) => number) | null = null;
+// зачем: кривая создаётся лениво — тесты с урезанным мок-Reanimated (без Easing.bezier) не должны падать при загрузке модуля.
+const sheetEase = (): ((t: number) => number) => {
+  if (!sheetEaseCache) sheetEaseCache = REasing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+  return sheetEaseCache;
+};
 
 interface ReferralSheetShellProps {
   visible: boolean;
@@ -72,10 +82,10 @@ export default function ReferralSheetShell({
   useEffect(() => {
     if (!visible) return;
     dragTranslateY.value = 0;
-    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
+    backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs, easing: REasing.ease });
     sheetY.value = SHEET_HIDDEN;
-    sheetOpacity.value = withTiming(1, { duration: 220 });
-    sheetY.value = withTiming(0, { duration: 380, easing: REasing.bezier(0.32, 0.72, 0, 1) });
+    sheetOpacity.value = 1;
+    sheetY.value = withTiming(0, { duration: KIT_MOTION.sheetMs, easing: sheetEase() });
   }, [visible, backdropO, sheetY, sheetOpacity, dragTranslateY]);
 
   const handleCloseRef = useRef(onClose);
@@ -87,8 +97,7 @@ export default function ReferralSheetShell({
 
   const dismissSheet = useCallback(() => {
     hapticTap();
-    backdropO.value = withTiming(0, { duration: 200 });
-    sheetOpacity.value = withTiming(0, { duration: 180 });
+    backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs, easing: REasing.ease });
     // зачем: владелец (2026-07-26) — callback Reanimated приходит с finished=false
     // при отмене, onClose не вызывался и шит «зависал открытым» невидимо (кнопка
     // повторного открытия выглядела мёртвой). JS-страховка закрывает всегда.
@@ -96,8 +105,8 @@ export default function ReferralSheetShell({
     dismissFallbackRef.current = setTimeout(() => {
       dismissFallbackRef.current = null;
       handleCloseRef.current();
-    }, 320);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
+    }, KIT_MOTION.sheetMs + 80);
+    sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: sheetEase() }, (finished) => {
       if (finished) runOnJS(handleCloseRef.current)();
     });
   }, [backdropO, sheetOpacity, sheetY]);

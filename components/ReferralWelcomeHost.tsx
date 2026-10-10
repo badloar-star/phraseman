@@ -20,6 +20,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import KitTouchable from './KitTouchable';
 import { useOverlayVisible } from './OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
 import {
@@ -101,7 +102,12 @@ export default function ReferralWelcomeHost() {
     void markReferralWelcomeSeen().catch(logSeenFailure);
   };
 
+  // зачем (координатор 10.10, Optimistic UI): второй тап по «У меня есть код» в том же кадре открыл бы экран рефералов дважды
+  const openLockRef = useRef(false);
   const openCodeEntry = () => {
+    if (openLockRef.current) return;
+    openLockRef.current = true;
+    setTimeout(() => { openLockRef.current = false; }, 1200);
     setWelcomeDecision(null);
     void markReferralWelcomeSeen().catch(logSeenFailure);
     try {
@@ -194,26 +200,26 @@ export default function ReferralWelcomeHost() {
               <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>{title}</Text>
               <Text style={[styles.body, { color: glass.secondary }]}>{body}</Text>
 
-              <Pressable
+              <KitTouchable
                 testID="referral-welcome-primary"
                 onPress={close}
-                style={({ pressed }) => [styles.primaryBtn, { backgroundColor: glass.accent, opacity: pressed ? 0.85 : 1 }]}
+                style={[styles.primaryBtn, { backgroundColor: glass.accent }]}
                 accessibilityRole="button"
                 accessibilityLabel={primaryCta}
               >
                 <Text style={[styles.primaryBtnText, { color: glass.accentInk }]}>{primaryCta}</Text>
-              </Pressable>
+              </KitTouchable>
 
               {showCodeCta ? (
-                <Pressable
+                <KitTouchable
                   testID="referral-welcome-code"
                   onPress={openCodeEntry}
-                  style={({ pressed }) => [styles.secondaryBtn, { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.85 : 1 }]}
+                  style={[styles.secondaryBtn, { backgroundColor: glass.opaqueControl }]}
                   accessibilityRole="button"
                   accessibilityLabel={codeCta}
                 >
                   <Text style={[styles.secondaryBtnText, { color: glass.text }]}>{codeCta}</Text>
-                </Pressable>
+                </KitTouchable>
               ) : null}
             </Animated.View>
           </Pressable>

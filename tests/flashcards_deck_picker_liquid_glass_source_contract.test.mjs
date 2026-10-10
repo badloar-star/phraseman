@@ -363,7 +363,7 @@ test('protects pre-edit business, classic, default tile, and dependency contract
     count: 32,
     // зачем (координатор 10.10, гейт «приложение = макет»): хэш обновлён — вход и выход шторки перешли на kit.css `.sheet`
     // (440 мс cubic-bezier(.2,1,.3,1), затемнение 260 мс, без выцветания); порядок и логика закрытия не менялись.
-    hash: 'c8ca72f5dac0ce348649e64a818fcc1f39e07335a73b73dc44b330ab3ecdf9ba',
+    hash: 'd988c04bc0f078c5197dddb509e43822aea79a0b1249b9535968b5e97029008c',
   });
   assert.deepEqual(
     {

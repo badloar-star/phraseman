@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import KitTouchable from './KitTouchable';
 import { useLang } from './LangContext';
@@ -56,15 +56,25 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
     onClose();
   };
 
+  // зачем (координатор 10.10, Optimistic UI): два тапа по «Оценить» в том же кадре открыли бы страницу магазина дважды и записали клик дважды
+  const reviewLockRef = useRef(false);
   const openReview = async () => {
+    if (reviewLockRef.current) return;
+    reviewLockRef.current = true;
     hapticTap();
     void recordVipSurveyReviewClickFromApp({ storeOpened: false }).catch(noteSwallowedAs('VipSurveyReviewPromptModal:openReview.recordVipSurveyReviewClickFromApp', false));
-    const storeOpened = await openStoreReviewPage();
+    let storeOpened = false;
+    try {
+      storeOpened = await openStoreReviewPage();
+    } catch (error: unknown) {
+      console.warn('[VIP-REVIEW] страница магазина не открылась', error instanceof Error ? error.message : String(error));
+    }
     if (storeOpened) {
       void recordVipSurveyReviewClickFromApp({ storeOpened: true }).catch(noteSwallowedAs('VipSurveyReviewPromptModal:openReview.recordVipSurveyReviewClickFromApp_2', false));
       // Ушёл писать отзыв → помечаем как оценившего, чтобы другие rate-окна не всплывали.
       void markReviewRated().catch(noteSwallowedHandler('VipSurveyReviewPromptModal:openReview.markReviewRated'));
     }
+    reviewLockRef.current = false;
     onClose();
   };
 

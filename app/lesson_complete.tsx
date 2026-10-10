@@ -318,7 +318,13 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
     ]).start();
   }, [opacity, translateY]);
 
+  // зачем (координатор 10.10, Optimistic UI): окна «открыто/медаль» идут очередью — двойной тап по скриму/«Отлично!» вызвал бы onDismiss
+  // дважды и пропустил следующее окно очереди; замок синхронный.
+  const dismissedRef = useRef(false);
+  useEffect(() => { dismissedRef.current = false; }, [notif]); // новое окно очереди — замок снова открыт
   const dismiss = () => {
+    if (dismissedRef.current) return;
+    dismissedRef.current = true;
     Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }).start(onDismiss);
   };
 

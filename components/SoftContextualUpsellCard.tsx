@@ -1,9 +1,10 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useRef } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import type { SoftUpsellOpportunity } from '../app/soft_upsell_core';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import KitTouchable from './KitTouchable';
 import TonalSurface from './TonalSurface';
 import { useTheme } from './ThemeContext';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -31,6 +32,27 @@ export default function SoftContextualUpsellCard({
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const reportedRef = useRef(false);
   const impressionInFlightRef = useRef<Promise<void> | null>(null);
+  // зачем (координатор 10.10, деньги): CTA ведёт на пейвол, «не сейчас» пишет отказ — второй тап в том же кадре открывал бы пейвол дважды
+  // или писал отказ дважды; ref-замок синхронный и снимается, когда обработчик закончил (успех или сбой).
+  const actionLockRef = useRef(false);
+  const runLocked = useCallback((name: string, action: () => void | Promise<unknown>) => {
+    if (actionLockRef.current) {
+      console.warn(`[SOFT-UPSELL] ${name}: повторный тап пропущен, предыдущее действие ещё идёт`);
+      return;
+    }
+    actionLockRef.current = true;
+    let pending: void | Promise<unknown>;
+    try {
+      pending = action(); // синхронно, как раньше: тап сразу вызывает обработчик
+    } catch (error: unknown) {
+      console.warn(`[SOFT-UPSELL] ${name}: сбой обработчика`, error instanceof Error ? error.message : String(error));
+      actionLockRef.current = false;
+      return;
+    }
+    Promise.resolve(pending)
+      .catch((error: unknown) => { console.warn(`[SOFT-UPSELL] ${name}: сбой обработчика`, error instanceof Error ? error.message : String(error)); })
+      .finally(() => { actionLockRef.current = false; });
+  }, []);
   const handleLayout = useCallback((event: { nativeEvent: { layout: { width: number; height: number } } }) => {
     const { width, height } = event.nativeEvent.layout;
     if (reportedRef.current || impressionInFlightRef.current || width <= 0 || height <= 0) return;
@@ -55,26 +77,26 @@ export default function SoftContextualUpsellCard({
       </View>
       <Text style={[styles.body, { color: t.textMuted, fontSize: f.caption }]}>{body}</Text>
       <View style={styles.actions}>
-        <Pressable
+        <KitTouchable
           accessibilityRole="button"
           accessibilityLabel={dismissAccessibilityLabel}
           accessibilityHint={dismissAccessibilityHint}
-          onPress={() => { void onDismiss(); }}
+          onPress={() => runLocked('dismiss', () => onDismiss())}
           style={styles.dismiss}
         >
           <Ionicons name="close" size={22} color={t.textMuted} />
           <Text style={[styles.actionText, { color: t.textMuted, fontSize: f.label }]}>{dismissLabel}</Text>
-        </Pressable>
-        <Pressable
+        </KitTouchable>
+        <KitTouchable
           accessibilityRole="button"
           accessibilityLabel={ctaAccessibilityLabel}
           accessibilityHint={ctaAccessibilityHint}
-          onPress={() => { void onCta(); }}
-          style={({ pressed }) => [styles.cta, { backgroundColor: glass.accent, opacity: pressed ? 0.82 : 1 }]}
+          onPress={() => runLocked('cta', () => onCta())}
+          style={[styles.cta, { backgroundColor: glass.accent }]}
         >
           <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.label }]}>{ctaLabel}</Text>
           <Ionicons name="arrow-forward" size={19} color={glass.ctaInk} />
-        </Pressable>
+        </KitTouchable>
       </View>
     </TonalSurface>
   );

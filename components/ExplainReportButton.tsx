@@ -13,7 +13,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  * ИНВАРИАНТ: шлём phraseEn СЫРЫМ — phraseHash считает сервер. Клиент хэш НЕ вычисляет
  * (иначе нормализация задвоится с планом 01). reason сервер сверяет с белым списком.
  */
-import React, { memo, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -140,8 +140,12 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
     setFormOpen(true);
   };
 
+  // зачем (координатор 10.10, Optimistic UI): state sending обновляется после рендера — второй тап в том же кадре отправил бы жалобу дважды
+  const sendLockRef = useRef(false);
   const handleSend = async () => {
     if (sending) return;
+    if (sendLockRef.current) return;
+    sendLockRef.current = true;
     hapticTap();
     setFailed(false);
     setSending(true);
@@ -154,13 +158,16 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
         reason,
         comment: comment.trim().slice(0, COMMENT_MAX_LEN),
       });
-    } catch {
+    } catch (error: unknown) {
       // Репорт — бэкстоп-сигнал, не критичный путь. Показываем мягкую ошибку в форме,
       // юзер может повторить; наружу (в шторку) сбой не пробрасываем.
+      console.warn('[EXPLAIN-REPORT] отправка: исключение — показываем «не отправилось»', error instanceof Error ? error.message : String(error));
+      sendLockRef.current = false;
       setSending(false);
       setFailed(true);
       return;
     }
+    sendLockRef.current = false;
     setSending(false);
     setSent(true);
     setFormOpen(false);

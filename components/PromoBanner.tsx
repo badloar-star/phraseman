@@ -1,6 +1,7 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Linking, PanResponder, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Linking, PanResponder, Platform, StyleSheet, Text, View } from 'react-native';
+import KitTouchable from './KitTouchable';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -250,20 +251,20 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
     >
       <View style={styles.row}>
         {hasUrl ? (
-          <Pressable
+          <KitTouchable
             accessibilityRole="link"
             onPress={openUrl}
-            style={({ pressed }) => [styles.body, { opacity: pressed ? 0.82 : 1 }]}
+            style={styles.body}
           >
             {content}
             <Ionicons name="chevron-forward" size={18} color={glass.secondary} />
-          </Pressable>
+          </KitTouchable>
         ) : (
           <View style={styles.body}>
             {content}
           </View>
         )}
-        <Pressable
+        <KitTouchable
           accessibilityRole="button"
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Закрыть предложение',
@@ -278,13 +279,10 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
           })}
           hitSlop={8}
           onPress={dismiss}
-          style={({ pressed }) => [
-            styles.close,
-            { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.78 : 1 },
-          ]}
+          style={[styles.close, { backgroundColor: glass.opaqueControl }]}
         >
           <Ionicons name="close" size={20} color={glass.text} />
-        </Pressable>
+        </KitTouchable>
       </View>
     </Animated.View>
   );

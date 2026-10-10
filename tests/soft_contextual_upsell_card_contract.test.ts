@@ -13,6 +13,8 @@ jest.mock('react-native', () => ({
     flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style,
   },
 }));
+// зачем (10.10): KitTouchable берёт Animated из react-native, а в этом тесте он урезан до View/Text/Pressable — нажатие здесь подменено простым Pressable.
+jest.mock('../components/KitTouchable', () => ({ __esModule: true, default: 'Pressable' }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 // PM-229: карточка пишет причину проглоченной ошибки через swallow_log — журнал тянет конфиг
 // с Platform.OS, которого в урезанном моке react-native нет; подменяем, как остальных соседей.

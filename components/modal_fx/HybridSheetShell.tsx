@@ -61,7 +61,12 @@ import { DebugLogger } from '../../app/debug-logger';
 // зачем (координатор 10.10, гейт «приложение = макет»): kit.css `.sheet` — translateY(105%) → 0, 440 мс cubic-bezier(.2,1,.3,1)
 // в обе стороны, затемнение 260 мс. Шторка стартует за нижним краем экрана (а не с 320 px с выцветанием, как раньше).
 const SHEET_HIDDEN = Dimensions.get('window').height;
-const SHEET_EASE = REasing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+let sheetEaseCache: ((t: number) => number) | null = null;
+// зачем: кривая создаётся лениво — тесты с урезанным мок-Reanimated (без Easing.bezier) не должны падать при загрузке модуля.
+const sheetEase = (): ((t: number) => number) => {
+  if (!sheetEaseCache) sheetEaseCache = REasing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+  return sheetEaseCache;
+};
 const DIM_EASE = REasing.ease;
 
 interface HybridSheetShellProps {
@@ -223,7 +228,7 @@ export default function HybridSheetShell({
     backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs, easing: DIM_EASE });
     sheetY.value = SHEET_HIDDEN;
     sheetOpacity.value = 1;
-    sheetY.value = withTiming(0, { duration: KIT_MOTION.sheetMs, easing: SHEET_EASE });
+    sheetY.value = withTiming(0, { duration: KIT_MOTION.sheetMs, easing: sheetEase() });
     // зачем: аудит 2026-08-17 — единственный вход без очистки среди гибридов.
     // Если шторку закрыть в середине появления (быстрый жест, переход экрана),
     // пружина продолжала считаться на UI-потоке уже без потребителя.
@@ -286,7 +291,7 @@ export default function HybridSheetShell({
     // Reanimated не всегда долетает, шит не должен «зависать открытым».
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
     dismissFallbackRef.current = setTimeout(completeDismiss, KIT_MOTION.sheetMs + 80);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: SHEET_EASE }, (finished) => {
+    sheetY.value = withTiming(SHEET_HIDDEN, { duration: KIT_MOTION.sheetMs, easing: sheetEase() }, (finished) => {
       if (finished) runOnJS(completeDismiss)();
     });
   }, [backdropO, completeDismiss, dismissDisabled, onDismissRequested, reduceMotion, sheetOpacity, sheetY]);

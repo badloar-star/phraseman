@@ -266,8 +266,12 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
     return copy.errorGeneric;
   };
 
+  // зачем (координатор 10.10, Optimistic UI): state busy обновляется после рендера — второй тап по «Готово» в том же кадре отправил бы опрос
+  // дважды; ref-замок синхронный, снимается в finally.
+  const finishLockRef = useRef(false);
   const finish = async () => {
-    if (busy || !isVipSurveyComplete(answers)) return;
+    if (busy || finishLockRef.current || !isVipSurveyComplete(answers)) return;
+    finishLockRef.current = true;
     setBusy(true);
     setError('');
     try {
@@ -276,11 +280,11 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
       onCompleted(result);
     } catch (e) {
       const detail = e instanceof Error ? e.message : String(e || '');
-      if (typeof __DEV__ !== 'undefined' && __DEV__) {
-        console.warn('[VipSurveyModal] submit failed', detail, e);
-      }
+      // зачем: причина отказа пишется всегда (раньше только в dev) — иначе в релизе непонятно, какая из четырёх подписей и почему
+      console.warn('[VipSurveyModal] submit failed', detail);
       setError(classifySubmitError(detail));
     } finally {
+      finishLockRef.current = false;
       setBusy(false);
     }
   };

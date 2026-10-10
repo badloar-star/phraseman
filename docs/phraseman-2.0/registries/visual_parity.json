@@ -10,7 +10,8 @@
     "diff",
     "no_mockup",
     "removed_by_owner",
-    "blocked"
+    "blocked",
+    "no_release_surface"
   ],
   "rows": [
     {

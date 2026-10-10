@@ -173,7 +173,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     matrix: MATRIX,
     mockupServer: SERVER,
-    statuses: ['pending', 'match', 'diff', 'no_mockup', 'removed_by_owner', 'blocked'],
+    statuses: ['pending', 'match', 'diff', 'no_mockup', 'removed_by_owner', 'blocked', 'no_release_surface'],
     rows,
   };
   fs.writeFileSync(REGISTRY, JSON.stringify(registry, null, 2) + '\n');

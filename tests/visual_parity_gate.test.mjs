@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { evaluateRegistry, missingMatrixRows, parseSverkaHeadingDiffs, parseSverkaOpenDiffs } from '../scripts/visual_parity_gate.mjs';
+import { evaluateRegistry, isRouteExcludedInStore, missingMatrixRows, parseSverkaHeadingDiffs, parseSverkaOpenDiffs, storeRouteRegex } from '../scripts/visual_parity_gate.mjs';
 import { parseMatrix } from '../scripts/visual_parity_build.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -235,4 +235,57 @@ test('строка с отличием в заголовке журнала и �
   const rows = [matchRow({ id: 'learn-001', diffs: [] })];
   const result = evaluateRegistry(sandbox(), { rows }, { runGit: fakeGit(T0), sverkaOpenDiffs: open });
   assert.ok(codes(result).includes('sverka_diff_not_in_registry'));
+});
+
+// зачем (координатор 10.10 23:00): статус no_release_surface — экрана нет в стор-сборке (Learning V2 вырезан router.ctx.js,
+// Шпиль за выключенным флагом). Допускается ТОЛЬКО с проверяемым доказательством и ревью.
+const STORE_REGEX = /^(?:\.\/)(?!(?:.*learning[_-]v2.*)\.tsx?$).*\.tsx$/;
+function hiddenRow(over = {}) {
+  return { id: 'hidden-001', screen: 'Экран', state: 'Состояние', status: 'no_release_surface', reviewed_by: 'coordinator', ...over };
+}
+const runHidden = (dir, rows) => evaluateRegistry(dir, { rows }, { runGit: fakeGit(T0), storeRouteRegex: STORE_REGEX });
+
+test('no_release_surface без доказательства — нарушение', () => {
+  const result = runHidden(sandbox(), [hiddenRow()]);
+  assert.equal(result.ok, false);
+  assert.deepEqual(codes(result), ['release_surface_proof_missing']);
+});
+
+test('no_release_surface без ревью координатора — нарушение', () => {
+  const dir = sandbox();
+  fs.writeFileSync(path.join(dir, 'app/learning_v2_demo.tsx'), 'export default 1;\n');
+  const proof = { kind: 'store_route_excluded', routes: ['app/learning_v2_demo.tsx'] };
+  assert.ok(codes(runHidden(dir, [hiddenRow({ reviewed_by: null, release_surface_proof: proof })])).includes('review_missing'));
+});
+
+test('no_release_surface с маршрутом, вырезанным в стор-режиме, проходит', () => {
+  const dir = sandbox();
+  fs.writeFileSync(path.join(dir, 'app/learning_v2_demo.tsx'), 'export default 1;\n');
+  const result = runHidden(dir, [hiddenRow({ release_surface_proof: { kind: 'store_route_excluded', routes: ['app/learning_v2_demo.tsx'] } })]);
+  assert.equal(result.ok, true, JSON.stringify(result.violations));
+  assert.equal(result.counts.no_release_surface, 1);
+});
+
+test('no_release_surface с маршрутом, который стор-сборка видит, — нарушение', () => {
+  const result = runHidden(sandbox(), [hiddenRow({ release_surface_proof: { kind: 'store_route_excluded', routes: ['app/screen.tsx'] } })]);
+  assert.deepEqual(codes(result), ['release_surface_route_reachable']);
+});
+
+test('no_release_surface за флагом: нужен флаг по умолчанию выключен и тест-сторож, который его упоминает', () => {
+  const dir = sandbox();
+  fs.writeFileSync(path.join(dir, 'app/flag.ts'), "const KEY = 'demo_tab_enabled'; export const on = (b) => b?.[KEY] === true;\n");
+  fs.mkdirSync(path.join(dir, 'tests'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'tests/demo_gate.test.mjs'), "// сторож demo_tab_enabled\n");
+  const proof = { kind: 'flag_off', flag: 'demo_tab_enabled', flag_source: 'app/flag.ts', guard_test: 'tests/demo_gate.test.mjs' };
+  assert.equal(runHidden(dir, [hiddenRow({ release_surface_proof: proof })]).ok, true);
+  assert.deepEqual(codes(runHidden(dir, [hiddenRow({ release_surface_proof: { ...proof, guard_test: 'tests/none.test.mjs' } })])), ['release_surface_guard_missing']);
+  fs.writeFileSync(path.join(dir, 'app/flag.ts'), "const KEY = 'demo_tab_enabled'; export const on = (b) => Boolean(b?.[KEY]);\n");
+  assert.deepEqual(codes(runHidden(dir, [hiddenRow({ release_surface_proof: proof })])), ['release_surface_flag_not_default_off']);
+});
+
+test('настоящий router.ctx.js: стор-сборка вырезает Learning V2 и оставляет Главную', () => {
+  const regex = storeRouteRegex(ROOT);
+  assert.ok(regex, 'регулярка стор-режима не найдена в router.ctx.js');
+  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), true);
+  assert.equal(isRouteExcludedInStore(regex, 'app/(tabs)/home.tsx'), false);
 });

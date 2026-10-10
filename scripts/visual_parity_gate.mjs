@@ -7,7 +7,9 @@
  *  - у match нет ревью координатора (reviewed_by), нет привязки к коду, нет файла склейки или его хэш не совпадает с записанным;
  *  - склейка СТАРШЕ последнего изменения кода экрана (коммит файла или незакоммиченная правка) — экран менялся после сверки;
  *  - в макете есть анимация (или это неизвестно), а записи экрана anim_evidence нет / она устарела / хэш не совпадает;
- *  - в реестре нет строки для какой-то строки матрицы STATE_CHECKLIST.
+ *  - в реестре нет строки для какой-то строки матрицы STATE_CHECKLIST;
+ *  - строка no_release_surface («в стор-сборке экрана нет») без доказательства: маршрут не вырезан регуляркой
+ *    стор-режима router.ctx.js ИЛИ флаг не выключен по умолчанию / нет теста-сторожа флага; без reviewed_by.
  * Самопроверка исполнителя не считается: статус match и reviewed_by выставляет координатор, этот гейт лишь проверяет следы.
  *
  * Запуск: node scripts/visual_parity_gate.mjs [--json] [--max-lines=40] [--registry=<путь>] [--root=<каталог>] [--no-matrix-check]
@@ -106,19 +108,98 @@ export function parseSverkaHeadingDiffs(text) {
   return open;
 }
 
+/**
+ * Регулярка маршрутов СТОР-сборки из router.ctx.js (первая ветка `EXPO_PUBLIC_STORE_RELEASE === '1'`).
+ *
+ * зачем (координатор 10.10 23:00): 105 строк реестра (Learning V2 и Шпиль) в стор-сборке недостижимы. Им нужен
+ * законный не-красный статус, но только с доказательством, которое гейт проверяет сам, а не верит на слово.
+ */
+export function storeRouteRegex(root) {
+  const file = path.join(root, 'router.ctx.js');
+  if (!fs.existsSync(file)) return null;
+  const text = fs.readFileSync(file, 'utf8');
+  const storeBranch = text.slice(text.indexOf("=== '1'"), text.indexOf(': require.context('));
+  const literal = /\n\s*\/(\^[\s\S]*?)\/,\s*\n/.exec(storeBranch);
+  if (!literal) return null;
+  try {
+    return new RegExp(literal[1]);
+  } catch {
+    console.warn(`${LOG} router.ctx.js: регулярка стор-режима не разбирается — no_release_surface по маршрутам не доказать`);
+    return null;
+  }
+}
+
+/** Маршрут (путь от корня проекта, `app/...tsx`) вырезан из стор-сборки, если регулярка стор-режима его НЕ берёт. */
+export function isRouteExcludedInStore(regex, routeFile) {
+  if (!regex || typeof routeFile !== 'string' || !/^app\/.+\.tsx$/.test(routeFile)) return false;
+  return !regex.test(`./${routeFile.slice('app/'.length)}`);
+}
+
+/**
+ * Доказательство строки no_release_surface (поле release_surface_proof):
+ *  - { kind: 'store_route_excluded', routes: ['app/...tsx', ...] } — каждый маршрут существует и вырезан в стор-режиме;
+ *  - { kind: 'flag_off', flag, flag_source, guard_test } — flag_source требует явного `=== true` для этого флага
+ *    (по умолчанию выключен), а тест-сторож существует и упоминает флаг.
+ */
+export function releaseSurfaceViolations(root, row, regex) {
+  const out = [];
+  const proof = row.release_surface_proof;
+  if (!row.reviewed_by) out.push({ id: row.id, code: 'review_missing', detail: 'no_release_surface без reviewed_by' });
+  if (!proof || typeof proof !== 'object') {
+    out.push({ id: row.id, code: 'release_surface_proof_missing', detail: 'no_release_surface без release_surface_proof' });
+    return out;
+  }
+  if (proof.kind === 'store_route_excluded') {
+    const routes = Array.isArray(proof.routes) ? proof.routes : [];
+    if (routes.length === 0) out.push({ id: row.id, code: 'release_surface_routes_missing', detail: 'нет routes' });
+    for (const route of routes) {
+      if (!fs.existsSync(path.join(root, route))) out.push({ id: row.id, code: 'release_surface_route_missing', detail: route });
+      else if (!isRouteExcludedInStore(regex, route)) {
+        out.push({ id: row.id, code: 'release_surface_route_reachable', detail: `${route} не вырезан регуляркой стор-режима router.ctx.js` });
+      }
+    }
+    return out;
+  }
+  if (proof.kind === 'flag_off') {
+    const flag = typeof proof.flag === 'string' ? proof.flag : '';
+    const source = typeof proof.flag_source === 'string' ? path.join(root, proof.flag_source) : '';
+    const guard = typeof proof.guard_test === 'string' ? path.join(root, proof.guard_test) : '';
+    const sourceText = source && fs.existsSync(source) ? fs.readFileSync(source, 'utf8') : '';
+    const guardText = guard && fs.existsSync(guard) ? fs.readFileSync(guard, 'utf8') : '';
+    if (!flag || !sourceText.includes(`'${flag}'`)) {
+      out.push({ id: row.id, code: 'release_surface_flag_unknown', detail: `${flag || '(пусто)'} не найден в ${proof.flag_source ?? '(нет flag_source)'}` });
+    } else if (!/===\s*true/.test(sourceText)) {
+      out.push({ id: row.id, code: 'release_surface_flag_not_default_off', detail: `${proof.flag_source}: флаг не требует явного === true` });
+    }
+    if (!guardText) out.push({ id: row.id, code: 'release_surface_guard_missing', detail: proof.guard_test ?? '(нет guard_test)' });
+    else if (flag && !guardText.includes(flag)) {
+      out.push({ id: row.id, code: 'release_surface_guard_unrelated', detail: `${proof.guard_test} не упоминает ${flag}` });
+    }
+    return out;
+  }
+  out.push({ id: row.id, code: 'release_surface_proof_kind_unknown', detail: String(proof.kind) });
+  return out;
+}
+
 export function evaluateRegistry(root, registry, options = {}) {
   const violations = [];
   const runGit = options.runGit ?? defaultGit;
   const rows = Array.isArray(registry?.rows) ? registry.rows : [];
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
   const sverkaOpen = options.sverkaOpenDiffs ?? new Map();
-  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, other: 0 };
+  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, no_release_surface: 0, other: 0 };
+  const storeRegex = options.storeRouteRegex !== undefined ? options.storeRouteRegex : storeRouteRegex(root);
   for (const row of rows) {
     if (row.status in counts) counts[row.status] += 1;
     else counts.other += 1;
     // зачем (координатор 04.10): экран удалён владельцем — это не расхождение и не pending, но причина обязательна.
     if (row.status === 'removed_by_owner') {
       if (!row.removed_reason) violations.push({ id: row.id, code: 'removed_reason_missing', detail: 'removed_by_owner без removed_reason' });
+      continue;
+    }
+    // зачем (координатор 10.10 23:00): экрана нет в стор-сборке — не расхождение, но только с проверяемым доказательством.
+    if (row.status === 'no_release_surface') {
+      violations.push(...releaseSurfaceViolations(root, row, storeRegex));
       continue;
     }
     // зачем (владелец 04.10): отличие, записанное в журнале сверки, обязано быть в diffs строки реестра — иначе гейт его «не видит».
@@ -204,7 +285,7 @@ async function main() {
     return result.ok ? 0 : 1;
   }
   const { counts } = result;
-  console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} нарушений=${result.violations.length}`);
+  console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} нарушений=${result.violations.length}`);
   if (result.ok) {
     console.log(`${LOG} OK: приложение = макет по всем строкам реестра`);
     return 0;

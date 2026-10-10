@@ -52,11 +52,16 @@ export const iconTileColors = (g: GlassTokens, a: string, b: string) =>
 export const DIAG_150 = { start: { x: 0.25, y: 0.07 }, end: { x: 0.75, y: 0.93 } } as const;
 export const DIAG_170 = { start: { x: 0.42, y: 0.01 }, end: { x: 0.58, y: 0.99 } } as const;
 
-// зачем (замечание владельца 10.10): здесь остались только семантические цвета «верно/неверно» (как LV2_GOOD/LV2_BAD);
-// полупрозрачные белые (hairline/chip/track/ghost) заменены токенами темы (hairlineSoft/line/glassEdge) на экранах.
-export const MP_COLORS = {
-  ok: '#6FD08C',
-  okText: '#8DEBB0',
-  bad: '#F2766B',
-  badText: '#FF9C93',
-} as const;
+// зачем (релизный пол 10.10, чтение светлых тем): «верно/неверно» — токены темы good/bad (контраст ≥ 4.5 на карточке, фоне и плашке во всех
+// 23 темах). Раньше были литералы #6FD08C/#F2766B: на белой карточке светлой темы светло-зелёный текст почти не читался.
+// Текстовые оттенки (okText/badText) в тёмных темах чуть светлее — как в макете «Панели»; в светлых совпадают с основным тоном.
+export type MpColors = Readonly<{ ok: string; okText: string; bad: string; badText: string }>;
+const mpCache = new WeakMap<GlassTokens, MpColors>();
+export function mpColors(g: GlassTokens): MpColors {
+  const hit = mpCache.get(g);
+  if (hit) return hit;
+  const lift = (hex: string) => (g.isLight ? hex : mixDark(hex, g.mediaInk, 0.72));
+  const colors: MpColors = Object.freeze({ ok: g.good, okText: lift(g.good), bad: g.bad, badText: lift(g.bad) });
+  mpCache.set(g, colors);
+  return colors;
+}

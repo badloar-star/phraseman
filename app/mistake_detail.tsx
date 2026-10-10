@@ -15,7 +15,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, glassButtonFill, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
-import { MP_COLORS, mixDark, themePair } from '../components/mistakes-panel/panelPaint';
+import { mpColors, mixDark, themePair } from '../components/mistakes-panel/panelPaint';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -255,13 +255,13 @@ export default function MistakeDetailScreen() {
               {loaded ? (
               <View style={styles.body}>
                 <Panel g={g}>
-                  {detail.given ? <AnswerRow g={g} first label={copy.yours} value={detail.given} color={MP_COLORS.badText} strike /> : null}
+                  {detail.given ? <AnswerRow g={g} first label={copy.yours} value={detail.given} color={mpColors(g).badText} strike /> : null}
                   <AnswerRow
                     g={g}
                     first={!detail.given}
                     label={copy.right}
                     value={detail.phrase}
-                    color={MP_COLORS.okText}
+                    color={mpColors(g).okText}
                     right={detail.audioRef ? <ListenRound g={g} audioRef={detail.audioRef} label={copy.listen} /> : null}
                   />
                 </Panel>

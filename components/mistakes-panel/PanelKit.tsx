@@ -14,7 +14,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
-import { DIAG_150, MP_COLORS, mixDark, ringShadow, themePair } from './panelPaint';
+import { DIAG_150, mpColors, mixDark, ringShadow, themePair } from './panelPaint';
 import { GlassRim } from './GlassRim';
 
 /** `.ph .rb` (cards-glass.css): фон круглой кнопки — 7 % от цвета текста темы (в светлой теме тоже виден). */
@@ -143,7 +143,7 @@ export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, firs
     <>
       {first ? null : <View pointerEvents="none" style={[styles.rowLine, { backgroundColor: g.hairlineSoft }]} />}
       <View style={styles.rowText}>
-        <Text style={[styles.rowTitle, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
+        <Text style={[styles.rowTitle, { color: danger ? mpColors(g).bad : g.text }]}>{title}</Text>
         {subtitle ? <Text style={[styles.rowSub, { color: g.secondary }]}>{subtitle}</Text> : null}
       </View>
       {right}
@@ -212,9 +212,9 @@ export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{
     <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
       <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
       <View style={[styles.menuTile, { backgroundColor: g.hairlineSoft }]}>
-        <Ionicons name={icon} size={20} color={danger ? MP_COLORS.bad : g.text} />
+        <Ionicons name={icon} size={20} color={danger ? mpColors(g).bad : g.text} />
       </View>
-      <Text style={[styles.menuText, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
+      <Text style={[styles.menuText, { color: danger ? mpColors(g).bad : g.text }]}>{title}</Text>
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(g.hairlineSoft) }]} />
     </Pressable>
   );

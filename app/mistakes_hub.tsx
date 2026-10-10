@@ -13,7 +13,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
-import { MP_COLORS, themePair, mixDark } from '../components/mistakes-panel/panelPaint';
+import { mpColors, themePair, mixDark } from '../components/mistakes-panel/panelPaint';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
@@ -263,7 +263,7 @@ export default function MistakesHubScreen() {
     if (mode === 'fresh' || mode === 'allFixed') {
       return (
         <View style={styles.stateWrap}>
-          {centerRing(true, iconTile('checkmark', MP_COLORS.ok))}
+          {centerRing(true, iconTile('checkmark', mpColors(g).ok))}
           <Text style={[styles.stateTitle, { color: g.text }]}>{copy.emptyTitle}</Text>
           <Text style={[styles.stateSub, { color: g.secondary }]}>{mode === 'fresh' ? copy.emptyFresh : copy.emptySub}</Text>
         </View>

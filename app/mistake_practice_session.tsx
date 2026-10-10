@@ -5,7 +5,7 @@ import { Panel, PanelCta, SheetRow } from '../components/mistakes-panel/PanelKit
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { buildMistakeAnswerDiff } from './mistake_answer_diff';
 import { AnswerField, AnswerSlot, OptionGrid, QuestionBlock, DiffValue, ResultRow, RoundButton, StepDots, Token, Tray, fieldInputStyle, type OptionMark } from '../components/mistakes-panel/PracticeKit';
-import { MP_COLORS } from '../components/mistakes-panel/panelPaint';
+import { mpColors } from '../components/mistakes-panel/panelPaint';
 import { practiceCopyFor } from '../components/mistakes-panel/practiceCopy';
 import { hapticTap } from '../hooks/use-haptics';
 import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
@@ -1338,7 +1338,7 @@ function MistakePracticeSessionScreen() {
             </View>
             <View style={[styles.whyRow, styles.whyDivider, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft }] }]}>
               <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
-              <DiffValue g={g} segments={diff.correct} baseColor={MP_COLORS.okText} style={styles.whyValue} />
+              <DiffValue g={g} segments={diff.correct} baseColor={mpColors(g).okText} style={styles.whyValue} />
             </View>
           </Panel>
           <View style={[styles.trayRow, styles.trayRowGap]}>
@@ -1364,7 +1364,7 @@ function MistakePracticeSessionScreen() {
               {!isChoice ? (
                 <View style={styles.answerLine}>
                   <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
-                  <Text style={[styles.whyValue, { color: MP_COLORS.okText }]}>{feedback.answer}</Text>
+                  <Text style={[styles.whyValue, { color: mpColors(g).okText }]}>{feedback.answer}</Text>
                 </View>
               ) : null}
               <Text testID="mistake-verdict-text" style={[styles.trayWhy, { color: g.text }]}>{whyText}</Text>

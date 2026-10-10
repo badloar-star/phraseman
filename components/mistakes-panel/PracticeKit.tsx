@@ -14,7 +14,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import type { MistakeDiffSegment } from '../../app/mistake_answer_diff';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
-import { MP_COLORS, bevelShadow, mixDark, ringShadow, themePair } from './panelPaint';
+import { mpColors, bevelShadow, mixDark, ringShadow, themePair } from './panelPaint';
 import { GlassRim } from './GlassRim';
 
 export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID?: string }>) {
@@ -90,9 +90,9 @@ export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, 
             style={({ pressed }) => [
               styles.cell,
               { backgroundColor: g.hairlineSoft },
-              // зачем (замечание владельца 10.10): верно/неверно — семантика MP_COLORS.ok / .bad с альфой, а не отдельные литералы rgba
-              mark === 'ok' && { backgroundColor: `${MP_COLORS.ok}33`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${MP_COLORS.ok}B3` }] },
-              mark === 'no' && { backgroundColor: `${MP_COLORS.bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${MP_COLORS.bad}B3` }] },
+              // зачем (замечание владельца 10.10): верно/неверно — семантика mpColors(g).ok / .bad с альфой, а не отдельные литералы rgba
+              mark === 'ok' && { backgroundColor: `${mpColors(g).ok}33`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).ok}B3` }] },
+              mark === 'no' && { backgroundColor: `${mpColors(g).bad}2E`, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${mpColors(g).bad}B3` }] },
               pressed && styles.pressed,
             ]}>
             <Text style={[styles.cellText, { color: g.text }]}>{option}</Text>
@@ -140,9 +140,9 @@ export const DiffValue = memo(function DiffValue({ g, segments, baseColor, style
     <Text style={style}>
       {segments.map((segment, index) => {
         const space = index > 0 ? ' ' : '';
-        if (segment.tone === 'gap') return <Text key={`gap-${index}`} style={{ color: MP_COLORS.badText }}>{`${space}_____`}</Text>;
-        if (segment.tone === 'wrong') return <Text key={`w-${index}`} style={{ color: MP_COLORS.badText, textDecorationLine: 'line-through' }}>{`${space}${segment.text}`}</Text>;
-        if (segment.tone === 'right') return <Text key={`r-${index}`} style={{ color: MP_COLORS.okText }}>{`${space}${segment.text}`}</Text>;
+        if (segment.tone === 'gap') return <Text key={`gap-${index}`} style={{ color: mpColors(g).badText }}>{`${space}_____`}</Text>;
+        if (segment.tone === 'wrong') return <Text key={`w-${index}`} style={{ color: mpColors(g).badText, textDecorationLine: 'line-through' }}>{`${space}${segment.text}`}</Text>;
+        if (segment.tone === 'right') return <Text key={`r-${index}`} style={{ color: mpColors(g).okText }}>{`${space}${segment.text}`}</Text>;
         return <Text key={`p-${index}`} style={{ color: baseColor }}>{`${space}${segment.text}`}</Text>;
       })}
     </Text>
@@ -153,10 +153,10 @@ export const DiffValue = memo(function DiffValue({ g, segments, baseColor, style
 export const ResultRow = memo(function ResultRow({ g, ok, label, right }: Readonly<{ g: Lv2Glass; ok: boolean; label: string; right?: React.ReactNode }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  const tone = ok ? MP_COLORS.ok : MP_COLORS.bad;
+  const tone = ok ? mpColors(g).ok : mpColors(g).bad;
   return (
     <View style={styles.result}>
-      <View style={[styles.resultDot, { backgroundColor: ok ? `${MP_COLORS.ok}38` : `${MP_COLORS.bad}38` }]}>
+      <View style={[styles.resultDot, { backgroundColor: ok ? `${mpColors(g).ok}38` : `${mpColors(g).bad}38` }]}>
         <Ionicons name={ok ? 'checkmark' : 'close'} size={20} color={tone} />
       </View>
       <Text style={[styles.resultText, { color: g.text }]}>{label}</Text>

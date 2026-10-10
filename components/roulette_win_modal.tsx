@@ -35,6 +35,9 @@ import { useRewardImpactHybrid, type RewardImpactRarity } from './celebration/us
 import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
+const EXEMPT_COLOR_2 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
 export interface RouletteWinData {
   prizeIndex: number;
   prizeDays: number;
@@ -161,8 +164,8 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
 
   if (isHybrid) {
     return (
-      <HybridAlertShell visible onRequestClose={onClose} shadowColor="#000000" testID="roulette-win-hybrid-backdrop">
-        <View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: '#000000' }]}>
+      <HybridAlertShell visible onRequestClose={onClose} shadowColor={EXEMPT_COLOR_1} testID="roulette-win-hybrid-backdrop">
+        <View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: EXEMPT_COLOR_2 }]}>
           <View style={styles.prizeImageWrap}>
             <RewardImpactRings
               show={impact.showRings}
@@ -243,7 +246,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
         <Animated.View
           style={[
             styles.card,
-            { backgroundColor: glass.opaqueSheet, shadowColor: '#000000' },
+            { backgroundColor: glass.opaqueSheet, shadowColor: '#000000' }, // theme-exempt: тень и затемнение окна — постоянные
             cardAnim,
           ]}
         >
@@ -321,7 +324,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.72)',
+    backgroundColor: 'rgba(0,0,0,0.72)', // theme-exempt: тень и затемнение окна — постоянные
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 22,

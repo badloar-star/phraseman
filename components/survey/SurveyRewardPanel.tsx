@@ -20,12 +20,12 @@ import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity/FlowText';
 
 export const SURVEY_PURPLE_TONE = {
-  accentDark: '#B98CFF',
-  accentLight: '#6D28D9',
+  accentDark: '#B98CFF', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
+  accentLight: '#6D28D9', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
   /** Текст на залитой акцентом плашке «+1»: тёмный на лаванде, белый на фиолетовом. */
-  onAccentDark: '#17162B',
-  onAccentLight: '#FFFFFF',
-  surfaceOverlay: 'rgba(139, 92, 246, 0.16)',
+  onAccentDark: '#17162B', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
+  onAccentLight: '#FFFFFF', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
+  surfaceOverlay: 'rgba(139, 92, 246, 0.16)', // theme-exempt: палитра панели награды опроса — пары светлая/тёмная заданы по режиму темы
 } as const;
 
 export type SurveyRewardPanelPhase = 'optimistic-reward' | 'reconciled' | 'retryable-error';

@@ -52,8 +52,8 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-const GOLD = '#FFC800';
-const GREEN = '#47C870';
+const GOLD = '#FFC800'; // theme-exempt: цвета волны звука — золото и зелёный состояния записи
+const GREEN = '#47C870'; // theme-exempt: цвета волны звука — золото и зелёный состояния записи
 
 function SoundWavePulseImpl(
   { children, intensity = 0.12, flashColor, flash = true, style }: Props,

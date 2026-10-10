@@ -40,6 +40,10 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
+const EXEMPT_COLOR_1 = 'rgba(255,255,255,0.22)'; // theme-exempt: блики анимации пейвола — белые/тёплые, постоянные
+const EXEMPT_COLOR_2 = 'rgba(255, 252, 235, 0.5)'; // theme-exempt: блики анимации пейвола — белые/тёплые, постоянные
+const EXEMPT_COLOR_3 = 'rgba(255, 255, 255, 0.72)'; // theme-exempt: блики анимации пейвола — белые/тёплые, постоянные
+
 /** Базовый стаггер каскада входа, мс на индекс блока. */
 const ENTRANCE_STAGGER_MS = 70;
 /** Полный цикл блика CTA (как в PremiumGoldButton). */
@@ -89,7 +93,7 @@ export function PaywallEntrance({ index = 0, style, onLayout, children }: {
 }
 
 // ── 2. Парение герой-капсулы: ±5px за ~4с + пульс гало 0.5↔0.9 ───────────────
-export function PaywallIdleFloat({ children, style, haloColor = 'rgba(255,255,255,0.22)', haloRadius = 42, haloInset = 6 }: {
+export function PaywallIdleFloat({ children, style, haloColor = EXEMPT_COLOR_1, haloRadius = 42, haloInset = 6 }: {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   /** Цвет гало (лучше полупрозрачный акцент темы, напр. `${tc.heroAccent}2E`). */
@@ -219,7 +223,7 @@ export function PaywallCtaShine() {
   return (
     <Animated.View pointerEvents="none" style={[styles.ctaShineTrack, shineStyle]}>
       <LinearGradient
-        colors={['transparent', 'rgba(255, 252, 235, 0.5)', 'rgba(255, 255, 255, 0.72)', 'rgba(255, 252, 235, 0.5)', 'transparent']}
+        colors={['transparent', EXEMPT_COLOR_2, EXEMPT_COLOR_3, 'rgba(255, 252, 235, 0.5)', 'transparent']}
         locations={[0, 0.35, 0.5, 0.65, 1]}
         start={{ x: 0, y: 0.5 }}
         end={{ x: 1, y: 0.5 }}

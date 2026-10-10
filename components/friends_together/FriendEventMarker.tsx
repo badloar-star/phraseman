@@ -10,10 +10,10 @@ import { LUM } from '../../constants/motionHybrid';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 
-const PORCELAIN = '#EEE7DB';
-const GRAPHITE = '#2D3842';
-const TEAL = '#5E8C90';
-const AMBER = '#DF824B';
+const PORCELAIN = '#EEE7DB'; // theme-exempt: бренд-палитра маркера события друзей
+const GRAPHITE = '#2D3842'; // theme-exempt: бренд-палитра маркера события друзей
+const TEAL = '#5E8C90'; // theme-exempt: бренд-палитра маркера события друзей
+const AMBER = '#DF824B'; // theme-exempt: бренд-палитра маркера события друзей
 
 type Props = { event: FriendSocialEvent; onPress: () => void; nowMs?: number };
 

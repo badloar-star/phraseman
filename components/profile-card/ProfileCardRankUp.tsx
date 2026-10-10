@@ -105,7 +105,7 @@ function SparkDot({ t, spark, inward, cx, cy }: { t: SharedValue<number>; spark:
       pointerEvents="none"
       style={[{
         position: 'absolute', left: cx - 3.5, top: cy - 3.5, width: 7, height: 7, borderRadius: 3.5,
-        backgroundColor: '#FFF3CF', shadowColor: '#FFDC96', shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 },
+        backgroundColor: '#FFF3CF', shadowColor: '#FFDC96', shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация повышения ранга на карточке профиля
         elevation: 3,
       }, style]}
     />
@@ -192,9 +192,9 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
           <Svg width={rays} height={rays}>
             <Defs>
               <RadialGradient id="rankRays" cx={rays / 2} cy={rays / 2} r={rays / 2} gradientUnits="userSpaceOnUse">
-                <Stop offset="0" stopColor="#FFECBE" stopOpacity={0.36} />
-                <Stop offset="0.25" stopColor="#FFECBE" stopOpacity={0.36} />
-                <Stop offset="0.88" stopColor="#FFECBE" stopOpacity={0} />
+                <Stop offset="0" stopColor="#FFECBE" stopOpacity={0.36} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0.25" stopColor="#FFECBE" stopOpacity={0.36} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0.88" stopColor="#FFECBE" stopOpacity={0} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
               </RadialGradient>
             </Defs>
             <Path d={wedges(rays / 2, 24, 4)} fill="url(#rankRays)" />
@@ -205,9 +205,9 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
         <Svg width={halo} height={halo}>
           <Defs>
             <RadialGradient id="rankHalo" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor="#FFF0C8" stopOpacity={0.75} />
-              <Stop offset="0.45" stopColor="#FFD278" stopOpacity={0.25} />
-              <Stop offset="0.7" stopColor="#FFD278" stopOpacity={0} />
+              <Stop offset="0" stopColor="#FFF0C8" stopOpacity={0.75} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+              <Stop offset="0.45" stopColor="#FFD278" stopOpacity={0.25} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+              <Stop offset="0.7" stopColor="#FFD278" stopOpacity={0} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
             </RadialGradient>
           </Defs>
           <Circle cx={halo / 2} cy={halo / 2} r={halo / 2} fill="url(#rankHalo)" />
@@ -216,15 +216,15 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
       <Animated.View
         style={[{
           position: 'absolute', left: cx - wave / 2, top: cy - wave / 2, width: wave, height: wave, borderRadius: wave / 2,
-          borderWidth: 3, borderColor: 'rgba(255,255,255,0.85)', // guard-ok: ударная волна из макета (.up-wave), не контейнер
-          shadowColor: '#FFE6AA', shadowOpacity: 0.6, shadowRadius: 12, shadowOffset: { width: 0, height: 0 },
+          borderWidth: 3, borderColor: 'rgba(255,255,255,0.85)', // guard-ok: ударная волна из макета (.up-wave), не контейнер // theme-exempt: иллюстрация повышения ранга на карточке профиля
+          shadowColor: '#FFE6AA', shadowOpacity: 0.6, shadowRadius: 12, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация повышения ранга на карточке профиля
         }, wave1]}
       />
       {pro ? (
         <Animated.View
           style={[{
             position: 'absolute', left: cx - wave / 2, top: cy - wave / 2, width: wave, height: wave, borderRadius: wave / 2,
-            borderWidth: 2, borderColor: 'rgba(255,220,150,0.7)', // guard-ok: вторая волна «Про» (.up-wave.w2)
+            borderWidth: 2, borderColor: 'rgba(255,220,150,0.7)', // guard-ok: вторая волна «Про» (.up-wave.w2) // theme-exempt: иллюстрация повышения ранга на карточке профиля
           }, wave2]}
         />
       ) : null}
@@ -245,14 +245,14 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
           <Defs>
             {pro ? (
               <RadialGradient id="rankFlash" cx={cx} cy={cy} r={flashR} gradientUnits="userSpaceOnUse">
-                <Stop offset="0" stopColor="#FFF8E4" stopOpacity={0.95} />
-                <Stop offset="0.3" stopColor="#FFECBE" stopOpacity={0.3} />
-                <Stop offset="0.6" stopColor="#FFECBE" stopOpacity={0} />
+                <Stop offset="0" stopColor="#FFF8E4" stopOpacity={0.95} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0.3" stopColor="#FFECBE" stopOpacity={0.3} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0.6" stopColor="#FFECBE" stopOpacity={0} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
               </RadialGradient>
             ) : (
               <RadialGradient id="rankFlash" cx={cx} cy={cy} r={flashR} gradientUnits="userSpaceOnUse">
-                <Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.45} />
-                <Stop offset="0.45" stopColor="#FFFFFF" stopOpacity={0} />
+                <Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.45} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0.45" stopColor="#FFFFFF" stopOpacity={0} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
               </RadialGradient>
             )}
           </Defs>
@@ -270,8 +270,8 @@ function RankUpCardGlowBase({ t, radius }: { t: SharedValue<number>; radius: num
   const style = useAnimatedStyle(() => ({ opacity: interpolate(t.value, [0.32, 0.35, 0.7], [0, 1, 0], CLAMP) }));
   return (
     <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius }, style]}>
-      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 14, borderColor: 'rgba(255,220,150,0.16)' }]} /* guard-ok: вспышка канта .up-cardglow, живёт 1 с */ />
-      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 2, borderColor: 'rgba(255,236,190,0.9)' }]} /* guard-ok: вспышка канта .up-cardglow */ />
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 14, borderColor: 'rgba(255,220,150,0.16)' }]} /* guard-ok: вспышка канта .up-cardglow, живёт 1 с */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 2, borderColor: 'rgba(255,236,190,0.9)' }]} /* guard-ok: вспышка канта .up-cardglow */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
     </Animated.View>
   );
 }

@@ -217,7 +217,7 @@ function Seal({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
   return (
     <G transform={`translate(${x},${y}) scale(${scale})`}>
       <Circle cx={0} cy={0} r={62} fill="url(#certSealBg)" stroke="url(#certGoldEdge)" strokeWidth={2.5} />
-      <Circle cx={0} cy={0} r={50} fill="none" stroke="#d4a017" strokeWidth={1} opacity={0.7} />
+      <Circle cx={0} cy={0} r={50} fill="none" stroke="#d4a017" strokeWidth={1} opacity={0.7} />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
       <Path
         d="M-26,-10 L-13,16 L0,-20 L13,16 L26,-10 L18,26 L-18,26 Z"
         fill="url(#certGoldFill)"
@@ -227,7 +227,7 @@ function Seal({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
         x={0}
         y={-34}
         textAnchor="middle"
-        fill="#fde68a"
+        fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
         fontFamily="System"
         fontSize={10}
         fontWeight="700"
@@ -239,7 +239,7 @@ function Seal({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
         x={0}
         y={44}
         textAnchor="middle"
-        fill="#fde68a"
+        fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
         fontFamily="System"
         fontSize={10}
         fontWeight="700"
@@ -312,27 +312,27 @@ const LingmanCertificateSvg = memo(
         >
           <Defs>
             <LinearGradient id="certBg" x1="0" y1="0" x2="1" y2="1">
-              <Stop offset="0%" stopColor="#0c1a22" />
-              <Stop offset="50%" stopColor="#06121a" />
-              <Stop offset="100%" stopColor="#020a10" />
+              <Stop offset="0%" stopColor="#0c1a22" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="50%" stopColor="#06121a" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="100%" stopColor="#020a10" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
             </LinearGradient>
             <RadialGradient id="certGlow" cx="50%" cy="42%" r="55%">
-              <Stop offset="0%" stopColor="#d4a017" stopOpacity={0.18} />
-              <Stop offset="55%" stopColor="#d4a017" stopOpacity={0.04} />
-              <Stop offset="100%" stopColor="#06121a" stopOpacity={0} />
+              <Stop offset="0%" stopColor="#d4a017" stopOpacity={0.18} />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="55%" stopColor="#d4a017" stopOpacity={0.04} />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="100%" stopColor="#06121a" stopOpacity={0} />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
             </RadialGradient>
             <LinearGradient id="certGoldFill" x1="0" y1="0" x2="0" y2="1">
-              <Stop offset="0%" stopColor="#fde68a" />
-              <Stop offset="55%" stopColor="#f5b942" />
-              <Stop offset="100%" stopColor="#b45309" />
+              <Stop offset="0%" stopColor="#fde68a" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="55%" stopColor="#f5b942" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="100%" stopColor="#b45309" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
             </LinearGradient>
             <LinearGradient id="certGoldEdge" x1="0" y1="0" x2="1" y2="1">
-              <Stop offset="0%" stopColor="#fde68a" />
-              <Stop offset="100%" stopColor="#d4a017" />
+              <Stop offset="0%" stopColor="#fde68a" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="100%" stopColor="#d4a017" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
             </LinearGradient>
             <LinearGradient id="certSealBg" x1="0" y1="0" x2="1" y2="1">
-              <Stop offset="0%" stopColor="#1f2933" />
-              <Stop offset="100%" stopColor="#0a151c" />
+              <Stop offset="0%" stopColor="#1f2933" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
+              <Stop offset="100%" stopColor="#0a151c" />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
             </LinearGradient>
           </Defs>
 
@@ -359,7 +359,7 @@ const LingmanCertificateSvg = memo(
             height={CERT_H - 168}
             rx={12}
             fill="none"
-            stroke="#8c5a0b"
+            stroke="#8c5a0b" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             strokeWidth={1.2}
             opacity={0.7}
           />
@@ -375,7 +375,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_EYEBROW}
             textAnchor="middle"
-            fill="#fde68a"
+            fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={28}
             fontWeight="700"
@@ -387,7 +387,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_SUB}
             textAnchor="middle"
-            fill="#a78648"
+            fill="#a78648" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={20}
             fontWeight="500"
@@ -437,7 +437,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_PRESENTED}
             textAnchor="middle"
-            fill="#94a3b8"
+            fill="#94a3b8" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={26}
             fontStyle="italic"
@@ -476,7 +476,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_ACHIEVEMENT}
             textAnchor="middle"
-            fill="#cbd5e1"
+            fill="#cbd5e1" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={28}
           >
@@ -486,7 +486,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_PROFESSOR}
             textAnchor="middle"
-            fill="#fde68a"
+            fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={32}
             fontWeight="700"
@@ -502,7 +502,7 @@ const LingmanCertificateSvg = memo(
             width={SCORE_W}
             height={SCORE_H}
             rx={16}
-            fill="#0a1620"
+            fill="#0a1620" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             stroke="url(#certGoldEdge)"
             strokeWidth={1.4}
             opacity={0.92}
@@ -512,7 +512,7 @@ const LingmanCertificateSvg = memo(
             y1={SCORE_TOP + 22}
             x2={CERT_W / 2}
             y2={SCORE_TOP + SCORE_H - 22}
-            stroke="#8c5a0b"
+            stroke="#8c5a0b" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             strokeWidth={1}
             opacity={0.6}
           />
@@ -521,7 +521,7 @@ const LingmanCertificateSvg = memo(
             x={SCORE_LEFT + SCORE_W / 4}
             y={SCORE_TOP + 48}
             textAnchor="middle"
-            fill="#94a3b8"
+            fill="#94a3b8" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={20}
             letterSpacing={3}
@@ -545,7 +545,7 @@ const LingmanCertificateSvg = memo(
             x={SCORE_LEFT + (SCORE_W * 3) / 4}
             y={SCORE_TOP + 48}
             textAnchor="middle"
-            fill="#94a3b8"
+            fill="#94a3b8" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={20}
             letterSpacing={3}
@@ -569,7 +569,7 @@ const LingmanCertificateSvg = memo(
           <Text
             x={250}
             y={Y_LABEL}
-            fill="#7c8ea0"
+            fill="#7c8ea0" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={16}
             letterSpacing={2.4}
@@ -579,14 +579,14 @@ const LingmanCertificateSvg = memo(
           <Text
             x={250}
             y={Y_DATE_VALUE}
-            fill="#fde68a"
+            fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={26}
             fontWeight="700"
           >
             {dateStr}
           </Text>
-          <Line x1={250} y1={Y_FOOTER_LINE} x2={460} y2={Y_FOOTER_LINE} stroke="#8c5a0b" strokeWidth={1} opacity={0.6} />
+          <Line x1={250} y1={Y_FOOTER_LINE} x2={460} y2={Y_FOOTER_LINE} stroke="#8c5a0b" strokeWidth={1} opacity={0.6} />{/* theme-exempt: иллюстрация сертификата Lingman (SVG, бренд) */}
 
           <Seal x={CERT_W / 2} y={SEAL_Y} scale={SEAL_SCALE} />
 
@@ -594,7 +594,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W - 250}
             y={Y_LABEL}
             textAnchor="end"
-            fill="#7c8ea0"
+            fill="#7c8ea0" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={16}
             letterSpacing={2.4}
@@ -605,7 +605,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W - 250}
             y={Y_SIG_VALUE}
             textAnchor="end"
-            fill="#fde68a"
+            fill="#fde68a" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={32}
             fontStyle="italic"
@@ -618,7 +618,7 @@ const LingmanCertificateSvg = memo(
             y1={Y_FOOTER_LINE}
             x2={CERT_W - 250}
             y2={Y_FOOTER_LINE}
-            stroke="#8c5a0b"
+            stroke="#8c5a0b" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             strokeWidth={1}
             opacity={0.6}
           />
@@ -630,7 +630,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_DISCLAIMER_1}
             textAnchor="middle"
-            fill="#94a3b8"
+            fill="#94a3b8" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={14}
             fontStyle="italic"
@@ -642,7 +642,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_DISCLAIMER_2}
             textAnchor="middle"
-            fill="#7c8ea0"
+            fill="#7c8ea0" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={13}
             fontStyle="italic"
@@ -657,7 +657,7 @@ const LingmanCertificateSvg = memo(
             x={CERT_W / 2}
             y={Y_ID}
             textAnchor="middle"
-            fill="#3d5a66"
+            fill="#3d5a66" // theme-exempt: иллюстрация сертификата Lingman (SVG, бренд)
             fontFamily="System"
             fontSize={13}
             letterSpacing={2.4}

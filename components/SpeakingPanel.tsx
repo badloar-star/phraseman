@@ -198,9 +198,9 @@ export interface SpeakingPanelTheme {
 }
 
 /** Фолбэк «нечёткого» жёлтого: янтарь читается и на тёмных, и на светлых темах. */
-const WARN_COLOR_FALLBACK = '#E6A23C';
-const INLINE_GOOD_COLOR = '#F2C94C';
-const INLINE_ALMOST_COLOR = '#F2994A';
+const WARN_COLOR_FALLBACK = '#E6A23C'; // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
+const INLINE_GOOD_COLOR = '#F2C94C'; // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
+const INLINE_ALMOST_COLOR = '#F2994A'; // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
 
 export function inlineSpeakingResultColor(
   band: SpeakingBand,
@@ -2792,7 +2792,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.55)',
+    backgroundColor: 'rgba(0,0,0,0.55)', // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,

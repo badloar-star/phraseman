@@ -21,8 +21,8 @@ function eliteAmount(level: number): number {
 
 function renderTexture(texture: AvatarTextureId, accent: string, level: number) {
   const shift = (level % 7) * 2;
-  const soft = '#FFFFFF';
-  const shade = '#07110A';
+  const soft = '#FFFFFF'; // theme-exempt: материал рамки аватара уровня — иллюстрация
+  const shade = '#07110A'; // theme-exempt: материал рамки аватара уровня — иллюстрация
 
   switch (texture) {
     case 'linen':
@@ -217,7 +217,7 @@ export default function LevelAvatarMaterialOverlay({
       <G clipPath={`url(#${clipId})`} opacity={textureOpacity}>
         {renderTexture(texture, accent, level)}
       </G>
-      <Path d="M19 29 L50 12 L81 29" fill="none" stroke="#FFFFFF" strokeOpacity={0.18 + elite * 0.10} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M19 29 L50 12 L81 29" fill="none" stroke="#FFFFFF" strokeOpacity={0.18 + elite * 0.10} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />{/* theme-exempt: материал рамки аватара уровня — иллюстрация */}
       <Polygon points={AVATAR_HEX_POINTS} fill="none" stroke={accent} strokeOpacity={0.22 + elite * 0.18} strokeWidth={1.1 + elite * 0.7} />
     </Svg>
   );

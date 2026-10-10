@@ -310,10 +310,10 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
             </View>
           </View>
           <LinearGradient
-            colors={['rgba(11,10,13,0)', '#0b0a0d']}
+            colors={['rgba(11,10,13,0)', '#0b0a0d']} // theme-exempt: иллюстрация церемонии повышения уровня
             style={[styles.abs, { left: 0, right: 0, top: horizonY + 1, height: coinSize * 0.74 }]}
           />
-          <View style={[styles.abs, { left: 0, right: 0, top: horizonY + coinSize * 0.74, bottom: 0, backgroundColor: 'rgba(8,8,10,0.94)' }]} />
+          <View style={[styles.abs, { left: 0, right: 0, top: horizonY + coinSize * 0.74, bottom: 0, backgroundColor: 'rgba(8,8,10,0.94)' }]} />{/* theme-exempt: иллюстрация церемонии повышения уровня */}
 
           <Animated.View style={[styles.abs, { left: (W - poolW) / 2, top: horizonY - poolH / 2 }, poolStyle]}>
             <MintPool width={poolW} height={poolH} />
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
   bottom: { left: 24, right: 24, bottom: 0, justifyContent: 'space-between' },
   caption: { alignItems: 'center' },
   eyebrow: {
-    color: 'rgba(245,245,247,0.62)',
+    color: 'rgba(245,245,247,0.62)', // theme-exempt: иллюстрация церемонии повышения уровня
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '700',
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 8,
-    color: '#f5f5f7',
+    color: '#f5f5f7', // theme-exempt: иллюстрация церемонии повышения уровня
     fontSize: 30,
     lineHeight: 36,
     fontWeight: '700',
@@ -401,7 +401,7 @@ const styles = StyleSheet.create({
   },
   sub: {
     marginTop: 8,
-    color: 'rgba(245,245,247,0.62)',
+    color: 'rgba(245,245,247,0.62)', // theme-exempt: иллюстрация церемонии повышения уровня
     fontSize: 16,
     lineHeight: 22,
     fontWeight: '400',
@@ -410,11 +410,11 @@ const styles = StyleSheet.create({
   button: {
     height: 52,
     borderRadius: 26,
-    backgroundColor: 'rgba(255,255,255,0.94)',
+    backgroundColor: 'rgba(255,255,255,0.94)', // theme-exempt: иллюстрация церемонии повышения уровня
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '700' },
+  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '700' }, // theme-exempt: иллюстрация церемонии повышения уровня
 });
 
 export { MINT_BG };

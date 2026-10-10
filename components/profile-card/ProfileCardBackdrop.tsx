@@ -89,15 +89,15 @@ function NormalLayers({ center }: { center: Center }) {
   const { k } = center;
   return (
     <>
-      <RadialGlow center={center} size={380 * k} color="#C8C2B4" opacity={0.26} stopAt={0.62} />
-      <Ring center={center} size={256 * k} color="rgba(255,255,255,0.10)" />
-      <Ring center={center} size={192 * k} color="rgba(255,255,255,0.10)" />
+      <RadialGlow center={center} size={380 * k} color="#C8C2B4" opacity={0.26} stopAt={0.62} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <Ring center={center} size={256 * k} color="rgba(255,255,255,0.10)" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <Ring center={center} size={192 * k} color="rgba(255,255,255,0.10)" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
     </>
   );
 }
 
 // ── A · Голограмма ───────────────────────────────────────────────────────────
-const HOLO_HUES = ['#FF7AB6', '#FFD36E', '#7BFFCF', '#6FB8FF', '#C38BFF', '#FF7AB6'] as const;
+const HOLO_HUES = ['#FF7AB6', '#FFD36E', '#7BFFCF', '#6FB8FF', '#C38BFF', '#FF7AB6'] as const; // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
 const HOLO_STARS: readonly (readonly [number, number, number])[] = [
   [40, 60, 0], [300, 86, 0.8], [62, 230, 1.5], [292, 246, 0.4], [176, 30, 2.1], [26, 150, 2.6],
 ];
@@ -152,8 +152,8 @@ function Twinkle({ x, y, delay, animate }: { x: number; y: number; delay: number
     <Animated.View
       pointerEvents="none"
       style={[{
-        position: 'absolute', left: x, top: y, width: 5, height: 5, borderRadius: 2.5, backgroundColor: '#FFFFFF',
-        shadowColor: '#FFFFFF', shadowOpacity: 0.7, shadowRadius: 5, shadowOffset: { width: 0, height: 0 },
+        position: 'absolute', left: x, top: y, width: 5, height: 5, borderRadius: 2.5, backgroundColor: '#FFFFFF', // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+        shadowColor: '#FFFFFF', shadowOpacity: 0.7, shadowRadius: 5, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
       }, style]}
     />
   );
@@ -171,9 +171,9 @@ function Guilloche({ center }: { center: Center }) {
     <Svg pointerEvents="none" width={size} height={size} style={box(center, size)}>
       <Defs>
         <RadialGradient id="guilFade" cx={R} cy={R} r={R} gradientUnits="userSpaceOnUse">
-          <Stop offset="0" stopColor="#FFFFFF" stopOpacity={1} />
-          <Stop offset="0.57" stopColor="#FFFFFF" stopOpacity={1} />
-          <Stop offset="0.99" stopColor="#FFFFFF" stopOpacity={0} />
+          <Stop offset="0" stopColor="#FFFFFF" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+          <Stop offset="0.57" stopColor="#FFFFFF" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+          <Stop offset="0.99" stopColor="#FFFFFF" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
         </RadialGradient>
       </Defs>
       <Path d={wedgesPath(R, 6, 2)} fill="url(#guilFade)" opacity={0.05} />
@@ -216,13 +216,13 @@ function ObsidianLayers({ center }: { center: Center }) {
       <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id="obsBg" cx={width / 2} cy={center.cy} rx={width * 0.9} ry={height * 0.6} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#231E14" />
-            <Stop offset="0.72" stopColor="#0A0907" />
+            <Stop offset="0" stopColor="#231E14" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.72" stopColor="#0A0907" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
           <SvgLinearGradient id="obsBeam" x1={width / 2 - beamHalf} y1="0" x2={width / 2 + beamHalf} y2="0" gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#FFE2A0" stopOpacity={0} />
-            <Stop offset="0.5" stopColor="#FFE2A0" stopOpacity={0.26} />
-            <Stop offset="1" stopColor="#FFE2A0" stopOpacity={0} />
+            <Stop offset="0" stopColor="#FFE2A0" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.5" stopColor="#FFE2A0" stopOpacity={0.26} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="1" stopColor="#FFE2A0" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </SvgLinearGradient>
         </Defs>
         <Rect x={0} y={0} width={width} height={height} fill="url(#obsBg)" />
@@ -232,11 +232,11 @@ function ObsidianLayers({ center }: { center: Center }) {
         <Svg width={rosette} height={rosette}>
           <Defs>
             <RadialGradient id="rosFade" cx={R} cy={R} r={R} gradientUnits="userSpaceOnUse">
-              <Stop offset="0" stopColor="#E8C882" stopOpacity={0} />
-              <Stop offset="0.48" stopColor="#E8C882" stopOpacity={0} />
-              <Stop offset="0.51" stopColor="#E8C882" stopOpacity={1} />
-              <Stop offset="0.88" stopColor="#E8C882" stopOpacity={1} />
-              <Stop offset="1" stopColor="#E8C882" stopOpacity={0} />
+              <Stop offset="0" stopColor="#E8C882" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+              <Stop offset="0.48" stopColor="#E8C882" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+              <Stop offset="0.51" stopColor="#E8C882" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+              <Stop offset="0.88" stopColor="#E8C882" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+              <Stop offset="1" stopColor="#E8C882" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
             </RadialGradient>
           </Defs>
           <Path d={wedgesPath(R, 5, 1)} fill="url(#rosFade)" opacity={0.24} />
@@ -287,9 +287,9 @@ function AuraBlob({ blob, center }: { blob: Blob; center: Center }) {
 function AuraLayers({ center }: { center: Center }) {
   const { k, width } = center;
   const blobs: readonly Blob[] = [
-    { size: 330, left: -90 * k - 40, top: -70 * k - 40, color: '#7D4DFF', opacity: 0.85, dx: 90, dy: 60, s: 1.15, ms: 11000 },
-    { size: 290, left: width - (290 - 90) * k - 40, top: 60 * k - 40, color: '#FF5FA8', opacity: 0.85, dx: -80, dy: 90, s: 0.9, ms: 13000 },
-    { size: 310, left: 30 * k - 40, top: 260 * k - 40, color: '#FFB547', opacity: 0.55, dx: 60, dy: -70, s: 1.2, ms: 15000 },
+    { size: 330, left: -90 * k - 40, top: -70 * k - 40, color: '#7D4DFF', opacity: 0.85, dx: 90, dy: 60, s: 1.15, ms: 11000 }, // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+    { size: 290, left: width - (290 - 90) * k - 40, top: 60 * k - 40, color: '#FF5FA8', opacity: 0.85, dx: -80, dy: 90, s: 0.9, ms: 13000 }, // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+    { size: 310, left: 30 * k - 40, top: 260 * k - 40, color: '#FFB547', opacity: 0.55, dx: 60, dy: -70, s: 1.2, ms: 15000 }, // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
   ];
   // Размытие 46px передано мягким краем градиента: пятно рисуем на 80pt больше.
   return (
@@ -335,9 +335,9 @@ function IceLayers({ center }: { center: Center }) {
       <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id="iceBg" cx={width / 2} cy={center.cy} rx={width * 0.8} ry={height * 0.55} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#3A6A8C" />
-            <Stop offset="0.55" stopColor="#13263A" />
-            <Stop offset="1" stopColor="#0B1520" />
+            <Stop offset="0" stopColor="#3A6A8C" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.55" stopColor="#13263A" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="1" stopColor="#0B1520" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
         </Defs>
         <Rect x={0} y={0} width={width} height={height} fill="url(#iceBg)" />
@@ -347,7 +347,7 @@ function IceLayers({ center }: { center: Center }) {
         style={[{ position: 'absolute', left: -0.3 * width, top: -0.3 * height, width: causticW, height: height * 1.6 }, causticStyle]}
       >
         <LinearGradient
-          colors={['rgba(190,240,255,0)', 'rgba(190,240,255,0)', 'rgba(190,240,255,0.2)', 'rgba(255,200,240,0.14)', 'rgba(255,200,240,0)', 'rgba(255,200,240,0)']}
+          colors={['rgba(190,240,255,0)', 'rgba(190,240,255,0)', 'rgba(190,240,255,0.2)', 'rgba(255,200,240,0.14)', 'rgba(255,200,240,0)', 'rgba(255,200,240,0)']} // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
           locations={[0, 0.4, 0.47, 0.51, 0.58, 1]}
           start={caustic.start}
           end={caustic.end}
@@ -357,9 +357,9 @@ function IceLayers({ center }: { center: Center }) {
       <Svg pointerEvents="none" width={facets} height={facets} style={box(center, facets)}>
         <Defs>
           <RadialGradient id="facetFade" cx={R} cy={R} r={R} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#FFFFFF" stopOpacity={1} />
-            <Stop offset="0.49" stopColor="#FFFFFF" stopOpacity={1} />
-            <Stop offset="0.99" stopColor="#FFFFFF" stopOpacity={0} />
+            <Stop offset="0" stopColor="#FFFFFF" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.49" stopColor="#FFFFFF" stopOpacity={1} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.99" stopColor="#FFFFFF" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
           <ClipPath id="facetClip">
             <Circle cx={R} cy={R} r={R} />
@@ -378,12 +378,12 @@ function IceLayers({ center }: { center: Center }) {
           transform: [{ rotate: '45deg' }],
           overflow: 'hidden',
           borderWidth: 1, // guard-ok: кант призмы из макета .st-ice .prism (1px, полупрозрачный)
-          borderColor: 'rgba(220,245,255,0.35)',
-          shadowColor: '#96DCFF', shadowOpacity: 0.22, shadowRadius: 30, shadowOffset: { width: 0, height: 0 }, // guard-ok: одна статичная тень, только iOS
+          borderColor: 'rgba(220,245,255,0.35)', // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+          shadowColor: '#96DCFF', shadowOpacity: 0.22, shadowRadius: 30, shadowOffset: { width: 0, height: 0 }, // guard-ok: одна статичная тень, только iOS // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
         }]}
       >
         <LinearGradient
-          colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.02)']}
+          colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.02)']} // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}
@@ -395,9 +395,9 @@ function IceLayers({ center }: { center: Center }) {
 
 // ── E · Космос ───────────────────────────────────────────────────────────────
 const SPACE_STARS: readonly (readonly [number, number, number, string])[] = [
-  [0.12, 0.18, 1.5, '#FFFFFF'], [0.28, 0.62, 1, '#FFFFFF'], [0.44, 0.12, 1.5, '#CFE3FF'], [0.63, 0.3, 1, '#FFFFFF'],
-  [0.82, 0.16, 2, '#FFFFFF'], [0.9, 0.58, 1, '#FFFFFF'], [0.08, 0.48, 1.5, '#FFE2F2'], [0.72, 0.72, 1, '#FFFFFF'],
-  [0.36, 0.84, 1, '#FFFFFF'], [0.55, 0.52, 1.5, '#FFFFFF'],
+  [0.12, 0.18, 1.5, '#FFFFFF'], [0.28, 0.62, 1, '#FFFFFF'], [0.44, 0.12, 1.5, '#CFE3FF'], [0.63, 0.3, 1, '#FFFFFF'], // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+  [0.82, 0.16, 2, '#FFFFFF'], [0.9, 0.58, 1, '#FFFFFF'], [0.08, 0.48, 1.5, '#FFE2F2'], [0.72, 0.72, 1, '#FFFFFF'], // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
+  [0.36, 0.84, 1, '#FFFFFF'], [0.55, 0.52, 1.5, '#FFFFFF'], // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
 ];
 
 function Orbit({ center, size, ms, reverse, dot, dotColor, glow }: {
@@ -425,16 +425,16 @@ function SpaceLayers({ center }: { center: Center }) {
       <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id="neb1" cx={width * 0.3} cy={height * 0.22} rx={width * 0.38} ry={height * 0.26} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#5846FF" stopOpacity={0.5} />
-            <Stop offset="0.7" stopColor="#5846FF" stopOpacity={0} />
+            <Stop offset="0" stopColor="#5846FF" stopOpacity={0.5} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.7" stopColor="#5846FF" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
           <RadialGradient id="neb2" cx={width * 0.76} cy={height * 0.44} rx={width * 0.34} ry={height * 0.24} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#00C8FF" stopOpacity={0.3} />
-            <Stop offset="0.7" stopColor="#00C8FF" stopOpacity={0} />
+            <Stop offset="0" stopColor="#00C8FF" stopOpacity={0.3} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.7" stopColor="#00C8FF" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
           <RadialGradient id="neb3" cx={width * 0.44} cy={height * 0.72} rx={width * 0.44} ry={height * 0.28} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#FF46A0" stopOpacity={0.26} />
-            <Stop offset="0.7" stopColor="#FF46A0" stopOpacity={0} />
+            <Stop offset="0" stopColor="#FF46A0" stopOpacity={0.26} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.7" stopColor="#FF46A0" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </RadialGradient>
         </Defs>
         <Rect x={0} y={0} width={width} height={height} fill="url(#neb1)" />
@@ -444,10 +444,10 @@ function SpaceLayers({ center }: { center: Center }) {
           <Circle key={`${x}-${y}`} cx={x * width} cy={y * height} r={r / 2 + 0.25} fill={c} />
         ))}
       </Svg>
-      <Ring center={center} size={290 * k} color="rgba(160,190,255,0.13)" />
-      <Ring center={center} size={224 * k} color="rgba(160,190,255,0.26)" />
-      <Orbit center={center} size={224 * k} ms={8000} reverse={false} dot={10} dotColor="#9FD8FF" glow="#78C8FF" />
-      <Orbit center={center} size={290 * k} ms={14000} reverse dot={7} dotColor="#FFB3E0" glow="#FF8CD2" />
+      <Ring center={center} size={290 * k} color="rgba(160,190,255,0.13)" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <Ring center={center} size={224 * k} color="rgba(160,190,255,0.26)" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <Orbit center={center} size={224 * k} ms={8000} reverse={false} dot={10} dotColor="#9FD8FF" glow="#78C8FF" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <Orbit center={center} size={290 * k} ms={14000} reverse dot={7} dotColor="#FFB3E0" glow="#FF8CD2" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
     </>
   );
 }
@@ -500,7 +500,7 @@ function NeonLayers({ center }: { center: Center }) {
           {gridLines.h.map((y) => <Line key={`h${y}`} x1={0} y1={y} x2={gridW} y2={y} stroke="#00E5FF" strokeOpacity={0.45} strokeWidth={1} />)}
         </Svg>
         <LinearGradient
-          colors={['#07030D', 'rgba(7,3,13,0)']}
+          colors={['#07030D', 'rgba(7,3,13,0)']} // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
           locations={[0, 0.6]}
           style={StyleSheet.absoluteFill}
         />
@@ -509,8 +509,8 @@ function NeonLayers({ center }: { center: Center }) {
         <Svg width={glow} height={glow}>
           <Defs>
             <RadialGradient id="neonGlow" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor="#00E5FF" stopOpacity={0.22} />
-              <Stop offset="0.65" stopColor="#00E5FF" stopOpacity={0} />
+              <Stop offset="0" stopColor="#00E5FF" stopOpacity={0.22} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+              <Stop offset="0.65" stopColor="#00E5FF" stopOpacity={0} />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
             </RadialGradient>
           </Defs>
           <Circle cx={glow / 2} cy={glow / 2} r={glow / 2} fill="url(#neonGlow)" />
@@ -519,9 +519,9 @@ function NeonLayers({ center }: { center: Center }) {
       <Svg pointerEvents="none" width={sun} height={sun} style={[box(center, sun), { opacity: 0.5 }]}>
         <Defs>
           <SvgLinearGradient id="neonSun" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#FFCF5C" />
-            <Stop offset="0.6" stopColor="#FF4FA3" />
-            <Stop offset="1" stopColor="#7A2CFF" />
+            <Stop offset="0" stopColor="#FFCF5C" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="0.6" stopColor="#FF4FA3" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+            <Stop offset="1" stopColor="#7A2CFF" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
           </SvgLinearGradient>
           <ClipPath id="neonSunClip">
             <Circle cx={sun / 2} cy={sun / 2} r={sun / 2} />
@@ -531,8 +531,8 @@ function NeonLayers({ center }: { center: Center }) {
           {stripes.map((y) => <Rect key={y} x={0} y={y} width={sun} height={14} fill="url(#neonSun)" />)}
         </G>
       </Svg>
-      <NeonRing center={center} size={222 * k} color="#FF4FA3" />
-      <NeonRing center={center} size={196 * k} color="#00E5FF" />
+      <NeonRing center={center} size={222 * k} color="#FF4FA3" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
+      <NeonRing center={center} size={196 * k} color="#00E5FF" />{/* theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта */}
     </>
   );
 }

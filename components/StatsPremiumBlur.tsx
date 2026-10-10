@@ -96,21 +96,21 @@ function PremiumSnapshotSheen() {
     <View pointerEvents="none" style={StyleSheet.absoluteFillObject}>
       <LinearGradient
         pointerEvents="none"
-        colors={[EXEMPT_COLOR_1, EXEMPT_COLOR_2, 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_1, EXEMPT_COLOR_2, 'rgba(255,255,255,0.00)']} // theme-exempt: оттенки замка Plus на статистике — бренд статуса
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandTop]}
       />
       <LinearGradient
         pointerEvents="none"
-        colors={[EXEMPT_COLOR_3, EXEMPT_COLOR_4, 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_3, EXEMPT_COLOR_4, 'rgba(255,255,255,0.00)']} // theme-exempt: оттенки замка Plus на статистике — бренд статуса
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandMiddle]}
       />
       <LinearGradient
         pointerEvents="none"
-        colors={[EXEMPT_COLOR_5, EXEMPT_COLOR_6, 'rgba(255,255,255,0.00)']}
+        colors={[EXEMPT_COLOR_5, EXEMPT_COLOR_6, 'rgba(255,255,255,0.00)']} // theme-exempt: оттенки замка Plus на статистике — бренд статуса
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandBottom]}

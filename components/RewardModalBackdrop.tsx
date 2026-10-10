@@ -118,23 +118,23 @@ export function RewardModalLiquidGlass({
   const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
   const accentSoft = withAccentAlpha(accent, strong ? '24' : '18');
   const topLight = themeMode === 'gold'
-    ? 'rgba(255,232,172,0.20)'
-    : 'rgba(255,255,255,0.18)';
+    ? 'rgba(255,232,172,0.20)' // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+    : 'rgba(255,255,255,0.18)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   const sideLight = themeMode === 'gold'
-    ? 'rgba(255,213,128,0.16)'
-    : 'rgba(255,255,255,0.12)';
+    ? 'rgba(255,213,128,0.16)' // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+    : 'rgba(255,255,255,0.12)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} testID="reward-modal-liquid-glass">
       <LinearGradient
         pointerEvents="none"
-        colors={[topLight, 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0)']}
+        colors={[topLight, 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0)']} // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
         locations={[0, 0.42, 1]}
         style={[StyleSheet.absoluteFill, { opacity: strong ? 0.86 : 0.68 }]}
       />
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(0,0,0,0)', accentSoft, accentVeil]}
+        colors={['rgba(0,0,0,0)', accentSoft, accentVeil]} // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
         locations={[0, 0.58, 1]}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
@@ -175,22 +175,22 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
     case 'olive':
       return [...OLIVE_GRADIENTS.quietPanel];
     case 'gold':
-      return ['#160F07', '#22190D', '#060503'];
+      return ['#160F07', '#22190D', '#060503']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return ['#081124', '#0C1832', '#030711'];
+      return ['#081124', '#0C1832', '#030711']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return ['#211008', '#2B160B', '#080302'];
+      return ['#211008', '#2B160B', '#080302']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return ['#071B1D', '#102035', '#04080D'];
+      return ['#071B1D', '#102035', '#04080D']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return ['#111905', '#1B2608', '#050702'];
+      return ['#111905', '#1B2608', '#050702']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return ['#14131F', '#1C1B2E', '#060510'];
+      return ['#14131F', '#1C1B2E', '#060510']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return ['#15231A', '#0A120E', '#040906'];
+      return ['#15231A', '#0A120E', '#040906']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
@@ -199,19 +199,19 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
     case 'olive':
       return OLIVE_RICH.champagne;
     case 'gold':
-      return '#E8C36C';
+      return '#E8C36C'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return '#8EA7FF';
+      return '#8EA7FF'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return '#F59E0B';
+      return '#F59E0B'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return '#67E8F9';
+      return '#67E8F9'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return '#C8F336';
+      return '#C8F336'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return '#C8C3FF';
+      return '#C8C3FF'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return '#315F50';
+      return '#315F50'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
       return t.gold;
@@ -223,46 +223,46 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
   if (priorityColor && true) return priorityColor;
   switch (themeMode) {
     case 'gold':
-      return 'rgba(232,195,108,0.48)';
+      return 'rgba(232,195,108,0.48)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return 'rgba(142,167,255,0.34)';
+      return 'rgba(142,167,255,0.34)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return 'rgba(245,158,11,0.38)';
+      return 'rgba(245,158,11,0.38)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return 'rgba(103,232,249,0.34)';
+      return 'rgba(103,232,249,0.34)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return 'rgba(200,243,54,0.34)';
+      return 'rgba(200,243,54,0.34)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return 'rgba(200,195,255,0.30)';
+      return 'rgba(200,195,255,0.30)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return '#BDC8BD';
+      return '#BDC8BD'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return 'rgba(88,204,137,0.30)';
+      return 'rgba(88,204,137,0.30)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
 export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string {
   switch (themeMode) {
     case 'olive':
-      return 'rgba(244,236,216,0.07)';
+      return 'rgba(244,236,216,0.07)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'gold':
-      return 'rgba(232,195,108,0.10)';
+      return 'rgba(232,195,108,0.10)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return 'rgba(142,167,255,0.09)';
+      return 'rgba(142,167,255,0.09)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return 'rgba(245,158,11,0.10)';
+      return 'rgba(245,158,11,0.10)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return 'rgba(103,232,249,0.09)';
+      return 'rgba(103,232,249,0.09)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return 'rgba(200,243,54,0.09)';
+      return 'rgba(200,243,54,0.09)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return 'rgba(200,195,255,0.08)';
+      return 'rgba(200,195,255,0.08)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return '#E1E5DC';
+      return '#E1E5DC'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return 'rgba(255,255,255,0.055)';
+      return 'rgba(255,255,255,0.055)'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
@@ -271,33 +271,33 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
     case 'olive':
       return [OLIVE_GRADIENTS.primaryButton[0], OLIVE_GRADIENTS.primaryButton[1]];
     case 'gold':
-      return ['#F4D889', '#B9852E'];
+      return ['#F4D889', '#B9852E']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return ['#E0E7FF', '#818CF8'];
+      return ['#E0E7FF', '#818CF8']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return ['#FED7AA', '#F97316'];
+      return ['#FED7AA', '#F97316']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return ['#CCFBF1', '#22D3EE'];
+      return ['#CCFBF1', '#22D3EE']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return ['#ECFCCB', '#A3E635'];
+      return ['#ECFCCB', '#A3E635']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return ['#ECEAFF', '#C8C3FF'];
+      return ['#ECEAFF', '#C8C3FF']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return ['#315F50', '#315F50'];
+      return ['#315F50', '#315F50']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return ['#F0F7F2', '#8FE5AD'];
+      return ['#F0F7F2', '#8FE5AD']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
 export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
   switch (themeMode) {
     case 'olive':
-      return '#07110A';
+      return '#07110A'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return '#FFFFFF';
+      return '#FFFFFF'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     default:
-      return '#101214';
+      return '#101214'; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
@@ -331,12 +331,12 @@ export function rewardModalGlowLayers(accent: string, warmShift?: string): Rewar
     ? (alpha: string) => withAccentAlpha(warmShift, alpha)
     : a;
   return {
-    topHighlight: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0)'],
-    bottomVeil: ['rgba(0,0,0,0)', warmShift ? w('1A') : a('14'), warmShift ? w('38') : a('30')],
+    topHighlight: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0)'], // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+    bottomVeil: ['rgba(0,0,0,0)', warmShift ? w('1A') : a('14'), warmShift ? w('38') : a('30')], // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     ringHaloOuter: a('22'),
     ringHaloInner: a('4D'),
     ringStroke: [a('FF'), w('CC'), w('40')],
-    ringInnerGlow: [a('33'), 'rgba(0,0,0,0)'],
+    ringInnerGlow: [a('33'), 'rgba(0,0,0,0)'], // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   };
 }
 
@@ -348,44 +348,44 @@ function withAccentAlpha(hex: string, alpha: string): string {
 export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
-      return ['#2A1707', '#171006', '#050302'];
+      return ['#2A1707', '#171006', '#050302']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return ['#101C46', '#081126', '#02040B'];
+      return ['#101C46', '#081126', '#02040B']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return ['#351408', '#1A0803', '#050201'];
+      return ['#351408', '#1A0803', '#050201']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return ['#063034', '#101A33', '#03070C'];
+      return ['#063034', '#101A33', '#03070C']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return ['#22320A', '#101805', '#030501'];
+      return ['#22320A', '#101805', '#030501']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return ['#1C1B2E', '#14131F', '#040309'];
+      return ['#1C1B2E', '#14131F', '#040309']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return ['#DCE1D8', '#FCFDF9', '#CDD5C7'];
+      return ['#DCE1D8', '#FCFDF9', '#CDD5C7']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return ['#0F2718', '#07110C', '#020503'];
+      return ['#0F2718', '#07110C', '#020503']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
 export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
-      return ['#3A260C', '#1C1307', '#070402'];
+      return ['#3A260C', '#1C1307', '#070402']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'midnight':
-      return ['#14235A', '#0B1731', '#030711'];
+      return ['#14235A', '#0B1731', '#030711']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'ember':
-      return ['#3A1708', '#251006', '#070201'];
+      return ['#3A1708', '#251006', '#070201']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'aurora':
-      return ['#07383B', '#13213D', '#04080D'];
+      return ['#07383B', '#13213D', '#04080D']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'volt':
-      return ['#2B3C0B', '#182206', '#050701'];
+      return ['#2B3C0B', '#182206', '#050701']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'indigo':
-      return ['#2A2952', '#16152A', '#040309'];
+      return ['#2A2952', '#16152A', '#040309']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'sagePorcelain':
-      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
-      return ['#13301D', '#0A150F', '#030604'];
+      return ['#13301D', '#0A150F', '#030604']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
@@ -403,12 +403,12 @@ export function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular
   switch (themeMode) {
     case 'gold':
       return strong
-        ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)']
-        : ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.40)', 'rgba(0,0,0,0.62)'];
+        ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)'] // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+        : ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.40)', 'rgba(0,0,0,0.62)']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     default:
       return strong
-        ? ['rgba(2,4,8,0.42)', 'rgba(2,4,8,0.54)', 'rgba(0,0,0,0.74)']
-        : ['rgba(2,4,8,0.28)', 'rgba(2,4,8,0.42)', 'rgba(0,0,0,0.62)'];
+        ? ['rgba(2,4,8,0.42)', 'rgba(2,4,8,0.54)', 'rgba(0,0,0,0.74)'] // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+        : ['rgba(2,4,8,0.28)', 'rgba(2,4,8,0.42)', 'rgba(0,0,0,0.62)']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }
 
@@ -416,15 +416,15 @@ export function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 're
   const strong = intensity === 'strong';
   switch (themeMode) {
     case 'sagePorcelain':
-      return ['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)'];
+      return ['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'gold':
       return strong
-        ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']
-        : ['rgba(12,8,2,0.24)', 'rgba(7,5,2,0.42)', 'rgba(0,0,0,0.66)'];
+        ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)'] // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+        : ['rgba(12,8,2,0.24)', 'rgba(7,5,2,0.42)', 'rgba(0,0,0,0.66)']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
     case 'dark':
     default:
       return strong
-        ? ['rgba(3,12,7,0.24)', 'rgba(2,7,4,0.50)', 'rgba(0,0,0,0.76)']
-        : ['rgba(3,12,7,0.16)', 'rgba(2,7,4,0.40)', 'rgba(0,0,0,0.64)'];
+        ? ['rgba(3,12,7,0.24)', 'rgba(2,7,4,0.50)', 'rgba(0,0,0,0.76)'] // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
+        : ['rgba(3,12,7,0.16)', 'rgba(2,7,4,0.40)', 'rgba(0,0,0,0.64)']; // theme-exempt: самостоятельная палитра фона и свечения окон наград (иллюстрация), не поверхность темы
   }
 }

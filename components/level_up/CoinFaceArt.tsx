@@ -54,12 +54,12 @@ function CoinFaceArt({ metal, size, source }: Props) {
             </LinearGradient>
           ) : null}
           <RadialGradient id={`${id}k`} cx="34%" cy="28%" r="60%">
-            <Stop offset="0" stopColor="#fff" stopOpacity={0.42} />
-            <Stop offset="0.55" stopColor="#fff" stopOpacity={0} />
+            <Stop offset="0" stopColor="#fff" stopOpacity={0.42} />{/* theme-exempt: иллюстрация лица монеты */}
+            <Stop offset="0.55" stopColor="#fff" stopOpacity={0} />{/* theme-exempt: иллюстрация лица монеты */}
           </RadialGradient>
           <RadialGradient id={`${id}v`} cx="50%" cy="50%" r="50%">
-            <Stop offset="0.72" stopColor="#000" stopOpacity={0} />
-            <Stop offset="1" stopColor="#000" stopOpacity={0.42} />
+            <Stop offset="0.72" stopColor="#000" stopOpacity={0} />{/* theme-exempt: иллюстрация лица монеты */}
+            <Stop offset="1" stopColor="#000" stopOpacity={0.42} />{/* theme-exempt: иллюстрация лица монеты */}
           </RadialGradient>
           <LinearGradient id={`${id}e`} x1="0" y1="0" x2="1" y2="1">
             <Stop offset="0" stopColor={hi} />
@@ -90,7 +90,7 @@ function CoinFaceArt({ metal, size, source }: Props) {
           <Circle cx={0} cy={0} r={98} fill={`url(#${id}k)`} />
           <G transform="translate(3,2)">
             <Path d={EMBLEM} fill={deep} fillOpacity={0.6} transform="translate(2,2.4)" />
-            <Path d={EMBLEM} fill="#fff" fillOpacity={0.38} transform="translate(-1.1,-1.3)" />
+            <Path d={EMBLEM} fill="#fff" fillOpacity={0.38} transform="translate(-1.1,-1.3)" />{/* theme-exempt: иллюстрация лица монеты */}
             <Path d={EMBLEM} fill={`url(#${id}e)`} />
             <Path d="M -10 2 A 24 24 0 0 0 38 2 Z" fill={deep} fillOpacity={0.18} />
           </G>

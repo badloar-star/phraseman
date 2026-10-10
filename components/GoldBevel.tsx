@@ -24,8 +24,8 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
           `rgba(246,227,161,${v.top})`,
           `rgba(214,179,90,${v.top * 0.30})`,
           `rgba(120,88,28,${v.top * 0.08})`,
-          'rgba(0,0,0,0)',
-          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
+          'rgba(0,0,0,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
         ]}
         locations={[0, 0.12, 0.34, 0.68, 1]}
         start={{ x: 0, y: 0 }}
@@ -36,7 +36,7 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
         colors={[
           `rgba(246,227,161,${v.wash})`,
           `rgba(214,179,90,${v.wash * 0.30})`,
-          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
         ]}
         locations={[0, 0.14, 1]}
         start={{ x: 0, y: 0.32 }}
@@ -44,7 +44,7 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
         style={StyleSheet.absoluteFillObject}
       />
       <LinearGradient
-        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.shade * 0.38})`, `rgba(0,0,0,${v.bottom})`]}
+        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.shade * 0.38})`, `rgba(0,0,0,${v.bottom})`]} // theme-exempt: золотой металл фаски — бренд-материал статуса
         locations={[0, 0.76, 1]}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
@@ -52,10 +52,10 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
       />
       <LinearGradient
         colors={[
-          'rgba(255,255,255,0)',
+          'rgba(255,255,255,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
           `rgba(246,227,161,${v.top * 0.11})`,
           `rgba(184,144,58,${v.top * 0.05})`,
-          'rgba(0,0,0,0)',
+          'rgba(0,0,0,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
         ]}
         locations={[0, 0.34, 0.62, 1]}
         start={{ x: 0.02, y: 0 }}
@@ -63,7 +63,7 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
         style={StyleSheet.absoluteFillObject}
       />
       <LinearGradient
-        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.shade * 0.22})`, `rgba(0,0,0,${v.bottom * 0.54})`]}
+        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.shade * 0.22})`, `rgba(0,0,0,${v.bottom * 0.54})`]} // theme-exempt: золотой металл фаски — бренд-материал статуса
         locations={[0, 0.84, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -73,7 +73,7 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
         colors={[
           `rgba(255,248,220,${v.glint})`,
           `rgba(246,227,161,${v.glint * 0.28})`,
-          'rgba(255,255,255,0)',
+          'rgba(255,255,255,0)', // theme-exempt: золотой металл фаски — бренд-материал статуса
         ]}
         locations={[0, 0.42, 1]}
         start={{ x: 0, y: 0 }}
@@ -81,7 +81,7 @@ function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
         style={[styles.cornerGlintTop, { borderTopLeftRadius: radius }]}
       />
       <LinearGradient
-        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.bottom * 0.62})`]}
+        colors={['rgba(0,0,0,0)', `rgba(0,0,0,${v.bottom * 0.62})`]} // theme-exempt: золотой металл фаски — бренд-материал статуса
         locations={[0, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}

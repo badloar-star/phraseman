@@ -60,7 +60,7 @@ function isLightCardTheme(theme?: StatsArtTheme): boolean {
 }
 
 function scrimColors(theme?: StatsArtTheme, isGoldTheme?: boolean, scrim: StatsCardArtSurfaceProps['scrim'] = 'medium', themeMode?: ThemeMode) {
-  if (themeMode === 'olive') return ['rgba(5,6,4,0.18)', 'rgba(5,6,4,0.42)', 'rgba(0,0,0,0.62)'] as const;
+  if (themeMode === 'olive') return ['rgba(5,6,4,0.18)', 'rgba(5,6,4,0.42)', 'rgba(0,0,0,0.62)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
   const level = scrim === 'strong' ? 1 : scrim === 'soft' ? -1 : 0;
   const light = isLightCardTheme(theme);
 
@@ -92,50 +92,50 @@ function defaultGradientOpacity(theme?: StatsArtTheme, isGoldTheme?: boolean): n
 }
 
 function semanticTonalGradient(name: StatsCardArtName, theme?: StatsArtTheme, isGoldTheme?: boolean, themeMode?: ThemeMode): readonly [string, string, string] {
-  if (themeMode === 'olive') return [OLIVE_GRADIENTS.raisedPanel[0], name === 'percentiles' ? 'rgba(227,204,136,0.15)' : 'rgba(201,168,76,0.10)', 'rgba(0,0,0,0)'] as const;
+  if (themeMode === 'olive') return [OLIVE_GRADIENTS.raisedPanel[0], name === 'percentiles' ? 'rgba(227,204,136,0.15)' : 'rgba(201,168,76,0.10)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
   const light = isLightCardTheme(theme);
   if (isGoldTheme) {
     return [
-      'rgba(255,232,170,0.18)',
-      name === 'percentiles' || name === 'multipliers' ? 'rgba(245,207,122,0.16)' : 'rgba(185,133,46,0.10)',
-      'rgba(0,0,0,0)',
+      'rgba(255,232,170,0.18)', // theme-exempt: арт-поверхность карточки статистики — иллюстрация
+      name === 'percentiles' || name === 'multipliers' ? 'rgba(245,207,122,0.16)' : 'rgba(185,133,46,0.10)', // theme-exempt: арт-поверхность карточки статистики — иллюстрация
+      'rgba(0,0,0,0)', // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     ] as const;
   }
   if (light) {
     switch (name) {
       case 'streak':
-        return ['rgba(255,138,76,0.18)', 'rgba(255,185,122,0.10)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(255,138,76,0.18)', 'rgba(255,185,122,0.10)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'multipliers':
-        return ['rgba(245,190,65,0.20)', 'rgba(255,224,128,0.12)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(245,190,65,0.20)', 'rgba(255,224,128,0.12)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'practiceBalance':
-        return ['rgba(42,190,112,0.18)', 'rgba(125,211,252,0.09)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(42,190,112,0.18)', 'rgba(125,211,252,0.09)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'weekRhythm':
-        return ['rgba(45,212,191,0.16)', 'rgba(96,165,250,0.09)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(45,212,191,0.16)', 'rgba(96,165,250,0.09)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'percentiles':
-        return ['rgba(168,85,247,0.18)', 'rgba(236,72,153,0.08)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(168,85,247,0.18)', 'rgba(236,72,153,0.08)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'wager':
-        return ['rgba(251,146,60,0.18)', 'rgba(245,158,11,0.10)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(251,146,60,0.18)', 'rgba(245,158,11,0.10)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
       case 'archiveMap':
       default:
-        return ['rgba(34,197,94,0.14)', 'rgba(59,130,246,0.07)', 'rgba(255,255,255,0)'] as const;
+        return ['rgba(34,197,94,0.14)', 'rgba(59,130,246,0.07)', 'rgba(255,255,255,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     }
   }
   switch (name) {
     case 'streak':
-      return ['rgba(255,107,53,0.32)', 'rgba(255,178,92,0.12)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(255,107,53,0.32)', 'rgba(255,178,92,0.12)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'multipliers':
-      return ['rgba(255,212,59,0.30)', 'rgba(255,160,64,0.11)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(255,212,59,0.30)', 'rgba(255,160,64,0.11)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'practiceBalance':
-      return ['rgba(59,224,131,0.30)', 'rgba(80,170,255,0.10)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(59,224,131,0.30)', 'rgba(80,170,255,0.10)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'weekRhythm':
-      return ['rgba(39,214,200,0.28)', 'rgba(96,165,250,0.10)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(39,214,200,0.28)', 'rgba(96,165,250,0.10)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'percentiles':
-      return ['rgba(184,132,255,0.32)', 'rgba(255,93,162,0.10)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(184,132,255,0.32)', 'rgba(255,93,162,0.10)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'wager':
-      return ['rgba(255,177,59,0.32)', 'rgba(255,111,64,0.11)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(255,177,59,0.32)', 'rgba(255,111,64,0.11)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
     case 'archiveMap':
     default:
-      return ['rgba(88,204,137,0.26)', 'rgba(78,163,255,0.09)', 'rgba(0,0,0,0)'] as const;
+      return ['rgba(88,204,137,0.26)', 'rgba(78,163,255,0.09)', 'rgba(0,0,0,0)'] as const; // theme-exempt: арт-поверхность карточки статистики — иллюстрация
   }
 }
 
@@ -207,7 +207,7 @@ function StatsCardArtSurface({
       />
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(255,255,255,0.12)', 'rgba(255,255,255,0.035)', 'rgba(255,255,255,0)']}
+        colors={['rgba(255,255,255,0.12)', 'rgba(255,255,255,0.035)', 'rgba(255,255,255,0)']} // theme-exempt: арт-поверхность карточки статистики — иллюстрация
         locations={[0, 0.34, 1]}
         start={{ x: 0.08, y: 0 }}
         end={{ x: 0.94, y: 1 }}

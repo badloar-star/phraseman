@@ -44,9 +44,9 @@ interface GoogleButtonProps extends ProviderButtonProps {
 
 export function GoogleSignInButton({ onPress, loading, disabled, label, variant = 'light', shape = 'default' }: GoogleButtonProps) {
   const isDark = variant === 'dark';
-  const bg = isDark ? '#1F1F1F' : '#FFFFFF';
-  const fg = isDark ? '#FFFFFF' : '#1F1F1F';
-  const border = isDark ? '#3A3A3A' : '#DADCE0';
+  const bg = isDark ? '#1F1F1F' : '#FFFFFF'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
+  const fg = isDark ? '#FFFFFF' : '#1F1F1F'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
+  const border = isDark ? '#3A3A3A' : '#DADCE0'; // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
   const isPill = shape === 'pill';
 
   return (
@@ -95,7 +95,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
         styles.button,
         shape === 'pill' && styles.pill,
         shape === 'sheet' && styles.sheet,
-        { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 0},
+        { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 0}, // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
         (loading || disabled) && styles.disabled,
       ]}
       testID="auth-apple-button"
@@ -105,7 +105,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
       <View style={styles.iconWrap}>
         {loading ? <ActivityIndicator size="small" color="#FFFFFF" /> : <AppleIcon size={22} color="#FFFFFF" />}
       </View>
-      <Text style={[styles.label, { color: '#FFFFFF' }]} numberOfLines={1}>
+      <Text style={[styles.label, { color: '#FFFFFF' }]} numberOfLines={1}>{/* theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.) */}
         {label}
       </Text>
       <View style={styles.iconWrap} />
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: SHEET_RADIUS,
   },
   pillLightShadow: {
-    ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.08, offsetY: 3, backgroundColor: '#FFFFFF' }),
+    ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.08, offsetY: 3, backgroundColor: '#FFFFFF' }), // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
   },
   disabled: {
     opacity: 0.55,

@@ -8,13 +8,13 @@ type Props = {
 };
 
 const VIP_STOPS = [
-  { offset: '0', color: '#064E3B' },
-  { offset: '0.18', color: '#047857' },
-  { offset: '0.38', color: '#22C55E' },
-  { offset: '0.5', color: '#BBF7D0' },
-  { offset: '0.62', color: '#22C55E' },
-  { offset: '0.82', color: '#15803D' },
-  { offset: '1', color: '#052E16' },
+  { offset: '0', color: '#064E3B' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '0.18', color: '#047857' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '0.38', color: '#22C55E' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '0.5', color: '#BBF7D0' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '0.62', color: '#22C55E' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '0.82', color: '#15803D' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
+  { offset: '1', color: '#052E16' }, // theme-exempt: зелень статуса VIP — бренд-цвет, не цвет темы
 ];
 
 function VipGreenUserName({ text, fontSize }: Props) {

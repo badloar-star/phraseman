@@ -25,8 +25,8 @@ import { useTheme } from '../ThemeContext';
 // сверх уже имеющегося (правило владельца: на плитках/буквах вибрация, но не клик-звук).
 
 /** kit.css: --good / --bad. */
-export const LV2_GOOD = '#6FD08C';
-export const LV2_BAD = '#F2766B';
+export const LV2_GOOD = '#6FD08C'; // theme-exempt: запасное значение для кода вне темы; экраны берут g.good из токенов темы
+export const LV2_BAD = '#F2766B'; // theme-exempt: запасное значение для кода вне темы; экраны берут g.bad из токенов темы
 
 /** #RRGGBB + альфа 0..1 -> #RRGGBBAA. Не-hex значения возвращаются как есть. */
 export function lv2Alpha(hex: string, opacity: number): string {
@@ -57,15 +57,17 @@ export function useLv2Glass(): Lv2Glass {
   return useMemo(() => {
     return {
       ...g,
-      good: LV2_GOOD,
-      bad: LV2_BAD,
-      goodFill: lv2Alpha(LV2_GOOD, 0.18),
-      goodSoft: lv2Alpha(LV2_GOOD, 0.12),
-      goodEdge: lv2Alpha(LV2_GOOD, 0.45),
-      badFill: lv2Alpha(LV2_BAD, 0.18),
-      badSoft: lv2Alpha(LV2_BAD, 0.12),
-      badEdge: lv2Alpha(LV2_BAD, 0.45),
-      plate: 'rgba(0,0,0,0.34)',
+      // зачем (релизный пол 10.10): вердикт «верно/неверно» берёт цвет темы (токены good/bad, контраст ≥ 4.5 на всех поверхностях);
+      // в тёмной «Спокойно» это ≈ прежние #6FD08C / #F2766B, в светлых темах — глубже и читается.
+      good: g.good,
+      bad: g.bad,
+      goodFill: lv2Alpha(g.good, 0.18),
+      goodSoft: lv2Alpha(g.good, 0.12),
+      goodEdge: lv2Alpha(g.good, 0.45),
+      badFill: lv2Alpha(g.bad, 0.18),
+      badSoft: lv2Alpha(g.bad, 0.12),
+      badEdge: lv2Alpha(g.bad, 0.45),
+      plate: 'rgba(0,0,0,0.34)', // theme-exempt: тень-«полка» под чипом — чёрная в любой теме, как в макете
     };
   }, [g]);
 }

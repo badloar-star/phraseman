@@ -23,7 +23,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-const DEFAULT_COLORS = ['#FFD27A', '#FFE9B8', '#36E6A0', '#FF9EC4', '#7CC8FF'];
+const DEFAULT_COLORS = ['#FFD27A', '#FFE9B8', '#36E6A0', '#FF9EC4', '#7CC8FF']; // theme-exempt: палитра конфетти — праздничная иллюстрация
 const HARD_CAP = 120;
 
 // Детерминированный псевдослучай (паттерн DialogVictoryCelebration) —

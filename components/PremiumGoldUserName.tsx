@@ -11,22 +11,22 @@ type Props = {
 };
 
 const GOLD_STOPS: { offset: string; color: string }[] = [
-  { offset: '0', color: '#7A6220' },
-  { offset: '0.18', color: '#B8941F' },
-  { offset: '0.38', color: '#E8C547' },
-  { offset: '0.5', color: '#FFF4C8' },
-  { offset: '0.62', color: '#E8C547' },
-  { offset: '0.82', color: '#9A7B1A' },
-  { offset: '1', color: '#6B5414' },
+  { offset: '0', color: '#7A6220' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.18', color: '#B8941F' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.38', color: '#E8C547' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.5', color: '#FFF4C8' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.62', color: '#E8C547' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.82', color: '#9A7B1A' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '1', color: '#6B5414' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
 ];
 
 const GOLD_STOPS_SKETCH: { offset: string; color: string }[] = [
-  { offset: '0', color: '#4B3A14' },
-  { offset: '0.2', color: '#7A5C1A' },
-  { offset: '0.4', color: '#B18422' },
-  { offset: '0.55', color: '#E0AF36' },
-  { offset: '0.72', color: '#9B741F' },
-  { offset: '1', color: '#5A4517' },
+  { offset: '0', color: '#4B3A14' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.2', color: '#7A5C1A' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.4', color: '#B18422' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.55', color: '#E0AF36' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '0.72', color: '#9B741F' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
+  { offset: '1', color: '#5A4517' }, // theme-exempt: золото статуса Plus — бренд-металл, не цвет темы
 ];
 
 /** Имя на главной для Premium: золотой градиент по буквам (через SVG, без @react-native-masked-view).

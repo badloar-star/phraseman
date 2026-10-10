@@ -100,9 +100,10 @@ export function deriveLiquidGlassPaletteRoles(t: RoleSource) {
   const out: Record<string, string> = {};
 
   // ── Семантика ──
-  const semantic: ReadonlyArray<readonly [string, number]> = [['good', 155], ['bad', 25], ['warn', 80], ['info', 240]];
-  for (const [name, hue] of semantic) {
-    const c = toContrast(hue, 0.13, dark ? 0.80 : 0.52, dark ? 1 : -1, 4.5, surfaces);
+  // зачем: в тёмной «Спокойно» good/bad ≈ эталон Learning V2 (#6FD08C / #F2766B), чтобы вид экранов не менялся; в светлой — тоном темнее.
+  const semantic: ReadonlyArray<readonly [string, number, number, number]> = [['good', 150, 0.13, 0.77], ['bad', 25, 0.15, 0.70], ['warn', 88, 0.14, 0.84], ['info', 240, 0.11, 0.78]];
+  for (const [name, hue, sc, darkL] of semantic) {
+    const c = toContrast(hue, sc, dark ? darkL : 0.52, dark ? 1 : -1, 4.5, surfaces);
     out[name] = c;
     out[`${name}Soft`] = withAlpha(c, dark ? 0.16 : 0.14);
   }

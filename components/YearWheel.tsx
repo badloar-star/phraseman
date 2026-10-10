@@ -34,13 +34,13 @@ export default function YearWheel({
   years,
   value,
   onChange,
-  surfaceColor = '#0f1216',
-  frameBorderColor = 'rgba(255,255,255,0.12)',
-  selectionBorderColor = 'rgba(255,255,255,0.28)',
-  selectionBackgroundColor = 'rgba(255,255,255,0.06)',
-  textColor = '#5c636b',
-  activeTextColor = '#fff',
-  fadeColor = '#0f1216',
+  surfaceColor = '#0f1216', // theme-exempt: иллюстрация колеса года
+  frameBorderColor = 'rgba(255,255,255,0.12)', // theme-exempt: иллюстрация колеса года
+  selectionBorderColor = 'rgba(255,255,255,0.28)', // theme-exempt: иллюстрация колеса года
+  selectionBackgroundColor = 'rgba(255,255,255,0.06)', // theme-exempt: иллюстрация колеса года
+  textColor = '#5c636b', // theme-exempt: иллюстрация колеса года
+  activeTextColor = '#fff', // theme-exempt: иллюстрация колеса года
+  fadeColor = '#0f1216', // theme-exempt: иллюстрация колеса года
 }: YearWheelProps) {
   const scrollRef = useRef<ScrollView>(null);
   const initialIndex = Math.max(0, years.indexOf(value));

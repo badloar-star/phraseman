@@ -32,7 +32,7 @@ const SHEEN = gradientPoints(125);
 export function CoinImage({ rank, size }: { rank: number | null; size: number }) {
   if (rank === null) {
     // Ранг ещё неизвестен — нейтральный диск, а не выдуманная медная монета.
-    return <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: 'rgba(255,255,255,0.08)' }} />;
+    return <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: 'rgba(255,255,255,0.08)' }} />; // theme-exempt: иллюстрация монеты на карточке профиля
   }
   const row = coinRankRowForDisplay(rank);
   return (
@@ -56,7 +56,7 @@ function Sheen({ rank, size, animate }: { rank: number; size: number; animate: b
     >
       <Animated.View style={[StyleSheet.absoluteFill, style]}>
         <LinearGradient
-          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.34)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0)']}
+          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.34)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0)']} // theme-exempt: иллюстрация монеты на карточке профиля
           locations={[0, 0.32, 0.48, 0.62, 1]}
           start={SHEEN.start}
           end={SHEEN.end}
@@ -75,18 +75,18 @@ export function GoldRing({ size }: { size: number }) {
       pointerEvents="none"
       style={{
         position: 'absolute', left: -7, top: -7, width: outer, height: outer, borderRadius: outer / 2,
-        shadowColor: '#000', shadowOpacity: 0.7, shadowRadius: 24, shadowOffset: { width: 0, height: 24 },
+        shadowColor: '#000', shadowOpacity: 0.7, shadowRadius: 24, shadowOffset: { width: 0, height: 24 }, // theme-exempt: иллюстрация монеты на карточке профиля
         elevation: 12,
       }}
     >
       <LinearGradient
-        colors={['#FFF1C9', '#B58A3E', '#F6DC9C', '#7A5A26', '#E9C983']}
+        colors={['#FFF1C9', '#B58A3E', '#F6DC9C', '#7A5A26', '#E9C983']} // theme-exempt: иллюстрация монеты на карточке профиля
         locations={[0, 0.35, 0.55, 0.8, 1]}
         start={gold.start}
         end={gold.end}
         style={{ width: outer, height: outer, borderRadius: outer / 2 }}
       />
-      <View style={{ position: 'absolute', left: 4, top: 4, width: outer - 8, height: outer - 8, borderRadius: (outer - 8) / 2, backgroundColor: '#0A0907' }} />
+      <View style={{ position: 'absolute', left: 4, top: 4, width: outer - 8, height: outer - 8, borderRadius: (outer - 8) / 2, backgroundColor: '#0A0907' }} />{/* theme-exempt: иллюстрация монеты на карточке профиля */}
     </View>
   );
 }
@@ -97,7 +97,7 @@ function ProfileCardCoin({ look, rank, size, animate, testID }: Props) {
   const shadow = look === 'obs'
     ? null
     : Platform.select({
-        ios: { shadowColor: '#000', shadowOpacity: 0.6, shadowRadius: 17, shadowOffset: { width: 0, height: 18 } },
+        ios: { shadowColor: '#000', shadowOpacity: 0.6, shadowRadius: 17, shadowOffset: { width: 0, height: 18 } }, // theme-exempt: иллюстрация монеты на карточке профиля
         default: null,
       });
   return (
@@ -109,7 +109,7 @@ function ProfileCardCoin({ look, rank, size, animate, testID }: Props) {
           pointerEvents="none"
           style={{
             position: 'absolute', left: size * 0.14, right: size * 0.14, top: size * 0.62, height: size * 0.34,
-            borderRadius: size, backgroundColor: 'rgba(0,0,0,0.35)', transform: [{ scaleY: 0.6 }],
+            borderRadius: size, backgroundColor: 'rgba(0,0,0,0.35)', transform: [{ scaleY: 0.6 }], // theme-exempt: иллюстрация монеты на карточке профиля
           }}
         />
       ) : null}

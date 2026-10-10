@@ -53,26 +53,26 @@ type ScreenBgLayer = {
 };
 
 const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
-  dark: { bloomA: '#2F8A42', bloomB: '#47C870' },
-  gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
-  olive: { bloomA: '#1A1E12', bloomB: '#030303' },
+  dark: { bloomA: '#2F8A42', bloomB: '#47C870' }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+  gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+  olive: { bloomA: '#1A1E12', bloomB: '#030303' }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   // «Бизнес»: строгая моно-тема — нейтральный серый блум без цвета.
   // «Бизнес» (плоский IG-режим): блум невидим — совпадает с чёрным фоном.
   // «Бизнес светлый»: тёплый бумажный блум без цвета.
-  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#DCE1D8' },
+  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#DCE1D8' }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
   volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
-  indigo: { bloomA: '#C8C3FF', bloomB: '#273468' },
+  indigo: { bloomA: '#C8C3FF', bloomB: '#273468' }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
 };
 
 const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   dark: [
-    { x: W * 0.85, y: 80,       r: 200, color: '#47C870', opacity: 0.15 },
-    { x: W * 0.1,  y: H * 0.42, r: 150, color: '#2A7A4A', opacity: 0.13 },
-    { x: W * 0.6,  y: H * 0.78, r: 130, color: '#1A5C35', opacity: 0.10 },
-    { x: W * 0.25, y: H * 0.22, r:  70, color: '#58CC89', opacity: 0.07 },
+    { x: W * 0.85, y: 80,       r: 200, color: '#47C870', opacity: 0.15 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.1,  y: H * 0.42, r: 150, color: '#2A7A4A', opacity: 0.13 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.6,  y: H * 0.78, r: 130, color: '#1A5C35', opacity: 0.10 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.25, y: H * 0.22, r:  70, color: '#58CC89', opacity: 0.07 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   ],
   gold: [
     { x: W * 0.82, y: 70,       r: 165, color: GOLD_RICH.champagne, opacity: 0.032 },
@@ -90,25 +90,25 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   volt: [],
   // «Индиго»: мягкие лавандовые орбы на сумрачном индиго.
   indigo: [
-    { x: W * 0.82, y: 84,       r: 205, color: '#9A95C2', opacity: 0.14 },
-    { x: W * 0.08, y: H * 0.46, r: 160, color: '#3D3A72', opacity: 0.13 },
-    { x: W * 0.58, y: H * 0.80, r: 140, color: '#273468', opacity: 0.12 },
-    { x: W * 0.28, y: H * 0.20, r:  80, color: '#C8C3FF', opacity: 0.07 },
+    { x: W * 0.82, y: 84,       r: 205, color: '#9A95C2', opacity: 0.14 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.08, y: H * 0.46, r: 160, color: '#3D3A72', opacity: 0.13 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.58, y: H * 0.80, r: 140, color: '#273468', opacity: 0.12 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.28, y: H * 0.20, r:  80, color: '#C8C3FF', opacity: 0.07 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   ],
 };
 
 const LEGACY_UNSUPPORTED_ORBS: Record<'ocean' | 'sakura', OrbSpec[]> = {
   ocean: [
-    { x: W * 0.8,  y: 80,       r: 200, color: '#00B8FF', opacity: 0.2 },
-    { x: W * 0.0,  y: H * 0.45, r: 170, color: '#0060A0', opacity: 0.16 },
-    { x: W * 0.55, y: H * 0.78, r: 140, color: '#20D0FF', opacity: 0.12 },
-    { x: W * 0.32, y: H * 0.2,  r:  85, color: '#A8E8FF', opacity: 0.1 },
+    { x: W * 0.8,  y: 80,       r: 200, color: '#00B8FF', opacity: 0.2 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.0,  y: H * 0.45, r: 170, color: '#0060A0', opacity: 0.16 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.55, y: H * 0.78, r: 140, color: '#20D0FF', opacity: 0.12 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.32, y: H * 0.2,  r:  85, color: '#A8E8FF', opacity: 0.1 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   ],
   sakura: [
-    { x: W * 0.8,  y: 80,       r: 200, color: '#FF1A6A', opacity: 0.18 },
-    { x: W * 0.05, y: H * 0.40, r: 160, color: '#C01060', opacity: 0.14 },
-    { x: W * 0.55, y: H * 0.78, r: 150, color: '#FF4080', opacity: 0.10 },
-    { x: W * 0.3,  y: H * 0.18, r:  90, color: '#F8B8D0', opacity: 0.12 },
+    { x: W * 0.8,  y: 80,       r: 200, color: '#FF1A6A', opacity: 0.18 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.05, y: H * 0.40, r: 160, color: '#C01060', opacity: 0.14 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.55, y: H * 0.78, r: 150, color: '#FF4080', opacity: 0.10 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+    { x: W * 0.3,  y: H * 0.18, r:  90, color: '#F8B8D0', opacity: 0.12 }, // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   ],
 };
 
@@ -333,14 +333,14 @@ function GoldFabricFlow() {
     return (
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
         <LinearGradient
-          colors={['rgba(246,227,161,0.040)', 'rgba(184,144,58,0.018)', 'rgba(0,0,0,0)']}
+          colors={['rgba(246,227,161,0.040)', 'rgba(184,144,58,0.018)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
           locations={[0, 0.36, 1]}
           start={{ x: 0.12, y: 0 }}
           end={{ x: 0.88, y: 1 }}
           style={StyleSheet.absoluteFill}
         />
         <LinearGradient
-          colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.38)']}
+          colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.38)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
           locations={[0, 0.46, 1]}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
@@ -353,7 +353,7 @@ function GoldFabricFlow() {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <LinearGradient
-        colors={['rgba(246,227,161,0.040)', 'rgba(184,144,58,0.018)', 'rgba(0,0,0,0)']}
+        colors={['rgba(246,227,161,0.040)', 'rgba(184,144,58,0.018)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
         locations={[0, 0.36, 1]}
         start={{ x: 0.12, y: 0 }}
         end={{ x: 0.88, y: 1 }}
@@ -361,7 +361,7 @@ function GoldFabricFlow() {
       />
       <Animated.View style={[styles.fabricBand, styles.fabricBandMain, { opacity: mainOpacity, transform: [{ translateX: mainX }, { translateY: mainY }, { rotate: '-18deg' }, { scaleY: mainScaleY }] }]}>
         <LinearGradient
-          colors={['rgba(0,0,0,0)', 'rgba(246,227,161,0.180)', 'rgba(184,144,58,0.065)', 'rgba(0,0,0,0)']}
+          colors={['rgba(0,0,0,0)', 'rgba(246,227,161,0.180)', 'rgba(184,144,58,0.065)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
           locations={[0, 0.38, 0.58, 1]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
@@ -370,7 +370,7 @@ function GoldFabricFlow() {
       </Animated.View>
       <Animated.View style={[styles.fabricBand, styles.fabricBandCross, { opacity: crossOpacity, transform: [{ translateX: crossX }, { translateY: crossY }, { rotate: '17deg' }, { scaleY: crossScaleY }] }]}>
         <LinearGradient
-          colors={['rgba(0,0,0,0)', 'rgba(92,66,22,0.120)', 'rgba(246,227,161,0.145)', 'rgba(0,0,0,0)']}
+          colors={['rgba(0,0,0,0)', 'rgba(92,66,22,0.120)', 'rgba(246,227,161,0.145)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
           locations={[0, 0.34, 0.58, 1]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
@@ -382,8 +382,8 @@ function GoldFabricFlow() {
           <LinearGradient
             key={top}
             colors={i % 2 === 0
-              ? ['rgba(0,0,0,0)', 'rgba(246,227,161,0.150)', 'rgba(0,0,0,0)']
-              : ['rgba(0,0,0,0)', 'rgba(110,75,20,0.130)', 'rgba(0,0,0,0)']}
+              ? ['rgba(0,0,0,0)', 'rgba(246,227,161,0.150)', 'rgba(0,0,0,0)'] // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+              : ['rgba(0,0,0,0)', 'rgba(110,75,20,0.130)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={[styles.fabricThread, { top: H * top }]}
@@ -392,7 +392,7 @@ function GoldFabricFlow() {
       </Animated.View>
       <Animated.View style={[styles.fabricSweep, { opacity: sweepOpacity, transform: [{ translateX: sweepX }, { rotate: '-22deg' }] }]}>
         <LinearGradient
-          colors={['rgba(0,0,0,0)', 'rgba(246,227,161,0.200)', 'rgba(255,245,202,0.130)', 'rgba(184,144,58,0.040)', 'rgba(0,0,0,0)']}
+          colors={['rgba(0,0,0,0)', 'rgba(246,227,161,0.200)', 'rgba(255,245,202,0.130)', 'rgba(184,144,58,0.040)', 'rgba(0,0,0,0)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
           locations={[0, 0.36, 0.48, 0.62, 1]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
@@ -400,7 +400,7 @@ function GoldFabricFlow() {
         />
       </Animated.View>
       <LinearGradient
-        colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.38)']}
+        colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.04)', 'rgba(0,0,0,0.38)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
         locations={[0, 0.46, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
@@ -537,9 +537,9 @@ function CinemaBloom({ mode, reduceMotion }: { mode: ThemeMode; reduceMotion: bo
             <Stop offset="100%" stopColor={p.bloomA} stopOpacity={0} />
           </SvgRadialGradient>
           <SvgRadialGradient id={`cinema-core-${mode}`} cx="50%" cy="106%" rx="40%" ry="26%">
-            <Stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.46} />
-            <Stop offset="55%" stopColor="#FFFFFF" stopOpacity={0.16} />
-            <Stop offset="100%" stopColor="#FFFFFF" stopOpacity={0} />
+            <Stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.46} />{/* theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель) */}
+            <Stop offset="55%" stopColor="#FFFFFF" stopOpacity={0.16} />{/* theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель) */}
+            <Stop offset="100%" stopColor="#FFFFFF" stopOpacity={0} />{/* theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель) */}
           </SvgRadialGradient>
           <SvgRadialGradient id={`cinema-top-${mode}`} cx="50%" cy="-14%" rx="84%" ry="46%">
             <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.13} />
@@ -618,8 +618,8 @@ function ScreenGradientBackgroundLayer({
         {!effectsOnly ? (
           <LinearGradient
             colors={layer.isGold
-              ? ['rgba(0,0,0,0.26)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.54)']
-                : ['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']}
+              ? ['rgba(0,0,0,0.26)', 'rgba(0,0,0,0.18)', 'rgba(0,0,0,0.54)'] // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
+                : ['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']} // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
             start={{ x: 0.5, y: 0.5 }}
             end={{ x: 0.5, y: 1 }}
             style={StyleSheet.absoluteFill}
@@ -806,6 +806,6 @@ const styles = StyleSheet.create({
   },
   cinemaParticle: {
     position: 'absolute',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFFFFF', // theme-exempt: определение градиентов фона по режиму темы (сами палитры тем, не потребитель)
   },
 });

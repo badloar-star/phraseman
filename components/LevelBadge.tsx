@@ -159,9 +159,9 @@ function LevelBadge({
       >
         <Defs>
           <LinearGradient id={numberGradientId} x1="0" y1="0" x2="0" y2={badgeHeight} gradientUnits="userSpaceOnUse">
-            <Stop offset="0" stopColor="#FFFFFF" />
-            <Stop offset="0.48" stopColor="#F7FDFF" />
-            <Stop offset="1" stopColor="#C7F6FF" />
+            <Stop offset="0" stopColor="#FFFFFF" />{/* theme-exempt: металлы значков уровней — бренд-материал */}
+            <Stop offset="0.48" stopColor="#F7FDFF" />{/* theme-exempt: металлы значков уровней — бренд-материал */}
+            <Stop offset="1" stopColor="#C7F6FF" />{/* theme-exempt: металлы значков уровней — бренд-материал */}
           </LinearGradient>
         </Defs>
         <SvgText
@@ -170,8 +170,8 @@ function LevelBadge({
           textAnchor="middle"
           fontSize={numberFontSize}
           fontWeight="900"
-          fill="rgba(255, 255, 255, 0.92)"
-          stroke="rgba(36, 151, 230, 0.66)"
+          fill="rgba(255, 255, 255, 0.92)" // theme-exempt: металлы значков уровней — бренд-материал
+          stroke="rgba(36, 151, 230, 0.66)" // theme-exempt: металлы значков уровней — бренд-материал
           strokeWidth={size * 0.05}
         >
           {clamped}
@@ -182,8 +182,8 @@ function LevelBadge({
           textAnchor="middle"
           fontSize={numberFontSize}
           fontWeight="900"
-          fill="#FFFFFF"
-          stroke="rgba(255, 255, 255, 0.22)"
+          fill="#FFFFFF" // theme-exempt: металлы значков уровней — бренд-материал
+          stroke="rgba(255, 255, 255, 0.22)" // theme-exempt: металлы значков уровней — бренд-материал
           strokeWidth={size * 0.012}
         >
           {clamped}

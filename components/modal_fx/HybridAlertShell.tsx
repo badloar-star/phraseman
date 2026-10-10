@@ -64,9 +64,9 @@ function HybridAlertShell({
   visible,
   onRequestClose,
   children,
-  shadowColor = 'rgba(0,0,0,0.5)',
+  shadowColor = 'rgba(0,0,0,0.5)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   testID,
-  backdropColor = 'rgba(0,0,0,0.60)',
+  backdropColor = 'rgba(0,0,0,0.60)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   dismissible = true,
   fillAvailableHeight = false,
   scrollContent = true,

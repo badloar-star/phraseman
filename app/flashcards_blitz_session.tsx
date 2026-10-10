@@ -105,20 +105,20 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050). */
-const ACCENT = '#FF8A3D';
-const OK = '#40C080';
-const BAD = '#E05050';
+const ACCENT = '#FF8A3D'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
+const OK = '#40C080'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
+const BAD = '#E05050'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
 /**
  * зачем (PM-129, practice.html `.opt.ok/.opt.no`): ответ отмечается тонкой цветной обводкой и
  * подкраской 12 % поверх тёмного стекла (исключение 2.0 владельца 24.09 разрешает 1px), текст
  * остаётся основным белым — контраст тот же, что у обычного варианта.
  */
 // зачем (владелец 05.10, решение 4: главный макет Блица — cards-section, cards-glass.css `.opt.ok/.opt.no`): подкраска ответа 14 %.
-const ANSWER_OK_SURFACE = 'rgba(111,208,140,0.14)';
-const ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.14)';
+const ANSWER_OK_SURFACE = 'rgba(111,208,140,0.14)'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
+const ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.14)'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
 /** cards-section `.opt.fade`: после ответа остальные варианты гаснут до .38. */
 const ANSWER_FADE_OPACITY = 0.38;
-const ANSWER_OK_EDGE = '#6FD08C';
+const ANSWER_OK_EDGE = '#6FD08C'; // theme-exempt: семантика верно/неверно и акцент режима Блиц (токены good/bad — у «Тем»)
 const ANSWER_BAD_EDGE = BAD;
 /** Последние секунды — таймер краснеет, добавляя азарта. */
 const DANGER_SEC = 10;

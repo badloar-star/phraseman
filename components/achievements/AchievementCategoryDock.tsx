@@ -275,7 +275,7 @@ export default function AchievementCategoryDock<T extends string>({
 
 const styles = StyleSheet.create({
   scrim: {
-    backgroundColor: '#000000',
+    backgroundColor: '#000000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   menuDock: {
     position: 'absolute',

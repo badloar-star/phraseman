@@ -27,6 +27,8 @@ import { useTheme } from '../ThemeContext';
 import fk, { type MilestoneKind } from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
 
+const EXEMPT_COLOR_1 = '#000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+
 export interface VictoryStat {
   label: string;
   value: string;
@@ -112,7 +114,7 @@ export function VictoryBurst({
     <Pressable style={styles.overlay} onPress={dismiss} accessibilityRole="button">
       <Animated.View
         pointerEvents="none"
-        style={[StyleSheet.absoluteFill, { backgroundColor: '#000' }, backdropStyle]}
+        style={[StyleSheet.absoluteFill, { backgroundColor: EXEMPT_COLOR_1 }, backdropStyle]}
       />
       <ConfettiBurst count={confettiCount} durationMs={1100} seed={7} />
       <Animated.View

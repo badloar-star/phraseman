@@ -4,6 +4,8 @@ import { Image } from 'expo-image';
 import { getAvatarByIndex } from '../constants/avatars';
 import { coinRankRowForDisplay, isValidCoinRank } from '../app/coin_rank_table_v1';
 
+const EXEMPT_COLOR_1 = '#273449'; // theme-exempt: заглушка аватара и подложка — тёмная плашка под изображением
+
 interface Props {
   avatar?: string | null;
   // зачем: Q5 (координатор 01.10) — «Студия персонажа» (Avatar DNA) и портрет V2
@@ -48,7 +50,7 @@ function AvatarImageWithFallback({
   return (
     <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
       {!loaded ? (
-        <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, borderRadius: size / 2, backgroundColor: '#273449' }} />
+        <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, width: size, height: size, borderRadius: size / 2, backgroundColor: EXEMPT_COLOR_1 }} />
       ) : null}
       <Image
         source={source}
@@ -89,7 +91,7 @@ function AvatarView({ avatar, size = 44, style, coinRank }: Props) {
 
   const content: React.ReactNode = avatarImage
     ? <AvatarImageWithFallback source={avatarImage} size={size} />
-    : <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: '#273449' }} />;
+    : <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: '#273449' }} />; // theme-exempt: заглушка аватара и подложка — тёмная плашка под изображением
 
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>

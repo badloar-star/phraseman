@@ -3,6 +3,8 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 
+const EXEMPT_COLOR_1 = '#34d399'; // theme-exempt: экран-заглушка премиума: собственная тёмная подложка и зелёный индикатор
+
 type RouteParams = Record<string, string | string[]>;
 
 export default function RetiredPremiumModalV2Redirect() {
@@ -27,7 +29,7 @@ export default function RetiredPremiumModalV2Redirect() {
 
   return (
     <View style={styles.root}>
-      <ActivityIndicator size="large" color={'#34d399'} />
+      <ActivityIndicator size="large" color={EXEMPT_COLOR_1} />
     </View>
   );
 }
@@ -37,6 +39,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#090d11',
+    backgroundColor: '#090d11', // theme-exempt: экран-заглушка премиума: собственная тёмная подложка и зелёный индикатор
   },
 });

@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 16,
-    backgroundColor: 'rgba(0,0,0,0.58)',
+    backgroundColor: 'rgba(0,0,0,0.58)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   panel: {
     width: '100%',

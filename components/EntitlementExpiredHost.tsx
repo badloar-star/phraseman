@@ -31,6 +31,8 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
+
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Kind = 'premium' | 'vip';
@@ -315,7 +317,7 @@ function EntitlementExpiredHost() {
       onClose={markShownAndClose}
       closeLabel={tx.ghost}
       material="liquid-glass-opaque"
-      glowColor="rgba(0,0,0,0.5)"
+      glowColor={EXEMPT_COLOR_1}
       testID="entitlement-expired-sheet"
     >
       <ScrollView

@@ -17,6 +17,8 @@ import ResponsiveModalScrollView from '../components/ResponsiveModalScrollView';
 import { useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
+const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
 interface ReferralAccessEndedModalProps {
@@ -154,7 +156,7 @@ export function ReferralAccessEndedModal({
       statusBarTranslucent
     >
       {/* Тёмный оверлей */}
-      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}>
+      <ResponsiveModalScrollView style={{ backgroundColor: EXEMPT_COLOR_1 }}>
         {/* Карточка `.om-modal`: непрозрачная основа темы, радиус 26, поля 21 */}
         <View
           accessibilityViewIsModal

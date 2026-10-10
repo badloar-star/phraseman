@@ -67,6 +67,6 @@ export default function MotionModal({ visible, onRequestClose, children, panelSt
 }
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.42)' },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.42)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   panel: { flex: 1 },
 });

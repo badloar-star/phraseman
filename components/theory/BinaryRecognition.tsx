@@ -89,7 +89,7 @@ export default function BinaryRecognition({ data, lang, theme, onSolved, initial
   };
 
   return (
-    <View style={[styles.wrap, { borderColor: 'rgba(255,255,255,0.10)' }]}>
+    <View style={[styles.wrap, { borderColor: theme.chipBgFaint }]}>
       <Text style={[styles.q, { color: theme.textMuted }]}>{introText(data.question, lang)}</Text>
       {renderBtn('A', data.optionA)}
       {renderBtn('B', data.optionB)}

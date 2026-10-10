@@ -77,7 +77,7 @@ export function FeedbackPlashka({
         {
           backgroundColor: t.bgCard,
           borderColor: accent,
-          shadowColor: '#000',
+          shadowColor: '#000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
         },
         animatedStyle,
         style,

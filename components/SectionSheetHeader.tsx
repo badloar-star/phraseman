@@ -143,7 +143,7 @@ function closeBtnStyle(t: ReturnType<typeof useTheme>['theme']) {
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
     backgroundColor: t.bgSurface,
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
     shadowOpacity: 0.24,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },

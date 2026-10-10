@@ -53,7 +53,7 @@ function CustomSwitch({
   // Вкл: зелёный
   const trackColor = progress.interpolate({
     inputRange:  [0, 1],
-    outputRange: [t.bgSurface, '#34C759'],
+    outputRange: [t.bgSurface, '#34C759'], // theme-exempt: тень и системный зелёный включённого переключателя — постоянные
   });
 
   return (
@@ -100,7 +100,7 @@ const s = StyleSheet.create({
     height:       D,
     borderRadius: D / 2,
     // Note: backgroundColor set dynamically in component based on theme
-    shadowColor:     '#000',
+    shadowColor:     '#000', // theme-exempt: тень и системный зелёный включённого переключателя — постоянные
     shadowOpacity:   0.25,
     shadowRadius:    3,
     shadowOffset:    { width: 0, height: 2 },

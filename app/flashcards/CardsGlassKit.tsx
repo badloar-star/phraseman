@@ -22,7 +22,7 @@ import { fcHaptic } from './SoundService';
 export type CardsGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Мягкий красный из макета для разрушительных действий (удалить/очистить). */
-export const CARDS_GLASS_DANGER = '#FF8C82';
+export const CARDS_GLASS_DANGER = '#FF8C82'; // theme-exempt: красный «опасно» кита Карточек (токен bad — у «Тем»)
 
 /** Токены стекла активной темы + шкала шрифтов. */
 export function useCardsGlass() {

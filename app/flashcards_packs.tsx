@@ -108,7 +108,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const g = liquidGlassTokens(liquidGlassThemeId);
   /** В этом проекте градиентных тем (`ocean` / `sakura`) нет — шапка всегда на обычной поверхности. */
   const onColoredGradient = false;
-  const gradHeaderInk = 'rgba(255,250,252,0.98)';
+  const gradHeaderInk = 'rgba(255,250,252,0.98)'; // theme-exempt: светлый текст по цветной шапке набора
   const { lang } = useLang();
   // Изоляция целей обучения: каталог читает наборы и кэш текущей цели.
   const { studyTarget } = useStudyTarget();

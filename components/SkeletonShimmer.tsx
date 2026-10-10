@@ -20,6 +20,8 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import LinearGradient from './SafeLinearGradient';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 interface SkeletonBlockProps {
   /** Ширина блока. Число (px) или строка-процент ('60%'). */
@@ -52,10 +54,16 @@ function SkeletonBlockBase({
   height,
   borderRadius,
   durationMs = 1400,
-  baseColor = 'rgba(255,255,255,0.08)',
-  highlightColor = 'rgba(255,255,255,0.20)',
+  baseColor: baseColorProp,
+  highlightColor: highlightColorProp,
   style,
 }: SkeletonBlockProps) {
+  // зачем (10.10, замечание владельца о цвете не от темы): белая заглушка на светлой теме не видна — на светлой берём тон из токенов,
+  // на тёмных значения прежние (пиксель в пиксель).
+  const { liquidGlassThemeId } = useTheme();
+  const skeletonGlass = liquidGlassTokens(liquidGlassThemeId);
+  const baseColor = baseColorProp ?? (skeletonGlass.isLight ? skeletonGlass.hairlineSoft : 'rgba(255,255,255,0.08)'); // theme-exempt: тёмные темы — прежний вид
+  const highlightColor = highlightColorProp ?? (skeletonGlass.isLight ? skeletonGlass.glassEdge : 'rgba(255,255,255,0.20)'); // theme-exempt: тёмные темы — прежний вид
   const sweep = useSharedValue(0);
   const [measuredW, setMeasuredW] = useState(0);
   const isFocused = useIsScreenFocused();

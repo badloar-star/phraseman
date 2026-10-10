@@ -34,7 +34,7 @@ function GlassInlineAlert({ visible, title, message, okLabel = 'OK', onClose }: 
 }
 
 const styles = StyleSheet.create({
-  scrim: { alignItems: 'center', justifyContent: 'center', padding: 24, zIndex: 20, backgroundColor: 'rgba(0,0,0,0.62)' },
+  scrim: { alignItems: 'center', justifyContent: 'center', padding: 24, zIndex: 20, backgroundColor: 'rgba(0,0,0,0.62)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   wrap: { width: '100%', maxWidth: 360 },
 });
 

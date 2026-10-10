@@ -20,6 +20,8 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useRewardImpactHybrid } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+
 interface ReferralFriendRewardHybridProps {
   visible: boolean;
   title: string;
@@ -47,7 +49,7 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
         <View style={styles.stage} pointerEvents="box-none">
           <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: glass.selected }, impact.styles.bloom]} />
 
-          <Animated.View style={[styles.card, { backgroundColor: glass.opaqueSheet, shadowColor: '#000000' }, impact.styles.card]} pointerEvents="box-none">
+          <Animated.View style={[styles.card, { backgroundColor: glass.opaqueSheet, shadowColor: EXEMPT_COLOR_1 }, impact.styles.card]} pointerEvents="box-none">
             <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={[styles.heroFrame, { backgroundColor: glass.selected }]}>
               <RewardImpactRings
@@ -90,7 +92,7 @@ export default memo(ReferralFriendRewardHybrid);
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  scrim: { backgroundColor: 'rgba(0,0,0,0.68)' },
+  scrim: { backgroundColor: 'rgba(0,0,0,0.68)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22, paddingVertical: 24 },
   scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
   scrollContent: { alignItems: 'center' },

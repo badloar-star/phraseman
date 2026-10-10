@@ -187,7 +187,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end' },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   sheet: {
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,

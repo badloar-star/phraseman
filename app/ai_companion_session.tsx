@@ -135,7 +135,7 @@ function AiCompanionPlusGate({ children }: { children: React.ReactNode }) {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Открыть Plus', uk: 'Відкрити Plus', en: 'Open Plus', es: 'Abrir Plus',
                 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus',
@@ -368,7 +368,7 @@ function AiCompanionSession() {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>

@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 0.92,
   },
-  overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'flex-end' },
+  overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'flex-end' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   sheet: {
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,

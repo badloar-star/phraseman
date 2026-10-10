@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.56)',
+    backgroundColor: 'rgba(0,0,0,0.56)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   sheet: {
     width: '100%',

@@ -28,8 +28,8 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-const DEFAULT_COLOR = '#22C55E';
-const DEFAULT_EDGE = '#15803D';
+const DEFAULT_COLOR = '#22C55E'; // theme-exempt: зелёная кнопка всплывающего действия — бренд-палитра по умолчанию
+const DEFAULT_EDGE = '#15803D'; // theme-exempt: зелёная кнопка всплывающего действия — бренд-палитра по умолчанию
 
 /**
  * Всплывающая снизу CTA-кнопка для упражнений (НЕ в футере).
@@ -51,7 +51,7 @@ function PopUpActionButton({
   disabled,
   color = DEFAULT_COLOR,
   edgeColor = DEFAULT_EDGE,
-  textColor = '#07110A',
+  textColor = '#07110A', // theme-exempt: зелёная кнопка всплывающего действия — бренд-палитра по умолчанию
   testID,
   style,
 }: Props) {

@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minWidth: 112,
     paddingHorizontal: 24,
-    shadowColor: '#000000',
+    shadowColor: '#000000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.14,
     shadowRadius: 20,

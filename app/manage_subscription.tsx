@@ -1089,7 +1089,7 @@ const S = StyleSheet.create({
   cancelBtn: { minHeight: 48, borderRadius: 16, marginTop: 10, paddingVertical: 10, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   cancelText: { fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   sheetOverlay: { ...StyleSheet.absoluteFillObject },
-  sheetBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.68)' },
+  sheetBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.68)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   sheetAvoiding: { flex: 1 },
   sheetViewport: { flex: 1, minHeight: 0, justifyContent: 'flex-end' },
   sheetEntrance: { width: '100%', alignSelf: 'center', flexShrink: 1 },

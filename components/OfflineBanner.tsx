@@ -160,10 +160,11 @@ function OfflineBannerHybridCard({
 // Вход как `@keyframes bin` (translateY −70→0, 480 мс, cubic-bezier(.2,1,.3,1)), 2 с на экране, уход за LUM.exitMs.
 const BACK_ONLINE_ENTER_MS = 480;
 const BACK_ONLINE_HOLD_MS = 2000;
-const BACK_ONLINE_BG = '#F2F1F6';
-const BACK_ONLINE_INK = '#0B0C0E';
 
 function BackOnlineBanner({ text, top, onDone }: { text: string; top: number; onDone: () => void }) {
+  // зачем (10.10, цвет не от темы): капсула «Снова в сети» — кнопочные цвета выбранной темы (cta/ctaInk); у «Спокойно» это ровно #F2F1F6 / #0B0C0E макета SYS-02.
+  const { liquidGlassThemeId } = useTheme();
+  const onlineGlass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const y = useSharedValue(reduceMotion ? 0 : -70);
   const opacity = useSharedValue(1);
@@ -191,10 +192,10 @@ function BackOnlineBanner({ text, top, onDone }: { text: string; top: number; on
   return (
     <View pointerEvents="none" style={[styles.hybridAnchor, { top }]}>
       <Reanimated.View style={[styles.hybridCard, style]} accessibilityLiveRegion="polite" testID="back-online-banner">
-        <View style={[styles.surface, { backgroundColor: BACK_ONLINE_BG }]}>
+        <View style={[styles.surface, { backgroundColor: onlineGlass.cta }]}>
           <View style={styles.surfaceRow}>
-            <Ionicons name="checkmark" size={20} color={BACK_ONLINE_INK} />
-            <Text style={[styles.surfaceText, { color: BACK_ONLINE_INK }]}>{text}</Text>
+            <Ionicons name="checkmark" size={20} color={onlineGlass.ctaInk} />
+            <Text style={[styles.surfaceText, { color: onlineGlass.ctaInk }]}>{text}</Text>
           </View>
         </View>
       </Reanimated.View>

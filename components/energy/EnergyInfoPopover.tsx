@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
   viewport: { flex: 1 },
   backdrop: { ...StyleSheet.absoluteFillObject },
   positioner: { position: 'absolute' },
-  cardShadow: { borderRadius: 17, shadowColor: '#000', shadowOpacity: 0.48, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 20 },
+  cardShadow: { borderRadius: 17, shadowColor: '#000', shadowOpacity: 0.48, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 20 }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   scrollContent: { flexGrow: 0 },
   card: { borderRadius: 17, paddingVertical: 13, paddingHorizontal: 15, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden' },
   arrowOuter: { position: 'absolute', width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent' },

@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     width: '72%',
     height: StyleSheet.hairlineWidth,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.2)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   // зачем (overlay.css `.ov-title` 25/31 760, `.ov-body` 15/22 → 16 по D145, кнопка на 20 ниже текста).
   title: {

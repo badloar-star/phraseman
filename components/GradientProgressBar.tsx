@@ -10,6 +10,8 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
 import { LUM } from '../constants/motionHybrid';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 /**
  * Единая красивая полоса прогресса для режимов заданий/отработки/вызовов.
@@ -59,9 +61,13 @@ export function GradientProgressBar({
   accent,
   accentBright,
   height = 8,
-  trackColor = 'rgba(255,255,255,0.08)',
+  trackColor: trackColorProp,
   style,
 }: GradientProgressBarProps) {
+  // зачем (10.10): дорожка белая 8 % на светлой теме не видна — на светлой берём тон токена, на тёмных вид прежний.
+  const { liquidGlassThemeId } = useTheme();
+  const barGlass = liquidGlassTokens(liquidGlassThemeId);
+  const trackColor = trackColorProp ?? (barGlass.isLight ? barGlass.hairlineSoft : 'rgba(255,255,255,0.08)'); // theme-exempt: тёмные темы — прежний вид
   const pct = clamp01(progress);
   const radius = height / 2;
   const bright = accentBright ?? lightenHex(accent, 0.28);

@@ -36,6 +36,8 @@ import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 
+const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+
 interface Props {
   visible: boolean;
   packId: string;
@@ -133,7 +135,7 @@ function ReportPackModal({
     }
   };
 
-  const overlayBg = 'rgba(0,0,0,0.58)';
+  const overlayBg = 'rgba(0,0,0,0.58)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 
   // зачем: Liquid Glass 1 в 1 с макета cards.html (CARD-23 «Жалоба на набор»):
   // непрозрачная панель темы, тональные строки причин, светлая нейтральная CTA;
@@ -399,7 +401,7 @@ function ReportPackModal({
       <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={handleClose}
-        shadowColor="#000000"
+        shadowColor={EXEMPT_COLOR_1}
         backdropColor={overlayBg}
         testID="report-pack-modal-hybrid"
       >

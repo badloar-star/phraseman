@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     height: 58,
     borderRadius: 10,
     // Тень вместо обводки: владелец запретил рамки вокруг блоков.
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
     shadowOpacity: 0.22,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },

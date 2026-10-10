@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   card: {
     position: 'relative',
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
     paddingTop: 18,
     paddingBottom: 18,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: '#000', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.24,
     shadowRadius: 28,
@@ -434,7 +434,7 @@ const styles = StyleSheet.create({
     width: '72%',
     height: StyleSheet.hairlineWidth,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.2)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   announcementScroll: {
     width: '100%',

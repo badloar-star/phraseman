@@ -151,7 +151,7 @@ function NotificationPermissionModal({
 export default memo(NotificationPermissionModal);
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 18, paddingHorizontal: 20, paddingTop: 20, overflow: 'hidden' },
   scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
   scrollContentInner: { paddingBottom: 14 },

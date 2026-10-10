@@ -5936,7 +5936,7 @@ export default function LessonsTab({
                   shadowOpacity: 0.35,
                   shadowRadius: 14,
                   shadowOffset: { width: 0, height: 6 },
-                  elevation: 6,
+                  ...noAndroidOutline, // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline)
                 }}
               >
                 <Text

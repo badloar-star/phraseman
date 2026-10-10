@@ -137,6 +137,7 @@ import { peekStableId } from './stable_id';
 // ── Иконки по ачивке (Ionicons) — constants/achievementIcons.ts ──
 export { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
 const EXEMPT_COLOR_2 = 'rgba(2,3,6,0.72)'; // theme-exempt: палитра категорий достижений и скрим окна (токены категорий — у «Тем»)
@@ -1108,7 +1109,7 @@ export default function AchievementsScreen() {
           minHeight: 148, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 17,
           borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight, gap: 12,
           shadowColor: t.shadowDark, shadowOffset: { width: 0, height: 7 }, shadowOpacity: 0.12,
-          shadowRadius: 14, elevation: 3, overflow: 'hidden',
+          shadowRadius: 14, ...noAndroidOutline, overflow: 'hidden', // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline)
         }}
       >
         <View

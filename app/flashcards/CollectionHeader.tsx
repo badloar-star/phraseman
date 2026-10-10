@@ -33,6 +33,7 @@ import type { FcCollectionViewMode } from './collection_view_prefs';
 import type { FilterGroup, SavedCardContentKind } from './selectors';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 const EXEMPT_COLOR_1 = '#000'; // theme-exempt: тень меню — чёрная в любой теме
 
@@ -422,7 +423,7 @@ export default function CollectionHeader({
             <View
               testID="fc-saved-actions-menu"
               accessibilityRole="menu"
-              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 250, padding: 8, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, shadowColor: EXEMPT_COLOR_1, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 8, overflow: 'hidden' }}
+              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 250, padding: 8, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, shadowColor: EXEMPT_COLOR_1, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline, overflow: 'hidden' }}
             >
               <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
               <TouchableOpacity

@@ -16,6 +16,7 @@ import {
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -632,7 +633,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 10,
     minHeight: DOCK.capsuleMinHeight, paddingHorizontal: 18, borderRadius: 26,
     shadowColor: '#000000', shadowOpacity: 0.34, shadowRadius: 14, // theme-exempt: тень капсулы — чёрная в любой теме
-    shadowOffset: { width: 0, height: 8 }, elevation: 8,
+    shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline, // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline)
   },
   capsuleLabel: { fontWeight: '900' },
   sheetScrim: { backgroundColor: 'rgba(6,8,18,0.68)', zIndex: 8 }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме

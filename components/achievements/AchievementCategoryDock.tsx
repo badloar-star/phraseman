@@ -22,6 +22,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotionPreference } from '../../hooks/use_reduce_motion';
 import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../ThemeContext';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 export type AchievementCategoryOption<T extends string = string> = {
   id: T;
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.24,
     shadowRadius: 12,
-    elevation: 7,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   optionIcon: {
     width: 32,
@@ -320,7 +321,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
     shadowRadius: 16,
-    elevation: 12,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   capsuleIcon: {
     width: 32,

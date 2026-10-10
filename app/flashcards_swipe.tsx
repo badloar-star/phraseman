@@ -4807,7 +4807,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 60,
-    elevation: 60,
+    ...noAndroidOutline, // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline); порядок держит zIndex и место последним ребёнком
     minHeight: 58,
     borderRadius: 16,
     paddingVertical: 10,

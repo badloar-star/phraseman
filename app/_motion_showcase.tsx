@@ -19,6 +19,7 @@ import { getShowcaseSections } from '../components/dev/motion_showcase';
 import { makeDevRunesSeed } from './dev_practice_runes_seed';
 import type { ShowcaseItem } from '../components/dev/motion_showcase/types';
 import { cs } from '../components/dev/motion_showcase/showcase_copy';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 export default function MotionShowcaseScreen() {
   const { theme: t, f } = useTheme();
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 6,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
   row: {
     flexDirection: 'row',
@@ -266,6 +267,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
-    elevation: 6,
+    ...noAndroidOutline, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
   },
 });

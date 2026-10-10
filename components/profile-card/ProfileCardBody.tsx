@@ -81,7 +81,7 @@ function ProfileCardBodyBase({
               onPress={() => { hapticTap(); onEditBio(); }}
               style={styles.pen}
             >
-              <View style={styles.penInner}><Ionicons name="pencil" size={15} color="#FFFFFF" /></View>
+              <View style={styles.penInner}><Ionicons name="pencil" size={15} color="#FFFFFF" /></View>{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
             </Pressable>
           ) : null}
         </View>
@@ -93,7 +93,7 @@ function ProfileCardBodyBase({
           onPress={() => { hapticTap(); onEditBio(); }}
           style={styles.lock}
         >
-          <Ionicons name="pencil" size={15} color="rgba(255,255,255,0.72)" />
+          <Ionicons name="pencil" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
           <Text style={styles.lockText}>{t4(lang, PC.addBio)}</Text>
         </Pressable>
       ) : showLock && !ceremony ? (
@@ -104,7 +104,7 @@ function ProfileCardBodyBase({
           onPress={() => { hapticTap(); onOpenBuy(); }}
           style={styles.lock}
         >
-          <Ionicons name="lock-closed-outline" size={15} color="rgba(255,255,255,0.72)" />
+          <Ionicons name="lock-closed-outline" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
           <Text style={styles.lockText}>{t4(lang, PC.lock)}</Text>
         </Pressable>
       ) : null}
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
   glass: {
     alignSelf: 'stretch', alignItems: 'center',
     paddingTop: 16, paddingHorizontal: 14, paddingBottom: 18, borderRadius: 28,
-    backgroundColor: 'rgba(255,255,255,0.14)',
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.26)', // guard-ok: стеклянная плашка «Ауры» (.st-aura .glass)
+    backgroundColor: 'rgba(255,255,255,0.14)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+    borderWidth: 1, borderColor: 'rgba(255,255,255,0.26)', // guard-ok: стеклянная плашка «Ауры» (.st-aura .glass) // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   },
   center: { alignItems: 'center' },
   name: {
@@ -133,13 +133,13 @@ const styles = StyleSheet.create({
   },
   rankWrap: { marginTop: 10, alignItems: 'center', justifyContent: 'center', minHeight: 36 },
   bioRow: { marginTop: 12, maxWidth: 320, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  bio: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '500', color: 'rgba(255,255,255,0.86)', textAlign: 'center' },
+  bio: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '500', color: 'rgba(255,255,255,0.86)', textAlign: 'center' }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   pen: { width: 44, height: 44, marginVertical: -10, marginRight: -10, alignItems: 'center', justifyContent: 'center' },
-  penInner: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.18)' },
+  penInner: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.18)' }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   lock: {
     marginTop: 12, minHeight: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)', // guard-ok: .vz-lock hairline из макета
+    backgroundColor: 'rgba(255,255,255,0.05)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+    borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)', // guard-ok: .vz-lock hairline из макета // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   },
-  lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: '700', flexShrink: 1 },
+  lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: '700', flexShrink: 1 }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
 });

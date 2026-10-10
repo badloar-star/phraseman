@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 1,
-    shadowColor: '#000000',
+    shadowColor: '#000000', // theme-exempt: тень строки — чёрная в любой теме
     shadowOpacity: 0.12,
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },

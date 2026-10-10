@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 18,
   },
-  scrim: { backgroundColor: "rgba(0,0,0,0.68)" },
+  scrim: { backgroundColor: "rgba(0,0,0,0.68)" }, // theme-exempt: затемнение под окном и тень — чёрные в любой теме
   card: {
     width: "100%",
     maxWidth: 410,
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     paddingTop: 54,
     paddingBottom: 20,
-    shadowColor: "#000",
+    shadowColor: "#000", // theme-exempt: затемнение под окном и тень — чёрные в любой теме
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.48,
     shadowRadius: 30,

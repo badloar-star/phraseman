@@ -19,6 +19,7 @@ import ProfileCardCoin, { CoinImage } from './ProfileCardCoin';
 import { buttonInk, ProBadge, ProfileCardButton } from './ProfileCardParts';
 import { PROFILE_CARD_LOOKS } from './profile_card_looks';
 import { formatCoins, PC, t4 } from './profile_card_copy';
+import { useProfileSheetPaint } from './profile_card_sheet_paint';
 
 export type ProSheetMode = 'buy' | 'change';
 
@@ -39,8 +40,8 @@ type Props = Readonly<{
 
 const HERO_HEIGHT = 250;
 
-function Swatch({ style, selected, onPress, lang }: {
-  style: ProfileCardProStyle; selected: boolean; onPress: () => void; lang: Lang;
+function Swatch({ style, selected, onPress, lang, ring }: {
+  style: ProfileCardProStyle; selected: boolean; onPress: () => void; lang: Lang; ring: string;
 }) {
   const tokens = PROFILE_CARD_LOOKS[style];
   return (
@@ -53,7 +54,7 @@ function Swatch({ style, selected, onPress, lang }: {
       hitSlop={4}
       style={styles.swatchOuter}
     >
-      <View style={[styles.swatchRing, selected ? styles.swatchRingOn : null]}>
+      <View style={[styles.swatchRing, selected ? [styles.swatchRingOn, { borderColor: ring }] : null]}>
         <View style={[styles.swatch, { backgroundColor: tokens.bg }]}>
           <ProfileCardBackdrop look={style} width={56} height={56} cy={0.5} animate={false} k={1} />
         </View>
@@ -66,6 +67,7 @@ function ProfileCardProSheetBase({
   mode, lang, name, rank, currentStyle, balance, price, busy, animate, bottomInset, onConfirm, onClose,
 }: Props) {
   const { width: windowWidth } = useWindowDimensions();
+  const p = useProfileSheetPaint();
   const [selected, setSelected] = useState<ProfileCardProStyle>(currentStyle ?? PROFILE_CARD_DEFAULT_PRO_STYLE);
   useEffect(() => {
     setSelected(currentStyle ?? PROFILE_CARD_DEFAULT_PRO_STYLE);
@@ -88,12 +90,12 @@ function ProfileCardProSheetBase({
     <View
       testID={buy ? 'profile-card-pro-sheet' : 'profile-card-style-sheet'}
       accessibilityViewIsModal
-      style={[styles.sheet, { paddingBottom: Math.max(26, bottomInset + 12) }]}
+      style={[styles.sheet, { backgroundColor: p.sheet, shadowColor: p.shadow, paddingBottom: Math.max(26, bottomInset + 12) }]}
     >
       <Pressable accessibilityRole="button" accessibilityLabel={t4(lang, PC.cancel)} onPress={onClose} hitSlop={12} style={styles.handleHit}>
-        <View style={styles.handle} />
+        <View style={[styles.handle, { backgroundColor: p.handle }]} />
       </Pressable>
-      <Text accessibilityRole="header" style={styles.title}>{t4(lang, buy ? PC.sheetBuy : PC.sheetStyle)}</Text>
+      <Text accessibilityRole="header" style={[styles.title, { color: p.title }]}>{t4(lang, buy ? PC.sheetBuy : PC.sheetStyle)}</Text>
       <View testID="profile-card-style-preview" style={[styles.hero, { backgroundColor: tokens.bg }]}>
         <ProfileCardBackdrop look={selected} width={heroWidth} height={HERO_HEIGHT} cy={0.44} animate={animate} k={1} />
         {tokens.badge ? (
@@ -113,6 +115,7 @@ function ProfileCardProSheetBase({
             key={style}
             style={style}
             lang={lang}
+            ring={p.selectedRing}
             selected={style === selected}
             onPress={() => {
               hapticTap();
@@ -122,35 +125,36 @@ function ProfileCardProSheetBase({
         ))}
       </View>
       <View style={styles.caption}>
-        <Text style={styles.captionName}>{profileCardLookName(selected, lang)}</Text>
+        <Text style={[styles.captionName, { color: p.hint }]}>{profileCardLookName(selected, lang)}</Text>
         {buy ? (
           <View style={styles.captionRight}>
-            <Text style={styles.captionMuted}>{t4(lang, PC.youHave)}</Text>
+            <Text style={[styles.captionMuted, { color: p.hint }]}>{t4(lang, PC.youHave)}</Text>
             <CoinImage rank={rank ?? 0} size={18} />
-            <Text testID="profile-card-pro-balance" style={[styles.captionValue, poor ? styles.warn : null]}>
+            <Text testID="profile-card-pro-balance" style={[styles.captionValue, { color: p.title }, poor ? { color: p.warn } : null]}>
               {balance === null ? '—' : formatCoins(balance)}
             </Text>
           </View>
         ) : (
-          <Text style={styles.captionValue}>{t4(lang, PC.freeCap)}</Text>
+          <Text style={[styles.captionValue, { color: p.title }]}>{t4(lang, PC.freeCap)}</Text>
         )}
       </View>
       <ProfileCardButton
         testID={buy ? 'profile-card-pro-buy' : 'profile-card-style-apply'}
         tone={ctaDisabled ? 'off' : 'primary'}
+        paint={p.button}
         label={ctaLabel}
         disabled={ctaDisabled}
         busy={busy}
         onPress={() => onConfirm(selected)}
         outerStyle={styles.ctaOuter}
       >
-        <Text style={[styles.ctaText, { color: buttonInk(ctaDisabled ? 'off' : 'primary', null) }]}>
+        <Text style={[styles.ctaText, { color: buttonInk(ctaDisabled ? 'off' : 'primary', null, false, p.button) }]}>
           {buy && !poor ? `${t4(lang, PC.buyFor)} ` : ctaLabel}
         </Text>
         {buy && !poor ? (
           <>
             <CoinImage rank={rank ?? 0} size={20} />
-            <Text style={[styles.ctaText, { color: buttonInk(ctaDisabled ? 'off' : 'primary', null) }]}>{formatCoins(price)}</Text>
+            <Text style={[styles.ctaText, { color: buttonInk(ctaDisabled ? 'off' : 'primary', null, false, p.button) }]}>{formatCoins(price)}</Text>
           </>
         ) : null}
       </ProfileCardButton>
@@ -166,36 +170,33 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#151518',
     borderTopLeftRadius: 34,
     borderTopRightRadius: 34,
     paddingTop: 12,
     paddingHorizontal: 18,
-    shadowColor: '#000',
     shadowOpacity: 0.5,
     shadowRadius: 30,
     shadowOffset: { width: 0, height: -20 },
     elevation: 24,
   },
   handleHit: { alignSelf: 'center', paddingVertical: 4, paddingHorizontal: 20 },
-  handle: { width: 42, height: 5, borderRadius: 5, backgroundColor: 'rgba(255,255,255,0.35)' },
-  title: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800', color: '#FFFFFF' },
+  handle: { width: 42, height: 5, borderRadius: 5 },
+  title: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800' },
   hero: { height: HERO_HEIGHT, marginTop: 14, borderRadius: 28, overflow: 'hidden' },
   heroBadge: { position: 'absolute', left: 14, top: 14, zIndex: 12 },
   heroCoin: { position: 'absolute', width: 118, height: 118 },
-  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
+  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: '700' }, // theme-exempt: имя на превью стиля — белое поверх арта (иллюстрация)
   heroEdge: { borderRadius: 28 }, // guard-ok: кант превью = кант визитки (1–1,5pt, полупрозрачный)
   swatches: { flexDirection: 'row', gap: 10, marginTop: 14, justifyContent: 'space-between' },
   swatchOuter: { flex: 1, maxWidth: 60, aspectRatio: 1 },
   swatchRing: { flex: 1, borderRadius: 18, padding: 2 },
-  swatchRingOn: { borderWidth: 2, borderColor: '#FFFFFF', padding: 2 }, // guard-ok: выбранный стиль (outline в макете)
+  swatchRingOn: { borderWidth: 2, padding: 2 }, // guard-ok: выбранный стиль (outline в макете)
   swatch: { flex: 1, borderRadius: 16, overflow: 'hidden' },
   caption: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 12, gap: 10 },
-  captionName: { fontSize: 13, color: 'rgba(255,255,255,0.72)', flexShrink: 1 },
+  captionName: { fontSize: 13, flexShrink: 1 },
   captionRight: { flexDirection: 'row', alignItems: 'center', gap: 5 },
-  captionMuted: { fontSize: 13, color: 'rgba(255,255,255,0.72)' },
-  captionValue: { fontSize: 13, fontWeight: '700', color: '#FFFFFF', fontVariant: ['tabular-nums'] },
-  warn: { color: '#FFB547' },
+  captionMuted: { fontSize: 13 },
+  captionValue: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   ctaOuter: { marginTop: 14 },
   ctaText: { fontSize: 16, fontWeight: '800' },
 });

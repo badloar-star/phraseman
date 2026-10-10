@@ -81,12 +81,12 @@ export default function DevAccountV2IosProofRoute() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#101114', paddingHorizontal: 16, gap: 12 },
-  title: { color: '#F2F3F5', fontSize: 20, fontWeight: '600' },
-  button: { backgroundColor: '#23252B', borderRadius: 12, paddingVertical: 14, paddingHorizontal: 16 },
-  buttonBusy: { backgroundColor: '#2F3340' },
-  buttonText: { color: '#F2F3F5', fontSize: 16 },
-  receipt: { flex: 1, backgroundColor: '#18191D', borderRadius: 12 },
+  root: { flex: 1, backgroundColor: '#101114', paddingHorizontal: 16, gap: 12 }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
+  title: { color: '#F2F3F5', fontSize: 20, fontWeight: '600' }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
+  button: { backgroundColor: '#23252B', borderRadius: 12, paddingVertical: 14, paddingHorizontal: 16 }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
+  buttonBusy: { backgroundColor: '#2F3340' }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
+  buttonText: { color: '#F2F3F5', fontSize: 16 }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
+  receipt: { flex: 1, backgroundColor: '#18191D', borderRadius: 12 }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
   receiptContent: { padding: 12 },
-  receiptText: { color: '#C9CCD3', fontSize: 12, fontFamily: 'Menlo' },
+  receiptText: { color: '#C9CCD3', fontSize: 12, fontFamily: 'Menlo' }, // theme-exempt: DEV-экран проверки покупки iOS — не пользовательский
 });

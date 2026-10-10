@@ -177,7 +177,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
       <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={handleSkip}
-        shadowColor="#000000"
+        shadowColor="#000000" // theme-exempt: затемнение под окном и тень — чёрные в любой теме
         testID="certificate-name-modal-hybrid"
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -226,7 +226,7 @@ export default memo(CertificateNameModal);
 const styles = StyleSheet.create({
   backdropScroll: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // theme-exempt: затемнение под окном и тень — чёрные в любой теме
   },
   backdrop: {
     // flexGrow (а не flex) — в contentContainerStyle это единственный способ

@@ -46,8 +46,8 @@ export default function AchievementArt({
   size,
   bodyHeight,
   fallbackIconName = 'star',
-  tintColor = '#6E6E7A',
-  iconColor = '#FFFFFF',
+  tintColor = '#6E6E7A', // theme-exempt: значения по умолчанию пропсов арта — вызывающий код задаёт цвет
+  iconColor = '#FFFFFF', // theme-exempt: значения по умолчанию пропсов арта — вызывающий код задаёт цвет
   opacity = 1,
   accessibilityLabel,
   borderRadius = 0,

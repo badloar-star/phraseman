@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     top: 0,
     borderRadius: 2,
     // Тёплое свечение штриха (на Android цветная тень не рисуется — там искра просто светлая).
-    shadowColor: 'rgb(255,190,120)',
+    shadowColor: 'rgb(255,190,120)', // theme-exempt: искры монетного двора — иллюстрация
     shadowOpacity: 0.7,
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 0 },

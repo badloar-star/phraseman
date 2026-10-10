@@ -223,7 +223,7 @@ export function PaywallCtaShine() {
   return (
     <Animated.View pointerEvents="none" style={[styles.ctaShineTrack, shineStyle]}>
       <LinearGradient
-        colors={['transparent', EXEMPT_COLOR_2, EXEMPT_COLOR_3, 'rgba(255, 252, 235, 0.5)', 'transparent']}
+        colors={['transparent', EXEMPT_COLOR_2, EXEMPT_COLOR_3, 'rgba(255, 252, 235, 0.5)', 'transparent']} // theme-exempt: блик пейвола — праздничная иллюстрация
         locations={[0, 0.35, 0.5, 0.65, 1]}
         start={{ x: 0, y: 0.5 }}
         end={{ x: 1, y: 0.5 }}

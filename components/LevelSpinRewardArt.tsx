@@ -19,7 +19,7 @@ export default function LevelSpinRewardArt({
   rewardId: _rewardId,
   size,
   accessibilityLabel,
-  fallbackColor = '#A68B60',
+  fallbackColor = '#A68B60', // theme-exempt: запасной цвет арта награды
 }: Props) {
   return (
     <View

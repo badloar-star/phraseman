@@ -157,8 +157,8 @@ function ProfileCardOtherFooterBase({
         disabled={!canLike}
         outerStyle={showAddFriend ? styles.iconButton : styles.flex1}
       >
-        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={liked ? '#FF5C7A' : '#FFFFFF'} />
-        <Text style={[styles.buttonText, { color: '#FFFFFF' }]}>{likeTotal.toLocaleString()}</Text>
+        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={liked ? '#FF5C7A' : '#FFFFFF'} />{/* theme-exempt: подписи и сердце на арте визитки — белые поверх арта (иллюстрация) */}
+        <Text style={[styles.buttonText, { color: '#FFFFFF' }]}>{likeTotal.toLocaleString()}</Text>{/* theme-exempt: подписи и сердце на арте визитки — белые поверх арта (иллюстрация) */}
       </ProfileCardButton>
     </View>
   );

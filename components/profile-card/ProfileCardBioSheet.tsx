@@ -11,6 +11,7 @@ import type { Lang } from '../../constants/i18n';
 import { PROFILE_CARD_BIO_MAX_CHARS } from '../../app/profile_card_public';
 import { buttonInk, ProfileCardButton } from './ProfileCardParts';
 import { PC, t4 } from './profile_card_copy';
+import { useProfileSheetPaint } from './profile_card_sheet_paint';
 
 type Props = Readonly<{
   lang: Lang;
@@ -33,6 +34,7 @@ export function sanitizeBioInput(raw: string): string {
 }
 
 function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSave, onClose }: Props) {
+  const p = useProfileSheetPaint();
   const [text, setText] = useState(initialText);
   const inputRef = useRef<TextInput>(null);
   useEffect(() => {
@@ -58,12 +60,12 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
       <View
         testID="profile-card-bio-sheet"
         accessibilityViewIsModal
-        style={[styles.sheet, { paddingBottom: Math.max(26, bottomInset + 12) }]}
+        style={[styles.sheet, { backgroundColor: p.sheet, shadowColor: p.shadow, paddingBottom: Math.max(26, bottomInset + 12) }]}
       >
         <Pressable accessibilityRole="button" accessibilityLabel={t4(lang, PC.cancel)} onPress={onClose} hitSlop={12} style={styles.handleHit}>
-          <View style={styles.handle} />
+          <View style={[styles.handle, { backgroundColor: p.handle }]} />
         </Pressable>
-        <Text accessibilityRole="header" style={styles.title}>{t4(lang, PC.sheetText)}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: p.title }]}>{t4(lang, PC.sheetText)}</Text>
         <TextInput
           ref={inputRef}
           testID="profile-card-bio-input"
@@ -76,13 +78,13 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
           onSubmitEditing={handleSave}
           maxLength={PROFILE_CARD_BIO_MAX_CHARS * 2}
           placeholder={t4(lang, PC.addBio)}
-          placeholderTextColor="rgba(255,255,255,0.4)"
-          selectionColor="#FFFFFF"
-          style={styles.field}
+          placeholderTextColor={p.placeholder}
+          selectionColor={p.selection}
+          style={[styles.field, { backgroundColor: p.field, borderColor: p.fieldEdge, color: p.fieldInk }]}
         />
         <View style={styles.meta}>
-          <Text style={styles.metaText}>{t4(lang, PC.textHint)}</Text>
-          <Text testID="profile-card-bio-counter" style={[styles.counter, n > 70 ? styles.warn : null]}>
+          <Text style={[styles.metaText, { color: p.hint }]}>{t4(lang, PC.textHint)}</Text>
+          <Text testID="profile-card-bio-counter" style={[styles.counter, { color: p.hint }, n > 70 ? { color: p.warn } : null]}>
             {`${n}/${PROFILE_CARD_BIO_MAX_CHARS}`}
           </Text>
         </View>
@@ -90,22 +92,24 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
           <ProfileCardButton
             testID="profile-card-bio-cancel"
             tone="alt"
+            paint={p.button}
             label={t4(lang, PC.cancel)}
             onPress={onClose}
             outerStyle={styles.rowItem}
           >
-            <Text style={[styles.buttonText, { color: buttonInk('alt', null) }]}>{t4(lang, PC.cancel)}</Text>
+            <Text style={[styles.buttonText, { color: buttonInk('alt', null, false, p.button) }]}>{t4(lang, PC.cancel)}</Text>
           </ProfileCardButton>
           <ProfileCardButton
             testID="profile-card-bio-save"
             tone={canSave ? 'primary' : 'off'}
+            paint={p.button}
             label={t4(lang, PC.save)}
             disabled={!canSave}
             busy={saving}
             onPress={handleSave}
             outerStyle={styles.rowItem}
           >
-            <Text style={[styles.buttonText, { color: buttonInk(canSave ? 'primary' : 'off', null) }]}>{t4(lang, PC.save)}</Text>
+            <Text style={[styles.buttonText, { color: buttonInk(canSave ? 'primary' : 'off', null, false, p.button) }]}>{t4(lang, PC.save)}</Text>
           </ProfileCardButton>
         </View>
       </View>
@@ -118,20 +122,18 @@ export default memo(ProfileCardBioSheetBase);
 const styles = StyleSheet.create({
   avoid: { ...StyleSheet.absoluteFillObject, justifyContent: 'flex-end' },
   sheet: {
-    backgroundColor: '#151518',
     borderTopLeftRadius: 34,
     borderTopRightRadius: 34,
     paddingTop: 12,
     paddingHorizontal: 18,
-    shadowColor: '#000',
     shadowOpacity: 0.5,
     shadowRadius: 30, // guard-ok: одна тень шторки, как в макете .vz-sheet
     shadowOffset: { width: 0, height: -20 },
     elevation: 24,
   },
   handleHit: { alignSelf: 'center', paddingVertical: 4, paddingHorizontal: 20 },
-  handle: { width: 42, height: 5, borderRadius: 5, backgroundColor: 'rgba(255,255,255,0.35)' },
-  title: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800', color: '#FFFFFF' },
+  handle: { width: 42, height: 5, borderRadius: 5 },
+  title: { marginTop: 12, fontSize: 24, lineHeight: 30, fontWeight: '800' },
   field: {
     marginTop: 14,
     minHeight: 100,
@@ -139,18 +141,14 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     borderRadius: 18,
-    backgroundColor: 'rgba(255,255,255,0.07)',
     borderWidth: 1, // guard-ok: поле ввода .vz-field — тонкий полупрозрачный кант (исключение 2.0)
-    borderColor: 'rgba(255,255,255,0.14)',
-    color: '#FFFFFF',
     fontSize: 16,
     lineHeight: 22,
     textAlignVertical: 'top',
   },
   meta: { flexDirection: 'row', justifyContent: 'space-between', gap: 10, marginTop: 8 },
-  metaText: { flexShrink: 1, fontSize: 13, lineHeight: 18, color: 'rgba(255,255,255,0.6)' },
-  counter: { fontSize: 13, lineHeight: 18, fontWeight: '700', color: 'rgba(255,255,255,0.6)', fontVariant: ['tabular-nums'] },
-  warn: { color: '#FFB547' },
+  metaText: { flexShrink: 1, fontSize: 13, lineHeight: 18 },
+  counter: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   row: { flexDirection: 'row', gap: 10, marginTop: 16 },
   rowItem: { flex: 1 },
   buttonText: { fontSize: 16, fontWeight: '800' },

@@ -289,7 +289,7 @@ export default function LearningV2SessionOutcomeSheet({
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.68)" },
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.68)" }, // theme-exempt: затемнение под окном и площадки — чёрные в любой теме
   center: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 18 },
   card: { width: "100%", maxWidth: 390, borderWidth: 1, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
   // зачем (learning-v2.html `.cm .x` = `.rb.sq`): крестик 36, r12, без заливки, тонкая кромка, 14 от краёв; область нажатия добирает hitSlop.
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   orb: { alignItems: "center", justifyContent: "center" },
   // «цоколь» шайбы (0 7px 0 в макете): та же площадка, смещённая вниз и затемнённая
   orbPlate: { position: "absolute", top: 13, overflow: "hidden" },
-  orbPlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
+  orbPlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" }, // theme-exempt: затемнение под окном и площадки — чёрные в любой теме
   kicker: { marginTop: 22, textAlign: "center", fontSize: 13, lineHeight: 18, fontWeight: "800", letterSpacing: 1.6 },
   title: { marginTop: 9, textAlign: "center", fontWeight: "800", letterSpacing: -0.6 },
   message: { marginTop: 8, textAlign: "center", fontWeight: "400" },

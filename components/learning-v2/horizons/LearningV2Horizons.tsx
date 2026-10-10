@@ -611,7 +611,7 @@ export default function LearningV2Horizons(props: Props) {
             accessibilityRole="button"
             accessibilityLabel={c.back}
             onPress={() => setIndexOpen(false)}
-            style={[StyleSheet.absoluteFill, { backgroundColor: "#0009" }]}
+            style={[StyleSheet.absoluteFill, { backgroundColor: "#0009" }]} // theme-exempt: затемнение под окном — чёрное в любой теме
           />
           <View
             accessibilityViewIsModal

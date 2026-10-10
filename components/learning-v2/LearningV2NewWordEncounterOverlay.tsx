@@ -499,7 +499,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 14,
-    shadowColor: "#000",
+    shadowColor: "#000", // theme-exempt: затемнение под окном и тень — чёрные в любой теме
     shadowOpacity: 0.24,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -574,5 +574,5 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 360,
   },
-  scrim: { backgroundColor: "rgba(0,0,0,0.6)" },
+  scrim: { backgroundColor: "rgba(0,0,0,0.6)" }, // theme-exempt: затемнение под окном и тень — чёрные в любой теме
 });

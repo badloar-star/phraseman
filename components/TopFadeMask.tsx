@@ -85,7 +85,7 @@ export default function TopFadeMask({
         style={StyleSheet.absoluteFill}
         maskElement={
           <LinearGradient
-            colors={[EXEMPT_COLOR_1, 'rgba(0,0,0,1)', EXEMPT_COLOR_2]}
+            colors={[EXEMPT_COLOR_1, 'rgba(0,0,0,1)', EXEMPT_COLOR_2]} // theme-exempt: маска затухания — цвета-носители альфы, не оттенок
             locations={[0, featherStart, 1]}
             style={StyleSheet.absoluteFill}
           />

@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
   },
   // Цоколь: тот же цвет площадки, затемнённый постоянной чёрной вуалью —
   // работает с любым форматом цвета темы без разбора hex.
-  plateShade: { flex: 1, backgroundColor: 'rgba(0,0,0,0.32)' },
+  plateShade: { flex: 1, backgroundColor: 'rgba(0,0,0,0.32)' }, // theme-exempt: затемнение площадки узла — как в макете, чёрное в любой теме
   face: {
     position: 'absolute',
     left: 0,

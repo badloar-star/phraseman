@@ -9,10 +9,13 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { CoinImage } from './ProfileCardCoin';
 import { gradientPoints, type GradientSpec } from './profile_card_looks';
 import { useLineScale } from '../../hooks/useLineScale';
+import type { SheetButtonPaint } from './profile_card_sheet_paint';
 
 export type ButtonTone = 'primary' | 'alt' | 'off';
 
 type ButtonProps = Readonly<{
+  /** Краски темы для кнопок в шторках; без них — белая кнопка на арте визитки. */
+  paint?: SheetButtonPaint;
   testID: string;
   tone: ButtonTone;
   label: string;
@@ -28,11 +31,14 @@ type ButtonProps = Readonly<{
 }>;
 
 function ProfileCardButtonBase({
-  testID, tone, label, onPress, disabled, busy, fill, style, outerStyle, children, accessibilityHint, selected,
+  testID, tone, label, onPress, disabled, busy, fill, style, outerStyle, children, accessibilityHint, selected, paint,
 }: ButtonProps) {
   const off = tone === 'off' || disabled;
   const gradient = tone === 'primary' && !off && fill ? fill : null;
-  const bg = off ? 'rgba(255,255,255,0.09)' : tone === 'alt' ? 'rgba(255,255,255,0.13)' : '#FFFFFF';
+  // зачем (замечание владельца 10.10): в шторках кнопки — краски темы (paint); на арте визитки белое — иллюстрация.
+  const bg = paint
+    ? (off ? paint.offBg : tone === 'alt' ? paint.altBg : paint.primaryBg)
+    : off ? 'rgba(255,255,255,0.09)' : tone === 'alt' ? 'rgba(255,255,255,0.13)' : '#FFFFFF'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
   return (
     <V2Pressable
       testID={testID}
@@ -61,10 +67,11 @@ function ProfileCardButtonBase({
 
 export const ProfileCardButton = memo(ProfileCardButtonBase);
 
-export function buttonInk(tone: ButtonTone, fill: Readonly<{ text: string }> | null | undefined, disabled?: boolean): string {
-  if (tone === 'off' || disabled) return 'rgba(255,255,255,0.55)';
-  if (tone === 'alt') return '#FFFFFF';
-  return fill?.text ?? '#111111';
+export function buttonInk(tone: ButtonTone, fill: Readonly<{ text: string }> | null | undefined, disabled?: boolean, paint?: SheetButtonPaint): string {
+  if (paint) return tone === 'off' || disabled ? paint.offInk : tone === 'alt' ? paint.altInk : paint.primaryInk;
+  if (tone === 'off' || disabled) return 'rgba(255,255,255,0.55)'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
+  if (tone === 'alt') return '#FFFFFF'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
+  return fill?.text ?? '#111111'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
 }
 
 /** Двухстрочная подпись кнопки (.vz-2l): жирное название + мелкая цена. */

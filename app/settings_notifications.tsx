@@ -116,7 +116,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   if (!visible) return null;
   return (
     <Modal visible transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onCancel}>
-      <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingTop:Math.max(20, insets.top), paddingBottom:Math.max(20, insets.bottom), paddingHorizontal:20 }}>
+      <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingTop:Math.max(20, insets.top), paddingBottom:Math.max(20, insets.bottom), paddingHorizontal:20 }}>{/* theme-exempt: затемнение под окном — чёрное в любой теме */}
         <LinearGradient colors={[glass.opaqueSheet, glass.opaqueSheet]} style={{ width:'100%', maxWidth:340, maxHeight:'100%', borderRadius:TIME_MODAL_PANEL_RADIUS, overflow:'hidden', borderWidth:1, borderColor:glass.glassEdge }}>
           <View pointerEvents="none" style={{ position:'absolute', inset:0 }}>
             <View style={{ position:'absolute', inset:0, backgroundColor:glass.sheet }}/>

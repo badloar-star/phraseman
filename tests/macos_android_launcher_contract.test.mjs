@@ -31,7 +31,10 @@ test('iOS launcher rebuilds the native app before installation and waits for Met
   accessSync(IOS_LAUNCHER, constants.X_OK);
   const build = IOS_SOURCE.indexOf('xcodebuild -quiet');
   const verify = IOS_SOURCE.indexOf('codesign --verify');
-  const metroReady = IOS_SOURCE.indexOf('packager-status:running');
+  // зачем (10.10): проверка упаковщика вынесена в функцию metro_alive() (a415780b7) — её определение стоит выше сборки,
+  // поэтому ищем ВЫЗОВ после проверки подписи, а сама функция обязана спрашивать packager-status.
+  assert.match(IOS_SOURCE, /metro_alive\(\) \{[^}]*packager-status:running/);
+  const metroReady = IOS_SOURCE.indexOf('metro_alive', verify);
   const install = IOS_SOURCE.indexOf('simctl install');
   const launch = IOS_SOURCE.indexOf('simctl launch');
 

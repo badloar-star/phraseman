@@ -70,40 +70,36 @@ const built = await build({
 const encoded = Buffer.from(built.outputFiles[0].contents).toString('base64');
 const { ledger, __store, __setToken } = await import(`data:text/javascript;base64,${encoded}`);
 const now = Date.now();
+// зачем (10.10): PM-081 (2eeef959e) — шкала энергии 0..5, бонусная энергия снята (ENERGY_BONUS_CAPACITY_LIMIT = 0).
+// Сценарий переписан под 2.0, проверки те же: применение, повтор, конфликт id, возврат, повтор возврата,
+// план списания, нехватка, изоляция владельцев.
 const opening = {
   schemaVersion: 2,
-  baseEnergy: 100,
-  bonusEnergy: 60,
-  bonusCapacity: 60,
-  bonusExpiresAt: now + 60_000,
+  baseEnergy: 5,
+  bonusEnergy: 0,
+  bonusCapacity: 0,
+  bonusExpiresAt: 0,
   refundCredit: 0,
   lastSettledAt: now,
   recoveryCreditMicrounits: 0,
   recoveryDivisionRemainder: 0,
-  maxEnergy: 100,
+  maxEnergy: 5,
 };
-const bonusKey = 'energy_gift_bonus:owner-a';
-__store.set(bonusKey, JSON.stringify({
-  schemaVersion: 2, amount: 60, capacity: 60, expiresAt: opening.bonusExpiresAt,
-}));
 
-const intent = ledger.createEnergySessionIntent('arena_match', 'today', 'attempt-0001');
-const first = await ledger.commitEnergySessionStart(intent, 25, opening, 'boot:test-a');
+const intent = ledger.createEnergySessionIntent('lesson', 'today', 'attempt-0001');
+const first = await ledger.commitEnergySessionStart(intent, 1, opening, 'boot:test-a');
 assert.equal(first.status, 'applied');
-assert.deepEqual(first.operation.split, { bonus: 25, refundCredit: 0, base: 0 });
-assert.equal(first.projection.baseEnergy, 100);
-assert.equal(first.projection.bonusEnergy, 35);
-assert.deepEqual(JSON.parse(__store.get(bonusKey)), {
-  schemaVersion: 2, amount: 35, capacity: 60, expiresAt: opening.bonusExpiresAt,
-});
+assert.deepEqual(first.operation.split, { bonus: 0, refundCredit: 0, base: 1 });
+assert.equal(first.projection.baseEnergy, 4);
+assert.equal(first.projection.bonusEnergy, 0);
 
-const replay = await ledger.commitEnergySessionStart(intent, 25, first.projection, 'boot:test-a');
+const replay = await ledger.commitEnergySessionStart(intent, 1, first.projection, 'boot:test-a');
 assert.equal(replay.status, 'already-applied');
 assert.deepEqual(replay.projection, first.projection);
 
 const conflict = await ledger.commitEnergySessionStart(
   { ...intent, grant: { ...intent.grant, subjectId: 'different' } },
-  25,
+  1,
   opening,
   'boot:test-a',
 );
@@ -116,8 +112,7 @@ const refunded = await ledger.refundEnergySessionStart(
   'boot:test-a',
 );
 assert.equal(refunded.status, 'applied');
-assert.equal(refunded.projection.baseEnergy, 100);
-assert.equal(refunded.projection.bonusEnergy, 60);
+assert.equal(refunded.projection.baseEnergy, 5);
 
 const refundReplay = await ledger.refundEnergySessionStart(
   intent.operationId,
@@ -127,20 +122,19 @@ const refundReplay = await ledger.refundEnergySessionStart(
 );
 assert.equal(refundReplay.status, 'already-applied');
 
-const baseOnly = { ...opening, bonusEnergy: 0, bonusCapacity: 0, bonusExpiresAt: 0 };
-const lessonPlan = ledger.planEnergySessionDebit(baseOnly, 20, now);
+const lessonPlan = ledger.planEnergySessionDebit(opening, 1, now);
 assert.ok(lessonPlan);
-assert.equal(lessonPlan.after.baseEnergy, 80);
-assert.deepEqual(lessonPlan.split, { bonus: 0, refundCredit: 0, base: 20 });
+assert.equal(lessonPlan.after.baseEnergy, 4);
+assert.deepEqual(lessonPlan.split, { bonus: 0, refundCredit: 0, base: 1 });
 
-const insufficient = ledger.planEnergySessionDebit({ ...baseOnly, baseEnergy: 19 }, 20, now);
+const insufficient = ledger.planEnergySessionDebit({ ...opening, baseEnergy: 0 }, 1, now);
 assert.equal(insufficient, null);
 
 __setToken({ stableId: 'owner-b', generation: 2, phase: 'active' });
 const ownerBIntent = ledger.createEnergySessionIntent('flashcards', 'deck', 'attempt-b');
-const ownerB = await ledger.commitEnergySessionStart(ownerBIntent, 10, baseOnly, 'boot:test-b');
+const ownerB = await ledger.commitEnergySessionStart(ownerBIntent, 1, opening, 'boot:test-b');
 assert.equal(ownerB.status, 'applied');
-assert.equal(ownerB.projection.baseEnergy, 90);
+assert.equal(ownerB.projection.baseEnergy, 4);
 assert.ok([...__store.keys()].some(key => key.includes('owner-b')));
 
 const preparedKeys = [...__store.keys()].filter(key => key.startsWith('energy_session_prepared_v1:'));

@@ -35,8 +35,9 @@ const LEGAL_FILES = [
   // зачем (03.10, §99): политика/условия под реальную 2.0 по заранее данному «да» владельца — убраны Арена-матчи/дуэли, клубы, подарки, бусты, аватар-предметы, Shards, голосовой репетитор; добавлена память AI-диалогов — хеши сдвинуты осознанно.
   // зачем (30.09): политика обновлена по «да» владельца (визитка Про, опрос дня, Шпиль, D128 озвучка) — хеши сдвинуты осознанно.
   // зачем (владелец 04.10, §124 PM-252): §19 — журналы ошибок и активности удаляются через 90 дней; дата 4 октября.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'a85524fc958f329ed7a2d589f2e6bc95376dfc9a0fd52afa6644e7db23f4ef9a'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '8f5b30299da457826b8b2125688b8b3fe0cdd7c5deb82c807c11314a380e124b'],
+  // 10.10: политика правилась осознанно — fe079cd49, 15feb3642 (04.10), 472f8715e (недельные монеты Шпиля, D162).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'c02dbe65a3389dc28375cad9f559e7038d0ee711570946c7e7ff2871f2c214f3'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '96fd1b1fbeb1803ff41ebc0c965ee05906eb72078098400e260a1faa02aa7736'],
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '41074944d0d737fc9fa2cf670e172df0c2e56fdc4dd51a9666b40a3678c046b9'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '936e2e7b62c86cd0b551de5a69ab045bc83b73e631e19e727957d821e3e813cd'],
 ];

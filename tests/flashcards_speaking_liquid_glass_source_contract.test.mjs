@@ -194,7 +194,8 @@ function hashProtectedRuntimeElements() {
 
 test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged', () => {
   assert.deepEqual(hashProtectedRuntimeAst(), {
-    count: 34,
+    // 10.10: f371d6122 — итог по cards-section (время раунда roundStartedAtRef, список ошибок); квоты/попытки не тронуты.
+    count: 35,
     // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
     // зачем (30.09): D128 — озвучка клипом OpenAI своего языка вместо голоса устройства (7b4631e7e).
     // зачем (03.10): логика старта Ядра — 85f9e7231 (сторож загрузки +1 useEffect, трассировка [FC-SPEAKING-GATE], reconcile missing → fail-open) и 94003821a (компактный manifest, снятие записи до локального старта; ревью Opus).
@@ -208,7 +209,7 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     //  • useEffect#2 + useEffect#11 (83300f8d5, §SPEECH-NA) — без распознавателя речи «Устно» не тратит энергию;
     //  • useEffect#2 (8e3e5993c) — claim старта, как у свайпа: выдача проходит фазы, месячный лимит списывается.
     // Удержание, озвучка, полёт монеты, итог — без изменений; 4bfdfb659 и 88f7489b3 хеш не трогали.
-    hash: 'b3704319e016660dab627b7108c3fb8604a3cdce05213be77eb412b038b0eea1',
+    hash: '4a10cb101ea349c3cf99044df3fe28ac94d23636c7682c1c20e25f0dee3a8f9e',
   });
   assert.equal(
     hashProtectedRuntimeElements(),
@@ -216,7 +217,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // защищённых элементов поэлементно одинаковы в 85f9e7231^, 94003821a и 4ee077331 (сверено скриптом).
     // зачем (05.10, Дизайн, координатор): у <NoEnergyModal> добавлен обязательный variant="learn" (выбор макета окна);
     // других изменений в защищённых элементах нет — поведение квот/попыток/озвучки не тронуто.
-    '259804faacf6bd9030b98c4c11a858851f19f1d84d62f926e9d4ee970c18981b',
+    // зачем (10.10): f371d6122 — у экрана итога пропсы overline/startedAtMs/mistakes (вид по cards-section); тексты «ты» (bb416e3cd).
+    '524b96c6819cfd1b2f5df400b6dc6c92ec96f0bab2b0a4757fcb329ca9507504',
   );
   assert.deepEqual(
     {

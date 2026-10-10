@@ -28,12 +28,14 @@ test('verified lesson switches default on while deferred integrations stay off',
   });
 });
 
-test('accepts booleans and rejects non-booleans without changing existing defaults', () => {
+// зачем (10.10): в 2.0 сервер управляет только синхронизацией, обновлениями, видео, промо/оплатой и доступом
+// (allowedBools в applyRemoteConfigSnapshot) — флаги мягкого апселла стали локальными, снимок их не меняет.
+test('keeps soft upsell flags local: a remote snapshot cannot change their defaults', () => {
   applyRemoteConfigSnapshot({ bools: {
     soft_upsell_first_lesson_enabled: false,
     soft_upsell_weekly_review_enabled: 'true',
   } });
-  expect(getRemoteBool('soft_upsell_first_lesson_enabled')).toBe(false);
+  expect(getRemoteBool('soft_upsell_first_lesson_enabled')).toBe(true);
   expect(getRemoteBool('soft_upsell_weekly_review_enabled')).toBe(false);
   expect(getRemoteBool('referral_enabled')).toBe(true);
 });

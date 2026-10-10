@@ -53,8 +53,9 @@ describe('checkForUpdate platform-specific version manifest', () => {
       storeUrl: IOS_STORE_URL,
       message: 'Shared release',
     });
+    // зачем (10.10): адрес манифеста приходит из app/config (здесь замокан) — проверяем, что берётся именно он.
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json',
+      'https://updates.example.test/version.json',
       { cache: 'no-store' },
     );
   });

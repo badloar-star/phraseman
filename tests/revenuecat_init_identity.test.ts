@@ -95,19 +95,36 @@ describe('RevenueCat identity bootstrap', () => {
     expect(purchases.getCustomerInfo).not.toHaveBeenCalled();
   });
 
+  // зачем (10.10): с D158 (M-B) общий промис синхронизации НЕ получает проверку вызывающего — от входа в чужой
+  // аккаунт защищает поколение аккаунта внутри синхронизации. Сторож моделирует именно смену поколения во время
+  // запроса id; устаревший вызывающий получает false только себе.
   it('does not log into a stale account when generation changes during identity lookup', async () => {
     const { revenueCat, purchases } = await loadSubject();
+    const generation = await import('../app/account_generation');
     let current = true;
+    (generation.isCurrentAccountGeneration as jest.Mock).mockImplementation(() => current);
     purchases.isConfigured.mockResolvedValue(true);
     purchases.getAppUserID.mockImplementationOnce(async () => {
       current = false;
       return '$RCAnonymousID:old-user';
     });
 
-    await expect(revenueCat.syncRevenueCatIdentity(() => current)).resolves.toBe(false);
+    await expect(revenueCat.syncRevenueCatIdentity()).resolves.toBe(false);
 
     expect(purchases.logIn).not.toHaveBeenCalled();
     expect(purchases.setAttributes).not.toHaveBeenCalled();
+  });
+
+  it('answers false only to a stale caller while the shared sync of the current account completes', async () => {
+    const { revenueCat, purchases } = await loadSubject();
+    purchases.isConfigured.mockResolvedValue(true);
+    purchases.getAppUserID
+      .mockResolvedValueOnce('$RCAnonymousID:old-user')
+      .mockResolvedValue('stable-123');
+    purchases.logIn.mockResolvedValue({ customerInfo: { entitlements: { active: {} }, activeSubscriptions: [] }, created: false });
+
+    await expect(revenueCat.syncRevenueCatIdentity(() => false)).resolves.toBe(false);
+    expect(purchases.logIn).toHaveBeenCalledWith('stable-123');
   });
 
   // зачем (2.0, MAX запломбирован/удалён): тип плана 'max_monthly' больше не существует — прежний тест про «протухший кэш MAX»

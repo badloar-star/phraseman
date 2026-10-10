@@ -9,6 +9,12 @@ import {
 } from '../app/support_diagnostics';
 
 jest.mock('@react-native-async-storage/async-storage');
+// зачем (10.10): в 2.0 диагностика выключена флагом (isSupportDiagnosticsEnabled = () => false) — сторож проверяет
+// логику кольца событий, поэтому включает флаг только здесь, остальные флаги — настоящие.
+jest.mock('../app/remote_flags', () => ({
+  ...jest.requireActual('../app/remote_flags'),
+  isSupportDiagnosticsEnabled: () => true,
+}));
 
 describe('support diagnostics local ring', () => {
   beforeEach(async () => {

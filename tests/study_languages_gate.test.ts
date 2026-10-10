@@ -88,9 +88,14 @@ describe('study_languages — профиль ответов по языку', ()
 describe('study_languages — активация языка', () => {
   it('активация французского пишет study_target_v1, префетчит пак и отмечает язык начатым', async () => {
     await applyStudyLanguageSelection('fr', 'ru');
-    expect(store['study_target_v1']).toBeUndefined();
-    expect(store['dev_study_target_lang']).toBe('fr');
-    expect(prefetchAndRecordStudyTargetServerPack).toHaveBeenCalledWith('fr', 'ru');
+    // зачем (10.10): активация пишет study_target_v1 — ровно как обещает название сторожа (прежнее
+    // ожидание undefined осталось от dev-only режима французского).
+    expect(store['study_target_v1']).toBe('fr');
+    // dev-ключ dev_study_target_lang снят вместе с dev-only режимом — канонический ключ один.
+    expect(store['dev_study_target_lang']).toBeUndefined();
+    // зачем (10.10): с релиза 1.6.22 (6c02e4088) выбор языка пишет один канонический target; префетч пака жил
+    // только в снятой dev-ветке — французский пак греет онбординг (CleanOnboarding), не выбор языка.
+    expect(prefetchAndRecordStudyTargetServerPack).not.toHaveBeenCalled();
     expect(await getStartedStudyLanguages()).toEqual(['fr']);
   });
 

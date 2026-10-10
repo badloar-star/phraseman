@@ -33,6 +33,7 @@ const REPORT: PendingSupportReport = {
   queuedAtMs: NOW,
 };
 
+// зачем (10.10): опыта в 2.0 нет — флаг awardSubmissionXp из доставки обращения снят.
 describe('support report durable background outbox', () => {
   beforeEach(async () => {
     __resetAccountGenerationForTests();
@@ -45,7 +46,6 @@ describe('support report durable background outbox', () => {
 
     await expect(flushSupportReportOutbox(ACCOUNT, send, NOW)).resolves.toEqual({ sent: 0, left: 1 });
     expect(send).toHaveBeenCalledWith(REPORT.payload, REPORT.userName, REPORT.lang, {
-      awardSubmissionXp: false,
       expectedStableUid: ACCOUNT,
       idempotencyKey: REPORT.id,
     });
@@ -210,7 +210,6 @@ describe('support report durable background outbox', () => {
     await Promise.resolve();
     expect(transitionEntered).toBe(true);
     expect(transportOptions).toEqual({
-      awardSubmissionXp: false,
       expectedStableUid: ACCOUNT,
       idempotencyKey: REPORT.id,
     });

@@ -132,13 +132,9 @@ import { touchStreakForToday } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
 import { setupNotificationTapHandler } from './notification_tap_handler';
-// зачем: разбиение общего импорта из './notifications' на точечные потеряло эти
-// две функции — файл перестал собираться (TS2552/TS2304 на строках 2816/2819),
-// а с ним не запускалось всё приложение. Возвращено ровно то, что было в HEAD.
-import {
-  isNotificationPermissionGranted,
-  requestNotificationPermissionWithFallback,
-} from './notifications';
+// зачем (10.10): статический импорт './notifications' тянул весь каталог расписаний в первый кадр старта
+// (сторож startup_notifications_lazy). Обе функции запроса разрешения нужны только в конце онбординга —
+// берём их через loadNotificationsModule() там же, где вызываем.
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
 import { hydrateAiExplainConsentFromStorage } from './ai_explain_consent';
@@ -2917,10 +2913,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // закрытия онбординга завершилась до появления системного диалога.
     void (async () => {
       const notificationChoice = await readOnboardingNotificationChoice();
-      const already = await isNotificationPermissionGranted().catch(noteSwallowedAs('_layout:useCallback.isNotificationPermissionGranted', false));
+      const notifications = await loadNotificationsModule().catch(noteSwallowedAs('_layout:useCallback.loadNotificationsModule', null));
+      if (!notifications) {
+        console.warn('[NOTIF-PROMPT] onboarding_end skip reason=notifications_module_unavailable');
+        return;
+      }
+      const already = await notifications.isNotificationPermissionGranted().catch(noteSwallowedAs('_layout:useCallback.isNotificationPermissionGranted', false));
       if (!already && shouldPromptForOnboardingNotifications(notificationChoice)) {
         await new Promise<void>((r) => setTimeout(r, 600));
-        await requestNotificationPermissionWithFallback().catch(noteSwallowedHandler('_layout:useCallback.requestNotificationPermissionWithFallback'));
+        await notifications.requestNotificationPermissionWithFallback().catch(noteSwallowedHandler('_layout:useCallback.requestNotificationPermissionWithFallback'));
       }
     })();
     // Entitlement и подарок — полезная, но необязательная пост-обработка. Она не

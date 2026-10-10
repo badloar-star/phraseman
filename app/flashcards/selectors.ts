@@ -29,7 +29,7 @@ export function savedCardContentKind(card: CardItem): ConcreteSavedCardContentKi
     || card.source === 'daily_phrase'
     || card.source === 'video_phrase'
   ) return 'phrase';
-  // У старых карточек без source единственный безопасный fallback — сама фраза.
+  // У старых карточек без source единственный безопасный запасной вариант — сама фраза.
   return /\s/u.test(card.en.trim()) ? 'phrase' : 'word';
 }
 

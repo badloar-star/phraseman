@@ -249,6 +249,9 @@ export default function FlashcardsTrainingModeSheet({
                   onPress={onRetry}
                   variant="chip"
                   style={styles.retry}
+                  // зачем: текст внутри PressableHybrid лежит в анимируемом слое — без contentStyle он
+                  // не центрируется и прыгает при нажатии (сторож hybrid_button_layout).
+                  contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={[styles.headingSubtitle, styles.retryText, { color: g.text }]}>{retryLabel}</Text>
                 </PressableHybrid>

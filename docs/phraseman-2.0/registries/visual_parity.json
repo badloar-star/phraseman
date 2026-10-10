@@ -30,9 +30,9 @@
       "matrix_status": "🏠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-001.png",
+      "evidence_at": "2026-10-10T18:42:54.358Z",
+      "evidence_sha256": "8ff5d722249ba3181286639d65dd41a3f76e3975fbba237569856f3a9a669617",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -76,9 +76,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 3,
-        "label": "Список",
-        "mapping": "label_mismatch"
+        "phone": 1,
+        "label": "Лимит тренировок исчерпан (free)",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Хаб и выбор режима",
       "state": "Лимит тренировок исчерпан",
@@ -105,9 +105,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 4,
-        "label": "Карточка раскрыта · удаление свайпом · «Вернуть»",
-        "mapping": "label_mismatch"
+        "phone": 2,
+        "label": "Сообщество недоступно",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Хаб и выбор режима",
       "state": "Сообщество недоступно",
@@ -148,9 +148,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-005.png",
+      "evidence_at": "2026-10-10T18:43:03.091Z",
+      "evidence_sha256": "1d8d4df804b1f48437b3f66fde1e27d9223750a48c84cc87e61d7fcf9fbaba81",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -158,16 +158,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 3 (\"Список\") — склейка снята с 5; переснять"
     },
     {
       "id": "cards-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 6,
-        "label": "Стопка",
-        "mapping": "label_mismatch"
+        "phone": 4,
+        "label": "Карточка раскрыта · удаление свайпом · «Вернуть»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые",
       "state": "Карточка раскрыта · удаление свайпом · «Вернуть»",
@@ -196,9 +197,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 7,
-        "label": "Пусто",
-        "mapping": "label_mismatch"
+        "phone": 5,
+        "label": "Режим выделения",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые",
       "state": "Режим выделения",
@@ -227,9 +228,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 8,
-        "label": "Лимит free: первые 20",
-        "mapping": "label_mismatch"
+        "phone": 6,
+        "label": "Стопка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые",
       "state": "Стопка",
@@ -257,9 +258,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 9,
-        "label": "Мои наборы",
-        "mapping": "label_mismatch"
+        "phone": 7,
+        "label": "Пусто",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые",
       "state": "Пусто",
@@ -286,9 +287,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 10,
-        "label": "Удаление набора",
-        "mapping": "label_mismatch"
+        "phone": 8,
+        "label": "Лимит free: первые 20",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые",
       "state": "Лимит free: первые 20",
@@ -327,9 +328,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-011.png",
+      "evidence_at": "2026-10-10T18:42:56.058Z",
+      "evidence_sha256": "6f734998de26b86fe51c72c0acabe1e08df9874cd2a65b58a01a1fe23102ebae",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -337,16 +338,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 9 (\"Мои наборы\") — склейка снята с 11; переснять"
     },
     {
       "id": "cards-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 12,
-        "label": "Каталог · «Новые»",
-        "mapping": "label_mismatch"
+        "phone": 10,
+        "label": "Удаление набора",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Мои наборы",
       "state": "Удаление набора",
@@ -374,9 +376,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 13,
-        "label": "Поиск · действия долгим нажатием",
-        "mapping": "label_mismatch"
+        "phone": 11,
+        "label": "Пусто",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Мои наборы",
       "state": "Пусто",
@@ -403,9 +405,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 14,
-        "label": "До добавления · лайк раньше времени",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "Каталог · «Новые»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы сообщества",
       "state": "Каталог · «Новые»",
@@ -433,9 +435,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 15,
-        "label": "Добавлен · отклик",
-        "mapping": "label_mismatch"
+        "phone": 13,
+        "label": "Поиск · действия долгим нажатием",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы сообщества",
       "state": "Поиск · действия долгим нажатием",
@@ -523,9 +525,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 18,
-        "label": "Правка · дубликат",
-        "mapping": "label_mismatch"
+        "phone": 14,
+        "label": "До добавления · лайк раньше времени",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Набор",
       "state": "До добавления · лайк раньше времени",
@@ -552,9 +554,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 19,
-        "label": "Новый набор",
-        "mapping": "label_mismatch"
+        "phone": 15,
+        "label": "Добавлен · отклик",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Набор",
       "state": "Добавлен · отклик",
@@ -581,9 +583,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 20,
-        "label": "Новая карточка в наборе",
-        "mapping": "label_mismatch"
+        "phone": 16,
+        "label": "Жалоба на набор",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Набор",
       "state": "Жалоба на набор",
@@ -623,9 +625,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-021.png",
+      "evidence_at": "2026-10-10T18:42:57.780Z",
+      "evidence_sha256": "f488fdbd7dba052ec69f0e52644a18eeb8208f60307f38852d562654aef08174",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -633,16 +635,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 17 (\"Новая карточка\") — склейка снята с 21; переснять"
     },
     {
       "id": "cards-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 22,
-        "label": "Мало карточек для блица",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "Правка · дубликат",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Правка · дубликат",
@@ -683,9 +686,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-023.png",
+      "evidence_at": "2026-10-10T18:42:59.544Z",
+      "evidence_sha256": "9f3d9f737604a7cf0940dc29c6d1cef77d87452151798dd0df914381079e49d5",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -693,16 +696,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 19 (\"Новый набор\") — склейка снята с 23; переснять"
     },
     {
       "id": "cards-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 24,
-        "label": "Список",
-        "mapping": "label_mismatch"
+        "phone": 20,
+        "label": "Новая карточка в наборе",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки и создание набора",
       "state": "Новая карточка в наборе",
@@ -730,9 +734,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 25,
-        "label": "Загрузка",
-        "mapping": "label_mismatch"
+        "phone": 21,
+        "label": "Выбор наборов",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки",
       "state": "Выбор наборов",
@@ -773,9 +777,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-026.png",
+      "evidence_at": "2026-10-10T18:43:04.778Z",
+      "evidence_sha256": "6c637b3f5bab8fa21849ba99a8201d1122feb27b02b66618dc8723b899afad57",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -783,16 +787,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять"
     },
     {
       "id": "cards-027",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 27,
-        "label": "Загрузка",
-        "mapping": "label_mismatch"
+        "phone": 23,
+        "label": "Кнопка языка открыта",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки",
       "state": "Кнопка языка открыта",
@@ -834,9 +839,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-028.png",
+      "evidence_at": "2026-10-10T18:43:01.346Z",
+      "evidence_sha256": "30c927e910de70b217e2c8ca3d2b79ee3edbc6e6715785e29199ab732cc686e2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -844,16 +849,17 @@
       "status": "blocked",
       "blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 24 (\"Список\") — склейка снята с 28; переснять"
     },
     {
       "id": "cards-029",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 29,
-        "label": "Разовая подсказка",
-        "mapping": "label_mismatch"
+        "phone": 25,
+        "label": "Загрузка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы из видео",
       "state": "Загрузка",
@@ -883,9 +889,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 30,
-        "label": "Долгое нажатие → «Удалить»",
-        "mapping": "label_mismatch"
+        "phone": 26,
+        "label": "Ошибка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы из видео",
       "state": "Ошибка",
@@ -913,9 +919,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 31,
-        "label": "Подтверждение массового удаления",
-        "mapping": "label_mismatch"
+        "phone": 27,
+        "label": "Загрузка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Загрузка",
@@ -942,9 +948,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 32,
-        "label": "Мало для набора — «выбери ещё»",
-        "mapping": "label_mismatch"
+        "phone": 28,
+        "label": "Меню «⋯»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Меню «⋯»",
@@ -971,9 +977,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 33,
-        "label": "Стопка — обратная сторона (переворот)",
-        "mapping": "label_mismatch"
+        "phone": 29,
+        "label": "Разовая подсказка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Разовая подсказка",
@@ -1003,9 +1009,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 34,
-        "label": "Поиск — ничего не найдено",
-        "mapping": "label_mismatch"
+        "phone": 30,
+        "label": "Долгое нажатие → «Удалить»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Долгое нажатие → «Удалить»",
@@ -1032,9 +1038,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 35,
-        "label": "Ошибка загрузки",
-        "mapping": "label_mismatch"
+        "phone": 31,
+        "label": "Подтверждение массового удаления",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Подтверждение массового удаления",
@@ -1062,9 +1068,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 36,
-        "label": "Мой набор — ещё не в сообществе",
-        "mapping": "label_mismatch"
+        "phone": 32,
+        "label": "Мало для набора — «выбери ещё»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Мало для набора — «выбери ещё»",
@@ -1091,9 +1097,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 37,
-        "label": "Отправка в сообщество",
-        "mapping": "label_mismatch"
+        "phone": 33,
+        "label": "Стопка — обратная сторона (переворот)",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Стопка — обратная сторона (переворот)",
@@ -1123,9 +1129,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 38,
-        "label": "Мой опубликованный — «Править набор»",
-        "mapping": "label_mismatch"
+        "phone": 34,
+        "label": "Поиск — ничего не найдено",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Поиск — ничего не найдено",
@@ -1152,9 +1158,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 39,
-        "label": "Набор из видео — превью ролика",
-        "mapping": "label_mismatch"
+        "phone": 35,
+        "label": "Ошибка загрузки",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Ошибка загрузки",
@@ -1181,9 +1187,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 40,
-        "label": "Открытие набора · сеть упала",
-        "mapping": "label_mismatch"
+        "phone": 36,
+        "label": "Мой набор — ещё не в сообществе",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Мой набор — ещё не в сообществе",
@@ -1213,9 +1219,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 41,
-        "label": "Набор удалён",
-        "mapping": "label_mismatch"
+        "phone": 37,
+        "label": "Отправка в сообщество",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Отправка в сообщество",
@@ -1243,9 +1249,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 42,
-        "label": "Поиск — ничего не найдено",
-        "mapping": "label_mismatch"
+        "phone": 38,
+        "label": "Мой опубликованный — «Править набор»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Мой опубликованный — «Править набор»",
@@ -1273,9 +1279,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 43,
-        "label": "Загрузка",
-        "mapping": "label_mismatch"
+        "phone": 39,
+        "label": "Набор из видео — превью ролика",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Свой набор и набор из видео",
       "state": "Набор из видео — превью ролика",
@@ -1304,9 +1310,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 44,
-        "label": "Каталог пуст",
-        "mapping": "label_mismatch"
+        "phone": 40,
+        "label": "Открытие набора · сеть упала",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Мои наборы — остальные состояния",
       "state": "Открытие набора · сеть упала",
@@ -1333,9 +1339,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 45,
-        "label": "Свой опубликованный — карандаш · «Топ»",
-        "mapping": "label_mismatch"
+        "phone": 41,
+        "label": "Набор удалён",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Мои наборы — остальные состояния",
       "state": "Набор удалён",
@@ -1362,9 +1368,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 46,
-        "label": "Лайк после добавления",
-        "mapping": "label_mismatch"
+        "phone": 42,
+        "label": "Поиск — ничего не найдено",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Мои наборы — остальные состояния",
       "state": "Поиск — ничего не найдено",
@@ -1394,9 +1400,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 47,
-        "label": "Отклик пуст",
-        "mapping": "label_mismatch"
+        "phone": 43,
+        "label": "Загрузка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Загрузка",
@@ -1424,9 +1430,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 48,
-        "label": "Набор не добавлен — писать нельзя",
-        "mapping": "label_mismatch"
+        "phone": 44,
+        "label": "Каталог пуст",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Каталог пуст",
@@ -1454,9 +1460,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 49,
-        "label": "Меню автора: закрепить / скрыть",
-        "mapping": "label_mismatch"
+        "phone": 45,
+        "label": "Свой опубликованный — карандаш · «Топ»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Свой опубликованный — карандаш · «Топ»",
@@ -1484,9 +1490,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 50,
-        "label": "Меню своего: удалить",
-        "mapping": "label_mismatch"
+        "phone": 46,
+        "label": "Лайк после добавления",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Лайк после добавления",
@@ -1513,9 +1519,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 51,
-        "label": "Меню чужого: пожаловаться",
-        "mapping": "label_mismatch"
+        "phone": 47,
+        "label": "Отклик пуст",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Отклик пуст",
@@ -1542,9 +1548,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 52,
-        "label": "Отправляется · не отправлено",
-        "mapping": "label_mismatch"
+        "phone": 48,
+        "label": "Набор не добавлен — писать нельзя",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Набор не добавлен — писать нельзя",
@@ -1571,9 +1577,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 53,
-        "label": "Жалоба на комментарий",
-        "mapping": "label_mismatch"
+        "phone": 49,
+        "label": "Меню автора: закрепить / скрыть",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Меню автора: закрепить / скрыть",
@@ -1600,9 +1606,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 54,
-        "label": "Жалоба на комментарий отправлена",
-        "mapping": "label_mismatch"
+        "phone": 50,
+        "label": "Меню своего: удалить",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Меню своего: удалить",
@@ -1629,9 +1635,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 55,
-        "label": "Жалоба на набор отправлена",
-        "mapping": "label_mismatch"
+        "phone": 51,
+        "label": "Меню чужого: пожаловаться",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Меню чужого: пожаловаться",
@@ -1658,9 +1664,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 56,
-        "label": "Проверка Plus — скелет",
-        "mapping": "label_mismatch"
+        "phone": 52,
+        "label": "Отправляется · не отправлено",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Отправляется · не отправлено",
@@ -1689,9 +1695,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 57,
-        "label": "Новая · заметка раскрыта",
-        "mapping": "label_mismatch"
+        "phone": 53,
+        "label": "Жалоба на комментарий",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Жалоба на комментарий",
@@ -1718,9 +1724,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 58,
-        "label": "Не удалось сохранить",
-        "mapping": "label_mismatch"
+        "phone": 54,
+        "label": "Жалоба на комментарий отправлена",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Жалоба на комментарий отправлена",
@@ -1747,9 +1753,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 59,
-        "label": "Карточка не найдена",
-        "mapping": "label_mismatch"
+        "phone": 55,
+        "label": "Жалоба на набор отправлена",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Отклик, лайк и жалобы",
       "state": "Жалоба на набор отправлена",
@@ -1776,9 +1782,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 60,
-        "label": "Сохранено",
-        "mapping": "label_mismatch"
+        "phone": 56,
+        "label": "Проверка Plus — скелет",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Проверка Plus — скелет",
@@ -1806,9 +1812,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 61,
-        "label": "Правка своего набора",
-        "mapping": "label_mismatch"
+        "phone": 57,
+        "label": "Новая · заметка раскрыта",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Новая · заметка раскрыта",
@@ -1836,9 +1842,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 62,
-        "label": "Только для меня",
-        "mapping": "label_mismatch"
+        "phone": 58,
+        "label": "Не удалось сохранить",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Не удалось сохранить",
@@ -1865,9 +1871,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 63,
-        "label": "Оформление раскрыто",
-        "mapping": "label_mismatch"
+        "phone": 59,
+        "label": "Карточка не найдена",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Карточка не найдена",
@@ -1894,9 +1900,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 64,
-        "label": "Меню: черновик / ошибка",
-        "mapping": "label_mismatch"
+        "phone": 60,
+        "label": "Сохранено",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Редактор карточки — все состояния",
       "state": "Сохранено",
@@ -1924,9 +1930,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 65,
-        "label": "Очистить черновик?",
-        "mapping": "label_mismatch"
+        "phone": 61,
+        "label": "Правка своего набора",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Правка своего набора",
@@ -1954,9 +1960,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 66,
-        "label": "Минимум 10 карточек",
-        "mapping": "label_mismatch"
+        "phone": 62,
+        "label": "Только для меня",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Только для меня",
@@ -1984,9 +1990,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 67,
-        "label": "Проверь поля",
-        "mapping": "label_mismatch"
+        "phone": 64,
+        "label": "Меню: черновик / ошибка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Меню: черновик / ошибка",
@@ -2014,9 +2020,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 68,
-        "label": "Лимит 50 карточек",
-        "mapping": "label_mismatch"
+        "phone": 65,
+        "label": "Очистить черновик?",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Очистить черновик?",
@@ -2044,9 +2050,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 69,
-        "label": "Офлайн — сохранено на устройстве",
-        "mapping": "label_mismatch"
+        "phone": 66,
+        "label": "Минимум 10 карточек",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Минимум 10 карточек",
@@ -2074,9 +2080,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 70,
-        "label": "Набор сохранён",
-        "mapping": "label_mismatch"
+        "phone": 67,
+        "label": "Проверь поля",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Проверь поля",
@@ -2104,9 +2110,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 71,
-        "label": "Недоступен для правки",
-        "mapping": "label_mismatch"
+        "phone": 68,
+        "label": "Лимит 50 карточек",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Лимит 50 карточек",
@@ -2134,9 +2140,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 72,
-        "label": "Загрузка наборов",
-        "mapping": "label_mismatch"
+        "phone": 69,
+        "label": "Офлайн — сохранено на устройстве",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Офлайн — сохранено на устройстве",
@@ -2166,9 +2172,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 73,
-        "label": "Нет наборов",
-        "mapping": "label_mismatch"
+        "phone": 70,
+        "label": "Набор сохранён",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Набор сохранён",
@@ -2196,9 +2202,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 74,
-        "label": "Ошибка сети",
-        "mapping": "label_mismatch"
+        "phone": 71,
+        "label": "Недоступен для правки",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Создание набора — все состояния",
       "state": "Недоступен для правки",
@@ -2226,9 +2232,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 75,
-        "label": "Режим недоступен",
-        "mapping": "label_mismatch"
+        "phone": 72,
+        "label": "Загрузка наборов",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Загрузка наборов",
@@ -2255,9 +2261,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 76,
-        "label": "Шторка выбора наборов (Устно)",
-        "mapping": "label_match"
+        "phone": 73,
+        "label": "Нет наборов",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Нет наборов",
@@ -2284,9 +2290,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 77,
-        "label": "Пока пусто",
-        "mapping": "label_mismatch"
+        "phone": 74,
+        "label": "Ошибка сети",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Ошибка сети",
@@ -2313,9 +2319,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 78,
-        "label": "Ничего не нашли",
-        "mapping": "label_mismatch"
+        "phone": 75,
+        "label": "Режим недоступен",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Режим недоступен",
@@ -2342,9 +2348,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 79,
-        "label": "Открытие ролика · не открылся",
-        "mapping": "label_mismatch"
+        "phone": 76,
+        "label": "Шторка выбора наборов (Устно)",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подготовка тренировки — все состояния",
       "state": "Шторка выбора наборов (Устно)",
@@ -2373,9 +2379,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 80,
-        "label": "Лучшее у сообщества грузится",
-        "mapping": "label_mismatch"
+        "phone": 77,
+        "label": "Пока пусто",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы из видео — остальные состояния",
       "state": "Пока пусто",
@@ -2405,9 +2411,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 81,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 78,
+        "label": "Ничего не нашли",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы из видео — остальные состояния",
       "state": "Ничего не нашли",
@@ -2435,9 +2441,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 82,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 79,
+        "label": "Открытие ролика · не открылся",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы из видео — остальные состояния",
       "state": "Открытие ролика · не открылся",
@@ -2465,9 +2471,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards.html",
-        "phone": 83,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 80,
+        "label": "Лучшее у сообщества грузится",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Хаб — загрузка",
       "state": "Лучшее у сообщества грузится",
@@ -4457,9 +4463,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 19,
-        "label": "Пусто",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "Загрузка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Загрузка",
@@ -4485,9 +4491,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 20,
-        "label": "Нет сети",
-        "mapping": "label_mismatch"
+        "phone": 19,
+        "label": "Пусто",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Пусто",
@@ -4513,9 +4519,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 21,
-        "label": "Каталог давно не обновлялся",
-        "mapping": "label_mismatch"
+        "phone": 20,
+        "label": "Нет сети",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Нет сети",
@@ -4541,9 +4547,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 22,
-        "label": "Ошибка",
-        "mapping": "label_mismatch"
+        "phone": 21,
+        "label": "Каталог давно не обновлялся",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Каталог давно не обновлялся",
@@ -4569,9 +4575,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 23,
-        "label": "Потянули вниз — повтор",
-        "mapping": "label_mismatch"
+        "phone": 22,
+        "label": "Ошибка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Ошибка",
@@ -4599,9 +4605,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/video.html",
-        "phone": 24,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 23,
+        "label": "Потянули вниз — повтор",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Каталог — остальные состояния",
       "state": "Потянули вниз — повтор",
@@ -4693,9 +4699,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 3,
-        "label": "Хаб — афиша «Урок с Максом»",
-        "mapping": "label_mismatch"
+        "phone": 4,
+        "label": "Категория раскрыта — все виды строкпройдено ✓ · доступно › · «Входит в",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "A. Хаб «Диалоги»",
       "state": "Категория раскрыта — все виды строк",
@@ -4754,7 +4760,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 5 (\"Хаб — лимит исчерпан (0/10)карточка «Plus снимает лимит реплик»\") — склейка снята с 4; переснять"
     },
     {
       "id": "dialogs-005",
@@ -4788,16 +4795,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 6 (\"Хаб — язык ещё проверяетсяизучаемый испанский: миров нет\") — склейка снята с 5; переснять"
     },
     {
       "id": "dialogs-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 6,
-        "label": "Хаб — язык ещё проверяется",
-        "mapping": "label_mismatch"
+        "phone": 7,
+        "label": "Раскрытие категориикарточка раздвигается, строки входят каскадом",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "A. Хаб «Диалоги»",
       "state": "Раскрытие категории",
@@ -4825,9 +4833,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 7,
-        "label": "Раскрытие категории",
-        "mapping": "label_mismatch"
+        "phone": 8,
+        "label": "Брифинг — цель и задания",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "B. Брифинг и вход",
       "state": "Брифинг — цель и задания",
@@ -4885,16 +4893,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 9 (\"Брифинг — закрыт по рангувместо «ᚱ 5 000» — ранг монеты; пороги D05 не\") — склейка снята с 8; переснять"
     },
     {
       "id": "dialogs-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 9,
-        "label": "Брифинг — закрыт по рангу",
-        "mapping": "label_mismatch"
+        "phone": 10,
+        "label": "Согласие на ИИ — шторка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "B. Брифинг и вход",
       "state": "Согласие на ИИ — шторка",
@@ -4920,9 +4929,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 10,
-        "label": "Согласие на ИИ — шторка",
-        "mapping": "label_mismatch"
+        "phone": 11,
+        "label": "AI-диалоги выключены (гейт)",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "B. Брифинг и вход",
       "state": "AI-диалоги выключены (гейт)",
@@ -4948,9 +4957,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 11,
-        "label": "AI-диалоги выключены (гейт)",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "Нет энергии — окнозакрытие уводит с экрана диалога",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "B. Брифинг и вход",
       "state": "Нет энергии — окно",
@@ -4976,9 +4985,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 12,
-        "label": "Нет энергии — окно",
-        "mapping": "label_mismatch"
+        "phone": 13,
+        "label": "Старт диалога: энергия 5 → 4первый кадр сессии; у Plus пилюли нет",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "B. Брифинг и вход",
       "state": "Старт диалога: энергия 5 → 4",
@@ -5002,9 +5011,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 13,
-        "label": "Старт диалога: энергия 5 → 4",
-        "mapping": "label_mismatch"
+        "phone": 14,
+        "label": "Начало — приветствие баристы",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Сессия диалога",
       "state": "Начало — приветствие баристы",
@@ -5061,16 +5070,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 15 (\"Разговор идёт\") — склейка снята с 14; переснять"
     },
     {
       "id": "dialogs-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 15,
-        "label": "Разговор идёт",
-        "mapping": "label_mismatch"
+        "phone": 16,
+        "label": "Перевод показантекст пузыря заменён переводом, кнопка стала «Скрыть пе",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Сессия диалога",
       "state": "Перевод показан",
@@ -5126,7 +5136,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 17 (\"Озвучка играет\") — склейка снята с 16; переснять"
     },
     {
       "id": "dialogs-017",
@@ -5159,7 +5170,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 18 (\"Подсказка — окно\") — склейка снята с 17; переснять"
     },
     {
       "id": "dialogs-018",
@@ -5194,7 +5206,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 19 (\"Задания — шторка\") — склейка снята с 18; переснять"
     },
     {
       "id": "dialogs-019",
@@ -5228,7 +5241,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 20 (\"«Почему так» — шторка\") — склейка снята с 19; переснять"
     },
     {
       "id": "dialogs-020",
@@ -5261,16 +5275,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 21 (\"«Почему так» — разборы на сегодня закончились3 бесплатных в день; руны\") — склейка снята с 20; переснять"
     },
     {
       "id": "dialogs-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 21,
-        "label": "«Почему так» — разборы на сегодня закончились",
-        "mapping": "label_mismatch"
+        "phone": 22,
+        "label": "«Лучше так» — кнопка и раскрытый вариант",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Сессия диалога",
       "state": "«Лучше так» — кнопка и раскрытый вариант",
@@ -5323,7 +5338,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 23 (\"Ввод текстом с клавиатурой\") — склейка снята с 22; переснять"
     },
     {
       "id": "dialogs-023",
@@ -5356,16 +5372,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 24 (\"Настроение собеседника упалозначок лица в шапке; цель не сдвинулась\") — склейка снята с 23; переснять"
     },
     {
       "id": "dialogs-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 24,
-        "label": "Настроение собеседника упало",
-        "mapping": "label_mismatch"
+        "phone": 25,
+        "label": "Ожидание — «Готовлю микрофон…»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Голосовой ввод",
       "state": "Ожидание — «Готовлю микрофон…»",
@@ -5392,9 +5409,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 25,
-        "label": "Ожидание — «Готовлю микрофон…»",
-        "mapping": "label_mismatch"
+        "phone": 26,
+        "label": "Запись — «Говори…»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Голосовой ввод",
       "state": "Запись — «Говори…»",
@@ -5423,9 +5440,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 26,
-        "label": "Запись — «Говори…»",
-        "mapping": "label_mismatch"
+        "phone": 27,
+        "label": "Распознано — текст встал в поле",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Голосовой ввод",
       "state": "Распознано — текст встал в поле",
@@ -5455,9 +5472,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 27,
-        "label": "Распознано — текст встал в поле",
-        "mapping": "label_mismatch"
+        "phone": 28,
+        "label": "Ошибка распознавания",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Голосовой ввод",
       "state": "Ошибка распознавания",
@@ -5485,9 +5502,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 28,
-        "label": "Ошибка распознавания",
-        "mapping": "label_mismatch"
+        "phone": 29,
+        "label": "Нет доступа к микрофону · попытки кончилисьбейдж PLUS на микрофоне — г",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Голосовой ввод",
       "state": "Нет доступа к микрофону · попытки кончились",
@@ -5513,9 +5530,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 29,
-        "label": "Нет доступа к микрофону · попытки кончились",
-        "mapping": "label_mismatch"
+        "phone": 30,
+        "label": "ИИ печатает",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Ожидание и ошибки",
       "state": "ИИ печатает",
@@ -5573,7 +5590,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 31 (\"Ответ пришёл\") — склейка снята с 30; переснять"
     },
     {
       "id": "dialogs-031",
@@ -5611,16 +5629,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 32 (\"Сетевая ошибка — «Повторить»\") — склейка снята с 31; переснять"
     },
     {
       "id": "dialogs-032",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 32,
-        "label": "Сетевая ошибка — «Повторить»",
-        "mapping": "label_mismatch"
+        "phone": 33,
+        "label": "Сервис недоступен · слишком много сообщений",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Ожидание и ошибки",
       "state": "Сервис недоступен · слишком много сообщений",
@@ -5648,9 +5667,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 33,
-        "label": "Сервис недоступен · слишком много сообщений",
-        "mapping": "label_mismatch"
+        "phone": 34,
+        "label": "Диалоги временно недоступныkill-switch раздела",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Ожидание и ошибки",
       "state": "Диалоги временно недоступны",
@@ -5677,9 +5696,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 34,
-        "label": "Диалоги временно недоступны",
-        "mapping": "label_mismatch"
+        "phone": 35,
+        "label": "Лимит — последняя реплика (1/10)",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Лимит — последняя реплика (1/10)",
@@ -5728,7 +5747,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 36 (\"Лимит закончился — «На сегодня всё»\") — склейка снята с 35; переснять"
     },
     {
       "id": "dialogs-036",
@@ -5760,16 +5780,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 37 (\"Выход из диалога — подтверждение\") — склейка снята с 36; переснять"
     },
     {
       "id": "dialogs-037",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 37,
-        "label": "Выход из диалога — подтверждение",
-        "mapping": "label_mismatch"
+        "phone": 38,
+        "label": "Диалог завершён — финальная репликаввод скрыт, тап по ленте открывает ",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Диалог завершён — финальная реплика",
@@ -5818,16 +5839,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 39 (\"Переписка после итога — пилюля «Итоги»\") — склейка снята с 38; переснять"
     },
     {
       "id": "dialogs-039",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 39,
-        "label": "Переписка после итога — пилюля «Итоги»",
-        "mapping": "label_mismatch"
+        "phone": 40,
+        "label": "Сессия — Plusнет пилюли квоты, нет стены лимита",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "C. Лимиты, завершение и выход",
       "state": "Сессия — Plus",
@@ -5854,9 +5876,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 40,
-        "label": "Сессия — Plus",
-        "mapping": "label_mismatch"
+        "phone": 41,
+        "label": "Диалог пройден — без ошибок",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "D. Итог диалога — единый экран завершения",
       "state": "Диалог пройден — без ошибок",
@@ -5910,16 +5932,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 42 (\"Диалог пройден — с ошибками\") — склейка снята с 41; переснять"
     },
     {
       "id": "dialogs-042",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 42,
-        "label": "Диалог пройден — с ошибками",
-        "mapping": "label_mismatch"
+        "phone": 43,
+        "label": "Оценка раскрыта, есть комментарий",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "D. Итог диалога — единый экран завершения",
       "state": "Оценка раскрыта, есть комментарий",
@@ -5947,9 +5970,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 43,
-        "label": "Оценка раскрыта, есть комментарий",
-        "mapping": "label_mismatch"
+        "phone": 44,
+        "label": "Разговор завершён вручную",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "D. Итог диалога — единый экран завершения",
       "state": "Разговор завершён вручную",
@@ -5977,9 +6000,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 44,
-        "label": "Разговор завершён вручную",
-        "mapping": "label_mismatch"
+        "phone": 45,
+        "label": "Отзыв отправлен",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "D. Итог диалога — единый экран завершения",
       "state": "Отзыв отправлен",
@@ -6007,9 +6030,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 45,
-        "label": "Отзыв отправлен",
-        "mapping": "label_mismatch"
+        "phone": 53,
+        "label": "Пустое состояние — «Что можно спросить»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "F. Свободный разговор",
       "state": "Пустое состояние — «Что можно спросить»",
@@ -6036,9 +6059,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/dialogs.html",
-        "phone": 46,
-        "label": "Выбор темы",
-        "mapping": "label_mismatch"
+        "phone": 54,
+        "label": "Разговор идёт",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "F. Свободный разговор",
       "state": "Разговор идёт",
@@ -12396,16 +12419,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 10 (\"пустой список\") — склейка снята с 20; переснять"
     },
     {
       "id": "community-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 21,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 11,
+        "label": "ошибка обновления / офлайн",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Друзья",
       "state": "ошибка обновления / офлайн",
@@ -12431,9 +12455,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 22,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 13,
+        "label": "приглашение на занятие · модалка",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Друзья",
       "state": "приглашение на занятие · модалка",
@@ -12459,9 +12483,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 23,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 14,
+        "label": "активность и опрос дня",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Друзья",
       "state": "активность и опрос дня",
@@ -12487,9 +12511,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 24,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 15,
+        "label": "подтверждение удаления",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Друзья",
       "state": "подтверждение удаления",
@@ -12515,9 +12539,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 25,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 16,
+        "label": "каталог наборов",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Наборы сообщества",
       "state": "каталог наборов",
@@ -12857,9 +12881,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 11,
-        "label": "Terms · прокручиваемый документ",
-        "mapping": "label_match"
+        "phone": 10,
+        "label": "Privacy Policy · прокручиваемый документ",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Обучение и внешний вид",
       "state": "Privacy Policy · прокручиваемый документ",
@@ -12889,9 +12913,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 12,
-        "label": "форма поддержки",
-        "mapping": "label_mismatch"
+        "phone": 11,
+        "label": "Terms · прокручиваемый документ",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Обучение и внешний вид",
       "state": "Terms · прокручиваемый документ",
@@ -12921,9 +12945,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 13,
-        "label": "управление подпиской",
-        "mapping": "label_mismatch"
+        "phone": 12,
+        "label": "форма поддержки",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Помощь и подписка",
       "state": "форма поддержки · пусто",
@@ -13315,9 +13339,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 26,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 14,
+        "label": "приглашение друга",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Справочный макет · атрибуция приглашения",
       "state": "приглашение друга",
@@ -13343,9 +13367,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 27,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 16,
+        "label": "проект UX · offline-выход",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · offline-выход",
@@ -13373,9 +13397,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 28,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 17,
+        "label": "проект UX · выход выполняется",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · выход выполняется",
@@ -13403,9 +13427,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 29,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 18,
+        "label": "проект UX · выход не доказан",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · выход не доказан",
@@ -13433,9 +13457,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 30,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 19,
+        "label": "проект UX · удаление до отправки",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · удаление до отправки",
@@ -13463,9 +13487,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 31,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 20,
+        "label": "проект UX · запрос отправлен",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · запрос отправлен",
@@ -13493,9 +13517,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 32,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 21,
+        "label": "проект UX · ответ потерян",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · ответ потерян",
@@ -13523,9 +13547,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 33,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 22,
+        "label": "проект UX · отказ до изменений",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · отказ до изменений",
@@ -13553,9 +13577,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 34,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 23,
+        "label": "проект UX · credential safe, cleanup pending",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · credential safe, cleanup pending",
@@ -13583,9 +13607,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/profile.html",
-        "phone": 35,
-        "label": null,
-        "mapping": "no_phone"
+        "phone": 24,
+        "label": "проект UX · cleanup complete receipt",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Проект UX · критические действия",
       "state": "проект UX · cleanup complete receipt",
@@ -14514,9 +14538,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/coins.html",
-        "phone": 17,
-        "label": "правила приглашения · шторка",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "граница доступа урока",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подтверждённый доступ и границы",
       "state": "граница доступа урока",
@@ -15411,9 +15435,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 6,
-        "label": "Снова в сети",
-        "mapping": "label_mismatch"
+        "phone": 8,
+        "label": "Без обновления дальше никак",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Обновления",
       "state": "Без обновления дальше никак",
@@ -15443,9 +15467,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 7,
-        "label": "Данные могут быть устаревшими",
-        "mapping": "label_mismatch"
+        "phone": 9,
+        "label": "Есть новое — можно позже",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Обновления",
       "state": "Есть новое — можно позже",
@@ -15472,9 +15496,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 8,
-        "label": "Без обновления дальше никак",
-        "mapping": "label_mismatch"
+        "phone": 10,
+        "label": "Технические работы",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Экраны-заглушки",
       "state": "Технические работы",
@@ -15500,9 +15524,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 9,
-        "label": "Есть новое — можно позже",
-        "mapping": "label_mismatch"
+        "phone": 11,
+        "label": "Восстанавливаем сохранение",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Экраны-заглушки",
       "state": "Восстанавливаем сохранение",
@@ -15555,16 +15579,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 12 (\"Что-то пошло не так\") — склейка снята с 10; переснять"
     },
     {
       "id": "system-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 11,
-        "label": "Восстанавливаем сохранение",
-        "mapping": "label_mismatch"
+        "phone": 14,
+        "label": "Что нового",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сообщения",
       "state": "Что нового",
@@ -15620,16 +15645,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 15 (\"Сообщение команды\") — склейка снята с 12; переснять"
     },
     {
       "id": "system-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 13,
-        "label": "Такой страницы нет",
-        "mapping": "label_mismatch"
+        "phone": 16,
+        "label": "Личное сообщение с монетами",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сообщения",
       "state": "Личное сообщение с монетами",
@@ -15655,9 +15681,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 14,
-        "label": "Что нового",
-        "mapping": "label_mismatch"
+        "phone": 17,
+        "label": "Входящие — 2 новых",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Сообщения",
       "state": "Входящие — 2 новых",
@@ -15710,16 +15736,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 18 (\"Входящие — пусто\") — склейка снята с 15; переснять"
     },
     {
       "id": "system-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 16,
-        "label": "Личное сообщение с монетами",
-        "mapping": "label_mismatch"
+        "phone": 19,
+        "label": "Включить напоминания?",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Просьбы и оплата",
       "state": "Включить напоминания?",
@@ -15746,9 +15773,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 17,
-        "label": "Входящие — 2 новых",
-        "mapping": "label_mismatch"
+        "phone": 20,
+        "label": "Оценить приложение",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Просьбы и оплата",
       "state": "Оценить приложение",
@@ -15774,9 +15801,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 18,
-        "label": "Входящие — пусто",
-        "mapping": "label_mismatch"
+        "phone": 21,
+        "label": "Оплата не прошла",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Просьбы и оплата",
       "state": "Оплата не прошла",
@@ -15803,9 +15830,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 19,
-        "label": "Включить напоминания?",
-        "mapping": "label_mismatch"
+        "phone": 22,
+        "label": "Подтверждение",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подтверждения и тосты",
       "state": "Подтверждение",
@@ -15831,9 +15858,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 20,
-        "label": "Оценить приложение",
-        "mapping": "label_mismatch"
+        "phone": 23,
+        "label": "Подтверждение удаления",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подтверждения и тосты",
       "state": "Подтверждение удаления",
@@ -15859,9 +15886,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 21,
-        "label": "Оплата не прошла",
-        "mapping": "label_mismatch"
+        "phone": 24,
+        "label": "Выбор действия",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подтверждения и тосты",
       "state": "Выбор действия",
@@ -15890,9 +15917,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/system.html",
-        "phone": 22,
-        "label": "Подтверждение",
-        "mapping": "label_mismatch"
+        "phone": 25,
+        "label": "Карточка удалена — «Вернуть»",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Подтверждения и тосты",
       "state": "Карточка удалена — «Вернуть»",
@@ -18019,9 +18046,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 14,
-        "label": "separate nonblocking finale",
-        "mapping": "label_mismatch"
+        "phone": 16,
+        "label": "notification time picker",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Выбор времени",
       "state": "notification time picker",
@@ -18049,9 +18076,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 15,
-        "label": "access ended · 3 current actions",
-        "mapping": "label_mismatch"
+        "phone": 17,
+        "label": "month bounds + day details",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Месячный календарь",
       "state": "month bounds + day details",
@@ -18079,9 +18106,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 16,
-        "label": "notification time picker",
-        "mapping": "label_mismatch"
+        "phone": 18,
+        "label": "two-month comparison · settled metrics",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Месячный календарь",
       "state": "two-month comparison · settled metrics",
@@ -18109,9 +18136,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 17,
-        "label": "month bounds + day details",
-        "mapping": "label_mismatch"
+        "phone": 19,
+        "label": "ReferralCodeSheet · idle",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · idle",
@@ -18139,9 +18166,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 18,
-        "label": "two-month comparison · settled metrics",
-        "mapping": "label_mismatch"
+        "phone": 20,
+        "label": "ReferralCodeSheet · busy",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · busy",
@@ -18169,9 +18196,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 19,
-        "label": "ReferralCodeSheet · idle",
-        "mapping": "label_match"
+        "phone": 21,
+        "label": "ReferralCodeSheet · applied",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · applied",
@@ -18199,9 +18226,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 20,
-        "label": "ReferralCodeSheet · busy",
-        "mapping": "label_match"
+        "phone": 22,
+        "label": "ReferralCodeSheet · already",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · already",
@@ -18229,9 +18256,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 21,
-        "label": "ReferralCodeSheet · applied",
-        "mapping": "label_match"
+        "phone": 23,
+        "label": "ReferralCodeSheet · invalid",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · invalid",
@@ -18259,9 +18286,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 22,
-        "label": "ReferralCodeSheet · already",
-        "mapping": "label_match"
+        "phone": 24,
+        "label": "ReferralCodeSheet · unknown",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · unknown",
@@ -18289,9 +18316,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 23,
-        "label": "ReferralCodeSheet · invalid",
-        "mapping": "label_match"
+        "phone": 25,
+        "label": "ReferralCodeSheet · too-old",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · too-old",
@@ -18319,9 +18346,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 24,
-        "label": "ReferralCodeSheet · unknown",
-        "mapping": "label_match"
+        "phone": 26,
+        "label": "ReferralCodeSheet · self",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · self",
@@ -18349,9 +18376,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 25,
-        "label": "ReferralCodeSheet · too-old",
-        "mapping": "label_mismatch"
+        "phone": 27,
+        "label": "ReferralCodeSheet · needs-link",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · needs-link",
@@ -18379,9 +18406,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 26,
-        "label": "ReferralCodeSheet · self",
-        "mapping": "label_match"
+        "phone": 28,
+        "label": "ReferralCodeSheet · disabled",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · disabled",
@@ -18409,9 +18436,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 27,
-        "label": "ReferralCodeSheet · needs-link",
-        "mapping": "label_match"
+        "phone": 29,
+        "label": "ReferralCodeSheet · error",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · error",
@@ -18439,9 +18466,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 28,
-        "label": "ReferralCodeSheet · disabled",
-        "mapping": "label_match"
+        "phone": 30,
+        "label": "ReferralCodeSheet · friend-request",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Код от друга",
       "state": "ReferralCodeSheet · friend-request",
@@ -18469,9 +18496,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 29,
-        "label": "ReferralCodeSheet · error",
-        "mapping": "label_mismatch"
+        "phone": 33,
+        "label": "earned dossier · demo date",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Досье достижения",
       "state": "earned dossier · demo date",
@@ -18499,9 +18526,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 30,
-        "label": "ReferralCodeSheet · friend-request",
-        "mapping": "label_mismatch"
+        "phone": 34,
+        "label": "locked/progress shell · condition pending 2.0",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Досье достижения",
       "state": "locked/progress shell · condition pending 2.0",
@@ -18529,9 +18556,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 31,
-        "label": "D52 rules",
-        "mapping": "label_mismatch"
+        "phone": 35,
+        "label": "first normal card · previous disabled",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Детали карточки",
       "state": "first normal card · previous disabled",
@@ -18557,9 +18584,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 32,
-        "label": "friend qualified · demo name",
-        "mapping": "label_mismatch"
+        "phone": 36,
+        "label": "interior normal card · both directions enabled",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Детали карточки",
       "state": "interior normal card · both directions enabled",
@@ -18585,9 +18612,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/overlays-more.html",
-        "phone": 33,
-        "label": "earned dossier · demo date",
-        "mapping": "label_mismatch"
+        "phone": 37,
+        "label": "last secret card · next disabled",
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Детали карточки",
       "state": "last secret card · next disabled",
@@ -23222,7 +23249,8 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 15 (\"Верно\") — склейка снята с 14; переснять"
     },
     {
       "id": "mistakes-panel-015",
@@ -23252,16 +23280,17 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "_remap_note": "телефон макета 16 (\"Неверно\") — склейка снята с 15; переснять"
     },
     {
       "id": "mistakes-panel-016",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 16,
+        "phone": 17,
         "label": "Почему",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Почему",
       "state": "Почему",
@@ -23291,9 +23320,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 17,
+        "phone": 18,
         "label": "Итог отработки",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Итог отработки",
       "state": "Итог отработки",
@@ -23322,9 +23351,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 18,
+        "phone": 19,
         "label": "Ошибок нет",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Ошибок нет",
       "state": "Ошибок нет",
@@ -23348,9 +23377,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 19,
+        "phone": 20,
         "label": "На сегодня всё",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "На сегодня всё",
       "state": "На сегодня всё",
@@ -23374,9 +23403,9 @@
       "source": "MOCKUP_2026-10-04",
       "mockup": {
         "file": "docs/design/v2-app/mistakes-panel.html",
-        "phone": 20,
+        "phone": 21,
         "label": "Нет сети и кэша",
-        "mapping": "by_construction"
+        "mapping": "label_remap_2026-10-10"
       },
       "screen": "Нет сети и кэша",
       "state": "Нет сети и кэша",
@@ -25069,8 +25098,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/packs-simple-001.png",
-      "evidence_at": "2026-10-04T20:11:11.553Z",
-      "evidence_sha256": "b9bf6a8abc7c3d3c21fc66ac857c4f8130e9c0f9471ffad2727848f7c7147ac8",
+      "evidence_at": "2026-10-10T18:41:41.771Z",
+      "evidence_sha256": "1f90c23f456dd8c8c9be5e9527cc6d18da64c9acdb01b36ae08286e5141ca4cb",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

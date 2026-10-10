@@ -42,9 +42,38 @@ Governance-ID: TG-20707BD701DC
 Один коммит; откат `git revert <hash>` возвращает прежнее поведение (локальное стирание без серверного).
 Governance-ID: TG-D81D9F5DBC63 — статус задачи 21:12 в INBOX §AA-36.
 
+## Итог исполнителя (2026-10-10)
+
+**Изменено (не закоммичено):**
+- `app/auth_provider.ts`
+  - `prepareAccountDeletion`: замок удаления пишется и гостю (тот же потолок 5 с); лог `[ACC-MUT] delete:anon_lock=ok|failed`. Гость без замка/ключа — постановку НЕ зовём (была бы proof_missing), сразу стартует прямой `accountDeleteMine` (`delete:anon_server=direct reason=no_lock`). Гость по-прежнему `requiresDurableServerDeletion=false`.
+  - `finishAccountDeletion`, ветка гостя: наблюдатель ответа постановки (`delete:anon_server=enqueue ack=ok|failed`), затем `settleGuestEnqueueOutcome`: ответ ждём в фоне (потолок 8 с) → нет ответа → квитанция по ключу (`receipt=credential_safe`) → нет квитанции → запасной прямой вызов, пока гость ещё вошедший (`delete:anon_server=direct reason=enqueue_failed`). Успех → фаза `server_enqueued` (best-effort). Прямой вызов: ждём только отправки, ответ логируется (`delete:anon_server_direct ack=ok|failed`, failed → DebugLogger critical). Выход из Firebase — строго после отправки.
+  - `ensureFreshPostDeletionIdentity` → `enqueueDeletion`: ветка «аноним с тем же uid, что в замке» раньше молча возвращала true (постановку не слала НИКОГДА). Теперь `retryGuestServerDeletionOnce`: одна постановка с ключом (потолок 8 с, без 15-с квитанции), лог `delete:anon_server=enqueue_retry ack=ok|failed`, всегда true — старт не блокируется отказом.
+  - `PreparedAccountDeletion`: `cloudDeleteEnqueueOperation` стал nullable, добавлен `guestDirectDeleteOperation`.
+- `app/cloud_sync.ts`: новый `startCloudDeletionDirect(stableId)` (+ тип `AccountDeleteDirectAck`) — `accountDeleteMine` со stableId, прочитанным ДО стирания; форма dispatch/ack как у постановки. Чужие незакоммиченные правки файла не тронуты.
+- `tests/aa_guest_server_delete.test.ts` (новый, 7 поведенческих проверок).
+- `tests/account_authority_legacy_callsite_guard.test.ts`: перепись осознанно +3 (startCloudDeletionDirect 1, startCloudDeletionEnqueue 2→3, waitForAccountDeletionCredentialSafe 3→4, occurrences 116→119) с пояснением.
+
+**Подхватывает ли механизм повтора гостевой замок после перезапуска:** до правки — НЕТ (ветка «аноним с тем же uid» в `enqueueDeletion` возвращала true без постановки). После правки — да, но только пока на телефоне жива та же гостевая сессия Firebase: сервер (`resolveStableUidForDelete`) принимает постановку лишь от вошедшей личности-владельца, поэтому дожатие возможно ровно в случае «приложение убили до выхода из Firebase». Если выход уже был (фаза `old_stable_cleared`), повтор с новой анонимной личности сервер отверг бы (`stable_id_mismatch`) — поэтому в фоне ДО выхода сделаны квитанция + прямой вызов.
+
+**Тесты (по одному, со слотом):** aa_guest_server_delete 7/7 (до правки 6 failed — красный), account_delete_flow_contract 23/23, account_authority_legacy_callsite_guard 31/31, auth_provider_behavior 110/110, aa_release_floor_auth_ui 19/19, aa_s4a_client_delete_local_first 35/35, aa_s5_delete_main_path 13/13, account_delete_enqueue_deadline 3/3, account_delete_guard_unreadable_boot_contract 5/5, account_delete_immediate_onboarding_contract 2/2, account_delete_modal_layout_contract 4/4, account_delete_quarantine_authority 19/19, account_delete_quarantine_behavior 4/4, account_delete_timeout 1/1, admin_legacy_account_delete_callable_contract 3/3, ideas_admin_delete_contract 2/2, notification_delete_undo 4/4, post_delete_fresh_identity_integration 15/15, post_delete_retired_identity_ui_contract 3/3. Проверка типов не запускалась (запрет).
+
+**Риски / осталось:**
+- `tests/account_delete_anonymous_no_guard_gate.mjs` (нигде не подключён) теперь падает намеренно: он сторожит отменённое этим пакетом правило «гостю замок не пишем». Удалить/переписать — решение координатора.
+- Гость с замком идёт по нижнему пути: выход → `old_stable_cleared` → `ensureFreshPostDeletionIdentity('delete')` (новая анонимная личность). UI не меняется (онбординг уже открыт), но без сети фон вернёт `local_exit_unverified` (лог), дочистку подхватит старт. Пока замок в фазе `local_data_cleared` (≤ ~25 с фона при плохой сети), облачные вызовы гостя на онбординге в карантине — как у связанных.
+- Гость, удаливший аккаунт и сразу входящий через Google, пока фон не закончен, подождёт `convergePendingAccountDeleteBeforeCredential` (раньше у гостя замка не было).
+- Если запись замка гостя зависла дольше 5 с и дописалась позже — останется «ничейный» замок `prepared`; старт его дочистит (повторное стирание). Редкий случай зависания Keychain; так же было до 29.08.
+- Путь без замка: stableId гостя не очищается (как и раньше); после серверного удаления телефон перейдёт на новую личность штатной веткой `identity_retired` — без новых окон.
+- Прямой вызов не передаёт ключ Account V2 (флаг выключен; при включении — проверить, стирает ли `accountDeleteMine` данные V2).
+- Проверка типов не прогонялась — нужен `npm run typecheck` по окну координатора. Живой прогон гостя на эмуляторе — по окну координатора.
+- При коммите `app/cloud_sync.ts` брать только свой ханк (в файле чужие незакоммиченные правки).
+
 ## Политика конфиденциальности — черновик правки (применить после итога исполнителя)
 Governance-ID: TG-26FBEB1554D0
 `legal/privacy_policy_en.json` и `_en_ios.json`, раздел «20. Account and data deletion», после абзаца про 14 дней. Сейчас про гостя ничего нет; гостю «войди снова — восстановим» недоступно (способа входа нет).
 Черновик (уточнить по факту кода: срок через очередь = 14 дней; запасной путь `accountDeleteMine` удаляет сразу; есть ли повтор после перезапуска):
 > If you use the App without signing in with Google or Apple (a guest account), the same deletion flow applies, but a guest account has no sign-in method, so it cannot be restored after you delete it. The App clears local data on the device immediately and sends the deletion request in the background; if the device is offline, the App retries the request when it can reach our servers again. Server-side data of a guest account is deleted no later than at the end of the 14-day grace period.
 Затем `npm run legal:sync`, «Last updated» — дата релиза. Публикует владелец.
+Governance-ID: TG-E3076A219FC2 — сторож account_delete_anonymous_no_guard_gate.mjs переписан под новое правило (гостю замок best-effort, без proof-less постановки).
+Governance-ID: TG-99B2CEA44E10 — REVISE ревью: прямой путь гостя ждёт ответ сервера (потолок) перед выходом, а не только начало отправки.
+Governance-ID: TG-6CD62769D76A — коммит правки удаления гостя после APPROVE (cloud_sync — только свой ханк).

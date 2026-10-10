@@ -5381,6 +5381,45 @@ export async function deleteCloudData(): Promise<void> {
   if (!res.data?.ok) throw new Error('account_delete_failed');
 }
 
+export type AccountDeleteDirectAck = { ok: true; authDeleted: boolean };
+
+/**
+ * Запасной путь удаления серверных данных ГОСТЯ — прямой accountDeleteMine.
+ *
+ * зачем (TG-20707BD701DC, живой прогон 10.10): гостю, у которого не записался
+ * замок удаления (нет ключа), постановка accountDeleteEnqueue заведомо падала
+ * `account_delete_credential_proof_missing` — серверные данные гостя не
+ * удалялись никогда. accountDeleteMine требует только входа, поэтому его шлют,
+ * ПОКА гость ещё вошедший. В отличие от deleteCloudData() здесь нет
+ * getCanonicalUserId/ensureAnonUser: к этому моменту телефон уже стёрт, и они
+ * могли бы выдать НОВУЮ личность — удаляем ровно тот stableId, что прочитан до
+ * стирания. Форма та же, что у постановки: вызывающий ждёт только отправки.
+ */
+export function startCloudDeletionDirect(
+  stableId: string | null,
+): AccountDeleteEnqueueOperation<AccountDeleteDirectAck> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    return startAccountDeleteEnqueueWithDeadline(
+      async () => { throw new Error('account_delete_direct_unavailable'); },
+      async () => { throw new Error('account_delete_direct_unavailable'); },
+      ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
+    );
+  }
+  return startAccountDeleteEnqueueWithDeadline(
+    async () => undefined,
+    async () => {
+      const fn = callable<{ stableId?: string | null }, { ok: boolean; authDeleted?: boolean }>(
+        'accountDeleteMine',
+        { timeout: ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS },
+      );
+      const res = await fn(stableId ? { stableId } : {});
+      if (!res.data?.ok) throw new Error('account_delete_failed');
+      return { ok: true, authDeleted: res.data.authDeleted === true };
+    },
+    ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
+  );
+}
+
 export type AccountDeleteEnqueueAck = {
   ok: true;
   jobId: string;

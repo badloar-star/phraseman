@@ -625,7 +625,10 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // AA S2d раунд 2 (H-S2d-2): +2 — аварийная копия гостя и чтение её сводки перед стиранием.
         // AA S2d раунд 3 (§135 ❓2): +2 — откладывание копии без merge, очистка отложенных >30 дн.
         // AA S1e (c0333fe6d): +1 — peekStableId для правок карточек «из будущего» после возврата.
-        occurrences: 116,
+        // TG-20707BD701DC (удаление гостя, 2026-10-10): +3 — прямой accountDeleteMine гостя без
+        // замка, дожатие гостевого замка после перезапуска (startCloudDeletionEnqueue) и
+        // квитанция по ключу перед запасным прямым вызовом (waitForAccountDeletionCredentialSafe).
+        occurrences: 119,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -658,9 +661,10 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:setStableId': 3,
           'call:shelveAccountSwitchEmergencyBackupOf': 1,
           'call:stampAnonOwnershipBeforeSignIn': 2,
-          'call:startCloudDeletionEnqueue': 2,
+          'call:startCloudDeletionDirect': 1,
+          'call:startCloudDeletionEnqueue': 3,
           'call:syncToCloud': 2,
-          'call:waitForAccountDeletionCredentialSafe': 3,
+          'call:waitForAccountDeletionCredentialSafe': 4,
           'call:waitForRestoreApplicationIdleWithDeadline': 4,
           'call:wipeLocalAccountData': 5,
           'call:withAccountTransitionLock': 2,

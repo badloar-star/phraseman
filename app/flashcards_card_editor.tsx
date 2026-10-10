@@ -492,7 +492,7 @@ export default function FlashcardsCardEditorScreen() {
   return (
     <CardsGlassScreen g={g}>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle={g.isLight ? 'dark-content' : 'light-content'} />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
           <ContentWrap>
             {/* Header */}

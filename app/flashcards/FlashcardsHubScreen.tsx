@@ -119,7 +119,7 @@ function mergeCatalogs(...catalogs: readonly FlashcardMarketPack[][]): Flashcard
 const EARLY_TAP_CEILING_MS = 15_000;
 
 export default function FlashcardsHubScreen() {
-  const { liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId, statusBarLight } = useTheme(); // зачем (Сверка 18:25, светлая тема): значки строки состояния не белые на светлом
   const g = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
   const { lang } = useLang();
@@ -651,7 +651,7 @@ export default function FlashcardsHubScreen() {
       <V2Backdrop />
       <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />
       <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
           <CardsHubV2
             g={g}

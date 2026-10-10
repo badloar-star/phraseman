@@ -169,7 +169,7 @@ export default function FlashcardsVideoPacksScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, liquidGlassThemeId } = useTheme();
+  const { theme: t, liquidGlassThemeId, statusBarLight } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const cloudEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const targetKey = String(studyTarget ?? 'default');
@@ -491,7 +491,7 @@ export default function FlashcardsVideoPacksScreen() {
     <View style={{ flex: 1, backgroundColor: g.bg }}>
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
           <View style={styles.top}>
             <BackButton g={kg} onPress={() => safeRouterBack(router, '/flashcards' as never)} label={copy.back} />

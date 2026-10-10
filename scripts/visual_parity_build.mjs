@@ -117,6 +117,9 @@ export function buildRows(matrixRows, scan, existingRows) {
       reviewed_by: old?.reviewed_by ?? null,
       reviewed_at: old?.reviewed_at ?? null,
       ...(old?.removed_reason ? { removed_reason: old.removed_reason } : {}),
+      // зачем (координатор 05:50): доказательство «экрана нет в стор-сборке» ставит человек — без переноса пересборка
+      // стёрла бы его у всех строк no_release_surface, и гейт уронил бы их как строки без доказательства.
+      ...(old?.release_surface_proof ? { release_surface_proof: old.release_surface_proof } : {}),
     });
   };
   for (const row of matrixRows) {

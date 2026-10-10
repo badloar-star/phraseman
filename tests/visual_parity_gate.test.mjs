@@ -10,7 +10,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { evaluateRegistry, isRouteExcludedInStore, missingMatrixRows, parseSverkaHeadingDiffs, parseSverkaOpenDiffs, storeRouteRegex } from '../scripts/visual_parity_gate.mjs';
-import { parseMatrix } from '../scripts/visual_parity_build.mjs';
+import { buildRows, parseMatrix } from '../scripts/visual_parity_build.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REAL_REGISTRY = path.join(ROOT, 'docs/phraseman-2.0/registries/visual_parity.json');
@@ -131,6 +131,13 @@ test('реестр: строки без макета в папке — no_mockup
       assert.ok(row.blocked_reason, `${row.id}: blocked без причины`);
       continue;
     }
+    // зачем (координатор 05:50): статус «экрана нет в стор-сборке» (91924d5b0) ставит человек с проверяемым
+    // доказательством (раньше проверки закрепления: learning-v2-003 закреплена и снята с релиза) — сторож реестра его не знал и падал на всех 105 таких строках.
+    if (row.status === 'no_release_surface') {
+      assert.ok(row.release_surface_proof && row.release_surface_proof.kind, `${row.id}: no_release_surface без доказательства`);
+      assert.ok(row.reviewed_by, `${row.id}: no_release_surface без reviewed_by`);
+      continue;
+    }
     if (row.mockup_pinned) {
       assert.equal(row.status, 'pending', `${row.id}: переведённая строка стартует pending`);
       continue;
@@ -140,6 +147,32 @@ test('реестр: строки без макета в папке — no_mockup
       continue;
     }
     assert.equal(row.status, row.mockup.file ? 'pending' : 'no_mockup', `${row.id}: статус ${row.status} при макете ${row.mockup.file}`);
+  }
+});
+
+// зачем (координатор 05:50): `npm run parity:build` пересобирает реестр из матрицы — ручные решения человека
+// (статус, доказательство, причина удаления, кто проверил, закреплённый макет, причина блокировки) обязаны пережить
+// пересборку, иначе она молча стирает работу координатора.
+test('пересборка реестра сохраняет ручные статусы и поля', () => {
+  const manual = {
+    no_release_surface: {
+      status: 'no_release_surface',
+      release_surface_proof: { kind: 'store_route_excluded', routes: ['/learning_v2_session'] },
+      reviewed_by: 'coordinator',
+      reviewed_at: '2026-10-11T05:00:00.000Z',
+    },
+    removed_by_owner: { status: 'removed_by_owner', removed_reason: 'D136', reviewed_by: 'owner' },
+    blocked: { status: 'blocked', blocked_reason: 'ждёт cards-states' },
+  };
+  const scan = { practice: [{ n: 1, label: 'Сессия', animations: [], replay: false }] };
+  const matrix = [{ section: 'practice.html', n: 1, screen: 'Сессия', state: 'Сессия', files: ['app/x.tsx'], matrixStatus: null }];
+  for (const [status, fields] of Object.entries(manual)) {
+    const pinned = { file: 'docs/design/v2-app/other.html', phone: 3, label: 'X', mapping: 'pinned' };
+    const old = { id: 'practice-001', mockup: pinned, mockup_pinned: 'owner-2026-10-04', ...fields };
+    const [row] = buildRows(matrix, scan, [old]);
+    for (const [key, value] of Object.entries(fields)) assert.deepEqual(row[key], value, `${status}: поле ${key} стёрто пересборкой`);
+    assert.deepEqual(row.mockup, pinned, `${status}: закреплённый макет стёрт`);
+    assert.equal(row.mockup_pinned, 'owner-2026-10-04', `${status}: mockup_pinned стёрт`);
   }
 });
 

@@ -28,6 +28,20 @@ const config = getDefaultConfig(__dirname);
 // мёртвый sock вернётся: PHRASEMAN_NO_WATCHMAN=1 в окружении.
 config.resolver.useWatchman = process.env.PHRASEMAN_NO_WATCHMAN !== '1';
 
+// зачем (TG-CDE4B9A03EB6, 10.10; ПК падал до 0,5 ГБ свободной памяти 4 раза за вечер): Metro сам выбирает число процессов-преобразователей
+// (jest-worker) по формуле ceil(ядра * (0.5 + 0.5 * exp(-ядра * 0.07)) - 1) — на 24 логических ядрах это 14 процессов. Каждый грузит Babel и
+// кэши AST и за 10–20 минут работы растёт до 300–450 МБ, процессы не пересоздаются: 14 x ~400 МБ + основной ~1–1,5 ГБ = 5–6,5 ГБ (замер живого
+// сеанса 10.10: ровно 14 процессов jest-worker у expo start --dev-client). Для локальной разработки хватает 4 (холодный первый бандл чуть дольше,
+// тёплый кэш не страдает). Сборочные машины (EAS, CI, стор-релиз) НЕ ограничиваем — там память и ядра выделены под сборку.
+// Своё число: PHRASEMAN_METRO_MAX_WORKERS=N (для сборки тоже работает).
+const maxWorkersFromEnv = Number.parseInt(process.env.PHRASEMAN_METRO_MAX_WORKERS ?? '', 10);
+const isBuildMachine = process.env.EAS_BUILD === 'true' || process.env.CI === 'true' || process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
+if (Number.isInteger(maxWorkersFromEnv) && maxWorkersFromEnv > 0) {
+  config.maxWorkers = maxWorkersFromEnv;
+} else if (!isBuildMachine) {
+  config.maxWorkers = 4;
+}
+
 // зачем (PM-216 / [HOME-PAINT], координатор 2026-10-03; владелец: «так чтобы все летало»): по умолчанию Expo задаёт
 // inlineRequires: false, и ВСЕ статические import исполняются сразу при загрузке модуля. При sync-маршрутах
 // expo-router это значит «при запуске выполняется всё приложение». inlineRequires: true переносит require каждой
@@ -79,6 +93,36 @@ const ignoredRootFolders = [
   '.well-known',
   '.worktrees',
   'builds',
+  // зачем (TG-CDE4B9A03EB6, 10.10): папки ниже приложение НЕ импортирует (git grep по app/components/constants/modules/hooks/lib/shared/services — 0 импортов),
+  // а Metro держал их в карте файлов: functions-admin / functions-content / functions-english-test — по ~6–7 тыс. файлов с собственным node_modules и
+  // дубликатами package.json (конфликты haste-имён), android — нативная сборка (~8,8 тыс.), output и dist — выгрузки, остальное — архивы и черновики.
+  // Исключение влияет только на локальный обход; EAS клонирует git и эти папки в сборку не попадают (рабочие копии вне git там отсутствуют).
+  'android',
+  'animation-plans',
+  'asset_sources',
+  'backups',
+  'dist',
+  'functions-admin',
+  'functions-content',
+  'functions-english-test',
+  'hardware',
+  'lingman-montazher',
+  'maestro-results',
+  'output',
+  'prototypes',
+  'showcase',
+  'specs',
+  'test-results',
+  'ux-audit',
+  '_archive',
+  '_to_delete',
+  '.agents',
+  '.artifacts',
+  '.codex',
+  '.dev-screens',
+  '.maestro',
+  '.motion-mockups',
+  '.shots',
   'docs',
   'duel',
   'exports',
@@ -263,6 +307,11 @@ const iosAccountProofBlockList = process.env.EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF ==
   ? []
   : iosAccountProofFiles.map((file) => new RegExp(`^${escapePathForRegex(path.join(__dirname, file))}$`));
 
+// зачем (TG-CDE4B9A03EB6, 10.10): в корне десятки одноразовых папок с изменчивыми именами (.tmp_pkg8k_backup, .arena-test-build-*, .codex-tmp-*,
+// _scoped_build_*, _worktree_backups_*) — копии исходников и сборок, ~5 тыс. файлов. Точные имена в список не вписать, поэтому исключаем по префиксу
+// имени КОРНЕВОЙ папки. Вложенные папки с такими именами (например в node_modules) не затрагиваются: регэксп привязан к корню проекта.
+const ignoredRootPrefixes = ['.arena-', '.tmp', '.codex-tmp', '_scoped_build_', '_worktree_backups_'];
+
 config.resolver.blockList = [
   ...blockList,
   ...emulatorDevLoginBlockList,
@@ -270,6 +319,9 @@ config.resolver.blockList = [
   adminExceptRuntimeAvatars,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),
+  ),
+  ...ignoredRootPrefixes.map(
+    (prefix) => new RegExp(`^${escapePathForRegex(path.join(__dirname, prefix))}[^/\\\\]*[/\\\\].*`),
   ),
 ];
 

@@ -148,7 +148,7 @@ export default function DialogsTabContent({
       style={{ flex: 1, backgroundColor: palette.bg }}
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
       onScroll={onScroll}
-      scrollEventThrottle={16}
+      scrollEventThrottle={16} decelerationRate="fast"
     >
       {headerSlot}
       <View style={{ paddingHorizontal: V2.screenPad }}>

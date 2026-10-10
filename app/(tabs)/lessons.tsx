@@ -5529,7 +5529,7 @@ export default function LessonsTab({
                     alignItems: "center",
                     gap: 10,
                     paddingRight: 18,
-                  }}
+                  }} decelerationRate="fast"
                 >
                   {/* зачем (владелец 2026-09-17): «комбинированный урок» — несколько тем
                       вперемешку. В макете 2.0 это круглая кнопка «Смешать темы» рядом с

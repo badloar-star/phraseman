@@ -82,7 +82,7 @@ function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbo
         <Hearts lang={lang} hearts={runner.state.hearts} />
         {showEnergy ? <EnergyBar glass ownerActive={false} /> : null}
       </View>
-      <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View style={s.ringWrap}>
           <SpireTimerRing lang={lang} clock={runner.clock} budgetMs={pick.plan.budgetMs} paused={paused} />
         </View>

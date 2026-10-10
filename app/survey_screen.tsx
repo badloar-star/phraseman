@@ -320,7 +320,7 @@ function UnavailableSurvey({
             testID="survey-fallback-scroll"
             style={{ flex: 1 }}
             contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingBottom: 24 }}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
             <View
               testID="survey-fallback-empty"

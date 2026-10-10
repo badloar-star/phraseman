@@ -176,7 +176,7 @@ export default function ReferralWelcomeHost() {
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
-      <ScrollView style={styles.scrim} contentContainerStyle={styles.scrimContent}>
+      <ScrollView style={styles.scrim} contentContainerStyle={styles.scrimContent} decelerationRate="fast">
         <Pressable
           style={styles.backdrop}
           onPress={close}

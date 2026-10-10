@@ -30,7 +30,7 @@ function V2KitPreview() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
-        <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <V2ScreenHeader
             title="Витрина деталей"
             subtitle="Не экран — образцы кнопок и строк"

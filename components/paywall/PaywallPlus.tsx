@@ -342,7 +342,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
 /** Прокручиваемое тело — отдельный экспорт, чтобы экран собирал порядок блоков по макету. */
 export function PaywallPlusScroll({ children }: { children: React.ReactNode }) {
   return (
-    <ScrollView style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
       {children}
     </ScrollView>
   );

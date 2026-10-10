@@ -50,7 +50,7 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
           <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: glass.selected }, impact.styles.bloom]} />
 
           <Animated.View style={[styles.card, { backgroundColor: glass.opaqueSheet, shadowColor: EXEMPT_COLOR_1 }, impact.styles.card]} pointerEvents="box-none">
-            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false} decelerationRate="fast">
             <View style={[styles.heroFrame, { backgroundColor: glass.selected }]}>
               <RewardImpactRings
                 show={impact.showRings}

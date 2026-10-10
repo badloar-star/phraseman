@@ -127,7 +127,7 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
       testID={`${testIdPrefix}-sheet`}
       material="liquid-glass"
     >
-      <ScrollView style={{ flexShrink: 1 }} showsVerticalScrollIndicator>
+      <ScrollView style={{ flexShrink: 1 }} showsVerticalScrollIndicator decelerationRate="fast">
       {illustration}
       <CascadeItem index={0} style={styles.badgeRow}>
         <AiBadge />

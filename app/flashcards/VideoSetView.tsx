@@ -85,7 +85,7 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
 
   return (
     <View testID="video-set-view" style={styles.root}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
           {onMore ? (

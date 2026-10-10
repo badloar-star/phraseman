@@ -70,7 +70,7 @@ export default function DialogueV2VisualFixtureRoute() {
   return (
     <View testID="dialogue-v2-visual-fixture" style={{ flex: 1, backgroundColor: palette.bg }}>
       <SafeAreaView edges={['top']} style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={{ padding: V2.screenPad, paddingBottom: V2.screenPad * 2, gap: V2.gap }}>
+        <ScrollView contentContainerStyle={{ padding: V2.screenPad, paddingBottom: V2.screenPad * 2, gap: V2.gap }} decelerationRate="fast">
           <View style={{ borderRadius: V2.radius.card, backgroundColor: palette.glassRaised, borderColor: palette.stroke, borderWidth: 1, padding: V2.gap }}>
             <Text accessibilityRole="header" style={{ color: palette.text, ...V2_TYPE.title }}>Dialogue V2 · DEV</Text>
             <Text style={{ color: palette.textSecondary, ...V2_TYPE.body, marginTop: 6 }}>

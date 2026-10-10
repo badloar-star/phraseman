@@ -19,7 +19,7 @@ export default function ResponsiveModalScrollView({ style, contentContainerStyle
           paddingLeft: Math.max(24, insets.left),
           paddingRight: Math.max(24, insets.right),
         },
-      ]}
+      ]} decelerationRate="fast"
     />
   );
 }

@@ -353,7 +353,7 @@ export default function CoinRankScreen() {
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false} decelerationRate="fast"
       >
         {/* зачем (coins.html PAY-01): две монеты со стрелкой «текущая → следующая», ниже «Лектор → Эксперт» и «Ранг 5 → 6».
             Решение владельца 05.10 (п. 7): сетки «Ранги монеты» на экране нет — каталог рангов открывается по тапу на ранг. */}

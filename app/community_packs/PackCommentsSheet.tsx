@@ -808,7 +808,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 setTimeout(() => {
                   listRef.current?.scrollToIndex({ index: info.index, animated: true, viewPosition: 0.3 });
                 }, 50);
-              }}
+              }} decelerationRate="fast"
             />
           )}
 

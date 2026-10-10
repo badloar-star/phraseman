@@ -1495,7 +1495,7 @@ export default function FlashcardsBlitzSession() {
 
           {/* Вопрос + 4 варианта. зачем (practice.html): карточка вопроса стоит сверху (38 от строки таймера), варианты
               через 23 и между собой 13 — не по центру экрана. */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
             <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
               <BlitzGlassSurface radius={16} />
               {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}

@@ -213,7 +213,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
           style={{ width: '100%', flexShrink: 1, minHeight: 0 }}
           contentContainerStyle={{ alignItems: 'flex-start', paddingTop: 8, paddingBottom: 8 }}
           bounces={false}
-          showsVerticalScrollIndicator
+          showsVerticalScrollIndicator decelerationRate="fast"
         >
           {panelBody}
         </ScrollView>

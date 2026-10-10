@@ -600,7 +600,7 @@ function MonthExplorerModal({
             styles.monthViewportContent,
             { paddingBottom: Math.max(28, insets.bottom + 16) },
           ]}
-          showsVerticalScrollIndicator
+          showsVerticalScrollIndicator decelerationRate="fast"
         >
           {/* `.om-month-calendar`: секция без карточки — сетка дней прямо на фоне */}
           <View testID="activity-365-month-calendar" style={styles.monthSection}>

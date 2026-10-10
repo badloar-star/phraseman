@@ -214,7 +214,7 @@ function HybridAlertShell({
               ]}
             >
               {visible ? (fillAvailableHeight || !scrollContent ? children : (
-                <ScrollView nestedScrollEnabled style={styles.scroll} keyboardShouldPersistTaps="handled" bounces={false}>
+                <ScrollView nestedScrollEnabled style={styles.scroll} keyboardShouldPersistTaps="handled" bounces={false} decelerationRate="fast">
                   {children}
                 </ScrollView>
               )) : null}

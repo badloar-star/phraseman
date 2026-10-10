@@ -38,6 +38,7 @@ import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -127,6 +128,7 @@ export default function FlashcardsRecallSession() {
     deck?: string | string[];
     size?: string | string[];
     dir?: string | string[];
+    devRunesSeed?: string | string[];
   }>();
   // зачем (координатор 04.10, настройка тренировки): направление «перевод → фраза» (как было) или
   // «фраза → перевод». Читается один раз на вход; без параметра — прежнее поведение.
@@ -203,10 +205,17 @@ export default function FlashcardsRecallSession() {
     record: FlashcardTrainingPendingGrantRecord;
   } | null>(null);
 
+  // зачем (владелец, 2026-08-27; координатор 10.10): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ экран со случайным стартовым
+  // числом вместо реальной копилки — как у блица и свайпа; диск и сеть в этом режиме не трогаются (hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: `recall_${deckKey}_${attemptSessionId}`,
     completionOrdinal: 1,
+    devFakeStartRunes: devRunesFake?.runes,
   });
 
   const {
@@ -852,8 +861,8 @@ export default function FlashcardsRecallSession() {
   if (result) {
     return (
       <SessionResultScreen
-        correct={result.summary.correct}
-        wrong={result.summary.wrong}
+        correct={devRunesFake ? devRunesFake.tertiary + 4 : result.summary.correct}
+        wrong={devRunesFake ? devRunesFake.tertiary : result.summary.wrong}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnIds.length}
         overline={copy.title}
@@ -965,7 +974,7 @@ export default function FlashcardsRecallSession() {
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps="handled"
             automaticallyAdjustKeyboardInsets
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
             {/* зачем (practice.html «Вспомни и напиши»): карточка `.qc` — подпись задания
                 внутри карточки 16 вторичным, фраза 28/34 жирным; радиус 16, кромка 1 px. */}

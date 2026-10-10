@@ -150,7 +150,7 @@ export default function CollectionGalleryView({
           onScroll={onScroll}
           onMomentumScrollEnd={reportViewed}
           onScrollEndDrag={reportViewed}
-          keyboardShouldPersistTaps="handled">
+          keyboardShouldPersistTaps="handled" decelerationRate="fast">
           {header}
           {!selectionMode && activeCat === 'custom' && allowAddCustomCard ? (
             <Pressable testID="fc-create-card" accessibilityRole="button" onPress={onCreateCard} style={({ pressed }) => [styles.addBtn, { backgroundColor: g.hairlineSoft }, pressed && { opacity: 0.82 }]}>

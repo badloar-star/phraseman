@@ -45,7 +45,7 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
       testID="paywall-trial-reminder-prompt"
       style={S.scroll}
       contentContainerStyle={[S.root, { paddingTop: topInset + 60, paddingBottom: Math.max(bottomInset, 16) }]}
-      showsVerticalScrollIndicator={false}
+      showsVerticalScrollIndicator={false} decelerationRate="fast"
     >
       <View style={[S.bell, glass]}>
         <V2GlassSheen seed={2} />

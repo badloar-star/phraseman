@@ -177,7 +177,7 @@ export default function CommunityPackPreview({
           firstLayoutLoggedRef.current = true;
           console.log('[PACK-OPEN] preview:first-layout', JSON.stringify({ packId: pack.id, cards: cards.length, listH: Math.round(e.nativeEvent.layout.height), sinceMountMs: Date.now() - mountedAtRef.current }));
         }}
-        onContentSizeChange={(w, h) => console.log('[PACK-OPEN] preview:content-size', JSON.stringify({ packId: pack.id, h: Math.round(h), sinceMountMs: Date.now() - mountedAtRef.current }))}
+        onContentSizeChange={(w, h) => console.log('[PACK-OPEN] preview:content-size', JSON.stringify({ packId: pack.id, h: Math.round(h), sinceMountMs: Date.now() - mountedAtRef.current }))} decelerationRate="fast"
       />
 
       {/* `.bot2`: нижняя кнопка на затухании фона, список уходит под неё. */}

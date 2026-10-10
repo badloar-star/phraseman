@@ -85,7 +85,7 @@ export const FilterChips = memo(function FilterChips({ g, chips, activeId, onCha
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipsScroll} contentContainerStyle={styles.chips}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipsScroll} contentContainerStyle={styles.chips} decelerationRate="fast">
       {/* guard-ok: лента из 3–5 коротких чипов, виртуализация не нужна */ chips.map((chip) => {
         const on = chip.id === activeId;
         return (

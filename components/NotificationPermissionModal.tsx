@@ -107,7 +107,7 @@ function NotificationPermissionModal({
             <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
             <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
           </View>
-          <ScrollView testID="notification-permission-scroll-content" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false}>
+          <ScrollView testID="notification-permission-scroll-content" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <View style={{ alignItems: 'center', marginBottom: 10 }}>
             <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: `${t.accent}55`, overflow: 'hidden' }}>
               <Ionicons name="notifications-outline" size={26} color={t.accent} />

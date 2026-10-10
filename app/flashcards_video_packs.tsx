@@ -569,7 +569,7 @@ export default function FlashcardsVideoPacksScreen() {
               initialNumToRender={8}
               maxToRenderPerBatch={8}
               windowSize={7}
-              removeClippedSubviews={false}
+              removeClippedSubviews={false} decelerationRate="fast"
             />
           )}
         </ContentWrap>

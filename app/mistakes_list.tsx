@@ -165,7 +165,7 @@ export default function MistakesListScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled">
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           {searching ? (
             <View style={styles.topbar}>
               <BackButton g={g} label={copy.back} onPress={closeSearch} />

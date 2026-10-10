@@ -118,7 +118,7 @@ export default function StreakStagesModal({
       <LinearGradient colors={[glass.bgTop, glass.bgBottom]} style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 24, paddingHorizontal: 20 }}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 44 }}>
             {/* зачем (kit.css:64–65 `.t.down`): «Назад» вжимается до .97 общим нажатием, а не гаснет. */}

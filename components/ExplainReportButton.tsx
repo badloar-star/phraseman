@@ -208,7 +208,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                 style={styles.formScroll}
                 contentContainerStyle={styles.formScrollContent}
                 keyboardShouldPersistTaps="handled"
-                showsVerticalScrollIndicator={false}
+                showsVerticalScrollIndicator={false} decelerationRate="fast"
               >
               <Text style={[styles.formTitle, { color: glass.text, fontSize: f.h3 }]}>
                 {triLang(uiLang, {

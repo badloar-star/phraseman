@@ -417,7 +417,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: 28, alignItems: 'center' }}
+          contentContainerStyle={{ padding: 28, alignItems: 'center' }} decelerationRate="fast"
         >
           {/* Icon / Image */}
           {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (

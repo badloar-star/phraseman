@@ -217,7 +217,7 @@ function SubscriptionOverlayFrame({ bloomColor, children, glass }: SubscriptionO
                     style={S.sheetScroll}
                     contentContainerStyle={S.sheetContent}
                     keyboardShouldPersistTaps="handled"
-                    showsVerticalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false} decelerationRate="fast"
                   >
                     {children}
                   </ScrollView>

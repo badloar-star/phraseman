@@ -109,7 +109,7 @@ export function DialogueV2FreeformScreen({
           style={styles.fill}
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
           {messages.length === 0 && !sending ? (
             <View testID="dialogue-v2-freeform-empty" style={[dialogueGlassCardStyle(glass), styles.tip]}>

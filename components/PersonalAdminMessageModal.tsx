@@ -88,7 +88,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
           accessibilityViewIsModal
           style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}
         >
-          <ScrollView style={{ flexShrink: 1, minHeight: 0 }} keyboardShouldPersistTaps="handled" bounces={false}>
+          <ScrollView style={{ flexShrink: 1, minHeight: 0 }} keyboardShouldPersistTaps="handled" bounces={false} decelerationRate="fast">
           {isHybrid ? (
             <FullscreenHybridEntrance visible={visible} bloomColor={glass.lightTint} slots={[eyebrowSlot, titleSlot, bodySlot, ctaSlot]} />
           ) : (

@@ -57,7 +57,7 @@ const PROTECTED_AST = {
 
 const PROTECTED_FILES = new Map([
   // зачем (30.09): жемчуг удалён из окна опроса (e2ba35f65) — законное изменение, хеш сдвинут.
-  ['components/survey/SurveySheetModal.tsx', '4b5a35032b8f63e4cd3b7bb19e6003ab97887d045b987dd0bbe8ee6535bdc1f2'],
+  ['components/survey/SurveySheetModal.tsx', '14519da97a492c02bb6841a1cda105132b27db6955acb7cadd5c367737a5139a'],
   ['app/survey_handoff.ts', 'b93b86591466a6b7514340828964231245d32e1fb2529f04b2d0072b7b13ff6f'],
   // зачем (30.09): награда жемчугом за опрос удалена (PM-058/D70, efe19ae9d) — законно.
   ['app/survey_flow_controller.ts', '420e4a04cc27a63cf45ea604e2b00f19b87eef5d300d0d5acf0a7133b2977b30'],

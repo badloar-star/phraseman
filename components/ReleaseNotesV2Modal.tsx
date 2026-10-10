@@ -37,7 +37,7 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
             style={styles.scroll}
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
-            bounces={false}
+            bounces={false} decelerationRate="fast"
           >
             <Text style={[styles.eyebrow, { color: glass.secondary }]}>{copy.eyebrow}</Text>
             <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>{copy.title}</Text>

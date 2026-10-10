@@ -269,7 +269,7 @@ export const EnergyInfoPopover = memo(function EnergyInfoPopover({
               contentContainerStyle={styles.scrollContent}
               onContentSizeChange={handleContentSizeChange}
               showsVerticalScrollIndicator={false}
-              bounces={false}
+              bounces={false} decelerationRate="fast"
             >
               <View style={[styles.card, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}>
                 <LinearGradient

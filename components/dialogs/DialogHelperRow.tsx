@@ -93,7 +93,7 @@ export default function DialogHelperRow({
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.chips}
-        keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps="handled" decelerationRate="fast"
       >
         {/* «Как сказать…» стоит ПЕРВОЙ: это единственная кнопка, которая
             работает для любой мысли ученика, а не только для заготовленных

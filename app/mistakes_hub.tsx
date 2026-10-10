@@ -324,7 +324,7 @@ export default function MistakesHubScreen() {
         <ScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
-          refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />}
+          refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />} decelerationRate="fast"
         >
           <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
           <ScreenTitle g={g} text={copy.title} />

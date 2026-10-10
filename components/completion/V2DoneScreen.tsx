@@ -150,7 +150,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         showsVerticalScrollIndicator={false}
         // зачем: в feedbackSlot живёт форма «Всё было понятно?» с полем ввода — клавиатура не должна её закрывать.
         keyboardShouldPersistTaps="handled"
-        automaticallyAdjustKeyboardInsets
+        automaticallyAdjustKeyboardInsets decelerationRate="fast"
       >
         <View style={s.head}>
           <Pressable

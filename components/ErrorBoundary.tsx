@@ -167,7 +167,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
         style={styles.container}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
-        bounces={false}
+        bounces={false} decelerationRate="fast"
       >
         <View style={styles.stage}>
           <View

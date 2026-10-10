@@ -215,7 +215,7 @@ export default function SavedTopCommunityPacks({
       </View>
 
       {top.length > 0 ? (
-        <ScrollView testID="saved-top-community-rail" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
+        <ScrollView testID="saved-top-community-rail" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail} decelerationRate="fast">
           {top.map((pack) => (
             <CommunityHighlightRow
               key={`saved_top_${pack.id}`}

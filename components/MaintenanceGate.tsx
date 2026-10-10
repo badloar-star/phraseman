@@ -168,7 +168,7 @@ export default function MaintenanceGate() {
               paddingBottom: Math.max(insets.bottom, 24),
             }}
             showsVerticalScrollIndicator={false}
-            bounces={false}
+            bounces={false} decelerationRate="fast"
           >
             <View
               style={{

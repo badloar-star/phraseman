@@ -329,7 +329,7 @@ export default function DialogueV2MemoryRoute() {
     <View style={{ flex: 1, backgroundColor: p.bg }} testID="dialogue-v2-memory-screen">
       <SafeAreaView style={{ flex: 1 }}>
         {renderHeader()}
-        <ScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }}>
+        <ScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }} decelerationRate="fast">
           <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.intro}</Text>
 
           {memory && !hasMemory ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text> : null}

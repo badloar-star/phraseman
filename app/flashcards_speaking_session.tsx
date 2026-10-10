@@ -1384,7 +1384,7 @@ export default function FlashcardsSpeakingSession() {
       </View>
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title}>
         {interactive ? (
-          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
+          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false} decelerationRate="fast">
             <Text style={{ color: speakingGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
           </ScrollView>
         ) : (
@@ -1619,7 +1619,7 @@ RU: ${card.translation}`}
               снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
               «Послушать» из транспортного ряда, убрана. */}
           {/* Источник полёта рун (владелец, 2026-08-27) */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
             <PhraseCard
               mode="view"

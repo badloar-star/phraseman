@@ -137,7 +137,7 @@ export default function DialogWhySheet({
           <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
             {/* Цитата реплики: человек видит, о чём речь, не листая чат. */}
             <View style={[styles.quote, { backgroundColor: glass.opaqueControl }]}>

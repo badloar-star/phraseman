@@ -138,7 +138,7 @@ export default function LingmanVideoWatchScreen() {
             <Ionicons name="close" size={16} color={MEDIA_INK} />
           </Pressable>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}
           {pack ? (

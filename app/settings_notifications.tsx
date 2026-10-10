@@ -122,7 +122,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             <View style={{ position:'absolute', inset:0, backgroundColor:glass.sheet }}/>
             <LinearGradient colors={[glass.selected, 'transparent']} start={{ x:0.04, y:0 }} end={{ x:0.9, y:1 }} style={{ position:'absolute', inset:0 }}/>
           </View>
-          <ScrollView nestedScrollEnabled style={{ flexShrink:1, minHeight:0 }} contentContainerStyle={{ flexGrow:1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} bounces={false}>
+          <ScrollView nestedScrollEnabled style={{ flexShrink:1, minHeight:0 }} contentContainerStyle={{ flexGrow:1 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <View style={{ paddingHorizontal:21, paddingTop:21, paddingBottom:18, alignItems:'center' }}>
               <Text style={{ color:glass.text, fontSize:TIME_MODAL_TITLE_SIZE, lineHeight:31, fontWeight:'700', textAlign:'center' }}>{timeTitle}</Text>
             </View>

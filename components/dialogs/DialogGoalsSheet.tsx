@@ -114,7 +114,7 @@ export default function DialogGoalsSheet({
           <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
             {/* guard-ok: заданий 4–7 по контракту (ai_dialog_objectives_contract),
                 FlatList на семи строках дороже, чем сам список. */}

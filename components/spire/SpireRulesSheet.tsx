@@ -39,7 +39,7 @@ function SpireRulesSheet({ lang, visible, coins, onClose }: Props) {
       {({ requestDismiss }) => (
         <View style={s.body}>
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireGameText(lang, 'rulesTitle')}</Text>
-          <ScrollView style={s.list} contentContainerStyle={s.listContent} showsVerticalScrollIndicator={false}>
+          <ScrollView style={s.list} contentContainerStyle={s.listContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
             {/* guard-ok: ровно 8 строк правил, виртуализация не нужна */}
             {lines.map((line, i) => (
               <View key={`rule-${i + 1}`} style={s.row}>

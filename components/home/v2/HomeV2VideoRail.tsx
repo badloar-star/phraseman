@@ -45,7 +45,7 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
         </Pressable>
       </View>
       {videos.length ? (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} nestedScrollEnabled contentContainerStyle={s.rail}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} nestedScrollEnabled contentContainerStyle={s.rail} decelerationRate="fast">
           {videos.slice(0, 8).map((video) => (
             <Pressable
               key={video.id}

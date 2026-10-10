@@ -78,7 +78,7 @@ export default function SupportReportScreen() {
           automaticallyAdjustKeyboardInsets
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingBottom: 32 }}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
           <PressableHybrid
             testID="support-report-back"

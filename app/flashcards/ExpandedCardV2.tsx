@@ -155,7 +155,7 @@ function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, can
         </Pressable>
       </Animated.View>
       {/* зачем: при крупном шрифте стопка (карточка + пример + кнопки) может не поместиться — прокручивается, а не обрезается */}
-      <ScrollView pointerEvents="box-none" style={StyleSheet.absoluteFill} contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView pointerEvents="box-none" style={StyleSheet.absoluteFill} contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View pointerEvents="box-none" style={styles.stack}>
           <Text style={[styles.overline, { color: g.secondary, lineHeight: lh(16) }]}>{overline}</Text>
           <Animated.View style={[styles.cardWrap, { height: cardH }, unfoldStyle]}>

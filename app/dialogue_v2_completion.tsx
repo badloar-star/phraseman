@@ -185,7 +185,7 @@ export default function DialogueV2CompletionRoute() {
         <View style={styles.header} testID="dialogue-v2-completion-header">
           <DialogueGlassBackButton glass={glass} icon="close" onPress={close} accessibilityLabel={labels.close} />
         </View>
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <View style={styles.titleBlock}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
             {sceneTitle ? <Text maxFontSizeMultiplier={1.3} style={[styles.sub, { color: glass.secondary }]}>{sceneTitle}</Text> : null}

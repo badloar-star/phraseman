@@ -83,7 +83,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
           {subtitle ? <Text style={[s.headSub, { color: p.textSecondary }]}>{subtitle}</Text> : null}
         </View>
       </View>
-      <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
         {renderZone('up', spireText(lang, 'zoneUp'), p.correct)}
         {renderZone('stay', spireText(lang, 'zoneStay'), p.textSecondary)}
         {renderZone('down', spireText(lang, 'zoneDown'), p.wrong)}

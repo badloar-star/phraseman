@@ -183,7 +183,7 @@ function ThemedConfirmModal({
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
-          bounces={false}
+          bounces={false} decelerationRate="fast"
         >
           <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
             <Text accessibilityRole="header" style={[styles.title, { color: glass.text }, !message && !messageNode ? styles.titleAlone : null]}>

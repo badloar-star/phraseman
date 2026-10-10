@@ -249,7 +249,7 @@ function CardsHubV2Inner({
   );
   // зачем: при крупном шрифте хаб не помещается в экран — прокручивается; при 1.0 прежняя разметка без ScrollView (макет без прокрутки)
   return fs > 1
-    ? <ScrollView contentContainerStyle={styles.scrollGrow} showsVerticalScrollIndicator={false}>{body}</ScrollView>
+    ? <ScrollView contentContainerStyle={styles.scrollGrow} showsVerticalScrollIndicator={false} decelerationRate="fast">{body}</ScrollView>
     : body;
 }
 

@@ -208,7 +208,7 @@ export default function MistakeDetailScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['left', 'right']}>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
           {!shown ? (
             <View style={[styles.plain, { paddingTop: insets.top + 8 }]}>
               <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>

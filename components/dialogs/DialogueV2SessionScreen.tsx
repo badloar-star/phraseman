@@ -358,7 +358,7 @@ export function DialogueV2SessionScreen({
           contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
-          onContentSizeChange={scrollToEnd}
+          onContentSizeChange={scrollToEnd} decelerationRate="fast"
         >
           {/* зачем (C24): после финальной реплики тап по ленте ведёт к итогу. */}
           {/* guard-ok: лента ограничена потолком хода сессии на сервере (≤ 64 хода), виртуализация не нужна. */}

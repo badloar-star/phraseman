@@ -334,7 +334,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
               paddingLeft: Math.max(22, insets.left),
               paddingRight: Math.max(22, insets.right),
             },
-          ]}
+          ]} decelerationRate="fast"
         >
           <View style={styles.topRow}>
             <Text style={[styles.step, { color: glass.secondary, fontSize: f.caption }]}>{stepText}</Text>

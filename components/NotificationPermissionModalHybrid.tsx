@@ -131,7 +131,7 @@ function NotificationPermissionModalHybrid({
             <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
             <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
           </View>
-          <ScrollView testID="notification-permission-scroll-content-hybrid" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false}>
+          <ScrollView testID="notification-permission-scroll-content-hybrid" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <CascadeItem index={0} style={styles.iconRow}>
               <View style={[styles.iconWrap, { backgroundColor: t.accentBg }]}>
                 <Ionicons name="notifications-outline" size={26} color={t.accent} />

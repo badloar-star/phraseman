@@ -107,7 +107,7 @@ function MyPacksV2Inner(props: Props) {
         style={styles.scroll}
         contentContainerStyle={[styles.content, { paddingBottom: Math.max(insets.bottom, 16) + 120 }]}
         showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled">
+        keyboardShouldPersistTaps="handled" decelerationRate="fast">
         <View style={styles.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
           <Pressable testID="fc-my-packs-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => setMenuOpen(true)} style={({ pressed }) => [styles.square, pressed && styles.pressed]}>

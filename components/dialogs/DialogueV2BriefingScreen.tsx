@@ -77,7 +77,7 @@ export function DialogueV2BriefingScreen({
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
         </View>
 
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <View testID="dialogue-v2-briefing-scene" style={styles.hero}>
             <View style={{ width: 88, height: 88, borderRadius: 28, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="chatbubbles-outline" size={40} color={glass.text} />

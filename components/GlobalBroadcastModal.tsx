@@ -138,7 +138,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
             borderColor: glass.glassEdge,
           },
         ]}>
-          <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <Text style={[styles.eyebrow, { color: glass.secondary, fontSize: f.caption }]}>
             {triLang(lang, { ru: 'Сообщение команды', uk: 'Повідомлення команди', en: 'Message from the team', es: 'Mensaje del equipo', 'pt-BR': 'Mensagem da equipe', vi: 'Tin nhắn từ đội ngũ', id: 'Pesan dari tim', tr: 'Ekipten mesaj', pl: 'Wiadomość od zespołu' })}
           </Text>

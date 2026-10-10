@@ -115,7 +115,7 @@ export default function LevelExamIntro({
             </View>
           )}
         />
-        <BouncyScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <BouncyScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
           {/* K1: герой «Зачёт A1» + диапазон уроков вторым абзацем */}
           <View style={{ marginTop: 12 }}>
             <ExamHero glass={glass} icon="ribbon-outline" title={copy.title} message={copy.lessonRange} />

@@ -26,6 +26,7 @@ const RU = {
   runes_check_mistake_practice: 'Отработка ошибок — начисление рун',
   runes_check_blitz: 'Блиц карточек — начисление рун',
   runes_check_speaking: 'Голосовая отработка — начисление рун',
+  runes_check_recall: 'Вспоминание фраз — начисление рун',
   runes_check_swipe: 'Тренировка карточек — начисление рун',
 
   // ── alerts_forms ──

@@ -679,7 +679,7 @@ function NoEnergyModal({
             style={[sx.scroll, variantCard && { borderRadius: variantCard.borderRadius }]}
             contentContainerStyle={[sx.scrollContent, variantContent]}
             showsVerticalScrollIndicator={false}
-            bounces={false}
+            bounces={false} decelerationRate="fast"
           >
             {cardBody}
           </ScrollView>

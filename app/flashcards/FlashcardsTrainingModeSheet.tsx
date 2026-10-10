@@ -266,7 +266,7 @@ export default function FlashcardsTrainingModeSheet({
             {/* зачем: закрытие — тап по затемнению и системный «назад»; кнопка осталась невидимой для тестов и читалок экрана */}
             <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} onPress={onClose} style={styles.closeHidden} />
           </View>
-          <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled>
+          <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled decelerationRate="fast">
             <View>
               {rows.map((row, rowIndex) => {
                 const speakingBlocked = row.mode === 'speaking' && !speakingEnabled;

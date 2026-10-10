@@ -196,7 +196,7 @@ export default function CombinedLessonPickScreen() {
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 16, gap: 9 }}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
           {Array.from({ length: TOPIC_COUNT }).map((_, index) => {
             const lessonId = index + 1;

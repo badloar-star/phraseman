@@ -21,7 +21,7 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
   return (
     <View testID="spire-friends">
       <Text accessibilityRole="header" style={[s.head, { color: p.text }]}>{spireText(lang, 'friendsWeek')}</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.list}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.list} decelerationRate="fast">
         {friends.map((f) => {
           const stone = f.tier === null ? '—' : spireTierName(f.tier, lang);
           return (

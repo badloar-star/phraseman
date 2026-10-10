@@ -63,7 +63,7 @@ function MistakeSessionFinale({
 
   return (
     <View style={styles.root}>
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles.topbar}>
           <RoundButton g={g} icon="close" label={copy.close} onPress={onDone} testID="mistake-finale-close" />
         </View>

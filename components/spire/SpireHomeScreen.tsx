@@ -196,7 +196,7 @@ export default function SpireHomeScreen() {
   const climbReady = game.live && game.tier !== null && game.session === null;
   return (
     <View style={s.root} testID="spire-home">
-      <ScrollView contentContainerStyle={[s.content, { paddingBottom: bottomPad + (game.outcome ? 300 : 120) }]} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[s.content, { paddingBottom: bottomPad + (game.outcome ? 300 : 120) }]} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={s.head}>
           <View style={s.headText}>
             <View style={s.titleRow}>

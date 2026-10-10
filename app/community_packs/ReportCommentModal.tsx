@@ -212,7 +212,7 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
                 </TouchableOpacity>
               </View>
 
-              <ScrollView style={{ flexShrink: 1, flexGrow: 0 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+              <ScrollView style={{ flexShrink: 1, flexGrow: 0 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" decelerationRate="fast">
                 <View style={{ backgroundColor: glass.opaqueControl, borderRadius: 16, padding: 14, marginTop: 6, marginBottom: 14 }}>
                   <Text style={{ color: glass.secondary, fontSize: f.body }}>
                     {shownComment.authorName}: «{shownComment.text}»

@@ -75,7 +75,7 @@ function TrainingSetupV2Inner(props: Props) {
 
   return (
     <View testID="fc-training-setup-v2" style={styles.root}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
           {limitLabel ? (

@@ -798,7 +798,7 @@ function FlashcardListItemImpl({
               {savedGlass ? (
                 <View style={styles.savedCompactRow}>
                   <Text testID={`fc-saved-row-number-${item.id}`} style={[styles.savedNumber, { color: g.secondary }]}>{itemIdx + 1}</Text>
-                  <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.savedTextScroll} contentContainerStyle={styles.savedTextContent}>
+                  <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.savedTextScroll} contentContainerStyle={styles.savedTextContent} decelerationRate="fast">
                     <FlowText testID={`fc-saved-row-word-${item.id}`} provenance="external" style={[styles.savedWord, { color: g.text }]}>{item.en}</FlowText>
                     {item.transcription?.trim() ? <FlowText testID={`fc-saved-row-ipa-${item.id}`} provenance="external" style={[styles.savedIpa, { color: g.secondary }]}>{item.transcription.trim()}</FlowText> : null}
                     <FlowText testID={`fc-saved-row-translation-${item.id}`} provenance="external" style={[styles.savedTranslation, { color: g.secondary }]}>{tr}</FlowText>
@@ -815,7 +815,7 @@ function FlashcardListItemImpl({
                 </View>
               ) : <ScrollView nestedScrollEnabled showsVerticalScrollIndicator
                 style={{ maxHeight: frontTextMaxH, width: '100%' }}
-                contentContainerStyle={{ minHeight: frontTextMaxH, justifyContent: 'center', paddingHorizontal: 8, paddingVertical: 6 }}
+                contentContainerStyle={{ minHeight: frontTextMaxH, justifyContent: 'center', paddingHorizontal: 8, paddingVertical: 6 }} decelerationRate="fast"
               >
                 {isModernAbbrevCard ? (
                   <>

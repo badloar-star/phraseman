@@ -132,7 +132,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
         contentContainerStyle={[s.content, { paddingTop: insets.top + 8, paddingBottom: dockH + 16 }]}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
-        automaticallyAdjustKeyboardInsets
+        automaticallyAdjustKeyboardInsets decelerationRate="fast"
       >
         <View style={s.topbar}>
           <PressableHybrid

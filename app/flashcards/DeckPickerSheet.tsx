@@ -405,7 +405,7 @@ export default function DeckPickerSheet({
             testID="fc-deck-picker-dock"
             style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridDockMaxHeight }}
             contentContainerStyle={{ paddingTop: mode === 'blitz' ? 8 : 16 }}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
             {mode === 'blitz' ? null : (
               <Text

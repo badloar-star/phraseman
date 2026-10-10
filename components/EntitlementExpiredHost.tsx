@@ -324,7 +324,7 @@ function EntitlementExpiredHost() {
         bounces={false}
         showsVerticalScrollIndicator={false}
         style={styles.scroll}
-        contentContainerStyle={styles.content}
+        contentContainerStyle={styles.content} decelerationRate="fast"
       >
         <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]} accessible={false} importantForAccessibility="no-hide-descendants">
           <Ionicons name="lock-closed" size={26} color={glass.text} />

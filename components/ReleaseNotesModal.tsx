@@ -211,7 +211,7 @@ function ReleaseNotesModal({
               style={styles.sheetScroll}
               contentContainerStyle={styles.sheetScrollContent}
               showsVerticalScrollIndicator={false}
-              bounces={false}
+              bounces={false} decelerationRate="fast"
             >
               <Text style={[styles.eyebrow, { fontSize: captionSize, color: releaseGlass.secondary }]}>
                 {displayTx.pill}

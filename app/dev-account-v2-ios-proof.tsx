@@ -70,7 +70,7 @@ export default function DevAccountV2IosProofRoute() {
           <Text style={styles.buttonText}>{running === phase ? `${title} — идёт` : title}</Text>
         </Pressable>
       ))}
-      <ScrollView style={styles.receipt} contentContainerStyle={styles.receiptContent}>
+      <ScrollView style={styles.receipt} contentContainerStyle={styles.receiptContent} decelerationRate="fast">
         <Text selectable style={styles.receiptText}>{text}</Text>
       </ScrollView>
       <Pressable accessibilityRole="button" style={styles.button} onPress={share}>

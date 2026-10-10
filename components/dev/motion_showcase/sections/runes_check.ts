@@ -4,7 +4,7 @@
 // цифрами». КАЖДЫЙ экран, начисляющий руны, получает СВОЮ строку — не один
 // общий пункт: экраны разные, и счётчик на каждом рисуется по-своему.
 //
-// Все восемь пунктов открывают НАСТОЯЩИЙ экран (тот же компонент, что видят
+// Все девять пунктов открывают НАСТОЯЩИЙ экран (тот же компонент, что видят
 // игроки) с флагом devRunesSeed — витрина подставляет свежее случайное число
 // на каждый тап, счётчики стартуют с него, а диск и сеть не трогаются вовсе
 // (см. hooks/usePracticeRunes → devFakeStartRunes и app/dev_practice_runes_seed.ts).
@@ -27,6 +27,7 @@ export const SECTION: ShowcaseSection = {
     { id: 'runes-check-mistake-practice', title: cs('runes_check_mistake_practice'), kind: 'route', route: '/mistake_practice_session', devRunesSeed: true, detail: cs('runes_check_detail') },
     { id: 'runes-check-blitz', title: cs('runes_check_blitz'), kind: 'route', route: '/flashcards_blitz_session', devRunesSeed: true, detail: cs('runes_check_detail') },
     { id: 'runes-check-speaking', title: cs('runes_check_speaking'), kind: 'route', route: '/flashcards_speaking_session', devRunesSeed: true, detail: cs('runes_check_detail') },
+    { id: 'runes-check-recall', title: cs('runes_check_recall'), kind: 'route', route: '/flashcards_recall_session', devRunesSeed: true, detail: cs('runes_check_detail') },
     { id: 'runes-check-swipe', title: cs('runes_check_swipe'), kind: 'route', route: '/flashcards_swipe', devRunesSeed: true, detail: cs('runes_check_detail') },
   ],
 };

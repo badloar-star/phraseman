@@ -139,7 +139,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       onAccessibilityAction={onA11yAction}
       testID="spire-tower"
     >
-      <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} nestedScrollEnabled bounces={false}>
+      <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} nestedScrollEnabled bounces={false} decelerationRate="fast">
         {width > 0 ? (
           <View style={{ width, height: SPIRE_TOWER_GEOM.height * scale }}>
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} />

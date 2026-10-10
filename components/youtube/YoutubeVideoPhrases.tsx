@@ -265,7 +265,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       testID="video-phrase-sheet"
     >
       {shown ? (
-        <ScrollView style={styles.sheetScroll} contentContainerStyle={styles.sheetContent} showsVerticalScrollIndicator={false}>
+        <ScrollView style={styles.sheetScroll} contentContainerStyle={styles.sheetContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <Text style={[styles.eyebrow, { color: glass.secondary }]}>
             {typeof shown.startSec === 'number' ? `${copy.phrase} · ${formatTimecode(shown.startSec)}` : copy.phrase}
           </Text>

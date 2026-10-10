@@ -199,7 +199,7 @@ function AiConsentSheetModal({ visible, title, body, illustration, introduction,
               <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
             </View>
 
-            <ScrollView style={{ flexShrink: 1 }}>
+            <ScrollView style={{ flexShrink: 1 }} decelerationRate="fast">
             {illustration}
             <View style={styles.badgeRow}>
               <AiBadge />

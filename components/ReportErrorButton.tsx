@@ -322,7 +322,7 @@ function ReportErrorButton({
               onPress={e => e.stopPropagation()}
             >
               <View style={[styles.grabber, { backgroundColor: glass.mutedText }]} />
-              <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+              <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} decelerationRate="fast">
               {failed ? (
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: glass.text, fontSize: f.h3 }]}>

@@ -26,7 +26,7 @@ const PROTECTED_FILES = new Map([
   // при шрифте 1.0 тот же объект стилей — вид и бизнес-логика прежние.
   ['components/v2/V2Kit.tsx', '34de20b312dd1a49e182e0e383ff7492514508dc13c3f36671b1bd35fc6f7606'],
   // хэш обновлён 10.10: V2Pressable на нажатие кита (constants/kitPress), логика пропсов не менялась
-  ['components/v2/V2Pressable.tsx', 'e23f5cc74844b210c43ae63f0e3fdba62ec5766b469b1ab320fb8c5d61caae71'],
+  ['components/v2/V2Pressable.tsx', '8a6361dd848a4397345783497d0f5ee60ac85238d5c9e1ba72c57b072f4df693'],
 ]);
 const PROTECTED_RUNTIME = {
   // зачем (D158 / PM-214, 04.10): вечный скелетон наборов запрещён — повторы 1/3/8 с, «Сейчас недоступно»,

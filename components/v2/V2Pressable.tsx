@@ -2,7 +2,7 @@ import React, { memo, useCallback, useRef } from 'react';
 import { Animated, Pressable, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_UP } from '../../constants/kitPress';
+import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../../constants/kitPress';
 
 type PassthroughProps = Omit<PressableProps, 'style' | 'children' | 'onPressIn' | 'onPressOut'>;
 
@@ -26,7 +26,7 @@ interface Props extends PassthroughProps {
  * сжимается, а отклик — масштаб и мягкое затемнение до .86 (kit `.t.down`; не 0.6, которое
  * на больших карточках выглядит как мигание) на нативном драйвере.
  */
-function V2Pressable({ style, outerStyle, children, scaleTo = 0.97, withHaptic = true, disabled, ...rest }: Props) {
+function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, withHaptic = true, disabled, ...rest }: Props) {
   const reduceMotion = useReduceMotion();
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;

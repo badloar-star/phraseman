@@ -1104,12 +1104,21 @@ async function ensureAccountDeleteCredentialSafe(
 }
 
 /**
+ * Сетевой (временный) отказ постановки: повтор имеет смысл на следующем старте.
+ * зачем (TG-F5939EAC5D97): отказ по существу (нет прав, личность уже удалена и т. п.) не
+ * исправится повтором — такой замок сходится локально, как раньше, а не держит карантин.
+ */
+const TRANSIENT_ENQUEUE_FAILURE = /unavailable|deadline|timeout|network|offline/i;
+
+/**
  * Одна ограниченная попытка дожать серверное удаление ГОСТЯ после перезапуска.
- * Всегда возвращает true: замок гостя сходится локально, исход только в логе.
+ * true — постановка принята или отказ не временный (замок сходится локально, исход в логе);
+ * false — временный отказ (нет сети): фаза local_data_cleared и гостевая сессия остаются,
+ * следующий старт/возврат в приложение пробует снова (TG-F5939EAC5D97).
  */
 async function retryGuestServerDeletionOnce(
   lock: AccountDeletePendingAuthLock,
-): Promise<true> {
+): Promise<boolean> {
   const proof = accountDeleteCredentialProof(lock);
   if (!proof) {
     console.warn('[ACC-MUT] delete:anon_server=skipped reason=retry_no_capability');
@@ -1119,12 +1128,15 @@ async function retryGuestServerDeletionOnce(
     const ack = await startCloudDeletionEnqueue(lock.stableId, proof).acknowledgment;
     console.log(`[ACC-MUT] delete:anon_server=enqueue_retry ack=ok status=${ack.status}`);
     logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
+    return true;
   } catch (e) {
     const reason = String((e as any)?.message ?? e).slice(0, 120);
-    console.warn(`[ACC-MUT] delete:anon_server=enqueue_retry ack=failed reason=${reason}`);
+    const code = String((e as any)?.code ?? '');
+    const transient = TRANSIENT_ENQUEUE_FAILURE.test(`${reason} ${code}`);
+    console.warn(`[ACC-MUT] delete:anon_server=enqueue_retry ack=failed reason=${reason} code=${code || 'none'} keep_lock=${transient ? 1 : 0}`);
     DebugLogger.error('acc_mut:delete_anon_retry_failed', new Error(reason), 'warning');
+    return !transient;
   }
-  return true;
 }
 
 async function waitForPostDeleteAuthHydration(): Promise<boolean> {
@@ -1257,12 +1269,20 @@ export async function ensureFreshPostDeletionIdentity(
       },
       signOutProvider: async () => {
         const currentUser = getAuth()?.currentUser;
-        if (!currentUser || currentUser.isAnonymous === true) return true;
+        // зачем (TG-F5939EAC5D97): гостя без сети больше не разлогинивают в фоне удаления —
+        // его сессия нужна, чтобы при старте дослать постановку. После неё эту УДАЛЁННУЮ
+        // гостевую личность надо покинуть здесь, иначе анонимный вход вернёт тот же uid и
+        // новая личность не выдастся никогда. Любой другой аноним — уже новый, его не трогаем.
+        const retiredGuestSignedIn = currentUser?.isAnonymous === true
+          && currentUser.uid === lock!.providerUid;
+        if (!currentUser || (currentUser.isAnonymous === true && !retiredGuestSignedIn)) return true;
         try {
           await signOutCurrentProvider();
           const afterSignOut = getAuth()?.currentUser;
-          return afterSignOut == null || afterSignOut.isAnonymous === true;
-        } catch {
+          return afterSignOut == null
+            || (afterSignOut.isAnonymous === true && afterSignOut.uid !== lock!.providerUid);
+        } catch (e) {
+          console.warn(`[ACC-MUT] delete:fresh_identity signout_failed retired_guest=${retiredGuestSignedIn ? 1 : 0} reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
           return false;
         }
       },
@@ -4238,6 +4258,9 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
     pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock) ?? undefined : undefined,
     ...accountsV2EnqueueArgs,
   );
+  // зачем (TG-F5939EAC5D97): фон подпишется на ответ через секунды — ранний отказ сети не
+  // должен стать «Uncaught (in promise)»; см. observeEarlyAcknowledgmentRejection.
+  observeEarlyAcknowledgmentRejection(cloudDeleteEnqueueOperation, 'enqueue');
   return {
     pendingDeleteLock,
     pendingDeleteStableId,
@@ -4354,7 +4377,19 @@ async function finishAccountDeletion(
           logAuthEvent('auth_account_delete_enqueue_failed');
         });
       await cloudDeleteEnqueueOperation.dispatchSettled;
-      await settleGuestEnqueueOutcome(prepared, cloudDeleteEnqueueOperation);
+      const guestOutcome = await settleGuestEnqueueOutcome(prepared, cloudDeleteEnqueueOperation);
+      if (guestOutcome === 'unconfirmed' && pendingDeleteLock) {
+        // зачем (TG-F5939EAC5D97, факт воспроизведения): без сети гостя разлогинивали, а замок
+        // перепрыгивал в old_stable_cleared — при старте с сетью постановку слать было уже
+        // некому (сервер принимает её только от той же вошедшей личности) и незачем (фаза
+        // пройдена): серверные данные гостя оставались навсегда. Теперь, пока сервер не получил
+        // ничего, гостевая сессия Firebase и замок в local_data_cleared сохраняются (телефон уже
+        // стёрт, синхронизация на карантине); старт/возврат в приложение дожимает постановку
+        // через retryGuestServerDeletionOnce и только потом выдаёт новую личность. Окон нет.
+        console.warn(`[ACC-MUT] delete:anon_server=deferred_to_startup phase=${pendingDeleteLock.phase} signout=skipped`);
+        logAuthEvent('auth_account_delete_quarantined', { reason: 'guest_server_deletion_deferred' });
+        return { ok: false, reason: 'local_exit_unverified' };
+      }
     } else if (prepared.guestDirectDeleteOperation) {
       // TG-20707BD701DC: гость без замка — прямой вызов стартовал в быстрой фазе;
       // ждём только его отправки, выход из Firebase — строго после неё.
@@ -4426,11 +4461,31 @@ function startGuestDirectServerDeletion(
   stableId: string | null,
 ): AccountDeleteEnqueueOperation<AccountDeleteDirectAck> {
   try {
-    return startCloudDeletionDirect(stableId);
+    return observeEarlyAcknowledgmentRejection(startCloudDeletionDirect(stableId), 'anon_server_direct');
   } catch (e) {
     const failure = e instanceof Error ? e : new Error(String(e));
-    return { dispatchSettled: Promise.resolve(), acknowledgment: Promise.reject(failure) };
+    return observeEarlyAcknowledgmentRejection(
+      { dispatchSettled: Promise.resolve(), acknowledgment: Promise.reject(failure) },
+      'anon_server_direct',
+    );
   }
+}
+
+/**
+ * зачем (TG-F5939EAC5D97, факт: `Uncaught (in promise) UNAVAILABLE`): операцию запускают в
+ * БЫСТРОЙ фазе, а фон вешает свой обработчик ответа только после уведомлений, push-токена и
+ * дренажей (секунды). Без сети ответ отклоняется раньше — Hermes считает отказ необработанным.
+ * Ранний наблюдатель помечает отказ обработанным и пишет причину; сам промис не меняется —
+ * фон по-прежнему получает отказ и решает по нему (квитанция, прямой вызов, повтор при старте).
+ */
+function observeEarlyAcknowledgmentRejection<T>(
+  operation: AccountDeleteEnqueueOperation<T>,
+  label: string,
+): AccountDeleteEnqueueOperation<T> {
+  void operation.acknowledgment.catch((e: unknown) => {
+    console.warn(`[ACC-MUT] delete:${label} ack_rejected_observed reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+  });
+  return operation;
 }
 
 /**
@@ -4447,7 +4502,7 @@ function startGuestDirectServerDeletion(
 async function settleGuestEnqueueOutcome(
   prepared: PreparedAccountDeletion,
   operation: AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck>,
-): Promise<void> {
+): Promise<GuestServerDeletionOutcome> {
   const { pendingDeleteLock, pendingDeleteStableId } = prepared;
   // Отказ здесь уже напечатан наблюдателем — превращаем его в false, не теряя.
   let enqueued = await operation.acknowledgment.then(() => true, () => false);
@@ -4466,17 +4521,26 @@ async function settleGuestEnqueueOutcome(
     const advanced = await advanceAccountDeletePendingAuthLock(pendingDeleteLock, 'server_enqueued')
       .catch(swallowAuthAs('[AUTH-DELETE]', 'anon_phase_server_enqueued', { ok: false, code: 'threw' } as const));
     console.log(`[ACC-MUT] delete:anon_phase_server_enqueued=${advanced.ok ? 1 : 0}`);
-    return;
+    return 'enqueued';
   }
-  if (enqueued) return;
+  if (enqueued) return 'enqueued';
   console.warn(`[ACC-MUT] delete:anon_server=direct reason=enqueue_failed stable=${pendingDeleteStableId ? 'present' : 'none'}`);
-  await awaitGuestDirectDispatch(startGuestDirectServerDeletion(pendingDeleteStableId));
+  const direct = await awaitGuestDirectDispatch(startGuestDirectServerDeletion(pendingDeleteStableId));
+  // зачем (TG-F5939EAC5D97): 'ceiling' = запрос ушёл, ответа нет — сервер мог его выполнить;
+  // только явный отказ значит «сервер не получил ничего».
+  return direct === 'failed' ? 'unconfirmed' : 'direct_sent';
 }
+
+/**
+ * Исход серверного удаления гостя в фоне. 'unconfirmed' — и постановка, и прямой вызов
+ * явно отказали (типично: нет сети), значит сервер не получил ничего.
+ */
+type GuestServerDeletionOutcome = 'enqueued' | 'direct_sent' | 'unconfirmed';
 
 /** Ждёт только ОТПРАВКИ прямого вызова; ответ печатается фоном, отказ не всплывает. */
 async function awaitGuestDirectDispatch(
   operation: AccountDeleteEnqueueOperation<AccountDeleteDirectAck>,
-): Promise<void> {
+): Promise<'ack' | 'failed' | 'ceiling'> {
   void operation.acknowledgment.then(
     (ack) => {
       console.log(`[ACC-MUT] delete:anon_server_direct ack=ok authDeleted=${ack.authDeleted ? 1 : 0}`);
@@ -4502,6 +4566,7 @@ async function awaitGuestDirectDispatch(
   ]);
   if (ackTimer) clearTimeout(ackTimer);
   console.log(`[ACC-MUT] delete:anon_server_direct before_signout=${waited}`);
+  return waited;
 }
 
 const GUEST_DIRECT_ACK_WAIT_MS = 8_000;

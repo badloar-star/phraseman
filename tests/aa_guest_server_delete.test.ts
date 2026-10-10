@@ -375,11 +375,15 @@ describe('удаление гостя: серверные данные (TG-20707
 
     expect(waitForAccountDeletionCredentialSafe).toHaveBeenCalledTimes(1);
     expect(startCloudDeletionDirect).toHaveBeenCalledWith('local-stable-id');
-    expect(authCalls().indexOf('direct')).toBeLessThan(authCalls().indexOf('signout'));
+    // зачем (TG-F5939EAC5D97): оба вызова явно отказали — сервер не получил ничего. Гостя
+    // больше НЕ разлогинивают: его сессия нужна, чтобы старт с сетью дослал постановку
+    // (раньше здесь ждали выход после прямого вызова, и данные гостя оставались навсегда).
+    expect(authCalls()).not.toContain('signout');
     expect(accMutLines()).toEqual(expect.arrayContaining([
       expect.stringContaining('delete:anon_server=enqueue ack=failed reason=offline'),
       expect.stringContaining('delete:anon_server=direct reason=enqueue_failed'),
       expect.stringContaining('delete:anon_server_direct ack=failed reason=still offline'),
+      expect.stringContaining('delete:anon_server=deferred_to_startup'),
     ]));
     expect(unhandled).toEqual([]);
   });
@@ -463,5 +467,14 @@ describe('окно сбоя удаления не показывается по�
     expect(source).toContain('const ACCOUNT_DELETE_LOCAL_WIPE_GRACE_MS = 10_000;');
     expect(source).toMatch(/if \(!locallyWiped\) \{[\s\S]{0,600}locallyWiped = await awaitInFlightLocalWipe\(pendingDeleteLock, pendingDeleteStableId\);/);
     expect(source).toContain("traceAccountDeleteLocal('grace_result=0 source=no_flight')");
+  });
+});
+
+describe('чтение замка не виснет на зависшей записи SecureStore (ревью 11.10, REVISE)', () => {
+  test('каждый круг ожидания записи ограничен потолком; после потолка читаем как есть', () => {
+    const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'account_delete_quarantine.ts'), 'utf8') as string;
+    expect(source).toContain('const GUARD_READ_PERSIST_WAIT_ROUND_MS = 2_500;');
+    expect(source).toContain('read:persist_wait_timeout');
+    expect(source).toContain('persist:anchor_read_failed reason=');
   });
 });

@@ -465,15 +465,62 @@ async function exactSecureWrite(
 // что чтение между двумя записями видит расхождение и выбрасывает живой замок. Счётчик идущих записей
 // печатается в журнале расхождения; поведение не меняется.
 let guardPersistsInFlight = 0;
+/**
+ * зачем (TG-F5939EAC5D97, факт воспроизведения: `disagreement … persists_in_flight=1`): чтение
+ * замка, попавшее между записью якоря и записью самой записи, видело половины РАЗНЫХ фаз и
+ * выбрасывало живой замок как «сломанный». Порядок «якорь раньше записи» — защита от падений
+ * (инциденты 31.08), его не трогаем; вместо этого чтение в процессе ждёт идущие записи.
+ * Записи замка никогда не ждут чтений → взаимной блокировки нет. Настоящая порча (расхождение
+ * половин без идущей записи) по-прежнему снимается.
+ */
+const guardPersistFlights = new Set<Promise<boolean>>();
+const GUARD_READ_PERSIST_WAIT_ROUNDS = 5;
 
 export async function persistAccountDeletePendingAuthLock(
   lock: AccountDeletePendingAuthLock,
 ): Promise<boolean> {
   guardPersistsInFlight += 1;
+  const flight = persistAccountDeletePendingAuthLockInner(lock);
+  guardPersistFlights.add(flight);
   try {
-    return await persistAccountDeletePendingAuthLockInner(lock);
+    return await flight;
   } finally {
     guardPersistsInFlight -= 1;
+    guardPersistFlights.delete(flight);
+  }
+}
+
+const GUARD_READ_PERSIST_WAIT_ROUND_MS = 2_500;
+
+async function waitForGuardPersistsBeforeRead(): Promise<void> {
+  // Ограниченное число кругов: поток записей подряд не должен навечно задержать чтение.
+  for (let round = 0; round < GUARD_READ_PERSIST_WAIT_ROUNDS && guardPersistFlights.size > 0; round += 1) {
+    const pending = [...guardPersistFlights];
+    console.log(`[ACCOUNT-DELETE-GUARD] read:waits_for_persist count=${pending.length} round=${round}`);
+    // зачем (security-ревью REVISE): нативная запись SecureStore может зависнуть (Keychain/Keystore) —
+    // без потолка круг не закончится никогда и повиснут ВСЕ чтения замка (старт, карантин синка).
+    // Потолок на круг: худший случай — прежнее поведение (чтение как есть) плюс пара секунд.
+    let roundTimer: ReturnType<typeof setTimeout> | null = null;
+    const settled = await Promise.race([
+      Promise.all(pending.map((flight) => flight.then(
+        () => undefined,
+        (e: unknown) => {
+          // Отказ записи печатает сама запись у вызывающего; здесь — только факт, что ждали её.
+          console.warn(`[ACCOUNT-DELETE-GUARD] read:awaited_persist_failed reason=${e instanceof Error ? e.message : String(e)}`);
+        },
+      ))).then(() => 'settled' as const),
+      new Promise<'timeout'>((resolve) => {
+        roundTimer = setTimeout(() => resolve('timeout'), GUARD_READ_PERSIST_WAIT_ROUND_MS);
+      }),
+    ]);
+    if (roundTimer) clearTimeout(roundTimer);
+    if (settled === 'timeout') {
+      console.warn(`[ACCOUNT-DELETE-GUARD] read:persist_wait_timeout count=${pending.length} round=${round} — читаем как есть`);
+      return;
+    }
+  }
+  if (guardPersistFlights.size > 0) {
+    console.warn(`[ACCOUNT-DELETE-GUARD] read:persist_wait_exhausted count=${guardPersistFlights.size} — читаем как есть`);
   }
 }
 
@@ -492,7 +539,9 @@ async function persistAccountDeletePendingAuthLockInner(
   let existingAnchorRaw: string | null;
   try {
     existingAnchorRaw = await secureStore.getItemAsync(ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY);
-  } catch {
+  } catch (e) {
+    // зачем (правило «немого catch нет», ревью LOW-2): запись замка отказывает — причина в журнал.
+    console.warn(`[ACCOUNT-DELETE-GUARD] persist:anchor_read_failed reason=${e instanceof Error ? e.message : String(e)}`);
     return false;
   }
   if (existingAnchorRaw !== null) {
@@ -915,6 +964,8 @@ export async function readAccountDeletePendingAuthRaw(): Promise<string | null> 
 }
 
 async function readAccountDeletePendingAuthRawFromStorage(): Promise<string | null> {
+  // зачем (TG-F5939EAC5D97): не читать половины замка посреди его записи — см. guardPersistFlights.
+  await waitForGuardPersistsBeforeRead();
   const secureStore = getSecureStore();
   // SecureStore may be unavailable in Expo Go/web, but the AsyncStorage v1
   // mirror is still evidence of an interrupted deletion.  Inspect it before

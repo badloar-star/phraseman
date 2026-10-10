@@ -16,11 +16,11 @@ describe('website desktop hero rays edge contract', () => {
     expect(desktopOverride).toContain('width: calc(min(100%, 900px) + 50vw - 50%);');
   });
 
-  it('bumps the homepage stylesheet version so browsers receive the edge fix', () => {
+  // зачем (11.10, координатор 05:30): главная переехала на одобренный дизайн и phraseman.css больше не подключает,
+  // так что версия ?v=wowN на ней не нужна. Держим: главная берёт общее оформление сайта.
+  it('the homepage uses the shared approved stylesheet', () => {
     const html = read('knowly-www/index.html');
-    const match = html.match(/\/assets\/phraseman\.css\?v=wow(\d+)/);
 
-    expect(match).not.toBeNull();
-    expect(Number(match![1])).toBeGreaterThanOrEqual(6);
+    expect(html).toContain('<link rel="stylesheet" href="/assets/approved/site.css">');
   });
 });

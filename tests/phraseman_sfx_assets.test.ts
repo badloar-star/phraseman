@@ -24,20 +24,40 @@ function loadSpecs(): AssetSpec[] {
 describe('Phraseman canonical SFX assets', () => {
   // зачем 2026-08-03: было 39 — pm.learn.combo_5/combo_10 убраны вместе с
   // эффектом серии 5/10 (владелец: «убрать полностью»), осталось 37.
-  test('maps 37 enabled semantic events to unique safe bundle destinations', () => {
+  // зачем 2026-10-11 (координатор 05:30): бандл давно не .wav — звуки перекодированы в .m4a 96k (50e514b63,
+  // минус 13 МБ APK), а каталог modules/audio/sound_events.ts требует именно .m4a. Скрипт подготовки остаётся
+  // источником «событие → исходник», а сторож проверяет то, что реально попадает в приложение: каждое событие
+  // из списка, которое есть в каталоге, лежит в бандле тем .m4a, который каталог подключает. Выпавшие в 2.0
+  // события перечислены явно — новое выпадение уронит сторож, а не пройдёт молча.
+  const RETIRED_FROM_CATALOG = [
+    'pm.learn.correct',
+    'pm.learn.hint_reveal',
+    'pm.learn.needs_work',
+    'pm.reward.collectible',
+    'pm.social.gift_received',
+  ];
+
+  test('every supplied event still in the sound catalog ships as the .m4a the catalog requires', () => {
     expect(existsSync(SCRIPT)).toBe(true);
     const specs = loadSpecs();
     const enabled = specs.filter((spec) => spec.enabled);
+    const catalog = readFileSync(path.join(ROOT, 'modules', 'audio', 'sound_events.ts'), 'utf8');
 
-    expect(enabled).toHaveLength(37);
     expect(new Set(specs.map((spec) => spec.eventId)).size).toBe(specs.length);
     expect(new Set(enabled.map((spec) => spec.destination)).size).toBe(enabled.length);
 
-    for (const spec of enabled) {
-      const resolved = path.resolve(ROOT, spec.destination);
-      const assetRoot = path.resolve(ROOT, 'assets', 'audio', 'sfx', 'v1');
+    const retired = enabled.filter((spec) => !catalog.includes(`'${spec.eventId}'`)).map((spec) => spec.eventId);
+    expect(retired.sort()).toEqual(RETIRED_FROM_CATALOG);
+
+    const live = enabled.filter((spec) => catalog.includes(`'${spec.eventId}'`));
+    expect(live).toHaveLength(enabled.length - RETIRED_FROM_CATALOG.length);
+    const assetRoot = path.resolve(ROOT, 'assets', 'audio', 'sfx', 'v1');
+    for (const spec of live) {
+      const bundled = spec.destination.replace(/\.wav$/, '.m4a');
+      const resolved = path.resolve(ROOT, bundled);
       expect(resolved.startsWith(`${assetRoot}${path.sep}`)).toBe(true);
       expect(existsSync(resolved)).toBe(true);
+      expect(catalog).toContain(`require('../../${bundled}')`);
     }
   });
 

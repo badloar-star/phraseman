@@ -13,7 +13,7 @@ const publicContentPages = [
   'gift/index.html',
   'premium/index.html',
   'russia/index.html',
-  'start/index.html',
+  // зачем (11.10): страница /start/ удалена (1d70c8fc5), хостинг ведёт её 301 на /download/ (firebase.json).
   'start/thanks/index.html',
   'guides/index.html',
   'guides/english-15-minutes-a-day/index.html',
@@ -81,25 +81,22 @@ describe('Knowly public website localization contract', () => {
     expect(i18n.translateValue('3,99\u00a0€', 'en')).toBe('3,99 €');
   });
 
-  test('every public content page declares the shared localization runtime and stable page id', () => {
+  // зачем (11.10, координатор 05:30): одобренный дизайн сайта — русскоязычный, без рантайм-переключателя языка
+  // (site-i18n на страницах больше не подключается). Держим честность документа: объявленный язык совпадает с
+  // текстом, у каждой страницы есть заголовок и описание для поиска — без JavaScript.
+  test('every public content page declares the Russian document language it actually ships', () => {
     for (const page of publicContentPages) {
       const html = read(page);
-      expect(html).toContain('/assets/site-i18n.css');
-      expect(html).toContain('/assets/site-i18n.locales.js');
-      expect(html).toContain('/assets/site-i18n.js');
-      expect(html).toMatch(/data-i18n-page="[a-z0-9-]+"/);
-      expect(html).toContain('data-i18n-switcher');
+      expect(html).toMatch(/<html\b[^>]*\blang="ru"/i);
+      expect(html).not.toContain('data-i18n-switcher');
     }
   });
 
-  test('ships English canonical document metadata before JavaScript runs', () => {
+  test('ships title and description metadata before JavaScript runs', () => {
     for (const page of publicContentPages) {
       const html = read(page);
-      const seo = [...html.matchAll(/<title>[\s\S]*?<\/title>|<meta\b[^>]*(?:name|property)="(?:description|og:title|og:description)"[^>]*>/gi)]
-        .map((match) => match[0])
-        .join('\n');
-      expect(html).toMatch(/<html\b[^>]*\blang="en"/i);
-      expect(seo).not.toMatch(/[\u0400-\u04ff]/);
+      expect(html).toMatch(/<title>[^<]+<\/title>/i);
+      expect(html).toMatch(/<meta\b[^>]*name="description"[^>]*content="[^"]+"/i);
     }
   });
 

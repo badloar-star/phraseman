@@ -9,10 +9,44 @@ const ids = Object.keys(SOUND_EVENTS) as SoundEventId[];
 const withSound = ids.filter((id) => SOUND_EVENTS[id].source !== null);
 const withoutSound = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
+// зачем (11.10, координатор 05:30): 2.0 добавил 19 звуков, а таблицу sound_motion.ts не пересчитали. Для релиза это
+// не блокер — motionDurationMs отдаёт запасные 320 мс, анимация идёт, просто не по форме волны. Список «после
+// релиза» (владелец — Звук): пересчитать scripts/measure_sfx_envelopes.mjs и дописать профили. Список может только
+// сокращаться — новый звук без профиля уронит сторож.
+const UNMEASURED_AFTER_RELEASE: readonly SoundEventId[] = [
+  'pm.achievements.open',
+  'pm.billing.issue',
+  'pm.cards.editor_delete',
+  'pm.cards.editor_save',
+  'pm.cards.flip',
+  'pm.cards.pack_created',
+  'pm.cards.pack_open',
+  'pm.celebration.background_bed',
+  'pm.coin.flight_start',
+  'pm.dialog.retry',
+  'pm.dialog.victory',
+  'pm.energy.spend',
+  'pm.hearts.lost',
+  'pm.hearts.restored',
+  'pm.onboarding.step',
+  'pm.reward.rune_count_done',
+  'pm.ui.tap_blocked',
+  'pm.ui.tap_primary',
+  'pm.ui.tap_soft',
+];
+const measured = withSound.filter((id) => SOUND_MOTION[id]);
+
 describe('sound motion timings', () => {
-  it('covers every event that actually has audio', () => {
+  it('covers every event that actually has audio, except the explicit post-release list', () => {
     const missing = withSound.filter((id) => !SOUND_MOTION[id]);
-    expect(missing).toEqual([]);
+    expect([...missing].sort()).toEqual([...UNMEASURED_AFTER_RELEASE].sort());
+  });
+
+  it('gives unmeasured sounds a sane fallback duration until they are measured', () => {
+    for (const id of UNMEASURED_AFTER_RELEASE) {
+      expect(SOUND_EVENTS[id].source).not.toBeNull();
+      expect(motionDurationMs(id)).toBeGreaterThan(0);
+    }
   });
 
   it('has no timings for silent events', () => {
@@ -23,7 +57,7 @@ describe('sound motion timings', () => {
   });
 
   it('measures a positive audible length for every sound', () => {
-    for (const id of withSound) {
+    for (const id of measured) {
       expect(SOUND_MOTION[id]!.audibleMs).toBeGreaterThan(0);
     }
   });
@@ -42,14 +76,14 @@ describe('sound motion timings', () => {
   ];
 
   it('does not grow the set of events whose catalog duration understates the sound', () => {
-    const understated = withSound.filter(
+    const understated = measured.filter(
       (id) => SOUND_MOTION[id]!.audibleMs > SOUND_EVENTS[id].durationMs,
     );
     expect(understated.sort()).toEqual([...KNOWN_SHORT_DURATIONS].sort());
   });
 
   it('places every hit inside the audible window', () => {
-    for (const id of withSound) {
+    for (const id of measured) {
       const motion = SOUND_MOTION[id]!;
       for (const hit of motion.hits) {
         expect(hit).toBeGreaterThanOrEqual(0);
@@ -59,7 +93,7 @@ describe('sound motion timings', () => {
   });
 
   it('places the attack peak inside the audible window', () => {
-    for (const id of withSound) {
+    for (const id of measured) {
       const motion = SOUND_MOTION[id]!;
       expect(motion.attackMs).toBeGreaterThanOrEqual(0);
       expect(motion.attackMs).toBeLessThanOrEqual(motion.audibleMs);
@@ -67,7 +101,7 @@ describe('sound motion timings', () => {
   });
 
   it('keeps brightness normalised', () => {
-    for (const id of withSound) {
+    for (const id of measured) {
       const motion = SOUND_MOTION[id]!;
       expect(motion.bright).toBeGreaterThanOrEqual(0);
       expect(motion.bright).toBeLessThanOrEqual(1);

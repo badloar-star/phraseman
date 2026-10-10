@@ -117,6 +117,7 @@ import {
   waitForRestoreApplicationIdleWithDeadline,
   type AccountTransitionLockLease,
 } from './account_generation';
+import { beginCloudProfileRefresh } from './cloud_profile_refresh_state';
 import {
   announceAccountSwitchQuarantineFailure,
   clearProviderCredentialHandoff,
@@ -3216,6 +3217,8 @@ function scheduleSameStablePostAuthRefresh(
   stage: 'linked_restore' | 'created_restore' | 'swap_restore' | 'keeplocal_restore' | 'keeplocal_restore_same',
   options: { preparedStableId?: string } = {},
 ): void {
+  // зачем (релизный пол 10.10): тихий спиннер на месте данных, пока они догружаются.
+  const endCloudRefresh = beginCloudProfileRefresh(stage);
   void (async () => {
     const t0 = Date.now();
     const stableId = options.preparedStableId ?? (await getStableId().catch(swallowAuthAs('[AUTH-BG-REFRESH]', 'read_stable', null)));
@@ -3270,7 +3273,7 @@ function scheduleSameStablePostAuthRefresh(
   })().catch((e) => {
     // зачем: раньше причина падения фоновой догрузки терялась в __DEV__-only логе.
     console.warn(`[SIGNIN] bg:${stage} background refresh failed reason=${String((e as any)?.message ?? e).slice(0, 160)}`);
-  });
+  }).finally(endCloudRefresh);
 }
 
 async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): Promise<void> {

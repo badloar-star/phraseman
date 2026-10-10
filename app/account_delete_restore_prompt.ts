@@ -13,6 +13,39 @@
 import { Alert } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
+import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+
+/**
+ * зачем (релизный пол 10.10, решение координатора): вход в ОКОНЧАТЕЛЬНО удалённый
+ * аккаунт (`identity_retired`, 14 дней прошли) раньше молча закрывал окно входа
+ * или возвращал на приветствие — человек не понимал, что случилось. Теперь —
+ * стандартное инфо-окно очереди (без системного Alert). Не ждём закрытия.
+ */
+export function noticeAccountDeletedForever(lang: Lang, surface: string): void {
+  console.log(`[ACCOUNT-RESTORE] retired_notice surface=${surface}`);
+  void enqueueThemedBlockingInfoAlert(
+    triLang(lang, {
+      ru: 'Аккаунт удалён', uk: 'Акаунт видалено', en: 'Account deleted', es: 'Cuenta eliminada',
+      'pt-BR': 'Conta excluída', vi: 'Tài khoản đã bị xóa', id: 'Akun dihapus', tr: 'Hesap silindi', pl: 'Konto usunięte',
+    }),
+    triLang(lang, {
+      ru: 'Этот аккаунт удалён безвозвратно. Войди другим способом или начни заново.',
+      uk: 'Цей акаунт видалено безповоротно. Увійди іншим способом або почни заново.',
+      en: 'This account was deleted permanently. Sign in another way or start over.',
+      es: 'Esta cuenta se eliminó de forma permanente. Entra de otra manera o empieza de nuevo.',
+      'pt-BR': 'Esta conta foi excluída de forma permanente. Entre de outro jeito ou comece de novo.',
+      vi: 'Tài khoản này đã bị xóa vĩnh viễn. Hãy đăng nhập cách khác hoặc bắt đầu lại.',
+      id: 'Akun ini sudah dihapus permanen. Masuk dengan cara lain atau mulai dari awal.',
+      tr: 'Bu hesap kalıcı olarak silindi. Başka bir yolla giriş yap ya da yeniden başla.',
+      pl: 'To konto zostało trwale usunięte. Zaloguj się w inny sposób lub zacznij od nowa.',
+    }),
+    triLang(lang, {
+      ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi',
+      vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem',
+    }),
+    { icon: 'lock-closed' },
+  );
+}
 
 export type AccountRestorePromptOutcome = 'restored' | 'declined' | 'not_restorable' | 'restore_failed';
 

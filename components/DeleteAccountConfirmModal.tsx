@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState, useCallback, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import {
   ActivityIndicator,
   Modal,
@@ -24,7 +24,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
-import { beginAccountDeletion } from '../app/auth_provider';
+import { beginAccountDeletion, peekLinkedAuthFromCurrentUser } from '../app/auth_provider';
 import { enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
@@ -71,6 +71,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
+  // зачем (релизный пол 10.10, security-ревью M-1): восстановить в 14 дней можно только тем же
+  // входом Google/Apple. Гостю (анонимный вход) после стирания вернуться нечем — ему без обещания.
+  const hasProviderSignIn = useMemo(() => visible && peekLinkedAuthFromCurrentUser() !== null, [visible]);
   const reduceMotion = useReduceMotion();
   // зачем: приглушённый тон CTA «Удалить» + одна дрожь на подтверждении —
   // деструктивный паттерн из ThemedConfirmModal (destructive), но здесь кнопка
@@ -367,16 +370,30 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
             })}
           </Text>
           <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginBottom: 18 }}>
-            {L({
-              ru: 'Это необратимо: периода восстановления нет. Подписка в App Store или Google Play не отменится автоматически.',
-              uk: 'Це незворотно: періоду відновлення немає. Підписка в App Store або Google Play не скасується автоматично.',
-              en: 'This cannot be undone: there is no recovery period. Your App Store or Google Play subscription will not be canceled automatically.',
-              es: 'Es irreversible: no hay periodo de recuperación. La suscripción de App Store o Google Play no se cancela automáticamente.',
-              'pt-BR': 'É irreversível: não há período de recuperação. A assinatura da App Store ou do Google Play não é cancelada automaticamente.',
-              vi: 'Không thể hoàn tác: không có thời gian khôi phục. Gói đăng ký trên App Store hoặc Google Play sẽ không tự động bị hủy.',
-              id: 'Tidak bisa dibatalkan: tidak ada masa pemulihan. Langganan di App Store atau Google Play tidak dibatalkan otomatis.',
-              tr: 'Bu geri alınamaz: kurtarma süresi yok. App Store veya Google Play aboneliği otomatik olarak iptal edilmez.',
-              pl: 'Tego nie da się cofnąć: nie ma okresu przywracania. Subskrypcja w App Store lub Google Play nie zostanie anulowana automatycznie.',
+            {/* зачем (релизный пол 10.10, решение координатора): прежний текст «периода
+                восстановления нет» был ложью — сервер держит аккаунт 14 дней
+                (functions/src/account_delete_grace.ts), политика конфиденциальности это
+                обещает, а при повторном входе приложение предлагает восстановить. */}
+            {hasProviderSignIn ? L({
+              ru: 'Аккаунт удалится через 14 дней. Если передумаешь — просто войди снова тем же способом. Подписка в App Store или Google Play не отменится автоматически.',
+              uk: 'Акаунт видалиться через 14 днів. Якщо передумаєш — просто увійди знову тим самим способом. Підписка в App Store або Google Play не скасується автоматично.',
+              en: 'Your account will be deleted in 14 days. If you change your mind, just sign in again the same way. Your App Store or Google Play subscription will not be canceled automatically.',
+              es: 'La cuenta se eliminará en 14 días. Si cambias de opinión, solo vuelve a entrar del mismo modo. La suscripción de App Store o Google Play no se cancela automáticamente.',
+              'pt-BR': 'A conta será excluída em 14 dias. Se mudar de ideia, é só entrar de novo do mesmo jeito. A assinatura da App Store ou do Google Play não é cancelada automaticamente.',
+              vi: 'Tài khoản sẽ bị xóa sau 14 ngày. Nếu đổi ý, chỉ cần đăng nhập lại bằng cách cũ. Gói đăng ký trên App Store hoặc Google Play sẽ không tự động bị hủy.',
+              id: 'Akun akan dihapus dalam 14 hari. Jika berubah pikiran, cukup masuk lagi dengan cara yang sama. Langganan di App Store atau Google Play tidak dibatalkan otomatis.',
+              tr: 'Hesap 14 gün içinde silinecek. Fikrini değiştirirsen aynı yöntemle yeniden giriş yapman yeterli. App Store veya Google Play aboneliği otomatik olarak iptal edilmez.',
+              pl: 'Konto zostanie usunięte za 14 dni. Jeśli zmienisz zdanie, po prostu zaloguj się ponownie w ten sam sposób. Subskrypcja w App Store lub Google Play nie zostanie anulowana automatycznie.',
+            }) : L({
+              ru: 'Прогресс удалится безвозвратно. Подписка в App Store или Google Play не отменится автоматически.',
+              uk: 'Прогрес видалиться безповоротно. Підписка в App Store або Google Play не скасується автоматично.',
+              en: 'Your progress will be deleted permanently. Your App Store or Google Play subscription will not be canceled automatically.',
+              es: 'Tu progreso se eliminará para siempre. La suscripción de App Store o Google Play no se cancela automáticamente.',
+              'pt-BR': 'Seu progresso será excluído para sempre. A assinatura da App Store ou do Google Play não é cancelada automaticamente.',
+              vi: 'Tiến trình của bạn sẽ bị xóa vĩnh viễn. Gói đăng ký trên App Store hoặc Google Play sẽ không tự động bị hủy.',
+              id: 'Progresmu akan dihapus permanen. Langganan di App Store atau Google Play tidak dibatalkan otomatis.',
+              tr: 'İlerlemen kalıcı olarak silinecek. App Store veya Google Play aboneliği otomatik olarak iptal edilmez.',
+              pl: 'Twój postęp zostanie trwale usunięty. Subskrypcja w App Store lub Google Play nie zostanie anulowana automatycznie.',
             })}
           </Text>
           <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginBottom: 8 }}>

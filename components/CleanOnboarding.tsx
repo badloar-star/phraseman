@@ -113,6 +113,8 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
+import { noticeAccountDeletedForever } from '../app/account_delete_restore_prompt';
+import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -2587,6 +2589,8 @@ function CleanOnboarding({
           setGreetName(null);
           setUnknownAccountEmail('');
           go('welcome');
+          // зачем (релизный пол 10.10): не молча на приветствие — объясняем, что аккаунт удалён навсегда.
+          noticeAccountDeletedForever(lang, 'onboarding');
           return;
         }
         // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
@@ -2607,6 +2611,27 @@ function CleanOnboarding({
             pl: 'Konto zostało przywrócone. Zaloguj się ponownie — cały postęp jest na miejscu.',
           }));
           return;
+        }
+        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
+        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
+        if (result.error === 'account_switch_required') {
+          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          if (switched.kind === 'cancelled') { setAuthError(null); return; }
+          if (switched.kind === 'failed') { setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'switched') {
+            setAuthError(triLang(lang, {
+              ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
+              uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
+              en: 'Account switched. Sign in again the way you need.',
+              es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
+              'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
+              vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
+              id: 'Akun sudah diganti. Masuk lagi dengan cara yang kamu perlukan.',
+              tr: 'Hesap değiştirildi. İstediğin yolla tekrar giriş yap.',
+              pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
+            }));
+            return;
+          }
         }
         setAuthError(describeAuthError(result.error, lang));
         return;
@@ -2666,6 +2691,8 @@ function CleanOnboarding({
           setGreetName(null);
           setUnknownAccountEmail('');
           go('welcome');
+          // зачем (релизный пол 10.10): не молча на приветствие — объясняем, что аккаунт удалён навсегда.
+          noticeAccountDeletedForever(lang, 'onboarding');
           return;
         }
         // зачем: раньше любой отказ схлопывался в «Не получилось войти» — владелец
@@ -2689,6 +2716,27 @@ function CleanOnboarding({
             pl: 'Konto zostało przywrócone. Zaloguj się ponownie — cały postęp jest na miejscu.',
           }));
           return;
+        }
+        // зачем (релизный пол 10.10): «подтверди смену аккаунта» без кнопки было тупиком —
+        // стандартное окно выбора кита: «Отмена» / «Сменить аккаунт» (как «Сохранить и сменить» в Настройках).
+        if (result.error === 'account_switch_required') {
+          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          if (switched.kind === 'cancelled') { setAuthError(null); return; }
+          if (switched.kind === 'failed') { setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'switched') {
+            setAuthError(triLang(lang, {
+              ru: 'Аккаунт сменён. Войди ещё раз нужным способом.',
+              uk: 'Акаунт змінено. Увійди ще раз потрібним способом.',
+              en: 'Account switched. Sign in again the way you need.',
+              es: 'Cuenta cambiada. Vuelve a entrar como necesites.',
+              'pt-BR': 'Conta trocada. Entre de novo do jeito que precisar.',
+              vi: 'Đã đổi tài khoản. Hãy đăng nhập lại theo cách bạn cần.',
+              id: 'Akun sudah diganti. Masuk lagi dengan cara yang kamu perlukan.',
+              tr: 'Hesap değiştirildi. İstediğin yolla tekrar giriş yap.',
+              pl: 'Konto zmienione. Zaloguj się ponownie w potrzebny sposób.',
+            }));
+            return;
+          }
         }
         setAuthError(describeAuthError(result.error, lang));
         return;

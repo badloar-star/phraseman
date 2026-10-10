@@ -2,6 +2,8 @@
 
 Governance-ID: TG-751F37510E5D
 Governance-ID: TG-F962E3551E45
+Governance-ID: TG-958339615DE4
+Governance-ID: TG-3470E1035FC2
 Status: In progress
 Owner: Claude session 5 · АВТОРИЗАЦИЯ
 
@@ -26,3 +28,12 @@ S8–S10 Account Authority — после релиза, за воротами (A
 
 ## Rollback
 git revert правок; ворота cutover остаются OFF.
+
+## Пакет 2 (решения координатора 1–3): итог
+Governance-ID: TG-48CE17A2BD68
+- Окно удаления: для входа через Google/Apple — текст про 14 дней; для гостя — «Прогресс удалится безвозвратно…» (security M-1).
+- identity_retired → инфо-окно очереди «Этот аккаунт удалён безвозвратно…» (окно входа + оба пути онбординга).
+- Онбординг, account_switch_required → окно выбора кита «Отмена»/«Сменить»; при сбое — причина простыми словами (security L-1).
+- Догрузка после входа → тихий KitSpinner в шапке Главной (флаг в памяти, страховка 30 с).
+- Тесты по одному: aa_release_floor_auth_ui 12/12, restore_prompt 6/6, delete_flow 23, modal_layout 4, onboarding busy 2 / i18n 1, registration lifecycle 4 / recovery 8.
+- Независимое security-ревью: APPROVE. LOW: затяжной pending_shard_spend без развилки «Сменить без сохранения» в онбординге; немой catch в peekLinkedAuthFromCurrentUser (вне правки); окно «удалён навсегда» согласовать с владельцем (правило 22.09).

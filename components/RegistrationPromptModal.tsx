@@ -52,7 +52,7 @@ import {
   KNOWLY_LEGAL_TERMS_URL,
 } from '../app/config';
 import { triLang, type Lang } from '../constants/i18n';
-import { promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
+import { noticeAccountDeletedForever, promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import {
@@ -1212,6 +1212,7 @@ function RegistrationPromptModal({
             setRecoveryPanelVisible(false);
             setCleanRecoveryPanelVisible(false);
             onClose();
+            noticeAccountDeletedForever(lang, 'registration_modal');
             return;
           }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {

@@ -5,6 +5,7 @@ import { FlowText } from '../../text-integrity/FlowText';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
+import KitSpinner from '../../v2/KitSpinner';
 
 type StatChip = Readonly<{
   testID: string;
@@ -21,10 +22,15 @@ type Props = {
   /** Аватар профиля — со своей навигацией. */
   avatarSlot?: React.ReactNode;
   stats: readonly [StatChip, StatChip];
+  /**
+   * зачем (релизный пол 10.10): после входа серия и монеты догружаются в фоне до ~20 с —
+   * тихий KitSpinner кита на месте значка, без сдвига разметки и без блокировки экрана.
+   */
+  refreshing?: boolean;
 };
 
 /** One compact utility row; the Home title and slogan are intentionally absent. */
-export default function HomeV2Header({ bellSlot, avatarSlot, stats }: Props) {
+export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing = false }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   return (
@@ -34,7 +40,7 @@ export default function HomeV2Header({ bellSlot, avatarSlot, stats }: Props) {
           {stats.map((stat, index) => {
             const content = <>
               <V2GlassSheen seed={index} />
-              <View style={s.statIcon}>{stat.icon}</View>
+              <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={p.text} /> : stat.icon}</View>
               <View style={s.statCopy}>
                 <FlowText testID={`${stat.testID}-value`} provenance="authored" style={[s.statValue, { color: p.text }]}>{stat.value}</FlowText>
                 <FlowText testID={`${stat.testID}-label`} provenance="authored" style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</FlowText>

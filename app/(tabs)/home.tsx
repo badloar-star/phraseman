@@ -71,6 +71,7 @@ import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../persona
 // зачем (PM-052, D75, 02.10): сбор наград на Главной (очередь + частицы в счётчик) удалён —
 // монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
 import HomeV2Header from '../../components/home/v2/HomeV2Header';
+import { useCloudProfileRefreshing } from '../cloud_profile_refresh_state';
 import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRail from '../../components/home/v2/HomeV2VideoRail';
@@ -510,6 +511,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const { studyTarget } = useStudyTarget();
     // зачем (§137): «сегодня ещё не засчитано» на плашке серии — синхронно из сигнала Ядра, без чтений хранилища.
     const streakToday = useSyncExternalStore(subscribeStreakDayState, streakTodaySnapshot);
+    // зачем (релизный пол 10.10): спиннер в шапке, пока после входа догружаются серия и монеты.
+    const cloudProfileRefreshing = useCloudProfileRefreshing();
     // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
     // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
     const todayTasks = useTodayTasks(lang, studyTarget);
@@ -2200,6 +2203,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
             <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
               <HomeV2Header
+                refreshing={cloudProfileRefreshing}
                 bellSlot={(
                   <NotificationCenterButton
                     isHomeTabActive={homeRuntimeActive}

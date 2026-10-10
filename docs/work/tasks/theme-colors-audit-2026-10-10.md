@@ -2,7 +2,7 @@
 
 Governance-ID: TG-037A426D6394
 Governance-ID: TG-4DBA5E08E4B2
-Status: In progress
+Status: Done (2026-10-10, 3 волны; остаток — список сессии 4)
 Owner: сессия «2 · Дизайн» (замечание владельца 10.10, срочно)
 Related epic/enabler: темы 2.0 (сессия 4 «Темы» владеет токенами), RELEASE_SLICE.md B
 

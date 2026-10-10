@@ -113,6 +113,10 @@ function CardsHubV2Inner({
   g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
   onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight, fresh,
 }: Props) {
+  // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
+  // в светлой теме берём текст темы, в тёмных остаётся прежний (mediaInk).
+  const faceInk = g.isLight ? g.text : g.mediaInk;
+  const faceInkSoft = g.isLight ? g.secondary : g.mediaInkSoft;
   const float = useSharedValue(0);
   // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
   const runtimeActive = useRuntimeActive();
@@ -175,7 +179,7 @@ function CardsHubV2Inner({
           />
           <View style={styles.freshIcon}>
             <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-            <Ionicons name="people-outline" size={28} color={g.mediaInk} />
+            <Ionicons name="people-outline" size={28} color={faceInk} />
             <Edge radius={20} shadows={iconBevel(g)} />
           </View>
           <Text accessibilityRole="header" style={[styles.freshTitle, { color: g.text, lineHeight: lh(30) }]}>{fresh.title}</Text>
@@ -189,8 +193,8 @@ function CardsHubV2Inner({
         <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k), boxShadow: dropShadow(g) }, floatStyle]} pointerEvents="none">
           <LinearGradient colors={stackFill(g, a, b)} locations={[0, 0.58, 1]} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
           {/* зачем (hubLimitS): сообщение о лимите длинное — переносится на 2 строки по центру, а не режется многоточием */}
-          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: g.mediaInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
-          {topIpa ? <Text style={[styles.topIpa, { color: g.mediaInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
+          <Text style={[styles.topWord, trainLocked && styles.topWordWrap, { color: faceInk, lineHeight: lh(44) }]} numberOfLines={fs > 1 ? undefined : (trainLocked ? 2 : 1)}>{topWord}</Text>
+          {topIpa ? <Text style={[styles.topIpa, { color: faceInkSoft, lineHeight: lh(20) }]} numberOfLines={fs > 1 ? undefined : 1}>{topIpa}</Text> : null}
           <Edge radius={30} shadows={bevel(g, g.bevelHi, `${a}59`)} />
         </Reanimated.View>
       </View>
@@ -230,7 +234,7 @@ function CardsHubV2Inner({
             />
             <View style={styles.tileIcon}>
               <LinearGradient pointerEvents="none" colors={iconGlass(g, a, b)} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
-              <Ionicons name={t.icon} size={24} color={g.mediaInk} />
+              <Ionicons name={t.icon} size={24} color={faceInk} />
               <Edge radius={15} shadows={iconBevel(g)} />
             </View>
             <View>

@@ -17,7 +17,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { Redirect, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -59,7 +59,15 @@ const SCENARIOS: readonly { key: string; title: string; note: string }[] = [
   { key: 'other', title: 'Другое', note: 'Уходим молча, шаг не показывается' },
 ];
 
-export default function DevCancelFlowPreview() {
+// зачем (релизный пол 10.10, аудит «видимого недоделанного»): файл-маршрут не входил в список исключений стор-сборки (конфиг сборщика и
+// router.ctx.js), поэтому по прямой ссылке `/_dev_cancel_flow_preview` витрина отписки открывалась бы и в релизе. Внешний слой —
+// гейт __DEV__ (в релизе уводит на Главную); сам экран переименован во внутренний и монтируется только в dev.
+export default function DevCancelFlowPreviewGate() {
+  if (!__DEV__) return <Redirect href="/(tabs)/home" />;
+  return <DevCancelFlowPreview />;
+}
+
+function DevCancelFlowPreview() {
   const router = useRouter();
   const { lang } = useLang();
   const L = lang as Lang;

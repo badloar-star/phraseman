@@ -312,11 +312,19 @@ const iosAccountProofBlockList = process.env.EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF ==
 // имени КОРНЕВОЙ папки. Вложенные папки с такими именами (например в node_modules) не затрагиваются: регэксп привязан к корню проекта.
 const ignoredRootPrefixes = ['.arena-', '.tmp', '.codex-tmp', '_scoped_build_', '_worktree_backups_'];
 
+// зачем (TG-77F378A3151A, 11.10): внутри пакетов node_modules лежит вывод Gradle — android/build, android/.cxx, android/.gradle
+// (reanimated, worklets, whisper.rn, expo-modules-core и др.): ≈ 13,6 ГБ и ≈ 20 тыс. файлов. JS-бандл их не читает, а в карте файлов
+// и списке наблюдения они висели, и каждая сборка Android засыпала бандлер событиями. Исключаем только эти три папки внутри android/.
+const gradleOutputInNodeModules = new RegExp(
+  `^${escapePathForRegex(path.join(__dirname, 'node_modules'))}[/\\\\].*[/\\\\]android[/\\\\](build|\\.cxx|\\.gradle)[/\\\\].*`,
+);
+
 config.resolver.blockList = [
   ...blockList,
   ...emulatorDevLoginBlockList,
   ...iosAccountProofBlockList,
   adminExceptRuntimeAvatars,
+  gradleOutputInNodeModules,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),
   ),

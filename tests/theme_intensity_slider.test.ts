@@ -3,6 +3,7 @@
 //   • миграция: прежние «Спокойно / Акцент / Максимум» → 0 / 0.5 / 1 — у людей ничего не прыгает;
 //   • на опорных точках палитра байт-в-байт прежняя, между ними — плавное смешивание;
 //   • во время перетаскивания на диск НЕ пишется ничего, при отпускании — одна запись.
+import { LIQUID_GLASS_PALETTE_ROLE_KEYS } from '../constants/liquidGlassPaletteRoles';
 import React from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
@@ -97,7 +98,9 @@ describe('palette along the slider', () => {
     const max = liquidGlassTokens('sage', { level: 'max', appearance: 'dark' });
     // зачем (10.10): токены поверхностей (liquidGlassSurfaceRoles) добавляются поверх построителя и считаются из итоговых полей — сравниваем только его выход.
     const SURFACE = ['deepBase', 'deepBaseAlt', 'mediaScrim', 'mediaInk', 'mediaInkSoft', 'bevelHi', 'bevelLo', 'dropShadow', 'hairlineSoft'];
-    const strip = (o: object) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'intensity' && !SURFACE.includes(k)));
+    // + палитры ролей (liquidGlassPaletteRoles, 10.10) — тоже добавляются поверх построителя.
+    const PALETTE: readonly string[] = LIQUID_GLASS_PALETTE_ROLE_KEYS;
+    const strip = (o: object) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'intensity' && !SURFACE.includes(k) && !PALETTE.includes(k)));
     const accentNoI = strip(accent);
     const maxNoI = strip(max);
     const calmBase = strip(calmDark) as Record<string, unknown>;

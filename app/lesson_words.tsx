@@ -3275,7 +3275,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             minHeight={150}
             kicker={pickTriLang(lang, {
               ru: 'Выбери английский перевод:',
-              uk: 'Оберіть англійський переклад:',
+              uk: 'Обери англійський переклад:',
               es: 'Elige la traducción en inglés:',
               'pt-BR': 'Escolha a tradução em inglês:',
               vi: 'Chọn bản dịch tiếng Anh:',

@@ -64,7 +64,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         kind: 'error',
         text: L(
           'Проверь код: он слишком короткий.',
-          'Перевірте код: він закороткий.',
+          'Перевір код: він закороткий.',
           'Check the code: it\'s too short.',
           'Revisa el código: es demasiado corto.',
           'Confira o código: está curto demais.',

@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
+import React, { Profiler, useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { Text, View } from 'react-native';
 
 import {
@@ -106,6 +106,12 @@ export type DialogueV2CatalogueContainerProps = Readonly<{
  * Owns only the V2 learner catalogue loading boundary. The callable response
  * is revalidated before rendering and no legacy dialog surface is involved.
  */
+// ВРЕМЕННО (Сверка 21:55): отрисовки каталога дольше 16 мс — фаза, собственное и базовое время.
+function logCatalogueRender(id: string, phase: string, actualDuration: number, baseDuration: number): void {
+  if (actualDuration < 16) return;
+  console.log('[DIALOGS-OPEN] hub:render_cost', JSON.stringify({ id, phase, actualMs: Math.round(actualDuration), baseMs: Math.round(baseDuration) }));
+}
+
 export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
@@ -193,7 +199,11 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
         && previous.envelope === local.envelope ? previous : local;
     });
     // Вход в хаб: сеть только если кэш старше 12 ч (окно — в клиенте каталога).
+    // зачем (ВРЕМЕННО, Сверка 21:55 «JS стоит 2,7 + 2,3 с после открытия Диалогов»; сперва логи): сколько идёт
+    // запрос каталога и приходит ли НОВЫЙ объект (тогда проекция и все 76 карточек перерисовываются заново).
+    const fetchStart = dialogsOpenNow();
     void fetchReleasedDialogueV2Catalogue(studyTarget, { awaitRefresh: true }).then((envelope) => {
+      console.log('[DIALOGS-OPEN] hub:fetch_done', JSON.stringify({ studyTarget, active, ms: Math.round(dialogsOpenNow() - fetchStart), hasEnvelope: Boolean(envelope), packets: envelope?.packets.length ?? null }));
       if (!active) return;
       if (!envelope) {
         // Остаёмся на локальном каталоге; повтор — тихо в фоне.
@@ -206,9 +216,11 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
       }
       silentRetriesRef.current = 0;
       // Тот же объект — не трогаем состояние (без лишнего ре-рендера и «прыжка»).
-      setState((previous) => (previous.kind === 'available' && previous.envelope === envelope
-        ? previous
-        : { kind: 'available', envelope }));
+      setState((previous) => {
+        const same = previous.kind === 'available' && previous.envelope === envelope;
+        console.log('[DIALOGS-OPEN] hub:fetch_apply', JSON.stringify({ sameEnvelope: same, previousKind: previous.kind }));
+        return same ? previous : { kind: 'available', envelope };
+      });
     }).catch((error: unknown) => {
       // Клиент каталога не бросает; сюда попадём только при поломке самого кода.
       console.warn('[DIALOGUE-V2] hub:catalogue → unexpected rejection', { studyTarget, active, error: error instanceof Error ? error.name : String(error) });
@@ -295,12 +307,15 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
   return (
     <>
       {plusTools}
-      <DialogueV2CatalogueSection
-        worlds={projection.worlds}
-        items={localizedItems}
-        labels={copy}
-        onPressItem={onPressItem}
-      />
+      {/* зачем (ВРЕМЕННО, Сверка 21:55; сперва логи): длительность каждой отрисовки каталога — виновата ли она в паузах JS. */}
+      <Profiler id="dialogs-catalogue" onRender={logCatalogueRender}>
+        <DialogueV2CatalogueSection
+          worlds={projection.worlds}
+          items={localizedItems}
+          labels={copy}
+          onPressItem={onPressItem}
+        />
+      </Profiler>
       {freeTier && quotaRemaining !== 0 && localizedItems.some((item) => item.status === 'locked') ? (
         <DialogueV2HubLockedNote title={hubCopy.lockedNoteTitle} text={hubCopy.lockedNoteText} />
       ) : null}

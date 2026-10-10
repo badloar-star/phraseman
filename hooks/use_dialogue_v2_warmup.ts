@@ -16,7 +16,10 @@ export function useDialogueV2Warmup(enabled: boolean, source: DialogueV2WarmSour
     const interaction = InteractionManager.runAfterInteractions(() => {
       timer = setTimeout(() => {
         timer = null;
+        // зачем (ВРЕМЕННО, Сверка 21:55; сперва логи): синхронная часть прогрева — не она ли держит JS после открытия.
+        const warmStart = Date.now();
         void warmDialogueV2Functions(source);
+        console.log('[DIALOGS-OPEN] warm:sync_part', JSON.stringify({ source, syncMs: Date.now() - warmStart }));
       }, WARM_DELAY_MS);
     });
     return () => {

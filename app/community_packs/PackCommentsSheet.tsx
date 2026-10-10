@@ -655,7 +655,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
-            <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
+            {/* зачем (крайние случаи 10.10): имя автора без пробелов и очень длинное не должно выталкивать бейджи и время за край строки */}
+            <Text numberOfLines={1} style={{ color: glass.text, fontSize: f.body, fontWeight: '700', maxWidth: '100%', flexShrink: 1 }}>
               {item.authorName || '—'}
             </Text>
             {packAuthorStableId && item.authorId === packAuthorStableId ? badge(authorBadge) : null}

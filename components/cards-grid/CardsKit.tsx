@@ -117,13 +117,16 @@ export const KitPackRow = memo(function KitPackRow({ g, icon, title, subtitle, c
   disabled?: boolean;
 }>) {
   const lh = useLineScale();
+  const { fontScale } = useWindowDimensions();
+  const rowLines = (max: number): number | undefined => (fontScale > 1 ? undefined : max);
   return (
     <KitCard g={g} onPress={onPress} onLongPress={onLongPress} testID={testID} accessibilityLabel={accessibilityLabel ?? `${title}, ${subtitle}, ${count}`} disabled={disabled}>
       <View style={styles.row}>
         <KitIconTile g={g} icon={icon} />
         <View style={styles.rowText}>
-          <Text style={[styles.rowTitle, { color: g.text, lineHeight: lh(22) }]}>{title}</Text>
-          <Text style={[styles.rowSub, { color: g.secondary, lineHeight: lh(19) }]}>{subtitle}</Text>
+          {/* зачем (крайние случаи 10.10): название набора может быть очень длинным — 2 строки с «…», подпись в одну; при крупном системном шрифте без обрезки */}
+          <Text numberOfLines={rowLines(2)} style={[styles.rowTitle, { color: g.text, lineHeight: lh(22) }]}>{title}</Text>
+          <Text numberOfLines={rowLines(1)} style={[styles.rowSub, { color: g.secondary, lineHeight: lh(19) }]}>{subtitle}</Text>
         </View>
         <CountPill g={g} value={count} />
         <Ionicons name="chevron-forward" size={20} color={g.secondary} />

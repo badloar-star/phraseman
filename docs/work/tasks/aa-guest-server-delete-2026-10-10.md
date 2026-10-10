@@ -78,3 +78,6 @@ Governance-ID: TG-E3076A219FC2 — сторож account_delete_anonymous_no_guar
 Governance-ID: TG-99B2CEA44E10 — REVISE ревью: прямой путь гостя ждёт ответ сервера (потолок) перед выходом, а не только начало отправки.
 Governance-ID: TG-6CD62769D76A — коммит правки удаления гостя после APPROVE (cloud_sync — только свой ханк).
 Governance-ID: TG-6CD62769D76A (прод.) — политика: абзац про удаление гостевого аккаунта (раздел 20), legal:sync.
+
+## Решения координатора 23:35
+Governance-ID: TG-202A96D05237 — сторож .mjs перенесён в юнит-набор aa_guest_server_delete; C3 / кнопки без EAS / тексты входа — аудит.

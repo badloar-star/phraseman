@@ -431,3 +431,20 @@ describe('удаление гостя: серверные данные (TG-20707
     expect(unhandled).toEqual([]);
   });
 });
+
+// зачем (координатор 23:35): правило из бывшего tests/account_delete_anonymous_no_guard_gate.mjs —
+// он нигде не запускался. Теперь проверяется вместе с этим набором.
+describe('сторож исходника: гостю пишется замок, без замка — прямой вызов', () => {
+  const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8') as string;
+
+  test('замок пишется для любого аккаунта (гостю — тоже), в потолке стирания', () => {
+    expect(source).not.toMatch(/let pendingDeleteLock = isProvablyAnonymousAccount\s*\?\s*null/);
+    expect(source).toMatch(/let pendingDeleteLock = await withLocalStepDeadline\(\s*\(\) => persistAccountDeletePendingAuth\(/);
+  });
+
+  test('гость без замка — прямой вызов, перезапуск с живой сессией — один повтор', () => {
+    expect(source).toContain('delete:anon_server=direct reason=no_lock');
+    expect(source).toContain('startCloudDeletionDirect(');
+    expect(source).toMatch(/getAuth\(\)\?\.currentUser\?\.uid === lock!\.providerUid\s*\) return retryGuestServerDeletionOnce\(lock!\);/);
+  });
+});

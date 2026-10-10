@@ -4000,8 +4000,8 @@ function CleanOnboarding({
         <AccountDeletedNotice
           onDone={() => setAccountDeletedNotice(false)}
           message={triLang(lang, {
-            ru: 'Вы удалили все свои данные',
-            uk: 'Ви видалили всі свої дані',
+            ru: 'Ты удалил(а) все свои данные',
+            uk: 'Ти видалив(ла) всі свої дані',
             en: 'You deleted all your data',
             es: 'Has eliminado todos tus datos',
             'pt-BR': 'Você excluiu todos os seus dados',

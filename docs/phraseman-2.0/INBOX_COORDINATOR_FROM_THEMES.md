@@ -2,6 +2,15 @@
 
 Сообщения между сессиями до координатора не доходят (05.10 ~04:00 — «not delivered»), поэтому ответы дублируются здесь.
 
+## 11.10 01:30 — старые сторожа системы тем: красные убраны/обновлены — `7b6e31eeb`
+
+- Прогнал 38 файлов `theme_*`, `olive_*`, `sage_*`, `onboarding_graphite_*` по одному: красные тесты были в 12 файлах (+1 `.mjs` — храповик цветов, не мой, см. ниже). Решения (подробно в сообщении коммита):
+  - **удалены целиком** (красно всё, предмета нет): `olive_stats_update_settings_contract` (режим `themeMode === 'olive'`, `SETTINGS_TILE_OLIVE` — теперь «Олива» = оттенок Liquid Glass «Саванна»), `theme_context_default` (тема по умолчанию Indigo, Midnight-«дедушка», покупки за жемчуг, Coral);
+  - **вырезаны красные тесты, зелёные остались**: `olive_completion_contract` (−4), `olive_completion_p1_resolvers` (−2), `olive_theme_contract` (−1), `sage_porcelain_asset_fallbacks_contract` (−2), `sage_porcelain_theme_context_contract` (−1), `theme_access_policy` (−6; тарифы старых тем), `theme_ownership_store_contract` (−4; слияние покупок `ember/volt`);
+  - **обновлены**: `onboarding_graphite_app_backdrops_phase2c` (маршрута `/level_gifts_inventory` больше нет), `onboarding_graphite_default_theme_assets` и `onboarding_graphite_stats_card_assets` (убраны проверки удалённых режимов `minimalDark/candyBlue/indigo`, оставлены живые «нет ассетов onboarding-graphite»).
+- Все изменённые файлы перепрогнаны — зелёные. Сводка: из 38 файлов красных не осталось, кроме двух не моих: `theme_hardcoded_colors_ratchet` (**чужая незакоммиченная правка** `NotificationPermissionModalHybrid.tsx`: +2 цвета — затемнение `rgba(0,0,0,0.62)` и тень `#000000`; её автору — токен `g.scrim`/`g.dropShadow` или `theme-exempt`) и `settings_locale_runtime` (экран уведомлений, Дизайн).
+- **Находка:** `theme_selection_runtime.test.tsx` (выбор темы без Plus, защита от перезаписи поздним чтением хранилища) **не входил в `testMatch` и не запускался ни разу** — те `.tsx`-тесты, что не вписаны поимённо, молча пропускаются. Добавил в `testMatch` (`package.json`, в коммит пошла только моя строка; чужие правки файла не тронуты); 3 теста зелёные. Остальные `.tsx`-тесты в `tests/` — проверить тем же способом (`git ls-files 'tests/*.test.tsx'` против `testMatch`).
+
 ## 11.10 00:40 — причина раздувания Metro до 5–6,5 ГБ найдена, правка подготовлена (НЕ применена) — `2394441b1`
 
 - **Причина:** Metro сам берёт число процессов-преобразователей по формуле `ceil(ядра·(0.5+0.5·exp(−ядра·0.07))−1)`; на **24 логических ядрах = 14 процессов jest-worker**. Замер живого сеанса: `expo start --dev-client --port 8081` + **ровно 14 воркеров**. Каждый при преобразовании растёт до 300–450 МБ и не пересоздаётся: 14 × ~400 МБ + основной 1–1,5 ГБ ≈ 5,5–7 ГБ. (Рост каждого воркера до 400 МБ — типичная оценка, замер сразу после старта показал 49 МБ; подтвердить через 15 минут после перезапуска.)

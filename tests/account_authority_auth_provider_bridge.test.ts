@@ -95,7 +95,10 @@ describe('Account Authority provider bridge fail-closed cleanup', () => {
     expect(providerSignOut).toHaveBeenCalledTimes(1);
   });
 
-  test('startup resume lease failure signs out the real provider exactly once', async () => {
+  // зачем (AA S6b, 6b4adc6e4, security-ревью APPROVE): на продлении из провайдера
+  // выходим ТОЛЬКО при доказанном отзыве доступа; прочий сбой (сеть, сервер,
+  // нераспознанный код — iOS «нет интернета») вход сохраняет.
+  test('startup resume: unproven lease failure keeps the real provider signed in', async () => {
     const providerSignOut = jest.fn(async () => undefined);
     const runtime = loadBridge({
       acquire: jest.fn(async () => { throw new Error('startup_lease_failed'); }),
@@ -103,7 +106,19 @@ describe('Account Authority provider bridge fail-closed cleanup', () => {
       providerSignOut,
     });
 
-    await expect(runtime.resumeAccountAuthorityProviderSession()).rejects.toThrow('startup_lease_failed');
+    await expect(runtime.resumeAccountAuthorityProviderSession()).resolves.not.toThrow();
+    expect(providerSignOut).not.toHaveBeenCalled();
+  });
+
+  test('startup resume: proven access revocation signs out the real provider exactly once', async () => {
+    const providerSignOut = jest.fn(async () => undefined);
+    const runtime = loadBridge({
+      acquire: jest.fn(async () => { throw new Error('account_authority_lease_binding_rejected'); }),
+      store: localStore(),
+      providerSignOut,
+    });
+
+    await expect(runtime.resumeAccountAuthorityProviderSession()).rejects.toThrow('account_authority_lease_binding_rejected');
     expect(providerSignOut).toHaveBeenCalledTimes(1);
   });
 

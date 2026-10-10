@@ -52,6 +52,7 @@ import {
   KNOWLY_LEGAL_TERMS_URL,
 } from '../app/config';
 import { triLang, type Lang } from '../constants/i18n';
+import { promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import {
@@ -1177,6 +1178,34 @@ function RegistrationPromptModal({
               }),
             );
             return;
+          }
+          // зачем (релизный пол 10.10): аккаунт на удалении, но 14 дней ещё идут —
+          // предлагаем вернуть его, как в онбординге, вместо общего «Не получилось».
+          if (result.error === 'account_delete_pending') {
+            const restore = await promptAccountRestoreAfterSignInRefusal(lang);
+            console.log(`[ACCOUNT-RESTORE] registration_modal outcome=${restore}`); // guard-ok: одно событие на тап входа, нужно для диагностики
+            if (restore === 'restored') {
+              setRetryProvider(provider);
+              showInlineError(
+                triLang(lang, { ru: 'Аккаунт восстановлен', uk: 'Акаунт відновлено', en: 'Account restored', es: 'Cuenta restaurada', 'pt-BR': 'Conta restaurada', vi: 'Đã khôi phục tài khoản', id: 'Akun dipulihkan', tr: 'Hesap geri yüklendi', pl: 'Konto przywrócone' }),
+                triLang(lang, {
+                  ru: 'Войди ещё раз — весь прогресс на месте.',
+                  uk: 'Увійди ще раз — увесь прогрес на місці.',
+                  en: 'Sign in again — all progress is there.',
+                  es: 'Entra de nuevo: todo el progreso sigue ahí.',
+                  'pt-BR': 'Entre de novo: todo o progresso está lá.',
+                  vi: 'Hãy đăng nhập lại — toàn bộ tiến trình vẫn còn.',
+                  id: 'Masuk lagi — semua progres ada di sana.',
+                  tr: 'Tekrar giriş yap — tüm ilerlemen yerinde.',
+                  pl: 'Zaloguj się ponownie — cały postęp jest na miejscu.',
+                }),
+              );
+              return;
+            }
+            if (restore === 'declined') {
+              setRetryProvider(null);
+              return;
+            }
           }
           if (result.error === 'identity_retired') {
             setRetryProvider(null);

@@ -16,6 +16,9 @@ Governance-ID: TG-657DBEF1AF4A
 Governance-ID: TG-D975EBF05C32
 Governance-ID: TG-7EEEA730BE69
 Governance-ID: TG-27D3DBE4BAFB
+Governance-ID: TG-04890C4DB9FA
+Governance-ID: TG-922770C169C6
+Governance-ID: TG-21092D739E6F
 
 ## Outcome
 1. Решение владельца 12.10 («второй вариант делаем»): ни одного контейнера с обводкой; плашки отделяют тень и мягкий блик, выбранное приподнято (`docs/design/v2-app/SHADOW_STYLE_SPEC.md`, эталоны shadow-style-etalon*.html). Слоями: kit → токены тем → экраны, каждый слой отдельным коммитом; сторожа обводок обновить под новое правило.

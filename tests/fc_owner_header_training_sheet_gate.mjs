@@ -62,9 +62,9 @@ assert.match(setupView, /accessibilityLabel=\{`\$\{deck\.title\}, \$\{deck\.coun
 const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
 assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);
 assert.match(hub, /catalogLoadState/);
-// зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 — кнопка тренировки там 52 высотой, а загрузка каталога решается без спиннера
+// зачем (владелец 12.10, «Карточки 2.0»): экран рисует CardsHubV2 — главная кнопка hero 56 высотой (cards-v2), а загрузка каталога решается скелетом, без спиннера
 const hubView = read('app/flashcards/CardsHubV2.tsx');
-assert.match(hubView, /cta: \{ marginTop: 14, minHeight: 52/);
+assert.match(hubView, /cta: \{ flex: 1, minHeight: 56/);
 assert.match(hubView, /fc-cards-hub-train/);
 assert.match(hub, /trainButtonRef/);
 assert.match(hub, /AccessibilityInfo\.setAccessibilityFocus/);

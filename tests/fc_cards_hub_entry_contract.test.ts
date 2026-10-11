@@ -101,7 +101,11 @@ describe('approved Cards hub entry', () => {
     expect(setup).toContain("const quotaAllowsStart = quotaPreview.status !== 'exhausted';");
     expect(setup).not.toContain('consumeFlashcardTrainingQuota');
     expect(setup).not.toContain('useFeatureAccess(');
-    expect(setup).not.toContain("context: 'flashcard_training'");
+    // зачем: лимит тренировок по cards-v2, решение владельца 11.10 — при исчерпанном месячном лимите настройка остаётся обычной,
+    // а вместо «Начать» стоит «Безлимит с Plus», которая открывает окно покупки с контекстом flashcard_training (не тупик).
+    expect(setup).toContain("context: 'flashcard_training'");
+    expect(setup).toContain("source: 'flashcards_training_setup'");
+    expect(setup).toContain('onUpgrade={openUpgrade}');
     expect(setup).toContain('summarizeDeckSelection');
     expect(setup).toContain('toggleDeckSelection');
     expect(setup).not.toContain('FC_SESSION_SIZES');

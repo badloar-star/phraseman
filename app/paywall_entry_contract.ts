@@ -12,6 +12,12 @@ export const PAYWALL_SOURCE_VALUES = [
   'language_welcome_gate',
   'language_welcome_cta',
   'pack_create',
+  // зачем (Карточки 2.0 12.10): лимит 3 своих наборов у Free показывается на входе в «Новый набор» — отдельный source для воронки
+  'pack_create_limit',
+  // зачем (Карточки 2.0 12.10): «Безлимит с Plus» в настройке тренировки при исчерпанном месячном лимите
+  'flashcards_training_setup',
+  // зачем (режим энергии Б 12.10): кнопка Plus в шторке остановки занятия
+  'energy_stop_sheet',
   'card_editor_create',
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',

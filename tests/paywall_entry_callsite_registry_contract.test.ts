@@ -29,6 +29,8 @@ const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   'app/level_exam.tsx:lessonPaywallContext(firstLessonForLevel)',
   'components/AiLimitUpsellCard.tsx:paywallContext',
   'components/NoEnergyModal.tsx:ctx',
+  // 2026-10-12: шторка остановки режима энергии Б — контекст приходит пропом с одобренным значением по умолчанию 'no_energy'
+  'components/energy/EnergyStopSheet.tsx:paywallContext',
   'components/StatsPremiumBlur.tsx:context',
   'components/EntitlementExpiredHost.tsx:context',
   'app/flashcards/FlashcardsHubScreen.tsx:context',

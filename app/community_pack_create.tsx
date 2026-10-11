@@ -64,6 +64,7 @@ import {
 } from './community_packs/ugcCardThemePresets';
 import {
   isLocalAuthorPackId,
+  FREE_AUTHOR_PACK_LIMIT,
   loadLocalAuthorPacks,
   saveLocalAuthorPack,
 } from './community_packs/localAuthorPacks';
@@ -366,6 +367,24 @@ export default function CommunityPackCreateScreen() {
       params: { context: creatorPaywallContext('pack'), source: 'pack_create' },
     } as never);
   }, [creatorLocked, router]);
+
+  // зачем (Карточки 2.0 12.10, координатор: лимит на ВХОДЕ, а не после «Создать»): у Free 3 своих набора (D118, FREE_AUTHOR_PACK_LIMIT).
+  // Считаем наборы аккаунта локально (0 чтений Firestore) и сразу показываем «3/3» и «Безлимит с Plus» — человек не заполняет форму зря
+  // (черновик при этом сохраняется сам). Сервер-граница записи (saveLocalAuthorPack) остаётся второй линией защиты.
+  const [ownPackCount, setOwnPackCount] = useState<number | null>(null);
+  useEffect(() => {
+    if (isEditMode) return undefined;
+    let alive = true;
+    void loadLocalAuthorPacks()
+      .then((list) => {
+        if (!alive) return;
+        console.log('[PACK-CREATE] own packs counted', JSON.stringify({ count: list.length, limit: FREE_AUTHOR_PACK_LIMIT })); // guard-ok: единичный лог на вход
+        setOwnPackCount(list.length);
+      })
+      .catch(noteSwallowedAs('community_pack_create:ownPackCount', undefined));
+    return () => { alive = false; };
+  }, [isEditMode]);
+  const packLimitReached = !isEditMode && accessResolved && !hasPremiumAccess && ownPackCount !== null && ownPackCount >= FREE_AUTHOR_PACK_LIMIT;
 
   /** Create mode: false until local draft load/clear finished (avoid overwriting AsyncStorage). */
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
@@ -940,6 +959,12 @@ export default function CommunityPackCreateScreen() {
       } catch (e: unknown) {
         DebugLogger.error('community_pack_create:save', e instanceof Error ? e : new Error(String(e)), 'warning');
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
+        if (msg.includes('free_author_pack_limit_reached')) {
+          // зачем: сырой код ошибки в тосте — потеря работы без объяснения; ведём в покупку (черновик сохранён)
+          console.log('[PACK-CREATE] save refused by free pack limit -> paywall'); // guard-ok: ранний выход пишет причину
+          router.push({ pathname: '/premium_modal', params: { context: creatorPaywallContext('pack'), source: 'pack_create_limit' } } as never);
+          return;
+        }
         const short = msg.slice(0, 140);
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: short || 'Не удалось сохранить набор.',
@@ -1083,6 +1108,12 @@ export default function CommunityPackCreateScreen() {
   const createPackLabel = L('Создать набор', 'Створити набір', 'Create pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluştur', 'Utwórz pakiet');
   const firstCardLabel = L('Первая карточка', 'Перша картка', 'First card', 'Primera tarjeta', 'Primeiro cartão', 'Thẻ đầu tiên', 'Kartu pertama', 'İlk kart', 'Pierwsza karta');
   const saveLabel = L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz');
+  const unlimitedPlusLabel = L('Безлимит с Plus', 'Безліміт з Plus', 'Unlimited with Plus', 'Sin límite con Plus', 'Sem limite com Plus', 'Không giới hạn với Plus', 'Tanpa batas dengan Plus', 'Plus ile sınırsız', 'Bez limitu z Plus');
+  const openPackLimitPaywall = () => {
+    Keyboard.dismiss();
+    void trackEvent('paywall_shown', { context: creatorPaywallContext('pack'), source: 'pack_create_limit' });
+    router.push({ pathname: '/premium_modal', params: { context: creatorPaywallContext('pack'), source: 'pack_create_limit' } } as never);
+  };
   const wordLabel = L('Слово или фраза', 'Слово або фраза', 'Word or phrase', 'Palabra o frase', 'Palavra ou frase', 'Từ hoặc cụm từ', 'Kata atau frasa', 'Kelime veya ifade', 'Słowo lub fraza');
   const translationLabel = L('Перевод', 'Переклад', 'Translation', 'Traducción', 'Tradução', 'Bản dịch', 'Terjemahan', 'Çeviri', 'Tłumaczenie');
   const anotherLabel = L('Ещё одну', 'Ще одну', 'Add another', 'Otra más', 'Mais um', 'Thêm nữa', 'Satu lagi', 'Bir tane daha', 'Jeszcze jedną');
@@ -1110,6 +1141,14 @@ export default function CommunityPackCreateScreen() {
             closeLabel={backLabel}
             onClose={goBack}
             right={(
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                {packLimitReached ? (
+                  // макет `limPill('layers', '3/3')`: пилюля лимита — реальный лимит места (свои наборы)
+                  <View testID="ugc-pack-limit-pill" accessible accessibilityLabel={`${ownPackCount} / ${FREE_AUTHOR_PACK_LIMIT}`} style={{ height: 32, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: kg.plateFillFrom, boxShadow: plateBoxShadow(kg) }}>
+                    <Ionicons name="layers-outline" size={16} color={kg.text} />
+                    <Text style={{ color: kg.text, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${ownPackCount}/${FREE_AUTHOR_PACK_LIMIT}`}</Text>
+                  </View>
+                ) : null}
               <TouchableOpacity
                 testID="ugc-pack-menu"
                 accessibilityRole="button"
@@ -1120,6 +1159,7 @@ export default function CommunityPackCreateScreen() {
               >
                 <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
               </TouchableOpacity>
+              </View>
             )}
           />
           <BouncyScrollView
@@ -1237,9 +1277,11 @@ export default function CommunityPackCreateScreen() {
               <KitCta
                 g={kg}
                 testID="ugc-pack-save"
-                label={isEditMode ? saveLabel : createPackLabel}
+                label={packLimitReached ? unlimitedPlusLabel : isEditMode ? saveLabel : createPackLabel}
+                icon={packLimitReached ? 'lock-open-outline' : undefined}
                 onPress={() => {
                   if (busy) return;
+                  if (packLimitReached) { openPackLimitPaywall(); return; }
                   Keyboard.dismiss();
                   void onSubmit();
                 }}

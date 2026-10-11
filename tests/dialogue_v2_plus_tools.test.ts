@@ -11,9 +11,10 @@ describe('Dialogue V2 Plus tools discovery', () => {
     'utf8',
   );
 
-  test('shows neutral free conversation and memory rows in existing Design 2.0 styling', () => {
+  // зачем (приказ владельца 11.10): «Память диалогов» — только в Настройках → Приватность, не в разделе.
+  test('shows the neutral free conversation row (memory lives in Privacy settings) in Design 2.0 styling', () => {
     expect(toolsSource).toContain("ru: 'Свободный разговор'");
-    expect(toolsSource).toContain("ru: 'Память диалогов'");
+    expect(toolsSource).not.toContain("ru: 'Память диалогов'");
     expect(toolsSource).toContain('V2.gapTight');
     expect(toolsSource).toContain('V2.radius.row');
     expect(toolsSource).toContain('useV2Palette');
@@ -21,12 +22,14 @@ describe('Dialogue V2 Plus tools discovery', () => {
     expect(toolsSource).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 
-  test('keeps free conversation Plus-gated while memory always reaches its delete-capable route', () => {
+  test('keeps free conversation Plus-gated; memory route is reached from Privacy settings', () => {
     expect(containerSource).toContain('<DialogueV2PlusTools');
     expect(containerSource).toContain('usePremium()');
     expect(containerSource).toContain("pathname: '/dialogue_v2_freeform'");
     expect(containerSource).not.toContain("pathname: '/ai_companion_session'");
-    expect(containerSource).toContain("pathname: '/dialogue_v2_memory'");
+    expect(containerSource).not.toContain("pathname: '/dialogue_v2_memory'");
+    // экран памяти (удаление сохранённого) доступен без Plus — из Настроек → Приватность.
+    expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'privacy_settings.tsx'), 'utf8')).toContain("router.push('/dialogue_v2_memory'");
     expect(containerSource).toContain("pathname: '/premium_modal'");
     expect(containerSource).toContain("source: 'dialogue_v2_freeform'");
     expect(containerSource).not.toContain("source: 'dialogue_v2_memory'");

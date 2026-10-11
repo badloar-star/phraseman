@@ -145,12 +145,12 @@ describe('DialogueV2CatalogueContainer', () => {
 
     const plusProps = mockPlusTools.mock.calls.at(-1)![0] as {
       onOpenFreeform: () => void;
-      onOpenMemory: () => void;
+      onOpenMemory?: () => void;
     };
+    // зачем (приказ владельца 11.10): «Память диалогов» убрана из раздела — только в Настройках → Приватность.
+    expect(plusProps.onOpenMemory).toBeUndefined();
     plusProps.onOpenFreeform();
-    plusProps.onOpenMemory();
     expect(mockPush).toHaveBeenNthCalledWith(1, { pathname: '/dialogue_v2_freeform' });
-    expect(mockPush).toHaveBeenNthCalledWith(2, { pathname: '/dialogue_v2_memory' });
 
     await plusScreen.unmount();
     mockPlusTools.mockClear();
@@ -159,10 +159,7 @@ describe('DialogueV2CatalogueContainer', () => {
     await waitFor(() => expect(mockPlusTools).toHaveBeenCalled());
     const freeProps = mockPlusTools.mock.calls.at(-1)![0] as {
       onOpenFreeform: () => void;
-      onOpenMemory: () => void;
     };
-    freeProps.onOpenMemory();
-    expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/dialogue_v2_memory' });
     freeProps.onOpenFreeform();
     expect(mockPush).toHaveBeenLastCalledWith({
       pathname: '/premium_modal',

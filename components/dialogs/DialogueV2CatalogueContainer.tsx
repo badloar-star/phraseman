@@ -153,10 +153,6 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     }
     router.push({ pathname: '/dialogue_v2_freeform' } as never);
   }, [accessResolved, hasPremiumAccess, router]);
-  const openMemory = useCallback(() => {
-    if (!accessResolved) return;
-    router.push({ pathname: '/dialogue_v2_memory' } as never);
-  }, [accessResolved, router]);
 
   // зачем (владелец 01.10: «ТАКОГО НИГДЕ НЕ ДОЛЖНО БЫТЬ» про «Диалоги не загрузились»): кнопки
   // «Повторить» нет — если сеть ничего не дала, показываем то, что уже на телефоне, и сами
@@ -250,7 +246,6 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
         accessResolved={accessResolved}
         hasPremiumAccess={hasPremiumAccess}
         onOpenFreeform={openFreeform}
-        onOpenMemory={openMemory}
       />
     </>
   );

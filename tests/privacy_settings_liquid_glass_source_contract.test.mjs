@@ -195,7 +195,8 @@ function assertCloseHeaderGeometry(candidate) {
 test('reviewed handlers and all original eight-locale maps remain byte-semantic snapshots', () => {
   assert.deepEqual(handlerSignatures(source), ORIGINAL_HANDLER_SIGNATURES);
   const signatures = localeSignatures(source);
-  assert.equal(signatures.length, 21, 'only close and subtitle maps are added to the 19 reviewed maps');
+  // зачем 22 (приказ владельца 11.10): +1 карта — пункт «Память диалогов» переехал сюда из раздела «Диалоги».
+  assert.equal(signatures.length, 22, 'only close, subtitle and dialogue-memory maps are added to the 19 reviewed maps');
   for (const signature of ORIGINAL_LOCALE_SIGNATURES) {
     assert.equal(signatures.filter(value => value === signature).length, 1, `${signature} survives exactly once`);
   }

@@ -12,14 +12,14 @@ export type DialogueV2PlusToolsProps = Readonly<{
   accessResolved: boolean;
   hasPremiumAccess: boolean;
   onOpenFreeform: () => void;
-  onOpenMemory: () => void;
 }>;
 
+// зачем (приказ владельца 11.10): «Память диалогов» живёт только в Настройках → Приватность
+// (app/privacy_settings.tsx → /dialogue_v2_memory), в самом разделе — лишь «Свободный разговор».
 export function DialogueV2PlusTools({
   accessResolved,
   hasPremiumAccess,
   onOpenFreeform,
-  onOpenMemory,
 }: DialogueV2PlusToolsProps) {
   const p = useV2Palette();
   const { lang } = useLang();
@@ -36,19 +36,6 @@ export function DialogueV2PlusTools({
         es: 'Práctica sin escenario', fr: 'Pratique sans scénario', de: 'Üben ohne Szenario',
       }),
       onPress: onOpenFreeform,
-    },
-    {
-      id: 'memory',
-      icon: 'archive-outline' as const,
-      title: triLang(lang, {
-        ru: 'Память диалогов', uk: 'Пам’ять діалогів', en: 'Dialogue memory',
-        es: 'Memoria de diálogos', fr: 'Mémoire des dialogues', de: 'Dialoggedächtnis',
-      }),
-      subtitle: triLang(lang, {
-        ru: 'Что сохранено для этого языка', uk: 'Що збережено для цієї мови', en: 'What is saved for this language',
-        es: 'Lo guardado para este idioma', fr: 'Ce qui est mémorisé pour cette langue', de: 'Was für diese Sprache gespeichert ist',
-      }),
-      onPress: onOpenMemory,
     },
   ] as const;
 

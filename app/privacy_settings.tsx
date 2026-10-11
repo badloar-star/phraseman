@@ -313,6 +313,21 @@ export default function PrivacySettings() {
                 titleColor={glass.lightTint}
                 scaled={scaled}
               />
+              {/* зачем (приказ владельца 11.10): «Память диалогов» — контроль данных (что сохранено / очистить),
+                  поэтому живёт здесь, рядом с согласием на AI-диалоги, а не в самом разделе «Диалоги». */}
+              <PrivacyRow
+                testID="privacy-dialogue-memory"
+                icon="archive-outline"
+                label={L({ ru: 'Память диалогов', uk: 'Пам’ять діалогів', es: 'Memoria de diálogos', 'pt-BR': 'Memória dos diálogos', vi: 'Bộ nhớ hội thoại', id: 'Memori dialog', tr: 'Diyalog hafızası', pl: 'Pamięć dialogów' })}
+                onPress={() => {
+                  void hapticTap();
+                  console.log('[PRIVACY] open dialogue_memory'); // guard-ok: вход в экран контроля данных
+                  router.push('/dialogue_v2_memory' as any);
+                }}
+                glass={glass}
+                titleColor={glass.lightTint}
+                scaled={scaled}
+              />
             </View>
             <View style={noteStyle}>
               <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />

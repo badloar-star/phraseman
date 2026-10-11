@@ -1,0 +1,8 @@
+{
+  "attemptId": "b3a-20261011-04",
+  "preManifestSha256": "92a42e1c311129c938d9efb691eaf8f1109154a53bac65580b21f965412d77cf",
+  "reviewerRole": "orbit-red-team",
+  "reviewerTask": "/root/de_b3a_04_redteam",
+  "snapshotRootSha256": "9fcca025d01b1e3192018a3f1f683849490769132a92af9da1da56cb4d37327a",
+  "verdict": "PASS"
+}

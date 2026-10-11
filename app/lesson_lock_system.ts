@@ -420,6 +420,7 @@ export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLock
     // человек не видел два разных порога (оценку 3 и звёзды) для одного правила.
     uk: `Пройди урок ${n} на 2★, щоб розблокувати цей урок`,
     es: `Completa la lección ${n} con 2★ para desbloquear esta lección`,
+    en: `Finish lesson ${n} with 2★ to unlock this lesson`,
     'pt-BR': `Conclua a lição ${n} com 2★ para desbloquear esta lição`,
     vi: `Hoàn thành bài ${n} với 2★ để mở khóa bài này`,
     id: `Selesaikan pelajaran ${n} dengan 2★ untuk membuka pelajaran ini`,

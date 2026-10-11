@@ -103,7 +103,10 @@ describe('speaking quota dots: подключены ВСЕ микрофоны', 
     // (4+18) + ряд точек (4+5). Разойдётся — ряд станет кривым.
     const source = read('app', 'flashcards', 'SpeakHoldButton.tsx');
     expect(source).toContain('export const SPEAK_HOLD_LABEL_HEIGHT = 31;');
-    expect(read('app', 'flashcards_speaking_session.tsx')).toContain('marginBottom: SPEAK_HOLD_LABEL_HEIGHT');
+    // зачем (Карточки 2.0, Устно по макету practice): боковых кнопок в транспортном ряду больше нет — «Верно» и «Дальше» стоят в нижней панели,
+    // а микрофон — отдельный SpeakMicButton; выравнивать соседей по высоте подписи не с чем. Константа остаётся у SpeakHoldButton.
+    expect(read('app', 'flashcards_speaking_session.tsx')).toContain("import SpeakMicButton from './flashcards/SpeakMicButton';");
+    expect(read('app', 'flashcards_speaking_session.tsx')).not.toContain('SPEAK_HOLD_LABEL_HEIGHT');
   });
 });
 

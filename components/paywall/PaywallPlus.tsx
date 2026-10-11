@@ -263,31 +263,18 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
   );
 });
 
-// ── цены недоступны после потолка загрузки: те же размеры, что у скелета, без красного и без иконки ──
-// зачем (D158): вечный скелетон убран; на месте цен — спокойное «Сейчас недоступно», кнопка покупки жива.
-// зачем (координатор 14:45/17:25): вместо пустых плашек — понятное «недоступно» и кнопка повтора на месте цен
-// (те же размеры; стили retry/retryText кита). Повтор — тот же reloadOfferings, что тихо гоняет useLoadGate.
-export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g, onRetry, retrying, reason }: {
-  lang: Lang; g: GlassTokens; onRetry?: () => void; retrying?: boolean;
-  /** Почему цен нет (Ядро a56214453): 'billing_unavailable' — магазина на устройстве нет (повтор бессмыслен), иначе — сеть. */
+// ── цен нет совсем: тихая строка на месте плиток ───────────────────────────
+// зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d, приказ «пейволы все сделать»): блок «Цены не загрузились» с кнопкой «Ещё раз»
+// убран. Справочная/кэш-цена закрывает почти все случаи; если тарифа нет совсем (магазин ответил, а плана нет) — на месте плиток спокойная строка той же высоты,
+// кнопка покупки жива, а цены докачиваются тихо (useLoadGate). Причину «магазина на устройстве нет» оставляем тихой строкой.
+export const PaywallPlusPriceNote = memo(function PaywallPlusPriceNote({ lang, g, reason }: {
+  lang: Lang; g: GlassTokens;
   reason?: 'billing_unavailable' | 'network' | null;
 }) {
   const storeMissing = reason === 'billing_unavailable';
   return (
-    <View testID="paywall-plans-unavailable">
-      <View style={[S.skeleton, S.unavailableBox, S.planRowTop, { height: PLAN_CARD_HEIGHT, backgroundColor: g.opaqueControl }]}>
-        <Text style={[S.unavailableText, { color: g.text }]}>{pick(lang, COPY.pricesFailed)}</Text>
-        <Text style={[S.unavailableSub, { color: g.secondary }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.checkInternet)}</Text>
-        {onRetry && !storeMissing ? (
-          <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
-            disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
-            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: paywallSheetBg(g) }]}>
-            {retrying
-              ? <ActivityIndicator color={g.text} />
-              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retry)}</Text>}
-          </V2Pressable>
-        ) : null}
-      </View>
+    <View testID="paywall-plans-note" style={[S.noteBox, S.planRowTop, { minHeight: PLAN_CARD_HEIGHT }]}>
+      <Text style={[S.unavailableSub, { color: g.mutedText }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.priceWillConfirm)}</Text>
     </View>
   );
 });
@@ -456,11 +443,7 @@ const S = StyleSheet.create({
   badge: { minHeight: 22, paddingHorizontal: 9, borderRadius: 11, justifyContent: 'center' },
   badgeText: { fontSize: 13, fontWeight: '700' },
   skeleton: { borderRadius: 22 },
-  unavailableBox: { alignItems: 'center', justifyContent: 'center' },
-  retry: { minHeight: 44, paddingHorizontal: 16, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  retryText: { fontSize: 16, fontWeight: '700' },
-  retryGap: { marginTop: 12 },
-  unavailableText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center', paddingHorizontal: 16 },
+  noteBox: { alignItems: 'center', justifyContent: 'center' },
   unavailableSub: { marginTop: 4, fontSize: 13, lineHeight: 18, textAlign: 'center', paddingHorizontal: 16 },
   planRowTop: { marginTop: 14 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },

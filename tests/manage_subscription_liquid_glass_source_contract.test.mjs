@@ -215,6 +215,9 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './home_screen_hydration': { peekHomeScreenHydration: () => null },
     './manage_subscription_save_offer': { resolveSaveOffer: () => 'none' },
     './debug-logger': { DebugLogger: { error: () => {} } },
+    // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
+    './paywall_price_cache': { peekPaywallPriceCache: () => null },
+    './paywall_reference_prices': { resolvePaywallReferencePrices: () => ({ yearly: '€39,99', monthly: '€7,99', yearlyPerMonth: '€3,33', source: 'builtin' }) },
     // зачем (PM-229): экран подключил журнал проглоченных ошибок; заглушка ничего не пишет и ничего не меняет в поведении
     './swallow_log': { noteSwallowedHandler: () => () => {} },
   };

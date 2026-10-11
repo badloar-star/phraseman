@@ -547,14 +547,6 @@ const S = StyleSheet.create({
     width: 40, height: 40, borderRadius: 20, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
-  priceRetryBox: {
-    alignSelf: 'stretch', alignItems: 'center', gap: 12,
-    paddingVertical: 22, paddingHorizontal: 19, marginTop: 10,
-    borderRadius: 16, borderWidth: 0,
-  },
-  priceRetryText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
-  priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
-  priceRetryBtnText: { fontSize: 16, fontWeight: '700' },
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',

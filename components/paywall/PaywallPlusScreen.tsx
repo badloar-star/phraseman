@@ -27,7 +27,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useLoadGate } from '../../app/use_load_gate';
 import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
 import {
-  PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPlansUnavailable,
+  PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
    PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy, paywallSheetBg,
   type PaywallPlusState,
 } from './PaywallPlus';
@@ -211,7 +211,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                   «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
               {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-              {plansShown === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} retrying={state === 'loading'} reason={p.storeUnavailableReason} /> : null}
+              {plansShown === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
               {plansShown === 'ready' ? (
                 <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                   yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}

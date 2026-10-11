@@ -183,6 +183,9 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => null },
     './home_screen_hydration': { peekHomeScreenHydration: () => progress },
     './manage_subscription_save_offer': { resolveSaveOffer: () => offer }, './debug-logger': { DebugLogger: { error: () => {} } },
+    // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
+    './paywall_price_cache': { peekPaywallPriceCache: () => null },
+    './paywall_reference_prices': { resolvePaywallReferencePrices: () => ({ yearly: '€39,99', monthly: '€7,99', yearlyPerMonth: '€3,33', source: 'builtin' }) },
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const mod = { exports: {} };

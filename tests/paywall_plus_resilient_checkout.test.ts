@@ -422,7 +422,8 @@ describe('Plus-окно: кэш цен между запусками (D158)', ()
 });
 
 describe('Plus-окно: тихие тексты на всех языках окна', () => {
-  test.each(['unavailable', 'tryInMinute', 'getPlus'] as const)('%s есть на 9 языках', (key) => {
+  // зачем (Дизайн, приказ «пейволы все сделать»): блок «Сейчас недоступно / Цены не загрузились» убран — тихие тексты окна теперь «цена уточнится» и «магазин недоступен».
+  test.each(['priceWillConfirm', 'storeUnavailable', 'tryInMinute', 'getPlus'] as const)('%s есть на 9 языках', (key) => {
     const copy = COPY[key] as Record<string, string>;
     for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
       expect(typeof copy[lang]).toBe('string');

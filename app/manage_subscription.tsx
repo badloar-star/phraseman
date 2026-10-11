@@ -72,6 +72,8 @@ import {
   type SaveOfferProgress,
 } from './manage_subscription_save_offer';
 import { DebugLogger } from './debug-logger';
+import { peekPaywallPriceCache } from './paywall_price_cache';
+import { resolvePaywallReferencePrices } from './paywall_reference_prices';
 import { withPurchaseFlow } from './purchase_flow_activity';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -279,6 +281,10 @@ export default function ManageSubscription() {
   const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(routeParamPlan);
   const [loading, setLoading] = useState(routeParamPlan === null);
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
+  // зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d): живая цена магазина → последняя настоящая из кэша → справочная
+  // (с «≈»). Смена плана идёт по живому пакету магазина — справочная в покупку не уходит; это только подпись на карточке.
+  const yearlyCachedPrice = peekPaywallPriceCache()?.yearly?.price ?? '';
+  const yearlyShown = yearlyPriceStr || yearlyCachedPrice || `≈ ${resolvePaywallReferencePrices().yearly}`;
   const [yearlyPkg, setYearlyPkg] = useState<import('react-native-purchases').PurchasesPackage | null>(null);
   const [changing, setChanging] = useState(false);
   // зачем: восстановление покупок — отдельное состояние от смены плана, иначе
@@ -795,8 +801,8 @@ export default function ManageSubscription() {
                         {LP('Перейти на годовой план', 'Перейти на річний план', 'Switch to the annual plan', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny')}
                       </Text>
                       <Text style={[S.changeSub, { color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20) }]}>
-                        {yearlyPriceStr
-                          ? LP(`Дешевле в пересчёте — ${yearlyPriceStr}/год`, `Дешевше в перерахунку — ${yearlyPriceStr}/рік`, `Cheaper per year — ${yearlyPriceStr}/yr`, `Más barato al año — ${yearlyPriceStr}/año`, `Mais barato no ano — ${yearlyPriceStr}/ano`, `Rẻ hơn tính theo năm — ${yearlyPriceStr}/năm`, `Lebih murah per tahun — ${yearlyPriceStr}/tahun`, `Yıllık daha ucuz — ${yearlyPriceStr}/yıl`, `Taniej rocznie — ${yearlyPriceStr}/rok`)
+                        {yearlyShown
+                          ? LP(`Дешевле в пересчёте — ${yearlyShown}/год`, `Дешевше в перерахунку — ${yearlyShown}/рік`, `Cheaper per year — ${yearlyShown}/yr`, `Más barato al año — ${yearlyShown}/año`, `Mais barato no ano — ${yearlyShown}/ano`, `Rẻ hơn tính theo năm — ${yearlyShown}/năm`, `Lebih murah per tahun — ${yearlyShown}/tahun`, `Yıllık daha ucuz — ${yearlyShown}/yıl`, `Taniej rocznie — ${yearlyShown}/rok`)
                           : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Cheaper per month', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc')}
                       </Text>
                     </View>

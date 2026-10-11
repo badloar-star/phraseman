@@ -172,11 +172,8 @@ export const COPY = {
   ),
   wait: LP('Подожди…', 'Зачекай…', 'Please wait…', 'Espera…', 'Aguarde…', 'Vui lòng chờ…', 'Mohon tunggu…', 'Lütfen bekle…', 'Chwileczkę…'),
   // зачем (D158): тихие строки без красного и без иконки ошибки — цены недоступны, кнопка всё равно жива.
-  unavailable: LP('Сейчас недоступно', 'Зараз недоступно', 'Not available right now', 'No disponible ahora', 'Indisponível agora', 'Hiện chưa khả dụng', 'Sedang tidak tersedia', 'Şu an kullanılamıyor', 'Chwilowo niedostępne'),
   tryInMinute: LP('Попробуй через минуту', 'Спробуй за хвилину', 'Try again in a minute', 'Inténtalo en un minuto', 'Tente de novo em um minuto', 'Hãy thử lại sau một phút', 'Coba lagi dalam semenit', 'Bir dakika sonra tekrar dene', 'Spróbuj za minutę'),
   getPlus: LP('Оформить Plus', 'Оформити Plus', 'Get Plus', 'Obtener Plus', 'Assinar o Plus', 'Đăng ký Plus', 'Dapatkan Plus', "Plus'a geç", 'Wykup Plus'),
-  pricesFailed: LP('Цены не загрузились', 'Ціни не завантажилися', "Prices didn't load", 'No se cargaron los precios', 'Os preços não carregaram', 'Không tải được giá', 'Harga gagal dimuat', 'Fiyatlar yüklenmedi', 'Nie udało się wczytać cen'),
-  checkInternet: LP('Проверь интернет', 'Перевір інтернет', 'Check your connection', 'Revisa tu conexión', 'Verifique sua conexão', 'Kiểm tra kết nối mạng', 'Periksa koneksi internet', 'İnternet bağlantını kontrol et', 'Sprawdź internet'),
   // зачем (владелец 11.10, пейволы): на месте цен — «Цены сейчас недоступны» + «Повторить» (раньше общее «Сейчас недоступно» и тихий повтор)
   // зачем (владелец 11.10: «цены должны показываться всё равно, везде»; Ядро a0a910e9d): на плитке стоит справочная цена, а не живая из магазина.
   // Честно говорим об этом: перед ценой «≈», под плитками — короткая тихая строка. Живая цена и последняя настоящая из кэша — без «≈».
@@ -186,7 +183,6 @@ export const COPY = {
   // «Предпросмотр цен» — подпись кнопки в dev-сборке, когда цены подставлены для вёрстки и магазин на тапе не зовётся.
   storeUnavailable: LP('Магазин недоступен на этом устройстве', 'Магазин недоступний на цьому пристрої', 'The store isn’t available on this device', 'La tienda no está disponible en este dispositivo', 'A loja não está disponível neste dispositivo', 'Cửa hàng không khả dụng trên thiết bị này', 'Toko tidak tersedia di perangkat ini', 'Mağaza bu cihazda kullanılamıyor', 'Sklep jest niedostępny na tym urządzeniu'),
   pricesPreview: LP('Предпросмотр цен', 'Попередній перегляд цін', 'Price preview', 'Vista previa de precios', 'Prévia dos preços', 'Xem trước giá', 'Pratinjau harga', 'Fiyat önizlemesi', 'Podgląd cen'),
-  retry: LP('Ещё раз', 'Ще раз', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'),
   whatsIncluded: LP('ЧТО ВХОДИТ', 'ЩО ВХОДИТЬ', "WHAT'S INCLUDED", 'QUÉ INCLUYE', 'O QUE ESTÁ INCLUÍDO', 'BAO GỒM', 'YANG KAMU DAPAT', 'NELER DAHİL', 'CO ZAWIERA'),
   freeVsPlus: LP('FREE И PLUS', 'FREE І PLUS', 'FREE VS PLUS', 'FREE Y PLUS', 'FREE E PLUS', 'FREE VÀ PLUS', 'FREE DAN PLUS', 'FREE VE PLUS', 'FREE I PLUS'),
   free: LP('FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE'),

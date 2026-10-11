@@ -37,15 +37,17 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{tileOuter\(yearOn\)\}/);
 });
 
-test('without prices the plans area says so, offers a retry and the button note explains itself (макет №9/№10)', () => {
+// зачем (владелец 11.10: «цены должны показываться все равно, везде»; приказ «пейволы все сделать»): блока «Цены не загрузились» с кнопкой «Ещё раз» больше нет.
+// Цен нет совсем — на месте плиток тихая строка («Цена уточнится в магазине» / «Магазин недоступен на этом устройстве»), цены докачиваются тихо.
+test('without any price the plans area shows a quiet note instead of the «prices did not load» block, and the button note explains itself (макет №9/№10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /COPY\.pricesFailed/);
-  assert.match(plus, /COPY\.checkInternet/);
-  assert.match(plus, /COPY\.retry\)/);
-  assert.match(plus, /testID="paywall-prices-retry"/);
+  assert.ok(!/COPY\.pricesFailed|paywall-prices-retry|COPY\.checkInternet|PaywallPlusPlansUnavailable/.test(plus), 'блока «Цены не загрузились» и кнопки «Ещё раз» нет');
+  assert.match(plus, /testID="paywall-plans-note"/);
+  assert.match(plus, /storeMissing \? COPY\.storeUnavailable : COPY\.priceWillConfirm/);
   assert.match(plus, /COPY\.fineNoPrices/, 'под кнопкой без цен — сноска, а не пустая строка');
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
-  assert.match(screen, /<PaywallPlusPlansUnavailable lang=\{lang\} g=\{g\} onRetry=\{retryPrices\}/);
+  assert.match(screen, /<PaywallPlusPriceNote lang=\{lang\} g=\{g\} reason=\{p\.storeUnavailableReason\}/);
+  assert.ok(!/PaywallPlusPlansUnavailable/.test(screen));
 });
 
 test('sheet surfaces are solid so they stay visible on the light sheet (Сверка 11.10)', () => {
@@ -62,21 +64,20 @@ test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet =
   assert.ok(!/backgroundColor: g\.opaqueSheet/.test(screen), 'шторка не на opaqueSheet (в графите он равен плиткам)');
 });
 
-test('plan tiles are never empty: shimmer skeleton, or the «prices did not load» block that stays through silent retries (Сверка 11.10)', () => {
+test('plan tiles are never empty: shimmer skeleton, or the quiet price note that stays through silent retries (Сверка 11.10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
   assert.match(plus, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
   assert.match(plus, /<SkeletonBlock width="100%" height=\{PLAN_CARD_HEIGHT\}/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);
   assert.match(screen, /plansShown === 'loading' \? <PaywallPlusPlansSkeleton/);
-  assert.match(screen, /plansShown === 'error' \? <PaywallPlusPlansUnavailable[^>]*retrying=\{state === 'loading'\}/);
+  assert.match(screen, /plansShown === 'error' \? <PaywallPlusPriceNote/);
 });
 
 test('store-unavailable reason picks the text; dev price preview names its button (Ядро a56214453)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
   assert.match(plus, /reason\?: 'billing_unavailable' \| 'network' \| null;/);
-  assert.match(plus, /storeMissing \? COPY\.storeUnavailable : COPY\.checkInternet/);
-  assert.match(plus, /onRetry && !storeMissing/);
+  assert.match(plus, /storeMissing \? COPY\.storeUnavailable : COPY\.priceWillConfirm/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /reason=\{p\.storeUnavailableReason\}/);
   assert.match(screen, /p\.previewPrices \? pick\(lang, COPY\.pricesPreview\)/);

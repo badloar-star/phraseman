@@ -223,7 +223,8 @@ export interface SpeakingPanelThemeSource {
   correct: string;
   wrong: string;
   border: string;
-  correctText: string;
+  /** Текст на заливке акцента (accentInk темы) — кнопки панели на акценте. */
+  textOnGold: string;
 }
 
 /**

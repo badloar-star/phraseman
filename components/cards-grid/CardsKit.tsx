@@ -159,7 +159,7 @@ export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: R
 
 /** «.cta» макета: мятная кнопка 48 высотой, свечение снизу, блик сверху; иконка слева необязательна. */
 // зачем (Сверка 11.10, светлая, настройка тренировки): выключенная кнопка была обычной мятной с opacity .45 — сквозь неё просвечивал
-// текст нижних секций («Направление» под «Начать»). По макету `.cta.dis` — плотная заливка контрола и приглушённый текст, без свечения.
+// текст нижних секций (подпись «Направление» под кнопкой). По макету `.cta.dis` — плотная заливка контрола и приглушённый текст, без свечения.
 export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPress, testID, accessibilityLabel, disabled = false }: Readonly<{
   g: GlassTokens;
   label: string;

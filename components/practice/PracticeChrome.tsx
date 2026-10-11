@@ -104,6 +104,38 @@ export function PracticeHeaderTitle({
   );
 }
 
+/**
+ * Шапка занятия одной строкой (practice.html `.hd`): круглая «‹» · заголовок (+подзаголовок) · справа сердца и монеты.
+ * зачем (координатор 11.10, «дизайн везде»): swipe-сессия без макета стояла рыхлым стеком (сердца и монеты отдельной строкой
+ * над «назад»); теперь та же шапка, что у Блица и «Вспомни», собрана один раз здесь. Действия и testID остаются у вызывающего.
+ */
+export function PracticeSessionHeader({
+  glass, color, onBack, backLabel, backTestID, title, subtitle, children, tools, compact = false,
+}: {
+  glass: PracticeGlass;
+  color: string;
+  onBack?: () => void;
+  backLabel?: string;
+  backTestID?: string;
+  title: string;
+  subtitle?: string;
+  /** Вместо подзаголовка: произвольный слот под заголовком (например, отметка серии). */
+  children?: React.ReactNode;
+  /** Правая группа: сердца и счётчик монет (через 6). */
+  tools?: React.ReactNode;
+  compact?: boolean;
+}) {
+  return (
+    <View style={[styles.sessionHeader, compact ? styles.sessionHeaderCompact : null]}>
+      <View style={{ marginRight: 6 }}>
+        <PracticeBackButton large={!compact} glass={glass} color={color} onPress={onBack} testID={backTestID} accessibilityLabel={backLabel} />
+      </View>
+      <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle}>{children}</PracticeHeaderTitle>
+      {tools ? <View style={styles.sessionTools}>{tools}</View> : null}
+    </View>
+  );
+}
+
 /** Пилюля таймера в центре строки прогресса (`.pill.timer`): высота 38, 18/700. */
 export function PracticeTimerPill({
   text, color, glass, testID,
@@ -139,6 +171,9 @@ const styles = StyleSheet.create({
   },
   touchLarge: { width: 48, height: 48 },
   roundLarge: { width: 48, height: 48, borderRadius: 24 },
+  sessionHeader: { minHeight: 52, flexDirection: 'row', alignItems: 'center' },
+  sessionHeaderCompact: { minHeight: 38 },
+  sessionTools: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   subtitle: { fontSize: 16, lineHeight: 22, marginTop: 2 },
   timer: { minHeight: 38, borderRadius: 19, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

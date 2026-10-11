@@ -48,7 +48,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeBackButton, PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
 import { type Flashcard } from '../hooks/use-flashcards';
@@ -3890,28 +3890,15 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       .join('\n');
     return (
       <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <SessionAttemptsHud
-            remaining={attempts.state.remainingAttempts}
-            locale={lang}
-            testID="flashcards-swipe-attempts-hud"
-          />
-          <View ref={runeFlight.counterRef} collapsable={false}>
-            <PracticeRuneCounter
-              runes={practiceRunes.runes}
-              lang={lang}
-              backgroundColor={t.bgCard}
-              color={t.textPrimary}
-              testID="flashcards-swipe-practice-runes"
-            />
-          </View>
-        </View>
-        <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
-          <PracticeBackButton
-            glass={swipeGlass}
-            color={t.textPrimary}
-            onPress={exitTraining}
-            accessibilityLabel={triLang(lang, {
+        {/* зачем (координатор 11.10, макета swipe нет — равняемся на Блиц/«Вспомни»): шапка одной строкой — назад · «Закреплено» · сердца · монеты;
+            раньше сердца и монеты шли отдельной строкой над «назад», счётчик стоял по центру. Все testID сохранены, пустая «заглушка»
+            под счётчик не нужна. */}
+        <PracticeSessionHeader
+          glass={swipeGlass}
+          color={t.textPrimary}
+          compact={isCompactFlashcardsTask}
+          onBack={exitTraining}
+          backLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
               en: 'Exit training',
               uk: 'Вийти з тренування',
@@ -3922,29 +3909,40 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               tr: "Alıştırmadan çık",
               pl: "Wyjdź z treningu",
             })}
-          />
-          <View style={[styles.headerStats, isCompactFlashcardsTask && styles.compactHeaderStats]}>
-            <Text style={[styles.headerStatText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {isCompactFlashcardsTask ? `${stats.mastered}/${stats.total}` : `${text.mastered}: ${stats.mastered}/${stats.total}`}
-            </Text>
-            {!isCompactFlashcardsTask && (
-              <Text style={[styles.headerStatText, { color: t.textMuted, fontSize: f.caption }]}>
-                {queue.length} {text.inQueue}
-              </Text>
-            )}
-            {stats.streak >= 3 ? (
-              <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: 'transparent' }]}>
-                <Ionicons name="flame-outline" size={12} color={t.gold} />
-                <Text style={[styles.headerStreakText, { color: t.gold, fontSize: f.caption }]}>
-                  {text.streakLabel} {stats.streak}
-                </Text>
+          title={isCompactFlashcardsTask ? `${stats.mastered}/${stats.total}` : text.mastered}
+          tools={(
+            <>
+              <SessionAttemptsHud
+                remaining={attempts.state.remainingAttempts}
+                locale={lang}
+                testID="flashcards-swipe-attempts-hud"
+              />
+              <View ref={runeFlight.counterRef} collapsable={false}>
+                <PracticeRuneCounter
+                  runes={practiceRunes.runes}
+                  lang={lang}
+                  backgroundColor={swipeGlass.opaqueControl}
+                  color={t.textPrimary}
+                  testID="flashcards-swipe-practice-runes"
+                />
               </View>
-            ) : null}
-          </View>
-          {/* зачем (PM-134, 04.10): «Настройки» в шапке вела туда же, куда «Выйти» (экран выбора наборов убран) —
-              дубль снят; пустое место той же ширины держит счётчик по центру, геометрия шапки не прыгает. */}
-          <View style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton]} accessible={false} importantForAccessibility="no-hide-descendants" />
-        </View>
+            </>
+          )}
+        >
+          {isCompactFlashcardsTask ? null : (
+            <Text numberOfLines={2} style={{ color: swipeGlass.secondary, fontSize: f.caption, lineHeight: 17, marginTop: 2 }}>
+              {`${stats.mastered}/${stats.total} · ${queue.length} ${text.inQueue}`}
+            </Text>
+          )}
+          {stats.streak >= 3 ? (
+            <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: 'transparent' }]}>
+              <Ionicons name="flame-outline" size={12} color={t.gold} />
+              <Text style={[styles.headerStreakText, { color: t.gold, fontSize: f.caption }]}>
+                {text.streakLabel} {stats.streak}
+              </Text>
+            </View>
+          ) : null}
+        </PracticeSessionHeader>
 
         <View style={[styles.progressTrack, isCompactFlashcardsTask && styles.compactProgressTrack, { backgroundColor: t.bgSurface2 }]}>
           <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: t.accent }]} />

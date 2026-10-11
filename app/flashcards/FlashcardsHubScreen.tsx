@@ -50,6 +50,7 @@ import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
 import { pickTopCommunityPacks } from './SavedTopCommunityPacks';
 import { checkOnlineNow, getNetStatus, subscribeNetStatus } from '../net_status';
+import { STARTER_FIRST_50_DECK_ID, STARTER_FIRST_50_TITLE, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { latestPackContinue, loadPackContinuePositions, peekPackContinuePositions, subscribePackContinue } from './pack_continue_position';
 import { formatDuration } from './VideoPackRow';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
@@ -672,6 +673,8 @@ export default function FlashcardsHubScreen() {
   // зачем (Карточки 2.0, макет cards-v2.html «Хаб»): модель секций хаба. Данных, которых у приложения ещё нет (позиция «Продолжить», стартовый
   // набор «Первые 50 слов»), не выдумываем: полоса позиции скрыта, у новичка — прежний «Начни с готового».
   const hubCopy = {
+    begin: triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
+    search: triLang(lang, { ru: 'Поиск', uk: 'Пошук', en: 'Search', es: 'Buscar', 'pt-BR': 'Buscar', vi: 'Tìm kiếm', id: 'Cari', tr: 'Ara', pl: 'Szukaj' }),
     cont: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
     start: triLang(lang, { ru: 'Начни здесь', uk: 'Почни тут', en: 'Start here', es: 'Empieza aquí', 'pt-BR': 'Comece aqui', vi: 'Bắt đầu tại đây', id: 'Mulai di sini', tr: 'Buradan başla', pl: 'Zacznij tutaj' }),
     mode: triLang(lang, { ru: 'Режим', uk: 'Режим', en: 'Mode', es: 'Modo', 'pt-BR': 'Modo', vi: 'Chế độ', id: 'Mode', tr: 'Mod', pl: 'Tryb' }),
@@ -707,11 +710,14 @@ export default function FlashcardsHubScreen() {
   const ofWord = triLang(lang, { ru: 'из', uk: 'з', en: 'of', es: 'de', 'pt-BR': 'de', vi: '/', id: 'dari', tr: '/', pl: 'z' });
   const hubHero = trainingLocked
     ? { overline: hubCopy.cont, word: limitOutTitle, sub: limitOutSub, progress: null, ctaLabel: trainLabel, ctaLocked: true }
+    : fresh && starterPackAvailable(studyTarget)
+      // зачем (Карточки 2.0 12.10, данные Ядра 1dc23e923, cards-v2 `hubNew`): новичку без своих карточек — герой «Hello · Первые 50 слов» и «Начать»
+      ? { overline: hubCopy.start, word: starterFirst50CardItems()[0]?.en ?? 'Hello', sub: (STARTER_FIRST_50_TITLE as Readonly<Record<string, string>>)[lang] ?? STARTER_FIRST_50_TITLE.en, progress: 0, ctaLabel: hubCopy.begin, ctaLocked: false }
     : fresh
       ? { overline: hubCopy.start, word: 'Hello', sub: fresh.sub, progress: null, ctaLabel: fresh.cta, ctaLocked: false }
       : continuePos && continuePack
-        ? { overline: hubCopy.cont, word: continueWord, sub: `${continueTitle} · ${continuePos.index} ${ofWord} ${continuePos.total}`, progress: Math.max(0, Math.min(1, continuePos.index / continuePos.total)), ctaLabel: trainLabel, ctaLocked: false }
-        : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: trainLabel, ctaLocked: false };
+        ? { overline: hubCopy.cont, word: continueWord, sub: `${continueTitle} · ${continuePos.index} ${ofWord} ${continuePos.total}`, progress: Math.max(0, Math.min(1, continuePos.index / continuePos.total)), ctaLabel: hubCopy.cont, ctaLocked: false }
+        : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: topCard ? hubCopy.cont : trainLabel, ctaLocked: false };
   const openVideoPack = (pack: FlashcardMarketPack) => openTopPack(pack);
   const videoItems = videoPacks.map((pack) => ({
     id: pack.id,
@@ -744,7 +750,17 @@ export default function FlashcardsHubScreen() {
             hero={{
               ...hubHero,
               modeLabel: hubCopy.mode,
-              onCta: () => { pendingDeckRef.current = null; if (fresh && !trainingLocked) { fresh.onPress(); return; } onTrainPress(); },
+              onCta: () => {
+                pendingDeckRef.current = null;
+                if (fresh && !trainingLocked && starterPackAvailable(studyTarget)) {
+                  // зачем: «Начать» в герое новичка запускает набор «Первые 50 слов» (окно режима, затем тренировка именно этого набора)
+                  pendingDeckRef.current = { deckId: STARTER_FIRST_50_DECK_ID, count: starterFirst50CardItems().length };
+                  onTrainPress();
+                  return;
+                }
+                if (fresh && !trainingLocked) { fresh.onPress(); return; }
+                onTrainPress();
+              },
               onMode: () => { pendingDeckRef.current = null; onTrainPress(); },
             }}
             yours={{
@@ -753,16 +769,17 @@ export default function FlashcardsHubScreen() {
               mine: { title: copy.mine, count: fmt(myPackCount), empty: myPackCount === 0, emptyLabel: hubCopy.createShort, covers: myCovers, onPress: () => (myPackCount === 0 ? openCreatePack() : router.push('/flashcards_my_packs' as never)) },
             }}
             video={videoItems.length > 0 ? { title: copy.videoShort, allLabel: hubCopy.all, items: videoItems, onAll: () => router.push('/flashcards_video_packs' as never) } : null}
-            skeleton={catalogLoadState === 'loading' && !netOffline ? { videoTitle: copy.videoShort, communityTitle: hubCopy.best } : null}
+            skeleton={catalogLoadState === 'loading' && !netOffline ? { videoTitle: copy.videoShort, communityTitle: hubCopy.best, allLabel: hubCopy.all, onVideoAll: () => router.push('/flashcards_video_packs' as never), onCommunityAll: () => router.push('/flashcards_packs' as never) } : null}
             offline={netOffline && videoItems.length === 0 && communityItems.length === 0
               ? { title: hubCopy.offTitle, sub: hubCopy.offSub, retryLabel: hubCopy.retry, onRetry: () => { void checkOnlineNow().catch(noteSwallowedAs('FlashcardsHubScreen:offlineRetry.checkOnlineNow', false)).then((online) => { if (online) reloadCatalog(); }); } }
               : null}
             community={communityItems.length > 0 ? { title: hubCopy.best, allLabel: hubCopy.all, items: communityItems, onAll: () => router.push('/flashcards_packs' as never) } : null}
             reduceMotion={reduceMotion}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
+            onSearch={() => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub', search: '1' } } as never)}
             onCreate={openCreatePack}
             ctaRef={trainButtonRef}
-            labels={{ back: copy.back, create: copy.create, ctaA11y: trainAccessibilityLabel }}
+            labels={{ back: copy.back, create: copy.create, search: hubCopy.search, ctaA11y: trainAccessibilityLabel }}
           />
         </ContentWrap>
 

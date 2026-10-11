@@ -1557,7 +1557,7 @@ RU: ${card.translation}`}
   const front = task === 'recall' ? card?.translation ?? '' : card?.en ?? '';
   const back = task === 'recall' ? card?.en ?? '' : card?.translation ?? '';
   const attempt = session.attempt;
-  const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD) : null;
+  const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD, attempt.passed) : null;
   const spokenTranscript = retainedSpeakingTranscript(attempt);
   // зачем (Карточки 2.0 12.10): микрофон 92 включается касанием; подпись «зажми…» ушла вместе с удержанием.
   const passedNow = phase === 'scored' && attempt?.passed === true;

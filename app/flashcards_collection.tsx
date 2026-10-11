@@ -244,7 +244,7 @@ export default function FlashcardsScreen() {
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; preview?: string; from?: string; openComments?: string; commentId?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; preview?: string; from?: string; openComments?: string; commentId?: string; search?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -497,7 +497,8 @@ export default function FlashcardsScreen() {
   }, [searchInput]);
   const searchActive = searchQuery.trim().length > 0;
   // зачем (Карточки 2.0, макет cards-v2 «Поиск»): поле поиска «Сохранённых» открывается кнопкой в шапке и живёт в полосе масштаба над сеткой
-  const [searchOpen, setSearchOpen] = useState(false);
+  // зачем (Карточки 2.0 12.10, лупа в шапке хаба): ?search=1 открывает «Сохранённые» сразу с полем поиска
+  const [searchOpen, setSearchOpen] = useState(() => params.search === '1');
 
   /** Один контракт для стрелки и Android Back: сначала закрываем локальный слой. */
   const handleCollectionBack = useCallback(() => {

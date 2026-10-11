@@ -43,14 +43,16 @@ type Props = Readonly<{
   video: Readonly<{ title: string; allLabel: string; items: readonly CardsHubVideoItem[]; onAll: () => void }> | null;
   community: Readonly<{ title: string; allLabel: string; items: readonly CardsHubCommunityItem[]; onAll: () => void }> | null;
   /** Первое в жизни открытие без кэша: на месте ленты и чарта — скелеты (макет `hubLoad`). */
-  skeleton?: Readonly<{ videoTitle: string; communityTitle: string }> | null;
+  skeleton?: Readonly<{ videoTitle: string; communityTitle: string; allLabel: string; onVideoAll: () => void; onCommunityAll: () => void }> | null;
   /** Нет сети и показывать из кэша нечего: блок «Нет сети / Твои карточки доступны / Повторить» (макет `offlineHub`). */
   offline?: Readonly<{ title: string; sub: string; retryLabel: string; onRetry: () => void }> | null;
   reduceMotion: boolean;
   onBack: () => void;
+  /** Лупа в шапке (макет `hubTop`); поиск по трём группам — у Ядра, пока открывает поиск «Сохранённых». */
+  onSearch: () => void;
   onCreate: () => void;
   ctaRef?: React.Ref<View>;
-  labels: Readonly<{ back: string; create: string; ctaA11y: string }>;
+  labels: Readonly<{ back: string; create: string; search: string; ctaA11y: string }>;
 }>;
 
 /** Появление секций по очереди (макет `.rise`: 520 мс, cubic-bezier(.2,.8,.2,1), шаг 50 мс). «Уменьшить движение» — без анимации. */
@@ -108,7 +110,7 @@ const Tile = memo(function Tile({ g, testID, title, count, onPress, icon, childr
   );
 });
 
-function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, offline, reduceMotion, onBack, onCreate, ctaRef, labels }: Props) {
+function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, offline, reduceMotion, onBack, onSearch, onCreate, ctaRef, labels }: Props) {
   const { fontScale } = useWindowDimensions();
   const fs = Math.max(1, fontScale);
   // зачем (large font): высота hero растёт с системным шрифтом, чтобы слово и подпись не резались; сам шрифт не сжимаем.
@@ -121,7 +123,10 @@ function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, of
     <ScrollView testID="fc-cards-hub-v2" style={styles.root} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
       <View style={styles.topbar}>
         <RoundBtn g={g} icon="arrow-back" label={labels.back} onPress={onBack} testID="fc-cards-hub-back" />
-        <RoundBtn g={g} icon="add" label={labels.create} onPress={onCreate} testID="fc-cards-hub-create-pack" />
+        <View style={styles.topRight}>
+          <RoundBtn g={g} icon="search" label={labels.search} onPress={onSearch} testID="fc-cards-hub-search" />
+          <RoundBtn g={g} icon="add" label={labels.create} onPress={onCreate} testID="fc-cards-hub-create-pack" />
+        </View>
       </View>
       <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
 
@@ -198,7 +203,7 @@ function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, of
         </Rise>
       ) : skeleton && !hasVideo && !hasCommunity ? (
         <View testID="fc-cards-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-          <SectionHead g={g} title={skeleton.videoTitle} />
+          <SectionHead g={g} title={skeleton.videoTitle} allLabel={skeleton.allLabel} onAll={skeleton.onVideoAll} />
           {/* guard-ok: два статичных блока скелета, не данные */}
           <ScrollView horizontal scrollEnabled={false} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
             {[0, 1].map((n) => (
@@ -209,7 +214,7 @@ function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, of
               </View>
             ))}
           </ScrollView>
-          <SectionHead g={g} title={skeleton.communityTitle} />
+          <SectionHead g={g} title={skeleton.communityTitle} allLabel={skeleton.allLabel} onAll={skeleton.onCommunityAll} />
           {[0, 1, 2].map((n) => (
             <View key={n} style={styles.cr}>
               <SkeletonBlock width={18} height={18} borderRadius={6} />
@@ -280,6 +285,7 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingBottom: 120 },
   pressed: { opacity: 0.82 },
   topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  topRight: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   round: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   title: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   hstk: { position: 'relative', paddingTop: 22, marginTop: 22 },

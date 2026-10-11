@@ -256,7 +256,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       // (speakingInlineSlotAlign) — только выравнивание; геометрия слота и логика записи не тронуты.
       // зачем (04.10): + 8 dp воздуха сверху у прижатой карточки (кадр 450×800).
       slot: '9349576ffb4cd827b9fe39a9b1164a9b1e5232df4b33894b867a5b965c4650de',
-      stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
+      // зачем (Ядро 1dc23e923, 12.10): звёзды учитывают passed — незасчитанный ответ не подписывается «Хорошо! Зачтено» (3 строки); запись/удержание/оценка не тронуты
+      stars: '96b14e66ee10a4a581973b85171954fb9d3b2dcc860e16dbee28709d2e43abc5',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',
     },
   );

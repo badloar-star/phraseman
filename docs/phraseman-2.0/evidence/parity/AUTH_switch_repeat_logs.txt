@@ -1,0 +1,15 @@
+[AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:bc1616e5","localStable":"h:5a027e0c","requireOwnership":false,"t":2448264}
+[ACCOUNT-V2] auth_sync skip reason=flag_off
+[AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":2450225}
+[AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:bc1616e5","preProviderStable":"h:5a027e0c","t":2450226}
+[ACCOUNT-V2] auth_sync skip reason=flag_off
+[AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":2454273}
+[AUTH-LINK-GOOGLE] clean_proof dirty {"count":21,"keys":"user_avatar,user_frame,streak_count,active_days_v1,unlocked_lessons,legacy_free_","t":2454444}
+'[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":false,"stableId":"dd4981bb"}'
+[AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":2454572}
+[AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:5a027e0c","tookMs":6310,"t":2454573}
+[WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:5a027e0c","tookMs":6310,"t":2454573}
+[ONB-DEFER] hold label=phone_state_bootstrap reason=onboarding_active
+[AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+[AUTH-SWITCH-OFFER] onboarding confirm shown
+[ONB-DEFER] hold label=phone_state_bootstrap reason=onboarding_active

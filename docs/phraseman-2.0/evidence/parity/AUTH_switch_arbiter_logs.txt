@@ -1,0 +1,15 @@
+[AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:daa06e41","localStable":"h:647fae2c","requireOwnership":false,"t":5052852}
+[AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":5057922}
+[AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:daa06e41","preProviderStable":"h:647fae2c","t":5057924}
+[AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":5059109}
+[AUTH-LINK-GOOGLE] clean_proof dirty {"count":17,"keys":"user_avatar,user_frame,legacy_free_lesson_cap_v1,legacy_free_lesson_migration_v1","t":5059864}
+[AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":5060543}
+[AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:647fae2c","tookMs":7693,"t":5060544}
+[WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:647fae2c","tookMs":7693,"t":5060544}
+[AUTH-SWITCH-OFFER] resume_credential stored provider=google ttlMs=600000
+[AUTH-SWITCH-OFFER] onboarding confirm enqueued (waiting for ThemedBlockingAlertHost)
+'[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":false,"arbiterActive":null}'
+'[OVERLAY-ARBITER] state', '{"active":null,"waiting":["themedAlert"]}'
+'[AUTH-SWITCH-OFFER] alert host', '{"title":"Этот аккаунт уже есть в Phraseman","visible":true,"arbiterActive":"themedAlert"}'
+'[OVERLAY-ARBITER] state', '{"active":"themedAlert","waiting":[]}'
+'[ACC-SWITCH-WIPE] prewarm', '{"source":"onboarding_switch_confirm","failed":[],"tookMs":14047}'

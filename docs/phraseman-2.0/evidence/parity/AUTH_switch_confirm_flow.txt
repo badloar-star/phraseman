@@ -1,0 +1,22 @@
+AUTH switch confirm flow — Сверка, 2026-10-11 22:07–22:12 (эмулятор, №2 «Профессор Лингман»)
+1) Вход в №2 до Главной (ранее, AUTH_home_after_switch.png): result merged_devices, Главная достигнута.
+2) Выход: кнопка «Выйти» -> окно «Выходим из аккаунта», signout:out ok tookMs=28541 (НЕ мгновенно, ожидалось без окна). Данные: C:/Temp/claude/sv/LO.txt.
+3) Повтор Google->№2 (AUTH_cf_logs.txt): на этот раз окна подтверждения НЕ БЫЛО — путь handoff
+   (link conflict credential-already-in-use -> handoff signed_in -> merged_swap_to_remote ->
+   ACC-SWITCH-WIPE wipe_stages -> result merged_devices tookMs=61043). Строк [AUTH-SWITCH-OFFER] нет.
+   Все 25 с ожидания «Отмена» (22:10:19) пришлись на экран «Вернём твой прогресс» с busy: обе кнопки серые,
+   плашка «Вход всё ещё выполняется…» (AUTH_cf_dialog1.png, AUTH_cf_after_cancel_15s.png). Тап (540,1364) в пустоту.
+4) Системная «Назад» в 22:11:20 — вход ещё шёл (busy): приложение ВЫШЛО на рабочий стол Android (AUTH_cf_after_back_15s.png),
+   не осталось на экране. Вход при этом дошёл до merged_devices.
+ИТОГ: «Отмена» и «Назад» НА ОКНЕ подтверждения не проверены — окно во втором прогоне не появилось
+(в первом появлялось). Нужен прогон, где окно показано (аккаунт с отличным локальным прогрессом).
+Находки: (а) выход ~28,5 с с окном; (б) вход 61 с, из них wipe collectKeys 3,4 с и closePhoneState 2,4 с;
+(в) «Назад» при busy выводит из приложения.
+
+=== ДОПОЛНЕНИЕ 23:17–23:19 (после перезапуска эмулятора; сеть вернулась) ===
+Сценарий «гость с локальным прогрессом → Google №2 из Настроек» (Профиль «Войти» → «Войти через Google»):
+ - Окно «Сменить аккаунт?» (кнопки «Отмена» / «Продолжить») — AUTH_switch_account_dialog.png. Лог: [AUTH-LINK-GOOGLE] branch account_switch_required (source=anonymous_link_conflict, tookMs 2744), clean_proof dirty count=24, [ACC-MUT] switch_stage idle→confirm.
+ - «Отмена»: окно закрывается, шторка входа тоже, экран Настроек, кнопка «Войти» активна, busy снят. [ACC-MUT] switch_stage confirm→idle (AUTH_switch_dialog_after_cancel.png).
+ - Системная «Назад» на этом окне: то же — окно и шторка закрыты, остаёмся в Настройках, confirm→idle (AUTH_switch_dialog_after_back.png). Приложение НЕ закрывается.
+ - Перед окном при первом тапе по Google на экране шторки показывалась красная плашка «Телефон уже связан с другим аккаунтом… сначала смени аккаунт» + кнопка «Сменить аккаунт» (AUTH_phone_bound_other_account_2026-10-11.png).
+ - «Продолжить» не жато (это выход из аккаунта и потеря локального прогресса гостя).

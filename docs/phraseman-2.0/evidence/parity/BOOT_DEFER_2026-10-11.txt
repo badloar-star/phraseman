@@ -1,0 +1,23 @@
+BOOT_DEFER — проверка 47edcb2ba (Сверка, эмулятор, 2026-10-11 22:12–22:20)
+Сценарий 1 (гость, свежая установка): decision defer=false reason=onboarding_not_done — как задумано.
+Сценарий 2 (№2 «Профессор Лингман»): ДВА холодных старта подряд (22:12, 22:13) — оба defer=false reason=identity_not_ready. Второй старт обязан был дать defer=true — НЕ дал.
+  Причина по журналу: ensureFreshPostDeletionIdentity DONE status="pending_auth" phase="prepared" (+5,7 с), а _layout.tsx:2510 требует status==='ready'. Тот же pending_auth и у чистого гостя (+4,9 с).
+  Следствие: условие identity_not_ready стоит РАНЬШЕ проверки метки владельца — пока старт отдаёт pending_auth, откладывание не срабатывает ни у кого. Строк start/done/RESTORE-DIRTY/sync_held нет.
+  Главная: NAV-PAINT /home ms=7691 (1-й), 9943 (2-й) — ускорения нет.
+Сценарии 3–6 (смена №2→№3, авиарежим, рамка, выход в первые секунды): не гонялись — недостижимы, пока defer не включается.
+Вопрос Ядру: pending_auth на старте — норма (auth ещё не восстановлен) или идентичность не доводится до ready? Если норма — identityReady нужно считать иначе (не по этому статусу).
+Побочно: [ACTIVITY-FEED] refresh failed — firestore/failed-precondition (нужен индекс) на Главной №2.
+
+=== ПОВТОР после 3d6c012bc (эмулятор перезапущен 23:12, сеть вернулась) ===
+Состояние: ГОСТЬ с пройденным онбордингом и локальным прогрессом (демо-карточки); аккаунт №2 не входил (вход Google в Настройках даёт «Сменить аккаунт?», см. AUTH_switch_confirm_flow.txt).
+Холодный старт 23:15:29 (журнал BD3.txt):
+ [BOOT-RESTORE-DEFER] identity {freshStatus:pending_auth, freshPhase:prepared, deleteLock:empty, identityReady:true}
+ decision defer=true reason=deferred
+ start trigger=idle waitedMs=7116 dirtyKeys=0 allKeysTouched=false
+ [RESTORE-DIRTY] guard dirtyKeys=0 kept=0 (x2)
+ done trigger=idle status=restored shouldSync=true totalMs=34780
+ NAV-PAINT /home ms=3191 (раньше 7691 и 9943) — Главная теперь появляется ~2–3 раза быстрее.
+Первый запуск после перезапуска: тот же путь, done totalMs=37558, NAV-PAINT 6948 (холодный кэш).
+Итог: исправление Ядра работает — defer=true сработал (метка владельца записана прошлым восстановлением), Главная до прихода облака, restored без ошибок.
+[HOME-RESTORE-JUMP] memoryStreak 0 storedStreak 0 snapshotStreak 0 source local runes 0 homeActive true; [STREAK] home:hydration personal=0 snapshot=0@local -> 0 — серия нулевая, судить о прыжке нельзя (нужен №2 с ненулевой серией).
+Не пройдено: сценарии 3 (№2→№3), 4 (авиарежим), 5 (рамка), 6 (выход в первые секунды) — вход в №2 с этого телефона упирается в «Сменить аккаунт?» (требует выхода гостя), нужен чистый pm clear + вход через «У меня уже есть аккаунт».

@@ -1,0 +1,30 @@
+[AUTH-SWITCH-OFFER] onboarding confirm answered choice=switch waitedMs=99719
+'[OVERLAY-ARBITER] state', '{"active":"themedAlert","waiting":[]}'
+[ACC-SWITCH-WIPE] signout force_sync {"synced":true,"allowWipeWithoutSync":false,"t":5180682}
+[ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":6,"collectKeysMs":1119,"collectKeysKeys":2214,"noteStashMs":1668,"removeKeysMs":1064,"removeKeysKeys":2211,"giftReceiptsMs":5,"customizationMs":22,"dialogueMemoryMs":5,"lateLearningV2Ms":15,"lateLearningV2Keys":8,"giftReceipts2Ms":1,"finalScanMs":15,"resetMemoryMs":151,"totalMs":4071,"failure":null,"t":5194570}
+[AUTH-SWITCH-OFFER] onboarding switched synced=yes
+[AUTH-SWITCH-OFFER] resume_credential used provider=google ageMs=141352
+[AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:2f1dc054","localStable":"h:4e4a6d4d","requireOwnership":false,"t":5211653}
+[AUTH-LINK-GOOGLE] native skipped {"provider":"google","source":"resume_credential","t":5211654}
+[AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":5211655}
+[AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:2f1dc054","preProviderStable":"h:4e4a6d4d","t":5211655}
+[AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":5214058}
+[AUTH-LINK-GOOGLE] clean_proof clean {"checked":2210,"t":5214449}
+'[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":true,"postCompletionHandoff":true,"stableId":"aea110cd"}'
+[AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":true,"postCompletionHandoff":true,"t":5214637}
+[ACCOUNT-AUTHORITY] anon_merge_nonce issued result=memory_only
+[AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:2f1dc054","targetUid":"h:d9408b9b","uidChanged":true,"t":5223252}
+[AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:4e4a6d4d","remoteStable":"h:de10a251","branch":"remote","t":5223690}
+[ACCOUNT-AUTHORITY] anon_merge_nonce not_attached source=ensure_link reason=other_stable_id
+[AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":5227509}
+[AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":5227513}
+[AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":5227520}
+[AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":5227522}
+[ACCOUNT-AUTHORITY] anon_merge_nonce not_attached source=ensure_link reason=other_stable_id
+[AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":5231155}
+[WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":5231155}
+[ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":0,"collectKeysMs":2312,"collectKeysKeys":2210,"noteStashMs":2079,"removeKeysMs":1426,"removeKeysKeys":2210,"giftReceiptsMs":1,"customizationMs":3,"dialogueMemoryMs":4,"lateLearningV2Ms":8,"lateLearningV2Keys":8,"giftReceipts2Ms":3,"finalScanMs":24,"resetMemoryMs":7,"totalMs":5867,"failure":null,"t":5237046}
+[AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:4e4a6d4d","to":"h:de10a251","tookMs":29522,"t":5241174}
+[ACCOUNT-AUTHORITY] anon_merge_nonce cleared reason=sign_in_settled count=1
+[AUTH-SWITCH-OFFER] resume_sign_in ok provider=google result=merged_devices
+[AUTH-SWITCH-OFFER] onboarding resume continued provider=google source=existing_account result=merged_devices

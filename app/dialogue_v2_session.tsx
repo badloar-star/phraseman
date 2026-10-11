@@ -367,6 +367,10 @@ function SessionContent() {
           scenarioId, learnerId: pending.learnerId, freeTier,
         });
         pendingTurnRef.current = null;
+        // зачем (Ядро, dialogs-035): сервер реплику не принял — помечаем пузырь, а не оставляем его похожим на отправленный.
+        setMessages((current) => Object.freeze(current.map((message) => (
+          message.id === pending.learnerId && message.author === 'learner' ? Object.freeze({ ...message, unsent: true }) : message
+        ))));
         coaching.markExhausted(error instanceof DialogueV2TurnFailureError ? error.quotaObservation : null);
       } else if (reason === 'paused') {
         setPaused(true);

@@ -40,11 +40,13 @@ export interface DialogueGlassBubbleProps {
   children: React.ReactNode;
   /** Ряд кнопок под пузырём (`.acts`). */
   actions?: React.ReactNode;
+  /** Короткая отметка под пузырём («Не отправлено», dialogs-035). */
+  note?: string;
   testID?: string;
 }
 
 /** Реплика `.msg`: ширина пузыря ≤ 78%, радиус 20, поля 14/18. */
-export function DialogueGlassBubble({ glass, author, who, avatar, children, actions, testID }: DialogueGlassBubbleProps) {
+export function DialogueGlassBubble({ glass, author, who, avatar, children, actions, note, testID }: DialogueGlassBubbleProps) {
   const learner = author === 'learner';
   const bubble: ViewStyle = learner
     ? { backgroundColor: glass.lightTint }
@@ -61,6 +63,12 @@ export function DialogueGlassBubble({ glass, author, who, avatar, children, acti
           <Text maxFontSizeMultiplier={1.3} style={[styles.who, { color: glass.secondary }]}>{who}</Text>
         ) : null}
         <View style={[styles.bubble, bubble]}>{children}</View>
+        {note ? (
+          <View testID={testID ? `${testID}-note` : undefined} style={[styles.note, learner ? styles.noteEnd : null]}>
+            <Ionicons name="alert-circle-outline" size={14} color={glass.secondary} />
+            <Text maxFontSizeMultiplier={1.4} style={[styles.noteText, { color: glass.secondary }]}>{note}</Text>
+          </View>
+        ) : null}
         {actions ? <View style={[styles.actions, learner ? styles.actionsEnd : null]}>{actions}</View> : null}
       </View>
     </View>
@@ -202,6 +210,9 @@ const styles = StyleSheet.create({
   bubbleText: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
   actionsEnd: { justifyContent: 'flex-end' },
+  note: { marginTop: 6, flexDirection: 'row', alignItems: 'center', gap: 4 },
+  noteEnd: { justifyContent: 'flex-end' },
+  noteText: { fontSize: 13, lineHeight: 18, fontWeight: '500' },
   typing: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 52, paddingHorizontal: 20, borderRadius: 20 },
   dot: { width: 8, height: 8, borderRadius: 4 },
 });

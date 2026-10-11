@@ -63,6 +63,8 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
     preparedBotVoice?: never;
     /** «Лучше так» из разбора следующего хода (D112). */
     betterPhrasing?: string;
+    /** Сервер реплику не принял (лимит, dialogs-035): пузырь остаётся с отметкой «Не отправлено». */
+    unsent?: boolean;
     translation?: never;
     explanation?: never;
   }>
@@ -76,6 +78,7 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
       replyTextSha256: string;
     }>;
     betterPhrasing?: never;
+    unsent?: never;
     /** Перевод реплики на язык интерфейса (D112). */
     translation?: string;
     /** «Почему так» — разбор реплики на языке интерфейса (D112). */
@@ -446,6 +449,8 @@ export function DialogueV2SessionScreen({
                   avatar={!learner}
                   who={learner ? labels.you : message.authorLabel}
                   actions={learner ? learnerActions : hasPersonaActions ? personaActions : undefined}
+                  note={learner && message.unsent && coachingLabels ? coachingLabels.unsent : undefined}
+                  testID={`dialogue-v2-message-${message.id}`}
                 >
                   {voiceUri ? (
                     <PressableScale

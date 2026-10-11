@@ -28,6 +28,8 @@ export type DialogueV2SessionCoachingLabels = Readonly<{
   voiceUnavailable: string;
   openSettings: string;
   whyExhausted: string;
+  /** Отметка под пузырём, упёршимся в лимит (dialogs-035): сервер реплику не принял. */
+  unsent: string;
   openPlus: string;
   whyLeft: (left: number, total: number) => string;
 }>;
@@ -71,6 +73,8 @@ export function dialogueV2SessionCoachingLabels(lang: Lang): DialogueV2SessionCo
     wallPlus: 'Plus',
     endVeil: triLang(lang, { ru: 'Нажми, чтобы перейти к итогу', uk: 'Натисни, щоб перейти до підсумку', en: 'Tap to see the summary', es: 'Toca para ver el resumen', 'pt-BR': 'Toque para ver o resumo', vi: 'Chạm để xem tổng kết', id: 'Ketuk untuk melihat ringkasan', tr: 'Özeti görmek için dokun', pl: 'Dotknij, aby zobaczyć podsumowanie', fr: 'Touche pour voir le bilan', de: 'Tippe für die Auswertung' }),
     summary: triLang(lang, { ru: 'Итоги', uk: 'Підсумки', en: 'Summary', es: 'Resumen', 'pt-BR': 'Resumo', vi: 'Tổng kết', id: 'Ringkasan', tr: 'Özet', pl: 'Podsumowanie', fr: 'Bilan', de: 'Auswertung' }),
+    // зачем (Ядро, dialogs-035): пузырь, упёршийся в лимит, остаётся на экране, но сервер его не принял — честная отметка под ним.
+    unsent: triLang(lang, { ru: 'Не отправлено', uk: 'Не надіслано', en: 'Not sent', es: 'No enviado', 'pt-BR': 'Não enviada', vi: 'Chưa gửi', id: 'Belum terkirim', tr: 'Gönderilmedi', pl: 'Nie wysłano', fr: 'Non envoyé', de: 'Nicht gesendet' }),
     serviceError: triLang(lang, {
       ru: 'Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.',
       uk: 'Сервіс діалогів тимчасово недоступний. Повідомлення не надіслано. Спробуй ще раз.',

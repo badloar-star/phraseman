@@ -552,8 +552,9 @@ function SessionContent() {
           });
         },
       }
-      // зачем (§SPEECH-NA): на устройстве без распознавателя — единый понятный текст.
-      : voice.failure === 'unavailable'
+      // зачем (§SPEECH-NA; кадр «Голосовой ввод недоступен» dialogs-gaps-states): на устройстве без распознавателя понятный текст виден СРАЗУ,
+      // а не только после тапа по микрофону
+      : voice.failure === 'unavailable' || voice.unavailableOnDevice
         ? { text: voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : coachingLabels.voiceUnavailable }
         : null;
   const openPlus = () => router.push({
@@ -609,7 +610,8 @@ function SessionContent() {
       turnError={turnFailure !== null}
       turnErrorMessage={turnErrorMessage}
       /* D123: на потолке Plus повтор сегодня не поможет; C19: при частоте — после остывания. */
-      retryAvailable={failureReason !== 'rate_limited' || !rateLimitCooling}
+      // зачем (кадр «На сегодня разговоров достаточно»): на потолке Plus кнопки «Повторить» нет вовсе, а не блокированной
+      retryAvailable={failureReason !== 'plus_daily_cap' && (failureReason !== 'rate_limited' || !rateLimitCooling)}
       retryDisabled={sending || !pendingTurnRef.current || failureReason === 'plus_daily_cap'}
       onRetry={retry}
       onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}

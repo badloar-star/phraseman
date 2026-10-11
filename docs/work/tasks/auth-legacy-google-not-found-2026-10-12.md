@@ -63,3 +63,5 @@ Governance-ID: TG-F725A1E35474 (логи [AUTH-SWITCH-OFFER]/[OVERLAY-ARBITER]: 
 Governance-ID: TG-AC8AC29BEF30 (п.2 прогона Сверки: прогрев модулей цепочки стирания — без ленивой подгрузки в момент выхода/смены)
 
 Governance-ID: (тот же пакет) системная «Назад» в онбординге — BackHandler, лог [ONBOARDING-BACK]
+
+Governance-ID: (тот же пакет) окно решения смены: под окном без спиннера/плашки; засечки [ACC-SWITCH-TIMING] доведения смены

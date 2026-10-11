@@ -1159,10 +1159,18 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
     invalidateGeneration: () => { generation.invalidateAccountGeneration(); },
     beginPremiumTransition: () => { premium.beginPremiumAccountTransition(); },
     quiesce: async () => {
+      // зачем (прогон Сверки 11.10): после стирания до начала входа шли 17 с без единой строки — каждое ожидание
+      // пишет своё время и итог, чтобы было видно, какое держит смену (потолок у каждого — timeoutMs).
+      const startedAtMs = Date.now();
+      const timed = async (name: string, work: Promise<boolean>): Promise<boolean> => {
+        const idle = await work;
+        console.log(`[ACC-SWITCH-TIMING] quiesce ${name} idle=${idle ? 'yes' : 'no'} tookMs=${Date.now() - startedAtMs}`);
+        return idle;
+      };
       const [premiumIdle, restoreIdle, cloudIdle] = await Promise.all([
-        premium.waitForPremiumAccountWorkIdleWithDeadline(timeoutMs),
-        generation.waitForRestoreApplicationIdleWithDeadline(timeoutMs),
-        cloud.quiesceCloudSyncForAccountTransition(timeoutMs),
+        timed('premium', premium.waitForPremiumAccountWorkIdleWithDeadline(timeoutMs)),
+        timed('restore', generation.waitForRestoreApplicationIdleWithDeadline(timeoutMs)),
+        timed('cloud', cloud.quiesceCloudSyncForAccountTransition(timeoutMs)),
       ]);
       return premiumIdle && restoreIdle && cloudIdle;
     },
@@ -1170,21 +1178,28 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
       // зачем (AA S6): выход восстановления идёт через тот же шов авторитета,
       // что и обычный выход — иначе V2/AA-сессия оставалась бы открытой после
       // выхода из Firebase. При выключенных флагах шов сразу зовёт старый выход.
+      const signOutStartedAtMs = Date.now();
       console.log(`[AA-S6] quarantine_signout start hasUser=${auth?.currentUser ? 'yes' : 'no'}`);
       await accountsV2.runAccountsV2ProviderSignOutTransition(async () => {
         if (auth?.currentUser) await auth.signOut();
         cloud.resetAnonAuthCacheForSignOut();
       });
-      console.log('[AA-S6] quarantine_signout done');
+      console.log(`[AA-S6] quarantine_signout done tookMs=${Date.now() - signOutStartedAtMs}`);
     },
     wipeLocalData: async () => { await cloud.wipeLocalAccountData(); },
     clearStableId: async () => {
+      const startedAtMs = Date.now();
       await stable.clearStableId();
       await pendingLink.clearPendingAuthLink();
+      console.log(`[ACC-SWITCH-TIMING] clear_stable_id tookMs=${Date.now() - startedAtMs}`);
     },
     ensureAnonymousIdentity: async () => {
+      // зачем (прогон Сверки 11.10): новый анонимный вход — сетевой шаг; время отдельно от выдачи stable_id.
+      const startedAtMs = Date.now();
       await cloud.ensureAnonUser();
+      const anonMs = Date.now() - startedAtMs;
       await stable.getStableId();
+      console.log(`[ACC-SWITCH-TIMING] ensure_anon anonMs=${anonMs} stableIdMs=${Date.now() - startedAtMs - anonMs}`);
     },
     activateGeneration: (stableId: string) => { generation.beginAccountGeneration(stableId); },
   });

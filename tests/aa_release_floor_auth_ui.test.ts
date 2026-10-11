@@ -136,7 +136,8 @@ describe('смена аккаунта в онбординге — с кнопк�
 
   it('оба пути онбординга обрабатывают account_switch_required до общей ошибки', () => {
     const onboarding = read('components/CleanOnboarding.tsx');
-    expect(onboarding.match(/await confirmAndSwitchAccountInOnboarding\(lang\)/g)).toHaveLength(2);
+    // 12.10: + крючки «ждём решения» (под окном нет спиннера и плашки «вход выполняется»).
+    expect(onboarding.match(/await confirmAndSwitchAccountInOnboarding\(lang, switchDecisionHooks\)/g)).toHaveLength(2);
     expect(onboarding.match(/onboardingAccountSwitchFailureText\(lang, switched\.reason\)/g)).toHaveLength(2);
   });
 

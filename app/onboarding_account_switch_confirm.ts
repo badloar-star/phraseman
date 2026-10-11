@@ -97,7 +97,16 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
   });
 }
 
-export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<OnboardingAccountSwitchOutcome> {
+/** Крючки экрана: окно решения ждёт ответа / ответ получен (до самой смены). */
+export type OnboardingSwitchDecisionHooks = Readonly<{
+  onDecisionPending?: () => void;
+  onDecisionMade?: (choice: string) => void;
+}>;
+
+export async function confirmAndSwitchAccountInOnboarding(
+  lang: Lang,
+  hooks?: OnboardingSwitchDecisionHooks,
+): Promise<OnboardingAccountSwitchOutcome> {
   // зачем (прогон 11.10): в онбординге это всегда гость — свой честный текст вместо «Телефон уже связан…».
   const copy = accountSwitchRequiredGuestCopy(lang);
   // зачем (прогон Сверки 11.10): пока человек читает окно, модули стирания уже подгружаются.
@@ -106,6 +115,8 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
   // окно лишь ставится в очередь, показывает его хост по решению арбитра. Пишем факт постановки и время до ответа.
   const confirmEnqueuedAtMs = Date.now();
   console.log('[AUTH-SWITCH-OFFER] onboarding confirm enqueued (waiting for ThemedBlockingAlertHost)');
+  // зачем (Сверка 11.10): пока окно ждёт решения, экран под ним — «ждём тебя», а не «ждём провайдера».
+  hooks?.onDecisionPending?.();
   const choice = await enqueueThemedBlockingChoiceAlert<'cancel' | 'switch'>(copy.title, copy.body, [
     {
       label: triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' }),
@@ -115,6 +126,7 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
     { label: copy.action, value: 'switch' },
   ]);
   console.log(`[AUTH-SWITCH-OFFER] onboarding confirm answered choice=${String(choice)} waitedMs=${Date.now() - confirmEnqueuedAtMs}`);
+  hooks?.onDecisionMade?.(String(choice));
   if (choice !== 'switch') {
     console.log(`[AUTH-SWITCH-OFFER] onboarding cancelled choice=${choice === THEMED_ALERT_DISMISSED ? 'dismiss' : choice}`);
     return { kind: 'cancelled' };
@@ -123,7 +135,7 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
   try {
     const result = await signOutAndWipeForAccountSwitch();
     if (result.ok) {
-      console.log(`[AUTH-SWITCH-OFFER] onboarding switched synced=${result.synced ? 'yes' : 'no'}`);
+      console.log(`[AUTH-SWITCH-OFFER] onboarding switched synced=${result.synced ? 'yes' : 'no'} tookMs=${Date.now() - attemptStartedAtMs}`);
       return { kind: 'switched' };
     }
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_failed reason=${result.reason}`);

@@ -2338,6 +2338,19 @@ function CleanOnboarding({
   const authCompletionRef = useRef(createOnboardingCompletionState());
   const [authError, setAuthError] = useState<string | null>(null);
   const [authSlow, setAuthSlow] = useState(false);
+  // зачем (Сверка 11.10): под открытым окном «Этот аккаунт уже есть» экран выглядел зависшим — спиннер на Google и
+  // плашка «Вход всё ещё выполняется». Пока ждём решения человека, это ожидание его, а не провайдера: прячем и то, и другое.
+  const [awaitingSwitchDecision, setAwaitingSwitchDecision] = useState(false);
+  const switchDecisionHooks = useMemo(() => ({
+    onDecisionPending: () => {
+      console.log('[AUTH-SWITCH-OFFER] onboarding ui decision_pending → spinner and busy notice hidden');
+      setAwaitingSwitchDecision(true);
+    },
+    onDecisionMade: (choice: string) => {
+      console.log(`[AUTH-SWITCH-OFFER] onboarding ui decision_made choice=${choice}`);
+      setAwaitingSwitchDecision(false);
+    },
+  }), []);
   // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
   // вопрос «такого аккаунта нет, создать?» вместо кнопок входа. Пустая строка —
   // валидное значение (провайдер не отдал email), поэтому признак именно null/не-null.
@@ -2678,7 +2691,7 @@ function CleanOnboarding({
         // Ветка стоит ПЕРВОЙ (ревью M-2): ответ входа после смены (удалён навсегда / на
         // удалении) проходит дальше через те же окна, что и ответ первого входа.
         if (result.error === 'account_switch_required') {
-          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          const switched = await confirmAndSwitchAccountInOnboarding(lang, switchDecisionHooks);
           // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
           if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
           if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
@@ -2824,7 +2837,7 @@ function CleanOnboarding({
         // Ветка стоит ПЕРВОЙ (ревью M-2): ответ входа после смены (удалён навсегда / на
         // удалении) проходит дальше через те же окна, что и ответ первого входа.
         if (result.error === 'account_switch_required') {
-          const switched = await confirmAndSwitchAccountInOnboarding(lang);
+          const switched = await confirmAndSwitchAccountInOnboarding(lang, switchDecisionHooks);
           // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
           if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
           if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
@@ -3501,7 +3514,7 @@ function CleanOnboarding({
                 <GoogleSignInButton
                   label={oc.signInGoogle}
                   variant="dark"
-                  loading={authLoading === 'google'}
+                  loading={authLoading === 'google' && !awaitingSwitchDecision}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('google'); }}
                 />
@@ -3520,7 +3533,7 @@ function CleanOnboarding({
               {!googleAvailable && appleAvailable === false ? (
                 <Text style={styles.errorText}>{oc.providersUnavailable}</Text>
               ) : null}
-              {authSlow ? (
+              {authSlow && !awaitingSwitchDecision ? (
                 <Text style={styles.errorText} accessibilityLiveRegion="polite">
                   {oc.signInBusy}
                 </Text>
@@ -3599,12 +3612,12 @@ function CleanOnboarding({
               label={oc.continueWithGoogle}
               variant="light"
               shape="pill"
-              loading={authLoading === 'google'}
+              loading={authLoading === 'google' && !awaitingSwitchDecision}
               disabled={!!authLoading}
               onPress={() => { void authFromPrivacy('google'); }}
             />
           ) : null}
-          {authSlow ? (
+          {authSlow && !awaitingSwitchDecision ? (
             <Text style={styles.errorText} accessibilityLiveRegion="polite">
               {oc.signInBusy}
             </Text>

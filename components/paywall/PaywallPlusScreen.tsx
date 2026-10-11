@@ -202,12 +202,13 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               contextIcon={contextual ? <PaywallContextIcon ctx={ctx} size={26} color={g.accentText} /> : undefined}
               contextPill={contextual ? contextPill : undefined} />
             <PaywallPlusScroll>
-              {showTimeline && yearlyTrialDays
-                ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
-                : null}
               {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
               <PaywallPlusDetails lang={lang} g={g}
                 leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
+              {/* зачем (paywall-gaps-states «Лента пробного периода»): порядок образца — выгода, лента, тарифы */}
+              {showTimeline && yearlyTrialDays
+                ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
+                : null}
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                   «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
               {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}

@@ -146,7 +146,7 @@ test('the fixed CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp
   assert.match(ui, /cta: \{ minHeight: 58/);
   assert.match(ui, /close: \{ width: 44, height: 44/);
   assert.match(ui, /linkHit: \{ minHeight: 44/);
-  assert.match(ui, /retry: \{ minHeight: 44/);
+  // зачем (владелец 11.10, 960f2de5f): блока «Цены не загрузились» с кнопкой повтора больше нет — тихая строка про цену, поэтому стиля retry нет
   assert.match(read(SCREEN), /useStableSafeAreaInsets/);
 });
 

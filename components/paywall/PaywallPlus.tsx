@@ -132,7 +132,7 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
         return (
           <View key={step.icon} style={S.tlRow}>
             <View style={S.tlRail}>
-              <View style={[S.tlDot, { backgroundColor: first ? markFill(g) : g.opaqueControl }]}>
+              <View style={[S.tlDot, { backgroundColor: first ? markFill(g) : paywallSheetBg(g) /* зачем (paywall-gaps-states): диски 2 и 3 цвета шторки, иначе сливаются с карточкой ленты */ }]}>
                 <Ionicons name={step.icon} size={16} color={first ? markInk(g) : g.text} />
               </View>
               {last ? null : <View style={[S.tlLine, { backgroundColor: g.glassEdge }]} />}
@@ -404,7 +404,7 @@ const S = StyleSheet.create({
   scroll: { flexGrow: 0, flexShrink: 1 },
   scrollContent: { paddingTop: 14, paddingHorizontal: 16, paddingBottom: 18 },
   card: { borderRadius: 22 },
-  timeline: { paddingTop: 16, paddingHorizontal: 16, paddingBottom: 4, marginBottom: 12 },
+  timeline: { paddingTop: 16, paddingHorizontal: 16, paddingBottom: 4, marginTop: 12, marginBottom: 12 },
   tlRow: { flexDirection: 'row', gap: 12 },
   tlRail: { width: 36, alignItems: 'center' },
   tlDot: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },

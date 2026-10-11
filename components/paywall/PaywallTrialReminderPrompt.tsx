@@ -14,6 +14,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
 import V2Pressable from '../v2/V2Pressable';
+import { LinearGradient } from '../SafeLinearGradient';
 import { useV2GlassStyle, V2GlassSheen } from '../v2/V2Glass';
 import type { GlassTokens } from './PaywallPlus';
 import { COPY, pick } from './PaywallPlusCopy';
@@ -60,8 +61,10 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         disabled={asking}
         onPress={allow}
         withHaptic={false}
-        style={[S.cta, { backgroundColor: g.accent }]}
+        // зачем (paywall-gaps-states `.wcta`): кнопка с градиентом и свечением, как главная кнопка покупки
+        style={[S.cta, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.accent}4D` }] }]}
       >
+        <LinearGradient pointerEvents="none" colors={[g.accentBright, g.accent]} style={StyleSheet.absoluteFill} />
         {asking
           ? <ActivityIndicator color={g.ctaInk} />
           : <Text style={[S.ctaText, { color: g.accentInk }]}>{pick(lang, COPY.afterAllow)}</Text>}

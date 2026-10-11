@@ -994,6 +994,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // Ошибка обязана остаться видимой, а не молча уйти в тишину.
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Не удалось связаться с магазином. Попробуй позже.',
+          en: 'Couldn’t reach the store. Try again later.',
           uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
           es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
           'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
@@ -1274,6 +1275,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // ошибка подключения к стору при восстановлении обязана остаться видимой.
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Не удалось связаться с магазином. Попробуй позже.',
+          en: 'Couldn’t reach the store. Try again later.',
           uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
           es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
           'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
@@ -1330,10 +1332,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
         emitAppEvent('action_toast', mode === 'check' ? actionToastTri('success', {
-          ru: 'Покупка подтверждена', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
+          ru: 'Покупка подтверждена',
+          en: 'Purchase confirmed', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
           vi: 'Đã xác nhận giao dịch', id: 'Pembelian terkonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
         }) : actionToastTri('success', {
           ru: 'Покупки восстановлены',
+          en: 'Purchases restored',
           uk: 'Покупки відновлено',
           es: 'Compras restauradas',
           'pt-BR': 'Compras restauradas',
@@ -1365,6 +1369,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         console.warn('[PAYWALL] entitlement_sync:no_access', JSON.stringify({ mode })); // guard-ok: ранний исход логируется
         emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
           ru: 'Покупка пока не найдена. Нажми «Восстановить покупки».',
+          en: 'We can’t find the purchase yet. Tap “Restore purchases”.',
           uk: 'Покупку поки не знайдено. Натисни «Відновити покупки».',
           es: 'Aún no encontramos la compra. Toca «Restaurar compras».',
           'pt-BR': 'Ainda não encontramos a compra. Toque em «Restaurar compras».',
@@ -1374,6 +1379,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           pl: 'Nie znaleźliśmy jeszcze zakupu. Wybierz «Przywróć zakupy».',
         }) : actionToastTri('error', {
           ru: 'Активных подписок не обнаружено.',
+          en: 'No active subscriptions found.',
           uk: 'Активних підписок не знайдено.',
           es: 'No hay suscripciones activas.',
           'pt-BR': 'Nenhuma assinatura ativa encontrada.',
@@ -1393,6 +1399,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       })); // guard-ok: catch логирует причину
       emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
         ru: 'Не удалось проверить статус. Попробуй позже.',
+        en: 'Couldn’t check the status. Try again later.',
         uk: 'Не вдалося перевірити статус. Спробуй пізніше.',
         es: 'No se pudo comprobar el estado. Inténtalo más tarde.',
         'pt-BR': 'Não foi possível verificar o status. Tente mais tarde.',
@@ -1402,6 +1409,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         pl: 'Nie udało się sprawdzić statusu. Spróbuj później.',
       }) : actionToastTri('error', {
         ru: 'Не удалось восстановить покупки. Попробуй позже.',
+        en: 'Couldn’t restore purchases. Try again later.',
         uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
         es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
         'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',

@@ -171,7 +171,7 @@ const S = StyleSheet.create({
   cmpHeadCell: { width: 84, fontSize: 13, fontWeight: '700', letterSpacing: 1.6 },
   cmpRow: { flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 44, paddingVertical: 8, paddingHorizontal: 14, borderTopWidth: StyleSheet.hairlineWidth },
   cmpLabel: { flex: 1, minWidth: 0 },
-  cmpLabelText: { fontSize: 13, lineHeight: 18 },
+  cmpLabelText: { fontSize: 16, lineHeight: 21, fontWeight: '600' }, // зачем (paywall-gaps-states): название строки 16/600
   cmpCell: { width: 84, fontSize: 13, lineHeight: 17 },
   cmpPlusCell: { width: 88 },
   cmpPlusValue: { fontWeight: '700' },

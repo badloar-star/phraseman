@@ -67,6 +67,7 @@ import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
 import { buildSubscriptionDisclosure } from '../app/paywall_subscription_disclosure';
+import { ONBOARDING_COMPLETED_AT_KEY } from '../app/fresh_install_gate';
 import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
 import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
 import { languageNameOf, languageSentenceName, levelReaction, levelTitleOf, sourceTitle } from './onboarding/clean_onboarding_options';
@@ -3338,6 +3339,8 @@ function CleanOnboarding({
       await AsyncStorage.multiSet([
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
+        // зачем (координатор 12.10): время завершения — по нему новичку суткам не показываем объявления о новинках (app/fresh_install_gate.ts).
+        [ONBOARDING_COMPLETED_AT_KEY, String(Date.now())],
       ]);
       // Completion is emitted only after the validated finish path persisted
       // DONE_KEY. It is intentionally non-blocking: telemetry cannot hold the UI.

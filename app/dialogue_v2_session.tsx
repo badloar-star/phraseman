@@ -347,7 +347,7 @@ function SessionContent() {
       })),
     ]));
     coaching.applyCoaching(coached);
-    coaching.applyQuota(result.quota);
+    coaching.applyQuota(result.quota, pending.turnId);
   };
 
   const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string; learnerId: string }>) => {
@@ -357,6 +357,8 @@ function SessionContent() {
       return;
     }
     setSending(true);
+    // зачем (E3, координатор 12.10): пилюля «N/30» уменьшается в момент отправки; повтор того же хода её не трогает.
+    coaching.beginQuotaTurn(pending.turnId);
     try {
       const result = await sendDialogueV2CoachedTextTurn({
         sessionId: serverSession.sessionId,
@@ -368,6 +370,9 @@ function SessionContent() {
       });
       if (result.kind === 'reply') {
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
+      } else {
+        // зачем (E3): ход отвечен без реплик — снимаем его из «в полёте», остаток прежний.
+        coaching.applyQuota(null, pending.turnId);
       }
       pendingTurnRef.current = null;
       settleEnergy('acknowledge', 'first_turn_ok');
@@ -386,10 +391,13 @@ function SessionContent() {
         setMessages((current) => Object.freeze(current.map((message) => (
           message.id === pending.learnerId && message.author === 'learner' ? Object.freeze({ ...message, unsent: true }) : message
         ))));
-        coaching.markExhausted(error instanceof DialogueV2TurnFailureError ? error.quotaObservation : null);
+        coaching.markExhausted(error instanceof DialogueV2TurnFailureError ? error.quotaObservation : null, pending.turnId);
       } else if (reason === 'paused') {
+        coaching.rollbackQuotaTurn(pending.turnId, reason);
         setPaused(true);
       } else {
+        // зачем (E3): сбой хода — откат пилюли; понятное сообщение — панель ошибки с «Повторить» ниже (retry снова спишет).
+        coaching.rollbackQuotaTurn(pending.turnId, reason);
         if (reason === 'rate_limited') setRateLimitCooling(true);
         // Сервис не ответил ещё ни разу — диалог не состоялся, энергию возвращаем.
         if (reason === 'service') settleEnergy('refund', 'dialogue_first_turn_service_failed');

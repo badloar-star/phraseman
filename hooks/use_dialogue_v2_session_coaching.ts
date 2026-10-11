@@ -7,6 +7,15 @@ import {
   recordAiDialogMonthlyQuotaFromServer,
 } from '../app/ai_dialog_daily_quota';
 import type { AiDialogQuotaObservation } from '../app/ai_dialog_daily_quota';
+import {
+  EMPTY_DIALOGUE_V2_QUOTA,
+  beginDialogueV2QuotaTurn,
+  displayDialogueV2QuotaRemaining,
+  rollbackDialogueV2QuotaTurn,
+  setDialogueV2QuotaRemaining,
+  settleDialogueV2QuotaTurn,
+  type DialogueV2QuotaState,
+} from '../app/dialogue_v2_quota_optimistic';
 import { REVENUE_MONTHLY_LIMITS } from '../app/revenue_daily_limits';
 import type {
   DialogueV2CoachedTurnQuota,
@@ -66,7 +75,11 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   const [allowance, setAllowance] = useState<DialogueV2WhyAllowance>(() => emptyWhyAllowance());
   const allowanceRef = useRef(allowance);
   allowanceRef.current = allowance;
-  const [quotaRemaining, setQuotaRemaining] = useState<number | null>(null);
+  // зачем (E3, координатор 12.10): остаток и ходы в полёте — ОДНО состояние, чтобы ответ сервера менял их одной отрисовкой.
+  const [quota, setQuota] = useState<DialogueV2QuotaState>(EMPTY_DIALOGUE_V2_QUOTA);
+  const setQuotaRemaining = useCallback((remaining: number | null) => {
+    setQuota((current) => setDialogueV2QuotaRemaining(current, remaining));
+  }, []);
   const [quotaExhausted, setQuotaExhausted] = useState(false);
   // зачем (Сверка 05.10, dialogue_completion_run: «coached:send → quota_exhausted», реплика пропала молча): сервер
   // сказал «лимит исчерпан» (dialog_free_limit), а телефон считал человека Plus (freeTier=false) — экран лимита был
@@ -126,16 +139,32 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     if (coaching.dialogueEnded) setEnded(true);
   }, []);
 
-  const applyQuota = useCallback((quota: DialogueV2CoachedTurnQuota | null) => {
+  /** Отправка хода: пилюля «N/30» уменьшается сразу (повтор того же turnId — без изменений). */
+  const beginQuotaTurn = useCallback((turnId: string) => {
+    setQuota((current) => beginDialogueV2QuotaTurn(current, turnId));
+  }, []);
+
+  /** Сбой хода (service / network / rate_limited / paused): откат пилюли. */
+  const rollbackQuotaTurn = useCallback((turnId: string, reason: string) => {
+    setQuota((current) => rollbackDialogueV2QuotaTurn(current, turnId, reason));
+  }, []);
+
+  const applyQuota = useCallback((quota: DialogueV2CoachedTurnQuota | null, turnId?: string) => {
     if (!quota || quota.remaining === null) {
       console.log(`[DIALOGUE-V2] quota:skip — ${quota ? 'remaining=null (безлимит)' : 'нет квоты в ответе'}`);
+      // зачем (E3): ход отвечен — снимаем его из «в полёте» даже без остатка в ответе, иначе пилюля осталась бы −1.
+      if (turnId) setQuota((current) => settleDialogueV2QuotaTurn(current, turnId, null));
       return;
     }
     console.log('[DIALOGUE-V2] quota:turn', JSON.stringify({
       remaining: quota.remaining, exhausted: quota.remaining <= 0, resetAtMs: quota.resetAtMs, quotaVersion: quota.quotaVersion,
     }));
     quotaFromServerRef.current = true;
-    setQuotaRemaining(quota.remaining);
+    // зачем (E3): остаток сервера и снятие хода — один переход, цифра не прыгает (−1 сразу, ответ подтверждает).
+    const serverRemaining = quota.remaining;
+    setQuota((current) => (turnId
+      ? settleDialogueV2QuotaTurn(current, turnId, serverRemaining)
+      : setDialogueV2QuotaRemaining(current, serverRemaining)));
     if (quota.remaining <= 0) {
       setQuotaExhausted(true);
       setServerExhausted(true);
@@ -149,13 +178,13 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     }
   }, [studyTarget]);
 
-  const markExhausted = useCallback((observation: AiDialogQuotaObservation | null) => {
+  const markExhausted = useCallback((observation: AiDialogQuotaObservation | null, turnId?: string) => {
     console.warn('[DIALOGUE-V2] quota:exhausted_by_server', JSON.stringify({
       freeTierOnPhone: freeTier,
       observation: observation ?? null,
     }));
     quotaFromServerRef.current = true;
-    setQuotaRemaining(0);
+    setQuota((current) => (turnId ? settleDialogueV2QuotaTurn(current, turnId, 0) : setDialogueV2QuotaRemaining(current, 0)));
     setQuotaExhausted(true);
     setServerExhausted(true);
     if (studyTarget) {
@@ -192,11 +221,12 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
   const closeWhy = useCallback(() => setWhyMessageId(null), []);
   const markSummarySeen = useCallback(() => setSummarySeen(true), []);
 
+  const shownRemaining = displayDialogueV2QuotaRemaining(quota);
   const quotaView: DialogueV2SessionQuotaView | null = useMemo(() => (
-    freeTier && quotaRemaining !== null
-      ? Object.freeze({ remaining: quotaRemaining, total: DIALOGUE_V2_FREE_MONTHLY_REPLIES })
+    freeTier && shownRemaining !== null
+      ? Object.freeze({ remaining: shownRemaining, total: DIALOGUE_V2_FREE_MONTHLY_REPLIES })
       : null
-  ), [freeTier, quotaRemaining]);
+  ), [freeTier, shownRemaining]);
 
   return {
     mood,
@@ -214,6 +244,8 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     quotaExhausted: (freeTier && quotaExhausted) || serverExhausted,
     applyCoaching,
     applyQuota,
+    beginQuotaTurn,
+    rollbackQuotaTurn,
     markExhausted,
     toggleTranslation,
     openFix,

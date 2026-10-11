@@ -1,31 +1,37 @@
 /**
- * Раскрытая карточка — макет docs/design/v2-app/cards-section.html (кадры «Своя карточка», «Карточка — оборот», «Карточка из чужого набора»).
+ * Раскрытая карточка — нижняя шторка по макету docs/design/v2-app/cards-v2.html (кадры «Карточка открыта», «Карточка — оборот»; CSS `.flip`, `.acts`).
  *
- * зачем (владелец 04.10: «во всех разделах карточки открываются горизонтальными красивыми разворачивающимися»): вместо шторки снизу карточка
- * раскрывается по центру — горизонтальный разворот (поворот вокруг левого края 760 мс), тап по карточке переворачивает её на перевод,
- * затемнение с размытием закрывает. Под карточкой — пример и действия: у своей карточки «Изменить / Сохранено / Удалить», у чужой «Сохранить».
- * Размеры из замера макета (430×932): карточка 230 высотой r28, поля 20, английское слово 34/600, перевод 30/600, затемнение rgba(2,2,4,.72).
+ * зачем (Карточки 2.0, владелец 12.10; решение координатора: cards-v2 перекрывает CARDS_LOCKED): вместо карточки по центру с затемнением — шторка
+ * снизу (общая PanelSheet: затемнение 260 мс, выезд 440 мс). В шторке — разворотная карточка 196 высотой r20 (тап переворачивает: 560 мс
+ * cubic-bezier(.2,.8,.2,1), перспектива 1200) и ряд круглых действий 56: «Озвучить / Изменить / В набор / Удалить». Лицевая сторона — «EN», озвучка, слово 34/40,
+ * значок «перевернуть»; оборот — перевод 30/36 и пример под ним. Точек «силы слова» на карточке больше нет (макет их не рисует).
+ * «В набор» открывает в той же шторке список своих неопубликованных наборов и кладёт в выбранный эту карточку (localPackCardAdd), без серверных вызовов.
+ * Высота карточки растёт по тексту, а не режет его (правило владельца: лечим вёрсткой, не сжатием шрифта).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BlurView } from 'expo-blur';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
-import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { KitCard, KitCta } from '../../components/cards-grid/CardsKit';
+import { KitCta } from '../../components/cards-grid/CardsKit';
 import { useLineScale } from '../../components/cards-grid/useLineScale';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
+import { SheetRow } from '../../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
+import { PlateFill, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { addCardToLocalPack, loadAddableLocalPacks } from '../community_packs/localPackCardAdd';
+import type { LocalAuthorPack } from '../community_packs/localAuthorPacks';
+import { actionToastTri, emitAppEvent } from '../events';
+import type { CardItem } from './types';
 
 export type ExpandedCardData = Readonly<{
   id: string;
   front: string;
   ipa?: string | null;
   back: string;
-  /** Сколько из четырёх точек «силы слова» закрашено. */
+  /** Оставлено для совместимости с вызовами: на карточке точки «силы слова» больше не рисуются. */
   dots?: number;
   example?: string | null;
   exampleTr?: string | null;
@@ -34,9 +40,9 @@ export type ExpandedCardData = Readonly<{
 type Props = Readonly<{
   card: ExpandedCardData | null;
   lang: Lang;
-  /** Подпись над карточкой: название набора (и автор у чужого). */
-  overline: string;
-  /** own — «Изменить / Сохранено / Удалить»; foreign — «Сохранить»; none — без действий. */
+  /** Название набора (и автор у чужого) — оставлено для совместимости; в шторке макета подписи над карточкой нет. */
+  overline?: string;
+  /** own — «Озвучить / Изменить / В набор / Удалить»; foreign — «Озвучить» и «Сохранить»; none — без действий. */
   footer: 'own' | 'foreign' | 'none';
   saved: boolean;
   /** Показать «Удалить» (нельзя у карточек, которые нельзя удалить отсюда). */
@@ -44,6 +50,10 @@ type Props = Readonly<{
   canEdit: boolean;
   /** Показывать «Сохранить / Сохранено» (в самих «Сохранённых» карточка уже сохранена — плитки нет). */
   showSave?: boolean;
+  /** Исходная карточка приложения — нужна для «В набор». Нет — плитки «В набор» нет. */
+  sourceCard?: CardItem | null;
+  /** «Создать набор», когда своих неопубликованных наборов ещё нет. */
+  onCreatePack?: () => void;
   onClose: () => void;
   onSpeak: (text: string) => void;
   onEdit: () => void;
@@ -52,212 +62,205 @@ type Props = Readonly<{
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { example: 'Пример', edit: 'Изменить', saved: 'Сохранено', save: 'Сохранить', del: 'Удалить', speak: 'Озвучить', close: 'Закрыть' },
-  uk: { example: 'Приклад', edit: 'Змінити', saved: 'Збережено', save: 'Зберегти', del: 'Видалити', speak: 'Озвучити', close: 'Закрити' },
-  en: { example: 'Example', edit: 'Edit', saved: 'Saved', save: 'Save', del: 'Delete', speak: 'Listen', close: 'Close' },
-  es: { example: 'Ejemplo', edit: 'Editar', saved: 'Guardada', save: 'Guardar', del: 'Eliminar', speak: 'Escuchar', close: 'Cerrar' },
-  'pt-BR': { example: 'Exemplo', edit: 'Editar', saved: 'Salvo', save: 'Salvar', del: 'Excluir', speak: 'Ouvir', close: 'Fechar' },
-  vi: { example: 'Ví dụ', edit: 'Sửa', saved: 'Đã lưu', save: 'Lưu', del: 'Xóa', speak: 'Nghe', close: 'Đóng' },
-  id: { example: 'Contoh', edit: 'Ubah', saved: 'Tersimpan', save: 'Simpan', del: 'Hapus', speak: 'Dengarkan', close: 'Tutup' },
-  tr: { example: 'Örnek', edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat' },
-  pl: { example: 'Przykład', edit: 'Edytuj', saved: 'Zapisano', save: 'Zapisz', del: 'Usuń', speak: 'Posłuchaj', close: 'Zamknij' },
+  ru: { edit: 'Изменить', saved: 'Сохранено', save: 'Сохранить', del: 'Удалить', speak: 'Озвучить', close: 'Закрыть', toPack: 'В набор', pickPack: 'В какой набор?', noPacks: 'Своих наборов пока нет', createPack: 'Создать набор', flip: 'Перевернуть карточку' },
+  uk: { edit: 'Змінити', saved: 'Збережено', save: 'Зберегти', del: 'Видалити', speak: 'Озвучити', close: 'Закрити', toPack: 'До набору', pickPack: 'До якого набору?', noPacks: 'Власних наборів поки немає', createPack: 'Створити набір', flip: 'Перевернути картку' },
+  en: { edit: 'Edit', saved: 'Saved', save: 'Save', del: 'Delete', speak: 'Listen', close: 'Close', toPack: 'To a pack', pickPack: 'Which pack?', noPacks: 'You have no packs yet', createPack: 'Create a pack', flip: 'Flip the card' },
+  es: { edit: 'Editar', saved: 'Guardada', save: 'Guardar', del: 'Eliminar', speak: 'Escuchar', close: 'Cerrar', toPack: 'A un set', pickPack: '¿A qué set?', noPacks: 'Aún no tienes sets', createPack: 'Crear un set', flip: 'Girar la tarjeta' },
+  'pt-BR': { edit: 'Editar', saved: 'Salvo', save: 'Salvar', del: 'Excluir', speak: 'Ouvir', close: 'Fechar', toPack: 'Para um conjunto', pickPack: 'Para qual conjunto?', noPacks: 'Você ainda não tem conjuntos', createPack: 'Criar um conjunto', flip: 'Virar o cartão' },
+  vi: { edit: 'Sửa', saved: 'Đã lưu', save: 'Lưu', del: 'Xóa', speak: 'Nghe', close: 'Đóng', toPack: 'Vào bộ thẻ', pickPack: 'Vào bộ thẻ nào?', noPacks: 'Bạn chưa có bộ thẻ nào', createPack: 'Tạo bộ thẻ', flip: 'Lật thẻ' },
+  id: { edit: 'Ubah', saved: 'Tersimpan', save: 'Simpan', del: 'Hapus', speak: 'Dengarkan', close: 'Tutup', toPack: 'Ke set', pickPack: 'Ke set mana?', noPacks: 'Belum ada set', createPack: 'Buat set', flip: 'Balik kartu' },
+  tr: { edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat', toPack: 'Sete ekle', pickPack: 'Hangi sete?', noPacks: 'Henüz setin yok', createPack: 'Set oluştur', flip: 'Kartı çevir' },
+  pl: { edit: 'Edytuj', saved: 'Zapisano', save: 'Zapisz', del: 'Usuń', speak: 'Posłuchaj', close: 'Zamknij', toPack: 'Do zestawu', pickPack: 'Do którego zestawu?', noPacks: 'Nie masz jeszcze zestawów', createPack: 'Utwórz zestaw', flip: 'Obróć kartę' },
 });
 
-const SIDE = 18;
-const UNFOLD_MS = 760;
-const FLIP_MS = 560;
-/** Высота карточки по макету (системный шрифт 100%); при крупном шрифте карточка растёт по тексту, а не режет его. */
-const CARD_MIN_H = 230;
-/** Вертикальный запас внутри грани: паддинги 20+20 и место под кнопку звука / точки силы. */
-const FACE_PAD_V = 40;
+const toastCopy = {
+  added: { ru: 'Добавлено в набор', uk: 'Додано до набору', en: 'Added to the pack', es: 'Añadida al set', 'pt-BR': 'Adicionado ao conjunto', vi: 'Đã thêm vào bộ thẻ', id: 'Ditambahkan ke set', tr: 'Sete eklendi', pl: 'Dodano do zestawu' },
+  duplicate: { ru: 'Эта карточка уже в наборе', uk: 'Ця картка вже в наборі', en: 'The card is already in this pack', es: 'La tarjeta ya está en el set', 'pt-BR': 'O cartão já está no conjunto', vi: 'Thẻ đã có trong bộ thẻ', id: 'Kartu sudah ada di set', tr: 'Kart zaten sette', pl: 'Karta jest już w zestawie' },
+  failed: { ru: 'Не удалось добавить карточку', uk: 'Не вдалося додати картку', en: 'Could not add the card', es: 'No se pudo añadir la tarjeta', 'pt-BR': 'Não foi possível adicionar o cartão', vi: 'Không thể thêm thẻ', id: 'Kartu tidak dapat ditambahkan', tr: 'Kart eklenemedi', pl: 'Nie udało się dodać karty' },
+} as const;
 
-function ExpandedCardInner({ card, lang, overline, footer, saved, canDelete, canEdit, showSave = true, onClose, onSpeak, onEdit, onDelete, onToggleSave }: Props) {
+/** Разворот: 560 мс, cubic-bezier(.2,.8,.2,1) — `.flip .fl` макета. */
+const FLIP_MS = 560;
+const FLIP_EASE = Easing.bezier(0.2, 0.8, 0.2, 1);
+/** Высота карточки по макету (системный шрифт 100%); при крупном шрифте карточка растёт по тексту, а не режет его. */
+const CARD_MIN_H = 196;
+const CARD_RADIUS = 20;
+/** Вертикальный запас внутри грани: паддинги 20+20 и место под метку/значок. */
+const FACE_PAD_V = 40;
+const TAG = '[CARD-SHEET]';
+
+type ActionDef = Readonly<{ key: string; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID: string; danger?: boolean }>;
+
+function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, showSave = true, sourceCard, onCreatePack, onClose, onSpeak, onEdit, onDelete, onToggleSave }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const { width: screenW } = useWindowDimensions();
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReduceMotion();
   const lh = useLineScale();
-  const w = screenW - SIDE * 2;
-  const [a, b] = themePair(g);
-  const unfold = useSharedValue(reduceMotion ? 1 : 0);
   const flip = useSharedValue(0);
   const [flipped, setFlipped] = useState(false);
+  const [mode, setMode] = useState<'card' | 'packs'>('card');
+  const [packs, setPacks] = useState<readonly LocalAuthorPack[] | null>(null);
+  const [adding, setAdding] = useState(false);
   // зачем (координатор 05.10, «ExpandedCardV2 при крупном системном шрифте»; правило владельца — лечим вёрсткой, не сжатием шрифта):
   // высота карточки = максимум из высоты макета и фактической высоты текста обеих сторон, измеренной onLayout.
   const [frontH, setFrontH] = useState(0);
   const [backH, setBackH] = useState(0);
   const cardH = Math.max(CARD_MIN_H, frontH + FACE_PAD_V, backH + FACE_PAD_V);
+  const cardId = card?.id ?? null;
 
-  // зачем: при открытии новой карточки — заново «разворот» и лицевая сторона
+  // зачем: при открытии новой карточки — лицевая сторона и режим «карточка»
   useEffect(() => {
-    if (!card) return;
     setFlipped(false);
+    setMode('card');
+    setPacks(null);
+    setAdding(false);
     setFrontH(0);
     setBackH(0);
     flip.value = 0;
-    if (reduceMotion) { unfold.value = 1; return; }
-    unfold.value = 0;
-    unfold.value = withTiming(1, { duration: UNFOLD_MS, easing: Easing.bezier(0.2, 1, 0.3, 1) });
-  }, [card?.id, flip, unfold, reduceMotion]); // eslint-disable-line react-hooks/exhaustive-deps -- реагируем только на смену карточки
+  }, [cardId, flip]);
 
   const toggleFlip = useCallback(() => {
     setFlipped((prev) => {
       const next = !prev;
-      flip.value = withTiming(next ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: Easing.bezier(0.2, 0.8, 0.2, 1) }); // зачем (Карточки 2.0 12.10, cards-v2 .flip): разворот 560 мс cubic-bezier(.2,.8,.2,1)
+      console.log(`${TAG} разворот → ${next ? 'оборот' : 'лицо'} cardId=${cardId} быстро=${reduceMotion}`);
+      flip.value = withTiming(next ? 1 : 0, { duration: reduceMotion ? 0 : FLIP_MS, easing: FLIP_EASE });
       return next;
     });
-  }, [flip, reduceMotion]);
+  }, [cardId, flip, reduceMotion]);
 
-  const unfoldStyle = useAnimatedStyle(() => {
-    const p = unfold.value;
-    return {
-      opacity: Math.min(1, p / 0.55),
-      // вращение вокруг ЛЕВОГО края карточки (transform-origin: 0 50% в макете)
-      transform: [{ perspective: 1400 }, { translateX: -w / 2 }, { rotateY: `${-88 * (1 - p)}deg` }, { translateX: w / 2 }, { scale: 0.88 + 0.12 * p }],
-    };
-  });
-  const frontStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1400 }, { rotateY: `${flip.value * 180}deg` }] }));
-  const backStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1400 }, { rotateY: `${flip.value * 180 - 180}deg` }] }));
-  const dimStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, unfold.value / 0.3) }));
+  const frontStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1200 }, { rotateY: `${flip.value * 180}deg` }] }));
+  const backStyle = useAnimatedStyle(() => ({ transform: [{ perspective: 1200 }, { rotateY: `${flip.value * 180 - 180}deg` }] }));
+
+  const openPacks = useCallback(() => {
+    if (!sourceCard) { console.warn(`${TAG} «В набор»: исходной карточки нет cardId=${cardId}`); return; }
+    setMode('packs');
+    void loadAddableLocalPacks().then(setPacks).catch((error: unknown) => {
+      console.warn(`${TAG} «В набор»: не удалось прочитать наборы: ${error instanceof Error ? error.message : String(error)}`);
+      setPacks([]);
+    });
+  }, [cardId, sourceCard]);
+
+  const addTo = useCallback((packId: string) => {
+    if (!sourceCard || adding) return;
+    setAdding(true);
+    void addCardToLocalPack(packId, sourceCard).then((result) => {
+      console.log(`${TAG} «В набор»: результат=${result} packId=${packId}`);
+      if (result === 'added') {
+        emitAppEvent('action_toast', actionToastTri('success', toastCopy.added));
+        onClose();
+      } else if (result === 'duplicate') {
+        emitAppEvent('action_toast', actionToastTri('info', toastCopy.duplicate));
+        setAdding(false);
+      } else {
+        emitAppEvent('action_toast', actionToastTri('error', toastCopy.failed));
+        setAdding(false);
+      }
+    });
+  }, [adding, onClose, sourceCard]);
 
   if (!card) return null;
-  // зачем (Сверка 10.10, светлая тема): лицо карточки на светлых темах светлое — белый текст на нём не читался; в светлой берём текст темы,
-  // в тёмных остаётся прежний (mediaInk).
-  const faceInk = g.isLight ? g.text : g.mediaInk;
-  const faceInkSoft = g.isLight ? g.secondary : g.mediaInkSoft;
-  const faceShadow = [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -14, color: g.dropShadow }];
-  // зачем (замечание владельца 10.10): базы карточки — токены темы (deepBase/deepBaseAlt), а не литералы под «Аврору».
-  const colors = [`${mixDark(a, g.deepBase, 0.46)}E6`, `${g.deepBaseAlt}DB`, `${mixDark(b, g.deepBaseAlt, 0.4)}DB`] as const;
-  const faceLayers = (key: string) => (
-    <>
-      <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.56, 1]} start={{ x: 0.18, y: 0.0 }} end={{ x: 0.82, y: 1 }} style={StyleSheet.absoluteFill} />
-      <LinearGradient pointerEvents="none" colors={[`${g.mediaInk}29`, `${g.mediaInk}0A`, `${g.mediaInk}00`, `${g.mediaInk}0D`]} locations={[0, 0.28, 0.54, 1]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
-      <View pointerEvents="none" style={styles.glow}>
-        <Svg width="100%" height="100%" viewBox="0 0 100 100">
-          <Defs>
-            <RadialGradient id={`xg-${key}`} cx="50" cy="50" r="50" gradientUnits="userSpaceOnUse">
-              <Stop offset="0" stopColor={a} stopOpacity={0.7} />
-              <Stop offset="1" stopColor={a} stopOpacity={0} />
-            </RadialGradient>
-          </Defs>
-          <Circle cx="50" cy="50" r="50" fill={`url(#xg-${key})`} />
-        </Svg>
-      </View>
-    </>
-  );
+
+  const backTag = lang.slice(0, 2).toUpperCase();
+  const actions: ActionDef[] = [
+    { key: 'speak', icon: 'volume-high-outline', label: copy.speak, onPress: () => onSpeak(card.front), testID: 'fc-expanded-speak' },
+  ];
+  if (footer === 'own') {
+    if (canEdit) actions.push({ key: 'edit', icon: 'create-outline', label: copy.edit, onPress: onEdit, testID: 'fc-expanded-edit' });
+    if (sourceCard) actions.push({ key: 'pack', icon: 'albums-outline', label: copy.toPack, onPress: openPacks, testID: 'fc-expanded-to-pack' });
+    if (showSave) actions.push({ key: 'save', icon: saved ? 'bookmark' : 'bookmark-outline', label: saved ? copy.saved : copy.save, onPress: onToggleSave, testID: 'fc-expanded-save' });
+    if (canDelete) actions.push({ key: 'del', icon: 'trash-outline', label: copy.del, onPress: onDelete, testID: 'fc-expanded-delete', danger: true });
+  } else if (footer === 'foreign') {
+    if (sourceCard) actions.push({ key: 'pack', icon: 'albums-outline', label: copy.toPack, onPress: openPacks, testID: 'fc-expanded-to-pack' });
+  }
 
   return (
-    <View testID="fc-expanded-card" style={StyleSheet.absoluteFill} pointerEvents="box-none">
-      <Animated.View style={[StyleSheet.absoluteFill, dimStyle]}>
-        <Pressable accessibilityRole="button" accessibilityLabel={copy.close} onPress={onClose} style={StyleSheet.absoluteFill}>
-          <BlurView intensity={Platform.OS === 'android' ? 30 : 40} tint="dark" experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} style={StyleSheet.absoluteFill} />
-          <View style={[StyleSheet.absoluteFill, styles.dim]} />
-        </Pressable>
-      </Animated.View>
-      {/* зачем: при крупном шрифте стопка (карточка + пример + кнопки) может не поместиться — прокручивается, а не обрезается */}
-      <ScrollView pointerEvents="box-none" style={StyleSheet.absoluteFill} contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
-        <View pointerEvents="box-none" style={styles.stack}>
-          <Text style={[styles.overline, { color: g.secondary, lineHeight: lh(16) }]}>{overline}</Text>
-          <Animated.View style={[styles.cardWrap, { height: cardH }, unfoldStyle]}>
-            <Pressable testID="fc-expanded-card-flip" accessibilityRole="button" accessibilityLabel={flipped ? card.back : card.front} onPress={toggleFlip} style={styles.card}>
-              <Animated.View style={[styles.face, { boxShadow: faceShadow }, frontStyle]}>
-                {faceLayers(`${card.id}f`)}
-                <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.en, { color: faceInk, lineHeight: lh(40) }]}>{card.front}</Text>
-                  {card.ipa ? <Text style={[styles.ipa, { color: faceInkSoft, lineHeight: lh(22) }]}>{card.ipa}</Text> : null}
+    <PanelSheet visible onClose={onClose} testID="fc-expanded-card">
+      {mode === 'card' ? (
+        <View>
+          <Pressable
+            testID="fc-expanded-card-flip"
+            accessibilityRole="button"
+            accessibilityLabel={`${copy.flip}: ${flipped ? card.back : card.front}`}
+            onPress={toggleFlip}
+            style={[styles.card, { height: cardH }]}>
+            <Animated.View style={[styles.face, { borderRadius: CARD_RADIUS, boxShadow: plateBoxShadow(g) }, frontStyle]}>
+              <PlateFill g={g} radius={CARD_RADIUS} />
+              <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>EN</Text>
+              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+                <Ionicons name="volume-high" size={18} color={g.text} />
+              </Pressable>
+              <View style={styles.faceText} onLayout={(e) => setFrontH(Math.ceil(e.nativeEvent.layout.height))}>
+                <Text style={[styles.word, { color: g.text, lineHeight: lh(40) }]}>{card.front}</Text>
+                {card.ipa ? <Text style={[styles.sub, { color: g.secondary, lineHeight: lh(20) }]}>{card.ipa}</Text> : null}
+              </View>
+              <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
+            </Animated.View>
+            <Animated.View style={[styles.face, { borderRadius: CARD_RADIUS, boxShadow: plateBoxShadow(g) }, backStyle]}>
+              <PlateFill g={g} radius={CARD_RADIUS} raised />
+              <Text style={[styles.tag, { color: g.secondary, lineHeight: lh(16) }]}>{backTag}</Text>
+              <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
+                <Text style={[styles.wordBack, { color: g.text, lineHeight: lh(36) }]}>{card.back}</Text>
+                {card.example ? <Text style={[styles.sub, { color: g.secondary, lineHeight: lh(20) }]}>{card.example}</Text> : null}
+                {card.exampleTr ? <Text style={[styles.subTr, { color: g.mutedText, lineHeight: lh(20) }]}>{card.exampleTr}</Text> : null}
+              </View>
+              <Ionicons name="sync-outline" size={18} color={g.mutedText} style={styles.turn} />
+            </Animated.View>
+          </Pressable>
+          <View style={styles.acts}>
+            {actions.map((action) => (
+              <Pressable key={action.key} testID={action.testID} accessibilityRole="button" accessibilityLabel={action.label} onPress={action.onPress} style={({ pressed }) => [styles.act, pressed && styles.pressed]}>
+                <View style={[styles.actCircle, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+                  <Ionicons name={action.icon} size={22} color={action.danger ? g.bad : g.text} />
                 </View>
-                <Pressable accessibilityRole="button" accessibilityLabel={copy.speak} hitSlop={8} onPress={() => onSpeak(card.front)} style={[styles.speak, { backgroundColor: `${faceInk}1F` }]}>
-                  <Ionicons name="volume-high" size={16} color={faceInk} />
-                </Pressable>
-                {card.dots ? (
-                  <View style={styles.dots} pointerEvents="none">
-                    {[0, 1, 2, 3].map((d) => <View key={d} /* guard-ok: ровно четыре точки */ style={[styles.dot, { backgroundColor: d < (card.dots ?? 0) ? g.accent : `${faceInk}38` }]} />)}
-                  </View>
-                ) : null}
-                {/* зачем (Тень 12.10): фаска-кромка грани (bevelShadow) убрана — грань отделяет внешняя тень faceShadow */}
-              </Animated.View>
-              <Animated.View style={[styles.face, styles.faceBack, { boxShadow: faceShadow }, backStyle]}>
-                {faceLayers(`${card.id}b`)}
-                <View style={styles.faceText} onLayout={(e) => setBackH(Math.ceil(e.nativeEvent.layout.height))}>
-                  <Text style={[styles.ru, { color: faceInk, lineHeight: lh(36) }]}>{card.back}</Text>
-                </View>
-                {/* зачем (Тень 12.10): фаска-кромка грани (bevelShadow) убрана — грань отделяет внешняя тень faceShadow */}
-              </Animated.View>
-            </Pressable>
-          </Animated.View>
-          {card.example ? (
-            <View style={styles.exampleWrap}>
-              <KitCard g={g} style={styles.example}>
-                <View style={styles.examplePad}>
-                  <Text style={[styles.exampleLabel, { color: g.secondary, lineHeight: lh(16) }]}>{copy.example}</Text>
-                  <Text style={[styles.exampleText, { color: g.text, lineHeight: lh(23) }]}>{card.example}</Text>
-                  {card.exampleTr ? <Text style={[styles.exampleTr, { color: g.secondary, lineHeight: lh(20) }]}>{card.exampleTr}</Text> : null}
-                </View>
-              </KitCard>
-            </View>
-          ) : null}
-          {footer === 'own' ? (
-            <View style={styles.acts}>
-              {canEdit ? <ActTile g={g} icon="create-outline" label={copy.edit} testID="fc-expanded-edit" onPress={onEdit} /> : null}
-              {showSave ? <ActTile g={g} icon={saved ? 'bookmark' : 'bookmark-outline'} label={saved ? copy.saved : copy.save} testID="fc-expanded-save" onPress={onToggleSave} /> : null}
-              {canDelete ? <ActTile g={g} icon="trash-outline" label={copy.del} testID="fc-expanded-delete" onPress={onDelete} /> : null}
-            </View>
-          ) : null}
-          {footer === 'foreign' ? (
+                <Text style={[styles.actLabel, { color: g.secondary, lineHeight: lh(17) }]}>{action.label}</Text>
+              </Pressable>
+            ))}
+          </View>
+          {footer === 'foreign' && showSave ? (
             <View style={styles.foot}>
               <KitCta g={g} label={saved ? copy.saved : copy.save} icon={saved ? 'bookmark' : 'bookmark-outline'} onPress={onToggleSave} testID="fc-expanded-save" />
             </View>
           ) : null}
         </View>
-      </ScrollView>
-    </View>
-  );
-}
-
-function ActTile({ g, icon, label, onPress, testID }: Readonly<{ g: ReturnType<typeof useLv2Glass>; icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; testID: string }>) {
-  const lh = useLineScale();
-  return (
-    <View style={styles.act}>
-      <KitCard g={g} solid={g.opaqueControl} onPress={onPress} testID={testID} accessibilityLabel={label} style={styles.actCard}>
-        <View style={styles.actInner}>
-          <Ionicons name={icon} size={22} color={g.text} />
-          <Text style={[styles.actText, { color: g.text, lineHeight: lh(20) }]}>{label}</Text>
+      ) : (
+        <View testID="fc-expanded-pack-picker">
+          <Text accessibilityRole="header" style={[styles.pickTitle, { color: g.text, lineHeight: lh(26) }]}>{copy.pickPack}</Text>
+          {packs === null ? null : packs.length === 0 ? (
+            <View>
+              <Text style={[styles.empty, { color: g.secondary, lineHeight: lh(22) }]}>{copy.noPacks}</Text>
+              {onCreatePack ? <SheetRow g={g} testID="fc-expanded-create-pack" icon="add" title={copy.createPack} onPress={onCreatePack} /> : null}
+            </View>
+          ) : (
+            packs.map((pack) => (
+              <SheetRow key={pack.id} g={g} testID={`fc-expanded-pack-${pack.id}`} icon="albums-outline" title={pack.title} onPress={() => addTo(pack.id)} />
+            ))
+          )}
         </View>
-      </KitCard>
-    </View>
+      )}
+    </PanelSheet>
   );
 }
 
 export const ExpandedCardV2 = memo(ExpandedCardInner);
 
 const styles = StyleSheet.create({
-  dim: { backgroundColor: 'rgba(2,2,4,0.72)' }, // theme-exempt: затемнение под карточкой — тёмный скрим в любой теме
-  center: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: SIDE, paddingVertical: 24 },
-  stack: { alignSelf: 'stretch' },
-  overline: { textAlign: 'center', marginBottom: 12, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
-  cardWrap: { minHeight: CARD_MIN_H },
+  card: { minHeight: CARD_MIN_H },
+  face: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 30, paddingVertical: 20, alignItems: 'center', justifyContent: 'center', backfaceVisibility: 'hidden' },
   // текст граней на всю ширину грани, как в макете; высоту измеряем onLayout
   faceText: { alignSelf: 'stretch', alignItems: 'center' },
-  card: { flex: 1 },
-  face: { ...StyleSheet.absoluteFillObject, borderRadius: 28, padding: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backfaceVisibility: 'hidden' },
-  faceBack: {},
-  glow: { position: 'absolute', width: '80%', aspectRatio: 1, right: '-30%', top: '-40%', opacity: 0.55 },
-  en: { width: '100%', textAlign: 'center', fontSize: 34, lineHeight: 40, fontWeight: '600', letterSpacing: -0.2 },
-  ipa: { marginTop: 8, fontSize: 16, lineHeight: 22, fontStyle: 'italic', textAlign: 'center' },
-  ru: { width: '100%', textAlign: 'center', fontSize: 30, lineHeight: 36, fontWeight: '600' },
-  speak: { position: 'absolute', right: 14, top: 14, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  dots: { position: 'absolute', left: 20, bottom: 18, flexDirection: 'row', gap: 4 },
-  dot: { width: 6, height: 6, borderRadius: 3 },
-  exampleWrap: { marginTop: 14 },
-  example: { minHeight: 0 },
-  examplePad: { paddingVertical: 14, paddingHorizontal: 18 },
-  exampleLabel: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
-  exampleText: { marginTop: 8, fontSize: 16, lineHeight: 23 },
-  exampleTr: { marginTop: 4, fontSize: 16, lineHeight: 20 },
-  acts: { marginTop: 14, flexDirection: 'row', gap: 10 },
-  act: { flex: 1 },
-  actCard: { minHeight: 86 },
-  actInner: { alignItems: 'center', justifyContent: 'center', gap: 10, flex: 1, paddingVertical: 12, paddingHorizontal: 6 },
-  actText: { fontSize: 16, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
-  foot: { marginTop: 14 },
+  tag: { position: 'absolute', left: 20, top: 18, fontSize: 13, fontWeight: '600' },
+  speak: { position: 'absolute', right: 14, top: 12, width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  word: { width: '100%', textAlign: 'center', fontSize: 34, fontWeight: '700', letterSpacing: -0.5 },
+  wordBack: { width: '100%', textAlign: 'center', fontSize: 30, fontWeight: '700', letterSpacing: -0.5 },
+  sub: { marginTop: 8, textAlign: 'center', fontSize: 16 },
+  subTr: { marginTop: 4, textAlign: 'center', fontSize: 16 },
+  turn: { position: 'absolute', right: 16, bottom: 14 },
+  acts: { marginTop: 22, flexDirection: 'row', gap: 8 },
+  act: { flex: 1, alignItems: 'center', gap: 8 },
+  actCircle: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
+  actLabel: { fontSize: 13, fontWeight: '600', textAlign: 'center' },
+  pressed: { opacity: 0.82 },
+  foot: { marginTop: 18 },
+  pickTitle: { fontSize: 22, fontWeight: '700', paddingHorizontal: 6, paddingBottom: 6 },
+  empty: { fontSize: 16, paddingHorizontal: 6, paddingVertical: 12 },
 });

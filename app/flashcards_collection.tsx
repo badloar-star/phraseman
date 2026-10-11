@@ -1771,6 +1771,9 @@ export default function FlashcardsScreen() {
         card={expandedData}
         lang={lang}
         overline={expandedOverline}
+        sourceCard={expandedOpened}
+        // зачем (Карточки 2.0, «В набор»): своих неопубликованных наборов нет — открываем «Новый набор» (черновик создаётся с нуля)
+        onCreatePack={() => { setOpenedCardId(null); router.push({ pathname: '/community_pack_create', params: { fresh: '1' } } as never); }}
         footer={expandedOwn ? 'own' : 'foreign'}
         showSave={!savedSurface}
         saved={openedSaved}

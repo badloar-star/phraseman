@@ -15575,6 +15575,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       </div>
       <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>вкладка «Шпиль» появится только вместе с рубильником spire_tab_enabled в remote_config/app.</span></div>
       <div id="spire-live-status" class="spire-admin-status" role="status" aria-live="polite">Состояние ещё не загружено.</div>
+      <div class="arena-content-actions"><button type="button" id="spire-tab-toggle" class="spire-admin-primary" onclick="toggleSpireTab()" disabled>Загружаем…</button></div>
+      <div id="spire-tab-status" class="spire-admin-status" role="status" aria-live="polite">Рубильник вкладки ещё не загружен.</div>
     </section>
     <section class="spire-admin-section" aria-labelledby="spire-review-title">
       <div class="spire-admin-section-head">
@@ -21726,6 +21728,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       void window.loadSpireTaskFlags(false);
       void window.loadSpireTaskReports(false);
       void window.loadSpireLiveStatus(false);
+      void window.loadSpireTabStatus(false);
       return window._arenaContentStatus;
     } catch (error) {
       spireAdminRecordTechnicalError('content_status', error);
@@ -22150,6 +22153,62 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     } finally {
       spireAdminSetBusy('live', false);
       renderSpireLiveStatus();
+    }
+  };
+
+  // зачем (Ядро 11.10, координатор 15:50: «если есть способ включить ключи одной командой — подготовь»): вкладку
+  // «Шпиль» игрокам показывает remote_config/app.bools.spire_tab_enabled. Раньше владелец правил его руками в консоли
+  // Firebase; теперь — тем же сервером публикации рубильников, что и остальные (publishAdminRemoteConfigPatch,
+  // ревизия, причина, аудит). Клиенты подхватывают при запуске или возврате, не позднее ~5 минут.
+  window._spireTabEnabled = null;
+  function renderSpireTabStatus() {
+    const button = document.getElementById('spire-tab-toggle');
+    const enabled = window._spireTabEnabled;
+    if (enabled === null) return;
+    if (button) {
+      button.textContent = enabled ? 'Скрыть вкладку «Шпиль»' : 'Показать вкладку «Шпиль» игрокам';
+      button.className = enabled ? 'spire-admin-danger' : 'spire-admin-primary';
+      button.disabled = window._spireAdminBusy.live === true;
+    }
+    arenaContentSetText('spire-tab-status', enabled ? 'Вкладка «Шпиль» видна игрокам.' : 'Вкладка «Шпиль» скрыта от игроков.');
+  }
+
+  window.loadSpireTabStatus = async function(force) {
+    try {
+      const workspace = await loadAdminRemoteConfigWorkspace(force === true);
+      window._spireTabEnabled = workspace?.config?.bools?.spire_tab_enabled === true;
+      console.log('[SPIRE-LIVE] рубильник вкладки', JSON.stringify({ spire_tab_enabled: window._spireTabEnabled, revision: workspace?.config?.revision ?? null }));
+      renderSpireTabStatus();
+      return window._spireTabEnabled;
+    } catch (error) {
+      console.warn('[SPIRE-LIVE] рубильник вкладки не прочитан', error?.code || '', error?.message || String(error));
+      spireAdminRecordTechnicalError('spire_tab_status', error);
+      arenaContentSetText('spire-tab-status', 'Не удалось узнать состояние вкладки. Повторите чуть позже.');
+      return null;
+    }
+  };
+
+  window.toggleSpireTab = async function() {
+    if (window._spireAdminBusy.live || window._spireTabEnabled === null) return;
+    const next = window._spireTabEnabled !== true;
+    if (next && window._spireLiveStatus?.config?.enabled !== true
+      && !confirm('Шпиль на сервере ещё выключен — игроки увидят вкладку с замком. Всё равно показать?')) return;
+    if (!confirm(next ? 'Показать вкладку «Шпиль» всем игрокам?' : 'Скрыть вкладку «Шпиль» от игроков?')) return;
+    spireAdminSetBusy('live', true);
+    arenaContentSetText('spire-tab-status', next ? 'Показываем вкладку…' : 'Скрываем вкладку…');
+    try {
+      await publishAdminRemoteConfigPatch({ bools: { spire_tab_enabled: next } },
+        next ? 'Шпиль: показать вкладку игрокам' : 'Шпиль: скрыть вкладку');
+      window._spireTabEnabled = next;
+      console.log('[SPIRE-LIVE] рубильник вкладки сохранён', JSON.stringify({ spire_tab_enabled: next }));
+      showToast(next ? 'Вкладка «Шпиль» видна игрокам.' : 'Вкладка «Шпиль» скрыта.', 'ok');
+    } catch (error) {
+      console.warn('[SPIRE-LIVE] рубильник вкладки не сохранён', error?.code || '', error?.message || String(error));
+      spireAdminRecordTechnicalError('spire_tab_toggle', error);
+      showToast('Не удалось изменить вкладку «Шпиль». Повторите чуть позже.', 'err');
+    } finally {
+      spireAdminSetBusy('live', false);
+      renderSpireTabStatus();
     }
   };
 

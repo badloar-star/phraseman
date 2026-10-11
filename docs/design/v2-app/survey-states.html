@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Опрос о занятиях — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 7 — «Опрос о занятиях», реестр overlays-specialist-021…029):
+     шторка опроса (components/survey/SurveySheetModal.tsx на HybridSheetShell, высота 86%) и панель итога (SurveyRewardPanel): выбор варианта, текстовый ответ, отправка, «принято»,
+     «уже пройден», «повторить». Открывается строкой активного опроса на Главной под блоком «Сегодня» — видна только пока в админке идёт кампания.
+     ВАЖНО: тексты вопросов, заголовок опроса и финальный текст приходят с сервера (библиотека опросов), в коде их нет — здесь они помечены как ПРИМЕР; всё остальное — из кода
+     (кнопки «Продолжить» / «Отправить» / «Отправляю…» / «Повторить» / «Назад» / «Готово», «Вопрос N из M», подсказка «Напиши ответ…», тексты ошибок). Размеры текста 16 и 13; 1px обводки только полупрозрачные.
+     Каждое состояние — в тёмной «Авроре» и в светлой теме. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --s-sheet: rgba(24,24,29,.985); --s-ctl: #23232A; --s-sel: rgba(255,255,255,.12); --s-tx: #fff; --s-sc: #A6A6A8; --s-mu: #75757A; --s-edge: rgba(255,255,255,.13); --s-ink: var(--on); --s-dim: rgba(0,0,0,.55); --s-purple: #B98CFF; --s-halo: rgba(139,92,246,.16); --s-bad: #FF7A7A; --s-badbg: rgba(255,90,90,.14); color: var(--s-tx); }
+  .ph.lite { --s-sheet: #FBFBFD; --s-ctl: #ECECF1; --s-sel: rgba(0,0,0,.08); --s-tx: #0C0C10; --s-sc: #55555D; --s-mu: #86868E; --s-edge: rgba(0,0,0,.12); --s-ink: #fff; --s-dim: rgba(20,20,30,.38); --s-purple: #6D28D9; --s-bad: #C23B3B; --s-badbg: rgba(194,59,59,.1); background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .sund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .sund .t1 { font-size: 28px; font-weight: 700; } .sund .r { height: 70px; border-radius: 18px; background: var(--s-ctl); margin-top: 12px; }
+  .sdim { position: absolute; inset: 0; z-index: 20; background: var(--s-dim); }
+  .ssh { position: absolute; left: 0; right: 0; bottom: 0; height: 86%; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 20px 26px; display: flex; flex-direction: column; background: var(--s-sheet); box-shadow: inset 0 0 0 1px var(--s-edge), 0 -10px 30px rgba(0,0,0,.3); }
+  .ssh .gr { align-self: center; width: 42px; height: 5px; border-radius: 3px; background: var(--s-edge); margin-bottom: 6px; }
+  .sbar { display: flex; align-items: center; justify-content: space-between; min-height: 48px; } .sbar .ib2 { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+  .sti { font-size: 21px; line-height: 28px; font-weight: 800; letter-spacing: -.2px; margin-top: 6px; } .ssub { margin-top: 8px; font-size: 16px; line-height: 23px; color: var(--s-sc); }
+  .spr { margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--s-sc); } .strk { display: flex; gap: 2px; height: 6px; border-radius: 3px; margin-top: 8px; background: var(--s-ctl); overflow: hidden; } .strk i { flex: 1; border-radius: 3px; display: block; } .strk i.on { background: var(--acc); }
+  .sq { margin-top: 18px; display: flex; flex-direction: column; gap: 16px; } .sq .q { font-size: 16px; line-height: 24px; font-weight: 700; }
+  .sopts { display: flex; flex-direction: column; gap: 10px; } .sopt { position: relative; min-height: 56px; border-radius: 18px; padding: 14px 16px; background: var(--s-ctl); display: flex; align-items: center; gap: 12px; overflow: hidden; }
+  .sopt.on::before { content: ""; position: absolute; inset: 0; border-radius: 18px; background: var(--s-sel); box-shadow: inset 0 0 0 1px var(--s-edge); } .sopt > * { position: relative; } .sopt.dim { opacity: .42; }
+  .sopt .l { flex: 1; font-size: 16px; line-height: 22px; font-weight: 700; } .sopt .r { color: var(--s-mu); } .sopt.on .r { color: var(--s-tx); }
+  .sin { min-height: 120px; border-radius: 16px; padding: 16px; background: var(--s-ctl); box-shadow: inset 0 0 0 1px var(--s-edge); font-size: 16px; line-height: 23px; color: var(--s-mu); } .sin.has { color: var(--s-tx); } .sin .cur { display: inline-block; width: 2px; height: 20px; background: var(--acc); vertical-align: -4px; margin-left: 2px; }
+  .sgrow { flex: 1; }
+  .scta { min-height: 52px; border-radius: 26px; margin-top: 8px; padding: 0 18px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--s-ink); } .scta.off { background: var(--s-ctl); color: var(--s-mu); }
+  .sspin { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: ssp 900ms linear infinite; } @keyframes ssp { to { transform: rotate(360deg); } }
+  /* итог */
+  .sfb { padding: 20px 0 0; } .sfb .ft { font-size: 21px; line-height: 28px; font-weight: 700; margin-bottom: 20px; }
+  .spn { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 0; }
+  .shalo { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--s-halo); color: var(--s-purple); } .shalo.bad { background: var(--s-badbg); color: var(--s-bad); }
+  .spn .tt { font-size: 21px; line-height: 28px; font-weight: 900; text-align: center; } .spn .su { font-size: 16px; line-height: 24px; font-weight: 600; text-align: center; color: var(--s-sc); }
+  .serr { align-self: stretch; border-radius: 14px; padding: 14px; background: var(--s-badbg); color: var(--s-bad); font-size: 16px; line-height: 22px; font-weight: 700; text-align: center; }
+  .sact { align-self: stretch; min-height: 48px; border-radius: 16px; padding: 12px 18px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 900; background: var(--s-ctl); color: var(--s-tx); } .sact.pri { background: var(--acc); color: var(--s-ink); }
+  .snote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Опрос о занятиях — состояния</h1>
+  <p class="page-lead">Группа 7 из «экранов без макета» (реестр overlays-specialist-021…029): шторка опроса и итоговая панель. Вариант не выбран и выбран, пустой и готовый текст, отправка, ожидание подтверждения, подтверждён, уже пройден, повторить. Тёмная «Аврора» и светлая тема. Тексты вопросов и итога приходят с сервера — в макете это примеры; всё остальное из кода.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const back = '<svg class="i s24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
+const radioOff = '<svg class="i s24 r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/></svg>';
+const checkOn = '<svg class="i s24 r" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="var(--s-sheet)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const bigCheck = '<svg width="56" height="56" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="var(--s-sheet)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const bigAlert = '<svg width="56" height="56" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 7v6" stroke="var(--s-sheet)" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1.3" fill="var(--s-sheet)"/></svg>';
+const refresh = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 11-2.3-5.6M20 4v4h-4"/></svg>';
+const arrowL = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const starI = '<svg class="i s20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.5l6-.8z"/></svg>';
+const und = '<div class="sund"><div class="t1">Главная</div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="sdim"></div>';
+const TITLE = 'Как тебе занятия?';
+const bar = (withBack) => `<div class="sbar">${withBack ? `<span class="ib2 t">${back}</span>` : '<span class="ib2"></span>'}<span class="ib2 t">${icon('close', 's24')}</span></div>`;
+const prog = (n, t) => `<div class="spr">Вопрос ${n} из ${t}</div><div class="strk">${Array.from({ length: t }, (_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</div>`;
+const OPTS = ['Уроки', 'Карточки', 'Диалоги', 'Видео'];
+const choice = (sel) => `<div class="sq"><div class="q">Что помогает учиться больше всего?</div><div class="sopts">${OPTS.map((o, i) => `<div class="sopt t${sel === i ? ' on' : ''}${sel !== null && sel !== i ? ' dim' : ''}"><span class="l">${o}</span>${sel === i ? checkOn : radioOff}</div>`).join('')}</div></div>`;
+const text = (v) => `<div class="sq"><div class="q">Что бы ты улучшил?</div><div class="sin${v ? ' has' : ''}">${v ? `${v}<span class="cur"></span>` : 'Напиши ответ…'}</div></div>`;
+const sheet = (inner, cta) => `<div class="ssh"><div class="gr"></div>${inner}<div class="sgrow"></div>${cta || ''}</div>`;
+const q = (n, body, cta) => sheet(`${bar(n > 1)}<div class="sti">${TITLE}</div><div class="ssub">Пара вопросов о занятиях — это займёт минуту.</div>${prog(n, 2)}${body}`, cta);
+const cta = (label, off, spin) => `<div class="scta${off ? ' off' : ''} t">${spin ? '<span class="sspin"></span>' : ''}${label}</div>`;
+const fin = (kind) => `<div class="ssh"><div class="gr"></div>${bar(false)}<div class="sfb"><div class="ft">${TITLE}</div><div class="spn">
+  ${kind === 'err' ? `<div class="shalo bad">${bigAlert}</div>` : `<div class="shalo">${bigCheck}</div>`}
+  <div class="tt">${kind === 'err' ? 'Не получилось' : 'Спасибо!'}</div>${kind === 'err' ? '' : `<div class="su">${kind === 'done' ? 'Мы читаем каждый ответ — он помогает сделать занятия лучше.' : kind === 'already' ? '' : 'Мы читаем каждый ответ.'}</div>`}
+  ${kind === 'err' ? '<div class="serr">Не удалось отправить. Попробуй снова.</div><div class="sact pri t">' + refresh + 'Повторить</div><div class="sact t">' + arrowL + 'Назад</div>' : (kind === 'done' ? `<div class="sact t">Оценить в магазине ${starI}</div>` : '') + '<div class="sact pri t">Готово</div>'}
+  </div></div></div>`;
+const S = [
+  ['021 · Вариант не выбран', 'Вопрос с вариантами; ничего не выбрано, «Продолжить» неактивна (серая).', q(1, choice(null), cta('Продолжить', true))],
+  ['022 · Вариант выбран', 'Выбранный вариант подсвечен тоном и галочкой, остальные гаснут; «Продолжить» включилась. Передумать можно сколько угодно — ничего не уходит само.', q(1, choice(2), cta('Продолжить'))],
+  ['023 · Пустой текст', 'Последний вопрос — свободный ответ: поле пустое («Напиши ответ…»), «Отправить» неактивна.', q(2, text(''), cta('Отправить', true))],
+  ['024 · Текст готов', 'Ответ введён (до 500 знаков): «Отправить» включилась.', q(2, text('Хотелось бы больше коротких диалогов'), cta('Отправить'))],
+  ['025 · Отправка', 'Нажали «Отправить»: кружок и «Отправляю…», повторные нажатия игнорируются.', q(2, text('Хотелось бы больше коротких диалогов'), cta('Отправляю…', true, true))],
+  ['026 · Ожидание результата', 'Ответ принят сразу, подтверждение сервера идёт в фоне: человек уже видит «Спасибо!» и «Готово» — ждать не нужно.', fin('wait')],
+  ['027 · Подтверждён', 'Сервер подтвердил: «Спасибо!», подпись из библиотеки опросов и, если выбранный вариант того требует, кнопка-переход (например, оценка в магазине) перед «Готово».', fin('done')],
+  ['028 · Уже пройден', 'Этот опрос аккаунт уже проходил: тот же итог «Спасибо!» без награды и без переходов.', fin('already')],
+  ['029 · Повторить', 'Не отправилось (нет сети, сбой, не подтвердился аккаунт): красный значок, пояснение, «Повторить» и «Назад». При смене аккаунта «Повторить» неактивна.', fin('err')],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(und + h, lite)}<div class="snote">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

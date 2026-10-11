@@ -9,7 +9,8 @@
 | 3 · «Сообщить об ошибке» | `report-error-states.html` | 6ac9d2a5e | 588db5ff08e362c4 | overlays-campaigns-031…036 |
 | 4 · Промокод | `promo-code-states.html` | 88b0d2cdb | 732c6c7fa60d03b4 | overlays-campaigns-004…015 |
 | 5 · Код друга | `referral-code-states.html` | 84d5ad933 | 629969163da27c2e | overlays-campaigns-016…026 |
-| 6 · Встроенные предложения Plus | `embedded-plus-states.html` | см. `git log -- docs/design/v2-app/embedded-plus-states.html` | db8865dd8640da26 | paywalls-008…010 |
+| 6 · Встроенные предложения Plus | `embedded-plus-states.html` | 37e6863eb | db8865dd8640da26 | paywalls-008…010 |
+| 7 · Опрос о занятиях | `survey-states.html` | см. `git log -- docs/design/v2-app/survey-states.html` | 75582118640b26c7 | overlays-specialist-021…029 |
 
 Заметки:
 - Группа 2: сама визитка от темы приложения не зависит (своя палитра по коду), поэтому 7 состояний нарисованы один раз; тёмная/светлая — только у шторки «Про визитка» и окна «Удалить друга?».

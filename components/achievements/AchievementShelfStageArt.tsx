@@ -27,11 +27,7 @@ export default function AchievementShelfStageArt({
 
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
-      <View
-        pointerEvents="none"
-        style={[styles.glassInset, { borderColor: materials.border }]}
-      />
-
+      {/* зачем (владелец 12.10, стиль «Тень»): внутренней стеклянной рамки витрины больше нет */}
       <View style={StyleSheet.absoluteFillObject}>{children}</View>
 
       <View
@@ -89,13 +85,6 @@ export default function AchievementShelfStageArt({
 }
 
 const styles = StyleSheet.create({
-  glassInset: {
-    ...StyleSheet.absoluteFillObject,
-    margin: 8,
-    borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
-    opacity: 0.68,
-  },
   shelf: {
     position: 'absolute',
     left: 22,

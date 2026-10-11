@@ -112,8 +112,7 @@ function CategoryOptionRow<T extends string>({
           styles.option,
           {
             minHeight: ACHIEVEMENT_CATEGORY_DOCK_HYBRID.rowMinHeight,
-            backgroundColor: selected ? t.accentBg : t.bgCard,
-            borderColor: selected ? t.accent : t.border,
+            backgroundColor: selected ? t.accentBg : t.bgCard, // зачем (владелец 12.10, стиль «Тень»): без обводки — выбор отмечен тоном заливки, плашку отделяет тень
             opacity: pressed ? 0.84 : 1,
             shadowColor: t.cardShadow,
           },
@@ -254,8 +253,7 @@ export default function AchievementCategoryDock<T extends string>({
               minHeight: ACHIEVEMENT_CATEGORY_DOCK_HYBRID.capsuleMinHeight,
               paddingHorizontal: ACHIEVEMENT_CATEGORY_DOCK_HYBRID.capsuleHorizontalPadding,
               gap: ACHIEVEMENT_CATEGORY_DOCK_HYBRID.capsuleGap,
-              backgroundColor: t.bgCard,
-              borderColor: open ? t.accent : t.borderHighlight,
+              backgroundColor: open ? t.accentBg : t.bgCard, // зачем (владелец 12.10, стиль «Тень»): без обводки — выбор отмечен тоном заливки, плашку отделяет тень
               opacity: pressed ? 0.86 : 1,
               shadowColor: t.shadowDark,
             },
@@ -292,7 +290,6 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 14,
     borderRadius: 17,
-    borderWidth: StyleSheet.hairlineWidth,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.24,
     shadowRadius: 12,
@@ -317,7 +314,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 28,
-    borderWidth: StyleSheet.hairlineWidth,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
     shadowRadius: 16,

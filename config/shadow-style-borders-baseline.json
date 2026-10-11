@@ -1,9 +1,7 @@
 {
-  "total": 208,
+  "total": 191,
   "files": {
-    "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
-    "app/achievements_screen.tsx": 7,
     "app/ai_companion_session.tsx": 14,
     "app/combined_lesson_pick.tsx": 2,
     "app/hint.tsx": 8,
@@ -14,9 +12,6 @@
     "app/promo_code_entry.tsx": 1,
     "app/settings_edu.tsx": 1,
     "app/settings_notifications.tsx": 2,
-    "components/achievements/AchievementCategoryDock.tsx": 3,
-    "components/achievements/AchievementShelfCarousel.tsx": 2,
-    "components/achievements/AchievementShelfStageArt.tsx": 2,
     "components/ActionToast.tsx": 6,
     "components/ActivityHeatmap365.tsx": 1,
     "components/AiMistakeCard.tsx": 4,
@@ -71,7 +66,6 @@
     "components/v2/V2TabBar.tsx": 1,
     "components/VerbLetterBank.tsx": 5,
     "components/VipSurveyModal.tsx": 13,
-    "components/YearWheel.tsx": 2,
-    "components/youtube/YoutubeChannelTabs.tsx": 2
+    "components/YearWheel.tsx": 2
   }
 }

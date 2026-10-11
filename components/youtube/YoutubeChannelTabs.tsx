@@ -4,6 +4,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { RowDivider } from '../v2/RowDivider';
 
 // зачем (владелец 11.10, макет video-redesign #c1): третья вкладка «Наборы» заменила плашку «Наборы из видео» сверху.
 export type YoutubeChannelTab = 'home' | 'playlists' | 'packs';
@@ -21,7 +22,8 @@ export default function YoutubeChannelTabs({ value, onChange }: {
     packs: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }),
   };
   return (
-    <View style={[styles.wrap, { borderBottomColor: g.line }]}>
+    <View style={styles.wrap}>
+      <RowDivider edge="bottom" color={g.line} />
       {/* зачем (владелец 01.10): вкладки «Все видео» нет. Владелец 11.10 (video-redesign #c1): третья вкладка — «Наборы». */}
       {(['home', 'playlists', 'packs'] as const).map((tab) => {
         const active = value === tab;
@@ -35,7 +37,7 @@ export default function YoutubeChannelTabs({ value, onChange }: {
             onPress={() => onChange(tab)}
             // зачем (эмулятор 30.09): в «Акценте/Максимуме» активная черта — цвет темы, как всё
             // выбранное рядом (таб-бар, кнопки); в «Спокойно» — прежняя нейтральная.
-            style={[styles.tab, active && { borderBottomWidth: 2, borderBottomColor: g.level === 'accent' || g.level === 'max' ? g.accent : g.text, marginBottom: -1 }]}
+            style={[styles.tab, active && { borderBottomWidth: 2 /* shadow-ok: подчёркивание активной вкладки — индикатор выбора, не контейнер */, borderBottomColor: g.level === 'accent' || g.level === 'max' ? g.accent : g.text, marginBottom: -1 }]}
           >
             <Text style={[styles.label, { color: active ? g.text : g.secondary }]}>{labels[tab]}</Text>
           </TouchableOpacity>
@@ -48,7 +50,7 @@ export default function YoutubeChannelTabs({ value, onChange }: {
 // зачем (Сверка video-001/008, video.html .tabs3): вкладки слева через 22, по ширине текста, подчёркивание 2 px
 // под самим словом, линия --line (было: две вкладки растянуты на всю ширину с длинной чертой).
 const styles = StyleSheet.create({
-  wrap: { flexDirection: 'row', gap: 22, borderBottomWidth: 1, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая линия под вкладками, как `.tabs3` макета
+  wrap: { flexDirection: 'row', gap: 22, marginTop: 18, marginBottom: 4 }, // зачем (владелец 12.10, стиль «Тень»): линия под вкладками — RowDivider (линия-View), не borderBottom
   // длинная подпись (es «Listas de reproducción», крупный шрифт) сжимается и переносится, а не уходит за экран
   tab: { flexShrink: 1, minWidth: 0, minHeight: 44, paddingVertical: 12, justifyContent: 'center' },
   label: { fontSize: 16, fontWeight: '600' },

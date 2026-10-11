@@ -211,8 +211,7 @@ export default function AchievementShelfCarousel({
         style={[
           styles.showcase,
           {
-            borderColor: materials.border,
-            backgroundColor: t.bgCard,
+            backgroundColor: t.bgCard, // зачем (владелец 12.10, стиль «Тень»): без обводки — выбор отмечен тоном заливки, плашку отделяет тень
             shadowColor: materials.shadowDark,
           },
         ]}
@@ -337,7 +336,6 @@ const styles = StyleSheet.create({
   showcase: {
     height: 306,
     borderRadius: 24,
-    borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
     justifyContent: 'flex-end',
     shadowOffset: { width: 0, height: 10 },

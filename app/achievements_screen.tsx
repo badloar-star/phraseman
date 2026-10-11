@@ -1106,25 +1106,16 @@ export default function AchievementsScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={{
-          minHeight: 148, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 17,
-          borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight, gap: 12,
+          minHeight: 148, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 17, gap: 12, // зачем (владелец 12.10, стиль «Тень»): плашка без рамки и без верхней светлой черты — отделяют тон и тень
           shadowColor: t.shadowDark, shadowOffset: { width: 0, height: 7 }, shadowOpacity: 0.12,
           shadowRadius: 14, ...noAndroidOutline, overflow: 'hidden', // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline)
         }}
       >
-        <View
-          pointerEvents="none"
-          style={{
-            position: 'absolute', left: 18, right: 18, top: 0, height: 1,
-            backgroundColor: t.borderHighlight,
-          }}
-        />
         <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 11 }}>
           <View
             testID="achievement-gallery-plaque-marker"
             style={{
               width: 42, height: 42, borderRadius: 14, backgroundColor: t.bgSurface,
-              borderWidth: StyleSheet.hairlineWidth, borderColor: markerColor + '4D',
               alignItems: 'center', justifyContent: 'center',
             }}
           >
@@ -1139,7 +1130,6 @@ export default function AchievementsScreen() {
             importantForAccessibility="no-hide-descendants"
             style={{
               minWidth: 44, minHeight: 44, borderRadius: 14, backgroundColor: t.bgSurface,
-              borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
               alignItems: 'center', justifyContent: 'center',
             }}
           >
@@ -1154,8 +1144,7 @@ export default function AchievementsScreen() {
             testID="achievement-gallery-condition"
             style={{
               backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 13,
-              paddingVertical: 11, gap: 5, borderWidth: StyleSheet.hairlineWidth,
-              borderColor: t.border,
+              paddingVertical: 11, gap: 5,
             }}
           >
             <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
@@ -1171,7 +1160,7 @@ export default function AchievementsScreen() {
           </View>
         ) : null}
         {unlockedAt && (
-          <View style={{ alignSelf: 'flex-start', minHeight: 32, borderRadius: 11, backgroundColor: t.bgSurface, paddingHorizontal: 11, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 7, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
+          <View style={{ alignSelf: 'flex-start', minHeight: 32, borderRadius: 11, backgroundColor: t.bgSurface, paddingHorizontal: 11, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 7 }}>
             <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
             <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
               {unlockedAt}
@@ -1269,7 +1258,7 @@ export default function AchievementsScreen() {
                 paddingVertical: 6,
                 minHeight: 44,
                 justifyContent: 'center',
-                borderWidth: 1,
+                borderWidth: 1, // shadow-ok: служебная DEV-кнопка (в магазинной сборке её нет), не контейнер экрана
                 borderColor: showAllAchievements ? t.gold + '77' : t.bgSurface2,
                 marginRight: 8,
                 flexShrink: 0,

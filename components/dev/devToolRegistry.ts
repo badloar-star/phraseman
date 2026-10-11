@@ -19,6 +19,7 @@ export type DevToolAction =
   | 'dev-as-free-off'
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
   | 'open-cancel-flow'
+  | 'open-spire-preview'
   | 'open-manage-subscription'
   // зачем (владелец, 2026-08-27): «Проверка рун» — отдельный НОВЫЙ раздел (не
   // внутри «Движение · все поверхности»). Каждая кнопка открывает НАСТОЯЩИЙ
@@ -413,6 +414,26 @@ export const DEV_TOOL_SECTIONS = [
         action: 'dev-as-free-off',
         icon: 'add-circle-outline',
         testID: 'dev-as-free-off',
+      },
+    ],
+  },
+  // зачем (координатор 11.10): живую комнату Шпиля снять нельзя, пока на сервере config.enabled=false — экраны открываются на моках.
+  {
+    id: 'spire-preview',
+    order: 33,
+    title: 'Шпиль',
+    icon: 'rocket-outline',
+    testID: 'dev-hub-section-spire-preview',
+    tools: [
+      {
+        id: 'spire-preview-open',
+        order: 10,
+        title: 'Шпиль на моках',
+        detail: 'Хаб, комната, итоги ступени, пустое и офлайн, ступень с заданиями — без сервера и без включения Шпиля. Внизу полоса переключения состояний.',
+        actionLabel: 'Открыть',
+        action: 'open-spire-preview',
+        icon: 'map-outline',
+        testID: 'dev-open-spire-preview',
       },
     ],
   },

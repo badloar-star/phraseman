@@ -52,6 +52,7 @@ import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
 import SpireTower from './SpireTower';
 import SpireWeekResultCard from './SpireWeekResultCard';
+import { useSpirePreview } from './spire_preview_context';
 import type { SpireMemberRow } from './spire_room_types';
 import { spireText, spireTimeLeftText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
@@ -96,18 +97,26 @@ export default function SpireHomeScreen() {
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
   const { hasPremiumAccess } = usePremium();
-  const myCoinRank = useMyCoinRank();
+  const realCoinRank = useMyCoinRank();
   const bottomPad = useTabContentBottomPad();
+  // зачем (координатор 11.10): DEV-превью на моках (/dev_spire_preview) подаёт сюда готовую модель; в боевом пути preview всегда null,
+  // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
+  const preview = useSpirePreview();
+  const myCoinRank = preview ? preview.coinRank : realCoinRank;
 
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
-  const [config, setConfig] = useState<SpireConfigDoc | null>(null);
-  const [week, setWeek] = useState<SpireWeekLocal | null>(null);
+  const [config, setConfig] = useState<SpireConfigDoc | null>(preview?.config ?? null);
+  const [week, setWeek] = useState<SpireWeekLocal | null>(preview?.week ?? null);
   const [selected, setSelected] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
-  const [rulesOpen, setRulesOpen] = useState(false);
-  const [tourSeen, setTourSeen] = useState<boolean | null>(() => peekSpireTourSeen());
+  const [showAll, setShowAll] = useState(preview?.showAll ?? false);
+  const [rulesOpen, setRulesOpen] = useState(preview?.rulesOpen ?? false);
+  const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
 
   useEffect(() => {
+    if (preview) {
+      DebugLogger.info(LOG, 'home: DEV-превью на моках — конфиг, неделя и игра не читаются');
+      return undefined;
+    }
     let alive = true;
     DebugLogger.info(LOG, 'home: вход, читаем конфиг (кэш 6 ч)');
     loadSpireConfig()
@@ -128,7 +137,7 @@ export default function SpireHomeScreen() {
   const spireLang = asSpireLang(studyTarget);
 
   useEffect(() => {
-    if (!unlocked) return undefined;
+    if (!unlocked || preview) return undefined;
     if (!spireLang) {
       DebugLogger.info(LOG, `home: язык изучения ${String(studyTarget)} без пула Шпиля — недели нет`);
       setWeek(null);
@@ -151,7 +160,8 @@ export default function SpireHomeScreen() {
   }, [unlocked, spireLang, studyTarget]);
 
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
-  const game = useSpireGame({ config, unlocked, lang: spireLang, week, setWeek });
+  const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek });
+  const game = preview ? preview.game : realGame;
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
   // Маркер поднялся на новый этаж — карточка этажа следует за ним.
@@ -165,8 +175,8 @@ export default function SpireHomeScreen() {
   const finishTour = useCallback(() => {
     DebugLogger.info(LOG, 'home: тур закрыт');
     setTourSeen(true);
-    void spireMarkTourSeen();
-  }, []);
+    if (!preview) void spireMarkTourSeen();
+  }, [preview]);
   const climb = useCallback(() => { void game.startStep(); }, [game]);
 
   const subtitle = useMemo(() => {

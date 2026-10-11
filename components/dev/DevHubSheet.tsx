@@ -49,6 +49,7 @@ import {
   LEARNING_V2_MODES_SHOWCASE_ROUTE,
   MOTION_SHOWCASE_ROUTE,
   SHOP_ROUTE,
+  SPIRE_PREVIEW_ROUTE,
 } from '../../constants/devRoutes';
 import type { PremiumContext } from '../../app/premium_context';
 import { setDevFeatureIntroReplay, useDevFeatureIntroReplay } from '../../app/feature_intro_dev_replay';
@@ -466,6 +467,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // Витрина сценариев отписки — обычный маршрут; закрываем native Modal
         // до смены route, иначе iOS оставит DEV-sheet поверх сцены.
         requestClose(false, () => router.push(CANCEL_FLOW_PREVIEW_ROUTE as never));
+        return;
+      case 'open-spire-preview':
+        requestClose(false, () => router.push({ pathname: SPIRE_PREVIEW_ROUTE, params: { state: 'room', selector: '1' } } as never));
         return;
       case 'open-manage-subscription':
         requestClose(false, () => router.push({ pathname: '/manage_subscription', params: { source: 'dev_hub' } } as never));

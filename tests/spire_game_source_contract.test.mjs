@@ -83,7 +83,7 @@ test('game hook: no network while the gate is closed', () => {
   assert.ok(flushAt > -1 && game.lastIndexOf('if (!gate || !ids || !lang) return;', flushAt) > -1, 'queue flush is behind the gate');
   assert.equal(game.split('spireFlushNow(').length - 1, 1, 'single flush call site');
   // Экран не зовёт сеть сам: только через хук.
-  assert.ok(home.includes('useSpireGame({ config, unlocked, lang: spireLang, week, setWeek })'), 'home passes the lock into the hook');
+  assert.ok(home.includes('useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek })'), 'home passes the lock into the hook (в DEV-превью ворота закрыты, игра подменена моками)');
 });
 
 test('no Firestore listeners or collection scans in the game layer', () => {
@@ -161,7 +161,7 @@ test('owner 30.09: the correct answer stays until «Дальше», the timer is
   assert.ok(runner.includes('const continueAfterReveal = useCallback'), 'explicit continue');
   assert.ok(runner.includes("if (cur.phase !== 'active' || exitOpenRef.current) return;"), 'timer ticks only in the active phase');
   const step = read('components/spire/SpireStepScreen.tsx');
-  assert.ok(step.includes('onPress={runner.continueAfterReveal}'), '«Дальше» button');
+  assert.ok(step.includes('onContinue={runner.continueAfterReveal}') && step.includes('onPress={props.onContinue}'), '«Дальше» button');
   assert.match(step, /onward: \{[^}]*minHeight: (4[4-9]|[5-9]\d)/, '«Дальше» is at least 44dp tall');
 });
 

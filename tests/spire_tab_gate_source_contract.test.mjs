@@ -56,7 +56,7 @@ test('screen: local week is read only after the config is enabled', () => {
   const idxCall = screen.indexOf('readCurrentLocalWeek(spireLang)');
   assert.ok(idxUnlock > -1 && idxCall > idxUnlock, 'the local week helper is called only after the unlock condition');
   assert.equal(screen.split('spireReadWeekLocal(').length - 1, 1, 'spireReadWeekLocal has a single call site (inside the helper)');
-  assert.ok(screen.includes('if (!unlocked) return undefined;'), 'the week effect exits early while locked');
+  assert.ok(screen.includes('if (!unlocked || preview) return undefined;'), 'the week effect exits early while locked (и в DEV-превью на моках)');
   assert.ok(screen.includes('if (!unlocked) return <View style={s.root}><SpireLockedState'), 'locked render happens before the main tree');
 });
 

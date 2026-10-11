@@ -51,6 +51,8 @@ export const LEARNING_V2_ROUTE_PREFIX = '/learning-v2';
  * должен просто получить вход в навигацию, когда его примут.
  */
 export const SHOP_ROUTE = '/shop';
+/** DEV-превью экранов Шпиля на моках (app/dev_spire_preview.tsx): в релизе уводит на Главную. */
+export const SPIRE_PREVIEW_ROUTE = '/dev_spire_preview';
 
 export const DEV_UTILITY_ROUTE_NAMES = [
   POS_ANALYTICS_AUDIT_ROUTE_NAME,

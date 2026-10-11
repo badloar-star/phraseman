@@ -42,6 +42,7 @@ const OVERRIDES = {
   '/dialogue_v2_memory': ['keep', 'Диалоги V2', 'D112'],
   '/dialogue_v2_completion': ['keep', 'Диалоги V2', 'D112'],
   '/dialogue_v2_visual_fixture': ['archive', 'Диалоги V2', 'dev-фикстура (__DEV__), без входа'],
+  '/dev_spire_preview': ['archive', 'Шпиль', 'dev-превью на моках (ENABLE_DEV_TOOLS, не стор-релиз), без входа и сети'],
   '/collectibles_screen': ['remove', 'коллекция фраз', 'D140 (владелец 2026-10-01): коллекции удалены целиком'],
   '/community_pack_create': ['keep', 'наборы сообщества', 'D35/D85'],
   '/level_exam': ['keep', 'Learning V1', 'D72/D121: экзамены'],

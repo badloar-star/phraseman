@@ -14,7 +14,7 @@ import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import type { SpireStepSession } from '../../app/spire/use_spire_game';
-import { useSpireStepRunner, type SpireStepFinish } from '../../app/spire/use_spire_step_runner';
+import { useSpireStepRunner, type SpireClock, type SpireFeedback, type SpireStepFinish } from '../../app/spire/use_spire_step_runner';
 import { SPIRE_STEP_MAX_HEARTS, SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
 import SpireTaskReportButton from '../../modules/spire/SpireTaskReportButton';
 import { spireTierName } from '../../modules/spire/tier_names';
@@ -51,31 +51,45 @@ function Hearts({ lang, hearts }: Readonly<{ lang: Lang; hearts: number }>) {
   );
 }
 
-function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFinish, onAbort, exitRef }: Props & Readonly<{ exitRef: MutableRefObject<(() => void) | null> }>) {
+/** Всё, что нужно вёрстке ступени; раннер собирает это из своего состояния, DEV-превью — из моков. */
+export type SpireStepLayoutProps = Readonly<{
+  lang: Lang;
+  ctx: SpireStepSession['ctx'];
+  budgetMs: number;
+  hearts: number;
+  clock: SpireClock;
+  paused: boolean;
+  preparing: boolean;
+  task: SpireStepSession['pick']['tasks'][number] | undefined;
+  taskIndex: number;
+  feedback: SpireFeedback | null;
+  answering: boolean;
+  exitOpen: boolean;
+  studyTarget: string;
+  showEnergy: boolean;
+  onBack: () => void;
+  onChoice: (index: number) => void;
+  onTokens: (tokens: readonly string[]) => void;
+  onItems: (selections: readonly number[]) => void;
+  onContinue: () => void;
+  /** Кнопка «пожаловаться на задание» (нужны ids раннера) — собирает контейнер; в превью её нет. */
+  reportSlot: React.ReactNode;
+  /** Шторка выхода (в превью — не показывается). */
+  exitSlot: React.ReactNode;
+}>;
+
+/** Чистая вёрстка ступени: шапка, кольцо, задание, подсказка после ошибки, «k / 10». Без раннера и сети. */
+export function SpireStepLayout(props: SpireStepLayoutProps) {
+  const { lang, ctx, budgetMs, hearts, clock, paused, preparing, task, taskIndex, feedback, answering, exitOpen, studyTarget, showEnergy } = props;
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
-  const runner = useSpireStepRunner({
-    pick: session.pick, ctx: session.ctx, uid, studyTarget, attempt: session.attempt, runId: session.runId, onFinish, onAbort,
-  });
-  // зачем: кнопка «назад» Android внутри Modal приходит в onRequestClose — ведём её в шторку выхода.
-  exitRef.current = runner.requestExit;
-  const { ctx, pick } = session;
-  const task = pick.tasks[runner.displayTaskIndex];
-  const paused = runner.state.phase !== 'active' || runner.exitOpen || runner.phase !== 'playing';
-  const answering = runner.phase === 'playing' && runner.state.phase === 'active' && runner.feedback === null && !runner.exitOpen;
-  const counter = Math.min(runner.displayTaskIndex + 1, SPIRE_STEP_TASK_COUNT);
-  const fb = runner.feedback && !runner.feedback.ok ? runner.feedback : null;
-  const reportableTarget = studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de' || studyTarget === 'it'
-    ? studyTarget
-    : null;
-  const reportText = task && (typeof task.payload.phrase === 'string' || typeof task.payload.prompt === 'string')
-    ? String(task.payload.phrase ?? task.payload.prompt)
-    : task?.taskId;
+  const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
+  const fb = feedback && !feedback.ok ? feedback : null;
   return (
     <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top + 6 }]} testID="spire-step">
       <View style={s.head}>
         <V2Pressable
-          onPress={runner.requestExit}
+          onPress={props.onBack}
           accessibilityRole="button"
           accessibilityLabel={spireText(lang, 'back')}
           style={[s.back, { backgroundColor: p.control }]}
@@ -87,49 +101,29 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{`${spireGameText(lang, 'step')} ${ctx.stepInFloor + 1}`}</Text>
           <Text style={[s.sub, { color: p.textSecondary }]}>{`${spireText(lang, 'floor')} ${ctx.floor} · ${spireTierName(ctx.tier, lang)}`}</Text>
         </View>
-        <Hearts lang={lang} hearts={runner.state.hearts} />
+        <Hearts lang={lang} hearts={hearts} />
         {showEnergy ? <EnergyBar glass ownerActive={false} /> : null}
       </View>
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View style={s.ringWrap}>
-          <SpireTimerRing lang={lang} clock={runner.clock} budgetMs={pick.plan.budgetMs} paused={paused} />
+          <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
         </View>
-        {runner.phase === 'charging' || !task ? (
+        {preparing || !task ? (
           <Text style={[s.preparing, { color: p.textSecondary }]}>{spireGameText(lang, 'preparing')}</Text>
         ) : (
           <SpireTaskView
-            key={`${task.taskId}:${runner.displayTaskIndex}`}
+            key={`${task.taskId}:${taskIndex}`}
             lang={lang}
             task={task}
-            feedback={runner.feedback && runner.feedback.taskIndex === runner.displayTaskIndex ? runner.feedback : null}
+            feedback={feedback && feedback.taskIndex === taskIndex ? feedback : null}
             disabled={!answering}
-            onChoice={runner.submitChoice}
-            onTokens={runner.submitTokens}
-            onItems={runner.submitItems}
+            onChoice={props.onChoice}
+            onTokens={props.onTokens}
+            onItems={props.onItems}
             studyTarget={studyTarget}
           />
         )}
-        {answering && task && reportableTarget ? (
-          <View style={s.reportRow}>
-            <SpireTaskReportButton
-              claim={{
-                stableUid: stableId,
-                taskId: task.taskId,
-                studyTarget: reportableTarget,
-                weekId: ctx.weekKey,
-                tier: ctx.tier,
-                packHash: pick.plan.packHash,
-                floor: pick.packFloor,
-                step: ctx.stepInFloor + 1,
-                setIndex: pick.setIndex,
-                taskIndex: runner.displayTaskIndex,
-              }}
-              taskText={reportText}
-              removeFromRemainingRun={runner.reportCurrentTask}
-              testID={`spire-task-report-${runner.displayTaskIndex}`}
-            />
-          </View>
-        ) : null}
+        {props.reportSlot}
         {fb ? (
           <View style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }]} accessibilityLiveRegion="polite" testID="spire-step-hint">
             {fb.correctText ? (
@@ -140,8 +134,8 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
             {fb.mistakeSaved ? <Text style={[s.hintSub, { color: p.textSecondary }]}>{spireGameText(lang, 'mistakeSaved')}</Text> : null}
             {/* зачем (владелец 30.09): ответ висит до «Дальше», таймер в это время стоит. */}
             <V2Pressable
-              onPress={runner.continueAfterReveal}
-              disabled={runner.exitOpen}
+              onPress={props.onContinue}
+              disabled={exitOpen}
               accessibilityRole="button"
               accessibilityLabel={spireGameText(lang, 'onward')}
               style={[s.onward, { backgroundColor: p.cta }]}
@@ -154,8 +148,72 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
         ) : null}
         <Text style={[s.footer, { color: p.textSecondary }]}>{`${counter} / ${SPIRE_STEP_TASK_COUNT}`}</Text>
       </ScrollView>
-      <SpireExitSheet lang={lang} visible={runner.exitOpen} floor={ctx.floor} onContinue={runner.cancelExit} onExit={runner.confirmExit} />
+      {props.exitSlot}
     </View>
+  );
+}
+
+function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFinish, onAbort, exitRef }: Props & Readonly<{ exitRef: MutableRefObject<(() => void) | null> }>) {
+  const runner = useSpireStepRunner({
+    pick: session.pick, ctx: session.ctx, uid, studyTarget, attempt: session.attempt, runId: session.runId, onFinish, onAbort,
+  });
+  // зачем: кнопка «назад» Android внутри Modal приходит в onRequestClose — ведём её в шторку выхода.
+  exitRef.current = runner.requestExit;
+  const { ctx, pick } = session;
+  const task = pick.tasks[runner.displayTaskIndex];
+  const paused = runner.state.phase !== 'active' || runner.exitOpen || runner.phase !== 'playing';
+  const answering = runner.phase === 'playing' && runner.state.phase === 'active' && runner.feedback === null && !runner.exitOpen;
+  const reportableTarget = studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de' || studyTarget === 'it'
+    ? studyTarget
+    : null;
+  const reportText = task && (typeof task.payload.phrase === 'string' || typeof task.payload.prompt === 'string')
+    ? String(task.payload.phrase ?? task.payload.prompt)
+    : task?.taskId;
+  const reportSlot = answering && task && reportableTarget ? (
+    <View style={s.reportRow}>
+      <SpireTaskReportButton
+        claim={{
+          stableUid: stableId,
+          taskId: task.taskId,
+          studyTarget: reportableTarget,
+          weekId: ctx.weekKey,
+          tier: ctx.tier,
+          packHash: pick.plan.packHash,
+          floor: pick.packFloor,
+          step: ctx.stepInFloor + 1,
+          setIndex: pick.setIndex,
+          taskIndex: runner.displayTaskIndex,
+        }}
+        taskText={reportText}
+        removeFromRemainingRun={runner.reportCurrentTask}
+        testID={`spire-task-report-${runner.displayTaskIndex}`}
+      />
+    </View>
+  ) : null;
+  return (
+    <SpireStepLayout
+      lang={lang}
+      ctx={ctx}
+      budgetMs={pick.plan.budgetMs}
+      hearts={runner.state.hearts}
+      clock={runner.clock}
+      paused={paused}
+      preparing={runner.phase === 'charging'}
+      task={task}
+      taskIndex={runner.displayTaskIndex}
+      feedback={runner.feedback}
+      answering={answering}
+      exitOpen={runner.exitOpen}
+      studyTarget={studyTarget}
+      showEnergy={showEnergy}
+      onBack={runner.requestExit}
+      onChoice={runner.submitChoice}
+      onTokens={runner.submitTokens}
+      onItems={runner.submitItems}
+      onContinue={runner.continueAfterReveal}
+      reportSlot={reportSlot}
+      exitSlot={<SpireExitSheet lang={lang} visible={runner.exitOpen} floor={ctx.floor} onContinue={runner.cancelExit} onExit={runner.confirmExit} />}
+    />
   );
 }
 

@@ -42,6 +42,7 @@
   .gs-pillc { display: inline-flex; align-items: center; gap: 7px; height: 37px; padding: 0 12px; border-radius: 19px; background: var(--gs-ti); box-shadow: var(--gs-sh2); font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .gs-pillc img { width: 18px; height: 18px; border-radius: 50%; display: block; }
   .gs-pillc.h { gap: 4px; padding: 0 11px; }
+  .gs-hrts { display: inline-flex; gap: 4px; color: #F2766B; flex: none; }
   .gs-trk { height: 6px; border-radius: 3px; background: var(--track); margin-top: 18px; position: relative; }
   .gs-trk i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: #E9E9EB; }
 
@@ -238,7 +239,9 @@
   const playBtn = `<span class="gs-rb t" style="background:var(--cta);color:var(--cta-ink)">${ic('play', 's20')}</span>`;
   const sessHdr = (t, n, extra) => `<div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">${t}</div>${n ? `<span class="cnt">${n}</span>` : ''}${extra || ''}</div>`;
   const prog = (w) => `<div class="gs-trk"><i style="width:${w}%"></i></div>`;
-  const hud = () => `<span class="gs-pillc h">${[0, 1, 2].map(() => ic('heartF', 's16')).join('')}</span><span class="gs-pillc">${ic('boltF', 's16')}5</span>`;
+  // зачем (код, SessionAttemptsHud; флаг energy_mistake_charge выкл. по умолчанию): красные сердца без подложки; вариант с энергией — hudEnergy (под флагом)
+  const hud = () => `<span class="gs-hrts">${[0, 1, 2].map(() => ic('heartF', 's20')).join('')}</span>`;
+  const hudEnergy = () => `<span class="gs-pillc">${ic('boltF', 's16')}5</span>`;
   const coinPill = (n) => `<span class="gs-pillc">${coinImg(5, 18)}${n}</span>`;
 
   // кадр ролика — монохромная сцена (как в cards-v2)
@@ -299,8 +302,8 @@
       ${o.title ? `<div class="gs-st-t">${o.title}</div><div class="gs-st-s${o.bad ? ' gs-bad' : ''}">${o.msg}</div>` : `<div class="gs-st-m${o.bad ? ' gs-bad' : ''}">${o.msg}</div>`}
       ${o.btn ? `<span class="cta sm t gs-st-b">${o.btnIcon || ''}${o.btn}</span>` : ''}</div>`;
   // зачем: в «Напиши» шапка — плашка монет сверху справа, затем «закрыть», название и кнопка «Выбрать наборы» (значок albums); счёта нет, полоса пустая
-  const recallHdr = () => `<div class="flex" style="justify-content:flex-end;margin-top:6px">${coinPill('1 240')}</div>
-      <div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">Напиши</div>${hud()}<span class="gs-rb t">${X.albums20}</span></div>${prog(0)}`;
+  const recallHdr = (energy) => `<div class="flex" style="justify-content:flex-end;margin-top:6px">${coinPill('1 240')}</div>
+      <div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">Напиши</div>${energy ? hudEnergy() : hud()}<span class="gs-rb t">${X.albums20}</span></div>${prog(0)}`;
 
   // 1–2. Блиц / Устно: «Тренировка не открылась» — только панель, без шапки
   const quotaFail = () => phone('', { time: '9:41', fixed: stage({ icon: X.cloudOff, msg: 'Тренировка не открылась. Попробуй ещё раз.', btn: 'Попробовать снова', btnIcon: X.refresh }) });
@@ -315,7 +318,7 @@
       ${srcRow(ic('bookmark', 's22'), 'Сохранённые карточки', 'Личный список · 64 карточек', true)}${srcRow(ic('people', 's22'), 'Путешествия', 'Community pack · 40 карточек', true)}`, { time: '9:41',
     fixed: `<div class="gs-bot"><div class="cta t">${ic('play', 's18')}Начать</div></div>` });
   // 8–9. Напиши
-  const recallEmpty = () => phone(recallHdr(), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'В выбранных наборах нет карточек с переводом.', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
+  const recallEmpty = (energy) => phone(recallHdr(energy), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'В выбранных наборах нет карточек с переводом.', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
   const recallUnavailable = () => phone(recallHdr(), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'Сейчас недоступно', btn: 'Попробовать снова', btnIcon: X.refresh }) });
   // 10. Устно — пусто
   // зачем (аудит 7a207bc4a): при пустой очереди счёта «1 / 1» и полосы нет — в шапке только название и сердца + энергия
@@ -423,6 +426,8 @@
       col('Список пуст — только «Системный (авто)»', voiceOnlySystem())]],
     ['pick2', '«В какой набор?»: есть только опубликованные наборы', 'У автора нет ни одного набора, куда можно добавить карточку, но опубликованные есть (в них добавлять нельзя). Текст другой, кнопка «Создать набор» остаётся.', [
       col('Нет наборов, куда можно добавить', pickFrame(pickOnlyPublished()))]],
+    ['flag', 'Под флагом energy_mistake_charge (выкл. по умолчанию)', 'В первом выпуске флаг выключен — в шапках сессий сердца (кадры выше). Если его включить, вместо сердец стоит пилюля энергии с числом (EnergyMistakeHud, energy_mode.ts); при ошибке «−1». Кадр показан только как запасной вариант.', [
+      col('Напиши — нет карточек: под флагом energy_mistake_charge (выкл.) — пилюля энергии вместо сердец', recallEmpty(true))]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

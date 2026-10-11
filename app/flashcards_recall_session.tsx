@@ -76,6 +76,7 @@ import {
   type SessionOutcomeSummary,
 } from './flashcards/session_queue';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
+import { markWrongLetters } from './flashcards/recall_diff';
 import { buildResultMistakes } from './flashcards/session_result_mistakes';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
@@ -179,6 +180,8 @@ export default function FlashcardsRecallSession() {
   const [activeCard, setActiveCard] = useState<DeckCard | null>(null);
   const [input, setInput] = useState('');
   const [feedback, setFeedback] = useState<RecallFeedback | null>(null);
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Напиши — верно»: пилюля «+10» в панели ответа): сколько рун дал верный ответ; 0 — пилюли нет
+  const [lastAward, setLastAward] = useState(0);
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
   const [masteredCount, setMasteredCount] = useState(0);
@@ -577,11 +580,15 @@ export default function FlashcardsRecallSession() {
       // Revealed/self-graded answers confirm learning but do not mint currency.
       if (!answerRevealed) {
         const awarded = practiceRunes.onCorrectAnswer(card.id);
+        setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
+      } else {
+        setLastAward(0);
       }
       fcHaptic('correct');
       playSfx('correct');
     } else {
+      setLastAward(0);
       const requeued = requeueAfterMistake(
         queueRef.current,
         card,
@@ -702,10 +709,11 @@ export default function FlashcardsRecallSession() {
   }, [router]);
 
   const copy = useMemo(() => ({
+    // зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr('Напиши', …)`): в шапке сессии режим называется «Напиши»
     title: triLang(lang, {
-      ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
-      'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
-      tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
+      ru: 'Напиши', uk: 'Напиши', en: 'Write', es: 'Escribe',
+      'pt-BR': 'Escreva', vi: 'Viết', id: 'Tulis',
+      tr: 'Yaz', pl: 'Napisz',
     }),
     prompt: triLang(lang, {
       ru: 'Напиши на изучаемом языке', uk: 'Напиши мовою, яку вивчаєш', en: 'Write in the language you are learning', es: 'Escribe en el idioma que estudias',
@@ -747,9 +755,15 @@ export default function FlashcardsRecallSession() {
       ru: 'Не знал', uk: 'Не знав', en: 'I did not know', es: 'No lo sabía', 'pt-BR': 'Eu não sabia',
       vi: 'Tôi không biết', id: 'Saya tidak tahu', tr: 'Bilmiyordum', pl: 'Nie wiedziałem',
     }),
+    // зачем (Карточки 2.0 12.10, макет «Дальше»)
     continue: triLang(lang, {
-      ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar',
-      vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj',
+      ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
+      vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej',
+    }),
+    // макет: при ошибке панель называется «Правильно» и показывает эталон
+    rightAnswer: triLang(lang, {
+      ru: 'Правильно', uk: 'Правильно', en: 'Correct answer', es: 'Correcto', 'pt-BR': 'Correto',
+      vi: 'Đáp án đúng', id: 'Yang benar', tr: 'Doğrusu', pl: 'Poprawnie',
     }),
     correct: triLang(lang, {
       ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto',
@@ -813,6 +827,7 @@ export default function FlashcardsRecallSession() {
       <View style={styles.headerRow}>
         <PracticeBackButton
           large
+          icon="close"
           glass={recallGlass}
           color={t.textPrimary}
           onPress={leave}
@@ -980,8 +995,7 @@ export default function FlashcardsRecallSession() {
             automaticallyAdjustKeyboardInsets
             showsVerticalScrollIndicator={false} decelerationRate="fast"
           >
-            {/* зачем (practice.html «Вспомни и напиши»): карточка `.qc` — подпись задания
-                внутри карточки 16 вторичным, фраза 28/34 жирным; радиус 16, кромка 1 px. */}
+            {/* зачем (Карточки 2.0 12.10, cards-v2.html `.qh`): карточка задания r20, высота 170, подпись приколота к верху, фраза 34/40 по центру */}
             <Reanimated.View
               key={activeCard.id}
               entering={reducedMotion ? undefined : FadeInUp.duration(240)}
@@ -992,6 +1006,10 @@ export default function FlashcardsRecallSession() {
               style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card, boxShadow: plateBoxShadow(recallGlass) }]}
             >
               <RecallGlassSurface chrome={recallGlass} />
+              {/* подпись приколота к верху карточки; диктор читает её вместе с фразой через метку обёртки ниже */}
+              <Text accessible={false} style={[styles.instruction, { color: recallGlass.secondary }]}>
+                {direction === 'to_source' ? copy.promptToSource : copy.prompt}
+              </Text>
               <View
                 ref={promptRef}
                 collapsable={false}
@@ -999,10 +1017,7 @@ export default function FlashcardsRecallSession() {
                 accessibilityLabel={`${direction === 'to_source' ? copy.promptToSource : copy.prompt}. ${promptOf(activeCard)}`}
                 style={styles.focusPrompt}
               >
-                <Text style={[styles.instruction, { color: recallGlass.secondary }]}>
-                  {direction === 'to_source' ? copy.promptToSource : copy.prompt}
-                </Text>
-                <Text style={[styles.translation, { color: t.textPrimary, fontSize: Math.max(28, Math.round(f.h1 * 1.1)), lineHeight: Math.max(34, Math.round(f.h1 * 1.35)) }]}>
+                <Text style={[styles.translation, { color: t.textPrimary, fontSize: 34, lineHeight: 40 }]}>
                   {promptOf(activeCard)}
                 </Text>
               </View>
@@ -1046,14 +1061,32 @@ export default function FlashcardsRecallSession() {
                 style={[
                   styles.compactInputShell,
                   {
-                    backgroundColor: recallGlass.opaqueControl,
-                    // зачем (`.inp`; Тень 12.10): поле ввода — плашка с тенью, без кромки; вердикт читается карточкой ответа ниже.
-                    boxShadow: plateBoxShadow(recallGlass),
+                    backgroundColor: feedback ? (feedback.kind === 'wrong' ? recallGlass.badSoft : recallGlass.goodSoft) : recallGlass.opaqueControl,
+                    // зачем (`.inp`; Тень 12.10): поле ввода — плашка с тенью, без кромки; исход «верно/неверно» — цветное кольцо-состояние (макет `.field.ok/.no`).
+                    boxShadow: feedback
+                      ? [...plateBoxShadow(recallGlass), { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good}73` }] // shadow-ok: кольцо исхода ответа (состояние)
+                      : plateBoxShadow(recallGlass),
                   },
                 ]}
               >
                 <RecallGlassSurface chrome={recallGlass} />
-                <TextInput
+                {feedback ? (
+                  // зачем (Карточки 2.0 12.10, кадры «Напиши — верно / неверно»): после проверки поле показывает набранное; лишние буквы — красным с подчёркиванием, справа ✓ / ✕
+                  <View style={styles.inputResultRow}>
+                    <Text testID="fc-recall-input-result" selectable style={[styles.input, styles.inputResultText, { color: t.textPrimary, fontSize: 20, lineHeight: 26 }]}>
+                      {(feedback.kind === 'wrong' ? markWrongLetters(input, feedback.expected) : [{ text: input, wrong: false }]).map((part, index) => (
+                        <Text
+                          key={`${index}:${part.text}` /* guard-ok: части одного ответа, порядок стабилен */}
+                          style={part.wrong ? { color: recallGlass.bad, textDecorationLine: 'underline', textDecorationColor: recallGlass.bad } : undefined}
+                        >
+                          {part.text}
+                        </Text>
+                      ))}
+                    </Text>
+                    <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good} />
+                  </View>
+                ) : null}
+                {feedback ? null : <TextInput
                   testID="fc-recall-input"
                   value={input}
                   editable={attemptsInteractive && !feedback}
@@ -1067,9 +1100,9 @@ export default function FlashcardsRecallSession() {
                   autoCorrect={false}
                   autoCapitalize="sentences"
                   keyboardAppearance={statusBarLight ? 'dark' : 'light'}
-                  style={[styles.input, { color: t.textPrimary, fontSize: Math.max(18, f.bodyLg), lineHeight: Math.max(24, Math.round(f.bodyLg * 1.35)) }]}
+                  style={[styles.input, { color: t.textPrimary, fontSize: 20, lineHeight: 26 }]}
                   accessibilityLabel={copy.placeholder}
-                />
+                />}
                 {/* Счётчик символов макету не нужен — показываем только у самого предела. */}
                 {input.length >= MAX_INPUT_LENGTH - 20 ? (
                   <Text style={[styles.characterCount, { color: recallGlass.secondary }]}>
@@ -1119,25 +1152,31 @@ export default function FlashcardsRecallSession() {
             ) : null}
 
             {feedback ? (
+              // зачем (Карточки 2.0 12.10, cards-v2.html `.ans`): панель ответа — значок исхода 40, подпись «Верно» / «Правильно», эталон 20/700, справа «+N» после верного
               <Reanimated.View
+                testID="fc-recall-feedback"
                 entering={reducedMotion ? undefined : FadeInDown.duration(180)}
-                style={[styles.feedbackCard, styles.glassSurface, { backgroundColor: feedbackSurface }]}
+                style={[styles.feedbackCard, { backgroundColor: feedback.kind === 'wrong' ? recallGlass.badSoft : recallGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}
                 accessibilityLiveRegion="polite"
               >
-                <RecallGlassSurface chrome={recallGlass} sheen={false} />
-                <Ionicons
-                  name={feedback.kind === 'wrong' ? 'close-circle' : 'checkmark-circle'}
-                  size={24}
-                  color={FEEDBACK_TEXT}
-                />
+                <View style={[styles.feedbackVk, { backgroundColor: feedback.kind === 'wrong' ? recallGlass.badSoft : recallGlass.goodSoft }]}>
+                  <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good} />
+                </View>
                 <View style={styles.feedbackCopy}>
-                  <Text style={[styles.feedbackTitle, { color: FEEDBACK_TEXT }]}>
-                    {feedback.kind === 'correct' ? copy.correct : feedback.kind === 'typo' ? copy.typo : copy.wrong}
+                  <Text style={[styles.feedbackTitle, { color: recallGlass.secondary }]}>
+                    {feedback.kind === 'correct' ? copy.correct : feedback.kind === 'typo' ? copy.typo : copy.rightAnswer}
                   </Text>
                   {feedback.kind !== 'correct' ? (
-                    <Text selectable style={[styles.feedbackAnswer, { color: FEEDBACK_TEXT }]}>{feedback.expected}</Text>
-                  ) : null}
+                    <Text selectable style={[styles.feedbackAnswer, { color: feedback.kind === 'wrong' ? t.textPrimary : recallGlass.good }]}>{feedback.expected}</Text>
+                  ) : (
+                    <Text selectable style={[styles.feedbackAnswer, { color: recallGlass.good }]}>{feedback.expected}</Text>
+                  )}
                 </View>
+                {feedback.kind !== 'wrong' && lastAward > 0 ? (
+                  <View testID="fc-recall-award" style={[styles.feedbackAward, { backgroundColor: recallGlass.goodSoft }]}>
+                    <Text style={[styles.feedbackAwardText, { color: recallGlass.good }]}>{`+${lastAward}`}</Text>
+                  </View>
+                ) : null}
               </Reanimated.View>
             ) : null}
 
@@ -1149,7 +1188,6 @@ export default function FlashcardsRecallSession() {
                   glass={recallGlass}
                   testID="fc-recall-continue"
                   label={copy.continue}
-                  trailingArrow
                   disabled={!attemptsInteractive}
                   onPress={advance}
                 />
@@ -1206,14 +1244,15 @@ const styles = StyleSheet.create({
   loadingBody: { flex: 1, paddingHorizontal: 16, paddingTop: 22, gap: 18, alignItems: 'flex-start' },
   loadingCta: { width: '100%', marginTop: 'auto', paddingBottom: 28 },
   // зачем (practice.html `.qc` «Вспомни»): радиус 16, минимум 140; кромки нет (Тень 12.10).
+  // зачем (Карточки 2.0 12.10, cards-v2.html `.qh` в «Напиши»): высота 170, r20, поля 20; подпись приколота к верху (18)
   focusCard: {
-    minHeight: 140, borderRadius: 16,
-    paddingHorizontal: 28, paddingVertical: 22, justifyContent: 'center',
+    minHeight: 170, borderRadius: 20,
+    padding: 20, justifyContent: 'center',
   },
   glassSurface: { overflow: 'hidden' },
   focusPrompt: { alignItems: 'center', justifyContent: 'center' },
-  instruction: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
-  translation: { marginTop: 22, fontSize: 28, lineHeight: 34, fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
+  instruction: { position: 'absolute', top: 18, left: 0, right: 0, fontSize: 16, lineHeight: 21, textAlign: 'center' },
+  translation: { fontSize: 34, lineHeight: 40, fontWeight: '700', textAlign: 'center', letterSpacing: -0.5 },
   eyebrow: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   hintRow: { minHeight: 44, marginTop: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hintButton: { minHeight: 44, borderRadius: 22, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
@@ -1221,7 +1260,10 @@ const styles = StyleSheet.create({
   guidance: { flexShrink: 1, minWidth: 0 },
   guidanceText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'right' },
   // `.inp` макета: 56, радиус 14, 18/500. Кромка задаётся рядом с цветом темы.
-  compactInputShell: { minHeight: 56, marginTop: 22, borderRadius: 14, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
+  // зачем (Карточки 2.0 12.10, `.field` в «Напиши»): высота 60, шрифт 20
+  compactInputShell: { minHeight: 60, marginTop: 22, borderRadius: 14, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
+  inputResultRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  inputResultText: { flex: 1, minWidth: 0 },
   input: { minHeight: 26, padding: 0, textAlignVertical: 'center', fontSize: 16, fontWeight: '400', lineHeight: 21 },
   characterCount: { alignSelf: 'flex-end', marginTop: 4, fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   answerCard: { marginTop: 18, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 16 },
@@ -1230,10 +1272,15 @@ const styles = StyleSheet.create({
   selfGradeButton: { flex: 1, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
   selfGradeText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
   // `.ansr` макета: радиус 16, заголовок 15/600, правильный ответ 20/26.
-  feedbackCard: { marginTop: 18, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  // зачем (Карточки 2.0 12.10, `.ans`): r18, поля 14/16, зазор 14; подпись 13/600, эталон 20/700
+  feedbackCard: { marginTop: 18, borderRadius: 18, paddingHorizontal: 16, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  feedbackVk: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   feedbackCopy: { flex: 1, minWidth: 0 },
-  feedbackTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  feedbackAnswer: { marginTop: 8, fontSize: 20, lineHeight: 26, fontWeight: '600' },
+  feedbackTitle: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  feedbackAnswer: { marginTop: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
+  // `.plus10`: 26 высотой, r13, поля 10, 14/700 → 13/700
+  feedbackAward: { height: 26, borderRadius: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
+  feedbackAwardText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   actions: { marginTop: 'auto', paddingTop: 18, gap: 8 },
   revealButton: { minHeight: 44, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' },
   revealText: { fontSize: 16, lineHeight: 21, fontWeight: '600' },

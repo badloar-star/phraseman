@@ -66,7 +66,8 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { trackEvent } from './analytics';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
 import { speakingBand, speakingBandLabel } from './speaking_score_bands';
-import PhraseCard, { useFcReduceMotion } from './flashcards/PhraseCard';
+import { useFcReduceMotion } from './flashcards/PhraseCard';
+import { CardFlipV2 } from './flashcards/CardFlipV2';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { loadFcDeckOptions } from './flashcards/deck_options';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
@@ -133,12 +134,11 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8'; // theme-exempt: бирюза режима «Устно» — идентичность режима (значок на ней тёмный) и смешение с чёрным для тени дорожки
 const CARD_MIN_H = 200;
-const SPEAKING_CARD_PRESENTATION = Object.freeze({
-  borderRadius: 16,
-  paddingHorizontal: 28,
-  paddingTop: 24,
-  paddingBottom: 22,
-});
+// зачем (Карточки 2.0 12.10, cards-v2.html «Устно»): карточка RU → EN высотой 196 (`flip()` макета), подписи языков RU / EN
+const SPEAKING_CARD_HEIGHT = 196;
+
+/** «EN» / «RU» / «PT»: короткий код языка для подписи грани карточки (pt-BR → PT). */
+const langChip = (code: string): string => code.split('-')[0].toUpperCase();
 
 type SpeakingGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
@@ -361,6 +361,8 @@ export default function FlashcardsSpeakingSession() {
   sessionRef.current = session;
   const [task, setTask] = useState<SpeakingTask>(DEFAULT_SPEAKING_PREFS.task);
   const [flipped, setFlipped] = useState(false);
+  // зачем (Карточки 2.0 12.10, «Устно — верно»: пилюля «+10» в панели вердикта): сколько рун дал зачтённый ответ; 0 — пилюли нет
+  const [lastAward, setLastAward] = useState(0);
   /** Микрофон зажат прямо сейчас — SpeakingPanel слушает. */
   const [holdActive, setHoldActive] = useState(false);
   /**
@@ -968,7 +970,10 @@ export default function FlashcardsSpeakingSession() {
       // раз за сессию, сколько бы попыток на неё ни ушло до зачёта.
       if (attempt.passed && failedCard) {
         const awarded = practiceRunes.onCorrectAnswer(failedCard.id);
+        setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
+      } else {
+        setLastAward(0);
       }
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
@@ -1288,6 +1293,8 @@ export default function FlashcardsSpeakingSession() {
   const labels = useMemo(
     () => ({
       title: triLang(lang, TITLE),
+      // зачем (Карточки 2.0 12.10): бинарный вердикт «Верно» поверх звёзд — порог зачёта уже есть (attempt.passed ← SPEECH_PRONUNCIATION_PASS_THRESHOLD)
+      verdictOk: triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Dobrze' }),
       back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
       recallHint: triLang(lang, {
         ru: 'Вспомни фразу по переводу. Удерживай микрофон, пока отвечаешь.', uk: 'Згадай фразу за перекладом. Утримуй мікрофон, поки відповідаєш.',
@@ -1377,6 +1384,7 @@ export default function FlashcardsSpeakingSession() {
       <View style={{ marginRight: 6 }}>
       <PracticeBackButton
         large
+        icon="close"
         glass={speakingGlass}
         color={t.textPrimary}
         onPress={interactive ? leave : undefined}
@@ -1384,15 +1392,8 @@ export default function FlashcardsSpeakingSession() {
         accessibilityLabel={labels.back}
       />
       </View>
-      <PracticeHeaderTitle glass={speakingGlass} title={labels.title}>
-        {interactive ? (
-          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false} decelerationRate="fast">
-            <Text style={{ color: speakingGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
-          </ScrollView>
-        ) : (
-          <View style={{ marginTop: 4 }}><SkeletonBlock width={120} height={f.caption} /></View>
-        )}
-      </PracticeHeaderTitle>
+      {/* зачем (Карточки 2.0 12.10, `sessHdr`): в шапке «Устно» одно название — подзаголовка с названием набора нет */}
+      <PracticeHeaderTitle glass={speakingGlass} title={labels.title} />
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <SessionAttemptsHud
           remaining={attempts.state.remainingAttempts} attempts={attempts}
@@ -1623,35 +1624,19 @@ RU: ${card.translation}`}
           {/* Источник полёта рун (владелец, 2026-08-27) */}
           <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
-            <PhraseCard
-              mode="view"
-              en={front}
-              translation={back}
+            <CardFlipV2
+              g={speakingGlass}
+              front={front}
+              back={back}
+              // макет `oral()`: лицо — RU (перевод), оборот — EN; в задании «Повтори за диктором» наоборот
+              frontLabel={task === 'recall' ? langChip(lang) : langChip(studyTarget)}
+              backLabel={task === 'recall' ? langChip(studyTarget) : langChip(lang)}
+              height={SPEAKING_CARD_HEIGHT}
               flipped={flipped}
               onFlip={setFlipped}
-              minHeight={CARD_MIN_H}
-              presentation={SPEAKING_CARD_PRESENTATION}
-              t={t}
               disabled={holdActive}
+              outcome={phase === 'scored' && attempt ? (attempt.passed ? 'ok' : null) : null}
               testID="fc-speak-card"
-              renderFront={() => (
-                <View style={styles.cardFace}>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale, fontWeight: '700', textAlign: 'center' }}
-                  >
-                    {front}
-                  </Text>
-                </View>
-              )}
-              renderBack={() => (
-                <View style={styles.cardFace}>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale, fontWeight: '700', textAlign: 'center' }}
-                  >
-                    {back}
-                  </Text>
-                </View>
-              )}
             />
             <View style={styles.spokenRow}>
               <Ionicons name="mic-outline" size={13} color={t.textMuted} />
@@ -1684,6 +1669,23 @@ RU: ${card.translation}`}
                 testID="fc-speak-attempt-result"
               >
                 <SpeakingResultSheen glass={speakingGlass} />
+                {attempt.passed ? (
+                  // макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N»
+                  <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>
+                    <View style={[styles.verdictVk, { backgroundColor: speakingGlass.goodSoft }]}>
+                      <Ionicons name="checkmark" size={20} color={speakingGlass.good} />
+                    </View>
+                    <View style={styles.verdictCopy}>
+                      <Text style={[styles.verdictKicker, { color: speakingGlass.secondary }]}>{labels.verdictOk}</Text>
+                      <Text style={[styles.verdictValue, { color: speakingGlass.good }]}>{card?.en ?? ''}</Text>
+                    </View>
+                    {lastAward > 0 ? (
+                      <View testID="fc-speak-award" style={[styles.verdictAward, { backgroundColor: speakingGlass.goodSoft }]}>
+                        <Text style={[styles.verdictAwardText, { color: speakingGlass.good }]}>{`+${lastAward}`}</Text>
+                      </View>
+                    ) : null}
+                  </View>
+                ) : null}
                 {spokenTranscript ? (
                   <View style={styles.transcriptBlock} testID="fc-speak-transcript">
                     <Text style={{ color: t.textMuted, fontSize: 13 * textScale, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' }}>
@@ -1871,6 +1873,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   transcriptBlock: { width: '100%', alignItems: 'center', gap: 8 },
+  // `.ans`: r18, поля 14/16, зазор 14; подпись 13/600, эталон 20/700; `.plus10` 26 / r13
+  verdictPanel: { width: '100%', borderRadius: 18, paddingVertical: 14, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  verdictVk: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  verdictCopy: { flex: 1, minWidth: 0 },
+  verdictKicker: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  verdictValue: { marginTop: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
+  verdictAward: { height: 26, borderRadius: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
+  verdictAwardText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   resultActions: { flexDirection: 'row', gap: 10, marginTop: 2 },
   resultBtn: {
     flexDirection: 'row',

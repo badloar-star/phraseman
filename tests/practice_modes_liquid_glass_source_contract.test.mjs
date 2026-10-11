@@ -40,7 +40,8 @@ assert.match(modes.blitz, /<PracticeTimerPill/);
 assert.match(modes.blitz, /<PracticeAnswerMark kind=\{state\}/);
 assert.match(modes.blitz, /testID="fc-blitz-timer"/);
 assert.match(modes.blitz, /disabled=\{locked\}/);
-assert.match(modes.swipe, /<PracticeHeaderTitle glass=\{swipeGlass\} title=\{title\} subtitle=\{subtitle\}/);
+// зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): шапка «Правда / ложь» — общий PracticeSessionHeader с ✕ и названием, без подзаголовка и пилюли энергии
+assert.match(modes.swipe, /<PracticeSessionHeader[\s\S]{0,160}backIcon="close"[\s\S]{0,400}title=\{title\}/);
 
 // ── Второй проход (владелец 2026-09-30): служебные состояния, строка прогресса, кнопки, карточки.
 const states = read('components', 'practice', 'PracticeStates.tsx');
@@ -82,12 +83,12 @@ assert.doesNotMatch(modes.recall, /ActivityIndicator/);
 assert.match(modes.recall, /testID="fc-recall-loading"/);
 assert.doesNotMatch(setup.slice(setup.indexOf('fc-training-setup-loading'), setup.indexOf('fc-training-setup-loading-row-')), /<ActivityIndicator/);
 
-// «Вспомни»: карточка `.qc`, поле `.inp` 56/14, «Подсказка» под полем, `.cta` «Проверить» / «Продолжить →».
-assert.match(modes.recall, /minHeight: 140, borderRadius: 16/);
-assert.match(modes.recall, /compactInputShell: \{ minHeight: 56, marginTop: 22, borderRadius: 14/);
-assert.match(modes.recall, /borderColor: recallGlass\.glassEdge/);
+// «Напиши» (Карточки 2.0 12.10, cards-v2.html `write()`): карточка `.qh` высотой 170 r20, поле `.field` 60/14 (кольцо исхода — состояние), «Подсказка» под полем, `.cta` «Проверить» / «Дальше».
+assert.match(modes.recall, /minHeight: 170, borderRadius: 20/);
+assert.match(modes.recall, /compactInputShell: \{ minHeight: 60, marginTop: 22, borderRadius: 14/);
+assert.doesNotMatch(modes.recall, /borderColor: recallGlass\.glassEdge/);
 assert.match(modes.recall, /<PracticeCta[\s\S]{0,120}testID="fc-recall-check"[\s\S]{0,120}disabled=\{!canCheck\}[\s\S]{0,40}onPress=\{checkAnswer\}/);
-assert.match(modes.recall, /<PracticeCta[\s\S]{0,120}testID="fc-recall-continue"[\s\S]{0,80}trailingArrow/);
+assert.match(modes.recall, /<PracticeCta[\s\S]{0,120}testID="fc-recall-continue"/);
 assert.ok(modes.recall.indexOf('testID="fc-recall-input"') < modes.recall.indexOf('testID="fc-recall-hint"'), 'hint sits under the input');
 assert.match(modes.recall, /<PracticeProgressRow[\s\S]{0,200}left=\{totalCards > 0 \? String\(masteredCount\) : ''\}/);
 
@@ -98,14 +99,15 @@ assert.match(modes.speaking, /styles\.taskPill/);
 assert.match(modes.speaking, /\{optionLabel\}/);
 assert.match(modes.speaking, /taskPill: \{[\s\S]{0,60}minHeight: 44/);
 
-// «Правда / ложь»: карточка радиус 16 с кромкой, круги 88, вердикт 16/600, «Продолжить →».
-assert.match(modes.swipe, /trueFalseCard: \{\s*borderRadius: 16,/);
-assert.match(modes.swipe, /trueFalseAnswer: \{\s*width: 88,\s*height: 88,\s*borderRadius: 44,\s*borderWidth: 1,/);
-assert.match(modes.swipe, /<PracticeCta[\s\S]{0,80}testID="flashcards-truefalse-continue"[\s\S]{0,120}onPress=\{continueAfterFeedback\}/);
+// «Правда / ложь» (Карточки 2.0 12.10): смахиваемая карточка (TrueFalseSwipeCard), круги 76 с подписями «Ложь / Правда», панель исхода 20/700 и «Дальше».
+assert.match(modes.swipe, /<TrueFalseSwipeCard/);
+assert.match(modes.swipe, /trueFalseAnswer: \{\s*width: 76,\s*height: 76,\s*borderRadius: 38,/);
+assert.doesNotMatch(modes.swipe, /trueFalseAnswer: \{[^}]*borderWidth/);
+assert.match(modes.swipe, /<PracticeCta[\s\S]{0,80}testID="flashcards-truefalse-continue"[\s\S]{0,120}onPress=\{continueWithFly\}/);
 assert.match(modes.swipe, /<PracticeProgressRow[\s\S]{0,120}testID="flashcards-truefalse-progress"/);
 assert.match(modes.swipe, /trainingCard: \{\s*borderRadius: 16,/);
-// Цвета верно/неверно — прежние токены темы, цветной обводки нет.
-assert.match(modes.swipe, /backgroundColor: verdictCorrect \? t\.correctBg : t\.wrongBg/);
+// Цвета верно/неверно — токены темы (goodSoft/badSoft), цветной обводки-контейнера нет (кольцо исхода — только inset-состояние).
+assert.match(modes.swipe, /verdictCorrect \? swipeGlass\.goodSoft : swipeGlass\.badSoft/);
 assert.doesNotMatch(modes.swipe, /borderColor: verdictCorrect/);
 
 // Жемчуга и опыта в тренировках нет.

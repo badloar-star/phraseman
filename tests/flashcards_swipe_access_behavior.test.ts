@@ -89,6 +89,8 @@ jest.mock('../components/PremiumContext', () => ({
 // зачем: personal_plan_sunset_guard удалён вместе с «Личным планом» (efe19ae9d), экран его больше не оборачивает.
 // зачем: 17fbb3d32 — в шапке тренировки по practice.html стоит индикатор энергии (EnergyBar на Reanimated).
 jest.mock('../components/EnergyBar', () => 'EnergyBar');
+// зачем (Карточки 2.0 12.10): «Правда / ложь» рисует смахиваемую карточку (Gesture Handler + Reanimated) — в этом тесте проверяется логика доступа, вид заглушен
+jest.mock('../app/flashcards/TrueFalseSwipeCard', () => ({ __esModule: true, TrueFalseSwipeCard: 'TrueFalseSwipeCard', default: 'TrueFalseSwipeCard' }));
 jest.mock('../components/EnergyContext', () => ({
   useEnergy: () => ({
     confirmSpendOne: mockConfirmEnergy,

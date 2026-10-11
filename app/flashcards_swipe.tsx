@@ -32,7 +32,6 @@ import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyBar from '../components/EnergyBar';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
@@ -51,6 +50,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
+import { TrueFalseSwipeCard, type TrueFalseSwipeCardHandle } from './flashcards/TrueFalseSwipeCard';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
 import { type Flashcard } from '../hooks/use-flashcards';
@@ -1191,6 +1191,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
    * Id вопроса уникален при каждом создании, сбрасывать значение не нужно.
    */
   const answeredPromptIdRef = useRef<string | null>(null);
+  // зачем (Карточки 2.0 12.10): «Правда / ложь» — карточка смахивается; на «Дальше» она улетает (320 мс), и только потом идёт следующий вопрос. Защёлка — от двойного тапа.
+  const tfCardRef = useRef<TrueFalseSwipeCardHandle>(null);
+  const tfContinuingRef = useRef(false);
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
@@ -3698,39 +3701,43 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           pl: `Nieprawidłowo. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
         });
 
-    // зачем (`.tfb .b` макета; Тень 12.10): круг 88 — плашка с тенью, без кромки; после ответа выбранный круг — прежняя
-    // заливка верно/неверно, второй гаснет до 0.4. Цветную кромку не рисуем (запрет владельца).
-    const answerStyle = (saysMatch: boolean) => {
-      const shadow = plateBoxShadow(swipeGlass);
-      if (!feedback) return { backgroundColor: swipeGlass.opaqueControl, boxShadow: shadow, opacity: 1 };
-      if (selectedMatch !== saysMatch) return { backgroundColor: swipeGlass.opaqueControl, boxShadow: shadow, opacity: 0.4 };
-      return {
-        backgroundColor: verdictCorrect ? t.correctBg : t.wrongBg,
-        boxShadow: shadow,
-        opacity: 1,
-      };
+    // зачем (Карточки 2.0 12.10, cards-v2.html `tf`): кнопки «Ложь» и «Правда» — круги 76 с подписью под ними; после ответа их место занимает панель исхода.
+    const falseLabel = triLang(lang, { ru: 'Ложь', uk: 'Неправда', en: 'False', es: 'Falso', 'pt-BR': 'Falso', vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Fałsz' });
+    const trueLabel = triLang(lang, { ru: 'Правда', uk: 'Правда', en: 'True', es: 'Verdadero', 'pt-BR': 'Verdadeiro', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Prawda' });
+    const resultOk = triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Dobrze' });
+    const resultNo = triLang(lang, { ru: 'Неверно', uk: 'Неправильно', en: 'Incorrect', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Nieprawidłowo' });
+    const nextLabel = triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' });
+    const answersLocked = Boolean(feedback) || attempts.state.phase !== 'active';
+    const decide = (saysMatch: boolean) => { if (!answersLocked) answerCurrent(saysMatch); };
+    const continueWithFly = () => {
+      if (tfContinuingRef.current) return;
+      const card = tfCardRef.current;
+      if (!card || !feedback) { continueAfterFeedback(); return; }
+      tfContinuingRef.current = true;
+      void hapticTap();
+      card.flyOut(selectedMatch ? 1 : -1, () => { tfContinuingRef.current = false; continueAfterFeedback(); });
     };
 
     return (
       <View style={[styles.trueFalseRoot, { paddingHorizontal: ds.spacing.lg, paddingBottom: Math.max(14, bottomInset + 10) }]}>
-        <View testID="flashcards-truefalse-header" style={styles.trueFalseHeader}>
-          <PracticeBackButton
-            large
+        {/* зачем (Карточки 2.0 12.10, `sessHdr`): ✕ · название · справа попытки и руны (как в Блице); подзаголовка и пилюли энергии в макете нет */}
+        <View testID="flashcards-truefalse-header">
+          <PracticeSessionHeader
             glass={swipeGlass}
             color={t.textPrimary}
-            onPress={exitTraining}
-            accessibilityLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
+            onBack={exitTraining}
+            backIcon="close"
+            backLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
+            title={title}
+            tools={(
+              <>
+                <SessionAttemptsHud remaining={attempts.state.remainingAttempts} attempts={attempts} locale={lang} testID="flashcards-truefalse-attempts-hud" />
+                <View ref={runeFlight.counterRef} collapsable={false}>
+                  <PracticeRuneCounter runes={practiceRunes.runes} lang={lang} backgroundColor={t.bgCard} color={t.textPrimary} testID="flashcards-truefalse-practice-runes" />
+                </View>
+              </>
+            )}
           />
-          <PracticeHeaderTitle glass={swipeGlass} title={title} subtitle={subtitle} />
-          {/* зачем (practice.html «Энергия»): пилюля энергии на плите стекла, без фиолетового */}
-          <EnergyBar ownerActive glass />
-        </View>
-
-        <View style={styles.trueFalseMetaRow}>
-          <SessionAttemptsHud remaining={attempts.state.remainingAttempts} attempts={attempts} locale={lang} testID="flashcards-truefalse-attempts-hud" />
-          <View ref={runeFlight.counterRef} collapsable={false}>
-            <PracticeRuneCounter runes={practiceRunes.runes} lang={lang} backgroundColor={t.bgCard} color={t.textPrimary} testID="flashcards-truefalse-practice-runes" />
-          </View>
         </View>
 
         {/* зачем (practice.html «Правда / ложь»): полоса 6 px и строка «номер … всего» под ней —
@@ -3747,58 +3754,74 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         </View>
 
         <View ref={runeFlight.originRef} collapsable={false} style={styles.trueFalseBody}>
-          {/* `.tf` макета: радиус 16, кромка 1 px полупрозрачная, вопрос 16, фраза 32/38, перевод 22/28. */}
-          <View testID="flashcards-truefalse-prompt" style={[styles.trueFalseCard, { backgroundColor: swipeGlass.opaqueCard, boxShadow: plateBoxShadow(swipeGlass) }]}>
-            <SwipeTrainingCardGlass chrome={swipeGlass} sheen={!feedback} />
-            <Text style={[styles.trueFalseQuestion, { color: swipeGlass.secondary }]}>{question}</Text>
-            <FlowText testID="true-false-word" provenance="authored" style={[styles.trueFalseWord, { color: t.textPrimary, fontSize: Math.max(32, f.h1 + 7), lineHeight: Math.max(38, Math.round((f.h1 + 7) * 1.2)) }]}>
-              {s(currentPrompt.card.en) || text.brokenCardPhrase}
-            </FlowText>
-            <View style={[styles.trueFalseDivider, { backgroundColor: swipeGlass.line }]} />
-            <FlowText testID="true-false-translation" provenance="authored" style={[styles.trueFalseTranslation, { color: t.textPrimary, fontSize: Math.max(22, f.bodyLg + 4), lineHeight: Math.max(28, Math.round((f.bodyLg + 4) * 1.28)) }]}>
-              {currentPrompt.shownTranslation}
-            </FlowText>
+          {/* `.swz` макета: карточку смахивают вправо («Правда») и влево («Ложь»); вопрос «Этот перевод подходит?» читается диктором как метка карточки */}
+          <View testID="flashcards-truefalse-prompt">
+            <TrueFalseSwipeCard
+              ref={tfCardRef}
+              g={swipeGlass}
+              promptKey={currentPrompt.id}
+              word={s(currentPrompt.card.en) || text.brokenCardPhrase}
+              translation={currentPrompt.shownTranslation}
+              stampTrue={trueLabel}
+              stampFalse={falseLabel}
+              disabled={answersLocked}
+              committed={feedback ? { dir: selectedMatch ? 1 : -1, ok: Boolean(verdictCorrect) } : null}
+              onDecide={decide}
+              accessibilityLabel={`${question}. ${s(currentPrompt.card.en) || text.brokenCardPhrase} — ${currentPrompt.shownTranslation}`}
+            />
           </View>
 
-          <View style={styles.trueFalseAnswers}>
-            <TouchableOpacity
-              testID="flashcards-truefalse-answer-false"
-              onPress={() => answerCurrent(false)}
-              disabled={Boolean(feedback) || attempts.state.phase !== 'active'}
-              accessibilityRole="button"
-              accessibilityLabel={text.mismatchAction}
-              style={[styles.trueFalseAnswer, answerStyle(false)]}
-            >
-              <Ionicons name="close" size={34} color={feedback && selectedMatch === false ? (verdictCorrect ? t.correct : t.wrong) : t.textPrimary} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="flashcards-truefalse-answer-true"
-              onPress={() => answerCurrent(true)}
-              disabled={Boolean(feedback) || attempts.state.phase !== 'active'}
-              accessibilityRole="button"
-              accessibilityLabel={text.matchAction}
-              style={[styles.trueFalseAnswer, answerStyle(true)]}
-            >
-              <Ionicons name="checkmark" size={34} color={feedback && selectedMatch === true ? (verdictCorrect ? t.correct : t.wrong) : t.textPrimary} />
-            </TouchableOpacity>
-          </View>
-
-          {feedback ? (
-            <View testID="flashcards-truefalse-verdict" accessibilityRole="alert" accessibilityLabel={verdict} style={styles.trueFalseVerdict}>
-              <Ionicons name={verdictCorrect ? 'checkmark' : 'close'} size={20} color={verdictCorrect ? t.correct : t.wrong} />
-              <FlowText testID="true-false-verdict" provenance="authored" style={[styles.trueFalseVerdictText, { color: verdictCorrect ? t.correct : t.wrong }]}>{verdict}</FlowText>
+          {feedback ? null : (
+            <View style={styles.trueFalseAnswers}>
+              {[
+                { key: 'false', saysMatch: false, label: falseLabel, icon: 'close' as const, testID: 'flashcards-truefalse-answer-false', a11y: text.mismatchAction },
+                { key: 'true', saysMatch: true, label: trueLabel, icon: 'checkmark' as const, testID: 'flashcards-truefalse-answer-true', a11y: text.matchAction },
+              ].map((btn) => (
+                <TouchableOpacity
+                  key={btn.key}
+                  testID={btn.testID}
+                  onPress={() => decide(btn.saysMatch)}
+                  disabled={answersLocked}
+                  accessibilityRole="button"
+                  accessibilityLabel={btn.a11y}
+                  activeOpacity={0.75}
+                  style={styles.trueFalseAnswerCol}
+                >
+                  <View style={[styles.trueFalseAnswer, { backgroundColor: swipeGlass.opaqueControl, boxShadow: plateBoxShadow(swipeGlass) }]}>
+                    <Ionicons name={btn.icon} size={28} color={t.textPrimary} />
+                  </View>
+                  <Text style={[styles.trueFalseAnswerLabel, { color: swipeGlass.secondary }]}>{btn.label}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
-          ) : null}
+          )}
         </View>
 
+        {/* зачем (`.bot` + `.ans` макета): после ответа внизу панель исхода «Верно / Неверно» с эталоном и «Дальше» */}
         {feedback ? (
-          <PracticeCta
-            glass={swipeGlass}
-            testID="flashcards-truefalse-continue"
-            label={continueLabel}
-            trailingArrow
-            onPress={continueAfterFeedback}
-          />
+          <View style={styles.trueFalseBot}>
+            <LinearGradient pointerEvents="none" colors={[`${swipeGlass.bgBottom}00`, swipeGlass.bgBottom]} locations={[0, 0.3]} style={StyleSheet.absoluteFill} />
+            <View
+              testID="flashcards-truefalse-verdict"
+              accessibilityRole="alert"
+              accessibilityLabel={verdict}
+              style={[styles.trueFalseAns, { backgroundColor: verdictCorrect ? swipeGlass.goodSoft : swipeGlass.badSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${verdictCorrect ? swipeGlass.good : swipeGlass.bad}52` }] /* shadow-ok: кольцо исхода ответа «верно/неверно» (состояние) */ }]}
+            >
+              <View style={[styles.trueFalseVk, { backgroundColor: verdictCorrect ? swipeGlass.goodSoft : swipeGlass.badSoft }]}>
+                <Ionicons name={verdictCorrect ? 'checkmark' : 'close'} size={20} color={verdictCorrect ? swipeGlass.good : swipeGlass.bad} />
+              </View>
+              <View style={styles.trueFalseAnsCopy}>
+                <Text style={[styles.trueFalseAnsKicker, { color: swipeGlass.secondary }]}>{verdictCorrect ? resultOk : resultNo}</Text>
+                <FlowText testID="true-false-verdict" provenance="authored" style={[styles.trueFalseAnsValue, { color: verdictCorrect ? swipeGlass.good : swipeGlass.text }]}>{`${s(currentPrompt.card.en)} — ${currentPrompt.trueTranslation}`}</FlowText>
+              </View>
+            </View>
+            <PracticeCta
+              glass={swipeGlass}
+              testID="flashcards-truefalse-continue"
+              label={nextLabel}
+              onPress={continueWithFly}
+            />
+          </View>
         ) : null}
         {attempts.state.phase !== 'active' ? <View pointerEvents="auto" style={styles.attemptsInputBlocker} /> : null}
         {runeFlight.flight ? (
@@ -4584,65 +4607,61 @@ const styles = StyleSheet.create({
     paddingTop: 38,
     paddingBottom: 18,
   },
-  // `.tf` макета: радиус 16, без кромки (Тень 12.10), поля 26/28/28.
-  trueFalseCard: {
-    borderRadius: 16,
-    paddingHorizontal: 28,
-    paddingTop: 26,
-    paddingBottom: 28,
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  trueFalseQuestion: {
-    fontSize: 16,
-    lineHeight: 21,
-    textAlign: 'center',
-  },
-  trueFalseWord: {
-    marginTop: 22,
-    fontWeight: '700',
-    letterSpacing: -0.3,
-    textAlign: 'center',
-  },
-  trueFalseDivider: {
-    height: StyleSheet.hairlineWidth,
-    marginVertical: 22,
-    marginHorizontal: 30,
-  },
-  trueFalseTranslation: {
-    fontWeight: '600',
-    textAlign: 'center',
-  },
+  // зачем (Карточки 2.0 12.10, `.tfb`): кнопки «Ложь» / «Правда» — круги 76 с подписью 16/600 под ними, зазор между колонками 56, сверху 46
   trueFalseAnswers: {
-    marginTop: 34,
+    marginTop: 46,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    gap: 28,
+    gap: 56,
+  },
+  trueFalseAnswerCol: {
+    alignItems: 'center',
+    gap: 10,
   },
   trueFalseAnswer: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
+    width: 76,
+    height: 76,
+    borderRadius: 38,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  trueFalseVerdict: {
-    minHeight: 46,
-    marginTop: 18,
-    paddingHorizontal: 8,
+  trueFalseAnswerLabel: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '600',
+  },
+  // `.bot`: панель исхода и «Дальше» внизу экрана (18/20/34 макета), затухание к фону
+  trueFalseBot: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 20,
+    paddingTop: 18,
+    paddingHorizontal: 20,
+    paddingBottom: 34,
+  },
+  // `.ans`: r18, поля 14/16, зазор 14, снизу 12
+  trueFalseAns: {
+    borderRadius: 18,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 14,
+    marginBottom: 12,
+  },
+  trueFalseVk: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
   },
-  trueFalseVerdictText: {
-    flexShrink: 1,
-    fontSize: 16,
-    fontWeight: '600',
-    lineHeight: 22,
-    textAlign: 'center',
-  },
+  trueFalseAnsCopy: { flex: 1, minWidth: 0 },
+  trueFalseAnsKicker: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  trueFalseAnsValue: { marginTop: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   attemptsInputBlocker: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 50,

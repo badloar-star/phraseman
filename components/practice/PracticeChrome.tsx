@@ -22,7 +22,7 @@ const HIT = { top: 4, bottom: 4, left: 4, right: 4 } as const;
 
 /** Круглая кнопка «‹» шапки занятия: круг 34 внутри области нажатия 44 dp. */
 export function PracticeBackButton({
-  glass, color, onPress, testID, accessibilityLabel, disabled, large = false,
+  glass, color, onPress, testID, accessibilityLabel, disabled, large = false, icon = 'chevron-back',
 }: {
   glass: PracticeGlass;
   color: string;
@@ -32,6 +32,8 @@ export function PracticeBackButton({
   disabled?: boolean;
   /** зачем (practice.html `.hd .rb.l`): в шапке тренировки круг 48 — он сам больше области нажатия 44. */
   large?: boolean;
+  /** зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): в сессиях Карточек вместо «‹» стоит ✕ (`close`); по умолчанию «‹», как у остальных занятий. */
+  icon?: 'chevron-back' | 'close';
 }) {
   return (
     <Pressable
@@ -47,7 +49,7 @@ export function PracticeBackButton({
       <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
         {/* зачем (сверка 04.10; «Тень» 12.10): круг — плашка с градиентом и малой тенью, без кромки. */}
         <KitGlassLayer radius={large ? 24 : PRACTICE_ROUND / 2} />
-        <Ionicons name="chevron-back" size={20} color={color} />
+        <Ionicons name={icon} size={20} color={color} />
       </View>
     </Pressable>
   );
@@ -111,7 +113,7 @@ export function PracticeHeaderTitle({
  * над «назад»); теперь та же шапка, что у Блица и «Вспомни», собрана один раз здесь. Действия и testID остаются у вызывающего.
  */
 export function PracticeSessionHeader({
-  glass, color, onBack, backLabel, backTestID, title, subtitle, children, tools, compact = false,
+  glass, color, onBack, backLabel, backTestID, title, subtitle, children, tools, compact = false, backIcon,
 }: {
   glass: PracticeGlass;
   color: string;
@@ -125,11 +127,13 @@ export function PracticeSessionHeader({
   /** Правая группа: сердца и счётчик монет (через 6). */
   tools?: React.ReactNode;
   compact?: boolean;
+  /** Значок кнопки слева: «‹» по умолчанию, ✕ в сессиях Карточек 2.0. */
+  backIcon?: 'chevron-back' | 'close';
 }) {
   return (
     <View style={[styles.sessionHeader, compact ? styles.sessionHeaderCompact : null]}>
       <View style={{ marginRight: 6 }}>
-        <PracticeBackButton large={!compact} glass={glass} color={color} onPress={onBack} testID={backTestID} accessibilityLabel={backLabel} />
+        <PracticeBackButton large={!compact} glass={glass} color={color} onPress={onBack} testID={backTestID} accessibilityLabel={backLabel} icon={backIcon} />
       </View>
       <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle}>{children}</PracticeHeaderTitle>
       {tools ? <View style={styles.sessionTools}>{tools}</View> : null}

@@ -216,6 +216,8 @@ export default function FlashcardsBlitzSession() {
   const [question, setQuestion] = useState<BlitzQuestion | null>(null);
   const [btnStates, setBtnStates] = useState<BtnState[]>(IDLE_BTNS);
   const [locked, setLocked] = useState(false);
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Блиц — верно»: пилюля «+10» в углу карточки вопроса): сколько рун дал верный ответ; 0 — нет пилюли
+  const [lastAward, setLastAward] = useState(0);
   const [blitz, setBlitz] = useState<BlitzState>(() => initialBlitzState());
   const [timeLeft, setTimeLeft] = useState(() => roundDurationMs / 1000);
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения —
@@ -964,7 +966,10 @@ export default function FlashcardsBlitzSession() {
       // копилка отклонит повтор сама (already-credited).
       if (isOk) {
         const awarded = practiceRunes.onCorrectAnswer(question.card.id);
+        setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
+      } else {
+        setLastAward(0);
       }
 
       const answerAttemptId = [
@@ -1447,13 +1452,11 @@ export default function FlashcardsBlitzSession() {
               освободилась, и плашка монет встала на своё место из макета. */}
           <View style={styles.headerRow}>
             <View style={{ marginRight: 6 }}>
-              <PracticeBackButton large glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
+              {/* зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): слева ✕ вместо «‹» */}
+              <PracticeBackButton large icon="close" glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
             </View>
-            <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
-              {/* зачем (Сверка practice-001, practice.html `.hd .su` nowrap): справа три пилюли (энергия, сердца, монеты), места мало —
-                  горизонтальная прокрутка срезала «Все карточк» без намёка. Одна строка с многоточием. */}
-              <Text numberOfLines={1} ellipsizeMode="tail" style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: lh(20), marginTop: 2 }}>{deckTitle}</Text>{}
-            </PracticeHeaderTitle>
+            {/* зачем (Карточки 2.0 12.10): в шапке Блица по макету одно название — подзаголовка с названием набора нет */}
+            <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle} />
             {/* зачем (решение 4, cards-section `sessHead` Блица): справа только сердца и монеты через 6 — пилюли энергии в макете нет. */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <SessionAttemptsHud
@@ -1500,9 +1503,9 @@ export default function FlashcardsBlitzSession() {
               через 23 и между собой 13 — не по центру экрана. */}
           <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
             <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, boxShadow: plateBoxShadow(blitzGlass) }]}>
-              <BlitzGlassSurface radius={16} />
-              {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}
-              <Text style={{ color: blitzGlass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
+              <BlitzGlassSurface radius={20} />
+              {/* зачем (Карточки 2.0 12.10, `.qh .k`): подпись приколота к верху карточки (18 от края), вопрос — по центру */}
+              <Text style={[styles.questionKicker, { color: blitzGlass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }]}>
                 {triLang(lang, {
                   ru: 'Выбери перевод', uk: 'Обери переклад', en: 'Choose the translation', es: 'Elige la traducción',
                   'pt-BR': 'Escolha a tradução', vi: 'Chọn bản dịch', id: 'Pilih terjemahan', tr: 'Çeviriyi seç', pl: 'Wybierz tłumaczenie',
@@ -1511,10 +1514,16 @@ export default function FlashcardsBlitzSession() {
               <Text
                 testID="fc-blitz-question"
 
-                style={[styles.questionText, { color: t.textPrimary, fontSize: f.body * 2, lineHeight: Math.round(f.body * 2.375), marginTop: 22 }]}
+                style={[styles.questionText, { color: t.textPrimary, fontSize: 34, lineHeight: 40 }]}
               >
                 {question?.card.en ?? ''}
               </Text>
+              {/* `.plus10`: пилюля награды справа снизу карточки после верного ответа */}
+              {lastAward > 0 && btnStates.some((st) => st === 'correct') && !btnStates.some((st) => st === 'wrong') ? (
+                <View testID="fc-blitz-award" style={[styles.award, { backgroundColor: ANSWER_OK_SURFACE }]}>
+                  <Text style={[styles.awardText, { color: ANSWER_OK_EDGE }]}>{`+${lastAward}`}</Text>
+                </View>
+              ) : null}
             </View>
 
             <View style={{ gap: 13 }}>
@@ -1600,14 +1609,18 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   // зачем (`.qc`): 160 высотой, поля 22/28, тонкая кромка.
+  // зачем (Карточки 2.0 12.10, cards-v2.html `.qh`): высота 188, r20, поля 20, подпись сверху (18), вопрос по центру
   questionBox: {
-    borderRadius: 16,
-    paddingVertical: 22,
-    paddingHorizontal: 28,
+    borderRadius: 20,
+    padding: 20,
     alignItems: 'center',
-    minHeight: 160,
+    minHeight: 188,
     justifyContent: 'center',
   },
+  questionKicker: { position: 'absolute', top: 18, left: 0, right: 0, textAlign: 'center' },
+  // `.plus10`: 26 высотой, r13, поля 10, 14/700 → 13/700 по шкале 16/13
+  award: { position: 'absolute', right: 16, bottom: 16, height: 26, borderRadius: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
+  awardText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // зачем (Тень 12.10): overflow убран — клип тени плашки; содержимое (KitGlassLayer, подкраска ответа) скруглено само
   glassSurface: {},
   questionText: { fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },

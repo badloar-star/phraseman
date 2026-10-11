@@ -167,6 +167,8 @@ jest.mock('../components/PracticeRuneCounter', () => ({ PracticeRuneCounter: 'Pr
 jest.mock('../components/rewards/CoinRewardFlight', () => ({ CoinRewardFlight: 'CoinRewardFlight' }));
 jest.mock('../app/flashcards/SpeakingTaskHint', () => () => null);
 jest.mock('../app/flashcards/PhraseCard', () => ({ __esModule: true, default: 'PhraseCard', useFcReduceMotion: () => true }));
+// зачем (Карточки 2.0 12.10): «Устно» рисует карточку через CardFlipV2 (Reanimated) — в этом тесте проверяется логика квоты, вид карточки заглушен
+jest.mock('../app/flashcards/CardFlipV2', () => ({ __esModule: true, CardFlipV2: 'CardFlipV2', default: 'CardFlipV2' }));
 jest.mock('../app/flashcards/DeckPickerSheet', () => 'DeckPickerSheet');
 jest.mock('../app/flashcards/SessionResultScreen', () => ({ SessionResultScreen: 'SessionResultScreen' }));
 jest.mock('../components/SpeakingPanel', () => ({ SpeakingPanel: 'SpeakingPanel', buildSpeakingPanelTheme: () => ({}) }));

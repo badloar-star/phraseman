@@ -210,7 +210,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     //  • useEffect#2 (8e3e5993c) — claim старта, как у свайпа: выдача проходит фазы, месячный лимит списывается.
     // Удержание, озвучка, полёт монеты, итог — без изменений; 4bfdfb659 и 88f7489b3 хеш не трогали.
     // зачем (владелец 11.10, режим энергии Б; 750314a24): стоп-эффект экрана теперь проверяет общий isAttemptsStopEffect (attempts_exhausted ИЛИ energy_exhausted) — иначе в режиме Б остановка не останавливает озвучку. Квоты/попытки режима А не менялись.
-    hash: '7503ef28d7562306e0a7f2baf21f479c2894cf96cd44938ee814f7572dfb966e',
+    // зачем (Карточки 2.0 12.10): сверено — в защищённых узлах изменилась только строка setLastAward(...) в onScore (пилюля «+N» в панели «Верно» по макету cards-v2); квоты, попытки, удержание, озвучка, полёт, итог — без изменений.
+    hash: 'c0d318acfb491274df8b48d7aacd4e0424ff4f60ba5de39a68fe48f831f19b00',
   });
   assert.equal(
     hashProtectedRuntimeElements(),
@@ -333,17 +334,14 @@ test('renders the approved active geometry with stable insets and normalized fon
   assert.match(active, /<ScrollView[^>]*style=\{\{ flex: 1, minHeight: 0 \}\}/);
   assert.match(active, /contentContainerStyle=\{\{ flexGrow: 1, paddingBottom: 8 \}\}/);
 
-  assert.match(active, /<PhraseCard[\s\S]*flipped=\{flipped\}[\s\S]*onFlip=\{setFlipped\}/);
-  assert.match(active, /minHeight=\{CARD_MIN_H\}/);
+  // зачем (Карточки 2.0 12.10, cards-v2.html «Устно»): карточка RU → EN — переворачиваемая CardFlipV2 высотой 196 (прежняя PhraseCard с геометрией 24/22 ушла из этого экрана)
+  assert.match(active, /<CardFlipV2[\s\S]*flipped=\{flipped\}[\s\S]*onFlip=\{setFlipped\}/);
+  assert.match(active, /height=\{SPEAKING_CARD_HEIGHT\}/);
   assert.match(active, /disabled=\{holdActive\}/);
-  assert.match(active, /t=\{t\}/);
-  assert.match(active, /presentation=\{SPEAKING_CARD_PRESENTATION\}/);
-  assert.match(active, /fontSize: 30 \* textScale/);
-  assert.match(active, /lineHeight: 36 \* textScale/);
   assert.doesNotMatch(active, /maxFontSizeMultiplier|numberOfLines|adjustsFontSizeToFit/);
 
   assert.match(sessionSource, /const CARD_MIN_H = 200;/);
-  assert.match(sessionSource, /borderRadius: 16,[\s\S]*paddingHorizontal: 28,[\s\S]*paddingTop: 24,[\s\S]*paddingBottom: 22/);
+  assert.match(sessionSource, /const SPEAKING_CARD_HEIGHT = 196;/);
   assert.match(findStyle(sessionSource, 'progressTrack', 'progressFill'), /height: 6/);
   assert.match(findStyle(sessionSource, 'progressTrack', 'progressFill'), /borderRadius: 4/);
   assert.match(findStyle(sessionSource, 'progressTrack', 'progressFill'), /marginTop: 22/);
@@ -405,10 +403,10 @@ test('scoped presentation validators reject negative geometry and wiring mutatio
   };
   const validateSession = (source) => {
     assert.match(source, /const CARD_MIN_H = 200;/);
-    assert.match(source, /paddingBottom: 22/);
+    assert.match(source, /const SPEAKING_CARD_HEIGHT = 196;/);
     assert.match(findStyle(source, 'progressTrack', 'progressFill'), /height: 6/);
     assert.match(findStyle(source, 'cardArea', 'cardFace'), /paddingHorizontal: 20/);
-    assert.match(source, /presentation=\{SPEAKING_CARD_PRESENTATION\}/);
+    assert.match(source, /height=\{SPEAKING_CARD_HEIGHT\}/);
     assert.match(source, /accent=\{speakingGlass\.cta\}/);
   };
   validatePhraseCard(phraseCardSource);
@@ -416,10 +414,10 @@ test('scoped presentation validators reject negative geometry and wiring mutatio
   assert.throws(() => validatePhraseCard(phraseCardSource.replace('paddingBottom={facePadBottom}', 'paddingBottom={facePadTop}')));
   assert.throws(() => validatePhraseCard(phraseCardSource.replace('presentation?.paddingBottom ?? adaptiveFacePadV', 'presentation?.paddingTop ?? adaptiveFacePadV')));
   assert.throws(() => validateSession(sessionSource.replace('const CARD_MIN_H = 200;', 'const CARD_MIN_H = 260;')));
-  assert.throws(() => validateSession(sessionSource.replace('paddingBottom: 22', 'paddingBottom: 24')));
+  assert.throws(() => validateSession(sessionSource.replace('const SPEAKING_CARD_HEIGHT = 196;', 'const SPEAKING_CARD_HEIGHT = 240;')));
   assert.throws(() => validateSession(sessionSource.replace('progressTrack: { height: 6', 'progressTrack: { height: 4')));
   assert.throws(() => validateSession(sessionSource.replace('paddingHorizontal: 20, paddingTop: 34', 'paddingHorizontal: 24, paddingTop: 34')));
-  assert.throws(() => validateSession(sessionSource.replace('presentation={SPEAKING_CARD_PRESENTATION}', '')));
+  assert.throws(() => validateSession(sessionSource.replace('height={SPEAKING_CARD_HEIGHT}', '')));
   assert.throws(() => validateSession(sessionSource.replace('accent={speakingGlass.cta}', 'accent={ACCENT}')));
 });
 

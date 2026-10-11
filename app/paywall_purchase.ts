@@ -44,7 +44,8 @@ import {
 import { canPromiseTrialReminder } from './trial_end_reminder_schedule';
 import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
-import { DEV_IAP_BYPASS } from './config';
+import { DEV_IAP_BYPASS, IS_STORE_RELEASE } from './config';
+import { isStoreBillingUnavailableError, shouldUseDevPricePreview, type StoreUnavailableReason } from './paywall_billing_unavailable';
 import {
   DEV_PREVIEW_MONTHLY_PRICE,
   DEV_PREVIEW_YEARLY_PRICE,
@@ -417,6 +418,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
   // включая Phraseman Pro — поэтому даём ретрай, а не молча скрываем.
   const [offeringsFailed, setOfferingsFailed] = useState(false);
+  // зачем (владелец 11.10: «почему цены не показываются»): причина сбоя цен — окно различает «Магазин недоступен
+  // на этом устройстве» (billing_unavailable: нет Google Play / биллинга) и «Проверь интернет» (network).
+  const [storeUnavailableReason, setStoreUnavailableReason] = useState<StoreUnavailableReason | null>(null);
   const inventoryResolutionEmittedRef = useRef({ emitted: false });
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
@@ -457,7 +461,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     offeringsLoadSeqRef.current = seq;
     const startedAt = now;
     const isLatest = () => offeringsLoadSeqRef.current === seq;
-    type AttemptResult = { ok: boolean; resolvedPackages: PremiumPackages };
+    type AttemptResult = { ok: boolean; resolvedPackages: PremiumPackages; billingUnavailable?: boolean };
 
     const attempt = async (timeoutMs: number, n: number): Promise<AttemptResult> => {
       const t0 = Date.now();
@@ -507,14 +511,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return { ok: true, resolvedPackages };
       } catch (e) {
         const reason = e instanceof Error ? e.message : String(e);
-        DebugLogger.warn('[PAYWALL]', `загрузка цен: попытка #${n} провал за ${Date.now() - t0} мс (${reason}${reason.startsWith('timeout:') ? ' — ТАЙМ-АУТ' : ''})`);
-        return { ok: false, resolvedPackages: {} };
+        const billingUnavailable = isStoreBillingUnavailableError(e);
+        DebugLogger.warn('[PAYWALL]', `загрузка цен: попытка #${n} провал за ${Date.now() - t0} мс (${reason}${reason.startsWith('timeout:') ? ' — ТАЙМ-АУТ' : ''}) магазинНедоступен=${billingUnavailable}`);
+        return { ok: false, resolvedPackages: {}, billingUnavailable };
       }
     };
 
     const run = async (): Promise<void> => {
       setLoading(true);
       setOfferingsFailed(false);
+      setStoreUnavailableReason(null);
       const deadline = startedAt + LOAD_GATE_TOTAL_MS;
       let result: AttemptResult = { ok: false, resolvedPackages: {} };
       let loadAttempts = 0;
@@ -531,6 +537,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           if (result.ok) break;
           failed += 1;
           if (deadRef.dead || !isLatest()) break;
+          // зачем (лог координатора: 3 повтора 1/3/8 с = 17–22 с пустых плиток): отказ «биллинг недоступен» повтором
+          // не лечится — сразу ошибка с причиной. Тайм-ауты и сеть повторяются, как раньше.
+          if (result.billingUnavailable) {
+            DebugLogger.warn('[PAYWALL]', `загрузка цен: магазин недоступен на устройстве — без повторов (попыток=${loadAttempts})`);
+            break;
+          }
           const pause = loadGateBackoffMs(failed);
           if (pause === null || deadline - Date.now() <= pause) {
             DebugLogger.warn('[PAYWALL]', `загрузка цен: повторов больше нет (неудач=${failed}, пауза=${pause ?? 'нет'})`);
@@ -554,6 +566,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             }
           } else {
             setOfferingsFailed(true);
+            setStoreUnavailableReason(result.billingUnavailable ? 'billing_unavailable' : 'network');
             trackProductOperationFailure('paywall', 'offerings_load', 'store_unavailable', true);
           }
         }
@@ -635,12 +648,20 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // живые цены из магазина всегда главнее. Промо и пробный из кэша не берутся.
   // M2: только пока НЕ было ни одного успешного ответа магазина. Ответил без плана — значит плана нет,
   // и кэш-цены для него не показываем.
+  // зачем (владелец 11.10; эмулятор без Google Play): только dev-сборка и только «биллинг недоступен» — предпросмотр
+  // цен вместо пустых плиток; магазин на тапе не зовётся. В стор-сборке ветки нет (сторож paywall_billing_unavailable).
+  const previewPrices = shouldUseDevPricePreview({
+    isDev: typeof __DEV__ !== 'undefined' && __DEV__ === true,
+    isStoreRelease: IS_STORE_RELEASE,
+    reason: storeUnavailableReason,
+  });
+  const showPreviewPrices = DEV_IAP_BYPASS || previewPrices;
   const cacheYearly = resilientCheckout && !offeringsEverLoaded ? cachedPrices?.yearly : undefined;
   const cacheMonthly = resilientCheckout && !offeringsEverLoaded ? cachedPrices?.monthly : undefined;
-  const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString) || cacheYearly?.price || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PRICE : '');
-  const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString) || cacheMonthly?.price || (DEV_IAP_BYPASS ? DEV_PREVIEW_MONTHLY_PRICE : '');
+  const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString) || cacheYearly?.price || (showPreviewPrices ? DEV_PREVIEW_YEARLY_PRICE : '');
+  const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString) || cacheMonthly?.price || (showPreviewPrices ? DEV_PREVIEW_MONTHLY_PRICE : '');
   const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PRICE : '');
-  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly) || cacheYearly?.perMonth || (DEV_IAP_BYPASS ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
+  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly) || cacheYearly?.perMonth || (showPreviewPrices ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
   const pricesFromCache = !!(cacheYearly || cacheMonthly);
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
@@ -800,7 +821,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       ).catch(swallowError('paywall_purchase:logAfterWinUpsellCta'));
     }
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
-    if (DEV_IAP_BYPASS) {
+    if (DEV_IAP_BYPASS || previewPrices) {
+      if (previewPrices) DebugLogger.info('[PAYWALL]', 'тап в предпросмотре цен (магазин недоступен на устройстве) — магазин не зовём');
       showDevPurchasePreviewAlert(lang);
       return;
     }
@@ -1132,7 +1154,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       setPurchasing(false);
       setPayStarted(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId, resilientCheckout, loadOfferings, pricesFromCache, lifetimePrice, yearlyPrice, monthlyPrice, yearlyTrialDays, trialDays, selectedPromo]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId, resilientCheckout, loadOfferings, pricesFromCache, lifetimePrice, yearlyPrice, monthlyPrice, yearlyTrialDays, trialDays, selectedPromo, previewPrices]);
 
   // ── экран после покупки: напоминание о конце пробного ─────────────────────
   const finishAfterTrialReminderPrompt = useCallback(() => {
@@ -1500,7 +1522,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     selected, selectPlan,
     packages, loading, purchasing, restoring,
     offeringsFailed, offeringsSettled, reloadOfferings, payStarted,
-    tapNotice, pricesFromCache,
+    tapNotice, pricesFromCache, storeUnavailableReason, previewPrices,
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,

@@ -126,7 +126,8 @@ test('COM-04 invite uses the approved opaque Liquid Glass geometry, typography, 
   assert.match(modal, /FONT_SCALE\[fontSize\] \/ FONT_SCALE\.medium\) \* uiScale/);
   assert.match(modal, /backgroundColor: glass\.opaqueSheet/);
   assert.match(modal, /colors=\{\[glass\.opaqueSheet, glass\.selected, glass\.opaqueSheet\]\}/);
-  assert.match(modal, /borderColor: glass\.glassEdge/);
+  // зачем (владелец 12.10, стиль «Тень»): у окна приглашения нет обводки — отделяют тон и тень оболочки.
+  assert.doesNotMatch(modal, /borderColor: glass\.glassEdge/);
   assert.match(modal, /paddingTop: 24/);
   assert.match(modal, /paddingHorizontal: 20/);
   assert.match(modal, /paddingBottom: 20/);
@@ -146,7 +147,8 @@ test('COM-04 invite uses the approved opaque Liquid Glass geometry, typography, 
   assert.match(modal, /borderRadius: 24/);
   assert.match(modal, /backgroundColor: glass.accent/);
   assert.match(modal, /color: glass.accentInk/);
-  assert.match(modal, /backgroundColor: 'transparent'/);
+  // зачем (владелец 12.10, стиль «Тень»): «Не сейчас» без контура — отделяется тоном opaqueControl.
+  assert.match(modal, /styles.secondary, { backgroundColor: glass.opaqueControl }/);
   for (const copy of [...TITLE_COPY, ...BODY_COPY, ...START_COPY, ...DECLINE_COPY]) {
     assert.ok(modal.includes(copy), `missing approved locale copy: ${copy}`);
   }

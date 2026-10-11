@@ -30,7 +30,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
         colors={[glass.opaqueSheet, glass.selected, glass.opaqueSheet]}
         start={{ x: 0.08, y: 0 }}
         end={{ x: 0.92, y: 1 }}
-        style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}
+        style={[styles.card, { backgroundColor: glass.opaqueSheet }]}
       >
         <View
           accessible
@@ -49,7 +49,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           ) : (
             <View
               pointerEvents="none"
-              style={[styles.heroPlaceholder, { backgroundColor: glass.selected, borderColor: glass.glassEdge }]}
+              style={[styles.heroPlaceholder, { backgroundColor: glass.selected }]}
             >
               <View style={[styles.heroPlaceholderCore, { backgroundColor: glass.glassEdge }]} />
             </View>
@@ -78,7 +78,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           accessibilityLabel={L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
           onPress={onDecline}
           wrapStyle={styles.secondaryWrap}
-          style={[styles.button, styles.secondary, { backgroundColor: 'transparent', borderColor: glass.glassEdge }]}
+          style={[styles.button, styles.secondary, { backgroundColor: glass.opaqueControl }]} // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (кнопка «Не сейчас»)
         >
           <Text style={[styles.buttonText, { color: glass.text, fontSize: 16 * textScale }]}>
             {L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingHorizontal: 20,
     paddingBottom: 20,
-    borderWidth: 1,
     borderRadius: 26,
   },
   hero: { width: 68, height: 68, alignSelf: 'center' },
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
     width: 68,
     height: 68,
     borderRadius: 34,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -116,6 +114,6 @@ const styles = StyleSheet.create({
   primaryWrap: { marginTop: 20 },
   secondaryWrap: { marginTop: 10 },
   button: { minHeight: 48, borderRadius: 24 },
-  secondary: { borderWidth: 1 },
+  secondary: {},
   buttonText: { fontWeight: '700', textAlign: 'center' },
 });

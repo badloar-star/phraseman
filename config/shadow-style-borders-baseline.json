@@ -1,5 +1,5 @@
 {
-  "total": 229,
+  "total": 208,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -35,11 +35,6 @@
     "components/ExplainSheetHybrid.tsx": 1,
     "components/FeatureIntroModal.tsx": 2,
     "components/FeedbackRatingCard.tsx": 4,
-    "components/friends/DailyPollCard.tsx": 4,
-    "components/friends/FriendsAddSheetShell.tsx": 4,
-    "components/friends/FriendsGlassKit.tsx": 4,
-    "components/friends_together/FriendEventMarker.tsx": 3,
-    "components/friends_together/FriendStudyInviteModal.tsx": 6,
     "components/GlassSurface.tsx": 1,
     "components/GlobalBroadcastModal.tsx": 4,
     "components/InGameToast.tsx": 3,

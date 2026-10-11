@@ -35,6 +35,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import PressableHybrid from '../PressableHybrid';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLineScale } from '../../hooks/useLineScale';
@@ -158,8 +159,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
           style={[
             styles.sheet,
             {
-              backgroundColor: glass.opaqueSheet,
-              borderColor: glass.glassEdge, // guard-ok: 1 px кромка .sheet (исключение 2.0)
+              backgroundColor: glass.opaqueSheet, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (шторка)
               paddingBottom: (keyboardHeight > 0 ? 18 : 40) + (keyboardHeight > 0 ? 0 : insets.bottom),
               maxHeight: maxSheetHeight,
             },
@@ -182,7 +182,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
               withHaptic={false}
               withSound={false}
               onPress={dismiss}
-              contentStyle={[styles.close, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]} // guard-ok: 1 px кромка .rb.fill
+              contentStyle={[styles.close, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (круглая кнопка закрытия)
             >
               <Ionicons name="close" size={18} color={glass.text} />
             </PressableHybrid>
@@ -208,8 +208,6 @@ const styles = StyleSheet.create({
   sheet: {
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    borderWidth: 1, // guard-ok: 1 px кромка .sheet
-    borderBottomWidth: 0,
     paddingTop: 12,
     paddingHorizontal: 18,
     overflow: 'hidden',
@@ -221,6 +219,6 @@ const styles = StyleSheet.create({
   headerKit: { alignItems: 'center', gap: 10 },
   headerCopy: { flex: 1, minWidth: 0 },
   // .rb.fill: 35, круг, #2A2A2C, кромка --line.
-  close: { width: 35, height: 35, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok
+  close: { width: 35, height: 35, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   content: { paddingTop: 20 },
 });

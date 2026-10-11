@@ -18,6 +18,7 @@ import { triLang } from '../../constants/i18n';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { FlowText } from '../text-integrity';
 import { FriendsFeedbackRow, FriendsSectionTitle, useFriendsGlass, type FriendsGlass } from './FriendsGlassKit';
 
@@ -134,8 +135,7 @@ export default function DailyPollCard({ active }: Props) {
         padding: 18,
         borderRadius: 22,
         backgroundColor: glass.opaqueCard,
-        borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла 2.0, как у FriendsCard
-        borderColor: glass.glassEdge, // guard-ok: 1 px кромка стекла 2.0
+        boxShadow: plateBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень
       }}
     >
       <Text
@@ -221,9 +221,8 @@ const DailyPollOptionButton = React.memo(function DailyPollOptionButton({
         justifyContent: showResults ? 'space-between' : 'center',
         gap: 10,
         overflow: 'hidden',
-        backgroundColor: isChosen ? glass.selected : 'transparent',
-        borderWidth: 1, // guard-ok: `.opt` макета — 1 px полупрозрачный контур
-        borderColor: glass.glassEdge, // guard-ok: 1 px кромка 2.0; выбор отмечен тоном и галочкой, не цветной рамкой
+        backgroundColor: isChosen ? glass.selected : glass.opaqueControl,
+        boxShadow: nestedBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень: выбор отмечен тоном и галочкой
         opacity: fade,
       }}
     >

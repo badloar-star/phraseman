@@ -35,7 +35,9 @@ test('no thick borders and no font-shrinking anywhere in the friends tab', () =>
     }
     assert.equal(source.includes('adjustsFontSizeToFit'), false, `${name} does not shrink fonts`);
   }
-  assert.ok(kit.includes('guard-ok') && kit.includes('glass.glassEdge'), 'the only outline is the thin translucent glass edge');
+  // зачем (владелец 12.10, стиль «Тень»): обводок нет совсем — плашки отделяют тон и тень (plateBoxShadow/nestedBoxShadow).
+  assert.ok(!kit.includes('glass.glassEdge'), 'no outlines in the friends kit');
+  assert.ok(kit.includes('plateBoxShadow(glass)') && kit.includes('nestedBoxShadow(glass)'), 'shadow instead of border');
 });
 
 test('embedded tab has no duplicate title, back button or second safe-area inset', () => {

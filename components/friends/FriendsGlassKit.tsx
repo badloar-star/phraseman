@@ -5,6 +5,7 @@ import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_tabl
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import PressableHybrid from '../PressableHybrid';
 import { LinearGradient } from '../SafeLinearGradient';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
@@ -36,8 +37,7 @@ export function friendsCardStyle(glass: FriendsGlass): ViewStyle {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: glass.opaqueCard,
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как в макете
-    borderColor: glass.glassEdge,
+    boxShadow: plateBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (плашка списка друзей)
     overflow: 'hidden',
   };
 }
@@ -144,9 +144,8 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         justifyContent: 'center',
         gap: 10,
         overflow: 'hidden',
-        backgroundColor: disabled ? glass.opaqueControl : primary ? glass.accent : 'transparent',
-        borderWidth: primary ? 0 : 1, // guard-ok: контур ghost-кнопки макета, 1 px полупрозрачный
-        borderColor: glass.glassEdge,
+        backgroundColor: disabled ? glass.opaqueControl : primary ? glass.accent : glass.opaqueControl,
+        boxShadow: primary && !disabled ? undefined : nestedBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (ghost-кнопка)
       }}
     >
       {/* зачем (координатор 05.10): в «Спокойно-тёмном» — общий глянец .cta макета из ThemeAccentFill, а не свой градиент. */}
@@ -194,8 +193,7 @@ export function FriendsRoundButton({ glass, icon, onPress, label, testID, disabl
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: bare ? 'transparent' : glass.opaqueControl,
-        borderWidth: bare ? 0 : 1, // guard-ok: 1 px glassEdge макета
-        borderColor: glass.glassEdge,
+        boxShadow: bare ? undefined : nestedBoxShadow(glass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (круглая кнопка)
         opacity: disabled ? 0.48 : 1,
       }}
     >

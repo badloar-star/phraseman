@@ -3930,8 +3930,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           )}
         >
           {isCompactFlashcardsTask ? null : (
-            <Text numberOfLines={2} style={{ color: swipeGlass.secondary, fontSize: f.caption, lineHeight: 17, marginTop: 2 }}>
-              {`${stats.mastered}/${stats.total} · ${queue.length} ${text.inQueue}`}
+            // зачем (Сверка 03:10): «2/536 · 534 в очереди» переносилось на 2 строки и липло к «‹»; «в очереди» ≈ всего − закреплено,
+            // то есть дублирует полосу — оставляем одну короткую строку «N/M», как подпись одной строкой у Блица/«Вспомни».
+            <Text numberOfLines={1} style={{ color: swipeGlass.secondary, fontSize: f.caption, lineHeight: 17, marginTop: 2 }}>
+              {`${stats.mastered}/${stats.total}`}
             </Text>
           )}
           {stats.streak >= 3 ? (

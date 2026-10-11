@@ -112,6 +112,13 @@ type Props = {
    * только когда данные РЕАЛЬНО пришли пустыми. Пока снимка нет и сеть не ответила — скелетон строк, а не «пусто».
    */
   communityLoaded?: boolean;
+  /**
+   * зачем (сверка Макетов e4e4149d0): каталог пуст ИЗ-ЗА ОТСУТСТВИЯ СЕТИ — отдельное состояние «Нет сети» + «Повторить»,
+   * а не «Здесь появятся наборы после публикации». Решает экран-владелец (useCatalogOffline), здесь только показ.
+   */
+  communityOffline?: boolean;
+  /** «Повторить» в состоянии «Нет сети»: перечитать каталог (один осознанный запрос по тапу). */
+  onRetryCatalog?: () => void;
   ownedCommunityPackIds?: string[];
   /** Stable id автора — кнопка «редактировать» на своих UGC. */
   hubAuthorStableId?: string | null;
@@ -338,6 +345,8 @@ export default function FlashcardsCategoryHub({
   cloudCommunityEnabled = false,
   communityPacks = [],
   communityLoaded = true,
+  communityOffline = false,
+  onRetryCatalog,
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
   themeMode,
@@ -959,10 +968,22 @@ export default function FlashcardsCategoryHub({
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
             <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
               <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
+                <Ionicons name={catalogCommunityPacks.length === 0 ? (communityOffline ? 'cloud-offline-outline' : 'people-outline') : 'search-outline'} size={26} color={g.text} />
               </View>
               <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>
-                {catalogCommunityPacks.length === 0
+                {catalogCommunityPacks.length === 0 && communityOffline
+                  ? triLang(lang, {
+                      ru: 'Нет сети',
+                      uk: 'Немає мережі',
+                      en: 'No connection',
+                      es: 'Sin conexión',
+                      'pt-BR': 'Sem conexão',
+                      vi: 'Không có mạng',
+                      id: 'Tidak ada koneksi',
+                      tr: 'Bağlantı yok',
+                      pl: 'Brak sieci',
+                    })
+                  : catalogCommunityPacks.length === 0
                   ? triLang(lang, {
                       ru: 'Здесь появятся наборы после публикации.',
                       uk: 'Тут з\'являться набори після публікації.',
@@ -986,6 +1007,19 @@ export default function FlashcardsCategoryHub({
                       pl: 'Nic nie znaleziono',
                     })}
               </FlowText>
+              {catalogCommunityPacks.length === 0 && communityOffline && onRetryCatalog ? (
+                <TouchableOpacity
+                  testID="flashcards-community-offline-retry"
+                  accessibilityRole="button"
+                  activeOpacity={0.86}
+                  onPress={() => { console.log('[CATALOG-OFFLINE] retry tap'); onRetryCatalog(); }}
+                  style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.accent }}
+                >
+                  <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
               {/* зачем (Сверка cards-section-023 catalogNone, координатор 05.10): на пустой результат ПОИСКА — подсказка и
                   «Сбросить фильтры» (`.empty .l` 16/22 через 8, `.cta` 0/28 через 26). Сброс только строки поиска: язык набора —
                   сохранённый выбор человека, его кнопка не трогает. Без запросов в сеть — фильтр клиентский. */}

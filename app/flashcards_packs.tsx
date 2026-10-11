@@ -79,6 +79,7 @@ import {
   type PackLanguage,
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
+import { useCatalogOffline } from './flashcards/useCatalogOffline';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type FlashcardsPacksScreenProps = {
@@ -235,6 +236,12 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+  // зачем (сверка Макетов e4e4149d0): пустой каталог без сети — отдельное состояние «Нет сети» + «Повторить» (лог [CATALOG-OFFLINE]).
+  const communityOffline = useCatalogOffline({
+    enabled: cloudCommunityEnabled,
+    loaded: communityLoaded,
+    hasCloudPacks: communityPacks.some((p) => !isLocalAuthorPackId(p.id)),
+  });
   // `/flashcards` теперь единый хаб: каталог является его дочерним экраном.
   const leavePacks = useCallback(() => {
     safeRouterBack(router, '/flashcards' as any);
@@ -374,6 +381,15 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     void loadHubMarket();
   }, [loadHubMarket]);
 
+  /** «Повторить» в состоянии «Нет сети»: скелетон на время запроса и один принудительный запрос каталога по тапу. */
+  const retryCatalog = useCallback(() => {
+    console.log('[CATALOG-OFFLINE] retry → force reload');
+    setCommunityLoaded(false);
+    void loadHubMarket({ force: true })
+      .catch((error: unknown) => console.warn(`[CATALOG-OFFLINE] retry failed reason=${error instanceof Error ? error.name : typeof error}`))
+      .finally(() => setCommunityLoaded(true));
+  }, [loadHubMarket]);
+
   useFocusEffect(
     useCallback(() => {
       primeFlashcardsCollectionCache(studyTarget);
@@ -507,6 +523,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               cloudCommunityEnabled={cloudCommunityEnabled}
               communityPacks={communityPacks}
               communityLoaded={communityLoaded}
+              communityOffline={communityOffline}
+              onRetryCatalog={retryCatalog}
               ownedCommunityPackIds={ownedCommunityPackIds}
               hubAuthorStableId={hubAuthorStableId}
               studyTarget={studyTarget}

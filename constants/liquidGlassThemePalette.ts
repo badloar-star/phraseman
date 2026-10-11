@@ -241,6 +241,8 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     accentBg: t.accentSoft,
     // зачем (координатор 11.10): текст/значок цветом акцента на карточке — токен accentText (≥ 4.5:1 в светлой), а не cta/accent (заливка).
     accentText: t.accentText,
+    // зачем (координатор 14.10): текст/значок на заливке accent — accentInk; correctText остаётся для зелёной заливки correct.
+    accentInk: t.accentInk,
     // зачем (владелец 01.10, «ни одного элемента не по макету»; аудит MOCKUP_GAP_AUDIT):
     // gold/goldBg/textOnGold протекали из старой базы (#FFC800) — ~112 мест красились жёлтым
     // в любой теме (звёзды оценки, кольцо серии…). В 2.0 жёлтого нет: «золото» = акцент темы

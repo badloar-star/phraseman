@@ -325,7 +325,9 @@ export const SAGE_PORCELAIN = {
 };
 
 export type ThemeMode = 'dark' | 'gold' | 'olive' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'indigo' | 'sagePorcelain';
-export type Theme = typeof DARK;
+// зачем (координатор 14.10): correctText красит текст на ДВУХ заливках — accent и correct (зелёный); в темах Liquid Glass accent другой, и старый
+// #042010 на нём 1.01–4.5 (285 из 690 сочетаний). accentInk — цвет текста именно на accent (≥ 4.56); задан только в makeLiquidGlassTheme.
+export type Theme = typeof DARK & { accentInk?: string };
 
 export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
 

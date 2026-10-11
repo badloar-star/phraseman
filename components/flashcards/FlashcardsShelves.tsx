@@ -116,7 +116,7 @@ function FlashcardsShelvesBase({
                   )}
                   {p.isNew && (
                     <View style={{ position: 'absolute', top: 7, left: 7, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 999, backgroundColor: t.accent }}>
-                      <Text style={{ fontSize: 13, fontWeight: '700', color: t.correctText }}>{labels.new}</Text>
+                      <Text style={{ fontSize: 13, fontWeight: '700', color: t.accentInk ?? t.correctText }}>{labels.new}</Text>
                     </View>
                   )}
                 </LinearGradient>

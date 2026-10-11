@@ -328,9 +328,9 @@ export default function DialogHowToSaySheet({
                   ]}
                 >
                   {status === 'loading' ? (
-                    <ActivityIndicator size="small" color={t.correctText} />
+                    <ActivityIndicator size="small" color={t.accentInk ?? t.correctText} />
                   ) : (
-                    <Ionicons name="arrow-forward" size={22} color={draft.trim() ? t.correctText : t.textMuted} />
+                    <Ionicons name="arrow-forward" size={22} color={draft.trim() ? (t.accentInk ?? t.correctText) : t.textMuted} />
                   )}
                 </Pressable>
               </View>

@@ -39,6 +39,7 @@ import {
   getDailyPhraseQuestPoolForTarget,
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
+  subscribeDailyPhrasePeekHydrated,
   DailyPhrase,
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
@@ -158,10 +159,16 @@ function DailyPhraseCard({
       return () => { cancelled = true; };
     }
     setPhrase(getTodayPhraseSyncForTarget(studyTarget, lang));
+    // зачем (Сверка 11.10): пока снимок фразы читается, синхронный путь отдаёт null (без каталога идиом);
+    // дочитался снимок — подставляем фразу, если сеть ещё не принесла свою.
+    const unsubscribePeek = subscribeDailyPhrasePeekHydrated(() => {
+      if (cancelled) return;
+      setPhrase((current) => current ?? getTodayPhraseSyncForTarget(studyTarget, lang));
+    });
     void getTodayPhraseForTarget(studyTarget, lang).then(p => {
       if (!cancelled && p) setPhrase(p);
     }).catch(noteSwallowedHandler('DailyPhraseCard:useEffect.getTodayPhraseForTarget'));
-    return () => { cancelled = true; };
+    return () => { cancelled = true; unsubscribePeek(); };
   }, [dailyPhraseGateOpen, lang, studyTarget]);
 
   // React to "phrase of the day" widget deep links:

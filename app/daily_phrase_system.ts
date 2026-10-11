@@ -468,6 +468,24 @@ let peekPhraseToday: DailyPhrase | null = null;
 // зачем (координатор 11.10, «сперва логи»): первый кадр Главной поднимал полный каталог идиом (627 мс). Снимок
 // фразы дня существует ровно чтобы этого не было — видно, в каком состоянии он был в момент промаха.
 let peekHydrationState: 'pending' | 'empty' | 'no_today' | 'ready' | 'failed' = 'pending';
+const peekHydratedListeners = new Set<() => void>();
+
+/** Снимок фразы ещё читается с диска (первый кадр не должен ради фразы поднимать каталог идиом). */
+export function isDailyPhrasePeekPending(): boolean {
+  return peekHydrationState === 'pending';
+}
+
+/** Сообщить, когда чтение снимка закончилось (с любым итогом) — карточка подставит фразу без каталога. */
+export function subscribeDailyPhrasePeekHydrated(listener: () => void): () => void {
+  peekHydratedListeners.add(listener);
+  return () => { peekHydratedListeners.delete(listener); };
+}
+
+function notifyPeekHydrated(): void {
+  for (const listener of [...peekHydratedListeners]) {
+    try { listener(); } catch (error) { console.warn('[DAILY-PHRASE-PEEK] listener failed', error instanceof Error ? error.message : String(error)); }
+  }
+}
 
 export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
   const startedAt = Date.now();
@@ -476,6 +494,7 @@ export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
     if (!raw) {
       peekHydrationState = 'empty';
       console.log('[DAILY-PHRASE-PEEK] hydrate', JSON.stringify({ state: peekHydrationState, ms: Date.now() - startedAt }));
+      notifyPeekHydrated();
       return;
     }
     const parsed = JSON.parse(raw) as Record<string, DailyPhrase | undefined>;
@@ -485,8 +504,10 @@ export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
     console.log('[DAILY-PHRASE-PEEK] hydrate', JSON.stringify({
       state: peekHydrationState, ms: Date.now() - startedAt, today: todayKey(), keys: Object.keys(parsed ?? {}),
     }));
+    notifyPeekHydrated();
   } catch (e) {
       peekHydrationState = 'failed';
+      notifyPeekHydrated();
       // best-effort: без peek sync-путь честно поднимет каталог, как раньше
       DebugLogger.error('daily_phrase_system:todays', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
@@ -537,6 +558,13 @@ export function getTodayPhraseSyncForTarget(
   if (target === 'es' || target === 'de' || target === 'it') {
     return targetRemoteDailyPhraseForDay(target, storageSourceLocale(sourceLocaleInput));
   }
+  // зачем (Сверка 11.10: [DAILY-PHRASE-PEEK] miss hydration=pending → каталог идиом 610 КБ на первом кадре): пока
+  // снимок фразы читается, отдаём «фразы пока нет» — карточка держит место той же высоты, а после чтения снимка
+  // подставит фразу сама (subscribeDailyPhrasePeekHydrated). Каталог поднимается только если снимка нет совсем.
+  if (peekHydrationState === 'pending' && !(peekPhraseToday && peekPhraseToday.date === todayKey())) {
+    console.log('[DAILY-PHRASE-PEEK] defer — снимок ещё читается, каталог не поднимаю', JSON.stringify({ today: todayKey() }));
+    return null;
+  }
   return getTodayPhraseSync();
 }
 
@@ -571,7 +599,9 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
     await AsyncStorage.setItem(LAST_PHRASE_DATE_KEY, today);
     rememberPeekPhrases(phrase);
     return phrase;
-  } catch {
+  } catch (error) {
+    // Немой catch запрещён: фраза дня по умолчанию — причина в журнал.
+    console.warn('[DAILY-PHRASE-PEEK] getTodayPhrase failed — фраза по умолчанию', error instanceof Error ? error.message : String(error));
     return getDefaultPhrase();
   }
 };

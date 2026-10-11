@@ -1,5 +1,5 @@
 import type { AdminAlertType } from './admin_alert_catalog';
-import { sanitizeAdminAlertPayload, sanitizePublicNickname, type AdminAlertDetail, type AdminAlertSafePayload } from './admin_alert_privacy';
+import { isAnonymousErrorAlert, sanitizeAdminAlertPayload, sanitizePublicNickname, type AdminAlertDetail, type AdminAlertSafePayload } from './admin_alert_privacy';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export type AlertSourceRow = Readonly<Record<string, unknown>>;
@@ -208,8 +208,10 @@ export async function enrichAdminAlertContext(input: AlertContextInput, read: Re
   if (input.source === 'promo.redemption') uid = input.sourceId.split(':')[0];
   if (input.source.startsWith('referral.') && path) uid = text(data, 'inviteeStableId', 'referredStableId', 'inviteeUid') || path.split('/')[1];
   if (input.source === 'legacy.serial_refunder') uid = input.sourceId;
-  const fallback = uniqueNickname(text(data, 'reporterName', 'userName', 'appNickname', 'authorName')) || uniqueNickname(input.payload.nickname);
-  const nickname = uid ? await lookupNickname(uid, read) : '';
+  // зачем (§CORE-0159): сбои обезличены — ник не ищем (и не тратим чтения профиля); uid остаётся только для вырезания из текста.
+  const anonymous = isAnonymousErrorAlert(input.eventType);
+  const fallback = anonymous ? '' : uniqueNickname(text(data, 'reporterName', 'userName', 'appNickname', 'authorName')) || uniqueNickname(input.payload.nickname);
+  const nickname = uid && !anonymous ? await lookupNickname(uid, read) : '';
   if (input.eventType === 'newUser' && nickname === '' && (input.attempts ?? 1) < 4) throw new Error('new_user_nickname_pending');
   let relatedUid = text(data, 'reportedUid');
   let relatedRole = 'На кого жалоба';
@@ -217,7 +219,7 @@ export async function enrichAdminAlertContext(input: AlertContextInput, read: Re
   if (input.source.startsWith('referral.')) { relatedUid = text(data, 'referrerStableId', 'referrerUid'); relatedRole = 'Пригласивший'; }
   if (input.eventType === 'adminAudit' && text(data, 'entity.collection') === 'users') { relatedUid = text(data, 'entity.id'); relatedRole = 'Пользователь изменения'; }
   if (input.eventType === 'ugcPurchase') { relatedUid = text(data, 'sellerStableId', 'authorStableId'); relatedRole = 'Автор набора'; }
-  const relatedNickname = relatedUid ? await lookupNickname(relatedUid, read).catch(swallowed('admin_alert_context:lookupNickname', '')) : '';
+  const relatedNickname = relatedUid && !anonymous ? await lookupNickname(relatedUid, read).catch(swallowed('admin_alert_context:lookupNickname', '')) : '';
   const identifiers = [uid, relatedUid, text(data, 'authUid'), text(data, 'reporterAuthUid')].filter((id) => id.length >= 4);
   const details = [...(input.payload.details ?? []), ...eventDetails(input.eventType, data)].map((detail) => ({
     label: detail.label,

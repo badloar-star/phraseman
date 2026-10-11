@@ -27,7 +27,7 @@ describe('legacy admin alerts migrate to the safe owner outbox', () => {
     expect(JSON.stringify(event)).not.toContain('private free-form details');
   });
 
-  test('maps critical errors with public nickname and app version but without diagnostics', () => {
+  test('maps critical errors with app version but without nickname or diagnostics (§CORE-0159)', () => {
     const event = legacyAdminAlertEvent({
       legacyType: 'criticalError',
       sourceId: 'error-1',
@@ -46,8 +46,9 @@ describe('legacy admin alerts migrate to the safe owner outbox', () => {
 
     expect(event.payload).toEqual({
       category: 'auth', severity: 'critical', platform: 'ios',
-      nickname: 'Alex12300', appVersion: '1.6.15', route: '#app-health',
+      appVersion: '1.6.15', route: '#app-health',
     });
+    expect(JSON.stringify(event)).not.toContain('Alex12300');
     expect(JSON.stringify(event)).not.toMatch(/leak@example.com|uid-secret|private stack/);
   });
 
@@ -79,7 +80,7 @@ describe('legacy admin alerts migrate to the safe owner outbox', () => {
     expect(source).toContain('enqueueAdminAlert(');
   });
 
-  test('migrates idea and explanation alerts while retaining the content-free MAX exception', () => {
+  test('migrates idea, explanation and safety alerts to the outbox (direct sends removed with the voice section)', () => {
     const ideaSource = readFileSync(join(__dirname, 'user_idea_reports.ts'), 'utf8');
     const explanationSource = readFileSync(join(__dirname, 'explain', 'explain_reports.ts'), 'utf8');
     const safetySource = readFileSync(join(__dirname, 'ai_safety.ts'), 'utf8');
@@ -88,7 +89,7 @@ describe('legacy admin alerts migrate to the safe owner outbox', () => {
     expect(ideaSource).toContain('enqueueAdminAlert(');
     expect(explanationSource).not.toContain('sendTelegramAlert(');
     expect(explanationSource).toContain('enqueueAdminAlert(');
-    expect(safetySource.match(/sendTelegramAlert\(/g) ?? []).toHaveLength(1);
+    expect(safetySource.match(/sendTelegramAlert\(/g) ?? []).toHaveLength(0);
     expect(safetySource).toContain('enqueueAdminAlert(');
   });
 });

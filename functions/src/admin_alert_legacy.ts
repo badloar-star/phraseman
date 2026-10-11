@@ -69,7 +69,7 @@ function payloadFor(
       severity: String(data.severity ?? 'critical').trim(),
       platform: String(data.platform ?? '').trim() || undefined,
       appVersion: String(data.appVersion ?? '').trim() || undefined,
-      nickname: String(data.userName ?? '').trim() || undefined,
+      // зачем (§CORE-0159): оповещение о сбое без ника — имя в Telegram не уходит.
       route,
     };
   }

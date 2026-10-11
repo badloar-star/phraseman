@@ -189,7 +189,6 @@ interface CriticalAlertLimits {
   errorName: number;
   feature: number;
   screen: number;
-  userName: number;
   appVersion: number;
   platform: number;
   componentStack: number;
@@ -202,7 +201,6 @@ function buildCriticalErrorAlert(data: Record<string, unknown>, limits: Critical
   const errorName = clip(safe(data.errorName), limits.errorName);
   const feature = escapeHtml(clip(safe(data.feature || data.context), limits.feature) || '—');
   const screen = clip(safe(data.screen), limits.screen);
-  const userName = escapeHtml(clip(safe(data.userName), limits.userName) || '—');
   const appVersion = clip(safe(data.appVersion), limits.appVersion);
   const platform = clip(safe(data.platform), limits.platform);
   const stack = clip(safe(data.stack), limits.stack);
@@ -214,7 +212,6 @@ function buildCriticalErrorAlert(data: Record<string, unknown>, limits: Critical
   return (
     `🔴 <b>Critical error</b>\n\n` +
     `Feature: ${feature}${screen ? ` · ${escapeHtml(screen)}` : ''}\n` +
-    `User: ${userName}\n` +
     `App: v${escapeHtml(appVersion || '?')} (${escapeHtml(platform || '?')})\n` +
     `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
     `${componentStack ? `Где:\n<pre>${escapeHtml(componentStack)}</pre>\n` : ''}` +
@@ -230,19 +227,19 @@ export function formatCriticalErrorAlert(
 ): string {
   const attempts: CriticalAlertLimits[] = [
     {
-      message: 600, errorName: 120, feature: 120, screen: 120, userName: 120,
+      message: 600, errorName: 120, feature: 120, screen: 120,
       appVersion: 40, platform: 20, componentStack: 700, stack: 700,
     },
     {
-      message: 350, errorName: 100, feature: 100, screen: 100, userName: 120,
+      message: 350, errorName: 100, feature: 100, screen: 100,
       appVersion: 40, platform: 20, componentStack: 450, stack: 250,
     },
     {
-      message: 180, errorName: 80, feature: 80, screen: 80, userName: 120,
+      message: 180, errorName: 80, feature: 80, screen: 80,
       appVersion: 40, platform: 20, componentStack: 360, stack: 120,
     },
     {
-      message: 80, errorName: 60, feature: 60, screen: 60, userName: 120,
+      message: 80, errorName: 60, feature: 60, screen: 60,
       appVersion: 30, platform: 20, componentStack: 260, stack: 0,
     },
   ];
@@ -278,8 +275,7 @@ export const adminAlertOnCriticalError = onDocumentCreated(
           severity: severity || 'error',
           platform: String(data.platform ?? ''),
           appVersion: String(data.appVersion ?? ''),
-          nickname: String(data.userName ?? ''),
-          uidLast4: String(data.uid ?? ''),
+          // зачем (§CORE-0159): дайджест сбоев в Telegram — без ника и без хвоста uid.
           route: '#app-health',
         },
       });

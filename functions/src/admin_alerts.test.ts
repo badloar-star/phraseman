@@ -310,9 +310,11 @@ describe('formatCriticalErrorAlert', () => {
     expect(text).toContain('Feature: react · FriendsTabScreen');
   });
 
-  it('показывает ник пользователя и никогда не шлёт UID', () => {
+  // §CORE-0159 (решение координатора 11.10): в Telegram о сбое — ни ника, ни uid.
+  it('не шлёт ни ник пользователя, ни UID', () => {
     const text = formatCriticalErrorAlert({ ...crash, userName: 'Лена' });
-    expect(text).toContain('User: Лена');
+    expect(text).not.toContain('User:');
+    expect(text).not.toContain('Лена');
     expect(text).not.toContain('UID:');
     expect(text).not.toContain('#2458');
     expect(text).not.toContain('stable_abcd2458');
@@ -342,19 +344,14 @@ describe('formatCriticalErrorAlert', () => {
     }
   });
 
-  it('экранирует и ограничивает ник, а пустой заменяет честным fallback', () => {
-    const escaped = formatCriticalErrorAlert({
+  it('не печатает ник даже из старых документов с длинным или HTML-именем', () => {
+    const text = formatCriticalErrorAlert({
       ...crash,
       userName: `<b>${'Л'.repeat(140)}</b>`,
     });
-    expect(escaped).toContain('User: &lt;b&gt;');
-    expect(escaped).not.toContain('<b>Л');
-    expect(escaped).toContain('…');
-    expect(escaped).not.toContain('UID:');
-
-    const fallback = formatCriticalErrorAlert({ ...crash, userName: '   ' });
-    expect(fallback).toContain('User: —');
-    expect(fallback).not.toContain('UID:');
+    expect(text).not.toContain('User:');
+    expect(text).not.toContain('ЛЛЛ');
+    expect(text).not.toContain('&lt;b&gt;');
   });
 
   it('экранирует HTML в componentStack (parse_mode=HTML не должен ломаться)', () => {
@@ -366,7 +363,7 @@ describe('formatCriticalErrorAlert', () => {
     expect(text).toContain('&lt;script&gt;');
   });
 
-  it('держит лимит Telegram после HTML-escaping, не ломая ник и componentStack', () => {
+  it('держит лимит Telegram после HTML-escaping, не ломая componentStack и не печатая ник', () => {
     const text = formatCriticalErrorAlert({
       ...crash,
       userName: 'Лена',
@@ -378,7 +375,7 @@ describe('formatCriticalErrorAlert', () => {
     });
 
     expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
-    expect(text).toContain('User: Лена');
+    expect(text).not.toContain('Лена'); // §CORE-0159: ника в оповещении о сбое нет
     expect(text).toContain('RecyclerViewComponent');
     expect(text).toContain('Где:');
     expect((text.match(/<pre>/g) || []).length).toBe((text.match(/<\/pre>/g) || []).length);

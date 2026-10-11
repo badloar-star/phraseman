@@ -214,3 +214,14 @@ firebase deploy --only functions:stripeWebhook,functions:paypalOrderCapture --pr
   фраза свободного разговора (`dialogueV2FreeformSessionTurn`). `minInstances` НЕ менялся (0).
   До выкладки телефон всё равно показывает реплику (она во встроенном снимке), а прогрев
   тихо пишет в лог отказ и ни на что не влияет.
+- **Приватность журналов и Telegram-оповещений о сбоях (Ядро, 11.10, §CORE-0158/§CORE-0159)** —
+  безопасно для 1.6.24 (меняется только то, что сервер сохраняет и пишет в Telegram; вызовы прежние).
+  Одной строкой, в этом порядке:
+  `firebase deploy --only functions:submitClientReport,functions:adminAlertOnCriticalError,functions:adminAlertDispatchOnCreate,functions:adminAlertRecoveryCron,functions:adminGetAlertDiagnostics --project phraseman-ea0b3`
+  Что даёт: `app_errors`/`app_activity` больше не сохраняют имя, даже присланное старыми сборками
+  (`submitClientReport`); оповещения о сбоях (`criticalError`, `appErrorDigest`, `paymentWebhookFailure`)
+  приходят без ника и без хвоста uid, ник по профилю для них не читается — минус 1–3 чтения на
+  оповещение (`adminAlertOnCriticalError` + диспетчер). Остальные 44 типа оповещений не меняются.
+  Заодно уезжают уже закоммиченные логи PM-229 этих модулей (они в списке PM-229).
+  Проверка: следующее оповещение о сбое в Telegram — без строки «Пользователь»; новый документ
+  `app_errors` — без поля `userName`.

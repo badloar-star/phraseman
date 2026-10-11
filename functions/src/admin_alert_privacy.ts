@@ -91,12 +91,24 @@ export interface AdminAlertMessageInput {
 }
 
 type SafePayloadKey = Exclude<keyof AdminAlertSafePayload, 'metrics' | 'details'>;
+
+// зачем (§CORE-0159, решение координатора 11.10 по §AUTH-0230): в оповещении о сбое Telegram получает только
+// «что сломалось, где и в какой версии» — ни ника, ни хвоста uid. Закрыто здесь, в белом списке, чтобы ни один
+// отправитель (клиентский userName, поиск ника по профилю, деталь «Ник в событии») не мог это обойти.
+const ANONYMOUS_ERROR_ALERT_TYPES: ReadonlySet<AdminAlertType> = new Set<AdminAlertType>(['criticalError', 'appErrorDigest', 'paymentWebhookFailure']);
+const IDENTITY_FIELDS: ReadonlySet<SafePayloadKey> = new Set<SafePayloadKey>(['nickname', 'relatedNickname', 'relatedRole', 'uidLast4']);
+const IDENTITY_DETAIL_LABELS: ReadonlySet<string> = new Set(['Ник в событии']);
+
+/** Сбойные типы оповещений обезличены целиком: ник по uid для них даже не ищется. */
+export function isAnonymousErrorAlert(eventType: AdminAlertType): boolean {
+  return ANONYMOUS_ERROR_ALERT_TYPES.has(eventType);
+}
 const COMMON_FIELDS: readonly SafePayloadKey[] = ['nickname', 'appVersion', 'buildNumber', 'versionContext', 'platform', 'language', 'relatedNickname', 'relatedRole'];
 
 const PEOPLE_REFERRAL_FIELDS = ['platform', 'language', 'source', 'uidLast4', 'status', 'route'] as const;
 const RATING_FIELDS = ['rating', 'category', 'uidLast4', 'route'] as const;
 const REPORT_FIELDS = ['category', 'severity', 'platform', 'uidLast4', 'count', 'route'] as const;
-const APP_ERROR_FIELDS = ['category', 'severity', 'platform', 'appVersion', 'nickname', 'uidLast4', 'route'] as const;
+const APP_ERROR_FIELDS = ['category', 'severity', 'platform', 'appVersion', 'route'] as const;
 const REVENUE_FIELDS = ['provider', 'product', 'environment', 'amount', 'currency', 'uidLast4', 'status', 'count', 'route'] as const;
 const CONTENT_FIELDS = ['category', 'status', 'count', 'uidLast4', 'route'] as const;
 const OPS_FIELDS = ['category', 'severity', 'environment', 'status', 'count', 'route'] as const;
@@ -247,9 +259,10 @@ export function sanitizeAdminAlertPayload(
   const sanitized: Record<string, string | number | readonly AdminAlertDigestMetric[] | readonly AdminAlertDetail[]> = {};
   // This client-originated milestone intentionally permits only aggregate
   // count+language. In particular, do not inherit the usual identity fields.
+  const anonymous = isAnonymousErrorAlert(eventType);
   const allowedFields = eventType === 'customCardMilestone'
     ? SAFE_FIELD_POLICY[eventType]
-    : [...COMMON_FIELDS, ...SAFE_FIELD_POLICY[eventType]];
+    : [...COMMON_FIELDS, ...SAFE_FIELD_POLICY[eventType]].filter((key) => !anonymous || !IDENTITY_FIELDS.has(key));
   for (const key of new Set(allowedFields)) {
     const value = source[key];
     if (value === undefined || value === null) continue;
@@ -307,6 +320,7 @@ export function sanitizeAdminAlertPayload(
       const { label, value } = item as Record<string, unknown>;
       const allowed = [...COMMON_DETAIL_LABELS, ...(DETAIL_POLICY[eventType] ?? [])];
       if (!allowed.includes(String(label)) || typeof value !== 'string') return [];
+      if (anonymous && IDENTITY_DETAIL_LABELS.has(String(label))) return [];
       const cleaned = redactAdminAlertText(value).trim();
       if (!cleaned) return [];
       if (remaining <= 0) return [{ label: String(label), value: '[Лимит пересылки текста — остальные данные в админке]' }];

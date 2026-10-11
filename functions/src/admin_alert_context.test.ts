@@ -58,7 +58,8 @@ test('an explicit stable event identity wins over a different auth UID in that e
     'users/auth-1': { progress: { user_name: 'Старый профиль 1' } },
     'users/stable-1': { progress: { user_name: 'Текущий ник 8' } },
   });
-  const payload = await enrichAdminAlertContext({ ...input, eventType: 'criticalError', source: 'app.error', sourceId: 'e1' }, db.read);
+  // §CORE-0159: сбои обезличены, поэтому разрешение личности проверяем на жалобе из того же журнала.
+  const payload = await enrichAdminAlertContext({ ...input, eventType: 'contentReport', source: 'app.error', sourceId: 'e1' }, db.read);
   expect(payload.nickname).toBe('Текущий ник 8');
 });
 
@@ -151,4 +152,17 @@ test('keeps all long owner-requested text in valid bounded HTML parts, with iden
   }
   const chunks = messages.flatMap((message) => [...message.matchAll(/<b>Текст репорта(?: \(продолжение\))?:<\/b>\n<blockquote>([\s\S]*?)<\/blockquote>/g)].map((match) => match[1]));
   expect(chunks.join('').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&quot;/g, '"').trim()).toBe(text.trim());
+});
+
+// §CORE-0159: для сбоев ник по uid не ищется — ни профиль, ни публичные проекции не читаются, ник из документа не переносится.
+test('error alerts never look up or carry a nickname', async () => {
+  const db = fixture({ 'app_errors/err-1': { uid: 'user-77', userName: 'Старое имя', message: 'boom user-77', appVersion: '2.0.0' },
+    'users/user-77': { progress: { user_name: 'Анна 8' } } });
+  const result = await enrichAdminAlertContext({ eventType: 'criticalError', source: 'legacy.critical_error', sourceId: 'err-1',
+    payload: { nickname: 'Старое имя', route: '#app-health' } }, db.read);
+  expect(result.nickname).toBeUndefined();
+  expect(result.relatedNickname).toBeUndefined();
+  expect(db.paths).toEqual(['app_errors/err-1']);
+  const text = renderAdminAlertMessages({ eventType: 'criticalError', occurredAtMs: 1725000000000, payload: result }).join('');
+  expect(text).not.toMatch(/Анна|Старое имя|user-77/);
 });

@@ -1,5 +1,6 @@
 import {
   escapeTelegramHtml,
+  isAnonymousErrorAlert,
   maskId,
   renderAdminAlertMessage,
   sanitizePublicNickname,
@@ -97,7 +98,7 @@ describe('admin Telegram alert privacy formatter', () => {
     expect(message).toContain('В диалоге слишком тихий звук');
   });
 
-  test('renders critical error app version and public nickname', () => {
+  test('renders critical error app version but never the nickname (§CORE-0159)', () => {
     const message = renderAdminAlertMessage({
       eventType: 'criticalError',
       occurredAtMs: Date.UTC(2026, 8, 12, 17, 25, 43),
@@ -110,7 +111,7 @@ describe('admin Telegram alert privacy formatter', () => {
         route: '#app-health',
       },
     });
-    expect(message).toContain('<b>Alex12300</b>');
+    expect(message).not.toContain('Alex12300');
     expect(message).toContain('v1.6.15');
   });
 
@@ -200,7 +201,7 @@ describe('admin Telegram alert privacy formatter', () => {
     expect(messages.join('')).toContain('продолжение в админке');
   });
 
-  test.each(ADMIN_ALERT_IDS.filter((id) => id !== 'ownerDailyDigest' && id !== 'customCardMilestone'))('%s retains event version, build and nickname', (eventType) => {
+  test.each(ADMIN_ALERT_IDS.filter((id) => id !== 'ownerDailyDigest' && id !== 'customCardMilestone' && !isAnonymousErrorAlert(id)))('%s retains event version, build and nickname', (eventType) => {
     const message = renderAdminAlertMessage({ eventType, occurredAtMs: 1725000000000,
       payload: { nickname: 'Мария 12', appVersion: '1.6.15', buildNumber: '215' } as never });
     expect(message).toContain('Мария 12');
@@ -264,5 +265,31 @@ describe('admin Telegram alert privacy formatter', () => {
     }});
     expect(message).toContain('Время: <code>13.09.2026, 06:48</code>');
     expect(message).not.toContain('Ирландия');
+  });
+});
+
+// §CORE-0159 (решение координатора 11.10): оповещения о сбоях в Telegram обезличены — ни ника, ни хвоста uid.
+describe('error alerts carry no identity', () => {
+  const ERROR_TYPES = ['criticalError', 'appErrorDigest', 'paymentWebhookFailure'] as const;
+
+  test('exactly the three error types are anonymous', () => {
+    expect(ADMIN_ALERT_IDS.filter((id) => isAnonymousErrorAlert(id))).toEqual([...ERROR_TYPES].sort((a, b) => ADMIN_ALERT_IDS.indexOf(a) - ADMIN_ALERT_IDS.indexOf(b)));
+  });
+
+  test.each(ERROR_TYPES)('%s drops nickname, related nickname, uid suffix and the event-nickname detail', (eventType) => {
+    const message = renderAdminAlertMessage({ eventType, occurredAtMs: 1725000000000, payload: {
+      nickname: 'Мария 12', relatedNickname: 'Пётр 7', relatedRole: 'Автор контента', uidLast4: 'a9f3',
+      appVersion: '1.6.15', category: 'auth', severity: 'critical',
+      details: [{ label: 'Ник в событии', value: 'Мария 12' }, { label: 'Ошибка', value: 'TypeError' }],
+    } as never });
+    expect(message).not.toMatch(/Мария|Пётр|a9f3|Автор контента|Ник в событии/);
+    expect(message).toContain('v1.6.15');
+    expect(message).toContain('TypeError');
+  });
+
+  test('non-error alerts keep the approved public nickname (design 07796c0d0)', () => {
+    expect(isAnonymousErrorAlert('newUser')).toBe(false);
+    const message = renderAdminAlertMessage({ eventType: 'newUser', occurredAtMs: 1725000000000, payload: { nickname: 'Мария 12' } });
+    expect(message).toContain('Мария 12');
   });
 });

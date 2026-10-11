@@ -74,7 +74,7 @@
 <body>
 <div class="page">
   <h1 class="page-h1">Пейволл Plus — цена и покупка</h1>
-  <p class="page-lead">Группа 1 из «экранов без макета» (реестр paywalls-011…016 и 018; «Уход с пейволла» не рисуем — перехвата выхода нет). Окно — утверждённая шторка «вариант 1», здесь все состояния цены и покупки: загрузка условий, ошибка до checkout, проверка покупки, диалоги ожидания и неизвестного результата, неподтверждённый статус, промо магазина. Каждое состояние в тёмной «Авроре» и в светлой теме. Тексты — из кода, цены примерные (их даёт магазин).</p>
+  <p class="page-lead">Группа 1 из «экранов без макета» (реестр paywalls-011…016 и 018, плюс «Магазин недоступен» — причина billing_unavailable; «Уход с пейволла» не рисуем — перехвата выхода нет). Окно — утверждённая шторка «вариант 1», здесь все состояния цены и покупки: загрузка условий, ошибка до checkout, проверка покупки, диалоги ожидания и неизвестного результата, неподтверждённый статус, промо магазина. Каждое состояние в тёмной «Авроре» и в светлой теме. Тексты — из кода, цены примерные (их даёт магазин).</p>
   <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
   <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
@@ -93,6 +93,8 @@ const plans = (o = {}) => `<div class="wrow${o.off ? ' wphome' : ''}"><div class
   <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div>${o.promo ? `<div class="wstr" style="margin-top:3px">${MON}</div>` : ''}<div class="wmon" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '340 ₽' : MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
 const skel = '<div class="wrow"><div class="wcell"><div class="wsk"></div></div><div class="wcell"><div class="wsk"></div></div></div>';
 const unav = '<div class="wun"><div class="a">Цены не загрузились</div><div class="b">Проверь интернет</div><span class="wretry">Ещё раз</span></div>';
+// зачем (координатор 11.10): магазин недоступен на этом устройстве (billing_unavailable) — повтор бессмыслен, поэтому БЕЗ кнопки «Ещё раз»
+const unavBilling = '<div class="wun"><div class="a">Цены не загрузились</div><div class="b">Магазин недоступен на этом устройстве</div></div>';
 const promo = '<div class="wpromo"><div class="k">Скидка действует сейчас</div><div class="rw"><span class="pc">−30%</span><span class="pr">2 790 ₽</span><span class="st">3 990 ₽</span></div><div class="th">далее 3 990 ₽</div></div>';
 const dock = (o = {}) => `<div class="wdock"><div class="wcta${o.off ? ' off' : ''}">${o.spin ? '<span class="wspin"></span>' : o.label}</div><div class="wfine">${o.fine}</div>
   <div class="wlinks"><span${o.restoreOff ? ' class="off"' : ''}>${o.restoring ? 'Восстанавливаем…' : 'Восстановить'}</span><span>Условия</span><span>Конфиденциальность</span></div></div>`;
@@ -109,7 +111,7 @@ const S = [
     () => und + sheet({ body: lead + skel, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.', restoreOff: true }) })],
   ['012 · Ошибка до checkout (оплата не началась)', 'Тап по кнопке: магазин не ответил. Сверху тост, под кнопкой «Попробуй через минуту». Деньги не списаны.',
     () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: 'Попробуй через минуту' }) }) + toast('Не удалось связаться с магазином. Попробуй позже.', '!')],
-  ['012 · Цены не загрузились → «Ещё раз»', 'После потолка загрузки на месте цен — «Цены не загрузились», «Проверь интернет» и кнопка «Ещё раз». Кнопка покупки жива.',
+  ['012 · Сеть: цены не загрузились → «Ещё раз»', 'Причина — сеть (network). После потолка загрузки на месте цен — «Цены не загрузились», «Проверь интернет» и кнопка «Ещё раз». Кнопка покупки жива.',
     () => und + sheet({ body: lead + unav, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.' }) })],
   ['013 · Проверяем покупку: идёт оплата', 'Магазин открыл оплату: в кнопке кружок, тарифы и закрытие неактивны, пока не придёт ответ.',
     () => und + sheet({ closeOff: true, body: lead + plans({ off: true }), dock: dock({ spin: true, off: false, fine: FINE_YEAR, restoreOff: true }) })],
@@ -122,7 +124,9 @@ const S = [
   ['016 · Статус неизвестен (после проверки)', 'Проверка не нашла покупку: тост ведёт к «Восстановить». Другие исходы: «Не удалось проверить статус. Попробуй позже.», «Активных подписок не обнаружено.».',
     () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + toast('Покупка пока не найдена. Нажми «Восстановить покупки».', '!')],
   ['018 · Промо от магазина', 'Если магазин даёт скидку на первый период: плашка над тарифами («Скидка действует сейчас», процент, цена со скидкой, зачёркнутая обычная, «далее»), в карточках — зачёркнутая и новая цена. Нет скидки — нет плашки.',
-    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'далее 3 990 ₽ · Отмена в любой момент' }) })],
+    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'далее 3 990 ₽ · Отмена в любой момент' }) })],,
+  ['012 · Магазин недоступен на этом устройстве', 'Причина — billing_unavailable: на месте цен «Цены не загрузились · Магазин недоступен на этом устройстве», кнопки «Ещё раз» нет (повтор бессмыслен). «Получить Plus» остаётся, но тап не открывает оплату: без тоста под кнопкой тихо появляется «Попробуй через минуту».',
+    () => und + sheet({ body: lead + unavBilling, dock: dock({ label: 'Получить Plus', fine: 'Магазин недоступен на этом устройстве', restoreOff: true }) })],
 ];
 const grid = (lite) => S.map(([t, n, f]) => `<div class="col"><div class="lbl">${t}</div>${ph(f(), lite)}<div class="wnote">${n}</div></div>`);
 document.getElementById('root').innerHTML =

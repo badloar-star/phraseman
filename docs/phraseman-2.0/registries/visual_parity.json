@@ -16145,7 +16145,7 @@
       "mockup": {
         "file": "docs/design/v2-app/paywall-price-states.html",
         "phone": 2,
-        "label": "012 · Ошибка до checkout (оплата не началась)",
+        "label": "Ошибка до checkout (кадр 2) · сеть «Ещё раз» (кадр 3) · магазин недоступен без «Ещё раз» (кадр 10)",
         "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",

@@ -1078,7 +1078,9 @@ export default function CommunityPackCreateScreen() {
   const privateOnlyLabel = L('Только я', 'Лише я', 'Only me', 'Solo yo', 'Só eu', 'Chỉ mình tôi', 'Hanya saya', 'Yalnızca ben', 'Tylko ja');
   const publicAllLabel = L('Все', 'Усі', 'Everyone', 'Todos', 'Todos', 'Mọi người', 'Semua', 'Herkes', 'Wszyscy');
   const cardsTitle = L('Карточки', 'Картки', 'Cards', 'Tarjetas', 'Cartões', 'Thẻ', 'Kartu', 'Kartlar', 'Karty');
-  const addCardLabel = L('Добавить карточку', 'Додати картку', 'Add card', 'Añadir tarjeta', 'Adicionar cartão', 'Thêm thẻ', 'Tambah kartu', 'Kart ekle', 'Dodaj kartę');
+  // зачем (Карточки 2.0 12.10, `ghostadd` «＋ Карточка»): кнопка добавления — под списком, подпись короткая
+  const addCardLabel = L('Карточка', 'Картка', 'Card', 'Tarjeta', 'Cartão', 'Thẻ', 'Kartu', 'Kart', 'Karta');
+  const createPackLabel = L('Создать набор', 'Створити набір', 'Create pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluştur', 'Utwórz pakiet');
   const firstCardLabel = L('Первая карточка', 'Перша картка', 'First card', 'Primera tarjeta', 'Primeiro cartão', 'Thẻ đầu tiên', 'Kartu pertama', 'İlk kart', 'Pierwsza karta');
   const saveLabel = L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz');
   const wordLabel = L('Слово или фраза', 'Слово або фраза', 'Word or phrase', 'Palabra o frase', 'Palavra ou frase', 'Từ hoặc cụm từ', 'Kata atau frasa', 'Kelime veya ifade', 'Słowo lub fraza');
@@ -1137,7 +1139,7 @@ export default function CommunityPackCreateScreen() {
           >
             <ContentWrap>
               <View style={[styles.formHorizontalInset, { paddingTop: 22 }]}>
-                <EditorField g={kg} label={`${L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *`}>
+                <EditorField g={kg} label={L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')}>
                   <TextInput
                     ref={titleInputRef}
                     accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
@@ -1190,7 +1192,6 @@ export default function CommunityPackCreateScreen() {
                 <KitSectionHead g={kg} title={cardsTitle} count={rows.length} />
 
                 <View testID="ugc-pack-cards-count" style={{ gap: 9 }}>
-                  <AddCardRow g={kg} label={addCardLabel} onPress={openAddCard} disabled={isEditingCard} testID="ugc-pack-add-card" />
                   {isEditMode ? (
                     <EditorCardList
                       g={kg}
@@ -1219,6 +1220,7 @@ export default function CommunityPackCreateScreen() {
                       }}
                     />
                   ))}
+                  <AddCardRow g={kg} label={addCardLabel} onPress={openAddCard} disabled={isEditingCard} testID="ugc-pack-add-card" />
                 </View>
                 {/* Все пользовательские наборы используют единое оформление; старый
                     picker цветов/рубашек удалён из активного UI (PM-065). */}
@@ -1235,7 +1237,7 @@ export default function CommunityPackCreateScreen() {
               <KitCta
                 g={kg}
                 testID="ugc-pack-save"
-                label={saveLabel}
+                label={isEditMode ? saveLabel : createPackLabel}
                 onPress={() => {
                   if (busy) return;
                   Keyboard.dismiss();

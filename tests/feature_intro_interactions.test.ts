@@ -5,8 +5,8 @@ import { createRoot, type Root } from 'test-renderer';
 jest.mock('react-native', () => ({ View: 'View', Text: 'Text', ScrollView: 'ScrollView', StyleSheet: { create: (x: unknown) => x }, useWindowDimensions: () => ({ width: 390, height: 844 }) }));
 // 04.10 (сцены окон первого входа, 06dd77148): окно берёт картинку из реестра ThemedArt — в тесте сцены нет,
 // поэтому реестр отвечает «нет картинки» и окно идёт прежним путём (семья/значок), который и проверяется ниже.
-jest.mock('../app/theme/ThemedArt', () => ({ ThemedArt: 'ThemedArt' }));
-jest.mock('../app/theme/themed_art_registry', () => ({ resolveThemedArt: () => ({ origin: 'none', base: null, accent: null }), THEMED_ART_ALL_NAMES: [] }));
+jest.mock('../components/theme/ThemedArt', () => ({ ThemedArt: 'ThemedArt' }));
+jest.mock('../components/theme/themed_art_registry', () => ({ resolveThemedArt: () => ({ origin: 'none', base: null, accent: null }), THEMED_ART_ALL_NAMES: [] }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' }, Easing: { out: (x: unknown) => x, cubic: 'cubic' },
   cancelAnimation: jest.fn(), useAnimatedStyle: (f: () => unknown) => f(), useSharedValue: (value: number) => ({ value }),

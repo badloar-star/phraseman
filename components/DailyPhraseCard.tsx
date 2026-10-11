@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { resolveThemedArt } from '../app/theme/themed_art_registry';
+import { resolveThemedArt } from './theme/themed_art_registry';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';

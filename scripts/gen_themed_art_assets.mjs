@@ -13,8 +13,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const artDir = path.join(root, 'assets', 'images', 'v2art');
-const registryPath = path.join(root, 'app', 'theme', 'themed_art_registry.ts');
-const outPath = path.join(root, 'app', 'theme', 'themed_art_assets.generated.ts');
+const registryPath = path.join(root, 'components', 'theme', 'themed_art_registry.ts');
+const outPath = path.join(root, 'components', 'theme', 'themed_art_assets.generated.ts');
 
 export function knownNames() {
   const src = fs.readFileSync(registryPath, 'utf8');

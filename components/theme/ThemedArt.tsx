@@ -7,7 +7,7 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
-import { useTheme } from '../../components/ThemeContext';
+import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import {
   resolveThemedArt,

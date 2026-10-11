@@ -23,8 +23,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { ThemedArt } from '../app/theme/ThemedArt';
-import { THEMED_ART_ALL_NAMES, resolveThemedArt, type ThemedArtName } from '../app/theme/themed_art_registry';
+import { ThemedArt } from './theme/ThemedArt';
+import { THEMED_ART_ALL_NAMES, resolveThemedArt, type ThemedArtName } from './theme/themed_art_registry';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES, rouletteCoinsLabel, roulettePrizeLabel } from '../app/roulette_prizes';

@@ -9,7 +9,7 @@ import {
   THEMED_ART_NO_FALLBACK,
   resolveThemedArt,
   resolveThemedArtFrom,
-} from '../app/theme/themed_art_registry';
+} from '../components/theme/themed_art_registry';
 
 const ROOT = path.join(__dirname, '..');
 
@@ -59,7 +59,7 @@ describe('themed art registry', () => {
   });
 
   it('the generated file lists exactly the v2art files that exist', () => {
-    const gen = fs.readFileSync(path.join(ROOT, 'app', 'theme', 'themed_art_assets.generated.ts'), 'utf8');
+    const gen = fs.readFileSync(path.join(ROOT, 'components', 'theme', 'themed_art_assets.generated.ts'), 'utf8');
     const required = [...gen.matchAll(/require\('\.\.\/\.\.\/(assets\/images\/v2art\/[^']+)'\)/g)].map(m => m[1]!);
     for (const rel of required) expect(fs.existsSync(path.join(ROOT, rel))).toBe(true);
     for (const brightness of ['dark', 'light']) {
@@ -103,7 +103,7 @@ describe('first real assets (adfaa8c34) and set choice', () => {
 
   it('set follows the theme BACKGROUND: light themes → light, dark tinted and dark gradient → dark', () => {
     const { liquidGlassTokens } = require('../constants/liquidGlassThemePalette') as typeof import('../constants/liquidGlassThemePalette');
-    const { themedArtBrightnessForBackground } = require('../app/theme/themed_art_registry') as typeof import('../app/theme/themed_art_registry');
+    const { themedArtBrightnessForBackground } = require('../components/theme/themed_art_registry') as typeof import('../components/theme/themed_art_registry');
     for (const k of [0, 0.5, 1]) {
       expect(themedArtBrightnessForBackground(liquidGlassTokens('marine', { level: 'calm', appearance: 'dark', intensity: k }).bg)).toBe('dark');
       expect(themedArtBrightnessForBackground(liquidGlassTokens('grad_magma', { level: 'calm', appearance: 'dark', intensity: k }).bg)).toBe('dark');

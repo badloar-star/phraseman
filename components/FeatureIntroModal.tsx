@@ -30,8 +30,8 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { FeatureIntroIconName } from '../app/feature_intro_registry';
 import FeatureIntroStage, { type FeatureIntroFamily } from './feature_intro/FeatureIntroStage';
 import type { FeatureIntroArt } from '../app/feature_intro_art';
-import { ThemedArt } from '../app/theme/ThemedArt';
-import { resolveThemedArt, THEMED_ART_ALL_NAMES, type ThemedArtName } from '../app/theme/themed_art_registry';
+import { ThemedArt } from './theme/ThemedArt';
+import { resolveThemedArt, THEMED_ART_ALL_NAMES, type ThemedArtName } from './theme/themed_art_registry';
 
 interface Props {
   visible: boolean;

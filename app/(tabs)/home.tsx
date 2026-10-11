@@ -78,7 +78,7 @@ import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRail from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCard from '../../components/home/v2/HomeV2TodayCard';
-import { resolveThemedArt } from '../theme/themed_art_registry';
+import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
 import { getV2Palette, V2 } from '../../constants/v2Style';

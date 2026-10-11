@@ -2203,7 +2203,7 @@ export function SpeakingPanel({
       return L(lang, {
         ru: 'Готовим распознавание… нужно один раз',
         uk: 'Готуємо розпізнавання… потрібно один раз',
-        es: 'Preparando el reconocimiento… solo una vez',
+        es: 'Preparando el reconocimiento… solo una vez', en: 'Getting speech recognition ready… one-time only',
         'pt-BR': 'Preparando o reconhecimento… só uma vez',
         vi: 'Đang chuẩn bị nhận dạng… chỉ một lần',
         id: 'Menyiapkan pengenalan… sekali saja',
@@ -2217,7 +2217,7 @@ export function SpeakingPanel({
           ? L(lang, {
               ru: 'Зажми кнопку и говори, отпусти — проверю',
               uk: 'Затисни кнопку й говори, відпусти — перевірю',
-              es: 'Mantén pulsado y habla, suelta y reviso',
+              es: 'Mantén pulsado y habla, suelta y reviso', en: 'Hold the button and speak, release and I\'ll check',
               'pt-BR': 'Segure e fale, solte que eu verifico',
               vi: 'Nhấn giữ và nói, thả ra để kiểm tra',
               id: 'Tekan tahan dan bicara, lepas untuk diperiksa',
@@ -2227,7 +2227,7 @@ export function SpeakingPanel({
           : L(lang, {
           ru: 'Зажми кнопку и говори, отпусти — проверю',
           uk: 'Затисни кнопку й говори, відпусти — перевірю',
-          es: 'Mantén pulsado y habla, suelta y reviso',
+          es: 'Mantén pulsado y habla, suelta y reviso', en: 'Hold the button and speak, release and I\'ll check',
           'pt-BR': 'Segure e fale, solte que eu verifico',
           vi: 'Nhấn giữ và nói, thả ra để kiểm tra',
           id: 'Tekan tahan dan bicara, lepas untuk diperiksa',
@@ -2235,20 +2235,20 @@ export function SpeakingPanel({
           pl: 'Przytrzymaj i mów, puść — sprawdzę',
         });
       case 'requesting':
-        return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
+        return L(lang, { ru: 'Готовимся слушать…', uk: 'Готуємось слухати…', es: 'Preparando…', en: 'Getting ready to listen…', 'pt-BR': 'Preparando…', vi: 'Đang chuẩn bị nghe…', id: 'Menyiapkan…', tr: 'Dinlemeye hazırlanıyor…', pl: 'Przygotowuję słuchanie…' });
       case 'listening':
         return '';
       case 'scoring':
-        return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
+        return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', en: 'Checking…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
-        return L(lang, { ru: 'Отлично! Совпало с фразой', uk: 'Чудово! Збіглося з фразою', es: '¡Genial! Coincide con la frase', 'pt-BR': 'Ótimo! Bateu com a frase', vi: 'Tuyệt! Khớp với câu', id: 'Bagus! Cocok dengan frasa', tr: 'Harika! İfadeyle eşleşti', pl: 'Świetnie! Zgadza się z frazą' }); // Q61: совпадение, не оценка звучания
+        return L(lang, { ru: 'Отлично! Совпало с фразой', uk: 'Чудово! Збіглося з фразою', es: '¡Genial! Coincide con la frase', en: 'Great! Matches the phrase', 'pt-BR': 'Ótimo! Bateu com a frase', vi: 'Tuyệt! Khớp với câu', id: 'Bagus! Cocok dengan frasa', tr: 'Harika! İfadeyle eşleşti', pl: 'Świetnie! Zgadza się z frazą' }); // Q61: совпадение, не оценка звучания
       case 'failed':
-        return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
+        return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', en: 'Almost. Try again', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
       case 'no_speech':
         return L(lang, {
           ru: 'Не расслышал. Скажи чуть громче',
           uk: 'Не розчув. Скажи трохи гучніше',
-          es: 'No te oí. Habla un poco más alto',
+          es: 'No te oí. Habla un poco más alto', en: 'Didn\'t catch that. Speak a little louder',
           'pt-BR': 'Não ouvi bem. Fale um pouco mais alto',
           vi: 'Không nghe rõ. Hãy nói to hơn một chút',
           id: 'Tidak terdengar. Ucapkan sedikit lebih keras',
@@ -2259,7 +2259,7 @@ export function SpeakingPanel({
         return L(lang, {
           ru: 'Нужен доступ к микрофону',
           uk: 'Потрібен доступ до мікрофона',
-          es: 'Se necesita el micrófono',
+          es: 'Se necesita el micrófono', en: 'Microphone access needed',
           'pt-BR': 'É preciso acesso ao microfone',
           vi: 'Cần quyền truy cập micrô',
           id: 'Perlu akses mikrofon',
@@ -2270,7 +2270,7 @@ export function SpeakingPanel({
         return L(lang, {
           ru: 'Это устройство не умеет распознавать речь. Остальные упражнения доступны',
           uk: 'Цей пристрій не вміє розпізнавати мовлення. Інші вправи доступні',
-          es: 'Este dispositivo no reconoce voz. Los demás ejercicios están disponibles',
+          es: 'Este dispositivo no reconoce voz. Los demás ejercicios están disponibles', en: 'This device can\'t recognize speech. The other exercises are available',
           'pt-BR': 'Este dispositivo não reconhece voz. Os outros exercícios estão disponíveis',
           vi: 'Thiết bị này không nhận dạng giọng nói. Các bài tập khác vẫn dùng được',
           id: 'Perangkat ini tidak bisa mengenali suara. Latihan lain tetap tersedia',
@@ -2281,7 +2281,7 @@ export function SpeakingPanel({
         return L(lang, {
           ru: 'Не удалось запустить микрофон. Попробуй ещё раз',
           uk: 'Не вдалося запустити мікрофон. Спробуй ще раз',
-          es: 'No se pudo iniciar el micrófono. Inténtalo de nuevo',
+          es: 'No se pudo iniciar el micrófono. Inténtalo de nuevo', en: 'Couldn\'t start the microphone. Try again',
           'pt-BR': 'Não foi possível iniciar o microfone. Tente de novo',
           vi: 'Không khởi động được micrô. Hãy thử lại',
           id: 'Tidak bisa memulai mikrofon. Coba lagi',
@@ -2390,11 +2390,11 @@ export function SpeakingPanel({
           <Pressable
             onPress={openAppSettings}
             accessibilityRole="button"
-            accessibilityLabel={L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
+            accessibilityLabel={L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', en: 'Open settings', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
             style={[styles.inlineSettingsAction, { backgroundColor: theme.accent }]}
           >
             <Text style={{ color: theme.onAccent, fontWeight: '800' }}>
-              {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
+              {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', en: 'Open settings', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
             </Text>
           </Pressable>
         )}
@@ -2427,13 +2427,13 @@ export function SpeakingPanel({
           {/* Header */}
           <View style={styles.headerRow}>
             <Text style={[styles.title, { color: mTheme.textPrimary }]}>
-              {L(lang, { ru: 'Скажи вслух', uk: 'Скажи вголос', es: 'Dilo en voz alta', 'pt-BR': 'Diga em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Powiedz na głos' })}
+              {L(lang, { ru: 'Скажи вслух', uk: 'Скажи вголос', es: 'Dilo en voz alta', en: 'Say it out loud', 'pt-BR': 'Diga em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Powiedz na głos' })}
             </Text>
             <Pressable
               onPress={handleClose}
               hitSlop={12}
               accessibilityRole="button"
-              accessibilityLabel={L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+              accessibilityLabel={L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             >
               <Ionicons name="close" size={24} color={mTheme.textMuted} />
             </Pressable>
@@ -2524,7 +2524,7 @@ export function SpeakingPanel({
                   accessibilityLabel={L(lang, {
                     ru: `Тренировать слово ${tok}`,
                     uk: `Тренувати слово ${tok}`,
-                    es: `Practicar la palabra ${tok}`,
+                    es: `Practicar la palabra ${tok}`, en: `Practice the word ${tok}`,
                     'pt-BR': `Praticar a palavra ${tok}`,
                     vi: `Luyện từ ${tok}`,
                     id: `Latih kata ${tok}`,
@@ -2570,7 +2570,7 @@ export function SpeakingPanel({
               {L(lang, {
                 ru: '✓ Фраза идеальна — все слова чисто',
                 uk: '✓ Фраза ідеальна — усі слова чисто',
-                es: '✓ Frase perfecta: todas las palabras limpias',
+                es: '✓ Frase perfecta: todas las palabras limpias', en: '✓ Perfect phrase — every word clean',
                 'pt-BR': '✓ Frase perfeita — todas as palavras limpas',
                 vi: '✓ Cụm từ hoàn hảo — mọi từ đều rõ',
                 id: '✓ Frasa sempurna — semua kata jelas',
@@ -2590,7 +2590,7 @@ export function SpeakingPanel({
                 accessibilityLabel={L(lang, {
                   ru: `${starsForScore(effectiveScore, passThreshold)} из 3 звёзд, ${effectivePassed ? 'засчитано' : 'не засчитано'}`,
                   uk: `${starsForScore(effectiveScore, passThreshold)} з 3 зірок, ${effectivePassed ? 'зараховано' : 'не зараховано'}`,
-                  es: `${starsForScore(effectiveScore, passThreshold)} de 3 estrellas, ${effectivePassed ? 'aprobado' : 'no aprobado'}`,
+                  es: `${starsForScore(effectiveScore, passThreshold)} de 3 estrellas, ${effectivePassed ? 'aprobado' : 'no aprobado'}`, en: `${starsForScore(effectiveScore, passThreshold)} of 3 stars, ${effectivePassed ? 'passed' : 'not passed'}`,
                   'pt-BR': `${starsForScore(effectiveScore, passThreshold)} de 3 estrelas, ${effectivePassed ? 'aprovado' : 'não aprovado'}`,
                   vi: `${starsForScore(effectiveScore, passThreshold)} trên 3 sao, ${effectivePassed ? 'đã đạt' : 'chưa đạt'}`,
                   id: `${starsForScore(effectiveScore, passThreshold)} dari 3 bintang, ${effectivePassed ? 'lulus' : 'belum lulus'}`,
@@ -2646,7 +2646,7 @@ export function SpeakingPanel({
               {L(lang, {
                 ru: `звук /${soundHint.hint.expected}/ вместо /${soundHint.hint.said}/ в «${soundHint.word}»`,
                 uk: `звук /${soundHint.hint.expected}/ замість /${soundHint.hint.said}/ у «${soundHint.word}»`,
-                es: `sonido /${soundHint.hint.expected}/ en vez de /${soundHint.hint.said}/ en «${soundHint.word}»`,
+                es: `sonido /${soundHint.hint.expected}/ en vez de /${soundHint.hint.said}/ en «${soundHint.word}»`, en: `sound /${soundHint.hint.expected}/ instead of /${soundHint.hint.said}/ in “${soundHint.word}”`,
                 'pt-BR': `som /${soundHint.hint.expected}/ em vez de /${soundHint.hint.said}/ em «${soundHint.word}»`,
                 vi: `âm /${soundHint.hint.expected}/ thay vì /${soundHint.hint.said}/ trong «${soundHint.word}»`,
                 id: `bunyi /${soundHint.hint.expected}/ bukan /${soundHint.hint.said}/ pada «${soundHint.word}»`,
@@ -2692,8 +2692,8 @@ export function SpeakingPanel({
               accessibilityRole="button"
               accessibilityLabel={
                 holdModeView
-                  ? L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
-                  : L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
+                  ? L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', en: 'Hold and speak', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
+                  : L(lang, { ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén pulsado y habla', en: 'Hold and speak', 'pt-BR': 'Segure e fale', vi: 'Nhấn giữ và nói', id: 'Tekan tahan dan bicara', tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów' })
               }
               accessibilityState={{ disabled: micDisabled, busy: status === 'requesting' || status === 'scoring' }}
               style={[
@@ -2724,11 +2724,11 @@ export function SpeakingPanel({
                 handleClose();
               }}
               accessibilityRole="button"
-              accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
+              accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               style={[styles.actionBtn, { backgroundColor: mTheme.correct }]}
             >
               <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
-                {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
+                {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               </Text>
             </Pressable>
           )}
@@ -2739,7 +2739,7 @@ export function SpeakingPanel({
           {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
             <Pressable onPress={holdModeView ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: mTheme.accent }]}>
-                {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
+                {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', en: 'Say it again', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>
             </Pressable>
           )}
@@ -2752,7 +2752,7 @@ export function SpeakingPanel({
               style={[styles.actionBtn, { backgroundColor: mTheme.accent }]}
             >
               <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
-                {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
+                {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', en: 'Open settings', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
               </Text>
             </Pressable>
           )}
@@ -2765,7 +2765,7 @@ export function SpeakingPanel({
               style={[styles.actionBtn, { backgroundColor: mTheme.accent }]}
             >
               <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
-                {L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+                {L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </Pressable>
           )}

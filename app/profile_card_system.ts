@@ -202,6 +202,7 @@ export const PROFILE_CARD_LEVEL_NAME_RU: Record<ProfileCardLevel, string> = {
 export type ProfileCardSellingText = {
   ru: string;
   uk: string;
+  en?: string; // зачем (12.10): ключ en для будущего английского интерфейса (sellingPointText читает по языку)
   es: string;
   'pt-BR': string;
   vi: string;
@@ -222,7 +223,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: false, text: {
       ru: 'Базовая карточка профиля',
       uk: 'Базова картка профілю',
-      es: 'Tarjeta de perfil base',
+      es: 'Tarjeta de perfil base', en: 'Basic profile card',
       'pt-BR': 'Cartão de perfil básico',
       vi: 'Thẻ hồ sơ cơ bản',
       id: 'Kartu profil dasar',
@@ -232,7 +233,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: false, text: {
       ru: 'Видна в профиле и списках',
       uk: 'Видно в профілі та списках',
-      es: 'Visible en el perfil y las listas',
+      es: 'Visible en el perfil y las listas', en: 'Visible on your profile and in lists',
       'pt-BR': 'Visível no perfil e nas listas',
       vi: 'Hiển thị trong hồ sơ và danh sách',
       id: 'Terlihat di profil dan daftar',
@@ -244,7 +245,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Стальное свечение карточки снизу и мягкий редкий блик',
       uk: 'Сталеве сяйво картки знизу і м’який рідкісний блиск',
-      es: 'Resplandor acero desde abajo y brillo suave ocasional',
+      es: 'Resplandor acero desde abajo y brillo suave ocasional', en: 'Steel glow along the bottom of the card and a soft, rare shine',
       'pt-BR': 'Brilho aço vindo de baixo e reflexo suave ocasional',
       vi: 'Ánh thép hắt từ dưới và tia sáng nhẹ thưa thớt',
       id: 'Cahaya baja dari bawah dan kilau lembut sesekali',
@@ -254,7 +255,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Бейдж I рядом с именем в друзьях и клубе',
       uk: 'Бейдж I біля імені в друзях і клубі',
-      es: 'Insignia I junto a tu nombre en amigos y club',
+      es: 'Insignia I junto a tu nombre en amigos y club', en: 'Badge I next to your name in friends and the club',
       'pt-BR': 'Selo I ao lado do nome em amigos e clube',
       vi: 'Huy hiệu I cạnh tên trong bạn bè và câu lạc bộ',
       id: 'Lencana I di samping nama di teman dan klub',
@@ -264,7 +265,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Пилюля престижа «I · Phraseman Pro» на карточке',
       uk: 'Пілюля престижу «I · Phraseman Pro» на картці',
-      es: 'Distintivo de prestigio «I · Phraseman Pro» en la tarjeta',
+      es: 'Distintivo de prestigio «I · Phraseman Pro» en la tarjeta', en: '“I · Phraseman Pro” prestige pill on the card',
       'pt-BR': 'Distintivo de prestígio «I · Phraseman Pro» no cartão',
       vi: 'Huy hiệu danh giá «I · Phraseman Pro» trên thẻ',
       id: 'Pil prestise «I · Phraseman Pro» di kartu',
@@ -276,7 +277,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Чистое бирюзовое свечение снизу и сверху карточки',
       uk: 'Чисте бірюзове сяйво знизу і зверху картки',
-      es: 'Resplandor turquesa puro abajo y arriba de la tarjeta',
+      es: 'Resplandor turquesa puro abajo y arriba de la tarjeta', en: 'Clean teal glow at the bottom and top of the card',
       'pt-BR': 'Brilho turquesa puro embaixo e no topo do cartão',
       vi: 'Ánh ngọc lam thuần hắt từ dưới và trên thẻ',
       id: 'Cahaya toska murni dari bawah dan atas kartu',
@@ -286,7 +287,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Новый блок на карточке: выученные слова и фразы',
       uk: 'Новий блок на картці: вивчені слова та фрази',
-      es: 'Nuevo bloque en la tarjeta: palabras y frases aprendidas',
+      es: 'Nuevo bloque en la tarjeta: palabras y frases aprendidas', en: 'New block on the card: learned words and phrases',
       'pt-BR': 'Novo bloco no cartão: palavras e frases aprendidas',
       vi: 'Khối mới trên thẻ: từ và cụm từ đã học',
       id: 'Blok baru di kartu: kata dan frasa yang dipelajari',
@@ -296,7 +297,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Бейдж II в списках — все видят твой уровень',
       uk: 'Бейдж II у списках — усі бачать твій рівень',
-      es: 'Insignia II en las listas: todos ven tu nivel',
+      es: 'Insignia II en las listas: todos ven tu nivel', en: 'Badge II in lists — everyone sees your level',
       'pt-BR': 'Selo II nas listas: todos veem seu nível',
       vi: 'Huy hiệu II trong danh sách — mọi người thấy cấp của bạn',
       id: 'Lencana II di daftar — semua melihat levelmu',
@@ -308,7 +309,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Электрик-синее свечение, дышащий свет и падающая звезда',
       uk: 'Електрик-синє сяйво, дихаюче світло і падаюча зірка',
-      es: 'Resplandor azul eléctrico, luz que respira y estrella fugaz',
+      es: 'Resplandor azul eléctrico, luz que respira y estrella fugaz', en: 'Electric-blue glow, breathing light and a shooting star',
       'pt-BR': 'Brilho azul elétrico, luz pulsante e estrela cadente',
       vi: 'Ánh xanh điện, ánh sáng phập phồng và sao băng',
       id: 'Cahaya biru listrik, sinar bernafas, dan bintang jatuh',
@@ -318,7 +319,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Бейдж III в списках и усиленная рамка аватара',
       uk: 'Бейдж III у списках і посилена рамка аватара',
-      es: 'Insignia III en las listas y marco de avatar reforzado',
+      es: 'Insignia III en las listas y marco de avatar reforzado', en: 'Badge III in lists and a stronger avatar frame',
       'pt-BR': 'Selo III nas listas e moldura de avatar reforçada',
       vi: 'Huy hiệu III trong danh sách và khung avatar nổi bật hơn',
       id: 'Lencana III di daftar dan bingkai avatar diperkuat',
@@ -330,7 +331,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Глубокий малиновый жар снизу и мерцающие звёзды',
       uk: 'Глибокий малиновий жар знизу і мерехтливі зорі',
-      es: 'Brasa carmesí profunda abajo y estrellas titilantes',
+      es: 'Brasa carmesí profunda abajo y estrellas titilantes', en: 'Deep crimson heat at the bottom and twinkling stars',
       'pt-BR': 'Brasa carmesim profunda embaixo e estrelas cintilantes',
       vi: 'Ánh đỏ thẫm rực từ dưới và sao lấp lánh',
       id: 'Bara merah tua dari bawah dan bintang berkelip',
@@ -340,7 +341,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Новый блок на карточке: дней в Phraseman и рекордная серия',
       uk: 'Новий блок на картці: днів у Phraseman і рекордна серія',
-      es: 'Nuevo bloque en la tarjeta: días en Phraseman y racha récord',
+      es: 'Nuevo bloque en la tarjeta: días en Phraseman y racha récord', en: 'New block on the card: days in Phraseman and best streak',
       'pt-BR': 'Novo bloco no cartão: dias no Phraseman e sequência recorde',
       vi: 'Khối mới trên thẻ: số ngày dùng Phraseman và chuỗi kỷ lục',
       id: 'Blok baru di kartu: hari di Phraseman dan rentetan rekor',
@@ -350,7 +351,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Бейдж IV в списках — уровень, который редко у кого есть',
       uk: 'Бейдж IV у списках — рівень, який мало в кого є',
-      es: 'Insignia IV en las listas: un nivel que pocos tienen',
+      es: 'Insignia IV en las listas: un nivel que pocos tienen', en: 'Badge IV in lists — a level few people have',
       'pt-BR': 'Selo IV nas listas: um nível que poucos têm',
       vi: 'Huy hiệu IV trong danh sách — cấp độ hiếm ai có',
       id: 'Lencana IV di daftar — level yang jarang dimiliki',
@@ -362,7 +363,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Платиново-белое сияние, звёздное небо и перелив имени',
       uk: 'Платиново-біле сяйво, зоряне небо і перелив імені',
-      es: 'Resplandor blanco platino, cielo estrellado y nombre tornasolado',
+      es: 'Resplandor blanco platino, cielo estrellado y nombre tornasolado', en: 'Platinum-white shine, a starry sky and a shimmering name',
       'pt-BR': 'Brilho branco platina, céu estrelado e nome tornassolado',
       vi: 'Ánh trắng bạch kim, bầu trời sao và tên chuyển sắc',
       id: 'Cahaya putih platina, langit berbintang, dan nama berkilau warna',
@@ -372,7 +373,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Именной номер легенды — выдаётся по порядку и навсегда твой',
       uk: 'Іменний номер легенди — видається по порядку і назавжди твій',
-      es: 'Número de leyenda propio: se asigna por orden y es tuyo para siempre',
+      es: 'Número de leyenda propio: se asigna por orden y es tuyo para siempre', en: 'A legend\'s personal number — assigned in order and yours for good',
       'pt-BR': 'Número de lenda próprio: atribuído por ordem e seu para sempre',
       vi: 'Số huyền thoại riêng — cấp theo thứ tự và mãi là của bạn',
       id: 'Nomor legenda pribadi — diberikan berurutan dan selamanya milikmu',
@@ -382,7 +383,7 @@ export const PROFILE_CARD_SELLING_POINTS: Record<ProfileCardLevel, ProfileCardSe
     { isNew: true, text: {
       ru: 'Бейдж V в списках — высший статус Phraseman',
       uk: 'Бейдж V у списках — найвищий статус Phraseman',
-      es: 'Insignia V en las listas: el estatus más alto de Phraseman',
+      es: 'Insignia V en las listas: el estatus más alto de Phraseman', en: 'Badge V in lists — the highest Phraseman status',
       'pt-BR': 'Selo V nas listas: o status mais alto do Phraseman',
       vi: 'Huy hiệu V trong danh sách — địa vị cao nhất Phraseman',
       id: 'Lencana V di daftar — status tertinggi Phraseman',

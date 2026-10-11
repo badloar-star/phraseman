@@ -147,6 +147,11 @@ export type LoadAllVideosOptions = Readonly<{
  * Возвращает актуальный список или null, если данных нет вовсе.
  */
 export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promise<AllVideosList | null> {
+  // зачем (Дизайн 11.10): пока экран не знает канал (каталог ещё не пришёл), он передаёт '' — без сети и без записи.
+  if (!options.channelId) {
+    console.log(LOG, 'пропуск: канал ещё не известен (channelId пуст) — сети нет, кэш не трогаем');
+    return null;
+  }
   const token = options.token ?? captureAccountGeneration();
   const scope = scopeOf(token);
   const k = key(scope, options.channelId);
@@ -233,6 +238,12 @@ export function useAllChannelVideos(
 
   const run = useCallback((force: boolean) => {
     const request = ++requestRef.current;
+    if (!channelId) {
+      // зачем (Дизайн 11.10): канал ещё не известен — ни сети, ни признака «недоступно»; ждём канал.
+      console.log(LOG, 'хук: канал ещё не известен — ждём, загрузку не начинаем');
+      setRefreshing(false);
+      return;
+    }
     setRefreshing(true);
     void loadAllChannelVideos({ channelId, token, force }).then((next) => {
       if (request !== requestRef.current) return;

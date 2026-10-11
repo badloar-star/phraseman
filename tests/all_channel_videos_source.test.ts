@@ -132,4 +132,10 @@ describe('loadAllChannelVideos', () => {
     const raw = Object.values(asyncStore)[0];
     expect(raw).not.toContain('"description"');
   });
+  it('пустой channelId — ни сети, ни записи (экран ещё не знает канал)', async () => {
+    await expect(loadAllChannelVideos({ channelId: '', token, reader, nowMs: 1_000 })).resolves.toBeNull();
+    expect(fetchManifest).not.toHaveBeenCalled();
+    expect(fetchChannel).not.toHaveBeenCalled();
+    expect(Object.keys(asyncStore)).toHaveLength(0);
+  });
 });

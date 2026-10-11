@@ -3,7 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
-import { readGiftAccessFromCloud } from './gift_access_cloud';
+import { readGiftAccessFromCloud, type GiftAccessCloudState } from './gift_access_cloud';
+import { forgetVerifiedLoyaltyGift, readVerifiedLoyaltyGiftUntilMs, rememberVerifiedLoyaltyGift } from './gift_access_local_copy';
+import { getCanonicalUserId } from './user_id_policy';
 import { syncRevenueCatProjectionForAccount } from './revenuecat_projection_sync';
 import { DebugLogger } from './debug-logger';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
@@ -684,27 +686,141 @@ async function getVerifiedPremiumAccessStatusTraced(
   }
   if (!accountGenerationIsCurrent(generation)) return false;
 
-  const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(noteSwallowedAs('premium_guard:promise_14', null));
-  mark('loyalty_gift_cloud');
+  // зачем (владелец 11.10, журнал 16; план §CORE-0165): подарок лояльности — сначала проверенная локальная копия
+  // срока (доступ с первого кадра, облако сверяет фоном), затем облако с потолком. Без копии потолок был бы
+  // небезопасен: «нет ответа» стало бы «нет доступа», и квоты бесплатного списались бы у держателя подарка.
+  // Строгая проверка в момент изменения данных (bypassCache) обходит ВСЕ кэши — локальную копию тоже,
+  // и ждёт облако без потолка, как раньше.
+  const strictMutationRead = options?.bypassCache === true;
+  const localGiftUntil = strictMutationRead
+    ? null
+    : await readVerifiedLoyaltyGiftUntilMs(Date.now(), generation.stableId).catch(noteSwallowedAs('premium_guard:loyalty_local', null));
+  mark(`loyalty_gift_local:${strictMutationRead ? 'skipped_strict' : String(localGiftUntil !== null)}`);
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
+  if (localGiftUntil !== null) {
+    scheduleLoyaltyGiftCloudReverify(generation);
     return finish(true);
   }
 
-  if (options?.allowCloudRefresh === false) return finish(false);
+  const loyaltyGift = strictMutationRead
+    ? await readGiftAccessFromCloud('loyalty').catch(noteSwallowedAs('premium_guard:promise_14', null))
+    : await readLoyaltyGiftWithCeiling(generation);
+  mark('loyalty_gift_cloud');
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
+    void rememberLoyaltyGiftForCurrentAccount(loyaltyGift.endsAtMs, generation);
+    return finish(true);
+  }
+
+  // зачем (ревью Opus 11.10, дефект): после потолка поздний «подарок есть» мог успеть сохранить копию, пока шло
+  // облачное обновление; ответ «нет доступа» затёр бы его в кэше на 5 минут. Перед каждым «нет» копию перечитываем.
+  const giftCopyStillActive = async (): Promise<boolean> => {
+    if (strictMutationRead) return false;
+    const until = await readVerifiedLoyaltyGiftUntilMs(Date.now(), generation.stableId)
+      .catch(noteSwallowedAs('premium_guard:loyalty_local_recheck', null));
+    if (until !== null) console.log('[GIFT-LOCAL] перед «нет доступа» нашлась копия — доступ есть');
+    return until !== null;
+  };
+
+  if (options?.allowCloudRefresh === false) {
+    const giftNow = await giftCopyStillActive();
+    return accountGenerationIsCurrent(generation) ? finish(giftNow) : false;
+  }
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
   mark(`cloud_refresh:${String(cloudRefreshed)}`);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (cloudRefreshed) {
     invalidatePremiumCache();
-    const [realAfterCloud, vipAfterCloud] = await Promise.all([
+    const [realAfterCloud, vipAfterCloud, giftAfterCloud] = await Promise.all([
       getVerifiedRealPremiumStatus(options).catch(noteSwallowedAs('premium_guard:promise_15', false)),
       getVerifiedVipStatus(options).catch(noteSwallowedAs('premium_guard:promise_16', false)),
+      giftCopyStillActive(),
     ]);
-    return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud) : false;
+    return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud || giftAfterCloud) : false;
   }
 
-  return finish(false);
+  const giftAtEnd = await giftCopyStillActive();
+  return accountGenerationIsCurrent(generation) ? finish(giftAtEnd) : false;
+}
+
+/** Потолок облачной проверки подарка (план §CORE-0165): держатель подарка с копией его не ждёт вовсе. */
+export const LOYALTY_GIFT_CLOUD_CEILING_MS = 3_000;
+let loyaltyGiftReverifiedGeneration = -1;
+
+async function rememberLoyaltyGiftForCurrentAccount(untilMs: number, generation: AccountGenerationToken): Promise<void> {
+  // зачем (ревью Opus): id из того же поколения, по которому копию потом читают — без второго источника id.
+  const uid = generation.stableId ?? await getCanonicalUserId().catch(noteSwallowedAs('premium_guard:loyalty_uid', null));
+  if (!uid || !accountGenerationIsCurrent(generation)) {
+    console.log('[GIFT-LOCAL] remember: пропуск — нет id или сменился аккаунт');
+    return;
+  }
+  await rememberVerifiedLoyaltyGift(uid, untilMs);
+}
+
+/**
+ * Облачное чтение подарка с потолком. По потолку — null (как «нет ответа»), а поздний ответ «подарок есть»
+ * сохраняет копию и ОДИН раз пересчитывает доступ (событие loyalty_gift_changed → PremiumContext.reload).
+ */
+async function readLoyaltyGiftWithCeiling(generation: AccountGenerationToken): Promise<GiftAccessCloudState | null> {
+  const startedAt = Date.now();
+  const read = readGiftAccessFromCloud('loyalty').catch(noteSwallowedAs('premium_guard:promise_14', null));
+  let timedOut = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const ceiling = new Promise<null>((resolve) => {
+    timer = setTimeout(() => { timedOut = true; resolve(null); }, LOYALTY_GIFT_CLOUD_CEILING_MS);
+  });
+  const result = await Promise.race([read, ceiling]);
+  if (timer) clearTimeout(timer);
+  if (!timedOut) return result;
+  console.warn('[GIFT-LOCAL] облако подарка не ответило за потолок — решаем без него', JSON.stringify({ ceilingMs: LOYALTY_GIFT_CLOUD_CEILING_MS }));
+  void read.then((late) => {
+    const active = !!late?.endsAtMs && late.endsAtMs > Date.now();
+    console.log('[GIFT-LOCAL] поздний ответ облака', JSON.stringify({ ms: Date.now() - startedAt, active, current: accountGenerationIsCurrent(generation) }));
+    if (!active || !accountGenerationIsCurrent(generation) || !late?.endsAtMs) return;
+    void rememberLoyaltyGiftForCurrentAccount(late.endsAtMs, generation).then(() => {
+      if (!accountGenerationIsCurrent(generation)) return;
+      invalidatePremiumCache();
+      emitAppEvent('loyalty_gift_changed');
+    }).catch(noteSwallowedHandler('premium_guard:loyalty_late_chain'));
+  }).catch(noteSwallowedHandler('premium_guard:loyalty_late_read'));
+  return null;
+}
+
+/**
+ * Фоновая сверка копии с облаком — один раз на поколение аккаунта. Отзывает только УСПЕШНЫЙ ответ без активного
+ * срока; ошибка сети (null) копию не трогает. Отзыв → копия стёрта, один пересчёт доступа.
+ */
+function scheduleLoyaltyGiftCloudReverify(generation: AccountGenerationToken): void {
+  if (loyaltyGiftReverifiedGeneration === generation.generation) return;
+  loyaltyGiftReverifiedGeneration = generation.generation;
+  void readGiftAccessFromCloud('loyalty')
+    .catch(noteSwallowedAs('premium_guard:loyalty_reverify', null))
+    .then(async (cloud) => {
+      if (!accountGenerationIsCurrent(generation)) {
+        console.log('[GIFT-LOCAL] сверка: аккаунт сменился — ответ отброшен');
+        return;
+      }
+      if (cloud === null) {
+        console.log('[GIFT-LOCAL] сверка: облако недоступно — копия остаётся');
+        return;
+      }
+      if (cloud.endsAtMs && cloud.endsAtMs > Date.now()) {
+        console.log('[GIFT-LOCAL] сверка: облако подтвердило подарок');
+        await rememberLoyaltyGiftForCurrentAccount(cloud.endsAtMs, generation);
+        return;
+      }
+      console.warn('[GIFT-LOCAL] сверка: облако говорит «подарка нет» — копия стирается, доступ пересчитывается');
+      await forgetVerifiedLoyaltyGift('cloud_inactive');
+      if (!accountGenerationIsCurrent(generation)) return;
+      invalidatePremiumCache();
+      emitAppEvent('loyalty_gift_changed');
+    })
+    .catch(noteSwallowedHandler('premium_guard:loyalty_reverify_chain'));
+}
+
+/** Только для тестов: сбросить «сверка уже была» между кейсами. */
+export function resetLoyaltyGiftReverifyForTests(): void {
+  loyaltyGiftReverifiedGeneration = -1;
 }
 
 /**

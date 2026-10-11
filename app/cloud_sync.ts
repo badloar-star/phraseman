@@ -868,6 +868,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     // stableId владельца и отпечатки его списков — это след аккаунта, стирается вместе с ним.
     // Без отпечатка повторный вход объединяет со страницами (безопасная сторона), не затирает их.
     FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY,
+    // зачем (владелец 11.10, журнал 16): проверенная копия срока подарка лояльности принадлежит аккаунту —
+    // стирается при выходе и смене (gift_access_local_copy.ts; копия ещё и привязана к id аккаунта).
+    'loyalty_gift_verified_copy_v1',
     // зачем (AA 2.0, S1e): локальные версии карточек, уступившие облачной «из будущего» при силовом
     // переносе, — данные аккаунта: едут в его аварийную копию и стираются вместе с ним.
     FLASHCARD_FUTURE_KEPT_STASH_KEY,
@@ -4361,6 +4364,11 @@ async function restoreAndMigrateFromCloudResult(
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    // зачем (владелец 11.10, журнал 16; §CORE-0165): документ users/{uid} уже прочитан — засеваем из него кэш подарков
+    // и копию срока лояльности, чтобы проверка доступа не читала тот же документ второй раз (до 4,2 с на холодном старте).
+    void import('./gift_access_cloud')
+      .then((m) => m.seedGiftAccessCacheFromProgress(uid, (doc.data() as { progress?: unknown } | undefined)?.progress))
+      .catch(swallowError('cloud_sync:seedGiftAccess'));
     const applied = await withRestoreApplicationLock(() => (
       applyRestoreFromUserDoc(doc, isCurrent, options.canPublishExamBestPctOverlay
         ? (root) => tryPublishExamBestPctOverlay(

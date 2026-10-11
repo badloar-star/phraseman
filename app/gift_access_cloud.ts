@@ -131,6 +131,36 @@ export function invalidateGiftAccessCache(reason: string): void {
   giftProgressInflight = null;
 }
 
+/**
+ * Засеять кэш подарков из документа `users/{uid}`, который уже прочитало восстановление из облака.
+ *
+ * зачем (владелец 11.10, журнал 16; план §CORE-0165): восстановление читает тот же документ на старте — второе
+ * чтение ради подарка было лишним и медленным (до 4,2 с на холодном соединении). Заодно сохраняем проверенную
+ * локальную копию срока лояльности: со следующего запуска доступ виден с первого кадра.
+ * Не перетираем свежее сетевое чтение, которое уже идёт для этого же аккаунта.
+ */
+export function seedGiftAccessCacheFromProgress(uid: string, progress: unknown): void {
+  if (!uid || !progress || typeof progress !== 'object') {
+    console.log(`[GIFT-ACCESS-READ] seed skip hasUid=${!!uid} hasProgress=${!!progress}`);
+    return;
+  }
+  const record = progress as Record<string, unknown>;
+  // зачем (ревью Opus): при идущем сетевом чтении кэш не перетираем, но копию срока пишем всегда — иначе
+  // восстановление, начатое после потолка, не сохранило бы подарок до своего завершения.
+  if (giftProgressInflight && giftProgressInflight.uid === uid) {
+    console.log('[GIFT-ACCESS-READ] seed: сетевое чтение уже идёт — кэш не трогаем, копию срока пишем');
+  } else {
+    giftProgressCache = { uid, progress: record, readAtMs: Date.now() };
+  }
+  const loyaltyUntil = parsePositiveNumber(record.loyalty_gift_until_ms);
+  console.log(`[GIFT-ACCESS-READ] seed from restore users/${uid.slice(0, 6)} loyaltyActive=${loyaltyUntil !== null && loyaltyUntil > Date.now()}`);
+  if (loyaltyUntil !== null && loyaltyUntil > Date.now()) {
+    void import('./gift_access_local_copy')
+      .then((m) => m.rememberVerifiedLoyaltyGift(uid, loyaltyUntil))
+      .catch(noteSwallowedAs('gift_access_cloud:seed_remember', undefined));
+  }
+}
+
 function readGiftProgressFromNetwork(db: unknown, uid: string): Promise<Record<string, unknown>> {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { doc, getDoc } = require('@react-native-firebase/firestore') as {

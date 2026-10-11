@@ -863,6 +863,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, [reload]);
 
+  // зачем (владелец 11.10, журнал 16): подарок лояльности подтвердился поздним ответом облака или облако его отозвало
+  // (premium_guard: проверенная локальная копия срока) — ровно один пересчёт доступа, как у интро-доступа.
+  useEffect(() => {
+    const sub = onAppEvent('loyalty_gift_changed', () => {
+      invalidatePremiumCache();
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
+
   // После локального удаления аккаунта сбрасываем entitlement сразу, не ждём remount.
   useEffect(() => {
     const sub = onAppEvent('account_deleted', () => {

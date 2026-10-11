@@ -3,7 +3,7 @@
  *
  * зачем (владелец: «1 в 1, без малейших потерь»): размеры взяты замером макета (430×932): кнопка «назад» 42, заголовок 40/46,
  * кольцо 236 (толщина 16) и малое 150 (12), ленты-фильтры высотой 38, панель радиусом 24 с рядами от 64, кнопка 52.
- * Границ нет — «кромка» это внутренняя тень (boxShadow inset, новая архитектура включена).
+ * Границ и кромок нет (владелец 12.10, стиль «Тень»): плашку отделяют градиент 180° и тень — components/v2/ShadowSurface.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef } from 'react';
@@ -16,7 +16,8 @@ import { useTheme } from '../ThemeContext';
 
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
-import { DIAG_150, mpColors, mixDark, ringShadow, themePair } from './panelPaint';
+import { mpColors } from './panelPaint';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { GlassRim } from './GlassRim';
 
 /** `.ph .rb` (cards-glass.css): фон круглой кнопки — 7 % от цвета текста темы (в светлой теме тоже виден). */
@@ -106,22 +107,14 @@ export const FilterChips = memo(function FilterChips({ g, chips, activeId, onCha
   );
 });
 
-/** Панель: одна карточка-список с градиентом цвета темы и внутренним кольцом 1px. */
+/** Панель: одна карточка-список — плашка стиля «Тень» (градиент 180° и тень, без кольца). */
 export const Panel = memo(function Panel({ g, children, style }: Readonly<{ g: Lv2Glass; children: React.ReactNode; style?: StyleProp<ViewStyle> }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  const [a] = themePair(g);
   return (
-    <View style={[styles.panel, style]}>
-      <LinearGradient
-        pointerEvents="none"
-        colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]}
-        start={DIAG_150.start}
-        end={DIAG_150.end}
-        style={StyleSheet.absoluteFill}
-      />
+    <View style={[styles.panel, { boxShadow: plateBoxShadow(g) }, style]}>
+      <PlateFill g={g} radius={24} />
       {children}
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.panelEdge, { boxShadow: ringShadow(g.hairlineSoft) }]} />
     </View>
   );
 });
@@ -173,14 +166,13 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
         styles.cta,
         flex && styles.ctaFlex,
         ghost
-          ? { backgroundColor: g.hairlineSoft, boxShadow: ringShadow(g.glassEdge) }
-          : { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+          ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }
+          : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
         disabled && styles.ctaDisabled,
         pressed && styles.pressed,
       ]}>
       <Text style={[styles.ctaText, { color: ghost ? g.text : g.accentInk }]}>{label}</Text>
       {trailing}
-      {ghost ? null : <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.ctaEdge, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />}
     </Pressable>
   );
 });
@@ -231,15 +223,13 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
 export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; title: string; danger?: boolean; onPress: () => void; testID: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  const [a] = themePair(g);
   return (
-    <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
-      <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.deepBase, 0.14)}B3`, `${g.deepBase}B3`]} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
-      <View style={[styles.menuTile, { backgroundColor: g.hairlineSoft }]}>
+    <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+      <PlateFill g={g} radius={20} />
+      <View style={[styles.menuTile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
         <Ionicons name={icon} size={20} color={danger ? mpColors(g).bad : g.text} />
       </View>
       <Text style={[styles.menuText, { color: danger ? mpColors(g).bad : g.text }]}>{title}</Text>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(g.hairlineSoft) }]} />
     </Pressable>
   );
 }
@@ -255,8 +245,7 @@ const baseStyles = StyleSheet.create({
   chips: { paddingHorizontal: 20, gap: 8 },
   chip: { minHeight: 38, paddingHorizontal: 16, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   chipText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  panel: { borderRadius: 24, paddingHorizontal: 18, paddingVertical: 4, overflow: 'hidden' },
-  panelEdge: { borderRadius: 24 },
+  panel: { borderRadius: 24, paddingHorizontal: 18, paddingVertical: 4 },
   row: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14 },
   rowLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1 },
   rowText: { flex: 1, minWidth: 0 },
@@ -267,10 +256,8 @@ const baseStyles = StyleSheet.create({
   cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, paddingHorizontal: 24 },
   ctaFlex: { flex: 1 },
   ctaDisabled: { opacity: 0.5 },
-  ctaEdge: { borderRadius: 26 },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  menuRow: { minHeight: 62, marginTop: 10, borderRadius: 20, overflow: 'hidden', flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingLeft: 10, paddingRight: 16 },
-  menuEdge: { borderRadius: 20 },
+  menuRow: { minHeight: 62, marginTop: 10, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingLeft: 10, paddingRight: 16 },
   menuTile: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   menuText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 20 },

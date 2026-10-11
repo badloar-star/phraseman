@@ -209,7 +209,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     //  • useEffect#2 + useEffect#11 (83300f8d5, §SPEECH-NA) — без распознавателя речи «Устно» не тратит энергию;
     //  • useEffect#2 (8e3e5993c) — claim старта, как у свайпа: выдача проходит фазы, месячный лимит списывается.
     // Удержание, озвучка, полёт монеты, итог — без изменений; 4bfdfb659 и 88f7489b3 хеш не трогали.
-    hash: '4a10cb101ea349c3cf99044df3fe28ac94d23636c7682c1c20e25f0dee3a8f9e',
+    // зачем (владелец 11.10, режим энергии Б; 750314a24): стоп-эффект экрана теперь проверяет общий isAttemptsStopEffect (attempts_exhausted ИЛИ energy_exhausted) — иначе в режиме Б остановка не останавливает озвучку. Квоты/попытки режима А не менялись.
+    hash: '7503ef28d7562306e0a7f2baf21f479c2894cf96cd44938ee814f7572dfb966e',
   });
   assert.equal(
     hashProtectedRuntimeElements(),
@@ -218,7 +219,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // зачем (05.10, Дизайн, координатор): у <NoEnergyModal> добавлен обязательный variant="learn" (выбор макета окна);
     // других изменений в защищённых элементах нет — поведение квот/попыток/озвучки не тронуто.
     // зачем (10.10): f371d6122 — у экрана итога пропсы overline/startedAtMs/mistakes (вид по cards-section); тексты «ты» (bb416e3cd).
-    '524b96c6819cfd1b2f5df400b6dc6c92ec96f0bab2b0a4757fcb329ca9507504',
+    // зачем (владелец 11.10, режим энергии Б; 750314a24): у <SessionAttemptsHud> новый проп attempts={attempts} — шапка сама рисует энергию вместо сердечек.
+    'c25c8ba4623080362385150cfa05491328efc59b7ae2894375ccc3a00b12ad56',
   );
   assert.deepEqual(
     {

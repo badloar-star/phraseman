@@ -21,6 +21,7 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import { CountPill, KitCheck, KitIconTile, KitSurface } from '../cards-grid/CardsKit';
+import { nestedBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { KitTouchable } from '../KitTouchable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { mixDark, themePair } from '../mistakes-panel/panelPaint';
@@ -111,10 +112,7 @@ const CountTile = memo(function CountTile({ g, lang, count, height }: Readonly<{
         width,
         height,
         borderRadius: m.tileRadius,
-        boxShadow: [
-          { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft },
-          { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi },
-        ],
+        boxShadow: nestedBoxShadow(g), // стиль «Тень»: плитка без кольца и фаски — малая тень
       }]}
     >
       <LinearGradient pointerEvents="none" colors={colors} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={[StyleSheet.absoluteFill, { borderRadius: m.tileRadius }]} />
@@ -149,7 +147,6 @@ function PackRowBase({
           paddingLeft: m.padLeft,
           paddingRight: m.padRight,
           gap: m.gap,
-          boxShadow: variant === 'row' ? [{ offsetX: 0, offsetY: 10, blurRadius: 28, spreadDistance: -12, color: g.dropShadow }] : undefined,
         }]}
       >
         {leading.kind === 'count'
@@ -195,7 +192,7 @@ function PackRowBase({
       style={[
         { borderRadius: m.radius },
         emphasis === 'dimmed' ? styles.dimmed : null,
-        emphasis === 'lifted' ? [styles.lifted, { boxShadow: [{ offsetX: 0, offsetY: 20, blurRadius: 44, spreadDistance: 0, color: g.dropShadow }] }] : null,
+        emphasis === 'lifted' ? [styles.lifted, { boxShadow: raisedBoxShadow(g) }] : null,
         style,
       ]}
     >
@@ -220,10 +217,6 @@ function PackRowBase({
         // Без нажатия (шапка набора внутри) — обычный контейнер: вложенные кнопки (отклики) доступны по отдельности.
         <View testID={testID}>{surface}</View>
       )}
-      {emphasis === 'lifted' ? (
-        // `.pl.up`: внутреннее кольцо 1px белым .18 поверх плашки.
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: m.radius, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${g.mediaInk}2E` }] }]} />
-      ) : null}
     </View>
   );
 }
@@ -311,8 +304,7 @@ export const PackRowAddButton = memo(function PackRowAddButton({ g, added, label
         width: size,
         height: size,
         borderRadius: size / 2,
-        backgroundColor: added ? 'transparent' : `${g.accent}38`,
-        boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${g.accent}${added ? '8C' : '4D'}` }],
+        backgroundColor: added ? `${g.accent}1F` : `${g.accent}38`, // без кольца (стиль «Тень»): «добавлено» — бледнее заливка + галочка
       }]}
     >
       <Ionicons name={added ? 'checkmark' : 'add'} size={22} color={g.accentText} />
@@ -338,7 +330,8 @@ export function PackRowCheck({ g, on }: Readonly<{ g: GlassTokens; on: boolean }
 const styles = StyleSheet.create({
   surface: { flexDirection: 'row', alignItems: 'center', overflow: 'hidden' },
   dimmed: { opacity: 0.32 },
-  lifted: { transform: [{ scale: 1.025 }], zIndex: 3 },
+  // зачем (стиль «Тень»): выбранное приподнято сдвигом вверх и тенью `raised` — только transform, высота ряда не меняется.
+  lifted: { transform: [{ translateY: RAISED_LIFT }], zIndex: 3 },
   countTile: { alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   // зачем: число — крупная цифра плитки (≥19, D145 разрешает размер макета), подпись — 13 вместо 11 макета (шкала D145).
   countNum: { fontSize: 23, fontWeight: '700', letterSpacing: -0.4 },

@@ -3,7 +3,10 @@
  * пилюля-счётчик, заголовок раздела и «пустой» блок.
  *
  * зачем (владелец: «в приложении запрещены любые различия с одобренными макетами»): размеры сняты замером макета (430×932):
- * карточка r14, строка 9/16/9/18, плитка 41 r10, пилюля 24 r12, заголовок раздела 20/700; границ нет — кромка это внутренние тени.
+ * карточка r14, строка 9/16/9/18, плитка 41 r10, пилюля 24 r12, заголовок раздела 20/700.
+ *
+ * зачем (владелец 12.10, «второй вариант делаем»): стиль «Тень» — НИ ОДНОЙ обводки и внутренней кромки; плашку отделяют градиент 180° и тень
+ * (docs/design/v2-app/SHADOW_STYLE_SPEC.md, эталоны shadow-style-etalon*.html), числа — из токенов темы через components/v2/ShadowSurface.
  * Одни и те же части нужны спискам «Мои наборы», «Наборы сообщества», «Из видео», поэтому живут здесь, а не в экране.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -11,29 +14,10 @@ import React, { memo, useCallback, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
-import { LinearGradient } from '../SafeLinearGradient';
-import { bevelShadow, glassFillColors, iconTileColors, themePair } from '../mistakes-panel/panelPaint';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLineScale } from '../../hooks/useLineScale';
 
-// зачем (замечание владельца 10.10): цвета блика, кромки и тени — токены выбранной темы (mediaInk/bevelHi/hairlineSoft/dropShadow), не литералы под «Аврору».
-const dropOf = (g: GlassTokens) => [{ offsetX: 0, offsetY: 10, blurRadius: 28, spreadDistance: -12, color: g.dropShadow }] as const;
-const sheenColors = (g: GlassTokens) => [`${g.mediaInk}1A`, `${g.mediaInk}09`, `${g.mediaInk}00`, `${g.mediaInk}05`, `${g.mediaInk}0E`] as const;
-const SHEEN_AT = [0, 0.26, 0.52, 0.78, 1] as const;
-const SHEEN_START = { x: 0.25, y: 0.067 } as const;
-const SHEEN_END = { x: 0.75, y: 0.933 } as const;
-const edgeOf = (g: GlassTokens) => bevelShadow(g.bevelHi, g.hairlineSoft, g.bevelLo);
-
-/** Блик 150° и кромка — слои поверх содержимого (внутренние тени лежат под детьми, поэтому отдельным слоем). */
-function Sheen({ g, radius }: Readonly<{ g: GlassTokens; radius: number }>) {
-  return (
-    <>
-      <LinearGradient pointerEvents="none" colors={sheenColors(g)} locations={SHEEN_AT} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, boxShadow: edgeOf(g) }]} />
-    </>
-  );
-}
-
-/** «.card» макета: заливка 150° из цветов темы, тень вниз, блик и кромка. */
+/** «.card» макета: плашка стиля «Тень» — градиент 180° и тень вниз, без обводки и кромки. */
 export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid, radius = 14 }: Readonly<{
   g: GlassTokens;
   children: React.ReactNode;
@@ -48,8 +32,6 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
   /** Скругление: 14 у обычных карточек, 20 у строк фраз набора из видео. */
   radius?: number;
 }>) {
-  const [a, b] = themePair(g);
-  const colors = glassFillColors(g, a, b);
   return (
     <Pressable
       testID={testID}
@@ -59,36 +41,28 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
       accessibilityState={{ disabled: !!(disabled || !onPress) }}
       onPress={onPress}
       onLongPress={onLongPress}
-      style={({ pressed }) => [styles.card, { borderRadius: radius, boxShadow: dropOf(g) as never }, pressed && styles.pressed, style]}>
-      {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, backgroundColor: solid }]} /> : <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />}
+      style={({ pressed }) => [styles.card, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed, style]}>
+      {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, backgroundColor: solid }]} /> : <PlateFill g={g} radius={radius} />}
       {children}
-      <Sheen g={g} radius={radius} />
     </Pressable>
   );
 });
 
-/** Плоская поверхность без тени и нажатия (`.field`, `.seg3`): заливка 150° из цветов темы, блик, кромка. */
+/** Поверхность (`.field`, `.seg3`): та же плашка «Тень» — градиент 180° и тень, без обводки. */
 export const KitSurface = memo(function KitSurface({ g, children, radius = 14, style }: Readonly<{ g: GlassTokens; children?: React.ReactNode; radius?: number; style?: StyleProp<ViewStyle> }>) {
-  const [a, b] = themePair(g);
-  const colors = glassFillColors(g, a, b);
   return (
-    <View style={[{ borderRadius: radius }, style]}>
-      <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />
+    <View style={[{ borderRadius: radius, boxShadow: plateBoxShadow(g) }, style]}>
+      <PlateFill g={g} radius={radius} />
       {children}
-      <Sheen g={g} radius={radius} />
     </View>
   );
 });
 
-/** «.tile» макета 41×41 r10: градиент 145° из цветов темы, блик, кромка, иконка 20. */
+/** «.tile» макета 41×41 r10: вложенная плитка стиля «Тень» — тон `dividerTone` и малая тень, иконка 20. */
 export const KitIconTile = memo(function KitIconTile({ g, icon }: Readonly<{ g: GlassTokens; icon: keyof typeof Ionicons.glyphMap }>) {
-  const [a, b] = themePair(g);
   return (
-    <View style={styles.tile}>
-      <LinearGradient pointerEvents="none" colors={iconTileColors(g, a, b)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
-      {/* зачем (Сверка 11.10): в светлой плитка бледная (1.4–2.6:1 к белому mediaInk) — значок текстовым цветом темы, в тёмной прежний mediaInk */}
-      <Ionicons name={icon} size={20} color={g.isLight ? g.text : g.mediaInk} />
-      <Sheen g={g} radius={10} />
+    <View style={[styles.tile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
+      <Ionicons name={icon} size={20} color={g.text} />
     </View>
   );
 });
@@ -97,9 +71,8 @@ export const KitIconTile = memo(function KitIconTile({ g, icon }: Readonly<{ g: 
 export const CountPill = memo(function CountPill({ g, value }: Readonly<{ g: GlassTokens; value: number }>) {
   const lh = useLineScale();
   return (
-    <View style={[styles.pill, { backgroundColor: g.hairlineSoft }]}>
+    <View style={[styles.pill, { backgroundColor: g.dividerTone }]}>
       <Text style={[styles.pillText, { color: g.text, lineHeight: lh(18) }]}>{value}</Text>
-      <Sheen g={g} radius={12} />
     </View>
   );
 });
@@ -129,7 +102,7 @@ export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: R
   );
 });
 
-/** «.cta» макета: мятная кнопка 48 высотой, свечение снизу, блик сверху; иконка слева необязательна. */
+/** «.cta» макета: кнопка действия 48 высотой — цвет темы и цветная тень (стиль «Тень», без блика-кромки); иконка слева необязательна. */
 // зачем (Сверка 11.10, светлая, настройка тренировки): выключенная кнопка была обычной мятной с opacity .45 — сквозь неё просвечивал
 // текст нижних секций (подпись «Направление» под кнопкой). По макету `.cta.dis` — плотная заливка контрола и приглушённый текст, без свечения.
 export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPress, testID, accessibilityLabel, disabled = false }: Readonly<{
@@ -156,13 +129,12 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
         styles.cta,
         disabled
           ? { backgroundColor: g.opaqueControl }
-          : { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+          : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
         pressed && styles.pressed,
       ]}>
       {icon ? <Ionicons name={icon} size={20} color={ink} /> : null}
       <Text style={[styles.ctaText, { color: ink }]}>{label}</Text>
       {trailingIcon ? <Ionicons name={trailingIcon} size={20} color={ink} /> : null}
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />
     </Pressable>
   );
 });
@@ -177,7 +149,8 @@ export const KitSearchField = memo(function KitSearchField({ g, value, onChangeT
   testID?: string;
 }>) {
   return (
-    <View style={[styles.search, { backgroundColor: g.hairlineSoft }]}>
+    <View style={[styles.search, { boxShadow: plateBoxShadow(g) }]}>
+      <PlateFill g={g} radius={23} />
       <Ionicons name="search" size={18} color={g.mutedText} />
       <TextInput
         testID={testID}
@@ -226,8 +199,9 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
             accessibilityRole="radio"
             accessibilityState={{ selected: on }}
             onPress={() => onChange(option.id)}
-            style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}1F` }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: g.dropShadow }] }]}>
-            <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary, lineHeight: lh(20) }]}>{option.label}</Text>
+            style={[styles.seg, on && { boxShadow: nestedBoxShadow(g) }]}>
+            {on ? <PlateFill g={g} radius={10} raised /> : null}
+            <Text style={[styles.segText, { color: on ? g.text : g.secondary, fontWeight: on ? '700' : '600', lineHeight: lh(20) }]}>{option.label}</Text>
           </Pressable>
         );
       })}
@@ -235,7 +209,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
   );
 });
 
-/** Круглый индикатор выбора 26: выбран — светлый круг с галочкой, не выбран — тонкое кольцо. */
+/** Круглый индикатор выбора 26: выбран — светлый круг с галочкой, не выбран — кольцо (индикатор состояния, не обводка контейнера). */
 export const KitCheck = memo(function KitCheck({ g, on }: Readonly<{ g: GlassTokens; on: boolean }>) {
   return (
     <View style={[styles.check, on ? { backgroundColor: g.cta } : { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${g.text}4D` }] }]}>

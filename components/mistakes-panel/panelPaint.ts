@@ -27,18 +27,14 @@ export function themePair(g: GlassTokens): readonly [string, string] {
   return [g.accent, g.accentBorder];
 }
 
-/** Внутренняя «кромка» макета (границ нет): тонкое кольцо 1px. */
-export const ringShadow = (ring: string): BoxShadowValue[] => [
-  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: ring },
-];
+// зачем (владелец 12.10, «второй вариант делаем», стиль «Тень»): контейнеры БЕЗ обводок и внутренних кромок. Прежние `ringShadow`/`bevelShadow`
+// рисовали кольцо 1px и фаски `inset` — теперь возвращают пустой список, чтобы ни один вызов не вернул кромку. Вызовы вычищаются по экранам;
+// плашку делают заливка и тень из components/v2/ShadowSurface.
+/** @deprecated Кромок больше нет — всегда пустой список. */
+export const ringShadow = (_ring?: string): BoxShadowValue[] => [];
 
-/** Подсветка сверху-слева + тень снизу-справа + кольцо — как у карточек макета. */
-// зачем (замечание владельца 10.10): нижняя кромка — токен темы (bevelLo); литерал остался только значением по умолчанию для старых вызовов.
-export const bevelShadow = (hi: string, ring: string, lo: string = 'rgba(0,0,0,0.45)' /* theme-exempt: значение по умолчанию */): BoxShadowValue[] => [
-  { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: hi },
-  { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: lo },
-  { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: ring },
-];
+/** @deprecated Кромок больше нет — всегда пустой список. */
+export const bevelShadow = (_hi?: string, _ring?: string, _lo?: string): BoxShadowValue[] => [];
 
 /** Заливка стеклянной карточки 150°: цвета темы в тёмной базе темы (deepBase), середина — база с альфой 0.58. */
 export const glassFillColors = (g: GlassTokens, a: string, b: string) =>

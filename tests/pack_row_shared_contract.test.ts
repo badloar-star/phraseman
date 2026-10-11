@@ -201,9 +201,12 @@ describe('мелочи ревью 11.10 (макет #c1 и Performance Bible)', 
     expect(hub).toContain('[PACK-ROW] hide:refresh-failed');
   });
 
-  it('приподнятая плашка: скруглённая тень и внутреннее кольцо `.pl.up`', () => {
+  // зачем (владелец 12.10, стиль «Тень»): приподнятая плашка — скруглённая тень `raised` и сдвиг вверх (только transform); внутреннего кольца больше нет.
+  it('приподнятая плашка: скруглённая тень raised и сдвиг, без кольца', () => {
     expect(row).toContain('{ borderRadius: m.radius },');
-    expect(row).toContain("color: `${g.mediaInk}2E`");
+    expect(row).toContain('boxShadow: raisedBoxShadow(g)');
+    expect(row).toContain('translateY: RAISED_LIFT');
+    expect(row).not.toContain("color: `${g.mediaInk}2E`");
   });
 
   it('бейдж «Топ» не выше межстрочного названия, плитка-счётчик растёт вместе со шрифтом', () => {

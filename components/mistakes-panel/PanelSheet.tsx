@@ -68,12 +68,6 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
         ) : null}
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         {children}
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.edge, {
-          boxShadow: [
-            { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: g.bevelHi },
-            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft },
-          ],
-        }]} />
       </Animated.View>
     </View>
   );

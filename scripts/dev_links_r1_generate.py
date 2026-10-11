@@ -187,6 +187,7 @@ out.append('4. Свойства аккаунта: `plus=on|off` (Plus), `free=on
 out.append('5. VIP-плашка и план подписки (`vip=`, `plan=`) читаются при старте: после ссылки force-stop → запуск.')
 out.append('6. Тема кадра: тёмная «Аврора» (Спокойно), если в строке не сказано иное.')
 out.append('7. Колонка «тапы» — шаги после открытия ссылки (грамматика — `scripts/parity_steps.mjs`: `tap:#testID`, `tap:Текст`, `long:`, `swipe-left:`, `type:`, `back`, `wait:`); их выполняет робот `scripts/parity_batch_shoot.mjs` через `uiautomator dump`. Колонка «уникальна»: **да** — ссылка+шаги открывают ровно этот кадр (робот берёт только такие); **нет** — ссылка общая с соседями или путь не выведен, снимать руками по shot list. `cards=empty` очищает сохранённые/свои карточки и наборы (пустые кадры); `cards=demo` и `cards=empty` сбрасывают масштаб сетки и режим «стопка».\n')
+out.append('8. ⚠️ **Фикстуры `cards=demo|demo_lessons|empty|custom50|demo_published|notranslation` пишут в синхронизируемые ключи карточек и наборов** (облачная синхронизация и Account V2) — поэтому работают ТОЛЬКО на анонимном госте (`pm clear` → онбординг) и отказываются на аккаунте с Google/Apple (лог `[DEV-STATE] cards=… refused: real account`). Тестовые аккаунты №2/№3 для Карточек не использовать.\n')
 
 need = []
 counts = collections.Counter()

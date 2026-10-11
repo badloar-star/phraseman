@@ -91,6 +91,8 @@
 .dh .rb.sq { width: 40px; height: 40px; border-radius: 13px; }
 /* энергия | реплики — одна пилюля, как «сердца | монеты» в Блице: заголовок сцены не обрезается */
 .pill.duo { gap: 6px; padding: 0 12px; }
+.dh .su { overflow: visible; } .dh .su .dmood { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; } .dh .su .pill { flex: none; }
+.ibar .rbtn.mnone { opacity: .55; } .ibar .rbtn.mnone::after { content: ""; position: absolute; left: 14px; right: 14px; top: 50%; height: 2px; border-radius: 1px; background: currentColor; transform: rotate(-45deg); }
 .pill.duo .sep { width: 1px; height: 16px; background: var(--line-2); margin: 0 4px; display: block; }
 .goal { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 10px 12px 10px 10px; border-radius: 18px; background: #161618; border: 1px solid var(--line); }
 .goal .tile { width: 46px; height: 46px; border-radius: 13px; }
@@ -386,7 +388,7 @@ const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div cla
 // Раскладка — ref_20: круглая «‹», «Диалог» + название, справа квота, «⋯»; карточка цели; реплики с кнопками под ними;
 // снизу микрофон · поле · отправить. Цвета нейтральные, пузырь «Ты» светло-серый.
 // зачем: у Free энергия видна на каждом экране занятия (владелец); у Plus — ни энергии, ни квоты.
-const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</div></div>${o.plus ? '' : `<span class="pill s duo" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span><i class="sep"></i>${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}<span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
+const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span><span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
 const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из 5</div><div class="v">${OBJ[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
 const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
 const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${li('cafe')}</span><div class="bw"><span class="who">Мия · бариста</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
@@ -397,11 +399,11 @@ const dots = (spent = 1) => `<span class="dots">${[0, 1, 2].map((i) => `<i${i < 
 const ibar = (o = {}) => {
   const mic = o.voice === 'live' ? `<span class="rbtn live">${icon('mic')}</span>`
     : o.voice === 'req' || o.voice === 'fin' ? `<span class="rbtn"><span class="spin"></span></span>`
-    : `<span class="rbtn t"><span class="mi">${icon('mic')}</span>${dots(o.spent ?? 1)}${o.micPlus ? '<span class="plus">PLUS</span>' : ''}</span>`;
+    : `<span class="rbtn t${o.voice === 'none' ? ' mnone' : ''}"><span class="mi" style="transform:none">${icon('mic')}</span></span>`;
   const fld = o.typed ? `<span class="tv">${o.typed}</span>${o.typing ? '<span class="cur"></span>' : ''}` : `<span class="plc">Напиши или зажми микрофон</span>`;
   const hint = {
     req: ['Готовлю микрофон… удерживай кнопку', '', true], live: ['Говори… отпусти, когда закончишь', '', true], fin: ['Обрабатываю сказанное…', '', true],
-    err: ['Не удалось расслышать. Попробуй ещё раз', 'Повторить'], denied: ['Нужен доступ к микрофону', 'Открыть настройки'], none: ['Голосовой ввод недоступен на этом устройстве', ''],
+    err: ['Не удалось расслышать. Попробуй ещё раз', 'Повторить'], denied: ['Нужен доступ к микрофону', 'Открыть настройки'], none: ['Распознавание речи не работает на этом устройстве', ''],
   }[o.voice] || ['Или зажми и говори', ''];
   return `<div class="ibar${o.kb ? ' kbd' : ''}"><div class="row-i">${mic}<div class="fld t">${fld}</div><span class="rbtn send${o.typed ? '' : ' off'} t">${li('arrowUp')}</span></div>${o.voice === 'live' ? `<div class="wave">${Array.from({ length: 19 }, (_, i) => `<i style="--h:${8 + Math.round(18 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>` : ''}<div class="hint${hint[2] ? ' on' : ''}">${hint[0]}${hint[1] ? `<span class="lnk t">${hint[1]}</span>` : ''}</div></div>${o.kb ? keyb() : ''}`;
 };
@@ -409,7 +411,7 @@ const keyb = () => `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map(
 // зачем (D111, Ядро 11.10): лимит Free в Диалогах — 30 ответов в КАЛЕНДАРНЫЙ МЕСЯЦ (дневного нет); тексты и кнопки — как в приложении (dialogue_v2_session_coaching_labels.ts: wallTitle/wallMessage/wallReview/wallPlus).
 const wall = () => `<div class="wall"><div class="c"><div class="ti">На этот месяц всё</div><div class="p">Бесплатные 30 ответов на этот месяц закончились. Новые — с 1-го числа.</div><div class="btns"><div class="cta gh t">Итоги</div><div class="cta t">Plus</div></div></div></div>`;
 // Шторки и окна сессии (в каждом телефоне лежат закрытыми, открываются по тапу; в макетах «открыто» — сразу).
-const menuSheet = (open) => sheet('menu', `<div class="sh-h"><div class="ti">Диалог</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:14px">${[['flag', 'Задания'], ['close', 'Завершить диалог']].map(([i, t], k) => `<div class="t" style="display:flex;align-items:center;gap:18px;padding:16px 4px;${k ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t46">${icon(i, 's20')}</div><div class="grow0" style="font-size:17px;font-weight:600">${t}</div>${ch}</div>`).join('')}</div>`, open);
+const menuSheet = (open) => sheet('menu', `<div class="sh-h"><div class="ti">Диалог</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:14px">${[['<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.5H20M8.5 12H20M8.5 17.5H20M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></svg>', 'Задания'], ['close', 'Завершить диалог']].map(([i, t], k) => `<div class="t" style="display:flex;align-items:center;gap:18px;padding:16px 4px;${k ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t46">${i.startsWith('<') ? i : icon(i, 's20')}</div><div class="grow0" style="font-size:17px;font-weight:600">${t}</div>${ch}</div>`).join('')}</div>`, open);
 const goalsSheet = (met, open) => sheet('goals', `<div class="sh-h"><div class="ti">Задания</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:12px">${objList(met, 'w')}</div><div class="cta t" style="margin-top:22px" data-close>Закрыть</div>`, open);
 const whySheet = (o, open) => sheet('why', `<div class="sh-h"><div class="ti">Почему так</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div class="quote">What size would you like — small, medium or large?</div>
@@ -484,7 +486,7 @@ const memBody = `<div class="card c2" style="padding:14px;display:flex;flex-dire
   <div class="card c2" style="padding:14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">Закажи кофе</div><div class="dg-b">Выполнено задач: 3</div><div class="dg-cap">Следующая задача: 4</div></div>`;
 const memPhone = (inner, o = {}) => phone(`${memHead}<div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">${inner}</div>`, { time: '13:20', overlay: o.overlay || '' });
 const memFull = (busy, fail) => memPhone(`${memIntro}${memBody}${memClear(busy)}${fail ? '<div class="dg-fail">Не удалось очистить память. Попробуй ещё раз.</div>' : ''}`);
-const memConfirm = `<div class="dim on"></div><div class="modal on"><div class="h center">Очистить память?</div><div class="p center">Удалятся учебная сводка и прогресс всех диалогов только для выбранного языка. Это действие нельзя отменить.</div><div class="btns" style="flex-direction:column"><div class="cta gh t">Отмена</div><div class="cta t dg-clear">Очистить память этого языка</div></div></div>`;
+const memConfirm = `<div class="dim on"></div><div class="modal on"><div class="h center">Очистить память?</div><div class="p center">Удалятся учебная сводка и прогресс всех диалогов только для выбранного языка. Это действие нельзя отменить.</div><div class="btns"><div class="cta gh t">Отмена</div><div class="cta t dg-clear">Очистить память этого языка</div></div></div>`;
 const memFree = phone(`${memHead}<div style="display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:640px"><div style="font-size:22px;line-height:28px;font-weight:700;text-align:center">Память диалогов доступна в Plus</div><div class="cta t">Посмотреть Plus</div>
   <div class="dg-intro" style="text-align:center;margin-top:12px">Даже без Plus ты можешь удалить всю сохранённую память выбранного языка. Просмотр сводки и точек продолжения останется недоступен.</div>${memClear(false)}</div>`, { time: '13:20' });
 
@@ -507,7 +509,7 @@ const DG_BLOCKS = [
     dgCol('Plus — со сводкой', memFull(false, false), 'Учебная сводка, «Получается хорошо», «На чём сосредоточиться», «Продолжение диалогов»'),
     dgCol('Plus — пока пусто', memPhone(`${memIntro}<div class="dg-intro">Для этого языка пока ничего не сохранено.</div>${memClear(false)}`), 'dialogue_v2_memory.tsx:318'),
     dgCol('Без Plus — только удаление', memFree, 'просмотр закрыт, очистка остаётся'),
-    dgCol('Очистить память? — подтверждение', memPhone(`${memIntro}${memBody}${memClear(false)}`, { overlay: memConfirm }), 'системное окно, кнопка «Очистить…» красная'),
+    dgCol('Очистить память? — подтверждение', memPhone(`${memIntro}${memBody}${memClear(false)}`, { overlay: memConfirm }), 'кнопки в строку, «Очистить…» красная'),
     dgCol('Очищаем…', memFull(true, false), 'кнопка приглушена, пока идёт очистка'),
     dgCol('Не удалось очистить', memFull(false, true), 'строка-ошибка под кнопкой'),
   ]],
@@ -518,11 +520,11 @@ const DG_BLOCKS = [
   ['free', 'Свободный разговор — без доступа, загрузка, ошибка', 'Свободный разговор — только Plus. С хаба Free ведёт сразу в окно Plus; этот экран виден при прямом входе или потере доступа.', [
     dgCol('Готовим разговор…', gateFrame('<span class="spin" style="width:30px;height:30px"></span>', 'Готовим разговор…', ''), 'загрузка проверки доступа'),
     dgCol('Доступен в Plus', gateFrame(icon('lockF', 's26'), 'Свободный разговор доступен в Plus', 'Открыть Plus'), 'dialogue_v2_freeform.tsx:268-279'),
-    dgCol('Не удалось продолжить', gateFrame(icon('wifiOff', 's26'), 'Не удалось продолжить разговор', 'Повторить'), 'dialogue_v2_freeform.tsx:281-300'),
+    dgCol('Не удалось продолжить', gateFrame('<svg class="i s26" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h10a4 4 0 00.7-7.9A5.5 5.5 0 007 9.5 4.3 4.3 0 007 18z"/><path d="M4 4l16 16"/></svg>', 'Не удалось продолжить разговор', 'Повторить'), 'dialogue_v2_freeform.tsx:281-300'),
   ]],
   ['sess', 'Сессия — редкие состояния', 'Что пользователь видит в диалоге, когда лимит, голос или сеть подводят.', [
     dgCol('Plus — потолок на сегодня', sess({ plus: true, body: S2 + me('Medium, please.') + syserr('На сегодня разговоров достаточно. Продолжим завтра.', false), goal: 3, mood: 'smile' }), 'dialogue_v2_session.tsx:83-84, 535-539'),
-    dgCol('Голосовой ввод недоступен', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { voice: 'none' } }), 'микрофон перечёркнут: «Голосовой ввод недоступен на этом устройстве»'),
+    dgCol('Голосовой ввод недоступен', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { voice: 'none' } }), 'перечёркнутый микрофон и «Распознавание речи не работает на этом устройстве»'),
     dgCol('Голосовое сообщение в ленте', sess({ body: S2 + voiceMsg('Голосовое сообщение'), goal: 2, mood: 'smile', q: '28/30' }), 'пузырь «Голосовое сообщение» (dialogue_voice_message.ts)'),
     dgCol('Меню «⋯» открыто', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', open: 'menu' }), 'DialogueGlassMenuSheet: «Задания», «Завершить диалог»'),
     dgCol('Энергия возвращена', sess({ body: S1, mood: 'smile', en: 5, ov: dgToast('Энергия возвращена', false) }), 'тост после отказа сервера (dialogue_v2_session.tsx:150-157)'),

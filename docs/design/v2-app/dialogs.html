@@ -91,6 +91,8 @@
 .dh .rb.sq { width: 40px; height: 40px; border-radius: 13px; }
 /* энергия | реплики — одна пилюля, как «сердца | монеты» в Блице: заголовок сцены не обрезается */
 .pill.duo { gap: 6px; padding: 0 12px; }
+.dh .su { overflow: visible; } .dh .su .dmood { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; } .dh .su .pill { flex: none; }
+.ibar .rbtn.mnone { opacity: .55; } .ibar .rbtn.mnone::after { content: ""; position: absolute; left: 14px; right: 14px; top: 50%; height: 2px; border-radius: 1px; background: currentColor; transform: rotate(-45deg); }
 .pill.duo .sep { width: 1px; height: 16px; background: var(--line-2); margin: 0 4px; display: block; }
 .goal { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 10px 12px 10px 10px; border-radius: 18px; background: #161618; border: 1px solid var(--line); }
 .goal .tile { width: 46px; height: 46px; border-radius: 13px; }
@@ -376,7 +378,7 @@ const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div cla
 // Раскладка — ref_20: круглая «‹», «Диалог» + название, справа квота, «⋯»; карточка цели; реплики с кнопками под ними;
 // снизу микрофон · поле · отправить. Цвета нейтральные, пузырь «Ты» светло-серый.
 // зачем: у Free энергия видна на каждом экране занятия (владелец); у Plus — ни энергии, ни квоты.
-const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</div></div>${o.plus ? '' : `<span class="pill s duo" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span><i class="sep"></i>${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}<span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
+const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span><span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
 const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из 5</div><div class="v">${OBJ[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
 const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
 const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${li('cafe')}</span><div class="bw"><span class="who">Мия · бариста</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
@@ -387,11 +389,11 @@ const dots = (spent = 1) => `<span class="dots">${[0, 1, 2].map((i) => `<i${i < 
 const ibar = (o = {}) => {
   const mic = o.voice === 'live' ? `<span class="rbtn live">${icon('mic')}</span>`
     : o.voice === 'req' || o.voice === 'fin' ? `<span class="rbtn"><span class="spin"></span></span>`
-    : `<span class="rbtn t"><span class="mi">${icon('mic')}</span>${dots(o.spent ?? 1)}${o.micPlus ? '<span class="plus">PLUS</span>' : ''}</span>`;
+    : `<span class="rbtn t${o.voice === 'none' ? ' mnone' : ''}"><span class="mi" style="transform:none">${icon('mic')}</span></span>`;
   const fld = o.typed ? `<span class="tv">${o.typed}</span>${o.typing ? '<span class="cur"></span>' : ''}` : `<span class="plc">Напиши или зажми микрофон</span>`;
   const hint = {
     req: ['Готовлю микрофон… удерживай кнопку', '', true], live: ['Говори… отпусти, когда закончишь', '', true], fin: ['Обрабатываю сказанное…', '', true],
-    err: ['Не удалось расслышать. Попробуй ещё раз', 'Повторить'], denied: ['Нужен доступ к микрофону', 'Открыть настройки'], none: ['Голосовой ввод недоступен на этом устройстве', ''],
+    err: ['Не удалось расслышать. Попробуй ещё раз', 'Повторить'], denied: ['Нужен доступ к микрофону', 'Открыть настройки'], none: ['Распознавание речи не работает на этом устройстве', ''],
   }[o.voice] || ['Или зажми и говори', ''];
   return `<div class="ibar${o.kb ? ' kbd' : ''}"><div class="row-i">${mic}<div class="fld t">${fld}</div><span class="rbtn send${o.typed ? '' : ' off'} t">${li('arrowUp')}</span></div>${o.voice === 'live' ? `<div class="wave">${Array.from({ length: 19 }, (_, i) => `<i style="--h:${8 + Math.round(18 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>` : ''}<div class="hint${hint[2] ? ' on' : ''}">${hint[0]}${hint[1] ? `<span class="lnk t">${hint[1]}</span>` : ''}</div></div>${o.kb ? keyb() : ''}`;
 };
@@ -399,7 +401,7 @@ const keyb = () => `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map(
 // зачем (D111, Ядро 11.10): лимит Free в Диалогах — 30 ответов в КАЛЕНДАРНЫЙ МЕСЯЦ (дневного нет); тексты и кнопки — как в приложении (dialogue_v2_session_coaching_labels.ts: wallTitle/wallMessage/wallReview/wallPlus).
 const wall = () => `<div class="wall"><div class="c"><div class="ti">На этот месяц всё</div><div class="p">Бесплатные 30 ответов на этот месяц закончились. Новые — с 1-го числа.</div><div class="btns"><div class="cta gh t">Итоги</div><div class="cta t">Plus</div></div></div></div>`;
 // Шторки и окна сессии (в каждом телефоне лежат закрытыми, открываются по тапу; в макетах «открыто» — сразу).
-const menuSheet = (open) => sheet('menu', `<div class="sh-h"><div class="ti">Диалог</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:14px">${[['flag', 'Задания'], ['close', 'Завершить диалог']].map(([i, t], k) => `<div class="t" style="display:flex;align-items:center;gap:18px;padding:16px 4px;${k ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t46">${icon(i, 's20')}</div><div class="grow0" style="font-size:17px;font-weight:600">${t}</div>${ch}</div>`).join('')}</div>`, open);
+const menuSheet = (open) => sheet('menu', `<div class="sh-h"><div class="ti">Диалог</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:14px">${[['<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.5H20M8.5 12H20M8.5 17.5H20M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></svg>', 'Задания'], ['close', 'Завершить диалог']].map(([i, t], k) => `<div class="t" style="display:flex;align-items:center;gap:18px;padding:16px 4px;${k ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t46">${i.startsWith('<') ? i : icon(i, 's20')}</div><div class="grow0" style="font-size:17px;font-weight:600">${t}</div>${ch}</div>`).join('')}</div>`, open);
 const goalsSheet = (met, open) => sheet('goals', `<div class="sh-h"><div class="ti">Задания</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div><div style="margin-top:12px">${objList(met, 'w')}</div><div class="cta t" style="margin-top:22px" data-close>Закрыть</div>`, open);
 const whySheet = (o, open) => sheet('why', `<div class="sh-h"><div class="ti">Почему так</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div class="quote">What size would you like — small, medium or large?</div>
@@ -524,7 +526,7 @@ document.getElementById('root').innerHTML = [
     pc(S('d1', 'D1 Диалог пройден — без ошибок', 'Итог — без ошибок'), `Диалог пройден — без ошибок ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Каждый день', mood: 'happy', c: 6, w: 0, goals: 5, gain: 30, balance: 1240 })),
     pc(S('d2', 'D2 Диалог пройден — с ошибками', 'Итог — с ошибками'), `Диалог пройден — с ошибками ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Каждый день', mood: 'smile', c: 6, w: 2, goals: 4, gain: 25, balance: 1240, errs: E_DLG })),
     pc(S('d3', 'D3 Оценка раскрыта, комментарий', 'Итог — оценка раскрыта'), `Оценка раскрыта, есть комментарий ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Каждый день', mood: 'smile', c: 6, w: 1, goals: 5, gain: 30, balance: 1240, errs: E_DLG.slice(1), rate: { open: true, stars: 4, text: 'Бариста переспросила про молоко дважды.' } })),
-    pc(S('d4', 'D4 Разговор завершён вручную', 'Итог — завершён вручную'), `Разговор завершён вручную ${rp('d')}`, done({ title: 'Разговор завершён', sub: 'Закажи кофе · Каждый день', neutral: 'Твоих реплик: 3. Ориентир: около 6, но завершать можно вручную.', c: 3, w: 0, goals: 2, gain: 10, balance: 1240 })),
+    pc(S('d4', 'D4 Разговор завершён вручную', 'Итог — завершён вручную'), `Разговор завершён вручную ${rp('d')}`, done({ title: 'Разговор завершён', sub: 'Закажи кофе · Каждый день', neutral: 'Твоих реплик: 3.', mood: 'smile', c: 3, w: 0, goals: 2, gain: 10, balance: 1240 })),
     pc(S('d5', 'D5 Отзыв отправлен', 'Итог — отзыв отправлен'), 'Отзыв отправлен', done({ title: 'Диалог пройден', sub: 'Закажи кофе · Каждый день', mood: 'happy', c: 6, w: 0, goals: 5, gain: 30, balance: 1270, rate: { sent: true } })),
   ]),
   block('tutor', 'E. Урок с Максом (текстовый тьютор) — НЕ В ВЫПУСКЕ', 'В приложении нет (решение координатора 12.10: кадры оставлены, номера в реестре не сдвигаем). Экран `ai_dialog_tutor_session`: Макс предлагает темы, ведёт урок по доске, «Мастерство» цели — три деления. Урок тратит те же реплики дня. Итог — единый экран завершения.', [

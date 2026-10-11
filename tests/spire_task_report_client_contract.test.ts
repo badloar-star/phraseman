@@ -15,6 +15,20 @@ beforeEach(async () => {
 });
 
 describe('Spire task report client seam', () => {
+  test('builds an Italian contour report without falling back to another language', async () => {
+    const sent: Array<Record<string, unknown>> = [];
+    const submission = buildSpireTaskReportSubmission({
+      stableUid: 'stable-it', taskId: 'arena-it-fill_gap-1-0000', studyTarget: 'it', weekId: '2026-W40',
+      tier: 1, packHash: 'sp1_abcdefghijklmnopqrstuvwxyz123456', floor: 1, step: 1, setIndex: 0, taskIndex: 0,
+      reason: 'Ошибка',
+    });
+    await submission.submit({
+      send: async (kind, payload) => { sent.push({ kind, payload }); return { ok: true, id: 'report-it', collection: 'error_reports' }; },
+      removeFromRemainingRun: () => undefined,
+    });
+    expect(sent[0]).toMatchObject({ kind: 'spire_task_report', payload: { studyTarget: 'it', taskId: 'arena-it-fill_gap-1-0000' } });
+  });
+
   test('cold-start drain waits for late Firebase Auth readiness and stays account-bound', () => {
     const base = { appIsActive: true, stableUid: 'stable-1', accountPhase: 'active' };
     expect(canDrainSpireTaskReportOutbox({ ...base, authenticatedUid: null })).toBe(false);

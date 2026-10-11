@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "spire-v1-config.v1",
+  "enabled": true,
+  "timer": {
+    "baseMsByKind": {
+      "choice": 9000,
+      "translate": 18000,
+      "timeattack": 9000,
+      "voice": 15000,
+      "listen": 12000,
+      "dictate": 15000,
+      "match": 9000
+    },
+    "perFloorDecay": 0.04,
+    "floorMinRatio": 0.65
+  },
+  "coins": {
+    "perStep": 10,
+    "perFloorPerLevel": 10,
+    "guardianMultiplier": 2,
+    "summitBonus": 200,
+    "weekPlace1": 300,
+    "weekPlace2": 200,
+    "weekPlace3": 150,
+    "promotionBonus": 100
+  },
+  "residents": {
+    "targetZoneMarginSteps": 1,
+    "maxStepsPerHour": 6
+  },
+  "integrity": {
+    "minStepMs": 45000,
+    "maxStepsPerHour": 30
+  }
+}

@@ -6,6 +6,7 @@ import { spireBuildRoomRows, spireDecodeRoomMembers, spireMyPlace, type SpireRoo
 import {
   advanceAfterReveal,
   createSpireStepState,
+  skipReportedSpireTask,
   submitSpireAnswer,
   type SpireStepPlan,
 } from '../modules/spire/step_machine';
@@ -102,6 +103,19 @@ describe('spire step machine: last task wrong with hearts left', () => {
     expect(state.phase).toBe('revealing');
     expect(state.hearts).toBe(2);
     expect(advanceAfterReveal(state).phase).toBe('passed');
+  });
+});
+
+describe('spire step machine: reported task quarantine', () => {
+  it('removes the current task from the remaining run without charging a heart', () => {
+    const tasks = Array.from({ length: 10 }, (_, i) => ({
+      taskId: `t${i}`, mode: 'guess_phrase' as const, kind: 'choice' as const, taskIndex: i,
+      answerFingerprints: [arenaAnswerFingerprint(SALT, `t${i}`, 0)],
+    }));
+    const plan: SpireStepPlan = { packHash: 'sp1_x', saltId: SALT, lang: 'en', tier: 0, floor: 1, step: 1, budgetMs: 90_000, tasks };
+    const state = skipReportedSpireTask(createSpireStepState(plan), 321);
+    expect(state).toMatchObject({ phase: 'active', taskIndex: 1, hearts: 3 });
+    expect(state.outcomes).toEqual([{ taskIndex: 0, correct: false, elapsedMs: 321, skippedNoPenalty: true }]);
   });
 });
 

@@ -28,12 +28,28 @@ const net = read('app/spire/spire_net.ts');
 const game = read('app/spire/use_spire_game.ts');
 const runner = read('app/spire/use_spire_step_runner.ts');
 const home = read('components/spire/SpireHomeScreen.tsx');
+const stepScreen = read('components/spire/SpireStepScreen.tsx');
+const gameHook = game;
 
 test('gate: both locks are checked and the gate type is branded', () => {
   assert.ok(gate.includes('isSpireTabEnabled()'), 'checks the tab flag');
   assert.ok(gate.includes('config.enabled !== true'), 'checks config/spire_v1.enabled');
   assert.ok(gate.includes('unique symbol'), 'gate is a branded type (cannot be forged without the check)');
   assert.ok(gate.includes('export function spireGateStillOpen'), 're-check right before the network');
+});
+
+test('all canonical Spire language contours are selectable without cross-language fallback', () => {
+  assert.match(home, /SPIRE_LANGS:\s*readonly SpireLang\[\]\s*=\s*\['en', 'es', 'de', 'fr', 'it'\]/u);
+});
+
+test('every rendered Spire task exposes the standard report flag and skips a reported task without penalty', () => {
+  assert.match(stepScreen, /SpireTaskReportButton/u);
+  assert.match(stepScreen, /stableUid:\s*stableId/u);
+  assert.match(stepScreen, /floor:\s*pick\.packFloor/u);
+  assert.match(stepScreen, /taskIndex:\s*runner\.displayTaskIndex/u);
+  assert.match(stepScreen, /removeFromRemainingRun=\{runner\.reportCurrentTask\}/u);
+  assert.match(home, /stableId=\{game\.stableId\}/u);
+  assert.match(gameHook, /stableId:\s*ids\?\.stableId\s*\?\?\s*null/u);
 });
 
 test('gate: every network client takes the gate first and re-checks it', () => {

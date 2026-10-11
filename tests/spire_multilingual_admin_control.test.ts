@@ -96,6 +96,13 @@ describe('multilingual Spire admin control surface', () => {
     expect(panel).toContain('В приложении:');
   });
 
+  test('manages every canonical Spire language contour from the same owner-facing selector', () => {
+    for (const target of ['en', 'es', 'fr', 'de', 'it']) {
+      expect(panel).toContain(`<option value="${target}">`);
+      expect(script).toMatch(new RegExp(`(?:^|[,{ ]\\s*)${target}:`, 'u'));
+    }
+  });
+
   test('removes dead publication controls and raw transport jargon from the owner screen', () => {
     for (const id of [
       'arena-content-import',

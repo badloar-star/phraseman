@@ -54,6 +54,11 @@ function memoryStore() {
 }
 
 describe('report_queue (чистая логика)', () => {
+  test('Italian contour has its own isolated weekly progress key', () => {
+    const local = spireCreateWeekLocal({ lang: 'it', weekKey: WEEK, tier: 1, packHash: 'pack_hash_it_abc123' });
+    expect(local.lang).toBe('it');
+  });
+
   test('незавершённая ступень отчёта не даёт', () => {
     expect(spireReportFromStepState(stepState('active'), {
       lang: 'en', weekKey: WEEK, tier: 1, floor: 1, stepInFloor: 0, completedAtMs: T0,

@@ -11,15 +11,16 @@ describe('resolveSpireListenAudio', () => {
     expect(r).toEqual({ ok: true, engine: 'device_tts', text: 'magazine', speechLanguage: 'en-US', lang: 'en' });
   });
 
-  it('es/fr/de получают свой язык речи (D133)', () => {
+  it('es/fr/de/it получают свой язык речи', () => {
     expect(resolveSpireListenAudio({ audioUri: 'device-tts:de:ab12', phrase: 'Hallo' }, 'de')).toMatchObject({ ok: true, speechLanguage: 'de-DE' });
     expect(resolveSpireListenAudio({ audioUri: 'device-tts:fr:ab12', phrase: 'Bonjour' }, 'fr')).toMatchObject({ ok: true, speechLanguage: 'fr-FR' });
     expect(resolveSpireListenAudio({ audioUri: 'device-tts:es:ab12', phrase: 'Hola' }, 'es')).toMatchObject({ ok: true, speechLanguage: 'es-ES' });
+    expect(resolveSpireListenAudio({ audioUri: 'device-tts:it:ab12', phrase: 'Ciao' }, 'it')).toMatchObject({ ok: true, speechLanguage: 'it-IT' });
   });
 
   it('отказы называют причину, а не молчат', () => {
     expect(resolveSpireListenAudio({ audioUri: 'https://x/a.mp3', phrase: 'a' }, 'en')).toMatchObject({ ok: false, reason: 'not_device_tts' });
-    expect(resolveSpireListenAudio({ audioUri: 'device-tts:it:ab12', phrase: 'ciao' }, 'it')).toMatchObject({ ok: false, reason: 'unsupported_lang' });
+    expect(resolveSpireListenAudio({ audioUri: 'device-tts:pt:ab12', phrase: 'olá' }, 'pt')).toMatchObject({ ok: false, reason: 'unsupported_lang' });
     expect(resolveSpireListenAudio({ audioUri: 'device-tts:en:ab12', phrase: 'a' }, 'de')).toMatchObject({ ok: false, reason: 'lang_mismatch' });
     expect(resolveSpireListenAudio({ audioUri: 'device-tts:en:ab12', phrase: '  ' }, 'en')).toMatchObject({ ok: false, reason: 'empty_text' });
   });

@@ -17,7 +17,9 @@ const spireFiles = readdirSync(spireDir).filter((n) => /\.(ts|tsx)$/.test(n));
 const spireSources = spireFiles.map((n) => [n, readFileSync(new URL(n, spireDir), 'utf8')]);
 
 test('flag: tab is hidden by default and only opens by remote key or __DEV__ override', () => {
-  assert.ok(flag.includes("'remote_config_cache_v1'"), 'reads the already cached remote config');
+  // зачем (Ядро 11.10): с 8d5e4f79d ([COLD-START-IO]) кэш remote_config читается одним общим помощником на всех —
+  // смысл замка прежний: тот же кэш-документ, без своих чтений Firestore.
+  assert.ok(flag.includes('readRemoteConfigCacheRaw') || flag.includes("'remote_config_cache_v1'"), 'reads the already cached remote config');
   assert.ok(flag.includes("'spire_tab_enabled'"), 'own boolean key, remote_flags.ts is not touched');
   assert.ok(flag.includes('let _remoteEnabled = false'), 'remote default is false');
   assert.ok(flag.includes('let _devOverride = false'), 'dev override default is false');

@@ -38,5 +38,8 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(header.includes('onOpenChannels'), 'channel action remains wired');
   assert.ok(header.includes('onOpenYoutube'), 'YouTube action remains wired');
   assert.ok(header.includes('onOpenLanguage'), 'language pill is wired');
-  assert.ok(screen.includes("router.push('/settings_language' as any)"), 'language pill opens the study-language screen');
+  // 11.10 (баг владельца, TG-A30B81C181C4): /settings_language — это язык ИНТЕРФЕЙСА; прежняя проверка сторожила
+  // ошибку. Пилюля открывает шторку «Язык изучения» (PRF-23).
+  assert.ok(!screen.includes("router.push('/settings_language' as any)"), 'language pill must not open the interface-language screen');
+  assert.ok(screen.includes('setStudyLanguageSheetVisible(true)') && screen.includes('<StudyLanguageSheet'), 'language pill opens the study-language sheet');
 });

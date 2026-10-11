@@ -129,8 +129,33 @@ export async function getLanguageProfile(target: StudyTargetLang): Promise<Langu
  * Записывает единственный канонический target и отмечает язык начатым.
  */
 export async function applyStudyLanguageSelection(code: StudyTargetLang, uiLang: Lang): Promise<void> {
-  await setStoredStudyTarget(code, uiLang);
-  await markStudyLanguageStarted(code);
+  try {
+    await setStoredStudyTarget(code, uiLang);
+  } catch (error: unknown) {
+    throw new StudyLanguageSelectionError('set_target', code, error);
+  }
+  try {
+    await markStudyLanguageStarted(code);
+  } catch (error: unknown) {
+    throw new StudyLanguageSelectionError('mark_started', code, error);
+  }
+}
+
+/**
+ * Отказ активации языка с указанием шага.
+ * зачем (ревью TG-3BD963DD05D5, R4): при сбое на `mark_started` язык УЖЕ сменён (target записан и событие
+ * отправлено) — вызывающий не должен показывать «не получилось сменить язык», это была бы неправда.
+ */
+export class StudyLanguageSelectionError extends Error {
+  readonly step: 'set_target' | 'mark_started';
+  readonly target: StudyTargetLang;
+
+  constructor(step: 'set_target' | 'mark_started', target: StudyTargetLang, cause: unknown) {
+    super(`study_language_selection_failed step=${step} target=${target} reason=${cause instanceof Error ? cause.message : String(cause)}`);
+    this.name = 'StudyLanguageSelectionError';
+    this.step = step;
+    this.target = target;
+  }
 }
 
 /* expo-router: не регистрировать файл как экран */

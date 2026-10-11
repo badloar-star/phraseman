@@ -283,6 +283,11 @@ export async function revalidateYoutubeChannelCatalog(options: {
   reader?: YoutubeCatalogReader;
   previous: YoutubeCatalogScreenSnapshot | null;
   commit: (snapshot: YoutubeCatalogScreenSnapshot) => void;
+  /**
+   * зачем (ревью TG-3BD963DD05D5, R1): экран мог уже запросить другой канал (смена языка обучения en→es→en).
+   * Устаревший ответ не кладём ни в сохранённый снимок, ни в состояние экрана.
+   */
+  isCurrent?: () => boolean;
 }): Promise<YoutubeCatalogScreenSnapshot | null> {
   if (accountSwitchedAway(options.token)) return null;
   const reader = options.reader ?? await createFirestoreReader();
@@ -303,6 +308,10 @@ export async function revalidateYoutubeChannelCatalog(options: {
   const catalog = await fetchYoutubeChannelCatalogWithReader(options.channelId, reader);
   // Поздний ответ не должен дорисовывать каталог поверх ЧУЖОГО аккаунта.
   if (accountSwitchedAway(options.token)) return null;
+  if (options.isCurrent && !options.isCurrent()) {
+    console.log(`[VIDEO-CATALOG] revalidate:stale_dropped channel=${options.channelId} version=${catalog.version}`);
+    return null;
+  }
   const snapshot = buildYoutubeScreenSnapshot(catalog);
   // Кэш остаётся аккаунт-скоупным: rememberYoutubeCatalogScreenSnapshot сам
   // промолчит, пока личность не активна, — чужой снапшот в чужой скоуп не ляжет.

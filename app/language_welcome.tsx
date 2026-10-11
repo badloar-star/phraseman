@@ -183,7 +183,13 @@ export default function LanguageWelcomeScreen() {
       if (cancelled) return;
       if (started.includes(target)) {
         if (resolveStarted) {
-          await applyStudyLanguageSelection(target, lang);
+          // зачем (ревью TG-3BD963DD05D5): здесь не было catch — отказ записи был немым unhandled rejection,
+          // а экран оставался пустым. Логируем шаг и всё равно возвращаем человека назад.
+          try {
+            await applyStudyLanguageSelection(target, lang);
+          } catch (error: unknown) {
+            console.warn(`[LANGUAGE-WELCOME] resolve_started_apply_failed target=${target} step=${String((error as { step?: unknown } | null)?.step ?? 'unknown')} reason=${error instanceof Error ? error.message : String(error)}`);
+          }
           if (!cancelled) goBackSafely();
         }
         return; // обычный deep-link уже начатого языка освежает план

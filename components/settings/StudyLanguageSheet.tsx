@@ -1,0 +1,196 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// StudyLanguageSheet — шторка «Язык изучения» (макет profile.html PRF-23
+// «выбор языка изучения · шторка», функция studyPicker()).
+//
+// зачем (баг владельца 11.10, TG-A30B81C181C4): пилюля языка в шапке вкладки
+// «Видео» вела на /settings_language — экран языка ИНТЕРФЕЙСА. Канал Видео
+// задаётся языком ОБУЧЕНИЯ, поэтому пилюля обязана открывать выбор изучаемого
+// языка. Логика выбора — общий хук useStudyLanguageSelection (тот же путь, что
+// в StudyLanguagePicker: applyStudyLanguageSelection → STUDY_TARGET_CHANGED).
+//
+// Вид (kit.css .sheet + extension.css .list/.list-row): каркас — FriendsAddSheetShell
+// с шапкой `.flex` макета (по центру, зазор 10, подзаголовок +7), строки —
+// SettingsGlassRow (`.card.list-row` 64/r14/10·14), флаг 58×40 r10, значки кита
+// check s20 / lockF s18 тем же контуром (kit.js), выбранный язык первым.
+// ═══════════════════════════════════════════════════════════════════════════
+
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+import Svg, { Path, Rect } from 'react-native-svg';
+import FriendsAddSheetShell from '../friends/FriendsAddSheetShell';
+import { SettingsGlassRow } from './SettingsGlassRows';
+import { STUDY_TARGET_NATIVE_NAME, languageFlagAssetFor, useStudyLanguageSelection } from './StudyLanguagePicker';
+import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { triLang, type Lang } from '../../constants/i18n';
+import type { StudyTarget } from '../../app/study_target';
+import { hapticTap } from '../../hooks/use-haptics';
+
+/**
+ * зачем (координатор 11.10, решение О1 до ответа владельца, гейт «нет макета → не придумывать»):
+ * экран /language_welcome не имеет макета 2.0 и переведён только на ru/uk, поэтому шторка делает ТОЧНО как
+ * макет PRF-23: ещё не начатый язык — серый флаг, «Новый язык · доступ уточняется», замок, без перехода.
+ * Ветка перехода на приветствие живёт в общем хуке (select → 'welcome'); когда владелец решит открыть новые
+ * языки из шторки — поставить здесь true, и строка нового языка позовёт select().
+ */
+export const STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES = false;
+
+/** Порядок макета: выбранный язык первым, остальные — en, es, fr, de, it. */
+export function orderStudyLanguageSheetOptions(options: readonly StudyTarget[], activeTarget: StudyTarget): StudyTarget[] {
+  const canonical: readonly StudyTarget[] = ['en', 'es', 'fr', 'de', 'it'];
+  const rank = (code: StudyTarget) => {
+    const index = canonical.indexOf(code);
+    return index < 0 ? canonical.length : index;
+  };
+  const rest = options.filter((code) => code !== activeTarget).slice().sort((a, b) => rank(a) - rank(b));
+  return options.includes(activeTarget) ? [activeTarget, ...rest] : rest;
+}
+
+interface StudyLanguageSheetProps {
+  visible: boolean;
+  onClose: () => void;
+  lang: Lang;
+  activeTarget: StudyTarget;
+  /** Префикс логов вызывающего экрана, например `[VIDEO-LANG-PILL]`. */
+  logTag?: string;
+}
+
+export default function StudyLanguageSheet({ visible, onClose, lang, activeTarget, logTag = '[STUDY-LANG-SHEET]' }: StudyLanguageSheetProps) {
+  const copy = useMemo(() => ({
+    title: triLang(lang, { ru: 'Язык изучения', uk: 'Мова навчання', en: 'Learning language', es: 'Idioma de estudio', 'pt-BR': 'Idioma de estudo', vi: 'Ngôn ngữ học', id: 'Bahasa belajar', tr: 'Öğrenilen dil', pl: 'Język nauki' }),
+    subtitle: triLang(lang, { ru: 'Прогресс каждого языка хранится отдельно', uk: 'Прогрес кожної мови зберігається окремо', en: 'Each language keeps its own progress', es: 'Cada idioma guarda su propio progreso', 'pt-BR': 'Cada idioma guarda seu próprio progresso', vi: 'Mỗi ngôn ngữ có tiến độ riêng', id: 'Setiap bahasa punya progresnya sendiri', tr: 'Her dilin ilerlemesi ayrı tutulur', pl: 'Każdy język ma osobny postęp' }),
+    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
+  }), [lang]);
+
+  return (
+    <FriendsAddSheetShell visible={visible} onClose={onClose} title={copy.title} subtitle={copy.subtitle} closeLabel={copy.close} testID="study-language-sheet" headerLayout="kit">
+      {({ requestDismiss }) => (
+        <StudyLanguageSheetList lang={lang} activeTarget={activeTarget} logTag={logTag} onCloseNow={onClose} requestDismiss={requestDismiss} />
+      )}
+    </FriendsAddSheetShell>
+  );
+}
+
+/** kit.js `check` (s20): контур 1.8, скруглённые концы. */
+function KitCheckIcon({ color }: { color: string }) {
+  return (
+    <Svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M5 12.5l4.5 4.5L19 7.5" />
+    </Svg>
+  );
+}
+
+/** kit.js `lockF` (s18): залитый корпус + дужка 2.2. */
+function KitLockFilledIcon({ color }: { color: string }) {
+  return (
+    <Svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+      <Rect x={5} y={10.5} width={14} height={10} rx={2.5} fill={color} stroke="none" />
+      <Path d="M8 10.5V8a4 4 0 018 0v2.5" strokeWidth={2.2} />
+    </Svg>
+  );
+}
+
+function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, requestDismiss }: {
+  lang: Lang;
+  activeTarget: StudyTarget;
+  logTag: string;
+  onCloseNow: () => void;
+  requestDismiss: () => void;
+}) {
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Optimistic UI): галочка переезжает на выбранный язык в кадре тапа, не дожидаясь записи и контекста.
+  const [shownTarget, setShownTarget] = useState<StudyTarget>(activeTarget);
+  // зачем (ревью R3): после выбора шторка уезжает 440 мс — второй тап в это время не должен запустить второй выбор.
+  const dismissingRef = useRef(false);
+  const sub = useMemo(() => ({
+    selected: triLang(lang, { ru: 'Учу · выбран', uk: 'Вчу · обрано', en: 'Learning · selected', es: 'Aprendiendo · elegido', 'pt-BR': 'Aprendendo · escolhido', vi: 'Đang học · đã chọn', id: 'Dipelajari · dipilih', tr: 'Öğreniyorum · seçili', pl: 'Uczę się · wybrany' }),
+    learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', en: 'Learning', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Dipelajari', tr: 'Öğreniyorum', pl: 'Uczę się' }),
+    locked: triLang(lang, { ru: 'Новый язык · доступ уточняется', uk: 'Нова мова · доступ уточнюється', en: 'New language · access being confirmed', es: 'Idioma nuevo · acceso por confirmar', 'pt-BR': 'Idioma novo · acesso em confirmação', vi: 'Ngôn ngữ mới · đang xác nhận quyền truy cập', id: 'Bahasa baru · akses sedang dipastikan', tr: 'Yeni dil · erişim netleşiyor', pl: 'Nowy język · dostęp do potwierdzenia' }),
+  }), [lang]);
+
+  const closeAnimated = useCallback((reason: string) => {
+    dismissingRef.current = true;
+    if (__DEV__) console.log(`${logTag} sheet_dismiss reason=${reason}`);
+    requestDismiss();
+  }, [logTag, requestDismiss]);
+  const onSwitchStart = useCallback((code: StudyTarget) => {
+    if (__DEV__) console.log(`${logTag} sheet_optimistic shown=${code}`);
+    setShownTarget(code);
+    closeAnimated('switched');
+  }, [closeAnimated, logTag]);
+  const onBeforeNavigate = useCallback(() => {
+    // зачем: нативный Modal закрываем до перехода, иначе на iOS он может удержать касания (safe_modal_navigation).
+    if (__DEV__) console.log(`${logTag} sheet_close_before_navigate`);
+    dismissingRef.current = true;
+    onCloseNow();
+  }, [logTag, onCloseNow]);
+
+  const { options, startedLanguages, startedLanguagesResolved, select } = useStudyLanguageSelection({ lang, activeTarget, logTag, onSwitchStart, onBeforeNavigate });
+  const ordered = useMemo(() => orderStudyLanguageSheetOptions(options, activeTarget), [options, activeTarget]);
+
+  const onRowPress = useCallback((code: StudyTarget, learning: boolean) => {
+    if (dismissingRef.current) {
+      if (__DEV__) console.log(`${logTag} select_ignored reason=sheet_dismissing code=${code}`);
+      return;
+    }
+    if (code === shownTarget) {
+      // зачем (ревью R6): тап по уже выбранному языку — закрыть шторку, а не молча ничего не делать.
+      hapticTap();
+      closeAnimated('already_selected');
+      return;
+    }
+    if (!learning && !STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES) {
+      // зачем (решение О1, ждём владельца): новый язык из шторки не открываем — только мягкий отклик.
+      if (__DEV__) console.log(`${logTag} select_ignored reason=${startedLanguagesResolved ? 'not_started_locked' : 'started_unresolved'} code=${code}`);
+      hapticTap();
+      return;
+    }
+    select(code);
+  }, [closeAnimated, logTag, select, shownTarget, startedLanguagesResolved]);
+
+  return (
+    <View style={styles.list}>
+      {ordered.map((code) => {
+        const active = code === shownTarget;
+        const learning = startedLanguages.includes(code) || code === activeTarget;
+        const locked = !learning && !STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES;
+        const flag = languageFlagAssetFor(code);
+        return (
+          <SettingsGlassRow
+            key={code}
+            glass={glass}
+            testID={`study-language-option-${code}`}
+            haptic={false}
+            leading={flag ? (
+              // макет: у нового языка флаг в оттенках серого (filter: grayscale(1)).
+              <View style={[styles.flagWrap, locked ? styles.flagGray : null]}>
+                <Image source={flag} accessible={false} style={styles.flag} contentFit="cover" />
+              </View>
+            ) : undefined}
+            title={STUDY_TARGET_NATIVE_NAME[code]}
+            sub={active ? sub.selected : learning ? sub.learning : sub.locked}
+            onPress={() => onRowPress(code, learning)}
+            right={active
+              ? <KitCheckIcon color={glass.text} />
+              : locked
+                ? <KitLockFilledIcon color={glass.text} />
+                : <View style={styles.rightSpacer} />}
+          />
+        );
+      })}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  // extension.css `.list`: колонка, зазор 10; `margin-top:20px` у списка в макете даёт content.paddingTop шторки.
+  list: { gap: 10 },
+  // макет PRF-23: флаг 58×40, радиус 10.
+  flagWrap: { width: 58, height: 40, borderRadius: 10, overflow: 'hidden' },
+  flag: { width: 58, height: 40, borderRadius: 10 },
+  // зачем: CSS-фильтр макета; на Android (новая архитектура) работает, iOS фильтр grayscale не поддерживает.
+  flagGray: { filter: 'grayscale(1)' },
+  rightSpacer: { width: 20 },
+});

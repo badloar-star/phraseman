@@ -53,10 +53,21 @@ interface FriendsAddSheetShellProps {
   subtitle?: string;
   closeLabel: string;
   testID?: string;
-  children: React.ReactNode;
+  /**
+   * Раскладка шапки. 'friends' (по умолчанию) — как утверждено для «Добавить друга». 'kit' — ровно `.flex` макета
+   * profile.html PRF-23: по центру, зазор 10, подзаголовок с отступом 7 (`.screen-sub`).
+   */
+  headerLayout?: 'friends' | 'kit';
+  /**
+   * зачем (шторка «Язык изучения» PRF-23 с пилюли Видео, 11.10): содержимому иногда нужно закрыть шторку
+   * тем же выездом 440 мс после своего действия (выбор строки). Функция получает requestDismiss — анимированное
+   * закрытие БЕЗ второй вибрации (строка уже дала отклик). Обычные потребители передают узлы, как раньше.
+   */
+  children: React.ReactNode | ((controls: { requestDismiss: () => void }) => React.ReactNode);
 }
 
-export default function FriendsAddSheetShell({ visible, onClose, title, subtitle, closeLabel, testID, children }: FriendsAddSheetShellProps) {
+export default function FriendsAddSheetShell({ visible, onClose, title, subtitle, closeLabel, testID, headerLayout = 'friends', children }: FriendsAddSheetShellProps) {
+  const kitHeader = headerLayout === 'kit';
   const { glass, textScale } = useFriendsGlass();
   const lh = useLineScale();
   const insets = useStableSafeAreaInsets();
@@ -71,6 +82,9 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
   useEffect(() => {
     if (!visible) return;
+    // зачем (ревью TG-3BD963DD05D5, R5): после закрытия затемнение остаётся 0, но повторное открытие должно стартовать
+    // с нуля явно, как выезд (slide) — иначе прерванное закрытие начинало бы затемнение с середины.
+    backdropO.value = 0;
     backdropO.value = withTiming(1, { duration: KIT_MOTION.dimMs });
     slide.value = 1;
     slide.value = withTiming(0, { duration: SHEET_IN_MS, easing: SHEET_EASE });
@@ -111,14 +125,17 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
-  const dismiss = useCallback(() => {
-    hapticTap();
+  const animateOut = useCallback(() => {
     Keyboard.dismiss();
     backdropO.value = withTiming(0, { duration: KIT_MOTION.dimMs });
     slide.value = withTiming(1, { duration: SHEET_OUT_MS, easing: SHEET_EASE }, (finished) => {
       if (finished) runOnJS(handleCloseRef.current)();
     });
   }, [backdropO, slide]);
+  const dismiss = useCallback(() => {
+    hapticTap();
+    animateOut();
+  }, [animateOut]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropO.value }));
   const sheetStyle = useAnimatedStyle(() => ({
@@ -150,10 +167,10 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
           ]}
         >
           <View style={[styles.grab, { backgroundColor: glass.mutedText }]} />
-          <View style={styles.header}>
+          <View style={[styles.header, kitHeader ? styles.headerKit : null]}>
             <View style={styles.headerCopy}>
               <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 19 * textScale, lineHeight: lh(24 * textScale), fontWeight: '700' }}>{title}</Text>
-              {subtitle ? <Text style={{ color: glass.secondary, fontSize: 16 * textScale, lineHeight: lh(21 * textScale), marginTop: 4 }}>{subtitle}</Text> : null}
+              {subtitle ? <Text style={{ color: glass.secondary, fontSize: 16 * textScale, lineHeight: lh(21 * textScale), marginTop: kitHeader ? 7 : 4 }}>{subtitle}</Text> : null}
             </View>
             {/* зачем (Motion п.4): кнопка шторки — клавиша PressableHybrid, а не плоское затемнение; вибрацию даёт dismiss. */}
             <PressableHybrid
@@ -177,7 +194,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
             bounces={false}
             contentContainerStyle={styles.content}
           >
-            {children}
+            {typeof children === 'function' ? children({ requestDismiss: animateOut }) : children}
           </ScrollView>
         </Animated.View>
       </View>
@@ -200,6 +217,8 @@ const styles = StyleSheet.create({
   // .grab: 44×5, r3, в 26 над содержимым.
   grab: { width: 44, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 26 },
   header: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  // kit.css `.flex`: align-items center, gap 10 (шапка шторки PRF-23).
+  headerKit: { alignItems: 'center', gap: 10 },
   headerCopy: { flex: 1, minWidth: 0 },
   // .rb.fill: 35, круг, #2A2A2C, кромка --line.
   close: { width: 35, height: 35, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok

@@ -13,6 +13,7 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
 import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
+import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
 import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
@@ -27,7 +28,8 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
-import type { YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
+import type { YoutubeCatalogManifest, YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
+import { rememberYoutubeChannelMemorySnapshot, resolveYoutubeChannelSwitchView } from './youtube_channel_memory_cache';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { safeRouterBack } from './navigation_back';
@@ -119,13 +121,34 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   screenRuntimeActiveRef.current = screenRuntimeActive;
   const renderToken = captureAccountGeneration();
   const renderAccountScope = accountScopeKey(renderToken);
-  const initialCatalog = peekYoutubeCatalogScreenSnapshot(renderToken);
+  // зачем (ревью TG-3BD963DD05D5, R2): первый кадр — канал ЯЗЫКА ОБУЧЕНИЯ. Сохранённый снимок один на аккаунт и мог
+  // остаться от другого языка: тогда берём снимок нужного канала из памяти, а без него — шапку по манифесту и скелетон
+  // ленты (геометрия итоговая, без спиннера на весь экран). Чужой канал под пилюлей нового языка не показываем.
+  const [initialChannelView] = useState(() => {
+    const peeked = peekYoutubeCatalogScreenSnapshot(renderToken);
+    if (!peeked) return { catalog: null, pending: null };
+    rememberYoutubeChannelMemorySnapshot(renderAccountScope, peeked);
+    const routeChannel = deepLinkedChannelId && peeked.manifest.channels.some((item) => item.id === deepLinkedChannelId) ? deepLinkedChannelId : '';
+    const targetChannelId = routeChannel || resolvePreferredYoutubeChannel(peeked.manifest, studyTarget, { mode: 'auto' }).channelId;
+    const view = resolveYoutubeChannelSwitchView({ shown: peeked, manifest: peeked.manifest, targetChannelId, accountScope: renderAccountScope });
+    if (__DEV__) console.log(`[VIDEO-LANG-PILL] first_frame studyTarget=${studyTarget} peeked=${peeked.channel.id} target=${targetChannelId} view=${view.kind}`);
+    return view.kind === 'pending' ? { catalog: null, pending: view.channel } : { catalog: view.catalog, pending: null };
+  });
+  const initialCatalog = initialChannelView.catalog;
   const [catalog, setCatalog] = useState<YoutubeCatalogScreenSnapshot | null>(initialCatalog);
   const catalogRef = useRef(catalog);
   catalogRef.current = catalog;
+  // Шапка канала, каталог которого ещё не пришёл (смена языка без снимка в памяти); лента в это время — скелетон.
+  const [pendingChannel, setPendingChannel] = useState<YoutubeChannelSnapshot | null>(initialChannelView.pending);
+  // Последний известный манифест: каталог при смене канала сбрасывается, а манифест нужен для расчёта канала.
+  const manifestRef = useRef<YoutubeCatalogManifest | null>(catalog?.manifest ?? null);
+  // зачем (ревью R1): номер загрузки — поздний ответ прежнего языка (en→es→en) не затирает новый.
+  const loadSeqRef = useRef(0);
   const [preference, setPreference] = useState<YoutubeChannelPreference>(() => getYoutubeChannelPreference(renderToken));
   const [tab, setTab] = useState<YoutubeChannelTab>('home');
   const [pickerVisible, setPickerVisible] = useState(false);
+  // зачем (баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23), а не язык интерфейса.
+  const [studyLanguageSheetVisible, setStudyLanguageSheetVisible] = useState(false);
   const [loading, setLoading] = useState(!initialCatalog);
   const [refreshing, setRefreshing] = useState(false);
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
@@ -148,7 +171,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [cachedSnapshot, setCachedSnapshot] = useState<LingmanYoutubeSnapshot | null>(() => initialWarm?.value ?? null);
   const [channel, setChannel] = useState(() => initialChannel);
   const currentRenderKey = lingmanSnapshotCacheKey(renderToken, channel.channelId);
-  const snapshot = loadedKey === currentRenderKey ? cachedSnapshot : null;
+  // зачем (ревью R2): пока грузится канал нового языка, старая RSS-лента (канал по умолчанию) тоже чужая — не показываем.
+  const snapshot = !pendingChannel && loadedKey === currentRenderKey ? cachedSnapshot : null;
   const visibleLoading = loading || loadedKey !== currentRenderKey;
 
   const copy = useMemo(() => ({
@@ -204,42 +228,96 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // показываться в любом сценарии: и до авторизации, и после. Раньше загрузка
   // отменялась, пока личность не активна, и экран навсегда оставался пустым.
   const loadCatalog = useCallback(async (requestedChannelId?: string, refresh = false) => {
-    if (!screenRuntimeActiveRef.current) return;
+    if (!screenRuntimeActiveRef.current) {
+      if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load_skipped reason=screen_inactive studyTarget=${studyTarget}`);
+      return;
+    }
     const token = captureAccountGeneration();
     const tokenScope = accountScopeKey(token);
-    if (tokenScope && renderAccountScope && tokenScope !== renderAccountScope) return;
+    if (tokenScope && renderAccountScope && tokenScope !== renderAccountScope) {
+      console.warn(`[VIDEO-LANG-PILL] channel_load_skipped reason=account_scope_changed studyTarget=${studyTarget}`);
+      return;
+    }
+    // зачем (ревью TG-3BD963DD05D5, R1): каждая загрузка получает номер; ответ, пришедший после более новой
+    // загрузки (смена языка en→es→en), не попадает ни в состояние, ни в кэш — иначе под пилюлей EN рисовался канал ES.
+    const seq = ++loadSeqRef.current;
+    const isCurrentLoad = () => seq === loadSeqRef.current;
+    const logStale = (step: string, channelId: string) => {
+      if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load_stale seq=${seq} latest=${loadSeqRef.current} step=${step} channelId=${channelId || '-'}`);
+    };
     if (refresh) setRefreshing(true); else if (!catalogRef.current) setLoading(true);
+    let channelId = '';
+    let switchingToUncachedChannel = false;
     try {
-      const manifest = catalogRef.current?.manifest ?? await fetchYoutubeCatalogManifest();
+      const manifestFrom = catalogRef.current?.manifest ? 'catalog' : manifestRef.current ? 'memory' : 'network';
+      const manifest = catalogRef.current?.manifest ?? manifestRef.current ?? await fetchYoutubeCatalogManifest();
+      if (!isCurrentLoad()) { logStale('manifest', ''); return; }
+      manifestRef.current = manifest;
       // зачем (владелец 01.10): канал = контур языка обучения; ручной выбор канала не применяется.
       const currentPreference: YoutubeChannelPreference = { mode: 'auto' };
       const resolution = resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference);
+      if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_resolved seq=${seq} studyTarget=${studyTarget} resolution=${JSON.stringify(resolution)} requested=${requestedChannelId ?? '-'} deepLink=${deepLinkedChannelId ?? '-'} manifestFrom=${manifestFrom} refresh=${refresh}`);
       if (resolution.clearedInvalidManual) {
         await setYoutubeChannelPreference({ mode: 'auto' }, token);
+        if (!isCurrentLoad()) { logStale('preference', ''); return; }
         setPreference({ mode: 'auto' });
       }
       const routeChannel = deepLinkedChannelId && manifest.channels.some((item) => item.id === deepLinkedChannelId) ? deepLinkedChannelId : '';
-      const channelId = requestedChannelId || routeChannel || resolution.channelId;
-      const previous = catalogRef.current?.channel.id === channelId ? catalogRef.current : null;
-      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, commit: (value) => {
+      channelId = requestedChannelId || routeChannel || resolution.channelId;
+      // зачем (ревью R2): канал сменился — показываем его снимок из памяти сразу; без снимка — шапку по манифесту и
+      // скелетон ленты, а не каталог прежнего языка. Снимок из памяти уходит в revalidate как previous: при той же
+      // версии каталога это одно чтение манифеста вместо ~154.
+      const view = resolveYoutubeChannelSwitchView({ shown: catalogRef.current, manifest, targetChannelId: channelId, accountScope: tokenScope });
+      if (view.kind === 'cache') {
+        catalogRef.current = view.catalog;
+        setCatalog(view.catalog);
+        setPendingChannel(null);
+        setLoading(false);
+      } else if (view.kind === 'pending') {
+        switchingToUncachedChannel = true;
+        catalogRef.current = null;
+        setCatalog(null);
+        setPendingChannel(view.channel);
+        setLoading(true);
+      }
+      const previous = view.kind === 'pending' ? null : view.catalog;
+      if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load seq=${seq} channelId=${channelId} source=${requestedChannelId ? 'requested' : routeChannel ? 'deepLink' : 'resolution'} view=${view.kind} previousVersion=${previous?.version ?? '-'}`);
+      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, commit: (value) => {
+        if (!isCurrentLoad()) { logStale('commit', channelId); return; }
         catalogRef.current = value;
         setCatalog(value);
+        setPendingChannel(null);
+        rememberYoutubeChannelMemorySnapshot(tokenScope, value);
       } });
+      if (!isCurrentLoad()) { logStale('revalidate', channelId); return; }
       if (next) {
         catalogRef.current = next;
         setCatalog(next);
+        setPendingChannel(null);
+        rememberYoutubeChannelMemorySnapshot(tokenScope, next);
         setIssue('none');
+        if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_shown seq=${seq} channelId=${next.channel.id} version=${next.version} videos=${next.videos.length}`);
         void markLingmanYoutubeSectionOpened();
+      } else if (__DEV__) {
+        console.log(`[VIDEO-LANG-PILL] channel_load_empty seq=${seq} channelId=${channelId} reason=account_switched_or_dropped`);
       }
     } catch (error) {
+      if (!isCurrentLoad()) { logStale('error', channelId); return; }
       DebugLogger.error('[VIDEO-TAB]:loadCatalog', error, 'warning');
       setIssue(catalogRef.current ? 'offline' : 'error');
+      if (switchingToUncachedChannel) {
+        // зачем (ревью R2): RSS-запасной вариант — лента канала по умолчанию, то есть чужого языка. При смене языка
+        // экран остаётся на скелетоне, тихие повторы и «Сейчас недоступно» ведёт обычный цикл (nothingToShow).
+        console.warn(`[VIDEO-LANG-PILL] channel_load_failed seq=${seq} channelId=${channelId} → без RSS-ленты чужого канала, тихий повтор`);
+        return;
+      }
       if (!catalogRef.current) await loadLegacyFallback().catch((fallbackError: unknown) => { DebugLogger.error('[VIDEO-TAB]:legacyFallback', fallbackError, 'warning'); });
     } finally {
       // Скелетоны обязаны сняться и тогда, когда личность активировалась прямо
       // во время загрузки: иначе экран навсегда застывал бы на заглушках.
+      // Устаревшая загрузка флаги не трогает — их снимет текущая.
       const settledScope = accountScopeKey(captureAccountGeneration());
-      if (!renderAccountScope || settledScope === renderAccountScope) {
+      if (isCurrentLoad() && (!renderAccountScope || settledScope === renderAccountScope)) {
         setLoading(false); setRefreshing(false);
       }
     }
@@ -249,6 +327,20 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     if (!screenRuntimeActive) return;
     void loadCatalog();
   }, [loadCatalog, screenRuntimeActive]);
+
+  // зачем (баг владельца 11.10): язык обучения сменили из шторки пилюли — канал другой, поэтому открытый ролик,
+  // раскрытые фразы и вкладка канала прежнего языка сбрасываются (как при смене канала в selectPreference).
+  // Сам каталог перезагружает эффект выше: loadCatalog зависит от studyTarget.
+  const shownStudyTargetRef = useRef(studyTarget);
+  useEffect(() => {
+    const previousTarget = shownStudyTargetRef.current;
+    if (previousTarget === studyTarget) return;
+    shownStudyTargetRef.current = studyTarget;
+    if (__DEV__) console.log(`[VIDEO-LANG-PILL] study_target_changed from=${previousTarget} to=${studyTarget} source=StudyTargetContext(STUDY_TARGET_CHANGED→storage) → сброс ролика/вкладки, каталог перезагрузится`);
+    setActiveVideoId(null);
+    setExpandedPhraseVideoId(null);
+    setTab('home');
+  }, [studyTarget]);
 
   // зачем (владелец 01.10): вместо экрана ошибки — тихий повтор, пока каталога нет совсем.
   // D158 / PM-214 (04.10): «тихо» ≠ «бесконечно». Было 5 повторов по 20 с и затем вечные скелетоны,
@@ -436,7 +528,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     ? catalog.channel.youtubeChannelId === LINGMAN_CHANNEL_ID
       ? { ...catalog.channel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }
       : catalog.channel
-    : legacyChannelSnapshot();
+    // зачем (ревью R2): канал нового языка грузится — шапка уже его (по манифесту), лента в это время скелетон.
+    : pendingChannel ?? legacyChannelSnapshot();
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
   const homeListVideos = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
@@ -566,7 +659,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           под статус-баром («полоса» ~110 px). Во вкладке виден общий фон вкладок, как на Главной; отдельный экран по-прежнему красит свой. */}
       {inTab ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
       {glassAlertNode}
-      <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !deepLinkedVideoId && !activeVideoId} />
+      <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !studyLanguageSheetVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
           channel={activeChannel}
@@ -574,8 +667,13 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
           studyTarget={studyTarget}
-          // зачем (решение 5, video.html): на вкладке справа пилюля языка — она ведёт на выбор языка обучения.
-          onOpenLanguage={inTab ? () => { hapticTap(); router.push('/settings_language' as any); } : undefined}
+          // зачем (решение 5, video.html; баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23) —
+          // раньше вела на /settings_language, то есть на язык ИНТЕРФЕЙСА, а канал задаётся языком обучения.
+          onOpenLanguage={inTab ? () => {
+            if (__DEV__) console.log(`[VIDEO-LANG-PILL] tap → open=study_language_sheet studyTarget=${studyTarget} source=StudyTargetContext uiLang=${lang}`);
+            hapticTap();
+            setStudyLanguageSheetVisible(true);
+          } : undefined}
         />
         {savedOnly ? null : <YoutubeChannelTabs value={tab} onChange={changeTab} />}
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
@@ -660,6 +758,18 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           />
         )}
 
+        {inTab ? (
+          <StudyLanguageSheet
+            visible={studyLanguageSheetVisible}
+            onClose={() => {
+              if (__DEV__) console.log(`[VIDEO-LANG-PILL] sheet_closed studyTarget=${studyTarget}`);
+              setStudyLanguageSheetVisible(false);
+            }}
+            lang={lang}
+            activeTarget={studyTarget}
+            logTag="[VIDEO-LANG-PILL]"
+          />
+        ) : null}
         <YoutubeChannelPickerSheet visible={pickerVisible} manifest={pickerManifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} motionVariant="hybrid" />
       </SafeAreaView>
     </ScreenGradient>

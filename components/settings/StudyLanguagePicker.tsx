@@ -8,7 +8,7 @@
 // владелец 2026-09-30 «языки обучения все фри без плюс».
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -26,7 +26,7 @@ import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../../app/events';
 
 // Собственные имена языков узнаваемы при любом языке интерфейса.
-const STUDY_TARGET_NATIVE_NAME: Record<StudyTarget, string> = {
+export const STUDY_TARGET_NATIVE_NAME: Record<StudyTarget, string> = {
   en: 'English',
   es: 'Español',
   fr: 'Français',
@@ -57,8 +57,13 @@ const RELEASE_LANGUAGE_FLAG_ASSETS: Record<StudyTarget, ImageSourcePropType> = {
   it: require('../../assets/images/language_flags/language_it.webp'),
 };
 
-function languageFlagAssetFor(code: StudyTarget): ImageSourcePropType | undefined {
+export function languageFlagAssetFor(code: StudyTarget): ImageSourcePropType | undefined {
   return RELEASE_LANGUAGE_FLAG_ASSETS[code];
+}
+
+function switchFailedToastCopy() {
+  // зачем одной строкой: словарь локалей в строку храповик переводов (scan_untranslated_ui) узнаёт как перевод.
+  return { ru: 'Не получилось сменить язык. Попробуй ещё раз.', uk: 'Не вдалося змінити мову. Спробуй ще раз.', en: 'Couldn’t switch the language. Try again.', es: 'No se pudo cambiar el idioma. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível trocar o idioma. Tente de novo.', vi: 'Không đổi được ngôn ngữ. Thử lại nhé.', id: 'Bahasa gagal diganti. Coba lagi.', tr: 'Dil değiştirilemedi. Tekrar dene.', pl: 'Nie udało się zmienić języka. Spróbuj ponownie.' } as const;
 }
 
 const CARD_WIDTH = 90;
@@ -86,30 +91,54 @@ interface StudyLanguagePickerProps {
   onSwitched: () => void | Promise<void>;
 }
 
-export default function StudyLanguagePicker({
+export type StudyLanguageSelectOutcome = 'ignored_busy' | 'ignored_same' | 'resolver' | 'switch' | 'welcome';
+
+export interface UseStudyLanguageSelectionArgs {
+  lang: Lang;
+  activeTarget: StudyTarget;
+  /** Префикс логов вызывающего экрана (правило «сперва логи»), например `[VIDEO-LANG-PILL]`. */
+  logTag?: string;
+  /** Синхронно перед переходом на /language_welcome — закрыть шторку до навигации. */
+  onBeforeNavigate?: () => void;
+  /** Синхронно в момент тапа по уже начатому языку — оптимистичный отклик (галочка, закрытие шторки). */
+  onSwitchStart?: (code: StudyTarget) => void;
+  /** После успешного переключения на уже начатый язык. */
+  onSwitched?: () => void | Promise<void>;
+}
+
+/**
+ * Общая логика выбора изучаемого языка (PRF-23): лента в настройках и шторка «Язык изучения» с пилюли Видео.
+ * зачем (баг владельца 11.10): пилюля языка на вкладке «Видео» вела в язык ИНТЕРФЕЙСА; выбор изучаемого
+ * языка жил только внутри этого компонента без живого вызова. Логика вынесена в хук, чтобы шторка Видео
+ * переключала язык тем же путём (applyStudyLanguageSelection → STUDY_TARGET_CHANGED), а не своим.
+ */
+export function useStudyLanguageSelection({
   lang,
   activeTarget,
-  palette,
-  labelFontSize,
+  logTag = '[STUDY-LANG-PICK]',
+  onBeforeNavigate,
+  onSwitchStart,
   onSwitched,
-}: StudyLanguagePickerProps) {
+}: UseStudyLanguageSelectionArgs) {
   const router = useRouter();
-  // зачем (profile.html «выбор языка изучения · шторка», владелец 2026-09-30): плитки языков на токенах
-  // стекла темы — выбранная светлее и с тонкой кромкой, остальные плоским тоном; palette из настроек
-  // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора не менялась.
-  const { liquidGlassThemeId } = useTheme();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
   // зачем (аудит «мгновенное открытие», 04.10): если список начатых языков уже известен в памяти (по аккаунту) — берём его первым кадром и считаем
   // «разрешённым»: ранний тап больше не уходит в резолвер-роут со спиннером. Чтение хранилища всё равно идёт фоном и заменяет значение.
   const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>(() => peekStartedStudyLanguages() ?? [activeTarget]);
   const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(() => peekStartedStudyLanguages() !== null);
   const [busy, setBusy] = useState(false);
+  // зачем: защита от двойного тапа в одном кадре — setBusy ещё не применился, а второй тап уже пришёл.
+  const busyRef = useRef(false);
 
   const reloadStarted = useCallback(async () => {
-    const started = await getStartedStudyLanguages(activeTarget);
-    setStartedLanguages(started);
-    setStartedLanguagesResolved(true);
-  }, [activeTarget]);
+    try {
+      const started = await getStartedStudyLanguages(activeTarget);
+      setStartedLanguages(started);
+      setStartedLanguagesResolved(true);
+      if (__DEV__) console.log(`${logTag} started_loaded source=storage active=${activeTarget} started=${started.join(',')}`);
+    } catch (error: unknown) {
+      console.warn(`${logTag} started_load_failed active=${activeTarget} reason=${error instanceof Error ? error.message : String(error)}`);
+    }
+  }, [activeTarget, logTag]);
 
   useEffect(() => {
     void reloadStarted();
@@ -117,39 +146,88 @@ export default function StudyLanguagePicker({
 
   const options = studyTargetsForSourceLocale(lang);
 
-  const onSelect = useCallback((code: StudyTarget) => {
-    if (busy || code === activeTarget) return;
+  const select = useCallback((code: StudyTarget): StudyLanguageSelectOutcome => {
+    if (__DEV__) console.log(`${logTag} select code=${code} active=${activeTarget} busy=${busyRef.current} resolved=${startedLanguagesResolved} started=${startedLanguages.join(',')}`);
+    if (busyRef.current) {
+      console.warn(`${logTag} select_ignored reason=busy code=${code}`);
+      return 'ignored_busy';
+    }
+    if (code === activeTarget) {
+      if (__DEV__) console.log(`${logTag} select_ignored reason=already_active code=${code}`);
+      return 'ignored_same';
+    }
     doHaptic();
     if (!startedLanguagesResolved) {
       // Open an opaque resolver route in this frame. It performs the storage
       // decision after navigation, so a cold tap is both immediate and correct.
+      if (__DEV__) console.log(`${logTag} branch=resolver route=/language_welcome target=${code} resolveStarted=1`);
+      onBeforeNavigate?.();
       router.push({
         pathname: '/language_welcome',
         params: { target: code, resolveStarted: '1' },
       } as any);
-      return;
+      return 'resolver';
     }
-    const started = startedLanguages;
-    if (started.includes(code)) {
-    void (async () => {
+    if (startedLanguages.includes(code)) {
       // Уже начатый язык — свободное переключение, прогресс сохранён за языком.
+      if (__DEV__) console.log(`${logTag} branch=switch from=${activeTarget} to=${code}`);
+      busyRef.current = true;
       setBusy(true);
-      try {
-        await applyStudyLanguageSelection(code, lang);
-        // зачем (аудит 2026-08-22): переключение раньше было полностью молчаливым —
-        // весь контент приложения менялся без единого подтверждения пользователю.
-        emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
-        await onSwitched();
-        await reloadStarted();
-      } finally {
-        setBusy(false);
-      }
-    })();
-      return;
+      onSwitchStart?.(code);
+      void (async () => {
+        const startedAt = Date.now();
+        try {
+          await applyStudyLanguageSelection(code, lang);
+          if (__DEV__) console.log(`${logTag} switch_applied to=${code} ms=${Date.now() - startedAt}`);
+          // зачем (аудит 2026-08-22): переключение раньше было полностью молчаливым —
+          // весь контент приложения менялся без единого подтверждения пользователю.
+          emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
+          await onSwitched?.();
+          await reloadStarted();
+        } catch (error: unknown) {
+          const step = (error as { step?: unknown } | null)?.step;
+          const reason = error instanceof Error ? error.message : String(error);
+          if (step === 'mark_started') {
+            // зачем (ревью R4): язык уже сменён (target записан, событие ушло) — не сообщать «не получилось»;
+            // не записалась только отметка «начат». Подтверждаем факт смены и логируем шаг.
+            console.warn(`${logTag} switch_partial to=${code} step=mark_started reason=${reason} → язык сменён, тост успеха`);
+            emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
+            return;
+          }
+          // зачем: раньше здесь был try/finally без catch — отказ записи уходил в немой unhandled rejection.
+          // Язык не сменился (контекст читает хранилище), поэтому откат — только честное сообщение.
+          console.warn(`${logTag} switch_failed to=${code} step=${typeof step === 'string' ? step : 'unknown'} reason=${reason}`);
+          emitAppEvent('action_toast', actionToastTri('error', switchFailedToastCopy()));
+        } finally {
+          busyRef.current = false;
+          setBusy(false);
+        }
+      })();
+      return 'switch';
     }
     // Новый язык — приветствие и пара вопросов для будущего плана.
+    if (__DEV__) console.log(`${logTag} branch=welcome route=/language_welcome target=${code}`);
+    onBeforeNavigate?.();
     router.push({ pathname: '/language_welcome', params: { target: code } } as any);
-  }, [busy, activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, reloadStarted]);
+    return 'welcome';
+  }, [activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, onSwitchStart, onBeforeNavigate, reloadStarted, logTag]);
+
+  return { options, startedLanguages, startedLanguagesResolved, busy, select };
+}
+
+export default function StudyLanguagePicker({
+  lang,
+  activeTarget,
+  palette,
+  labelFontSize,
+  onSwitched,
+}: StudyLanguagePickerProps) {
+  // зачем (profile.html «выбор языка изучения · шторка», владелец 2026-09-30): плитки языков на токенах
+  // стекла темы — выбранная светлее и с тонкой кромкой, остальные плоским тоном; palette из настроек
+  // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора — общий хук ниже.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const { options, startedLanguages, busy, select: onSelect } = useStudyLanguageSelection({ lang, activeTarget, onSwitched });
 
   return (
     <ScrollView

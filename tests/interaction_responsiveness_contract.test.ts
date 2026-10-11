@@ -130,10 +130,13 @@ describe('instant interaction response contract', () => {
     // резолвер.
     expect(dialogBriefing).not.toContain('peekAiDialogIntroSeen');
     expect(dialogSeen).toContain('seenMemory.set(key, false);');
+    // зачем (11.10, TG-A30B81C181C4): тап выбора языка вынесен в общий хук useStudyLanguageSelection (его зовут
+    // лента в настройках и шторка пилюли Видео) — сторожим тот же обработчик тапа, теперь `const select`.
     const languageStart = languagePicker.slice(
-      languagePicker.indexOf('const onSelect'),
-      languagePicker.indexOf('return ('),
+      languagePicker.indexOf('const select = useCallback'),
+      languagePicker.indexOf('return { options'),
     );
+    expect(languageStart.length).toBeGreaterThan(0);
     expect(languageStart).not.toContain('await getStartedStudyLanguages');
     expect(languageStart).toContain("resolveStarted: '1'");
     expect(languageWelcome).toContain('const [entryResolved, setEntryResolved] = useState(!resolveStarted);');

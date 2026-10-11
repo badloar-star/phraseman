@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 const ROOT = path.join(__dirname, '..');
 
@@ -20,7 +21,7 @@ describe('clean onboarding auth placement contract', () => {
   });
 
   it('keeps existing-account sign-in only inside the branded welcome screen', () => {
-    const src = read('components/CleanOnboarding.tsx');
+    const src = read('components/CleanOnboarding.tsx') + ONBOARDING_COPY_SOURCE; // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
     const welcomeIdx = src.indexOf('const renderWelcome = () =>');
     // Граница блока welcome — следующий экран флоу (источник трафика).
     const nextIdx = src.indexOf('const renderSource = () =>');

@@ -66,7 +66,10 @@ import { setAnalyticsConsent } from '../app/analytics_consent';
 import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
-import { buildSubscriptionDisclosureRu } from '../app/paywall_trial_info';
+import { buildSubscriptionDisclosure } from '../app/paywall_subscription_disclosure';
+import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
+import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
+import { languageNameOf, languageSentenceName, levelReaction, levelTitleOf, sourceTitle } from './onboarding/clean_onboarding_options';
 import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
 import {
   readOnboardingNotificationChoice,
@@ -275,8 +278,8 @@ const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
   { id: 'social', title: 'Instagram / Facebook', icon: 'camera-outline' },
   { id: 'youtube', title: 'YouTube', icon: 'logo-youtube' },
   { id: 'google', title: 'Google Search', icon: 'search-outline' },
-  { id: 'friends', title: 'Друзья', icon: 'people-outline' },
-  { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline' },
+  { id: 'friends', title: 'Friends', icon: 'people-outline' },
+  { id: 'other', title: 'Other', icon: 'ellipsis-horizontal-circle-outline' },
 ];
 
 // зачем D129 (владелец 2026-09-30): пять языков в порядке владельца — «французский,
@@ -290,19 +293,19 @@ function languageOption(id: StudyTarget, title: string, icon: LanguageOption['ic
 }
 
 const LANGUAGE_OPTIONS: LanguageOption[] = [
-  languageOption('fr', 'Французский', 'cafe-outline', ONBOARDING_ASSETS.languageFr),
-  languageOption('es', 'Испанский', 'sunny-outline', ONBOARDING_ASSETS.languageEs),
-  languageOption('en', 'Английский', 'chatbubbles-outline', ONBOARDING_ASSETS.languageEn),
-  languageOption('de', 'Немецкий', 'train-outline', ONBOARDING_ASSETS.languageDe),
-  languageOption('it', 'Итальянский', 'pizza-outline', ONBOARDING_ASSETS.languageIt),
+  languageOption('fr', 'French', 'cafe-outline', ONBOARDING_ASSETS.languageFr),
+  languageOption('es', 'Spanish', 'sunny-outline', ONBOARDING_ASSETS.languageEs),
+  languageOption('en', 'English', 'chatbubbles-outline', ONBOARDING_ASSETS.languageEn),
+  languageOption('de', 'German', 'train-outline', ONBOARDING_ASSETS.languageDe),
+  languageOption('it', 'Italian', 'pizza-outline', ONBOARDING_ASSETS.languageIt),
 ];
 
 const LEVEL_OPTIONS: Option<LevelChoice>[] = [
-  { id: 'a0', title: 'Я начинаю с нуля', icon: 'bar-chart-outline' },
-  { id: 'a1', title: 'Знаю отдельные слова', icon: 'bar-chart-outline' },
-  { id: 'a2', title: 'Могу поддержать простой разговор', icon: 'bar-chart-outline' },
-  { id: 'b1', title: 'Говорю на знакомые темы', icon: 'bar-chart-outline' },
-  { id: 'b2', title: 'Обсуждаю почти всё', icon: 'bar-chart-outline' },
+  { id: 'a0', title: 'I am starting from zero', icon: 'bar-chart-outline' },
+  { id: 'a1', title: 'I know a few words', icon: 'bar-chart-outline' },
+  { id: 'a2', title: 'I can hold a simple conversation', icon: 'bar-chart-outline' },
+  { id: 'b1', title: 'I can talk about familiar topics', icon: 'bar-chart-outline' },
+  { id: 'b2', title: 'I can discuss almost anything', icon: 'bar-chart-outline' },
 ];
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
@@ -316,13 +319,6 @@ function normalizedStoredStep(value: string | null): CleanOnboardingStep | null 
   return null;
 }
 
-// Все пять названий — прилагательные на «-ий»: винительный = название строчными,
-// родительный — та же основа на «-ого» («испанский» → «испанского»).
-function targetLabel(target: StudyTarget, form: 'subject' | 'accusative' = 'subject'): string {
-  const title = LANGUAGE_OPTIONS.find((item) => item.id === target)?.title ?? LANGUAGE_OPTIONS[2]!.title;
-  const accusative = title.toLowerCase();
-  return form === 'accusative' ? accusative : accusative.replace(/ий$/, 'ого');
-}
 
 function levelToCurrentLevel(level: LevelChoice): CurrentLevel {
   if (level === 'a0' || level === 'a1') return 'a1';
@@ -439,7 +435,7 @@ function describeAuthError(raw: string, lang: Lang): string {
   } else if (code === 'local_progress_not_uploaded' || code === 'local_progress_backup_blocked') {
     // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
     // тот же текст, что в модалке входа (выбор текста — одна функция).
-    const copy = signInRefusalCopyFor(code, lang, 'onboarding');
+    const copy = signInRefusalCopyFor(code, lang);
     if (copy) human = `${copy.title}. ${copy.body}`;
   } else if (code === 'identity_retired') {
     human = triLang(lang, {
@@ -471,54 +467,28 @@ function describeAuthError(raw: string, lang: Lang): string {
   return ENABLE_DEV_TOOLS && code ? `${human}\n${code.slice(0, 120)}` : human;
 }
 
-// ── Русские даты без Intl (макет телефона и пуш о конце пробного) ────────────
-const WEEKDAYS_RU_SHORT = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-const MONTHS_RU_SHORT = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
-const RU_MONTHS_GENITIVE = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-/** «Вс, 17 авг» — дата на локскрине макета телефона. */
-function formatRuLockDate(d: Date): string {
-  return `${WEEKDAYS_RU_SHORT[d.getDay()]}, ${d.getDate()} ${MONTHS_RU_SHORT[d.getMonth()]}`;
-}
+// ── Даты и «дни» на 9 языках — components/onboarding/clean_onboarding_dates.ts (зачем: координатор 12.10) ──
 // зачем (владелец): часы на локскрине были захардкожены «9:41» (маркетинговый
 // стиль Apple) — макет должен показывать РЕАЛЬНОЕ время устройства, не выдумку.
 /** «14:37» — время на локскрине макета телефона, 24-часовой формат. */
 function formatRuLockTime(d: Date): string {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
-/** «20 августа 2026» — дата в теле пуша «Отмени до …» (Bevel показывает с годом). */
-function formatRuDateLong(d: Date): string {
-  return `${d.getDate()} ${RU_MONTHS_GENITIVE[d.getMonth()]} ${d.getFullYear()}`;
-}
-/** «3 дня», «7 дней», «1 день» — для CTA «Попробовать N … бесплатно». */
-function pluralDays(n: number): string {
-  if (n % 10 === 1 && n % 100 !== 11) return 'день';
-  if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return 'дня';
-  return 'дней';
-}
 // Пейвол по макету Bevel (владелец, 2026-08-17): список выгод «плитка-иконка +
 // заголовок + подпись» вместо таблицы FREE/PLUS. Набор — из боевой выкладки
 // (paywall_copy.ts → CONTEXT_BENEFITS) БЕЗ «Персонального плана»: планы удалены.
 // Слово «ИИ» не используем — «разговорная практика» вместо «диалоги с ИИ».
 type BenefitGlyphId = 'bolt' | 'mic' | 'chat' | 'lens' | 'target' | 'chart';
-const PAYWALL_BENEFITS: { id: BenefitGlyphId; title: string; caption: string }[] = [
-  { id: 'bolt', title: 'Безлимит энергии', caption: 'Занимайся сколько хочешь, без ожидания' },
-  { id: 'mic', title: 'Практика произношения', caption: 'Говори вслух и сразу слышь, что поправить' },
-  { id: 'chat', title: '', caption: '' },
-  { id: 'lens', title: 'Разбор ошибок', caption: 'Понятно, почему так, а не иначе' },
-  { id: 'target', title: 'Тренер слабых мест', caption: 'Возвращает именно то, что ускользает' },
-  { id: 'chart', title: 'Аналитика 365 дней', caption: 'Весь год прогресса на одном экране' },
+// зачем (координатор 12.10): подписи выгод — ключи таблицы на 9 языках; у «chat» свой перевод в renderOnboardingPaywall.
+const PAYWALL_BENEFITS: { id: BenefitGlyphId; titleKey: OnboardingCopyKey | null; captionKey: OnboardingCopyKey | null }[] = [
+  { id: 'bolt', titleKey: 'benefitEnergyTitle', captionKey: 'benefitEnergyCaption' },
+  { id: 'mic', titleKey: 'benefitSpeakTitle', captionKey: 'benefitSpeakCaption' },
+  { id: 'chat', titleKey: null, captionKey: null },
+  { id: 'lens', titleKey: 'benefitMistakesTitle', captionKey: 'benefitMistakesCaption' },
+  { id: 'target', titleKey: 'benefitWeakTitle', captionKey: 'benefitWeakCaption' },
+  { id: 'chart', titleKey: 'benefitAnalyticsTitle', captionKey: 'benefitAnalyticsCaption' },
 ];
 
-function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
-  const language = targetLabel(target, 'accusative');
-  switch (level) {
-    case 'a0': return `Ок, начнём с самых первых фраз. ${language[0].toUpperCase()}${language.slice(1)} будет появляться маленькими шагами.`;
-    case 'a1': return 'Хорошо. Соберём короткие фразы и первые ответы на те случаи, которые часто нужны сразу.';
-    case 'a2': return 'Понятная точка: говорить уже можно, просто нужны готовые связки для живой речи.';
-    case 'b1': return 'Отлично, пойдём не в правила, а в скорость, слух и более естественные ответы.';
-    case 'b2': return 'Тут важны не азы, а точность и темп. Держим взрослую сложность.';
-  }
-}
 
 type OnboardingAnalyticsTags = Record<string, string | number | boolean | null>;
 
@@ -605,7 +575,7 @@ function ProgressHeader({
   step,
   onBack,
   onClose,
-  closeLabel = 'Закрыть',
+  closeLabel,
   headerRight,
 }: {
   step: CleanOnboardingStep;
@@ -617,6 +587,7 @@ function ProgressHeader({
   /** Слот справа в топбаре (меню «···» на пейволе). */
   headerRight?: React.ReactNode;
 }) {
+  const copy = useOnboardingCopy();
   const enabledOrder = React.useContext(OnboardingOrderContext);
   const { progress, total } = getOnboardingProgress(enabledOrder, step);
 
@@ -628,7 +599,7 @@ function ProgressHeader({
   // нечего показать (нет ни ручки слева, ни слота справа).
   const leftHandler = onClose ?? onBack;
   if (!progress && !leftHandler && !headerRight) return null;
-  const backLabel = progress ? `Назад. Шаг ${progress} из ${total}` : 'Назад';
+  const backLabel = progress ? fill(copy.backStep, { n: progress, total }) : copy.back;
   return (
     <View style={styles.progressHeader}>
       <Pressable
@@ -639,7 +610,7 @@ function ProgressHeader({
         style={({ pressed }) => [styles.backButton, pressed && styles.pressed, !leftHandler && styles.hidden]}
         hitSlop={10}
         accessibilityRole="button"
-        accessibilityLabel={onClose ? closeLabel : backLabel}
+        accessibilityLabel={onClose ? (closeLabel ?? copy.close) : backLabel}
       >
         <Ionicons name={onClose ? 'close' : 'chevron-back'} size={22} color="#0C111B" />
       </Pressable>
@@ -1013,6 +984,7 @@ const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
 const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'trialReminder'];
 
 function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
+  const copy = useOnboardingCopy();
   const skip = React.useContext(OnboardingSkipContext);
   // зачем (инцидент владельца 2026-08-29): при застрявшем удалении кнопка
   // «Пропустить» уводила мимо входа ПРЯМО в старые локальные данные
@@ -1028,9 +1000,9 @@ function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
       style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
       hitSlop={8}
       accessibilityRole="button"
-      accessibilityLabel="Пропустить знакомство"
+      accessibilityLabel={copy.skipIntro}
     >
-      <Text style={styles.skipLabel}>Пропустить</Text>
+      <Text style={styles.skipLabel}>{copy.skip}</Text>
     </Pressable>
   );
 }
@@ -1491,6 +1463,7 @@ function chevronPath(pt: Pt, dir: Pt, size: number): string {
 }
 const PROMISE_CHART_MIN_HEIGHT = 280;
 function PromiseChart() {
+  const copy = useOnboardingCopy();
   const reduceMotion = useReduceMotion();
   const { width, height } = useWindowDimensions();
   const size = useMemo(() => ({
@@ -1596,13 +1569,13 @@ function PromiseChart() {
       <Animated.View pointerEvents="none" style={[styles.promiseReveal, { transform: [{ translateX }] }]} />
       <Animated.View pointerEvents="none" style={[styles.promiseBadgeUp, geom.badgeUpPos, badgePop(badgeUp, 6)]}>
         <Ionicons name="sparkles" size={12} color="#07110A" />
-        <Text style={styles.promiseBadgeUpText}>С Phraseman</Text>
+        <Text style={styles.promiseBadgeUpText}>{copy.chartWith}</Text>
       </Animated.View>
       <Animated.View pointerEvents="none" style={[styles.promiseBadgeDown, geom.badgeDownPos, badgePop(badgeDown)]}>
-        <Text style={styles.promiseBadgeDownText}>Без повторения</Text>
+        <Text style={styles.promiseBadgeDownText}>{copy.chartWithout}</Text>
       </Animated.View>
-      <Animated.Text pointerEvents="none" style={[styles.promiseAxisY, axesStyle]}>Прогресс</Animated.Text>
-      <Animated.Text pointerEvents="none" style={[styles.promiseAxisX, axesStyle]}>Время</Animated.Text>
+      <Animated.Text pointerEvents="none" style={[styles.promiseAxisY, axesStyle]}>{copy.chartProgress}</Animated.Text>
+      <Animated.Text pointerEvents="none" style={[styles.promiseAxisX, axesStyle]}>{copy.chartTime}</Animated.Text>
     </View>
     </View>
   );
@@ -1653,6 +1626,8 @@ function PhoneMock({
   availableHeight?: number;
   testID?: string;
 }) {
+  const copy = useOnboardingCopy();
+  const olang = useOnboardingLang();
   const reduceMotion = useReduceMotion();
   const { width, height } = useWindowDimensions();
   const phoneWidth = Math.min(380, Math.max(280, Math.round(width * 0.92)));
@@ -1674,7 +1649,7 @@ function PhoneMock({
   const phoneHeight = availableHeight
     ? Math.max(200, Math.min(desired, Math.round(availableHeight)))
     : desired;
-  const dateLabel = useMemo(() => formatRuLockDate(lockDate ?? new Date()), [lockDate]);
+  const dateLabel = useMemo(() => formatOnboardingLockDate(lockDate ?? new Date(), olang), [lockDate, olang]);
   // зачем (владелец): «9:41» было захардкожено (маркетинговый стиль Apple) —
   // макет обязан показывать РЕАЛЬНОЕ время устройства. Разово при монтировании,
   // как и dateLabel рядом — экран статичен, тикающие часы здесь не нужны.
@@ -1757,7 +1732,7 @@ function PhoneMock({
           <View style={styles.phoneIsland} />
           <Text style={styles.phoneDate}>{dateLabel}</Text>
           <Text style={styles.phoneClock}>{timeLabel}</Text>
-          <Text style={styles.phoneCenterLabel}>Центр уведомлений</Text>
+          <Text style={styles.phoneCenterLabel}>{copy.phoneNotifCenter}</Text>
         </View>
         {/* зачем: рендерится ВНЕ phoneScreen (у него overflow:hidden под скругление
             и градиент) — position:absolute с отрицательными left/right, чтобы карточки
@@ -1767,7 +1742,7 @@ function PhoneMock({
           <View style={styles.phonePushCopy}>
             <View style={styles.phonePushTitleRow}>
               <Text style={styles.phonePushTitle} numberOfLines={1}>{push.title}</Text>
-              <Text style={styles.phonePushWhen}>{push.when ?? 'сейчас'}</Text>
+              <Text style={styles.phonePushWhen}>{push.when ?? copy.phoneNow}</Text>
             </View>
             <Text style={styles.phonePushBody} numberOfLines={2}>{push.body}</Text>
           </View>
@@ -2035,6 +2010,8 @@ function MoreOffersSheet({
   /** null — стор ответил, что триала нет: CTA «Продолжить», без обещания дней. */
   trialDays: number | null;
 }) {
+  const copy = useOnboardingCopy();
+  const olang = useOnboardingLang();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -2104,19 +2081,19 @@ function MoreOffersSheet({
   if (!mounted) return null;
   const isLifetime = selected === 'lifetime';
   const ctaLabel = isLifetime
-    ? 'Открыть навсегда'
+    ? copy.openForever
     : trialDays
-      ? `Попробовать ${trialDays} ${pluralDays(trialDays)} бесплатно`
-      : 'Продолжить';
+      ? fill(copy.tryDaysFree, { n: trialDays, days: onboardingDaysWord(trialDays, olang) })
+      : copy.continue;
   const reassureLabel = isLifetime
-    ? 'Разовая покупка — без подписки'
+    ? copy.oneTimeNoSub
     : trialDays
-      ? 'Сейчас ничего не спишем'
-      : 'Отмена в любой момент';
+      ? copy.nothingChargedNow
+      : copy.cancelAnytime;
   return (
     <Modal transparent statusBarTranslucent animationType="none" visible onRequestClose={() => close()}>
       <Animated.View style={[styles.offersScrim, { opacity: scrim }]}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={() => close()} accessibilityLabel="Закрыть" accessibilityRole="button" />
+        <Pressable style={StyleSheet.absoluteFill} onPress={() => close()} accessibilityLabel={copy.close} accessibilityRole="button" />
       </Animated.View>
       <Animated.View
         style={[styles.offersSheet, { paddingBottom: Math.max(bottomInset, 16) + 6, transform: [{ translateY: sheetY }] }]}
@@ -2124,7 +2101,7 @@ function MoreOffersSheet({
         onAccessibilityEscape={() => close()}
       >
         <View style={styles.offersCloseRow}>
-          <Text ref={titleRef} style={styles.offersTitle} accessibilityRole="header">Больше предложений</Text>
+          <Text ref={titleRef} style={styles.offersTitle} accessibilityRole="header">{copy.moreOffers}</Text>
           <Pressable
             testID="onboarding-paywall-offers-close"
             onPressIn={() => { void hapticTap(); }}
@@ -2132,7 +2109,7 @@ function MoreOffersSheet({
             style={({ pressed }) => [styles.offersClose, pressed && styles.pressed]}
             hitSlop={10}
             accessibilityRole="button"
-            accessibilityLabel="Закрыть"
+            accessibilityLabel={copy.close}
           >
             <Ionicons name="close" size={18} color="#FFFFFF" />
           </Pressable>
@@ -2145,20 +2122,20 @@ function MoreOffersSheet({
         <View style={styles.offerList}>
           <OfferRow
             testID="onboarding-paywall-offer-yearly"
-            title="Год"
-            caption="Полный доступ на 12 месяцев"
-            price={`${yearlyPrice} / год`}
-            priceCaption={`${yearlyPerMonth} / мес`}
+            title={copy.tierYear}
+            caption={copy.sheetYearSub}
+            price={fill(copy.sheetPerYear, { price: yearlyPrice })}
+            priceCaption={fill(copy.sheetPerMonth, { price: yearlyPerMonth })}
             selected={selected === 'yearly'}
             loading={loading}
             onPress={() => onSelect('yearly')}
           />
           <OfferRow
             testID="onboarding-paywall-offer-monthly"
-            title="Месяц"
-            caption="Отмена в любой момент"
-            price={`${monthlyPrice} / мес`}
-            priceCaption="списание раз в месяц"
+            title={copy.tierMonth}
+            caption={copy.cancelAnytime}
+            price={fill(copy.sheetPerMonth, { price: monthlyPrice })}
+            priceCaption={copy.sheetBilledMonthly}
             selected={selected === 'monthly'}
             loading={loading}
             onPress={() => onSelect('monthly')}
@@ -2167,9 +2144,9 @@ function MoreOffersSheet({
             <OfferRow
               testID="onboarding-paywall-offer-lifetime"
               title="Phraseman Pro"
-              caption="Навсегда, разовая покупка"
+              caption={copy.sheetLifetimeSub}
               price={lifetimePrice}
-              priceCaption="без подписки"
+              priceCaption={copy.sheetNoSubscription}
               selected={isLifetime}
               loading={loading}
               onPress={() => onSelect('lifetime')}
@@ -2186,7 +2163,7 @@ function MoreOffersSheet({
           accessibilityState={{ disabled: loading || offeringsFailed || !selectedAvailable, busy: purchasing }}
         >
           {purchasing ? <ActivityIndicator size="small" color="#17191F" /> : (
-            <Text style={styles.offersCtaText}>{offeringsFailed ? 'Не удалось загрузить предложения' : ctaLabel}</Text>
+            <Text style={styles.offersCtaText}>{offeringsFailed ? copy.sheetLoadFailed : ctaLabel}</Text>
           )}
         </Pressable>
         <ReassureLine dark label={reassureLabel} style={styles.offersReassure} />
@@ -2199,21 +2176,21 @@ function MoreOffersSheet({
           disabled={purchasing}
           style={({ pressed }) => [styles.offersFreeLink, pressed && styles.pressed]}
           accessibilityRole="button"
-          accessibilityLabel="Продолжить на обычном аккаунте"
+          accessibilityLabel={copy.continueFree}
           accessibilityState={{ disabled: purchasing }}
         >
-          <Text style={styles.offersFreeLinkText}>Продолжить на обычном аккаунте</Text>
+          <Text style={styles.offersFreeLinkText}>{copy.continueFree}</Text>
         </Pressable>
         {/* Сервисные ссылки — то, что раньше жило в светлом меню «···». */}
         <View style={styles.offersLinksRow}>
           <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-promo" onPress={() => close('promo')} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>Промокод</Text>
+            <Text style={styles.offersLinkText}>{copy.promoCode}</Text>
           </Pressable>
           <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-referral" onPress={() => close('referral')} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>Код друга</Text>
+            <Text style={styles.offersLinkText}>{copy.friendCode}</Text>
           </Pressable>
           <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-restore" onPress={() => close('restore')} disabled={restoring} accessibilityRole="button">
-            <Text style={styles.offersLinkText}>{restoring ? 'Восстанавливаем…' : 'Восстановить'}</Text>
+            <Text style={styles.offersLinkText}>{restoring ? copy.restoring : copy.restore}</Text>
           </Pressable>
         </View>
         </ScrollView>
@@ -2338,6 +2315,8 @@ function CleanOnboarding({
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
+  // зачем (координатор 12.10): тексты онбординга по языку интерфейса; объект из кэша, одинаковый между рендерами
+  const oc = onboardingCopy(lang);
   const reduceMotion = useReduceMotion();
   // зачем (владелец, 2026-08-23): на низких экранах (iPhone SE/8) элементы
   // налезали друг на друга. Экраны, кладущие текст в children (а не в проп
@@ -3030,12 +3009,12 @@ function CleanOnboarding({
         await setOnboardingNotificationChoice('blocked').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_2'));
         setNotificationChoice('blocked');
         Alert.alert(
-          'Напоминание не включилось',
-          'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
+          oc.notifOffTitle,
+          oc.notifOffBody,
           [
-            { text: 'Позже', style: 'cancel', onPress: continueAfterNotificationDialog },
+            { text: oc.later, style: 'cancel', onPress: continueAfterNotificationDialog },
             {
-              text: 'Открыть настройки',
+              text: oc.openSettings,
               onPress: () => {
                 Linking.openSettings().catch(noteSwallowedHandler('CleanOnboarding:onPress.openSettings'));
                 go('name');
@@ -3167,21 +3146,21 @@ function CleanOnboarding({
           setCodeFeedback({
             ok: true,
             text: res.rewardKind === 'lifetime'
-              ? 'Готово! Полный доступ активирован навсегда.'
-              : `Готово! Полный доступ на ${Math.max(1, res.rewardDays ?? 1)} дн. активирован.`,
+              ? oc.promoOkForever
+              : fill(oc.promoOkDays, { n: Math.max(1, res.rewardDays ?? 1), days: onboardingDaysWord(Math.max(1, res.rewardDays ?? 1), lang) }),
           });
           // Доступ уже выдан — цены больше не нужны, согласия собраны раньше:
           // завершаем онбординг.
           setTimeout(() => { setCodeSheet(null); void completeOnboardingRef.current(); }, LUM.bloomDriftMs);
           return;
         }
-        const text = res.status === 'not_found' ? 'Такого кода нет. Проверь опечатки.'
-          : res.status === 'expired' ? 'Срок действия кода истёк.'
-          : res.status === 'limit_reached' ? 'Лимит активаций этого кода исчерпан.'
-          : res.status === 'already_redeemed' ? 'Этот код уже активирован на твоём аккаунте.'
-          : res.status === 'bad_code' ? 'Код выглядит неверно: 3–32 латинских символа или цифр.'
-          : res.status === 'promo_disabled' || res.status === 'disabled' ? 'Промокоды сейчас выключены. Попробуй позже.'
-          : 'Не получилось активировать. Проверь сеть и попробуй ещё раз.';
+        const text = res.status === 'not_found' ? oc.promoNotFound
+          : res.status === 'expired' ? oc.promoExpired
+          : res.status === 'limit_reached' ? oc.promoLimit
+          : res.status === 'already_redeemed' ? oc.promoAlreadyUsed
+          : res.status === 'bad_code' ? oc.promoInvalid
+          : res.status === 'promo_disabled' || res.status === 'disabled' ? oc.promoDisabled
+          : oc.promoFailed;
         setCodeFeedback({ ok: false, text });
         return;
       }
@@ -3191,17 +3170,17 @@ function CleanOnboarding({
         trackOnboarding('onboarding_referral_applied', { already: status === 'already' });
         setCodeFeedback({
           ok: true,
-          text: status === 'applied' ? 'Код друга принят!' : 'Этот аккаунт уже привязан к другу.',
+          text: status === 'applied' ? oc.friendOk : oc.friendAlreadyLinked,
         });
         setTimeout(() => closeCodeSheet(), LUM.bloomDriftMs);
         return;
       }
-      const text = status === 'invalid' ? 'Код выглядит неверно. Проверь опечатки.'
-        : status === 'unknown_code' ? 'Такого кода нет. Проверь опечатки.'
-        : status === 'self' ? 'Это твой собственный код — он не сработает.'
-        : status === 'too_old' ? 'Код друга работает только для новых аккаунтов.'
-        : status === 'disabled' ? 'Приглашения сейчас выключены. Попробуй позже.'
-        : 'Не получилось применить код. Проверь сеть и попробуй ещё раз.';
+      const text = status === 'invalid' ? oc.friendInvalid
+        : status === 'unknown_code' ? oc.promoNotFound
+        : status === 'self' ? oc.friendOwnCode
+        : status === 'too_old' ? oc.friendNewOnly
+        : status === 'disabled' ? oc.friendDisabled
+        : oc.friendFailed;
       setCodeFeedback({ ok: false, text });
     } finally {
       setCodeBusy(false);
@@ -3220,8 +3199,8 @@ function CleanOnboarding({
     if (ageAnswer !== 'yes') {
       setLegalError(
         ageAnswer === 'no'
-          ? `Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`
-          : `Подтверди, что тебе уже есть ${MIN_FULL_ACCESS_AGE}.`,
+          ? fill(oc.ageNotice, { age: MIN_FULL_ACCESS_AGE })
+          : fill(oc.ageConfirm, { age: MIN_FULL_ACCESS_AGE }),
       );
       return;
     }
@@ -3426,8 +3405,8 @@ function CleanOnboarding({
                     нашлось — на этой развилке заголовок меняется на нейтральный, иначе
                     экран сам себе противоречит. */}
                 {authMode
-                  ? (unknownAccountEmail !== null ? 'Начнём с чистого листа' : 'Вернём твой прогресс')
-                  : 'От первых слов до свободной речи.'}
+                  ? (unknownAccountEmail !== null ? oc.welcomeTitleNew : oc.welcomeTitleReturning)
+                  : oc.welcomeSubtitle}
               </Text>
             </FadeUp>
             {/* Подтекст под заголовком убран (владелец, 2026-08-16): без «доп
@@ -3438,16 +3417,16 @@ function CleanOnboarding({
             <View style={styles.authButtons}>
               <Text style={styles.unknownAccountText}>
                 {unknownAccountEmail
-                  ? `Аккаунта ${unknownAccountEmail} у нас нет.`
-                  : 'Такого аккаунта у нас нет.'}
+                  ? fill(oc.unknownAccountEmail, { email: unknownAccountEmail })
+                  : oc.unknownAccount}
               </Text>
               <PrimaryButton
-                label="Создать аккаунт"
+                label={oc.createAccount}
                 onPress={continueAsNewAccount}
                 testID="onboarding-unknown-account-create"
               />
               <SecondaryButton
-                label="Войти другим способом"
+                label={oc.signInOther}
                 onPress={() => setUnknownAccountEmail(null)}
                 testID="onboarding-unknown-account-retry"
               />
@@ -3456,7 +3435,7 @@ function CleanOnboarding({
             <View style={styles.authButtons}>
               {googleAvailable ? (
                 <GoogleSignInButton
-                  label="Войти через Google"
+                  label={oc.signInGoogle}
                   variant="dark"
                   loading={authLoading === 'google'}
                   disabled={!!authLoading}
@@ -3465,7 +3444,7 @@ function CleanOnboarding({
               ) : null}
               {appleAvailable === true ? (
                 <AppleSignInButton
-                  label="Войти через Apple"
+                  label={oc.signInApple}
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('apple'); }}
@@ -3475,15 +3454,15 @@ function CleanOnboarding({
                 <AuthProviderButtonPlaceholder testID="onboarding-apple-placeholder" />
               ) : null}
               {!googleAvailable && appleAvailable === false ? (
-                <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
+                <Text style={styles.errorText}>{oc.providersUnavailable}</Text>
               ) : null}
               {authSlow ? (
                 <Text style={styles.errorText} accessibilityLiveRegion="polite">
-                  Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.
+                  {oc.signInBusy}
                 </Text>
               ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
               <SecondaryButton
-                label="Назад"
+                label={oc.back}
                 onPress={() => {
                   // зачем (аудит двойного тапа 11.10 + ревью TG-A3996AF645F1): уход во время входа —
                   // только после порога «медленно», ответ входа при этом отбрасывается.
@@ -3500,13 +3479,13 @@ function CleanOnboarding({
                   «Начать» (владелец), чёрная таблетка, серая ссылка. */}
               <PagerDots total={5} active={0} />
               <Text style={styles.welcomeLegalNote}>
-                Продолжая, ты принимаешь{' '}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
-                {' '}и{' '}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
+                {oc.legalWelcomePre}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalWelcomeTerms}</Text>
+                {oc.legalWelcomeMid}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalWelcomePrivacy}</Text>{oc.legalWelcomePost}
               </Text>
               <PrimaryButton
-                label="Начать"
+                label={oc.start}
                 onPress={() => {
                   // зачем: D126 — английский остаётся дефолтом, если человек ничего
                   // не выберет (или экран языка выключен в админке). Фиксируем его
@@ -3517,7 +3496,7 @@ function CleanOnboarding({
                 testID="onboarding-start"
               />
               <View style={styles.welcomeSecondary}>
-                <SecondaryButton label="У меня уже есть аккаунт" onPress={() => setAuthMode(true)} testID="onboarding-existing-account" />
+                <SecondaryButton label={oc.haveAccount} onPress={() => setAuthMode(true)} testID="onboarding-existing-account" />
               </View>
             </FadeUp>
           )}
@@ -3531,17 +3510,17 @@ function CleanOnboarding({
   const renderPrivacy = () => (
     <ScreenFrame
       step="privacy"
-      title="Твои данные — только твои"
+      title={oc.privacyTitle}
       plainTitle
       titleSize="md"
-      subtitle="Мы ничего не продаём и никому не передаём. Данные нужны только чтобы сохранить твой прогресс."
+      subtitle={oc.privacyBody}
       // зачем (ревью TG-A3996AF645F1): стрелка «назад» с сейфа — тот же уход посреди входа, что и «Позже».
       onBack={() => { if (allowLeaveDuringAuth('back')) back(); }}
       footer={(
         <>
           {appleAvailable === true ? (
             <AppleSignInButton
-              label="Продолжить с Apple"
+              label={oc.continueWithApple}
               shape="pill"
               loading={authLoading === 'apple'}
               disabled={!!authLoading}
@@ -3553,7 +3532,7 @@ function CleanOnboarding({
           ) : null}
           {googleAvailable ? (
             <GoogleSignInButton
-              label="Продолжить с Google"
+              label={oc.continueWithGoogle}
               variant="light"
               shape="pill"
               loading={authLoading === 'google'}
@@ -3563,7 +3542,7 @@ function CleanOnboarding({
           ) : null}
           {authSlow ? (
             <Text style={styles.errorText} accessibilityLiveRegion="polite">
-              Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.
+              {oc.signInBusy}
             </Text>
           ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
           <SecondaryButton
@@ -3594,10 +3573,10 @@ function CleanOnboarding({
     >
       <PrivacyVault />
       <Text style={styles.vaultLegalNote}>
-        Подробнее — в{' '}
-        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условиях</Text>
-        {' '}и{' '}
-        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политике конфиденциальности</Text>.
+        {oc.legalVaultPre}
+        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalVaultTerms}</Text>
+        {oc.legalVaultMid}
+        <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalVaultPrivacy}</Text>{oc.legalVaultPost}
       </Text>
     </ScreenFrame>
   );
@@ -3611,13 +3590,13 @@ function CleanOnboarding({
         step="niceToMeet"
         center
         onBack={back}
-        footer={<PrimaryButton label="Продолжить" onPress={() => go('promise')} testID="onboarding-nice-continue" />}
+        footer={<PrimaryButton label={oc.continue} onPress={() => go('promise')} testID="onboarding-nice-continue" />}
       >
         <WaveEmoji />
         <Text style={styles.niceTitle} numberOfLines={2}>
-          {name ? `Рад познакомиться, ${name}!` : 'Рад познакомиться!'}
+          {name ? fill(oc.niceNamed, { name }) : oc.nice}
         </Text>
-        <Text style={styles.niceSubtitle}>Phraseman — твой тренер английского: фразы, произношение, память.</Text>
+        <Text style={styles.niceSubtitle}>{oc.niceSubtitle}</Text>
       </ScreenFrame>
     );
   };
@@ -3625,19 +3604,19 @@ function CleanOnboarding({
   const renderSource = () => (
     <ScreenFrame
       step="source"
-      title="Как ты узнал о нас?"
+      title={oc.sourceQuestion}
       plainTitle
       titleStyle={styles.questionTitle}
       onBack={back}
       // Просим 'language': если экран языка выключен (в коде или в админке),
       // resolve сам уведёт на ближайший включённый шаг (notifications).
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('language')} disabled={!source} testID="onboarding-source-continue" />}
+      footer={<PrimaryButton label={oc.continue} onPress={() => go('language')} disabled={!source} testID="onboarding-source-continue" />}
     >
       <View style={styles.optionList}>
         {DISCOVERY_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: sourceTitle(oc, item.id, item.title) }}
             selected={source === item.id}
             testID={`onboarding-source-${item.id}`}
             onPress={() => chooseSource(item.id)}
@@ -3650,17 +3629,17 @@ function CleanOnboarding({
   const renderLanguage = () => (
     <ScreenFrame
       step="language"
-      title="Какой язык учим?"
+      title={oc.languageQuestion}
       onBack={back}
       // зачем: D126 — просим 'level', но он выключен (SHOW_ONBOARDING_LEVEL_STEP),
       // и resolve уводит на следующий включённый шаг — уведомления.
-      footer={<PrimaryButton label="Выбрать язык" onPress={() => go('level')} testID="onboarding-language-continue" />}
+      footer={<PrimaryButton label={oc.languagePick} onPress={() => go('level')} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
         {LANGUAGE_OPTIONS.map((item) => (
           <LanguageCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: languageNameOf(oc, item.id), native: languageNameOf(oc, item.id) }}
             selected={studyTarget === item.id}
             onPress={() => { void chooseStudyTarget(item.id); }}
           />
@@ -3672,15 +3651,15 @@ function CleanOnboarding({
   const renderLevel = () => (
     <ScreenFrame
       step="level"
-      title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
+      title={level ? levelReaction(oc, level, studyTarget) : fill(oc.levelQuestion, { lang: languageSentenceName(oc, studyTarget) })}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('notifications')} disabled={!level} testID="onboarding-level-continue" />}
+      footer={<PrimaryButton label={oc.continue} onPress={() => go('notifications')} disabled={!level} testID="onboarding-level-continue" />}
     >
       <View style={styles.optionList}>
         {LEVEL_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: levelTitleOf(oc, item.id) }}
             selected={level === item.id}
             testID={`onboarding-level-${item.id}`}
             onPress={() => chooseLevel(item.id)}
@@ -3696,11 +3675,11 @@ function CleanOnboarding({
   const renderPromise = () => (
     <ScreenFrame
       step="promise"
-      title="Так готовые фразы переходят в речь."
+      title={oc.promiseTitle}
       plainTitle
-      subtitle="Каждое повторение приходит в момент, когда ты почти забыл — так фразы остаются."
+      subtitle={oc.promiseBody}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('improve')} testID="onboarding-promise-continue" />}
+      footer={<PrimaryButton label={oc.continue} onPress={() => go('improve')} testID="onboarding-promise-continue" />}
     >
       <PromiseChart />
     </ScreenFrame>
@@ -3713,12 +3692,12 @@ function CleanOnboarding({
       step="improve"
       onBack={back}
       center
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('source')} testID="onboarding-improve-continue" />}
+      footer={<PrimaryButton label={oc.continue} onPress={() => go('source')} testID="onboarding-improve-continue" />}
     >
       <ImproveConstellation />
-      <Text style={styles.improveTitle}>Помоги сделать Phraseman лучше</Text>
+      <Text style={styles.improveTitle}>{oc.improveTitle}</Text>
       <Text style={styles.improveBody}>
-        Мы видим только цифры: где урок даётся легко, а где все спотыкаются.
+        {oc.improveBody}
       </Text>
     </ScreenFrame>
   );
@@ -3731,7 +3710,7 @@ function CleanOnboarding({
       onBack={back}
       footer={
         <>
-          <PrimaryButton label="Включить напоминание" onPress={requestPracticeNotification} loading={notificationBusy} testID="onboarding-notifications-allow" />
+          <PrimaryButton label={oc.notifEnable} onPress={requestPracticeNotification} loading={notificationBusy} testID="onboarding-notifications-allow" />
           <Pressable
             testID="onboarding-notifications-skip"
             onPressIn={() => { void hapticTap(); }}
@@ -3739,20 +3718,20 @@ function CleanOnboarding({
             style={styles.textButton}
             accessibilityRole="button"
           >
-            <Text style={styles.textButtonLabel}>Не сейчас</Text>
+            <Text style={styles.textButtonLabel}>{oc.notifNotNow}</Text>
           </Pressable>
         </>
       }
       phoneBackdrop={
         <PhoneMock
-          push={{ title: 'Пора повторить', body: '5 фраз ждут — 3 минуты', when: 'сейчас' }}
+          push={{ title: oc.notifPushTitle, body: oc.notifPushBody, when: oc.phoneNow }}
           testID="onboarding-notifications-phone"
         />
       }
     >
       <Ionicons name="notifications-outline" size={40} color="#5B6270" style={styles.notificationsBell} />
-      <Text style={[styles.sectionTitle, shortScreen && styles.sectionTitleShort]}>Напомним, когда пора</Text>
-      <Text style={[styles.screenSubtitle, styles.screenSubtitleNotifications, shortScreen && styles.screenSubtitleShort]}>Короткое напоминание в удобное время — и фразы не забываются.</Text>
+      <Text style={[styles.sectionTitle, shortScreen && styles.sectionTitleShort]}>{oc.notifTitle}</Text>
+      <Text style={[styles.screenSubtitle, styles.screenSubtitleNotifications, shortScreen && styles.screenSubtitleShort]}>{oc.notifBody}</Text>
     </ScreenFrame>
   );
 
@@ -3768,32 +3747,32 @@ function CleanOnboarding({
     // пробном без числа. Сторож tests/onboarding_trial_truth_contract.test.ts
     // и правила Apple запрещают обещать срок, которого магазин не подтвердил.
     const trialDays = paywallTrialDays;
-    const reminderDate = trialDays ? formatRuDateLong(addDays(new Date(), trialDays)) : null;
+    const reminderDate = trialDays ? formatOnboardingDateLong(addDays(new Date(), trialDays), lang) : null;
     return (
       <ScreenFrame
         step="trialReminder"
-        title="Напомним до конца пробного"
+        title={oc.trialReminderTitle}
         plainTitle
         onBack={back}
         footer={(
           <>
             <PrimaryButton
-              label="Продолжить"
+              label={oc.continue}
               onPress={() => void continueFromTrialReminder()}
               loading={paywallBusy}
               testID="onboarding-trial-reminder-continue"
             />
-            <ReassureLine label="Сейчас ничего не спишем" />
+            <ReassureLine label={oc.trialNothingCharged} />
           </>
         )}
         phoneBackdrop={
           <PhoneMock
             push={{
-              title: 'Пробный период скоро закончится',
+              title: oc.trialPushTitle,
               body: reminderDate
-                ? `Отмени до ${reminderDate}, чтобы не списали деньги.`
-                : 'Отмени до конца пробного, чтобы не списали деньги.',
-              when: 'сейчас',
+                ? fill(oc.trialPushBodyDate, { date: reminderDate })
+                : oc.trialPushBody,
+              when: oc.phoneNow,
             }}
             pushDelayMs={LUM.ladder[3]}
             testID="onboarding-trial-reminder-phone"
@@ -3802,8 +3781,8 @@ function CleanOnboarding({
       >
         <Text style={[styles.screenSubtitle, shortScreen && styles.screenSubtitleShort]}>
           {trialDays
-            ? `Попробуй Plus бесплатно ${trialDays} ${pluralDays(trialDays)}. Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.`
-            : 'Попробуй Plus бесплатно. Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.'}
+            ? fill(oc.trialReminderBodyDays, { n: trialDays, days: onboardingDaysWord(trialDays, lang) })
+            : oc.trialReminderBody}
         </Text>
       </ScreenFrame>
     );
@@ -3839,54 +3818,54 @@ function CleanOnboarding({
     // «≈» только у справочной цены (источник 'reference'); живая и кэш — без него.
     const yearApprox = yearlyPriceSource === 'reference' ? '≈ ' : '';
     const monthApprox = monthlyPriceSource === 'reference' ? '≈ ' : '';
-    const yearlyLabel = yearlyPrice ? `${yearApprox}${yearlyPrice}` : 'Год';
+    const yearlyLabel = yearlyPrice ? `${yearApprox}${yearlyPrice}` : oc.tierYear;
     const yearlySubLabel = yearlyPrice
-      ? (yearlyPerMonth ? `в год · ${yearlyPerMonth} / мес` : 'в год')
+      ? (yearlyPerMonth ? fill(oc.tileYearCaption, { perMonth: yearlyPerMonth }) : oc.tileYearCaptionShort)
       : undefined;
-    const monthlyLabel = monthlyPrice ? `${monthApprox}${monthlyPrice}` : 'Месяц';
-    const monthlySubLabel = monthlyPrice ? 'в месяц' : undefined;
-    const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? 'Разовая покупка' : 'Разовый доступ');
+    const monthlyLabel = monthlyPrice ? `${monthApprox}${monthlyPrice}` : oc.tierMonth;
+    const monthlySubLabel = monthlyPrice ? oc.tileMonthCaption : undefined;
+    const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? oc.tileOneTime : oc.tileOneTimeAccess);
     const isLifetime = selectedBillingPlan === 'lifetime';
     // зачем: обещаем ровно тот триал, который отдал магазин; пока стор молчит
     // (или упал) — дефолт владельца, стор ответил «триала нет» — честное
     // «Продолжить» вместо выдуманных дней.
     const effectiveTrialDays = paywallTrialDays;
     const trialCta = paywallOfferingsFailed
-      ? 'Повторить'
+      ? oc.retry
       : isLifetime
-        ? 'Открыть навсегда'
+        ? oc.openForever
         : effectiveTrialDays
-          ? `Попробовать ${effectiveTrialDays} ${pluralDays(effectiveTrialDays)} бесплатно`
-          : 'Продолжить';
+          ? fill(oc.tryDaysFree, { n: effectiveTrialDays, days: onboardingDaysWord(effectiveTrialDays, lang) })
+          : oc.continue;
     const reassure = isLifetime
-      ? 'Разовая покупка — без подписки'
+      ? oc.oneTimeNoSub
       : effectiveTrialDays
-        ? 'Сейчас ничего не спишем'
-        : 'Отмена в любой момент';
+        ? oc.nothingChargedNow
+        : oc.cancelAnytime;
     const selectedSubscriptionPrice = selectedBillingPlan === 'yearly' ? yearlyPrice : monthlyPrice;
-    const selectedSubscriptionPeriod = selectedBillingPlan === 'yearly' ? 'год' : 'месяц';
+    const selectedSubscriptionPeriod = selectedBillingPlan === 'yearly' ? 'year' : 'month';
     const selectedPriceIsReference = (selectedBillingPlan === 'yearly' ? yearlyPriceSource : monthlyPriceSource) === 'reference';
     const subscriptionDisclosure = isLifetime
-      ? `${lifetimeLabel}. Разовая покупка — без подписки.`
+      ? fill(oc.lifetimeLine, { label: lifetimeLabel })
       : selectedSubscriptionPrice && selectedPriceIsReference
-        ? 'Цена уточнится в магазине — точные условия подписки покажем перед оформлением.'
+        ? oc.priceViaStore
       : selectedSubscriptionPrice
-        ? buildSubscriptionDisclosureRu({
+        ? buildSubscriptionDisclosure(lang, {
             trialDays: effectiveTrialDays,
             price: selectedSubscriptionPrice,
             period: selectedSubscriptionPeriod,
           })
         : paywallOfferingsFailed
-          ? 'Не удалось получить условия магазина. Нажми «Повторить».'
-          : 'Загружаем точную цену и условия магазина…';
+          ? oc.storeTermsFailed
+          : oc.storeTermsLoading;
     return (
       <ScreenFrame
         step="onboardingPaywall"
-        title="Открой полный доступ Phraseman Plus"
+        title={oc.paywallHeadline}
         // Крестик СЛЕВА (владелец, паттерн Bevel): закрыть цены = продолжить
         // бесплатно = онбординг окончен (согласия собраны шагом «name» раньше).
         onClose={() => { void completeOnboarding(); }}
-        closeLabel="Продолжить на обычном аккаунте"
+        closeLabel={oc.continueFree}
         headerRight={(
           <Pressable
             ref={paywallMenuButtonRef}
@@ -3896,7 +3875,7 @@ function CleanOnboarding({
             style={({ pressed }) => [styles.paywallMenuButton, pressed && styles.pressed]}
             hitSlop={10}
             accessibilityRole="button"
-            accessibilityLabel="Ещё: больше предложений, промокод, код друга, восстановить покупку"
+            accessibilityLabel={oc.moreLine}
           >
             <Ionicons name="ellipsis-horizontal" size={22} color="#0C111B" />
           </Pressable>
@@ -3915,13 +3894,13 @@ function CleanOnboarding({
               testID="onboarding-paywall-continue"
               flat
             />
-            <ReassureLine label={paywallTapNotice ? 'Попробуй через минуту' : reassure} />
+            <ReassureLine label={paywallTapNotice ? oc.tryInMinute : reassure} />
             <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
             <Text style={styles.paywallLegalNote}>
-              Подписка продлевается автоматически. Отменить можно в настройках магазина.{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+              {oc.renewalNote}{' '}
+              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalStoreTerms}</Text>
               {' '}·{' '}
-              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
+              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalStorePrivacy}</Text>
             </Text>
           </>
         }
@@ -3933,12 +3912,12 @@ function CleanOnboarding({
               key={b.id}
               index={i}
               glyph={b.id}
-              title={b.id === 'chat' ? conversationBenefitTitle : b.title}
+              title={b.id === 'chat' ? conversationBenefitTitle : (b.titleKey ? oc[b.titleKey] : '')}
               // зачем (владелец 2026-09-13): слово «живые» запрещено, подпись
               // переписана на то, что человек реально делает — и сразу
               // переведена, чтобы не добавлять русскую строку в UI. Остальные
               // пункты списка ждут той же работы (давний долг файла).
-              caption={b.id === 'chat' ? conversationBenefitCaption : b.caption}
+              caption={b.id === 'chat' ? conversationBenefitCaption : (b.captionKey ? oc[b.captionKey] : '')}
             />
           ))}
         </View>
@@ -3946,10 +3925,10 @@ function CleanOnboarding({
         <View style={styles.planRow}>
           <PaywallPlanTile
             plan="yearly"
-            title="Год"
+            title={oc.tierYear}
             price={yearlyLabel}
             caption={yearlySubLabel}
-            badge="Лучшая цена"
+            badge={oc.bestPrice}
             loading={paywallLoading}
             selected={selectedBillingPlan === 'yearly'}
             onPress={choosePaywallPlan}
@@ -3957,7 +3936,7 @@ function CleanOnboarding({
           />
           <PaywallPlanTile
             plan="monthly"
-            title="Месяц"
+            title={oc.tierMonth}
             price={monthlyLabel}
             caption={monthlySubLabel}
             loading={paywallLoading}
@@ -3974,7 +3953,7 @@ function CleanOnboarding({
           accessibilityRole="button"
         >
           <Text style={styles.moreOffersLinkText}>
-            {isLifetime ? `Выбрано: Phraseman Pro · ${lifetimeLabel}` : 'Больше предложений'}
+            {isLifetime ? fill(oc.selectedPro, { label: lifetimeLabel }) : oc.moreOffers}
           </Text>
         </Pressable>
         <MoreOffersSheet
@@ -3990,9 +3969,9 @@ function CleanOnboarding({
             else if (action === 'referral') openCodeSheet('referral');
             else void handleRestore();
           }}
-          yearlyPrice={yearlyPrice ? `${yearApprox}${yearlyPrice}` : 'Год'}
+          yearlyPrice={yearlyPrice ? `${yearApprox}${yearlyPrice}` : oc.tierYear}
           yearlyPerMonth={yearlyPerMonth || '—'}
-          monthlyPrice={monthlyPrice ? `${monthApprox}${monthlyPrice}` : 'Месяц'}
+          monthlyPrice={monthlyPrice ? `${monthApprox}${monthlyPrice}` : oc.tierMonth}
           lifetimePrice={lifetimeLabel}
           lifetimeAvailable={lifetimeAvailable}
           loading={paywallLoading}
@@ -4014,7 +3993,7 @@ function CleanOnboarding({
               <Pressable
                 style={StyleSheet.absoluteFill}
                 onPress={closeCodeSheet}
-                accessibilityLabel="Закрыть ввод кода"
+                accessibilityLabel={oc.closeCodeEntry}
                 accessibilityRole="button"
               />
               <ScrollView decelerationRate="fast"
@@ -4025,7 +4004,7 @@ function CleanOnboarding({
                 onAccessibilityEscape={closeCodeSheet}
               >
                 <Text style={styles.codeTitle} accessibilityRole="header">
-                  {codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}
+                  {codeSheet === 'promo' ? oc.promoCode : oc.friendCodeFrom}
                 </Text>
                 <TextInput
                   ref={codeInputRef}
@@ -4035,10 +4014,10 @@ function CleanOnboarding({
                   onChangeText={(next) => { setCodeValue(next); setCodeFeedback(null); }}
                   autoCapitalize="characters"
                   autoCorrect={false}
-                  placeholder={codeSheet === 'promo' ? 'PHRASE20' : 'КОД ДРУГА'}
+                  placeholder={codeSheet === 'promo' ? 'PHRASE20' : oc.friendCodeCaps}
                   placeholderTextColor="#596170"
                   editable={!codeBusy}
-                  accessibilityLabel={codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}
+                  accessibilityLabel={codeSheet === 'promo' ? oc.promoCode : oc.friendCodeFrom}
                   onSubmitEditing={() => { void submitCode(); }}
                   returnKeyType="done"
                 />
@@ -4052,7 +4031,7 @@ function CleanOnboarding({
                   </Text>
                 ) : null}
                 <PrimaryButton
-                  label="Применить"
+                  label={oc.apply}
                   onPress={() => { void submitCode(); }}
                   loading={codeBusy}
                   disabled={!codeValue.trim()}
@@ -4065,7 +4044,7 @@ function CleanOnboarding({
                   accessibilityRole="button"
                   accessibilityState={{ disabled: codeBusy }}
                 >
-                  <Text style={styles.codeCancelText}>Отмена</Text>
+                  <Text style={styles.codeCancelText}>{oc.cancel}</Text>
                 </Pressable>
               </ScrollView>
             </View>
@@ -4086,7 +4065,7 @@ function CleanOnboarding({
         <>
           {/* «Продолжить», не «Начать обучение»: впереди ещё пробный и цены. */}
           <PrimaryButton
-            label="Продолжить"
+            label={oc.continue}
             onPress={() => {
               Keyboard.dismiss();
               void finish();
@@ -4095,10 +4074,10 @@ function CleanOnboarding({
             testID="onboarding-finish"
           />
           <Text style={styles.paywallLegalNote}>
-            Нажимая «Продолжить», ты принимаешь{' '}
-            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
-            {' '}и{' '}
-            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
+            {oc.legalFinishPre}
+            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{oc.legalFinishTerms}</Text>
+            {oc.legalFinishMid}
+            <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{oc.legalFinishPrivacy}</Text>{oc.legalFinishPost}
           </Text>
         </>
       )}
@@ -4107,7 +4086,7 @@ function CleanOnboarding({
       <View style={styles.finalHero}>
         <SuccessCheck />
         <FadeUp delay={260}>
-          <Text style={styles.finalTitle}>Почти готово</Text>
+          <Text style={styles.finalTitle}>{oc.finishAlmost}</Text>
         </FadeUp>
       </View>
       <FadeUp delay={360} style={styles.finalStack}>
@@ -4129,12 +4108,12 @@ function CleanOnboarding({
               нажатия; отдельного переключателя справа нет. */}
           <ConsentRing checked={analyticsAllowed} pop={consentPop} />
           <View style={styles.consentDecisionCopy}>
-            <Text style={styles.consentDecisionTitle}>Делиться анонимной статистикой</Text>
+            <Text style={styles.consentDecisionTitle}>{oc.improveShare}</Text>
           </View>
         </Pressable>
         {/* Возраст — вопросом с «Да/Нет» (владелец, 2026-08-16): короче и честнее,
             чем две длинные кнопки-утверждения. */}
-        <Text style={styles.ageQuestion}>{`Тебе есть ${MIN_FULL_ACCESS_AGE}?`}</Text>
+        <Text style={styles.ageQuestion}>{fill(oc.ageQuestion, { age: MIN_FULL_ACCESS_AGE })}</Text>
         <View style={styles.ageButtons}>
           <Pressable
             testID="onboarding-age-yes"
@@ -4144,20 +4123,20 @@ function CleanOnboarding({
             accessibilityRole="button"
             accessibilityState={{ selected: ageAnswer === 'yes' }}
           >
-            <Text style={[styles.ageButtonText, ageAnswer === 'yes' && styles.ageButtonTextSelected]}>Да</Text>
+            <Text style={[styles.ageButtonText, ageAnswer === 'yes' && styles.ageButtonTextSelected]}>{oc.yes}</Text>
           </Pressable>
           <Pressable
             testID="onboarding-age-no"
             onPressIn={() => { void hapticTap(); }}
             onPress={() => {
               setAgeAnswer('no');
-              setLegalError(`Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`);
+              setLegalError(fill(oc.ageNotice, { age: MIN_FULL_ACCESS_AGE }));
             }}
             style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
             accessibilityRole="button"
             accessibilityState={{ selected: ageAnswer === 'no' }}
           >
-            <Text style={[styles.ageButtonText, ageAnswer === 'no' && styles.ageButtonTextSelected]}>Нет</Text>
+            <Text style={[styles.ageButtonText, ageAnswer === 'no' && styles.ageButtonTextSelected]}>{oc.no}</Text>
           </Pressable>
         </View>
         {/* Слот ошибки зарезервирован всегда — текст появляется без сдвига макета. */}
@@ -5739,4 +5718,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(CleanOnboarding);
+// зачем (координатор 12.10): вложенные компоненты (шапка, телефон, шторка предложений) берут тексты и язык из контекста;
+// язык считается так же, как внутри CleanOnboarding (initialLang → язык устройства), поэтому расхождения нет.
+function CleanOnboardingWithCopy(props: OnboardingProps) {
+  const copyLang = props.initialLang ?? getDeviceBootstrapLocale();
+  return (
+    <OnboardingCopyProvider lang={copyLang}>
+      <CleanOnboarding {...props} />
+    </OnboardingCopyProvider>
+  );
+}
+
+export default memo(CleanOnboardingWithCopy);

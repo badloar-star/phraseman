@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 // Контракт списка выгод пейвола.
 //
@@ -10,7 +11,7 @@ import path from 'path';
 // → PaywallBenefitRow), контурные SVG вместо Ionicons. Тест сторожит: выгоды живут
 // на пейволе, набор владельца и его запреты пережили переезд, таблица не вернулась.
 const root = process.cwd();
-const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 
 describe('onboarding plan comparison contract', () => {
   it('drops the standalone comparison step together with the plan questionnaire', () => {

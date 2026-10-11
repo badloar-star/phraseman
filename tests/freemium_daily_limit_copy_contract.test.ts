@@ -5,6 +5,7 @@ import { CONTEXT_BENEFITS, getHeroPlannedCopy, getPaywallCopy } from '../app/pay
 import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
 import { MONTHLY_TRAINING_SESSION_LIMIT } from '../app/monthly_training_sessions';
 import type { Lang } from '../constants/i18n';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 const root = path.resolve(__dirname, '..');
 const read = (relative: string): string => fs.readFileSync(path.join(root, relative), 'utf8');
@@ -86,7 +87,7 @@ describe('в русских и украинских текстах нет сло
   });
 
   test('онбординг предлагает «обычный аккаунт», а не Free', () => {
-    const onboarding = read('components/CleanOnboarding.tsx');
+    const onboarding = read('components/CleanOnboarding.tsx') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
     expect(onboarding).toContain('Продолжить на обычном аккаунте');
     expect(onboarding).not.toMatch(/Продолжить (?:на )?Free/);
   });

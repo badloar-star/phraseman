@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 
 describe('clean onboarding responsive layout contract', () => {
   it('uses a constrained scroll shell with bounce disabled for all non-welcome screens', () => {
@@ -49,7 +50,8 @@ describe('clean onboarding responsive layout contract', () => {
     expect(source).toContain("setAnalyticsConsent('granted')");
     expect(source).toContain("setAnalyticsConsent('denied')");
     expect(source).toContain("if (ageAnswer !== 'yes')");
-    expect(source).toContain('Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.');
+    expect(source).toContain('Приложение доступно с {age} лет.');
+    expect(source).toContain('fill(oc.ageNotice, { age: MIN_FULL_ACCESS_AGE })');
     expect(source).not.toContain('BackHandler.exitApp()');
     expect(source).not.toContain("label={ageAnswer === 'no'");
     expect(source).not.toContain("loading={ageAnswer === 'no'");

@@ -9,10 +9,11 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import type { Lang } from '../../constants/i18n';
 import { CORE_COPY, type Tuple9 } from './clean_onboarding_copy_core';
+import { LANGUAGE_WELCOME_COPY } from './clean_onboarding_copy_language';
 import { PAYWALL_COPY } from './clean_onboarding_copy_paywall';
 import { ONBOARDING_LANG_KEYS, onboardingLangKey, type OnboardingLangKey } from './clean_onboarding_dates';
 
-export const ONBOARDING_COPY_TABLE = { ...CORE_COPY, ...PAYWALL_COPY } as const;
+export const ONBOARDING_COPY_TABLE = { ...CORE_COPY, ...PAYWALL_COPY, ...LANGUAGE_WELCOME_COPY } as const;
 export type OnboardingCopyKey = keyof typeof ONBOARDING_COPY_TABLE;
 export type OnboardingCopy = { readonly [K in OnboardingCopyKey]: string };
 
@@ -34,14 +35,20 @@ export function fill(template: string, vars: Readonly<Record<string, string | nu
   return template.replace(/\{(\w+)\}/g, (whole, name: string) => (name in vars ? String(vars[name]) : whole));
 }
 
-const OnboardingCopyContext = createContext<OnboardingCopy | null>(null);
+type CopyContextValue = { readonly copy: OnboardingCopy; readonly lang: OnboardingLangKey };
+const OnboardingCopyContext = createContext<CopyContextValue | null>(null);
 
 export function OnboardingCopyProvider({ lang, children }: { lang: Lang | string; children: React.ReactNode }) {
-  const value = useMemo(() => onboardingCopy(lang), [lang]);
+  const value = useMemo<CopyContextValue>(() => ({ copy: onboardingCopy(lang), lang: onboardingLangKey(lang) }), [lang]);
   return React.createElement(OnboardingCopyContext.Provider, { value }, children);
 }
 
 /** Тексты онбординга для текущего языка. Вне провайдера — английский (а не русский), чтобы не показать чужой язык по ошибке. */
 export function useOnboardingCopy(): OnboardingCopy {
-  return useContext(OnboardingCopyContext) ?? onboardingCopy('en');
+  return useContext(OnboardingCopyContext)?.copy ?? onboardingCopy('en');
+}
+
+/** Ключ языка интерфейса для дат и склонения «дней». */
+export function useOnboardingLang(): OnboardingLangKey {
+  return useContext(OnboardingCopyContext)?.lang ?? 'en';
 }

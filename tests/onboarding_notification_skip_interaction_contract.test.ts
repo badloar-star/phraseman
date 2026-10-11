@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 const source = fs.readFileSync(
   path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'),
   'utf8',
-);
+) + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 
 describe('onboarding notification skip interaction', () => {
   it('defers the native Alert action until the dialog dismissal interaction is finished', () => {
@@ -22,7 +23,8 @@ describe('onboarding notification skip interaction', () => {
   it('uses the current device time and explains the trial reminder', () => {
     expect(source).toContain('<Text style={styles.phoneClock}>{timeLabel}</Text>');
     expect(source).not.toContain('<Text style={styles.phoneClock}>9:41</Text>');
-    expect(source).toContain('Попробуй Plus бесплатно ${trialDays} ${pluralDays(trialDays)}.');
+    expect(source).toContain('oc.trialReminderBodyDays');
+    expect(source).toContain('Попробуй Plus бесплатно {n} {days}.');
   });
 
   it('persists allow/blocked outcomes and conditions reminder copy on the choice', () => {

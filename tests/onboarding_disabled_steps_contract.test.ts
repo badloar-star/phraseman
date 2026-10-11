@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
-const source = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
+const source = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 
 describe('CleanOnboarding disabled step integration', () => {
   it('uses the shared remote flow for navigation, restore and live changes', () => {
@@ -14,7 +15,8 @@ describe('CleanOnboarding disabled step integration', () => {
     // зачем 2026-08-16: полоски прогресса в утверждённом макете нет, но позиция
     // во флоу обязана остаться доступной незрячим — номер шага переехал внутрь
     // подписи кнопки «Назад». Пропадёт номер — скринридер потеряет место.
-    expect(source).toContain('`Назад. Шаг ${progress} из ${total}`');
+    expect(source).toContain('fill(copy.backStep, { n: progress, total })');
+    expect(source).toContain('Назад. Шаг {n} из {total}');
     expect(source).not.toContain('PROGRESS_TOTAL');
   });
 

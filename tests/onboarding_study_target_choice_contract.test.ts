@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 const root = process.cwd();
 const wrapperSource = fs.readFileSync(path.join(root, 'components', 'onboarding.tsx'), 'utf8');
-const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 
 describe('clean onboarding study-target and order contract', () => {
   it('keeps the active onboarding wrapper free of legacy implementation code', () => {

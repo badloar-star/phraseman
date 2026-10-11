@@ -51,12 +51,11 @@ import {
   isKnownStudyLanguage,
   saveLanguageProfile,
 } from './study_languages';
-import {
-  studyTargetLabelForSourceUiLang,
-  type StudyTargetLang,
-} from './study_target_lang_dev';
+import { type StudyTargetLang } from './study_target_lang_dev';
 import { commitPhoneStateDurableAction } from './phone_state_recovery';
 import { DebugLogger } from './debug-logger';
+import { fill, onboardingCopy, type OnboardingCopyKey } from '../components/onboarding/clean_onboarding_copy';
+import { languageNameOf } from '../components/onboarding/clean_onboarding_options';
 
 const EXEMPT_COLOR_1 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
 const EXEMPT_COLOR_2 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
@@ -85,60 +84,45 @@ const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
   it: require('../assets/images/language_flags/language_it.webp'),
 };
 
-/** uk: винительный падеж после «Почати …» (кнопка): «Почати англійську», а не «англійська». */
-const LANGUAGE_START_UK: Record<StudyTargetLang, string> = { en: 'англійську', fr: 'французьку', es: 'іспанську', de: 'німецьку', it: 'італійську' };
-
-/** Название языка в винительной форме для вопросов («Зачем тебе …?»). */
-const LANGUAGE_ACCUSATIVE: Record<'ru' | 'uk', Record<StudyTargetLang, string>> = {
-  ru: { en: 'английский', fr: 'французский', es: 'испанский', de: 'немецкий', it: 'итальянский' },
-  uk: { en: 'англійська', fr: 'французька', es: 'іспанська', de: 'німецька', it: 'італійська' },
-};
+// зачем (координатор 12.10): экран был ru/uk — теперь все 9 языков интерфейса из components/onboarding/clean_onboarding_copy_language.ts.
+/** Ключи названия языка внутри вопроса «Зачем тебе …?» и на кнопке «Начать …» (форма зависит от языка интерфейса). */
+const LANGUAGE_Q_KEY = { en: 'langQEn', fr: 'langQFr', es: 'langQEs', de: 'langQDe', it: 'langQIt' } as const satisfies Record<StudyTargetLang, OnboardingCopyKey>;
+const LANGUAGE_START_KEY = { en: 'langStartEn', fr: 'langStartFr', es: 'langStartEs', de: 'langStartDe', it: 'langStartIt' } as const satisfies Record<StudyTargetLang, OnboardingCopyKey>;
 
 /**
  * Персональное напутствие для экрана-подтверждения — по выбранной цели (goal).
  * Ключи совпадают с id GOAL_OPTIONS; fallback — на случай неизвестной цели.
  */
-const DONE_ENCOURAGEMENT: Record<'ru' | 'uk', Record<string, string>> = {
-  ru: {
-    series: 'План под тебя готов. Пара минут в день — и любимые сериалы зазвучат понятнее уже на этой неделе.',
-    everyday: 'План под тебя готов. Пара минут в день — и первые живые фразы для разговора появятся уже на этой неделе.',
-    travel: 'План под тебя готов. Пара минут в день — и в поездке ты будешь понимать и отвечать увереннее.',
-    words: 'План под тебя готов. Пара минут в день — и нужные фразы начнут оставаться в памяти уже на этой неделе.',
-    mind: 'План под тебя готов. Пара минут в день — и первые фразы зазвучат уже на этой неделе.',
-    default: 'План под тебя готов. Пара минут в день — и первые фразы зазвучат уже на этой неделе.',
-  },
-  uk: {
-    series: 'План під тебе готовий. Пара хвилин на день — і улюблені серіали звучатимуть зрозуміліше вже цього тижня.',
-    everyday: 'План під тебе готовий. Пара хвилин на день — і перші живі фрази для розмови з’являться вже цього тижня.',
-    travel: 'План під тебе готовий. Пара хвилин на день — і в подорожі ти розумітимеш і відповідатимеш упевненіше.',
-    words: 'План під тебе готовий. Пара хвилин на день — і потрібні фрази почнуть залишатися в пам’яті вже цього тижня.',
-    mind: 'План під тебе готовий. Пара хвилин на день — і перші фрази зазвучать уже цього тижня.',
-    default: 'План під тебе готовий. Пара хвилин на день — і перші фрази зазвучать уже цього тижня.',
-  },
+const DONE_ENCOURAGEMENT_KEY: Record<string, OnboardingCopyKey> = {
+  series: 'lwDoneSeries',
+  everyday: 'lwDoneEveryday',
+  travel: 'lwDoneTravel',
+  words: 'lwDoneWords',
+  mind: 'lwDoneDefault',
+  default: 'lwDoneDefault',
 };
 
 type ChoiceOption = {
   id: string;
-  ru: string;
-  uk: string;
+  labelKey: OnboardingCopyKey;
   icon: IoniconName;
 };
 
 /** Те же id, что в CleanOnboarding. */
 const GOAL_OPTIONS: ChoiceOption[] = [
-  { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline' },
-  { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline' },
-  { id: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', icon: 'airplane-outline' },
-  { id: 'words', ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', icon: 'cube-outline' },
-  { id: 'mind', ru: 'Учиться для себя', uk: 'Вчитися для себе', icon: 'school-outline' },
+  { id: 'series', labelKey: 'lwGoalSeries', icon: 'volume-high-outline' },
+  { id: 'everyday', labelKey: 'lwGoalEveryday', icon: 'chatbubble-ellipses-outline' },
+  { id: 'travel', labelKey: 'lwGoalTravel', icon: 'airplane-outline' },
+  { id: 'words', labelKey: 'lwGoalWords', icon: 'cube-outline' },
+  { id: 'mind', labelKey: 'lwGoalMind', icon: 'school-outline' },
 ];
 
 const LEVEL_OPTIONS: ChoiceOption[] = [
-  { id: 'a0', ru: 'Начинаю с нуля', uk: 'Починаю з нуля', icon: 'bar-chart-outline' },
-  { id: 'a1', ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', icon: 'bar-chart-outline' },
-  { id: 'a2', ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', icon: 'bar-chart-outline' },
-  { id: 'b1', ru: 'Говорю на знакомые темы', uk: 'Розмовляю на знайомі теми', icon: 'bar-chart-outline' },
-  { id: 'b2', ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', icon: 'bar-chart-outline' },
+  { id: 'a0', labelKey: 'lwLevelA0', icon: 'bar-chart-outline' },
+  { id: 'a1', labelKey: 'lwLevelA1', icon: 'bar-chart-outline' },
+  { id: 'a2', labelKey: 'lwLevelA2', icon: 'bar-chart-outline' },
+  { id: 'b1', labelKey: 'lwLevelB1', icon: 'bar-chart-outline' },
+  { id: 'b2', labelKey: 'lwLevelB2', icon: 'bar-chart-outline' },
 ];
 
 export default function LanguageWelcomeScreen() {
@@ -149,8 +133,7 @@ export default function LanguageWelcomeScreen() {
   const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
   const target = parsedTarget;
   const resolveStarted = params.resolveStarted === '1';
-  const sourceUi: 'ru' | 'uk' = lang === 'uk' ? 'uk' : 'ru';
-  const tr = useCallback((ru: string, uk: string) => (sourceUi === 'uk' ? uk : ru), [sourceUi]);
+  const lc = onboardingCopy(lang);
 
   const [step, setStep] = useState<WelcomeStep>('welcome');
   const [goal, setGoal] = useState<string | null>(null);
@@ -205,10 +188,7 @@ export default function LanguageWelcomeScreen() {
     };
   }, [rootNavReady, target, resolveStarted, lang, goBackSafely]);
 
-  const languageName = target
-    ? studyTargetLabelForSourceUiLang(target, sourceUi)
-    : '';
-  const languageAcc = target ? LANGUAGE_ACCUSATIVE[sourceUi][target] : '';
+  const languageName = target ? languageNameOf(lc, target) : '';
 
   const activateLanguage = useCallback(() => {
     if (!target || !goal || !level || busy) return;
@@ -243,15 +223,14 @@ export default function LanguageWelcomeScreen() {
   const flagAsset = FLAG_ASSETS[target];
 
   if (step === 'done') {
-    const encouragement =
-      DONE_ENCOURAGEMENT[sourceUi][goal ?? 'default'] ?? DONE_ENCOURAGEMENT[sourceUi].default;
+    const encouragement = lc[DONE_ENCOURAGEMENT_KEY[goal ?? 'default'] ?? DONE_ENCOURAGEMENT_KEY.default!];
     return (
       <DoneCelebration
         flagAsset={flagAsset}
         languageName={languageName}
-        eyebrow={tr('Новый язык выбран', 'Нову мову вибрано')}
+        eyebrow={lc.lwPickedTitle}
         encouragement={encouragement}
-        buttonLabel={tr('Начать учить', 'Почати вчитися')}
+        buttonLabel={lc.lwStartLearning}
         onStart={startLearning}
       />
     );
@@ -278,7 +257,7 @@ export default function LanguageWelcomeScreen() {
             style={({ pressed }) => [styles.optionCard, isSelected && styles.optionCardSelected, pressed && styles.pressed]}
           >
             <Ionicons name={item.icon} size={32} color={isSelected ? EXEMPT_COLOR_1 : EXEMPT_COLOR_2} />
-            <Text style={styles.optionTitle} numberOfLines={2}>{tr(item.ru, item.uk)}</Text>
+            <Text style={styles.optionTitle} numberOfLines={2}>{lc[item.labelKey]}</Text>
             <View style={[styles.radio, isSelected && styles.radioSelected]}>
               {isSelected ? <Ionicons name="checkmark" size={18} color={EXEMPT_COLOR_3} /> : null}
             </View>
@@ -346,20 +325,17 @@ export default function LanguageWelcomeScreen() {
               )}
             </View>
             <Text style={styles.title}>
-              {tr(`${languageName}. Начнём!`, `${languageName}. Почнімо!`)}
+              {fill(lc.lwLetsGo, { language: languageName })}
             </Text>
             <Text style={styles.subtitle}>
-              {tr(
-                'Отличный выбор! У каждого языка — свой план и свой прогресс: то, что ты уже выучил, никуда не денется. Ответь на пару вопросов, чтобы собрать стартовый план.',
-                'Чудовий вибір! У кожної мови — свій план і свій прогрес: те, що ти вже вивчив, нікуди не зникне. Дай відповідь на пару запитань, щоб зібрати стартовий план.',
-              )}
+              {lc.lwIntro}
             </Text>
           </View>
         ) : null}
         {step === 'goal' ? (
           <View>
             <Text style={styles.question}>
-              {tr(`Зачем тебе ${languageAcc}?`, `Навіщо тобі ${languageAcc}?`)}
+              {fill(lc.lwGoalQuestion, { lang: target ? lc[LANGUAGE_Q_KEY[target]] : '' })}
             </Text>
             {renderOptions(GOAL_OPTIONS, goal, (id) => { setGoal(id); })}
           </View>
@@ -367,7 +343,7 @@ export default function LanguageWelcomeScreen() {
         {step === 'level' ? (
           <View>
             <Text style={styles.question}>
-              {tr('Сколько ты уже знаешь?', 'Скільки ти вже знаєш?')}
+              {lc.lwLevelQuestion}
             </Text>
             {renderOptions(LEVEL_OPTIONS, level, (id) => { setLevel(id); })}
           </View>
@@ -376,11 +352,11 @@ export default function LanguageWelcomeScreen() {
 
       <View style={styles.footer}>
         {step === 'welcome'
-          ? primaryButton(tr('Поехали', 'Поїхали'), () => setStep('goal'))
+          ? primaryButton(lc.lwGo, () => setStep('goal'))
           : step === 'goal'
-            ? primaryButton(tr('Продолжить', 'Продовжити'), () => setStep('level'), !goal)
+            ? primaryButton(lc.continue, () => setStep('level'), !goal)
             : primaryButton(
-              tr(`Начать ${languageAcc}`, `Почати ${target ? LANGUAGE_START_UK[target] : ''}`),
+              fill(lc.lwStart, { lang: target ? lc[LANGUAGE_START_KEY[target]] : '' }),
               activateLanguage,
               !level,
             )}

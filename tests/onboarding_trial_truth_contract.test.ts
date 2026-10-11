@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
-const onboarding = fs.readFileSync(path.join(process.cwd(), 'components/CleanOnboarding.tsx'), 'utf8');
+const onboarding = fs.readFileSync(path.join(process.cwd(), 'components/CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
 const purchase = fs.readFileSync(path.join(process.cwd(), 'app/paywall_purchase.ts'), 'utf8');
 
 describe('onboarding trial truth contract', () => {

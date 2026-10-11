@@ -9,6 +9,7 @@ import {
   resolvePaywallReferencePrices,
 } from '../app/paywall_reference_prices';
 import { applyRemoteConfigSnapshot } from '../app/remote_flags';
+import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
 describe('цепочка цены', () => {
   test('живая цена магазина главнее кэша и справочной', () => {
@@ -60,11 +61,13 @@ describe('хук пейвола: цепочка во всех пейволах',
   // зачем (координатор 12.10: «≈ везде», Дизайн): онбординг тоже показывает справочную цену — но с «≈», а текст об автопродлении строится ТОЛЬКО из
   // настоящей цены (магазин/кэш): справочная выдала бы чужую валюту за условия подписки.
   test('онбординг: справочная цена с «≈», условия подписки — только из настоящей цены, тап без магазина — тихая подпись', () => {
-    const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+    const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8') + ONBOARDING_COPY_SOURCE; // // зачем (координатор 12.10): тексты онбординга переехали в components/onboarding/*
     expect(onboarding).not.toMatch(/allowReferencePrice: false/);
     expect(onboarding).toMatch(/yearlyPriceSource === 'reference' \? '≈ ' : ''/);
-    expect(onboarding).toMatch(/selectedPriceIsReference[\s\S]{0,400}Цена уточнится в магазине/);
-    expect(onboarding).toMatch(/paywallTapNotice \? 'Попробуй через минуту'/);
+    expect(onboarding).toMatch(/selectedPriceIsReference[\s\S]{0,400}oc\.priceViaStore/);
+    expect(onboarding).toContain('Цена уточнится в магазине');
+    expect(onboarding).toMatch(/paywallTapNotice \? oc\.tryInMinute/);
+    expect(onboarding).toContain('Попробуй через минуту');
   });
   test('тап без магазина в любом пейволе — тихая подсказка, не немой выход', () => {
     expect(source).toMatch(/resilientCheckout=false — тихая подсказка и догрузка[\s\S]{0,200}setTapNotice\(true\);/);

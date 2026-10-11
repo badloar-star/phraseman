@@ -13,6 +13,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { accountSwitchRequiredGuestCopy } from './account_switch_copy';
 import { readAccountSwitchUnsavedCardsDecision } from './account_switch_unsaved_cards';
 import { signOutAndWipeForAccountSwitch } from './auth_provider';
+import { prewarmAccountWipeModules } from './cloud_sync';
 import { identityErrorCode } from './identity_trace';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from './themed_blocking_alert_queue';
 
@@ -99,6 +100,8 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
 export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<OnboardingAccountSwitchOutcome> {
   // зачем (прогон 11.10): в онбординге это всегда гость — свой честный текст вместо «Телефон уже связан…».
   const copy = accountSwitchRequiredGuestCopy(lang);
+  // зачем (прогон Сверки 11.10): пока человек читает окно, модули стирания уже подгружаются.
+  prewarmAccountWipeModules('onboarding_switch_confirm');
   // зачем (прогон Сверки 11.10, 🔴 «окно не видно, busy висит»): прежняя строка «confirm shown» писалась ДО показа —
   // окно лишь ставится в очередь, показывает его хост по решению арбитра. Пишем факт постановки и время до ответа.
   const confirmEnqueuedAtMs = Date.now();

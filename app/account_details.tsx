@@ -59,6 +59,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { traceAccountDeleteUi } from './account_delete_ui_trace';
 import { DebugLogger } from './debug-logger';
+import { prewarmAccountWipeModules } from './cloud_sync';
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -108,6 +109,8 @@ export default function AccountDetailsScreen() {
     // Снапшот — источник истины между экранами (настройки тоже пишут в него).
     setUserName(snapshotName);
   }, [snapshotName]);
+  // зачем (прогон Сверки 11.10): модули стирания подгружены до тапа «Выйти» — выход не зависит от ленивой подгрузки.
+  useEffect(() => { prewarmAccountWipeModules('account_details'); }, []);
 
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(() => peekLinkedAuthFromCurrentUser());
   const linkedAuthRef = useRef(linkedAuth);

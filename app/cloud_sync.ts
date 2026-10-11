@@ -5756,6 +5756,26 @@ function markWipeStage(stage: string, count?: number): void {
   activeWipeStageAt = now;
 }
 
+/**
+ * Заранее подгрузить модули цепочки стирания аккаунта (выход / смена аккаунта).
+ * зачем (прогон Сверки 11.10, п.2): выход упал с wipe_failed «Could not load bundle» — стирание делало ленивый import
+ * в момент перезапуска сборщика. В релизе это обычный require, но цепочка стирания не должна зависеть от подгрузки в
+ * критический момент: экран аккаунта и смена в онбординге греют модули заранее. Ошибки не бросает — пишет в лог.
+ */
+export function prewarmAccountWipeModules(source: string): void {
+  const startedAtMs = Date.now();
+  void Promise.allSettled([
+    import('./phone_state_bootstrap'),
+    import('./nickname_guard'),
+    import('./personal_progress_store'),
+    import('./friends_tab_swr_warm'),
+  ]).then((results) => {
+    const failed = results.flatMap((result, index) => (result.status === 'rejected' ? [index] : []));
+    const log = failed.length > 0 ? console.warn : console.log;
+    log('[ACC-SWITCH-WIPE] prewarm', JSON.stringify({ source, failed, tookMs: Date.now() - startedAtMs }));
+  });
+}
+
 async function wipeLocalAccountDataUnsafe(): Promise<void> {
   const startedAt = identityTraceClockMs();
   activeWipeStages = {};

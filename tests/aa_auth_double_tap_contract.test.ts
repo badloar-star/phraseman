@@ -91,6 +91,8 @@ jest.mock('../app/cloud_sync', () => ({
   fetchAuthRecoveryHint: jest.fn(async () => null),
   restoreFromCloudDetailed: jest.fn(async () => 'restored'),
   warmAuthSignInCallables: jest.fn(),
+  // 12.10: экран аккаунта и смена в онбординге греют модули стирания заранее.
+  prewarmAccountWipeModules: jest.fn(),
 }));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-test') }));
 jest.mock('../app/stable_safe_area_metrics', () => ({

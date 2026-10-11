@@ -48,7 +48,6 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
   return Object.freeze({
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz', fr: 'Retour', de: 'Zurück' }),
     tasks: triLang(lang, { ru: 'Задания', uk: 'Завдання', en: 'Goals', es: 'Objetivos', 'pt-BR': 'Objetivos', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görevler', pl: 'Zadania', fr: 'Objectifs', de: 'Aufgaben' }),
-    participants: triLang(lang, { ru: 'Участники', uk: 'Учасники', en: 'Participants', es: 'Participantes', 'pt-BR': 'Participantes', vi: 'Người tham gia', id: 'Peserta', tr: 'Katılımcılar', pl: 'Uczestnicy', fr: 'Participants', de: 'Teilnehmende' }),
     start: triLang(lang, { ru: 'Начать диалог', uk: 'Почати діалог', en: 'Start dialogue', es: 'Empezar el diálogo', 'pt-BR': 'Começar diálogo', vi: 'Bắt đầu hội thoại', id: 'Mulai dialog', tr: 'Diyaloğu başlat', pl: 'Zacznij dialog', fr: 'Commencer le dialogue', de: 'Dialog starten' }),
     locked: (rankRequired: number) => triLang(lang, {
       ru: `Откроется на ранге ${rankRequired}`,

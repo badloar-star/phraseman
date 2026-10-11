@@ -14,23 +14,17 @@ import { glassTone } from './glass/glassTone';
 
 // зачем (владелец 2026-09-30): брифинг «1 в 1» по макету dialogs.html B1/B2 (Liquid Glass):
 // медальон сцены 88, бейдж уровня, крупное название, карточка брифинга, карточка «Задания»
-// с номерами в кругах, участники (реальные данные V2) и закреплённая кнопка «Начать диалог →».
+// с номерами в кругах и закреплённая кнопка «Начать диалог →». Карточки «Участники» нет (владелец 11.10, журнал 37).
 // Закрытый по рангу: погашенная кнопка с замком «Откроется на ранге N» и под ней реальный
 // ранг человека с монетой. Цен и состояний подписки здесь нет по контракту.
 
 export type DialogueV2BriefingObjective = Readonly<{ id: string; label: string }>;
-export type DialogueV2BriefingParticipant = Readonly<{
-  id: string;
-  displayName: string;
-  styleNote: string;
-}>;
 
 export type DialogueV2BriefingScreenProps = Readonly<{
   title: string;
   cefr: string;
   briefing: string;
   objectives: readonly DialogueV2BriefingObjective[];
-  participants: readonly DialogueV2BriefingParticipant[];
   rankRequired: number;
   /** The local rank gate decides this before render; no account entitlement is consulted. */
   unlocked: boolean;
@@ -39,7 +33,6 @@ export type DialogueV2BriefingScreenProps = Readonly<{
   labels: Readonly<{
     back: string;
     tasks: string;
-    participants: string;
     start: string;
     locked: (rankRequired: number) => string;
     currentRank: (rank: number) => string;
@@ -58,7 +51,6 @@ export function DialogueV2BriefingScreen({
   cefr,
   briefing,
   objectives,
-  participants,
   rankRequired,
   unlocked,
   currentRank,
@@ -108,25 +100,6 @@ export function DialogueV2BriefingScreen({
             ))}
           </View>
 
-          {participants.length > 0 ? (
-            <View style={[card, styles.listCard]}>
-              <Text maxFontSizeMultiplier={1.3} style={[styles.kicker, { color: glass.secondary }]}>{labels.participants}</Text>
-              {participants.map((participant, index) => (
-                <View
-                  key={participant.id}
-                  style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : null]}
-                >
-                  <View style={[styles.avatar, { backgroundColor: glass.opaqueControl }]}>
-                    <Ionicons name="person-outline" size={18} color={glass.secondary} />
-                  </View>
-                  <View style={styles.fillRow}>
-                    <Text maxFontSizeMultiplier={1.4} style={[styles.objText, { color: glass.text, fontWeight: '600' }]}>{participant.displayName}</Text>
-                    <Text maxFontSizeMultiplier={1.3} style={[styles.note, { color: glass.secondary }]}>{participant.styleNote}</Text>
-                  </View>
-                </View>
-              ))}
-            </View>
-          ) : null}
         </ScrollView>
       </SafeAreaView>
       <SafeAreaView edges={['bottom']} style={[styles.dock, { backgroundColor: glass.bg }]}>
@@ -152,7 +125,6 @@ export function DialogueV2BriefingScreen({
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
-  fillRow: { flex: 1, minWidth: 0 },
   top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row' },
   scroll: { paddingHorizontal: 16, paddingBottom: 28 },
   hero: { alignItems: 'center', marginTop: 18 },
@@ -168,8 +140,6 @@ const styles = StyleSheet.create({
   num: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   numText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   objText: { flex: 1, fontSize: 16, lineHeight: 22 },
-  avatar: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  note: { marginTop: 2, fontSize: 13, lineHeight: 18 },
   dock: { paddingHorizontal: 16, paddingTop: 14, paddingBottom: 8 },
   rankNow: { marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   rankNowText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },

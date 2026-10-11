@@ -38,10 +38,6 @@ const fixtureObjectives = Object.freeze([
   Object.freeze({ id: 'fixture_objective_2', label: 'Уточни один следующий шаг.' }),
 ]);
 
-const fixtureParticipants = Object.freeze([
-  Object.freeze({ id: 'fixture_persona_1', displayName: 'Лена', styleNote: 'Пишет коротко и по делу.' }),
-  Object.freeze({ id: 'fixture_persona_2', displayName: 'Игорь', styleNote: 'Спокойно уточняет детали.' }),
-]);
 
 const fixtureSessionMessages = Object.freeze([
   Object.freeze({ id: 'fixture_persona_message', author: 'persona' as const, authorLabel: 'Лена', text: 'Привет! Удобно обсудить план?' }),
@@ -91,11 +87,10 @@ export default function DialogueV2VisualFixtureRoute() {
               cefr="A2"
               briefing="Короткая статическая сцена для проверки композиции."
               objectives={fixtureObjectives}
-              participants={fixtureParticipants}
               rankRequired={2}
               unlocked
               currentRank={2}
-              labels={{ back: 'Назад', tasks: 'Задания', participants: 'Участники', start: 'Начать диалог', locked: (rank) => `Откроется на ранге ${rank}`, currentRank: (rank) => `Сейчас ранг ${rank}` }}
+              labels={{ back: 'Назад', tasks: 'Задания', start: 'Начать диалог', locked: (rank) => `Откроется на ранге ${rank}`, currentRank: (rank) => `Сейчас ранг ${rank}` }}
               onBack={noop}
               onStart={noop}
             />

@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
 import { emitAppEvent } from './events';
+import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
 import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
 import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_controls';
 import { setDevAsFreeFlag } from './dev_as_free_flag';
@@ -122,6 +123,8 @@ export type DevStateRequest = Readonly<{
   friendsFail?: readonly DevFriendsFail[] | 'off';
   /** Друзья: окно приглашения на занятие (study_invite), один раз. */
   friendEvent?: DevFriendEvent;
+  /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
+  streakJump?: string;
   next?: string;
 }>;
 
@@ -215,6 +218,11 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.friendsHold = list('dev_friends_hold', DEV_FRIENDS_HOLDS);
   request.friendsFail = list('dev_friends_fail', DEV_FRIENDS_FAILS);
   request.friendEvent = pick('friend_event', DEV_FRIEND_EVENTS);
+  const streakJumpRaw = Array.isArray(params.streakJump) ? params.streakJump[0] : params.streakJump;
+  if (streakJumpRaw !== undefined) {
+    if (parseDevStreakJump(streakJumpRaw)) request.streakJump = String(streakJumpRaw).trim();
+    else rejected.streakJump = `формат «до:после», например 5:12; пришло ${String(streakJumpRaw)}`;
+  }
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -398,6 +406,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.logout !== undefined) await step('logout', request.logout, async () => setDevAccountState({ logoutMode: request.logout === 'ok' ? null : request.logout! }));
   if (request.delete !== undefined) await step('delete', request.delete, async () => setDevAccountState({ deleteFail: request.delete === 'fail' }));
   if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({ restoreRetired: request.restore === 'retired' }));
+  if (request.streakJump !== undefined) {
+    // зачем (координатор 12.10): у тестовых аккаунтов серия 0 — моделируем «облако принесло другую серию» (только dev).
+    await step('streakJump', request.streakJump, async () => {
+      const jump = parseDevStreakJump(request.streakJump);
+      if (!jump) return false;
+      const { whenHomePainted } = await import('./home_paint_marker');
+      await runDevStreakRestoreJump(jump, { whenHomePainted, wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms)) });
+      return true;
+    });
+  }
   if (request.greet !== undefined) await step('greet', request.greet || 'off', async () => setDevAccountState({ greetName: request.greet || null }));
   if (request.plustransfer !== undefined) await step('plustransfer', request.plustransfer, async () => setDevAccountState({ plusTransfer: request.plustransfer === 'on' }));
   if (request.plan !== undefined) {

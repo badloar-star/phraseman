@@ -20,7 +20,7 @@ import { SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
-import { addCardToLocalPack, loadAddableLocalPacks } from '../community_packs/localPackCardAdd';
+import { addCardToLocalPack, loadPackPickerState } from '../community_packs/localPackCardAdd';
 import type { LocalAuthorPack } from '../community_packs/localAuthorPacks';
 import { actionToastTri, emitAppEvent } from '../events';
 import type { CardItem } from './types';
@@ -85,10 +85,16 @@ type ActionDef = Readonly<{ key: string; icon: keyof typeof Ionicons.glyphMap; l
 function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, showSave = true, sourceCard, onCreatePack, onClose, onSpeak, onEdit, onDelete, onToggleSave }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
+  const onlyPublishedText = triLang(lang, {
+    ru: 'Нет наборов, куда можно добавить', uk: 'Немає наборів, куди можна додати', en: 'No packs to add to', es: 'No hay sets a los que añadir',
+    'pt-BR': 'Não há conjuntos para adicionar', vi: 'Không có bộ thẻ nào để thêm vào', id: 'Tidak ada set untuk ditambah', tr: 'Eklenebilecek set yok', pl: 'Brak zestawów, do których można dodać',
+  });
   const lh = useLineScale();
   const [flipped, setFlipped] = useState(false);
   const [mode, setMode] = useState<'card' | 'packs'>('card');
   const [packs, setPacks] = useState<readonly LocalAuthorPack[] | null>(null);
+  // зачем (решение координатора 12.10): есть только опубликованные наборы — добавлять некуда, но «Своих наборов нет» было бы неправдой
+  const [onlyPublished, setOnlyPublished] = useState(false);
   const [adding, setAdding] = useState(false);
   const cardId = card?.id ?? null;
 
@@ -110,7 +116,10 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
   const openPacks = useCallback(() => {
     if (!sourceCard) { console.warn(`${TAG} «В набор»: исходной карточки нет cardId=${cardId}`); return; }
     setMode('packs');
-    void loadAddableLocalPacks().then(setPacks).catch((error: unknown) => {
+    void loadPackPickerState().then((state) => {
+      setOnlyPublished(state.addable.length === 0 && state.publishedCount > 0);
+      setPacks(state.addable);
+    }).catch((error: unknown) => {
       console.warn(`${TAG} «В набор»: не удалось прочитать наборы: ${error instanceof Error ? error.message : String(error)}`);
       setPacks([]);
     });
@@ -199,7 +208,7 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
             </View>
           ) : packs.length === 0 ? (
             <View>
-              <Text style={[styles.empty, { color: g.secondary, lineHeight: lh(22) }]}>{copy.noPacks}</Text>
+              <Text style={[styles.empty, { color: g.secondary, lineHeight: lh(22) }]}>{onlyPublished ? onlyPublishedText : copy.noPacks}</Text>
               {onCreatePack ? <SheetRow g={g} testID="fc-expanded-create-pack" icon="add" title={copy.createPack} onPress={onCreatePack} /> : null}
             </View>
           ) : (

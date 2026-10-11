@@ -24,6 +24,17 @@ export async function loadAddableLocalPacks(): Promise<LocalAuthorPack[]> {
   return addable;
 }
 
+/**
+ * Состояние шторки «В какой набор?»: куда можно добавлять и сколько опубликованных наборов выпало из списка.
+ * зачем (решение координатора 12.10): если addable пуст, но опубликованные есть, текст «Своих наборов пока нет» неверен — показываем «Нет наборов, куда можно добавить».
+ */
+export async function loadPackPickerState(): Promise<Readonly<{ addable: LocalAuthorPack[]; publishedCount: number }>> {
+  const packs = await loadLocalAuthorPacks();
+  const addable = packs.filter((pack) => !pack.cloudPackId);
+  console.log(`${LOG} шторка: доступно=${addable.length} опубликовано=${packs.length - addable.length}`);
+  return { addable, publishedCount: packs.length - addable.length };
+}
+
 /** Карточка набора из любой карточки приложения (тексты — как при «Создать набор из выбранных»). */
 export function packCardFromCardItem(card: CardItem, id: string): CommunityPackCardPayload {
   const normalized = normalizePackCardTexts(card as unknown as Record<string, unknown>, normalizePackLanguage(card.packLanguage));

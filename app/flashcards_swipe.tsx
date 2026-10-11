@@ -48,7 +48,8 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { plateBoxShadow } from '../components/v2/ShadowSurface';
+import { PlateFill, plateBoxShadow, RAISED_LIFT, raisedBoxShadow } from '../components/v2/ShadowSurface';
+import { CardsGlassRoundButton } from './flashcards/CardsGlassKit';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
 import { TrueFalseSwipeCard, type TrueFalseSwipeCardHandle } from './flashcards/TrueFalseSwipeCard';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
@@ -3463,27 +3464,19 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.topBar}>
-        <TapScale
-          onPress={() => safeRouterBack(router, '/flashcards' as any)}
-          style={[styles.iconButton, { backgroundColor: t.bgSurface }]}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          accessibilityLabel={triLang(lang, {
-            ru: 'Назад',
-            en: 'Back',
-            uk: 'Назад',
-            es: 'Atrás',
-            'pt-BR': "Voltar",
-            vi: "Quay lại",
-            id: "Kembali",
-            tr: "Geri",
-            pl: "Wstecz",
+        {/* зачем (cards-gaps-states, решение координатора 12.10): стрелка назад — круглая кнопка «Тени», как на других экранах Карточек */}
+        <CardsGlassRoundButton
+          g={swipeGlass}
+          testID="fc-swipe-select-back"
+          label={triLang(lang, {
+            ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
           })}
-        >
-          <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-        </TapScale>
+          icon="arrow-back"
+          onPress={() => safeRouterBack(router, '/flashcards' as any)}
+        />
       </View>
 
-      <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
+      <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary }]}>{text.settingsTitle}</Text>
 
       {/* зачем (аудит cards-gaps-states): без черновика карточка пуста — рисовалась пустая плашка ~32 px между заголовком и «Наборы»; в образце её нет */}
       <View style={pendingDraft ? [styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }] : styles.heroCardEmpty}>
@@ -3550,10 +3543,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         )}
       </View>
 
-      <Text style={[styles.segmentLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.sourcesTitle}</Text>
+      <Text style={[styles.segmentLabel, { color: t.textMuted }]}>{text.sourcesTitle}</Text>
 
       {loadError ? (
-        <Text style={[styles.errorText, { color: t.wrong, fontSize: f.caption }]}>{loadError}</Text>
+        <Text style={[styles.errorText, { color: t.wrong }]}>{loadError}</Text>
       ) : null}
 
       {sourcesExhausted && sources.length === 0 ? (
@@ -3595,22 +3588,25 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                 key={source.id}
                 onPress={() => toggleSource(source.id)}
                 activeOpacity={0.88}
+                accessibilityRole="checkbox"
+                accessibilityState={{ checked: selected }}
+                // зачем (cards-gaps-states `.gs-src`, решение координатора 12.10): строка набора — плашка «Тени» с тенью; выбранная приподнята на RAISED_LIFT
                 style={[
                   styles.sourceRow,
-                  selected
-                    ? { backgroundColor: `${selectedAccent}2E` }
-                    : { backgroundColor: glassFill(t.bgSurface, 0.46) },
+                  { boxShadow: selected ? raisedBoxShadow(swipeGlass) : plateBoxShadow(swipeGlass) },
+                  selected && { transform: [{ translateY: RAISED_LIFT }] },
                 ]}
               >
-                <View style={[styles.sourceIcon, { backgroundColor: `${selected ? selectedAccent : source.accent}22` }]}>
-                  <Ionicons name={source.icon as any} size={21} color={selected ? t.accentText : source.accent} />
+                <PlateFill g={swipeGlass} radius={18} raised={selected} />
+                <View style={[styles.sourceIcon, { backgroundColor: swipeGlass.opaqueControl }]}>
+                  <Ionicons name={source.icon as any} size={21} color={selected ? swipeGlass.text : swipeGlass.secondary} />
                 </View>
                 <View style={styles.sourceTextBox}>
                   {/* зачем: text-integrity — название и подпись набора переносятся, ряд растёт. */}
-                  <FlowText testID={`flashcards-source-title-${source.id}`} provenance="authored" style={[styles.sourceTitle, { color: t.textPrimary, fontSize: f.body }]}>
+                  <FlowText testID={`flashcards-source-title-${source.id}`} provenance="authored" style={[styles.sourceTitle, { color: t.textPrimary }]}>
                     {source.title}
                   </FlowText>
-                  <FlowText testID={`flashcards-source-subtitle-${source.id}`} provenance="authored" style={[styles.sourceSubtitle, { color: t.textMuted, fontSize: f.caption }]}>
+                  <FlowText testID={`flashcards-source-subtitle-${source.id}`} provenance="authored" style={[styles.sourceSubtitle, { color: t.textMuted }]}>
                     {source.subtitle} · {cardCountLabel(lang, source.count)}
                   </FlowText>
                 </View>
@@ -3619,7 +3615,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                     styles.checkCircle,
                     {
                       borderColor: 'transparent',
-                      backgroundColor: selected ? selectedAccent : 'transparent',
+                      backgroundColor: selected ? selectedAccent : swipeGlass.opaqueControl,
                     },
                   ]}
                 >
@@ -4432,9 +4428,13 @@ const styles = StyleSheet.create({
     height: 36,
     borderRadius: 12,
   },
+  // `.gs-title` образца cards-gaps-states: 34/40/700, разрядка −.5, отступ сверху 8
   title: {
-    fontWeight: '900',
-    letterSpacing: 0,
+    marginTop: 8,
+    fontSize: 34,
+    lineHeight: 40,
+    fontWeight: '700',
+    letterSpacing: -0.5,
   },
   subtitle: {
     marginTop: 8,
@@ -4460,7 +4460,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   heroStartText: {
-    fontWeight: '900',
+    fontWeight: '700',
   },
   segment: {
     flexDirection: 'row',
@@ -4472,9 +4472,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 16,
   },
+  // `.gs-lab`: 13/17/600, отступы 26 сверху, 4 по бокам и 10 снизу
   segmentLabel: {
-    marginTop: 18,
-    fontWeight: '900',
+    marginTop: 26,
+    marginBottom: 10,
+    paddingHorizontal: 4,
+    fontSize: 13,
+    lineHeight: 17,
+    fontWeight: '600',
   },
   segmentButton: {
     flexBasis: '48%',
@@ -4494,7 +4499,10 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   errorText: {
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: '700',
+    paddingHorizontal: 4,
     marginBottom: 10,
   },
   loadingBox: {
@@ -4541,11 +4549,15 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   sourceTitle: {
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   sourceSubtitle: {
-    marginTop: 4,
-    fontWeight: '700',
+    marginTop: 2,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '500',
   },
   checkCircle: {
     width: 28,

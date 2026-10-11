@@ -33,7 +33,7 @@ test('flip follows the mockup: 560 ms cubic-bezier(.2,.8,.2,1), perspective 1200
 
 test('"В набор" uses the local pack storage only (no server calls)', () => {
   assert.match(sheet, /addCardToLocalPack/);
-  assert.match(sheet, /loadAddableLocalPacks/);
+  assert.match(sheet, /loadPackPickerState/);
   assert.doesNotMatch(sheet, /httpsCallable|firestore/i);
 });
 

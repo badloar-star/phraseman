@@ -61,3 +61,5 @@ Governance-ID: TG-284436D1E9EE
 Governance-ID: TG-F725A1E35474 (логи [AUTH-SWITCH-OFFER]/[OVERLAY-ARBITER]: окно подтверждения смены в онбординге «показано», но не видно — кто держит арбитра)
 
 Governance-ID: TG-AC8AC29BEF30 (п.2 прогона Сверки: прогрев модулей цепочки стирания — без ленивой подгрузки в момент выхода/смены)
+
+Governance-ID: (тот же пакет) системная «Назад» в онбординге — BackHandler, лог [ONBOARDING-BACK]

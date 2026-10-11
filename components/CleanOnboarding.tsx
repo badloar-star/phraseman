@@ -7,6 +7,7 @@ import {
   Alert,
   Animated,
   AppState,
+  BackHandler,
   Easing,
   Image,
   ImageSourcePropType,
@@ -2936,6 +2937,40 @@ function CleanOnboarding({
     }
     return true;
   }, [authSlow]);
+
+  // зачем (прогон Сверки 11.10): онбординг — полноэкранный слой поверх уже смонтированных вкладок, а не экран Stack,
+  // поэтому системная «Назад» уходила на корневой экран под слоем и ВЫХОДИЛА из приложения (в т.ч. с «Вернём твой
+  // прогресс»). Теперь она повторяет экранную «Назад»: из режима входа — на первый экран, с шага — на шаг назад
+  // (уход посреди входа — по тем же правилам allowLeaveDuringAuth), с первого экрана — обычное поведение Android.
+  // Открытые Modal (окна, шторки) получают «Назад» сами через onRequestClose — сюда она не доходит.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return undefined;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (step === 'welcome' && authMode) {
+        if (!allowLeaveDuringAuth('back')) {
+          console.log('[ONBOARDING-BACK] hardware ignored reason=auth_in_flight step=welcome mode=auth'); // guard-ok: ранний выход пишет причину
+          return true;
+        }
+        setAuthMode(false);
+        setAuthError(null);
+        console.log('[ONBOARDING-BACK] hardware step=welcome mode=auth → welcome');
+        return true;
+      }
+      const previous = resolveOnboardingStep(enabledOrder, step, 'backward');
+      if (previous === step) {
+        console.log(`[ONBOARDING-BACK] hardware step=${step} → system default (first step)`);
+        return false;
+      }
+      if (step === 'privacy' && !allowLeaveDuringAuth('back')) {
+        console.log('[ONBOARDING-BACK] hardware ignored reason=auth_in_flight step=privacy'); // guard-ok: ранний выход пишет причину
+        return true;
+      }
+      console.log(`[ONBOARDING-BACK] hardware step=${step} → ${previous}`);
+      go(previous);
+      return true;
+    });
+    return () => subscription.remove();
+  }, [allowLeaveDuringAuth, authMode, enabledOrder, go, step]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');

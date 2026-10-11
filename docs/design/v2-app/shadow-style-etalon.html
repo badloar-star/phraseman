@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стиль «Тень» — эталон без обводок</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 12.10: «ВТОРОЙ ВАРИАНТ ДЕЛАЕМ!» — из пяти способов выбрана «Тень», no-borders-variants.html):
+     ЭТАЛОН нового вида контейнеров: ни одной обводки; плашку от фона отделяют мягкая падающая тень и лёгкий блик-градиент сверху; вложенное — тень поменьше;
+     выбранное/главное приподнимается (translateY −3) и бросает более глубокую тень. Экраны: Главная, Настройки, Диалоги, Карточки (хаб), Обучение — тёмная «Аврора» и светлая.
+     Числа и правила — SHADOW_STYLE_SPEC.md. Содержимое Главной — как на скриншоте владельца; картинок не выдумываю. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --s1: rgba(255,255,255,.085); --s2: rgba(255,255,255,.04); --so1: rgba(255,255,255,.15); --so2: rgba(255,255,255,.07); --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9); --ti: rgba(255,255,255,.07); --trk: rgba(255,255,255,.12); --tx: #fff; --sc: #A6A6A8; --acc2: var(--acc); color: var(--tx); }
+  .ph.lite { --s1: #FFFFFF; --s2: #F3F3F8; --so1: #FFFFFF; --so2: #F8F8FC; --sh: 0 14px 26px -14px rgba(40,40,80,.34), 0 1px 3px rgba(40,40,80,.06); --sh2: 0 5px 10px -5px rgba(40,40,80,.28); --sho: 0 26px 40px -14px rgba(40,40,80,.46), 0 2px 4px rgba(40,40,80,.08); --ti: rgba(20,20,40,.06); --trk: rgba(20,20,40,.1); --tx: #0C0C10; --sc: #55555D; --acc2: color-mix(in srgb, var(--g1) 78%, #000); background: #E6E6EE !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .nb { position: absolute; inset: 0; padding: 52px 16px 0; overflow: hidden; color: var(--tx); }
+  .sf { border: 0; color: var(--tx); background: linear-gradient(180deg, var(--s1), var(--s2)); box-shadow: var(--sh); }
+  .sf .sf { box-shadow: var(--sh2); } .sf .ti, .rw .ck { background: var(--ti); box-shadow: none; }
+  .sf.on { background: linear-gradient(180deg, var(--so1), var(--so2)); box-shadow: var(--sho); transform: translateY(-3px); }
+  .ac { color: var(--acc2); } .ac .i { color: var(--acc2); }
+  .cir { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; } .cir .i { width: 22px; height: 22px; }
+  .pl { height: 46px; padding: 0 14px; border-radius: 23px; display: inline-flex; align-items: center; gap: 10px; flex: none; } .pl .i { width: 20px; height: 20px; color: var(--acc2); } .pl b { display: block; font-size: 16px; line-height: 17px; font-weight: 700; } .pl span { display: block; font-size: 13px; line-height: 15px; color: var(--sc); }
+  .hrow { display: flex; align-items: center; gap: 10px; }
+  .big { border-radius: 24px; padding: 16px 18px; position: relative; }
+  .lc { margin-top: 14px; } .lc .t { font-size: 20px; line-height: 25px; font-weight: 700; padding-right: 70px; } .lc .pr { display: flex; align-items: center; gap: 12px; margin-top: 12px; } .lc .bar { flex: 1; height: 8px; border-radius: 4px; background: var(--trk); overflow: hidden; } .lc .bar i { display: block; width: 8%; height: 100%; background: var(--acc2); border-radius: 4px; } .lc .n { font-size: 16px; color: var(--sc); font-weight: 600; } .lc .lb { position: absolute; right: 14px; top: 14px; height: 34px; padding: 0 14px; border-radius: 17px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 700; background: var(--trk); }
+  .tls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; } .tl { height: 124px; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; font-size: 18px; font-weight: 800; } .tl .i { width: 40px; height: 40px; color: var(--acc2); }
+  .sh { display: flex; align-items: center; justify-content: space-between; margin: 18px 4px 10px; font-size: 22px; font-weight: 700; } .sh a { font-size: 16px; font-weight: 600; color: var(--acc2); }
+  .vs { display: flex; gap: 10px; } .vt { height: 118px; border-radius: 20px; flex: 1; padding: 12px; display: flex; align-items: flex-end; font-size: 16px; line-height: 20px; font-weight: 800; color: #fff; background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #101014), color-mix(in srgb, var(--g2) 40%, #0a0a0d)); box-shadow: var(--sh2); }
+  .td .k { font-size: 13px; letter-spacing: 2px; font-weight: 700; color: var(--sc); margin: 2px 4px 12px; }
+  .rw { display: flex; align-items: center; gap: 12px; min-height: 66px; padding: 8px 14px 8px 12px; border-radius: 18px; margin-top: 8px; } .rw .ck { width: 28px; height: 28px; border-radius: 50%; flex: none; } .rw .ti { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex: none; } .rw .ti .i { width: 22px; height: 22px; color: var(--acc2); } .rw .x { flex: 1; min-width: 0; font-size: 18px; line-height: 22px; font-weight: 700; } .rw .x s { display: block; text-decoration: none; font-size: 13px; line-height: 17px; color: var(--sc); font-weight: 500; margin-top: 1px; } .rw .c { font-size: 16px; font-weight: 700; color: var(--sc); }
+  .nav { position: absolute; left: 22px; right: 22px; bottom: 26px; height: 64px; border-radius: 32px; display: flex; align-items: center; justify-content: space-around; z-index: 9; } .nav .it { width: 54px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: var(--sc); } .nav .it .i { width: 26px; height: 26px; } .nav .it.on { color: var(--acc2); background: var(--ti); box-shadow: 0 8px 14px -6px rgba(0,0,0,.4); }
+  .h1 { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; margin: 14px 4px 14px; }
+  .gr { border-radius: 22px; margin-top: 8px; } .gr .rw { margin: 0; border-radius: 0; min-height: 60px; box-shadow: none; background: none; } .gr .rw + .rw { box-shadow: inset 0 1px 0 var(--ti); } .gls { margin: 18px 6px 8px; font-size: 13px; letter-spacing: 1.7px; font-weight: 700; color: var(--sc); }
+  .pf { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 22px; } .pf .nm { flex: 1; font-size: 19px; font-weight: 700; } .pf .nm s { display: block; text-decoration: none; font-size: 13px; color: var(--sc); font-weight: 500; margin-top: 2px; } .pf .go { height: 34px; padding: 0 14px; border-radius: 17px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; }
+  .dc { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 22px; margin-top: 12px; } .dc .ti { width: 52px; height: 52px; border-radius: 18px; display: flex; align-items: center; justify-content: center; flex: none; } .dc .ti .i { width: 26px; height: 26px; color: var(--acc2); } .dc .x { flex: 1; min-width: 0; font-size: 19px; line-height: 24px; font-weight: 700; } .dc .x s { display: block; text-decoration: none; font-size: 15px; color: var(--sc); font-weight: 500; margin-top: 3px; } .dc .f { font-size: 15px; color: var(--sc); font-weight: 700; } .dc .pp { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 8px; background: var(--acc); color: var(--on); font-size: 13px; font-weight: 700; margin-left: 8px; vertical-align: 2px; }
+  .pk { display: flex; align-items: center; gap: 14px; height: 85px; padding: 10px 14px 10px 12px; border-radius: 22px; margin-top: 12px; } .pk .ct { width: 68px; align-self: stretch; border-radius: 18px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(150deg, color-mix(in srgb, var(--acc) 34%, #14141a), color-mix(in srgb, var(--g2) 36%, #0e0e12)); color: #fff; box-shadow: var(--sh2); } .pk .ct b { font-size: 23px; line-height: 26px; } .pk .ct span { font-size: 13px; line-height: 15px; opacity: .75; font-weight: 600; } .pk .bx { flex: 1; min-width: 0; } .pk .tt { font-size: 16px; line-height: 21px; font-weight: 700; } .pk .au { font-size: 13px; color: var(--sc); margin-top: 3px; } .pk .rd { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--acc2) 20%, transparent); color: var(--acc2); flex: none; }
+  .cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 28px; font-size: 17px; font-weight: 700; background: var(--acc); color: var(--on); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--acc) 60%, #000); }
+  .lv { display: flex; align-items: center; gap: 10px; margin: 18px 4px 4px; font-size: 16px; font-weight: 700; } .lv .l { height: 28px; padding: 0 12px; border-radius: 14px; display: inline-flex; align-items: center; background: var(--acc2); color: var(--on); font-size: 14px; font-weight: 800; } .ph.lite .lv .l { color: #fff; } .lv .c { color: var(--sc); font-weight: 600; }
+  .lcd { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 20px; margin-top: 12px; } .lcd .n { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex: none; background: var(--ti); } .lcd .x { flex: 1; min-width: 0; font-size: 16px; line-height: 21px; font-weight: 700; } .lcd .s { display: flex; gap: 3px; color: var(--acc2); } .lcd .s .i { width: 18px; height: 18px; } .lcd .s .off { opacity: .25; }
+  .srch { display: flex; align-items: center; gap: 10px; margin-top: 4px; } .srch .f { flex: 1; height: 44px; border-radius: 22px; padding: 0 14px; display: flex; align-items: center; gap: 8px; font-size: 16px; color: var(--sc); } .srch .f .i { width: 18px; height: 18px; } .srch .cir { width: 40px; height: 40px; }
+  .vnt { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Стиль «Тень» — эталон без обводок</h1>
+  <p class="page-lead">Выбранный владельцем способ (вариант 2): контейнеры без единой обводки, отделение — мягкая тень и лёгкий блик сверху, выбранное приподнято. Пять экранов в тёмной «Авроре» и в светлой теме. Правила и числа — SHADOW_STYLE_SPEC.md.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, coinImg } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const FLAME = svg('<path d="M12 21c-3.6 0-6.5-2.6-6.5-6.3 0-3.3 2.3-5 3.3-7.7.6 1.6 1.6 2.6 2.7 3.1C11.4 7 12.8 4.6 15 3c-.2 3 3.5 5.4 3.5 11.2C18.5 18 15.6 21 12 21z"/>');
+const BELL = svg('<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>');
+const STAR = (on) => svg('<path d="M12 3.8l2.5 5.3 5.7.7-4.2 4 1.1 5.7L12 16.7 6.9 19.5 8 13.8 3.8 9.8l5.7-.7z" fill="currentColor" stroke="none"/>', on ? '' : 'off');
+const nav = (on) => `<div class="nav sf">${[icon('layers'), icon('bookmark'), icon('play'), icon('people'), svg('<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>')].map((ic, i) => `<span class="it${i === on ? ' on' : ''}">${ic}</span>`).join('')}</div>`;
+const row = (ic, t, s, c, o = {}) => `<div class="rw sf${o.on ? ' on' : ''}">${o.ck ? '<span class="ck"></span>' : ''}<span class="ti">${ic}</span><div class="x">${t}${s ? `<s>${s}</s>` : ''}</div><span class="c">${c || ''}</span></div>`;
+const home = () => `<div class="nb"><div class="hrow"><span class="pl sf">${FLAME}<div><b>2 дня</b><span>Серия</span></div></span><span class="pl sf" style="flex:1">${coinImg(5, 22)}<div><b>6854</b><span>Монеты</span></div></span><span class="cir sf">${BELL}</span><span style="width:52px;height:52px;flex:none">${coinImg(5, 52)}</span></div>
+  <div class="big sf lc on"><div class="t">Местоимения и глагол To Be</div><div class="pr"><div class="bar"><i></i></div><span class="n">4 / 50</span><span class="cir sf" style="width:38px;height:38px">${icon('fwd', 's20')}</span></div><span class="lb">Урок 1</span></div>
+  <div class="tls"><div class="tl sf">${icon('layers')}Уроки</div><div class="tl sf">${icon('chat')}Диалоги</div><div class="tl sf">${icon('bookmark')}Карточки</div></div>
+  <div class="sh">Видео<a>Смотреть все ›</a></div><div class="vs"><div class="vt">Английский: собери фразу</div><div class="vt">Говори целыми фразами</div></div>
+  <div class="big sf td" style="margin-top:18px;padding:16px 12px 10px"><div class="k">СЕГОДНЯ</div>${row(icon('chat', 's22'), 'Потренировать диалог', '', '0/1', { ck: 1 })}${row(icon('layers', 's22'), 'Повторить карточки', 'Не менее 10 слов', '8/10', { ck: 1 })}${row(icon('trend', 's22'), 'Исправить ошибки', '', '1/5', { ck: 1 })}</div>${nav(0)}</div>`;
+const settings = () => `<div class="nb"><div class="h1">Настройки</div><div class="pf sf on"><span style="width:52px;height:52px;flex:none">${coinImg(5, 52)}</span><div class="nm">Delta 28003<s>Лектор · не привязан</s></div><span class="go sf">Войти</span></div>
+  <div class="gls">ПРОФИЛЬ</div><div class="gr sf">${row(icon('user', 's22'), 'Аккаунт', '', 'Не привязан ›')}${row(icon('flag', 's22'), 'Язык интерфейса', '', 'Русский ›')}${row(icon('layers', 's22'), 'Язык изучения', '', 'English ›')}</div>
+  <div class="gls">ОБУЧЕНИЕ</div><div class="gr sf">${row(icon('bolt', 's22'), 'Настройки обучения', '', '›')}${row(icon('chat', 's22'), 'Уведомления', '', 'Вкл ›')}${row(icon('layers', 's22'), 'Темы', '', 'Графит ›')}</div>
+  <div class="gls">PHRASEMAN PLUS</div><div class="gr sf">${row(icon('bolt', 's22'), 'Подписка Plus', '', 'Не активна ›')}${row(icon('bookmark', 's22'), 'Ввести промокод', '', '›')}</div>${nav(4)}</div>`;
+const dialogs = () => `<div class="nb"><div class="h1" style="font-size:36px;line-height:42px;margin-bottom:6px">Диалоги</div><div style="font-size:16px;color:var(--sc);margin:0 4px 6px">Практикуйте язык в жизненных ситуациях</div>
+  <div class="dc sf on" style="margin-top:18px"><span class="ti">${icon('chat', 's26')}</span><div class="x">Свободный разговор<span class="pp">PLUS</span><s>Практика без сценария</s></div>${icon('fwd', 's20')}</div>
+  ${[['bolt', 'Каждый день', 'Повседневные диалоги', '0/11'], ['play', 'Путешествия', 'В поездках и на отдыхе', '0/8'], ['people', 'Общение', 'Знакомства и разговоры', '0/13'], ['layers', 'Ситуации', 'Разные жизненные сценарии', '0/19']].map(([ic, t, s, c]) => `<div class="dc sf"><span class="ti">${icon(ic, 's26')}</span><div class="x">${t}<s>${s}</s></div><span class="f">${c} ›</span></div>`).join('')}${nav(1)}</div>`;
+const pack = (n, t, a, plus) => `<div class="pk sf"><div class="ct"><b>${n}</b><span>карточек</span></div><div class="bx"><div class="tt">${t}</div><div class="au">${a}</div></div><span class="rd">${plus ? icon('plus', 's22') : icon('fwd', 's20')}</span></div>`;
+const cards = () => `<div class="nb"><div class="h1">Карточки</div><div style="font-size:16px;color:var(--sc);margin:-8px 4px 0">Учите слова и фразы эффективнее</div><div class="sh" style="margin-top:20px">Лучшее у сообщества<a>Смотреть все ›</a></div>
+  ${pack(49, 'B2 глаголы', 'Ирина · ♥ 3 · 11 добавили', true)}${pack(20, 'Family', 'Лидия · ♥ 4 · 9 добавили', true)}
+  <div class="sh" style="margin-top:20px">Ваши карточки</div>${row(icon('bookmark', 's22'), 'Сохранённые', 'Личная коллекция', '›', { on: 1 })}${row(icon('layers', 's22'), 'Мои наборы', 'Созданные и добавленные', '›')}
+  <div class="cta" style="margin-top:20px">Тренироваться с карточками →</div>${nav(1)}</div>`;
+const lessons = () => `<div class="nb"><div class="hrow" style="margin-top:12px"><div class="h1" style="flex:1;margin:0">Обучение</div><span class="pl sf">${coinImg(5, 20)}<b>1 240</b></span><span class="pl sf">${icon('bolt', 's20')}<b>5</b></span></div>
+  <div class="srch"><div class="f sf">${icon('search', 's18')}Урок или тема</div><span class="cir sf">${svg('<path d="M3.5 7h3.2c3.3 0 5 2.4 6.6 5s3.3 5 6.6 5H21M3.5 17h3.2c1.5 0 2.7-.5 3.7-1.4M13.3 8.4c.9-.9 2.1-1.4 3.4-1.4H21"/>')}</span></div>
+  <div class="lv"><span class="l">A1</span><span class="c">2 из 8</span></div>
+  ${[[1, 'Местоимения и глагол To Be', 3], [2, 'Отрицание и вопросы (To Be)', 2], [3, 'Present Simple: Утверждение', 0], [4, 'Present Simple: Отрицание', 0]].map(([n, t, s], i) => `<div class="lcd sf${i === 2 ? ' on' : ''}"><span class="n">${n}</span><span class="x">${t}</span><span class="s">${[1, 2, 3].map((k) => STAR(k <= s)).join('')}</span></div>`).join('')}${nav(1)}</div>`;
+const S = [['Главная', home, 'Выбранное — текущий урок: приподнят, тень глубже. Остальное — мягкая тень.'], ['Настройки', settings, 'Группа — одна плашка, строки внутри без своих плашек, между ними тон-разделитель.'], ['Диалоги', dialogs, '«Свободный разговор» приподнят; категории — плашки с мягкой тенью.'], ['Карточки · хаб', cards, 'Плашки наборов высотой 85; «Сохранённые» приподняты; кнопка действия — цвет темы с цветной тенью.'], ['Обучение', lessons, 'Строки уроков — плашки с тенью; текущий урок приподнят.']];
+const grid = (lite) => S.map(([n, f, d]) => `<div class="col"><div class="lbl">${n}</div>${phone(f(), {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`)}<div class="vnt">${d}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); p.style.setProperty('--on', '#fff'); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

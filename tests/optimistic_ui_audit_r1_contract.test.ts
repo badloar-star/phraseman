@@ -46,7 +46,18 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
   it('learning settings: late load does not overwrite a fresh choice; a failed save reverts the switch', () => {
     const edu = read('app/settings_edu.tsx');
     expect(edu).toMatch(/editVersionRef\.current !== loadStartedAtVersion/);
-    expect(edu).toMatch(/editVersionRef\.current \+= 1;\s*setS\(prev =>/);
+    // E6: запись вынесена из обновителя состояния; при отказе хранилища откатывается только своя строка и только если её не изменили позже
+    const update = section(edu, 'const update = (key: keyof UserSettings', 2600);
+    expect(update).toMatch(/editVersionRef\.current \+= 1;/);
+    expect(update).not.toMatch(/setS\(prev =>/);
+    expect(update.indexOf('setS(next)')).toBeGreaterThan(-1);
+    expect(update.indexOf('setS(next)')).toBeLessThan(update.indexOf('applyUserSettingsNow(next)'));
+    expect(update).toMatch(/if \(persisted\) return;/);
+    expect(update).toMatch(/latestSettingsRef\.current\[key\] !== val/);
+    expect(update).toContain('[OPT-UI] settings_edu rollback key=');
+    expect(update).toContain('[OPT-UI] settings_edu rollback skipped');
+    expect(update).toMatch(/\[key\]: previous\[key\]/);
+    expect(update).toMatch(/emitAppEvent\('action_toast'/);
     expect(edu).toMatch(/logToggleSaveFailure\('fc_sfx', \(\) => setFcSfx\(!value\)\)/);
     expect(edu).toMatch(/logToggleSaveFailure\('fc_autospeak', \(\) => setFcAutoSpeak\(!value\)\)/);
   });
@@ -67,6 +78,12 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
     const single = undo.slice(undo.indexOf('} else {\n        const uiCard'), undo.indexOf('} catch (error: unknown)'));
     expect(single.indexOf('updateSavedCards(')).toBeLessThan(single.indexOf('await restoreFlashcard('));
     expect(undo).toContain('[OPT-UI] undo_delete rollback');
+    // E4: СВОЯ карточка тоже возвращается в список до записи; при сбое список своих перечитывается
+    const custom = undo.slice(undo.indexOf("entry.kind === 'custom'"), undo.indexOf('} else {\n        const uiCard'));
+    expect(custom.indexOf('updateCustomCards(')).toBeGreaterThan(-1);
+    expect(custom.indexOf('updateCustomCards(')).toBeLessThan(custom.indexOf('await restoreCustomCard('));
+    expect(undo).toMatch(/listCustomCards\(studyTarget\)/);
+    expect(undo).toContain('[OPT-UI] undo_delete custom reload_failed');
     expect(collection).toContain('[OPT-UI] batch_delete rollback');
   });
 
@@ -75,9 +92,11 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
     const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
     jest.spyOn(console, 'log').mockImplementation(() => {});
     const { applyUserSettingsNow, getUserSettingsSnapshot } = await import('../app/user_settings_store');
-    applyUserSettingsNow({ ...getUserSettingsSnapshot(), autoCheck: true });
-    await new Promise((resolve) => setImmediate(resolve));
+    const persisted = await applyUserSettingsNow({ ...getUserSettingsSnapshot(), autoCheck: true });
+    expect(persisted).toBe(false); // E6: экран узнаёт об отказе и откатывает тумблер
     expect(warn).toHaveBeenCalledWith(expect.stringContaining('[OPT-UI] user_settings persist_failed reason=disk_full'));
+    mockSetItem.mockResolvedValueOnce(undefined);
+    expect(await applyUserSettingsNow({ ...getUserSettingsSnapshot(), autoCheck: false })).toBe(true);
     jest.restoreAllMocks();
   });
 });

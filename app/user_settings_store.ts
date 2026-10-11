@@ -104,15 +104,23 @@ export async function saveSettings(s: UserSettings): Promise<void> {
   }
 }
 
-export function applyUserSettingsNow(s: UserSettings): void {
+/**
+ * Применить настройки мгновенно (память + снимок — синхронно), запись в хранилище идёт фоном.
+ * // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): возвращает Promise<boolean> — удалась ли запись; прежние вызовы игнорируют значение (обратно совместимо), экран может откатить переключатель при false.
+ */
+export function applyUserSettingsNow(s: UserSettings): Promise<boolean> {
   const finishMutation = beginSettingsStorageMutation();
   try {
     memory = normalizeSettings(s);
     publishSettingsSnapshot('local');
     // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи настроек раньше глотался молча (then(finish, finish)) — теперь причина в журнал; значение в памяти остаётся.
-    void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).then(finishMutation, (error: unknown) => {
+    return AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).then(() => {
+      finishMutation();
+      return true;
+    }, (error: unknown) => {
       console.warn(`[OPT-UI] user_settings persist_failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина отказа записи
       finishMutation();
+      return false;
     });
   } catch (error) {
     finishMutation();

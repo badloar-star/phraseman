@@ -37,7 +37,7 @@ import {
 } from '../transcription';
 import { actionToastTri, emitAppEvent } from '../events';
 import { checkAchievements } from '../achievements';
-import { deleteCustomCard, restoreCustomCard } from './custom_cards_store';
+import { deleteCustomCard, listCustomCards, restoreCustomCard } from './custom_cards_store';
 import { fcHaptic } from './SoundService';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './cardPackPaywallTheme';
 import type { ThemeMode } from '../../constants/theme';
@@ -1052,13 +1052,14 @@ export function useCollectionDeletion(args: {
       } else if (entry.kind === 'custom') {
         const card = entry.customSnapshot?.card ?? entry.uiCard;
         const index = entry.customSnapshot?.index ?? entry.uiIndex;
-        await restoreCustomCard(card, index, studyTarget);
+        // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): своя карточка возвращается в список в тот же кадр, запись догоняет; при сбое catch перечитывает список своих из хранилища.
         updateCustomCards((prev) => {
           if (prev.some((c) => c.id === card.id)) return prev;
           const next = [...prev];
           next.splice(Math.max(0, Math.min(index, next.length)), 0, card);
           return next;
         });
+        await restoreCustomCard(card, index, studyTarget);
       } else {
         const uiCard = entry.savedSnapshot ? savedToCard(entry.savedSnapshot.card, studyTarget) : entry.uiCard;
         const index = entry.savedSnapshot?.index ?? entry.uiIndex;
@@ -1075,9 +1076,18 @@ export function useCollectionDeletion(args: {
     } catch (error: unknown) {
       console.warn(`[OPT-UI] undo_delete rollback kind=${error instanceof Error ? error.name : typeof error} entry=${entry.kind}${entry.batch ? ' batch' : ''}`); // guard-ok: catch пишет причину
       if (!isCurrentAccountGeneration(entry.accountToken)) return;
-      const actual = await loadAllSavedFlashcards();
-      if (!isCurrentAccountGeneration(entry.accountToken)) return;
-      updateSavedCards(() => actual.map(card => savedToCard(card)));
+      if (entry.kind === 'custom' && !entry.batch) {
+        const actualCustom = await listCustomCards(studyTarget).catch((reloadError: unknown) => {
+          console.warn(`[OPT-UI] undo_delete custom reload_failed kind=${reloadError instanceof Error ? reloadError.name : typeof reloadError}`); // guard-ok: catch пишет причину
+          return null;
+        });
+        if (!isCurrentAccountGeneration(entry.accountToken)) return;
+        if (actualCustom) updateCustomCards(() => actualCustom);
+      } else {
+        const actual = await loadAllSavedFlashcards();
+        if (!isCurrentAccountGeneration(entry.accountToken)) return;
+        updateSavedCards(() => actual.map(card => savedToCard(card)));
+      }
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {

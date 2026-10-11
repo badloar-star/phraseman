@@ -154,12 +154,29 @@ export default function SettingsEdu() {
     }, []),
   );
 
+  // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): запись больше не живёт внутри обновителя состояния (двойной вызов в StrictMode = двойная запись); при отказе хранилища откатывается ТОЛЬКО эта строка и только если её не успели изменить снова.
+  const latestSettingsRef = useRef(s);
+  latestSettingsRef.current = s;
   const update = (key: keyof UserSettings, val: boolean | number) => {
     editVersionRef.current += 1;
-    setS(prev => {
-      const next = { ...prev, [key]: val };
-      applyUserSettingsNow(next);
-      return next;
+    const previous = latestSettingsRef.current;
+    const next = { ...previous, [key]: val };
+    latestSettingsRef.current = next;
+    setS(next);
+    void applyUserSettingsNow(next).then((persisted) => {
+      if (persisted) return;
+      if (latestSettingsRef.current[key] !== val) {
+        console.log(`[OPT-UI] settings_edu rollback skipped key=${String(key)}: значение уже изменено позже`); // guard-ok: ранний выход называет причину
+        return;
+      }
+      console.warn(`[OPT-UI] settings_edu rollback key=${String(key)} ${String(val)} → ${String(previous[key])}: запись не удалась`); // guard-ok: откат называет причину
+      const reverted = { ...latestSettingsRef.current, [key]: previous[key] };
+      latestSettingsRef.current = reverted;
+      setS(reverted);
+      void applyUserSettingsNow(reverted);
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+      }));
     });
   };
 

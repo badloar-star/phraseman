@@ -2032,10 +2032,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     let bootRestoreFailureReason: CloudRestoreFailureReason | null = null;
     let contentDeliveryMigrationPromise: Promise<void> | null = null;
     const restoreCloudForBoot = async () => {
+      // зачем (координатор 11.10, «сперва логи»): content_migration.wait_cloud ждал облако 67 с, а шагов восстановления
+      // в журнале не было вовсе. Делим время: анонимный вход отдельно, восстановление отдельно, плюс итог и причина.
+      const bootRestoreStartedAt = Date.now();
       await ensureAnonUser();
+      const anonMs = Date.now() - bootRestoreStartedAt;
       void resumePendingOnboardingFunnel().catch(noteSwallowedHandler('_layout:restoreCloudForBoot.resumePendingOnboardingFunnel'));
       void resumePendingAgeConsent().catch(noteSwallowedHandler('_layout:restoreCloudForBoot.resumePendingAgeConsent'));
+      const restoreStartedAt = Date.now();
       const result = await restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions);
+      console.log('[BOOT-RESTORE]', JSON.stringify({
+        anonMs,
+        restoreMs: Date.now() - restoreStartedAt,
+        totalMs: Date.now() - bootRestoreStartedAt,
+        status: result.status,
+        failureReason: result.failureReason ?? null,
+      }));
       bootRestoreFailureReason = result.failureReason;
       // Тихий deferred link: дожимаем отложенную привязку в фоне. Успех →
       // журнал снят и тут же молча подтягиваем облако в этой же сессии.

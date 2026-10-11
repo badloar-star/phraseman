@@ -435,7 +435,7 @@ function describeAuthError(raw: string, lang: Lang): string {
   } else if (code === 'local_progress_not_uploaded' || code === 'local_progress_backup_blocked') {
     // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
     // тот же текст, что в модалке входа (выбор текста — одна функция).
-    const copy = signInRefusalCopyFor(code, lang);
+    const copy = signInRefusalCopyFor(code, lang, 'onboarding');
     if (copy) human = `${copy.title}. ${copy.body}`;
   } else if (code === 'identity_retired') {
     human = triLang(lang, {

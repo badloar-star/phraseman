@@ -8,6 +8,7 @@ import {
 import { fetchCommunityPackMeta } from './communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
 import { DebugLogger } from '../debug-logger';
+import { IS_STORE_RELEASE } from '../config';
 
 let flushRunning = false;
 
@@ -152,6 +153,28 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
   } finally {
     flushRunning = false;
   }
+}
+
+/**
+ * DEV-съёмка (R1 cards-gap-014…017, `dev_state?moderation=…`): то же окно решения модерации, но без чтения почтового ящика продавца и без
+ * сети — тексты строят те же moderationTitle/moderationBody, что и у настоящего письма. В стор-сборке — отказ с логом.
+ */
+export async function devShowModerationAlert(result: 'approved' | 'rejected' | 'revision_requested' | 'pack_removed'): Promise<void> {
+  if (typeof __DEV__ === 'undefined' || !__DEV__ || IS_STORE_RELEASE) {
+    console.warn('[DEV-STATE] moderation отклонено: не dev-сборка'); // guard-ok: ранний выход логируется
+    return;
+  }
+  const lang = await readAppLang();
+  const message = result === 'rejected'
+    ? 'Слишком мало примеров: добавь предложения с каждым словом.'
+    : result === 'revision_requested'
+      ? 'Добавь транскрипцию к каждой карточке.'
+      : null;
+  const rec: Record<string, unknown> = {
+    result, titleRu: 'Путешествия', titleUk: 'Подорожі', titleEs: 'Viajes', submissionId: 'sub_dev_0001', packId: 'local_pack_dev_demo_travel', message,
+  };
+  console.log(`[DEV-STATE] moderation alert ${JSON.stringify({ result, lang })}`); // guard-ok: dev-ветка
+  await enqueueThemedBlockingInfoAlert(moderationTitle(result, lang), moderationBody(rec, lang), okButtonLabel(lang));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

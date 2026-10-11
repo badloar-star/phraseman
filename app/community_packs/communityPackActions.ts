@@ -6,6 +6,7 @@
  * Осколки/звёзды/legacy reward здесь не участвуют вообще: наборы бесплатны и ничего не приносят (§1.4).
  */
 import { emitAppEvent } from '../events';
+import { isDevCardsFail } from '../dev_cards_state';
 import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
@@ -59,6 +60,11 @@ export async function addCommunityPackToLibrary(
   if (!pack?.id) {
     console.warn('[PACK-ADD] unavailable reason=no_pack_id'); // guard-ok: ранний выход называет причину
     return 'unavailable';
+  }
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=pack_write` — запись набора в «Мои» не удалась (тост «Не получилось сохранить набор на телефоне»); в стор-сборке геттер выключен.
+  if (isDevCardsFail('pack_write')) {
+    console.warn(`[PACK-ADD] запись подменена сбоем (pack_write) pack=${pack.id}`); // guard-ok: dev-ветка
+    throw new Error('dev_pack_write_failed');
   }
   const videoCommunityId = communityPackIdForVideoPhraseSet(pack.id);
   if (videoCommunityId) {

@@ -23,6 +23,7 @@
 // Чистая логика (жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { getDevTrainGate } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -487,6 +488,12 @@ export default function FlashcardsBlitzSession() {
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
     setQuotaUnavailable(false);
+    // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `train_gate=fail_blitz` — «Тренировка не открылась» без реального слоя выдачи; в стор-сборке геттер выключен.
+    if (getDevTrainGate() === 'fail_blitz') {
+      console.log('[DEV-STATE] blitz: слой выдачи подменён отказом (fail_blitz)'); // guard-ok: dev-ветка
+      setQuotaUnavailable(true);
+      return;
+    }
     const accessEpoch = blitzAccessEpochRef.current;
     const runToken = {};
     blitzStartRunRef.current = runToken;

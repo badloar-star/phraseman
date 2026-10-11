@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { isDevCardsFail } from './dev_cards_state';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -349,6 +350,12 @@ export default function FlashcardsRecallSession() {
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let recallLocalStart: (() => void) | null = null;
     void (async () => {
+      // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=recall_load` — «Сейчас недоступно» сразу, без реальной загрузки и без тихих повторов; в стор-сборке геттер выключен.
+      if (isDevCardsFail('recall_load')) {
+        console.log('[DEV-STATE] recall: загрузка карточек подменена сбоем (recall_load)'); // guard-ok: dev-ветка
+        if (!cancelled) { silentRecallRetryRef.current = 99; setLoading(false); setLoadError(true); }
+        return;
+      }
       const loadedCards = await loadDeckCardsMulti(deckRefs, contentLang, {
         shuffle: true,
         studyTarget,

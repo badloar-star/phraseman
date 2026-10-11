@@ -29,6 +29,7 @@
 // внутри `SpeakMicButton` (без доступа → пейвол context='speaking').
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { getDevTrainGate } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -454,6 +455,13 @@ export default function FlashcardsSpeakingSession() {
       return undefined;
     }
     if (!accessResolved || quotaUnavailableRef.current) return undefined;
+    // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `train_gate=fail_speaking` — «Тренировка не открылась» в «Устно» без реального слоя выдачи; в стор-сборке геттер выключен.
+    if (getDevTrainGate() === 'fail_speaking') {
+      console.log('[DEV-STATE] speaking: слой выдачи подменён отказом (fail_speaking)'); // guard-ok: dev-ветка
+      quotaUnavailableRef.current = true;
+      setQuotaUnavailable(true);
+      return undefined;
+    }
     setQuotaSessionAuthorized(false);
     speakingExplicitlyAbandonedRef.current = false;
     let cancelled = false;

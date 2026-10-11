@@ -60,6 +60,7 @@ import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQ
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
+import { isDevCardsFail, isDevCardsHeld } from './dev_cards_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LoadState = 'loading' | 'ready' | 'error';
@@ -613,7 +614,7 @@ export default function FlashcardsTrainingSetupScreen() {
   const baseStartLabel = copy.start;
   // зачем (ядро): пока тап в очереди, кнопка показывает «Начать…» — видно, что тап принят, и не хочется тапать снова
   const startLabel = startQueued ? `${baseStartLabel}…` : baseStartLabel;
-  const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid' = !mode
+  const computedSetupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid' = !mode
     ? 'invalid'
     : loadState === 'loading'
       ? 'loading'
@@ -622,6 +623,8 @@ export default function FlashcardsTrainingSetupScreen() {
         : decks.length === 0
           ? 'empty'
           : 'ready';
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=setup_loading` / `fail=setup_decks` — «Загрузка наборов» и «Сейчас недоступно»; в стор-сборке геттеры выключены.
+  const setupStatus: typeof computedSetupStatus = isDevCardsHeld('setup_loading') ? 'loading' : isDevCardsFail('setup_decks') ? 'unavailable' : computedSetupStatus;
   // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный лимит — обычная настройка с пилюлей и «Безлимит с Plus», а не тупик
   const limitReached = quotaPreview.status === 'exhausted';
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;

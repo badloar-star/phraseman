@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { devSpeechTranscriptFor, getDevSpeechMode, type DevSpeechMode } from '../app/dev_cards_state';
 import { DebugLogger } from '../app/debug-logger';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -1681,11 +1682,30 @@ export function SpeakingPanel({
   // PCM/Whisper when ready, with the existing system fallback unchanged.
   const previousInlineHoldRef = useRef(false);
   const inlineHoldRouteRef = useRef<'system' | 'pcm' | null>(null);
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `speech=correct|wrong|denied|no_speech` — у робота нет микрофона: удержание кнопки «слышит» заданную фразу; в стор-сборке геттер выключен.
+  const devSpeechHoldRef = useRef<DevSpeechMode | null>(null);
   useEffect(() => {
     if (presentation !== 'inline') return;
     const wasHolding = previousInlineHoldRef.current;
     previousInlineHoldRef.current = holdActive;
     if (holdActive && !wasHolding) {
+      const devMode = getDevSpeechMode();
+      if (devMode !== null && devMode !== 'unavailable') {
+        console.log(`[DEV-STATE] speaking: удержание подменено (${devMode})`); // guard-ok: dev-ветка
+        inlineHoldRouteRef.current = null;
+        devSpeechHoldRef.current = devMode;
+        captureGenerationRef.current += 1;
+        if (devMode === 'denied') {
+          setStatus('denied');
+        } else {
+          setTranscript('');
+          setScore(null);
+          setWordReport(null);
+          setHint(null);
+          setStatus('listening');
+        }
+        return;
+      }
       const route: 'system' | 'pcm' = Platform.OS !== 'ios' && pcmHoldMode ? 'pcm' : 'system';
       inlineHoldRouteRef.current = route;
       if (route === 'pcm') {
@@ -1696,6 +1716,19 @@ export function SpeakingPanel({
       }
     }
     if (!holdActive && wasHolding) {
+      const devMode = devSpeechHoldRef.current;
+      if (devMode !== null) {
+        devSpeechHoldRef.current = null;
+        const generation = captureGenerationRef.current;
+        if (devMode === 'no_speech') {
+          setStatus('no_speech');
+          playNoSpeech();
+        } else if (devMode !== 'denied') {
+          setStatus('scoring');
+          setTimeout(() => applyScoredResult(devSpeechTranscriptFor(targetText) ?? '', undefined, null, generation), 500);
+        }
+        return;
+      }
       const route = inlineHoldRouteRef.current;
       inlineHoldRouteRef.current = null;
       if (route === 'pcm') {
@@ -1704,7 +1737,7 @@ export function SpeakingPanel({
         stopListening();
       }
     }
-  }, [presentation, holdActive, pcmHoldMode, startHold, endHold, startListening, stopListening]);
+  }, [presentation, holdActive, pcmHoldMode, startHold, endHold, startListening, stopListening, applyScoredResult, playNoSpeech, targetText]);
 
   // Hold-режим: «Сказать ещё раз» просто возвращает панель в исходное состояние —
   // юзер снова зажимает кнопку. (На системном пути ретрай перезапускает движок.)

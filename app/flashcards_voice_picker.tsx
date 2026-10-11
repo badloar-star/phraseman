@@ -12,6 +12,7 @@
  * - Подсказка: улучшенные голоса докачиваются в настройках телефона (платформенно).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { isDevCardsHeld } from './dev_cards_state';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
@@ -76,7 +77,8 @@ export default function FlashcardsVoicePickerScreen() {
   const { speak, stop } = useAudio();
 
   // зачем (аудит cards-gaps-states, «раздел открывается без экранов загрузки»): кэш голосов уже готов — первый кадр сразу со списком
-  const [loading, setLoading] = useState(() => peekVoicesCache() === null);
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=voices_loading` держит скелет списка голосов; в стор-сборке геттер выключен.
+  const [loading, setLoading] = useState(() => peekVoicesCache() === null || isDevCardsHeld('voices_loading'));
   const [voices, setVoices] = useState<FcVoiceLike[]>(() => (peekVoicesCache() ?? []).filter(isPickableEnVoice));
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [settings, setSettings] = useState<UserSettings>(() => getUserSettingsSnapshot());
@@ -88,7 +90,7 @@ export default function FlashcardsVoicePickerScreen() {
       if (cancelled) return;
       setVoices(list.filter(isPickableEnVoice));
       setSelectedId(prefs.voiceIdEn);
-      setLoading(false);
+      if (!isDevCardsHeld('voices_loading')) setLoading(false);
     })();
     return () => {
       cancelled = true;

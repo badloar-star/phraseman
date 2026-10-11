@@ -8,6 +8,7 @@
  * и попадает в админку владельца.
  */
 import auth from '@react-native-firebase/auth';
+import { isDevCardsFail } from '../dev_cards_state';
 
 import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -87,6 +88,11 @@ export async function publishLocalAuthorPack(
   sourceLang: Lang,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<PublishLocalPackResult> {
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=publish_daily_limit` — «не больше 3 в сутки» без обращения к серверу; в стор-сборке геттер выключен.
+  if (isDevCardsFail('publish_daily_limit')) {
+    logPublish('submit:daily_limit', { packId, dev: true });
+    return 'daily_limit';
+  }
   const token = captureAccountGeneration();
   // зачем: КАЖДЫЙ ранний выход обязан назвать причину. Немой выход — это
   // «нажал, ничего не произошло, в логе пусто»; именно так баги живут месяцами.

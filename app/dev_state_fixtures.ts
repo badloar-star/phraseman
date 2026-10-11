@@ -20,6 +20,7 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
+import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 
 export type DevVipKind = 'promo' | 'promo_lifetime' | 'referral' | 'survey' | 'idea' | 'tester' | 'admin' | 'admin_lifetime' | 'off';
@@ -64,17 +65,26 @@ export type DevStateRequest = Readonly<{
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
-  cards?: 'demo' | 'demo_lessons' | 'custom50';
+  cards?: 'demo' | 'demo_lessons' | 'custom50' | 'demo_published' | 'notranslation';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
   slot?: 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
   /** Диалоги (R1 dialogs-*): отказ сервера, настроение, рубильник, удержание загрузки свободного разговора, отказ энергии. off — снять. */
   dialogFail?: DevDialogFail | 'off';
   dialogMood?: DevDialogMood | 'off';
   dialogsPaused?: 'on' | 'off';
-  hold?: 'freeform_loading' | 'off';
   energyFail?: 'on' | 'off';
   /** Тост результата проверки статуса/восстановления покупок (R1 paywall-gap-011…013): показывается через ~0,9 с после ссылки. */
   toast?: 'purchase_confirmed' | 'restored' | 'status_not_found' | 'no_active_subscriptions' | 'status_check_failed' | 'restore_failed';
+  /** Карточки (R1 «нет пути», Н-1): удержание загрузок через запятую или `off`. */
+  hold?: readonly (DevCardsHold | 'freeform_loading')[] | 'off';
+  /** Карточки (Н-2, Н-4, Н-6): искусственные сбои чтения/записи через запятую или `off`. */
+  fail?: readonly DevCardsFail[] | 'off';
+  /** «Устно» (Н-9): что подставить вместо микрофона. */
+  speech?: DevSpeechMode | 'off';
+  /** Отказ слоя отложенной выдачи тренировки (Н-10). */
+  trainGate?: DevTrainGate | 'off';
+  /** Окно решения модерации набора (Н-12): локальная постановка, без чтения почтового ящика продавца. */
+  moderation?: 'approved' | 'rejected' | 'revision' | 'removed';
   next?: string;
 }>;
 
@@ -120,7 +130,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   request.free = pick('free', ['on', 'off'] as const);
-  request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50'] as const);
+  request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50', 'demo_published', 'notranslation'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
@@ -130,9 +140,25 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     return value === '1' || value === 'on' || value === 'true' ? 'on' : 'off';
   };
   request.dialogsPaused = onOff('dialogs_paused');
-  request.hold = pick('hold', ['freeform_loading', 'off'] as const);
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed'] as const);
+  // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
+  const list = <T extends string>(key: string, allowed: readonly T[]): readonly T[] | 'off' | undefined => {
+    const raw = one(params[key]);
+    if (raw === undefined) return undefined;
+    if (raw === 'off') return 'off';
+    const items = raw.split(',').map((item) => item.trim()).filter(Boolean);
+    const ok = items.filter((item): item is T => (allowed as readonly string[]).includes(item));
+    const bad = items.filter((item) => !(allowed as readonly string[]).includes(item));
+    if (bad.length > 0) rejected[key] = `неизвестно ${bad.join(',')}; допустимо ${allowed.join('|')}|off`;
+    return ok;
+  };
+  // зачем: `hold=` общий для Карточек и Диалогов (freeform_loading — «готовим разговор»), список через запятую или `off`.
+  request.hold = list('hold', [...DEV_CARDS_HOLDS, 'freeform_loading'] as const);
+  request.fail = list('fail', DEV_CARDS_FAILS);
+  request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
+  request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
+  request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -219,6 +245,18 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       await applyCustomCards();
     });
   }
+  if (request.cards === 'demo_published') {
+    await step('cards', 'demo_published', async () => {
+      const { applyDemoPublished } = await import('./dev_state_cards_demo');
+      return applyDemoPublished(await getStableId()).then(() => undefined);
+    });
+  }
+  if (request.cards === 'notranslation') {
+    await step('cards', 'notranslation', async () => {
+      const { applyNoTranslationCards } = await import('./dev_state_cards_demo');
+      await applyNoTranslationCards();
+    });
+  }
   if (request.catalog) {
     await step('catalog', request.catalog, async () => {
       const { applyCatalog } = await import('./dev_state_cards_demo');
@@ -256,9 +294,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.dialogMood !== undefined) {
     await step('dialogMood', request.dialogMood, async () => setDevDialogState({ mood: request.dialogMood === 'off' ? null : request.dialogMood! }));
   }
-  if (request.hold !== undefined) {
-    await step('hold', request.hold, async () => setDevDialogState({ holdFreeformLoading: request.hold === 'freeform_loading' }));
-  }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
   }
@@ -270,6 +305,35 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       setTimeout(() => {
         console.log(`[DEV-STATE] toast: ${kind}`); // guard-ok: dev-ветка
         emitAppEvent('action_toast', paywallRestoreToast(kind));
+      }, 900);
+    });
+  }
+  // зачем (R1 «нет пути», Карточки): флаги в памяти процесса (app/dev_cards_state.ts); `off` снимает.
+  if (request.hold !== undefined) {
+    await step('hold', request.hold === 'off' ? 'off' : request.hold.join(','), async () => {
+      const holds = request.hold === 'off' ? [] : request.hold!;
+      const cardHolds = holds.filter((item): item is DevCardsHold => item !== 'freeform_loading');
+      setDevDialogState({ holdFreeformLoading: holds.includes('freeform_loading') });
+      return setDevCardsState({ holds: cardHolds });
+    });
+  }
+  if (request.fail !== undefined) {
+    await step('fail', request.fail === 'off' ? 'off' : request.fail.join(','), async () => setDevCardsState({ fails: request.fail === 'off' ? [] : request.fail }));
+  }
+  if (request.speech !== undefined) {
+    await step('speech', request.speech, async () => setDevCardsState({ speech: request.speech === 'off' ? null : request.speech! }));
+  }
+  if (request.trainGate !== undefined) {
+    await step('train_gate', request.trainGate, async () => setDevCardsState({ trainGate: request.trainGate === 'off' ? null : request.trainGate! }));
+  }
+  if (request.moderation) {
+    await step('moderation', request.moderation, async () => {
+      // зачем (cards-gap-014…017): то же окно, что у автора после решения модерации; задержка — чтобы маршрут `next` успел открыться.
+      const { devShowModerationAlert } = await import('./community_packs/communityModerationAlerts');
+      const result = request.moderation === 'revision' ? 'revision_requested' : request.moderation === 'removed' ? 'pack_removed' : request.moderation!;
+      setTimeout(() => {
+        console.log(`[DEV-STATE] moderation: ${result}`); // guard-ok: dev-ветка
+        void devShowModerationAlert(result);
       }, 900);
     });
   }

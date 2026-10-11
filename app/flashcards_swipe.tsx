@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
@@ -207,6 +208,35 @@ type CorrectTranslationReminder = {
   english: string;
   translation: string;
 };
+
+// зачем (координатор 12.10, R1 «нет пути»): тексты отказов старта вынесены в функции — их же показывает dev `train_gate=fail_swipe_*` для съёмки.
+function swipeQuotaUnverifiedText(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Не удалось проверить лимит тренировки. Попробуй ещё раз.',
+    en: 'Could not verify the training limit. Please try again.',
+    uk: 'Не вдалося перевірити ліміт тренування. Спробуй ще раз.',
+    es: 'No se pudo verificar el límite. Inténtalo de nuevo.',
+    'pt-BR': 'Não foi possível verificar o limite. Tente novamente.',
+    vi: 'Không thể kiểm tra giới hạn. Vui lòng thử lại.',
+    id: 'Batas latihan tidak dapat diperiksa. Coba lagi.',
+    tr: 'Antrenman sınırı doğrulanamadı. Tekrar deneyin.',
+    pl: 'Nie udało się sprawdzić limitu. Spróbuj ponownie.',
+  });
+}
+
+function swipePrepareFailedText(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Не удалось подготовить тренировку. Энергия возвращена.',
+    en: 'Could not prepare the training session. Energy was returned.',
+    uk: 'Не вдалося підготувати тренування. Енергію повернуто.',
+    es: 'No se pudo preparar la sesión. Se devolvió la energía.',
+    'pt-BR': 'Não foi possível preparar a sessão. A energia foi devolvida.',
+    vi: 'Không thể chuẩn bị buổi luyện tập. Năng lượng đã được hoàn lại.',
+    id: 'Sesi latihan tidak dapat disiapkan. Energi dikembalikan.',
+    tr: 'Antrenman hazırlanamadı. Enerji iade edildi.',
+    pl: 'Nie udało się przygotować treningu. Energia została zwrócona.',
+  });
+}
 
 /** Static material keeps the swipe gesture path free of per-card live blur roots. */
 function SwipeTrainingCardGlass({ chrome, sheen = true }: { chrome: ReturnType<typeof liquidGlassTokens>; sheen?: boolean }) {
@@ -2324,6 +2354,13 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let swipeLocalStart: (() => void) | null = null;
     try {
+      // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `train_gate=fail_swipe_prepare|fail_swipe_quota` — те же сообщения об отказе старта без реального слоя выдачи; в стор-сборке геттер выключен.
+      const devGate = getDevTrainGate();
+      if (devGate === 'fail_swipe_prepare' || devGate === 'fail_swipe_quota') {
+        console.log(`[DEV-STATE] swipe: старт подменён отказом (${devGate})`); // guard-ok: dev-ветка
+        setLoadError(devGate === 'fail_swipe_quota' ? swipeQuotaUnverifiedText(lang) : swipePrepareFailedText(lang));
+        return;
+      }
       const memory = await loadSwipeMemory(studyTarget);
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
@@ -2537,17 +2574,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         if (quotaResult.status === 'exhausted') {
           openMonthlyTrainingLimit();
         } else {
-          setLoadError(triLang(lang, {
-            ru: 'Не удалось проверить лимит тренировки. Попробуй ещё раз.',
-            en: 'Could not verify the training limit. Please try again.',
-            uk: 'Не вдалося перевірити ліміт тренування. Спробуй ще раз.',
-            es: 'No se pudo verificar el límite. Inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível verificar o limite. Tente novamente.',
-            vi: 'Không thể kiểm tra giới hạn. Vui lòng thử lại.',
-            id: 'Batas latihan tidak dapat diperiksa. Coba lagi.',
-            tr: 'Antrenman sınırı doğrulanamadı. Tekrar deneyin.',
-            pl: 'Nie udało się sprawdzić limitu. Spróbuj ponownie.',
-          }));
+          setLoadError(swipeQuotaUnverifiedText(lang));
         }
         return;
       }
@@ -2630,19 +2657,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         swipeLocalStart();
         return;
       }
-      if (swipeMountedRef.current) setLoadError(
-        triLang(lang, {
-          ru: 'Не удалось подготовить тренировку. Энергия возвращена.',
-          en: 'Could not prepare the training session. Energy was returned.',
-          uk: 'Не вдалося підготувати тренування. Енергію повернуто.',
-          es: 'No se pudo preparar la sesión. Se devolvió la energía.',
-          'pt-BR': 'Não foi possível preparar a sessão. A energia foi devolvida.',
-          vi: 'Không thể chuẩn bị buổi luyện tập. Năng lượng đã được hoàn lại.',
-          id: 'Sesi latihan tidak dapat disiapkan. Energi dikembalikan.',
-          tr: 'Antrenman hazırlanamadı. Enerji iade edildi.',
-          pl: 'Nie udało się przygotować treningu. Energia została zwrócona.',
-        }),
-      );
+      if (swipeMountedRef.current) setLoadError(swipePrepareFailedText(lang));
     } finally {
       startChargeInFlightRef.current = false;
       if (swipeMountedRef.current) setStarting(false);
@@ -4253,7 +4268,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     quickStart &&
     phase === 'select' &&
     !loadError &&
-    (loadingSources || starting || (selectedSources.length > 0 && !quickStartDoneRef.current));
+    (isDevCardsHeld('swipe_quickstart') || loadingSources || starting || (selectedSources.length > 0 && !quickStartDoneRef.current));
   const showQuickNoCards =
     quickStart &&
     phase === 'select' &&

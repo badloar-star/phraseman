@@ -71,6 +71,7 @@ import {
   type PackCountsOverlay,
 } from '../community_packs/packLiveCounts';
 import { packAddFailureToast, packHideFailureToast } from '../community_packs/packQuickAdd';
+import { isDevCardsHeld } from '../dev_cards_state';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry, startCommunityPackOpen } from '../community_packs/stage_with_retry';
 import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
 import {
@@ -958,7 +959,7 @@ export default function FlashcardsCategoryHub({
               <Ionicons name="chevron-forward" size={18} color={g.secondary} accessibilityElementsHidden importantForAccessibility="no" />
             </TouchableOpacity>
           ) : null}
-          {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && !communityLoaded ? (
+          {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && (!communityLoaded || isDevCardsHeld('catalog_loading')) ? (
             <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
               {[0, 1, 2, 3].map((i) => (
                 <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: skeletonRowH, borderRadius: 20, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />

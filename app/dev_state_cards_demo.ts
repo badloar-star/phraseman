@@ -191,6 +191,61 @@ export async function applyCustomCards(count: number = DEMO_CUSTOM_COUNT): Promi
   return String(cards.length);
 }
 
+export const DEMO_PUBLISHED_PACK_ID = 'dev_demo_published_own';
+export const DEMO_PUBLISHED_LOCAL_ID = 'local_pack_dev_demo_published';
+
+/**
+ * Свой ОПУБЛИКОВАННЫЙ набор автора (R1 Н-5: cards-042/049/053, cards-gap-029/030/031/039): локальная копия с cloudPackId (ровно 10 карточек — «минимум 10»
+ * при удалении) + набор в кэше каталога от моего stableId с чужими откликами, помеченный как мой в «Мои из сообщества». Сервер не вызывается.
+ */
+export async function applyDemoPublished(stableId: string): Promise<string> {
+  assertDevBuild('cards=demo_published');
+  const own: DemoOwnPack = { packId: DEMO_PUBLISHED_LOCAL_ID, title: 'Мой опубликованный', count: 10, level: 'B1', words: ['Layover', 'Gate', 'Customs'] };
+  const { saveLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
+  await saveLocalAuthorPack({
+    title: own.title, description: '', cards: demoPackCards(own), packLanguage: 'en', studyTarget: TARGET, level: 'B1', publishToCommunity: true,
+  }, { packId: own.packId, studyTarget: TARGET, cloudPackId: DEMO_PUBLISHED_PACK_ID, isPremium: true });
+  const published = {
+    id: DEMO_PUBLISHED_PACK_ID,
+    ...demoTitles(own.title),
+    category: 'daily',
+    cardCount: own.count,
+    priceShards: 0,
+    salesCount: 0,
+    likesCount: 12,
+    addedCount: 5,
+    commentsCount: 3,
+    authorName: 'Ты',
+    authorStableId: stableId,
+    isOfficial: false,
+    isCommunityUgc: true,
+    packLanguage: 'en',
+    listingStatus: 'published',
+    level: 'B1',
+    previewWords: ['Layover'],
+    updatedAt: new Date(NOW_BASE).toISOString(),
+  } as unknown as FlashcardMarketPack;
+  const { seedCommunityCatalogForDev } = await import('./community_packs/communityFirestore');
+  if (!seedCommunityCatalogForDev(TARGET, [published, ...demoCommunityPacks()])) throw new Error('seed_refused');
+  const { addCommunityOwnedPackId } = await import('./community_packs/communityOwnedStorage');
+  await addCommunityOwnedPackId(DEMO_PUBLISHED_PACK_ID, TARGET, { titleRu: own.title, titleUk: own.title, titleEs: own.title });
+  console.log('[DEV-STATE] demo_published', JSON.stringify({ local: own.packId, cloud: DEMO_PUBLISHED_PACK_ID })); // guard-ok: единичный лог на ссылку
+  return DEMO_PUBLISHED_PACK_ID;
+}
+
+/** Сохранённые карточки без перевода (R1 Н-11: cards-gap-007/008): `answerFor` пуст для любого языка интерфейса. */
+export async function applyNoTranslationCards(): Promise<string> {
+  assertDevBuild('cards=notranslation');
+  const { saveFlashcards } = await import('../hooks/use-flashcards');
+  const words = ['Layover', 'Gate', 'Customs', 'Boarding', 'Luggage', 'Passport'];
+  const cards = words.map((en, i) => ({
+    id: `dev_demo_notr_${i + 1}`, en, ru: '', uk: '', es: '', source: 'word' as const, addedAt: NOW_BASE + (words.length - i) * 60_000, packLanguage: 'en', studyTarget: TARGET,
+  })) as unknown as Flashcard[];
+  await saveFlashcards(cards, TARGET);
+  console.log('[DEV-STATE] notranslation', JSON.stringify({ count: cards.length })); // guard-ok: единичный лог на ссылку
+  return String(cards.length);
+}
+
 /** Каталог сообщества в локальном кэше: пустой (cards-048, «Здесь появятся наборы после публикации.») или демо-наборы. */
 export async function applyCatalog(kind: 'empty' | 'demo'): Promise<string> {
   assertDevBuild(`catalog=${kind}`);

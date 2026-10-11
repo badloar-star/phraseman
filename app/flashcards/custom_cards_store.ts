@@ -8,6 +8,7 @@
 // Формат данных сохраняется 1:1 (CardItem с categoryId 'custom', isSystem false;
 // незнакомые поля элементов не отбрасываются). Ключ существующий — новых не вводим.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isDevCardsFail } from '../dev_cards_state';
 import { customFlashcardsKey, storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
 import {
@@ -146,6 +147,11 @@ export function peekCustomCardsSync(studyTarget?: RuntimeStudyTarget): CardItem[
 
 /** Создать или обновить карточку (по id). Новая — в конец списка. */
 export function upsertCustomCard(card: CardItem, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=card_write` — отказ записи своей карточки (тост «Не удалось сохранить» + «Повторить»); в стор-сборке геттер выключен.
+  if (isDevCardsFail('card_write')) {
+    console.warn('[DEV-STATE] cards: запись карточки подменена сбоем (card_write)'); // guard-ok: dev-ветка
+    return Promise.reject(new Error('dev_card_write_failed'));
+  }
   return updateCustomCards((cards) => {
     const idx = cards.findIndex((c) => c.id === card.id);
     if (idx >= 0) {

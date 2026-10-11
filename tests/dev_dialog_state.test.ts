@@ -34,14 +34,14 @@ describe('dev dialog states', () => {
 
   it('parses the link parameters and rejects unknown values', () => {
     const { request, rejected } = parseDevStateParams({ dev_dialog_fail: 'plus_daily_cap', dev_dialog_mood: 'sad', dialogs_paused: '1', hold: 'freeform_loading', dev_energy_fail: '1', toast: 'restored' });
-    expect(request).toMatchObject({ dialogFail: 'plus_daily_cap', dialogMood: 'sad', dialogsPaused: 'on', hold: 'freeform_loading', energyFail: 'on', toast: 'restored' });
+    expect(request).toMatchObject({ dialogFail: 'plus_daily_cap', dialogMood: 'sad', dialogsPaused: 'on', hold: ['freeform_loading'], energyFail: 'on', toast: 'restored' });
     expect(rejected).toEqual({});
     const bad = parseDevStateParams({ dev_dialog_fail: 'boom', dev_dialog_mood: 'furious', toast: 'x' });
     expect(Object.keys(bad.rejected).sort()).toEqual(['dev_dialog_fail', 'dev_dialog_mood', 'toast']);
   });
 
   it('applies and clears the flags in a dev build', async () => {
-    const applied = await applyDevState({ dialogFail: 'service', dialogMood: 'sad', hold: 'freeform_loading', energyFail: 'on' });
+    const applied = await applyDevState({ dialogFail: 'service', dialogMood: 'sad', hold: ['freeform_loading'], energyFail: 'on' });
     expect(applied.skipped).toEqual({});
     expect([getDevDialogFail(), getDevDialogMood(), isDevFreeformLoadingHeld(), isDevDialogEnergyFail()]).toEqual(['service', 'sad', true, true]);
     await applyDevState({ dialogsPaused: 'on' });

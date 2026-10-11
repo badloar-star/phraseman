@@ -8,6 +8,7 @@
  * Формат карточки набора — тот же, что собирает `community_pack_create.tsx` из сохранённой карточки (rowFromStagedSavedCard).
  */
 import { normalizePackCardTexts, normalizePackLanguage } from '../flashcards/pack_languages';
+import { isDevCardsFail } from '../dev_cards_state';
 import type { CardItem } from '../flashcards/types';
 import { loadLocalAuthorPacks, saveLocalAuthorPack, type LocalAuthorPack } from './localAuthorPacks';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
@@ -67,6 +68,11 @@ function sameText(a: string, b: string): boolean {
 
 export async function addCardToLocalPack(packId: string, card: CardItem): Promise<AddCardToLocalPackResult> {
   console.log(`${LOG} старт packId=${packId} cardId=${card.id}`);
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `fail=pack_write` — запись в набор не удалась (тост «Не удалось добавить»); в стор-сборке геттер выключен.
+  if (isDevCardsFail('pack_write')) {
+    console.warn(`${LOG} запись подменена сбоем (pack_write) packId=${packId}`); // guard-ok: dev-ветка
+    return 'failed';
+  }
   try {
     const pack = (await loadLocalAuthorPacks()).find((item) => item.id === packId);
     if (!pack) {

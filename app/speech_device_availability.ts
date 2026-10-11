@@ -26,6 +26,7 @@
 // Приватность: ничего не отправляется наружу — только локальная запись на
 // устройстве и строки журнала [SPEECH-AVAIL].
 import { useSyncExternalStore } from 'react';
+import { getDevSpeechMode } from './dev_cards_state';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
@@ -219,6 +220,8 @@ function devForcedUnavailable(): boolean {
 }
 
 function resolveOnce(): SpeechDeviceAvailabilityState {
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `speech=unavailable` — экран «Распознавание речи не работает на этом устройстве»; в стор-сборке геттер выключен.
+  if (getDevSpeechMode() === 'unavailable') return 'unavailable';
   if (memoryState !== null) return memoryState;
   const startedAt = Date.now();
   const speechModule = devForcedUnavailable() ? null : loadSpeechRecognitionModule();

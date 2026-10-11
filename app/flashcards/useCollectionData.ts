@@ -1,5 +1,6 @@
 import { flashcardsDeleteHintSeenKey, type RuntimeStudyTarget } from '../target_storage_keys';
 import { registerHubCacheProbe } from '../hub_lifecycle_probe';
+import { isDevCardsFail, isDevCardsHeld } from '../dev_cards_state';
 import { useLang } from '../../components/LangContext';
 import {
   flashcardsCommunityPacksAvailableForTarget,
@@ -714,8 +715,9 @@ export function useCollectionData(opts: {
     communityOwnedIdList,
     accessStableId,
     collectionDataReady,
-    loading,
-    loadError,
+    // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=saved_loading` / `fail=saved_load` — скелет и «ошибка загрузки»; в стор-сборке геттеры выключены.
+    loading: loading || isDevCardsHeld('saved_loading'),
+    loadError: loadError || isDevCardsFail('saved_load'),
     loadAll,
     updateSavedCards,
     updateCustomCards,

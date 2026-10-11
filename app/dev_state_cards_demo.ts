@@ -11,7 +11,10 @@
  * запускать на тестовом госте. Только dev: вызывается из dev_state_fixtures (вырезан из стор-сборки).
  * Логи: [DEV-STATE] cards.
  */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Flashcard } from '../hooks/use-flashcards';
+import type { CardItem } from './flashcards/types';
+import { IS_STORE_RELEASE } from './config';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import type { CommunityPackCardPayload } from './community_packs/schema';
 import type { PackLevel } from './flashcards/pack_deck_meta';
@@ -37,13 +40,28 @@ const MOCK_SAVED: readonly (readonly [string, string])[] = [
   ['Sounds good', 'звучит хорошо'], ['Take care', 'береги себя'], ['Hang on', 'подожди'], ['Mother', 'мама'],
 ];
 
-export function demoSavedFlashcards(): Flashcard[] {
+/**
+ * Источники сохранённых карточек для кадров фильтра («Уроки» → Урок 1/3/12, «Прочее» → Глаголы, Диалоги, Слова, Фраза дня, Фразы из видео).
+ * Раньше все 64 были «Слова» — группы фильтра не появлялись (cards-gap-023/024). Применяется только при cards=demo_lessons.
+ */
+export function demoCardSource(index: number): Readonly<{ source: Flashcard['source']; sourceId?: string }> {
+  if (index < 4) return { source: 'lesson', sourceId: '1' };
+  if (index < 8) return { source: 'lesson', sourceId: '3' };
+  if (index < 12) return { source: 'lesson', sourceId: '12' };
+  if (index < 18) return { source: 'verb' };
+  if (index < 24) return { source: 'dialog' };
+  if (index < 28) return { source: 'daily_phrase' };
+  if (index < 32) return { source: 'video_phrase', sourceId: `devDemoVid0:${index}` };
+  return { source: 'word' };
+}
+
+export function demoSavedFlashcards(lessons = false): Flashcard[] {
   return MOCK_SAVED.slice(0, 64).map(([en, ru], i) => ({
     id: `dev_demo_saved_${String(i + 1).padStart(2, '0')}`,
     en,
     ru,
     uk: ru,
-    source: 'word',
+    ...(lessons ? demoCardSource(i) : { source: 'word' as const }),
     // Новее — выше: порядок кадра «Сохранённые» (Layover первым).
     addedAt: NOW_BASE + (64 - i) * 60_000,
     packLanguage: 'en',
@@ -139,8 +157,113 @@ export function demoCommunityPacks(): FlashcardMarketPack[] {
 
 export type CardsDemoResult = Readonly<{ applied: Record<string, string>; skipped: Record<string, string> }>;
 
+// ───────────────────────── новые переключатели (координатор 12.10) ─────────────────────────
+// Всё ниже — только локальные ключи устройства; в Firestore фикстура не пишет. Вызывается из applyDevState, но сама тоже проверяет сборку.
+function assertDevBuild(what: string): void {
+  if (typeof __DEV__ === 'undefined' || !__DEV__ || IS_STORE_RELEASE) {
+    console.warn('[DEV-STATE]', what, 'отклонено: не dev-сборка'); // guard-ok: ранний выход логируется
+    throw new Error('dev_state: not a dev build');
+  }
+}
+
+export const DEMO_CUSTOM_COUNT = 50;
+
+/** 50 своих карточек — лимит Free (cards-v2-046): categoryId 'custom', не системные. */
+export function demoCustomCards(count: number = DEMO_CUSTOM_COUNT): CardItem[] {
+  return MOCK_SAVED.slice(0, count).map(([en, ru], i) => ({
+    id: `dev_demo_custom_${String(i + 1).padStart(2, '0')}`,
+    en,
+    ru,
+    uk: ru,
+    categoryId: 'custom',
+    isSystem: false,
+    addedAt: NOW_BASE + (count - i) * 60_000,
+    studyTarget: TARGET,
+  } as CardItem));
+}
+
+export async function applyCustomCards(count: number = DEMO_CUSTOM_COUNT): Promise<string> {
+  assertDevBuild('cards=custom50');
+  const { updateCustomCards } = await import('./flashcards/custom_cards_store');
+  const cards = demoCustomCards(count);
+  await updateCustomCards(() => cards, TARGET);
+  console.log('[DEV-STATE] custom cards', JSON.stringify({ count: cards.length })); // guard-ok: единичный лог на ссылку
+  return String(cards.length);
+}
+
+/** Каталог сообщества в локальном кэше: пустой (cards-048, «Здесь появятся наборы после публикации.») или демо-наборы. */
+export async function applyCatalog(kind: 'empty' | 'demo'): Promise<string> {
+  assertDevBuild(`catalog=${kind}`);
+  const { seedCommunityCatalogForDev } = await import('./community_packs/communityFirestore');
+  const packs = kind === 'empty' ? [] : demoCommunityPacks();
+  if (!seedCommunityCatalogForDev(TARGET, packs)) throw new Error('seed_refused');
+  console.log('[DEV-STATE] catalog', JSON.stringify({ kind, packs: packs.length })); // guard-ok: единичный лог на ссылку
+  return `${kind}:${packs.length}`;
+}
+
+export const TRAINING_LIMIT_DEV = 30;
+
+/** Запись счётчика «30 тренировок в месяц» в формате app/monthly_training_sessions.ts (version 1, period, starts). Чистая функция. */
+export function trainingQuotaRecord(period: string, used: number): Readonly<{ version: 1; period: string; starts: readonly string[] }> {
+  const n = Math.max(0, Math.min(TRAINING_LIMIT_DEV, Math.floor(used)));
+  return { version: 1, period, starts: Array.from({ length: n }, (_, i) => `dev_demo_start_${String(i + 1).padStart(2, '0')}`) };
+}
+
+/** quota=N (использовано N из 30) | exhausted (30) | reset (счётчик стёрт). Только локальный ключ training_sessions:v1:<stableId>. */
+export async function applyTrainingQuota(stableId: string, mode: number | 'exhausted' | 'reset'): Promise<string> {
+  assertDevBuild(`quota=${String(mode)}`);
+  const { MONTHLY_TRAINING_SESSION_STORAGE_PREFIX, resolveMonthlyTrainingSessionWindow } = await import('./monthly_training_sessions');
+  const key = `${MONTHLY_TRAINING_SESSION_STORAGE_PREFIX}${encodeURIComponent(stableId)}`;
+  if (mode === 'reset') {
+    await AsyncStorage.removeItem(key);
+    console.log('[DEV-STATE] training quota reset', JSON.stringify({ key })); // guard-ok: единичный лог на ссылку
+    return 'reset';
+  }
+  const used = mode === 'exhausted' ? TRAINING_LIMIT_DEV : mode;
+  const window = resolveMonthlyTrainingSessionWindow(Date.now(), Intl.DateTimeFormat().resolvedOptions().timeZone);
+  await AsyncStorage.setItem(key, JSON.stringify(trainingQuotaRecord(window.period, used)));
+  console.log('[DEV-STATE] training quota', JSON.stringify({ key, period: window.period, used })); // guard-ok: единичный лог на ссылку
+  return `${used}/${TRAINING_LIMIT_DEV}`;
+}
+
+/** Первое число следующего месяца 00:00 UTC — формат resetAtMs зеркала лимита реплик диалогов (проверяется isUtcCalendarMonthBoundary). */
+export function nextUtcMonthStartMs(nowMs: number): number {
+  const d = new Date(nowMs);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1, 0, 0, 0, 0);
+}
+
+/** Зеркало месячного лимита реплик AI-диалогов (app/ai_dialog_daily_quota.ts, schemaVersion 3). Чистая функция. */
+export function dialogQuotaMirror(remaining: number, nowMs: number): Readonly<Record<string, unknown>> {
+  const left = Math.max(0, Math.min(TRAINING_LIMIT_DEV, Math.floor(remaining)));
+  return {
+    schemaVersion: 3,
+    quotaPeriod: 'calendar_month',
+    remaining: left,
+    limit: TRAINING_LIMIT_DEV,
+    resetAtMs: nextUtcMonthStartMs(nowMs),
+    quotaVersion: nowMs, // новее любого серверного наблюдения, чтобы запись не отбросили как устаревшую
+    updatedAtMs: nowMs,
+  };
+}
+
+/** dquota=N (осталось N реплик из 30; 0 — «На этот месяц всё») | reset. Только локальный ключ ai_dialog_monthly_quota:v3:<stableId>. */
+export async function applyDialogQuota(stableId: string, remaining: number | 'reset'): Promise<string> {
+  assertDevBuild(`dquota=${String(remaining)}`);
+  const { aiDialogMonthlyQuotaStorageKey } = await import('./ai_dialog_daily_quota');
+  const key = aiDialogMonthlyQuotaStorageKey(TARGET, stableId);
+  if (!key) throw new Error('quota_key_unavailable');
+  if (remaining === 'reset') {
+    await AsyncStorage.removeItem(key);
+    console.log('[DEV-STATE] dialog quota reset', JSON.stringify({ key })); // guard-ok: единичный лог на ссылку
+    return 'reset';
+  }
+  await AsyncStorage.setItem(key, JSON.stringify(dialogQuotaMirror(remaining, Date.now())));
+  console.log('[DEV-STATE] dialog quota', JSON.stringify({ key, remaining })); // guard-ok: единичный лог на ссылку
+  return `${remaining}/${TRAINING_LIMIT_DEV}`;
+}
+
 /** Выставить наполненный аккаунт. Каждый шаг независим: сбой одного не мешает остальным и пишет причину. */
-export async function applyCardsDemo(): Promise<CardsDemoResult> {
+export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = {}): Promise<CardsDemoResult> {
   const applied: Record<string, string> = {};
   const skipped: Record<string, string> = {};
   const step = async (key: string, run: () => Promise<string>) => {
@@ -154,7 +277,7 @@ export async function applyCardsDemo(): Promise<CardsDemoResult> {
 
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');
-    const cards = demoSavedFlashcards();
+    const cards = demoSavedFlashcards(options.lessons === true);
     await saveFlashcards(cards, TARGET);
     return String(cards.length);
   });

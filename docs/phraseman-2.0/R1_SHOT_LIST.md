@@ -153,3 +153,29 @@ Governance-ID: TG-A280B7BED1F1
 - Менять публичные счётчики реального набора (+1 добавление, +1 лайк) ради двух кадров чужого набора?
 - Реальные отправки на прод на тестовом госте: заявка на публикацию набора, отклик на набор, жалобы на набор/отклик, обращение в поддержку (`profile-015`), настоящий вызов ИИ (`paywalls-008`)?
 - Тестовые промокоды в админке; чужой код приглашения; какой тестовый аккаунт можно удалять (раздел G-A12).
+
+## Dev-переключатели dev_state, добавленные 12.10 (снимают часть «нет пути»)
+
+Реализовано в `app/dev_state_fixtures.ts` и `app/dev_state_cards_demo.ts` (только dev: `__DEV__ && !IS_STORE_RELEASE`; в магазинной сборке маршрута нет, а каждая функция сама отказывает; в Firestore и сеть фикстура не пишет — только локальные ключи устройства). Лог `[DEV-STATE]` на каждой ветке. Тест: `tests/dev_state_fixtures.test.ts`.
+
+| параметр | значения | что делает | какие строки теперь снимаются | условия |
+|---|---|---|---|---|
+| `cards=custom50` | — | кладёт 50 своих карточек (`categoryId=custom`) | `cards-v2-046` (лимит свои карточки 50/50) | только Free (`plus=off`), онлайн не нужен |
+| `cards=demo_lessons` | — | то же, что `cards=demo`, но у 64 сохранённых — источники: Урок 1/3/12, Глаголы, Диалоги, Фраза дня, Фразы из видео, Слова | `cards-gap-023`, `cards-gap-024` (фильтр «Сохранённых»: «Уроки» и «Прочее») | в меню «⋯» выбрать «Фразы» — тогда появляется «Фильтр» |
+| `catalog=empty` / `demo` | `empty`, `demo` | кэш каталога сообщества: пустой (при живой сети) или 5 демо-наборов | `cards-048` («Здесь появятся наборы после публикации.») | кэш считается свежим 6 ч |
+| `quota=N` / `exhausted` / `reset` | 0…30, `exhausted` (=30), `reset` | счётчик «N из 30 тренировок в месяц» (`training_sessions:v1:<stableId>`) | `cards-v2-030`, `cards-gap-013`, группы G-C07/G-C08 без записи через `run-as` | только Free (`plus=off`); счётчик по аккаунту |
+| `dquota=N` / `reset` | 0…30, `reset` | осталось N реплик диалога из 30 (`ai_dialog_monthly_quota:v3:<stableId>`; 0 → «На этот месяц всё») | `dialogs-004`, `dialogs-034`, `dialogs-035` (лимит 0/30, 1/30, стена) | сервер при открытии диалога может перезаписать зеркало — снимать хаб сразу после ссылки |
+| `vip=promo` / `promo_lifetime` / `referral` / `survey` / `idea` / `tester` / `admin` / `admin_lifetime` / `off` | перечисленные | локальный снимок VIP (`vip_plan`, `vip_until`): плашки «Промокод», «Plus за приглашения», «Plus за опрос», «Plus за идею», «Тестерский Plus», «Выданный Plus/Pro» | `settings-gap-004`, `settings-gap-005`, `settings-gap-006` (и текстовые варианты плашки) | **после ссылки перезапустить приложение** (`am force-stop` → запуск); перед ссылкой снимается dev-override Plus (то же, что `plus=inherit`); **не проверено на устройстве**: серверная синхронизация может перезаписать снимок — тогда снимать в авиарежиме |
+| `plus=inherit` | — | убирает локальный override Plus (`on`/`off`), чтобы работали настоящие `isVip`/`isPro` | предусловие для `vip=…` | после — перезапуск |
+
+Параметры можно складывать в одну ссылку: `phraseman://dev_state?plus=off\&cards=custom50\&quota=exhausted\&next=/(tabs)/home`.
+
+### Остаётся «нет пути» (нужна правка продуктового кода — список передан координатору)
+Все пункты ниже требуют хука в продуктовом коде (экраны, хуки загрузки, `app_messages`, `usePaywallPurchase`, превью Шпиля), поэтому в фикстуры не входят:
+- **Карточки:** `hold=` (удержание загрузок: `cards-v2-003`, `cards-031`, `cards-047`, `cards-075`, `cards-gap-003/011/012/037`), `fail=` (сбои чтения/записи: `cards-039`, `cards-077`, `cards-gap-009/022/035`, `cards-062`), `speech=` (`cards-v2-037`, `cards-section-046`), `train_gate=` (`cards-gap-001/002/005/006`), `moderation=` (`cards-gap-014…017`), `cards=demo_published` (опубликованный набор автора: `cards-042/049/053`, `cards-gap-029/030/031/039` — публикация живёт на сервере, локально не выставить), `cards=notranslation` (`cards-gap-007/008`).
+- **Пейвол Plus (11 строк):** единый `premium_modal?…\&_dev_state=<имя>` в `usePaywallPurchase` (`paywalls-011…016`, `paywalls-018`, `paywall-gap-006`, тосты `paywall-gap-011/012/013`).
+- **Диалоги:** `dev_dialog_mood`, `dev_dialog_fail`, `dialogs_paused`, `hold=freeform_loading`, `dev_energy_fail` (`dialogs-023/032/033`, `dialogs-gap-009/012/016/017`).
+- **Шпиль:** добавить состояния в `components/spire/spire_preview_fixtures.ts` (итог недели «остаёшься/спускаешься», виды заданий, `passed`, `guard`, `block_missing`, `exit`, `report`).
+- **Слот сообщений/опрос Настроек** (`settings-gap-007…009`, `settings-gap-029`): нужен экспортируемый сид в `app/app_messages.ts` (ключи кэша закрыты внутри модуля).
+- **Остальное из части A:** `auth=none`, `paywall=loading|live|reference|failed` для онбординга, `referral=off`, `promo=off`, `studyfail=on`, `support=fail`, `logout=fail`, `switch=…`, `delete=fail`, `restore=retired`, `plustransfer=on`, `greet=<строка>`.
+- **Сообщество/друзья:** `dev_friends_hold`, `dev_friends_fail`, `friend_event=study_invite`, служебный код-заглушка (`community-010/011/014/016/022`).

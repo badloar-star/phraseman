@@ -1,5 +1,5 @@
 {
-  "total": 235,
+  "total": 229,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -19,7 +19,6 @@
     "components/achievements/AchievementShelfStageArt.tsx": 2,
     "components/ActionToast.tsx": 6,
     "components/ActivityHeatmap365.tsx": 1,
-    "components/AiLimitUpsellCard.tsx": 2,
     "components/AiMistakeCard.tsx": 4,
     "components/AppMessagesInbox.tsx": 6,
     "components/celebration/RewardImpactRings.tsx": 1,
@@ -28,7 +27,6 @@
     "components/DeleteAccountConfirmModal.tsx": 2,
     "components/dialogs/DialogGoalsSheet.tsx": 1,
     "components/dialogs/DialogueV2BriefingScreen.tsx": 1,
-    "components/DialogScenarioTile.tsx": 4,
     "components/ErrorBoundary.tsx": 2,
     "components/ExamResultPreviewAdminModal.tsx": 12,
     "components/ExplainButton.tsx": 1,

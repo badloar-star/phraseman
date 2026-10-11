@@ -82,7 +82,7 @@ export default function AiLimitUpsellCard({
         },
       ]}
     >
-      <TonalSurface radius={16} tone="raised" style={[styles.card, { borderColor: glass.glassEdge }]}>
+      <TonalSurface radius={16} tone="raised" style={styles.card}>
         <View style={styles.row}>
           <View style={[styles.iconWrap, { backgroundColor: glass.selected }]}>
             <Ionicons name="flash" size={18} color={glass.accentText} />
@@ -126,8 +126,7 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
   },
   card: {
-    borderRadius: 16,
-    borderWidth: 1,
+    borderRadius: 16, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень: рамки у карточки нет
     gap: 14,
     overflow: 'hidden',
     padding: 16,

@@ -17,6 +17,7 @@ import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { PressableScale } from './feedback/PressableScale';
 import { useV2Palette } from './v2/useV2Palette';
+import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -63,6 +64,7 @@ export default function DialogScenarioTile({
   accessibilityHint,
 }: DialogScenarioTileProps) {
   const p = useV2Palette();
+  const shadowGlass = useShadowGlass();
   const reduceMotion = useReduceMotion();
   const locked = status === 'locked';
   const done = status === 'done';
@@ -83,8 +85,7 @@ export default function DialogScenarioTile({
           marginTop: index === 0 ? 0 : 6,
           borderRadius: 14,
           backgroundColor: p.glassRaised,
-          borderColor: p.stroke, // guard-ok: D43 приподнятая строка внутри карточки-мира
-          borderWidth: 1, // guard-ok: D43 приподнятая строка внутри карточки-мира
+          boxShadow: nestedBoxShadow(shadowGlass), // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (строка внутри карточки-мира)
           paddingHorizontal: 10,
           paddingVertical: 10,
           flexDirection: 'row',
@@ -128,9 +129,7 @@ export default function DialogScenarioTile({
         </View>
         <View
           style={{
-            backgroundColor: p.control,
-            borderColor: p.stroke,
-            borderWidth: 1, // guard-ok: D43 пилюля уровня, как на референсе (A1/A2/B1)
+            backgroundColor: p.control, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (пилюля уровня A1/A2/B1)
             borderRadius: 9,
             paddingHorizontal: 9,
             paddingVertical: 4,

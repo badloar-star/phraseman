@@ -1,4 +1,5 @@
 import React, { memo, useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import { actionToastTri, emitAppEvent } from '../app/events';
 import {
   Pressable,
   View,
@@ -181,12 +182,22 @@ function AddToFlashcard({
         void (async () => {
           try {
             const ok = await removeFlashcardByEnglish(enSnap, activePackLanguage);
-            if (!ok) setSaved(true);
-            else if (source === 'daily_phrase') {
+            if (!ok) {
+              // зачем (координатор 12.10, аудит Optimistic UI R1): откат закладки без причины и сообщения — теперь в журнал и человеку.
+              console.warn(`[OPT-UI] card_remove rollback reason=not_removed en=${enSnap.slice(0, 40)}`); // guard-ok: откат называет причину
+              setSaved(true);
+              emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось убрать карточку. Попробуй ещё раз.', uk: 'Не вдалося прибрати картку. Спробуй ще раз.', en: "Couldn't remove the card. Try again.", es: 'No se pudo quitar la tarjeta. Inténtalo de nuevo.',
+              }));
+            } else if (source === 'daily_phrase') {
               void setDailyPhraseSavedOnServerForTarget(sourceId, false, activeStudyTarget);
             }
-          } catch {
+          } catch (error: unknown) {
+            console.warn(`[OPT-UI] card_remove rollback reason=threw kind=${error instanceof Error ? error.name : typeof error}`); // guard-ok: catch пишет причину
             setSaved(true);
+            emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось убрать карточку. Попробуй ещё раз.', uk: 'Не вдалося прибрати картку. Спробуй ще раз.', en: "Couldn't remove the card. Try again.", es: 'No se pudo quitar la tarjeta. Inténtalo de nuevo.',
+              }));
           } finally {
             inFlightRef.current = false;
             blockStaleStorageHydrationRef.current = false;
@@ -233,10 +244,18 @@ function AddToFlashcard({
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'add_to_flashcard', saved: String(FREE_SAVED_CARD_LIMIT) } } as any);
             } else if (result === 'stale') {
+              console.warn('[OPT-UI] card_save rollback reason=stale'); // guard-ok: откат называет причину
               setSaved(false);
+              emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось сохранить карточку. Попробуй ещё раз.', uk: 'Не вдалося зберегти картку. Спробуй ще раз.', en: "Couldn't save the card. Try again.", es: 'No se pudo guardar la tarjeta. Inténtalo de nuevo.',
+              }));
             }
-          } catch {
+          } catch (error: unknown) {
+            console.warn(`[OPT-UI] card_save rollback reason=threw kind=${error instanceof Error ? error.name : typeof error}`); // guard-ok: catch пишет причину
             setSaved(false);
+            emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось сохранить карточку. Попробуй ещё раз.', uk: 'Не вдалося зберегти картку. Спробуй ще раз.', en: "Couldn't save the card. Try again.", es: 'No se pudo guardar la tarjeta. Inténtalo de nuevo.',
+              }));
           } finally {
             inFlightRef.current = false;
             blockStaleStorageHydrationRef.current = false;

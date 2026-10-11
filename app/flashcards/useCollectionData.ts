@@ -1001,7 +1001,9 @@ export function useCollectionDeletion(args: {
         setUndoEntry((cur) => (cur?.key === key ? null : cur));
       }, 5000);
       return true;
-    } catch {
+    } catch (error: unknown) {
+      // зачем (координатор 12.10, аудит Optimistic UI R1): немой catch — причина отката пакетного удаления в журнал.
+      console.warn(`[OPT-UI] batch_delete rollback kind=${error instanceof Error ? error.name : typeof error} items=${items.length}`); // guard-ok: catch пишет причину
       if (!isCurrentAccountGeneration(accountToken)) return false;
       for (const item of [...items].reverse()) {
         if (!isCurrentAccountGeneration(accountToken)) return false;
@@ -1033,10 +1035,7 @@ export function useCollectionDeletion(args: {
     fcHaptic('tap');
     try {
       if (entry.batch?.kind === 'saved') {
-        for (const item of [...entry.batch.items].reverse()) {
-          if (!isCurrentAccountGeneration(entry.accountToken)) return;
-          if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index);
-        }
+        // зачем (координатор 12.10, аудит Optimistic UI R1): «Вернуть» возвращает карточки в список в тот же кадр, запись в хранилище догоняет; при сбое catch перечитывает факт и говорит об этом.
         if (!isCurrentAccountGeneration(entry.accountToken)) return;
         updateSavedCards((prev) => {
           const next = [...prev];
@@ -1046,6 +1045,10 @@ export function useCollectionDeletion(args: {
           }
           return next;
         });
+        for (const item of [...entry.batch.items].reverse()) {
+          if (!isCurrentAccountGeneration(entry.accountToken)) return;
+          if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index);
+        }
       } else if (entry.kind === 'custom') {
         const card = entry.customSnapshot?.card ?? entry.uiCard;
         const index = entry.customSnapshot?.index ?? entry.uiIndex;
@@ -1057,9 +1060,6 @@ export function useCollectionDeletion(args: {
           return next;
         });
       } else {
-        if (entry.savedSnapshot) {
-          await restoreFlashcard(entry.savedSnapshot.card, entry.savedSnapshot.index);
-        }
         const uiCard = entry.savedSnapshot ? savedToCard(entry.savedSnapshot.card, studyTarget) : entry.uiCard;
         const index = entry.savedSnapshot?.index ?? entry.uiIndex;
         updateSavedCards((prev) => {
@@ -1068,8 +1068,12 @@ export function useCollectionDeletion(args: {
           next.splice(Math.max(0, Math.min(index, next.length)), 0, uiCard);
           return next;
         });
+        if (entry.savedSnapshot) {
+          await restoreFlashcard(entry.savedSnapshot.card, entry.savedSnapshot.index);
+        }
       }
-    } catch {
+    } catch (error: unknown) {
+      console.warn(`[OPT-UI] undo_delete rollback kind=${error instanceof Error ? error.name : typeof error} entry=${entry.kind}${entry.batch ? ' batch' : ''}`); // guard-ok: catch пишет причину
       if (!isCurrentAccountGeneration(entry.accountToken)) return;
       const actual = await loadAllSavedFlashcards();
       if (!isCurrentAccountGeneration(entry.accountToken)) return;

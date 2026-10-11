@@ -197,6 +197,7 @@ export default function FlashcardsCardEditorScreen() {
   const prefillTrRef = useRef('');
   const [focusedField, setFocusedField] = useState<'front' | 'back' | 'description'>('front');
   const [saving, setSaving] = useState(false);
+  const saveLockRef = useRef(false);
   // зачем (Карточки 2.0, макет «Новая карточка — превью живое»): превью-разворот сверху показывает лицо, пока вводят слово, и оборот, пока вводят перевод или пример
   const [previewBack, setPreviewBack] = useState(false);
   useEffect(() => { setPreviewBack(focusedField !== 'front'); }, [focusedField]);
@@ -413,9 +414,15 @@ export default function FlashcardsCardEditorScreen() {
     // Пустой/пробельный EN не сохраняется (баг 9: onSubmitEditing обходил disabled-кнопку)
     // creatorLocked здесь по той же причине: onSubmitEditing с клавиатуры уже
     // однажды обходил disabled — создание без подписки должно быть закрыто и тут.
+    // зачем (координатор 12.10, аудит Optimistic UI R1): состояние `saving` ставится после рендера — второй тап в том же кадре создавал дубль карточки; замок — ref.
+    if (saveLockRef.current) {
+      console.log('[OPT-UI] card_editor save ignored: запись ещё идёт'); // guard-ok: ранний выход называет причину
+      return;
+    }
     if (!draftEN.trim() || saving || loadingCard || creatorGated) return;
     if (!(trVal.length > 0 || (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation))) return;
     Keyboard.dismiss();
+    saveLockRef.current = true;
     setSaving(true);
     // ARCHITECTURE RULE: each field stores only its own language.
     // When editing in UK mode, only `uk` is updated; `ru` is preserved from existing card.
@@ -477,11 +484,20 @@ export default function FlashcardsCardEditorScreen() {
       leaveEditorAfterSave();
     } catch (e: unknown) {
       DebugLogger.error('flashcards_card_editor:save', e instanceof Error ? e : new Error(String(e)), 'warning');
+      saveLockRef.current = false;
       setSaving(false);
       if (e instanceof Error && e.message === 'free_custom_card_limit_reached') {
         // зачем: сырой отказ «не удалось сохранить» при исчерпанном лимите — потеря работы без объяснения; ведём в покупку, форма остаётся
         console.log('[CARD-EDITOR] save refused by free card limit -> paywall'); // guard-ok: ранний выход пишет причину
         openCardLimitPaywall();
+        return;
+      }
+      // зачем (координатор 12.10, аудит Optimistic UI R1): лимит Plus раньше выглядел как «Не удалось сохранить» с бессмысленным «Повторить» — теперь называем причину.
+      if (e instanceof Error && e.message === 'plus_custom_card_limit_reached') {
+        console.log('[OPT-UI] card_editor save refused by plus card limit'); // guard-ok: ранний выход пишет причину
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Достигнут лимит своих карточек. Удали ненужные, чтобы добавить новые.', uk: 'Досягнуто ліміт власних карток. Видали непотрібні, щоб додати нові.', en: 'You have reached the limit of your own cards. Delete some to add new ones.', es: 'Has alcanzado el límite de tarjetas propias. Elimina algunas para añadir nuevas.',
+        }));
         return;
       }
       emitAppEvent(

@@ -109,7 +109,11 @@ export function applyUserSettingsNow(s: UserSettings): void {
   try {
     memory = normalizeSettings(s);
     publishSettingsSnapshot('local');
-    void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).then(finishMutation, finishMutation);
+    // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи настроек раньше глотался молча (then(finish, finish)) — теперь причина в журнал; значение в памяти остаётся.
+    void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).then(finishMutation, (error: unknown) => {
+      console.warn(`[OPT-UI] user_settings persist_failed reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина отказа записи
+      finishMutation();
+    });
   } catch (error) {
     finishMutation();
     throw error;

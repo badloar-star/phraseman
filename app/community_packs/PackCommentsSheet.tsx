@@ -36,7 +36,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { USER_AVATAR_AURA_KEY } from '../../constants/customization_storage_keys';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
-import { emitAppEvent } from '../events';
+import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
 import ReportCommentModal from './ReportCommentModal';
 import { resolveCommunityAuthorProfile, type CommunityAuthorProfile } from './packAuthorNames';
@@ -190,6 +190,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const [reloadTick, setReloadTick] = useState(0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
+  const sendLockRef = useRef(false);
   const [menuFor, setMenuFor] = useState<PackComment | null>(null);
   const [reportFor, setReportFor] = useState<PackComment | null>(null);
   const listRef = useRef<FlatList<PackComment>>(null);
@@ -384,7 +385,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const canSend = !sending && validatePackComment(draft, canWrite).ok;
 
   const handleSend = useCallback(() => {
-    if (!myUserId || sending) return;
+    // зачем (координатор 12.10, аудит Optimistic UI R1): замок отправки — ref: состояние `sending` ставится после рендера, второй тап в том же кадре успевал отправить отклик дважды.
+    if (!myUserId || sending || sendLockRef.current) return;
     const validation = validatePackComment(draft, canWrite);
     if (!validation.ok) {
       if (validation.reason === 'not_added') {
@@ -406,6 +408,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       return;
     }
     hapticTap();
+    sendLockRef.current = true;
     const text = validation.text;
     const tempId = `pending_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     const optimistic: PackComment = {
@@ -450,10 +453,12 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // зачем: шторка могла закрыться (размонтироваться) пока запрос летел —
       // сервер уже принял комментарий, локальный state больше никому не нужен.
       if (unmountedRef.current) {
+        sendLockRef.current = false;
         if (res.ok) emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
         return;
       }
       setSending(false);
+      sendLockRef.current = false;
       if (res.ok) {
         hapticSuccess();
         emitAppEvent('community_pack_comments_changed', { packId, delta: 1 });
@@ -530,7 +535,24 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         myReactions: had ? c.myReactions.filter((r) => r !== reaction) : [...c.myReactions, reaction],
       };
     }));
-    void togglePackCommentReaction(packId, comment.id, myUserId, reaction, !had);
+    // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи реакции раньше молча оставлял «лайкнутый» отклик; теперь откат + сообщение.
+    void togglePackCommentReaction(packId, comment.id, myUserId, reaction, !had).then((ok) => {
+      if (ok) return;
+      console.warn(`[OPT-UI] comment_reaction rollback packId=${packId} commentId=${comment.id} reaction=${reaction}`); // guard-ok: откат называет причину
+      setComments((prev) => prev.map((c) => {
+        if (c.id !== comment.id) return c;
+        const current = c.reactions[reaction] ?? 0;
+        return {
+          ...c,
+          reactions: { ...c.reactions, [reaction]: Math.max(0, current + (had ? 1 : -1)) },
+          myReactions: had ? [...c.myReactions.filter((r) => r !== reaction), reaction] : c.myReactions.filter((r) => r !== reaction),
+        };
+      }));
+      hapticError();
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить реакцию. Попробуй ещё раз.', uk: 'Не вдалося зберегти реакцію. Спробуй ще раз.', en: "Couldn't save the reaction. Try again.", es: 'No se pudo guardar la reacción. Inténtalo de nuevo.',
+      }));
+    });
   }, [myUserId, packId]);
 
   /**
@@ -551,8 +573,12 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       const ok = await hidePackCommentByAuthor(packId, comment.id, true, comment.pinned);
       if (!ok) {
         // Сеть отказала — вернуть строку, не терять факт молча.
+        console.warn(`[OPT-UI] comment_hide rollback packId=${packId} commentId=${comment.id}`); // guard-ok: откат называет причину
         setComments((prev) => sortPackComments([...prev, comment]));
         hapticError();
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось скрыть отклик. Попробуй ещё раз.', uk: 'Не вдалося приховати відгук. Спробуй ще раз.', en: "Couldn't hide the comment. Try again.", es: 'No se pudo ocultar el comentario. Inténtalo de nuevo.',
+        }));
       }
       // зачем НЕ шлём community_pack_comments_changed (аудит 2026-09-17): скрытие
       // не трогает серверный commentsCount (hidePackCommentByAuthor намеренно
@@ -572,8 +598,12 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       if (ok) {
         emitAppEvent('community_pack_comments_changed', { packId, delta: -1 });
       } else {
+        console.warn(`[OPT-UI] comment_delete rollback packId=${packId} commentId=${comment.id}`); // guard-ok: откат называет причину
         setComments((prev) => sortPackComments([...prev, comment]));
         hapticError();
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось удалить отклик. Попробуй ещё раз.', uk: 'Не вдалося видалити відгук. Спробуй ще раз.', en: "Couldn't delete the comment. Try again.", es: 'No se pudo eliminar el comentario. Inténtalo de nuevo.',
+        }));
       }
     })();
   }, [packId]);
@@ -582,8 +612,22 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     setMenuFor(null);
     hapticTap();
     const nextPinned = !comment.pinned;
-    setComments((prev) => sortPackComments(prev.map((c) => ({ ...c, pinned: c.id === comment.id ? nextPinned : false }))));
-    void setPackCommentPinned(packId, comment.id, nextPinned);
+    // зачем (координатор 12.10, аудит Optimistic UI R1): отказ записи закрепления — откат к прежнему набору закреплённых + сообщение.
+    let previousComments: PackComment[] | null = null;
+    setComments((prev) => {
+      previousComments = prev;
+      return sortPackComments(prev.map((c) => ({ ...c, pinned: c.id === comment.id ? nextPinned : false })));
+    });
+    void setPackCommentPinned(packId, comment.id, nextPinned).then((ok) => {
+      if (ok) return;
+      console.warn(`[OPT-UI] comment_pin rollback packId=${packId} commentId=${comment.id}`); // guard-ok: откат называет причину
+      const before = previousComments as PackComment[] | null;
+      if (before) setComments((prev) => sortPackComments(prev.map((c) => ({ ...c, pinned: before.find((b) => b.id === c.id)?.pinned ?? c.pinned }))));
+      hapticError();
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось изменить закрепление. Попробуй ещё раз.', uk: 'Не вдалося змінити закріплення. Спробуй ще раз.', en: "Couldn't change the pin. Try again.", es: 'No se pudo cambiar el anclaje. Inténtalo de nuevo.',
+      }));
+    });
   }, [packId]);
 
   const emptyTitle = triLang(lang, { ru: 'Пока тихо', uk: 'Поки тихо', en: 'Quiet so far', es: 'Todavía en silencio', 'pt-BR': 'Ainda em silêncio', vi: 'Vẫn còn yên tĩnh', id: 'Masih sepi', tr: 'Şimdilik sessiz', pl: 'Na razie cicho' });

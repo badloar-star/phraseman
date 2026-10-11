@@ -1,8 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { actionToastTri, emitAppEvent } from './events';
 import { switchOffTrackTone } from '../components/settings/switch_chrome';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
@@ -118,10 +119,19 @@ export default function SettingsEdu() {
     lastShownVoiceValue !== undefined ? lastShownVoiceValue : (peekEnVoiceId() ? '' : null)
   ));
 
+  // зачем (координатор 12.10, аудит Optimistic UI R1): поздний ответ loadSettings() не имеет права затереть переключатель, который человек уже тронул — версия правок сверяется до применения.
+  const editVersionRef = useRef(0);
   useFocusEffect(
     useCallback(() => {
       let alive = true;
-      void loadSettings().then(setS).catch((error: unknown) => {
+      const loadStartedAtVersion = editVersionRef.current;
+      void loadSettings().then((loaded) => {
+        if (editVersionRef.current !== loadStartedAtVersion) {
+          console.log(`[OPT-UI] settings_edu load ignored: пользователь уже менял настройки (v${loadStartedAtVersion}→v${editVersionRef.current})`); // guard-ok: ранний выход называет причину
+          return;
+        }
+        setS(loaded);
+      }).catch((error: unknown) => {
         // зачем (логи, settings-gaps-states): сбой чтения настроек оставлял значения снимка без причины в журнале
         console.warn(`[SETTINGS-EDU] load_settings_failed reason=${error instanceof Error ? error.message : String(error)}`);
       });
@@ -145,6 +155,7 @@ export default function SettingsEdu() {
   );
 
   const update = (key: keyof UserSettings, val: boolean | number) => {
+    editVersionRef.current += 1;
     setS(prev => {
       const next = { ...prev, [key]: val };
       applyUserSettingsNow(next);
@@ -264,8 +275,15 @@ export default function SettingsEdu() {
   ];
 
   // зачем (логи, settings-gaps-states): тумблер звука меняется сразу (Optimistic UI), а сбой записи раньше терялся молча
-  const logToggleSaveFailure = (key: string) => (error: unknown) => {
+  const logToggleSaveFailure = (key: string, revert?: () => void) => (error: unknown) => {
     console.warn(`[SETTINGS-EDU] toggle_save_failed key=${key} reason=${error instanceof Error ? error.message : String(error)}`);
+    // зачем (аудит Optimistic UI R1): переключатель показывал «включено», хотя запись не удалась и после перезапуска значение возвращалось молча — откат + сообщение.
+    if (revert) {
+      revert();
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+      }));
+    }
   };
 
   const soundRows = [
@@ -275,7 +293,7 @@ export default function SettingsEdu() {
       label: L({ ru: 'Звуковые эффекты', uk: 'Звукові ефекти', en: 'Sound effects', es: 'Efectos de sonido', 'pt-BR': 'Efeitos sonoros', vi: 'Hiệu ứng âm thanh', id: 'Efek suara', tr: 'Ses efektleri', pl: 'Efekty dźwiękowe' }),
       sub: L({ ru: 'Короткие звуки в карточках и тренировках', uk: 'Короткі звуки у картках і тренуваннях', en: 'Brief sounds in cards and training', es: 'Sonidos breves en tarjetas y entrenamientos', 'pt-BR': 'Sons curtos em cartões e treinos', vi: 'Âm thanh ngắn trong thẻ và luyện tập', id: 'Suara singkat di kartu dan latihan', tr: 'Kartlarda ve antrenmanlarda kısa sesler', pl: 'Krótkie dźwięki w fiszkach i ćwiczeniach' }),
       icon: 'volume-high-outline' as const,
-      onValueChange: (value: boolean) => { setFcSfx(value); void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx')); },
+      onValueChange: (value: boolean) => { setFcSfx(value); void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx', () => setFcSfx(!value))); },
     },
     {
       testID: 'fc-autospeak-toggle',
@@ -283,7 +301,7 @@ export default function SettingsEdu() {
       label: L({ ru: 'Автопроизношение', uk: 'Автовимова', en: 'Auto pronunciation', es: 'Pronunciación automática', 'pt-BR': 'Pronúncia automática', vi: 'Tự động phát âm', id: 'Pelafalan otomatis', tr: 'Otomatik telaffuz', pl: 'Automatyczna wymowa' }),
       sub: L({ ru: 'Озвучивать английскую фразу после ответа', uk: 'Озвучувати англійську фразу після відповіді', en: 'Read the English phrase after answering', es: 'Leer la frase en inglés después de responder', 'pt-BR': 'Ler a frase em inglês após responder', vi: 'Đọc câu tiếng Anh sau khi trả lời', id: 'Bacakan frasa Inggris setelah menjawab', tr: 'Cevaptan sonra İngilizce ifadeyi oku', pl: 'Odczytaj angielskie zdanie po odpowiedzi' }),
       icon: 'volume-high-outline' as const,
-      onValueChange: (value: boolean) => { setFcAutoSpeak(value); void Promise.resolve(setFcAutoSpeakEnabled(value)).catch(logToggleSaveFailure('fc_autospeak')); },
+      onValueChange: (value: boolean) => { setFcAutoSpeak(value); void Promise.resolve(setFcAutoSpeakEnabled(value)).catch(logToggleSaveFailure('fc_autospeak', () => setFcAutoSpeak(!value))); },
     },
   ];
 

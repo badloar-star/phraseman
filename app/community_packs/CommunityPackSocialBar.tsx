@@ -19,6 +19,7 @@
  * Анимации только на transform/opacity (нажатие лайка — короткий pop).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { packAddFailureToast } from './packQuickAdd';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
 import { useLineScale } from '../../hooks/useLineScale';
@@ -311,7 +312,14 @@ export default function CommunityPackSocialBar({
     const seq = opSeqRef.current;
     setSnapshot((prev) => addToLibraryOptimistic(prev));
     void (async () => {
-      const res = await addCommunityPackToLibrary(pack, studyTarget);
+      // зачем (координатор 12.10, аудит Optimistic UI R1): исключение записи («Не получилось сохранить набор на телефоне») раньше уходило в необработанный reject — кнопка навсегда оставалась «В моих», хотя набора нет. Теперь это тот же откат с понятным сообщением, что у отказа.
+      let res: string;
+      try {
+        res = await addCommunityPackToLibrary(pack, studyTarget);
+      } catch (error: unknown) {
+        res = `throw:${error instanceof Error ? error.name : typeof error}`;
+        console.warn(`[OPT-UI] pack_add threw pack=${pack.id} kind=${res}`); // guard-ok: catch пишет причину
+      }
       if (res === 'added' || res === 'already_added') {
         onAdded?.(pack.id);
         return;
@@ -334,11 +342,7 @@ export default function CommunityPackSocialBar({
       setSnapshot(before);
       // зачем (баг владельца 11.10): добавление — локальная запись без сети, единственный отказ — `unavailable`
       // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
-      emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Этот набор пока нельзя добавить себе.',
-        uk: 'Цей набір поки не можна додати собі.',
-        es: 'Este pack todavía no se puede añadir.', en: 'This pack can\'t be added yet.',
-      }));
+      emitAppEvent('action_toast', packAddFailureToast(res));
     })();
   }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);
 

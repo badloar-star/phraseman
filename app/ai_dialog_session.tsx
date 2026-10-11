@@ -2434,7 +2434,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 backgroundColor: t.accentBg,
               }}
             >
-              <Ionicons name="flag" size={14} color={t.accent} />
+              <Ionicons name="flag" size={14} color={t.accentText} />
             </View>
             <Text
               style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', flex: 1 }}
@@ -2445,7 +2445,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 vi: 'Mục tiêu', id: 'Tujuan', tr: 'Hedef', pl: 'Cel',
               })}
               {` ${Math.min(objectivesMet.size + 1, objectives.length)} / ${objectives.length} · `}
-              <Text style={{ color: t.textSecond, fontWeight: '400' }}>{currentGoal.labelRu}</Text>
+              <Text style={{ color: t.accentText, fontWeight: '400' }}>{currentGoal.labelRu}</Text>
             </Text>
             {/* Шеврон: видимый признак, что строка нажимается. */}
             <Ionicons name="chevron-forward" size={16} color={t.textMuted} />
@@ -2499,8 +2499,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 Лампочка показывает шаг сценария из бандла: ни сети, ни модели,
                 ни расходов — брать за неё нечего. Платная — «Почему так»
                 (3 бесплатных в день, дальше руны), она под репликой. */}
-            <Ionicons name="bulb" size={18} color={t.accent} />
-            <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+            <Ionicons name="bulb" size={18} color={t.accentText} />
+            <Text style={{ color: t.accentText, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
               {triLang(lang, {
                 ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
                 vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź',
@@ -2644,7 +2644,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                           <View
                             style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 6, maxWidth: '100%' }}
                           >
-                            <Ionicons name="create-outline" size={15} color={t.gold} style={{ marginTop: 2 }} />
+                            <Ionicons name="create-outline" size={15} color={t.accentText} style={{ marginTop: 2 }} />
                             <Text
                               style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', flexShrink: 1 }}
                               maxFontSizeMultiplier={1.2}
@@ -2653,7 +2653,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                                 ru: 'Лучше так: ', uk: 'Краще так: ', en: 'Better: ', es: 'Mejor: ', 'pt-BR': 'Melhor: ',
                                 vi: 'Nên nói: ', id: 'Lebih baik: ', tr: 'Daha iyi: ', pl: 'Lepiej: ',
                               })}
-                              <Text style={{ color: t.gold, fontWeight: '700' }}>{fixByIndex[i].corrected}</Text>
+                              <Text style={{ color: t.accentText, fontWeight: '700' }}>{fixByIndex[i].corrected}</Text>
                             </Text>
                           </View>
                         ) : (
@@ -2689,8 +2689,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                             }}
                             testID={`ai-dialog-fix-button-${i}`}
                           >
-                            <Ionicons name="create-outline" size={13} color={t.gold} />
-                            <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                            <Ionicons name="create-outline" size={13} color={t.accentText} />
+                            <Text style={{ color: t.accentText, fontSize: f.label, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                               {triLang(lang, {
                                 ru: 'Лучше так', uk: 'Краще так', en: 'Say it better', es: 'Dilo mejor',
                                 'pt-BR': 'Diga melhor', vi: 'Nói hay hơn', id: 'Lebih baik', tr: 'Daha iyi', pl: 'Lepiej',
@@ -2794,7 +2794,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                                       speakDialogue(seg.text);
                                     }}
                                     style={{
-                                      color: t.accent,
+                                      color: t.accentText,
                                       fontWeight: '800',
                                       textDecorationLine: 'underline',
                                       opacity: strictPlaybackUnavailable ? 0.5 : 1,
@@ -3003,7 +3003,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
                   <Ionicons name="alert-circle-outline" size={16} color={t.textMuted} />
                   <Text
-                    style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
+                    style={{ color: t.accentText, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
                     maxFontSizeMultiplier={1.2}
                   >
                     {lastErrorMessage}
@@ -3079,7 +3079,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 </Text>
                 <Text
                   style={{
-                    color: t.textSecond,
+                    color: t.accentText,
                     fontSize: f.body,
                     textAlign: 'center',
                     lineHeight: Math.round(f.body * 1.42),
@@ -3243,12 +3243,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               >
                 {voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing' ? (
                   // Тот же сдвиг, что у иконки: спиннер встаёт ровно на её место.
-                  <ActivityIndicator size="small" color={t.textSecond} style={{ marginTop: -5 }} />
+                  <ActivityIndicator size="small" color={t.accentText} style={{ marginTop: -5 }} />
                 ) : (
                   <Ionicons
                     name={speechNa ? 'mic-off-outline' : voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
                     size={21}
-                    color={voiceInputStatus === 'listening' ? t.textOnGold : t.textSecond}
+                    color={voiceInputStatus === 'listening' ? t.textOnGold : t.accentText}
                     // Ряд точек занимает низ круга всегда (в том числе распоркой),
                     // поэтому иконка постоянно смещена вверх на его половину —
                     // композиция по центру, и прыжка при смене остатка нет.
@@ -3380,7 +3380,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginTop: 6, paddingHorizontal: 6 }}>
                   <Text
                     style={{
-                      color: voiceInputStatus === 'listening' ? t.accent : t.textMuted,
+                      color: voiceInputStatus === 'listening' ? t.accentText : t.textMuted,
                       fontSize: f.sub,
                       fontWeight: '800',
                     }}
@@ -3397,7 +3397,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       }}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                      <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+                      <Text style={{ color: t.accentText, fontSize: f.sub, fontWeight: '800' }}>
                         {triLang(lang, {
                           ru: 'Открыть настройки',
                           uk: 'Відкрити налаштування',
@@ -3417,7 +3417,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       onPress={() => void startVoiceInput()}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                      <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+                      <Text style={{ color: t.accentText, fontSize: f.sub, fontWeight: '800' }}>
                         {triLang(lang, {
                           ru: 'Повторить',
                           uk: 'Повторити',

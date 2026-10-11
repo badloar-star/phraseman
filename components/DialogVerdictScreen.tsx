@@ -271,7 +271,7 @@ export default function DialogVerdictScreen({
             ) : (
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
                 <Ionicons name={scenarioIcon as never} size={15} color={scene.hue} />
-                <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
+                <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '600' }}>
                   {scenarioTitle}
                 </Text>
                 <Text
@@ -329,7 +329,7 @@ export default function DialogVerdictScreen({
               </View>
               <Text
                 style={{
-                  color: t.textSecond,
+                  color: t.accentText,
                   fontSize: f.body,
                   fontStyle: 'italic',
                   flex: 1,
@@ -423,7 +423,7 @@ export default function DialogVerdictScreen({
             >
               <Ionicons name="bookmark-outline" size={17} color={t.textMuted} />
               <Text
-                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', flex: 1 }}
+                style={{ color: t.accentText, fontSize: f.sub, fontWeight: '700', flex: 1 }}
                 maxFontSizeMultiplier={1.2}
               >
                 {triLang(lang, {
@@ -448,8 +448,8 @@ export default function DialogVerdictScreen({
               style={{ backgroundColor: t.accentBg, borderRadius: 20, padding: 14, marginTop: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 8 }}>
-                <Ionicons name="bulb-outline" size={15} color={t.accent} />
-                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
+                <Ionicons name="bulb-outline" size={15} color={t.accentText} />
+                <Text style={{ color: t.accentText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
                   {triLang(lang, {
                     ru: 'На будущее',
                     uk: 'На майбутнє',
@@ -467,7 +467,7 @@ export default function DialogVerdictScreen({
                 <Text
                   key={ti}
                   style={{
-                    color: t.textSecond,
+                    color: t.accentText,
                     fontSize: f.body,
                     lineHeight: Math.round(f.body * 1.42),
                     marginTop: ti === 0 ? 0 : 6,
@@ -491,8 +491,8 @@ export default function DialogVerdictScreen({
               style={{ backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 20, padding: 14, marginTop: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 10 }}>
-                <Ionicons name="school-outline" size={15} color={t.accent} />
-                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }} maxFontSizeMultiplier={1.2}>
+                <Ionicons name="school-outline" size={15} color={t.accentText} />
+                <Text style={{ color: t.accentText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }} maxFontSizeMultiplier={1.2}>
                   {triLang(lang, {
                     ru: 'Разбор твоих фраз',
                     uk: 'Розбір твоїх фраз',
@@ -517,8 +517,8 @@ export default function DialogVerdictScreen({
                   {hasCompletionAssessment ? (
                     <View style={{ backgroundColor: t.accentBg, borderRadius: 14, padding: 12, marginBottom: 12 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 6 }}>
-                        <Ionicons name="chatbubble-ellipses-outline" size={14} color={t.accent} />
-                        <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
+                        <Ionicons name="chatbubble-ellipses-outline" size={14} color={t.accentText} />
+                        <Text style={{ color: t.accentText, fontSize: f.sub, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
                           {hasGeneratedPartnerAssessment
                             ? triLang(lang, {
                                 ru: 'Итог от собеседника', uk: 'Підсумок від співрозмовника', en: 'Your partner’s takeaway', es: 'Conclusión de tu interlocutor',
@@ -533,7 +533,7 @@ export default function DialogVerdictScreen({
                         </Text>
                       </View>
                       <Text
-                        style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
+                        style={{ color: t.accentText, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
                         maxFontSizeMultiplier={1.2}
                       >
                         {completionAssessment}
@@ -560,7 +560,7 @@ export default function DialogVerdictScreen({
                   ) : null}
                   {!!review?.praise && !review?.fallback && review.praise !== completionAssessment && (
                     <Text
-                      style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
+                      style={{ color: t.accentText, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
                       maxFontSizeMultiplier={1.2}
                     >
                       {review.praise}
@@ -633,7 +633,7 @@ export default function DialogVerdictScreen({
                   {typeof review?.score === 'number' && (
                     <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8, marginTop: review?.praise ? 12 : 2 }}>
                       <Text
-                        style={{ color: t.accent, fontSize: f.numLg, fontWeight: '700', letterSpacing: -1 }}
+                        style={{ color: t.accentText, fontSize: f.numLg, fontWeight: '700', letterSpacing: -1 }}
                         maxFontSizeMultiplier={1.2}
                       >
                         {review.score}
@@ -728,7 +728,7 @@ export default function DialogVerdictScreen({
                         {!!c.note && (
                           <Text
                             style={{
-                              color: t.textSecond,
+                              color: t.accentText,
                               fontSize: f.sub,
                               marginTop: 3,
                               lineHeight: Math.round(f.sub * 1.4),
@@ -743,9 +743,9 @@ export default function DialogVerdictScreen({
                   )}
                   {!!review?.tip && (
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 7, marginTop: 12 }}>
-                      <Ionicons name="bulb-outline" size={14} color={t.accent} style={{ marginTop: 2 }} />
+                      <Ionicons name="bulb-outline" size={14} color={t.accentText} style={{ marginTop: 2 }} />
                       <Text
-                        style={{ color: t.textSecond, fontSize: f.body, flex: 1, lineHeight: Math.round(f.body * 1.42) }}
+                        style={{ color: t.accentText, fontSize: f.body, flex: 1, lineHeight: Math.round(f.body * 1.42) }}
                         maxFontSizeMultiplier={1.2}
                       >
                         {review.tip}
@@ -775,7 +775,7 @@ export default function DialogVerdictScreen({
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
               />
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 10 }}>
-                <Ionicons name="school-outline" size={16} color={t.accent} />
+                <Ionicons name="school-outline" size={16} color={t.accentText} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
                   {triLang(lang, {
                     ru: 'AI-разбор ошибок — в Plus',
@@ -830,7 +830,7 @@ export default function DialogVerdictScreen({
               ].map((line) => (
                 <View key={line} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 7 }}>
                   <Ionicons name="sparkles-outline" size={14} color={t.textMuted} />
-                  <Text style={{ color: t.textSecond, fontSize: f.body, flex: 1 }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: t.accentText, fontSize: f.body, flex: 1 }} maxFontSizeMultiplier={1.2}>
                     {line}
                   </Text>
                 </View>

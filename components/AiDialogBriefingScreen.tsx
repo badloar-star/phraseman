@@ -297,10 +297,10 @@ export default function AiDialogBriefingScreen({
                       ...noAndroidOutline,
                     }}
                   >
-                    <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '900' }}>
+                    <Text style={{ color: t.accentText, fontSize: f.bodyLg, fontWeight: '900' }}>
                       ᚱ {formatRunes(purchase.priceRunes)}
                     </Text>
-                    <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    <Text style={{ color: t.accentText, fontSize: f.bodyLg, fontWeight: '700' }}>
                       · {purchase.balanceRunes >= purchase.priceRunes ? copy.unlock : copy.getRunes}
                     </Text>
                   </PressableScale>
@@ -311,7 +311,7 @@ export default function AiDialogBriefingScreen({
                     style={{
                       marginTop: 10,
                       textAlign: 'center',
-                      color: purchase.errorReason || purchase.balanceRunes < purchase.priceRunes ? t.gold : t.textMuted,
+                      color: purchase.errorReason || purchase.balanceRunes < purchase.priceRunes ? t.accentText : t.textMuted,
                       fontSize: f.sub,
                       fontWeight: '700',
                     }}

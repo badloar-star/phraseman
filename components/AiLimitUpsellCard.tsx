@@ -85,7 +85,7 @@ export default function AiLimitUpsellCard({
       <TonalSurface radius={16} tone="raised" style={[styles.card, { borderColor: glass.glassEdge }]}>
         <View style={styles.row}>
           <View style={[styles.iconWrap, { backgroundColor: glass.selected }]}>
-            <Ionicons name="flash" size={18} color={glass.cta} />
+            <Ionicons name="flash" size={18} color={glass.accentText} />
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
             {title}

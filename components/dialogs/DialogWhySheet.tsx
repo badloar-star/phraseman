@@ -192,7 +192,7 @@ export default function DialogWhySheet({
                 {gate.denied ? (
                   <Text
                     accessibilityLiveRegion="polite"
-                    style={{ color: t.gold, fontSize: f.sub, fontWeight: '700', textAlign: 'center', marginTop: 10 }}
+                    style={{ color: t.accentText, fontSize: f.sub, fontWeight: '700', textAlign: 'center', marginTop: 10 }}
                     maxFontSizeMultiplier={1.2}
                   >
                     {gate.denied === 'no_runes'

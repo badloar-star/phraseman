@@ -746,7 +746,7 @@ function DialogsTabContentBody({
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.accent} />
+            <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.accentText} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
@@ -771,7 +771,7 @@ function DialogsTabContentBody({
               })}
             </Text>
           </View>
-          <Ionicons name={hasPremiumAccess ? 'chevron-forward' : 'lock-closed-outline'} size={20} color={t.textSecond} />
+          <Ionicons name={hasPremiumAccess ? 'chevron-forward' : 'lock-closed-outline'} size={20} color={t.accentText} />
         </TouchableOpacity>
       )}
 
@@ -948,7 +948,7 @@ function DialogsTabContentBody({
                   })}
             </Text>
           </View>
-          <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
+          <Ionicons name="chevron-forward" size={20} color={t.accentText} />
         </TouchableOpacity>
       )}
     </Animated.ScrollView>

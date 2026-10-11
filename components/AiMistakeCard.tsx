@@ -109,7 +109,7 @@ export default function AiMistakeCard({
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
-          <Ionicons name="bulb-outline" size={20} color={t.accent} />
+          <Ionicons name="bulb-outline" size={20} color={t.accentText} />
         </View>
         <View style={[styles.headerText, styles.headerTextRow]}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
@@ -134,7 +134,7 @@ export default function AiMistakeCard({
               <FlowText
                 testID="ai-mistake-wait-line"
                 provenance="authored"
-                style={{ color: t.textSecond, fontSize: f.label }}
+                style={{ color: t.accentText, fontSize: f.label }}
               >
                 {waitLine}
               </FlowText>
@@ -155,7 +155,7 @@ export default function AiMistakeCard({
           testID="ai-mistake-limit-card"
         />
       ) : (
-        <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20 }}>
+        <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 20 }}>
           {body}
         </Text>
       )}
@@ -199,7 +199,7 @@ export default function AiMistakeCard({
           onPress={onOpenSimple}
           style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
-          <Ionicons name="sparkles-outline" size={16} color={t.accent} />
+          <Ionicons name="sparkles-outline" size={16} color={t.accentText} />
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
             {triLang(lang, {
               ru: 'Объяснить проще',
@@ -223,7 +223,7 @@ export default function AiMistakeCard({
           onPress={onExplain}
           style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
-            <Ionicons name="sparkles-outline" size={16} color={t.accent} />
+            <Ionicons name="sparkles-outline" size={16} color={t.accentText} />
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
             {triLang(lang, {
                 ru: 'Разобрать мой ответ',

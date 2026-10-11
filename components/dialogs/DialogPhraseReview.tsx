@@ -30,8 +30,8 @@ interface DialogPhraseReviewProps {
 
 /** Цвет и значок по виду разбора: верно · естественнее · ошибка. */
 function kindVisual(kind: PremiumDialogReviewPhrase['kind'], t: ReturnType<typeof useTheme>['theme']) {
-  if (kind === 'fix') return { icon: 'create-outline' as const, color: t.gold };
-  if (kind === 'polish') return { icon: 'sparkles-outline' as const, color: t.accent };
+  if (kind === 'fix') return { icon: 'create-outline' as const, color: t.accentText };
+  if (kind === 'polish') return { icon: 'sparkles-outline' as const, color: t.accentText };
   return { icon: 'checkmark-circle' as const, color: t.correct };
 }
 
@@ -83,7 +83,7 @@ export default function DialogPhraseReview({
             {phrase.note ? (
               <Text
                 style={{
-                  color: t.textSecond,
+                  color: t.accentText,
                   fontSize: f.sub,
                   marginTop: 4,
                   marginLeft: 23,
@@ -122,7 +122,7 @@ export default function DialogPhraseReview({
           ]}
           testID={testID ? `${testID}-locked` : undefined}
         >
-          <Ionicons name="sparkles" size={18} color={t.gold} />
+          <Ionicons name="sparkles" size={18} color={t.accentText} />
           <Text
             style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}
             maxFontSizeMultiplier={1.2}
@@ -139,7 +139,7 @@ export default function DialogPhraseReview({
               pl: `Jeszcze ${lockedCount} zdań w Plus`,
             })}
           </Text>
-          <Ionicons name="chevron-forward" size={18} color={t.gold} />
+          <Ionicons name="chevron-forward" size={18} color={t.accentText} />
         </Pressable>
       ) : null}
     </View>

@@ -13,7 +13,7 @@ export default function AiBadge() {
   const { theme: t, f } = useTheme();
   return (
     <View style={[styles.badge, { backgroundColor: `${t.accent}22` }]} accessibilityElementsHidden>
-      <Text style={[styles.text, { color: t.accent, fontSize: Math.max(10, f.label - 1) }]}>AI</Text>
+      <Text style={[styles.text, { color: t.accentText, fontSize: Math.max(10, f.label - 1) }]}>AI</Text>
     </View>
   );
 }

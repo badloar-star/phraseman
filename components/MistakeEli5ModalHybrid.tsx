@@ -123,7 +123,7 @@ function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text, fallback,
         >
           {showSkeleton ? (
             <View style={styles.skeleton}>
-              <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>{loadingLine}</Text>
+              <Text style={[styles.skeletonText, { color: t.accentText, fontSize: f.body }]}>{loadingLine}</Text>
               <SkeletonBlock width="92%" height={14} borderRadius={7} />
               <SkeletonBlock width="78%" height={14} borderRadius={7} />
               <SkeletonBlock width="85%" height={14} borderRadius={7} />

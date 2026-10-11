@@ -88,7 +88,7 @@ export default function DialogBubbleActions({
       ]}
       testID={testID ? `${testID}-${key}` : undefined}
     >
-      <Ionicons name={icon} size={17} color={options?.active ? t.accent : t.textMuted} />
+      <Ionicons name={icon} size={17} color={options?.active ? t.accentText : t.textMuted} />
     </Pressable>
   );
 

@@ -72,7 +72,7 @@ export default function SoftContextualUpsellCard({
       style={[styles.card, { borderColor: glass.glassEdge }]}
     >
       <View style={styles.headingRow}>
-        <Ionicons name="sparkles-outline" size={22} color={glass.cta} />
+        <Ionicons name="sparkles-outline" size={22} color={glass.accentText} />
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>{title}</Text>
       </View>
       <Text style={[styles.body, { color: t.textMuted, fontSize: f.caption }]}>{body}</Text>

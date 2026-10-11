@@ -519,7 +519,7 @@ function AiCompanionSession() {
                                 });
                                 speakDialogue(seg.text);
                               }}
-                              style={{ color: t.accent, fontWeight: '800', textDecorationLine: 'underline', opacity: strictPlaybackUnavailable ? 0.5 : 1 }}
+                              style={{ color: t.accentText, fontWeight: '800', textDecorationLine: 'underline', opacity: strictPlaybackUnavailable ? 0.5 : 1 }}
                             >
                               {seg.text}
                             </Text>
@@ -564,7 +564,7 @@ function AiCompanionSession() {
               }}
             >
               <Ionicons name="alert-circle-outline" size={20} color={t.textMuted} style={{ marginTop: 2 }} />
-              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35), flex: 1 }}>
+              <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: Math.round(f.body * 1.35), flex: 1 }}>
                 {lastErrorMessage}
               </Text>
             </View>
@@ -587,7 +587,7 @@ function AiCompanionSession() {
                   gap: 10,
                 }}
               >
-                <Ionicons name="bulb-outline" size={20} color={t.accent} style={{ marginTop: 2 }} />
+                <Ionicons name="bulb-outline" size={20} color={t.accentText} style={{ marginTop: 2 }} />
                 <View style={{ flex: 1 }}>
                   <Text
                     style={{
@@ -612,7 +612,7 @@ function AiCompanionSession() {
                   </Text>
                   <Text
                     style={{
-                      color: t.textSecond,
+                      color: t.accentText,
                       fontSize: f.body,
                       lineHeight: Math.round(f.body * 1.35),
                     }}
@@ -692,7 +692,7 @@ function AiCompanionSession() {
                 opacity: input.trim() && !sending ? 1 : 0.5,
               }}
             >
-              <Text style={{ color: input.trim() && !sending ? t.textOnGold : t.textSecond, fontWeight: '800', fontSize: f.body }}>→</Text>
+              <Text style={{ color: input.trim() && !sending ? t.textOnGold : t.accentText, fontWeight: '800', fontSize: f.body }}>→</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

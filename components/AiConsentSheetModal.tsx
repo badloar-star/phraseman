@@ -210,7 +210,7 @@ function AiConsentSheetModal({ visible, title, body, illustration, introduction,
             </Text>
             {introduction ? <Text style={[styles.body, { color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
             </ScrollView>
-            <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
+            <Text style={[styles.body, { color: t.accentText, fontSize: f.body }]}>
               {body}
             </Text>
 

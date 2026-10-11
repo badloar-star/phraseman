@@ -229,6 +229,11 @@ export function redactAdminAlertText(value: string): string {
     .replace(/\b(?:set-cookie|cookie)\s*:[^\r\n]*/gi, 'Cookie: [скрыто]')
     .replace(/(\b[A-Z][A-Z0-9_]*(?:TOKEN|SECRET|PASSWORD|PRIVATE_KEY|ACCESS_KEY|API_KEY)[A-Z0-9_]*\s*=\s*)[^\r\n]+/g, '$1[скрыто]')
     .replace(/(["']?(?:password|passwd|authorization|api[_-]?key|(?:access|refresh)[_-]?token|(?:client|webhook)[_-]?secret|activation[_-]?code|cookie|session(?:[_-]?(?:id|token))?)["']?\s*[=:]\s*)(?:"[^"]*"|'[^']*'|[^\r\n"'&,;}]+)/gi, '$1[скрыто]')
+    // зачем (§CORE-0159, аудит «что уходит в Telegram»): почта и телефон из жалоб, писем и текста ошибок
+    // не уходят во внешний канал — владелец увидит их в админке. Телефон — только международный формат с «+»,
+    // чтобы не резать числа в стеках и метках времени.
+    .replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g, '[почта скрыта]')
+    .replace(/(?<![\w+])\+\d{1,3}(?:[\s().-]*\d){7,14}(?!\w)/g, '[телефон скрыт]')
     .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '');
 }
 

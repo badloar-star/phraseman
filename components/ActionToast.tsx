@@ -20,7 +20,7 @@ import { hapticError, hapticWarning, hapticSoftImpact, hapticSuccess } from '../
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { LUM, SUITE, TOAST } from '../constants/motionHybrid';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { useOverlayVisible } from './OverlayArbiter';
+import { useOverlayActiveKey, useOverlayVisible } from './OverlayArbiter';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -263,6 +263,16 @@ function ActionToast() {
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
   const overlayVisible = useOverlayVisible('actionToast', overlayWanted);
+  // зачем (координатор 12.10, «сперва логи»: dev_state?toast=… не показывает тост на Главной): кто держит слот арбитра окон — главная причина «тост не показан».
+  const slotHolder = useOverlayActiveKey();
+  useEffect(() => {
+    if (__DEV__) console.log(`[DEV-STATE] toast: хост смонтирован lang=${lang}`); // guard-ok: единичный лог монтирования
+    return () => { if (__DEV__) console.log('[DEV-STATE] toast: хост размонтирован'); }; // guard-ok: единичный лог размонтирования
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только момент монтирования/размонтирования хоста
+  }, []);
+  useEffect(() => {
+    if (__DEV__) console.log(`[DEV-STATE] toast: слот хоста wanted=${String(overlayWanted)} visible=${String(overlayVisible)} слотДержит=${slotHolder ?? 'никто'}`); // guard-ok: смена состояния слота
+  }, [overlayWanted, overlayVisible, slotHolder]);
   const y = useRef(new Animated.Value(120)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -403,25 +413,35 @@ function ActionToast() {
   const enqueue = useCallback((payload: ToastPayload) => {
     const k = toastKey(payload);
     const cooledUntil = lastDismissedAtRef.current + SAME_TOAST_COOLDOWN_MS;
+    if (__DEV__) console.log(`[DEV-STATE] toast: хост получил type=${payload.type} текст="${String(payload.messageRu ?? '').slice(0, 60)}" busy=${String(busyRef.current)} очередь=${queueRef.current.length}`); // guard-ok: вход приёма
     if (
       lastDismissedKeyRef.current !== null &&
       k === lastDismissedKeyRef.current &&
       Date.now() < cooledUntil
     ) {
+      if (__DEV__) console.log(`[DEV-STATE] toast: отброшен — охлаждение после показа ещё ${cooledUntil - Date.now()}мс`); // guard-ok: ранний выход называет причину
       return;
     }
-    if (showingKeyRef.current === k) return;
-    if (queueRef.current.some((p) => toastKey(p) === k)) return;
+    if (showingKeyRef.current === k) {
+      if (__DEV__) console.log('[DEV-STATE] toast: отброшен — такой тост уже на экране'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    if (queueRef.current.some((p) => toastKey(p) === k)) {
+      if (__DEV__) console.log('[DEV-STATE] toast: отброшен — такой тост уже в очереди'); // guard-ok: ранний выход называет причину
+      return;
+    }
 
     if (!busyRef.current) {
       busyRef.current = true;
       showingKeyRef.current = k;
       pendingStartRef.current = payload;
       setOverlayWanted(true);
+      if (__DEV__) console.log('[DEV-STATE] toast: принят к показу, запрошен слот окон'); // guard-ok: ветвление приёма
       return;
     }
     if (queueRef.current.length >= MAX_QUEUE) queueRef.current.shift();
     queueRef.current.push(payload);
+    if (__DEV__) console.log(`[DEV-STATE] toast: хост занят, тост поставлен в очередь (длина ${queueRef.current.length})`); // guard-ok: ветвление приёма
   }, []);
 
   useEffect(() => {
@@ -440,13 +460,14 @@ function ActionToast() {
     if (overlayVisible || !pendingStartRef.current) return undefined;
     const giveUp = setTimeout(() => {
       if (!pendingStartRef.current) return;
+      console.warn(`[DEV-STATE] toast: слот окон не дали за ${PENDING_SLOT_TIMEOUT_MS}мс, тост сброшен — слот держит ${slotHolder ?? 'никто'}`); // guard-ok: причина потери тоста
       pendingStartRef.current = null;
       busyRef.current = false;
       showingKeyRef.current = null;
       setOverlayWanted(false);
     }, PENDING_SLOT_TIMEOUT_MS);
     return () => clearTimeout(giveUp);
-  }, [overlayVisible]);
+  }, [overlayVisible, slotHolder]);
 
   // зачем (§137): «День засчитан 🔥 N» в момент первого учебного действия дня — сигнал Ядра streak_day_counted
   // (локально, без сети); текст и фильтр (только activity:*) — в app/streak_day_toast.ts.

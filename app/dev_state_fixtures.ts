@@ -11,6 +11,7 @@
  * только локальные ключи устройства и dev-переопределения.
  * Логи: [DEV-STATE].
  */
+import { DeviceEventEmitter } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
 import { emitAppEvent } from './events';
@@ -379,8 +380,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const { paywallRestoreToast } = await import('./paywall_purchase');
       const kind = request.toast!;
       setTimeout(() => {
-        console.log(`[DEV-STATE] toast: ${kind}`); // guard-ok: dev-ветка
-        emitAppEvent('action_toast', paywallRestoreToast(kind));
+        const payload = paywallRestoreToast(kind);
+        // зачем (координатор 12.10, «сперва логи»): что пришло, какой тост выбран и сколько хостов тостов подписано (0 = хост не смонтирован)
+        console.log(`[DEV-STATE] toast: ${kind} → type=${payload.type} текст="${payload.messageRu.slice(0, 60)}" хостовПодписано=${DeviceEventEmitter.listenerCount('action_toast')}`); // guard-ok: dev-ветка
+        emitAppEvent('action_toast', payload);
       }, 900);
     });
   }

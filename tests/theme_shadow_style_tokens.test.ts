@@ -66,6 +66,42 @@ describe('стиль «Тень»: токены без обводок', () => {
     expect(actionShadowStyle(dark)[0]!.color).toBe(`${dark.accent.slice(0, 7)}99`);
   });
 
+  // зачем (координатор 14.10: «тень видна на светлом фоне и не грязнит тёмный»): считаем цвет тени, смешанный с фоном по её альфе, и
+  // сравниваем с самим фоном. Светлая — видна на всех шагах (по замеру ≥ 1,65, порог 1,5); тёмная — нейтральный чёрный без цветного
+  // оттенка (не грязнит), её малая видимость на почти чёрном фоне — решение спеки: плашку там отделяет тон (проверено выше).
+  it('тень видна на светлом фоне и не грязнит тёмный', () => {
+    const channel = (hex: string, i: number) => parseInt(hex.slice(1 + i * 2, 3 + i * 2), 16);
+    const parse = (c: string): [string, number] => {
+      if (c.startsWith('#')) return [c.slice(0, 7), c.length === 9 ? parseInt(c.slice(7, 9), 16) / 255 : 1];
+      const m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/)!;
+      return [`#${[m[1]!, m[2]!, m[3]!].map((x) => Number(x).toString(16).padStart(2, '0')).join('')}`, m[4] ? Number(m[4]) : 1];
+    };
+    const over = (shadow: string, bg: string) => {
+      const [color, alpha] = parse(shadow);
+      const out = [0, 1, 2].map((i) => Math.round(channel(color, i) * alpha + channel(bg, i) * (1 - alpha)).toString(16).padStart(2, '0'));
+      return `#${out.join('')}`;
+    };
+    const bad: string[] = [];
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of LEVELS) {
+        for (const intensity of STEPS) {
+          const where = `${id}|${level}|${intensity}`;
+          const light = liquidGlassTokens(id, { level, appearance: 'light', intensity });
+          for (const key of ['plateShadow', 'nestedShadow', 'raisedShadow'] as const) {
+            const r = paletteContrast(over(light[key], solid(light.bg)), solid(light.bg));
+            if (r < 1.5) bad.push(`светлая ${key} невидима ${where}=${r.toFixed(3)}<1.5`);
+          }
+          const dark = liquidGlassTokens(id, { level, appearance: 'dark', intensity });
+          for (const key of ['plateShadow', 'nestedShadow', 'raisedShadow'] as const) {
+            if (parse(dark[key])[0] !== '#000000') bad.push(`тёмная ${key} не нейтральный чёрный ${where}: ${dark[key]}`);
+          }
+        }
+      }
+    }
+    expect(bad.length).toBe(0);
+    expect(bad.slice(0, 30)).toEqual([]);
+  });
+
   it('ползунок: светлая тень берёт тон темы — на «Максимуме» она отличается от «Спокойно» хотя бы у тонированных тем', () => {
     const calm = liquidGlassTokens('sage', { level: 'calm', appearance: 'light', intensity: 0 });
     const max = liquidGlassTokens('sage', { level: 'max', appearance: 'light', intensity: 1 });

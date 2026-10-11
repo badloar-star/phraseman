@@ -17,6 +17,7 @@
 import { InteractionManager } from 'react-native';
 import { onAppEvent } from './events';
 import { coldStartProcessMs } from './cold_start_trace';
+import { whenOnboardingSettled } from './onboarding_defer_gate';
 
 export const FIRST_FRAME_WARMUP_FALLBACK_MS = 2_500;
 /**
@@ -54,7 +55,14 @@ function whenNativeSplashHiddenOrCeiling(ceilingMs: number): Promise<'hidden' | 
 
 export type FirstFrameReleaseTrigger = 'home_painted' | 'fallback';
 
-type Options = { readonly fallbackMs?: number };
+type Options = {
+  readonly fallbackMs?: number;
+  /**
+   * зачем (координатор 11.10, пункт B): тяжёлая задача ждёт конца онбординга — иначе она делит поток с его
+   * экранами (тапы вставали в очередь). Только для задач, которые онбордингу не нужны (не цены пейвола).
+   */
+  readonly holdDuringOnboarding?: boolean;
+};
 
 let homePaintedLogged = false;
 
@@ -115,13 +123,26 @@ export function runAfterHomeFirstFrame(
         return;
       }
       console.warn(`[FIRST-FRAME] deferred:release label=${label} trigger=${trigger} splash=${splash} waitedMs=${Date.now() - registeredAt}`);
-      interaction = InteractionManager.runAfterInteractions(() => {
-        interaction = null;
+      const schedule = () => {
+        interaction = InteractionManager.runAfterInteractions(() => {
+          interaction = null;
+          if (cancelled) {
+            console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_after_release`);
+            return;
+          }
+          runTask(label, task);
+        });
+      };
+      if (!options.holdDuringOnboarding) {
+        schedule();
+        return;
+      }
+      void whenOnboardingSettled(label).then((outcome) => {
         if (cancelled) {
-          console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_after_release`);
+          console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_while_onboarding outcome=${outcome}`);
           return;
         }
-        runTask(label, task);
+        schedule();
       });
     };
     // Сплеш уже снят — без лишнего тика; иначе ждём его снятия или потолка.

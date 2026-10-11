@@ -209,6 +209,7 @@ import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'
 import { coldStartMark, coldStartStep } from './cold_start_trace';
 import { msSinceJsEntry, takeModuleEvalReport } from './cold_start_entry_mark';
 import { whenHomePainted } from './home_paint_marker'; // зачем: §80 — [COLD-START] от старта процесса
+import { setOnboardingDeferActive } from './onboarding_defer_gate';
 import { markNativeSplashHidden, runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
@@ -961,7 +962,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         }
         scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
       })
-      .catch(noteSwallowedHandler('_layout:useEffect.call_3')));
+      .catch(noteSwallowedHandler('_layout:useEffect.call_3')), { holdDuringOnboarding: true });
     return () => {
       cancelled = true;
       cancelDeferred();
@@ -1252,6 +1253,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — ready=${ready}, firstContentReady=${firstContentReady}, homePainted=${homePaintedForPhoneState}`);
       return;
     }
+    // зачем (координатор 11.10, пункт B): открытие базы телефона на свежем онбординге шло 22 с и стопорило поток на
+    // 7,7 с (cipher) — тапы онбординга ждали. Онбордингу база не нужна (его записи идут в хранилище и импортируются
+    // позже), поэтому ждём его конца: эффект перезапустится, когда effectiveShowOnboarding станет false.
+    if (effectiveShowOnboarding) {
+      console.log('[ONB-DEFER] hold label=phone_state_bootstrap reason=onboarding_active');
+      return;
+    }
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) {
       console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — phase="${accountGeneration.phase}", stableId=${accountGeneration.stableId ?? 'null'}`);
       return;
@@ -1300,7 +1308,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       uninstallSync?.();
       cancelDeferredIntegrity?.();
     };
-  }, [accountGeneration, firstContentReady, homePaintedForPhoneState, ready]);
+  }, [accountGeneration, effectiveShowOnboarding, firstContentReady, homePaintedForPhoneState, ready]);
 
   useEffect(() => {
     if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
@@ -1786,6 +1794,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     }, FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);
   }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+
+  // зачем (координатор 11.10, пункт B): тяжёлые задачи после первого кадра (holdDuringOnboarding) ждут конца онбординга.
+  // До ready состояние онбординга неизвестно — задачи идут по-старому; после — ворота знают, идёт ли он.
+  useEffect(() => {
+    if (!ready) return;
+    setOnboardingDeferActive(effectiveShowOnboarding, '_layout');
+  }, [effectiveShowOnboarding, ready]);
 
   useEffect(() => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) return;
@@ -2541,7 +2556,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       runAfterHomeFirstFrame('achievements_coins_boot_check', () => new Promise<void>((resolve) => { setTimeout(resolve, 15_000); }).then(() => getStableId())
         .then(() => getRunesBalanceRead())
         .then((read) => checkAchievements({ type: 'shards', balance: read.wallet.balance }))
-        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error))));
+        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error))), { holdDuringOnboarding: true });
       // зачем (§142, правило владельца «каждый раздел открывается мгновенно»): окно Plus открывается
       // сразу (02a922192), но цены читались с диска уже после показа. Кэш цен читаем в память фоном
       // после первого кадра — только диск, без сети; модуль подгружаем динамически, не в старт.
@@ -2562,7 +2577,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         setTimeout(resolve, 20_000);
       }).then(() => import('./community_packs/publishedPackCardRemoval'))
         .then(({ flushPublishedPackCardRemovals }) => flushPublishedPackCardRemovals())
-        .catch((error: unknown) => console.warn('[PACK-CARD-REMOVE] flush на входе не удался', String(error)))); // guard-ok: одна строка на запуск
+        .catch((error: unknown) => console.warn('[PACK-CARD-REMOVE] flush на входе не удался', String(error))), { holdDuringOnboarding: true }); // guard-ok: одна строка на запуск
 
       let shouldPrimeLessonsAfterReveal = false;
       try {
@@ -2641,7 +2656,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
           return 'failed' as const;
         }).then((outcome) => endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok'));
-      }));
+      }), { holdDuringOnboarding: true });
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');

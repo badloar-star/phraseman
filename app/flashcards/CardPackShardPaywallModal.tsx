@@ -173,6 +173,37 @@ function triRunesTopUp(lang: Lang): string {
 function paywallModalCopy(lang: Lang): PaywallModalCopy {
   // зачем (PM-008, Q74): жемчуг и «подарок» в 2.0 удалены — единственная валюта монеты,
   // а режим voucher описывает «бесплатное открытие», без слова «подарок».
+  // зачем (координатор 12.10, подготовка к английскому интерфейсу): без этого блока en падал в русскую ветку ниже.
+  if (lang === 'en') {
+    return {
+      cancel: 'Cancel',
+      buy: 'Buy',
+      buyShards: 'How to earn coins',
+      forShards: (n: number) => `Buy for ${n} ${n === 1 ? 'coin' : 'coins'}`,
+      insufficientTitle: 'Not enough coins',
+      insufficientIntro: 'Coins are earned in lessons and training — the button below shows how.',
+      balanceBlockTitle: 'For this pack',
+      ctaSub: 'One-tap purchase',
+      shopCtaSub: 'Coins come from lessons and training',
+      voucherKicker: 'Free pack',
+      voucherTitle: 'Unlock for free?',
+      voucherIntro: 'This pack will be added to Cards for good, free — no coins needed.',
+      voucherWarn: 'The free unlock is one-time: it is used up right after you confirm.',
+      voucherCta: 'Unlock for free',
+      voucherCtaBusy: '',
+      voucherCtaSub: 'Once — after you confirm',
+      packKindLabel: 'Pack',
+      metaCards: (n: number) => `${n} ${n === 1 ? 'card' : 'cards'}`,
+      shortageRemaining: (n: number) => `${n} more ${n === 1 ? 'coin' : 'coins'} needed`,
+      needLabel: 'Needed',
+      youHaveLabel: 'You have',
+      costLabel: 'Cost',
+      shardsUnit: 'coins',
+      waitBusy: '',
+      reportPack: 'Report this pack',
+      hidePack: 'Hide from me',
+    };
+  }
   if (lang === 'uk') {
     return {
       cancel: 'Скасувати',

@@ -23,6 +23,7 @@
 // Чистая логика (жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
@@ -1008,7 +1009,7 @@ export default function FlashcardsBlitzSession() {
         fcHaptic('wrong');
       }
 
-      if (attemptEffect === 'attempts_exhausted') {
+      if (isAttemptsStopEffect(attemptEffect)) {
         pauseBlitzCountdown();
         return;
       }
@@ -1455,7 +1456,7 @@ export default function FlashcardsBlitzSession() {
             {/* зачем (решение 4, cards-section `sessHead` Блица): справа только сердца и монеты через 6 — пилюли энергии в макете нет. */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <SessionAttemptsHud
-                remaining={attempts.state.remainingAttempts}
+                remaining={attempts.state.remainingAttempts} attempts={attempts}
                 locale={lang}
                 testID="fc-blitz-attempts"
               />

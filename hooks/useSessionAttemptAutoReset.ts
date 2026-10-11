@@ -59,6 +59,18 @@ export function useSessionAttemptAutoReset({
 
   useEffect(() => () => { mountedRef.current = false; }, []);
 
+  // зачем (владелец 11.10, режим энергии Б; ревью Ядра): остановка без энергии снята — Plus или энергия вернулась, хук Ядра сам вернул фазу
+  // в 'active'. Экран обязан открыть ТОТ ЖЕ вопрос заново (onRestored), как после рунного спасения, но БЕЗ сжигания монет и без restoreAttempts:
+  // в режиме Б сердечек и платы монетами нет. Один хук закрывает все экраны занятий.
+  const prevPhaseRef = useRef<SessionAttemptsPhase>(phase);
+  useEffect(() => {
+    const prev = prevPhaseRef.current;
+    prevPhaseRef.current = phase;
+    if (prev !== 'stopped_no_energy' || phase === 'stopped_no_energy') return;
+    DebugLogger.info('[ATTEMPTS-RESET]', `остановка без энергии снята: ${prev}→${phase}; onRestored=${String(Boolean(callbacksRef.current.onRestored))}`);
+    if (phase === 'active') callbacksRef.current.onRestored?.();
+  }, [phase]);
+
   useEffect(() => {
     // зачем (2026-09-03): КАЖДЫЙ ранний выход обязан назвать причину. Именно немой выход по `hydrated === false` делал экран мёртвым:
     // сердца кончались, блокировщик ввода ложился поверх, а восстановление молча не запускалось.

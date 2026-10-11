@@ -14,7 +14,10 @@ jest.mock('react-native', () => ({
   TouchableOpacity: 'TouchableOpacity',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
 }));
-jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush }) }));
+jest.mock('expo-router', () => ({
+  useRouter: () => ({ push: mockPush }),
+  useFocusEffect: (effect: () => void) => { require('react').useEffect(effect, []); },
+}));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../constants/liquidGlassThemePalette', () => ({
   liquidGlassTokens: () => ({ opaqueSheet: '#222', opaqueControl: '#333', accent: '#0f0', accentInk: '#000', text: '#fff', secondary: '#aaa' }),
@@ -68,6 +71,13 @@ describe('EnergyStopSheet', () => {
     await render(<EnergyStopSheet visible onExit={jest.fn()} onResume={jest.fn()} paywallContext="no_energy" />);
     fireEvent.press(screen.getByTestId('energy-stop-plus'));
     expect(mockPush).toHaveBeenCalledWith({ pathname: '/premium_modal', params: { context: 'no_energy', source: 'energy_stop_sheet' } });
+  });
+
+  test('после тапа «Продолжить с Plus» карточка прячется, чтобы не перекрыть экран Plus (ревью Ядра п.2)', async () => {
+    await render(<EnergyStopSheet visible onExit={jest.fn()} onResume={jest.fn()} />);
+    expect(screen.getByTestId('shell')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('energy-stop-plus'));
+    expect(screen.queryByTestId('shell')).toBeNull();
   });
 
   test('«Выйти» вызывает onExit, onResume не трогает', async () => {

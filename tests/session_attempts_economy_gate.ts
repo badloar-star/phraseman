@@ -23,7 +23,7 @@ for (const needle of [
   "from '../hooks/useSessionAttemptAutoReset'",
   '<SessionAttemptsHud',
   "verdict: correct ? 'correct' : 'pedagogical_wrong'",
-  "attemptEffect === 'attempts_exhausted'",
+  'isAttemptsStopEffect(attemptEffect)', // зачем (режим энергии Б): общий помощник покрывает attempts_exhausted и energy_exhausted
 ]) {
   assert.ok(swipe.includes(needle), `flashcards_swipe missing: ${needle}`);
 }

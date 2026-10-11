@@ -354,6 +354,9 @@
       "<rootDir>/tests/coin_reward_flight_lifecycle.test.tsx",
       "<rootDir>/tests/energy_mistake_hud.test.tsx",
       "<rootDir>/tests/energy_stop_sheet.test.tsx",
+      "<rootDir>/tests/energy_needed_sheet.test.tsx",
+      "<rootDir>/tests/energy_attempts_hud.test.tsx",
+      "<rootDir>/tests/session_attempt_auto_reset_energy_stop.test.tsx",
       "<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx",
       "<rootDir>/tests/home_rune_balance_render.test.tsx",
       "<rootDir>/tests/theme_selection_runtime.test.tsx"

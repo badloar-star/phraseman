@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
@@ -134,7 +135,7 @@ import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
-import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsHud, { type SessionAttemptsEnergyModel } from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import EnergyBar from '../components/EnergyBar';
 import { lv2Alpha } from '../components/learning-v2/LearningV2Glass';
@@ -455,6 +456,8 @@ interface LessonContentProps {
   currentEnergy: number;
   currentMaxEnergy: number;
   attemptsRemaining: 0 | 1 | 2 | 3;
+  /** Режим энергии Б (Ядро 11.10): объект `useSessionAttempts` целиком — шапка сама решает, рисовать сердечки или энергию. */
+  attemptsEnergy?: SessionAttemptsEnergyModel;
   /** Руны, накопленные в этой сессии урока (владелец, 2026-08-27). */
   practiceRunesEarned: number;
   /** Источник/цель полёта руны (владелец, 2026-08-28): та же механика, что на
@@ -535,6 +538,7 @@ const LessonContent = React.memo(function LessonContent({
   currentEnergy,
   currentMaxEnergy,
   attemptsRemaining,
+  attemptsEnergy,
   practiceRunesEarned,
   runeFlightOriginRef,
   runeFlightCounterRef,
@@ -1058,10 +1062,12 @@ const LessonContent = React.memo(function LessonContent({
             columnGap: isSmallScreen ? 4 : 8,
           }}
         >
-          <LessonEnergyPill />
+          {/* зачем (режим энергии Б, ревью Ядра п.3): в режиме Б энергию показывает сама шапка попыток (EnergyMistakeHud) — вторая пилюля была бы дублем. */}
+          {attemptsEnergy?.mistakeChargeActive ? null : <LessonEnergyPill />}
 
           <SessionAttemptsHud
             remaining={attemptsRemaining}
+            attempts={attemptsEnergy}
             locale={lang}
             testID="lesson1-session-attempts"
             glassPill={heartsPill}
@@ -3139,7 +3145,10 @@ function LessonScreen() {
       Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
     });
 
-    if (attemptEffect === 'attempts_exhausted') {
+    // зачем (режим энергии Б, ревью Ядра п.1): 'energy_exhausted' — ошибка на последней энергии; как и при исчерпанных сердечках,
+    // остаёмся на ЭТОМ вопросе и никуда не листаем (без рунного окна и сброса монет — их в режиме Б нет). Дальше карточка остановки.
+    if (isAttemptsStopEffect(attemptEffect)) {
+      if (attemptEffect === 'energy_exhausted') console.log('[ENERGY-MODE] lesson1 stop on energy_exhausted', JSON.stringify({ cellIndex, overridePhraseCell }));
       return;
     }
 
@@ -3902,6 +3911,7 @@ function LessonScreen() {
             currentEnergy={currentEnergy}
             currentMaxEnergy={currentMaxEnergy}
             attemptsRemaining={attempts.state.remainingAttempts}
+            attemptsEnergy={attempts}
             practiceRunesEarned={practiceRunes.runes}
             runeFlightOriginRef={runeFlight.originRef}
             runeFlightCounterRef={runeFlight.counterRef}

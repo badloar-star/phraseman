@@ -31,7 +31,8 @@ for (const player of players) {
     `${player.name} must consume only a released pedagogical wrong`,
   );
   assert.ok(
-    player.source.includes("attempts_exhausted") &&
+    // зачем (режим энергии Б): стоп-эффект теперь проверяет общий помощник, он покрывает и attempts_exhausted, и energy_exhausted.
+    player.source.includes("isAttemptsStopEffect(attemptEffect)") &&
       player.source.includes("restoreAfterSessionRuneForfeit"),
     `${player.name} must restore hearts after the third wrong`,
   );

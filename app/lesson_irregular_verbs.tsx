@@ -1,4 +1,5 @@
 import KitProgressFill from '../components/KitProgressFill';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -551,7 +552,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       // трата — 10 ⚡ при входе в тренировку глаголов (эффект старта выше).
     }
 
-    if (attemptEffect === 'attempts_exhausted') {
+    if (isAttemptsStopEffect(attemptEffect)) {
       return; // Keep the current verb form for the automatic reset.
     }
 
@@ -786,7 +787,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
               />
             </View>
             <SessionAttemptsHud
-              remaining={attempts.state.remainingAttempts}
+              remaining={attempts.state.remainingAttempts} attempts={attempts}
               locale={lang}
               testID="irregular-verbs-session-attempts"
             />

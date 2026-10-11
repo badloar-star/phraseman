@@ -29,6 +29,7 @@
 // внутри `SpeakHoldButton` (без доступа → пейвол context='speaking').
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -976,7 +977,7 @@ export default function FlashcardsSpeakingSession() {
       });
       // Эхо эталона (владелец, 2026-09-14): после вердикта диктор произносит
       // фразу. При исчерпании попыток экран уходит под блокировщик — молчим.
-      const echoCard = attemptEffect === 'attempts_exhausted' ? null : failedCard;
+      const echoCard = isAttemptsStopEffect(attemptEffect) ? null : failedCard;
       if (attempt.passed) {
         fcHaptic('correct');
         playSfx('correct');
@@ -1053,7 +1054,7 @@ export default function FlashcardsSpeakingSession() {
         fcHaptic('wrong');
         playSfx('incorrect');
       }
-      if (attemptEffect === 'attempts_exhausted') {
+      if (isAttemptsStopEffect(attemptEffect)) {
         clearAdvanceTimer();
         setHoldActive(false);
         stopSpeechAndCancelPendingAdvance();
@@ -1393,7 +1394,7 @@ export default function FlashcardsSpeakingSession() {
       </PracticeHeaderTitle>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <SessionAttemptsHud
-          remaining={attempts.state.remainingAttempts}
+          remaining={attempts.state.remainingAttempts} attempts={attempts}
           locale={lang}
           testID="fc-speak-session-attempts"
         />

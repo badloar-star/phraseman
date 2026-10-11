@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { isAttemptsStopEffect, isAttemptsInputBlocked } from "../../session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { KitGlassLayer } from "../../../components/v2/KitLiquidGlass";
 import * as Crypto from "expo-crypto";
@@ -1045,7 +1046,7 @@ function LearningV2LegacySessionScreen() {
         answerAttemptId,
         verdict: "pedagogical_wrong",
       });
-      if (attemptEffect === "attempts_exhausted") return;
+      if (isAttemptsStopEffect(attemptEffect)) return;
     }
   };
   const chooseTile = (tile: {
@@ -1305,7 +1306,7 @@ function LearningV2LegacySessionScreen() {
         <View
           style={styles.screen}
           pointerEvents={
-            sessionAttempts.state.phase === "awaiting_recovery"
+            isAttemptsInputBlocked(sessionAttempts.state.phase)
               ? "none"
               : "auto"
           }
@@ -1348,7 +1349,7 @@ function LearningV2LegacySessionScreen() {
                   answerAttemptId,
                   verdict: "pedagogical_wrong",
                 });
-                if (attemptEffect === "attempts_exhausted") return "wrong";
+                if (isAttemptsStopEffect(attemptEffect)) return "wrong";
               }
               return verdict;
             }}
@@ -1400,7 +1401,7 @@ function LearningV2LegacySessionScreen() {
           style={[styles.introAttemptsOverlay, { top: insets.top + 8 }]}
         >
           <SessionAttemptsHud
-            remaining={sessionAttempts.state.remainingAttempts}
+            remaining={sessionAttempts.state.remainingAttempts} attempts={sessionAttempts}
             locale={lang}
             testID="learning-v2-route-intro-attempts"
           />
@@ -1450,7 +1451,7 @@ function LearningV2LegacySessionScreen() {
       </View>
       <View style={styles.attemptsBelowHeader}>
         <SessionAttemptsHud
-          remaining={sessionAttempts.state.remainingAttempts}
+          remaining={sessionAttempts.state.remainingAttempts} attempts={sessionAttempts}
           locale={lang}
           testID="learning-v2-route-attempts"
         />
@@ -2065,7 +2066,7 @@ function LearningV2LegacySessionScreen() {
           </Animated.View>
         </View>
       )}
-      {sessionAttempts.state.phase === "awaiting_recovery" ? (
+      {isAttemptsInputBlocked(sessionAttempts.state.phase) ? (
         <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
       ) : null}
     </LinearGradient>

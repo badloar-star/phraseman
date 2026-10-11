@@ -16,10 +16,17 @@ import { SESSION_ATTEMPTS_MAX } from '../../app/session_attempts/session_attempt
 import { SESSION_ATTEMPTS_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
+import EnergyAttemptsHud, { type SessionAttemptsEnergyModel } from '../energy/EnergyAttemptsHud';
 import { useTheme } from '../ThemeContext';
+
+export type { SessionAttemptsEnergyModel };
 
 type Props = {
   remaining: number;
+  /** Режим Б: без него HUD рисует сердечки, как раньше (экраны-заглушки загрузки его не передают). */
+  attempts?: SessionAttemptsEnergyModel;
+  /** Выйти из остановленного занятия (режим Б). По умолчанию — назад по стеку: состояние занятия уже сохранено. */
+  onStoppedExit?: () => void;
   locale: string;
   total?: number;
   testID?: string;
@@ -189,6 +196,8 @@ function HeartSlot({ index, filled, activeColor, emptyColor }: HeartSlotProps) {
 
 function SessionAttemptsHud({
   remaining,
+  attempts,
+  onStoppedExit,
   locale,
   total = SESSION_ATTEMPTS_MAX,
   testID = 'session-attempts-hud',
@@ -230,6 +239,12 @@ function SessionAttemptsHud({
     soundDirector.request('pm.hearts.restored', { scope: 'session-attempts' });
     return undefined;
   }, [safeRemaining]);
+
+  // зачем (владелец 11.10, режим Б; макет energy-modes-states.html Б1): сердечек нет — вместо них пилюля энергии и остановка занятия.
+  // Вынесено в отдельный компонент: подписка на энергию и роутер нужны только в режиме Б, режим А остаётся как был.
+  if (attempts?.mistakeChargeActive === true) {
+    return <EnergyAttemptsHud attempts={attempts} locale={locale} onStoppedExit={onStoppedExit} testID={testID} />;
+  }
 
   return (
     <View

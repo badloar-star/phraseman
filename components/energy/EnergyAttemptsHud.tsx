@@ -1,0 +1,87 @@
+import React, { memo, useCallback } from 'react';
+import { useRouter } from 'expo-router';
+
+import { DebugLogger } from '../../app/debug-logger';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { triLang } from '../../constants/i18n';
+import { useEnergy } from '../EnergyContext';
+import { useLang } from '../LangContext';
+import { useTheme } from '../ThemeContext';
+import EnergyMistakeHud from './EnergyMistakeHud';
+import EnergyStopSheet from './EnergyStopSheet';
+
+const TAG = '[ENERGY-HUD]';
+
+/**
+ * Всё, что шапке занятия нужно от `useSessionAttempts` в режиме энергии Б (контракт Ядра, 11.10):
+ * хозяин передаёт объект `attempts` целиком — лишние поля игнорируются.
+ */
+export type SessionAttemptsEnergyModel = Readonly<{
+  mistakeChargeActive: boolean;
+  /** Растёт на 1 РОВНО при списании энергии за ошибку. */
+  energyLossSeq: number;
+  state: Readonly<{ phase: string }>;
+  /** Вернуть занятие из остановки на тот же вопрос — после подтверждённого Plus. */
+  resumeAfterPlus: () => unknown;
+}>;
+
+type Props = Readonly<{
+  attempts: SessionAttemptsEnergyModel;
+  locale: string;
+  testID: string;
+  /** Выйти из остановленного занятия. По умолчанию — назад по стеку: состояние занятия уже сохранено Ядром. */
+  onStoppedExit?: () => void;
+}>;
+
+/**
+ * Режим Б (макет energy-modes-states.html, кадры Б1–Б6): вместо сердечек — пилюля энергии, ошибка трясёт её и вылетает «−1»,
+ * ошибка на последней энергии останавливает занятие карточкой «Энергия закончилась». У Plus энергия не тратится — пилюли нет.
+ * Подписка на энергию и роутер живут здесь, а не в SessionAttemptsHud: режим А остаётся ровно таким, каким был.
+ */
+function EnergyAttemptsHud({ attempts, testID, onStoppedExit }: Props) {
+  const router = useRouter();
+  const { lang } = useLang();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const { energy, bonusEnergy, maxEnergy, isUnlimited } = useEnergy();
+  const have = energy + bonusEnergy;
+  const stopped = attempts.state.phase === 'stopped_no_energy';
+  const { resumeAfterPlus } = attempts;
+
+  const onResume = useCallback(() => { resumeAfterPlus(); }, [resumeAfterPlus]);
+  const onExit = useCallback(() => {
+    DebugLogger.info(TAG, `выход из остановленного занятия testID=${testID} customExit=${String(Boolean(onStoppedExit))}`);
+    if (onStoppedExit) onStoppedExit(); else router.back();
+  }, [onStoppedExit, router, testID]);
+
+  const label = triLang(lang, {
+    ru: `Энергия: ${have} из ${maxEnergy}`, uk: `Енергія: ${have} з ${maxEnergy}`, en: `Energy: ${have} of ${maxEnergy}`,
+    es: `Energía: ${have} de ${maxEnergy}`, 'pt-BR': `Energia: ${have} de ${maxEnergy}`, vi: `Năng lượng: ${have}/${maxEnergy}`,
+    id: `Energi: ${have} dari ${maxEnergy}`, tr: `Enerji: ${have}/${maxEnergy}`, pl: `Energia: ${have} z ${maxEnergy}`,
+  });
+
+  // Plus: энергия не тратится ни в одном режиме, остановки нет — шапка без пилюли (макет Б6: после покупки пилюля уходит).
+  // Карточку остановки оставляем смонтированной: пока она открыта и Plus только что подтвердился, ей нужно успеть вызвать onResume.
+  return (
+    <>
+      {isUnlimited ? null : (
+        <EnergyMistakeHud
+          energy={have}
+          maxEnergy={maxEnergy}
+          lossSeq={attempts.energyLossSeq}
+          accent={g.accent}
+          muted={g.secondary}
+          textColor={g.text}
+          bad={t.wrong}
+          plate={g.opaqueControl}
+          edge={g.glassEdge}
+          accessibilityLabel={label}
+          testID={testID}
+        />
+      )}
+      <EnergyStopSheet visible={stopped} onResume={onResume} onExit={onExit} />
+    </>
+  );
+}
+
+export default memo(EnergyAttemptsHud);

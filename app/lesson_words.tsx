@@ -1,4 +1,5 @@
 import KitProgressFill from '../components/KitProgressFill';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useWordFlash } from '../hooks/use-word-flash';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -3006,7 +3007,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     } else {
       fk.verdict({ correct: false });
     }
-    if (attemptEffect === 'attempts_exhausted') {
+    if (isAttemptsStopEffect(attemptEffect)) {
       recordWrongVocabularyAttempt(current, opt);
       return; // Keep the current vocabulary card for the automatic reset.
     }
@@ -3232,7 +3233,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       {renderTrainingHeader(`${round.label} · ${trainingStepLabel}`, (
         <View style={{ flexDirection:'row', alignItems:'center', gap:6 }}>
           <SessionAttemptsHud
-            remaining={attempts.state.remainingAttempts}
+            remaining={attempts.state.remainingAttempts} attempts={attempts}
             locale={lang}
             testID="lesson-words-session-attempts"
           />

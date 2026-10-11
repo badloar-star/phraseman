@@ -1,27 +1,30 @@
-// зачем (ТЗ владельца 11.10, два режима энергии): режим Б показывает энергию вместо сердечек; shake и «−1» только на явное списание
-// за ошибку (lossSeq от Ядра), а не на любое падение energy (полночь, сверка с сервером).
+// зачем (ТЗ владельца 11.10, два режима энергии; макет energy-modes-states.html Б1–Б4): режим Б показывает энергию вместо сердечек;
+// тряска, «−1» и перекат цифры — только на явное списание за ошибку (lossSeq от Ядра), а не на любое падение energy (полночь, сверка с сервером).
 import React from 'react';
 import { render, screen, act } from '@testing-library/react-native';
-import { cancelAnimation, withTiming } from 'react-native-reanimated';
+import { withSequence } from 'react-native-reanimated';
 import { hapticWarning } from '../hooks/use-haptics';
-import EnergyMistakeHud from '../components/energy/EnergyMistakeHud';
+import EnergyMistakeHud, { ENERGY_MISTAKE_MOTION } from '../components/energy/EnergyMistakeHud';
 
 let mockReduceMotion = false;
 
 jest.mock('react-native', () => ({
   View: 'View',
   Text: 'Text',
-  StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFillObject: {} },
 }));
 jest.mock('react-native-reanimated', () => {
   const React = require('react');
   return {
     __esModule: true,
     default: { View: 'Animated.View' },
+    Easing: { bezier: () => 0 },
     useSharedValue: (initial: number) => React.useRef({ value: initial }).current,
     useAnimatedStyle: (factory: () => unknown) => factory(),
     withDelay: (_delay: number, value: unknown) => value,
     withTiming: jest.fn((to: number) => to),
+    withSequence: jest.fn((...steps: unknown[]) => steps[steps.length - 1]),
+    withRepeat: jest.fn((value: unknown) => value),
     cancelAnimation: jest.fn(),
   };
 });
@@ -30,75 +33,84 @@ jest.mock('../hooks/use-haptics', () => ({ hapticWarning: jest.fn(() => Promise.
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../components/EnergyIcon', () => ({
   __esModule: true,
-  default: (props: { shouldShake?: boolean; filled: boolean }) => {
+  default: (props: { filled: boolean }) => {
     const React = require('react');
-    return React.createElement('EnergyIcon', { testID: 'icon', shouldShake: props.shouldShake, filled: props.filled });
-  },
-}));
-jest.mock('../components/energy/AnimatedEnergyNumber', () => ({
-  AnimatedEnergyNumber: (props: { value: number }) => {
-    const React = require('react');
-    return React.createElement('EnergyNumber', { testID: 'num', value: props.value });
+    return React.createElement('EnergyIcon', { testID: 'icon', filled: props.filled });
   },
 }));
 
-const base = { maxEnergy: 5, color: '#fff', lossColor: '#f55', accessibilityLabel: 'Энергия: 3 из 5' };
+const base = {
+  maxEnergy: 5, accent: '#7EF0C8', muted: '#75757A', textColor: '#fff', bad: '#FF6B6B', plate: '#1D1D22', edge: 'rgba(255,255,255,.13)',
+  accessibilityLabel: 'Энергия: 3 из 5',
+};
+const value = () => screen.getByTestId('energy-mistake-hud-value').props.children;
 
 describe('EnergyMistakeHud', () => {
   beforeEach(() => { jest.clearAllMocks(); jest.useFakeTimers(); mockReduceMotion = false; });
   afterEach(() => { jest.useRealTimers(); });
 
-  test('первый кадр: число энергии без потери, shake выключен, haptic молчит', async () => {
+  test('первый кадр: число энергии, без анимации и haptic', async () => {
     await render(<EnergyMistakeHud {...base} energy={3} lossSeq={0} />);
-    expect(screen.getByTestId('num').props.value).toBe(3);
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(false);
+    expect(value()).toBe(3);
     expect(hapticWarning).not.toHaveBeenCalled();
+    expect(withSequence).not.toHaveBeenCalled();
   });
 
-  test('падение energy БЕЗ роста lossSeq (полночь, сверка) — без shake и haptic', async () => {
+  test('падение energy БЕЗ роста lossSeq (полночь, сверка) — цифра сразу, без тряски и haptic', async () => {
     const view = await render(<EnergyMistakeHud {...base} energy={4} lossSeq={2} />);
     await view.rerender(<EnergyMistakeHud {...base} energy={3} lossSeq={2} />);
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(false);
+    expect(value()).toBe(3);
     expect(hapticWarning).not.toHaveBeenCalled();
+    expect(withSequence).not.toHaveBeenCalled();
   });
 
-  test('рост lossSeq: shake иконки, haptic, «−1» стартует; shake гаснет по таймеру', async () => {
+  test('рост lossSeq: haptic, тряска и «−1» стартуют, цифра меняется через 260 мс по макету', async () => {
     const view = await render(<EnergyMistakeHud {...base} energy={4} lossSeq={0} />);
     await view.rerender(<EnergyMistakeHud {...base} energy={3} lossSeq={1} />);
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(true);
     expect(hapticWarning).toHaveBeenCalledTimes(1);
-    expect(withTiming).toHaveBeenCalled();
-    await act(async () => { jest.advanceTimersByTime(400); });
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(false);
+    expect(withSequence).toHaveBeenCalled();
+    expect(value()).toBe(4);
+    await act(async () => { jest.advanceTimersByTime(ENERGY_MISTAKE_MOTION.numberSwapDelayMs + 10); });
+    expect(value()).toBe(3);
   });
 
-  test('две ошибки подряд — две потери, анимация перезапускается', async () => {
+  test('две ошибки подряд — две потери', async () => {
     const view = await render(<EnergyMistakeHud {...base} energy={4} lossSeq={0} />);
     await view.rerender(<EnergyMistakeHud {...base} energy={3} lossSeq={1} />);
+    await act(async () => { jest.advanceTimersByTime(300); });
     await view.rerender(<EnergyMistakeHud {...base} energy={2} lossSeq={2} />);
+    await act(async () => { jest.advanceTimersByTime(300); });
     expect(hapticWarning).toHaveBeenCalledTimes(2);
-    expect(cancelAnimation).toHaveBeenCalled();
+    expect(value()).toBe(2);
   });
 
-  test('reduce motion: без shake и подъёма, «−1» только растворяется', async () => {
+  test('reduce motion: haptic есть, тряски нет (ни одной последовательности), цифра сразу', async () => {
     mockReduceMotion = true;
     const view = await render(<EnergyMistakeHud {...base} energy={4} lossSeq={0} />);
-    (withTiming as jest.Mock).mockClear();
+    (withSequence as jest.Mock).mockClear();
     await view.rerender(<EnergyMistakeHud {...base} energy={3} lossSeq={1} />);
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(false);
-    // растворение «−1» — единственная анимация; подъёма (translateY) нет
-    expect(withTiming).toHaveBeenCalledTimes(1);
+    await act(async () => { jest.advanceTimersByTime(5); });
+    expect(hapticWarning).toHaveBeenCalledTimes(1);
+    expect(withSequence).not.toHaveBeenCalled();
+    expect(value()).toBe(3);
   });
 
   test('сброс lossSeq (новое занятие) — не потеря', async () => {
     const view = await render(<EnergyMistakeHud {...base} energy={4} lossSeq={3} />);
     await view.rerender(<EnergyMistakeHud {...base} energy={5} lossSeq={0} />);
-    expect(screen.getByTestId('icon').props.shouldShake).toBe(false);
     expect(hapticWarning).not.toHaveBeenCalled();
+    expect(value()).toBe(5);
   });
 
-  test('энергия 0 — иконка пустая', async () => {
+  test('энергия 0 — иконка пустая, пилюля приглушена', async () => {
     await render(<EnergyMistakeHud {...base} energy={0} lossSeq={0} />);
     expect(screen.getByTestId('icon').props.filled).toBe(false);
+    expect(value()).toBe(0);
+  });
+
+  test('последняя энергия (1) запускает красный пульс', async () => {
+    const { withRepeat } = require('react-native-reanimated');
+    await render(<EnergyMistakeHud {...base} energy={1} lossSeq={0} />);
+    expect(withRepeat).toHaveBeenCalledWith(expect.anything(), ENERGY_MISTAKE_MOTION.warnCycles, false);
   });
 });

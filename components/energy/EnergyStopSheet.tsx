@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 
 import { DebugLogger } from '../../app/debug-logger';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -22,30 +22,34 @@ type Props = Readonly<{
   visible: boolean;
   /** Выйти из остановленного занятия. Состояние занятия хозяин сохраняет сам (ТЗ: «продолжить с того же места»). */
   onExit: () => void;
-  /** Plus оформлен, пока шторка открыта: хозяин вызывает `attempts.resumeAfterPlus()` — занятие идёт с того же вопроса. */
+  /** Plus оформлен, пока карточка открыта: хозяин вызывает `attempts.resumeAfterPlus()` — занятие идёт с того же вопроса. */
   onResume: () => void;
   /** Контекст пейвола Plus; по умолчанию общий `no_energy`. */
   paywallContext?: string;
 }>;
 
 /**
- * Остановка занятия в режиме Б (ТЗ владельца 11.10): ошибка на последней энергии — занятие не идёт дальше,
- * пока не восстановится энергия или не оформлен Plus. Это не наказание: тон спокойный, главное действие — «Продолжить с Plus сейчас».
- * Закрыть шторку жестом/«назад» нельзя (случайный выход не должен терять место) — только явная кнопка «Выйти».
+ * Остановка занятия в режиме Б (ТЗ владельца 11.10; макет energy-modes-states.html, кадр Б4, `.gmod`): ошибка на последней энергии —
+ * занятие не идёт дальше, пока не восстановится энергия или не оформлен Plus. Это пауза, а не наказание: тон спокойный,
+ * главное действие — «Продолжить с Plus». Закрыть жестом/«назад» нельзя (случайный выход не должен терять место) — только кнопка «Выйти из занятия».
  */
 function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energy' }: Props) {
   const router = useRouter();
   const { lang } = useLang();
-  const { liquidGlassThemeId, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const { isUnlimited, recoveryIntervalMs } = useEnergy();
   const { formattedTime } = useEnergyCountdown({ visible });
   const resumedRef = useRef(false);
+  // зачем (ревью Ядра п.2): экран Plus открывается маршрутом ПОВЕРХ нативного окна — карточка остановки перекрыла бы его, и кнопка казалась бы
+  // мёртвой. Поэтому перед переходом карточку прячем, а когда экран занятия снова в фокусе (пейвол закрыт) — возвращаем, если остановка ещё есть.
+  const [plusOpen, setPlusOpen] = useState(false);
+  useFocusEffect(useCallback(() => { setPlusOpen(false); }, []));
 
   useEffect(() => {
     if (!visible) { resumedRef.current = false; return; }
-    DebugLogger.info(TAG, `шторка показана isUnlimited=${String(isUnlimited)} next=${formattedTime || '—'} intervalMs=${recoveryIntervalMs}`);
+    DebugLogger.info(TAG, `карточка показана isUnlimited=${String(isUnlimited)} next=${formattedTime || '—'} intervalMs=${recoveryIntervalMs}`);
     soundDirector.request('pm.energy.empty', { scope: 'energy-stop-sheet', dedupeKey: 'visible' });
     hapticWarning().catch((error: unknown) => {
       DebugLogger.warn(TAG, `haptic не сработал: ${error instanceof Error ? error.message : String(error)}`);
@@ -54,11 +58,11 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
-  // зачем: оформили Plus (пейвол поверх шторки закрылся покупкой) → занятие продолжается само, без лишнего тапа. Один раз на показ.
+  // зачем: оформили Plus (пейвол поверх карточки закрылся покупкой) → занятие продолжается само, без лишнего тапа. Один раз на показ.
   useEffect(() => {
     if (!visible || !isUnlimited || resumedRef.current) return;
     resumedRef.current = true;
-    DebugLogger.info(TAG, 'Plus подтверждён при открытой шторке → onResume()');
+    DebugLogger.info(TAG, 'Plus подтверждён при открытой карточке → onResume()');
     onResume();
   }, [visible, isUnlimited, onResume]);
 
@@ -71,22 +75,23 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
     'pt-BR': 'alguns minutos', vi: 'vài phút', id: 'beberapa menit', tr: 'birkaç dakika', pl: 'kilka minut',
   });
   const body = triLang(lang, {
-    ru: `Занятие остановлено. Следующая энергия вернётся через ${time}.`,
-    uk: `Заняття зупинено. Наступна енергія повернеться через ${time}.`,
-    en: `The lesson is paused. Your next energy comes back in ${time}.`,
-    es: `La lección está en pausa. Tu próxima energía vuelve en ${time}.`,
-    'pt-BR': `A lição está pausada. Sua próxima energia volta em ${time}.`,
-    vi: `Bài học đã tạm dừng. Năng lượng tiếp theo sẽ hồi sau ${time}.`,
-    id: `Pelajaran dijeda. Energi berikutnya pulih dalam ${time}.`,
-    tr: `Ders duraklatıldı. Bir sonraki enerji ${time} içinde yenilenir.`,
-    pl: `Lekcja jest wstrzymana. Następna energia wróci za ${time}.`,
+    ru: `Занятие остановлено, а не потеряно. Продолжи с Plus сейчас — вернёшься на тот же вопрос. Или подожди: +1 энергия вернётся через ${time}.`,
+    uk: `Заняття зупинено, а не втрачено. Продовж з Plus зараз — повернешся до того самого питання. Або зачекай: +1 енергія повернеться через ${time}.`,
+    en: `Your lesson is paused, not lost. Continue with Plus now and pick up at the same question. Or wait: +1 energy comes back in ${time}.`,
+    es: `La lección está en pausa, no perdida. Continúa con Plus ahora y vuelve a la misma pregunta. O espera: +1 de energía vuelve en ${time}.`,
+    'pt-BR': `A lição está pausada, não perdida. Continue com o Plus agora e volte à mesma pergunta. Ou espere: +1 de energia volta em ${time}.`,
+    vi: `Bài học đã tạm dừng, chưa mất. Tiếp tục với Plus ngay để quay lại đúng câu hỏi đó. Hoặc chờ: +1 năng lượng sẽ hồi sau ${time}.`,
+    id: `Pelajaran dijeda, bukan hilang. Lanjutkan dengan Plus sekarang dan kembali ke pertanyaan yang sama. Atau tunggu: +1 energi pulih dalam ${time}.`,
+    tr: `Ders duraklatıldı, kaybolmadı. Plus ile şimdi devam et, aynı soruya dön. Ya da bekle: +1 enerji ${time} içinde yenilenir.`,
+    pl: `Lekcja jest wstrzymana, nie utracona. Kontynuuj z Plus teraz i wróć do tego samego pytania. Albo poczekaj: +1 energia wróci za ${time}.`,
   });
   const cta = triLang(lang, {
-    ru: 'Продолжить с Plus сейчас', uk: 'Продовжити з Plus зараз', en: 'Continue with Plus now', es: 'Continuar con Plus ahora',
-    'pt-BR': 'Continuar com o Plus agora', vi: 'Tiếp tục với Plus ngay', id: 'Lanjut dengan Plus sekarang', tr: 'Plus ile şimdi devam et', pl: 'Kontynuuj z Plus teraz',
+    ru: 'Продолжить с Plus', uk: 'Продовжити з Plus', en: 'Continue with Plus', es: 'Continuar con Plus',
+    'pt-BR': 'Continuar com o Plus', vi: 'Tiếp tục với Plus', id: 'Lanjut dengan Plus', tr: 'Plus ile devam et', pl: 'Kontynuuj z Plus',
   });
   const exit = triLang(lang, {
-    ru: 'Выйти', uk: 'Вийти', en: 'Exit', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź',
+    ru: 'Выйти из занятия', uk: 'Вийти із заняття', en: 'Leave the lesson', es: 'Salir de la lección', 'pt-BR': 'Sair da lição',
+    vi: 'Thoát bài học', id: 'Keluar dari pelajaran', tr: 'Dersten çık', pl: 'Wyjdź z lekcji',
   });
 
   const cascade = (delay: number, key: string, node: React.ReactNode) => (
@@ -96,35 +101,35 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
   const openPlus = () => {
     hapticTap();
     DebugLogger.info(TAG, `тап «${cta}» → /premium_modal context=${paywallContext}`);
+    setPlusOpen(true);
     router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: 'energy_stop_sheet' } } as never);
   };
   const leave = () => {
     hapticTap();
-    DebugLogger.info(TAG, 'тап «Выйти» → onExit()');
+    DebugLogger.info(TAG, 'тап «Выйти из занятия» → onExit()');
     onExit();
   };
 
   return (
     <HybridAlertShell
-      visible={visible}
+      visible={visible && !plusOpen}
       onRequestClose={() => { DebugLogger.info(TAG, 'back/жест проигнорирован: закрыть можно только кнопкой'); }}
       dismissible={false}
-      placement="bottom"
-      shadowColor="#000000" // theme-exempt: тень шторки — чёрная в любой теме
-      backdropColor="rgba(0,0,0,0.6)" // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
+      shadowColor="#000000" // theme-exempt: тень карточки — чёрная в любой теме
+      backdropColor="rgba(0,0,0,0.6)" // theme-exempt: затемнение под карточкой — тёмный скрим в любой теме
       testID="energy-stop-sheet"
     >
       <View style={[styles.card, { backgroundColor: g.opaqueSheet }]}>
         {cascade(LUM.ladder[1], 'icon', (
           <View style={[styles.iconPlate, { backgroundColor: g.opaqueControl }]}>
-            <EnergyIcon filled={false} themeColor={g.accent} tintColor={g.secondary} size={30} animateChange={false} animateLoop={false} />
+            <EnergyIcon filled themeColor={g.secondary} tintColor={g.secondary} size={28} animateChange={false} animateLoop={false} />
           </View>
         ))}
         {cascade(LUM.ladder[2], 'title', (
-          <Text accessibilityRole="header" style={[styles.title, { color: g.text, fontSize: f.h2 }]} testID="energy-stop-title">{title}</Text>
+          <Text accessibilityRole="header" style={[styles.title, { color: g.text }]} testID="energy-stop-title">{title}</Text>
         ))}
         {cascade(LUM.ladder[2], 'body', (
-          <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]} testID="energy-stop-body">{body}</Text>
+          <Text style={[styles.body, { color: g.secondary }]} testID="energy-stop-body">{body}</Text>
         ))}
         {cascade(LUM.ladder[3], 'actions', (
           <View style={styles.actions}>
@@ -136,7 +141,7 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
               activeOpacity={0.82}
               style={[styles.cta, { backgroundColor: g.accent }]}
             >
-              <Text style={[styles.ctaLabel, { color: g.accentInk, fontSize: f.body }]}>{cta}</Text>
+              <Text style={[styles.ctaLabel, { color: g.accentInk }]}>{cta}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="energy-stop-exit"
@@ -144,9 +149,9 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
               accessibilityLabel={exit}
               onPress={leave}
               activeOpacity={0.7}
-              style={styles.exit}
+              style={[styles.exit, { backgroundColor: g.opaqueControl }]}
             >
-              <Text style={[styles.exitLabel, { color: g.secondary, fontSize: f.body }]}>{exit}</Text>
+              <Text style={[styles.exitLabel, { color: g.text }]}>{exit}</Text>
             </TouchableOpacity>
           </View>
         ))}
@@ -156,15 +161,16 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
 }
 
 const styles = StyleSheet.create({
-  card: { width: '100%', borderRadius: 26, paddingTop: 24, paddingHorizontal: 22, paddingBottom: 12, alignItems: 'center', gap: 12 },
-  iconPlate: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center' },
-  title: { fontWeight: '700', textAlign: 'center' },
-  body: { textAlign: 'center' },
-  actions: { alignSelf: 'stretch', marginTop: 10, gap: 4 },
-  cta: { minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
-  ctaLabel: { fontWeight: '700', textAlign: 'center' },
-  exit: { minHeight: 44, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
-  exitLabel: { fontWeight: '600', textAlign: 'center' },
+  // макет energy-modes-states.html `.gmod`: карточка r26, отступы 22/20/18, плита 56 r18, заголовок 23/29/800, кнопки 52 r26.
+  card: { width: '100%', borderRadius: 26, paddingTop: 22, paddingHorizontal: 20, paddingBottom: 18 },
+  iconPlate: { width: 56, height: 56, borderRadius: 18, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
+  title: { fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center' },
+  body: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },
+  actions: { alignSelf: 'stretch' },
+  cta: { marginTop: 16, minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
+  ctaLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
+  exit: { marginTop: 8, minHeight: 52, borderRadius: 26, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
+  exitLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
 });
 
 export default memo(EnergyStopSheet);

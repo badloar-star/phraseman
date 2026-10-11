@@ -95,7 +95,7 @@ if ((overlaySource.match(/accessibilityLabel=\{copy\.saveLabel\}/g) ?? []).lengt
 }
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  'practiceActivated &&\n          sessionAttempts.state.phase !== "awaiting_recovery"',
+  'practiceActivated &&\n          !isAttemptsInputBlocked(sessionAttempts.state.phase)',
   "underlay_save_control_not_hidden_behind_word_card",
 );
 expectText(

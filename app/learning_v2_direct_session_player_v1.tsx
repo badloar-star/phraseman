@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { isAttemptsStopEffect, isAttemptsInputBlocked } from "./session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Crypto from "expo-crypto";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
@@ -1861,7 +1862,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             token: prev.token + 1,
           }));
       }
-      if (attemptEffect === "attempts_exhausted") return;
+      if (isAttemptsStopEffect(attemptEffect)) return;
     },
     [
       attempts,
@@ -2583,11 +2584,11 @@ export default function LearningV2DirectSessionPlayerV1() {
           <View style={styles.screen} />
           <SessionAttemptsHud
             glassPill={heartsPill}
-            remaining={sessionAttempts.state.remainingAttempts}
+            remaining={sessionAttempts.state.remainingAttempts} attempts={sessionAttempts}
             locale={lang}
             testID="learning-v2-checkpoint-attempts"
           />
-          <EnergyBar glass />
+          {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
         </View>
         <ScrollView
           style={styles.screen}
@@ -2663,7 +2664,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         <View
           style={styles.screen}
           pointerEvents={
-            sessionAttempts.state.phase === "awaiting_recovery"
+            isAttemptsInputBlocked(sessionAttempts.state.phase)
               ? "none"
               : "auto"
           }
@@ -2712,7 +2713,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 answerAttemptId,
                 verdict: "pedagogical_wrong",
               });
-              if (attemptEffect === "attempts_exhausted") return "wrong";
+              if (isAttemptsStopEffect(attemptEffect)) return "wrong";
               return "wrong";
             }}
             resolveSecondWrongExplanation={(interactionId, choiceIndex, responseId) => {
@@ -2738,11 +2739,11 @@ export default function LearningV2DirectSessionPlayerV1() {
               <View style={styles.headerActions}>
               <SessionAttemptsHud
                 glassPill={heartsPill}
-                remaining={sessionAttempts.state.remainingAttempts}
+                remaining={sessionAttempts.state.remainingAttempts} attempts={sessionAttempts}
                 locale={lang}
                 testID="learning-v2-intro-attempts"
               />
-              <EnergyBar glass />
+              {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
               {runeHud}
               </View>
             }
@@ -2816,13 +2817,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         <View style={styles.headerActions}>
           <SessionAttemptsHud
             glassPill={heartsPill}
-            remaining={sessionAttempts.state.remainingAttempts}
+            remaining={sessionAttempts.state.remainingAttempts} attempts={sessionAttempts}
             locale={lang}
             testID="learning-v2-session-attempts"
           />
           {/* зачем (learning-v2.html, шапка занятия): пилюля энергии рядом с попытками; у Plus
               EnergyBar сам не рисуется («Plus — энергии нет»). Только показ, трата — в гейте. */}
-          <EnergyBar glass />
+          {sessionAttempts.mistakeChargeActive ? null : <EnergyBar glass />}
           {runeHud}
         </View>
       </View>
@@ -2831,13 +2832,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         style={styles.screen}
         pointerEvents={
           practiceActivated &&
-          sessionAttempts.state.phase !== "awaiting_recovery"
+          !isAttemptsInputBlocked(sessionAttempts.state.phase)
             ? "auto"
             : "none"
         }
         importantForAccessibility={
           practiceActivated &&
-          sessionAttempts.state.phase !== "awaiting_recovery"
+          !isAttemptsInputBlocked(sessionAttempts.state.phase)
             ? "auto"
             : "no-hide-descendants"
         }

@@ -2,9 +2,12 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   cancelAnimation,
+  Easing,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  withRepeat,
+  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -12,119 +15,244 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticWarning } from '../../hooks/use-haptics';
 import EnergyIcon from '../EnergyIcon';
-import { AnimatedEnergyNumber } from './AnimatedEnergyNumber';
 
 const TAG = '[ENERGY-MISTAKE-HUD]';
 
-/** Длительность всплывающего «−1»: подъём + растворение. Shake иконки — 264 мс (EnergyIcon), «−1» стартует вместе с ним. */
-export const ENERGY_MISTAKE_LOSS_MS = 620;
-const SHAKE_FLAG_MS = 320;
-const LOSS_RISE_PX = -16;
+/**
+ * Хронометраж 1 в 1 с макета energy-modes-states.html (владелец 11.10, «прям анимация»):
+ * тряска пилюли 520 мс (gshake), иконка вспухает ×1.25 на середине (gboltshake), «−1» летит 900 мс (gfly),
+ * цифра меняется через 260 мс после начала тряски и «падает» 420 мс с пружиной (gtick), пульс красным на последней энергии 1100 мс ×3 (gwarn).
+ */
+export const ENERGY_MISTAKE_MOTION = {
+  shakeMs: 520,
+  shakeSteps: [
+    { atPct: 0.15, x: -6, rot: -3 },
+    { atPct: 0.35, x: 6, rot: 3 },
+    { atPct: 0.55, x: -4, rot: 0 },
+    { atPct: 0.75, x: 3, rot: 0 },
+    { atPct: 1, x: 0, rot: 0 },
+  ],
+  boltPeakScale: 1.25,
+  flyMs: 900,
+  flyRisePx: -44,
+  flyPeakPct: 0.15,
+  numberSwapDelayMs: 260,
+  tickMs: 420,
+  tickFromY: -9,
+  tickFromScale: 0.7,
+  warnMs: 1100,
+  warnCycles: 3,
+} as const;
 
 type Props = Readonly<{
   /** Сколько энергии осталось сейчас. */
   energy: number;
-  /** Потолок (5): для подписи доступности. */
+  /** Потолок (5): для значения доступности. */
   maxEnergy: number;
   /**
    * Счётчик списаний за ошибку (`attempts.energyLossSeq`, Ядро): растёт на 1 РОВНО при списании за ошибку.
-   * зачем: нельзя определять ошибку по падению energy — энергия падает и от истечения подарочной, и от сверки с сервером (ложный shake).
+   * зачем: нельзя определять ошибку по падению energy — энергия падает и от истечения подарочной, и от сверки с сервером (ложная тряска).
    */
   lossSeq: number;
-  /** Цвета пилюли. glassPill — тот же контракт, что у сердечек Learning V2; без него — токены темы. */
-  color: string;
-  lossColor: string;
-  plate?: string;
+  /** Цвета из токенов темы (liquidGlassTokens): иконка/цифра, «пустая» иконка, красный «ошибки», заливка и тонкая кромка пилюли. */
+  accent: string;
+  muted: string;
+  textColor: string;
+  bad: string;
+  plate: string;
+  edge: string;
   /** Подпись для озвучки экрана («Энергия: 3 из 5»). */
   accessibilityLabel: string;
   testID?: string;
 }>;
 
 /**
- * Энергия в шапке занятия в режиме Б (владелец 11.10): сердечек нет, каждая ошибка снимает 1 энергию.
- * Анимация потери: иконка трясётся (нативный драйвер), число «проваливается», над ней всплывает «−1» и гаснет.
- * Reduce motion: без shake и подъёма — «−1» только появляется и растворяется на месте.
+ * Энергия в шапке занятия в режиме Б (макет energy-modes-states.html, кадры Б1–Б4): пилюля 34 pt с молнией и цифрой, сердечек нет.
+ * Ошибка: пилюля трясётся, молния вспухает, над ней вылетает «−1», цифра перекатывается. Последняя энергия (1) — красный пульс.
+ * Ноль — пилюля приглушена, цифра красная. «Уменьшить движение»: без тряски и подъёма, «−1» только появляется и гаснет на месте.
  */
-function EnergyMistakeHud({ energy, maxEnergy, lossSeq, color, lossColor, plate, accessibilityLabel, testID = 'energy-mistake-hud' }: Props) {
+function EnergyMistakeHud({ energy, maxEnergy, lossSeq, accent, muted, textColor, bad, plate, edge, accessibilityLabel, testID = 'energy-mistake-hud' }: Props) {
+  const M = ENERGY_MISTAKE_MOTION;
   const reduceMotion = useReduceMotion();
+  const safeEnergy = Math.max(0, Math.floor(energy));
+  const [shown, setShown] = useState(safeEnergy);
+  const shownRef = useRef(safeEnergy);
+  const energyRef = useRef(safeEnergy);
+  energyRef.current = safeEnergy;
   const prevSeqRef = useRef(lossSeq);
-  const [shake, setShake] = useState(false);
-  const lossOpacity = useSharedValue(0);
-  const lossY = useSharedValue(0);
+  const swapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const shakeX = useSharedValue(0);
+  const shakeRot = useSharedValue(0);
+  const boltScale = useSharedValue(1);
+  const flyOpacity = useSharedValue(0);
+  const flyY = useSharedValue(0);
+  const flyScale = useSharedValue(0.8);
+  const tickY = useSharedValue(0);
+  const tickScale = useSharedValue(1);
+  const tickOpacity = useSharedValue(1);
+  const warnOpacity = useSharedValue(0);
+
+  const playTick = () => {
+    cancelAnimation(tickY);
+    cancelAnimation(tickScale);
+    cancelAnimation(tickOpacity);
+    if (reduceMotion) { tickY.value = 0; tickScale.value = 1; tickOpacity.value = 1; return; }
+    const spring = Easing.bezier(0.3, 1.4, 0.5, 1);
+    tickY.value = M.tickFromY; tickScale.value = M.tickFromScale; tickOpacity.value = 0;
+    tickY.value = withTiming(0, { duration: M.tickMs, easing: spring });
+    tickScale.value = withTiming(1, { duration: M.tickMs, easing: spring });
+    tickOpacity.value = withTiming(1, { duration: M.tickMs });
+  };
+
+  // Потеря за ошибку: явный счётчик от Ядра. Объявлен ПЕРЕД эффектом цифры — таймер подмены цифры должен быть взведён раньше его проверки.
   useEffect(() => {
     const prev = prevSeqRef.current;
     prevSeqRef.current = lossSeq;
-    if (lossSeq === prev) return undefined;
+    if (lossSeq === prev) return;
     if (lossSeq < prev) {
       // зачем: счётчик нового занятия начинается заново — это не потеря, анимировать нечего.
-      DebugLogger.info(TAG, `lossSeq сброшен ${prev}→${lossSeq}: новое занятие, без анимации energy=${energy}`);
-      return undefined;
+      DebugLogger.info(TAG, `lossSeq сброшен ${prev}→${lossSeq}: новое занятие, без анимации energy=${energyRef.current}`);
+      return;
     }
-    DebugLogger.info(TAG, `потеря за ошибку lossSeq ${prev}→${lossSeq} energy=${energy} reduceMotion=${String(reduceMotion)}`);
+    DebugLogger.info(TAG, `потеря за ошибку lossSeq ${prev}→${lossSeq} energy=${energyRef.current} shown=${shownRef.current} reduceMotion=${String(reduceMotion)}`);
     hapticWarning().catch((error: unknown) => {
       DebugLogger.warn(TAG, `haptic не сработал: ${error instanceof Error ? error.message : String(error)}`);
     });
-    cancelAnimation(lossOpacity);
-    cancelAnimation(lossY);
-    lossY.value = 0;
-    lossOpacity.value = 1;
-    lossOpacity.value = withDelay(220, withTiming(0, { duration: ENERGY_MISTAKE_LOSS_MS - 220 }));
-    if (!reduceMotion) {
-      lossY.value = withTiming(LOSS_RISE_PX, { duration: ENERGY_MISTAKE_LOSS_MS });
-      setShake(true);
+    [shakeX, shakeRot, boltScale, flyOpacity, flyY, flyScale].forEach((v) => cancelAnimation(v));
+    flyY.value = 0;
+    if (reduceMotion) {
+      flyOpacity.value = 1;
+      flyOpacity.value = withDelay(M.flyMs * 0.4, withTiming(0, { duration: M.flyMs * 0.6 }));
+    } else {
+      const sec = (pct: number) => M.shakeMs * pct;
+      let last = 0;
+      const xs = M.shakeSteps.map((s) => { const d = sec(s.atPct - last); last = s.atPct; return withTiming(s.x, { duration: d }); });
+      last = 0;
+      const rs = M.shakeSteps.map((s) => { const d = sec(s.atPct - last); last = s.atPct; return withTiming(s.rot, { duration: d }); });
+      shakeX.value = withSequence(...xs);
+      shakeRot.value = withSequence(...rs);
+      boltScale.value = withSequence(
+        withTiming(M.boltPeakScale, { duration: M.shakeMs / 2 }),
+        withTiming(1, { duration: M.shakeMs / 2 }),
+      );
+      flyScale.value = withSequence(
+        withTiming(1.2, { duration: M.flyMs * M.flyPeakPct }),
+        withTiming(1, { duration: M.flyMs * (1 - M.flyPeakPct) }),
+      );
+      flyOpacity.value = withSequence(
+        withTiming(1, { duration: M.flyMs * M.flyPeakPct }),
+        withTiming(0, { duration: M.flyMs * (1 - M.flyPeakPct) }),
+      );
+      flyY.value = withTiming(M.flyRisePx, { duration: M.flyMs, easing: Easing.bezier(0.2, 0.8, 0.3, 1) });
     }
-    const timer = setTimeout(() => setShake(false), SHAKE_FLAG_MS);
-    return () => clearTimeout(timer);
-  }, [lossSeq, energy, reduceMotion, lossOpacity, lossY]);
+    if (swapTimerRef.current) clearTimeout(swapTimerRef.current);
+    swapTimerRef.current = setTimeout(() => {
+      swapTimerRef.current = null;
+      shownRef.current = energyRef.current;
+      setShown(energyRef.current);
+      playTick();
+    }, reduceMotion ? 0 : M.numberSwapDelayMs);
+    // зачем: energy и reduceMotion намеренно вне deps — эффект привязан к событию потери (lossSeq), а не к значениям.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lossSeq]);
 
-  const lossStyle = useAnimatedStyle(() => ({
-    opacity: lossOpacity.value,
-    transform: [{ translateY: lossY.value }],
+  // Любое другое изменение энергии (восстановление, сверка, полночь) — цифра меняется сразу, без тряски.
+  useEffect(() => {
+    if (swapTimerRef.current) return;
+    if (shownRef.current === safeEnergy) return;
+    DebugLogger.info(TAG, `энергия изменилась вне ошибки ${shownRef.current}→${safeEnergy}: цифра сразу, без тряски`);
+    shownRef.current = safeEnergy;
+    setShown(safeEnergy);
+    playTick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [safeEnergy]);
+
+  useEffect(() => () => { if (swapTimerRef.current) clearTimeout(swapTimerRef.current); }, []);
+
+  // Последняя энергия: красный пульс ×3; уходим с неё — гасим.
+  const lastEnergy = safeEnergy === 1;
+  useEffect(() => {
+    cancelAnimation(warnOpacity);
+    if (!lastEnergy) { warnOpacity.value = 0; return; }
+    DebugLogger.info(TAG, `последняя энергия: пульс reduceMotion=${String(reduceMotion)}`);
+    if (reduceMotion) { warnOpacity.value = 1; return; }
+    warnOpacity.value = withRepeat(
+      withSequence(withTiming(1, { duration: M.warnMs / 2 }), withTiming(0, { duration: M.warnMs / 2 })),
+      M.warnCycles,
+      false,
+    );
+  }, [lastEnergy, reduceMotion, warnOpacity, M.warnCycles, M.warnMs]);
+
+  const pillStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: shakeX.value }, { rotate: `${shakeRot.value}deg` }],
   }));
+  const boltStyle = useAnimatedStyle(() => ({ transform: [{ scale: boltScale.value }] }));
+  const flyStyle = useAnimatedStyle(() => ({
+    opacity: flyOpacity.value,
+    transform: [{ translateY: flyY.value }, { scale: flyScale.value }],
+  }));
+  const tickStyle = useAnimatedStyle(() => ({
+    opacity: tickOpacity.value,
+    transform: [{ translateY: tickY.value }, { scale: tickScale.value }],
+  }));
+  const warnStyle = useAnimatedStyle(() => ({ opacity: warnOpacity.value }));
 
-  const safeEnergy = Math.max(0, Math.floor(energy));
+  const zero = shown === 0;
   return (
-    <View
+    <Reanimated.View
       testID={testID}
-      style={[styles.pill, plate ? { backgroundColor: plate } : null]}
+      style={[styles.pill, { backgroundColor: plate, borderColor: edge }, zero ? styles.zero : null, pillStyle]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
       accessibilityValue={{ min: 0, max: Math.max(1, Math.floor(maxEnergy)), now: Math.min(safeEnergy, Math.floor(maxEnergy)) }}
     >
-      <EnergyIcon
-        filled={safeEnergy > 0}
-        themeColor={color}
-        tintColor={color}
-        size={18}
-        animateChange={false}
-        animateLoop={false}
-        shouldShake={shake}
-      />
-      <AnimatedEnergyNumber value={safeEnergy} color={color} style={styles.value} />
-      <Reanimated.View pointerEvents="none" style={[styles.loss, lossStyle]}>
-        <Text style={[styles.lossText, { color: lossColor }]} maxFontSizeMultiplier={1.15} testID={`${testID}-loss`}>−1</Text>
+      <Reanimated.View pointerEvents="none" style={[styles.warnRing, { borderColor: bad }, warnStyle]} />
+      <Reanimated.View style={boltStyle}>
+        <EnergyIcon
+          filled={!zero}
+          themeColor={zero ? muted : accent}
+          tintColor={zero ? muted : accent}
+          size={16}
+          animateChange={false}
+          animateLoop={false}
+        />
       </Reanimated.View>
-    </View>
+      <Reanimated.View style={[styles.valueBox, tickStyle]}>
+        <Text
+          testID={`${testID}-value`}
+          style={[styles.value, { color: zero || lastEnergy ? bad : textColor }]}
+          maxFontSizeMultiplier={1.15}
+        >
+          {shown}
+        </Text>
+      </Reanimated.View>
+      <Reanimated.View pointerEvents="none" style={[styles.fly, flyStyle]}>
+        <Text style={[styles.flyText, { color: bad }]} maxFontSizeMultiplier={1.15} testID={`${testID}-loss`}>−1</Text>
+      </Reanimated.View>
+    </Reanimated.View>
   );
 }
 
 const styles = StyleSheet.create({
   pill: {
-    minHeight: 30,
-    borderRadius: 15,
-    paddingLeft: 10,
-    paddingRight: 6,
+    height: 34,
+    borderRadius: 17,
+    paddingHorizontal: 11,
+    borderWidth: 1, // guard-ok: тонкая 1px кромка пилюли — как на макете energy-modes-states.html (исключение PhraseMan 2.0, 24.09)
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 2,
+    gap: 6,
   },
-  value: { width: 22, height: 24, fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  loss: { position: 'absolute', top: -2, right: 4 },
-  lossText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  zero: { opacity: 0.75 },
+  warnRing: { ...StyleSheet.absoluteFillObject, borderRadius: 17, borderWidth: 1.5 }, // guard-ok: красный пульс последней энергии, кромка 1.5px — по макету (gwarn); typo-exempt: кромка пульса 1.5 по макету energy-modes-states.html
+  valueBox: { minWidth: 10, alignItems: 'center', justifyContent: 'center' },
+  value: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center', fontVariant: ['tabular-nums'] },
+  fly: { position: 'absolute', alignSelf: 'center', top: 6, zIndex: 9 },
+  flyText: { fontSize: 16, lineHeight: 22, fontWeight: '800' },
 });
 
 export default memo(EnergyMistakeHud);

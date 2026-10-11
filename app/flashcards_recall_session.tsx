@@ -821,7 +821,7 @@ export default function FlashcardsRecallSession() {
         <PracticeHeaderTitle glass={recallGlass} title={copy.title} />
         <View style={styles.headerTools}>
           <SessionAttemptsHud
-            remaining={attempts.state.remainingAttempts}
+            remaining={attempts.state.remainingAttempts} attempts={attempts}
             locale={lang}
             testID="fc-recall-session-attempts"
           />

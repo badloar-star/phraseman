@@ -33,6 +33,8 @@ import { energyGateMessage } from '../app/energy_activity_titles';
 import { formatTimeUntilRecovery } from '../app/energy_system';
 
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import EnergyNeededSheet from './energy/EnergyNeededSheet';
+import { chargesEnergyOnMistake, useEnergyMode } from '../app/energy_mode';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -118,6 +120,10 @@ function NoEnergyModal({
   // а не старые 20: при запасе 5 порог 20 не выполнился бы никогда.
   const requiredEnergy = activity ? activityEnergyCost(activity) : Math.max(ENERGY_SESSION_COST, minRequired ?? 0);
   const isGate = requiredEnergy > 0;
+  // зачем (владелец 11.10, режим энергии Б; макет energy-modes-states.html Б7): в режиме Б на занятиях, где энергия снимается за ошибки,
+  // старт без энергии показывает шторку «Нужна энергия» с таймером и Plus вместо этого окна. Режим А и остальные занятия — окно как было.
+  const energyMode = useEnergyMode();
+  const neededSheetMode = activity !== undefined && chargesEnergyOnMistake(activity, energyMode);
   const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
   const { formattedTime } = useEnergyCountdown({ visible: modalVisible });
   const [lineText, setLineText] = useState('');
@@ -621,6 +627,18 @@ function NoEnergyModal({
   const variantContent = variant === 'learn' ? sx.learnContent : variant === 'course' ? sx.courseContent : null;
 
   const cardSurface = { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge };
+
+  if (neededSheetMode) {
+    return (
+      <EnergyNeededSheet
+        visible={modalVisible}
+        required={1}
+        onWait={laterPress}
+        onPlus={openPremiumAfterClose}
+        onRestored={onEnergyRestored}
+      />
+    );
+  }
 
   if (hybrid) {
     return (

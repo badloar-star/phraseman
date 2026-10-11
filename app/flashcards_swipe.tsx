@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -3088,7 +3089,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             facet: { kind: 'meaning', expected: prompt.card.en },
           }).catch((error: unknown) => { console.warn('[FC-SWIPE] запись попытки в цели аккаунта не удалась (продолжаем без неё)', error); });
         }
-        if (attemptEffect === 'attempts_exhausted') {
+        if (isAttemptsStopEffect(attemptEffect)) {
           audio.stop();
         }
         return;
@@ -3724,7 +3725,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         </View>
 
         <View style={styles.trueFalseMetaRow}>
-          <SessionAttemptsHud remaining={attempts.state.remainingAttempts} locale={lang} testID="flashcards-truefalse-attempts-hud" />
+          <SessionAttemptsHud remaining={attempts.state.remainingAttempts} attempts={attempts} locale={lang} testID="flashcards-truefalse-attempts-hud" />
           <View ref={runeFlight.counterRef} collapsable={false}>
             <PracticeRuneCounter runes={practiceRunes.runes} lang={lang} backgroundColor={t.bgCard} color={t.textPrimary} testID="flashcards-truefalse-practice-runes" />
           </View>
@@ -3844,7 +3845,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           tools={(
             <>
               <SessionAttemptsHud
-                remaining={attempts.state.remainingAttempts}
+                remaining={attempts.state.remainingAttempts} attempts={attempts}
                 locale={lang}
                 testID="flashcards-swipe-attempts-hud"
               />

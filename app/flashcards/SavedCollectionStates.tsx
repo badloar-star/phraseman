@@ -105,7 +105,7 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
     // зачем (шаблон .empty макета): поиск без результатов — плитка, 24/30 и 16/22 по центру экрана, как у «Пусто».
     return <KitEmpty g={g} testID="fc-saved-search-empty" icon="search-outline" title={title} detail={detail} action="" onAction={noop} hideAction />;
   }
-  return <KitEmpty g={g} testID="fc-saved-empty" icon="bookmark" title={title} detail={detail} action={action} onAction={onCommunity} actionTestID="fc-saved-find-packs" />;
+  return <KitEmpty g={g} testID="fc-saved-empty" icon="bookmark-outline" title={title} detail={detail} action={action} onAction={onCommunity} actionTestID="fc-saved-find-packs" />;
 }
 
 const baseStyles = StyleSheet.create({

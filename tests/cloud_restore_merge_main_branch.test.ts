@@ -33,6 +33,40 @@ describe('ветка «облако главнее» — ключи из таб�
     expect(daysOn(merged)).toBe(2);
   });
 
+  it('пп.6–8, 12: начатый язык, счётчик «Хелпер» и флаги оплаты не откатываются облаком', async () => {
+    await AsyncStorage.multiSet([
+      ['streak_count', '0'],
+      ['study_languages_started_v1', JSON.stringify(['en', 'fr'])],
+      ['helpful_error_reports_confirmed_v1', '3'],
+      ['had_premium_ever', '1'],
+      ['achievement_access_plus_paid_v1', 'true'],
+    ]);
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      streak_count: '5',
+      last_active_date: '2026-10-10',
+      study_languages_started_v1: JSON.stringify(['en', 'es']),
+      helpful_error_reports_confirmed_v1: '2',
+      had_premium_ever: '0',
+      achievement_access_plus_paid_v1: 'false',
+    }));
+    expect(restored).toBe(true);
+    const langs = JSON.parse((await AsyncStorage.getItem('study_languages_started_v1')) ?? '[]') as string[];
+    expect([...langs].sort()).toEqual(['en', 'es', 'fr']);
+    expect(await AsyncStorage.getItem('helpful_error_reports_confirmed_v1')).toBe('3');
+    expect(await AsyncStorage.getItem('had_premium_ever')).toBe('1');
+    expect(await AsyncStorage.getItem('achievement_access_plus_paid_v1')).toBe('true');
+  });
+
+  it('облачный флаг оплаты приходит, если локально его нет', async () => {
+    await AsyncStorage.multiSet([['streak_count', '0']]);
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      streak_count: '5',
+      last_active_date: '2026-10-10',
+      achievement_access_pro_paid_v1: 'true',
+    }));
+    expect(await AsyncStorage.getItem('achievement_access_pro_paid_v1')).toBe('true');
+  });
+
   it('основной цикл зовёт таблицу слияний (контракт по исходнику)', () => {
     const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8') as string;
     const loopStart = source.indexOf('for (const key of getRuntimeSyncKeys()) {', source.indexOf('const mergeStrategyRuntimeKeys'));

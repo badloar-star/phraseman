@@ -442,6 +442,11 @@ function mergeActiveDaysRestoreValue(localRaw: string | null | undefined, cloudR
   return JSON.stringify(merged);
 }
 
+const isTruthyFlag = (raw: string | null | undefined): boolean => raw === '1' || raw === 'true';
+function mergeTruthyFlagRestoreValue(localRaw: string | null | undefined, cloudRaw: string): string {
+  return !isTruthyFlag(cloudRaw) && isTruthyFlag(localRaw) ? (localRaw as string) : cloudRaw;
+}
+
 const FC_RESTORE_MERGE_STRATEGIES: Record<
   string,
   (localRaw: string | null | undefined, cloudRaw: string) => string
@@ -456,6 +461,11 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // (человек потерял бы 200 жемчужин), поэтому мержим объединением.
   [OWNED_THEMES_KEY]: mergeOwnedThemesRestoreValue,
   [GRANDFATHERED_THEMES_KEY]: mergeOwnedThemesRestoreValue,
+  // зачем (п.12, координатор 11.10): «было оплачено» не снимается — флаг, поставленный здесь после покупки,
+  // переживает облако, где его ещё нет (ИЛИ). Снять оплату может только сервер своим путём, не restore.
+  had_premium_ever: mergeTruthyFlagRestoreValue,
+  [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY]: mergeTruthyFlagRestoreValue,
+  [ACHIEVEMENT_ACCESS_PRO_PAID_KEY]: mergeTruthyFlagRestoreValue,
 };
 
 export const SYNC_KEYS = [
@@ -1466,6 +1476,8 @@ export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_energy_refill_count',
   'achievement_gift_sent_count',
   'achievement_shards_spent_total',
+  // зачем (п.8, координатор 11.10): сервер только прибавляет (report_replies += 1) — берём больше.
+  'helpful_error_reports_confirmed_v1',
 ] as const;
 const MONOTONIC_COUNTER_RESTORE_KEY_SET = new Set<string>(MONOTONIC_COUNTER_RESTORE_KEYS);
 
@@ -1573,6 +1585,10 @@ const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   // и человек потерял бы жемчуг. Регистрация здесь закрывает все ветки разом.
   OWNED_THEMES_KEY,                // ["ember", ...]
   GRANDFATHERED_THEMES_KEY,        // ["midnight", ...]
+  // зачем (пп.6–7, координатор 11.10): списки только растут — начатый здесь язык и источник карточек
+  // не должны пропадать из-за облака, где их ещё нет.
+  'study_languages_started_v1',            // ["en", "fr", ...]
+  'achievement_flashcards_source_set_v1',  // множество источников (и языковые варианты ключа)
 ]);
 
 function isOwnedUnionRestoreKey(key: string): boolean {
@@ -4193,7 +4209,11 @@ async function applyRestoreFromUserDocTraced(
         pairs.push([key, merged]);
         continue;
       }
-      pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);
+      const mergedValue = mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key]);
+      if (isOwnedUnionRestoreKey(key) || isMonotonicCounterRestoreKey(key)) {
+        logRestoreMerge(key, localLessonRestoreMap[key], storageValue, mergedValue);
+      }
+      pairs.push([key, mergedValue]);
     }
   }
   if (!phoneStateOwnsCore && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {

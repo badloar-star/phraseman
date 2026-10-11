@@ -1,6 +1,7 @@
 # Task packet: аудит стоимости Firebase — холодный старт и типичная сессия гостя/Plus
 
 Governance-ID: TG-D7C2349D09C9
+Governance-ID: TG-5C2EE6FC9210
 Status: In progress
 Owner: 1 · ЯДРО (поручение координатора 02:50)
 Related epic/enabler: правило «Firebase-экономия по умолчанию»

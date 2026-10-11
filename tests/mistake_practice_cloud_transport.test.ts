@@ -1,7 +1,7 @@
 const mockLoadJournal = jest.fn();
 const mockMergeEvents = jest.fn();
 let mockCurrent = true;
-const mockToken = Object.freeze({ generation: 1, stableId: 'owner-a', phase: 'active' });
+let mockToken: Readonly<{ generation: number; stableId: string; phase: string }> = Object.freeze({ generation: 1, stableId: 'owner-a', phase: 'active' });
 
 jest.mock('../app/mistake_practice_store', () => ({
   loadMistakeEventJournal: (...args: unknown[]) => mockLoadJournal(...args),
@@ -14,7 +14,11 @@ jest.mock('../app/account_generation', () => ({
 
 // Jest mocks must be installed before this runtime import.
 // eslint-disable-next-line import/first
-import { restoreMistakePracticeEvents, uploadMistakePracticeEvents } from '../app/mistake_practice_cloud_transport';
+import {
+  resetMistakePracticeRestoreThrottleForTests,
+  restoreMistakePracticeEvents,
+  uploadMistakePracticeEvents,
+} from '../app/mistake_practice_cloud_transport';
 
 const makeEvent = (eventId: string, occurredAtMs: number) => ({
   eventId,
@@ -29,6 +33,8 @@ const makeEvent = (eventId: string, occurredAtMs: number) => ({
 describe('mistake practice cloud owner fence', () => {
   beforeEach(() => {
     mockCurrent = true;
+    mockToken = Object.freeze({ generation: 1, stableId: 'owner-a', phase: 'active' });
+    resetMistakePracticeRestoreThrottleForTests();
     mockLoadJournal.mockReset();
     mockMergeEvents.mockReset();
     mockMergeEvents.mockResolvedValue({ appendedCount: 0, journal: { events: [] } });
@@ -91,5 +97,50 @@ describe('mistake practice cloud owner fence', () => {
         return { ok: true, events: [], cursor };
       } },
     )).rejects.toThrow('mistake_practice_cloud_cursor_repeated');
+  });
+
+  // зачем (аудит стоимости 11.10): восстановление листает весь облачный журнал ошибок для каждого из 5 языков,
+  // а запускается и на холодном старте, и при каждом возвращении в приложение после 5 минут. В пределах одного
+  // поколения аккаунта повтор раньше 6 часов не ходит в сеть; смена аккаунта (поколения) — всегда идёт.
+  describe('restore throttle', () => {
+    const okInvoke = () => jest.fn(async () => ({ ok: true as const, events: [], cursor: null }));
+
+    test('a second restore of the same account and language within 6 hours does not call the server', async () => {
+      let now = 1_000_000;
+      const invoke = okInvoke();
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => now });
+      now += 5 * 60 * 60 * 1000;
+      await expect(restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => now })).resolves.toBe(0);
+      expect(invoke).toHaveBeenCalledTimes(1);
+      now += 2 * 60 * 60 * 1000;
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => now });
+      expect(invoke).toHaveBeenCalledTimes(2);
+    });
+
+    test('another language, an account switch or a failed restore always goes to the server', async () => {
+      const invoke = okInvoke();
+      const nowMs = () => 5_000_000;
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs });
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'es' }, { invoke, nowMs });
+      expect(invoke).toHaveBeenCalledTimes(2);
+
+      mockToken = Object.freeze({ generation: 2, stableId: 'owner-a', phase: 'active' });
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs });
+      expect(invoke).toHaveBeenCalledTimes(3);
+
+      const failing = jest.fn(async () => ({ ok: true as const, events: [], cursor: 'bad' }));
+      await expect(restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'fr' }, { invoke: failing, nowMs })).rejects.toThrow();
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'fr' }, { invoke, nowMs });
+      expect(invoke).toHaveBeenCalledTimes(4);
+    });
+
+    test('concurrent restores of the same account and language share one server walk', async () => {
+      const invoke = okInvoke();
+      await Promise.all([
+        restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'de' }, { invoke }),
+        restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'de' }, { invoke }),
+      ]);
+      expect(invoke).toHaveBeenCalledTimes(1);
+    });
   });
 });

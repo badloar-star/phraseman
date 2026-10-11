@@ -30,6 +30,22 @@ type Response = Readonly<{
 
 export interface MistakePracticeCloudTransportDependencies {
   readonly invoke?: (request: AppendRequest | ListRequest) => Promise<Response>;
+  readonly nowMs?: () => number;
+}
+
+// зачем (аудит стоимости Firebase 11.10): восстановление листает ВЕСЬ облачный журнал ошибок аккаунта для каждого
+// из 5 языков (~E чтений на язык на сервере) и запускается не только на холодном старте, но и при каждом
+// возвращении в приложение после 5 минут. Повтор того же аккаунта и языка раньше 6 часов в сеть не ходит.
+// Ключ включает поколение аккаунта: выход/вход/смена аккаунта — всегда полное восстановление. Неудача не
+// запоминается. Память живёт в пределах запуска: холодный старт восстанавливает как раньше.
+const RESTORE_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
+const restoreSucceededAtMs = new Map<string, number>();
+const restoreInFlight = new Map<string, Promise<number>>();
+
+/** Только для тестов. */
+export function resetMistakePracticeRestoreThrottleForTests(): void {
+  restoreSucceededAtMs.clear();
+  restoreInFlight.clear();
 }
 
 const invokeDefault = async (request: AppendRequest | ListRequest): Promise<Response> => {
@@ -74,15 +90,41 @@ export async function uploadMistakePracticeEvents(input: Readonly<{
   return uploaded;
 }
 
-export async function restoreMistakePracticeEvents(input: Readonly<{
+export function restoreMistakePracticeEvents(input: Readonly<{
   accountScope: string;
   studyTarget: MistakeStudyTarget;
 }>, dependencies: MistakePracticeCloudTransportDependencies = {}): Promise<number> {
-  const invoke = dependencies.invoke ?? invokeDefault;
   const generation = captureAccountGeneration();
   if (generation.stableId !== input.accountScope || !isCurrentAccountGeneration(generation)) {
-    throw new Error('mistake_practice_cloud_owner_stale');
+    return Promise.reject(new Error('mistake_practice_cloud_owner_stale'));
   }
+  const now = (dependencies.nowMs ?? Date.now)();
+  const key = `${generation.generation}|${input.accountScope}|${input.studyTarget}`;
+  const succeededAt = restoreSucceededAtMs.get(key);
+  if (succeededAt !== undefined && now - succeededAt < RESTORE_MIN_INTERVAL_MS) {
+    console.log(`[MISTAKE-SYNC] restore:skipped recent target=${input.studyTarget} ageMs=${now - succeededAt}`);
+    return Promise.resolve(0);
+  }
+  const running = restoreInFlight.get(key);
+  if (running) {
+    console.log(`[MISTAKE-SYNC] restore:joined_in_flight target=${input.studyTarget}`);
+    return running;
+  }
+  const promise = walkAndMergeRemoteEvents(input, dependencies, generation).then((appended) => {
+    restoreSucceededAtMs.set(key, now); // guard-ok: Map в памяти процесса, не Firestore
+    return appended;
+  }).finally(() => {
+    if (restoreInFlight.get(key) === promise) restoreInFlight.delete(key);
+  });
+  restoreInFlight.set(key, promise); // guard-ok: Map в памяти процесса, не Firestore
+  return promise;
+}
+
+async function walkAndMergeRemoteEvents(input: Readonly<{
+  accountScope: string;
+  studyTarget: MistakeStudyTarget;
+}>, dependencies: MistakePracticeCloudTransportDependencies, generation: ReturnType<typeof captureAccountGeneration>): Promise<number> {
+  const invoke = dependencies.invoke ?? invokeDefault;
   let cursor: string | null = null;
   const seenCursors = new Set<string>();
   const remoteEvents: MistakeEvent[] = [];

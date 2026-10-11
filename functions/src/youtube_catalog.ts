@@ -22,6 +22,7 @@ import {
   mergeYoutubeVideoSources,
   nextYoutubeSyncIntervalMs,
 } from './youtube_catalog_core';
+import { decideYoutubeCatalogPublish, youtubeSnapshotContentHashes } from './youtube_catalog_publish_gate';
 import {
   createYoutubeCatalogStore,
   type YoutubeBuiltSnapshot,
@@ -348,7 +349,19 @@ export async function runYoutubeCatalogSyncWithDependencies(input: {
     if (!lease) return { ok: true, code: 'lease_busy', skipped: true };
     const { snapshot, syncPatch } = await buildYoutubeSnapshot({ config, gateway: input.gateway, nowMs: input.nowMs, owner: input.owner, syncState });
     if (snapshot.channels.length === 0 || snapshot.manifest.channels.length === 0) throw new Error('youtube_catalog_empty_snapshot');
-    const version = await input.store.publishSnapshot(snapshot, lease);
+    // зачем (§CORE-0163, находка K аудита стоимости): неизменившийся снимок не публикуем — ни записи снимка, ни
+    // чтения проверки, ни удаления через 7 дней. Манифест и снимки той же формы — старые клиенты не затронуты.
+    const contentHashes = youtubeSnapshotContentHashes(snapshot);
+    const decision = decideYoutubeCatalogPublish({ trigger: input.trigger, nowMs: input.nowMs, hashes: contentHashes, syncState });
+    if (!decision.publish && input.store.releaseUnchanged) {
+      await input.store.releaseUnchanged(lease, input.nowMs);
+      lease = null;
+      await input.patchSyncState?.(syncPatch);
+      console.log('[YT-CATALOG] publish:skipped', JSON.stringify({ reason: decision.reason, activeVersion: syncState.lastSuccessfulVersion ?? null }));
+      return { ok: true, code: 'unchanged', skipped: true };
+    }
+    console.log('[YT-CATALOG] publish:decided', JSON.stringify({ reason: decision.reason, trigger: input.trigger }));
+    const version = await input.store.publishSnapshot(snapshot, lease, contentHashes);
     await input.patchSyncState?.(syncPatch);
     await input.store.cleanupOldVersions(input.nowMs);
     return { ok: true, code: 'published', version };

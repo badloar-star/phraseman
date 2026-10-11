@@ -44,7 +44,13 @@ export type YoutubeBuiltSnapshot = {
 export interface YoutubeCatalogStore {
   readConfig(): Promise<YoutubeCatalogConfig | null>;
   claimSyncLease(nowMs: number, owner: string): Promise<YoutubeSyncLease | null>;
-  publishSnapshot(snapshot: YoutubeBuiltSnapshot, lease: YoutubeSyncLease): Promise<string>;
+  publishSnapshot(
+    snapshot: YoutubeBuiltSnapshot,
+    lease: YoutubeSyncLease,
+    contentHashes?: Readonly<{ structure: string; display: string }>,
+  ): Promise<string>;
+  /** Необязателен: хранилище без него всегда публикует (старое поведение). */
+  releaseUnchanged?(lease: YoutubeSyncLease, nowMs: number): Promise<void>;
   recordFailure(lease: YoutubeSyncLease, code: string, nowMs: number): Promise<void>;
   cleanupOldVersions(nowMs: number): Promise<number>;
   rollbackToVersion(version: string, nowMs: number, actor: string): Promise<string>;
@@ -134,7 +140,7 @@ export function createYoutubeCatalogStore(
       });
     },
 
-    async publishSnapshot(snapshot, lease) {
+    async publishSnapshot(snapshot, lease, contentHashes) {
       const writes = buildWrites(snapshot);
       const syncBefore = await persistence.get(SYNC_STATE_PATH);
       if (syncBefore?.leaseToken !== lease.token || syncBefore.leaseOwner !== lease.owner) {
@@ -179,8 +185,32 @@ export function createYoutubeCatalogStore(
           leaseOwner: null,
           leaseToken: null,
           leaseUntilMs: 0,
+          // зачем (§CORE-0163): отпечатки опубликованного снимка — по ним следующий синк решает, публиковать ли.
+          ...(contentHashes ? {
+            lastPublishedStructureHash: contentHashes.structure,
+            lastPublishedDisplayHash: contentHashes.display,
+            lastPublishedAtMs: Date.now(),
+          } : {}),
         });
         return snapshot.version;
+      });
+    },
+
+    releaseUnchanged(lease, nowMs) {
+      // зачем (§CORE-0163): снимок не изменился — ничего не пишем в каталог, только снимаем блокировку синка.
+      return persistence.runTransaction(async (tx) => {
+        const state = await tx.get(SYNC_STATE_PATH) ?? {};
+        if (state.leaseToken !== lease.token || state.leaseOwner !== lease.owner) return;
+        tx.set(SYNC_STATE_PATH, {
+          ...state,
+          lastErrorCode: null,
+          // Синк прошёл успешно, просто нового нет: «Последний успех» в админке не должен стареть и пугать.
+          lastSuccessAtMs: nowMs,
+          lastUnchangedAtMs: nowMs,
+          leaseOwner: null,
+          leaseToken: null,
+          leaseUntilMs: 0,
+        });
       });
     },
 
@@ -218,6 +248,7 @@ export function createYoutubeCatalogStore(
       if (target?.status !== 'ready') throw new Error('rollback_version_not_ready');
       return persistence.runTransaction(async (tx) => {
         const before = await tx.get(PUBLIC_PATH) ?? {};
+        const syncState = await tx.get(SYNC_STATE_PATH);
         const storedManifest = cloneRow(target.manifest);
         tx.set(PUBLIC_PATH, {
           ...before,
@@ -226,6 +257,11 @@ export function createYoutubeCatalogStore(
           rollbackAtMs: nowMs,
           rollbackBy: actor,
         });
+        // зачем (§CORE-0163): после отката активный снимок — другой; отпечатки последней публикации к нему не
+        // относятся, следующий синк обязан опубликовать свежий снимок, а не решить «ничего не изменилось».
+        if (syncState) {
+          tx.set(SYNC_STATE_PATH, { ...syncState, lastPublishedStructureHash: null, lastPublishedDisplayHash: null });
+        }
         return version;
       });
     },

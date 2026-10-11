@@ -11,7 +11,13 @@ import {
   summarizeYoutubeCatalogConfig,
 } from './youtube_catalog';
 import type { YoutubeCatalogConfig } from '../../shared/youtube_catalog_contract';
-import type { YoutubeCatalogStore, YoutubeSyncLease } from './youtube_catalog_store';
+import {
+  createYoutubeCatalogStore,
+  type YoutubeCatalogPersistence,
+  type YoutubeCatalogStore,
+  type YoutubeCatalogTransaction,
+  type YoutubeSyncLease,
+} from './youtube_catalog_store';
 import type { YoutubeDataGateway } from './youtube_data_api';
 
 const CONFIG: YoutubeCatalogConfig = {
@@ -154,5 +160,106 @@ describe('youtube catalog runtime', () => {
     const backoffPatch = jest.fn().mockResolvedValue(undefined);
     await runYoutubeCatalogSyncWithDependencies({ nowMs, owner: 'cron', trigger: 'cron', store, gateway: failingGateway, patchSyncState: backoffPatch });
     expect(backoffPatch).toHaveBeenCalledWith({ nextRunAtMs: nowMs + 15 * 60_000 });
+  });
+
+  // зачем (§CORE-0163, находка K аудита стоимости Firebase): плановый синк не перепубликует неизменившийся каталог —
+  // ни записи снимка, ни чтения проверки, ни удаления; изменение — публикуем как раньше; ручной запуск — всегда.
+  describe('publish gate end to end', () => {
+    type Row = Record<string, unknown>;
+    class CountingPersistence implements YoutubeCatalogPersistence {
+      readonly docs = new Map<string, Row>();
+      snapshotReads = 0;
+      batches = 0;
+      deletes = 0;
+      versionListings = 0;
+      async get(path: string) {
+        if (path.startsWith('youtube_catalog_snapshots/')) this.snapshotReads += 1;
+        const value = this.docs.get(path);
+        return value ? structuredClone(value) : null;
+      }
+      async set(path: string, value: Row) { this.docs.set(path, structuredClone(value)); }
+      async writeBatch(writes: ReadonlyArray<{ path: string; value: Row }>) {
+        this.batches += 1;
+        for (const write of writes) this.docs.set(write.path, structuredClone(write.value));
+      }
+      async runTransaction<T>(work: (transaction: YoutubeCatalogTransaction) => Promise<T>): Promise<T> {
+        const pending = new Map<string, Row>();
+        const result = await work({
+          get: async (path) => pending.get(path) ?? (this.docs.has(path) ? structuredClone(this.docs.get(path)!) : null),
+          set: (path, value) => { pending.set(path, structuredClone(value)); },
+        });
+        for (const [path, value] of pending) this.docs.set(path, value);
+        return result;
+      }
+      async listSnapshotVersions() {
+        this.versionListings += 1;
+        return [...this.docs.entries()]
+          .filter(([path]) => /^youtube_catalog_snapshots\/[^/]+$/.test(path))
+          .map(([path, data]) => ({ id: path.split('/')[1], data: structuredClone(data) }));
+      }
+      async deletePrefix() { this.deletes += 1; return 1; }
+    }
+
+    const gateway = (title: string) => ({
+      getChannel: jest.fn().mockResolvedValue({ id: 'UCx', uploadsPlaylistId: 'UUx', displayName: title, handle: '@x' }),
+      getUploadVideoIds: jest.fn().mockResolvedValue([]),
+      getPlaylists: jest.fn().mockResolvedValue([]),
+      searchEvents: jest.fn().mockResolvedValue([]),
+      getVideos: jest.fn().mockResolvedValue([]),
+      getPlaylistVideoIds: jest.fn().mockResolvedValue([]),
+    }) as unknown as YoutubeDataGateway;
+
+    async function run(persistence: CountingPersistence, nowMs: number, title: string, trigger: 'cron' | 'manual' = 'cron') {
+      const store = createYoutubeCatalogStore(persistence);
+      const syncState = (await persistence.get('youtube_catalog/sync_state')) ?? {};
+      return runYoutubeCatalogSyncWithDependencies({
+        nowMs, owner: `${trigger}-${nowMs}`, trigger, store, gateway: gateway(title), syncState,
+        patchSyncState: async (patch) => {
+          persistence.docs.set('youtube_catalog/sync_state', { ...(persistence.docs.get('youtube_catalog/sync_state') ?? {}), ...patch });
+        },
+      });
+    }
+
+    test('unchanged → no snapshot write, no verification read, no delete; changed → published as before', async () => {
+      jest.spyOn(console, 'log').mockImplementation(() => undefined);
+      const persistence = new CountingPersistence();
+      persistence.docs.set('youtube_catalog/config', CONFIG as unknown as Row);
+      const t0 = Date.parse('2026-10-11T04:00:00Z');
+
+      await expect(run(persistence, t0, 'Phraseman')).resolves.toMatchObject({ ok: true, code: 'published' });
+      const activeAfterFirst = persistence.docs.get('youtube_catalog/public')?.activeVersion;
+      expect(persistence.docs.get('youtube_catalog/sync_state')).toMatchObject({ lastPublishedStructureHash: expect.any(String) });
+
+      persistence.snapshotReads = 0; persistence.batches = 0; persistence.deletes = 0; persistence.versionListings = 0;
+      await expect(run(persistence, t0 + 15 * 60_000, 'Phraseman')).resolves.toMatchObject({ ok: true, code: 'unchanged', skipped: true });
+      expect(persistence.batches).toBe(0);
+      expect(persistence.snapshotReads).toBe(0);
+      expect(persistence.deletes).toBe(0);
+      expect(persistence.versionListings).toBe(0);
+      expect(persistence.docs.get('youtube_catalog/public')?.activeVersion).toBe(activeAfterFirst);
+      expect(persistence.docs.get('youtube_catalog/sync_state')).toMatchObject({ leaseOwner: null, leaseToken: null, leaseUntilMs: 0 });
+      expect(Number(persistence.docs.get('youtube_catalog/sync_state')?.nextRunAtMs)).toBeGreaterThan(t0 + 15 * 60_000);
+
+      await expect(run(persistence, t0 + 30 * 60_000, 'Phraseman EN')).resolves.toMatchObject({ ok: true, code: 'published' });
+      expect(persistence.batches).toBeGreaterThan(0);
+      expect(persistence.docs.get('youtube_catalog/public')?.activeVersion).not.toBe(activeAfterFirst);
+
+      persistence.batches = 0;
+      await expect(run(persistence, t0 + 45 * 60_000, 'Phraseman EN', 'manual')).resolves.toMatchObject({ ok: true, code: 'published' });
+      expect(persistence.batches).toBeGreaterThan(0);
+    });
+
+    test('a rollback clears the fingerprints so the next sync publishes', async () => {
+      jest.spyOn(console, 'log').mockImplementation(() => undefined);
+      const persistence = new CountingPersistence();
+      persistence.docs.set('youtube_catalog/config', CONFIG as unknown as Row);
+      const t0 = Date.parse('2026-10-11T05:00:00Z');
+      await run(persistence, t0, 'Phraseman');
+      const first = String(persistence.docs.get('youtube_catalog/public')?.activeVersion);
+      await run(persistence, t0 + 15 * 60_000, 'Phraseman EN');
+      await createYoutubeCatalogStore(persistence).rollbackToVersion(first, t0 + 20 * 60_000, 'admin');
+      expect(persistence.docs.get('youtube_catalog/sync_state')).toMatchObject({ lastPublishedStructureHash: null });
+      await expect(run(persistence, t0 + 30 * 60_000, 'Phraseman EN')).resolves.toMatchObject({ code: 'published' });
+    });
   });
 });

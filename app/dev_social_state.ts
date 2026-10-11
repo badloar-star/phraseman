@@ -20,6 +20,8 @@ export const DEV_FRIENDS_HOLDS = ['add_request'] as const;
 export type DevFriendsHold = (typeof DEV_FRIENDS_HOLDS)[number];
 export const DEV_FRIENDS_FAILS = ['add', 'search'] as const;
 export type DevFriendsFail = (typeof DEV_FRIENDS_FAILS)[number];
+export const DEV_SETTINGS_FAILS = ['study_language', 'support_send', 'cache_clear'] as const;
+export type DevSettingsFail = (typeof DEV_SETTINGS_FAILS)[number];
 export const DEV_FRIEND_EVENTS = ['study_invite'] as const;
 export type DevFriendEvent = (typeof DEV_FRIEND_EVENTS)[number];
 
@@ -34,8 +36,10 @@ type State = {
   friendsHolds: ReadonlySet<DevFriendsHold>;
   friendsFails: ReadonlySet<DevFriendsFail>;
   friendEvent: DevFriendEvent | null;
+  /** Сбои Настроек (R1 settings-gap-009/021/036): смена языка изучения, отправка обращения, очистка кеша. */
+  settingsFails: ReadonlySet<DevSettingsFail>;
 };
-const EMPTY: State = { referralOff: false, promo: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null };
+const EMPTY: State = { referralOff: false, promo: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set() };
 let state: State = EMPTY;
 
 function devSocialAvailable(): boolean {
@@ -49,6 +53,7 @@ export function setDevSocialState(patch: Partial<{
   friendsHolds: readonly DevFriendsHold[];
   friendsFails: readonly DevFriendsFail[];
   friendEvent: DevFriendEvent | null;
+  settingsFails: readonly DevSettingsFail[];
 }>): boolean {
   if (!devSocialAvailable()) {
     console.warn(`${LOG} social: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -60,9 +65,14 @@ export function setDevSocialState(patch: Partial<{
     friendsHolds: patch.friendsHolds ? new Set(patch.friendsHolds) : state.friendsHolds,
     friendsFails: patch.friendsFails ? new Set(patch.friendsFails) : state.friendsFails,
     friendEvent: patch.friendEvent === undefined ? state.friendEvent : patch.friendEvent,
+    settingsFails: patch.settingsFails ? new Set(patch.settingsFails) : state.settingsFails,
   };
-  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails] })}`); // guard-ok: единичный лог на ссылку
   return true;
+}
+
+export function isDevSettingsFail(fail: DevSettingsFail): boolean {
+  return devSocialAvailable() && state.settingsFails.has(fail);
 }
 
 export function isDevReferralOff(): boolean {

@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { getDevPromoResult } from './dev_social_state';
+import { setDevVipOverride } from './dev_vip_override';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -171,6 +173,13 @@ async function persistRedeemedPromoAccess(params: {
   }
   const grantAt = String(params.grantAtMs && params.grantAtMs > 0 ? params.grantAtMs : Date.now());
   const vipUntil = String(Math.max(0, Math.floor(Number(params.vipUntilMs ?? 0))));
+  // зачем (координатор 12.10, R1 «нет пути»): ответ подменён dev-фикстурой `promo=ok|lifetime` — VIP только в памяти, в хранилище и облако ничего не пишем; в стор-сборке getDevPromoResult() = null.
+  if (getDevPromoResult() !== null) {
+    setDevVipOverride(stableId, {
+      vip_active: 'true', vip_plan: params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo', vip_from: grantAt, vip_until: vipUntil, vip_admin_override: 'true', vip_admin_grant_at: grantAt,
+    }, 'promo_vip');
+    return grantAt;
+  }
   await writeVipSnapshotForAccount(stableId, {
     vip_active: 'true',
     vip_plan: params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo',

@@ -1,4 +1,5 @@
 import { readStoredItem } from './storage_snapshot';
+import { getDevVipOverrideFor, isDevVipOverrideActive } from './dev_vip_override';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   isCurrentAccountGeneration,
@@ -114,6 +115,11 @@ export async function writeVipSnapshotForAccount(
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) throw new Error('vip_snapshot_owner_required');
   const values = normalizeVipValues(valuesValue);
+  // зачем (координатор 12.10, R1 «нет пути»): пока включена dev-подмена VIP в памяти (app/dev_vip_override.ts), запись снимка пропускается — подмена не должна оказаться в хранилище и облачной синхронизации.
+  if (isDevVipOverrideActive()) {
+    console.log('[DEV-STATE] vip memory_only: запись снимка пропущена (account)'); // guard-ok: dev-ветка
+    return;
+  }
   inFlightVipReads.clear();
   await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
 }
@@ -130,6 +136,10 @@ export async function writeVipSnapshotForGeneration(
   const stableId = normalizeStableId(generation.stableId);
   if (!stableId) return false;
   const values = normalizeVipValues(valuesValue);
+  if (isDevVipOverrideActive()) {
+    console.log('[DEV-STATE] vip memory_only: запись снимка пропущена (generation)'); // guard-ok: dev-ветка
+    return true;
+  }
   return withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(generation, stableId)) return false;
     inFlightVipReads.clear();
@@ -144,6 +154,8 @@ export async function readVipSnapshotForAccount(
 ): Promise<VipStorageValues | null> {
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) return null;
+  const devValues = getDevVipOverrideFor(stableId);
+  if (devValues) return devValues;
   const raw = await readVipSnapshotRawCoalesced(vipSnapshotStorageKey(stableId));
   return parseSnapshot(raw, stableId);
 }

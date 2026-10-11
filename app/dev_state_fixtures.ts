@@ -20,7 +20,7 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
-import { DEV_FRIEND_EVENTS, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult } from './dev_social_state';
+import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
@@ -93,6 +93,14 @@ export type DevStateRequest = Readonly<{
   referral?: 'off' | 'on';
   /** Ответ промокода фикстурой, без сети: off=«промокоды выключены», ok, lifetime, used, expired, disabled, limit, not_found, rate_limited, error, none=снять. */
   promo?: DevPromoResult;
+  /** План подписки только в памяти (экран «Управление подпиской», значение «Год» в Настройках): yearly|monthly|lifetime, off снимает. */
+  plan?: 'yearly' | 'monthly' | 'lifetime' | 'off';
+  /** Сбой смены языка изучения (settings-gap-021). */
+  studyfail?: 'on' | 'off';
+  /** «Не отправилось» у обращения в поддержку (settings-gap-036). */
+  support?: 'fail' | 'ok';
+  /** «Не удалось» при очистке кеша (settings-gap-009). */
+  cache?: 'failed' | 'ok';
   /** Друзья: удержание «отправки заявки» (add_request) или off. */
   friendsHold?: readonly DevFriendsHold[] | 'off';
   /** Друзья: отказ отправки заявки (add) / поиска (search) или off. */
@@ -175,6 +183,10 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
   request.paywall = pick('paywall', ['loading', 'live', 'reference', 'failed', 'off'] as const);
   request.referral = pick('referral', ['off', 'on'] as const);
+  request.plan = pick('plan', ['yearly', 'monthly', 'lifetime', 'off'] as const);
+  request.studyfail = pick('studyfail', ['on', 'off'] as const);
+  request.support = pick('support', ['fail', 'ok'] as const);
+  request.cache = pick('cache', ['failed', 'ok'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
   request.friendsHold = list('dev_friends_hold', DEV_FRIENDS_HOLDS);
   request.friendsFail = list('dev_friends_fail', DEV_FRIENDS_FAILS);
@@ -226,11 +238,14 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.vip) {
     await step('vip', request.vip, async () => {
       const stableId = await getStableId();
-      const { writeVipSnapshotForAccount } = await import('./premium_vip_storage');
-      // зачем: плашка выдачи видна только без dev-override (см. plus=inherit) — снимаем его вместе со снимком.
+      // зачем (координатор 12.10): VIP-снимок входит в облачную синхронизацию — подмена только В ПАМЯТИ (app/dev_vip_override.ts), в хранилище не пишем.
+      // Плашка выдачи видна только без dev-override Plus (см. plus=inherit) — снимаем его (это отдельный dev-ключ, в синхронизацию не входит).
       await AsyncStorage.removeItem(getDevLocalPlusStorageKey(stableId));
-      await writeVipSnapshotForAccount(stableId, vipSnapshotValuesFor(request.vip!, Date.now()));
-      console.log('[DEV-STATE] vip snapshot', JSON.stringify({ kind: request.vip })); // guard-ok: единичный лог на ссылку
+      const { setDevVipOverride } = await import('./dev_vip_override');
+      if (!setDevVipOverride(stableId, vipSnapshotValuesFor(request.vip!, Date.now()), 'vip')) throw new Error('vip_override_refused');
+      emitAppEvent('vip_activated');
+      emitAppEvent('premium_access_changed', { active: request.vip !== 'off', source: 'vip' });
+      console.log('[DEV-STATE] vip memory_only', JSON.stringify({ kind: request.vip })); // guard-ok: единичный лог на ссылку
     });
   }
   if (request.free) await step('free', request.free, () => setDevAsFreeFlag(request.free === 'on'));
@@ -351,6 +366,26 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('paywall', request.paywall, async () => {
       const map: Record<NonNullable<DevStateRequest['paywall']>, DevPaywallState | null> = { loading: 'loading', live: 'live', reference: 'reference', failed: 'error_no_prices', off: null };
       return setDevPaywallLinkState(map[request.paywall!]);
+    });
+  }
+  if (request.plan !== undefined) {
+    await step('plan', request.plan, async () => {
+      const { setDevPlanOverride } = await import('./dev_vip_override');
+      return setDevPlanOverride(request.plan === 'off' ? null : request.plan!);
+    });
+  }
+  if (request.studyfail !== undefined || request.support !== undefined || request.cache !== undefined) {
+    await step('settings_fail', [request.studyfail, request.support, request.cache].filter(Boolean).join(','), async () => {
+      const fails: DevSettingsFail[] = [];
+      if (request.studyfail === 'on') fails.push('study_language');
+      if (request.support === 'fail') fails.push('support_send');
+      if (request.cache === 'failed') fails.push('cache_clear');
+      // зачем: параметры независимы — явный «выключатель» (off/ok) снимает только свой сбой, остальные сохраняются.
+      const kept = (['study_language', 'support_send', 'cache_clear'] as const).filter((fail) => {
+        const touched = (fail === 'study_language' && request.studyfail !== undefined) || (fail === 'support_send' && request.support !== undefined) || (fail === 'cache_clear' && request.cache !== undefined);
+        return !touched && isDevSettingsFail(fail);
+      });
+      return setDevSocialState({ settingsFails: [...kept, ...fails] });
     });
   }
   if (request.referral !== undefined) {

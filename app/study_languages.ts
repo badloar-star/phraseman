@@ -11,6 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isDevSettingsFail } from './dev_social_state';
 import type { Lang } from '../constants/i18n';
 import { isStudyTarget, setStoredStudyTarget, type StudyTarget } from './study_target';
 import { DebugLogger } from './debug-logger';
@@ -129,6 +130,11 @@ export async function getLanguageProfile(target: StudyTargetLang): Promise<Langu
  * Записывает единственный канонический target и отмечает язык начатым.
  */
 export async function applyStudyLanguageSelection(code: StudyTargetLang, uiLang: Lang): Promise<void> {
+  // зачем (координатор 12.10, R1 «нет пути»): dev `studyfail=on` — сбой смены языка изучения (тост «Не получилось сменить язык»); в стор-сборке геттер выключен.
+  if (isDevSettingsFail('study_language')) {
+    console.warn(`[DEV-STATE] study_language: смена языка подменена сбоем (code=${code})`); // guard-ok: dev-ветка
+    throw new Error('dev_study_language_failed');
+  }
   try {
     await setStoredStudyTarget(code, uiLang);
   } catch (error: unknown) {

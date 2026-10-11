@@ -17,6 +17,7 @@
 // дальше уточняют план/дату/цену в фоне, не блокируя открытие.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { getDevPlanOverride } from './dev_vip_override';
 import {
   View, Text, ScrollView, StyleSheet, ActivityIndicator,
   KeyboardAvoidingView, Linking, Platform, TextInput, type LayoutChangeEvent,
@@ -357,8 +358,10 @@ export default function ManageSubscription() {
         // точнее route-параметра (знает lifetime/expiry), поэтому обновляет fallbackPlan
         // ещё до того, как достучимся до RevenueCat.
         const localPairs = await AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id']);
-        const storedPlan = localPairs.find(p => p[0] === 'premium_plan')?.[1];
-        const storedProductId = localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
+        // зачем (координатор 12.10, R1 «нет пути»): dev `plan=yearly|monthly|lifetime` — план из памяти процесса, хранилище и облако не трогаем; в стор-сборке null.
+        const devPlan = getDevPlanOverride();
+        const storedPlan = devPlan ? devPlan.plan : localPairs.find(p => p[0] === 'premium_plan')?.[1];
+        const storedProductId = devPlan ? '' : localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
         const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
         if (isBootstrapCurrent() && nextFallbackPlan) {
           setFallbackPlan(nextFallbackPlan);
@@ -387,7 +390,8 @@ export default function ManageSubscription() {
     return () => { dead = true; };
   }, [screenAccount]);
 
-  const metadata = info ? revenueCatPremiumMetadata(info) : {};
+  const devPlanForMetadata = getDevPlanOverride();
+  const metadata = info ? revenueCatPremiumMetadata(info) : (devPlanForMetadata?.expiryMs ? { expiryMs: devPlanForMetadata.expiryMs } : {});
   const currentPlan = inferPremiumPlanFromCustomerInfo(info, fallbackPlan);
   const nextDate = formatDate(metadata.expiryMs ?? null, L);
   const isLifetime = currentPlan === 'lifetime';

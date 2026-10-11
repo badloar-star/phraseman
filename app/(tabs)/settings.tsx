@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { getDevPlanOverride } from '../dev_vip_override';
 import {
   View, Text, TouchableOpacity,
   Modal, DeviceEventEmitter,
@@ -586,7 +587,7 @@ export default function SettingsMain() {
             tapHaptics: pairs[2][1] === null ? current.settings.tapHaptics : pairs[2][1] !== 'false',
           } : undefined,
         } : {});
-        setPremiumPlan(pairs[1][1]);
+        setPremiumPlan(getDevPlanOverride()?.plan ?? pairs[1][1]); // зачем (координатор 12.10): dev `plan=` — из памяти, в стор-сборке null
         setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
         if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
       })

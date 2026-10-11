@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isDevSettingsFail } from './dev_social_state';
 
 import type { Lang } from '../constants/i18n';
 import {
@@ -324,6 +325,11 @@ export async function sendSupportReportInBackground(
   options: SubmitErrorReportOptions = {},
 ): Promise<SupportSendOutcome> {
   const nowMs = Date.now();
+  // зачем (координатор 12.10, R1 «нет пути»): dev `support=fail` — «Не отправилось / Повторить» без реальной отправки и очереди; в стор-сборке геттер выключен.
+  if (isDevSettingsFail('support_send')) {
+    console.warn(`${SEND_LOG} dev: отправка подменена отказом (support=fail)`); // guard-ok: dev-ветка
+    return 'failed';
+  }
   console.log(`${SEND_LOG} старт`, { lang, commentLen: payload.comment.length, hasDiagnostics: Boolean(payload.diagnostics) }); // guard-ok: единичный лог на жест человека
   const prepared = await withAccountTransitionLock(async () => {
     const accountKey = await getStableId();

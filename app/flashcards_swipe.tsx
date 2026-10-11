@@ -1635,17 +1635,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         tr: "sırada",
         pl: "w kolejce",
       }),
-      smartQueue: triLang(lang, {
-        ru: 'Умная очередь',
-        en: 'Smart queue',
-        uk: 'Розумна черга',
-        es: 'Cola inteligente',
-        'pt-BR': "Fila inteligente",
-        vi: "Hàng đợi thông minh",
-        id: "Antrean pintar",
-        tr: "Akıllı sıra",
-        pl: "Inteligentna kolejka",
-      }),
       correctChoice: triLang(lang, {
         ru: 'Правильный выбор',
         en: 'Correct choice',
@@ -1971,39 +1960,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         tr: "Kart kaydet ya da bir paket ekle; alıştırma buradan tek dokunuşla başlar.",
         pl: "Zapisz fiszki albo dodaj pakiet, a trening ruszy stąd jednym dotknięciem.",
       }),
-      due: triLang(lang, {
-        ru: 'к повтору',
-        en: 'to review',
-        uk: 'до повтору',
-        es: 'por repasar',
-        'pt-BR': "para revisar",
-        vi: "cần ôn",
-        id: "perlu diulang",
-        tr: "tekrar edilecek",
-        pl: "do powtórki",
-      }),
-      weak: triLang(lang, {
-        ru: 'слабые',
-        en: 'weak',
-        uk: 'слабкі',
-        es: 'débiles',
-        'pt-BR': "fracos",
-        vi: "yếu",
-        id: "lemah",
-        tr: "zayıf",
-        pl: "słabe",
-      }),
-      fresh: triLang(lang, {
-        ru: 'новые',
-        en: 'new',
-        uk: 'нові',
-        es: 'nuevas',
-        'pt-BR': "novos",
-        vi: "mới",
-        id: "baru",
-        tr: "yeni",
-        pl: "nowe",
-      }),
       // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
       swipeHint: triLang(lang, {
         ru: 'Смахни карточку вправо/влево или используй кнопки. Значок динамика озвучит фразу.',
@@ -2028,17 +1984,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         id: 'Tutup petunjuk',
         tr: 'İpucunu kapat',
         pl: 'Zamknij podpowiedź',
-      }),
-      sessionSummary: triLang(lang, {
-        ru: 'Слабые вернутся внутри сессии. Лёгкие уйдут на повтор позже.',
-        en: 'Weak cards return within the session. Easy ones go up for review later.',
-        uk: 'Слабкі повернуться в сесії. Легкі підуть на повтор пізніше.',
-        es: 'Las débiles vuelven en la sesión. Las fáciles se repasan más tarde.',
-        'pt-BR': "As fracas voltam na sessão. As fáceis serão revisadas mais tarde.",
-        vi: "Thẻ yếu quay lại trong buổi này. Thẻ dễ sẽ được ôn sau.",
-        id: "Yang lemah kembali dalam sesi. Yang mudah diulang nanti.",
-        tr: "Zayıflar seans içinde geri döner. Kolaylar daha sonra tekrar edilir.",
-        pl: "Słabe wrócą w sesji. Łatwe zostaną powtórzone później.",
       }),
     }),
     [lang],
@@ -3527,28 +3472,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
 
       <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }]}>
-        <View style={styles.heroTop}>
-          <View style={[styles.heroIcon, { backgroundColor: `${t.accent}22` }]}>
-            <Ionicons name="sparkles-outline" size={22} color={t.accentText} />
-          </View>
-          <View style={styles.heroCopy}>
-            <Text style={[styles.heroTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{text.smartQueue}</Text>
-            <Text style={[styles.heroSub, { color: t.textMuted, fontSize: f.caption }]}>{text.sessionSummary}</Text>
-          </View>
-        </View>
-        <View style={styles.heroStats}>
-          {[
-            [text.due, sessionInfo.due],
-            [text.weak, sessionInfo.weak],
-            [text.fresh, sessionInfo.fresh],
-          ].map(([label, value]) => (
-            <View key={String(label)} style={[styles.heroStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
-              <Text style={[styles.heroStatValue, { color: t.textPrimary, fontSize: f.body }]}>{value}</Text>
-              {/* зачем: text-integrity — подпись стата переносится, плитка растёт. */}
-              <FlowText testID={`flashcards-hero-stat-${String(label)}`} provenance="authored" style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</FlowText>
-            </View>
-          ))}
-        </View>
+        {/* зачем (владелец 11.10, журнал 12): блока с названием механики подбора на экране нет — убраны заголовок, подпись и три счётчика; остались только кнопки запуска. Механика подбора карточек не менялась. */}
         {/* зачем: раньше кнопка просто гасла (opacity 0.72) без единого слова о причине —
             «Кнопка начать не сработала» (репорт 25.07). Теперь сама подпись говорит,
             чего ждать или что сделать: грузятся наборы / не выбран набор / идёт запуск.
@@ -4245,8 +4169,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <PracticeStatePanel
         glass={swipeGlass}
         icon="sparkles-outline"
-        title={text.smartQueue}
-        message={text.sessionSummary}
+        title={text.settingsTitle}
+        message={text.startStarting}
       />
     </View>
   );
@@ -4477,48 +4401,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 18,
     ...noAndroidOutline,
-  },
-  heroTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  heroIcon: {
-    width: 46,
-    height: 46,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  heroCopy: {
-    flex: 1,
-    minWidth: 0,
-  },
-  heroTitle: {
-    fontWeight: '900',
-  },
-  heroSub: {
-    marginTop: 3,
-    lineHeight: 18,
-    fontWeight: '700',
-  },
-  heroStats: {
-    flexDirection: 'row',
-    gap: 8,
-    marginTop: 14,
-  },
-  heroStat: {
-    flex: 1,
-    borderRadius: 14,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  heroStatValue: {
-    fontWeight: '900',
-  },
-  heroStatLabel: {
-    marginTop: 2,
-    fontWeight: '800',
   },
   heroStart: {
     minHeight: 54,

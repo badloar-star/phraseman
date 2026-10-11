@@ -132,7 +132,8 @@ function MyPacksV2Inner(props: Props) {
           right={(
             <>
               <PackSquareButton g={g} testID="fc-my-packs-menu" label={copy.menu} onPress={() => setMenuOpen(true)} />
-              <PackRoundButton g={g} testID="fc-my-packs-create-top" icon="add" label={copy.create} onPress={onCreate} />
+              {/* зачем (cards-v2 mySetsEmpty): в пустом состоянии «+» в шапке нет — единственная кнопка «Создать набор» стоит в центре экрана */}
+              {status === 'empty' ? null : <PackRoundButton g={g} testID="fc-my-packs-create-top" icon="add" label={copy.create} onPress={onCreate} />}
             </>
           )}
         />

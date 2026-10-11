@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Доступ подтверждён — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 9 — «Подтверждённый доступ», реестр overlays-specialist-001…010):
+     полноэкранное празднование components/PremiumCelebrationModal.tsx (+ тонкая обёртка VipCelebrationModal): три шага «появление → польза → завершение»
+     для Plus, Pro и VIP и один экран «Промокод применён». Верх: «ТАРИФ · 0N / 03» и «Пропустить» (на финале — «Закрыть»); аура — плитка 104 с иконкой, волны и четыре искры;
+     «ДОСТУП ПОДТВЕРЖДЁН», заголовок, подпись, карточка (польза/промокод); внизу кнопка «Продолжить» (на финале и у промокода — «К занятиям»).
+     Тексты — из celebrationLiquidCopy (RU). Из пользы в показ входит одна подтверждённая — «Без расхода энергии». Кегли по правилу владельца 16/13, заголовок 28/35.
+     ВАЖНО: в коде подпись тарифа tierLabel() даёт «Plus» для всего, что не Pro, — у VIP на экране было бы «Plus активирован». В макете у VIP стоит «VIP»; код надо подправить.
+     Волны и искры показаны в моменте после удара; на деле — анимация (появление, пружина, расходящиеся волны). Обводок нет (только 1px полупрозрачные при необходимости). */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --a-ctl: #1D1D22; --a-card: #202027; --a-sel: rgba(255,255,255,.1); --a-tx: #fff; --a-sc: #A6A6A8; --a-edge: rgba(255,255,255,.13); --a-ink: var(--on); --a-tint: var(--acc); color: var(--a-tx); }
+  .ph.lite { --a-ctl: #ECECF1; --a-card: #F6F6FA; --a-sel: rgba(0,0,0,.07); --a-tx: #0C0C10; --a-sc: #55555D; --a-edge: rgba(0,0,0,.12); --a-ink: #fff; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .apg { position: absolute; inset: 0; padding: 62px 22px 36px; display: flex; flex-direction: column; align-items: center; }
+  .atop { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .astep { font-size: 13px; line-height: 18px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--a-sc); }
+  .askip { min-height: 44px; min-width: 44px; padding: 0 16px; border-radius: 22px; display: flex; align-items: center; justify-content: center; background: var(--a-ctl); font-size: 16px; font-weight: 700; color: var(--a-sc); }
+  .aaur { position: relative; margin-top: 36px; width: 176px; height: 176px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .awv { position: absolute; border-radius: 50%; background: var(--a-sel); } .awv.w1 { width: 104px; height: 104px; transform: scale(1.5); opacity: .32; } .awv.w2 { width: 104px; height: 104px; transform: scale(1.95); opacity: .16; }
+  .asq { position: absolute; width: 6px; height: 6px; border-radius: 3px; background: var(--a-sc); opacity: .55; }
+  .atl { position: relative; width: 104px; height: 104px; border-radius: 32px; display: flex; align-items: center; justify-content: center; background: var(--a-ctl); } .atl .i { width: 42px; height: 42px; color: var(--a-tx); }
+  .atx { align-self: stretch; margin-top: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .akick { font-size: 13px; line-height: 18px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--a-sc); }
+  .atit { margin-top: 8px; font-size: 28px; line-height: 35px; font-weight: 800; letter-spacing: -.3px; }
+  .asub { margin-top: 10px; font-size: 16px; line-height: 23px; color: var(--a-sc); }
+  .acard { align-self: stretch; margin-top: 26px; padding: 15px; border-radius: 18px; background: var(--a-card); box-shadow: inset 0 0 0 1px var(--a-edge); text-align: left; display: flex; flex-direction: column; gap: 3px; }
+  .acard .t { font-size: 16px; line-height: 22px; font-weight: 800; } .acard .cd { font-size: 16px; line-height: 22px; font-weight: 800; letter-spacing: 2px; } .acard .b { font-size: 13px; line-height: 18px; color: var(--a-sc); }
+  .asp { flex: 1; min-height: 24px; }
+  .acta { align-self: stretch; min-height: 52px; border-radius: 18px; display: flex; align-items: center; justify-content: center; padding: 0 16px; font-size: 16px; font-weight: 800; background: var(--a-tint); color: var(--a-ink); }
+  .ant { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Доступ подтверждён — состояния</h1>
+  <p class="page-lead">Группа 9 из «экранов без макета» (реестр overlays-specialist-001…010): полноэкранное празднование после подтверждения Plus, Pro или VIP — три шага (появление, польза, завершение) — и отдельный экран «Промокод применён». Тёмная «Аврора» и светлая тема. Тексты — из кода. Волны и искры нарисованы в момент после удара; на деле — анимация.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const SPARKS = '<i class="asq" style="top:14px;left:30px"></i><i class="asq" style="top:30px;right:16px"></i><i class="asq" style="bottom:24px;left:14px"></i><i class="asq" style="bottom:12px;right:40px"></i>';
+// o: tier, phase (intro|benefits|finale|promo), code
+const view = (o) => {
+  const T = o.tier;
+  const promo = o.phase === 'promo';
+  const step = promo ? `${T} · промокод` : `${T} · 0${o.phase === 'intro' ? 1 : o.phase === 'benefits' ? 2 : 3} / 03`;
+  const title = promo ? 'Промокод применён' : o.phase === 'intro' ? `${T} активирован` : o.phase === 'benefits' ? 'Занимайся без ожидания' : 'Всё готово';
+  const sub = promo ? 'Доступ подтверждён. Условия сохранены в аккаунте.' : o.phase === 'intro' ? 'Доступ подтверждён. Твой прогресс на месте.' : o.phase === 'benefits' ? 'Занятия не списывают энергию. Остальные права зависят от подтверждённого плана.' : 'Продолжай с того места, где остановился(ась).';
+  const ic = promo ? icon('check') : o.phase === 'benefits' ? icon('bolt') : icon('layers');
+  const final = promo || o.phase === 'finale';
+  const card = promo
+    ? `<div class="acard"><div class="t">Подтверждённый промокод</div><div class="cd">${o.code}</div><div class="b">Время и тип доступа — по действующей записи аккаунта.</div></div>`
+    : o.phase === 'benefits' ? '<div class="acard"><div class="t">Без расхода энергии</div><div class="b">Уроки и тренировки не уменьшают запас энергии.</div></div>' : '';
+  return `<div class="apg"><div class="atop"><span class="astep">${step}</span><span class="askip t">${final ? 'Закрыть' : 'Пропустить'}</span></div>
+  <div class="aaur"><i class="awv w1"></i><i class="awv w2"></i>${SPARKS}<div class="atl">${ic}</div></div>
+  <div class="atx"><div class="akick">Доступ подтверждён</div><div class="atit">${title}</div><div class="asub">${sub}</div>${card}</div>
+  <div class="asp"></div><div class="acta t">${final ? 'К занятиям' : 'Продолжить'}</div></div>`;
+};
+const PH = { intro: 'появление', benefits: 'польза', finale: 'завершение' };
+const NOTE = { intro: 'Шаг 1 из 3 держится около 2,3 с, потом сам переходит дальше; «Продолжить» и «Пропустить» — сразу.', benefits: 'Шаг 2 держится около 2,8 с. Единственная подтверждённая польза — «Без расхода энергии».', finale: 'Шаг 3: «Закрыть» вверху и «К занятиям» внизу ведут к занятиям.' };
+const S = [];
+[['001', 'Plus'], ['004', 'Pro'], ['007', 'VIP']].forEach(([n0, T], k) => {
+  ['intro', 'benefits', 'finale'].forEach((ph, i) => S.push([`${String(+n0 + i).padStart(3, '0')} · ${T} · ${PH[ph]}`, NOTE[ph] + (T === 'VIP' && i === 0 ? ' У VIP в коде сейчас стоит «Plus» — подпись тарифа надо исправить.' : ''), view({ tier: T, phase: ph })]));
+});
+S.push(['010 · VIP · промокод', 'Один экран без шагов: код крупно, «Закрыть» и «К занятиям».', view({ tier: 'VIP', phase: 'promo', code: 'VIP2026' })]);
+S.push(['+ · Plus · промокод', 'Тот же экран для промокода на Plus. Не отдельная строка реестра.', view({ tier: 'Plus', phase: 'promo', code: 'SPRING26' })]);
+S.push(['+ · Pro · промокод', 'Тот же экран для промокода на Pro. Не отдельная строка реестра.', view({ tier: 'Pro', phase: 'promo', code: 'PRO-FRIEND' })]);
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="ant">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

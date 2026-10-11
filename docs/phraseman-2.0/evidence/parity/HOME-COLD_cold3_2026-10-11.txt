@@ -1,0 +1,17 @@
+10-11 01:59:08.098  6653  6704 W ReactNativeJS: '[HOME-COLD] boot_card:null', '{"reason":"no_lessons_in_snapshot","atEpochMs":1791680348096,"hasLessons":false,"primedAt":null,"snapshotTarget":null,"expectedTarget":"en","lastOpenedLesson":null,"lastOpenedLessonCorrect":null}', { [Stack] name: 'Stack' }
+10-11 01:59:10.404  6653  6704 W ReactNativeJS: '[HOME-COLD] first_frame', '{"lessonCard":"boot_snapshot","lessonId":1,"hydrationInMemory":false,"videos":0,"videoStatus":"loading","catalogRail":false}', { [Stack] name: 'Stack' }
+10-11 01:59:10.500  6653  6704 W ReactNativeJS: '[HOME-COLD] video:start', '{"sinceFirstRenderMs":2405,"catalogRail":false}', { [Stack] name: 'Stack' }
+10-11 01:59:12.381  6653  6704 W ReactNativeJS: '[HOME-COLD] video:start', '{"sinceFirstRenderMs":4289,"catalogRail":false}', { [Stack] name: 'Stack' }
+10-11 01:59:12.561  6653  6704 W ReactNativeJS: '[HOME-COLD] video:raw_cache', '{"ms":2066,"videos":15,"alive":true,"memo":false}'
+10-11 01:59:13.361  6653  6704 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":4627,"result":false,"steps":{"tester_flags":2,"tester_no_limits":0,"verified_local":0,"intro":136,"loyalty_gift_cloud":4489,"cloud_refresh:false":0}}'
+10-11 01:59:13.362  6653  6704 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":4211,"result":false,"steps":{"tester_flags":0,"tester_no_limits":0,"verified_local":0,"intro":0,"loyalty_gift_cloud":4211,"cloud_refresh:false":0}}'
+10-11 01:59:13.362  6653  6704 W ReactNativeJS: '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":2611,"result":false,"steps":{"tester_flags":1,"tester_no_limits":12,"verified_local":1,"intro":1,"loyalty_gift_cloud":2595,"cloud_refresh:false":0}}'
+10-11 01:59:13.363  6653  6704 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:exit', '{"reason":"stale_after_verified_cloud","epoch":1,"currentEpoch":2,"totalMs":5255,"steps":{"identity_sync:false":59,"dev_override":0,"verified_local":568,"verified_cloud:false":4628}}'
+10-11 01:59:13.363  6653  6704 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:not_resolved', '{"requestedEpoch":1,"currentEpoch":2,"resolvedEpoch":null}'
+10-11 01:59:13.366  6653  6704 W ReactNativeJS: '[PREMIUM-RESOLVE] reload:done', '{"epoch":2,"totalMs":4512,"steps":{"identity_sync:false":70,"dev_override":0,"verified_local":227,"verified_cloud:false":4213,"tester_flags":0,"intro_state":1},"access":false}'
+10-11 01:59:23.154  6653  6704 W ReactNativeJS: '[HOME-COLD] video:import_done', '{"ms":12657,"memo":true}'
+10-11 01:59:23.157  6653  6704 W ReactNativeJS: '[HOME-COLD] video:import_done', '{"ms":10777,"memo":true}'
+10-11 01:59:23.624  6653  6704 W ReactNativeJS: '[HOME-COLD] video_feed:network_ok', '{"ms":310,"videos":15}'
+10-11 01:59:23.629  6653  6704 W ReactNativeJS: '[HOME-COLD] video:resolved', '{"source":"network","alive":true,"ms":11249,"sinceFirstRenderMs":15538,"videos":15,"error":null}'
+10-11 01:59:23.725  6653  6704 W ReactNativeJS: '[HOME-COLD] video_feed:network_ok', '{"ms":413,"videos":15}'
+10-11 01:59:23.727  6653  6704 W ReactNativeJS: '[HOME-COLD] video:resolved', '{"source":"network","alive":false,"ms":13230,"sinceFirstRenderMs":15635,"videos":15,"error":null}'

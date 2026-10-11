@@ -35,6 +35,7 @@ import {
 import { soundDirector } from '../modules/audio/sound_director';
 import HybridAlertShell from './modal_fx/HybridAlertShell';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 
@@ -439,16 +440,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
             testID="delete-account-confirm-input"
             accessibilityLabel={deleteConfirmWord}
             style={{
-              // Поле — плашка контрола темы + тонкая полупрозрачная кромка (как .field в макете).
+              // зачем (стиль «Тень», Темы ae3bf2a7e, координатор 12.10): поле — плашка контрола темы с малой тенью, без кромки;
+              // так же, как поле имени в NicknameEditModal.
               backgroundColor: glass.opaqueControl,
+              boxShadow: nestedBoxShadow(glass) as unknown as string /* типы RN для стиля TextInput знают boxShadow только строкой, массив работает */,
               color: glass.text,
               fontSize: f.body,
               minHeight: 52,
               paddingHorizontal: 16,
               paddingVertical: 12,
               borderRadius: 16,
-              borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка — разрешена для PhraseMan 2.0
-              borderColor: glass.line,
               marginBottom: 16,
             }}
             value={deleteConfirmInput}

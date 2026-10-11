@@ -97,7 +97,9 @@ describe('palette along the slider', () => {
     const accent = liquidGlassTokens('sage', { level: 'accent', appearance: 'dark' });
     const max = liquidGlassTokens('sage', { level: 'max', appearance: 'dark' });
     // зачем (10.10): токены поверхностей (liquidGlassSurfaceRoles) добавляются поверх построителя и считаются из итоговых полей — сравниваем только его выход.
-    const SURFACE = ['deepBase', 'deepBaseAlt', 'mediaScrim', 'mediaInk', 'mediaInkSoft', 'bevelHi', 'bevelLo', 'dropShadow', 'hairlineSoft'];
+    const SURFACE = ['deepBase', 'deepBaseAlt', 'mediaScrim', 'mediaInk', 'mediaInkSoft', 'bevelHi', 'bevelLo', 'dropShadow', 'hairlineSoft',
+      // нетекстовые элементы (iconMuted, trackOff) и стиль «Тень» (плашка, приподнятое, тени, разделитель) — тоже поверх построителя
+      'iconMuted', 'trackOff', 'plateFillFrom', 'plateFillTo', 'raisedFillFrom', 'raisedFillTo', 'plateShadow', 'plateShadowSoft', 'nestedShadow', 'raisedShadow', 'raisedShadowSoft', 'dividerTone'];
     // + палитры ролей (liquidGlassPaletteRoles, 10.10) — тоже добавляются поверх построителя.
     const PALETTE: readonly string[] = LIQUID_GLASS_PALETTE_ROLE_KEYS;
     const strip = (o: object) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'intensity' && !SURFACE.includes(k) && !PALETTE.includes(k)));

@@ -1,6 +1,6 @@
 import type { Theme } from './theme';
 import { alpha, oklchToHex } from './liquidGlassColor';
-import { deriveLiquidGlassSurfaceRoles, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
+import { deriveLiquidGlassSurfaceRoles, legibleOn, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
 import { deriveLiquidGlassPaletteRoles, type LiquidGlassPaletteRoles } from './liquidGlassPaletteRoles';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -154,9 +154,19 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const cached = variantCache.get(key);
   if (cached) return cached;
   const built = buildThemeTokens(themeId, variant);
+  const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
+  // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
+  // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
+  const mutedText = built.isLight
+    ? legibleOn(built.mutedText, built.text, [
+        built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet,
+        surfaceRoles.plateFillFrom, surfaceRoles.plateFillTo, surfaceRoles.raisedFillFrom, surfaceRoles.raisedFillTo,
+      ], 4.55)
+    : built.mutedText;
   const tokens: GlassTokens = Object.freeze({
     ...built,
-    ...deriveLiquidGlassSurfaceRoles(built),
+    mutedText,
+    ...surfaceRoles,
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
     ...(deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles),
     intensity: variant.intensity,

@@ -25,6 +25,7 @@ import {
   parseStrictArrayJson,
 } from './myPacksDataIntegrity';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { cleanPackSourceTitle } from '../../shared/pack_source_title';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
 /**
@@ -457,13 +458,25 @@ export function packTitleForInterface(pack: FlashcardMarketPack, lang: Lang | Pl
   const contentLang = lang === 'en' ? 'ru' : lang;
   const titleField = PACK_TITLE_FIELD_BY_LANG[contentLang];
   const requestedTitle = trimmedMarketString(pack[titleField]);
-  if (requestedTitle) return requestedTitle;
+  if (requestedTitle) return formatPackTitleForDisplay(requestedTitle);
   // зачем: правило «своя локаль → код» верно для официальных паков (у них есть
   // codeName-бренд), но для UGC код бессмысленен — показываем язык автора.
   if (pack.isCommunityUgc) {
-    return communityPackAuthoredTitle(pack) || packHubCodeName(pack);
+    return formatPackTitleForDisplay(communityPackAuthoredTitle(pack)) || packHubCodeName(pack);
   }
   return packHubCodeName(pack);
+}
+
+/**
+ * Название набора для показа: без хвоста файла («.docx», «(1)», « - копия»).
+ * зачем (владелец, журнал строка 5; Ядро 306185f5c): одна функция чистки `cleanPackSourceTitle` на сервер и клиент.
+ * Каталог чистит старые документы при чтении, а показ — страховка для локальных и своих наборов. Здесь — единая
+ * точка: через `packTitleForInterface` название берут каталог, «Мои наборы», выбор в тренировке, шапки и шторки.
+ * Если от названия ничего не осталось (всё имя было «.docx»), показываем исходник — пустая строка хуже.
+ */
+export function formatPackTitleForDisplay(raw: string): string {
+  const source = String(raw ?? '').trim();
+  return cleanPackSourceTitle(source) || source;
 }
 
 /** Короткая подпись под плиткой хаба: локализованная, но компактная. */

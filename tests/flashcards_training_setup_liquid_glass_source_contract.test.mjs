@@ -363,7 +363,8 @@ test('setup screen delegates the view to TrainingSetupV2 and keeps the start/quo
   for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-summary', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-unavailable', 'fc-training-setup-empty', 'fc-training-setup-exhausted']) {
     assert.ok(view.includes(id), `missing testID ${id}`);
   }
-  assert.ok(view.includes('KitCta') && view.includes('KitCheck') && view.includes('KitSegment'), 'shared kit parts');
+  // зачем (11.10, журнал 9): строка набора — общий PackRow, отметка выбора — PackRowCheck (обёртка KitCheck).
+  assert.ok(view.includes('KitCta') && view.includes('PackRowCheck') && view.includes('KitSegment') && view.includes('<PackRow'), 'shared kit parts');
   assert.doesNotMatch(view, /numberOfLines/);
 });
 

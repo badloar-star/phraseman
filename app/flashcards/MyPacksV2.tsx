@@ -9,9 +9,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
+import { packRowHeight } from '../../components/packs/packRowModel';
 
-import { KitCta, KitEmpty, KitPackRow, KitSectionHead, KitTitle } from '../../components/cards-grid/CardsKit';
+import { KitCta, KitEmpty, KitSectionHead, KitTitle } from '../../components/cards-grid/CardsKit';
+import { PackRow, PackRowCountChevron } from '../../components/packs/PackRow';
+import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
+import { formatPackTitleForDisplay } from './marketplace';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, PanelDock, SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
@@ -73,6 +77,8 @@ function MyPacksV2Inner(props: Props) {
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
+  // зачем: заглушка — той же высоты, что строка PackRow (без прыжка, когда наборы пришли).
+  const skeletonH = packRowHeight('row', useLineScale());
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [actionsFor, setActionsFor] = useState<FlashcardMarketPack | null>(null);
@@ -86,20 +92,32 @@ function MyPacksV2Inner(props: Props) {
   };
   const actionsOwn = actionsFor ? created.some((item) => item.id === actionsFor.id) : false;
 
-  const row = (pack: FlashcardMarketPack, own: boolean) => (
-    <KitPackRow
-      key={pack.id}
-      g={g}
-      icon={own ? 'layers-outline' : 'people-outline'}
-      title={labelFor(pack)}
-      subtitle={own ? (isPublished(pack) ? copy.inCommunity : copy.onlyYou) : (pack.authorName ?? '')}
-      count={pack.cardCount}
-      testID={`fc-my-packs-pack-${pack.id}`}
-      disabled={openingPackId !== null}
-      onPress={() => onOpen(pack)}
-      onLongPress={() => setActionsFor(pack)}
-    />
-  );
+  // зачем (владелец, журнал 9 и 4–5): строка — общий PackRow (kit `.row`, фиксированная высота под 2 строки названия).
+  // Автор добавленного набора — без чтения сети: официальный → «Professor Lingman», иначе ник из каталога или фолбэк
+  // (раньше сюда шёл сырой authorName — у легаси-документов это мог быть обрезанный UID).
+  const row = (pack: FlashcardMarketPack, own: boolean) => {
+    const title = labelFor(pack);
+    const subtitle = own
+      ? (isPublished(pack) ? copy.inCommunity : copy.onlyYou)
+      : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));
+    return (
+      <PackRow
+        key={pack.id}
+        variant="row"
+        g={g}
+        lang={lang}
+        leading={{ kind: 'icon', icon: own ? 'layers-outline' : 'people-outline' }}
+        title={title}
+        subtitle={subtitle}
+        trailing={<PackRowCountChevron g={g} count={pack.cardCount} />}
+        accessibilityLabel={`${formatPackTitleForDisplay(title)}, ${subtitle}, ${pack.cardCount}`}
+        testID={`fc-my-packs-pack-${pack.id}`}
+        disabled={openingPackId !== null}
+        onPress={() => onOpen(pack)}
+        onLongPress={() => setActionsFor(pack)}
+      />
+    );
+  };
 
   return (
     <View style={styles.root}>
@@ -140,7 +158,7 @@ function MyPacksV2Inner(props: Props) {
 
         {status === 'loading' ? (
           <View testID="fc-my-packs-loading" style={styles.loading}>
-            {[0, 1, 2].map((index) => <View key={index} /* guard-ok: три статичные заглушки */ style={styles.skeleton} />)}
+            {[0, 1, 2].map((index) => <View key={index} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { height: skeletonH }]} />)}
           </View>
         ) : null}
 
@@ -230,7 +248,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   stack: { gap: 9 },
   loading: { marginTop: 30, gap: 9 },
-  skeleton: { height: 65, borderRadius: 14, backgroundColor: g.hairlineSoft },
+  skeleton: { borderRadius: 14, backgroundColor: g.hairlineSoft },
   none: { marginTop: 30, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
   langRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 4 },

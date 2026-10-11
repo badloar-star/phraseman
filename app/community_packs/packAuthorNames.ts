@@ -19,6 +19,12 @@ import firestore from '@react-native-firebase/firestore';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
+import { isValidCoinRank } from '../coin_rank_table_v1';
+import {
+  isOfficialVideoPack,
+  OFFICIAL_PACK_AUTHOR_NAME,
+  OFFICIAL_VIDEO_PACK_AUTHOR_PREFIX,
+} from '../../shared/official_pack_marker';
 import { triLang, type Lang } from '../../constants/i18n';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -44,6 +50,13 @@ type CacheRecord = {
   avatar: string;
   frame: string;
   aura: string;
+  /**
+   * Ранг монеты автора (0–19) из того же документа public_profiles; null — неизвестен.
+   * зачем (макет community-redesign #c1, `.au`): рядом с ником — монета ранга автора. Поле берём из уже
+   * прочитанного документа, без нового чтения. Ключ кэша не бампаем: старые записи без поля значат «монеты нет»
+   * на ≤24 ч, а бамп заставил бы перечитать ВСЕХ авторов (лишние чтения Firestore).
+   */
+  coinRank?: number | null;
   at: number;
 };
 
@@ -52,9 +65,22 @@ export type CommunityAuthorProfile = {
   avatar: string;
   frame: string;
   aura: string;
+  /** Ранг монеты автора; поле необязательное — у PackCommentsSheet и локального профиля его нет (совместимость типа). */
+  coinRank?: number | null;
 };
 
-const EMPTY_PROFILE: CommunityAuthorProfile = { name: '', avatar: '', frame: '', aura: '' };
+const EMPTY_PROFILE: CommunityAuthorProfile = { name: '', avatar: '', frame: '', aura: '', coinRank: null };
+
+/**
+ * Идентификатор автора официального набора ролика (`video:<id>`) — профиля у него нет и не будет.
+ * зачем (Ядро, координатор 17:25; 💸 экономия Firebase): раньше каждый набор ролика тратил чтение
+ * несуществующего `public_profiles/video:*`. Такие id наборы пишет ТОЛЬКО сервер, правила запрещают
+ * создавать `community_packs` с клиента, поэтому по префиксу безопасно НЕ читать (подпись «Professor Lingman»
+ * решает строгий `isOfficialVideoPack(pack)` в хуке, а не префикс).
+ */
+export function isOfficialPackAuthorId(authorStableId: string | null | undefined): boolean {
+  return String(authorStableId ?? '').trim().startsWith(OFFICIAL_VIDEO_PACK_AUTHOR_PREFIX);
+}
 
 let memCache: Record<string, CacheRecord> | null = null;
 const inFlight = new Map<string, Promise<CommunityAuthorProfile>>();
@@ -160,6 +186,7 @@ async function fetchPublicProfile(sid: string): Promise<CommunityAuthorProfile> 
       avatar: String(data.avatar ?? '').trim().slice(0, 80),
       frame: String(data.frame ?? '').trim().slice(0, 80),
       aura: String(data.aura ?? '').trim().slice(0, 80),
+      coinRank: isValidCoinRank(data.coinRank) ? data.coinRank : null,
     };
   } catch (e) {
     DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] чтение public_profiles/${sid} упало: ${e instanceof Error ? e.message : String(e)}`);
@@ -177,6 +204,11 @@ export async function resolveCommunityAuthorProfile(
 ): Promise<CommunityAuthorProfile> {
   const sid = String(authorStableId ?? '').trim();
   if (!sid) return EMPTY_PROFILE;
+  if (isOfficialPackAuthorId(sid)) {
+    // Ранний выход обязан называть причину (правило «сперва логи»); id ролика — не личные данные.
+    console.log(`[PACK-AUTHOR] skip-read official sid=${sid}`); // guard-ok: ранний выход логируется и в релизе
+    return EMPTY_PROFILE;
+  }
 
   const own = await getCanonicalUserId().catch(noteSwallowedAs('packAuthorNames:promise_1', null));
   if (own && own === sid) {
@@ -187,7 +219,7 @@ export async function resolveCommunityAuthorProfile(
   const cache = await readCache();
   const hit = cache[sid];
   if (hit && Date.now() - hit.at < AUTHOR_PROFILE_TTL_MS) {
-    return { name: hit.name, avatar: hit.avatar, frame: hit.frame, aura: hit.aura };
+    return { name: hit.name, avatar: hit.avatar, frame: hit.frame, aura: hit.aura, coinRank: isValidCoinRank(hit.coinRank) ? hit.coinRank : null };
   }
 
   const pending = inFlight.get(sid);
@@ -219,7 +251,22 @@ export type PackAuthorRef = {
   authorStableId?: string;
   /** Легаси-поле каталога: может содержать обрезанный UID — тогда игнорируется. */
   authorName?: string;
+  /** Набор ролика: вместе с `authorStableId` даёт строгий признак официального набора. */
+  videoId?: string;
 };
+
+/**
+ * Подпись автора без сети, если её можно решить по самому набору: официальный набор ролика → «Professor Lingman».
+ * null — нужен ник из профиля (или фолбэк).
+ * зачем (владелец, журнал строки 4–5): у наборов Professor Lingman писалось «Автор сообщества». Признак — строгий
+ * `isOfficialVideoPack` Ядра (id автора `video:<videoId>`), НИКОГДА не ник: ник может выбрать любой человек.
+ */
+export function officialPackAuthorName(pack: PackAuthorRef | null | undefined): string | null {
+  if (!pack) return null;
+  return isOfficialVideoPack(pack) ? OFFICIAL_PACK_AUTHOR_NAME : null;
+}
+
+export type CommunityAuthorDisplay = Readonly<{ name: string; coinRank: number | null }>;
 
 /**
  * Готовая к показу подпись автора: ник, иначе нейтральный фолбэк.
@@ -230,25 +277,42 @@ export function communityAuthorLabel(nickname: string, lang: Lang): string {
   return nick || communityAuthorFallbackName(lang);
 }
 
-/** Ник автора набора для UI. Пока грузится — нейтральный фолбэк, не UID. */
-export function useCommunityAuthorName(pack: PackAuthorRef | null | undefined, lang: Lang): string {
-  const sid = String(pack?.authorStableId ?? '').trim();
-  const seed = sanitizeNickname(pack?.authorName);
-  const [nick, setNick] = useState<string>(seed);
+/**
+ * Автор набора для UI: подпись (ник / «Professor Lingman» / фолбэк) и ранг монеты.
+ * Пока грузится — нейтральный фолбэк, не UID. Официальный набор решается синхронно, без чтения Firestore.
+ */
+export function useCommunityAuthor(pack: PackAuthorRef | null | undefined, lang: Lang): CommunityAuthorDisplay {
+  const official = officialPackAuthorName(pack);
+  // зачем: официальному набору профиль не нужен — sid пустой, эффект ниже не идёт в сеть (💸 чтение public_profiles/video:*).
+  const sid = official ? '' : String(pack?.authorStableId ?? '').trim();
+  const seed = official ? '' : sanitizeNickname(pack?.authorName);
+  const [author, setAuthor] = useState<{ nick: string; coinRank: number | null }>(() => ({ nick: seed, coinRank: null }));
 
   useEffect(() => {
     let cancelled = false;
-    setNick(seed);
+    setAuthor((prev) => (prev.nick === seed && prev.coinRank === null ? prev : { nick: seed, coinRank: null }));
     if (!sid) return () => { cancelled = true; };
-    void resolveCommunityAuthorNickname(sid).then((n) => {
-      if (!cancelled && n) setNick(n);
+    void resolveCommunityAuthorProfile(sid).then((profile) => {
+      if (cancelled) return;
+      const rank = isValidCoinRank(profile.coinRank) ? profile.coinRank : null;
+      if (!profile.name && rank === null) return;
+      setAuthor({ nick: profile.name || seed, coinRank: rank });
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: подпись остаётся фолбэком, причина — в журнал (без uid).
+      console.warn(`[PACK-AUTHOR] resolve failed kind=${error instanceof Error ? error.name : typeof error}`); // guard-ok
     });
     return () => {
       cancelled = true;
     };
   }, [sid, seed]);
 
-  return communityAuthorLabel(nick, lang);
+  if (official) return { name: official, coinRank: null };
+  return { name: communityAuthorLabel(author.nick, lang), coinRank: author.coinRank };
+}
+
+/** Ник автора набора для UI. Пока грузится — нейтральный фолбэк, не UID. */
+export function useCommunityAuthorName(pack: PackAuthorRef | null | undefined, lang: Lang): string {
+  return useCommunityAuthor(pack, lang).name;
 }
 
 /** Только для тестов: сбросить кэш ников между кейсами. */

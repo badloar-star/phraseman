@@ -33,7 +33,8 @@ test.todo('shared storage loaders must expose read failure separately from real 
 
 test('screen-reader exposes open, edit and delete as separate real actions', () => {
   assert.doesNotMatch(renderTile, /accessibilityLabel={`qa-fc-my-packs-pack-/);
-  assert.match(renderTile, /accessibilityLabel \?\? `\$\{title\}, \$\{subtitle\}, \$\{count\}`/);
+  // зачем (11.10, журнал 9): строка — общий PackRow; подпись для чтения экрана — название без хвоста файла, автор/статус, число.
+  assert.match(renderTile, /accessibilityLabel=\{`\$\{formatPackTitleForDisplay\(title\)\}, \$\{subtitle\}, \$\{pack\.cardCount\}`\}/);
   assert.match(renderTile, /fc-my-packs-pack-edit-/);
   assert.match(renderTile, /fc-my-packs-pack-delete-/);
   assert.match(renderTile, /key=\{pack\.id\}/);

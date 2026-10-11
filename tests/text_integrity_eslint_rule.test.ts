@@ -90,6 +90,53 @@ describe('text-integrity/no-unsafe-text-truncation', () => {
     expect(messages[0].message).toContain(prop);
   });
 
+  // зачем (журнал владельца п.9, решение владельца через координатора 11.10): ClampedText — единственный явно
+  // разрешённый примитив обрезки; лазейка через раскрытие объекта ({...{ numberOfLines }} / {...clamp}) закрыта.
+  test('explicitly allowed primitive file passes, the same code elsewhere is still reported', () => {
+    const code = 'const ClampedText = ({ maxLines }) => <Text numberOfLines={maxLines}>Clamp</Text>;';
+    expect(verify(emptyRule(), code, 'components/text-integrity/ClampedText.tsx')).toEqual([]);
+    expect(verify(emptyRule(), code, path.join(projectRoot, 'components', 'text-integrity', 'ClampedText.tsx'))).toEqual([]);
+    expect(verify(emptyRule(), code, 'components/packs/PackRow.tsx')).toHaveLength(1);
+    expect(core.SEMANTIC_TRUNCATION_PRIMITIVES).toEqual(['components/text-integrity/ClampedText.tsx']);
+    expect(loadRule().ALLOWED_PRIMITIVE_FILES).toEqual(['components/text-integrity/ClampedText.tsx']);
+  });
+
+  test.each([
+    ['numberOfLines', '<Text {...{ numberOfLines: 2 }}>Spread</Text>'],
+    ['ellipsizeMode', "<Text {...{ ellipsizeMode: 'tail' }}>Spread</Text>"],
+    ['allowFontScaling', '<Text {...{ allowFontScaling: false }}>Spread</Text>'],
+    ['numberOfLines', 'const clamp = { numberOfLines: 2 }; const A = () => <Text {...clamp}>Spread</Text>;'],
+    ['numberOfLines', 'function A() { const clamp = { numberOfLines: 1 }; return <Text {...clamp}>Spread</Text>; }'],
+  ])('reports unsafe %s hidden in a JSX spread of an object literal or local const', (prop, code) => {
+    const messages = verify(emptyRule(), code, 'app/fixture.tsx');
+    expect(messages).toHaveLength(1);
+    expect(messages[0].message).toContain(prop);
+  });
+
+  test('does not report safe spreads (props, scaling on, unrelated keys)', () => {
+    expect(verify(emptyRule(), 'const A = (props) => <Text {...props}>Safe</Text>;')).toEqual([]);
+    expect(verify(emptyRule(), '<Text {...{ allowFontScaling: true, style: s }}>Safe</Text>')).toEqual([]);
+    expect(verify(emptyRule(), 'let clamp = { numberOfLines: 2 }; const A = () => <Text {...clamp}>Mutable — not a const literal</Text>;')).toEqual([]);
+  });
+
+  test('spread identities are the same in the ESLint rule and the TypeScript scanner', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'phraseman-spread-parity-'));
+    tempRoots.push(root);
+    const relative = 'app/spread.tsx';
+    const code = 'const clamp = { numberOfLines: 2 } as const;\nexport const A = () => <Text {...clamp}>Spread</Text>;\n';
+    fs.mkdirSync(path.join(root, 'app'));
+    fs.writeFileSync(path.join(root, relative), code);
+    const scanned = core.scanTextIntegrity(root, [relative]);
+    expect(scanned.groups).toHaveLength(1);
+    const plain = 'const clamp = { numberOfLines: 2 };\nexport const A = () => <Text {...clamp}>Spread</Text>;\n';
+    const identity = captureIdentity(plain, relative);
+    expect(core.fingerprintGroup(identity)).toBe(scanned.groups[0].fingerprint);
+    // разрешённый примитив сканер тоже пропускает
+    fs.mkdirSync(path.join(root, 'components', 'text-integrity'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'components/text-integrity/ClampedText.tsx'), 'export const C = ({ n }) => <Text numberOfLines={n}>x</Text>;\n');
+    expect(core.scanTextIntegrity(root, ['components/text-integrity/ClampedText.tsx']).groups).toEqual([]);
+  });
+
   test('allows scaling and semantic primitives without raw forbidden attributes', () => {
     expect(verify(emptyRule(), '<><Text allowFontScaling={true}>Safe</Text><FlowText>Safe</FlowText><AdaptiveLabel>Safe</AdaptiveLabel></>')).toEqual([]);
   });

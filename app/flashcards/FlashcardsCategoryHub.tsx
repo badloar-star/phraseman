@@ -4,9 +4,10 @@
  *
  * Что здесь есть:
  *   • «Мои наборы» — уже добавленные наборы (открываются как набор карточек);
- *   • «Наборы сообщества» — список строк-карточек (packs-simple.html, замок 04.10): название
- *     и «Топ», автор, ♥ · 👥 · 💬, плашка числа карточек, стрелка. Строка открывается ДО
- *     добавления — в режиме просмотра (`preview=1`), где и живут «Добавить себе» и лайк.
+ *   • «Наборы сообщества» — список плашек «Плитка-счётчик» (решение владельца 11.10,
+ *     community-redesign.html #c1; общий компонент components/packs/PackRow): слева плитка с числом
+ *     карточек, название (до двух строк) и «Топ», автор с монетой и ♥ · 👥 · 💬, справа «+» —
+ *     добавить себе. Тап открывает набор ДО добавления — в режиме просмотра (`preview=1`).
  *
  * Чего здесь БОЛЬШЕ НЕТ (по спеке):
  *   • заголовка «Наборы» и подзаголовка секции «Наборы сообщества» — дубль убран,
@@ -39,7 +40,8 @@ import {
   View,
   type ViewStyle,
 } from 'react-native';
-import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
+import { packRowHeight } from '../../components/packs/packRowModel';
 import Reanimated, {
   FadeInDown,
   useAnimatedStyle,
@@ -60,19 +62,31 @@ import { isLowPowerEffective } from './low_power';
 
 import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
-import { onAppEvent } from '../events';
+import { emitAppEvent, onAppEvent } from '../events';
+import { animateNextLayoutTransition } from '../smooth_layout';
+import {
+  bumpPackCounts,
+  EMPTY_PACK_COUNTS_OVERLAY,
+  livePackCounts,
+  packBaseCounts,
+  type PackCounts,
+  type PackCountsOverlay,
+} from '../community_packs/packLiveCounts';
+import { packAddFailureToast, packHideFailureToast } from '../community_packs/packQuickAdd';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry, startCommunityPackOpen } from '../community_packs/stage_with_retry';
-import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
 import { topLikedPackIds } from '../community_packs/packSocial';
 import {
   applyCommunityPacksFilter,
   type CommunityPacksSort,
 } from '../community_packs/communityCatalogFilter';
 import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
-import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
+import { useCommunityAuthor } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
-import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
+import { PackRow, PackRowAddButton, PackRowAuthorMeta, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
+import { useLang } from '../../components/LangContext';
+import { KitTouchable } from '../../components/KitTouchable';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -230,131 +244,101 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
 
 type CommunityPackRowProps = {
   pack: FlashcardMarketPack;
-  lang: Lang;
-  t: Theme;
+  /** Язык подписей интерфейса (полный, 9 языков) — «карточек», «Добавить себе», «Топ». */
+  uiLang: Lang;
+  /** Язык названия набора (как раньше у каталога). */
+  titleLang: Lang;
   g: CatalogGlassTokens;
-  width: number;
   owned: boolean;
   isTop: boolean;
-  reduceMotion: boolean;
-  showEdit: boolean;
+  emphasis: PackRowEmphasis;
+  highlight: string;
+  /** Живые счётчики: значение каталога + сдвиг от лайков/откликов/добавлений этой сессии (packLiveCounts). */
+  likes: number;
+  added: number;
+  comments: number;
   onOpen: () => void;
   onLongPress?: () => void;
-  onEdit: () => void;
+  onAdd: () => void;
   opening?: boolean;
   disabled?: boolean;
 };
 
-/** packs-simple.html кадр 2: шторка долгого нажатия — заголовок набора и строки `.card .row` с плиткой 41. */
-const baseSheetStyles = StyleSheet.create({
-  // зачем: макет 18/700; шкала D145 (решение владельца 04.10) — 16 жирным.
-  title: { fontSize: 16, lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 },
-  row: {
-    minHeight: 63,
-    borderRadius: 14,
-    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка `.card`
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-    paddingVertical: 9,
-    paddingLeft: 18,
-    paddingRight: 16,
-  },
-  tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  rowText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' }, // зачем: макет 17/600, D145 — 16
-});
+/** Зазор между плашками (`.pl { margin-top: 10px }`) и от плашки до меню (`.menu { margin-top: 8px }`). */
+const STACK_GAP = 10;
+const MENU_GAP = 8;
 
-/** packs-simple.html (замок 04.10): размеры строки `.card .row`, плашки `.cntp`, метки `.tag2`. */
-const baseRowStyles = StyleSheet.create({
-  card: {
-    minHeight: 74,
-    borderRadius: 14,
-    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка `.card`
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-    paddingVertical: 9,
-    paddingLeft: 18,
-    paddingRight: 16,
-    overflow: 'hidden',
-  },
-  titleLine: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
-  // зачем: макет 17/22 жирный; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
-  title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  topTag: { minHeight: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
-  topTagText: { fontSize: 13, lineHeight: 17, fontWeight: '700' }, // зачем: макет 12, D145 — 13
-  author: { fontSize: 16, lineHeight: 21, marginTop: 1 }, // зачем: `.row .st` — строка 19 (сверка 04.10, карточка выше макета)
-  pill: { minWidth: 33, minHeight: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
+/** community-redesign.html #c1, экран 3: меню долгого нажатия под плашкой (`.menu`): строки 52, значок 20, текст 16/600 (макет 17, D145). */
+const baseMenuStyles = StyleSheet.create({
+  // зачем (ревью 11.10, п.3): в макете #c1 экран 3 меню на 8 ниже плашки; стопка уже даёт зазор 10 — компенсируем −2.
+  menu: { marginTop: MENU_GAP - STACK_GAP, padding: 6, borderRadius: 20, zIndex: 4 },
+  row: { minHeight: 52, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14 },
+  rowText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' },
+  // зачем (экран «Поиск» #c1, `.lab`): «Найдено 3» 15/600 макета → 16 (D145); 18 сверху = 8 отступа списка + 10, снизу 10 — отступ стека.
+  found: { fontSize: 16, lineHeight: 21, fontWeight: '600', marginTop: 10 },
 });
 
 /**
- * Строка набора сообщества (packs-simple.html кадр 1): название и «Топ», автор, ♥ · 👥 · 💬,
- * плашка числа карточек и стрелка. Открывается и БЕЗ добавления — в режиме просмотра;
+ * Плашка набора сообщества (community-redesign.html #c1, общий PackRow): плитка-счётчик, название и «Топ»,
+ * автор и ♥ · 👥 · 💬, справа «+». Открывается и БЕЗ добавления — в режиме просмотра;
  * долгое нажатие на чужой набор — «Пожаловаться» / «Не показывать мне».
  */
 function CommunityPackRowBase({
-  pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, onOpen, onLongPress, onEdit, opening, disabled,
+  pack, uiLang, titleLang, g, owned, isTop, emphasis, highlight, likes, added, comments, onOpen, onLongPress, onAdd, opening, disabled,
 }: CommunityPackRowProps) {
-  // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const rowStyles = useScaledTextStyles(baseRowStyles);
-  const authorName = useCommunityAuthorName(pack, lang);
+  // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
+  const author = useCommunityAuthor(pack, uiLang);
   // Единственный источник цены — тот же, из которого спишет шит покупки.
   const packPriceRunes = communityPackPriceRunes(pack);
-  const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
-  const topLabel = triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' });
+  const title = packTitleForInterface(pack, titleLang) || packHubCodeName(pack);
+  const topLabel = triLang(uiLang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' });
+  const addLabel = triLang(uiLang, {
+    ru: 'Добавить себе', uk: 'Додати собі', en: 'Add to mine', es: 'Añadir',
+    'pt-BR': 'Adicionar', vi: 'Thêm vào của tôi', id: 'Tambahkan', tr: 'Bana ekle', pl: 'Dodaj do siebie',
+  });
+  const ownedLabel = triLang(uiLang, {
+    ru: 'В моих наборах', uk: 'У моїх наборах', en: 'In my packs', es: 'En mis packs',
+    'pt-BR': 'Nos meus pacotes', vi: 'Trong bộ của tôi', id: 'Di paket saya', tr: 'Paketlerimde', pl: 'W moich zestawach',
+  });
 
   return (
-    <HubTileShell
+    <PackRow
+      variant="plate"
+      g={g}
+      lang={uiLang}
+      title={title}
       testID={`flashcards-pack-card-${pack.id}`}
-      a11y={`${title}, ${authorName}, ${pack.cardCount} ${triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' })}`}
-      width={width}
-      reduceMotion={reduceMotion}
+      titleTestID={`flashcards-pack-title-${pack.id}`}
+      accessibilityLabel={`${title}, ${author.name}, ${pack.cardCount} ${packCardsWord(uiLang, pack.cardCount)}`}
+      leading={{ kind: 'count', count: pack.cardCount }}
+      badge={isTop ? topLabel : null}
+      highlight={highlight}
+      emphasis={emphasis}
       onPress={onOpen}
       onLongPress={onLongPress}
       disabled={disabled}
-    >
-      <View style={[rowStyles.card, { width, borderColor: g.glassEdge, backgroundColor: g.card }]}>
-        <CatalogTileGlass g={g} />
-        <View style={{ flex: 1, minWidth: 0 }}>
-          <View style={rowStyles.titleLine}>
-            <FlowText testID={`flashcards-pack-title-${pack.id}`} provenance="user" style={[rowStyles.title, { color: g.text }]}>
-              {title}
-            </FlowText>
-            {isTop ? (
-              <View pointerEvents="none" style={[rowStyles.topTag, { backgroundColor: t.accent }]}>
-                <Text style={[rowStyles.topTagText, { color: t.textOnGold }]}>{topLabel}</Text>
-              </View>
-            ) : null}
-          </View>
-          {/* зачем цена рядом с автором (владелец 2026-09-17): свойство набора, а не наклейка; «0» — шум. */}
-          <FlowText testID={`flashcards-pack-author-${pack.id}`} provenance="user" style={[rowStyles.author, { color: g.secondary }]}>
-            {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
-          </FlowText>
-          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="list" />
-        </View>
-        {showEdit ? (
-          <TouchableOpacity
-            testID={`flashcards-pack-card-edit-${pack.id}`}
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Редактировать набор', uk: 'Редагувати набір', en: 'Edit pack', es: 'Editar pack', 'pt-BR': 'Editar pacote', vi: 'Sửa bộ thẻ', id: 'Edit paket', tr: 'Paketi düzenle', pl: 'Edytuj zestaw' })}
-            onPress={onEdit}
-            hitSlop={{ top: 10, bottom: 10, left: 6, right: 6 }}
-            style={[rowStyles.pill, { backgroundColor: g.opaqueControl }]}
-          >
-            <Ionicons name="create-outline" size={16} color={g.text} />
-          </TouchableOpacity>
-        ) : null}
-        <View pointerEvents="none" style={[rowStyles.pill, { backgroundColor: g.opaqueControl }]}>
-          <Text style={[rowStyles.pillText, { color: g.text }]}>{pack.cardCount}</Text>
-        </View>
-        {opening ? (
+      a11yActions={owned || opening ? undefined : [{ name: 'add-pack', label: addLabel, run: onAdd }]}
+      meta={(
+        <PackRowAuthorMeta
+          g={g}
+          authorName={author.name}
+          coinRank={author.coinRank}
+          likes={likes}
+          added={added}
+          comments={comments}
+          // зачем цена рядом с автором (владелец 2026-09-17): свойство набора, а не наклейка; «0» — шум.
+          priceRunes={packPriceRunes}
+          authorTestID={`flashcards-pack-author-${pack.id}`}
+        />
+      )}
+      trailing={opening ? (
+        <View style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
           <ActivityIndicator size="small" color={g.secondary} />
-        ) : (
-          <Ionicons name="chevron-forward" size={20} color={g.secondary} accessibilityElementsHidden importantForAccessibility="no" />
-        )}
-      </View>
-    </HubTileShell>
+        </View>
+      ) : (
+        <PackRowAddButton g={g} added={owned} label={owned ? ownedLabel : addLabel} onPress={onAdd} testID={`flashcards-pack-add-${pack.id}`} disabled={disabled} />
+      )}
+    />
   );
 }
 
@@ -366,17 +350,20 @@ function CommunityPackRowBase({
  */
 const CommunityPackRow = React.memo(CommunityPackRowBase, (prev, next) => (
   prev.pack === next.pack
-  && prev.lang === next.lang
-  && prev.t === next.t
+  && prev.uiLang === next.uiLang
+  && prev.titleLang === next.titleLang
   && prev.g === next.g
-  && prev.width === next.width
   && prev.owned === next.owned
   && prev.isTop === next.isTop
-  && prev.reduceMotion === next.reduceMotion
-  && prev.showEdit === next.showEdit
+  && prev.emphasis === next.emphasis
+  && prev.highlight === next.highlight
+  && prev.likes === next.likes
+  && prev.added === next.added
+  && prev.comments === next.comments
   && prev.opening === next.opening
   && prev.disabled === next.disabled
-  // Наличие/отсутствие long-press меняет поведение, ссылка — нет.
+  // Наличие/отсутствие long-press меняет поведение, ссылка — нет. onOpen/onAdd/onLongPress зовут свежие обработчики
+  // хаба через ref (openRowRef/addRowRef — ревью 11.10, п.10): устаревшее замыкание не унесёт старый studyTarget.
   && (prev.onLongPress == null) === (next.onLongPress == null)
 ));
 
@@ -399,7 +386,11 @@ export default function FlashcardsCategoryHub({
   packLanguage = 'en',
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
-  const sheetStyles = useScaledTextStyles(baseSheetStyles);
+  const menuStyles = useScaledTextStyles(baseMenuStyles);
+  // зачем: подписи строки («карточек», «Добавить себе») — на языке интерфейса (9 языков), а не на суженном языке каталога.
+  const { lang: uiLang } = useLang();
+  const lineScale = useLineScale();
+  const skeletonRowH = packRowHeight('plate', lineScale);
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
@@ -580,6 +571,8 @@ export default function FlashcardsCategoryHub({
    * Кнопка «Добавить себе» теперь живёт на самом экране набора (его открывают
    * ДО добавления), поэтому хаб узнаёт о добавлении по событию приложения.
    */
+  // Наборы, которые прямо сейчас добавляются «+» на плашке (защита от двойного тапа и признак «добавлено из каталога»).
+  const addingPackIdsRef = useRef<Set<string>>(new Set());
   const onPackAdded = useCallback(
     (packId: string) => {
       setLocallyAddedPackIds((prev) => {
@@ -588,17 +581,132 @@ export default function FlashcardsCategoryHub({
         next.add(packId);
         return next;
       });
+      /**
+       * зачем (ревью 11.10, 💸 Firebase): «+» в каталоге уже поставил всё локально (✓, +1 «добавили»), а событие
+       * `community_pack_added` приходит ДО окончания его записи — перечитывать каталог незачем (раньше 5 «+» ≈ 250 чтений).
+       * Добавление с экрана набора — обычное обновление (Firestore-часть под 30-секундным троттлом экрана).
+       */
+      if (addingPackIdsRef.current.has(packId)) {
+        console.log(`[PACK-ROW] refresh skipped reason=quick_add pack=${packId}`); // guard-ok: ранний выход называет причину
+        return;
+      }
       void onMarketRefresh();
     },
     [onMarketRefresh],
   );
 
+  /**
+   * Живые счётчики плашек (ревью 11.10, п.2; жалоба владельца «плитка отстаёт до перезахода»): сдвиг от лайков,
+   * откликов и добавлений этой сессии поверх значения каталога (app/community_packs/packLiveCounts.ts).
+   * `addBumpedIdsRef` — наборы, которым «добавили» уже прибавлено (оптимистично «+»), чтобы событие
+   * `community_pack_added` от той же записи не прибавило второй раз.
+   */
+  const [countsOverlay, setCountsOverlay] = useState<PackCountsOverlay>(EMPTY_PACK_COUNTS_OVERLAY);
+  const packsByIdRef = useRef<Map<string, FlashcardMarketPack>>(new Map());
+  packsByIdRef.current = useMemo(() => new Map(communityPacks.map((p) => [p.id, p] as const)), [communityPacks]);
+  const addBumpedIdsRef = useRef<Set<string>>(new Set());
+  const bumpCounts = useCallback((packId: string, delta: Partial<PackCounts>, reason: string) => {
+    const pack = packsByIdRef.current.get(packId);
+    if (!pack) {
+      console.log(`[PACK-ROW] counts:skip not-in-catalog pack=${packId} reason=${reason}`); // guard-ok: ранний выход
+      return;
+    }
+    console.log(`[PACK-ROW] counts:bump pack=${packId} reason=${reason} delta=${JSON.stringify(delta)}`); // guard-ok
+    setCountsOverlay((prev) => bumpPackCounts(prev, packId, packBaseCounts(pack), delta));
+  }, []);
+
   useEffect(() => {
-    const sub = onAppEvent('community_pack_added', ({ packId }) => {
-      if (packId) onPackAdded(packId);
+    const added = onAppEvent('community_pack_added', ({ packId }) => {
+      if (!packId) return;
+      onPackAdded(packId);
+      if (addBumpedIdsRef.current.has(packId)) return;
+      addBumpedIdsRef.current.add(packId);
+      bumpCounts(packId, { added: 1 }, 'added-event');
     });
-    return () => sub.remove();
-  }, [onPackAdded]);
+    const liked = onAppEvent('community_pack_like_changed', ({ packId, liked: on }) => {
+      bumpCounts(packId, { likes: on ? 1 : -1 }, on ? 'like' : 'unlike');
+    });
+    const commented = onAppEvent('community_pack_comments_changed', ({ packId, delta }) => {
+      bumpCounts(packId, { comments: delta }, 'comments');
+    });
+    return () => {
+      added.remove();
+      liked.remove();
+      commented.remove();
+    };
+  }, [onPackAdded, bumpCounts]);
+
+  /**
+   * «+» на плашке — добавить набор себе прямо из каталога (макет #c1: «+ справа добавляет набор себе»).
+   * зачем (Optimistic UI, правило владельца): «+» сразу становится «✓» (локальная отметка), запись идёт фоном;
+   * отказ — откат отметки и понятный тост. Двойной тап гасит `addingPackIdsRef`. Платный набор НЕ добавляем
+   * бесплатно: открываем его экран, где живёт покупка (шит покупки — решение экрана набора).
+   */
+  const studyTargetRef = useRef(studyTarget);
+  studyTargetRef.current = studyTarget;
+  const quickAddPack = useCallback((pack: FlashcardMarketPack) => {
+    const price = communityPackPriceRunes(pack);
+    if (price > 0) {
+      console.log(`[PACK-ROW] add:paid pack=${pack.id} price=${price} -> preview`); // guard-ok: ветка решения логируется и в релизе
+      openPackPreview(pack);
+      return;
+    }
+    if (isCommunityPackMine(pack)) {
+      console.log(`[PACK-ROW] add:skip already-mine pack=${pack.id}`); // guard-ok: ранний выход
+      return;
+    }
+    if (addingPackIdsRef.current.has(pack.id)) {
+      console.log(`[PACK-ROW] add:skip in-flight pack=${pack.id}`); // guard-ok: защита от двойного тапа
+      return;
+    }
+    addingPackIdsRef.current.add(pack.id);
+    void hapticTap();
+    setLocallyAddedPackIds((prev) => {
+      if (prev.has(pack.id)) return prev;
+      const next = new Set(prev);
+      next.add(pack.id);
+      return next;
+    });
+    // Optimistic UI: «добавили» +1 сразу, событие той же записи второй раз не прибавит (addBumpedIdsRef).
+    const bumpedNow = !addBumpedIdsRef.current.has(pack.id);
+    if (bumpedNow) {
+      addBumpedIdsRef.current.add(pack.id);
+      bumpCounts(pack.id, { added: 1 }, 'quick-add');
+    }
+    // зачем (ревью 11.10, п.10): цель обучения читаем из ref в момент нажатия — строка мемоизирована, замыкание могло устареть.
+    const target = studyTargetRef.current;
+    const startedAt = Date.now();
+    void (async () => {
+      let result: string;
+      try {
+        result = await addCommunityPackToLibrary(pack, target);
+      } catch (error: unknown) {
+        result = `throw:${error instanceof Error ? error.name : typeof error}`;
+      }
+      addingPackIdsRef.current.delete(pack.id);
+      console.log(`[PACK-ROW] add:result pack=${pack.id} result=${result} target=${target ?? 'default'} ms=${Date.now() - startedAt}`); // guard-ok
+      if (result === 'added' || result === 'already_added') return;
+      // Откат: набора у человека нет — «✓» и «+1» не имеют права остаться.
+      console.warn(`[PACK-ROW] add:rollback pack=${pack.id} reason=${result}`); // guard-ok: причина отказа в журнал
+      setLocallyAddedPackIds((prev) => {
+        if (!prev.has(pack.id)) return prev;
+        const next = new Set(prev);
+        next.delete(pack.id);
+        return next;
+      });
+      if (bumpedNow) {
+        addBumpedIdsRef.current.delete(pack.id);
+        bumpCounts(pack.id, { added: -1 }, 'quick-add-rollback');
+      }
+      // зачем (баг владельца 11.10, 8e8fe95a8): добавление — локальная запись, сеть не нужна; текст про интернет здесь ложный.
+      emitAppEvent('action_toast', packAddFailureToast(result));
+    })();
+  }, [isCommunityPackMine, openPackPreview, bumpCounts]);
+
+  // зачем (ревью 11.10, п.10): строки каталога мемоизированы и не сравнивают onAdd/onOpen — те зовут СВЕЖИЕ обработчики
+  // через ref, поэтому смена цели обучения или владения не оставляет в строке устаревшее замыкание.
+  const quickAddRef = useRef(quickAddPack);
+  quickAddRef.current = quickAddPack;
 
   // ── Общие стили секций ─────────────────────────────────────────────────────
   const hubBarW = winW - H_PAD * 2;
@@ -748,127 +856,159 @@ export default function FlashcardsCategoryHub({
    * просмотра (`preview=1`): карточки видно, тренировать/редактировать нельзя,
    * «Добавить себе» и лайк живут на самом экране набора.
    */
+  // зачем (макет #c1, экран 3): пока открыто меню долгого нажатия, нажатая плашка приподнята, остальные приглушены.
+  const menuPackId = ugcReportHintPackId;
+  const highlightQuery = communityQuery.trim();
+
+  /**
+   * Меню долгого нажатия вставляется в поток списка — по Performance Bible вставка/удаление в потоке только через
+   * animateNextLayoutTransition (ревью 11.10, п.8), иначе соседние плашки «телепортируются».
+   */
+  const setMenuPack = useCallback((next: string | null | ((cur: string | null) => string | null)) => {
+    animateNextLayoutTransition();
+    setUgcReportHintPackId(next);
+  }, []);
+
+  // зачем (ревью 11.10, п.10): мемоизированная строка зовёт свежий обработчик через ref — без устаревших замыканий.
+  const openRowRef = useRef<(pack: FlashcardMarketPack) => void>(() => undefined);
+  openRowRef.current = (pack: FlashcardMarketPack) => {
+    // Открытое меню: тап по любой плашке сначала закрывает его, а не уводит с экрана.
+    if (menuPackId !== null) {
+      setMenuPack(null);
+      return;
+    }
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
+    if (isCommunityPackMine(pack)) {
+      void openOwnedPack(pack);
+    } else {
+      void openPackPreview(pack);
+    }
+  };
+  const addRowRef = useRef<(pack: FlashcardMarketPack) => void>(() => undefined);
+  addRowRef.current = (pack: FlashcardMarketPack) => {
+    if (menuPackId !== null) {
+      setMenuPack(null);
+      return;
+    }
+    quickAddRef.current(pack);
+  };
+
   const renderCommunityPackRow = (pack: FlashcardMarketPack) => {
     const owned = isCommunityPackMine(pack);
     const showReportShortcut = !!pack.isCommunityUgc && !owned;
-    const showAuthorEdit =
-      !!hubAuthorStableId &&
-      !!pack.isCommunityUgc &&
-      !!pack.authorStableId &&
-      pack.authorStableId === hubAuthorStableId;
+    const emphasis: PackRowEmphasis = menuPackId === null ? 'normal' : menuPackId === pack.id ? 'lifted' : 'dimmed';
+    const counts = livePackCounts(countsOverlay, pack.id, packBaseCounts(pack));
 
     return (
-      <CommunityPackRow
-        key={`ugc_${pack.id}`}
-        pack={pack}
-        lang={lang}
-        t={t}
-        g={g}
-        width={hubBarW}
-        owned={owned}
-        isTop={topPackIds.has(pack.id)}
-        reduceMotion={reduceMotion}
-        showEdit={showAuthorEdit}
-        opening={openingPackId === pack.id}
-        disabled={openingPackId !== null}
-        onOpen={() => {
-          // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
-          if (owned) {
-            void openOwnedPack(pack);
-          } else {
-            void openPackPreview(pack);
+      <React.Fragment key={`ugc_${pack.id}`}>
+        <CommunityPackRow
+          pack={pack}
+          uiLang={uiLang}
+          titleLang={lang}
+          g={g}
+          owned={owned}
+          isTop={topPackIds.has(pack.id)}
+          emphasis={emphasis}
+          highlight={highlightQuery}
+          likes={counts.likes}
+          added={counts.added}
+          comments={counts.comments}
+          opening={openingPackId === pack.id}
+          disabled={openingPackId !== null}
+          onOpen={() => openRowRef.current(pack)}
+          onLongPress={
+            showReportShortcut
+              ? () => {
+                  void hapticTap();
+                  setMenuPack((cur) => (cur === pack.id ? null : pack.id));
+                }
+              : undefined
           }
-        }}
-        onLongPress={
-          showReportShortcut
-            ? () => {
-                void hapticTap();
-                setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
-              }
-            : undefined
-        }
-        onEdit={() =>
-          router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as never)
-        }
-      />
+          onAdd={() => addRowRef.current(pack)}
+        />
+        {menuPackId === pack.id ? renderPackActionsMenu(pack) : null}
+      </React.Fragment>
     );
   };
 
   /**
-   * зачем (packs-simple.html кадр 2): долгое нажатие на чужой набор — шторка снизу с названием набора и двумя
-   * строками-карточками «Пожаловаться на набор» / «Не показывать мне» (раньше — строка ссылок под сеткой).
-   * Жалоба открывается ПОСЛЕ ухода шторки (onDismissed): два нативных Modal подряд на iOS теряют второй.
+   * зачем (владелец 11.10, community-redesign.html #c1 экран 3): долгое нажатие на чужой набор — меню ПРЯМО под
+   * приподнятой плашкой (`.menu`): «Пожаловаться на набор» / «Не показывать мне». Раньше — шторка снизу (packs-simple).
+   * Жалоба открывает ReportPackModal сразу: шторки больше нет, двух нативных Modal подряд не возникает.
    */
-  const lastSheetPackRef = useRef<FlashcardMarketPack | null>(null);
-  const pendingReportPackRef = useRef<FlashcardMarketPack | null>(null);
-  const renderPackActionsSheet = () => {
-    const livePack = visibleCommunityPacks.find((p) => p.id === ugcReportHintPackId) ?? null;
-    if (livePack) lastSheetPackRef.current = livePack;
-    const pack = livePack ?? lastSheetPackRef.current;
-    if (!pack) return null;
-    const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const renderPackActionsMenu = (pack: FlashcardMarketPack) => {
     const actionRow = (testID: string, icon: keyof typeof Ionicons.glyphMap, label: string, onPress: () => void) => (
-      <TouchableOpacity
+      <KitTouchable
         testID={testID}
         accessibilityRole="button"
         accessibilityLabel={label}
-        activeOpacity={0.8}
         onPress={onPress}
-        style={[sheetStyles.row, { borderColor: g.glassEdge, backgroundColor: g.card }]}
+        style={menuStyles.row}
       >
-        <View style={[sheetStyles.tile, { backgroundColor: g.opaqueControl }]}>
-          <Ionicons name={icon} size={20} color={g.text} />
-        </View>
-        <Text style={[sheetStyles.rowText, { color: g.text }]}>{label}</Text>
-      </TouchableOpacity>
+        <Ionicons name={icon} size={20} color={g.text} />
+        <Text style={[menuStyles.rowText, { color: g.text }]}>{label}</Text>
+      </KitTouchable>
     );
     return (
-      <HybridSheetShell
-        visible={livePack !== null}
-        onClose={() => setUgcReportHintPackId(null)}
-        onDismissed={() => {
-          const report = pendingReportPackRef.current;
-          pendingReportPackRef.current = null;
-          lastSheetPackRef.current = null;
-          if (report) setReportModalPack(report);
-        }}
-        closeLabel={closeLabel}
-        testID="flashcards-pack-actions-sheet"
-        material="liquid-glass"
+      <View
+        testID="flashcards-pack-actions-menu"
+        style={[menuStyles.menu, {
+          backgroundColor: `${g.opaqueSheet}F7`,
+          boxShadow: [
+            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft },
+            { offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: 0, color: g.dropShadow },
+          ],
+        }]}
       >
-        {({ requestDismiss }) => (
-          <View style={{ width: '100%' }}>
-            <FlowText testID="flashcards-pack-actions-title" provenance="user" style={[sheetStyles.title, { color: g.text }]}>
-              {packTitleForInterface(pack, lang) || packHubCodeName(pack)}
-            </FlowText>
-            {actionRow('flashcards-pack-report', 'flag-outline', triLang(lang, {
-              ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack',
-              'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi bildir', pl: 'Zgłoś zestaw',
-            }), () => {
-              void hapticTap();
-              pendingReportPackRef.current = pack;
-              requestDismiss();
-            })}
-            <View style={{ height: 9 }} />
-            {actionRow('flashcards-pack-hide', 'close', triLang(lang, {
-              ru: 'Не показывать мне', uk: 'Не показувати мені', en: "Don't show me", es: 'No mostrarme',
-              'pt-BR': 'Não mostrar para mim', vi: 'Không hiển thị nữa', id: 'Jangan tampilkan lagi', tr: 'Bana gösterme', pl: 'Nie pokazuj mi',
-            }), () => {
-              void hapticTap();
-              requestDismiss();
-              void (async () => {
-                try {
-                  await hideCommunityPackOnDevice(pack.id, studyTarget);
-                  await refreshHiddenCommunityPacks();
-                } catch (e) {
-                  // no-op: AsyncStorage unavailable
-                  DebugLogger.error('FlashcardsCategoryHub:pack', e instanceof Error ? e : new Error(String(e)), 'warning');
-                }
-              })();
-            })}
-          </View>
-        )}
-      </HybridSheetShell>
+        {actionRow('flashcards-pack-report', 'flag-outline', triLang(uiLang, {
+          ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack',
+          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi bildir', pl: 'Zgłoś zestaw',
+        }), () => {
+          void hapticTap();
+          setMenuPack(null);
+          setReportModalPack(pack);
+        })}
+        {actionRow('flashcards-pack-hide', 'eye-off-outline', triLang(uiLang, {
+          ru: 'Не показывать мне', uk: 'Не показувати мені', en: "Don't show me", es: 'No mostrarme',
+          'pt-BR': 'Não mostrar para mim', vi: 'Không hiển thị nữa', id: 'Jangan tampilkan lagi', tr: 'Bana gösterme', pl: 'Nie pokazuj mi',
+        }), () => {
+          void hapticTap();
+          // Optimistic UI: меню закрывается и набор пропадает из списка сразу (одним анимированным переходом
+          // в потоке — ревью п.8); запись на устройство — фоном.
+          animateNextLayoutTransition();
+          setUgcReportHintPackId(null);
+          setHiddenCommunityPackIds((prev) => {
+            if (prev.has(pack.id)) return prev;
+            const next = new Set(prev);
+            next.add(pack.id);
+            return next;
+          });
+          void (async () => {
+            try {
+              await hideCommunityPackOnDevice(pack.id, studyTarget);
+            } catch (e) {
+              // Запись не удалась — набор возвращается в список, и человеку говорим об этом прямо (ревью п.9).
+              console.warn(`[PACK-ROW] hide:failed pack=${pack.id} kind=${e instanceof Error ? e.name : typeof e}`); // guard-ok
+              DebugLogger.error('FlashcardsCategoryHub:pack', e instanceof Error ? e : new Error(String(e)), 'warning');
+              animateNextLayoutTransition();
+              setHiddenCommunityPackIds((prev) => {
+                if (!prev.has(pack.id)) return prev;
+                const next = new Set(prev);
+                next.delete(pack.id);
+                return next;
+              });
+              emitAppEvent('action_toast', packHideFailureToast());
+              return;
+            }
+            // зачем (ревью п.9): перечитывание — отдельно: его сбой НЕ возвращает набор, уже скрытый на устройстве.
+            try {
+              await refreshHiddenCommunityPacks();
+            } catch (e) {
+              console.warn(`[PACK-ROW] hide:refresh-failed pack=${pack.id} kind=${e instanceof Error ? e.name : typeof e} (набор остаётся скрытым)`); // guard-ok
+            }
+          })();
+        })}
+      </View>
     );
   };
 
@@ -935,9 +1075,9 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 && catalogCommunityPacks.length === 0 && !communityLoaded ? (
-            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: 12, paddingTop: 8 }}>
+            <View testID="flashcards-community-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ width: hubBarW, gap: 10, paddingTop: 10 }}>
               {[0, 1, 2, 3].map((i) => (
-                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: 74, borderRadius: 22, backgroundColor: g.hairlineSoft }} />
+                <View key={`pk-sk-${i}`} /* guard-ok: четыре статичные заглушки строк каталога */ style={{ height: skeletonRowH, borderRadius: 22, backgroundColor: g.hairlineSoft }} /* зачем: заглушка той же высоты, что плашка — без прыжка при появлении данных */ />
               ))}
             </View>
           ) : visibleCommunityPacks.length === 0 ? (
@@ -997,11 +1137,22 @@ export default function FlashcardsCategoryHub({
               ) : null}
             </View>
           ) : null}
-          {/* зачем (packs-simple.html `.stack`): строки столбиком через 9. */}
-          <View style={{ width: hubBarW, gap: 9 }}>
+          {/* зачем (community-redesign.html #c1, экран «Поиск»): при поиске над плашками — «Найдено N» (`.lab`). */}
+          {highlightQuery.length > 0 && visibleCommunityPacks.length > 0 ? (
+            <Text testID="flashcards-community-found" accessibilityLiveRegion="polite" style={[menuStyles.found, { color: g.secondary }]}>
+              {triLang(uiLang, {
+                ru: `Найдено ${visibleCommunityPacks.length}`, uk: `Знайдено ${visibleCommunityPacks.length}`,
+                en: `Found ${visibleCommunityPacks.length}`, es: `Encontrados ${visibleCommunityPacks.length}`,
+                'pt-BR': `Encontrados ${visibleCommunityPacks.length}`, vi: `Tìm thấy ${visibleCommunityPacks.length}`,
+                id: `Ditemukan ${visibleCommunityPacks.length}`, tr: `${visibleCommunityPacks.length} sonuç bulundu`,
+                pl: `Znaleziono ${visibleCommunityPacks.length}`,
+              })}
+            </Text>
+          ) : null}
+          {/* зачем (community-redesign.html #c1, `.pl { margin-top: 10px }`): плашки столбиком через 10. */}
+          <View style={{ width: hubBarW, gap: STACK_GAP, paddingTop: STACK_GAP }}>
             {visibleCommunityPacks.map(renderCommunityPackRow)}
           </View>
-          {renderPackActionsSheet()}
         </Reanimated.View>
       ) : null}
 

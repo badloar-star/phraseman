@@ -21,9 +21,11 @@ const DEPENDENCY_HASHES = {
   // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.
   // зачем: e7709a89a (PM-289, удалён дев-рынок за жемчуг) + edea8fec7 (PM-229, немые catch пишут причину); хаб не затронут.
   // + 817a18fa8 (Account V2 8C-2: удалены мёртвые saveOwnedPackIds/addOwnedPackId, немые catch с логом); хаб не затронут.
-  'app/flashcards/marketplace.ts': '213d9c691c1e4a4587d7bace672361f05c6e96dc44b092593df5ddbba971598a',
+  // + 11.10 (журнал 5): packTitleForInterface чистит хвост файла через formatPackTitleForDisplay (cleanPackSourceTitle Ядра); хаб не затронут.
+  'app/flashcards/marketplace.ts': 'ed04ad760c73b83b0012c5c27c1fb05ed282f42d144fa9d5c8f72bf0e9d25d98',
   // зачем: edea8fec7 (PM-229) — немые catch пишут причину; хаб не затронут.
-  'app/community_packs/packAuthorNames.ts': 'bffb83f1c016f53b750313528b11f23307e9e4d2c067daf42d0ac07241cde00f',
+  // + 11.10 (журнал 4–5): официальный набор → «Professor Lingman» без чтения public_profiles/video:*, ранг монеты автора; хаб не затронут.
+  'app/community_packs/packAuthorNames.ts': '4d675844c656f715b057b83c30f118ad607a9bb9519dd98a5816888b51f9e2f4',
   // зачем: 7b64aa008 (PM-108) — свой набор приватный по умолчанию; edea8fec7 (PM-229) — немые catch с причиной; хаб не затронут.
   'app/community_packs/localAuthorPacks.ts': '0a5de56ef1c378c3d6e39a51b051a55834ad5bf2f42ba90ce602d6a4c0d8a504',
   // зачем: c98e4ad1e (D145) — шкала текста 16/13.

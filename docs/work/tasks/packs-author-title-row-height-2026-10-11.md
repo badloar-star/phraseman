@@ -41,3 +41,72 @@ Out: импорт и данные на сервере (Ядро), признак
 
 ## Rollback
 Отдельные коммиты по пунктам; `git revert`.
+
+Governance-ID: TG-CC1D2773FE8D — исполнитель: общий PackRow в каталоге «Наборы сообщества» (FlashcardsCategoryHub), шапка каталога, «Мои наборы», настройка тренировки, набор внутри
+
+## Итог исполнителя (11.10, Opus)
+
+**Общий компонент:** `components/packs/PackRow.tsx` (+ чистая модель `components/packs/packRowModel.ts`). Два вида: `plate` — плашка #c1 «Плитка-счётчик» (плитка 68 с числом и «карточек», название ≤2 строк + «Топ» в строке названия, автор с монетой ранга и ♥/👥/💬, справа «+» 44); `row` — kit `.row` («Мои наборы», тренировка). Высота фиксирована: `packRowHeight` = поля + межстрочный×2 + подпись, через `useLineScale` (плашка 92, строка 85 при шрифте 1.0; растёт с системным шрифтом). Нажатие — `KitTouchable` (90/240 мс, cubic-bezier(.3,1.4,.5,1)). Название всегда через `formatPackTitleForDisplay` → `cleanPackSourceTitle`.
+
+| Место | Было | Стало |
+|---|---|---|
+| Каталог «Наборы сообщества» (`FlashcardsCategoryHub.tsx`) | своя строка packs-simple (minHeight 74, пилюля числа, шеврон, карандаш) | `PackRow variant="plate"` + `PackRowAddButton` (оптимистично, откат, защита от двойного тапа; платный → экран набора) |
+| Поиск (тот же список) | без «Найдено», без подсветки | «Найдено N» + подсветка совпадения в названии; шапка (заголовок+сегмент) скрыта при открытом поиске |
+| Долгое нажатие | шторка снизу `HybridSheetShell` | меню под приподнятой плашкой, остальные приглушены (.32); «Не показывать мне» — оптимистично с откатом |
+| Шапка каталога (`flashcards_packs.tsx`) | нижний плавающий док «Новые/+/Топ», заголовок 30/36 | заголовок 32/38 + «+» 44 справа, переключатель «Новые/Топ» `.sg` под ним; дока нет |
+| Набор внутри (`CommunityPackPreview.tsx`) | заголовок 34/40 + автор + previewMeta, «Карточки N», строки-карточки | плашка `PackRow` без «+», «Слова · N», строки `.wr` (динамик 44, слово 20/700, перевод 13), «Добавить себе» внизу без изменений |
+| «Мои наборы» (`MyPacksV2.tsx`) | `KitPackRow` (2 строки только при шрифте 1.0, сырой authorName) | `PackRow variant="row"`, автор: Lingman / ник / фолбэк без чтения сети |
+| Выбор набора в тренировке (`TrainingSetupV2.tsx`) | `KitCard` без ограничения строк | `PackRow variant="row"` + `PackRowCheck` |
+| `CardsKit.tsx` | `KitPackRow` | удалён (единственный потребитель переехал) |
+| Название везде (`marketplace.ts`) | сырое | `packTitleForInterface` чистит через `formatPackTitleForDisplay` (каталог, «Мои наборы», тренировка, шапки, шторки, deck_options) |
+| Автор (`packAuthorNames.ts`) | `video:*` читал несуществующий `public_profiles` | `isOfficialPackAuthorId` до чтения, `officialPackAuthorName` (строгий `isOfficialVideoPack`), `useCommunityAuthor` с `coinRank` из того же документа |
+
+Тесты: `pack_row_title_author` 9/9, `pack_row_shared_contract` 17/17, `community_pack_catalog_owner_fixes` 41/41, layout_stability 15/15, reachable_action_buttons 3/3, two_theme_static_colors 40/40, marketplace_interface_locale 18/18, community_pack_add_free 8/8, fc_navigation_visual 4/4, tabbar_scroll_chrome 5/5; node-контракты (liquid_hub 11, my_packs ×2, training_setup 4, community_liquid 3, hub_no_outline 1, hub_dense 1) — все зелёные. Полная проверка типов — 0 ошибок (в т.ч. PackCommentsSheet: `coinRank` в `CommunityAuthorProfile` сделан необязательным). `scan_untranslated_ui` 807 ≤ 814.
+Governance-ID: TG-C325443D1813 — независимое ревью пакета наборов.
+Governance-ID: TG-04682A5EF839 — REVISE ревью: честный текст отказа в quickAddPack, живые счётчики, меню/поиск/тень/плитка по макету, ClampedTitle вместо eslint-disable.
+
+Governance-ID: TG-D530339FB73F — доработка по ревью (REVISE): экран поиска каталога по #c1 (flashcards_packs.tsx), живые счётчики, ClampedText
+
+## Итог доработки (REVISE ревью 11.10, TG-04682A5EF839 / TG-D530339FB73F)
+
+1. HIGH «Проверь связь» убран: `app/community_packs/packQuickAdd.ts` → `packAddFailureToast` (`unavailable` — «Этот набор пока нельзя добавить себе.», `throw:*` — «Не получилось сохранить набор на телефоне…», 9 языков, без «связи»); хаб `FlashcardsCategoryHub.tsx:692`, логи `[PACK-ROW] add:result/rollback`.
+2. Живые счётчики: `app/community_packs/packLiveCounts.ts` (сдвиг поверх каталога, отбрасывается при новом значении каталога); хаб слушает like/comments/added (`:597–630`), «+» сразу +1 к «добавили», откат −1; экран набора — свои подписки (`CommunityPackPreview.tsx:140–153`, `comments={liveComments}`).
+3. Меню долгого нажатия: `marginTop: MENU_GAP - STACK_GAP` (8 от плашки, `:274`).
+4. Поиск по #c1 экран 2 (`flashcards_packs.tsx`): «назад» и крестик — `searchBareBtn` 44 без подложки, поле 52/26, внутренняя кромка вместо обводки, промежуток 8.
+5. `PackRow.tsx:196,225`: скругление обёртки = радиус плашки, кольцо `.pl.up` 1px `mediaInk` .18.
+6. Плитка-счётчик: тексты `maxFontSizeMultiplier=1.3`, ширина `countTileWidth` растёт тем же множителем (расчёт в тесте для всех 9 языков и «9999», шрифт 1–3).
+7. Бейдж «Топ»: высота `lh(17)` < межстрочного названия `lh(22)` при любом масштабе.
+8. Меню и «Не показывать мне» — `animateNextLayoutTransition` (`setMenuPack`, скрытие и откат).
+9. Сбой скрытия — откат + `packHideFailureToast`; перечитывание вынесено в отдельный try (сбой не возвращает скрытый набор).
+10. Строки зовут свежие обработчики через `openRowRef`/`addRowRef`/`quickAddRef`, цель обучения — `studyTargetRef`.
+11. Шапка набора внутри без нажатия — обычный `View` (кнопка откликов доступна отдельно); «+» каталога — действие доступности строки (`accessibilityActions`).
+Сторож обрезки: примитив `components/text-integrity/ClampedText.tsx` (до N строк + «…», без ужатия шрифта, опасные свойства запрещены типом); все три `eslint-disable` убраны, в PackRow нет сырого `numberOfLines`.
+
+Тесты: pack_row_shared_contract 31/31, pack_row_title_author 17/17, community_pack_catalog_owner_fixes 41/41, video_pack_add_maps_to_community_doc 5/5, layout_stability_contract 15/15, community_pack_like_owner_fix 17/17, two_theme_static_colors 40/40, reachable_action_buttons 3/3, text_integrity_eslint_rule 17/17; node: liquid_hub 11/11, my_packs_review_p1 3/3, my_packs_liquid 4/4, training_setup 4/4, community_liquid 3/3. Типы — 0 ошибок. Переводы 807 ≤ 814. ESLint по файлам — 0 ошибок.
+Governance-ID: TG-6B1ABC895916 — повторное ревью доработки наборов (включая ClampedText и сторож обрезки), коммит.
+Governance-ID: TG-8C2B04ADC8D1 — REVISE-2: убрать принудительное перечитывание каталога после «+», двойной счёт на экране набора, высота поля поиска; ClampedText — видимое исключение (атрибут + eslint-disable с причиной только в примитиве), без экспорта из index, тест-трещотка потребителей; правка правила — решение координатора.
+
+## Итог доработки 2 (REVISE-2, TG-8C2B04ADC8D1)
+
+1. 💸 «+» в каталоге больше не перечитывает каталог: `FlashcardsCategoryHub.tsx:575–592` — событие `community_pack_added` от «+» (признак `addingPackIdsRef`, ставится до `await`) пропускает обновление с логом `[PACK-ROW] refresh skipped reason=quick_add`. Добавление с экрана набора — `refreshHubMarketAfterAdd` без `force` (`flashcards_packs.tsx:407,690`), Firestore-часть под 30-секундным троттлом.
+2. Экран набора: та же модель, что в хабе — `bumpPackCounts`/`livePackCounts` с базой = текущие цифры (`CommunityPackPreview.tsx:167`); поздний ответ чтения, учёвший лайк, сбрасывает сдвиг (без N+2).
+3. Поле поиска 52: слой в шапке «Сообщества» — `height: 52, marginVertical: -5` (`app/(tabs)/community.tsx:154`): 12 + 52 − 10 + 4 = 58, как строка вкладок; поле не выходит за шапку, список при открытии поиска не сдвигается.
+4. ClampedText — одно видимое исключение: `numberOfLines={maxLines}` атрибутом и ОДНА строка `eslint-disable-next-line … -- журнал владельца п.9 …`; экспорт из `components/text-integrity/index.ts` убран (файл равен HEAD); объяснение обхода из комментария убрано; трещотка — импортирует только `components/packs/PackRow.tsx`. Правило и сканер не менялись.
+
+Предложение координатору по правилу (не реализовано): (а) allowlist файла-примитива `components/text-integrity/ClampedText.tsx` в `createNoUnsafeTextTruncationRule` (опция `allowedFiles`) вместо eslint-disable; (б) ловить `JSXSpreadAttribute`, если в распространяемом объекте-литерале есть `numberOfLines`/`ellipsizeMode`/`allowFontScaling: false` (и по возможности — через идентификатор с таким инициализатором), — одинаково в `tools/eslint-rules/no-unsafe-text-truncation.js` и `scripts/text-integrity/inventory-core.cjs` (`structuralIdentityFromEslint` и TS-адаптер), иначе spread остаётся лазейкой.
+
+Тесты: pack_row_shared_contract 38/38, pack_row_title_author 18/18, community_pack_catalog_owner_fixes 41/41, text_integrity_eslint_rule 17/17, layout_stability_contract 15/15; node: liquid_hub 11/11, my_packs_review_p1 3/3, training_setup 4/4, community_liquid 3/3, spire_tab_gate 8/8. Типы — 0 ошибок. ESLint — 0 ошибок, отключений сторожа обрезки ровно одно (ClampedText). Переводы 807 ≤ 814.
+Governance-ID: TG-76F096462E24 — РЕШЕНИЯ ВЛАДЕЛЬЦА (координатор): одинаковая высота 85, название до 2 строк с «…», ник в 1 строку; примитив обрезки принят — в сторож no-unsafe-text-truncation добавить явное исключение для него с причиной.
+Governance-ID: TG-A3A977F1724A — шаг после REVISE-2: явное исключение примитива в правиле и сканере + ловля spread (решение владельца через координатора).
+
+## Итог доработки 3 (решение владельца через координатора: явное исключение примитива в стороже)
+
+- а) `tools/eslint-rules/no-unsafe-text-truncation.js`: `ALLOWED_PRIMITIVE_FILES` (= `['components/text-integrity/ClampedText.tsx']`, причина в комментарии: «журнал владельца п.9, решение владельца через координатора 11.10: до N строк с многоточием, без ужатия шрифта»); в `create` разрешённый файл не проверяется. В `ClampedText.tsx` — `numberOfLines={maxLines}` обычным атрибутом, eslint-disable НЕТ (ноль).
+- б) `scripts/text-integrity/inventory-core.cjs`: тот же список `SEMANTIC_TRUNCATION_PRIMITIVES` (источник для правила) + `isSemanticTruncationPrimitive` в обоих адаптерах (`structuralIdentitiesFromTypescript`, `structuralIdentityFromEslint`) — правило и сканер совпадают.
+- в) Лазейка закрыта: оба адаптера ловят `JSXSpreadAttribute`, если раскрывается объект-литерал или локальная `const`-константа с объектом-литералом (снимаются `as const` / `satisfies` / скобки), с `numberOfLines` / `ellipsizeMode` / `allowFontScaling: false`. Раскрытие параметров (`{...props}`) и `let` не трогаются.
+- г) Чужих существующих мест НЕТ: сравнение сканера до/после по всему репозиторию — новых находок 0, исчезла только строка `ClampedText.tsx:32` (разрешённый примитив). База `config/text-integrity-baseline.json` не менялась. Аудит `node scripts/text-integrity/inventory.mjs` показывает прежнее расхождение базы added 24 / removed 7 — оно было ДО этой правки (чужие сессии), моими правками не изменено.
+- д) Трещотки: ClampedText импортирует только PackRow; в ClampedText, PackRow и потребителях — ноль отключений сторожа.
+
+Тесты: text_integrity_eslint_rule 25/25 (новые: разрешённый файл проходит, тот же код в PackRow ловится; spread-литерал/константа ловится для всех трёх свойств; безопасные spread не ловятся; паритет отпечатков правило↔сканер), pack_row_shared_contract 38/38, text_integrity_inventory 51/51. ESLint по изменённым файлам — 0 ошибок.
+Governance-ID: TG-5358AE718554 — финальное ревью (доработки 2–3, правило и сканер text-integrity) и коммит.
+Governance-ID: TG-EEFC58046A25 — APPROVE финального ревью; коммит. LOW на потом: точное сравнение пути в allowlist (без toLowerCase), учёт затенения имени при поиске раскрываемой константы.

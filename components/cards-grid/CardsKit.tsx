@@ -104,37 +104,8 @@ export const CountPill = memo(function CountPill({ g, value }: Readonly<{ g: Gla
   );
 });
 
-/** Строка-карточка списка наборов: плитка, название, подпись, число, шеврон. */
-export const KitPackRow = memo(function KitPackRow({ g, icon, title, subtitle, count, onPress, onLongPress, testID, accessibilityLabel, disabled }: Readonly<{
-  g: GlassTokens;
-  icon: keyof typeof Ionicons.glyphMap;
-  title: string;
-  subtitle: string;
-  count: number;
-  onPress: () => void;
-  onLongPress?: () => void;
-  testID?: string;
-  accessibilityLabel?: string;
-  disabled?: boolean;
-}>) {
-  const lh = useLineScale();
-  const { fontScale } = useWindowDimensions();
-  const rowLines = (max: number): number | undefined => (fontScale > 1 ? undefined : max);
-  return (
-    <KitCard g={g} onPress={onPress} onLongPress={onLongPress} testID={testID} accessibilityLabel={accessibilityLabel ?? `${title}, ${subtitle}, ${count}`} disabled={disabled}>
-      <View style={styles.row}>
-        <KitIconTile g={g} icon={icon} />
-        <View style={styles.rowText}>
-          {/* зачем (крайние случаи 10.10): название набора может быть очень длинным — 2 строки с «…», подпись в одну; при крупном системном шрифте без обрезки */}
-          <Text numberOfLines={rowLines(2)} style={[styles.rowTitle, { color: g.text, lineHeight: lh(22) }]}>{title}</Text>
-          <Text numberOfLines={rowLines(1)} style={[styles.rowSub, { color: g.secondary, lineHeight: lh(19) }]}>{subtitle}</Text>
-        </View>
-        <CountPill g={g} value={count} />
-        <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-      </View>
-    </KitCard>
-  );
-});
+// зачем (владелец, журнал 9/29, 11.10): строка набора «KitPackRow» переехала в общий components/packs/PackRow —
+// одна строка набора на все места (каталог, «Мои наборы», тренировка), фиксированная высота под 2 строки названия.
 
 /** «.sec»: название раздела 20/700 и число рядом 20/600 приглушённым. */
 export const KitSectionHead = memo(function KitSectionHead({ g, title, count, hideCount }: Readonly<{ g: GlassTokens; title: string; count: number; hideCount?: boolean }>) {
@@ -324,10 +295,6 @@ const styles = StyleSheet.create({
   tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   pill: { minWidth: 36, minHeight: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center' },
   pillText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 10, paddingLeft: 19, paddingRight: 16 },
-  rowText: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  rowSub: { fontSize: 16, lineHeight: 21 },
   sec: { marginTop: 30, marginBottom: 14, marginHorizontal: 2, flexDirection: 'row', alignItems: 'center', gap: 9 },
   secTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   secCount: { fontSize: 20, lineHeight: 26, fontWeight: '600' },

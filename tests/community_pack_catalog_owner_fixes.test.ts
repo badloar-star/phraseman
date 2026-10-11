@@ -197,12 +197,15 @@ describe('экран набора: раскладка и действия', () =
 describe('каталог сообщества: строки и тексты', () => {
   const hub = read('app', 'flashcards', 'FlashcardsCategoryHub.tsx');
 
-  // 04.10: утверждённый packs-simple.html — каталог списком строк-карточек вместо сетки 3-в-ряд.
-  it('наборы рисуются столбиком строк-карточек (packs-simple.html)', () => {
+  // 11.10 (владелец, журнал 29): плашка набора — Вариант 1 «Плитка-счётчик» community-redesign.html #c1,
+  // общий компонент PackRow (фиксированная высота под 2 строки названия) вместо строк packs-simple.html.
+  it('наборы рисуются столбиком плашек «Плитка-счётчик» через общий PackRow', () => {
     expect(hub).toContain('renderCommunityPackRow');
-    expect(hub).toContain('minHeight: 74');
-    expect(hub).toContain('variant="list"');
+    expect(hub).toContain('variant="plate"');
+    expect(hub).toContain("leading={{ kind: 'count', count: pack.cardCount }}");
+    expect(hub).toContain('<PackRowAddButton');
     expect(hub).not.toContain('renderCommunityPackTile');
+    expect(hub).not.toContain('minHeight: 74');
   });
 
   it('иконка набора берёт обложку автора, а не только бандл по id', () => {
@@ -249,26 +252,28 @@ describe('шапка каталога сообщества (замечания �
     expect(screen).not.toMatch(/Animated\.timing\(\s*headerHeight/);
   });
 
-  it('язык — флаг в шапке, сортировки доступны в нижней панели', () => {
+  it('язык — флаг в шапке, сортировки — переключатель «Новые / Топ» под заголовком', () => {
     expect(screen).toContain('headerRoundBtn');
     expect(screen).toContain('width: 36,');
     expect(screen).toContain('borderRadius: 18,');
     expect(screen).toContain('<PackLanguagePicker');
     expect(screen).toContain('value={packLanguage}');
-    expect(screen).toContain('testID="flashcards-packs-sort-new"');
-    expect(screen).toContain('testID="flashcards-packs-sort-popular"');
-    expect(screen).toContain('accessibilityLabel={newPacksLabel}');
-    expect(screen).toContain('accessibilityLabel={topPacksLabel}');
+    expect(screen).toContain("'flashcards-packs-sort-new'");
+    expect(screen).toContain("'flashcards-packs-sort-popular'");
+    expect(screen).toContain("const label = sort === 'new' ? newPacksLabel : topPacksLabel;");
+    expect(screen).toContain('accessibilityLabel={label}');
+    // зачем (11.10, макет #c1): «+» создания набора — в строке заголовка.
+    expect(screen).toContain('testID="flashcards-packs-create"');
   });
 
   it('активный фильтр выделен визуально и в accessibilityState', () => {
-    for (const sort of ['new', 'popular']) {
-      expect(screen).toContain(`accessibilityState={{ selected: communitySort === '${sort}' }}`);
-      // зачем (макет packs-simple.html кадр 1, `.bar3 .b.on { background: var(--acc); color: var(--on) }`; коммиты d5b6b1672, cef49aa88):
-      // активная вкладка «Новые/Топ» нижней панели каталога красится акцентом темы t.accent, а не g.selected прежнего снимка 2.0 (efe19ae9d).
-      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: t.accent } : null`);
-      expect(screen).toContain(`setCommunitySort('${sort}')`);
-    }
+    // зачем (макет community-redesign.html #c1, `.sg span.on { background: var(--acc); color: var(--on) }`):
+    // активный сегмент — заливка акцентом темы, текст «на акценте» (g.accentInk).
+    expect(screen).toContain('accessibilityState={{ selected: on }}');
+    expect(screen).toContain('on ? { backgroundColor: g.accent } : null');
+    expect(screen).toContain('color: on ? g.accentInk : g.secondary');
+    expect(screen).toContain('setCommunitySort(sort)');
+    expect(screen).toContain("(['new', 'popular'] as const).map((sort)");
   });
 
   it('по умолчанию каталог открыт на «Новые» (макет packs-simple кадр 1), ?sort=popular ведёт на «Топ»', () => {
@@ -278,12 +283,10 @@ describe('шапка каталога сообщества (замечания �
     expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
   });
 
-  it('нижний отступ списка меряется по реальному доку переключателя, а не только по формуле (packs-simple-001)', () => {
-    expect(screen).toContain('measureInWindow');
-    expect(screen).toContain('dockClearance');
-    expect(screen).toMatch(/paddingBottom: Math\.max\(\(embedded \? tabContentBottomPad : Math\.max\(insets\.bottom, 16\)\) \+ 84, dockClearance\)/);
-    // лог для разбора, если отличие останется: области, док, нужный отступ
-    expect(screen).toContain("[CATALOG-LAYOUT] dock");
+  it('нижней плавающей плашки нет — список не перекрывается доком (макет #c1, 11.10)', () => {
+    expect(screen).not.toContain('bottomTabsDock');
+    expect(screen).not.toContain('dockClearance');
+    expect(screen).toMatch(/paddingBottom: \(embedded \? tabContentBottomPad : Math\.max\(insets\.bottom, 16\)\) \+ 24/);
   });
 
   it('каталог получает фильтр готовым из шапки', () => {

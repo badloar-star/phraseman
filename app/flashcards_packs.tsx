@@ -38,7 +38,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
+import { KitTouchable } from '../components/KitTouchable';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -115,21 +115,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useStableSafeAreaInsets();
   const { width: screenW } = useWindowDimensions();
-  // зачем (координатор 05.10, packs-simple-001: «переключатель «Новые/+/Топ» закрывает последнюю карточку»; сверка нашла настоящее отличие):
-  // нижний отступ списка считался по формуле (высота таб-бара + 84), а где на самом деле стоит док переключателя, не знал. Теперь меряем ОБА
-  // прямоугольника в окне и берём отступ, при котором последняя карточка прокручивается целиком над доком (+16); формула остаётся нижним пределом.
-  const regionRef = useRef<View>(null);
-  const dockRef = useRef<View>(null);
-  const [dockClearance, setDockClearance] = useState(0);
-  const measureDockClearance = useCallback(() => {
-    regionRef.current?.measureInWindow((_rx, ry, _rw, rh) => {
-      dockRef.current?.measureInWindow((_dx, dy, _dw, dh) => {
-        const need = Math.max(0, Math.round(ry + rh - dy + 16));
-        console.log('[CATALOG-LAYOUT] dock', JSON.stringify({ regionY: Math.round(ry), regionH: Math.round(rh), dockY: Math.round(dy), dockH: Math.round(dh), need, tabContentBottomPad, insetBottom: insets.bottom }));
-        setDockClearance((prev) => (prev === need ? prev : need));
-      });
-    });
-  }, [insets.bottom, tabContentBottomPad]);
+  // зачем (владелец 11.10, community-redesign.html #c1: «нижней плавающей плашки больше нет»): док «Новые / + / Топ» над списком
+  // убран — переключатель стоит под заголовком, «+» в строке заголовка. Мерить док больше нечего: нижний отступ — по таб-бару.
   /**
    * Заголовок делит шапку с тремя круглыми кнопками, поэтому на узких экранах
    * он аккуратно уменьшается, а не превращается в «Наборы сообщес…».
@@ -410,9 +397,15 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     }
   }, [cloudCommunityEnabled, studyTarget]);
 
-  /** Принудительное обновление после «Добавить себе» (через `onMarketRefresh` в каталоге). */
-  const refreshHubMarketForce = useCallback(() => {
-    void loadHubMarket({ force: true });
+  /**
+   * Обновление после «Добавить себе» с экрана набора (через `onMarketRefresh` в каталоге).
+   * зачем (ревью 11.10, 💸 Firebase): раньше здесь был `force: true` — каждое добавление перечитывало весь каталог
+   * (до 50 документов + ожидающие наборы автора + мета), 5 «+» ≈ 250 чтений. Владение после добавления — локальная
+   * запись (её loadHubMarket перечитывает ВСЕГДА, без сети), поэтому Firestore-часть идёт с обычным 30-секундным троттлом.
+   * «+» на самой плашке каталога обновление не зовёт вовсе (FlashcardsCategoryHub, `refresh skipped reason=quick_add`).
+   */
+  const refreshHubMarketAfterAdd = useCallback(() => {
+    void loadHubMarket();
   }, [loadHubMarket]);
 
   useFocusEffect(
@@ -493,21 +486,28 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             ]}
           >
             {embedded ? (
-              // зачем (packs-simple.html кадр 2): в режиме поиска слева круглая «назад» — она же закрывает поиск.
-              <TouchableOpacity
+              // зачем (community-redesign.html #c1 экран 2, `.ib.bare`): слева «назад» 44 БЕЗ подложки — она же закрывает поиск.
+              <KitTouchable
                 testID="flashcards-packs-search-back"
                 accessibilityRole="button"
                 accessibilityLabel={closeSearchLabel}
                 onPress={toggleSearch}
-                style={[styles.headerRoundBtn, styles.headerRoundBtnLarge, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
+                style={styles.searchBareBtn}
               >
-                <CatalogGlass tint={g.selected} edge={g.glassEdge} />
-                <Ionicons name="chevron-back" size={20} color={g.text} />
-              </TouchableOpacity>
+                <Ionicons name="chevron-back" size={22} color={g.text} />
+              </KitTouchable>
             ) : null}
-            <View style={[styles.headerSearchField, embedded ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.hairlineSoft }] : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
+            <View
+              style={[
+                styles.headerSearchField,
+                embedded
+                  // `.sf`: поле 52, скругление 26, заливка .08 и тонкая ВНУТРЕННЯЯ кромка (не обводка-контейнер).
+                  ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.hairlineSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.glassEdge }] }]
+                  : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }, // guard-ok: исключение 2.0 (24.09) — прежняя 1px кромка push-режима
+              ]}
+            >
               {embedded ? null : <CatalogGlass tint={g.selected} edge={g.glassEdge} />}
-              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.text : t.accentText} />
+              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.secondary : t.accentText} />
               <TextInput
                 ref={searchInputRef}
                 testID="flashcards-packs-search"
@@ -528,7 +528,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 accessibilityLabel={closeSearchLabel}
                 accessible
                 onPress={toggleSearch}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                hitSlop={embedded ? undefined : { top: 8, bottom: 8, left: 8, right: 8 }}
+                // зачем (`.sf .ib.bare`): во вкладке «Сообщество» крестик — круг 44 без подложки внутри поля.
+                style={embedded ? styles.searchBareBtn : null}
               >
                 <Ionicons name={embedded ? 'close' : 'close-circle'} size={18} color={embedded ? g.secondary : t.textMuted} />
               </TouchableOpacity>
@@ -610,13 +612,13 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         </View>
         )}
 
-        <View ref={regionRef} collapsable={false} onLayout={measureDockClearance} style={styles.scrollRegion}>
+        <View style={styles.scrollRegion}>
           <Animated.ScrollView decelerationRate="fast"
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
               embedded ? styles.scrollContentEmbedded : null,
-              { paddingBottom: Math.max((embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 84, dockClearance) },
+              { paddingBottom: (embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 24 },
             ]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
@@ -625,19 +627,67 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             onScroll={reduceMotion ? undefined : onHubScroll}
             scrollEventThrottle={16}
           >
-            {embedded ? (
-              // зачем (packs-simple.html кадр 1): заголовок раздела 30/700 под строкой вкладок, прокручивается со списком.
-              <Text accessibilityRole="header" testID="flashcards-packs-title-embedded" style={[styles.embeddedTitle, { color: g.text }]}>
-                {screenTitle}
-              </Text>
-            ) : null}
+            {searchOpen ? null : (
+              // зачем (владелец 11.10, community-redesign.html #c1 экран 1): «Наборы сообщества» 32/38 и справа круглая «+» 44
+              // цвета темы — создать набор; ниже переключатель «Новые / Топ» (`.sg`). На экране поиска (экран 2) этого блока нет.
+              <View style={styles.listHead}>
+                <View style={styles.titleRow}>
+                  {embedded ? (
+                    <Text accessibilityRole="header" testID="flashcards-packs-title-embedded" style={[styles.embeddedTitle, { color: g.text }]}>
+                      {screenTitle}
+                    </Text>
+                  ) : <View style={styles.titleSpacer} />}
+                  <KitTouchable
+                    testID="flashcards-packs-create"
+                    accessibilityRole="button"
+                    accessibilityLabel={createPackLabel}
+                    onPress={() => {
+                      void hapticTap();
+                      router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
+                    }}
+                    style={[styles.createBtn, { backgroundColor: g.accent }]}
+                  >
+                    <Ionicons name="add" size={22} color={g.accentInk} />
+                  </KitTouchable>
+                </View>
+                <View
+                  accessibilityRole="tablist"
+                  style={[styles.segment, {
+                    backgroundColor: g.hairlineSoft,
+                    boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }],
+                  }]}
+                >
+                  {(['new', 'popular'] as const).map((sort) => {
+                    const on = communitySort === sort;
+                    const label = sort === 'new' ? newPacksLabel : topPacksLabel;
+                    return (
+                      <KitTouchable
+                        key={sort}
+                        testID={sort === 'new' ? 'flashcards-packs-sort-new' : 'flashcards-packs-sort-popular'}
+                        accessibilityRole="tab"
+                        accessibilityLabel={label}
+                        accessibilityState={{ selected: on }}
+                        onPress={() => {
+                          if (on) return;
+                          void hapticTap();
+                          setCommunitySort(sort);
+                        }}
+                        style={[styles.segmentItem, on ? { backgroundColor: g.accent } : null]}
+                      >
+                        <Text style={[styles.segmentText, { color: on ? g.accentInk : g.secondary }]}>{label}</Text>
+                      </KitTouchable>
+                    );
+                  })}
+                </View>
+              </View>
+            )}
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
               t={t}
               themeMode={themeMode}
               marketPacks={marketPacks}
               ownedPackIds={ownedPackIds}
-              onMarketRefresh={refreshHubMarketForce}
+              onMarketRefresh={refreshHubMarketAfterAdd}
               cloudCommunityEnabled={cloudCommunityEnabled}
               communityPacks={communityPacks}
               communityLoaded={communityLoaded}
@@ -651,56 +701,6 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             />
           </Animated.ScrollView>
         </View>
-        <View ref={dockRef} collapsable={false} onLayout={measureDockClearance} style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
-          {/* зачем (владелец 04.10, packs-simple.html `.bar3`, «как на макете»): компактная плавающая пилюля по центру —
-              «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
-              «+» по центру — круг 48 цвета темы. kit.css даёт `.bar3` блик и кромку (::after), а тень --lg-drop
-              страница перебивает своим box-shadow: кольцо inset 1px белое .08 (styles.bottomTabs). */}
-          <View style={[styles.bottomTabs, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: g.hairlineSoft }] }]}>
-            {/* зачем (`.bar3` background): почти непрозрачная пилюля (.94) — список под ней не просвечивает. */}
-            <LinearGradient
-              pointerEvents="none"
-              colors={[`${g.opaqueControl}F0`, `${g.deepBase}F0`]}
-              start={{ x: 0.25, y: 0.067 }}
-              end={{ x: 0.75, y: 0.933 }}
-              style={StyleSheet.absoluteFill}
-            />
-            <KitGlassLayer radius={30} />
-            <TouchableOpacity
-              testID="flashcards-packs-sort-new"
-              accessibilityRole="button"
-              accessibilityLabel={newPacksLabel}
-              accessibilityState={{ selected: communitySort === 'new' }}
-              onPress={() => { void hapticTap(); setCommunitySort('new'); }}
-              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: t.accent } : null]}
-            >
-              <Text style={[styles.bottomTabText, { color: communitySort === 'new' ? t.textOnGold : g.secondary }]}>{newPacksLabel}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="flashcards-packs-create"
-              accessibilityRole="button"
-              accessibilityLabel={createPackLabel}
-              accessible
-              onPress={() => {
-                void hapticTap();
-                router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
-              }}
-              style={[styles.bottomCreateTab, { backgroundColor: t.accent }]}
-            >
-              <Ionicons name="add" size={24} color={t.textOnGold} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="flashcards-packs-sort-popular"
-              accessibilityRole="button"
-              accessibilityLabel={topPacksLabel}
-              accessibilityState={{ selected: communitySort === 'popular' }}
-              onPress={() => { void hapticTap(); setCommunitySort('popular'); }}
-              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: t.accent } : null]}
-            >
-              <Text style={[styles.bottomTabText, { color: communitySort === 'popular' ? t.textOnGold : g.secondary }]}>{topPacksLabel}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -712,40 +712,17 @@ const baseStyles = StyleSheet.create({
   scrollView: { flex: 1, minHeight: 0 },
   scrollContent: { paddingTop: 16, paddingBottom: 104 },
   scrollContentEmbedded: { paddingTop: 8 },
-  embeddedTitle: { paddingHorizontal: 20, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginBottom: 14 },
-  bottomTabsDock: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-    zIndex: 10,
-  },
-  // зачем (packs-simple.html `.bar3`): пилюля по содержимому, отступ 6, зазор 6, радиус 30.
-  bottomTabs: {
-    alignSelf: 'center',
-    borderRadius: 30,
-    padding: 6,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    overflow: 'hidden',
-  },
-  bottomTab: {
-    minHeight: 44,
-    paddingHorizontal: 22,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bottomTabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  bottomCreateTab: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // зачем (community-redesign.html #c1, `.h1c`): заголовок 32/38, 700, -0.6; строка заголовка с «+» — отступ 10 сверху.
+  listHead: { paddingHorizontal: 20 },
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
+  titleSpacer: { flex: 1 },
+  embeddedTitle: { flex: 1, minWidth: 0, fontSize: 32, lineHeight: 38, fontWeight: '700', letterSpacing: -0.6 },
+  // `.ib.ac`: круг 44 цвета темы, значок цветом «на акценте».
+  createBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  // `.sg`: капсула 4/18, сегменты 38 r14, текст 15/600 макета → 16 (D145); отступ 14 от заголовка.
+  segment: { flexDirection: 'row', gap: 4, padding: 4, borderRadius: 18, marginTop: 14 },
+  segmentItem: { flex: 1, minHeight: 38, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 14 },
+  segmentText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -790,9 +767,11 @@ const baseStyles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 6,
   },
-  // зачем: во вкладке «Сообщество» слой стоит на месте строки вкладок: «назад» 42 + поле 46 (кадр 2).
-  headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  headerSearchFieldEmbedded: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0 },
+  // зачем (community-redesign.html #c1 экран 2, `.flex` + `.sf`): слой на месте строки вкладок: «назад» 44 без подложки,
+  // промежуток 8, поле 52 со скруглением 26, поля 0/6/0/16, внутри промежуток 10, справа крестик 44 без подложки.
+  headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  headerSearchFieldEmbedded: { flex: 1, minHeight: 52, height: 52, borderRadius: 26, paddingLeft: 16, paddingRight: 6, gap: 10, borderWidth: 0 },
+  searchBareBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
   headerSearchInputEmbedded: { height: 44, fontSize: 16 },
   headerSearchField: {

@@ -9,9 +9,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useScaledTextStyles } from '../../hooks/useLineScale';
+import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
+import { packRowHeight } from '../../components/packs/packRowModel';
 
-import { KitCard, KitCheck, KitCta, KitEmpty, KitIconTile, KitSectionHead, KitSegment, KitTitle } from '../../components/cards-grid/CardsKit';
+import { KitCta, KitEmpty, KitSectionHead, KitSegment, KitTitle } from '../../components/cards-grid/CardsKit';
+import { PackRow, PackRowCheck } from '../../components/packs/PackRow';
+import { formatPackTitleForDisplay } from './marketplace';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -70,6 +73,8 @@ function TrainingSetupV2Inner(props: Props) {
   const styles = useScaledTextStyles(baseStyles);
   const { lang, title, subtitle, limitLabel, status, resetText, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
+  // зачем: заглушка набора — той же высоты, что строка PackRow (первый кадр = итоговая геометрия).
+  const skeletonH = packRowHeight('row', useLineScale());
   const copy = useMemo(() => copyFor(lang), [lang]);
   const showList = status === 'ready' || status === 'loading';
 
@@ -95,31 +100,30 @@ function TrainingSetupV2Inner(props: Props) {
             </View>
             {status === 'loading' ? (
               <View testID="fc-training-setup-loading" style={styles.stack}>
-                {[0, 1, 2].map((i) => <View key={`sk${i}`} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { backgroundColor: g.hairlineSoft }]} />)}
+                {[0, 1, 2].map((i) => <View key={`sk${i}`} /* guard-ok: три статичные заглушки */ style={[styles.skeleton, { height: skeletonH, backgroundColor: g.hairlineSoft }]} />)}
               </View>
             ) : (
               <View style={styles.stack}>
                 {decks.map((deck) => {
                   const on = selectedIds.includes(deck.deckId);
+                  // зачем (владелец, журнал 9): выбор набора — тот же общий PackRow, что «Мои наборы» и каталог:
+                  // фиксированная высота под 2 строки названия, отметка по центру по вертикали, название без хвоста файла.
                   return (
-                    <KitCard
+                    <PackRow
                       key={deck.deckId}
+                      variant="row"
                       g={g}
+                      lang={lang}
+                      leading={{ kind: 'icon', icon: deck.icon }}
+                      title={deck.title}
+                      subtitle={countLabelFor(deck.count)}
+                      trailing={<PackRowCheck g={g} on={on} />}
                       testID={`fc-training-setup-deck-${deck.deckId}`}
-                      accessibilityLabel={`${deck.title}, ${deck.count}`}
+                      accessibilityLabel={`${formatPackTitleForDisplay(deck.title)}, ${deck.count}`}
                       onPress={() => onToggle(deck.deckId)}
                       disabled={deck.count <= 0}
                       style={deck.count <= 0 ? styles.dim : undefined}
-                    >
-                      <View style={styles.row}>
-                        <KitIconTile g={g} icon={deck.icon} />
-                        <View style={styles.rowText}>
-                          <Text style={[styles.rowTitle, { color: g.text }]}>{deck.title}</Text>
-                          <Text style={[styles.rowSub, { color: g.secondary }]}>{countLabelFor(deck.count)}</Text>
-                        </View>
-                        <KitCheck g={g} on={on} />
-                      </View>
-                    </KitCard>
+                    />
                   );
                 })}
                 {/* зачем (Сверка cards-section-033, решение координатора 10.10): строки «Добавить набор ›» в настройке тренировки нет ни в одном макете (setupBlitz/Speak/Tf/Recall) — добавить набор можно из хаба «+» и из пустого состояния. */}
@@ -180,13 +184,9 @@ const baseStyles = StyleSheet.create({
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   selected: { marginTop: 30, marginBottom: 14, fontSize: 13, lineHeight: 17 },
   stack: { gap: 9 },
-  skeleton: { height: 65, borderRadius: 14 },
+  skeleton: { borderRadius: 14 },
   dim: { opacity: 0.45 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 16, paddingVertical: 10, paddingLeft: 19, paddingRight: 16 },
-  rowText: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   addTitle: { flex: 1, fontWeight: '600' },
-  rowSub: { fontSize: 16, lineHeight: 21 },
   hint: { marginTop: 14, fontSize: 13, lineHeight: 19, textAlign: 'center' },
   dock: { paddingHorizontal: 20 },
 });

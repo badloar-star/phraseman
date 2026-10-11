@@ -371,7 +371,77 @@ function tsAncestorPath(opening) {
   return names.reverse();
 }
 
+/**
+ * Явные семантические примитивы обрезки — единственные файлы, где сырая обрезка разрешена.
+ * Тот же список читает правило ESLint (tools/eslint-rules/no-unsafe-text-truncation.js): правило и сканер совпадают.
+ */
+const SEMANTIC_TRUNCATION_PRIMITIVES = Object.freeze([
+  // журнал владельца п.9, решение владельца через координатора 11.10: до N строк с многоточием, без ужатия шрифта.
+  'components/text-integrity/ClampedText.tsx',
+]);
+
+function isSemanticTruncationPrimitive(file) {
+  const normalized = normalizeRelativePath(file).toLowerCase();
+  return SEMANTIC_TRUNCATION_PRIMITIVES.some((allowed) => allowed.toLowerCase() === normalized);
+}
+
+/**
+ * Раскрытие `{...x}` в JSX: объект-литерал или локальная const-константа с объектом-литералом.
+ * зачем (решение владельца через координатора 11.10): обрезку нельзя было прятать от сторожа объектом
+ * (`<Text {...{ numberOfLines: 2 }}>` или `const clamp = { numberOfLines: 2 }; <Text {...clamp}>`) — ловим одинаково
+ * в TS-сканере и в ESLint-правиле. Обёртки `as const` / `satisfies` / скобки снимаются.
+ */
+function unwrapTsExpression(expression) {
+  let current = expression;
+  while (current && (ts.isParenthesizedExpression(current) || ts.isAsExpression(current)
+    || (ts.isSatisfiesExpression && ts.isSatisfiesExpression(current)) || ts.isTypeAssertionExpression(current))) {
+    current = current.expression;
+  }
+  return current;
+}
+
+function tsSpreadObject(expression) {
+  const target = unwrapTsExpression(expression);
+  if (!target) return null;
+  if (ts.isObjectLiteralExpression(target)) return target;
+  if (!ts.isIdentifier(target)) return null;
+  for (let scope = target.parent; scope; scope = scope.parent) {
+    if (!ts.isSourceFile(scope) && !ts.isBlock(scope)) continue;
+    for (const statement of scope.statements) {
+      if (!ts.isVariableStatement(statement)) continue;
+      if (!(statement.declarationList.flags & ts.NodeFlags.Const)) continue;
+      for (const declaration of statement.declarationList.declarations) {
+        if (!ts.isIdentifier(declaration.name) || declaration.name.text !== target.text || !declaration.initializer) continue;
+        const initializer = unwrapTsExpression(declaration.initializer);
+        return initializer && ts.isObjectLiteralExpression(initializer) ? initializer : null;
+      }
+    }
+  }
+  return null;
+}
+
+function tsSpreadViolations(spread) {
+  const object = tsSpreadObject(spread.expression);
+  if (!object) return [];
+  const violations = [];
+  for (const property of object.properties) {
+    let prop = null;
+    let value = '';
+    if (ts.isPropertyAssignment(property)) {
+      if (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) prop = property.name.text;
+      value = normalizeTsExpression(property.initializer);
+    } else if (ts.isShorthandPropertyAssignment(property)) {
+      prop = property.name.text;
+      value = property.name.text;
+    }
+    const violation = prop ? violationFor(prop, value) : null;
+    if (violation) violations.push(violation);
+  }
+  return violations;
+}
+
 function structuralIdentitiesFromTypescript(opening, file) {
+  if (isSemanticTruncationPrimitive(file)) return [];
   const attributes = opening.attributes.properties.filter(ts.isJsxAttribute);
   const testIdAttribute = attributes.find((attribute) => attribute.name.text === 'testID');
   const owners = tsOwnerAncestry(opening);
@@ -384,7 +454,12 @@ function structuralIdentitiesFromTypescript(opening, file) {
     testID: testIdAttribute ? tsAttributeValue(testIdAttribute) : null,
   };
   const identities = [];
-  for (const attribute of attributes) {
+  for (const attribute of opening.attributes.properties) {
+    if (ts.isJsxSpreadAttribute(attribute)) {
+      for (const violation of tsSpreadViolations(attribute)) identities.push(canonicalGroup({ ...base, ...violation }));
+      continue;
+    }
+    if (!ts.isJsxAttribute(attribute)) continue;
     const prop = attribute.name.text;
     const value = tsAttributeValue(attribute);
     const violation = violationFor(prop, value);
@@ -416,6 +491,7 @@ function eslintOwnerAncestry(ancestors) {
 }
 
 function structuralIdentityFromEslint(node, options) {
+  if (isSemanticTruncationPrimitive(options.filename)) return [];
   const sourceCode = options.sourceCode;
   const ancestors = sourceCode.getAncestors(node);
   const tag = eslintJsxName(node.name);
@@ -435,13 +511,64 @@ function structuralIdentityFromEslint(node, options) {
     testID: testIdAttribute ? eslintAttributeValue(testIdAttribute, sourceCode) : null,
   };
   const identities = [];
-  for (const attribute of attributes) {
+  for (const attribute of node.attributes) {
+    if (attribute.type === 'JSXSpreadAttribute') {
+      for (const violation of eslintSpreadViolations(attribute, ancestors, sourceCode)) {
+        identities.push(canonicalGroup({ ...base, ...violation }));
+      }
+      continue;
+    }
+    if (attribute.type !== 'JSXAttribute') continue;
     const prop = attribute.name.name;
     const value = eslintAttributeValue(attribute, sourceCode);
     const violation = violationFor(prop, value);
     if (violation) identities.push(canonicalGroup({ ...base, ...violation }));
   }
   return identities;
+}
+
+/** ESLint-двойник tsSpreadObject: объект-литерал или локальная const-константа с объектом-литералом. */
+function unwrapEslintExpression(expression) {
+  let current = expression;
+  while (current && ['TSAsExpression', 'TSSatisfiesExpression', 'TSTypeAssertion', 'ParenthesizedExpression'].includes(current.type)) {
+    current = current.expression;
+  }
+  return current;
+}
+
+function eslintSpreadObject(argument, ancestors) {
+  const target = unwrapEslintExpression(argument);
+  if (!target) return null;
+  if (target.type === 'ObjectExpression') return target;
+  if (target.type !== 'Identifier') return null;
+  for (let index = ancestors.length - 1; index >= 0; index -= 1) {
+    const scope = ancestors[index];
+    if (scope.type !== 'Program' && scope.type !== 'BlockStatement') continue;
+    for (const statement of scope.body) {
+      if (statement.type !== 'VariableDeclaration' || statement.kind !== 'const') continue;
+      for (const declaration of statement.declarations) {
+        if (declaration.id.type !== 'Identifier' || declaration.id.name !== target.name || !declaration.init) continue;
+        const initializer = unwrapEslintExpression(declaration.init);
+        return initializer && initializer.type === 'ObjectExpression' ? initializer : null;
+      }
+    }
+  }
+  return null;
+}
+
+function eslintSpreadViolations(spread, ancestors, sourceCode) {
+  const object = eslintSpreadObject(spread.argument, ancestors);
+  if (!object) return [];
+  const violations = [];
+  for (const property of object.properties) {
+    if (property.type !== 'Property' || property.computed) continue;
+    const prop = property.key.type === 'Identifier' ? property.key.name
+      : property.key.type === 'Literal' && typeof property.key.value === 'string' ? property.key.value : null;
+    const value = property.shorthand ? prop : normalizeEslintExpression(property.value, sourceCode);
+    const violation = prop ? violationFor(prop, value) : null;
+    if (violation) violations.push(violation);
+  }
+  return violations;
 }
 
 function scanTextIntegrity(root, relativeFiles) {
@@ -500,7 +627,9 @@ module.exports = {
   canonicalGroup,
   collectProductionFiles,
   fingerprintGroup,
+  isSemanticTruncationPrimitive,
   loadAndValidateBaseline,
+  SEMANTIC_TRUNCATION_PRIMITIVES,
   publishNoClobber,
   scanTextIntegrity,
   structuralIdentityFromEslint,

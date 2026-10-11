@@ -3,9 +3,19 @@
 const path = require('node:path');
 const {
   fingerprintGroup,
+  isSemanticTruncationPrimitive,
   loadAndValidateBaseline,
+  SEMANTIC_TRUNCATION_PRIMITIVES,
   structuralIdentityFromEslint,
 } = require('../../scripts/text-integrity/inventory-core.cjs');
+
+/**
+ * Явный список разрешённых файлов-примитивов обрезки (тот же, что у сканера inventory-core — правило и сканер совпадают):
+ *   • components/text-integrity/ClampedText.tsx — журнал владельца п.9, решение владельца через координатора 11.10:
+ *     до N строк с многоточием, без ужатия шрифта.
+ * Новый файл в списке — только решением владельца/координатора.
+ */
+const ALLOWED_PRIMITIVE_FILES = SEMANTIC_TRUNCATION_PRIMITIVES;
 
 function normalizeFilename(filename, projectRoot) {
   const absolute = path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename);
@@ -43,6 +53,8 @@ function createNoUnsafeTextTruncationRule({ baselinePath, projectRoot = process.
     create(context) {
       const seenCounts = new Map();
       const filename = normalizeFilename(context.getFilename(), projectRoot);
+      // Разрешённый примитив (ALLOWED_PRIMITIVE_FILES) — обрезка в нём осознанная, базы для него нет.
+      if (isSemanticTruncationPrimitive(filename)) return {};
       const baselineFile = baselineByFile.get(filenameKey(filename));
       const identityFilename = baselineFile ? baselineFile.canonicalFile : filename;
       const expectedForFile = baselineFile ? baselineFile.groups : [];
@@ -81,4 +93,4 @@ function createNoUnsafeTextTruncationRule({ baselinePath, projectRoot = process.
   };
 }
 
-module.exports = { createNoUnsafeTextTruncationRule };
+module.exports = { createNoUnsafeTextTruncationRule, ALLOWED_PRIMITIVE_FILES };

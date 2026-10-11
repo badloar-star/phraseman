@@ -148,7 +148,10 @@ const s = StyleSheet.create({
   // зачем: макет 17/600; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
   tabText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  headerOverlay: { flex: 1, minHeight: 46, justifyContent: 'center' },
+  // зачем (ревью 11.10, макет community-redesign #c1 экран 2): поле поиска `.sf` высотой 52 обязано помещаться в слой
+  // целиком. Слой — 52, а −5 сверху и снизу съедают его из полей шапки (12/4): высота строки остаётся 58, как со
+  // вкладками, — открытие поиска не сдвигает список (первый кадр = итоговая геометрия), поле не вылезает за шапку.
+  headerOverlay: { flex: 1, height: 52, marginVertical: -5, justifyContent: 'center' },
   body: { flex: 1, minHeight: 0 },
   // Скрытый раздел не рисуется, но сохраняет своё состояние и скролл.
   hidden: { display: 'none' },

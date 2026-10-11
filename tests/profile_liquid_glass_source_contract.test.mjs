@@ -51,7 +51,8 @@ test('account: glass shell, coin hero and sections follow PRF-02', () => {
 });
 
 test('account: functional logic of the old screen is preserved', () => {
-  assert.match(account, /setLogoutStage\('wiping'\)/);
+  // 12.10 (координатор, аудит COVERAGE_AUDIT_R1 §C): перед выходом — окно «Выйти из аккаунта?», выход стартует из него.
+  assert.match(account, /setLogoutStage\('confirm'\)/);
   assert.match(account, /setDeleteVisible\(true\)/);
   assert.match(account, /Clipboard\.setStringAsync\(email\)/);
   assert.match(account, /<NicknameEditModal/);

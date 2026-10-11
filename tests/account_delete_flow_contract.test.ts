@@ -251,16 +251,18 @@ describe('account deletion rebuilt flow contract', () => {
     const start = modalSource.indexOf('const handleConfirmDelete');
     const end = modalSource.indexOf('const handleCancel', start);
     const confirmSource = modalSource.slice(start, end);
-    const successStart = confirmSource.indexOf('markAccountDeletedNoticePending();');
+    // 12.10: якорь — звук необратимости; плашку об удалении больше не ставим (правило владельца 22.09).
+    const successStart = confirmSource.indexOf("soundDirector.request('pm.system.destructive_done'");
     // Граница — catch ВСЕГО обработчика (в начале строки), а не вложенные
     // try/catch вокруг навигации внутри самого успешного пути.
     const successEnd = confirmSource.indexOf('\n    } catch', successStart);
     const successPath = confirmSource.slice(successStart, successEnd);
 
     // Успешный путь не ставит в очередь ни алерт, ни какой-либо второй нативный
-    // <Modal>: подтверждение даёт плашка ВНУТРИ уже смонтированного онбординга.
+    // <Modal>, и (с 12.10) никакой плашки об удалении — правило владельца 22.09.
     expect(successPath).toContain('emitAppEvent(\'account_deleted\')');
-    expect(successPath).toContain('markAccountDeletedNoticePending()');
+    expect(successStart).toBeGreaterThan(-1);
+    expect(confirmSource).not.toContain('markAccountDeletedNoticePending()');
     expect(successPath).not.toContain('enqueueThemedBlockingInfoAlert');
     expect(successPath).not.toContain('showInfoAlert(');
 

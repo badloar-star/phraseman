@@ -118,7 +118,7 @@ export default function SettingsLanguage() {
               testID="settings-language-study-row"
               leading={<Image source={STUDY_FLAG[studyTarget]} accessible={false} style={{ width: 54, height: 38, borderRadius: 10 }} contentFit="cover" />}
               title={STUDY_NAME[studyTarget]}
-              sub={triLang(lang as Lang, { ru: 'Сейчас изучаете', uk: 'Зараз вивчаєте', en: 'Currently learning', es: 'Estudias ahora', 'pt-BR': 'Estudando agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorsun', pl: 'Teraz się uczysz' })}
+              sub={triLang(lang as Lang, { ru: 'Сейчас изучаешь', uk: 'Зараз вивчаєш', en: 'Currently learning', es: 'Estudias ahora', 'pt-BR': 'Estudando agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorsun', pl: 'Teraz się uczysz' })}
               onPress={() => setStudySheetVisible(true)}
             />
           </BouncyScrollView>

@@ -62,8 +62,8 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   // 'recovery' — маркер уже мог быть записан: слепой повтор запрещён, только перезапуск.
   const [failureKind, setFailureKind] = useState<'precommit' | 'recovery'>('precommit');
 
-  // зачем (владелец, 2026-08-31): экран ставит стадию 'wiping' сразу по тапу,
-  // без окна подтверждения — здесь ловим её и запускаем выход один раз.
+  // зачем: стадию 'wiping' ставит requestLogout (кнопка «Выйти» в подтверждении или «Повторить»
+  // после отказа) — здесь ловим её и запускаем выход ровно один раз (подтверждение вернул координатор 12.10).
   const logoutStartedRef = useRef(false);
   useEffect(() => {
     if (stage !== 'wiping' || logoutStartedRef.current) return;
@@ -71,6 +71,17 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     void runLogout().finally(() => { logoutStartedRef.current = false; });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
+
+  // зачем: единая точка «начать выход» для кнопок подтверждения и повтора — защита от двойного тапа
+  // и от двойного запуска (кнопка + эффект стадии 'wiping').
+  const requestLogout = (source: 'confirm' | 'failed_retry') => {
+    if (logoutStartedRef.current || stage === 'wiping') {
+      console.warn(`[ACC-MUT] ui:logout_request_ignored source=${source} reason=${logoutStartedRef.current ? 'already_running' : 'stage_wiping'}`);
+      return;
+    }
+    console.log(`[ACC-MUT] ui:logout_requested source=${source}`); // guard-ok: одна строка на нажатие, боевой след
+    onStageChange('wiping');
+  };
 
   const runLogout = async () => {
     doHaptic();
@@ -131,27 +142,28 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     console.warn('[ACC-MUT] ui:logout_failed_kind', { reason: forced.reason, kind: recovery ? 'recovery' : 'precommit' });
     setFailureKind(recovery ? 'recovery' : 'precommit');
     setFailureText(recovery
+      // зачем: паритет profile.html PRF-20-ATTENTION (13.10): это ВЫХОД, а не «смена аккаунта» — тексты про выход, на «ты».
       ? L(
-        'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
-        'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
-        'A safety marker may already have been written. Restart the app to continue restoring the state.',
-        'Puede que ya se haya guardado un marcador de seguridad. Reinicia la app para continuar la recuperación.',
-        'Um marcador de segurança pode já ter sido gravado. Reinicie o app para continuar a recuperação.',
-        'Dấu an toàn có thể đã được ghi. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
-        'Penanda pengaman mungkin sudah tertulis. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
-        'Güvenlik işareti yazılmış olabilir. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
-        'Znacznik bezpieczeństwa mógł już zostać zapisany. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
+        'Старый аккаунт не считается закрытым. Перезапусти приложение и попробуй снова.',
+        'Старий акаунт не вважається закритим. Перезапусти застосунок і спробуй ще раз.',
+        "The old account isn't considered closed. Restart the app and try again.",
+        'La cuenta anterior no se considera cerrada. Reinicia la app e inténtalo de nuevo.',
+        'A conta anterior não é considerada encerrada. Reinicie o app e tente de novo.',
+        'Tài khoản cũ chưa được coi là đã đóng. Hãy khởi động lại ứng dụng và thử lại.',
+        'Akun lama belum dianggap tertutup. Mulai ulang aplikasi dan coba lagi.',
+        'Eski hesap kapatılmış sayılmıyor. Uygulamayı yeniden başlat ve tekrar dene.',
+        'Poprzednie konto wciąż jest otwarte. Uruchom aplikację ponownie i spróbuj jeszcze raz.',
       )
       : L(
-        'Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',
-        'Захисна перевірка зупинила зміну до запису маркера. Акаунт і локальні дані не змінено.',
-        'A safety check stopped the switch before the marker was written. Your account and local data are unchanged.',
-        'Una comprobación de seguridad detuvo el cambio antes de guardar el marcador. Tu cuenta y tus datos no cambiaron.',
-        'Uma verificação de segurança parou a troca antes de gravar o marcador. Sua conta e seus dados não mudaram.',
-        'Kiểm tra an toàn đã dừng việc đổi trước khi ghi dấu. Tài khoản và dữ liệu trên máy không thay đổi.',
-        'Pemeriksaan keamanan menghentikan pergantian sebelum penanda ditulis. Akun dan data lokal tidak berubah.',
-        'Güvenlik kontrolü değişimi işaret yazılmadan durdurdu. Hesabın ve yerel verilerin değişmedi.',
-        'Kontrola bezpieczeństwa zatrzymała zmianę przed zapisaniem znacznika. Konto i dane lokalne są bez zmian.',
+        'Аккаунт и данные на телефоне не изменены. Попробуй ещё раз.',
+        'Акаунт і дані на телефоні не змінено. Спробуй ще раз.',
+        'Your account and the data on this phone are unchanged. Try again.',
+        'Tu cuenta y los datos del teléfono no cambiaron. Inténtalo de nuevo.',
+        'Sua conta e os dados do telefone não mudaram. Tente de novo.',
+        'Tài khoản và dữ liệu trên điện thoại không thay đổi. Hãy thử lại.',
+        'Akun dan data di ponsel tidak berubah. Coba lagi.',
+        'Hesabın ve telefondaki veriler değişmedi. Tekrar dene.',
+        'Konto i dane na telefonie są bez zmian. Spróbuj jeszcze raz.',
       ));
     onStageChange('failed');
   };
@@ -227,9 +239,8 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 <Ionicons name="lock-closed" size={26} color={glass.text} />
               </View>
               <Text accessibilityRole="header" style={titleStyle}>
-                {failureKind === 'recovery'
-                  ? L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta')
-                  : L('Смена аккаунта не началась', 'Зміна акаунту не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła')}
+                {/* зачем: паритет profile.html PRF-20-ATTENTION (13.10): заголовок отказа — «Не удалось выйти» для обоих видов */}
+                {L('Не удалось выйти', 'Не вдалося вийти', "Couldn't sign out", 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Gagal keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować')}
               </Text>
               <Text style={bodyStyle}>
                 {failureText ?? ''}
@@ -244,7 +255,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 >
                   {failureKind === 'recovery' ? <ThemeAccentFill glass={glass} radius={22} /> : null}
                   <Text style={[ctaText, { color: failureKind === 'recovery' ? glass.accentInk : glass.text }]}>
-                    {L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+                    {failureKind === 'recovery'
+                      // зачем: паритет PRF-20-ATTENTION — единственная кнопка «Понятно» (повтор до перезапуска запрещён)
+                      ? L('Понятно', 'Зрозуміло', 'Got it', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem')
+                      : L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
                   </Text>
                 </TouchableOpacity>
                 {failureKind === 'precommit' ? (
@@ -252,7 +266,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                     activeOpacity={0.8}
                     accessibilityRole="button"
                     testID="account-logout-failed-retry"
-                    onPress={() => { void runLogout(); }}
+                    // зачем: только смена стадии — выход запускает эффект ровно один раз (прямой runLogout()
+                    // тут же переводил стадию в 'wiping', и эффект запускал ВТОРОЙ выход параллельно).
+                    onPress={() => { requestLogout('failed_retry'); }}
                     style={[buttonStyle, accentButton]}
                   >
                     <ThemeAccentFill glass={glass} radius={22} />
@@ -271,10 +287,11 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               <KitGlassLayer radius={26} />
               <ActivityIndicator size="large" color={glass.text} style={{ alignSelf: 'center', marginBottom: 20 }} />
               <Text accessibilityRole="header" style={titleStyle}>
-                {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Saving progress', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
+                {/* зачем: паритет profile.html PRF-20-PROGRESS (13.10): «Выходим из аккаунта» + чьи локальные изменения */}
+                {L('Выходим из аккаунта', 'Виходимо з акаунту', 'Signing out', 'Cerrando sesión', 'Saindo da conta', 'Đang đăng xuất', 'Sedang keluar', 'Çıkış yapılıyor', 'Wylogowywanie')}
               </Text>
               <Text style={bodyStyle}>
-                {L('Не закрывай приложение', 'Не закривай застосунок', 'Don\'t close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
+                {L('Локальные изменения остаются привязаны к этому аккаунту.', 'Локальні зміни залишаються прив\'язаними до цього акаунту.', 'Local changes stay linked to this account.', 'Los cambios locales siguen vinculados a esta cuenta.', 'As alterações locais continuam vinculadas a esta conta.', 'Thay đổi trên máy vẫn gắn với tài khoản này.', 'Perubahan lokal tetap terhubung ke akun ini.', 'Yerel değişiklikler bu hesaba bağlı kalır.', 'Lokalne zmiany pozostają przypisane do tego konta.')}
               </Text>
             </View>
           ) : (
@@ -299,15 +316,17 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               {/* `.or-next`: второй абзац тем же стилем через 9 */}
               <Text style={bodyStyle}>
                 {L(
-                  'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим выход, чтобы ничего не потерялось.',
-                  'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо вихід, щоб нічого не загубилося.',
-                  'Before signing out we\'ll safely save your progress. If the connection doesn\'t respond, we\'ll cancel the sign-out so nothing is lost.',
-                  'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos la salida para que no pierdas nada.',
-                  'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a saída para que nada se perca.',
-                  'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu kết nối không phản hồi, việc đăng xuất sẽ bị hủy để không mất gì.',
-                  'Sebelum keluar, progresmu akan disimpan dengan aman. Jika koneksi tidak merespons, keluar dibatalkan agar tidak ada yang hilang.',
-                  'Çıkmadan önce ilerlemeni güvenle kaydedeceğiz. Bağlantı yanıt vermezse hiçbir şey kaybolmasın diye çıkışı iptal edeceğiz.',
-                  'Przed wylogowaniem bezpiecznie zapiszemy Twój postęp. Jeśli połączenie nie odpowie, anulujemy wylogowanie, aby nic nie przepadło.',
+                  // зачем: текст обязан совпадать с поведением — без сети выход НЕ отменяется (решение владельца 31.08),
+                  // прогресс остаётся аварийной копией на телефоне и возвращается при следующем входе в этот аккаунт.
+                  'Перед выходом сохраним прогресс. Если сети нет, он останется на телефоне и вернётся, когда ты снова войдёшь в этот аккаунт.',
+                  'Перед виходом збережемо прогрес. Якщо мережі немає, він залишиться на телефоні й повернеться, коли ти знову увійдеш у цей акаунт.',
+                  "We'll save your progress before signing out. If you're offline, it stays on this phone and comes back when you sign in to this account again.",
+                  'Guardaremos tu progreso antes de salir. Si no hay conexión, se queda en el teléfono y vuelve cuando entres de nuevo en esta cuenta.',
+                  'Vamos salvar seu progresso antes de sair. Sem conexão, ele fica no telefone e volta quando você entrar de novo nesta conta.',
+                  'Tiến độ sẽ được lưu trước khi đăng xuất. Nếu không có mạng, nó ở lại trên điện thoại và quay lại khi bạn đăng nhập lại tài khoản này.',
+                  'Progresmu disimpan sebelum keluar. Jika tidak ada koneksi, progres tetap di ponsel dan kembali saat kamu masuk lagi ke akun ini.',
+                  'Çıkmadan önce ilerlemeni kaydedeceğiz. İnternet yoksa telefonda kalır ve bu hesaba tekrar girdiğinde geri gelir.',
+                  'Przed wylogowaniem zapiszemy postęp. Bez sieci zostanie w telefonie i wróci, gdy znów zalogujesz się na to konto.',
                 )}
               </Text>
 
@@ -316,7 +335,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   activeOpacity={0.8}
                   accessibilityRole="button"
                   testID="account-logout-confirm"
-                  onPress={() => { void runLogout(); }}
+                  onPress={() => { requestLogout('confirm'); }}
                   style={[stackButton, accentButton]}
                 >
                   <ThemeAccentFill glass={glass} radius={24} />

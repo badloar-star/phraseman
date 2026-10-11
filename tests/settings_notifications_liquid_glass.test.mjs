@@ -49,7 +49,8 @@ const protectedHashes = {
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',
   ensurePermissionIfEnabling: '5bea29535c1dc1de592053f15b6b8f3736046f4e1e9a0c5dd3a93047057213e3',
   // зачем (30.09): немой .catch(() => {}) заменён на swallowError('settings_notifications:persistPrefs') в efe19ae9d — правило «немых catch нет».
-  persistPrefs: '991a49f981eb282d503c009453b16c9005082a1405f3b8ce5f229086543e73b4',
+  // 11.10: в catch добавлен лог [NOTIF-PREFS] persist_failed (правило владельца: немых catch нет), логика отката прежняя.
+  persistPrefs: '04ff7ee1d2c561d71495a1fecd11f9c3c2069c3df7e483c0e308408e8db85e42',
   persistSchedule: 'fdb0dddf9017df4f718dc898feb09182e13a2f61545cfbda62f5f9b25181b47f',
   toggleMaster: '48e7e186a958d38d5d0bd17198b5bfc65f5867b7bdd4b73d58c9bb2cd117b387',
   toggleCategory: 'c735bcda2ed9177b35deec2f91bc78663f8e2f25083628f76e3469de63a9c4f5',
@@ -150,12 +151,14 @@ test('all supported live controls are bound and retired or invented controls sta
   for (const [label, category] of [
     ['streakLabel', 'streak'], ['phraseLabel', 'phrase_of_day'], ['energyLabel', 'energy'],
     ['weeklyLabel', 'weekly_recap'], ['monthlyLabel', 'monthly_recap'], ['friendsLabel', 'friends'], ['offersLabel', 'offers'],
+    // 11.10 (profile-006, координатор): Шпиль в первом выпуске, сервер уважает pushPrefs.league — тумблер больше не «выдуманный».
+    ['spireLabel', 'spire'],
   ]) {
     assert.match(source, new RegExp(`label=\\{${label}\\}[\\s\\S]*?value=\\{prefs\\.categories\\.${category}\\}[\\s\\S]*?onValueChange=\\{toggleCategory\\('${category}'\\)\\}`));
   }
   assert.match(source, /\{pad\(hour\)\}:\{pad\(minute\)\}/, 'the time row renders actual saved time');
   assert.doesNotMatch(source, />20:00<|['"]20:00['"]/, 'the actual app does not hardcode demo time');
-  assert.doesNotMatch(source, /giftsLabel|toggleCategory\('gifts'\)|События Шпиля|Spire/);
+  assert.doesNotMatch(source, /giftsLabel|toggleCategory\('gifts'\)/);
   assert.match(source, /<View style=\{\[statusCardStyle, \{ marginTop: 18 \}]}[\s\S]{0,250}<Ionicons name="chatbubble-outline" size=\{20\}/);
   assert.match(source, /<ToggleRow label=\{dailyLabel\} icon="flame-outline"/);
   assert.match(source, /<ToggleRow label=\{weeklyLabel\} icon="trending-up-outline"/);

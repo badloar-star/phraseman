@@ -271,7 +271,9 @@ export default function SettingsNotifications() {
       if (permitted && next.master && scheduleAnyEnabled(sRef.current)) {
         scheduleNotifications(sRef.current, lang as Lang, 0, { requestPermission: false, studyTarget }).catch(swallowError('settings_notifications:persistPrefs'));
       }
-    } catch {
+    } catch (error: unknown) {
+      // зачем: немого catch нет — откат тумблера и причина в журнале.
+      console.warn(`[NOTIF-PREFS] persist_failed rollback=1 reason=${error instanceof Error ? error.message : String(error)}`);
       setPrefs(prevPrefs);
       setSaved(false);
     }
@@ -336,6 +338,8 @@ export default function SettingsNotifications() {
   const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', en:'Monthly recap', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });
   const sectionMore = L({ ru:'Ещё', uk:'Ще', en:'More', es:'Más', 'pt-BR':'Mais', vi:'Khác', id:'Lainnya', tr:'Diğer', pl:'Więcej' });
   // «Вместе»: пуш «Позвал(а)» от друга — отдельная категория (владелец, 2026-08-16).
+  // зачем: паритет profile.html PRF-04 (13.10) — Шпиль в первом выпуске, его пуши можно выключить отдельно.
+  const spireLabel = L({ ru:'События Шпиля', uk:'Події Шпиля', en:'Spire events', es:'Eventos de la Aguja', 'pt-BR':'Eventos da Torre', vi:'Sự kiện Tháp', id:'Acara Menara', tr:'Kule etkinlikleri', pl:'Wydarzenia Wieży' });
   const friendsLabel = L({ ru:'Друзья', uk:'Друзі', en:'Friends', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
   const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', en:'Discounts and offers', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
   const savedLabel = L({ ru:'Сохранено', uk:'Збережено', en:'Saved', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
@@ -484,6 +488,7 @@ export default function SettingsNotifications() {
               <View style={{ gap: 10 }}>
                 <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
                 <ToggleRow label={monthlyLabel} icon="calendar-outline" value={prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
+                <ToggleRow label={spireLabel} icon="people-outline" value={prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />
               </View>
 
               <Text style={sectionTitleStyle}>{sectionMore}</Text>

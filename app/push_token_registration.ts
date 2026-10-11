@@ -153,7 +153,7 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 /** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
 // Retired tournament pushes remain owner-locked off.
 // Удалённый тип напоминаний больше не синхронизируем с сервером.
-export type ServerPushPrefs = { streak: boolean; offers: boolean };
+export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean };
 
 /** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */
 const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
@@ -175,13 +175,14 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_2', false));
     if (!linkOk) return;
 
-    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}`;
+    // зачем: league (тумблер «События Шпиля») входит в ключ — иначе его смена не дошла бы до сервера.
+    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
     if (lastWritten === cacheKey) return;
 
     // Поле `lessons` больше не пишем: этот тип напоминания удалён.
     await db.collection('users').doc(stableId).set(
-      { pushPrefs: { streak: prefs.streak, offers: prefs.offers } },
+      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league } },
       { merge: true },
     );
     await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);

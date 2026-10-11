@@ -27,7 +27,6 @@ import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
 import { beginAccountDeletion, peekLinkedAuthFromCurrentUser } from '../app/auth_provider';
 import { enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { emitAppEvent } from '../app/events';
-import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
 import {
   finishAccountDeleteUiTrace,
   startAccountDeleteUiTrace,
@@ -307,7 +306,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         scope: 'account-delete',
         dedupeKey: 'account-deleted',
       });
-      markAccountDeletedNoticePending();
+      // зачем (правило владельца 22.09 «уведомлений об удалении не показывать НИКОГДА»; координатор 12.10,
+      // аудит COVERAGE_AUDIT_R1 §C): плашку «Ты удалил(а) все свои данные» на онбординге больше не ставим.
       // Release every blocking control before dismissing the native Modal. The
       // Settings screen may unmount in the same render as the root onboarding
       // overlay, so waiting for finally leaves iOS presenting a disabled modal

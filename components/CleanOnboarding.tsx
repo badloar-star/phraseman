@@ -55,8 +55,6 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { computeHeightScale, isShortScreen } from '../constants/layout-scale';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
 import { signInRefusalCopyFor } from '../app/account_sync_copy';
-import AccountDeletedNotice from './AccountDeletedNotice';
-import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
 import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { LUM, SUITE } from '../constants/motionHybrid';
@@ -2328,11 +2326,6 @@ function CleanOnboarding({
   // subtitle), ужимают его этим флагом — ScreenFrame их стилями не управляет.
   const { height: onboardingWindowHeight } = useWindowDimensions();
   const shortScreen = isShortScreen(onboardingWindowHeight);
-  // зачем: подтверждение только что выполненного удаления аккаунта. Забираем
-  // пометку в инициализаторе useState — ровно один раз за монтирование, ДО
-  // первого кадра, поэтому плашка не «доезжает» вторым кадром и не дёргает
-  // геометрию (layout stability). Повторные ре-рендеры пометку уже не увидят.
-  const [accountDeletedNotice, setAccountDeletedNotice] = useState(consumeAccountDeletedNotice);
   const [step, setStep] = useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome');
   const [restored, setRestored] = useState(false);
   const [authMode, setAuthMode] = useState(false);
@@ -4159,22 +4152,8 @@ function CleanOnboarding({
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
-      {accountDeletedNotice && (
-        <AccountDeletedNotice
-          onDone={() => setAccountDeletedNotice(false)}
-          message={triLang(lang, {
-            ru: 'Ты удалил(а) все свои данные',
-            uk: 'Ти видалив(ла) всі свої дані',
-            en: 'You deleted all your data',
-            es: 'Has eliminado todos tus datos',
-            'pt-BR': 'Você excluiu todos os seus dados',
-            vi: 'Bạn đã xóa toàn bộ dữ liệu của mình',
-            id: 'Kamu telah menghapus semua datamu',
-            tr: 'Tüm verilerini sildin',
-            pl: 'Usunięto wszystkie Twoje dane',
-          })}
-        />
-      )}
+      {/* зачем (правило владельца 22.09, координатор 12.10): плашки «Ты удалил(а) все свои данные» здесь больше нет —
+          уведомлений об удалении не показываем никогда. Вид онбординга не тронут. */}
     </View>
     </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>

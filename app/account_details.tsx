@@ -341,9 +341,11 @@ export default function AccountDetailsScreen() {
                   title={logoutActionLabel}
                   accessibilityLabel={logoutActionLabel}
                   haptic={false}
-                  // зачем (владелец, 2026-08-31): «никаких модалов, просто мгновенный
-                  // выход» — окно подтверждения убрано, выход стартует сразу.
-                  onPress={() => { doHaptic(); setLogoutStage('wiping'); }}
+                  // зачем (координатор 12.10, аудит COVERAGE_AUDIT_R1 §C): одно окно «Выйти из аккаунта?»
+                  // перед выходом — случайный тап больше не выкидывает из аккаунта. Решение владельца 31.08
+                  // «никаких модалов» было про четыре окна-БЛОКИРОВКИ после тапа; их по-прежнему нет:
+                  // после «Выйти» выход идёт сразу, без сети — форсированно с локальной аварийной копией.
+                  onPress={() => { doHaptic(); setLogoutStage('confirm'); }}
                 />
               ) : null}
               <SettingsGlassRow

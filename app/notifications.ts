@@ -1197,7 +1197,10 @@ export type NotifCategory =
   | 'gifts'
   // «Вместе» (friends_together §1.3): пуш «Позвал(а)» от друга. Локальных
   // напоминаний нет (см. CATEGORY_LOCAL_TYPES ниже) — шлёт только сервер по чужому тапу.
-  | 'friends';
+  | 'friends'
+  // Шпиль (первый выпуск, макет profile.html PRF-04 «События Шпиля»): недельный итог и угроза зоне.
+  // Локальных напоминаний нет — шлёт только сервер (functions/src/spire_notifications.ts читает pushPrefs.league).
+  | 'spire';
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
 export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
@@ -1215,6 +1218,8 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     // «Вместе»: по умолчанию включено, как и остальные социальные категории;
     // получатель может выключить в настройках (friendsNudge это уважает).
     friends: true,
+    // зачем: по умолчанию включено — как раньше, когда пуши Шпиля нельзя было выключить отдельно.
+    spire: true,
   },
 };
 
@@ -1232,6 +1237,8 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
   // пуш по тапу другого человека. Отменять здесь нечего.
   friends: [],
+  // Шпиль — только серверные пуши; отменять локально нечего.
+  spire: [],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {
@@ -1241,6 +1248,11 @@ function normalizeNotifPrefs(raw: unknown): NotifPrefs {
     const v = src.categories?.[key];
     if (typeof v === 'boolean') categories[key] = v;
   }
+  // зачем (ревью 11.10): Шпиль заменил Лигу (D54/D74). Старые сборки писали тумблер «Лига» в categories.league
+  // и pushPrefs.league=false на сервер. Если spire ещё не сохранён — наследуем выбор «Лиги», иначе экран
+  // покажет «вкл», а сервер будет молчать.
+  const legacyLeague = (src.categories as Record<string, unknown> | undefined)?.league;
+  if (typeof src.categories?.spire !== 'boolean' && typeof legacyLeague === 'boolean') categories.spire = legacyLeague;
   return { master: typeof src.master === 'boolean' ? src.master : true, categories };
 }
 
@@ -1331,6 +1343,8 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
     .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
+      // зачем (profile-006, 11.10): тумблер «События Шпиля» → pushPrefs.league, который сервер Шпиля уже уважает.
+      league: normalized.master && normalized.categories.spire,
     }))
     .catch(swallowError('notifications:saveNotifPrefs'));
 };

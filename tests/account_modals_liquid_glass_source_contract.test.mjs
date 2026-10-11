@@ -46,7 +46,9 @@ test('NicknameEditModal: шторка Liquid Glass, вся логика смен
 test('DeleteAccountConfirmModal: слово-подтверждение, деструктив только семантикой ошибки, логика удаления цела', () => {
   assert.ok(del.includes('glass.opaqueSheet'), 'непрозрачная основа');
   assert.ok(del.includes('t.wrongBg') && del.includes('t.wrong'), 'деструктивное действие — цвет ошибки');
-  for (const token of ['beginAccountDeletion()', 'deleteConfirmMatches', 'deleteInFlightRef', 'markAccountDeletedNoticePending()',
+  // 12.10: плашки об удалении нет (правило владельца 22.09 «уведомлений об удалении не показывать никогда»).
+  assert.ok(!del.includes('markAccountDeletedNoticePending()'), 'уведомление об удалении не ставится');
+  for (const token of ['beginAccountDeletion()', 'deleteConfirmMatches', 'deleteInFlightRef',
     "emitAppEvent('account_deleted')", 'showInfoAlert(', 'runDangerShake', 'scrollContent={false}', 'avoidKeyboard',
     'keyboardShouldPersistTaps="handled"']) {
     assert.ok(del.includes(token), token);

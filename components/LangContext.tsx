@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
-import { Platform } from 'react-native';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { DeviceEventEmitter, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
@@ -9,6 +9,19 @@ import { persistPortablePreference, readPortablePreference } from '../app/phone_
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type { Lang };
+
+/** Событие смены языка интерфейса: модульные кэши вне React (строки, отформатированные списки)
+ *  сбрасываются по нему, чтобы ни один раздел не держал старый язык. Полезная нагрузка — { lang, previous }. */
+export const APP_LANG_CHANGED = 'app_lang_changed';
+export type AppLangChangedEvent = { lang: Lang; previous: Lang };
+function emitAppLangChanged(lang: Lang, previous: Lang): void {
+  try {
+    const payload: AppLangChangedEvent = { lang, previous };
+    DeviceEventEmitter.emit(APP_LANG_CHANGED, payload);
+  } catch (error: unknown) {
+    console.warn(`[LANG-SWITCH] emit_failed lang=${lang} reason=${error instanceof Error ? error.message : String(error)}`);
+  }
+}
 const RU = {
   tabs: {
     home: 'Главная', lessons: 'Уроки', flashcards: 'Карточки',
@@ -1206,10 +1219,17 @@ function initialLangFromPeekOrDevice(): Lang {
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   const [lang, setLangState] = useState<Lang>(() => initialLangFromPeekOrDevice());
   const [langHydrated, setLangHydrated] = useState(false);
+  // зачем (аудит смены языка 11.10): человек мог сменить язык раньше, чем дочиталось app_lang с диска —
+  // тогда позднее чтение НЕ должно затереть его выбор старым значением.
+  const userChangedLangRef = useRef(false);
 
   useEffect(() => {
     readPortablePreference('app_lang')
       .then(v => {
+        if (userChangedLangRef.current) {
+          if (__DEV__) console.log(`[LANG-SWITCH] hydrate_skipped stored=${String(v)} reason=user_changed_before_hydration`);
+          return;
+        }
         writePeekAppLang(typeof v === 'string' ? v : null);
         const storedLang = coerceInterfaceLang(v);
         if (!storedLang) {
@@ -1230,19 +1250,74 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
       });
   }, []);
 
+  // зачем (первый выпуск, смена языка 11.10): язык интерфейса меняется МГНОВЕННО во всех разделах —
+  // сначала состояние и peek, запись на диск догоняет фоном (раньше UI ждал AsyncStorage). Ошибка записи —
+  // откат к прежнему языку + лог. Модульные кэши вне React узнают о смене событием APP_LANG_CHANGED.
+  const langRef = useRef<Lang>(lang);
+  langRef.current = lang;
   const setLang = useCallback(async (l: Lang) => {
+    const previous = langRef.current;
+    const startedAt = Date.now();
     if (!isInterfaceLangEnabled(l)) {
+      userChangedLangRef.current = true;
+      console.warn(`[LANG-SWITCH] ui_lang_rejected requested=${l} previous=${previous} reason=lang_not_enabled → ru`);
       persistPortablePreference('app_lang', 'ru').catch(noteSwallowedHandler('LangContext:promise_3'));
       writePeekAppLang(null);
+      langRef.current = 'ru';
       setLangState('ru');
+      if (previous !== 'ru') emitAppLangChanged('ru', previous);
       return;
     }
-    await persistPortablePreference('app_lang', l);
+    if (l === previous) {
+      // зачем (ревью 11.10): на первом запуске язык взят из локали устройства и app_lang ещё не записан —
+      // многие модули читают его с диска напрямую. Состояние не трогаем, но выбор записываем фоном.
+      if (__DEV__) console.log(`[LANG-SWITCH] ui_lang_same lang=${l} → состояние без изменений, запись фоном`);
+      persistPortablePreference('app_lang', l).catch(noteSwallowedHandler('LangContext:same_lang_persist'));
+      return;
+    }
+    // Флаг ставим только при реальной смене: повторный тап по уже выбранному языку не должен отменять гидрацию.
+    userChangedLangRef.current = true;
+    if (__DEV__) console.log(`[LANG-SWITCH] ui_lang_apply from=${previous} to=${l} source=settings (state+peek сразу, запись фоном)`);
     writePeekAppLang(l);
+    // зачем (ревью 11.10): ref обновляем сразу, а не только на рендере — иначе быстрый второй вызов
+    // или ранний отказ записи увидят устаревшее значение и откатят не тот язык.
+    langRef.current = l;
     setLangState(l);
+    emitAppLangChanged(l, previous);
+    try {
+      await persistPortablePreference('app_lang', l);
+      if (__DEV__) console.log(`[LANG-SWITCH] ui_lang_persisted lang=${l} ms=${Date.now() - startedAt}`);
+    } catch (error: unknown) {
+      // Откат — только если на «диске» (сначала проекция phone_state, потом AsyncStorage) действительно
+      // остался прежний язык: persistPortablePreference мог успеть записать проекцию, и тогда после
+      // перезапуска прочитается новый язык — откатывать экран в этом случае нельзя.
+      const reason = error instanceof Error ? error.message : String(error);
+      let stored: unknown = null;
+      try {
+        stored = await readPortablePreference('app_lang');
+      } catch (readError: unknown) {
+        console.warn(`[LANG-SWITCH] ui_lang_persist_check_failed reason=${readError instanceof Error ? readError.message : String(readError)}`);
+      }
+      const storedLang = coerceInterfaceLang(stored);
+      if (storedLang === l) {
+        console.warn(`[LANG-SWITCH] ui_lang_persist_partial to=${l} reason=${reason} stored=${String(stored)} → оставляем новый язык`);
+        return;
+      }
+      console.warn(`[LANG-SWITCH] ui_lang_persist_failed to=${l} rollback=${previous} stored=${String(stored)} reason=${reason}`);
+      if (langRef.current === l) {
+        langRef.current = previous;
+        writePeekAppLang(previous);
+        setLangState(previous);
+        emitAppLangChanged(previous, l);
+      } else {
+        console.warn(`[LANG-SWITCH] ui_lang_rollback_skipped current=${langRef.current} failed=${l} reason=newer_choice`);
+      }
+      return;
+    }
     if (STUDY_TARGET_RESET_LANGS.has(l)) {
       await resetDevStudyTargetForSpanishUi();
       emitDevStudyTargetChanged();
+      if (__DEV__) console.log(`[LANG-SWITCH] ui_lang_dev_study_target_reset lang=${l}`);
     }
   }, []);
 

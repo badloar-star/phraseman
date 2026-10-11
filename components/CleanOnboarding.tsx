@@ -3221,6 +3221,11 @@ function CleanOnboarding({
       return;
     }
     finishingRef.current = true;
+    // зачем (координатор 12.10, [JS-STALL] 344/309/601 мс при входе на «Напомним до конца пробного»; СПЕРВА ЛОГИ): время каждого
+    // звена «Продолжить» на шаге «Имя» — чтобы увидеть, что из записи согласий / аналитики / облака держит JS-поток.
+    const stallT0 = Date.now();
+    const stallLap = (label: string) => console.log(`[ONB-STALL] name_finish:${label} +${Date.now() - stallT0}ms`); // guard-ok: единичный лог на тап
+    stallLap(`enter analyticsAllowed=${String(analyticsAllowed)} source=${String(source)} age=${String(ageAnswer)}`);
     try {
       const currentLevel = levelToCurrentLevel(selectedLevel);
       // Анкета плана удалена вместе с планами (владелец, 2026-08-16): профиль
@@ -3257,6 +3262,7 @@ function CleanOnboarding({
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
+      stallLap('multiSet_done');
       // зачем (TG-C8E5C56B2F02): если вход засчитают позже, метку автоника этой анкеты снимут.
       authCompletionRef.current.questionnaireWritten = true;
       // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
@@ -3264,8 +3270,10 @@ function CleanOnboarding({
       // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
       // по GDPR ст. 5(1)(c). Пишем ровно тот факт, который пользователь подтвердил.
       await confirmAdultAgeAttestation().catch(noteSwallowedAs('CleanOnboarding:useCallback.confirmAdultAgeAttestation', null));
+      stallLap('ageAttestation_done');
       if (analyticsAllowed) {
         await setAnalyticsConsent('granted').catch(noteSwallowedAs('CleanOnboarding:useCallback.setAnalyticsConsent', null));
+        stallLap('analyticsConsent_granted_done');
         if (source) {
           trackOnboarding('onboarding_source_select', {
             source,
@@ -3283,6 +3291,7 @@ function CleanOnboarding({
         await setAnalyticsConsent('denied').catch(noteSwallowedAs('CleanOnboarding:useCallback.setAnalyticsConsent_2', null));
       }
       void recordConsentToCloud().catch(noteSwallowedAs('CleanOnboarding:useCallback.recordConsentToCloud', null));
+      stallLap('consent_to_cloud_started');
     } finally {
       finishingRef.current = false;
     }
@@ -3292,6 +3301,7 @@ function CleanOnboarding({
     // Двойной тап в этом окне держат paywallTransitionBusyRef (эффекты пейвола)
     // и finishingRef/completedRef внутри completeOnboarding.
     await advanceOrComplete('name');
+    stallLap('advance_done');
   }, [
     advanceOrComplete,
     ageAnswer,

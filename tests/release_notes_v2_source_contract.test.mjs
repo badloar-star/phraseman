@@ -13,7 +13,8 @@ test('release 2.0 notes have a separate approved three-item copy', () => {
   for (const line of [
     'Что нового · 2.0',
     'Новый PhraseMan',
-    'Шпиль вместо лиги',
+    // §CORE-0168: заголовок без Шпиля — он скрыт в стор-сборке (сторож release_notes_v2_store_surface_guard).
+    'Новый дизайн и темы',
     'Карточки из видео',
     'Фразы из роликов — одной кнопкой в свои наборы',
     'Энергия проще',

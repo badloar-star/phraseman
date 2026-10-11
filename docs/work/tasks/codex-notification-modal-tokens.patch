@@ -1,0 +1,32 @@
+НЕ НАКЛАДЫВАТЬ (координатор 06:50, Ядро §CORE-0168): этот патч уже входит в system-modals-typography-and-triLang.patch (коммит 2b20ddaa8) и конфликтует с ним в components/NotificationPermissionModalHybrid.tsx. Накладывать только system-modals.
+
+diff --git a/components/NotificationPermissionModalHybrid.tsx b/components/NotificationPermissionModalHybrid.tsx
+--- a/components/NotificationPermissionModalHybrid.tsx
++++ b/components/NotificationPermissionModalHybrid.tsx
+@@ -125,7 +125,7 @@ function NotificationPermissionModalHybrid({
+ 
+   return (
+     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onCancel}>
+-      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
++      <Pressable onPress={handleCancel} accessible={false} style={[styles.backdrop, { backgroundColor: glass.scrim, paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
+         <Pressable onPress={(event) => event.stopPropagation()} accessible={false} style={[styles.card, { backgroundColor: glass.sheet, paddingBottom: Math.max(18, insets.bottom + 12) }]}>
+           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+             <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+@@ -176,7 +176,7 @@ function NotificationPermissionModalHybrid({
+ export default memo(NotificationPermissionModalHybrid);
+ 
+ const styles = StyleSheet.create({
+-  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22, backgroundColor: 'rgba(0,0,0,0.62)' },
++  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22 },
+   card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 26, paddingHorizontal: 20, paddingTop: 26, overflow: 'hidden' },
+   scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
+   scrollContentInner: { paddingBottom: 14 },
+@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
+     alignItems: 'center',
+     justifyContent: 'center',
+     paddingHorizontal: 18,
+-    shadowColor: '#000000',
++    shadowColor: '#000000', // theme-exempt: тень кнопки всегда чёрная, не зависит от темы
+     shadowOffset: { width: 0, height: 5 },
+     shadowOpacity: 0.22,
+     shadowRadius: 8,

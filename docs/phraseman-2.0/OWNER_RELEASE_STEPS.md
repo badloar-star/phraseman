@@ -104,6 +104,14 @@ firebase deploy --only hosting:admin --project phraseman-ea0b3
 
 ---
 
+### 1.6. Окно «Что нового» и тексты для магазинов
+
+- **Тексты «Что нового»** для Google Play и App Store на 9 языках — в [STORE_WHATS_NEW.md](STORE_WHATS_NEW.md), каждый
+  до 500 знаков.
+- **Окно «Что нового» в приложении сейчас выключено.** Перед сборкой релиза в
+  [release_notes_v2_gate.ts](../../app/release_notes_v2_gate.ts) функция `configuredV2Release` должна вернуть
+  `{ minBuildId: 131, newUserCutoffMs: <момент выхода> }`. Иначе окно никто не увидит.
+
 ## 2. Переменные сборки EAS (профиль production)
 
 Значения живут в EAS, сюда не пишутся. Проверить, что все на месте:
@@ -150,9 +158,8 @@ git apply docs/work/tasks/learning-v2-gate-store-skip.patch
    ⚠️ Он **уже включает**
    [codex-notification-modal-tokens.patch](../work/tasks/codex-notification-modal-tokens.patch): эти два патча
    конфликтуют, второй отдельно **не накладывать**.
-3. **[aa-settings-forced-switch-recovery.patch](../work/tasks/aa-settings-forced-switch-recovery.patch)** —
-   восстановление после принудительной смены аккаунта в Настройках (сессия Авторизации). Накладывать по решению
-   координатора.
+3. ~~aa-settings-forced-switch-recovery.patch~~ — **уже применён «Ядром» 11.10** (решение координатора 06:50):
+   восстановление после принудительной смены аккаунта в Настройках. Накладывать больше не нужно.
 
 Те же две команды (`--check`, затем без него) — для каждого файла.
 

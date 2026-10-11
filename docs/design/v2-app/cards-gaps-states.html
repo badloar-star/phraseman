@@ -41,6 +41,7 @@
   .gs-shdr .cnt { font-size: 15px; color: var(--sec); font-weight: 600; font-variant-numeric: tabular-nums; }
   .gs-pillc { display: inline-flex; align-items: center; gap: 7px; height: 37px; padding: 0 12px; border-radius: 19px; background: var(--gs-ti); box-shadow: var(--gs-sh2); font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .gs-pillc img { width: 18px; height: 18px; border-radius: 50%; display: block; }
+  .gs-pillc.h { gap: 4px; padding: 0 11px; }
   .gs-trk { height: 6px; border-radius: 3px; background: var(--track); margin-top: 18px; position: relative; }
   .gs-trk i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: #E9E9EB; }
 
@@ -61,8 +62,8 @@
   .gs-mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
   .gs-mgrid.dis { opacity: .48; }
   .gs-mt { border-radius: 20px; padding: 16px; min-height: 112px; display: flex; flex-direction: column; justify-content: space-between; }
-  .gs-mt .n { font-size: 18px; font-weight: 700; margin-top: 14px; }
-  .gs-mt .s { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .gs-mt .n { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 14px; }
+  .gs-mt .s { font-size: 13px; color: var(--sec); margin-top: 2px; }
   .gs-sr { display: flex; align-items: center; gap: 14px; min-height: 62px; margin-top: 10px; border-radius: 20px; padding: 10px 16px 10px 10px; }
   .gs-sr .x { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
   .gs-pick-t { font-size: 22px; line-height: 28px; font-weight: 700; padding: 0 6px 6px; }
@@ -167,10 +168,10 @@
   .gs-cr .st { font-size: 14px; line-height: 18px; color: var(--sec); margin-top: 2px; }
 
   /* ---------- «Голос озвучки · EN» ---------- */
-  .gs-vh { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+  .gs-vh { display: flex; align-items: center; justify-content: space-between; height: 52px; }
   .gs-vh .ti { font-size: 20px; line-height: 26px; font-weight: 700; }
-  .gs-vlab { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 20px 4px 12px; }
-  .gs-rates { display: flex; gap: 8px; padding-top: 3px; }
+  .gs-vlab { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 22px 0 0; }
+  .gs-rates { display: flex; gap: 8px; margin-top: 10px; }
   .gs-rate { flex: 1; text-align: center; border-radius: 14px; padding: 10px 0; color: var(--muted); }
   .gs-rate b { display: block; font-size: 15px; line-height: 20px; font-weight: 600; }
   .gs-rate s { display: block; text-decoration: none; font-size: 12px; line-height: 16px; margin-top: 1px; color: var(--muted); }
@@ -235,8 +236,9 @@
       <div class="flex" style="align-items:flex-start;gap:12px"><div class="grow"><div class="dt1">${t}</div><div class="ds">${sub}</div></div>${right}</div>
       <div class="dw">${words.map((w) => `<span class="gs-mc">${w}</span>`).join('')}</div></div></div>`;
   const playBtn = `<span class="gs-rb t" style="background:var(--cta);color:var(--cta-ink)">${ic('play', 's20')}</span>`;
-  const sessHdr = (t, n) => `<div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">${t}</div>${n ? `<span class="cnt">${n}</span>` : ''}</div>`;
+  const sessHdr = (t, n, extra) => `<div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">${t}</div>${n ? `<span class="cnt">${n}</span>` : ''}${extra || ''}</div>`;
   const prog = (w) => `<div class="gs-trk"><i style="width:${w}%"></i></div>`;
+  const hud = () => `<span class="gs-pillc h">${[0, 1, 2].map(() => ic('heartF', 's16')).join('')}</span><span class="gs-pillc">${ic('boltF', 's16')}5</span>`;
   const coinPill = (n) => `<span class="gs-pillc">${coinImg(5, 18)}${n}</span>`;
 
   // кадр ролика — монохромная сцена (как в cards-v2)
@@ -298,7 +300,7 @@
       ${o.btn ? `<span class="cta sm t gs-st-b">${o.btnIcon || ''}${o.btn}</span>` : ''}</div>`;
   // зачем: в «Напиши» шапка — плашка монет сверху справа, затем «закрыть», название и кнопка «Выбрать наборы» (значок albums); счёта нет, полоса пустая
   const recallHdr = () => `<div class="flex" style="justify-content:flex-end;margin-top:6px">${coinPill('1 240')}</div>
-      <div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">Напиши</div><span class="gs-rb t">${X.albums20}</span></div>${prog(0)}`;
+      <div class="gs-shdr"><span class="gs-rb l t">${ic('close', 's20')}</span><div class="tl">Напиши</div>${hud()}<span class="gs-rb t">${X.albums20}</span></div>${prog(0)}`;
 
   // 1–2. Блиц / Устно: «Тренировка не открылась» — только панель, без шапки
   const quotaFail = () => phone('', { time: '9:41', fixed: stage({ icon: X.cloudOff, msg: 'Тренировка не открылась. Попробуй ещё раз.', btn: 'Попробовать снова', btnIcon: X.refresh }) });
@@ -316,8 +318,8 @@
   const recallEmpty = () => phone(recallHdr(), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'В выбранных наборах нет карточек с переводом.', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
   const recallUnavailable = () => phone(recallHdr(), { time: '9:41', fixed: stage({ top: 190, icon: X.layers26, msg: 'Сейчас недоступно', btn: 'Попробовать снова', btnIcon: X.refresh }) });
   // 10. Устно — пусто
-  // зачем: в коде номер в шапке «Устно» при пустой очереди считается как «1 / 1» (speakingProgress: total = max(1, длина)) — рисуем как в приложении
-  const speakEmpty = () => phone(`${sessHdr('Устно', '1 / 1')}${prog(0)}`, { time: '9:41', fixed: stage({ top: 150, icon: X.mic26, msg: 'Здесь пока нечего говорить — выбери наборы', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
+  // зачем (аудит 7a207bc4a): при пустой очереди счёта «1 / 1» и полосы нет — в шапке только название и сердца + энергия
+  const speakEmpty = () => phone(`${sessHdr('Устно', '', hud())}`, { time: '9:41', fixed: stage({ top: 150, icon: X.mic26, msg: 'Здесь пока нечего говорить — выбери наборы', btn: 'Выбрать наборы', btnIcon: X.albums20 }) });
   // 11–12. Шторка режима при раннем тапе
   const modeTile = (i, n, s) => `<div class="gs-mt gs-pl"><span class="gs-tl b46">${ic(i, 's22')}</span><div><div class="n">${n}</div><div class="s">${s}</div></div></div>`;
   const modeSheetInner = (sub, retry) => `<div class="gs-sheadt">Режим тренировки</div><div class="gs-sheads">${sub}</div>${retry ? `<div class="gs-sheadr t">${retry}</div>` : ''}
@@ -337,8 +339,9 @@
   const modRemoved = () => alertFrame('Набор снят с продажи', `Путешествия\n\n${SID}`);
 
   // 18–22. «В какой набор?»
-  const sr = (i, t) => `<div class="gs-sr gs-pl t"><span class="gs-tl b42">${ic(i, 's20')}</span><div class="x">${t}</div></div>`;
-  const pickList = () => `<div class="gs-pick-t">В какой набор?</div>${sr('layers', 'Путешествия')}${sr('layers', 'Работа')}${sr('layers', 'Фразовые глаголы')}`;
+  const sr = (i, t) => `<div class="gs-sr gs-pl t"><span class="gs-tl b42">${i.startsWith('<') ? i : ic(i, 's20')}</span><div class="x">${t}</div></div>`;
+  const pickList = () => `<div class="gs-pick-t">В какой набор?</div>${sr(X.albums20, 'Путешествия')}${sr(X.albums20, 'Работа')}${sr(X.albums20, 'Фразовые глаголы')}`;
+  const pickOnlyPublished = () => `<div class="gs-pick-t">В какой набор?</div><div class="gs-pick-e">Нет наборов, куда можно добавить</div>${sr('plus', 'Создать набор')}`;
   const pickEmpty = () => `<div class="gs-pick-t">В какой набор?</div><div class="gs-pick-e">Своих наборов пока нет</div>${sr('plus', 'Создать набор')}`;
   const toast = (kind, msg) => { const [i, l] = { success: [X.checkC, 'Готово'], error: [X.alertC, 'Что-то пошло не так'], info: [X.infoC, 'Сообщение'] }[kind]; return `<div class="gs-toast"><i class="rail"></i><span class="tb">${i}</span><div class="tc"><div class="tk">${l}</div><div class="tm">${msg}</div></div></div>`; };
   const dimSaved = () => `<div style="opacity:.5">${bgSaved()}</div>`;
@@ -347,7 +350,7 @@
 
   // 23–24. Фильтр
   const dd = (act) => { const r = (k, l, inner) => `<div class="r${inner ? ' i' : ''}${act === k ? ' on' : ''}"><span>${l}</span>${act === k ? ic('check', 's16') : ''}</div>`;
-    return `<div class="gs-dd">${r('all', 'Все')}<div class="g">Уроки</div>${r('l1', 'Урок 1', 1)}${r('l3', 'Урок 3', 1)}${r('l12', 'Урок 12', 1)}<div class="g">Прочее</div>${r('verb', 'Глаголы', 1)}${r('dialog', 'Диалоги', 1)}${r('word', 'Слова', 1)}${r('video', 'Фразы из видео', 1)}</div>`; };
+    return `<div class="gs-dd">${r('all', 'Все')}<div class="g">Уроки</div>${r('l1', 'Урок 1', 1)}${r('l3', 'Урок 3', 1)}${r('l12', 'Урок 12', 1)}<div class="g">Прочее</div>${r('verb', 'Глаголы', 1)}${r('dialog', 'Диалоги', 1)}${r('word', 'Слова', 1)}${r('daily', 'Фраза дня', 1)}${r('video', 'Фразы из видео', 1)}</div>`; };
   const filterFrame = (act, list) => phone(bgSaved(list), { time: '9:41', fixed: savedFab, overlay: dd(act) });
 
   // 25–35. Тосты
@@ -356,10 +359,10 @@
   const T_DEL = { cnt: 'В наборе должно остаться минимум 10 карточек.', pend: 'Набор на проверке — удалить сейчас нельзя.', net: 'Нет связи — карточку не удалось удалить.' };
 
   // 36–38. Голос озвучки
-  const vhead = `<div class="gs-vh"><span class="rb bare t">${ic('back', 's24')}</span><span class="ti">Голос озвучки · EN</span><span style="width:30px"></span></div>`;
+  const vhead = `<div class="gs-vh"><span class="rb bare t">${ic('back', 's28')}</span><span class="ti">Голос озвучки · EN</span><span style="width:28px"></span></div>`;
   const rate = (lbl, v, on) => `<div class="gs-rate gs-pl t${on ? ' on' : ''}"><b>${lbl}</b><s>${v}x</s></div>`;
   const vrow = (name, lng, enh, on) => `<div class="gs-vrow gs-pl t${on ? ' on' : ''}"><span class="rd">${on ? X.radioOn : X.radioOff}</span><div class="tx"><div class="nm">${name}${enh ? '<span class="gs-enh">Улучшенный</span>' : ''}</div>${lng ? `<div class="lg">${lng}</div>` : ''}</div><span class="gs-vprev">${ic('vol', 's18')}</span></div>`;
-  const voiceBody = (sel, voices) => `${vhead}<div class="gs-vlab" style="margin-top:12px">Скорость речи</div>
+  const voiceBody = (sel, voices) => `${vhead}<div class="gs-vlab" style="margin-top:4px">Скорость речи</div>
       <div class="gs-rates">${rate('Медленно', '0.7', false)}${rate('Норма', '0.9', true)}${rate('Быстро', '1.0', false)}</div>
       <div class="gs-vlab">Голос</div>
       ${vrow('Системный (авто)', '', false, sel === 'sys')}${voices.map(([n, l, e]) => vrow(n, l, e, sel === n)).join('')}
@@ -368,9 +371,9 @@
   const VOICES = [['Samantha', 'en-US', true], ['Daniel', 'en-GB', true], ['Karen', 'en-AU', false], ['Moira', 'en-IE', false]];
   const voiceMain = () => phone(voiceBody('Samantha', VOICES), { time: '9:41' });
   const voiceOnlySystem = () => phone(voiceBody('sys', []), { time: '9:41' });
-  const voiceLoading = () => phone(`${vhead}<div class="gs-sk" style="width:140px;height:13px;margin:12px 4px 12px"></div>
-      <div style="display:flex;gap:8px">${[0, 1, 2].map(() => '<div class="gs-sk" style="width:92px;height:38px;border-radius:12px"></div>').join('')}</div>
-      <div class="gs-sk" style="width:110px;height:13px;margin:24px 4px 12px"></div>
+  const voiceLoading = () => phone(`${vhead}<div class="gs-sk" style="width:140px;height:13px;margin:4px 0 0"></div>
+      <div style="display:flex;gap:8px;margin-top:10px">${[0, 1, 2].map(() => '<div class="gs-sk" style="width:92px;height:38px;border-radius:12px"></div>').join('')}</div>
+      <div class="gs-sk" style="width:110px;height:13px;margin:22px 0 0"></div>
       ${[0, 1, 2, 3, 4].map(() => '<div class="gs-sk" style="width:100%;height:62px;border-radius:16px;margin-top:10px"></div>').join('')}`, { time: '9:41' });
 
   // =====================================================================
@@ -418,6 +421,8 @@
       col('Выбор голоса (выбран «Samantha»)', voiceMain()),
       col('Загрузка списка голосов', voiceLoading()),
       col('Список пуст — только «Системный (авто)»', voiceOnlySystem())]],
+    ['pick2', '«В какой набор?»: есть только опубликованные наборы', 'У автора нет ни одного набора, куда можно добавить карточку, но опубликованные есть (в них добавлять нельзя). Текст другой, кнопка «Создать набор» остаётся.', [
+      col('Нет наборов, куда можно добавить', pickFrame(pickOnlyPublished()))]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

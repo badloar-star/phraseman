@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пейволл Plus — цена и покупка</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 1 — «Пейвол Plus: цена и покупка», реестр paywalls-011…016 и 018, без 017 «Уход с пейволла»:
+     перехвата выхода нет, D115). Окно — та же шторка «вариант 1» из paywall-context-redesign.html (утверждена владельцем), которую уже собрал код:
+     components/paywall/PaywallPlus.tsx, PaywallPlusScreen.tsx, app/paywall_purchase.ts, диалоги — components/v2/GlassAlertDialog.tsx.
+     Все тексты — русские строки из кода, ничего не выдумано; картинок нет. Размеры текста только 16 и 13 (крупно только заголовки шторки и окна по коду). Обводки — только 1px полупрозрачные.
+     Каждое состояние показано дважды: тёмная «Аврора» и светлая тема. Цены и пробный период в макете примерные — их отдаёт магазин. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --w-sheet: rgba(24,24,29,.985); --w-surf: #1D1D22; --w-hi: rgba(255,255,255,.14); --w-tx: #fff; --w-sc: #A6A6A8; --w-mu: #75757A; --w-edge: rgba(255,255,255,.13); --w-ink: var(--on); --w-dim: rgba(0,0,0,.62); color: var(--w-tx); }
+  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); --w-ink: #fff; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; }
+  .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  /* подложка — экран, откуда открылось окно */
+  .wund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; }
+  .wund .t1 { font-size: 28px; font-weight: 700; } .wund .r { height: 64px; border-radius: 18px; background: var(--w-surf); margin-top: 12px; }
+  .wdim { position: absolute; inset: 0; z-index: 20; background: var(--w-dim); }
+  /* шторка */
+  .wsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; background: var(--w-sheet); box-shadow: inset 0 1.5px 0 -.2px var(--w-hi), inset 0 0 0 1px var(--w-edge); padding-bottom: 30px; }
+  .whd { width: 40px; height: 5px; border-radius: 3px; background: var(--w-edge); margin: 8px auto 0; }
+  .wctx { display: flex; align-items: center; gap: 12px; padding: 14px 14px 0 20px; }
+  .wtile { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex: none; color: var(--acc); background: color-mix(in srgb, var(--acc) 18%, transparent); }
+  .wpill { min-height: 32px; border-radius: 16px; padding: 0 13px; display: flex; align-items: center; background: var(--w-surf); font-size: 13px; line-height: 18px; font-weight: 700; }
+  .wcl { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--w-surf); flex: none; margin-left: auto; }
+  .wh1 { margin: 16px 20px 0; font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.5px; }
+  .wsub { margin: 6px 20px 0; font-size: 16px; line-height: 22px; color: var(--w-sc); }
+  .wbody { padding: 14px 16px 18px; }
+  .wlead { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 22px; background: var(--w-surf); }
+  .wlead .ok { width: 28px; height: 28px; border-radius: 50%; background: var(--acc); color: var(--w-ink); display: flex; align-items: center; justify-content: center; flex: none; }
+  .wlead .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wrow { display: flex; gap: 10px; margin-top: 14px; } .wcell { flex: 1; min-width: 0; }
+  .wcard { min-height: 160px; border-radius: 22px; padding: 14px; background: var(--w-surf); }
+  .wcard.on { background: color-mix(in srgb, var(--acc) 14%, var(--w-surf)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); }
+  .wnm { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wbadge { min-height: 22px; padding: 0 9px; border-radius: 11px; background: var(--acc); color: var(--w-ink); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; }
+  .wbig { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; } .wmon { font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wsm { font-size: 13px; line-height: 18px; color: var(--w-sc); } .wstr { font-size: 13px; line-height: 18px; color: var(--w-mu); text-decoration: line-through; }
+  .wtrial { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px; box-shadow: inset 0 1px 0 var(--w-edge); font-size: 13px; line-height: 18px; font-weight: 700; color: var(--acc); }
+  .wphome .wcard { opacity: .5; }
+  /* скелет и «недоступно» */
+  .wsk { min-height: 160px; border-radius: 22px; background: linear-gradient(100deg, var(--w-surf) 30%, var(--w-hi) 50%, var(--w-surf) 70%); }
+  .wun { margin-top: 14px; min-height: 160px; border-radius: 22px; background: var(--w-surf); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 16px; text-align: center; }
+  .wun .a { font-size: 16px; line-height: 22px; font-weight: 700; } .wun .b { font-size: 13px; line-height: 18px; color: var(--w-sc); margin-top: 4px; }
+  .wretry { margin-top: 12px; min-height: 44px; padding: 0 16px; border-radius: 22px; background: var(--w-sheet); display: flex; align-items: center; font-size: 16px; font-weight: 700; }
+  /* промо магазина */
+  .wpromo { padding: 14px; border-radius: 18px; background: var(--w-surf); text-align: center; margin-bottom: 12px; }
+  .wpromo .k { font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--w-mu); }
+  .wpromo .rw { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .wpromo .pc { height: 35px; padding: 0 17px; border-radius: 18px; background: var(--w-sheet); display: inline-flex; align-items: center; align-self: center; font-size: 16px; font-weight: 700; }
+  .wpromo .pr { font-size: 21px; font-weight: 800; } .wpromo .st { font-size: 13px; font-weight: 700; color: var(--w-mu); text-decoration: line-through; } .wpromo .th { font-size: 13px; line-height: 21px; color: var(--w-sc); margin-top: 9px; }
+  /* закреплённая кнопка */
+  .wdock { padding: 14px 16px 0; }
+  .wcta { min-height: 58px; border-radius: 29px; padding: 12px 20px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--w-ink); font-size: 16px; line-height: 22px; font-weight: 700; text-align: center; box-shadow: 0 8px 26px color-mix(in srgb, var(--acc) 30%, transparent); }
+  .wcta.off { opacity: .55; }
+  .wfine { margin-top: 9px; font-size: 13px; line-height: 18px; text-align: center; color: var(--w-mu); }
+  .wlinks { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 14px; } .wlinks span { min-height: 44px; padding: 0 10px; display: flex; align-items: center; font-size: 13px; line-height: 18px; color: var(--w-mu); } .wlinks span.off { opacity: .45; }
+  .wspin { width: 24px; height: 24px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--w-ink) 30%, transparent); border-top-color: var(--w-ink); animation: wsp 900ms linear infinite; } @keyframes wsp { to { transform: rotate(360deg); } }
+  /* диалог (GlassAlertDialog) и тост (ActionToast) */
+  .wal { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 24px 60px rgba(0,0,0,.45); }
+  .wal .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; } .wal .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--w-sc); }
+  .wal .ac { display: flex; gap: 9px; margin-top: 18px; } .wal .bt { flex: 1; min-width: 0; min-height: 44px; border-radius: 22px; padding: 8px 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; line-height: 20px; font-weight: 700; background: var(--acc); color: var(--w-ink); } .wal .bt.gh { background: var(--w-surf); color: var(--w-tx); }
+  .wtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 14px 34px rgba(0,0,0,.4); }
+  .wtoast .ti { width: 41px; height: 41px; border-radius: 10px; background: var(--w-surf); display: flex; align-items: center; justify-content: center; flex: none; font-size: 22px; font-weight: 800; }
+  .wtoast .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 600; }
+  .wnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Пейволл Plus — цена и покупка</h1>
+  <p class="page-lead">Группа 1 из «экранов без макета» (реестр paywalls-011…016 и 018; «Уход с пейволла» не рисуем — перехвата выхода нет). Окно — утверждённая шторка «вариант 1», здесь все состояния цены и покупки: загрузка условий, ошибка до checkout, проверка покупки, диалоги ожидания и неизвестного результата, неподтверждённый статус, промо магазина. Каждое состояние в тёмной «Авроре» и в светлой теме. Тексты — из кода, цены примерные (их даёт магазин).</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const gift = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="4.5" rx="1"/><path d="M5 13.5V20h14v-6.5M12 9v11"/><path d="M12 9c-2.5 0-4.2-1-4.2-2.7S10.6 4 12 9zm0 0c2.5 0 4.2-1 4.2-2.7S13.4 4 12 9z"/></svg>';
+// контекст входа — утверждённый «Энергия закончилась» (paywall-context-texts.md): значок входа, пилюля «что закончилось», заголовок, фраза, выгода
+const CX = { icon: 'bolt', pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', ben: 'Занятия без ожидания' };
+const YEAR = '3 990 ₽', MON = '490 ₽', PER = '≈ 333 ₽ в месяц';
+const head = (o = {}) => `<div class="whd"></div><div class="wctx"><span class="wtile">${icon(CX.icon, 's24')}</span><span class="wpill">${CX.pill}</span><span class="wcl"${o.closeOff ? ' style="opacity:.45"' : ''}>${icon('close', 's18')}</span></div><div class="wh1">${CX.title}</div><div class="wsub">${CX.sub}</div>`;
+const lead = `<div class="wlead"><span class="ok">${icon('check', 's16')}</span><span class="tx">${CX.ben}</span></div>`;
+const plans = (o = {}) => `<div class="wrow${o.off ? ' wphome' : ''}"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div>${o.promo ? `<div class="wstr" style="margin-top:3px">${YEAR}</div>` : ''}<div class="wbig" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '2 790 ₽' : YEAR}</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">${PER}</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
+  <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div>${o.promo ? `<div class="wstr" style="margin-top:3px">${MON}</div>` : ''}<div class="wmon" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '340 ₽' : MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
+const skel = '<div class="wrow"><div class="wcell"><div class="wsk"></div></div><div class="wcell"><div class="wsk"></div></div></div>';
+const unav = '<div class="wun"><div class="a">Цены не загрузились</div><div class="b">Проверь интернет</div><span class="wretry">Ещё раз</span></div>';
+const promo = '<div class="wpromo"><div class="k">Скидка действует сейчас</div><div class="rw"><span class="pc">−30%</span><span class="pr">2 790 ₽</span><span class="st">3 990 ₽</span></div><div class="th">далее 3 990 ₽</div></div>';
+const dock = (o = {}) => `<div class="wdock"><div class="wcta${o.off ? ' off' : ''}">${o.spin ? '<span class="wspin"></span>' : o.label}</div><div class="wfine">${o.fine}</div>
+  <div class="wlinks"><span${o.restoreOff ? ' class="off"' : ''}>${o.restoring ? 'Восстанавливаем…' : 'Восстановить'}</span><span>Условия</span><span>Конфиденциальность</span></div></div>`;
+const sheet = (o) => `<div class="wsh">${head(o)}<div class="wbody">${o.body}</div>${o.dock}</div>`;
+const und = '<div class="wund"><div class="t1">Урок</div><div class="r"></div><div class="r"></div><div class="r"></div></div>';
+const alert = (title, body, btns) => `<div class="wdim"></div><div class="wal"><div class="tt">${title}</div><div class="bd">${body}</div><div class="ac">${btns}</div></div>`;
+const toast = (txt, mark) => `<div class="wtoast"><span class="ti">${mark}</span><span class="tx">${txt}</span></div>`;
+const FINE_YEAR = 'Потом 3 990 ₽ в год. Отмена в любой момент.';
+const CTA_TRIAL = 'Начать 7 дней бесплатно';
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+
+const S = [
+  ['011 · Загрузка условий', 'Цены ещё грузятся: два блока-«скелета» той же высоты, что и тарифы, кнопка «Оформить Plus» уже активна, «Восстановить» неактивно. После 12 секунд — состояние «Цены не загрузились».',
+    () => und + sheet({ body: lead + skel, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.', restoreOff: true }) })],
+  ['012 · Ошибка до checkout (оплата не началась)', 'Тап по кнопке: магазин не ответил. Сверху тост, под кнопкой «Попробуй через минуту». Деньги не списаны.',
+    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: 'Попробуй через минуту' }) }) + toast('Не удалось связаться с магазином. Попробуй позже.', '!')],
+  ['012 · Цены не загрузились → «Ещё раз»', 'После потолка загрузки на месте цен — «Цены не загрузились», «Проверь интернет» и кнопка «Ещё раз». Кнопка покупки жива.',
+    () => und + sheet({ body: lead + unav, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.' }) })],
+  ['013 · Проверяем покупку: идёт оплата', 'Магазин открыл оплату: в кнопке кружок, тарифы и закрытие неактивны, пока не придёт ответ.',
+    () => und + sheet({ closeOff: true, body: lead + plans({ off: true }), dock: dock({ spin: true, off: false, fine: FINE_YEAR, restoreOff: true }) })],
+  ['013 · Проверяем покупку: восстановление', 'После «Проверить статус» или «Восстановить»: ссылка меняется на «Восстанавливаем…», кнопка и тарифы неактивны.',
+    () => und + sheet({ closeOff: true, body: lead + plans({ off: true }), dock: dock({ label: CTA_TRIAL, off: true, fine: FINE_YEAR, restoring: true, restoreOff: true }) })],
+  ['014 · Ожидание банка или родителя (диалог)', 'Оплата ушла на внешнее подтверждение (родитель, банк). Не ошибка: платить повторно не нужно, доступ включится сам.',
+    () => und + sheet({ body: lead + plans({ off: true }), dock: dock({ label: CTA_TRIAL, off: true, fine: FINE_YEAR }) }) + alert('Покупка ждёт подтверждения', 'Оплата ожидает подтверждения — например, родителя или банка. Как только её подтвердят, доступ включится сам. Покупать повторно не нужно.', '<span class="bt t">OK</span>')],
+  ['015 · Результат покупки неизвестен (диалог)', 'Магазин ответил сбоем, а списание неизвестно: выбрать проверку статуса или восстановление, повторно не покупать.',
+    () => und + sheet({ body: lead + plans({ off: true }), dock: dock({ label: CTA_TRIAL, off: true, fine: FINE_YEAR }) }) + alert('Статус покупки не подтверждён', 'Неизвестно, прошла ли оплата. Сначала проверь покупки в магазине или нажми «Восстановить» на этом экране. Не покупай повторно, пока не выяснишь статус.', '<span class="bt gh t">Проверить статус</span><span class="bt t">Восстановить покупки</span>')],
+  ['016 · Статус неизвестен (после проверки)', 'Проверка не нашла покупку: тост ведёт к «Восстановить». Другие исходы: «Не удалось проверить статус. Попробуй позже.», «Активных подписок не обнаружено.».',
+    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + toast('Покупка пока не найдена. Нажми «Восстановить покупки».', '!')],
+  ['018 · Промо от магазина', 'Если магазин даёт скидку на первый период: плашка над тарифами («Скидка действует сейчас», процент, цена со скидкой, зачёркнутая обычная, «далее»), в карточках — зачёркнутая и новая цена. Нет скидки — нет плашки.',
+    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'далее 3 990 ₽ · Отмена в любой момент' }) })],
+];
+const grid = (lite) => S.map(([t, n, f]) => `<div class="col"><div class="lbl">${t}</div>${ph(f(), lite)}<div class="wnote">${n}</div></div>`);
+document.getElementById('root').innerHTML =
+  `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false).join('')}</div></section>` +
+  `<section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true).join('')}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${T[1]} 78%, #000)`); } else { p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

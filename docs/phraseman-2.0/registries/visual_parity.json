@@ -16031,10 +16031,10 @@
       "id": "paywalls-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 11,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 1,
+        "label": "011 · Загрузка условий",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Загрузка условий",
@@ -16051,18 +16051,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 12,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 2,
+        "label": "012 · Ошибка до checkout (оплата не началась)",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Ошибка до checkout",
@@ -16079,18 +16080,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 13,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 4,
+        "label": "013 · Проверяем покупку: идёт оплата",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Проверяем покупку",
@@ -16107,18 +16109,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 14,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 6,
+        "label": "014 · Ожидание банка или родителя (диалог)",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Ожидание банка или родителя · отдельный диалог",
@@ -16135,18 +16138,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 15,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 7,
+        "label": "015 · Результат покупки неизвестен (диалог)",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Результат покупки неизвестен · отдельный диалог",
@@ -16163,18 +16167,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 16,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 8,
+        "label": "016 · Статус неизвестен (после проверки)",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Статус неизвестен",
@@ -16191,9 +16196,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-017",
@@ -16227,10 +16233,10 @@
       "id": "paywalls-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 18,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/paywall-price-states.html",
+        "phone": 9,
+        "label": "018 · Промо от магазина",
+        "mapping": "manual_rebind"
       },
       "screen": "Цена и покупка",
       "state": "Промо от магазина",
@@ -16247,9 +16253,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18"
     },
     {
       "id": "paywalls-019",

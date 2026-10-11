@@ -182,6 +182,16 @@ export default function DialogueV2BriefingRoute() {
   const [briefingNonce] = useState(() => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`);
   const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, `${briefingNonce}_${dialogueAttempt}`);
   const startInFlightRef = useRef(false);
+  // зачем (повторное ревью 12.10): отложенный после шторки старт отменяется, если человек ушёл с брифинга за эти 360 мс —
+  // иначе списание и переход случились бы уже с другого экрана.
+  const consentStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (consentStartTimerRef.current === null) return;
+    clearTimeout(consentStartTimerRef.current);
+    consentStartTimerRef.current = null;
+    startInFlightRef.current = false;
+    console.warn('[AI-CONSENT-ENERGY] briefing:unmounted before delayed start → cancelled, energy not spent');
+  }, []);
   // зачем (Сверка 05.10 🟡: диалог стартовал при 0 оставшихся ответах — энергия списана, а первая реплика упиралась
   // в лимит): месячный остаток Free читаем из зеркала на телефоне заранее (0 сети, 0 чтений Firestore). При нуле
   // «Начать» не списывает энергию и сразу открывает экран лимита — тот же, что у хаба (premium_modal dialog_limit).
@@ -308,7 +318,10 @@ export default function DialogueV2BriefingRoute() {
     }
     startInFlightRef.current = true;
     // зачем (ревью 12.10, iOS): списание и возможное окно «Нет энергии» — после того, как шторка закрылась.
-    setTimeout(() => { void spendAndOpenSession(); }, AFTER_CONSENT_SHEET_MS);
+    consentStartTimerRef.current = setTimeout(() => {
+      consentStartTimerRef.current = null;
+      void spendAndOpenSession();
+    }, AFTER_CONSENT_SHEET_MS);
   };
   const onConsentDecline = () => {
     setConsentAsk(false);

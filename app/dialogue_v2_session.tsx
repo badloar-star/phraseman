@@ -98,15 +98,17 @@ async function secureTurnId(): Promise<string> {
   return `d2t_${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
 }
 
-/** После возврата энергии чат не открываем: заново со брифинга, где старт снова спишет энергию. */
+/**
+ * После возврата энергии чат не открываем: назад на исходный брифинг (сессия с energyOp всегда открыта поверх него),
+ * где старт снова спишет энергию. зачем (повторное ревью 12.10): replace давал «брифинг → брифинг» в стеке.
+ */
 function RestartFromBriefing() {
   const router = useRouter();
   const params = useLocalSearchParams<{ scenarioId?: string | string[] }>();
   useEffect(() => {
     const scenarioId = typeof params.scenarioId === 'string' ? params.scenarioId : null;
     console.warn('[AI-CONSENT-ENERGY] session:energy already returned → back to briefing', JSON.stringify({ scenarioId }));
-    if (scenarioId) router.replace({ pathname: '/dialogue_v2_briefing', params: { scenarioId } } as never);
-    else safeRouterBack(router, '/ai_dialog_home' as never);
+    safeRouterBack(router, '/ai_dialog_home' as never);
   }, [params.scenarioId, router]);
   return null;
 }

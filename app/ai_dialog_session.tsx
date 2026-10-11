@@ -2158,7 +2158,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+            <Text style={{ color: t.textOnGold, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -2187,7 +2187,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
             }}
             style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
+            <Text style={{ color: t.textOnGold, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
             </Text>
           </TouchableOpacity>
@@ -2598,22 +2598,22 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                             style={{ flexDirection: 'row', alignItems: 'center', gap: 9, minWidth: 168 }}
                             testID={`ai-dialog-voice-message-${i}`}
                           >
-                            <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: `${t.correctText}2B`, alignItems: 'center', justifyContent: 'center' }}>
-                              <Ionicons name={playingVoiceMessageUri === m.voice.uri ? 'pause' : 'play'} size={17} color={t.correctText} />
+                            <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: `${t.textOnGold}2B`, alignItems: 'center', justifyContent: 'center' }}>
+                              <Ionicons name={playingVoiceMessageUri === m.voice.uri ? 'pause' : 'play'} size={17} color={t.textOnGold} />
                             </View>
                             <View style={{ flex: 1, gap: 3 }}>
-                              <Text style={{ color: t.correctText, fontSize: f.label, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
+                              <Text style={{ color: t.textOnGold, fontSize: f.label, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
                                 {describeDialogueVoiceMessage(lang).label}
                               </Text>
-                              <View style={{ height: 3, borderRadius: 2, backgroundColor: `${t.correctText}52`, overflow: 'hidden' }}>
-                                <View style={{ width: '38%', height: '100%', borderRadius: 2, backgroundColor: t.correctText }} />
+                              <View style={{ height: 3, borderRadius: 2, backgroundColor: `${t.textOnGold}52`, overflow: 'hidden' }}>
+                                <View style={{ width: '38%', height: '100%', borderRadius: 2, backgroundColor: t.textOnGold }} />
                               </View>
                             </View>
                           </TouchableOpacity>
                         ) : (
                           <Text
                             style={{
-                              color: t.correctText,
+                              color: t.textOnGold,
                               fontSize: f.bodyLg,
                               fontWeight: '400',
                               lineHeight: Math.round(f.bodyLg * 1.4),
@@ -3026,8 +3026,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       backgroundColor: t.accent,
                     }}
                   >
-                    <Ionicons name="refresh" size={17} color={t.correctText} />
-                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.sub }}>
+                    <Ionicons name="refresh" size={17} color={t.textOnGold} />
+                    <Text style={{ color: t.textOnGold, fontWeight: '800', fontSize: f.sub }}>
                       {dialogRetryLabel(lang)}
                     </Text>
                   </TouchableOpacity>
@@ -3248,7 +3248,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   <Ionicons
                     name={speechNa ? 'mic-off-outline' : voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
                     size={21}
-                    color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
+                    color={voiceInputStatus === 'listening' ? t.textOnGold : t.textSecond}
                     // Ряд точек занимает низ круга всегда (в том числе распоркой),
                     // поэтому иконка постоянно смещена вверх на его половину —
                     // композиция по центру, и прыжка при смене остатка нет.
@@ -3262,8 +3262,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 <SpeakingQuotaDots
                   quota={speechNa ? { ...voiceInputGate.quota, limit: null } : voiceInputGate.quota}
                   size="sm"
-                  spentColor={voiceInputStatus === 'listening' ? `${t.correctText}59` : t.textMuted}
-                  remainingColor={voiceInputStatus === 'listening' ? t.correctText : t.accent}
+                  spentColor={voiceInputStatus === 'listening' ? `${t.textOnGold}59` : t.textMuted}
+                  remainingColor={voiceInputStatus === 'listening' ? t.textOnGold : t.accent}
                   style={{ position: 'absolute', left: 0, right: 0, bottom: 6 }}
                   testID="ai-dialog-voice-quota-dots"
                 />
@@ -3281,7 +3281,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       borderColor: t.bgPrimary,
                     }}
                   >
-                    <Text style={{ color: t.correctText, fontSize: 8 /* d145-micro: бейдж PLUS на углу кнопки микрофона 44 pt, на 13 закроет кнопку */, fontWeight: '900' }}>PLUS</Text>
+                    <Text style={{ color: t.textOnGold, fontSize: 8 /* d145-micro: бейдж PLUS на углу кнопки микрофона 44 pt, на 13 закроет кнопку */, fontWeight: '900' }}>PLUS</Text>
                   </View>
                 )}
               </TouchableOpacity>
@@ -3372,7 +3372,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 <Ionicons
                   name="arrow-up"
                   size={22}
-                  color={canSend ? t.correctText : t.textMuted}
+                  color={canSend ? t.textOnGold : t.textMuted}
                 />
               </TouchableOpacity>
               </View>
@@ -3593,8 +3593,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 ...noAndroidOutline,
               }}
             >
-              <Ionicons name="podium-outline" size={17} color={t.correctText} />
-              <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700' }}>
+              <Ionicons name="podium-outline" size={17} color={t.textOnGold} />
+              <Text style={{ color: t.textOnGold, fontSize: f.sub, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Итоги',
                   uk: 'Підсумки',

@@ -135,7 +135,7 @@ function AiCompanionPlusGate({ children }: { children: React.ReactNode }) {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
+            <Text style={{ color: t.textOnGold, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Открыть Plus', uk: 'Відкрити Plus', en: 'Open Plus', es: 'Abrir Plus',
                 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus',
@@ -368,7 +368,7 @@ function AiCompanionSession() {
               paddingVertical: 12,
             }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
+            <Text style={{ color: t.textOnGold, fontSize: f.sub, fontWeight: '900' }}>{frenchGateCopy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -692,7 +692,7 @@ function AiCompanionSession() {
                 opacity: input.trim() && !sending ? 1 : 0.5,
               }}
             >
-              <Text style={{ color: input.trim() && !sending ? t.correctText : t.textSecond, fontWeight: '800', fontSize: f.body }}>→</Text>
+              <Text style={{ color: input.trim() && !sending ? t.textOnGold : t.textSecond, fontWeight: '800', fontSize: f.body }}>→</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

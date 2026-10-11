@@ -3475,8 +3475,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             },
           ]}
         >
-          <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
-          <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+          <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={startBlockReason ? t.textSecond : t.textOnGold} />
+          <Text style={[styles.heroStartText, { color: startBlockReason ? t.textSecond : t.textOnGold, fontSize: f.body }]}>
             {startBlockReason?.label ?? text.start}
           </Text>
         </DuoPressable>
@@ -3565,8 +3565,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               edgeColor={t.accent}
               style={[styles.heroStart, { backgroundColor: t.accent }]}
             >
-              <Ionicons name="play-forward" size={20} color={t.correctText} />
-              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+              <Ionicons name="play-forward" size={20} color={t.textOnGold} />
+              <Text style={[styles.heroStartText, { color: t.textOnGold, fontSize: f.body }]}>
                 {triLang(lang, {
                   ru: 'Продолжить тренировку',
                   en: 'Continue training',
@@ -3684,7 +3684,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                     },
                   ]}
                 >
-                  {selected ? <Ionicons name="checkmark" size={16} color={t.correctText} /> : null}
+                  {selected ? <Ionicons name="checkmark" size={16} color={t.textOnGold} /> : null}
                 </View>
               </TouchableOpacity>
             );
@@ -4170,7 +4170,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             edgeColor={t.accent}
             style={[styles.continueButton, isCompactFlashcardsTask && styles.compactContinueButton, { backgroundColor: t.accent }]}
           >
-            <Text style={[styles.continueText, { color: t.correctText, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
+            <Text style={[styles.continueText, { color: t.textOnGold, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
           </DuoPressable>
         ) : (
           <>

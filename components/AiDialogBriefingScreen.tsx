@@ -342,7 +342,7 @@ export default function AiDialogBriefingScreen({
                     ...noAndroidOutline,
                   }}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{copy.start}</Text>
+                  <Text style={{ color: t.textOnGold, fontSize: f.bodyLg, fontWeight: '700' }}>{copy.start}</Text>
                 </PressableScale>
               )}
         </Reanimated.View>

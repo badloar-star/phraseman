@@ -225,7 +225,7 @@ function AiConsentSheetModal({ visible, title, body, illustration, introduction,
                 pressed && styles.pressed,
               ]}
             >
-              <Text style={[styles.primaryBtnText, { color: t.correctText, fontSize: f.bodyLg }]}>
+              <Text style={[styles.primaryBtnText, { color: t.textOnGold, fontSize: f.bodyLg }]}>
                 {acceptLabel}
               </Text>
             </Pressable>

@@ -700,8 +700,8 @@ export default function ReferralsScreen() {
                 {/* зачем: владелец (2026-07-26) — никакого спиннера на «Получить приз»:
                     отклик на нажатие — мгновенное вращение дуги, кнопка лишь меняет
                     подпись на «Открываем…» и остаётся в цвете действия. */}
-                <Ionicons name="sparkles" size={18} color={spinCredits > 0 || spinning ? t.correctText : t.textMuted} />
-                <Text style={{ color: spinCredits > 0 || spinning ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                <Ionicons name="sparkles" size={18} color={spinCredits > 0 || spinning ? t.textOnGold : t.textMuted} />
+                <Text style={{ color: spinCredits > 0 || spinning ? t.textOnGold : t.textMuted, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                   {spinCtaLabel}
                 </Text>
               </KitTouchable>
@@ -726,9 +726,9 @@ export default function ReferralsScreen() {
                   }}
                 >
                   {inviteBusy
-                    ? <ActivityIndicator color={spinCredits > 0 ? t.accent : t.correctText} />
-                    : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accent : t.correctText} />}
-                  <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.correctText, fontSize: f.body ?? 16, fontWeight: '700' }}>
+                    ? <ActivityIndicator color={spinCredits > 0 ? t.accent : t.textOnGold} />
+                    : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accent : t.textOnGold} />}
+                  <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.textOnGold, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
                   </Text>
                 </KitTouchable>

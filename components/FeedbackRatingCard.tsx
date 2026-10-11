@@ -355,10 +355,10 @@ export default function FeedbackRatingCard({
                 <Ionicons
                   name="send"
                   size={18}
-                  color={text.trim() === '' && rating === 0 ? t.textGhost : t.correctText}
+                  color={text.trim() === '' && rating === 0 ? t.textGhost : t.textOnGold}
                 />
               ) : (
-                <Text style={{ color: text.trim() === '' && rating === 0 ? t.textGhost : t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                <Text style={{ color: text.trim() === '' && rating === 0 ? t.textGhost : t.textOnGold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
                   {sendLabel}
                 </Text>
               )}

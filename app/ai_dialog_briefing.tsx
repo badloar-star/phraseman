@@ -69,7 +69,7 @@ function RecoveryScreen({ icon, title, body, action, onBack }: RecoveryScreenPro
               marginTop: ds.spacing.xl,
             }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{action}</Text>
+            <Text style={{ color: t.textOnGold, fontSize: f.bodyLg, fontWeight: '700' }}>{action}</Text>
           </PressableScale>
         </View>
       </SafeAreaView>

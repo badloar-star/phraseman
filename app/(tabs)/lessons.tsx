@@ -1771,7 +1771,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
               size={26}
               color={
                 current || completed
-                  ? theme.correctText
+                  ? (current ? theme.textOnGold : theme.correctText)
                   : devUnlocked
                     ? theme.accent
                     : theme.gold
@@ -1793,7 +1793,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             <Text
               style={{
                 color: current
-                  ? theme.correctText
+                  ? theme.textOnGold
                   : devUnlocked
                     ? theme.accent
                     : theme.textPrimary,
@@ -4884,7 +4884,7 @@ export default function LessonsTab({
                     >
                       <Text
                         style={{
-                          color: t.correctText,
+                          color: t.textOnGold,
                           fontSize: 13,
                           lineHeight: 17,
                           fontWeight: "700",

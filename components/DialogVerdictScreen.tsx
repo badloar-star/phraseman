@@ -790,7 +790,7 @@ export default function DialogVerdictScreen({
                   })}
                 </Text>
                 <View style={{ borderRadius: 9, paddingHorizontal: 7, paddingVertical: 3, backgroundColor: t.accent }}>
-                  <Text style={{ color: t.correctText, fontSize: 13, fontWeight: '700' }}>PLUS</Text>
+                  <Text style={{ color: t.textOnGold, fontSize: 13, fontWeight: '700' }}>PLUS</Text>
                 </View>
               </View>
               {[
@@ -857,7 +857,7 @@ export default function DialogVerdictScreen({
                   backgroundColor: t.accent,
                 }}
               >
-                <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: t.textOnGold, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Открыть Plus',
                     uk: 'Відкрити Plus',
@@ -884,7 +884,7 @@ export default function DialogVerdictScreen({
                   backgroundColor: t.accent,
                 }}
               >
-                <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: t.textOnGold, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Ещё раз',
                     uk: 'Ще раз',

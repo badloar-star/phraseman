@@ -935,7 +935,7 @@ function DailyPhraseCard({
                           ]}
                         >
                           <View style={[styles.optionMarker, { backgroundColor: t.accent }]}>
-                            <Text style={[styles.optionMarkerText, { color: t.correctText, fontSize: f.caption }]}>
+                            <Text style={[styles.optionMarkerText, { color: t.textOnGold, fontSize: f.caption }]}>
                               {optionIndex + 1}
                             </Text>
                           </View>

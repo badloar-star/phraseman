@@ -1129,7 +1129,7 @@ export function ResultsSequence({
           style={[styles.ctaPrimary, pulseMode ? null : styles.glassDefaultCta, { backgroundColor: t.accent }]}
           accessibilityRole="button"
         >
-          <Text style={[styles.ctaPrimaryText, { color: t.correctText }]}>
+          <Text style={[styles.ctaPrimaryText, { color: t.textOnGold }]}>
             {ctaPrimaryLabel}
           </Text>
         </TouchableOpacity>

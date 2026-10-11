@@ -242,7 +242,7 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
     correct: t.correct,
     wrong: t.wrong,
     border: t.border,
-    onAccent: t.correctText,
+    onAccent: t.textOnGold,
   };
 }
 

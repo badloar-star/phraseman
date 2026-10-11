@@ -1543,7 +1543,7 @@ export default function LessonComplete() {
                 <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
                   {triLang(lang, { ru: 'Следующий урок закрыт', en: 'Next lesson is locked', uk: 'Наступний урок закрито', es: 'La siguiente lección está bloqueada', 'pt-BR': 'Próxima lição bloqueada', vi: 'Bài tiếp theo đã bị khóa', id: 'Pelajaran berikutnya terkunci', tr: 'Sonraki ders kilitli', pl: 'Następna lekcja jest zablokowana' })}
                 </Text>
-                <Text style={{ color: t.correctText, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
+                <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).ctaInk, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </KitTouchable>

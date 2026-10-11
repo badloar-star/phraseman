@@ -132,7 +132,7 @@ function NotificationPermissionModal({
           {/* Fixed actions remain reachable while supplied runtime copy scrolls. */}
           <View style={styles.footer}>
             <TouchableOpacity testID="notification-permission-confirm" onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
-              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
+              <Text style={{ color: t.textOnGold, fontWeight: '800', fontSize: f.body }}>
                 {resolvedConfirmLabel}
               </Text>
             </TouchableOpacity>

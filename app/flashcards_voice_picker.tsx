@@ -421,8 +421,8 @@ export default function FlashcardsVoicePickerScreen() {
                   marginTop: 8,
                 }}
               >
-                <Ionicons name="play" size={18} color={t.correctText} />
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+                <Ionicons name="play" size={18} color={t.textOnGold} />
+                <Text style={{ color: t.textOnGold, fontSize: f.body, fontWeight: '700' }}>
                   {triLang(lang, {
                     ru: 'Прослушать пример', uk: 'Прослухати приклад', en: 'Listen to example', es: 'Escuchar ejemplo',
                     'pt-BR': 'Ouvir exemplo', vi: 'Nghe ví dụ', id: 'Dengarkan contoh', tr: 'Örneği dinle', pl: 'Odsłuchaj przykład',

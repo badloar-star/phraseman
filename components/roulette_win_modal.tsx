@@ -228,7 +228,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             >
               <Text
                 maxFontSizeMultiplier={1.2}
-                style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
+                style={[styles.claimBtnText, { color: t.textOnGold, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
               >
                 {doneLabel}
               </Text>

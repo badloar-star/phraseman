@@ -148,7 +148,7 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
             accessibilityLabel={copy.primaryAction}
             style={[styles.primaryButton, { minHeight: ds.buttonHeight, backgroundColor: t.accent, paddingHorizontal: ds.spacing.lg }]}
           >
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
+            <Text style={{ color: t.textOnGold, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
               {copy.primaryAction}
             </Text>
           </TapScale>

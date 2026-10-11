@@ -75,7 +75,8 @@ describe('home feed falls back to the server catalog when the YouTube RSS fails'
     expect(warn).toHaveBeenCalledWith('[HOME-COLD] video_feed:catalog_channel_mismatch', expect.any(String));
   });
 
-  it('a saved list younger than 6 hours is used without reading the catalog', async () => {
+  // §CORE-0170 (Сверка cold5): свежий список — это ИСТОЧНИК ленты без ошибки, а не «пропуск фолбэка».
+  it('fresh saved list of the same channel → feed from it, no error, no catalog reads', async () => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({
       channelId: LINGMAN_CHANNEL_ID,
       fetchedAtMs: Date.now() - 60_000,
@@ -84,12 +85,41 @@ describe('home feed falls back to the server catalog when the YouTube RSS fails'
     const snapshot = await getLingmanYoutubeSnapshot();
     expect(mockFetchManifest).not.toHaveBeenCalled();
     expect(snapshot.videos.some((video) => video.id === 'ddddddddddd')).toBe(true);
+    expect(snapshot.error).toBeUndefined();
+    expect(snapshot.source).toBe('feed_cache');
+  });
+
+  const savedLesson = (fetchedAtMs: number) => JSON.stringify({
+    channelId: LINGMAN_CHANNEL_ID,
+    fetchedAtMs,
+    videos: [{ id: 'eeeeeeeeeee', title: 'Old lesson', description: 'Full lesson.', thumbnailUrl: 'https://i.ytimg.com/vi/eeeeeeeeeee/hqdefault.jpg', publishedAt: '2026-10-09T10:00:00Z', updatedAt: '2026-10-09T10:00:00Z', watchUrl: 'https://www.youtube.com/watch?v=eeeeeeeeeee' }],
+  });
+
+  it('stale saved list → one catalog request; catalog ok → catalog feed, no error', async () => {
+    await AsyncStorage.setItem(STORAGE_KEY, savedLesson(Date.now() - 7 * 60 * 60 * 1000));
+    mockFetchRail.mockResolvedValue(rail(LINGMAN_CHANNEL_ID, [catalogVideo('fffffffffff')]));
+    const snapshot = await getLingmanYoutubeSnapshot();
+    expect(mockFetchManifest).toHaveBeenCalledTimes(1);
+    expect(snapshot.source).toBe('catalog');
+    expect(snapshot.error).toBeUndefined();
+    expect(snapshot.videos.map((video) => video.id)).toContain('fffffffffff');
+  });
+
+  it('stale saved list and the catalog fails → the stale list, still no error', async () => {
+    await AsyncStorage.setItem(STORAGE_KEY, savedLesson(Date.now() - 7 * 60 * 60 * 1000));
+    mockFetchManifest.mockRejectedValue(new Error('offline'));
+    const snapshot = await getLingmanYoutubeSnapshot();
+    expect(snapshot.source).toBe('feed_cache_stale');
+    expect(snapshot.error).toBeUndefined();
+    expect(snapshot.videos.map((video) => video.id)).toContain('eeeeeeeeeee');
   });
 
   it('a failing catalog keeps the previous fallback (built-in list for the default channel)', async () => {
     mockFetchManifest.mockRejectedValue(new Error('offline'));
     const snapshot = await getLingmanYoutubeSnapshot();
     expect(snapshot.videos.length).toBeGreaterThan(0);
+    expect(snapshot.source).toBe('builtin');
+    expect(snapshot.error).toBeUndefined();
     expect(warn).toHaveBeenCalledWith('[HOME-COLD] video_feed:catalog_failed', 'offline');
   });
 });

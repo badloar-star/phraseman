@@ -995,7 +995,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     return;
                 }
                 const snapshot = await m.getLingmanYoutubeSnapshot();
-                if (!snapshot.error) homeVideoNetworkOkThisLaunch = true;
+                // зачем (§CORE-0170): «сеть уже обновила ленту» — только живой RSS; запасной источник (кэш/каталог) идёт без
+                // ошибки, но следующий фокус должен снова попробовать RSS.
+                if (!snapshot.error && (snapshot.source ?? 'rss') === 'rss') homeVideoNetworkOkThisLaunch = true;
                 emit(snapshot, 'network');
             } catch (error: unknown) {
                 const message = error instanceof Error ? error.message : String(error);

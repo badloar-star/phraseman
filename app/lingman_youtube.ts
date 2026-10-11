@@ -26,12 +26,17 @@ export type LingmanYoutubeVideo = {
   viewCount?: number;
 };
 
+/** Откуда собрана лента: живой RSS или запасной путь при его сбое (§CORE-0170). */
+export type LingmanYoutubeSnapshotSource = 'rss' | 'feed_cache' | 'catalog' | 'feed_cache_stale' | 'builtin' | 'none';
+
 export type LingmanYoutubeSnapshot = {
   videos: LingmanYoutubeVideo[];
   latestVideoId: string | null;
   unreadCount: number;
   fetchedAtMs: number;
+  /** Ошибка — только когда показать нечего; при запасном источнике её нет. */
   error?: string;
+  source?: LingmanYoutubeSnapshotSource;
 };
 
 // ── Канал по умолчанию (PHRASEMAN). Используется, пока «Пульт» не задал свой ──
@@ -588,54 +593,49 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       latestVideoId,
       unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
       fetchedAtMs: Date.now(),
+      source: 'rss',
     };
   } catch (error) {
     // Встроенный fallback-список — это видео PHRASEMAN. Показываем его только когда
     // активен дефолтный канал; для переключённого из «Пульта» канала чужой список
     // был бы неверным — тогда отдаём только channel-matched кэш (или пусто).
+    // зачем (Сверка cold5 08:15: свежий кэш отдавался с error=404 — лента выглядела «сбой без обновлений»): при сбое RSS
+    // лента собирается из лучшего доступного источника, а ошибка ставится ТОЛЬКО когда показать нечего.
+    //   свежий (<6 ч) сохранённый список канала → он (0 чтений) · иначе один запрос в каталог за запуск →
+    //   каталог не ответил, но есть старый список → старый список · ничего нет → встроенный список (только свой канал).
     const isDefaultChannel = !getActiveYoutubeChannel().isOverride;
+    const reason = error instanceof Error ? error.message : String(error);
     const cachedEntry = await readCachedVideoEntry();
     const cacheAgeMs = cachedEntry ? Date.now() - cachedEntry.fetchedAtMs : null;
-    if (cacheAgeMs === null || cacheAgeMs >= CATALOG_FALLBACK_MIN_CACHE_AGE_MS) {
-      const activeChannelId = getActiveYoutubeChannel().channelId;
-      if (!catalogFallbackInFlight) {
-        catalogFallbackInFlight = loadVideosFromServerCatalog(activeChannelId);
-      }
-      const catalogVideos = await catalogFallbackInFlight;
-      if (catalogVideos?.length) {
-        void cacheSuccessfulVideos(catalogVideos);
-        const videos = mergePinnedVideos(pinned, catalogVideos);
-        return {
-          videos,
-          latestVideoId: videos[0]?.id ?? null,
-          unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
-          fetchedAtMs: Date.now(),
-        };
-      }
-    } else {
-      console.warn('[HOME-COLD] video_feed:catalog_skipped_fresh_cache', JSON.stringify({ cacheAgeMs })); // guard-ok: ветка логируется
-    }
-    const cached = cachedEntry?.videos ?? null;
-    console.warn('[HOME-COLD] video_feed:network_failed', JSON.stringify({
-      ms: Date.now() - networkStartedAt,
-      reason: error instanceof Error ? error.message : String(error),
-      cache: cached ? cached.length : 'miss',
-      fallback: cached ? 'none' : (isDefaultChannel ? 'builtin' : 'empty'),
-    })); // guard-ok: сбой сети логируется
-    const feed = cached ?? (isDefaultChannel ? FALLBACK_VIDEOS : []);
-    const videos = mergePinnedVideos(pinned, feed);
-    const latestVideoId = videos[0]?.id ?? null;
-    return {
-      videos,
-      latestVideoId,
-      // Если фид упал, но есть пины — это не «ошибка пустой ленты»: пины показываем
-      // без баннера сбоя (он бы зря пугал, когда контент в ленте есть из пиннов).
-      unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
-      fetchedAtMs: Date.now(),
-      error: feed.length === 0 && pinned.length > 0
-        ? undefined
-        : (error instanceof Error ? error.message : 'Unable to load videos'),
+    const build = (feed: LingmanYoutubeVideo[], source: LingmanYoutubeSnapshotSource): LingmanYoutubeSnapshot => {
+      const videos = mergePinnedVideos(pinned, feed);
+      console.warn('[HOME-COLD] video_feed:served', JSON.stringify({
+        source, videos: videos.length, cacheAgeMs, reason, ms: Date.now() - networkStartedAt,
+      })); // guard-ok: итог ветки сбоя логируется
+      return {
+        videos,
+        latestVideoId: videos[0]?.id ?? null,
+        unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
+        fetchedAtMs: Date.now(),
+        source,
+        ...(videos.length === 0 ? { error: reason || 'Unable to load videos' } : {}),
+      };
     };
+    if (cachedEntry && cacheAgeMs !== null && cacheAgeMs < CATALOG_FALLBACK_MIN_CACHE_AGE_MS) {
+      return build(cachedEntry.videos, 'feed_cache');
+    }
+    const activeChannelId = getActiveYoutubeChannel().channelId;
+    if (!catalogFallbackInFlight) {
+      catalogFallbackInFlight = loadVideosFromServerCatalog(activeChannelId);
+    }
+    const catalogVideos = await catalogFallbackInFlight;
+    if (catalogVideos?.length) {
+      void cacheSuccessfulVideos(catalogVideos);
+      return build(catalogVideos, 'catalog');
+    }
+    if (cachedEntry) return build(cachedEntry.videos, 'feed_cache_stale');
+    // Встроенный список — видео PHRASEMAN: только для канала по умолчанию; переопределённому каналу чужой список не показываем.
+    return build(isDefaultChannel ? FALLBACK_VIDEOS : [], isDefaultChannel ? 'builtin' : 'none');
   }
 }
 

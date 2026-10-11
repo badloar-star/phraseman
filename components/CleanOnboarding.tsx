@@ -82,7 +82,8 @@ import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '
 import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
-import { onAppEvent } from '../app/events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
+import { getDevGreetName } from '../app/dev_account_state';
 import { getEnabledOnboardingSteps, getRemoteBool } from '../app/remote_flags';
 import {
   decideOnboardingTransition,
@@ -2377,6 +2378,8 @@ function CleanOnboarding({
   // вход на экране-сейфе создал новый аккаунт; иначе берём синхронный peek
   // текущего пользователя (без сети), иначе приветствие без имени.
   const [greetName, setGreetName] = useState<string | null>(null);
+  // зачем (координатор 12.10, кадр onboarding-010): dev `greet=` подменяет имя приветствия; вне dev getDevGreetName() → null,
+  // в хранилище ничего не пишется (app/dev_account_state.ts).
   const [codeSheet, setCodeSheet] = useState<'promo' | 'referral' | null>(null);
   const [codeValue, setCodeValue] = useState('');
   const [codeBusy, setCodeBusy] = useState(false);
@@ -2763,7 +2766,7 @@ function CleanOnboarding({
         // Имя провайдера запоминаем уже здесь: «Создать аккаунт» уведёт на
         // niceToMeet, и там приветствие должно быть по имени; оно же станет
         // основой автоника («Имя N»).
-        setGreetName(firstNameOf(result.displayName));
+        setGreetName(getDevGreetName() ?? firstNameOf(result.displayName));
         setUnknownAccountEmail(result.email ?? '');
         return;
       }
@@ -2902,7 +2905,7 @@ function CleanOnboarding({
       if (result.result === 'created_new') {
         // Новый аккаунт уже привязан к провайдеру — продолжаем путь через
         // приветствие по имени (первое слово, до 24 символов; пусто → без имени).
-        setGreetName(firstNameOf(result.displayName));
+        setGreetName(getDevGreetName() ?? firstNameOf(result.displayName));
         go('niceToMeet');
         return;
       }
@@ -2959,11 +2962,34 @@ function CleanOnboarding({
   useEffect(() => {
     if (Platform.OS !== 'android') return undefined;
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (step === 'welcome' && authMode) {
+      const inFlight = authInFlightRef.current;
+      // зачем (2-й прогон Сверки 11.10): «Назад» во время входа вывела из приложения, а строк не было — пишем каждое нажатие
+      // с состоянием, которое решает ветку.
+      console.log('[ONBOARDING-BACK] hardware press', JSON.stringify({ step, authMode, inFlight, authSlow }));
+      if (inFlight) {
+        // Пока идёт вход, системная «Назад» НИКОГДА не закрывает приложение (вход дошёл бы до конца за кадром).
         if (!allowLeaveDuringAuth('back')) {
-          console.log('[ONBOARDING-BACK] hardware ignored reason=auth_in_flight step=welcome mode=auth'); // guard-ok: ранний выход пишет причину
+          console.log(`[ONBOARDING-BACK] hardware absorbed reason=auth_in_flight step=${step}`); // guard-ok: ранний выход пишет причину
+          emitAppEvent('action_toast', actionToastTri('info', {
+            ru: 'Подожди — идёт вход', uk: 'Зачекай — триває вхід', en: 'Hold on — signing you in',
+            es: 'Espera: estamos iniciando sesión', 'pt-BR': 'Espere — estamos entrando', vi: 'Chờ chút — đang đăng nhập',
+            id: 'Tunggu — sedang masuk', tr: 'Bekle — giriş yapılıyor', pl: 'Chwila — trwa logowanie',
+          }));
           return true;
         }
+        // Порог «медленно» пройден: уход разрешён, ответ входа отброшен (allowLeaveDuringAuth) — но не из приложения.
+        if (step === 'welcome' && authMode) {
+          setAuthMode(false);
+          setAuthError(null);
+          console.log('[ONBOARDING-BACK] hardware slow_left step=welcome mode=auth → welcome');
+          return true;
+        }
+        const previousInFlight = resolveOnboardingStep(enabledOrder, step, 'backward');
+        if (previousInFlight !== step) go(previousInFlight);
+        console.log(`[ONBOARDING-BACK] hardware slow_left step=${step} → ${previousInFlight}`);
+        return true;
+      }
+      if (step === 'welcome' && authMode) {
         setAuthMode(false);
         setAuthError(null);
         console.log('[ONBOARDING-BACK] hardware step=welcome mode=auth → welcome');
@@ -2974,16 +3000,12 @@ function CleanOnboarding({
         console.log(`[ONBOARDING-BACK] hardware step=${step} → system default (first step)`);
         return false;
       }
-      if (step === 'privacy' && !allowLeaveDuringAuth('back')) {
-        console.log('[ONBOARDING-BACK] hardware ignored reason=auth_in_flight step=privacy'); // guard-ok: ранний выход пишет причину
-        return true;
-      }
       console.log(`[ONBOARDING-BACK] hardware step=${step} → ${previous}`);
       go(previous);
       return true;
     });
     return () => subscription.remove();
-  }, [allowLeaveDuringAuth, authMode, enabledOrder, go, step]);
+  }, [allowLeaveDuringAuth, authMode, authSlow, enabledOrder, go, step]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');

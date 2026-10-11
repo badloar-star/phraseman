@@ -110,7 +110,10 @@ const INLINE_LOCALE_MAP = /(^|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s*['
  * Ловится именно вызов логгера в этой же строке, а не слово в тексте: обычная
  * UI-строка рядом с DebugLogger в одной строке не встречается.
  */
-const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(/;
+// зачем (координатор 12.10): помощники логов проекта, которые сами зовут console и ничего не показывают на экране —
+// причина в их вызове такой же лог (traceThumbMissing, app/thumb_trace.ts → console.warn, возвращает null). Имена явные,
+// не маской: иначе UI-строка в похожей функции просочилась бы мимо сторожа. Новый помощник логов — дописать в альтернативу.
+const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\btraceThumbMissing\s*\(/;
 
 /**
  * Файл — сам словарь переводов: русский в нём и есть перевод.
@@ -188,6 +191,19 @@ function stripLegal(source) {
   let src = source
     .replace(/\/\*[\s\S]*?\*\//g, mask)
     .replace(/^[ \t]*\/\/.*$/gm, mask);
+
+  // зачем (координатор 12.10, подготовка к английскому интерфейсу): пул фраз ОДНОГО языка — массив `const GREETINGS_RU = [ … ]` / `_UK`, который
+  // подключён в карту языков тем же файлом (`ru: GREETINGS_RU`, `uk: GREETINGS_UK`) — это и есть перевод (отдельный пул на каждый язык), а не забытая
+  // строка. Сторож считал 140 приветствий Главной (70 ru + 70 uk) непереведёнными, хотя пулы есть на всех 9 языках. Условие «имя массива
+  // упомянуто как значение ru:/uk:» не даёт спрятать одинокий массив с русским текстом без карты языков.
+  for (const match of [...src.matchAll(/^[ \t]*(?:export\s+)?const\s+([A-Z0-9_]+_(?:RU|UK))\b[^=\n]*=\s*\[/gm)]) {
+    const name = match[1];
+    const lang = name.endsWith('_RU') ? 'ru' : 'uk';
+    if (!new RegExp(`['"]?${lang}['"]?\\s*:\\s*${name}\\b`).test(src)) continue;
+    const end = src.indexOf('\n];', match.index);
+    if (end < 0) continue;
+    src = src.slice(0, match.index) + mask(src.slice(match.index, end + 3)) + src.slice(end + 3);
+  }
 
   for (const name of TRANSLATORS) {
     let result = '';

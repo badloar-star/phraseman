@@ -1297,6 +1297,12 @@
       "indexes": []
     },
     {
+      "collectionGroup": "dialogue_v2_freeform_sessions",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "dialogue_v2_session_terminals",
       "fieldPath": "expiresAt",
       "ttl": true,

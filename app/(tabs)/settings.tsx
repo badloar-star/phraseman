@@ -1130,7 +1130,7 @@ export default function SettingsMain() {
             {renderRankCoin('settings-profile-coin', 52)}
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.text, fontSize: 18, lineHeight: 22, fontWeight: '700' /* зачем: паритет profile.html (13.10): имя 18/22, как в макете A */ }}>{profileCardName}</Text>
+            <Text style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' /* зачем: имя в карточке профиля — заголовок ≥19 по шкале D145 (макет profile.html показывает 18/22 — Макетам поправить на 19/24) */ }}>{profileCardName}</Text>
             {profileCardSub ? (
               <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{profileCardSub}</Text>
             ) : null}

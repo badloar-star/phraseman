@@ -8,6 +8,26 @@
 - **Вывод пока (ограниченный):** даже со срезанными Learning V2 и лабораториями главный процесс набирает ~3 ГБ за первые 2 минуты — тот же скачок, что в dev. Значит, основной вес не в контенте Learning V2 (моя оценка 37 % веса проекта этого не объясняет); подозрение смещается на `node_modules`/карты/сам бандлер. Это ещё одна точка, не плато — финал по 10–15-й минуте, замеряет координатор.
 - Моя причина раздувания по коду по-прежнему **не найдена**; следующий дешёвый шаг — E1 (куча 4096) и E5.
 
+## 14.10 — dev-состояния для съёмки R1: превью Шпиля и слот сообщений/опрос Настроек (`df4cc67e0`, `3924a65b4`)
+
+Всё строго `__DEV__ && !IS_STORE_RELEASE`, без сетевых записей, лог `[DEV-STATE]` на каждой ветке. Файлы перед правкой: `spire_preview_fixtures.ts`, `dev_spire_preview.tsx`, `app_messages.ts`, `settings_poll_vote.ts` чисты (git status), `dev_state_fixtures.ts` — только разбор нового параметра `slot` (в коммите `97800bc3f` Макетов не правил).
+
+**1) Шпиль — `df4cc67e0`.** `phraseman://dev_spire_preview?state=…` (маршрут вырезан из стор-бандла `router.ctx.js`, в самом маршруте — Redirect при `IS_STORE_RELEASE`; сторож `spire_dev_preview_release_guard` зелёный):
+- `weekresult_stay` («остаёшься»: promoted=false, ранг тот же), `weekresult_down` («спускаешься»: demoted=true, ранг ниже) — `spire-015`, `spire-gap-016/017`;
+- `passed` (итог ступени `spire-result-passed`) — `spire-010`; `guard` (этаж 5, `spireIsGuard`, поднялись с 4-го) — `spire-012`;
+- `block_missing` (`pack_missing`) / `block_offline` (`pack_offline`) у «Подняться» — `spire-gap-008`;
+- `step_gap` (`fill_gap`), `step_odd` (`find_oddity`, подпись на языке интерфейса), `step_listen_choose`, `step_listen_build` (с `audioUri` — кнопка `spire-task-listen` на месте) — `spire-gap-001/002/004/005`;
+- `&exit=1` на любом `step_*` — шторка «Выйти из ступени?» (`spire-009`).
+- **Остаётся «нет пути»:** флажок жалобы `spire-task-report-<n>` (`spire-gap-021`) — его нажатие отправляет жалобу в сеть, в превью не рисуется; снимается в настоящей игре.
+- Логи: `[DEV-STATE] spire_preview route …` (маршрут), `… model state=… floor=… outcome=… weekResult=… startBlock=…`, `… step state=… task=… mode=… hearts=…`. Тест `tests/spire_preview_new_states.test.ts` (7).
+
+**2) Слот сообщений и опрос — `3924a65b4`.** `phraseman://dev_state?slot=poll|poll_voted|message|top|off&next=/(tabs)/settings`:
+- `poll` — опрос в нижнем слоте без голоса; `poll_voted` — тот же опрос с голосом, отданным локально (запись `synced` в `settings_poll_votes_v1`, проценты видны); `message` — сообщение внизу; `top` — сообщение вверху (`settings-message-slot-top`); `off` — убрать кампании и голос.
+- Реализация: `devSeedSettingsMessageSlot` в `app_messages.ts` — выдуманные кампании с id `dev-state-…` и текстами на 9 языках кладутся в уже существовавшее локальное хранилище превью (`app_messages_local_preview_v2`, его читает `refreshAppMessagesSnapshotOnce`, поэтому кампании переживают обновление) и в кэш снимка; в Firestore ничего не пишется. Транспорт голоса отказывает dev-кампаниям (`settings_poll_vote.ts`: `dev_state_campaign_no_network`), так что и тап по dev-опросу в сеть не уйдёт (аналитика события в dev — как у любых кадров). Для `settings-gap-009` в части «Не удалось» очистки кеша по-прежнему нет пути (нужен сбой AsyncStorage, `cache=failed`).
+- Тест `tests/dev_settings_message_slot.test.ts` (8): выбор слотов настоящим `selectSettingsMessageSlots`, голос, `off`, «в стор-сборке не действует» (`IS_STORE_RELEASE=true` → отказ `not_dev_build`, ни одного ключа в хранилище), логи, разбор `slot=`.
+- R1_SHOT_LIST обновлён: `R1_SHOT_LIST.md` (строка таблицы `slot=` + «Остаётся нет пути» по Шпилю и слоту), `…DIALOGS_SPIRE_PAYWALLS_ENERGY.md` (строки spire-gap-001/002/004/005/008/016/017 и раздел «Нет пути» по Шпилю), `…ACCOUNT_SETTINGS.md` (settings-gap-007/008/009/029).
+
+Тесты: 7 + 8 новых; соседние app_messages×6, settings_poll_vote, dev_state_fixtures — зелёные; node:test сторож релиза Шпиля 9/9.
 ## 14.10 — Шпиль ruleNote и ключ en в темах: таблицу ruleNote НЕ делаю — показывать её некуда; en закрыт
 
 **1) Шпиль, разбор: `explanation.ruleNote` до клиента Шпиля не доходит и нигде не показывается.**

@@ -20,6 +20,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
+import { logSpireLayout, roundLayout } from './spire_layout_log';
 
 type Props = Readonly<{
   lang: Lang;
@@ -70,8 +71,14 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
       : block === 'no_identity' ? spireGameText(lang, 'noIdentity')
         : block === 'no_tier' ? spireGameText(lang, 'noTier') : null;
   return (
-    <View testID="spire-dock">
-      {note ? <Text style={[s.note, { color: p.textSecondary }]} accessibilityLiveRegion="polite">{note}</Text> : null}
+    <View testID="spire-dock" onLayout={(e) => logSpireLayout('dock', { block: block ?? 'none', h: roundLayout(e.nativeEvent.layout.height), w: roundLayout(e.nativeEvent.layout.width) })}>
+      {note ? (
+        <Text
+          style={[s.note, { color: p.textSecondary }]}
+          accessibilityLiveRegion="polite"
+          onLayout={(e) => logSpireLayout('dock.note', { block: block ?? 'none', y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), marginBottom: 10 })}
+        >{note}</Text>
+      ) : null}
       <V2Pressable
         onPress={onClimb}
         disabled={!enabled}
@@ -79,6 +86,7 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
         accessibilityState={{ disabled: !enabled, busy }}
         style={[s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }, enabled ? sh.action(p.cta) : null]}
         testID="spire-climb"
+        onLayout={(e) => logSpireLayout('dock.cta', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height) })}
       >
         <Text style={[s.ctaText, { color: p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
         <Ionicons name="arrow-forward" size={20} color={p.ctaText} />

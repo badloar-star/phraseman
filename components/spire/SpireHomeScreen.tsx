@@ -45,6 +45,7 @@ import { useSpireShadow } from './useSpireShadow';
 import SpireEnergyPill from './SpireEnergyPill';
 import SpireAllMembers from './SpireAllMembers';
 import SpireClimbDock from './SpireClimbDock';
+import { logSpireLayout, roundLayout } from './spire_layout_log';
 import SpireFloorInfo from './SpireFloorInfo';
 import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
@@ -175,6 +176,9 @@ export default function SpireHomeScreen() {
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
   const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek });
   const game = preview ? preview.game : realGame;
+  // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью
+  // над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
+  const scrollTailPad = game.outcome ? 300 : game.startBlock ? 150 : 120;
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
   // Маркер поднялся на новый этаж — карточка этажа следует за ним.
@@ -219,7 +223,13 @@ export default function SpireHomeScreen() {
   const climbReady = game.live && game.tier !== null && game.session === null && game.pending === null;
   return (
     <View style={s.root} testID="spire-home">
-      <ScrollView contentContainerStyle={[s.content, { paddingBottom: bottomPad + (game.outcome ? 300 : 120) }]} showsVerticalScrollIndicator={false} decelerationRate="fast">
+      <ScrollView
+        contentContainerStyle={[s.content, { paddingBottom: bottomPad + scrollTailPad }]}
+        showsVerticalScrollIndicator={false}
+        decelerationRate="fast"
+        onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + scrollTailPad) })}
+        onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
+      >
         <View style={s.head}>
           <View style={s.headText}>
             <View style={s.titleRow}>
@@ -259,12 +269,19 @@ export default function SpireHomeScreen() {
         </View>
         <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
-        <View style={offline ? s.dim : null}>
+        <View
+          style={offline ? s.dim : null}
+          onLayout={(e) => logSpireLayout('friends+podium', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottom: roundLayout(e.nativeEvent.layout.y + e.nativeEvent.layout.height), friends: game.friends.length, startBlock: game.startBlock ?? 'none' })}
+        >
           <SpireFriendsRow lang={lang} friends={game.friends} />
           <SpirePodium lang={lang} members={members} onOpenAll={openAll} />
         </View>
       </ScrollView>
-      <View pointerEvents="box-none" style={[s.dock, { bottom: bottomPad - 24 }]}>
+      <View
+        pointerEvents="box-none"
+        style={[s.dock, { bottom: bottomPad - 24 }]}
+        onLayout={(e) => logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottomOffset: roundLayout(bottomPad - 24) })}
+      >
         <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={s.scrim} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome ? (
           <SpireResultPanel

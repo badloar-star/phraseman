@@ -40,6 +40,8 @@ export const V2_TAB_BAR_HEIGHT = 66;
 const PAD = TAB_BAR_PAD;
 const CAP_H = V2_TAB_BAR_HEIGHT - PAD * 2;
 const CAP_RADIUS = 18;
+// зачем: запас от краёв холста SVG, чтобы рамка плашки не резалась на округлении ширины (см. CapFill).
+const CAP_EDGE_INSET = 1.5;
 const SIDE_MARGIN = TAB_BAR_SIDE_MARGIN;
 // зачем: подписи убраны по просьбе владельца 29.09 — иконка занимает место текста и крупнее (капсула 48dp).
 const ICON_SIZE = 28;
@@ -105,8 +107,11 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
           <Stop offset="1" stopColor={color} stopOpacity={0.6} />
         </SvgLinearGradient>
       </Defs>
-      <Rect x={0} y={0} width={width} height={CAP_H} rx={CAP_RADIUS} fill="url(#v2TabCapFill)" />
-      <Rect x={0.5} y={0.5} width={width - 1} height={CAP_H - 1} rx={CAP_RADIUS - 0.5} fill="none" stroke="url(#v2TabCapRim)" strokeWidth={1} />
+      {/* зачем (владелец 11.10, 8-й раз: «капсула обрезается справа»; виден на кадре эмулятора 09:35 — у плашки активной вкладки пропадает ПРАВАЯ рамка):
+          Android округляет ширину холста SVG вниз до целого пикселя (73,9 dp × 2,625 = 193,95 px → 193), а рамка 1 dp лежала ровно на краю — правая линия
+          и закругления обрезались, плашка выглядела срезанной. Рисуем с запасом CAP_EDGE_INSET (≥1 пикселя целого холста) от всех краёв. */}
+      <Rect x={CAP_EDGE_INSET} y={CAP_EDGE_INSET} width={width - CAP_EDGE_INSET * 2} height={CAP_H - CAP_EDGE_INSET * 2} rx={CAP_RADIUS - CAP_EDGE_INSET} fill="url(#v2TabCapFill)" />
+      <Rect x={CAP_EDGE_INSET + 0.5} y={CAP_EDGE_INSET + 0.5} width={width - CAP_EDGE_INSET * 2 - 1} height={CAP_H - CAP_EDGE_INSET * 2 - 1} rx={CAP_RADIUS - CAP_EDGE_INSET - 0.5} fill="none" stroke="url(#v2TabCapRim)" strokeWidth={1} />
     </Svg>
   );
 });

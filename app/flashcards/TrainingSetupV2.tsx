@@ -159,8 +159,8 @@ function TrainingSetupV2Inner(props: Props) {
       {showList ? (
         <PanelDock>
           <View style={styles.dock}>
-            <View style={canStart ? undefined : styles.dim}>
-              <KitCta g={g} testID="fc-training-setup-start" label={startLabel} trailingIcon="arrow-forward" onPress={() => { console.log('[FC-TRAIN-ENTRY] setup:press', JSON.stringify({ canStart, status })); onStart(); }} />
+            <View>
+              <KitCta g={g} testID="fc-training-setup-start" label={startLabel} trailingIcon="arrow-forward" disabled={!canStart} onPress={() => { console.log('[FC-TRAIN-ENTRY] setup:press', JSON.stringify({ canStart, status })); onStart(); }} />
             </View>
           </View>
         </PanelDock>

@@ -158,7 +158,9 @@ export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: R
 });
 
 /** «.cta» макета: мятная кнопка 48 высотой, свечение снизу, блик сверху; иконка слева необязательна. */
-export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPress, testID, accessibilityLabel }: Readonly<{
+// зачем (Сверка 11.10, светлая, настройка тренировки): выключенная кнопка была обычной мятной с opacity .45 — сквозь неё просвечивал
+// текст нижних секций («Направление» под «Начать»). По макету `.cta.dis` — плотная заливка контрола и приглушённый текст, без свечения.
+export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPress, testID, accessibilityLabel, disabled = false }: Readonly<{
   g: GlassTokens;
   label: string;
   icon?: keyof typeof Ionicons.glyphMap;
@@ -167,21 +169,27 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
   onPress: () => void;
   testID?: string;
   accessibilityLabel?: string;
+  /** Вид «недоступно» (`.cta.dis`): плотная заливка, приглушённый текст; нажатие остаётся — экран сам объяснит причину. */
+  disabled?: boolean;
 }>) {
+  const ink = disabled ? g.mutedText : g.accentInk;
   return (
     <Pressable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
+      accessibilityState={disabled ? { disabled: true } : undefined}
       onPress={onPress}
       style={({ pressed }) => [
         styles.cta,
-        { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+        disabled
+          ? { backgroundColor: g.opaqueControl }
+          : { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
         pressed && styles.pressed,
       ]}>
-      {icon ? <Ionicons name={icon} size={20} color={g.accentInk} /> : null}
-      <Text style={[styles.ctaText, { color: g.accentInk }]}>{label}</Text>
-      {trailingIcon ? <Ionicons name={trailingIcon} size={20} color={g.accentInk} /> : null}
+      {icon ? <Ionicons name={icon} size={20} color={ink} /> : null}
+      <Text style={[styles.ctaText, { color: ink }]}>{label}</Text>
+      {trailingIcon ? <Ionicons name={trailingIcon} size={20} color={ink} /> : null}
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: `${g.mediaInk}B3` }] }]} />
     </Pressable>
   );

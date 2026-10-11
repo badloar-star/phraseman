@@ -848,13 +848,16 @@ export default function FlashcardsRecallSession() {
       </View>
       {/* зачем (practice.html `.trk` + `.prog`): полоса и строка «выучено … всего» под ней —
           только реальные числа сессии; пока карточек нет, строка пустая, а не «0/0». */}
-      <PracticeProgressRow
-        glass={recallGlass}
-        progress={totalCards > 0 ? masteredCount / totalCards : 0}
-        left={totalCards > 0 ? String(masteredCount) : ''}
-        right={totalCards > 0 ? String(totalCards) : ''}
-        testID="fc-recall-progress"
-      />
+      {/* зачем (Сверка 11.10, practice.html `.trk margin-top:22` и поле 20): полоса стояла вплотную под двухстрочным заголовком и шире карточек (поле 16). */}
+      <View style={styles.progressGap}>
+        <PracticeProgressRow
+          glass={recallGlass}
+          progress={totalCards > 0 ? masteredCount / totalCards : 0}
+          left={totalCards > 0 ? String(masteredCount) : ''}
+          right={totalCards > 0 ? String(totalCards) : ''}
+          testID="fc-recall-progress"
+        />
+      </View>
     </>
   );
 
@@ -1198,6 +1201,7 @@ const styles = StyleSheet.create({
   // зачем (practice.html `.hd`): поле страницы 20, шапка 16 от верха.
   headerRow: { minHeight: 52, paddingHorizontal: 20, paddingTop: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
   headerTools: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  progressGap: { marginTop: 22, paddingHorizontal: 4 },
   scroll: { flex: 1, minHeight: 0 },
   // зачем (practice.html): карточка «Вспомни» на 30 ниже строки прогресса, поле 20.
   content: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 28 },

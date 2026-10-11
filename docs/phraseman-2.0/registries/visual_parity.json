@@ -26580,6 +26580,585 @@
       "status": "diff",
       "reviewed_by": null,
       "reviewed_at": null
+    },
+    {
+      "id": "energy-modes-001",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 1,
+        "label": "Режим Б · занятие: энергия без сердечек",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · занятие: энергия без сердечек",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-002",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 2,
+        "label": "Режим Б · ошибка: тряска и «−1»",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · ошибка: тряска и «−1»",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-003",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 3,
+        "label": "Режим Б · осталась 1 энергия",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · осталась 1 энергия",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-004",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 4,
+        "label": "Режим Б · ошибка на последней энергии → остановка",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · ошибка на последней энергии → остановка",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-005",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 5,
+        "label": "Режим Б · шторка Plus на остановке",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · шторка Plus на остановке",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-006",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 6,
+        "label": "Режим Б · после покупки занятие продолжается",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · после покупки занятие продолжается",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-007",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 7,
+        "label": "Режим Б · вышел без энергии → «Нужна энергия»",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · вышел без энергии → «Нужна энергия»",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-008",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 8,
+        "label": "Режим Б · энергия восстановилась",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Урок",
+      "state": "Режим Б · энергия восстановилась",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-009",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 9,
+        "label": "Режим Б · слова — занятие",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Слова",
+      "state": "Режим Б · слова — занятие",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-010",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 12,
+        "label": "Режим Б · неправильные глаголы — занятие",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Неправильные глаголы",
+      "state": "Режим Б · неправильные глаголы — занятие",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-011",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 15,
+        "label": "Режим Б · Learning V2 — занятие",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Learning V2",
+      "state": "Режим Б · Learning V2 — занятие",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-012",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 18,
+        "label": "Режим Б · Карточки: тренировка — занятие",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Карточки: тренировка",
+      "state": "Режим Б · Карточки: тренировка — занятие",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-013",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 21,
+        "label": "Диалоги — энергия за ошибки не снимается",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Диалоги",
+      "state": "Диалоги — энергия за ошибки не снимается",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-014",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 22,
+        "label": "Фраза дня — энергия за ошибки не снимается",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Фраза дня",
+      "state": "Фраза дня — энергия за ошибки не снимается",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-015",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 23,
+        "label": "Режим А · старт: −1 энергия",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Режим А",
+      "state": "Режим А · старт: −1 энергия",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-016",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 24,
+        "label": "Режим А · ошибка: сердечко и серия монет",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Режим А",
+      "state": "Режим А · ошибка: сердечко и серия монет",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "replay-control"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
+    },
+    {
+      "id": "energy-modes-017",
+      "source": "OWNER_BRIEF_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/energy-modes-states.html",
+        "phone": 25,
+        "label": "Режим А · нет энергии при старте",
+        "mapping": "manual_pin"
+      },
+      "screen": "Два режима энергии · Режим А",
+      "state": "Режим А · нет энергии при старте",
+      "code": [
+        "components/EnergyContext.tsx",
+        "components/NoEnergyModal.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [
+        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+      ],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "prev_release_surface_proof": null,
+      "blocked_reason": null
     }
   ]
 }

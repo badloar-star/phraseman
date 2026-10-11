@@ -1550,6 +1550,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // устройстве. Осталась только дев-версия — в релизе она молчит.
         const step = perfSteps('home:loadData');
         try {
+            // зачем (координатор, [PERF-STEPS] home:loadData 3,9 с на прогретой сборке: parallel6 1,1 с → avatar →
+            // titles+achievements+greeting 1,0 с → lessons — всё строго по очереди): независимые чтения стартуют СРАЗУ,
+            // параллельно с первым блоком; ждём их там же, где раньше, — порядок обновления экрана прежний.
+            // Отказ раннего чтения не теряется: тот же промис ждётся ниже и бросает в общий catch, лог — сразу.
+            const helpfulReportsPromise = AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]);
+            helpfulReportsPromise.catch(noteSwallowedHandler('home:loadData.prestart_helpful'));
+            const achievementStatesPromise = import('../achievements').then((m) => m.loadAchievementStates()).catch(noteSwallowedAs('home:loadData.loadAchievementStates', []));
+            const pool = HOME_GREETING_POOLS[lang] ?? HOME_GREETING_POOLS.ru;
+            const greetingPromise = pool.length > 0 ? resolveDailyGreeting(pool, lang) : null;
+            greetingPromise?.catch(noteSwallowedHandler('home:loadData.prestart_greeting'));
             const [homeStoragePairs, currentWeekMarkers, weekPts, premiumSignalPairs, personalProgress] = await Promise.all([
                 AsyncStorage.multiGet([
                     'user_name',
@@ -1557,6 +1567,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     HOME_SELECTED_TITLE_KEY,
                     'streak_last_shown',
                     HOME_WEEK_DOT_ANIMATION_KEY,
+                    // зачем: рамка аватара читалась отдельным походом в хранилище после блока — теперь вместе с ним.
+                    'user_frame',
                 ]),
                 readCurrentStreakWeekMarkers(),
                 Promise.resolve(0),
@@ -1596,7 +1608,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setStreak(currentStreakNum);
             const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;
             if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
-                await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
+                // зачем ([PERF-STEPS]): метка «серию уже показали» — запись для следующего захода, ждать её незачем.
+                void AsyncStorage.setItem('streak_last_shown', String(currentStreakNum)).catch(noteSwallowedHandler('home:loadData.streakLastShown'));
                 if (lastStreakShown > 0 && currentStreakNum > lastStreakShown) {
                     setDisplayStreak(lastStreakShown);
                     streakTimerRef.current = setTimeout(() => {
@@ -1622,7 +1635,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setDisplayStreak(currentStreakNum);
             }
             step('streak');
-            const [[, savedFrSnap]] = await AsyncStorage.multiGet(['user_frame']);
+            const savedFrSnap = homeStorage.get('user_frame') ?? null;
             const liveProfileVisuals = sharedSnapshotAtHydration.profile?.source === 'live'
                 ? resolveHomeProfileVisuals({ snapshot: sharedSnapshotAtHydration.profile })
                 : null;
@@ -1660,21 +1673,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             setWeekPoints(weekPts);
             step('avatar');
-            const [specialTitleStoragePairs, achievementStates] = await Promise.all([
-                AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]),
-                import('../achievements').then((m) => m.loadAchievementStates()).catch(noteSwallowedAs('home:loadData.loadAchievementStates', [])),
-            ]);
-            const specialTitleStorage = new Map(specialTitleStoragePairs);
+            const specialTitleStorage = new Map(await helpfulReportsPromise);
             const helpfulReportsRaw = specialTitleStorage.get(HELPFUL_REPORTS_CONFIRMED_KEY) ?? null;
-            if (mountedRef.current) {
+            // зачем (координатор: холодный старт 30 с, queue_wait 22 с у ACH-CHECK): чтение достижений стоит в ОБЩЕЙ
+            // очереди проверок аккаунта (enqueueAchievementOperation) — Главная ждала её до 22 с, прежде чем посчитать
+            // уроки. Титулы из достижений подставляются, когда очередь дойдёт; уроки, серия и приветствие её не ждут.
+            const achievementsQueuedAt = Date.now();
+            void achievementStatesPromise.then((achievementStates) => {
+                const waitedMs = Date.now() - achievementsQueuedAt;
+                if (waitedMs > 1_000) console.log('[HOME-COLD] achievements:late', JSON.stringify({ waitedMs, states: achievementStates.length })); // guard-ok: диагностика очереди достижений
+                if (!mountedRef.current || !isCurrentAccountGeneration(homeHydrationAccount)) return;
                 setSpecialTitleStats({
                     helpfulReportsConfirmed: parseStoredCount(helpfulReportsRaw),
                     earnedAchievementIds: new Set(achievementStates.filter((state) => state.unlockedAt !== null).map((state) => state.id)),
                 });
-            }
-            const pool = HOME_GREETING_POOLS[lang] ?? HOME_GREETING_POOLS.ru;
-            if (pool.length > 0) {
-                const phrase = await resolveDailyGreeting(pool, lang);
+            });
+            if (greetingPromise) {
+                const phrase = await greetingPromise;
                 if (mountedRef.current)
                     setGreeting(phrase);
             }

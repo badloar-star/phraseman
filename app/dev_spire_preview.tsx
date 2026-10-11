@@ -9,6 +9,7 @@
 //                            | step_gap | step_odd | step_listen_choose | step_listen_build
 //   ?exit=1 — на экране ступени поверх открыта шторка «Выйти из ступени?» (spire-009). Жалобу на задание в превью не рисуем: её отправка — запись в сеть.
 //   ?selector=1 — снизу полоса переключения состояний (по умолчанию скрыта, чтобы не попадать в кадр).
+//   &spirePanel=off — полосы нет совсем (для съёмки); &spirePanel=dot — свёрнута в точку в правом нижнем углу, тап раскрывает.
 // Экраны — ТЕ ЖЕ компоненты, что в бою (SpireHomeScreen через шов spire_preview_context, SpireStepLayout), данные — моки без сети.
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную. Охраняет tests/spire_dev_preview_release_guard.test.mjs.
 // ═══════════════════════════════════════════════════════════
@@ -69,16 +70,22 @@ function StepPreview({ state, exitOpen }: Readonly<{ state: SpirePreviewState; e
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string }>();
+  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string }>();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
   const model = useMemo(() => spirePreviewModel(state), [state]);
   const step = isSpireStepPreviewState(state);
   const exitOpen = params.exit === '1';
+  // зачем (координатор 15.10, spire-gap-008: полоса состояний перекрывала низ кадров): spirePanel=off — полосы нет вовсе (съёмка), spirePanel=dot — свёрнута в точку
+  // в углу, тап раскрывает. Без параметра поведение прежнее: полоса только при selector=1.
+  const panelMode = params.spirePanel === 'off' ? 'off' : params.spirePanel === 'dot' ? 'dot' : 'strip';
+  const [dotOpen, setDotOpen] = useState(false);
+  const showStrip = panelMode !== 'off' && (params.selector === '1' || panelMode === 'dot') && (panelMode === 'strip' || dotOpen);
+  const showDot = panelMode === 'dot';
   useEffect(() => {
-    console.log(`[DEV-STATE] spire_preview route state=${state} fromParam=${String(params.state ?? 'нет→room')} step=${String(step)} selector=${String(params.selector === '1')} exit=${String(exitOpen)}`);
-  }, [state, params.state, params.selector, step, exitOpen]);
+    console.log(`[DEV-STATE] spire_preview route state=${state} fromParam=${String(params.state ?? 'нет→room')} step=${String(step)} selector=${String(params.selector === '1')} exit=${String(exitOpen)} spirePanel=${panelMode} showStrip=${String(showStrip)} showDot=${String(showDot)}`);
+  }, [state, params.state, params.selector, step, exitOpen, panelMode, showStrip, showDot]);
   return (
     <View style={s.root} testID="dev-spire-preview">
       {step ? (
@@ -93,7 +100,10 @@ function Inner() {
           </SafeAreaView>
         </ScreenGradient>
       )}
-      {params.selector === '1' ? (
+      {showDot ? (
+        <Pressable testID="dev-spire-panel-dot" onPress={() => setDotOpen((v) => !v)} accessibilityRole="button" accessibilityLabel="DEV: состояния Шпиля" hitSlop={12} style={s.dot} />
+      ) : null}
+      {showStrip ? (
         <View style={s.selector} pointerEvents="box-none">
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.selectorRow} decelerationRate="fast">
             {/* guard-ok: 18 коротких чипов служебной DEV-полосы, виртуализация не нужна */}
@@ -117,6 +127,7 @@ export default function DevSpirePreviewRoute() {
 const s = StyleSheet.create({
   root: { flex: 1 },
   selector: { position: 'absolute', left: 0, right: 0, bottom: 0 },
+  dot: { position: 'absolute', right: 4, bottom: 4, width: 10, height: 10, borderRadius: 5, backgroundColor: 'rgba(60,130,255,0.9)' }, // theme-exempt: служебная DEV-точка, в релизе её нет
   selectorRow: { gap: 6, paddingHorizontal: 8, paddingVertical: 6 },
   chip: { minHeight: 32, borderRadius: 16, paddingHorizontal: 10, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.72)' }, // theme-exempt: служебная DEV-полоса, в релизе её нет
   chipOn: { backgroundColor: 'rgba(60,130,255,0.9)' }, // theme-exempt: служебная DEV-полоса, в релизе её нет

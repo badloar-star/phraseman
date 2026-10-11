@@ -93,7 +93,10 @@ function CatalogTileGlass({ g }: { g: CatalogGlassTokens }) {
     <BlurView intensity={Platform.OS === 'android' ? 6 : 12} blurReductionFactor={4}
       experimentalBlurMethod="none"
       tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    {/* зачем (Темы 05.10, гейт «приложение = макет»): блик строки — 5-точечный --lg-sheen кита (150°: белый .10 → .035 → 0 → .02 → .055),
+        а не «g.selected → прозрачный»: иначе низ строки темнее макета. Цвет блика — mediaInk темы, как в KitGlassLayer. */}
+    <LinearGradient colors={[`${g.mediaInk}1A`, `${g.mediaInk}09`, `${g.mediaInk}00`, `${g.mediaInk}05`, `${g.mediaInk}0E`]} locations={[0, 0.26, 0.52, 0.78, 1]}
+      start={{ x: 0.25, y: 0.067 }} end={{ x: 0.75, y: 0.933 }} style={StyleSheet.absoluteFill} />
     <View style={{ height: 1, backgroundColor: g.glassEdge }} />
   </View>;
 }

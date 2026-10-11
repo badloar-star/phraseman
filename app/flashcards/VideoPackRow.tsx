@@ -44,6 +44,11 @@ type Props = {
   /** Открывается другой набор — этот не должен перехватывать тап. */
   disabled?: boolean;
   onOpen: (pack: FlashcardMarketPack) => void;
+  /**
+   * 'card' — строка-карточка раздела «Карточки → Из видео»; 'plain' — строка вкладки «Наборы» в «Видео»
+   * (макет video-redesign #c1, экран 4): без карточки, обложка 132, «N карточек», справа круглая «+».
+   */
+  variant?: 'card' | 'plain';
 };
 
 /**
@@ -99,7 +104,7 @@ export function formatDuration(totalSec?: number): string {
     : `${mm}:${String(sec).padStart(2, '0')}`;
 }
 
-function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, onOpen }: Props) {
+function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, onOpen, variant = 'card' }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
@@ -125,16 +130,25 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
 
   // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Из видео»): строка — карточка 87 высотой:
   // кадр 112×63 слева, название (до двух строк) и «N фраз», справа мятная «Добавить» (после добавления — пилюля с галочкой).
-  const phrasesText = `${pack.cardCount} ${triLang(lang, {
-    ru: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фразы', many: 'фраз' }),
-    uk: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фрази', many: 'фраз' }),
-    en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade',
-    pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
-  })}`;
+  const plain = variant === 'plain';
+  const phrasesText = plain
+    // зачем (макет video-redesign #c1, экран 4): во вкладке «Наборы» подпись — «N карточек».
+    ? `${pack.cardCount} ${triLang(lang, {
+      ru: pluralWord(lang, pack.cardCount, { one: 'карточка', few: 'карточки', many: 'карточек' }),
+      uk: pluralWord(lang, pack.cardCount, { one: 'картка', few: 'картки', many: 'карток' }),
+      en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart',
+      pl: pluralWord(lang, pack.cardCount, { one: 'fiszka', few: 'fiszki', many: 'fiszek' }),
+    })}`
+    : `${pack.cardCount} ${triLang(lang, {
+      ru: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фразы', many: 'фраз' }),
+      uk: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фрази', many: 'фраз' }),
+      en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade',
+      pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
+    })}`;
   return (
     <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
-      <KitCard g={g} style={styles.card}>
-        <View style={styles.row}>
+      <Wrapper g={g} plain={plain} style={styles.card}>
+        <View style={plain ? styles.rowPlain : styles.row}>
           {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
           <Pressable
             testID={`video-pack-play-${pack.id}`}
@@ -146,7 +160,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               void hapticTap();
               void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
             }}
-            style={({ pressed }) => [styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+            style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
           >
             {thumbUrl ? (
               <Image
@@ -195,11 +209,16 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
           </View>
 
           {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
-          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="videoAdd" />
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant={plain ? 'videoAddRound' : 'videoAdd'} />
         </View>
-      </KitCard>
+      </Wrapper>
     </View>
   );
+}
+
+/** Карточка раздела «Карточки» или голая строка вкладки «Наборы» (без фона и кромки). */
+function Wrapper({ g, plain, style, children }: { g: ReturnType<typeof liquidGlassTokens>; plain: boolean; style: object; children: React.ReactNode }) {
+  return plain ? <View style={style}>{children}</View> : <KitCard g={g} style={style}>{children}</KitCard>;
 }
 
 /**
@@ -213,11 +232,15 @@ export default React.memo(VideoPackRowBase, (prev, next) => (
   && prev.t === next.t
   && prev.opening === next.opening
   && prev.disabled === next.disabled
+  && prev.variant === next.variant
 ));
 
 const baseStyles = StyleSheet.create({
   card: { minHeight: 87 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
+  // `.row` макета video-redesign #c1: обложка 132 (16:9 → 74), промежуток 14, вертикальные поля 12.
+  rowPlain: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12 },
+  thumbPlain: { width: 132, aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   thumb: {
     width: THUMB_W,
     height: THUMB_H,

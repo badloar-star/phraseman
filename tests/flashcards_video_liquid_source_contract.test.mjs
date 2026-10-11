@@ -49,7 +49,8 @@ test('Video retry visibly reloads and bypasses the warm catalog cache once', () 
 });
 
 test('Video row exposes separate accessible video, pack and social controls', () => {
-  assert.match(row, /<View[^>]*style=\{\[?styles\.row/s);
+  // зачем (владелец 11.10, video-redesign #c1): строка бывает карточкой раздела «Карточки» (styles.row) и голой строкой вкладки «Наборы» (styles.rowPlain).
+  assert.match(row, /<View[^>]*style=\{plain \? styles\.rowPlain : styles\.row\}/s);
   assert.match(row, /video-pack-open-/);
   assert.match(row, /video-pack-play-/);
   assert.match(row, /accessibilityLabel=\{`\$\{title\}/);

@@ -165,7 +165,12 @@ function withOpenTimeout<T extends unknown[]>(promise: Promise<T>): Promise<T | 
   });
 }
 
-export default function FlashcardsVideoPacksScreen() {
+export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad = 32 }: {
+  /** зачем (владелец 11.10, video-redesign #c1): вкладка «Наборы» в «Видео» встраивает этот же список без шапки и поиска. */
+  embedded?: boolean;
+  /** Нижний отступ списка во встроенном режиме (под таб-бар). */
+  bottomPad?: number;
+} = {}) {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -407,8 +412,9 @@ export default function FlashcardsVideoPacksScreen() {
       opening={openingPackId === item.id}
       disabled={openingPackId !== null && openingPackId !== item.id}
       onOpen={openPack}
+      variant={embedded ? 'plain' : 'card'}
     />
-  ), [lang, openingPackId, openPack, t]);
+  ), [embedded, lang, openingPackId, openPack, t]);
 
   const searching = query.trim().length > 0;
   // зачем (владелец 01.10: «этот экран больше никогда не должен быть пустым»; «ошибок не показываем»):
@@ -487,6 +493,74 @@ export default function FlashcardsVideoPacksScreen() {
       pl: `${visible.length} ${pluralWord(lang, visible.length, { one: 'zestaw', few: 'zestawy', many: 'zestawów' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'fraza', few: 'frazy', many: 'fraz' })}`,
     })
     : null;
+  // зачем (video-redesign #c1, `.row + .row`): во вкладке строки разделяет тонкая линия, без карточек и зазоров.
+  const rowSeparator = useMemo(
+    () => (embedded ? function HairlineGap() { return <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: g.line }} />; } : RowGap),
+    [embedded, g.line],
+  );
+  const content = (
+    <>
+      {waitingForCatalog && catalogExhausted ? (
+                <KitEmpty
+                  g={kg}
+                  testID="fc-video-packs-unavailable"
+                  icon="cloud-offline-outline"
+                  title={copy.unavailable}
+                  detail={copy.checkInternet}
+                  action={copy.tryAgain}
+                  actionIcon="refresh"
+                  onAction={() => retryCatalog('tap')}
+                  actionTestID="fc-video-packs-try-again"
+                />
+              ) : waitingForCatalog ? (
+                /**
+                 * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
+                 * геометрии с готовым списком, иначе экран «прыгает», когда данные
+                 * приезжают (инвариант layout-stability проекта).
+                 */
+                <View style={embedded ? [styles.listContent, styles.listContentEmbedded] : styles.listContent}>
+                  {[0, 1, 2].map((i) => (
+                    <View key={`sk${i}`} style={[styles.skeletonRow, { backgroundColor: g.hairlineSoft }]}>
+                      <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
+                      <View style={styles.skeletonLines}>
+                        <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '80%' }]} />
+                        <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '40%', marginTop: 10 }]} />
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              ) : showEmpty ? (
+                <KitEmpty
+                  g={kg}
+                  testID="fc-video-packs-empty"
+                  icon="search"
+                  title={copy.notFoundTitle}
+                  detail={copy.notFoundBody}
+                  action={copy.showAll}
+                  onAction={() => { void hapticTap(); setQuery(''); }}
+                  actionTestID="fc-video-packs-clear-search"
+                />
+              ) : (
+                <FlatList
+                  data={visible}
+                  keyExtractor={(item) => item.id}
+                  renderItem={renderRow}
+                  ItemSeparatorComponent={rowSeparator}
+                  contentContainerStyle={embedded ? [styles.listContent, styles.listContentEmbedded, { paddingBottom: bottomPad }] : styles.listContent}
+                  showsVerticalScrollIndicator={false}
+                  /** Превью — картинки из сети; окно держим узким, чтобы список не грел телефон. */
+                  initialNumToRender={8}
+                  maxToRenderPerBatch={8}
+                  windowSize={7}
+                  removeClippedSubviews={false} decelerationRate="fast"
+                />
+              )}
+    </>
+  );
+  // зачем: во вкладке «Наборы» видео нет своей шапки, поиска и «Назад» — только список (макет video-redesign #c1, экран 4).
+  if (embedded) {
+    return <View testID="video-packs-embedded" style={styles.embedded}>{content}</View>;
+  }
   return (
     <View style={{ flex: 1, backgroundColor: g.bg }}>
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
@@ -517,61 +591,7 @@ export default function FlashcardsVideoPacksScreen() {
             {searching && visible.length > 0 ? <KitFound g={kg} label={`${copy.found} · ${visible.length}`} /> : null}
           </View>
 
-          {waitingForCatalog && catalogExhausted ? (
-            <KitEmpty
-              g={kg}
-              testID="fc-video-packs-unavailable"
-              icon="cloud-offline-outline"
-              title={copy.unavailable}
-              detail={copy.checkInternet}
-              action={copy.tryAgain}
-              actionIcon="refresh"
-              onAction={() => retryCatalog('tap')}
-              actionTestID="fc-video-packs-try-again"
-            />
-          ) : waitingForCatalog ? (
-            /**
-             * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
-             * геометрии с готовым списком, иначе экран «прыгает», когда данные
-             * приезжают (инвариант layout-stability проекта).
-             */
-            <View style={styles.listContent}>
-              {[0, 1, 2].map((i) => (
-                <View key={`sk${i}`} style={[styles.skeletonRow, { backgroundColor: g.hairlineSoft }]}>
-                  <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
-                  <View style={styles.skeletonLines}>
-                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '80%' }]} />
-                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '40%', marginTop: 10 }]} />
-                  </View>
-                </View>
-              ))}
-            </View>
-          ) : showEmpty ? (
-            <KitEmpty
-              g={kg}
-              testID="fc-video-packs-empty"
-              icon="search"
-              title={copy.notFoundTitle}
-              detail={copy.notFoundBody}
-              action={copy.showAll}
-              onAction={() => { void hapticTap(); setQuery(''); }}
-              actionTestID="fc-video-packs-clear-search"
-            />
-          ) : (
-            <FlatList
-              data={visible}
-              keyExtractor={(item) => item.id}
-              renderItem={renderRow}
-              ItemSeparatorComponent={RowGap}
-              contentContainerStyle={styles.listContent}
-              showsVerticalScrollIndicator={false}
-              /** Превью — картинки из сети; окно держим узким, чтобы список не грел телефон. */
-              initialNumToRender={8}
-              maxToRenderPerBatch={8}
-              windowSize={7}
-              removeClippedSubviews={false} decelerationRate="fast"
-            />
-          )}
+          {content}
         </ContentWrap>
         {/* зачем: сортировка «Популярные / Новые» в макете не нарисована, но нужна — живёт в меню «⋮» */}
         <PanelSheet visible={menuOpen} onClose={() => setMenuOpen(false)} testID="fc-video-packs-menu-sheet">
@@ -604,6 +624,9 @@ const styles = StyleSheet.create({
   langRow: { marginTop: 14, flexDirection: 'row' },
   searchWrap: { marginTop: 16 },
   listContent: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 32, gap: 10 },
+  // зачем (video-redesign #c1, экран 4): во вкладке поля задаёт сам экран «Видео», строки без карточек — без зазора, разделяет линия.
+  embedded: { flex: 1, minHeight: 0 },
+  listContentEmbedded: { paddingHorizontal: 0, paddingTop: 4, gap: 0 },
   /** Геометрия скелета = геометрия строки (карточка 87, кадр 112×63) — без прыжка. */
   skeletonRow: { height: 87, borderRadius: 14, paddingVertical: 12, paddingLeft: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   skeletonThumb: { width: 112, height: 63, borderRadius: 12 },

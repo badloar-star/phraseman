@@ -43,7 +43,7 @@ import {
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound';
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -58,6 +58,12 @@ type Props = {
   variant?: CommunityPackSocialVariant;
   /** Подпись нижней кнопки `previewCta` до добавления (у набора из видео — «Учить набор»). */
   ctaLabel?: string;
+  /**
+   * зачем (координатор 11.10, экран ролика): у набора из видео после добавления нижняя кнопка не «глохнет», а ведёт к тренировке.
+   * Оба поля заданы — вариант `previewCta` в добавленном состоянии показывает `ownedCtaLabel` и зовёт `onOwnedCtaPress`.
+   */
+  ownedCtaLabel?: string;
+  onOwnedCtaPress?: () => void;
   onAdded?: (packId: string) => void;
   /**
    * Набор платный и ещё не добавлен — экран должен показать шит покупки.
@@ -82,6 +88,8 @@ export default function CommunityPackSocialBar({
   compact = false,
   variant,
   ctaLabel,
+  ownedCtaLabel,
+  onOwnedCtaPress,
   onAdded,
   onRequestPurchase,
   onOpenComments,
@@ -100,6 +108,7 @@ export default function CommunityPackSocialBar({
   const isPreviewMeta = mode === 'previewMeta';
   const isPreviewCta = mode === 'previewCta';
   const isVideoAdd = mode === 'videoAdd';
+  const isVideoAddRound = mode === 'videoAddRound';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
   // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
   const isCatalog = isTile || isList || isPreviewMeta;
@@ -469,6 +478,26 @@ export default function CommunityPackSocialBar({
     );
   }
 
+  if (isVideoAddRound) {
+    // зачем (макет video-redesign #c1, экран 4): справа круглая «+» 40 (`.rd`); набор уже добавлен — галочка цветом акцента.
+    // Логика добавления — та же `onAddPress` (оптимистично, откат при отказе).
+    return (
+      <TouchableOpacity
+        testID={`pack-add-${pack.id}`}
+        accessibilityRole="button"
+        accessibilityLabel={isAdded ? ownedLabel : addLabel}
+        accessibilityState={{ disabled: isAdded }}
+        disabled={isAdded}
+        onPress={onAddPress}
+        activeOpacity={0.85}
+        hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+        style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}
+      >
+        <Ionicons name={isAdded ? 'checkmark' : 'add'} size={20} color={isAdded ? g.accentText : g.text} />
+      </TouchableOpacity>
+    );
+  }
+
   if (isVideoAdd) {
     // зачем (владелец: «любые различия с макетом запрещены», cards-section «Из видео»): `.vadd` — мятная пилюля 98×34, 14/700, тёмный текст;
     // у уже добавленного набора — пилюля `.cntp` с галочкой. Логика добавления — та же `onAddPress` (оптимистично, откат при отказе).
@@ -497,15 +526,18 @@ export default function CommunityPackSocialBar({
   }
 
   if (isPreviewCta) {
-    // зачем (packs-simple.html кадр 4, `.ac-cta`): нижняя кнопка 52 на акценте темы; после добавления — «В моих наборах».
+    // зачем (packs-simple.html кадр 4, `.ac-cta`): нижняя кнопка 52 на акценте темы; после добавления — «В моих наборах»,
+    // а если экран дал `ownedCtaLabel` + `onOwnedCtaPress` (экран ролика) — активная кнопка «Тренировать».
+    const ownedAction = isAdded && !!ownedCtaLabel && !!onOwnedCtaPress;
+    const shownLabel = isAdded ? (ownedAction ? ownedCtaLabel : ownedLabel) : (ctaLabel ?? addLabel);
     return (
       <TouchableOpacity
         testID={`pack-add-${pack.id}`}
         accessibilityRole="button"
-        accessibilityLabel={isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
-        accessibilityState={{ disabled: isAdded }}
-        disabled={isAdded}
-        onPress={onAddPress}
+        accessibilityLabel={shownLabel}
+        accessibilityState={{ disabled: isAdded && !ownedAction }}
+        disabled={isAdded && !ownedAction}
+        onPress={ownedAction ? onOwnedCtaPress : onAddPress}
         activeOpacity={0.88}
         style={{
           minHeight: 52,
@@ -514,13 +546,13 @@ export default function CommunityPackSocialBar({
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
-          backgroundColor: isAdded ? g.opaqueControl : t.accent,
+          backgroundColor: isAdded && !ownedAction ? g.opaqueControl : t.accent,
         }}
       >
-        {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
+        {isAdded ? <Ionicons name={ownedAction ? 'layers-outline' : 'checkmark'} size={18} color={ownedAction ? t.textOnGold : g.text} /> : null}
         {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
-        <Text style={{ color: isAdded ? g.text : t.textOnGold, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
-          {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
+        <Text style={{ color: isAdded && !ownedAction ? g.text : t.textOnGold, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
+          {shownLabel}
         </Text>
       </TouchableOpacity>
     );

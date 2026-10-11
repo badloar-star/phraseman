@@ -288,22 +288,22 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               <ActivityIndicator size="large" color={glass.text} style={{ alignSelf: 'center', marginBottom: 20 }} />
               <Text accessibilityRole="header" style={titleStyle}>
                 {/* зачем: паритет profile.html PRF-20-PROGRESS (13.10): «Выходим из аккаунта» + чьи локальные изменения */}
-                {L('Выходим из аккаунта', 'Виходимо з акаунту', 'Signing out', 'Cerrando sesión', 'Saindo da conta', 'Đang đăng xuất', 'Sedang keluar', 'Çıkış yapılıyor', 'Wylogowywanie')}
+                {L('Выходим из аккаунта', 'Виходимо з акаунта', 'Signing out', 'Cerrando sesión', 'Saindo da conta', 'Đang đăng xuất', 'Sedang keluar', 'Çıkış yapılıyor', 'Wylogowywanie')}
               </Text>
               <Text style={bodyStyle}>
-                {L('Локальные изменения остаются привязаны к этому аккаунту.', 'Локальні зміни залишаються прив\'язаними до цього акаунту.', 'Local changes stay linked to this account.', 'Los cambios locales siguen vinculados a esta cuenta.', 'As alterações locais continuam vinculadas a esta conta.', 'Thay đổi trên máy vẫn gắn với tài khoản này.', 'Perubahan lokal tetap terhubung ke akun ini.', 'Yerel değişiklikler bu hesaba bağlı kalır.', 'Lokalne zmiany pozostają przypisane do tego konta.')}
+                {L('Локальные изменения остаются привязаны к этому аккаунту.', 'Локальні зміни залишаються прив\'язаними до цього акаунта.', 'Local changes stay linked to this account.', 'Los cambios locales siguen vinculados a esta cuenta.', 'As alterações locais continuam vinculadas a esta conta.', 'Thay đổi trên máy vẫn gắn với tài khoản này.', 'Perubahan lokal tetap terhubung ke akun ini.', 'Yerel değişiklikler bu hesaba bağlı kalır.', 'Lokalne zmiany pozostają przypisane do tego konta.')}
               </Text>
             </View>
           ) : (
             <View style={cardStyle}>
               <KitGlassLayer radius={26} />
               <Text accessibilityRole="header" style={titleStyle}>
-                {L('Выйти из аккаунта?', 'Вийти з акаунту?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
+                {L('Выйти из аккаунта?', 'Вийти з акаунта?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
               </Text>
               <Text style={bodyStyle}>
                 {L(
                   'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
-                  "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
+                  "Поточний прогрес залишиться прив\'язаним до акаунта, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
                   'Your current progress will stay linked to the account you\'re signed in with now. To come back, sign in with it again.',
                   'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
                   'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',

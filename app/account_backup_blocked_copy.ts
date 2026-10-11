@@ -53,6 +53,41 @@ export function localProgressBackupBlockedCopy(lang: Lang): LocalProgressBackupB
   };
 }
 
+/**
+ * Тот же отказ для ГОСТЯ в онбординге.
+ * зачем (аудит Онбординга, Дизайн caeeb9cd9; координатор 12.10): общий текст отправлял гостя «в Настройки»,
+ * а из онбординга туда не попасть, и кнопки смены аккаунта там нет. Говорим только правду и то, что можно
+ * сделать прямо здесь: локальный прогресс не стёрт (вход отменён до стирания), можно продолжать без входа.
+ * Заголовок общий («войти не получится»): код покрывает и чужую копию на телефоне, и нехватку места, и удаление.
+ */
+export function localProgressBackupBlockedGuestCopy(lang: Lang): LocalProgressBackupBlockedCopy {
+  return {
+    title: triLang(lang, {
+      ru: 'Сейчас войти не получится',
+      uk: 'Зараз увійти не вийде',
+      en: "You can't sign in right now",
+      es: 'Ahora no se puede iniciar sesión',
+      'pt-BR': 'Não dá para entrar agora',
+      vi: 'Hiện chưa thể đăng nhập',
+      id: 'Belum bisa masuk sekarang',
+      tr: 'Şu an giriş yapılamıyor',
+      pl: 'Teraz nie da się zalogować',
+    }),
+    body: triLang(lang, {
+      ru: 'Начатое на этом телефоне цело — продолжай без входа.',
+      uk: 'Розпочате на цьому телефоні ціле — продовжуй без входу.',
+      en: 'What you started on this phone is safe — keep going without signing in.',
+      es: 'Lo que empezaste en este teléfono está a salvo: sigue sin iniciar sesión.',
+      'pt-BR': 'O que você começou neste celular está salvo — continue sem entrar.',
+      vi: 'Phần bạn đã bắt đầu trên điện thoại này vẫn an toàn — hãy tiếp tục mà không cần đăng nhập.',
+      id: 'Yang kamu mulai di ponsel ini aman — lanjutkan tanpa masuk.',
+      tr: 'Bu telefonda başladıkların güvende — giriş yapmadan devam et.',
+      pl: 'Postęp z tego telefonu jest bezpieczny — kontynuuj bez logowania.',
+    }),
+    action: localProgressBackupBlockedCopy(lang).action,
+  };
+}
+
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {
   return null;

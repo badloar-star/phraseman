@@ -9,7 +9,7 @@
  * Отдельный файл, потому что account_switch_copy.ts сейчас правит AccountV2 (перенос Plus).
  */
 import { triLang, type Lang } from '../constants/i18n';
-import { localProgressBackupBlockedCopy } from './account_backup_blocked_copy';
+import { localProgressBackupBlockedCopy, localProgressBackupBlockedGuestCopy } from './account_backup_blocked_copy';
 
 export interface LocalProgressNotUploadedCopy {
   readonly title: string;
@@ -67,13 +67,18 @@ export type SignInRefusalCopy = LocalProgressNotUploadedCopy & Readonly<{
   offersAccountSwitch: boolean;
 }>;
 
-export function signInRefusalCopyFor(code: string, lang: Lang): SignInRefusalCopy | null {
+/** Где показан отказ: окно входа в приложении (есть кнопка «Сменить аккаунт») или онбординг гостя (Настроек нет). */
+export type SignInRefusalSurface = 'modal' | 'onboarding';
+
+export function signInRefusalCopyFor(code: string, lang: Lang, surface: SignInRefusalSurface = 'modal'): SignInRefusalCopy | null {
   if (code === 'local_progress_not_uploaded') {
     return { ...localProgressNotUploadedCopy(lang), offersAccountSwitch: false };
   }
   // зачем (AA S2d раунд 3, §135 ❓1): копию прогресса сделать нельзя по состоянию
   // устройства — тексты «Дизайна» (6eb7937ec), поведение как у account_switch_required.
   if (code === 'local_progress_backup_blocked') {
+    // зачем (аудит Онбординга 12.10): в онбординге гость не попадёт в Настройки — свой текст без них и без кнопки.
+    if (surface === 'onboarding') return { ...localProgressBackupBlockedGuestCopy(lang), offersAccountSwitch: false };
     return { ...localProgressBackupBlockedCopy(lang), offersAccountSwitch: true };
   }
   return null;

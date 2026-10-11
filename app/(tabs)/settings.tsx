@@ -1369,7 +1369,7 @@ export default function SettingsMain() {
             <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
-                "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
+                "Поточний прогрес залишиться прив\'язаним до акаунта, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
                 'Your current progress will stay linked to the account you are logged in with now. To come back to it — log in with that account again.',
                 'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
                 'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
@@ -1388,7 +1388,7 @@ export default function SettingsMain() {
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
               {L(
                 'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.',
-                'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо зміну акаунту, щоб нічого не загубилося.',
+                'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо зміну акаунта, щоб нічого не загубилося.',
                 'Before logging out we will safely save your progress. If the connection does not respond, we will cancel the account switch so nothing is lost.',
                 'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos el cambio de cuenta para que no pierdas nada.',
                 'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a troca de conta para que nada se perca.',
@@ -1465,7 +1465,7 @@ export default function SettingsMain() {
                     if (!forced.ok && (forced.reason === 'recovery_required' || forced.reason === 'wipe_failed')) {
                       console.warn('[ACC-MUT] settings:forced_switch_failed_kind', { reason: forced.reason, kind: 'recovery' });
                       showGlassAlert(
-                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
+                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунта', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
                         L(
                           'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
                           'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
@@ -1486,7 +1486,7 @@ export default function SettingsMain() {
                       showInfoAlert(
                         L(
                           'Смена аккаунта отменена',
-                          'Зміну акаунту скасовано',
+                          'Зміну акаунта скасовано',
                           'Account switch cancelled',
                           'Cambio de cuenta cancelado',
                           'Troca de conta cancelada',
@@ -1579,7 +1579,7 @@ export default function SettingsMain() {
                       ),
                       L(
                         'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-                        'Зміну акаунту скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'Зміну акаунта скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
                         'Account switch cancelled: an unfinished coin charge cannot be carried over or skipped. Connect to the internet and try again.',
                         'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
                         'A troca de conta foi cancelada: um gasto de moedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
@@ -1618,7 +1618,7 @@ export default function SettingsMain() {
                       ),
                       L(
                         'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
-                        'Зміну акаунту скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+                        'Зміну акаунта скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
                         'Account switch cancelled: the local coin queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
                         'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
                         'A troca de conta foi cancelada: a fila local de moedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
@@ -1649,7 +1649,7 @@ export default function SettingsMain() {
                       L('Прогресс не сохранён', 'Прогрес не збережено', 'Progress not saved', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
                       L(
                         'Смена аккаунта отменена, всё на месте. Попробуй ещё раз.',
-                        'Зміну акаунту скасовано, усе на місці. Спробуй ще раз.',
+                        'Зміну акаунта скасовано, усе на місці. Спробуй ще раз.',
                         'The account switch was cancelled, everything is in place. Try again.',
                         'El cambio de cuenta se canceló, todo sigue en su sitio. Inténtalo de nuevo.',
                         'A troca de conta foi cancelada, tudo continua no lugar. Tente de novo.',
@@ -1680,7 +1680,7 @@ export default function SettingsMain() {
                     console.warn('[ACC-MUT] settings:switch_failed_kind', { reason: res.reason, kind: recovery ? 'recovery' : 'precommit' });
                     if (recovery) {
                       showGlassAlert(
-                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
+                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунта', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
                         L(
                           'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
                           'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
@@ -1698,7 +1698,7 @@ export default function SettingsMain() {
                       return;
                     }
                     showGlassAlert(
-                      L('Смена аккаунта не началась', 'Зміна акаунту не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła'),
+                      L('Смена аккаунта не началась', 'Зміна акаунта не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła'),
                       L(
                         'Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',
                         'Захисна перевірка зупинила зміну до запису маркера. Акаунт і локальні дані не змінено.',

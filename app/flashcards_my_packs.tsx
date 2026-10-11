@@ -52,9 +52,9 @@ import { useLoadGate } from './use_load_gate';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
-import { fetchCommunityPackMetaResult, forgetAuthorPackLastKnown, loadAuthorCommunityPacksPendingUpdateResult, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
+import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult } from './community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
-import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
+import { deleteOwnPackEverywhere, pendingPackDeletes } from './community_packs/deleteOwnPack';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
 import {
   loadAccessiblePackIdsResult,
@@ -73,7 +73,6 @@ import { defaultPackLanguageForStudyTarget, type PackLanguage } from './flashcar
 import { publishMyPacksCount } from './flashcards/myPacksCountCache';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
-import { callCommunityAuthorRemovePack } from './community_packs/functionsClient';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -245,7 +244,7 @@ export default function FlashcardsMyPacksScreen() {
   const [deletePackBusy, setDeletePackBusy] = useState(false);
   // зачем (FINAL_PHASE п.7, Optimistic UI): удаление убирает набор из списка сразу; пока сервер
   // не ответил, фоновая перезагрузка «Моих наборов» не должна вернуть его обратно.
-  const pendingDeletePackIdsRef = useRef<Set<string>>(new Set());
+  const pendingDeletePackIdsRef = useRef<Set<string>>(pendingPackDeletes); // общий с экраном набора (deleteOwnPack.ts)
   const withoutPendingDeletes = useCallback((value: MyPacksGroups): MyPacksGroups => {
     const pending = pendingDeletePackIdsRef.current;
     if (pending.size === 0) return value;
@@ -687,22 +686,8 @@ export default function FlashcardsMyPacksScreen() {
     setDeletePackTarget(null);
     DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: убран из списка сразу, local=${isLocalAuthorPackId(pack.id)}`);
     try {
-      if (isLocalAuthorPackId(pack.id)) {
-        await withdrawLocalAuthorPack(pack.id);
-        await removeLocalAuthorPack(pack.id, studyTarget);
-      } else {
-        const authorStableId = await getCanonicalUserId().catch((error: unknown) => {
-          console.warn('[MY-PACKS] getCanonicalUserId не ответил при удалении', error);
-          return null;
-        });
-        if (!authorStableId) throw new Error('author_id_missing');
-        await callCommunityAuthorRemovePack({ authorStableId, packId: pack.id });
-        forgetAuthorPackLastKnown(pack.id); // зачем (8L): удалённый набор не возвращается из последнего известного
-        for (const local of await loadLocalAuthorPacks()) {
-          if (local.cloudPackId === pack.id) await removeLocalAuthorPack(local.id, local.studyTarget);
-        }
-      }
-      invalidateCommunityPackCatalog();
+      // зачем (координатор 12.10): ввод-вывод удаления общий с шторкой «Удалить набор» на экране набора — app/community_packs/deleteOwnPack.ts
+      await deleteOwnPackEverywhere(pack, studyTarget);
       DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: сервер подтвердил`);
       emitAppEvent('action_toast', actionToastTri('success', {
         ru: 'Набор удалён.', uk: 'Набір видалено.', en: 'Pack deleted.', es: 'Pack eliminado.',

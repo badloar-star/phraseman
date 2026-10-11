@@ -50,6 +50,8 @@ export type CollectionMenuProps = Readonly<{
   title?: string;
   /** «Новая карточка» в наборе (макет `setActions`). */
   onNewCard?: () => void;
+  /** «Удалить набор» (только свой; макет `setActions`, красная строка); подтверждение — на экране. */
+  onDeletePack?: () => void;
   /** Чужой набор сообщества: «Пожаловаться на набор». */
   onReport?: () => void;
 }>;
@@ -257,6 +259,12 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
           ru: 'Новая карточка', uk: 'Нова картка', en: 'New card', es: 'Nueva tarjeta', 'pt-BR': 'Novo cartão',
           vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa karta',
         })} onPress={run(menu.onNewCard)} />
+      ) : null}
+      {menu.onDeletePack ? (
+        <SheetRow g={g} testID="fc-pack-delete" icon="trash-outline" title={triLang(menu.lang, {
+          ru: 'Удалить набор', uk: 'Видалити набір', en: 'Delete pack', es: 'Eliminar pack',
+          'pt-BR': 'Excluir pacote', vi: 'Xóa bộ thẻ', id: 'Hapus paket', tr: 'Paketi sil', pl: 'Usuń zestaw',
+        })} danger onPress={run(menu.onDeletePack)} />
       ) : null}
       {kindChips.length > 0 && menu.savedContentKind && menu.onSavedContentKindChange ? (
         <FilterChips g={g} chips={kindChips} activeId={menu.savedContentKind} onChange={(id) => menu.onSavedContentKindChange?.(id as SavedCardContentKind)} testIDPrefix="fc-saved-content" />

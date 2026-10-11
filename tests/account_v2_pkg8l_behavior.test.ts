@@ -114,7 +114,8 @@ describe('8L-1: author packs last-known cache', () => {
 
   it('wiring: both withdraw/delete paths forget the pack', () => {
     const publish = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'community_packs', 'publishLocalPack.ts'), 'utf8'));
-    const screen = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_my_packs.tsx'), 'utf8'));
+    // зачем (12.10): ввод-вывод удаления набора вынесен в общий модуль deleteOwnPack.ts
+    const screen = normalizeEol(fs.readFileSync(path.join(__dirname, '..', 'app', 'community_packs', 'deleteOwnPack.ts'), 'utf8'));
     const withdrawBody = publish.slice(publish.indexOf('export async function withdrawLocalAuthorPack'));
     expect(withdrawBody).toMatch(/forgetAuthorPackLastKnown\(local\.cloudPackId\)/);
     expect(withdrawBody).toMatch(/forgetAuthorPackLastKnown\(local\.id\)/);

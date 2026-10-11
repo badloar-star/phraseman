@@ -58,6 +58,7 @@ import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionGalleryView from './flashcards/CollectionGalleryView';
 import { CollectionMenuSheet, CollectionSearchField, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { FREE_SAVED_CARD_LIMIT } from './flashcards/free_limit';
+import { claimPackDelete, deleteOwnPackEverywhere, releasePackDelete } from './community_packs/deleteOwnPack';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
 import { VideoSetView } from './flashcards/VideoSetView';
@@ -425,6 +426,8 @@ export default function FlashcardsScreen() {
   const [selectionMode, setSelectionMode] = useState(false);
   const [selectedCardIds, setSelectedCardIds] = useState<string[]>([]);
   const [savedActionsOpen, setSavedActionsOpen] = useState(false);
+  // зачем (cards-v2 `setActions`, «Удалить набор»): окно подтверждения удаления своего набора
+  const [deletePackOpen, setDeletePackOpen] = useState(false);
   const [batchDeleteConfirmOpen, setBatchDeleteConfirmOpen] = useState(false);
   const [selectionCreateBusy, setSelectionCreateBusy] = useState(false);
   const selectedCardIdSet = useMemo(() => new Set(selectedCardIds), [selectedCardIds]);
@@ -1251,6 +1254,35 @@ export default function FlashcardsScreen() {
   const packPublished = currentMarketPack?.listingStatus === 'published' || currentMarketPack?.listingStatus === 'update_pending';
   const packBadge: PackBadge = packMine ? (packPublished ? 'community' : 'only_you') : currentMarketPack?.isCommunityUgc ? 'in_you' : null;
   const packTitleText = currentMarketPack ? packTitleForInterface(currentMarketPack, cardContentLang) : s.title;
+  // зачем (координатор 12.10, «Удалить набор» через общую функцию): после подтверждения экран уходит сразу (Optimistic UI), а удаление идёт фоном
+  // (app/community_packs/deleteOwnPack.ts — та же логика, что в «Моих наборах»). Сбой — понятное сообщение; набор остаётся на сервере/устройстве и
+  // вернётся в «Мои наборы» при следующей загрузке. Двойной тап отсекает общая защёлка.
+  const confirmDeletePack = () => {
+    const pack = currentMarketPack;
+    setDeletePackOpen(false);
+    if (!pack) {
+      console.warn('[PACK-DELETE] экран набора: нет currentMarketPack — удаление пропущено', { packDeeplink });
+      return;
+    }
+    if (!claimPackDelete(pack.id)) return;
+    console.log('[PACK-DELETE] экран набора: подтверждено, ухожу сразу', { packId: pack.id, mine: packMine }); // guard-ok: единичный лог на жест
+    leaveCollection();
+    void deleteOwnPackEverywhere(pack, studyTarget)
+      .then(() => {
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Набор удалён.', uk: 'Набір видалено.', en: 'Pack deleted.', es: 'Pack eliminado.',
+          'pt-BR': 'Pacote excluído.', vi: 'Đã xóa bộ thẻ.', id: 'Paket dihapus.', tr: 'Paket silindi.', pl: 'Zestaw usunięty.',
+        }));
+      })
+      .catch((error: unknown) => {
+        console.warn('[PACK-DELETE] экран набора: удаление не удалось', { packId: pack.id, error: String(error) });
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
+          'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
+        }));
+      })
+      .finally(() => releasePackDelete(pack.id));
+  };
   const packInfoBlock = packSurface ? (
     <PackInfoBlock
       lang={lang}
@@ -1643,6 +1675,7 @@ export default function FlashcardsScreen() {
             showEdit: packSurface && (showEditButton || packMine),
             onEdit: onEditPack,
             title: packSurface ? packTitleText : undefined,
+            onDeletePack: packSurface && packMine && !!currentMarketPack ? () => setDeletePackOpen(true) : undefined,
             onNewCard: packSurface && (showEditButton || packMine) ? onEditPack : undefined,
             onReport: packSurface && !packMine && !!currentMarketPack?.isCommunityUgc ? () => setPackReportOpen(true) : undefined,
           }}
@@ -1662,6 +1695,22 @@ export default function FlashcardsScreen() {
           setActiveFilter(key);
           setFilterOpen(false);
         }}
+      />
+
+      <ThemedConfirmModal
+        visible={deletePackOpen}
+        title={triLang(lang, { ru: 'Удалить набор', uk: 'Видалити набір', en: 'Delete pack', es: 'Eliminar pack', 'pt-BR': 'Excluir pacote', vi: 'Xóa bộ thẻ', id: 'Hapus paket', tr: 'Paketi sil', pl: 'Usuń zestaw' })}
+        message={`«${packTitleText}» — ${triLang(lang, {
+          ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
+          'pt-BR': 'este pacote será removido dos seus pacotes.', vi: 'bộ thẻ này sẽ bị xóa khỏi các bộ của bạn.', id: 'paket ini akan dihapus dari paketmu.', tr: 'bu paketlerinden kaldırılacak.', pl: 'ten zestaw zostanie usunięty z twoich zestawów.',
+        })}`}
+        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}
+        confirmLabel={triLang(lang, { ru: 'Удалить набор', uk: 'Видалити набір', en: 'Delete pack', es: 'Eliminar pack', 'pt-BR': 'Excluir pacote', vi: 'Xóa bộ thẻ', id: 'Hapus paket', tr: 'Paketi sil', pl: 'Usuń zestaw' })}
+        confirmVariant="default"
+        destructive
+        testIDPrefix="fc-delete-pack-confirm"
+        onCancel={() => setDeletePackOpen(false)}
+        onConfirm={confirmDeletePack}
       />
 
       <ThemedConfirmModal

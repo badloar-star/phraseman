@@ -27,6 +27,9 @@ const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.6)'; // theme-exempt: затемнение 
 
 export type LogoutStage = 'idle' | 'confirm' | 'wiping' | 'failed';
 
+/** Потолок ожидания облака при выходе (вариант Б): дальше — локальная аварийная копия и стирание. */
+export const LOGOUT_SYNC_DEADLINE_MS = 3000;
+
 interface AccountLogoutFlowProps {
   stage: LogoutStage;
   onStageChange: (stage: LogoutStage) => void;
@@ -95,7 +98,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     // восстановится при следующем входе в этот аккаунт.
     onStageChange('wiping');
     setFailureText(null);
-    const res = await signOutAndWipeForAccountSwitch();
+    // зачем (вариант Б, координатор 12.10; владелец 31.08 «выход мгновенный»): сеть ждём не дольше LOGOUT_SYNC_DEADLINE_MS,
+    // дальше — аварийная копия на телефоне и стирание; облако догонит при следующем входе этим аккаунтом здесь.
+    const res = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: LOGOUT_SYNC_DEADLINE_MS, allowWipeWithoutSync: true });
     // guard-ok: этот отказ пришёл с БОЕВОГО телефона (Telegram-алерт), под
     // __DEV__ его бы не было видно вообще — а именно его невидимость и стоила
     // владельцу кругов работы. Одна строка на нажатие «Выйти», не в кадре.
@@ -112,6 +117,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     // Синхронизация не успела (нет сети / очередь занята) — это НЕ повод
     // держать человека в аккаунте: локальная аварийная копия уже записана.
     const forced = await signOutAndWipeForAccountSwitch({
+      syncDeadlineMs: LOGOUT_SYNC_DEADLINE_MS,
       allowWipeWithoutSync: true,
       allowPendingShardSpendDiscard: true,
     });

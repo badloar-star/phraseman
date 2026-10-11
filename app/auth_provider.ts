@@ -2292,7 +2292,7 @@ export async function signInWithProvider(
   // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `switch=not_uploaded|backup_blocked`, `restore=retired` — ошибка входа ДО любых замков, сети и записи; в стор-сборке null.
   const devSignInError = getDevSignInError();
   if (devSignInError) {
-    console.log(`[DEV-STATE] account: вход подменён ошибкой ${devSignInError} provider=${provider}`); // guard-ok: dev-ветка
+    console.log(`[DEV-STATE] account: вход подменён ошибкой ${devSignInError} [AUTH-SIGNIN] ignored provider=${provider} reason=dev_state`); // guard-ok: dev-ветка; метка [AUTH-SIGNIN] ignored — сторож ранних выходов (aa_auth_double_tap_contract)
     return { result: 'error', error: devSignInError };
   }
   try {
@@ -3816,6 +3816,13 @@ export type SignOutSwitchOptions = {
    */
   allowWipeWithoutSync?: boolean;
   /**
+   * Потолок ожидания синхронизации с облаком перед выходом, мс (вариант Б «мгновенного выхода», 12.10).
+   * Не уложилась — считаем «не синхронизировано»: пишется аварийная копия на телефоне и, при allowWipeWithoutSync,
+   * выход идёт дальше. Сама синхронизация не отменяется: её запись после смены поколения аккаунта отбрасывается
+   * (stale_generation), а доведение смены ждёт её до 10 с (quiesce). Без значения — ждём, как раньше.
+   */
+  syncDeadlineMs?: number;
+  /**
    * Разрешить wipe при зависшем pending-списании осколков / карантинной очереди.
    * По умолчанию false: незавершённое списание блокирует смену аккаунта НАВСЕГДА,
    * если сервер его перманентно отклоняет (permission-denied / failed-precondition)
@@ -3914,6 +3921,25 @@ async function signOutAndWipeForAccountSwitchReserved(
   const signoutStartedAtMs = Date.now();
   const signoutStage = (stage: string, extra?: Readonly<Record<string, string | number | boolean | null>>): void => {
     identityTrace('[ACC-SIGNOUT]', `stage ${stage}`, { sinceStartMs: Date.now() - signoutStartedAtMs, ...(extra ?? {}) });
+  };
+  const syncDeadlineMs = options?.syncDeadlineMs;
+  // зачем (вариант Б): ожидание сети при выходе ограничено; по истечении — тот же путь, что при сбое синхронизации.
+  const withSyncDeadline = async <T,>(work: Promise<T>, stage: string, onDeadline: T): Promise<T> => {
+    if (!syncDeadlineMs || syncDeadlineMs <= 0) return work;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    try {
+      return await Promise.race([
+        work,
+        new Promise<T>((resolve) => {
+          timer = setTimeout(() => {
+            signoutStage(`${stage}_deadline`, { deadlineMs: syncDeadlineMs });
+            resolve(onDeadline);
+          }, syncDeadlineMs);
+        }),
+      ]);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
   };
   const existingTransition = await inspectAccountSwitchQuarantine().catch((inspectError: unknown) => {
     // зачем (AA S2c, [ACC-SWITCH-WIPE]): прежде немой — «маркер битый» и «не
@@ -4024,12 +4050,17 @@ async function signOutAndWipeForAccountSwitchReserved(
       }
       logAuthEvent('auth_signout_wipe_shard_spend_discard', { stage: 'preflight' });
     }
-    await forceSyncShardsToCloud().catch((shardSyncError: unknown) => {
+    await withSyncDeadline(forceSyncShardsToCloud(), 'shard_sync', undefined).catch((shardSyncError: unknown) => {
       // Осколки дальше страхует аварийная копия; причина — в лог (S2c).
       identityTrace('[ACC-SWITCH-WIPE]', 'signout shard_sync_failed', { code: identityErrorCode(shardSyncError) });
     });
     signoutStage('shard_sync_done');
-    const synced = await forceSyncToCloud();
+    // зачем (засечки Сверки 12.10: 1-я синхронизация 12 с → synced=false на рабочей сети): код отказа раньше терялся.
+    const synced = await withSyncDeadline(
+      forceSyncToCloud({ onRefusal: (code) => signoutStage('force_sync_refused', { code }) }),
+      'force_sync',
+      false,
+    );
     signoutStage('force_sync_done', { synced });
     identityTrace('[ACC-SWITCH-WIPE]', 'signout force_sync', { synced, allowWipeWithoutSync: options?.allowWipeWithoutSync === true });
     if (!synced) {

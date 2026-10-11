@@ -63,7 +63,8 @@ test('DeleteAccountConfirmModal: слово-подтверждение, дест
 test('AccountLogoutFlow: один нативный Modal на три стадии, выход и отказ работают как раньше', () => {
   assert.ok(logout.includes('glass.opaqueSheet'), 'непрозрачная основа');
   assert.ok((logout.match(/^\s*<Modal$/gm) ?? []).length === 1, 'ровно один нативный Modal');
-  for (const token of ['signOutAndWipeForAccountSwitch()', 'allowWipeWithoutSync: true', "onStageChange('wiping')",
+  // 12.10 (вариант Б мгновенного выхода): первая попытка — с потолком синхронизации LOGOUT_SYNC_DEADLINE_MS.
+  for (const token of ['signOutAndWipeForAccountSwitch({ syncDeadlineMs: LOGOUT_SYNC_DEADLINE_MS, allowWipeWithoutSync: true })', 'allowWipeWithoutSync: true', "onStageChange('wiping')",
     "onStageChange('failed')", "onStageChange('idle')", 'onSignedOut({ synced', 'setFailureText(', 'logoutStartedRef']) {
     assert.ok(logout.includes(token), token);
   }

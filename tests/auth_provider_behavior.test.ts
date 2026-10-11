@@ -2033,6 +2033,32 @@ test('account switch may preserve a pending earn only after its exact owner queu
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
 });
 
+// зачем (вариант Б мгновенного выхода, 12.10): зависшая синхронизация не держит выход дольше потолка.
+test('signout with a sync deadline continues through the emergency backup when the cloud hangs', async () => {
+  authState.isAnonymous = false;
+  forceSyncToCloud.mockImplementationOnce(() => new Promise<boolean>(() => undefined));
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  const result = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: 30, allowWipeWithoutSync: true });
+
+  expect(result.ok).toBe(true);
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
+    'force_sync_failed_before_account_switch',
+    expect.anything(),
+    expect.anything(),
+  );
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+test('signout with a sync deadline but without force aborts with sync_failed instead of waiting', async () => {
+  authState.isAnonymous = false;
+  forceSyncToCloud.mockImplementationOnce(() => new Promise<boolean>(() => undefined));
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(signOutAndWipeForAccountSwitch({ syncDeadlineMs: 30 })).resolves.toEqual({ ok: false, reason: 'sync_failed' });
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+});
+
 test('account switch aborts before invalidation when the required emergency backup fails', async () => {
   authState.isAnonymous = false;
   forceSyncToCloud.mockResolvedValueOnce(false);

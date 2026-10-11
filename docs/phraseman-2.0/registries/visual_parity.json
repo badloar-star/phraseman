@@ -21781,10 +21781,10 @@
       "id": "overlays-campaigns-016",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 16,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 1,
+        "label": "016 · Пусто",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · пусто",
@@ -21801,18 +21801,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-017",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 17,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 2,
+        "label": "017 · Можно применить",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · можно применить",
@@ -21829,18 +21830,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-018",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 18,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 3,
+        "label": "018 · Проверка",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · проверка",
@@ -21857,18 +21859,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-019",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 19,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 4,
+        "label": "019 · Принят",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · принят",
@@ -21885,18 +21888,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-020",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 20,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 5,
+        "label": "020 · Уже привязан",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · уже привязан",
@@ -21913,18 +21917,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-021",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 21,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 6,
+        "label": "021 · Неверный формат",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · неверный формат",
@@ -21941,18 +21946,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-022",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 22,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 7,
+        "label": "022 · Не найден",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · не найден",
@@ -21969,18 +21975,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-023",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 23,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 8,
+        "label": "023 · Собственный код",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · собственный код",
@@ -21997,18 +22004,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-024",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 24,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 9,
+        "label": "024 · Аккаунт не новый",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · аккаунт не новый",
@@ -22025,18 +22033,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-025",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 25,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 10,
+        "label": "025 · Отключён",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · отключён",
@@ -22053,18 +22062,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-026",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 26,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/referral-code-states.html",
+        "phone": 11,
+        "label": "026 · Ошибка проверки",
+        "mapping": "manual_rebind"
       },
       "screen": "Код друга в онбординге",
       "state": "Код друга · ошибка проверки",
@@ -22081,9 +22091,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-027",

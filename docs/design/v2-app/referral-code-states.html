@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Код друга — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 5 — «Код друга», реестр overlays-campaigns-016…026):
+     шторка components/referral_code_sheet.tsx поверх экрана «Награда за друга» (Настройки → «Пригласить друга» → «Ввести код друга»; из онбординга не открывается).
+     Каркас — referral_sheet_shell.tsx (r24, ручка 38×4, заголовок 25/31 по центру, крестик справа); итог проверки — простая строка 13/19 жирным под кнопкой (без плашки).
+     Тексты — из кода. Каждое состояние показано в тёмной «Авроре» и в светлой теме; в конце — два состояния из кода сверх реестра. Обводки — только 1px полупрозрачные. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --c-sheet: rgba(24,24,29,.985); --c-ctl: #1D1D22; --c-sel: rgba(255,255,255,.1); --c-tx: #fff; --c-sc: #A6A6A8; --c-mu: #75757A; --c-edge: rgba(255,255,255,.13); --c-ink: var(--on); --c-dim: rgba(0,0,0,.55); color: var(--c-tx); }
+  .ph.lite { --c-sheet: #FBFBFD; --c-ctl: #ECECF1; --c-sel: rgba(0,0,0,.07); --c-tx: #0C0C10; --c-sc: #55555D; --c-mu: #86868E; --c-edge: rgba(0,0,0,.12); --c-ink: #fff; --c-dim: rgba(20,20,30,.38); background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .cund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .cund .t1 { font-size: 28px; font-weight: 700; } .cund .r { height: 70px; border-radius: 18px; background: var(--c-ctl); margin-top: 12px; }
+  .cdim { position: absolute; inset: 0; z-index: 20; background: var(--c-dim); }
+  .csh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 24px 24px 0 0; padding: 8px 20px 36px; background: var(--c-sheet); box-shadow: inset 0 0 0 1px var(--c-edge), 0 -8px 24px rgba(0,0,0,.25); }
+  .cgr { display: flex; justify-content: center; padding: 6px 0; } .cgr i { width: 38px; height: 4px; border-radius: 2px; background: var(--c-edge); display: block; }
+  .chd { display: flex; flex-direction: row-reverse; align-items: center; gap: 12px; margin: 2px 0 12px; }
+  .chd .ti { flex: 1; text-align: center; margin-left: 56px; font-size: 25px; line-height: 31px; font-weight: 800; } .chd .x { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--c-sel); color: var(--c-sc); flex: none; }
+  .ccopy { text-align: center; font-size: 13px; line-height: 20px; color: var(--c-sc); margin-bottom: 2px; }
+  .clab { margin: 14px 0 7px; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--c-sc); }
+  .cin { min-height: 48px; border-radius: 14px; padding: 0 14px; display: flex; align-items: center; background: var(--c-ctl); box-shadow: inset 0 0 0 .5px var(--c-edge); font-size: 16px; font-weight: 500; color: var(--c-mu); } .cin.has { color: var(--c-tx); } .cin .cur { width: 2px; height: 22px; background: var(--acc); margin-left: 2px; }
+  .cbtn { margin-top: 12px; min-height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--c-ink); } .cbtn.off { opacity: .46; }
+  .cspin { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: csp 900ms linear infinite; } @keyframes csp { to { transform: rotate(360deg); } }
+  .cfb { margin-top: 10px; font-size: 13px; line-height: 19px; font-weight: 700; } .cfr { margin-top: 6px; font-size: 13px; line-height: 20px; color: var(--c-sc); }
+  .cnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Код друга — состояния</h1>
+  <p class="page-lead">Группа 5 из «экранов без макета» (реестр overlays-campaigns-016…026): шторка «Код от друга» на экране «Награда за друга». Пусто, можно применить, проверка, принят, уже привязан, неверный формат, не найден, собственный код, аккаунт не новый, отключён, ошибка проверки — и два состояния из кода сверх реестра. Тёмная «Аврора» и светлая тема. Тексты — из кода. Из онбординга эта шторка не открывается.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const und = '<div class="cund"><div class="t1">Награда за друга</div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="cdim"></div>';
+// o: code, busy, fb, friend
+const sheet = (o) => `<div class="csh"><div class="cgr"><i></i></div><div class="chd"><span class="x t">${icon('close', 's20')}</span><span class="ti">Код от друга</span></div>
+  <div class="ccopy">Введи код и оформи Plus или Pro — другу откроется ключ к награде.</div><div class="clab">Код приглашения</div>
+  <div class="cin${o.code ? ' has' : ''}">${o.code ? `${o.code}${o.cursor ? '<span class="cur"></span>' : ''}` : 'Введи код'}</div>
+  <div class="cbtn${o.code && !o.busy ? '' : o.busy ? '' : ' off'} t">${o.busy ? '<span class="cspin"></span>Применяем…' : 'Применить код'}</div>
+  ${o.fb ? `<div class="cfb">${o.fb}</div>` : ''}${o.friend ? '<div class="cfr">Заявка в друзья отправлена — будете видеть прогресс друг друга.</div>' : ''}</div>`;
+const C = 'ANNA42';
+const S = [
+  ['016 · Пусто', 'Поле пустое, «Применить код» приглушена (46%).', sheet({})],
+  ['017 · Можно применить', 'Введено от 4 знаков — кнопка включилась.', sheet({ code: C, cursor: true })],
+  ['018 · Проверка', 'Кружок и «Применяем…», повторное нажатие блокируется.', sheet({ code: C, busy: true })],
+  ['019 · Принят', 'Код принят: другу откроется ключ, когда оформишь Plus или Pro.', sheet({ code: C, fb: 'Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.' })],
+  ['020 · Уже привязан', 'Код уже привязан к этому аккаунту (это не ошибка).', sheet({ code: C, fb: 'Код уже привязан к твоему аккаунту.' })],
+  ['021 · Неверный формат', 'Код слишком короткий.', sheet({ code: 'AN', fb: 'Проверь код: он слишком короткий.' })],
+  ['022 · Не найден', 'Такого кода приглашения нет.', sheet({ code: 'ZZZ999', fb: 'Такой код не найден. Убедись, что это код приглашения Phraseman.' })],
+  ['023 · Собственный код', 'Человек ввёл свой же код.', sheet({ code: 'MY4CODE', fb: 'Это твой код. Его нужно отправить другу.' })],
+  ['024 · Аккаунт не новый', 'Код вводят только на новом аккаунте.', sheet({ code: C, fb: 'Этот код можно ввести только на новом аккаунте.' })],
+  ['025 · Отключён', 'Приглашения временно выключены.', sheet({ code: C, fb: 'Приглашения сейчас недоступны. Попробуй позже.' })],
+  ['026 · Ошибка проверки', 'Сеть или сервер не ответили.', sheet({ code: C, fb: 'Не получилось применить код. Проверь интернет и попробуй ещё раз.' })],
+  ['+ · Код сохранён до связи', 'Нет соединения: код запомнен и применится сам. Не отдельная строка реестра.', sheet({ code: C, fb: 'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.' })],
+  ['+ · Принят и заявка в друзья', 'После принятого кода владельцу кода уходит заявка в друзья. Не отдельная строка реестра.', sheet({ code: C, fb: 'Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.', friend: true })],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(und + h, lite)}<div class="cnote">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

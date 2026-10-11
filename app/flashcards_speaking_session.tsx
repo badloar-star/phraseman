@@ -26,7 +26,7 @@
 // Финал → SessionResultScreen (верно/ошибок/точность + «Добить»).
 //
 // Премиум-гейт — как у всех речевых поверхностей: `useFeatureAccess('speaking')`
-// внутри `SpeakHoldButton` (без доступа → пейвол context='speaking').
+// внутри `SpeakMicButton` (без доступа → пейвол context='speaking').
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
@@ -58,6 +58,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { mixDark } from '../components/mistakes-panel/panelPaint'; // зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeCta } from '../components/practice/PracticeStates';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -72,7 +73,7 @@ import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSh
 import { loadFcDeckOptions } from './flashcards/deck_options';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { buildResultMistakes } from './flashcards/session_result_mistakes';
-import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
+import SpeakMicButton from './flashcards/SpeakMicButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { estimateSpeechDurationMs } from './flashcards/audioSession';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
@@ -84,7 +85,6 @@ import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck
 import {
   DEFAULT_SPEAKING_PREFS,
   FC_SPEAKING_PREFS_KEY,
-  SPEAKING_AUTO_ADVANCE_MS,
   SPEAKING_TASKS,
   advanceSpeaking,
   beginSpeakingAttempt,
@@ -172,12 +172,10 @@ function retainedSpeakingTranscript(attempt: SpeakingAttempt | null): string | n
  * зачёте (подтверждение), и на промахе (услышал, как надо, и повторяет).
  *
  * ECHO_DELAY_MS — пауза после вердикта, чтобы звук «верно/неверно» не
- * наложился на речь. Автопереход на зачёте ждёт конца эха (плюс короткая
- * пауза), но не дольше оценочной длины фразы + запас: если озвучка молча не
- * стартовала (нет голоса, занят аудиотракт), экран не зависнет.
+ * наложился на речь. Автоперехода на зачёте больше нет (Карточки 2.0 12.10): «Дальше» нажимает человек.
+ * Запас по длине фразы нужен лишь затем, чтобы эхо молча не зависло (нет голоса, занят аудиотракт).
  */
 const ECHO_DELAY_MS = 380;
-const ECHO_AFTER_PAUSE_MS = 450;
 const ECHO_FALLBACK_EXTRA_MS = 1500;
 
 /**
@@ -989,38 +987,12 @@ export default function FlashcardsSpeakingSession() {
         playSfx('correct');
         void trackEvent('speaking_attempt_passed', { source: 'flashcards', score: attempt.score });
         clearAdvanceTimer();
-        const scoredAt = Date.now();
-        // Автопереход: не раньше SPEAKING_AUTO_ADVANCE_MS и не раньше конца эха
-        // (+ пауза). Запасной таймер внутри echoReference гарантирует, что
-        // onSettled придёт даже при молчаливом отказе озвучки.
-        const advanceAfterEcho = (reason: string) => {
-          // goNext/«Пропустить» уже сняли таймер → переход не дублируем.
-          if (advanceTimerRef.current == null) {
-            fcSpeakTrace('advance:skipped', { reason, why: 'timer_cleared' });
-            return;
-          }
-          clearAdvanceTimer();
-          const remaining = Math.max(ECHO_AFTER_PAUSE_MS, scoredAt + SPEAKING_AUTO_ADVANCE_MS - Date.now());
-          fcSpeakTrace('advance:scheduled', { reason, remainingMs: remaining });
-          advanceTimerRef.current = setTimeout(() => {
-            advanceTimerRef.current = null;
-            goNext();
-          }, remaining);
-        };
+        // зачем (Карточки 2.0 12.10, координатор: «ручное «Дальше» ДЕЛАЕМ»): автоперехода после зачёта больше нет — человек
+        // видит «Верно» и сам нажимает «Дальше» (макет `oral('ok')`). Эхо эталона по-прежнему звучит, но ничего не двигает.
         if (echoCard) {
-          // Пока эхо звучит, advanceTimerRef держит «переход ожидается»;
-          // сам таймер — страховка на случай, если settle не придёт вовсе.
-          advanceTimerRef.current = setTimeout(() => {
-            advanceTimerRef.current = null;
-            fcSpeakTrace('advance:hard_fallback', { cardId: echoCard.id });
-            goNext();
-          }, ECHO_DELAY_MS + estimateSpeechDurationMs(echoCard.en) + ECHO_FALLBACK_EXTRA_MS + ECHO_AFTER_PAUSE_MS + 500);
-          echoReference(echoCard, advanceAfterEcho);
+          echoReference(echoCard, (reason: string) => fcSpeakTrace('echo:settled', { reason, passed: true }));
         } else {
-          advanceTimerRef.current = setTimeout(() => {
-            advanceTimerRef.current = null;
-            goNext();
-          }, SPEAKING_AUTO_ADVANCE_MS);
+          fcSpeakTrace('echo:skipped', { why: 'attempts_stop_effect_or_no_card', passed: true });
         }
       } else {
         // зачем (аудит 2026-09-17): нет автоперехода на промахе, поэтому эхо
@@ -1297,16 +1269,16 @@ export default function FlashcardsSpeakingSession() {
       verdictOk: triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Dobrze' }),
       back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
       recallHint: triLang(lang, {
-        ru: 'Вспомни фразу по переводу. Удерживай микрофон, пока отвечаешь.', uk: 'Згадай фразу за перекладом. Утримуй мікрофон, поки відповідаєш.',
-        en: 'Recall the phrase from its translation. Hold the microphone while answering.', es: 'Recuerda la frase a partir de la traducción. Mantén pulsado el micrófono al responder.',
-        'pt-BR': 'Lembre a frase pela tradução. Segure o microfone enquanto responde.', vi: 'Nhớ lại câu từ bản dịch. Giữ micrô khi trả lời.',
-        id: 'Ingat frasa dari terjemahannya. Tahan mikrofon saat menjawab.', tr: 'Çeviriden ifadeyi hatırla. Yanıtlarken mikrofonu basılı tut.', pl: 'Przypomnij sobie zwrot na podstawie tłumaczenia. Przytrzymaj mikrofon, odpowiadając.',
+        ru: 'Вспомни фразу по переводу. Нажми на микрофон и отвечай.', uk: 'Згадай фразу за перекладом. Натисни на мікрофон і відповідай.',
+        en: 'Recall the phrase from its translation. Tap the microphone and answer.', es: 'Recuerda la frase a partir de la traducción. Toca el micrófono y responde.',
+        'pt-BR': 'Lembre a frase pela tradução. Toque no microfone e responda.', vi: 'Nhớ lại câu từ bản dịch. Chạm vào micrô rồi trả lời.',
+        id: 'Ingat frasa dari terjemahannya. Ketuk mikrofon lalu jawab.', tr: 'Çeviriden ifadeyi hatırla. Mikrofona dokun ve yanıtla.', pl: 'Przypomnij sobie zwrot na podstawie tłumaczenia. Stuknij mikrofon i odpowiedz.',
       }),
       repeatHint: triLang(lang, {
-        ru: 'Послушай фразу и повтори её. Удерживай микрофон, пока говоришь.', uk: 'Послухай фразу й повтори її. Утримуй мікрофон, поки говориш.',
-        en: 'Listen to the phrase and repeat it. Hold the microphone while speaking.', es: 'Escucha la frase y repítela. Mantén pulsado el micrófono al hablar.',
-        'pt-BR': 'Ouça a frase e repita. Segure o microfone enquanto fala.', vi: 'Nghe câu rồi nhắc lại. Giữ micrô khi nói.',
-        id: 'Dengarkan frasa lalu ulangi. Tahan mikrofon saat berbicara.', tr: 'İfadeyi dinle ve tekrarla. Konuşurken mikrofonu basılı tut.', pl: 'Posłuchaj zwrotu i powtórz go. Przytrzymaj mikrofon podczas mówienia.',
+        ru: 'Послушай фразу и повтори её. Нажми на микрофон и говори.', uk: 'Послухай фразу й повтори її. Натисни на мікрофон і говори.',
+        en: 'Listen to the phrase and repeat it. Tap the microphone and speak.', es: 'Escucha la frase y repítela. Toca el micrófono y habla.',
+        'pt-BR': 'Ouça a frase e repita. Toque no microfone e fale.', vi: 'Nghe câu rồi nhắc lại. Chạm vào micrô rồi nói.',
+        id: 'Dengarkan frasa lalu ulangi. Ketuk mikrofon lalu bicara.', tr: 'İfadeyi dinle ve tekrarla. Mikrofona dokun ve konuş.', pl: 'Posłuchaj zwrotu i powtórz go. Stuknij mikrofon i mów.',
       }),
       // зачем (DQA, 04.10): «Скажи по-…» — по изучаемому языку, а не зашитый английский.
       recall: sayItInStudyLanguage(lang, studyTarget),
@@ -1330,7 +1302,7 @@ export default function FlashcardsSpeakingSession() {
         tr: 'Basılı tut, tekrar söyle', pl: 'Przytrzymaj i powtórz',
       }),
       next: triLang(lang, {
-        ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
+        ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
         vi: 'Tiếp', id: 'Lanjut', tr: 'Sonraki', pl: 'Dalej',
       }),
       skip: triLang(lang, {
@@ -1394,6 +1366,12 @@ export default function FlashcardsSpeakingSession() {
       </View>
       {/* зачем (Карточки 2.0 12.10, `sessHdr`): в шапке «Устно» одно название — подзаголовка с названием набора нет */}
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title} />
+      {/* зачем (Карточки 2.0 12.10, `sessHdr('Устно', '4 / 20')`): счёт сессии в шапке справа от названия, под полосой его больше нет */}
+      {interactive ? (
+        <Text testID="fc-speak-progress" accessible accessibilityLabel={`${progress.position} / ${progress.total}`} style={[styles.headerCount, { color: speakingGlass.secondary }]}>
+          {`${progress.position} / ${progress.total}`}
+        </Text>
+      ) : null}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <SessionAttemptsHud
           remaining={attempts.state.remainingAttempts} attempts={attempts}
@@ -1572,20 +1550,8 @@ RU: ${card.translation}`}
   const attempt = session.attempt;
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD) : null;
   const spokenTranscript = retainedSpeakingTranscript(attempt);
-  /**
-   * зачем (владелец, 2026-08-17, скриншот): подпись «Зажми — скажи ещё раз»
-   * раньше показывалась и после ЗАЧЁТА (phase==='scored' безусловно) — но там
-   * идёт автопереход на НОВУЮ карточку, и на ней снова нужно нейтральное
-   * «Зажми и говори», а не «ещё раз» (ещё раз чего? фраза уже другая). «Скажи
-   * ещё раз» осмысленно только после промаха/тупика — той же карточки.
-   */
-  const holdLabel = holdActive
-    ? labels.holdLive
-    : stuck || (phase === 'scored' && attempt?.passed === false)
-      ? labels.holdAgain
-      : phase === 'live'
-        ? ''
-        : labels.holdIdle;
+  // зачем (Карточки 2.0 12.10): микрофон 92 включается касанием; подпись «зажми…» ушла вместе с удержанием.
+  const passedNow = phase === 'scored' && attempt?.passed === true;
   const spoken = session.events.filter((e) => e.correct).length;
 
   return (
@@ -1612,17 +1578,11 @@ RU: ${card.translation}`}
               ]}
             />
           </View>
-          {/* зачем (practice.html `.prog`): под полосой «позиция … всего» 15/600 — реальные числа сессии. */}
-          <View style={styles.progressRow} testID="fc-speak-progress" accessible accessibilityLabel={`${progress.position} / ${progress.total}`}>
-            <Text style={[styles.progressLabel, { color: speakingGlass.secondary }]}>{progress.position}</Text>
-            <Text style={[styles.progressLabel, { color: speakingGlass.secondary }]}>{progress.total}</Text>
-          </View>
-
           {/* Карточка: тап — подсмотреть/вернуть. Динамик — только в транспорте
               снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
               «Послушать» из транспортного ряда, убрана. */}
           {/* Источник полёта рун (владелец, 2026-08-27) */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: passedNow ? 170 : 8 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
             <CardFlipV2
               g={speakingGlass}
@@ -1645,6 +1605,21 @@ RU: ${card.translation}`}
               </Text>
             </View>
           </View>
+
+          {/* зачем (Карточки 2.0 12.10, `oral()`): микрофон 92 по центру под карточкой; после зачёта его место занимает «Верно» внизу */}
+          {!passedNow ? (
+            <View style={styles.micArea}>
+              <SpeakMicButton
+                g={speakingGlass}
+                listening={holdActive}
+                disabled={!card}
+                sessionAuthorized={quotaSessionAuthorized}
+                reduceMotion={reduceMotion}
+                onStart={onHoldStart}
+                onStop={onHoldEnd}
+              />
+            </View>
+          ) : null}
 
           {/* Слот панели говорения — одна геометрия во всех состояниях. */}
           <SpeakingInlineSlot style={styles.inlineSlot}>
@@ -1669,23 +1644,6 @@ RU: ${card.translation}`}
                 testID="fc-speak-attempt-result"
               >
                 <SpeakingResultSheen glass={speakingGlass} />
-                {attempt.passed ? (
-                  // макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N»
-                  <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>
-                    <View style={[styles.verdictVk, { backgroundColor: speakingGlass.goodSoft }]}>
-                      <Ionicons name="checkmark" size={20} color={speakingGlass.good} />
-                    </View>
-                    <View style={styles.verdictCopy}>
-                      <Text style={[styles.verdictKicker, { color: speakingGlass.secondary }]}>{labels.verdictOk}</Text>
-                      <Text style={[styles.verdictValue, { color: speakingGlass.good }]}>{card?.en ?? ''}</Text>
-                    </View>
-                    {lastAward > 0 ? (
-                      <View testID="fc-speak-award" style={[styles.verdictAward, { backgroundColor: speakingGlass.goodSoft }]}>
-                        <Text style={[styles.verdictAwardText, { color: speakingGlass.good }]}>{`+${lastAward}`}</Text>
-                      </View>
-                    ) : null}
-                  </View>
-                ) : null}
                 {spokenTranscript ? (
                   <View style={styles.transcriptBlock} testID="fc-speak-transcript">
                     <Text style={{ color: t.textMuted, fontSize: 13 * textScale, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' }}>
@@ -1740,87 +1698,107 @@ RU: ${card.translation}`}
           </SpeakingInlineSlot>
 
           </ScrollView>
-          {/* зачем (PM-029, кадр 640 dp 03.10): переключатель заданий — элемент управления, живёт
-              рядом с транспортом, ВНЕ прокрутки. Внутри ScrollView на маленьком экране его резал
-              нижний край и было не видно, что вниз можно пролистать. Каркас загрузки уже в этом порядке. */}
-          {/* Тип задания — две круглые кнопки с иконкой, без текста (владелец,
-              2026-08-17): подписи «Скажи по-англи…»/«Повтори за дикт…» резались
-              многоточием на узких экранах. Подпись живёт в accessibilityLabel —
-              экранный диктор объявляет полный смысл, зрячий выбирает по цвету
-              заливки активной кнопки (тон, не обводка). */}
-          <View style={styles.taskRow} testID="fc-speak-task">
-            {SPEAKING_TASKS.map((option) => {
-              const active = option === task;
-              const optionLabel = option === 'recall' ? labels.recall : labels.repeat;
-              return (
-                <TouchableOpacity
-                  key={option}
-                  testID={`fc-speak-task-${option}`}
-                  accessibilityRole="button"
-                  accessibilityLabel={optionLabel}
-                  accessibilityState={{ selected: active }}
-                  onPress={() => onPickTask(option)}
-                  disabled={holdActive}
-                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                  style={[
-                    styles.taskPill,
-                    { backgroundColor: active ? speakingGlass.selected : speakingGlass.opaqueControl },
-                  ]}
-                >
-                  <Ionicons
-                    name={option === 'recall' ? 'mic-outline' : 'volume-high-outline'}
-                    size={18}
-                    color={active ? speakingGlass.text : speakingGlass.secondary}
-                  />
-                  <Text style={[styles.taskPillText, { color: active ? speakingGlass.text : speakingGlass.secondary }]}>
-                    {optionLabel}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-          {/* Транспорт: пропустить · зажми-и-говори · послушать.
-              `stuck` (панель уткнулась в тупик без своего выхода) разблокирует
-              оба соседа: живой holdActive там уже не идёт, запись фактически
-              остановлена — держать «Пропустить»/«Послушать» под замком нечестно. */}
-          <View style={styles.transportRow}>
-            <TouchableOpacity
-              onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho({ skip: phase !== 'scored', force: stuck }); }}
-              disabled={holdActive && !stuck}
-              testID="fc-speak-skip"
-              accessibilityLabel={phase === 'scored' ? labels.next : labels.skip}
-              accessibilityHint={phase === 'scored' ? labels.next : labels.skip}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: holdActive && !stuck }}
-              accessible
-              style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive && !stuck ? 0.5 : 1 }]}
-            >
-              <Ionicons name="arrow-forward" size={22} color={t.textPrimary} />
-            </TouchableOpacity>
-            <SpeakHoldButton
-              accent={speakingGlass.cta}
-              listening={holdActive}
-              disabled={!card}
-              sessionAuthorized={quotaSessionAuthorized}
-              reduceMotion={reduceMotion}
-              onHoldStart={onHoldStart}
-              onHoldEnd={onHoldEnd}
-              label={holdLabel}
-            />
-            <TouchableOpacity
-              onPress={() => { fcHaptic('tap'); speakCard(card); }}
-              disabled={holdActive && !stuck}
-              testID="fc-speak-listen"
-              accessibilityLabel={labels.listen}
-              accessibilityHint={labels.listen}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: holdActive && !stuck }}
-              accessible
-              style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive ? 0.5 : 1 }]}
-            >
-              <Ionicons name="volume-high" size={22} color={t.textPrimary} />
-            </TouchableOpacity>
-          </View>
+          {passedNow ? (
+            // зачем (`oral('ok')` макета, `.bot`): после зачёта внизу панель «Верно» с эталоном и «Дальше» — переход только по нажатию
+            <View style={styles.okBot} testID="fc-speak-ok-bar">
+              <LinearGradient pointerEvents="none" colors={[`${speakingGlass.bgBottom}00`, speakingGlass.bgBottom]} locations={[0, 0.3]} style={StyleSheet.absoluteFill} />
+                            // макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N»
+            <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>
+              <View style={[styles.verdictVk, { backgroundColor: speakingGlass.goodSoft }]}>
+                <Ionicons name="checkmark" size={20} color={speakingGlass.good} />
+              </View>
+              <View style={styles.verdictCopy}>
+                <Text style={[styles.verdictKicker, { color: speakingGlass.secondary }]}>{labels.verdictOk}</Text>
+                <Text style={[styles.verdictValue, { color: speakingGlass.good }]}>{card?.en ?? ''}</Text>
+              </View>
+              {lastAward > 0 ? (
+                <View testID="fc-speak-award" style={[styles.verdictAward, { backgroundColor: speakingGlass.goodSoft }]}>
+                  <Text style={[styles.verdictAwardText, { color: speakingGlass.good }]}>{`+${lastAward}`}</Text>
+                </View>
+              ) : null}
+            </View>
+              <PracticeCta
+                glass={speakingGlass}
+                testID="fc-speak-next"
+                label={labels.next}
+                onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho(); }}
+              />
+            </View>
+          ) : (
+            <>
+            {/* зачем (PM-029, кадр 640 dp 03.10): переключатель заданий — элемент управления, живёт
+                рядом с транспортом, ВНЕ прокрутки. Внутри ScrollView на маленьком экране его резал
+                нижний край и было не видно, что вниз можно пролистать. Каркас загрузки уже в этом порядке. */}
+            {/* Тип задания — две круглые кнопки с иконкой, без текста (владелец,
+                2026-08-17): подписи «Скажи по-англи…»/«Повтори за дикт…» резались
+                многоточием на узких экранах. Подпись живёт в accessibilityLabel —
+                экранный диктор объявляет полный смысл, зрячий выбирает по цвету
+                заливки активной кнопки (тон, не обводка). */}
+            <View style={styles.taskRow} testID="fc-speak-task">
+              {SPEAKING_TASKS.map((option) => {
+                const active = option === task;
+                const optionLabel = option === 'recall' ? labels.recall : labels.repeat;
+                return (
+                  <TouchableOpacity
+                    key={option}
+                    testID={`fc-speak-task-${option}`}
+                    accessibilityRole="button"
+                    accessibilityLabel={optionLabel}
+                    accessibilityState={{ selected: active }}
+                    onPress={() => onPickTask(option)}
+                    disabled={holdActive}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    style={[
+                      styles.taskPill,
+                      { backgroundColor: active ? speakingGlass.selected : speakingGlass.opaqueControl },
+                    ]}
+                  >
+                    <Ionicons
+                      name={option === 'recall' ? 'mic-outline' : 'volume-high-outline'}
+                      size={18}
+                      color={active ? speakingGlass.text : speakingGlass.secondary}
+                    />
+                    <Text style={[styles.taskPillText, { color: active ? speakingGlass.text : speakingGlass.secondary }]}>
+                      {optionLabel}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            {/* Транспорт: пропустить · зажми-и-говори · послушать.
+                `stuck` (панель уткнулась в тупик без своего выхода) разблокирует
+                оба соседа: живой holdActive там уже не идёт, запись фактически
+                остановлена — держать «Пропустить»/«Послушать» под замком нечестно. */}
+            <View style={styles.transportRow}>
+              <TouchableOpacity
+                onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho({ skip: phase !== 'scored', force: stuck }); }}
+                disabled={holdActive && !stuck}
+                testID="fc-speak-skip"
+                accessibilityLabel={phase === 'scored' ? labels.next : labels.skip}
+                accessibilityHint={phase === 'scored' ? labels.next : labels.skip}
+                accessibilityRole="button"
+                accessibilityState={{ disabled: holdActive && !stuck }}
+                accessible
+                style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive && !stuck ? 0.5 : 1 }]}
+              >
+                <Ionicons name="arrow-forward" size={22} color={t.textPrimary} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => { fcHaptic('tap'); speakCard(card); }}
+                disabled={holdActive && !stuck}
+                testID="fc-speak-listen"
+                accessibilityLabel={labels.listen}
+                accessibilityHint={labels.listen}
+                accessibilityRole="button"
+                accessibilityState={{ disabled: holdActive && !stuck }}
+                accessible
+                style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive ? 0.5 : 1 }]}
+              >
+                <Ionicons name="volume-high" size={22} color={t.textPrimary} />
+              </TouchableOpacity>
+            </View>
+            </>
+          )}
         </ContentWrap>
       </View>
       {deckPickerSheet}
@@ -1864,6 +1842,12 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   inlineSlot: { paddingHorizontal: 20 },
+  // зачем (`oral()`: mic.margin-top 54 после карточки): микрофон 92 по центру, запас под кольца записи
+  micArea: { marginTop: 28, marginBottom: 20, alignItems: 'center', justifyContent: 'center' },
+  // `sessHdr .cnt`: счёт сессии 15/600 справа от названия
+  headerCount: { fontSize: 16, lineHeight: 22, fontWeight: '600', fontVariant: ['tabular-nums'], marginRight: 4 },
+  // `.bot`: панель исхода и «Дальше» внизу экрана (18/20/34 макета), затухание к фону
+  okBot: { position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 20, paddingTop: 18, paddingHorizontal: 20, paddingBottom: 34 },
   resultCard: {
     borderRadius: 16,
     paddingHorizontal: 18,
@@ -1919,8 +1903,9 @@ const styles = StyleSheet.create({
     // ВСЕЙ высоте (круг+подпись), поэтому они садились выше, чем низ круга
     // микрофона. `flex-end` + компенсация в sideBtn сажает все три круга на
     // одну линию, подпись остаётся ниже них.
-    alignItems: 'flex-end',
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
     gap: 22,
     marginTop: 14,
     marginBottom: 14,
@@ -1931,8 +1916,5 @@ const styles = StyleSheet.create({
     borderRadius: 27,
     alignItems: 'center',
     justifyContent: 'center',
-    // Поднимаем боковые кнопки на высоту подписи под микрофоном (см. sideBtn
-    // выше) — их низ совпадает с низом круга, а не с низом подписи.
-    marginBottom: SPEAK_HOLD_LABEL_HEIGHT,
   },
 });

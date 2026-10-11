@@ -16,6 +16,7 @@ const DIRS = ['app', 'components', 'modules', 'hooks'];
 const ALLOWED = {
   'app/(tabs)/friends.tsx': [1, 'скелетон поиска друга (загрузка)'],
   'app/_layout.tsx': [1, 'заставка запуска (загрузка)'],
+  'app/flashcards/SpeakMicButton.tsx': [1, 'кольцо микрофона «Устно», пока идёт запись (cards-v2 `ring`); при «уменьшить движение» статично'],
   'app/lesson1.tsx': [1, 'мигающий курсор ввода'],
   'app/voice_equalizer.tsx': [1, 'эквалайзер, пока идёт звук'],
   'components/AiTypingBubble.tsx': [2, 'собеседник печатает'],

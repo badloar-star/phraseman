@@ -173,6 +173,7 @@ jest.mock('../app/flashcards/DeckPickerSheet', () => 'DeckPickerSheet');
 jest.mock('../app/flashcards/SessionResultScreen', () => ({ SessionResultScreen: 'SessionResultScreen' }));
 jest.mock('../components/SpeakingPanel', () => ({ SpeakingPanel: 'SpeakingPanel', buildSpeakingPanelTheme: () => ({}) }));
 jest.mock('../app/flashcards/SpeakHoldButton', () => ({ __esModule: true, default: (props: unknown) => React.createElement('SpeakHoldButton', { ...props as object, testID: 'mock-speak-hold' }), SPEAK_HOLD_LABEL_HEIGHT: 20 }));
+jest.mock('../app/flashcards/SpeakMicButton', () => ({ __esModule: true, default: (props: unknown) => React.createElement('SpeakMicButton', { ...props as object, testID: 'mock-speak-hold' }), SPEAK_HOLD_LABEL_HEIGHT: 20 }));
 
 import FlashcardsSpeakingSession from '../app/flashcards_speaking_session';
 

@@ -169,7 +169,7 @@ function hashProtectedRuntimeElements() {
     'SessionAttemptsHud',
     'SessionResultScreen',
     'SpeakingPanel',
-    'SpeakHoldButton',
+    'SpeakMicButton',
     'NoEnergyModal',
     'CoinRewardFlight',
   ]);
@@ -179,8 +179,9 @@ function hashProtectedRuntimeElements() {
       const name = node.tagName.getText(sessionAst);
       if (protectedNames.has(name)) {
         let printed = printNode(node);
-        if (name === 'SpeakHoldButton') {
-          printed = printed.replace(/accent=\{[^}]+\}/, 'accent={__PRESENTATION_ACCENT__}');
+        if (name === 'SpeakMicButton') {
+          // зачем (Карточки 2.0 12.10): микрофон 92 принимает токены темы пропсом g (раньше accent); вид не входит в хеш поведения
+          printed = printed.replace(/g=\{[^}]+\}/, 'g={__PRESENTATION_GLASS__}');
         }
         nodes.push({ name, position: node.getStart(sessionAst), hash: sha256(printed) });
       }
@@ -211,7 +212,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // Удержание, озвучка, полёт монеты, итог — без изменений; 4bfdfb659 и 88f7489b3 хеш не трогали.
     // зачем (владелец 11.10, режим энергии Б; 750314a24): стоп-эффект экрана теперь проверяет общий isAttemptsStopEffect (attempts_exhausted ИЛИ energy_exhausted) — иначе в режиме Б остановка не останавливает озвучку. Квоты/попытки режима А не менялись.
     // зачем (Карточки 2.0 12.10): сверено — в защищённых узлах изменилась только строка setLastAward(...) в onScore (пилюля «+N» в панели «Верно» по макету cards-v2); квоты, попытки, удержание, озвучка, полёт, итог — без изменений.
-    hash: 'c0d318acfb491274df8b48d7aacd4e0424ff4f60ba5de39a68fe48f831f19b00',
+    // зачем (Карточки 2.0 12.10, координатор: «ручное «Дальше» ДЕЛАЕМ»): в onScore убран автопереход после зачёта (таймеры advanceTimerRef, SPEAKING_AUTO_ADVANCE_MS) — остаётся эхо эталона и «Дальше» по нажатию;
+    // квоты, попытки, озвучка, полёт монеты, итог — без изменений.
+    hash: 'a2c66b9c7ab1696e4c01096156b89960bb4e3b590e514f1b87de61be48038a69',
   });
   assert.equal(
     hashProtectedRuntimeElements(),
@@ -221,7 +224,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // других изменений в защищённых элементах нет — поведение квот/попыток/озвучки не тронуто.
     // зачем (10.10): f371d6122 — у экрана итога пропсы overline/startedAtMs/mistakes (вид по cards-section); тексты «ты» (bb416e3cd).
     // зачем (владелец 11.10, режим энергии Б; 750314a24): у <SessionAttemptsHud> новый проп attempts={attempts} — шапка сама рисует энергию вместо сердечек.
-    'c25c8ba4623080362385150cfa05491328efc59b7ae2894375ccc3a00b12ad56',
+    // зачем (Карточки 2.0 12.10): микрофон «Устно» — SpeakMicButton 92 (касание включает и заканчивает запись) вместо SpeakHoldButton; Learning V2 по-прежнему на SpeakHoldButton, он не тронут.
+    // Те же onHoldStart/onHoldEnd, тот же гейт попыток и sessionAuthorized; остальные защищённые элементы побайтно прежние.
+    'ff546f74b1fd9ac901a01bd8d01d079e12fe88f9e5e01b915bc052e534c807b5',
   );
   assert.deepEqual(
     {
@@ -332,7 +337,7 @@ test('renders the approved active geometry with stable insets and normalized fon
   assert.match(active, /paddingBottom: insets\.bottom/);
   assert.match(active, /paddingLeft: insets\.left/);
   assert.match(active, /<ScrollView[^>]*style=\{\{ flex: 1, minHeight: 0 \}\}/);
-  assert.match(active, /contentContainerStyle=\{\{ flexGrow: 1, paddingBottom: 8 \}\}/);
+  assert.match(active, /contentContainerStyle=\{\{ flexGrow: 1, paddingBottom: passedNow \? 170 : 8 \}\}/);
 
   // зачем (Карточки 2.0 12.10, cards-v2.html «Устно»): карточка RU → EN — переворачиваемая CardFlipV2 высотой 196 (прежняя PhraseCard с геометрией 24/22 ушла из этого экрана)
   assert.match(active, /<CardFlipV2[\s\S]*flipped=\{flipped\}[\s\S]*onFlip=\{setFlipped\}/);
@@ -407,7 +412,7 @@ test('scoped presentation validators reject negative geometry and wiring mutatio
     assert.match(findStyle(source, 'progressTrack', 'progressFill'), /height: 6/);
     assert.match(findStyle(source, 'cardArea', 'cardFace'), /paddingHorizontal: 20/);
     assert.match(source, /height=\{SPEAKING_CARD_HEIGHT\}/);
-    assert.match(source, /accent=\{speakingGlass\.cta\}/);
+    assert.match(source, /<SpeakMicButton[\s\S]*g=\{speakingGlass\}/);
   };
   validatePhraseCard(phraseCardSource);
   validateSession(sessionSource);
@@ -418,7 +423,7 @@ test('scoped presentation validators reject negative geometry and wiring mutatio
   assert.throws(() => validateSession(sessionSource.replace('progressTrack: { height: 6', 'progressTrack: { height: 4')));
   assert.throws(() => validateSession(sessionSource.replace('paddingHorizontal: 20, paddingTop: 34', 'paddingHorizontal: 24, paddingTop: 34')));
   assert.throws(() => validateSession(sessionSource.replace('height={SPEAKING_CARD_HEIGHT}', '')));
-  assert.throws(() => validateSession(sessionSource.replace('accent={speakingGlass.cta}', 'accent={ACCENT}')));
+  assert.throws(() => validateSession(sessionSource.replace(/(<SpeakMicButton\s+)g=\{speakingGlass\}/, '$1g={OTHER}')));
 });
 
 test('keeps all real controls and uses the approved title and microphone material', () => {
@@ -439,6 +444,6 @@ test('keeps all real controls and uses the approved title and microphone materia
   }
   assert.match(sessionSource, /ru: 'Устно'/);
   assert.match(sessionSource, /en: 'Speaking'/);
-  assert.match(active, /<SpeakHoldButton[\s\S]*accent=\{speakingGlass\.cta\}/);
+  assert.match(active, /<SpeakMicButton[\s\S]*g=\{speakingGlass\}/);
   assert.doesNotMatch(active, /packTheme=/);
 });

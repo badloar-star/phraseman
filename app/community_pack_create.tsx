@@ -34,7 +34,9 @@ import {
   useCardsGlass,
 } from './flashcards/CardsGlassKit';
 import { PackMenuRow, PackPopoverMenu } from './community_packs/PackCreateGlassParts';
-import { AddCardRow, EditorCardList, EditorCardRow, EditorField, EditorHeader, EditorSheet, VisibilitySegment } from './community_packs/PackEditorV2';
+import { AddCardRow, EditorCardList, EditorCardRow, EditorField, EditorHeader, EditorSheet, LevelChips, VisibilitySegment } from './community_packs/PackEditorV2';
+import { normalizePackLevel, PACK_LEVELS, type PackLevel } from './flashcards/pack_deck_meta';
+import { useAuthorPackQuota } from './community_packs/useAuthorPackQuota';
 import { KitCta, KitSectionHead } from '../components/cards-grid/CardsKit';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
@@ -301,6 +303,8 @@ export default function CommunityPackCreateScreen() {
   const [themeIdx, setThemeIdx] = useState(0);
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
   const [publishToCommunity, setPublishToCommunity] = useState(false);
+  // зачем (cards-v2 `lvls`, данные Ядра ee01d089a): уровень набора A1–C1 по выбору автора; нет выбора — поле не уходит
+  const [level, setLevel] = useState<PackLevel | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -368,23 +372,12 @@ export default function CommunityPackCreateScreen() {
     } as never);
   }, [creatorLocked, router]);
 
-  // зачем (Карточки 2.0 12.10, координатор: лимит на ВХОДЕ, а не после «Создать»): у Free 3 своих набора (D118, FREE_AUTHOR_PACK_LIMIT).
-  // Считаем наборы аккаунта локально (0 чтений Firestore) и сразу показываем «3/3» и «Безлимит с Plus» — человек не заполняет форму зря
-  // (черновик при этом сохраняется сам). Сервер-граница записи (saveLocalAuthorPack) остаётся второй линией защиты.
-  const [ownPackCount, setOwnPackCount] = useState<number | null>(null);
-  useEffect(() => {
-    if (isEditMode) return undefined;
-    let alive = true;
-    void loadLocalAuthorPacks()
-      .then((list) => {
-        if (!alive) return;
-        console.log('[PACK-CREATE] own packs counted', JSON.stringify({ count: list.length, limit: FREE_AUTHOR_PACK_LIMIT })); // guard-ok: единичный лог на вход
-        setOwnPackCount(list.length);
-      })
-      .catch(noteSwallowedAs('community_pack_create:ownPackCount', undefined));
-    return () => { alive = false; };
-  }, [isEditMode]);
-  const packLimitReached = !isEditMode && accessResolved && !hasPremiumAccess && ownPackCount !== null && ownPackCount >= FREE_AUTHOR_PACK_LIMIT;
+  // зачем (Карточки 2.0 12.10, координатор: лимит на ВХОДЕ, а не после «Создать»): у Free 3 своих набора (D118). Счёт и флаг лимита отдаёт
+  // useAuthorPackQuota (Ядро 859c0e487): первый кадр из памяти, пересчёт с устройства, 0 чтений Firestore. Серверная граница записи
+  // (saveLocalAuthorPack) остаётся второй линией защиты; черновик сохраняется сам.
+  const { quota: authorPackQuota } = useAuthorPackQuota(hasPremiumAccess);
+  const ownPackCount = authorPackQuota?.count ?? null;
+  const packLimitReached = !isEditMode && accessResolved && !hasPremiumAccess && !!authorPackQuota?.limitReached;
 
   /** Create mode: false until local draft load/clear finished (avoid overwriting AsyncStorage). */
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
@@ -468,6 +461,7 @@ export default function CommunityPackCreateScreen() {
         setDescription(local.description);
         setPackLanguage(normalizePackLanguage(local.packLanguage));
         setPublishToCommunity(local.isPublic !== false);
+        setLevel(normalizePackLevel(local.level) ?? null);
         // зачем (владелец 2026-09-21): цена платного набора восстанавливается
         // вместе с галочкой — иначе правка молча делала набор бесплатным.
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
@@ -562,6 +556,7 @@ export default function CommunityPackCreateScreen() {
         setThemeIdx(d.themeIdx);
         setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
         setPublishToCommunity(d.publishToCommunity !== false);
+        setLevel(normalizePackLevel(d.level) ?? null);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -587,6 +582,7 @@ export default function CommunityPackCreateScreen() {
         themeIdx,
         packLanguage,
         publishToCommunity,
+        ...(level ? { level } : {}),
         rows,
         addCardFormOpen,
         draftEn,
@@ -607,6 +603,7 @@ export default function CommunityPackCreateScreen() {
     themeIdx,
     packLanguage,
     publishToCommunity,
+    level,
     rows,
     addCardFormOpen,
     draftEn,
@@ -804,6 +801,7 @@ export default function CommunityPackCreateScreen() {
     setDescription('');
     setThemeIdx(0);
     setPublishToCommunity(false);
+    setLevel(null);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -839,6 +837,7 @@ export default function CommunityPackCreateScreen() {
     const p: CommunityPackSubmissionPayload = {
       packLanguage,
       publishToCommunity,
+      ...(level ? { level } : {}),
       studyTarget,
       title: title.trim(),
       // зачем (владелец 04.10): описание необязательно — пустое заменяется названием, чтобы набор проходил прежние проверки и публикацию
@@ -855,7 +854,7 @@ export default function CommunityPackCreateScreen() {
       priceRunes: 0,
     };
     return p;
-  }, [title, description, rows, themeKey, lang, packLanguage, publishToCommunity, studyTarget]);
+  }, [title, description, rows, themeKey, lang, packLanguage, publishToCommunity, level, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -1099,6 +1098,7 @@ export default function CommunityPackCreateScreen() {
   const cancelLabel = L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj');
   const menuRow = rowMenuIdx != null ? rows[rowMenuIdx] : undefined;
 
+  const levelLabel = L('Уровень', 'Рівень', 'Level', 'Nivel', 'Nível', 'Trình độ', 'Level', 'Seviye', 'Poziom');
   const visibilityLabel = L('Кто видит', 'Хто бачить', 'Who can see it', 'Quién lo ve', 'Quem vê', 'Ai xem được', 'Siapa yang melihat', 'Kimler görür', 'Kto widzi');
   const privateOnlyLabel = L('Только я', 'Лише я', 'Only me', 'Solo yo', 'Só eu', 'Chỉ mình tôi', 'Hanya saya', 'Yalnızca ben', 'Tylko ja');
   const publicAllLabel = L('Все', 'Усі', 'Everyone', 'Todos', 'Todos', 'Mọi người', 'Semua', 'Herkes', 'Wszyscy');
@@ -1203,6 +1203,10 @@ export default function CommunityPackCreateScreen() {
                     privateLabel={privateOnlyLabel}
                     publicLabel={publicAllLabel}
                   />
+                </View>
+
+                <View style={{ marginTop: 22 }}>
+                  <LevelChips g={kg} label={levelLabel} value={level} onChange={(next) => setLevel(normalizePackLevel(next) ?? null)} levels={PACK_LEVELS} />
                 </View>
 
                 {descriptionOpen ? (

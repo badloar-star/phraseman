@@ -75,6 +75,40 @@ export const VisibilitySegment = memo(function VisibilitySegment({ g, label, val
   );
 });
 
+/**
+ * «Уровень» A1–C1 (cards-v2 `lvls`): ряд кнопок-чипов, выбранный — мятный; повторное касание снимает выбор (уровень необязателен).
+ * зачем (Карточки 2.0 12.10, данные Ядра ee01d089a): автор указывает уровень набора, он попадает в «40 · A2» стопки и в шапку набора.
+ */
+export const LevelChips = memo(function LevelChips({ g, label, value, onChange, levels }: Readonly<{
+  g: GlassTokens;
+  label: string;
+  value: string | null;
+  onChange: (next: string | null) => void;
+  levels: readonly string[];
+}>) {
+  return (
+    <View testID="ugc-pack-level">
+      <Text style={[styles.flab, { color: g.secondary }]}>{label}</Text>
+      <View style={styles.levelRow}>
+        {levels.map((level) => {
+          const on = level === value;
+          return (
+            <Pressable
+              key={level}
+              testID={`ugc-pack-level-${level}`}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: on }}
+              onPress={() => onChange(on ? null : level)}
+              style={({ pressed }) => [styles.levelChip, { backgroundColor: on ? g.accent : g.plateFillFrom, boxShadow: on ? actionBoxShadow(g) : plateBoxShadow(g) }, pressed && { opacity: 0.85 }]}>
+              <Text style={[styles.levelChipText, { color: on ? g.accentInk : g.text }]}>{level}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+});
+
 /** Строка «Добавить карточку» — карточка с плиткой «＋». */
 export const AddCardRow = memo(function AddCardRow({ g, label, onPress, disabled, testID }: Readonly<{ g: GlassTokens; label: string; onPress: () => void; disabled?: boolean; testID?: string }>) {
   return (
@@ -286,6 +320,9 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
 });
 
 const styles = StyleSheet.create({
+  levelRow: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
+  levelChip: { minWidth: 54, height: 40, borderRadius: 20, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
+  levelChipText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   pressed: { opacity: 0.82 },
   dim: { opacity: 0.45 },
   header: { marginTop: 4, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 16, minHeight: 46 },

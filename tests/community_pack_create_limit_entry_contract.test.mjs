@@ -6,9 +6,10 @@ import test from 'node:test';
 
 const src = readFileSync('app/community_pack_create.tsx', 'utf8').replace(/\r\n/g, '\n');
 
-test('limit variant is decided on entry from the local pack count and the Free limit', () => {
-  assert.match(src, /FREE_AUTHOR_PACK_LIMIT,\n  loadLocalAuthorPacks,/);
-  assert.match(src, /const packLimitReached = !isEditMode && accessResolved && !hasPremiumAccess && ownPackCount !== null && ownPackCount >= FREE_AUTHOR_PACK_LIMIT;/);
+test('limit variant is decided on entry from the Core pack-quota hook (useAuthorPackQuota)', () => {
+  assert.ok(src.includes("import { useAuthorPackQuota } from './community_packs/useAuthorPackQuota';"));
+  assert.match(src, /const \{ quota: authorPackQuota \} = useAuthorPackQuota\(hasPremiumAccess\);/);
+  assert.match(src, /const packLimitReached = !isEditMode && accessResolved && !hasPremiumAccess && !!authorPackQuota\?\.limitReached;/);
   assert.ok(src.includes('testID="ugc-pack-limit-pill"'));
   assert.ok(src.includes("label={packLimitReached ? unlimitedPlusLabel"));
   assert.ok(src.includes('if (packLimitReached) { openPackLimitPaywall(); return; }'));

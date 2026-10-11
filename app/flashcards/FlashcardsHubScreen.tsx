@@ -50,6 +50,7 @@ import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
 import { pickTopCommunityPacks } from './SavedTopCommunityPacks';
 import { checkOnlineNow, getNetStatus, subscribeNetStatus } from '../net_status';
+import { latestPackContinue, loadPackContinuePositions, peekPackContinuePositions, subscribePackContinue } from './pack_continue_position';
 import { formatDuration } from './VideoPackRow';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
@@ -141,6 +142,17 @@ export default function FlashcardsHubScreen() {
   // зачем (Карточки 2.0, состояние «Нет сети»): сеть-статус приложения уже опрашивается централизованно (net_status) — тут только подписка, своих запросов нет.
   const [netOffline, setNetOffline] = useState<boolean>(() => getNetStatus() === 'offline');
   useEffect(() => subscribeNetStatus((online) => setNetOffline(!online)), []);
+  // зачем (Карточки 2.0 12.10, данные Ядра ee01d089a): герой «Продолжить» показывает набор и позицию («Путешествия · 12 из 40») из памяти устройства;
+  // 0 чтений Firestore. Нет сохранённой позиции — прежний герой (последняя сохранённая карточка).
+  const [continuePos, setContinuePos] = useState(() => latestPackContinue(peekPackContinuePositions(studyTarget) ?? {}));
+  useEffect(() => {
+    let alive = true;
+    void loadPackContinuePositions(studyTarget)
+      .then((positions) => { if (alive) setContinuePos(latestPackContinue(positions)); })
+      .catch(noteSwallowedAs('FlashcardsHubScreen:loadPackContinuePositions', undefined));
+    const unsubscribe = subscribePackContinue(() => { if (alive) setContinuePos(latestPackContinue(peekPackContinuePositions(studyTarget) ?? {})); });
+    return () => { alive = false; unsubscribe(); };
+  }, [studyTarget]);
   const [authoredPacks, setAuthoredPacks] = useState<LocalAuthorPack[]>([]);
   const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
   // My Packs includes unpublished author packs that the Hub catalog does not know.
@@ -683,11 +695,23 @@ export default function FlashcardsHubScreen() {
     ...authoredPacks.map((pack) => ({ title: formatPackTitleForDisplay(pack.title), count: pack.cards.length })),
     ...catalog.filter((pack) => ownedCommunityPackIds.includes(pack.id) && !isLocalAuthorPackId(pack.id)).map((pack) => ({ title: packTitleForInterface(pack, lang), count: pack.cardCount })),
   ].slice(0, 3).map((c) => ({ title: c.title, count: String(c.count) }));
+  const continuePack = continuePos
+    ? (authoredPacks.find((pack) => pack.id === continuePos.packId) ?? null) ?? (catalog.find((pack) => pack.id === continuePos.packId) ?? null)
+    : null;
+  const continueTitle = continuePack
+    ? ('cards' in continuePack ? formatPackTitleForDisplay(continuePack.title) : packTitleForInterface(continuePack, lang))
+    : '';
+  const continueWord = continuePack && continuePos
+    ? ('cards' in continuePack ? continuePack.cards[continuePos.index]?.en : continuePack.previewWords?.[0]) ?? continueTitle
+    : '';
+  const ofWord = triLang(lang, { ru: 'из', uk: 'з', en: 'of', es: 'de', 'pt-BR': 'de', vi: '/', id: 'dari', tr: '/', pl: 'z' });
   const hubHero = trainingLocked
     ? { overline: hubCopy.cont, word: limitOutTitle, sub: limitOutSub, progress: null, ctaLabel: trainLabel, ctaLocked: true }
     : fresh
       ? { overline: hubCopy.start, word: 'Hello', sub: fresh.sub, progress: null, ctaLabel: fresh.cta, ctaLocked: false }
-      : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: trainLabel, ctaLocked: false };
+      : continuePos && continuePack
+        ? { overline: hubCopy.cont, word: continueWord, sub: `${continueTitle} · ${continuePos.index} ${ofWord} ${continuePos.total}`, progress: Math.max(0, Math.min(1, continuePos.index / continuePos.total)), ctaLabel: trainLabel, ctaLocked: false }
+        : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: trainLabel, ctaLocked: false };
   const openVideoPack = (pack: FlashcardMarketPack) => openTopPack(pack);
   const videoItems = videoPacks.map((pack) => ({
     id: pack.id,

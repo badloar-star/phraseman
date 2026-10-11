@@ -16,9 +16,24 @@ test('plus window header and benefits are contextual', () => {
   assert.match(screen, /contextTitle=\{contextual \? headline\.title : undefined\}/);
   assert.match(screen, /leadBenefit=\{contextual && headline\.firstBenefit/);
   assert.match(screen, /<PaywallContextIcon ctx=\{ctx\}/);
-  const benefits = read('components', 'paywall', 'PaywallBenefitComparison.tsx');
-  assert.match(benefits, /testID="paywall-lead-benefit"/);
-  assert.match(benefits, /leadIcon \?\? /);
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.match(plus, /testID="paywall-lead-benefit"/);
+  assert.match(plus, /testID="paywall-context-icon"/);
+});
+
+test('plus window is a sheet over the previous screen with plans side by side (владелец 11.10, вариант 1 «Шторка»)', () => {
+  const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+  assert.match(screen, /testID="paywall-sheet"/);
+  assert.match(screen, /<PaywallScrim onPress=\{closeWindow\} \/>/);
+  assert.match(read('components', 'paywall', 'paywallShared.tsx'), /testID="paywall-scrim"/);
+  assert.match(screen, /borderTopLeftRadius: 30/);
+  const nav = read('app', 'section_sheet_navigation.ts');
+  assert.match(nav, /PAYWALL_SHEET_STACK_OPTIONS[\s\S]{0,80}presentation: 'transparentModal'/);
+  assert.match(read('app', '_layout.tsx'), /name="premium_modal" options=\{PAYWALL_SHEET_STACK_OPTIONS\}/);
+  assert.match(read('components', 'paywall', 'paywallShared.tsx'), /presentation: 'transparentModal'/);
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.match(plus, /planRow: \{ flexDirection: 'row'/);
+  assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{S\.planCell\}/);
 });
 
 test('without prices the plans area says so and offers a retry (no empty skeleton cards)', () => {

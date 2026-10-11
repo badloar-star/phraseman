@@ -47,15 +47,16 @@ describe('paywall navigation and scroll smoothness contract', () => {
     const source = fs.readFileSync(path.join(root, 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
 
     expect(source).toContain(
-      "return { presentation: 'modal', animation: 'none', animationDuration: 0, gestureEnabled: true } as const;",
+      "return { presentation: 'transparentModal', animation: 'none', animationDuration: 0, gestureEnabled: false, contentStyle: { backgroundColor: 'transparent' } } as const;",
     );
   });
 
-  it('keeps the transient premium dispatcher on a paywall-colored backing', () => {
+  it('keeps the transient premium dispatcher transparent over the previous screen', () => {
     const layout = readAppFile('_layout.tsx');
 
     expect(layout).toContain("<Stack.Screen name=\"premium_modal\"");
-    expect(layout).toContain('<Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />');
+    // зачем (владелец 11.10, «Шторка»): окно Plus — прозрачный модал поверх прежнего экрана (PAYWALL_SHEET_STACK_OPTIONS).
+    expect(layout).toContain('<Stack.Screen name="premium_modal" options={PAYWALL_SHEET_STACK_OPTIONS} />');
   });
 
   it('shows paywall content on the first modal frame without an inner JS entrance animation', () => {

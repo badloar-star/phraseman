@@ -7,7 +7,7 @@
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BackHandler, Platform, StyleSheet, View } from 'react-native';
+import { BackHandler, Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { useLang } from '../LangContext';
@@ -25,7 +25,7 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams } from '../..
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DebugLogger } from '../../app/debug-logger';
 import { useLoadGate } from '../../app/use_load_gate';
-import { usePaywallScreenStackOptions } from './paywallShared';
+import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
 import {
   PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPlansUnavailable,
    PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy,
@@ -33,7 +33,7 @@ import {
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
-import { paywallContextHeadline } from '../../app/paywall_context_headline';
+import { paywallContextHeadline, type PaywallContextHeadline } from '../../app/paywall_context_headline';
 import { PaywallContextIcon } from './PaywallContextIcons';
 
 /** Метка единственного пейвола в аналитике и воронке. */
@@ -54,6 +54,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
+  const { height: windowHeight } = useWindowDimensions();
   const ctx = entry.context;
   const source = entry.source;
   const forceTrialUI = firstParam(params._force_trial_ui) === '1';
@@ -65,6 +66,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // прежняя шапка пробного периода.
   const headline = useMemo(() => paywallContextHeadline(ctx, lang), [ctx, lang]);
   const contextual = headline.copyContext !== 'generic' && !!headline.title;
+  // зачем (макет paywall-context-redesign #c1): пилюля «что закончилось» рядом со значком входа. Поле `pill` в контракт вносит Ядро;
+  // пока его нет — пилюли нет (ничего не выдумываем).
+  const contextPill = (headline as PaywallContextHeadline & { pill?: string }).pill || undefined;
   useEffect(() => {
     DebugLogger.info('[PAYWALL-OPEN]', `шапка: ctx=${ctx} source=${source} текст=${headline.copyContext} контекстная=${contextual} выгода=${headline.firstBenefit ? 'есть' : 'нет'} lang=${lang}`);
   }, [contextual, ctx, headline.copyContext, headline.firstBenefit, lang, source]);
@@ -147,48 +151,66 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     yearlyPromo, monthlyPromo,
   });
 
+  const closeWindow = () => {
+    if (checkoutInFlight) return;
+    p.handleClose('close');
+  };
+
   return (
-    <View style={[S.root, { backgroundColor: g.bg }]}>
+    <View style={S.root}>
       <Stack.Screen options={screenOptions} />
-      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
+      {prompt ? (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: g.bg }]}>
+          <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
+        </View>
+      ) : null}
       {prompt ? (
         <PaywallTrialReminderPrompt lang={lang} g={g} topInset={insets.top} bottomInset={insets.bottom}
           onAllow={p.allowTrialReminder} onSkip={p.skipTrialReminder} />
       ) : (
-        <View style={[S.sheet, { paddingTop: insets.top }]}>
-          <PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
-            onClose={() => p.handleClose('close')}
-            contextTitle={contextual ? headline.title : undefined}
-            contextSubtitle={contextual ? headline.subtitle : undefined} />
-          <PaywallPlusScroll>
-            {showTimeline && yearlyTrialDays
-              ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
-              : null}
-            {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
-                «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
-            {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-            {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} /> : null}
-            {state === 'ready' ? (
-              <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
-                yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
-                yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
-                yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
-            ) : null}
-            <PaywallPlusDetails lang={lang} g={g} restoring={p.restoring}
-              restoreDisabled={checkoutInFlight || state === 'loading'} onRestore={() => { void p.handleRestore(); }}
-              leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined}
-              leadIcon={contextual && headline.firstBenefit ? <PaywallContextIcon ctx={ctx} size={22} color={g.text} /> : undefined} />
-          </PaywallPlusScroll>
-          <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
-            notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
-            onPress={() => { void p.handlePurchase(); }} />
-        </View>
+        <>
+          {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
+              прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
+          <PaywallScrim onPress={closeWindow} />
+          <View testID="paywall-sheet" style={[S.sheet, { backgroundColor: g.opaqueSheet, maxHeight: windowHeight - insets.top - 8 }]}>
+            <PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
+              onClose={() => p.handleClose('close')}
+              contextTitle={contextual ? headline.title : undefined}
+              contextSubtitle={contextual ? headline.subtitle : undefined}
+              contextIcon={contextual ? <PaywallContextIcon ctx={ctx} size={26} color={g.accentText} /> : undefined}
+              contextPill={contextual ? contextPill : undefined} />
+            <PaywallPlusScroll>
+              {showTimeline && yearlyTrialDays
+                ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
+                : null}
+              {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
+              <PaywallPlusDetails lang={lang} g={g}
+                leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
+              {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
+                  «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
+              {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
+              {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} /> : null}
+              {state === 'ready' ? (
+                <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
+                  yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
+                  yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+                  yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
+              ) : null}
+            </PaywallPlusScroll>
+            <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
+              notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
+              onPress={() => { void p.handlePurchase(); }}
+              restoring={p.restoring} restoreDisabled={checkoutInFlight || state === 'loading'}
+              onRestore={() => { void p.handleRestore(); }} />
+          </View>
+        </>
       )}
     </View>
   );
 }
 
 const S = StyleSheet.create({
-  root: { flex: 1 },
-  sheet: { flex: 1 },
+  // зачем: корень прозрачный — окно лежит поверх прежнего экрана (transparentModal), снизу шторка со скруглёнными верхними углами.
+  root: { flex: 1, justifyContent: 'flex-end' },
+  sheet: { borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden' },
 });

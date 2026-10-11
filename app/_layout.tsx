@@ -105,7 +105,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
-import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
+import { PAYWALL_SHEET_STACK_OPTIONS, SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
@@ -3164,7 +3164,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           загрузку). Два отдельных условия дают тот же результат без обёртки. */}
       {/* Диспетчер проверяет доступ и рисует единственный пейвол Plus (manage=1 → replace
           на управление подпиской). Без анимации, с подложкой темы — без чёрного кадра. */}
-      <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="premium_modal" options={PAYWALL_SHEET_STACK_OPTIONS} />
       {/* зачем (владелец 2026-09-30, D78): экраны пейволов A–G удалены — единственный
           пейвол Plus рисует сам диспетчер premium_modal. */}
       <Stack.Screen name="manage_subscription" options={SECTION_SHEET_STACK_OPTIONS} />

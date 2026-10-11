@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, us
 import {
   View,
   Text,
+  Pressable,
   StyleSheet,
   Animated,
   Easing,
@@ -135,7 +136,8 @@ export function paywallScreenStackOptions(isOnboarding: boolean) {
   }
   // Outside onboarding it remains a dismissible modal, but route appearance is
   // immediate; the paywall's own content motion is independent from navigation.
-  return { presentation: 'modal', animation: 'none', animationDuration: 0, gestureEnabled: true } as const;
+  // зачем (владелец 11.10, «Шторка»): окно поверх прежнего экрана — transparentModal (как в app/section_sheet_navigation.ts PAYWALL_SHEET_STACK_OPTIONS).
+  return { presentation: 'transparentModal', animation: 'none', animationDuration: 0, gestureEnabled: false, contentStyle: { backgroundColor: 'transparent' } } as const;
 }
 
 /**
@@ -150,6 +152,14 @@ export function paywallScreenStackOptions(isOnboarding: boolean) {
  */
 export function usePaywallScreenStackOptions(isOnboarding: boolean) {
   return useMemo(() => paywallScreenStackOptions(isOnboarding), [isOnboarding]);
+}
+
+/**
+ * Затемнение прежнего экрана за шторкой Plus (тап закрывает). Чёрное в любой теме: это тень на экране под окном,
+ * а не поверхность окна (владелец 11.10, вариант 1 «Шторка»).
+ */
+export function PaywallScrim({ onPress }: { onPress: () => void }) {
+  return <Pressable testID="paywall-scrim" accessible={false} onPress={onPress} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.6)' }]} />; // theme-exempt: затемнение прежнего экрана — чёрное в любой теме
 }
 
 // Плавное затемнение фона онбординг-пейвола: вход 0→80%, выход обратно. Затемнение

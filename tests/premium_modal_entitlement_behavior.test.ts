@@ -17,6 +17,7 @@ jest.mock('react-native', () => ({
     },
   },
   StyleSheet: { create: (styles: unknown) => styles },
+  View: 'View',
 }));
 jest.mock('expo-crypto', () => ({ randomUUID: () => 'pw-test-impression' }));
 jest.mock('expo-router', () => ({
@@ -65,7 +66,8 @@ afterEach(async () => {
 test('premium modal waits for entitlement, shows only to free, and dismisses Plus without a flash', async () => {
   const view = await render(React.createElement(PremiumModalDispatcher));
   expect(JSON.stringify(view.toJSON())).not.toContain('PaywallPlus');
-  expect(JSON.stringify(view.toJSON())).toContain('LinearGradient');
+  // зачем (владелец 11.10, «Шторка»): пока решается доступ, маршрут прозрачный — видно прежний экран, а не сплошной фон.
+  expect(JSON.stringify(view.toJSON())).toContain('"type":"View"');
   expect(mockDismiss).not.toHaveBeenCalled();
 
   mockAccessResolved = true;

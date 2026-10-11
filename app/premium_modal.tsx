@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { InteractionManager, StyleSheet } from 'react-native';
+import { InteractionManager, StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 
-import { LinearGradient } from '../components/SafeLinearGradient';
-import { useTheme } from '../components/ThemeContext';
 import { openPremiumPaywall } from './paywall_navigation';
 // зачем (владелец 2026-09-30, D78): пейволы A–G и их A/B-распределение удалены.
 // Любой вход вне онбординга ведёт сюда и показывает ЕДИНСТВЕННЫЙ пейвол Plus.
@@ -57,7 +55,6 @@ function replaceToPaywall(params: RouteParams, router: ReturnType<typeof useRout
 
 export default function PremiumModalDispatcher() {
   const router = useRouter();
-  const { theme } = useTheme();
   const params = useLocalSearchParams<RouteParams>();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const [paywallImpressionId] = useState(() => Crypto.randomUUID());
@@ -164,14 +161,8 @@ export default function PremiumModalDispatcher() {
     }
   }
 
-  return (
-    <LinearGradient
-      colors={[theme.bgPrimary, theme.bgSurface, theme.bgPrimary]}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={[styles.root, { backgroundColor: theme.bgPrimary }]}
-    />
-  );
+  // зачем (владелец 11.10, «Шторка»): маршрут прозрачный — пока решается доступ, под ним виден прежний экран, а не сплошной фон.
+  return <View pointerEvents="none" style={styles.root} />;
 }
 
 const styles = StyleSheet.create({

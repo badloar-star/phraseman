@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.58)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+    backgroundColor: 'rgba(0,0,0,0.6)', // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   },
   avoider: {
     flex: 1,

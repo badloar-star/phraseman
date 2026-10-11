@@ -11,6 +11,7 @@ import {
   useDialogueGlass,
 } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
+import { formatDialogObjectiveLabel } from './dialog_objective_label';
 
 // зачем (владелец 2026-09-30): брифинг «1 в 1» по макету dialogs.html B1/B2 (Liquid Glass):
 // медальон сцены 88, бейдж уровня, крупное название, карточка брифинга, карточка «Задания»
@@ -95,7 +96,7 @@ export function DialogueV2BriefingScreen({
                 <View style={[styles.num, { backgroundColor: glassTone(glass.text, 0.10) }]}>
                   <Text maxFontSizeMultiplier={1.2} style={[styles.numText, { color: glass.text }]}>{index + 1}</Text>
                 </View>
-                <Text maxFontSizeMultiplier={1.4} style={[styles.objText, { color: glass.text }]}>{objective.label}</Text>
+                <Text maxFontSizeMultiplier={1.4} style={[styles.objText, { color: glass.text }]}>{formatDialogObjectiveLabel(objective.label)}</Text>
               </View>
             ))}
           </View>

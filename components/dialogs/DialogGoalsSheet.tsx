@@ -24,6 +24,7 @@ import PressableHybrid from '../PressableHybrid';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DialogObjective } from '../../app/ai_dialog_scenarios';
+import { formatDialogObjectiveLabel } from './dialog_objective_label';
 
 interface DialogGoalsSheetProps {
   visible: boolean;
@@ -127,7 +128,7 @@ export default function DialogGoalsSheet({
                   style={[styles.row, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
                   accessible
                   accessibilityRole="text"
-                  accessibilityLabel={showStatus ? `${objective.labelRu}. ${status}` : objective.labelRu}
+                  accessibilityLabel={showStatus ? `${formatDialogObjectiveLabel(objective.labelRu)}. ${status}` : formatDialogObjectiveLabel(objective.labelRu)}
                 >
                   <View style={[styles.badge, { backgroundColor: done ? glass.cta : glass.opaqueControl }]}>
                     {done ? (
@@ -149,7 +150,7 @@ export default function DialogGoalsSheet({
                       }}
                       maxFontSizeMultiplier={1.2}
                     >
-                      {objective.labelRu}
+                      {formatDialogObjectiveLabel(objective.labelRu)}
                     </Text>
                     {showStatus ? (
                       <Text style={{ color: glass.mutedText, fontSize: f.sub, marginTop: 2 }} maxFontSizeMultiplier={1.2}>

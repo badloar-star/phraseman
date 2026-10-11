@@ -4,6 +4,7 @@ Governance-ID: TG-81B29115655A
 Governance-ID: TG-13BF590C1AF0
 Governance-ID: TG-1608A6301084
 Governance-ID: TG-38E75FF61068
+Governance-ID: TG-62B639219A7A
 
 ## Outcome
 Приказ владельца: «ВСЕ ЧТО СВЕРЕНО И ЕСТЬ ЗАМЕЧАНИЯ — ВСЕ ПОПРАВИТЬ И ПЕРЕВОДИТЬ В ГОТОВО СРАЗУ». По реестру `docs/phraseman-2.0/DIFF_BURNDOWN.md` (120 строк) правлю замечания Сверки группами (profile, dialogs, learn, mistakes-panel, cards-section, video, coins…): после каждой группы — коммит и хэши координатору, строка id → Эмулятору на кадр → Сверка ставит match. Принятые различия (шрифты 16/13, «вы/ты», решения владельца) фиксируются в sverka_verdict.

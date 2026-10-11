@@ -22,6 +22,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { lv2Alpha } from '../learning-v2/LearningV2Glass';
 import { useSpirePalette } from './useSpirePalette';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
+import { localizeSpireOddityPrompt } from './spire_oddity_prompt';
 
 type Props = Readonly<{
   lang: Lang;
@@ -169,8 +170,10 @@ function SpireTaskView(props: Props) {
   const p = useSpirePalette();
   const { lang, task } = props;
   const promptKey = PROMPT_KEY[task.mode] ?? 'promptGuess';
-  const phrase = typeof task.payload.phrase === 'string' ? task.payload.phrase
+  const rawPhrase = typeof task.payload.phrase === 'string' ? task.payload.phrase
     : typeof task.payload.prompt === 'string' ? task.payload.prompt : '';
+  // зачем (координатор 11.10): у «Найди лишнее» фраза — русский шаблон пула на «вы»; показываем строку на языке интерфейса.
+  const phrase = task.mode === 'find_oddity' && rawPhrase ? localizeSpireOddityPrompt(rawPhrase, lang) : rawPhrase;
   const body = task.kind === 'translate' || task.kind === 'dictate'
     ? <BuildTask {...props} />
     : task.kind === 'match' || task.kind === 'timeattack'

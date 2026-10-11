@@ -2205,7 +2205,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             {
                 key: 'spire',
                 available: isLearningSurfaceReady(studyTarget, 'spire'),
-                title: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Ngọn tháp', id: 'Menara', tr: 'Kule', pl: 'Iglica' }),
+                title: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Tháp', id: 'Menara', tr: 'Kule', pl: 'Wieża' }),
                 subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
                 art: require('../../assets/images/home_menu/home-forest-league.webp'),

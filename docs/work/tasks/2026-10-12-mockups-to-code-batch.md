@@ -12,7 +12,7 @@ Related epic/enabler: непрерывная сверка паритета (RELE
 
 ## Scope
 
-In scope: docs/design/v2-app/spire.html, spire-gaps-states.html, dialogs.html, cards-states.html, cards-v2.html (не cards-section.html), registries/visual_parity.json (привязки и вердикты по id).
+In scope: docs/design/v2-app/spire.html, spire-gaps-states.html, dialogs.html, cards-states.html, cards-v2.html (не cards-section.html), community.html (вкладки «Шпиль · Друзья · Наборы», каталог наборов, «Друзья» — по R1_CODE_DEFECTS_FROM_PARITY.md, ab83fa6db), registries/visual_parity.json (привязки, вердикты и классы остатка diffs по id).
 
 Out of scope: код приложения; страницы под замком владельца (cards-section, cards-gallery, mistakes-panel, packs-simple lock-файлы).
 

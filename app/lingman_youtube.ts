@@ -24,6 +24,8 @@ export type LingmanYoutubeVideo = {
   updatedAt: string;
   watchUrl: string;
   viewCount?: number;
+  /** Длительность в секундах — есть у роликов из каталога (Data API); у RSS и эфиров/премьер её нет. */
+  durationSec?: number;
 };
 
 /** Откуда собрана лента: живой RSS или запасной путь при его сбое (§CORE-0170). */

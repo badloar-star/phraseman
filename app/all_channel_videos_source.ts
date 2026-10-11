@@ -196,6 +196,13 @@ export async function loadAllChannelVideos(options: LoadAllVideosOptions): Promi
       memory.set(k, list); // guard-ok: Map в памяти процесса, не Firestore
       void writeDisk(scope, list);
       console.log(LOG, 'сеть: полный каталог', JSON.stringify({ channelId: options.channelId, version: list.version, items: list.items.length, ms: Date.now() - startedAt }));
+      // зачем (координатор 22:20: «durationSec пуст у части роликов»): сколько роликов без длительности и в каком они
+      // состоянии — эфиры/премьеры (YouTube длительность не отдаёт) или настоящая дыра данных.
+      const noDuration = list.items.filter((item) => typeof item.durationSec !== 'number');
+      if (noDuration.length) {
+        const byState = noDuration.reduce<Record<string, number>>((acc, item) => ({ ...acc, [item.state]: (acc[item.state] ?? 0) + 1 }), {});
+        console.log(LOG, 'без длительности', JSON.stringify({ channelId: options.channelId, count: noDuration.length, of: list.items.length, byState, sample: noDuration.slice(0, 3).map((item) => item.id) }));
+      }
       return list;
     } catch (error) {
       console.warn(LOG, 'сеть: не удалось — показываем кэш', JSON.stringify({ channelId: options.channelId, hasCache: !!cached, error: String((error as Error)?.message ?? error) }));

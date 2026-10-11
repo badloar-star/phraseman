@@ -46,6 +46,8 @@ export function catalogVideoToRailVideo(video: YoutubeVideoSnapshot): LingmanYou
     updatedAt: stamp,
     watchUrl: video.watchUrl,
     ...(typeof video.viewCount === 'number' ? { viewCount: video.viewCount } : {}),
+    // зачем (координатор 22:20: длительность пуста у части роликов): поле было в каталоге, но терялось здесь.
+    ...(typeof video.durationSec === 'number' ? { durationSec: video.durationSec } : {}),
   };
 }
 

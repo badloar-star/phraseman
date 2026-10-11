@@ -89,3 +89,11 @@ Status: Done (TG-17B4F6788C5A), ждёт ревью/коммита коорди�
 Тесты: `tests/aa_auth_error_codes_only.test.ts` дополнен (11 тестов): сторож «captureAuthSignInFailure не получает errStr/.message/${detail}», поведенческие native (recordError = `auth_signin:google:native:native_DEVELOPER_ERROR`, в recordError/logAppError нет «@») и firebase (`auth/email-already-in-use`, нет «@»), страховка и транзиент — по регулярке из исходника (поведенческий путь auth_link в стенде уходит в `linked_pending`). Прогон по одному: aa_auth_error_codes_only 11/11, auth_provider_behavior 110/110, auth_provider_stable_link 35/35, aa_auth_double_tap_contract 29/29, aa_guest_server_delete 12/12, aa_release_floor_auth_ui 19/19. grep по tests: `captureAuthSignInFailure` — только auth_provider_stable_link (пин строки auth_link, не тронута); `account_delete_guard_unavailable`/`anonymous_preparation_failed` — пинов нет.
 Governance-ID: TG-547B9EB63A66 — независимое ревью (код ошибок вместо текста) и коммит.
 Governance-ID: TG-D4881BAD6899 — APPROVE ревью; коммит. Хвост ревью (M1 признак без кода, L1–L4 строгость сторожа) — следующим шагом.
+
+## Хвост ревью (M1, L1, L3) — делает координирующая сессия
+Governance-ID: TG-0AE4918142EE (прод.)
+- M1: `identityErrorCode` (`app/identity_trace.ts`) — конечный числовой `code` → строка; ошибка без кода с нестандартным `name` (TypeError, RangeError…, только `[A-Za-z]{1,40}`) → `error_without_code:<name>`; обычный `Error` → прежний `error_without_code` (ожидания тестов и таблица отказов аварийной копии не меняются, незнакомый код там и так → not_uploaded). Текст сообщения по-прежнему не пропускается.
+- L1: firebase-тест закрепляет стадию (`auth_signin:google:firebase:…`).
+- L3: сторож logAuthEvent ловит `errStr`/`msg`.
+- Проверка: aa_auth_error_codes_only, aa_s2c_user_cases_new_system, aa_s2d_presync_backup_refusal, auth_provider_behavior — по одному, со слотом; ревью.
+Governance-ID: TG-3E309C6A1510 — APPROVE ревью хвоста; Number.isSafeInteger по замечанию L; коммит.

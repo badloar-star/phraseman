@@ -77,10 +77,19 @@ export function redactStorageKey(key: string): string {
 export function identityErrorCode(error: unknown): string {
   const rawCode = (error as { code?: unknown } | null)?.code;
   if (typeof rawCode === 'string' && /^[a-z0-9_./-]{1,64}$/i.test(rawCode)) return rawCode;
+  // зачем (ревью f38f95928, M1): нативные модули (Google Sign-In) отдают числовой code — раньше он
+  // терялся целиком и в отчётах было только «без кода». Число почту не несёт.
+  // isSafeInteger, а не isFinite: «1e+21» не прошёл бы фильтр отчётов и стал бы redacted_text.
+  if (typeof rawCode === 'number' && Number.isSafeInteger(rawCode)) return String(rawCode);
   const message = error instanceof Error ? error.message : '';
   // Свои коды приложения — snake_case без пробелов; чужой текст не пропускаем.
   if (/^[a-z0-9_:-]{1,80}$/i.test(message)) return message;
-  return error instanceof Error ? 'error_without_code' : typeof error;
+  if (!(error instanceof Error)) return typeof error;
+  // зачем (M1): «Network request failed» без кода выглядел как любая другая ошибка. Имя класса
+  // (TypeError, RangeError…) — безопасный признак; обычный Error оставляем прежним кодом.
+  return error.name !== 'Error' && /^[A-Za-z]{1,40}$/.test(error.name)
+    ? `error_without_code:${error.name}`
+    : 'error_without_code';
 }
 
 function boundFields(fields: IdentityTraceFields | undefined): Record<string, IdentityTraceValue> {

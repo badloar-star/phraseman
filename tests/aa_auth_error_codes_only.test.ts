@@ -183,8 +183,21 @@ describe('сторож по исходнику auth_provider.ts', () => {
   test('ни один logAuthEvent не передаёт сырой текст ошибки', () => {
     const calls = callsOf(SOURCE, 'logAuthEvent').filter((c) => !c.startsWith('logAuthEvent(name'));
     expect(calls.length).toBeGreaterThan(10);
-    const leaking = calls.filter((c) => /\.message|String\(\s*e\b|String\(\s*error\b|String\(\(e|\bdetail\.slice/.test(c));
+    // ревью L3: errStr / msg — тоже сырой текст ошибки входа.
+    const leaking = calls.filter((c) => /\.message|String\(\s*e\b|String\(\s*error\b|String\(\(e|\bdetail\.slice|\berrStr\b|\bmsg\b/.test(c));
     expect(leaking).toEqual([]);
+  });
+
+  test('identityErrorCode: числовой код и имя класса без текста (ревью M1)', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { identityErrorCode } = require('../app/identity_trace') as typeof import('../app/identity_trace');
+    expect(identityErrorCode(Object.assign(new Error('Account user@example.com'), { code: 12501 }))).toBe('12501');
+    expect(identityErrorCode(new TypeError('Network request failed for user@example.com'))).toBe('error_without_code:TypeError');
+    expect(identityErrorCode(new Error('uid Fz8cQe1u is not owner'))).toBe('error_without_code');
+    expect(identityErrorCode(Object.assign(new Error('x'), { code: Number.NaN }))).toBe('x');
+    const odd = new Error('a@b.c');
+    odd.name = 'Bad Name@x';
+    expect(identityErrorCode(odd)).toBe('error_without_code');
   });
 
   test('captureAuthSignInFailure не получает errStr/.message (только коды)', () => {
@@ -337,6 +350,8 @@ describe('поведенчески: почта из текста ошибки н
       mockLogEvent.mock.calls,
     ]);
     expect(reported).toContain('auth/email-already-in-use');
+    // ревью L1: закрепляем стадию — ошибка не должна «уехать» в native.
+    expect(reported).toContain('auth_signin:google:firebase:firebase_auth/email-already-in-use');
     expect(reported).not.toContain('@');
     // (dev-строка «success, email=…» печатает почту самого входа из мока — это не текст ошибки)
     expect(consoleLines.join('\n')).not.toContain('user@example.com');

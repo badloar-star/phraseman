@@ -28,7 +28,9 @@ const SKIP_FILE = /(^|\/)(__tests__|node_modules|\.worktrees|\.claude|\.codex-tm
 // Контент обучения на языках-источниках (объяснения грамматики, глоссы, диагностика): английский интерфейс переводит только оболочку,
 // учебный материал остаётся на языке источника (app/config.ts, ENGLISH_UI_LOCALE_ENABLED). Плюс неподключённый модуль онбординга-«ага».
 // app/manage_subscription.tsx: причины отмены защищены побайтовым контрактом (tests/manage_subscription_liquid_glass_source_contract), англ. добавляет владелец контракта.
-const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_|flashcards\/(deck_sources|FlashcardListItem|audioSession|marketplace|FlashcardDetailsBody|PhraseCard))|hooks\/use-flashcards|app\/manage_subscription|components\/onboarding_aha\//;
+// app/notifications.ts: локальные пуши держатся на языках-источниках (NotificationCopy = Record<SourceLocale,…>, en → ru; см. комментарий в файле).
+// Английские пуши — отдельное решение владельца продукта, а не словарь без ключа.
+const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_|flashcards\/(deck_sources|FlashcardListItem|audioSession|marketplace|FlashcardDetailsBody|PhraseCard))|hooks\/use-flashcards|app\/manage_subscription|app\/notifications\.ts|components\/onboarding_aha\//;
 
 function listFiles() {
   const out = execFileSync('git', ['ls-files', '--', ...SCAN_DIRS], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });

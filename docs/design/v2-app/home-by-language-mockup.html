@@ -55,6 +55,13 @@
 .today .rw img { width: 16px; height: 16px; border-radius: 50%; }
 .phrase { margin-top: 18px; border-radius: 22px; padding: 16px; background: var(--card-2); border: 1px solid var(--line); display: flex; gap: 14px; align-items: center; }
 .phrase img { width: 64px; height: 64px; object-fit: contain; }
+/* зачем (приказ владельца 11.10, ledger п.57; код 9ffbfb41a): ВСЯ Главная — «Сегодня» без фона и обводки; остальные плашки с фоном 50 % (альфа цвета, текст и значки 100 %).
+   Строки «Сегодня» — отдельные плашки 50 %, как в components/home/v2/HomeV2TodayCard.tsx. */
+.hstat, .cont, .tl, .phrase { background: color-mix(in srgb, var(--card-2) 50%, transparent); }
+.cont .ar, .cont .bg { background: color-mix(in srgb, #2A2A2C 50%, transparent); }
+.today { background: none; border: 0; padding: 14px 0 6px; }
+.today .row { background: color-mix(in srgb, var(--card-2) 50%, transparent); border: 0; border-radius: 18px; padding: 10px 12px; margin-top: 8px; }
+.today .row:first-of-type { margin-top: 0; }
 .legend { max-width: 980px; font-size: 15px; line-height: 22px; color: #D6D6D8; margin: 14px 0 0; }
 .legend b { color: #fff; }
 .cov { width: 100%; max-width: 980px; border-collapse: collapse; font-size: 14px; margin-top: 18px; }

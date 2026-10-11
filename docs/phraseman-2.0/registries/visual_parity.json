@@ -160,12 +160,13 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "blocked_reason": null,
+      "status": "blocked",
+      "blocked_reason": "NO_CODE (12.10): в коде нет — на хабе А блок «Лучшее у сообщества» (SavedTopCommunityPacks, saved-top-community-unavailable) не рисуется — компонент нигде не подключён. Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "prev_blocked_reason": null,
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "prev_status": "pending"
     },
     {
       "id": "cards-005",
@@ -2656,11 +2657,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "blocked_reason": null,
+      "status": "blocked",
+      "blocked_reason": "NO_CODE (12.10): в коде нет — у «Из видео» нет «Пока пусто»: пустой каталог → скелет → «Сейчас недоступно» (flashcards_video_packs.tsx:433-466). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)"
+      "prev_blocked_reason": null,
+      "prev_status": "pending"
     },
     {
       "id": "cards-081",
@@ -2749,12 +2751,13 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "blocked_reason": null,
+      "status": "blocked",
+      "blocked_reason": "NO_CODE (12.10): в коде нет — на хабе А нет «Лучшее у сообщества грузится» (saved-top-pack-loading-*) — блока нет. Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код.",
       "reviewed_by": null,
       "reviewed_at": null,
-      "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)"
+      "prev_blocked_reason": null,
+      "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
+      "prev_status": "pending"
     },
     {
       "id": "practice-001",
@@ -15656,7 +15659,7 @@
       "diffs": [
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "diff",
+      "status": "blocked",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -15670,7 +15673,10 @@
         "verdict": "diff",
         "notes": "Нет в коде «Нет соединения · На этом устройстве есть N изменений… · Выйти и сохранить на устройстве» (offline-выход). → решение координатора/Авторизации: реализовать или убрать образец.",
         "to": "Авторизация"
-      }
+      },
+      "prev_status": "diff",
+      "prev_blocked_reason": null,
+      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
     },
     {
       "id": "profile-028",
@@ -21716,7 +21722,7 @@
         "Состояние: подтверждение выхода",
         "Не снять на этом аккаунте (12:11): тестовый аккаунт не привязан — на экране «Аккаунт» нет «Выйти и войти под другим аккаунтом», окно выхода не вызвать. Привязывать аккаунт ради снимка нельзя (это вход/учётные данные)"
       ],
-      "status": "diff",
+      "status": "blocked",
       "reviewed_by": null,
       "reviewed_at": null,
       "triage": {
@@ -21724,7 +21730,10 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "код экрана менялся после склейки (2026-10-10T18:51:37.000Z)"
-      }
+      },
+      "prev_status": "diff",
+      "prev_blocked_reason": null,
+      "blocked_reason": "NO_CODE (12.10): в коде нет — окна «Выйти из аккаунта?» нет: выход мгновенный, стадия confirm не вызывается (account_details.tsx:347). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
     },
     {
       "id": "overlays-runtime-018",
@@ -29809,9 +29818,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "blocked",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_status": "pending",
+      "prev_blocked_reason": null,
+      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
     },
     {
       "id": "onboarding-017",
@@ -29838,9 +29850,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "blocked",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "prev_status": "pending",
+      "prev_blocked_reason": null,
+      "blocked_reason": "NO_CODE (12.10): в коде нет — шаг «Уровень» выключен в коде (CleanOnboarding.tsx:217). Решение: убрать кадр образца (removed_by_owner после «да» владельца) или вернуть экран в код."
     },
     {
       "id": "onboarding-018",
@@ -30255,10 +30270,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "prev_status": "pending",
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет поиска в хабе; поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
     },
     {
       "id": "cards-v2-005",
@@ -31511,10 +31528,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
       "reviewed_at": null,
-      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям"
+      "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
+      "prev_status": "pending",
+      "removed_reason": "хаб вариант А, приказ 11.10: в варианте А нет кадра «Нет сети» у хаба (хаб в авиарежиме рисуется как обычно); поиск живёт в «Сохранённых» (fc-collection-search) и каталоге (flashcards-packs-search)"
     },
     {
       "id": "cards-v2-044",
@@ -31789,7 +31808,7 @@
         "label": "Аккаунт — гость",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»); сверка с кодом 11.10: структура экрана «Аккаунт» совпадает с account_details.tsx; выход мгновенный (289cc8a51)",
       "screen": "Аккаунт",
       "state": "Аккаунт — гость",
       "code": [
@@ -31818,7 +31837,7 @@
         "label": "Аккаунт — Google, адрес скопирован",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»); сверка с кодом 11.10: «Выйти и войти под другим аккаунтом» — выход сразу по тапу, окна подтверждения нет (289cc8a51, account_details.tsx)",
       "screen": "Аккаунт",
       "state": "Аккаунт — Google, адрес скопирован",
       "code": [
@@ -31967,7 +31986,7 @@
         "label": "Восстановить аккаунт?",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»); образец приведён к коду 11.10: «Этот аккаунт удалится через N дней» (accountRestorePromptMessage, app/account_delete_restore_prompt.ts), раньше «помечен на удаление. Осталось N дн.»",
       "screen": "Вход",
       "state": "Восстановить аккаунт?",
       "code": [
@@ -36051,6 +36070,145 @@
       "code": [
         "app/flashcards_recall_session.tsx",
         "app/energy_mode.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "home-001",
+      "source": "OWNER_ORDER_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/shadow-style-etalon.html",
+        "phone": 1,
+        "label": "Главная — тёмная «Аврора»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "приказ владельца 11.10, ledger п.57: «Сегодня» без фона, остальные плашки с фоном 50% (текст и значки 100%), без тёмных пятен — образец приведён к коду 9ffbfb41a (components/home/v2/homePlate.ts)",
+      "screen": "Главная",
+      "state": "Главная · тёмная тема",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/HomeV2Header.tsx",
+        "components/home/v2/HomeV2ContinueCard.tsx",
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "components/home/v2/HomeV2TodayCard.tsx",
+        "components/home/v2/HomeV2VideoRail.tsx",
+        "components/home/v2/homePlate.ts",
+        "components/DailyPhraseCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "home-002",
+      "source": "OWNER_ORDER_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/shadow-style-etalon.html",
+        "phone": 6,
+        "label": "Главная — светлая",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "приказ владельца 11.10, ledger п.57: «Сегодня» без фона, остальные плашки с фоном 50% (текст и значки 100%), без тёмных пятен — образец приведён к коду 9ffbfb41a (components/home/v2/homePlate.ts)",
+      "screen": "Главная",
+      "state": "Главная · светлая тема",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/HomeV2Header.tsx",
+        "components/home/v2/HomeV2ContinueCard.tsx",
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "components/home/v2/HomeV2TodayCard.tsx",
+        "components/home/v2/HomeV2VideoRail.tsx",
+        "components/home/v2/homePlate.ts",
+        "components/DailyPhraseCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "home-003",
+      "source": "OWNER_ORDER_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/home-by-language-mockup.html",
+        "phone": 1,
+        "label": "Главная по языкам · английский (3 плитки)",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "приказ владельца 11.10, ledger п.57: «Сегодня» без фона, остальные плашки с фоном 50% (текст и значки 100%), без тёмных пятен — образец приведён к коду 9ffbfb41a (components/home/v2/homePlate.ts)",
+      "screen": "Главная",
+      "state": "Главная · по языкам (тёмная)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/HomeV2Header.tsx",
+        "components/home/v2/HomeV2ContinueCard.tsx",
+        "components/home/v2/HomeV2FeatureTiles.tsx",
+        "components/home/v2/HomeV2TodayCard.tsx",
+        "components/home/v2/HomeV2VideoRail.tsx",
+        "components/home/v2/homePlate.ts",
+        "components/DailyPhraseCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "auth-gap-019",
+      "source": "CODE_SYNC_2026-10-11",
+      "mockup": {
+        "file": "docs/design/v2-app/accounts-gaps-states.html",
+        "phone": 19,
+        "label": "Этот аккаунт уже есть в Phraseman",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Новый кадр по коду d90f7bcb2: гость в онбординге выбрал Google, который уже есть в Phraseman (accountSwitchRequiredGuestCopy); themed-окно очереди, «Отмена» и «Войти в этот аккаунт»",
+      "screen": "Вход",
+      "state": "Онбординг — гость выбрал существующий Google",
+      "code": [
+        "app/onboarding_account_switch_confirm.ts",
+        "app/account_switch_copy.ts",
+        "components/CleanOnboarding.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,

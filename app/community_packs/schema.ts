@@ -20,6 +20,7 @@ import {
   normalizePackLanguage,
   type PackLanguage,
 } from '../flashcards/pack_languages';
+import { normalizePackLevel, type PackLevel } from '../flashcards/pack_deck_meta';
 
 /** Опубликованные наборы (каталог «Сообщество»). */
 export const COMMUNITY_PACKS_COLLECTION = 'community_packs';
@@ -99,6 +100,8 @@ export type CommunityPackSubmissionPayload = {
    * Старые наборы поля не имеют — они остаются бесплатными навсегда.
    */
   priceRunes?: number;
+  /** Уровень набора A1–C1, выбранный автором (Карточки 2.0, колода «40 · A2»); нет → не показываем. */
+  level?: PackLevel;
   /** Study target being taught. Legacy UGC is English; French is blocked until its source gate is approved. */
   studyTarget?: RuntimeStudyTarget;
   /** Одна мова: заголовок і опис (дублюються в titleRu/titleUk на бекенді). */
@@ -244,6 +247,8 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     // Без неё документ набора получал priceRunes=0, и начисление автору
     // отвергало КАЖДУЮ продажу как pack_is_not_paid — весь механизм был мёртв.
     priceRunes: Math.max(0, Math.floor(Number(p.priceRunes ?? 0))) || 0,
+    // зачем (Карточки 2.0): тот же класс бага, что с ценой — поле, не названное здесь, до сервера не доезжает.
+    ...(normalizePackLevel(p.level) ? { level: normalizePackLevel(p.level) } : {}),
   };
 }
 

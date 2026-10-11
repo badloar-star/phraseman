@@ -23,6 +23,7 @@ import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from '.
 import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
+import { normalizePackLevel, type PackLevel } from '../flashcards/pack_deck_meta';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -52,6 +53,8 @@ export type LocalAuthorPack = {
    * набор бесплатным при сохранении.
    */
   priceRunes?: number;
+  /** Уровень набора A1–C1, выбранный автором (Карточки 2.0, колода «40 · A2»); нет → не показываем. */
+  level?: PackLevel;
   // зачем: поле заполняется из storageStudyTarget(), который возвращает StudyTarget
   // (все языки курса). Литерал 'en' | 'fr' был снимком двухъязычной эпохи и отстал,
   // когда добавили de/es — присваивание перестало типизироваться. Ссылаемся на
@@ -213,6 +216,8 @@ export async function saveLocalAuthorPack(
     packLanguage: normalizePackLanguage(payload.packLanguage ?? payload.studyTarget ?? existing?.packLanguage),
     isPublic,
     priceRunes: Math.max(0, Math.floor(Number(payload.priceRunes ?? existing?.priceRunes ?? 0))) || 0,
+    // Не прислали уровень (старый экран) → оставляем прежний, а не стираем.
+    level: normalizePackLevel(payload.level) ?? normalizePackLevel(existing?.level),
     studyTarget: target,
     cloudPackId: opts?.cloudPackId ?? existing?.cloudPackId,
     publicationKey: existing?.publicationKey ?? `${id}_${now}`,

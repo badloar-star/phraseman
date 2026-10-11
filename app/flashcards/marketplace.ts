@@ -13,6 +13,7 @@ import {
 import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
 import { DebugLogger } from '../debug-logger';
 import type { PackLanguage } from './pack_languages';
+import type { PackLevel } from './pack_deck_meta';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -156,6 +157,13 @@ export type FlashcardMarketPack = {
   videoTitle?: string;
   /** Длительность ролика в секундах — бейдж на превью; 0/нет → бейджа нет. */
   videoDurationSec?: number;
+  /**
+   * Уровень набора A1–C1 (ставит автор) — «40 · A2» на колоде Карточек 2.0.
+   * Нет поля → уровень не показываем (не выдумываем). См. `flashcards/pack_deck_meta.ts`.
+   */
+  level?: PackLevel;
+  /** Первые слова набора (до 3) — чипы колоды; из карточек документа каталога, без лишних чтений. */
+  previewWords?: readonly string[];
   updatedAt: string;
 };
 

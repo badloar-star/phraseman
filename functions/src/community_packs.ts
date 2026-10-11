@@ -12,6 +12,7 @@ import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutati
 import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
 import { enqueueCardTtsJob } from './card_tts_jobs';
 import { readPackPublishSlot, writePackPublishSlot } from './pack_publish_limit';
+import { normalizePackLevel, type PackLevel } from './community_pack_level';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -97,6 +98,8 @@ type SubmissionPayload = {
   descriptionPl?: string;
   cardThemeKey?: string;
   readonly priceRunes?: unknown;
+  /** Уровень набора A1–C1 от автора (Карточки 2.0); нет/мусор → null. */
+  level?: PackLevel | null;
   cards: Array<{
     id: string;
     en: string;
@@ -320,6 +323,7 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     // начисление автору (communitySyncPackRuneSale) отвергало КАЖДУЮ продажу
     // как pack_is_not_paid — механизм был бы мёртв целиком.
     priceRunes: normalizePackPriceRunes(raw.priceRunes),
+    level: normalizePackLevel(raw.level),
     cards,
     cardThemeKey,
   };
@@ -507,6 +511,8 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         // зачем (владелец 2026-09-21): без этого поля начисление автору
         // отвергало бы КАЖДУЮ продажу как pack_is_not_paid.
         priceRunes: normalizePackPriceRunes(payload.priceRunes),
+        // Старый клиент уровень не шлёт → прежний уровень набора не стираем.
+        level: normalizePackLevel(payload.level) ?? normalizePackLevel(pd.level),
         cards: cardsWithRichFallback,
         cardCount: cardsWithRichFallback.length,
         cardThemeKey: themeKey,
@@ -771,6 +777,7 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         // автор, изменивший цену, молча оставался со старой. Поля не было
         // видно как баг: набор оставался платным, просто не по новой цене.
         priceRunes: normalizePackPriceRunes(payload.priceRunes),
+        level: normalizePackLevel(payload.level) ?? normalizePackLevel(existing.level),
         cards: cardsWithRichFallback,
         cardCount: cardsWithRichFallback.length,
         cardThemeKey: themeKey,
@@ -820,6 +827,7 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
       // зачем (владелец 2026-09-21): цена автора доезжает до документа набора —
       // именно её читает communitySyncPackRuneSale при начислении.
       priceRunes: normalizePackPriceRunes(payload.priceRunes),
+      level: normalizePackLevel(payload.level),
       cards: payload.cards,
       cardCount: payload.cards.length,
       cardThemeKey: themeKey,

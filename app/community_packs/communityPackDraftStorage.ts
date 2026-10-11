@@ -12,6 +12,7 @@ import {
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 import { DebugLogger } from '../debug-logger';
+import { normalizePackLevel, type PackLevel } from '../flashcards/pack_deck_meta';
 import { isPackLanguage, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock } from '../account_generation';
 import { noteSwallowed, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -42,6 +43,8 @@ export type CommunityPackCreateDraftV1 = {
   publishToCommunity?: boolean;
   /** Цена набора в рунах в незавершённом черновике (0 — бесплатный). */
   priceRunes?: number;
+  /** Уровень набора A1–C1, выбранный автором (Карточки 2.0, колода «40 · A2»); нет → не показываем. */
+  level?: PackLevel;
   rows: CommunityPackCreateDraftRow[];
   addCardFormOpen: boolean;
   draftEn: string;
@@ -105,6 +108,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       packLanguage: isPackLanguage(o.packLanguage) ? o.packLanguage : undefined,
       publishToCommunity: o.publishToCommunity === true,
       priceRunes: Math.max(0, Math.floor(Number(o.priceRunes ?? 0))) || 0,
+      level: normalizePackLevel(o.level),
       rows,
       addCardFormOpen: o.addCardFormOpen === true,
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
@@ -181,6 +185,7 @@ export async function saveCommunityPackCreateDraft(
     packLanguage: isPackLanguage(d.packLanguage) ? d.packLanguage : undefined,
     publishToCommunity: d.publishToCommunity === true,
     priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,
+    level: normalizePackLevel(d.level),
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),
     addCardFormOpen: d.addCardFormOpen,
     draftEn: d.draftEn,

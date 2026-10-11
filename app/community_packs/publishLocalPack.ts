@@ -16,6 +16,7 @@ import { loadLocalAuthorPacks, updateLocalPackPublication } from './localAuthorP
 import { forgetAuthorPackLastKnown, invalidateCommunityPackCatalog } from './communityFirestore';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 import type { PackLanguage } from '../flashcards/pack_languages';
+import { normalizePackLevel, type PackLevel } from '../flashcards/pack_deck_meta';
 import {
   buildCommunityPackPayloadForCloud,
   validateCommunityPackPayload,
@@ -39,7 +40,7 @@ export type PublishLocalPackResult =
 
 /** Payload публикации из локальной копии набора. */
 export function localPackSubmissionPayload(
-  pack: { title: string; description: string; cardThemeKey: string; cards: CommunityPackSubmissionPayload['cards']; packLanguage?: PackLanguage; priceRunes?: number },
+  pack: { title: string; description: string; cardThemeKey: string; cards: CommunityPackSubmissionPayload['cards']; packLanguage?: PackLanguage; priceRunes?: number; level?: PackLevel },
   sourceLang: Lang,
   studyTarget?: RuntimeStudyTarget,
 ): CommunityPackSubmissionPayload {
@@ -55,6 +56,8 @@ export function localPackSubmissionPayload(
     // зачем (владелец 2026-09-21): цена, которую автор поставил ползунком,
     // хранится в локальном наборе и обязана уехать вместе с заявкой.
     priceRunes: Math.max(0, Math.floor(Number(pack.priceRunes ?? 0))) || 0,
+    // зачем (Карточки 2.0): уровень набора уезжает с заявкой, как и цена — иначе в каталоге его не будет.
+    ...(normalizePackLevel(pack.level) ? { level: normalizePackLevel(pack.level) } : {}),
   };
 }
 

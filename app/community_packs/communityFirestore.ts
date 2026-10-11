@@ -14,6 +14,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_k
 import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, PACK_LANGUAGE_CHOICES, type PackLanguage } from '../flashcards/pack_languages';
 import { DebugLogger } from '../debug-logger';
+import { normalizePackLevel, packPreviewWords, type PackLevel } from '../flashcards/pack_deck_meta';
 import { cardVideoStartSecFromRaw } from '../flashcards/video_moment';
 import { cleanPackSourceTitle } from '../../shared/pack_source_title';
 import { captureAccountGeneration, subscribeAccountGeneration } from '../account_generation';
@@ -183,6 +184,10 @@ export function mapCommunityPackDocToMarket(
     videoId: videoIdOrUndefined(data.videoId),
     videoTitle: packTitleField(data.videoTitle) || undefined,
     videoDurationSec: Math.max(0, num(data.videoDurationSec)) || undefined,
+    // зачем (Карточки 2.0, колода «40 · A2» + три слова): карточки уже в этом документе — ноль новых чтений.
+    // Тот же урок, что с ценой в рунах: поле, не прочитанное здесь, до экрана не доедет.
+    ...(normalizePackLevel(data.level) ? { level: normalizePackLevel(data.level) } : {}),
+    previewWords: packPreviewWords(data.cards, communityPackDocLanguage(data)),
     isOfficial: false,
     isCommunityUgc: true,
     updatedAt: typeof data.updatedAt === 'number' ? new Date(data.updatedAt).toISOString() : new Date().toISOString(),
@@ -574,6 +579,8 @@ export type CommunityPackEditorSnapshot = {
   cardThemeKey: string;
   /** Цена набора в рунах (0 — бесплатный). */
   priceRunes?: number;
+  /** Уровень A1–C1 (Карточки 2.0) — чтобы правка показала выбранный автором уровень. */
+  level?: PackLevel;
   cards: {
     id: string;
     en: string;
@@ -646,6 +653,7 @@ export async function fetchCommunityPackForAuthorEdit(
       // зачем (владелец 2026-09-21): без этого автор платного набора открывал
       // правку с ценой 0 и обнулял её, сам того не зная.
       priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,
+      level: normalizePackLevel(d.level),
       cards,
     };
   } catch (e) {

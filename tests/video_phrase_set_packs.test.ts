@@ -35,6 +35,20 @@ describe('video_phrase_set_packs', () => {
     expect(packs[1].titleRu).toBe('2v44I8PBnNs');
   });
 
+  // зачем (Карточки 2.0, 12.10): бейдж длительности на превью ролика берётся из каталога канала.
+  it('длительность ролика из каталога попадает в набор; нет длительности — нет поля', () => {
+    const catalog = new Map([
+      ['0zCqqr-1F6U', { title: 'A', channelId: 'ch', packLanguage: 'en' as const, durationSec: 612.4 }],
+      ['2v44I8PBnNs', { title: 'B', channelId: 'ch', packLanguage: 'en' as const }],
+    ]);
+    const packs = buildVideoPhraseSetPacks([
+      { videoId: '0zCqqr-1F6U', phraseCount: 5, publishedAtMs: 2 },
+      { videoId: '2v44I8PBnNs', phraseCount: 5, publishedAtMs: 1 },
+    ], catalog);
+    expect(packs[0].videoDurationSec).toBe(612);
+    expect(packs[1]).not.toHaveProperty('videoDurationSec');
+  });
+
   it('ролики без фраз и с битым id не попадают в список', () => {
     const packs = buildVideoPhraseSetPacks([
       { videoId: 'aR7abi7Z5i0', phraseCount: 0, publishedAtMs: 1 },

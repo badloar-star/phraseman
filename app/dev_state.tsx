@@ -4,6 +4,7 @@
 // зачем (координатор 11.10, план выпуска 20.10): робот выставляет состояние одной ссылкой и снимает экран:
 //   phraseman://dev_state?energy=0&plus=off&mode=b&spire=open&onboarding=done&free=on&next=/(tabs)/home
 // Экран показывает «DEV-STATE OK» (testID dev-state-done) — Maestro ждёт его, затем уходит на next.
+// Шрифты по шкале D145 (16/21 и 13/17) — сторож typography_two_sizes считает и dev-экраны вне своего списка исключений.
 // В релизе маршрута нет: router.ctx.js вырезает dev_state из стор-сборки, а здесь __DEV__ && !IS_STORE_RELEASE.
 // ═══════════════════════════════════════════════════════════
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
@@ -40,11 +41,11 @@ export default function DevStateRoute() {
   if (!available) return <Redirect href="/" />;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24, backgroundColor: '#111' }}>
-      <Text testID={result ? 'dev-state-done' : 'dev-state-pending'} style={{ color: '#fff', fontSize: 18, fontWeight: '700' }}>
+      <Text testID={result ? 'dev-state-done' : 'dev-state-pending'} style={{ color: '#fff', fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
         {result ? 'DEV-STATE OK' : 'DEV-STATE…'}
       </Text>
       {result ? (
-        <Text style={{ color: '#aaa', fontSize: 12, marginTop: 12 }}>{/* guard-ok: dev-экран робота, технический вывод, не интерфейс игрока */}
+        <Text style={{ color: '#aaa', fontSize: 13, lineHeight: 17, marginTop: 12 }}>{/* guard-ok: dev-экран робота, технический вывод, не интерфейс игрока */}
           {JSON.stringify({ applied: result.applied, skipped: result.skipped, next: result.next })}
         </Text>
       ) : null}

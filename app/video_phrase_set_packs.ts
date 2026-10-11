@@ -18,7 +18,10 @@ import { normalizePackLanguage, type PackLanguage } from './flashcards/pack_lang
 import { fetchYoutubeCatalogManifest, fetchYoutubeChannelCatalog } from './youtube_catalog_client';
 
 const LOG = '[VIDEO-PACKS]';
-const CACHE_KEY = 'video_phrase_set_packs_cache_v1';
+// зачем (Карточки 2.0, 12.10): v2 несёт длительность ролика. v1 читаем как устаревший — первый кадр мгновенный,
+// а сеть фоном дописывает длительность (без экрана ожидания).
+const CACHE_KEY = 'video_phrase_set_packs_cache_v2';
+const LEGACY_CACHE_KEY = 'video_phrase_set_packs_cache_v1';
 export const VIDEO_PHRASE_SET_PACKS_TTL_MS = 6 * 60 * 60 * 1000;
 const SETS_LIMIT = 200;
 /** Префикс id: отличает набор фраз ролика от community-набора при открытии. */
@@ -49,7 +52,7 @@ export function packLanguageFromTags(tags: readonly string[]): PackLanguage {
 }
 
 export type VideoPhraseSetRow = Readonly<{ videoId: string; phraseCount: number; publishedAtMs: number }>;
-export type VideoCatalogInfo = Readonly<{ title: string; channelId: string; packLanguage: PackLanguage }>;
+export type VideoCatalogInfo = Readonly<{ title: string; channelId: string; packLanguage: PackLanguage; durationSec?: number }>;
 
 /**
  * Чистая сборка строк: только ролики с опубликованными фразами. Ролик без
@@ -82,6 +85,8 @@ export function buildVideoPhraseSetPacks(
         listingStatus: 'published',
         videoId: set.videoId,
         videoTitle: title,
+        // Бейдж длительности на превью (VideoPackRow/VideoSetView); нет в каталоге → бейджа нет.
+        ...(typeof info?.durationSec === 'number' && info.durationSec > 0 ? { videoDurationSec: Math.round(info.durationSec) } : {}),
         // зачем: ролик открывается в СВОЁМ канале (каналы по языкам, D132).
         videoChannelId: info?.channelId ?? '',
         updatedAt: new Date(set.publishedAtMs || 0).toISOString(),
@@ -96,12 +101,21 @@ export function peekVideoPhraseSetPacks(): FlashcardMarketPack[] | null {
 
 async function readDiskCache(): Promise<CachedVideoPacks | null> {
   try {
-    const raw = await AsyncStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
+    let raw = await AsyncStorage.getItem(CACHE_KEY);
+    let legacy = false;
+    if (!raw) {
+      raw = await AsyncStorage.getItem(LEGACY_CACHE_KEY);
+      legacy = raw !== null;
+      if (!raw) return null;
+    }
     const parsed = JSON.parse(raw) as CachedVideoPacks;
     if (!parsed || !Array.isArray(parsed.packs) || typeof parsed.savedAtMs !== 'number') {
-      DebugLogger.warn(LOG, 'кэш на диске отброшен: неверная форма');
+      DebugLogger.warn(LOG, `кэш на диске отброшен: неверная форма (${legacy ? 'v1' : 'v2'})`);
       return null;
+    }
+    if (legacy) {
+      DebugLogger.info(LOG, `source=disk_v1 наборов ${parsed.packs.length} — без длительности, обновлю фоном`);
+      return { savedAtMs: 0, packs: parsed.packs };
     }
     return parsed;
   } catch (error) {
@@ -135,7 +149,12 @@ async function fetchFromNetwork(): Promise<FlashcardMarketPack[]> {
       try {
         const channelCatalog = await fetchYoutubeChannelCatalog(channel.id);
         for (const video of channelCatalog.videos) {
-          catalog.set(video.id, { title: video.title, channelId: channel.id, packLanguage });
+          catalog.set(video.id, {
+            title: video.title,
+            channelId: channel.id,
+            packLanguage,
+            ...(typeof video.durationSec === 'number' ? { durationSec: video.durationSec } : {}),
+          });
         }
       } catch (error) {
         // Один канал без каталога не должен прятать наборы остальных.
@@ -147,7 +166,7 @@ async function fetchFromNetwork(): Promise<FlashcardMarketPack[]> {
   }
 
   const packs = buildVideoPhraseSetPacks(sets, catalog);
-  DebugLogger.info(LOG, `source=video_phrase_sets сеть: роликов ${sets.length}, с каталогом ${sets.filter((s) => catalog.has(s.videoId)).length}, наборов ${packs.length}, ${Date.now() - startedAt} мс`);
+  DebugLogger.info(LOG, `source=video_phrase_sets сеть: роликов ${sets.length}, с каталогом ${sets.filter((s) => catalog.has(s.videoId)).length}, с длительностью ${packs.filter((p) => (p.videoDurationSec ?? 0) > 0).length}, наборов ${packs.length}, ${Date.now() - startedAt} мс`);
   return packs;
 }
 
@@ -176,6 +195,9 @@ export async function loadVideoPhraseSetPacks(options?: { forceRemote?: boolean 
       memory = { savedAtMs: Date.now(), packs };
       await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(memory)).catch((error: unknown) => {
         DebugLogger.error(`${LOG}:writeDiskCache`, error, 'warning');
+      });
+      await AsyncStorage.removeItem(LEGACY_CACHE_KEY).catch((error: unknown) => {
+        DebugLogger.error(`${LOG}:removeLegacyCache`, error, 'warning');
       });
       return packs;
     } catch (error) {

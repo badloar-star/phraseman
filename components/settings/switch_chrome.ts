@@ -5,3 +5,14 @@
 export function switchTrackBorder(glass: Readonly<{ isLight?: boolean; glassEdge: string; secondary: string }>): string {
   return glass.isLight ? `${glass.secondary.slice(0, 7)}A6` : glass.glassEdge;
 }
+
+// зачем (координатор 12.10, стиль «Тень»: контейнеры без обводок): в «Настройках обучения» дорожка выключенного переключателя отделяется
+// ТОНОМ, а не кромкой. В светлой теме заливка — secondary 65 % (≈3:1 к карточке, как у прежней кромки), ручка белая, чтобы читалась на тёмной
+// дорожке; в тёмной — прежняя opaqueControl и ручка secondary (там дорожка и так видна).
+export function switchOffTrackTone(
+  glass: Readonly<{ isLight?: boolean; opaqueControl: string; secondary: string }>,
+): Readonly<{ track: string; knob: string }> {
+  return glass.isLight
+    ? { track: `${glass.secondary.slice(0, 7)}A6`, knob: '#FFFFFF' }
+    : { track: glass.opaqueControl, knob: glass.secondary };
+}

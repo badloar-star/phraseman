@@ -24,6 +24,9 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   ['882d52d08a08b4d61850ce12791e99ba44e56250425ea31916ecc1ac38070744', 1],
   ['dbd58511e45eaaf6d232348a25ae4248db34f3c330910d55fcf7e8216758cf59', 1],
   [CLOSE_L_CALL_SIGNATURE, 1],
+  // зачем (координатор 12.10, откат «Отправлено» при сбое): плашка «Не отправилось. Попробуй ещё раз» и кнопка «Повторить»
+  ['1c9f3af94cbc30f07469c50c34a212a9231ec34ed7d25372bbaa6ee3cf6e98df', 1],
+  ['3e17c2abebc832c494422cbceb2d7f0f0847d5299cde8831ed993ba69d51d8f4', 1],
 ]);
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const RUNTIME_COPY = {
@@ -48,7 +51,7 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 14, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph');
+  assert.equal(calls.length, 16, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph; +2 for the send-failed banner and retry label');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);
@@ -215,7 +218,7 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   assert.match(source, /testID="support-report-back"[\s\S]*?width:\s*48,\s*height:\s*44/);
   assert.match(source, /fontSize:\s*scaled\(34\),\s*lineHeight:\s*scaled\(40\)/);
   assert.match(source, /fontSize:\s*scaled\(15\),\s*lineHeight:\s*scaled\(20\)/);
-  assert.match(source, /fontSize:\s*scaled\(11\)[\s\S]*?letterSpacing:\s*1\.7/);
+  assert.match(source, /fontSize:\s*scaled\(13\)[\s\S]*?letterSpacing:\s*1\.7/);
   // зачем (стиль «Тень», владелец 12.10): поле описания — плашка с тенью вместо кромки borderWidth:1.
   assert.match(source, /minHeight:\s*118[\s\S]*?borderRadius:\s*14[\s\S]*?boxShadow:\s*plateBoxShadow\(glass\)/);
   assert.doesNotMatch(source, /borderWidth|glassEdge/);

@@ -37,3 +37,24 @@ test('dark appearance keeps the glass edge', () => {
   const g = liquidGlassTokens('grad_aurora', { level: 'calm', appearance: 'dark', intensity: 0 });
   expect(switchTrackBorder(g)).toBe(g.glassEdge);
 });
+
+// зачем (координатор 12.10, «Тень»): в «Настройках обучения» дорожка выключенного — тон без кромки; в светлой темах читается ≥ 2.9:1 к карточке.
+import { switchOffTrackTone } from '../components/settings/switch_chrome';
+
+test('light appearance: edu off-track tone reaches ~3:1 on the card, no border needed', () => {
+  const weak: string[] = [];
+  for (const id of LIQUID_GLASS_THEME_IDS) {
+    for (const intensity of [0, 0.5, 1]) {
+      const g = liquidGlassTokens(id, { level: intensity ? 'max' : 'calm', appearance: 'light', intensity });
+      const track = over(switchOffTrackTone(g).track, g.opaqueCard);
+      const r = ratio(track, rgb(g.opaqueCard));
+      if (r < 2.9) weak.push(`${id}/${intensity}: ${r.toFixed(2)}`);
+    }
+  }
+  expect(weak).toEqual([]);
+});
+
+test('dark appearance keeps the opaque control track and the secondary knob', () => {
+  const g = liquidGlassTokens('grad_aurora', { level: 'calm', appearance: 'dark', intensity: 0 });
+  expect(switchOffTrackTone(g)).toEqual({ track: g.opaqueControl, knob: g.secondary });
+});

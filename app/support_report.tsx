@@ -34,6 +34,10 @@ export default function SupportReportScreen() {
   const [diagnosticsPreview, setDiagnosticsPreview] = useState<SupportDiagnosticBundle | null>(null);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
   const submissionStartedRef = useRef(false);
+  // зачем (координатор 12.10, Optimistic UI): «Отправлено» показываем сразу; если очередь и прямая отправка обе упали — откат на форму с сохранённым текстом, плашка и повтор
+  const [sendFailed, setSendFailed] = useState(false);
+  const mountedRef = useRef(true);
+  useEffect(() => () => { mountedRef.current = false; }, []);
 
   const L = useCallback((
     ru: string, uk: string, en: string, es: string, ptBR: string,
@@ -61,6 +65,7 @@ export default function SupportReportScreen() {
     Keyboard.dismiss();
     hapticTap();
     const comment = description.trim();
+    setSendFailed(false);
     setState('sent');
     void sendSupportReportInBackground({
       screen: 'settings_support',
@@ -68,7 +73,17 @@ export default function SupportReportScreen() {
       dataText: 'In-app support request',
       comment,
       ...(diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),
-    }, lang).catch(noteSwallowedHandler('support_report:useCallback.sendSupportReportInBackground'));
+    }, lang).then((outcome) => {
+      console.log('[SUPPORT-SEND] экран получил итог', { outcome, mounted: mountedRef.current }); // guard-ok: единичный лог на жест человека
+      if (outcome !== 'failed') return;
+      submissionStartedRef.current = false; // повтор снова разрешён, текст в поле не очищали
+      if (mountedRef.current) { setState('idle'); setSendFailed(true); }
+    }).catch((error: unknown) => {
+      console.warn('[SUPPORT-SEND] экран: отправка бросила ошибку, откат на форму', error);
+      noteSwallowedHandler('support_report:useCallback.sendSupportReportInBackground')(error);
+      submissionStartedRef.current = false;
+      if (mountedRef.current) { setState('idle'); setSendFailed(true); }
+    });
   }, [canSend, description, diagnosticsPreview, lang]);
 
   return (
@@ -205,6 +220,20 @@ export default function SupportReportScreen() {
                 </View>
               </View>
 
+              {sendFailed ? (
+                <View
+                  testID="support-report-failed"
+                  accessibilityRole="alert"
+                  accessibilityLiveRegion="polite"
+                  style={{ marginTop: 18, minHeight: 64, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 14, gap: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: t.wrongBg ?? glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}
+                >
+                  <Ionicons name="alert-circle-outline" size={18} color={t.wrong ?? t.textPrimary} />
+                  <Text style={{ flex: 1, color: t.wrong ?? t.textPrimary, fontSize: scaled(13), lineHeight: scaled(18), fontWeight: '400' }}>
+                    {L('Не отправилось. Попробуй ещё раз', 'Не надіслалося. Спробуй ще раз', 'Could not send. Try again', 'No se pudo enviar. Inténtalo de nuevo', 'Não foi enviado. Tente de novo', 'Chưa gửi được. Hãy thử lại', 'Gagal terkirim. Coba lagi', 'Gönderilemedi. Tekrar dene', 'Nie udało się wysłać. Spróbuj ponownie')}
+                  </Text>
+                </View>
+              ) : null}
+
               <PressableHybrid
                 testID="support-report-submit"
                 accessibilityState={{ disabled: !canSend }}
@@ -213,11 +242,13 @@ export default function SupportReportScreen() {
                 withHaptic={false}
                 withSound={false}
                 variant="primary"
-                style={{ marginTop: 18 }}
+                style={{ marginTop: sendFailed ? 10 : 18 }}
                 contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: canSend ? glass.cta : glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: canSend ? 1 : 0.58, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
               >
                 <Text style={{ color: canSend ? glass.ctaInk : glass.secondary, fontSize: scaled(17), lineHeight: scaled(22), fontWeight: '700' }}>
-                  {L('Отправить', 'Надіслати', 'Send', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')}
+                  {sendFailed
+                    ? L('Повторить', 'Повторити', 'Try again', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie')
+                    : L('Отправить', 'Надіслати', 'Send', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')}
                 </Text>
               </PressableHybrid>
             </>

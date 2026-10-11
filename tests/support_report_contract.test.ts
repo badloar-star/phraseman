@@ -41,6 +41,21 @@ describe('in-app support report contract', () => {
     expect(screen).toContain('onPress={close}');
   });
 
+  // зачем (координатор 12.10, Optimistic UI): «Отправлено» мгновенно, но потеря обращения не молчит — откат на форму с текстом, плашка и повтор.
+  it('rolls back to the form with the text kept when both the queue and direct delivery fail', () => {
+    const screen = read('app/support_report.tsx');
+    const outbox = read('app/support_report_outbox.ts');
+    expect(outbox).toContain("export type SupportSendOutcome = 'queued' | 'sent' | 'failed';");
+    expect(outbox).toContain("return direct === 'sent' ? 'sent' : 'failed';");
+    expect(outbox).toContain("return 'queued';");
+    expect(outbox).toContain('[SUPPORT-SEND]');
+    expect(screen).toContain("if (outcome !== 'failed') return;");
+    expect(screen).toContain('submissionStartedRef.current = false;');
+    expect(screen).toContain('setSendFailed(true)');
+    expect(screen).toContain('testID="support-report-failed"');
+    expect(screen).not.toContain("setDescription('')");
+  });
+
   it('discloses, previews, and freezes the bounded technical timeline', () => {
     const screen = read('app/support_report.tsx');
     const outbox = read('app/support_report_outbox.ts');

@@ -304,6 +304,16 @@ function createSupportReportId(nowMs: number): string {
 }
 
 /**
+ * Итог фоновой отправки обращения для экрана.
+ * зачем (координатор 12.10, Optimistic UI): экран показывает «Отправлено» сразу, но обязан узнать, что обращение потеряно, и откатиться на форму.
+ *  - 'queued' — записано в долговечную очередь, дошлётся само (в том числе после перезапуска) — это НЕ сбой;
+ *  - 'sent' — очередь недоступна, но прямая отправка прошла;
+ *  - 'failed' — не записано и не ушло (очередь и прямая отправка упали, сменился аккаунт, ошибка) — нужен повтор.
+ */
+export type SupportSendOutcome = 'queued' | 'sent' | 'failed';
+const SEND_LOG = '[SUPPORT-SEND]';
+
+/**
  * Optimistic submission entry point: callers deliberately do not await it.
  * The first await happens before disk/network work, so React can paint the
  * confirmation immediately; the durable queue then survives app restarts.
@@ -312,24 +322,25 @@ export async function sendSupportReportInBackground(
   payload: ErrorReportPayload,
   lang: Lang,
   options: SubmitErrorReportOptions = {},
-): Promise<void> {
+): Promise<SupportSendOutcome> {
   const nowMs = Date.now();
+  console.log(`${SEND_LOG} старт`, { lang, commentLen: payload.comment.length, hasDiagnostics: Boolean(payload.diagnostics) }); // guard-ok: единичный лог на жест человека
   const prepared = await withAccountTransitionLock(async () => {
     const accountKey = await getStableId();
     const accountToken = captureAccountGeneration();
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (1)`); return null; }
     void recordSupportDiagnostic({
       atMs: nowMs,
       event: 'support_report',
       result: 'start',
       subject: 'report',
     });
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (2)`); return null; }
     const userName = await AsyncStorage.getItem('user_name').catch((error: unknown) => { reportSwallowed('support_report_outbox:sendSupportReportInBackground', error); return null; });
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (3)`); return null; }
     const capturedDiagnostics = payload.diagnostics
       ?? await captureSupportDiagnosticsWithDeadline();
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился до записи (4)`); return null; }
     const diagnostics = sanitizeSupportDiagnosticBundle(capturedDiagnostics);
     const frozenPayload = diagnostics ? { ...payload, diagnostics } : payload;
     const report: PendingSupportReport = {
@@ -340,8 +351,9 @@ export async function sendSupportReportInBackground(
       queuedAtMs: nowMs,
     };
     const persisted = await enqueueSupportReport(accountKey, report, nowMs);
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился после записи в очередь`, { persisted }); return null; }
     if (!persisted) {
+      console.warn(`${SEND_LOG} очередь не приняла запись — прямая отправка`, { reportId: report.id });
       void recordSupportDiagnostic({
         event: 'support_report',
         result: 'info',
@@ -356,12 +368,16 @@ export async function sendSupportReportInBackground(
       reason: 'queued',
       subject: 'report',
     });
-    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) { console.warn(`${SEND_LOG} аккаунт сменился после записи, строка в очереди остаётся`); return null; }
     return { accountKey, accountToken, frozenPayload, report, persisted: true as const };
+  }).catch((error: unknown) => {
+    console.warn(`${SEND_LOG} подготовка не удалась`, error);
+    reportSwallowed('support_report_outbox:sendSupportReportInBackground.prepare', error);
+    return null;
   });
-  if (!prepared) return;
+  if (!prepared) { console.warn(`${SEND_LOG} итог: failed (подготовка не дала записи)`); return 'failed'; }
   if (!prepared.persisted) {
-    await deliverOnlyForCurrentAccount(
+    const direct = await deliverOnlyForCurrentAccount(
       prepared.accountToken,
       prepared.accountKey,
       prepared.frozenPayload,
@@ -372,10 +388,21 @@ export async function sendSupportReportInBackground(
         expectedStableUid: prepared.accountKey,
         idempotencyKey: prepared.report.id,
       },
-    ).catch(swallowError('support_report_outbox:sendSupportReportInBackground'));
-    return;
+    ).catch((error: unknown) => {
+      console.warn(`${SEND_LOG} прямая отправка бросила ошибку`, error);
+      reportSwallowed('support_report_outbox:sendSupportReportInBackground.direct', error);
+      return 'failed' as const;
+    });
+    console.log(`${SEND_LOG} итог прямой отправки`, { direct, reportId: prepared.report.id }); // guard-ok: единичный лог на жест человека
+    return direct === 'sent' ? 'sent' : 'failed';
   }
-  await resumePendingSupportReports(prepared.accountKey).catch(swallowError('support_report_outbox:sendSupportReportInBackground'));
+  await resumePendingSupportReports(prepared.accountKey).catch((error: unknown) => {
+    // Запись уже лежит в долговечной очереди — дошлётся при следующем запуске/возврате в приложение, экрану это не сбой.
+    console.warn(`${SEND_LOG} первая досылка из очереди не удалась (останется в очереди)`, error);
+    reportSwallowed('support_report_outbox:sendSupportReportInBackground.resume', error);
+  });
+  console.log(`${SEND_LOG} итог: queued`, { reportId: prepared.report.id }); // guard-ok: единичный лог на жест человека
+  return 'queued';
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

@@ -26,11 +26,12 @@ describe('Cards sibling navigation contract', () => {
   test('collection Back clears local UI state before leaving the route', () => {
     const collection = read('app', 'flashcards_collection.tsx');
     const start = collection.indexOf('const handleCollectionBack = useCallback(');
-    const end = collection.indexOf('React.useEffect', start);
+    const end = collection.indexOf('// Saved visibility must use', start);
     const handler = collection.slice(start, end);
 
     expect(start).toBeGreaterThanOrEqual(0);
-    const searchCondition = 'if (searchInput.length > 0 || searchActive)';
+    // зачем (Карточки 2.0, поле поиска в шапке «Сохранённых»): «назад» закрывает и открытое пустое поле поиска (searchOpen), не только введённый запрос
+    const searchCondition = 'if (searchInput.length > 0 || searchActive || searchOpen)';
     expect(handler.indexOf('if (filterOpen)')).toBeLessThan(handler.indexOf(searchCondition));
     expect(handler.indexOf(searchCondition)).toBeLessThan(handler.indexOf("if (viewMode === 'deck')"));
     expect(handler.indexOf("if (viewMode === 'deck')")).toBeLessThan(handler.indexOf('leaveCollection();'));
@@ -40,10 +41,10 @@ describe('Cards sibling navigation contract', () => {
   test('collection Back clears text even before the debounced query becomes active', () => {
     const collection = read('app', 'flashcards_collection.tsx');
     const start = collection.indexOf('const handleCollectionBack = useCallback(');
-    const end = collection.indexOf('const { isPremium }', start);
+    const end = collection.indexOf('// Saved visibility must use', start);
     const handler = collection.slice(start, end);
 
-    expect(handler).toContain('if (searchInput.length > 0 || searchActive)');
+    expect(handler).toContain('if (searchInput.length > 0 || searchActive || searchOpen)');
     expect(handler).toContain("setSearchInput('');");
     expect(handler).toContain("setSearchQuery('');");
   });

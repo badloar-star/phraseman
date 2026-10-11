@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { switchTrackBorder } from './switch_chrome';
+import { switchOffTrackTone } from './switch_chrome';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
@@ -218,8 +218,8 @@ export function SettingsGlassSwitch({ value, onValueChange, testID, accessibilit
       style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
       contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
     >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : glass.opaqueControl, borderWidth: 1, borderColor: switchTrackBorder(glass) }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : glass.secondary, transform: [{ translateX: value ? 19 : 0 }] }} />
+      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
+        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
       </View>
     </PressableHybrid>
   );

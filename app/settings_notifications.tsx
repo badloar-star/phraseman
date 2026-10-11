@@ -5,7 +5,7 @@
 // (решение владельца от 2026-07-26), категории гейтятся в app/notifications.ts.
 // Визуальный слой следует профилю Liquid Glass; логика расписания и разрешений
 // остаётся изолированной от презентации.
-import { switchTrackBorder } from '../components/settings/switch_chrome';
+import { switchOffTrackTone } from '../components/settings/switch_chrome';
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import DuoPressable from '../components/DuoPressable';
 import { View, Text, Modal, ScrollView, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent, type StyleProp, type ViewStyle } from 'react-native';
@@ -173,8 +173,8 @@ function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = fals
       style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
       contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
     >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : glass.opaqueControl, borderWidth: 1, borderColor: switchTrackBorder(glass) }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : glass.secondary, transform: [{ translateX: value ? 19 : 0 }] }} />
+      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
+        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
       </View>
     </PressableHybrid>
   );

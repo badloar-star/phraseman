@@ -159,7 +159,9 @@ export default function DialogsTabContent({
 
   return (
     <Animated.ScrollView
-      style={{ flex: 1, backgroundColor: palette.bg }}
+      // зачем (Сверка dialogs-003/006): сплошной palette.bg закрывал общий фон (пятна света темы) внутри безопасной зоны — пятна оставались только
+      // под статус-баром и навигацией, на экране выходили «полосы». Прозрачно: виден тот же общий фон, что на Главной; в «Графите» пятен нет — вид плоский.
+      style={{ flex: 1, backgroundColor: 'transparent' }}
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
       onScroll={onScroll}
       scrollEventThrottle={16} decelerationRate="fast"
@@ -884,7 +886,7 @@ function DialogsTabContentBody({
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="lock-open-outline" size={25} color={accent} />
+            <Ionicons name="lock-open-outline" size={25} color={t.accentText} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>

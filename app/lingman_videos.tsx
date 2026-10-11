@@ -562,7 +562,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 
   return (
     <ScreenGradient artBackdrop="home">
-      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
+      {/* зачем (Сверка video-007): во вкладке свой сплошной градиент закрывал общий фон под безопасной зоной — пятна света темы оставались только
+          под статус-баром («полоса» ~110 px). Во вкладке виден общий фон вкладок, как на Главной; отдельный экран по-прежнему красит свой. */}
+      {inTab ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
       {glassAlertNode}
       <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>

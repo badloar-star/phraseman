@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
 import KitSpinner from '../components/v2/KitSpinner';
+import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import CoinRankUpgradeCeremony from '../components/level_up/CoinRankUpgradeCeremony';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
@@ -191,6 +192,7 @@ export default function CoinRankScreen() {
   const tl = (ru: string, uk: string, en: string, es: string) => triLang(lang, {
     ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
   });
+  // зачем (coins-005): карточки с кромкой GlassRim (светлая линия сверху + кольцо) — токены темы.
   const copy = useMemo(() => ({
     // зачем (владелец 11.10, журнал 35): видимая ссылка на отдельный экран каталога рангов.
     allRanks: triLang(lang, { ru: 'Все ранги', uk: 'Усі ранги', en: 'All ranks', es: 'Todos los rangos', 'pt-BR': 'Todos os ranks', vi: 'Tất cả hạng', id: 'Semua peringkat', tr: 'Tüm rütbeler', pl: 'Wszystkie rangi' }),
@@ -396,6 +398,7 @@ export default function CoinRankScreen() {
         {next && current ? (
           <View style={[styles.card, glass]}>
             <V2GlassSheen seed={1} />
+            <GlassRim radius={V2.radius.card} />
             <View style={styles.costRow}>
               <View style={styles.costCopy}>
                 <Text style={[styles.costTitle, { color: p.text }]}>{copy.cost}</Text>
@@ -418,6 +421,7 @@ export default function CoinRankScreen() {
         ) : (
           <View style={[styles.card, glass]}>
             <V2GlassSheen seed={2} />
+            <GlassRim radius={V2.radius.card} />
             <View style={styles.maxState}>
               <Ionicons name="checkmark-circle" size={30} color={p.iconTint} />
               <Text style={[styles.maxTitle, { color: p.text }]}>{rank === null ? ' ' : copy.max}</Text>
@@ -428,6 +432,7 @@ export default function CoinRankScreen() {
         {short ? (
           <View style={[styles.card, styles.statusCard, glass]}>
             <V2GlassSheen seed={3} />
+            <GlassRim radius={V2.radius.card} />
             {/* зачем (сверка coins-005): в макете замок маленький серый у первой строки, а не крупный белый по центру */}
             <Ionicons name="lock-closed" size={18} color={p.textSecondary} style={styles.statusIcon} />
             <View style={styles.statusCopy}>
@@ -439,6 +444,7 @@ export default function CoinRankScreen() {
         {pending ? (
           <View style={[styles.card, styles.statusCard, glass]}>
             <V2GlassSheen seed={3} />
+            <GlassRim radius={V2.radius.card} />
             {/* зачем (65в, coins.html №4): системный спиннер кита `.spin`, а не платформенный ActivityIndicator */}
             <KitSpinner testID="coin-rank-pending-spinner" />
             <View style={styles.statusCopy}>

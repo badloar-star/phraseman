@@ -19,6 +19,7 @@ import { HOME_RUNE_ICON_SOURCE } from '../../components/home/homeRuneAsset';
 import { useLang } from '../../components/LangContext';
 import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
+import { GlassRim } from '../../components/mistakes-panel/GlassRim';
 import { triLang, type Lang } from '../../constants/i18n';
 import { KIT_MOTION } from '../../constants/motionHybrid';
 import { runeWord } from '../../constants/runes';
@@ -72,7 +73,10 @@ const FixRow = memo(function FixRow({ item, g, listenLabel, onSpeak }: { item: C
   const canSpeak = item.packLanguage !== 'none';
   // макет `wordRow`: карточка r14, мин. 68, слово 17/600, перевод 15 вторичным, справа кнопка озвучки `.rb.fill` 35.
   return (
-    <View style={[s.fixRow, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+    <View style={[s.fixRow, { backgroundColor: g.opaqueCard, borderColor: g.line, overflow: 'hidden' }]}>
+      {/* зачем (DIFF_BURNDOWN, «Что исправить» с тоном темы): заливка строки — тон темы (accentSoft) поверх карточки + стеклянная кромка. */}
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: g.accentSoft }]} />
+      <GlassRim radius={14} />
       <View style={s.fixText}>
         <Text style={[s.fixWord, { color: g.text }]}>{item.en}</Text>
         <Text style={[s.fixTr, { color: g.secondary }]}>{item.translation}</Text>

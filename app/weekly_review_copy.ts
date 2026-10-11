@@ -7,7 +7,7 @@ type WeeklyReviewCopyValues = {
   es: string;
 } & Record<PlannedInterfaceLang, string>;
 
-const L = (lang: Lang, values: WeeklyReviewCopyValues): string => triLang(lang, values);
+const L = (lang: Lang, values: WeeklyReviewCopyValues): string => triLang(lang, values) as string; // as string: en необязателен (12.10), для остальных языков значение всегда есть
 
 export function weeklyReviewCopy(lang: Lang) {
   return {

@@ -33,6 +33,7 @@ import {
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
+import { paywallContextHeadline } from '../../app/paywall_context_headline';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -58,6 +59,14 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const resumeLessonId = params.resume_kind === 'course_lesson' ? parseResumeLessonId(params.resume_lesson_id) : null;
   const [impression] = useState(() => createPaywallAnalyticsImpression(() => entry.impressionId));
   const entryAnalytics = useMemo(() => paywallEntryAnalyticsParams(entry), [entry]);
+  // зачем (владелец 11.10: «все пейволы должны быть контекстными всегда»): тексты окна — по месту входа. Тексты берутся
+  // из уже написанных paywall_copy.ts (контракт app/paywall_context_headline.ts); вход без своего текста (generic) —
+  // прежняя шапка пробного периода.
+  const headline = useMemo(() => paywallContextHeadline(ctx, lang), [ctx, lang]);
+  const contextual = headline.copyContext !== 'generic' && !!headline.title;
+  useEffect(() => {
+    DebugLogger.info('[PAYWALL-OPEN]', `шапка: ctx=${ctx} source=${source} текст=${headline.copyContext} контекстная=${contextual} выгода=${headline.firstBenefit ? 'есть' : 'нет'} lang=${lang}`);
+  }, [contextual, ctx, headline.copyContext, headline.firstBenefit, lang, source]);
 
   const p = usePaywallPurchase({
     variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, resumeLessonId, impression,
@@ -147,7 +156,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
       ) : (
         <View style={[S.sheet, { paddingTop: insets.top }]}>
           <PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
-            onClose={() => p.handleClose('close')} />
+            onClose={() => p.handleClose('close')}
+            contextTitle={contextual ? headline.title : undefined}
+            contextSubtitle={contextual ? headline.subtitle : undefined} />
           <PaywallPlusScroll>
             {showTimeline && yearlyTrialDays
               ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
@@ -155,7 +166,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                 «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
             {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-            {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} /> : null}
+            {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} /> : null}
             {state === 'ready' ? (
               <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                 yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
@@ -163,7 +174,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
             ) : null}
             <PaywallPlusDetails lang={lang} g={g} restoring={p.restoring}
-              restoreDisabled={checkoutInFlight || state === 'loading'} onRestore={() => { void p.handleRestore(); }} />
+              restoreDisabled={checkoutInFlight || state === 'loading'} onRestore={() => { void p.handleRestore(); }}
+              leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
           </PaywallPlusScroll>
           <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
             notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}

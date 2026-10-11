@@ -99,13 +99,28 @@ export const PAYWALL_COMPARISON_VISIBLE_ROWS = 6;
 
 type SectionProps = Readonly<{ lang: Lang; g: GlassTokens }>;
 
-export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }: SectionProps) {
+export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g, leadBenefit }: SectionProps & {
+  /** Первая выгода КОНТЕКСТА входа (paywallContextHeadline) — подсвеченной строкой сверху. */
+  leadBenefit?: string;
+}) {
   const glass = useV2GlassStyle();
   return (
     <View style={[S.card, glass]}>
       <V2GlassSheen seed={4} />
+      {/* зачем (владелец 11.10: «все пейволы должны быть контекстными»): человек сразу видит выгоду именно того места,
+          откуда пришёл; строка — тот же ряд выгод кита, выделена тоном выбора (без новой вёрстки, координатор 17:25). */}
+      {leadBenefit ? (
+        <View testID="paywall-lead-benefit" style={[S.benefitRow, { backgroundColor: g.selected, borderTopLeftRadius: 22, borderTopRightRadius: 22 }]}>
+          <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
+            <Ionicons name="sparkles-outline" size={20} color={g.text} />
+          </View>
+          <View style={S.benefitCopy}>
+            <Text style={[S.benefitTitle, { color: g.text }]}>{leadBenefit}</Text>
+          </View>
+        </View>
+      ) : null}
       {PAYWALL_MAIN_BENEFITS.map((benefit, index) => (
-        <View key={benefit.icon} style={[S.benefitRow, index > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
+        <View key={benefit.icon} style={[S.benefitRow, (index > 0 || !!leadBenefit) && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
           <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
             <Ionicons name={benefit.icon} size={20} color={g.text} />
           </View>

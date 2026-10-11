@@ -49,9 +49,17 @@ function openLegal(url: string): void {
 }
 
 // ── шапка ───────────────────────────────────────────────────────────────────
-export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeDisabled, onClose }: {
+export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeDisabled, onClose, contextTitle, contextSubtitle }: {
   lang: Lang; g: GlassTokens; trialDays: number | null; closeDisabled: boolean; onClose: () => void;
+  /** Заголовок/подзаголовок КОНТЕКСТА входа (paywallContextHeadline). Нет — прежняя шапка пробного периода. */
+  contextTitle?: string; contextSubtitle?: string;
 }) {
+  // зачем (владелец 11.10: «Я НЕ ВИЖУ КОНТЕКСТА! ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ»): окно говорит про место, откуда
+  // человек пришёл. Те же стили шапки — меняется только текст (координатор 17:25: без новой вёрстки).
+  const title = contextTitle || (trialDays ? heroTrialTitle(lang, trialDays) : pick(lang, COPY.heroNoTrial));
+  const subtitle = contextTitle
+    ? (contextSubtitle || '')
+    : trialDays && canPromiseTrialReminder(trialDays) ? pick(lang, COPY.heroTrialSub) : '';
   return (
     <View>
       <View style={[S.handle, { backgroundColor: g.glassEdge }]} />
@@ -69,12 +77,8 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
           <Ionicons name="close" size={18} color={g.text} />
         </V2Pressable>
       </View>
-      <Text accessibilityRole="header" style={[S.h1, { color: g.text }]}>
-        {trialDays ? heroTrialTitle(lang, trialDays) : pick(lang, COPY.heroNoTrial)}
-      </Text>
-      {trialDays && canPromiseTrialReminder(trialDays)
-        ? <Text style={[S.sub, { color: g.secondary }]}>{pick(lang, COPY.heroTrialSub)}</Text>
-        : null}
+      <Text testID="paywall-title" accessibilityRole="header" style={[S.h1, { color: g.text }]}>{title}</Text>
+      {subtitle ? <Text testID="paywall-subtitle" style={[S.sub, { color: g.secondary }]}>{subtitle}</Text> : null}
     </View>
   );
 });
@@ -248,11 +252,24 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
 
 // ── цены недоступны после потолка загрузки: те же размеры, что у скелета, без красного и без иконки ──
 // зачем (D158): вечный скелетон убран; на месте цен — спокойное «Сейчас недоступно», кнопка покупки жива.
-export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g }: { lang: Lang; g: GlassTokens }) {
+// зачем (координатор 14:45/17:25): вместо пустых плашек — понятное «недоступно» и кнопка повтора на месте цен
+// (те же размеры; стили retry/retryText кита). Повтор — тот же reloadOfferings, что тихо гоняет useLoadGate.
+export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g, onRetry, retrying }: {
+  lang: Lang; g: GlassTokens; onRetry?: () => void; retrying?: boolean;
+}) {
   return (
     <View testID="paywall-plans-unavailable">
       <View style={[S.skeleton, S.unavailableBox, { height: 132, backgroundColor: g.opaqueCard }]}>
         <Text style={[S.planSmall, { color: g.secondary }]}>{pick(lang, COPY.unavailable)}</Text>
+        {onRetry ? (
+          <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
+            disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
+            outerStyle={S.retryGap} style={[S.retry, { backgroundColor: g.opaqueControl }]}>
+            {retrying
+              ? <ActivityIndicator color={g.text} />
+              : <Text style={[S.retryText, { color: g.text }]}>{pick(lang, COPY.retry)}</Text>}
+          </V2Pressable>
+        ) : null}
       </View>
       <View style={[S.skeleton, S.planGap, { height: 74, backgroundColor: g.opaqueCard }]} />
     </View>
@@ -260,13 +277,14 @@ export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavail
 });
 
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
-export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore }: {
+export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore, leadBenefit }: {
   lang: Lang; g: GlassTokens; restoring: boolean; restoreDisabled: boolean; onRestore: () => void;
+  leadBenefit?: string;
 }) {
   return (
     <View>
       <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.whatsIncluded)}</Text>
-      <PaywallPlusBenefits lang={lang} g={g} />
+      <PaywallPlusBenefits lang={lang} g={g} leadBenefit={leadBenefit} />
       <Text style={[S.sectionLabel, { color: g.mutedText }]}>{pick(lang, COPY.freeVsPlus)}</Text>
       <PaywallPlusComparison lang={lang} g={g} />
       <View style={S.links}>
@@ -405,6 +423,7 @@ const S = StyleSheet.create({
   errorSub: { marginTop: 2, fontSize: 13, lineHeight: 17 },
   retry: { minHeight: 44, paddingHorizontal: 16, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   retryText: { fontSize: 16, fontWeight: '700' },
+  retryGap: { marginTop: 12 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },

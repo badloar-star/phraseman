@@ -665,6 +665,10 @@ function useStepSlide(step: CleanOnboardingStep): {
 
   useEffect(() => {
     if (step === displayStep) return;
+    // зачем (координатор 11.10, «Позже» сменил экран через минуту; СПЕРВА ЛОГИ): step меняется сразу (звук ниже
+    // играет), а экран — только когда уход доиграл и колбэк вызвал setDisplayStep. Видно каждое звено.
+    const slideStartedAt = Date.now();
+    console.log(`[ONB-TAP] slide:start step=${step} from=${displayStep} instant=${instant} reduceMotion=${reduceMotion} exitMs=${LUM.exitMs}`);
     // зачем (владелец 2026-08-30, раунд 5): шаг онбординга сменился — тихая
     // калимба. Единая точка на все шаги: сюда сходятся и кнопки, и
     // автопереходы; dedupe по имени шага не даёт повтора при возврате.
@@ -675,17 +679,22 @@ function useStepSlide(step: CleanOnboardingStep): {
       opacity.setValue(1);
       translateX.setValue(0);
       setDisplayStep(step);
+      console.log(`[ONB-TAP] slide:shown step=${step} via=reduce_motion`);
       return;
     }
-    if (instant) { setDisplayStep(step); return; }
+    if (instant) { setDisplayStep(step); console.log(`[ONB-TAP] slide:shown step=${step} via=instant`); return; }
     const out = Animated.parallel([
       Animated.timing(opacity, { toValue: 0, duration: LUM.exitMs, useNativeDriver: true }),
       Animated.timing(translateX, { toValue: -20, duration: LUM.exitMs, useNativeDriver: true }),
     ]);
     out.start(({ finished }) => {
+      console.log(`[ONB-TAP] slide:exit_done step=${step} finished=${finished} afterMs=${Date.now() - slideStartedAt}`);
       if (finished) setDisplayStep(step);
     });
-    return () => out.stop();
+    return () => {
+      console.log(`[ONB-TAP] slide:exit_stop step=${step} afterMs=${Date.now() - slideStartedAt}`);
+      out.stop();
+    };
   }, [displayStep, instant, opacity, reduceMotion, step, translateX]);
 
   useEffect(() => {
@@ -694,6 +703,7 @@ function useStepSlide(step: CleanOnboardingStep): {
       translateX.setValue(0);
       return;
     }
+    console.log(`[ONB-TAP] slide:enter shown=${shownStep}`);
     opacity.setValue(0);
     translateX.setValue(20);
     const enter = Animated.parallel([
@@ -2448,6 +2458,22 @@ function CleanOnboarding({
   }, [enabledOrder, persistStep]);
 
   const { displayStep, slideStyle } = useStepSlide(step);
+  // зачем (координатор 11.10, «Позже» через минуту; СПЕРВА ЛОГИ): [JS-STALL] — стоял ли JS-поток, пока открыт
+  // онбординг (сторож старта в _layout снимается через 3 с после сплеша). Тик 100 мс, печатает разрывы > 250 мс
+  // с шагом, на котором стояли. Только dev; снимается при размонтировании.
+  const stallStepRef = useRef(step);
+  stallStepRef.current = step;
+  useEffect(() => {
+    if (!__DEV__) return undefined;
+    let lastTickAt = Date.now();
+    const watchdog = setInterval(() => {
+      const now = Date.now();
+      const gapMs = now - lastTickAt;
+      lastTickAt = now;
+      if (gapMs > 250) console.warn(`[JS-STALL] onboarding step=${stallStepRef.current} поток стоял ${gapMs}ms`); // guard-ok: только dev
+    }, 100);
+    return () => clearInterval(watchdog);
+  }, []);
 
   const back = useCallback(() => {
     const previous = resolveOnboardingStep(enabledOrder, step, 'backward');
@@ -3553,8 +3579,10 @@ function CleanOnboarding({
               // зачем (аудит двойного тапа 11.10 + ревью TG-A3996AF645F1): «Позже» во время входа
               // уводил дальше, а поздний ответ сам завершал онбординг (onDone) поверх шагов. Теперь
               // до порога «медленно» — ждём, после — уходим, а поздний ответ отбрасывается.
+              console.log(`[ONB-TAP] later:press step=${step} authInFlight=${String(authInFlightRef.current)} authSlow=${authSlow} authLoading=${String(authLoading)}`);
               if (!allowLeaveDuringAuth('later')) return;
               go('niceToMeet');
+              console.log('[ONB-TAP] later:go_called target=niceToMeet');
             }}
             testID="onboarding-privacy-later"
           />

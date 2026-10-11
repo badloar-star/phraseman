@@ -1685,6 +1685,17 @@ async function applyPersonalPlanRestorePairs(pairs: readonly (readonly [string, 
   }
 }
 
+/**
+ * [RESTORE-MERGE] — одна строка на слитый ключ: длины и кто победил (сами значения — личные данные, не печатаем).
+ * зачем (координатор 11.10): видно, что слияние сработало и локальное накопление не потеряно.
+ */
+function logRestoreMerge(key: string, localValue: string | null | undefined, cloudValue: string, merged: string): void {
+  const winner = merged === cloudValue ? (merged === localValue ? 'same' : 'cloud') : merged === localValue ? 'local' : 'merged';
+  console.log('[RESTORE-MERGE]', JSON.stringify({
+    key, winner, localLen: localValue?.length ?? null, cloudLen: cloudValue.length, resultLen: merged.length,
+  }));
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
@@ -4095,11 +4106,16 @@ async function applyRestoreFromUserDocTraced(
   // K2: owned-ключи тоже читаем локально — иначе mergeOwnedRestoreValue получит
   // undefined и «union» выродится в слепую перезапись облаком.
   const ownedUnionRuntimeKeys = getRuntimeSyncKeys().filter(isOwnedUnionRestoreKey);
+  // зачем (координатор 11.10, «локальное накопление не теряется»): ключи со своим правилом слияния
+  // (FC_RESTORE_MERGE_STRATEGIES) читаем локально и здесь — раньше таблица работала только в sticky- и fr-ветках,
+  // а основная ветка писала облако поверх (дни активности, прогресс достижений).
+  const mergeStrategyRuntimeKeys = getRuntimeSyncKeys().filter((key) => Object.prototype.hasOwnProperty.call(FC_RESTORE_MERGE_STRATEGIES, key));
   const localLessonRestoreMap = Object.fromEntries(
     await AsyncStorage.multiGet([
       ...RESTORE_MERGE_KEY_SET,
       ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
       ...ownedUnionRuntimeKeys,
+      ...mergeStrategyRuntimeKeys,
     ]),
   ) as Record<string, string | null>;
   assertCurrent();
@@ -4126,6 +4142,14 @@ async function applyRestoreFromUserDocTraced(
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
       const storageValue = cloudProgressStorageValue(key, val);
+      const mergeStrategy = FC_RESTORE_MERGE_STRATEGIES[key];
+      if (mergeStrategy) {
+        const localValue = localLessonRestoreMap[key];
+        const merged = mergeStrategy(localValue, storageValue);
+        logRestoreMerge(key, localValue, storageValue, merged);
+        pairs.push([key, merged]);
+        continue;
+      }
       pairs.push([key, mergeLessonRestoreValue(key, storageValue, localLessonRestoreMap[key])]);
     }
   }

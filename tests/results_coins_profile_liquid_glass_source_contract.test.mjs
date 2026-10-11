@@ -57,10 +57,11 @@ test('coin rank catalog shows all 20 ranks from the single table and is mounted 
   for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
     assert.ok(catalog.includes(lang.includes('-') ? `'${lang}':` : `${lang}:`), `catalog copy missing ${lang}`);
   }
-  assert.match(read('app/coin_rank.tsx'), /<CoinRankCatalog /);
-  // 05.10 (решение владельца 7): сетки на экране нет — каталог в шторке кита, открывается тапом по рангу.
-  assert.match(read('app/coin_rank.tsx'), /testID="coin-rank-open-catalog"[\s\S]{0,160}onPress=\{\(\) => setCatalogOpen\(true\)\}/);
-  assert.match(read('app/coin_rank.tsx'), /<KitSheetModal[\s\S]{0,400}<CoinRankCatalog glass=\{g\} lang=\{lang\} currentRank=\{rank\} showTitle=\{false\} \/>/);
+  // 11.10 (журнал 35, владелец): каталог — ОТДЕЛЬНЫЙ экран coin_rank_catalog, вход ссылкой «Все ранги» с экрана «Повысить ранг»; шторки нет.
+  assert.match(read('app/coin_rank_catalog.tsx'), /<CoinRankCatalog glass=\{g\} lang=\{lang\} currentRank=\{rank\} showTitle=\{false\} \/>/);
+  assert.match(read('app/coin_rank.tsx'), /testID="coin-rank-all-ranks"[\s\S]{0,260}router\.push\('\/coin_rank_catalog' as never\)/);
+  assert.doesNotMatch(read('app/coin_rank.tsx'), /KitSheetModal|setCatalogOpen/);
+  assert.match(read('app/_layout.tsx'), /<Stack\.Screen name="coin_rank_catalog" \/>/);
   // трассировка церемонии другого автора не должна пропасть
   assert.match(read('app/coin_rank.tsx'), /\[RANK-CEREMONY\]/);
 });

@@ -3198,6 +3198,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="runes_wallet" />
       {/* Ранг игрока: вход с блока монет на Главной; повышение использует атомарную операцию PM-075. */}
       <Stack.Screen name="coin_rank" />
+      {/* Каталог рангов монет (журнал 35): вход ссылкой «Все ранги» с экрана «Повысить ранг». */}
+      <Stack.Screen name="coin_rank_catalog" />
       <Stack.Screen name="achievements_screen" />
       {/* D140 (владелец 2026-10-01): экран коллекций удалён вместе с разделом. */}
       <Stack.Screen name="level_exam" />

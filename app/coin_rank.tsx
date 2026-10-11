@@ -18,8 +18,7 @@ import { getRunesBalanceRead, peekRunes } from './runes_system';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import CoinRankCatalog, { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
-import { KitSheetModal } from '../components/v2/KitSheetModal';
+import { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
 import KitSpinner from '../components/v2/KitSpinner';
 import CoinRankUpgradeCeremony from '../components/level_up/CoinRankUpgradeCeremony';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -171,7 +170,6 @@ export default function CoinRankScreen() {
   rankBindingRef.current = rankBinding;
   const reconciliationBlockedRef = useRef(false);
   const [balanceReconciling, setBalanceReconciling] = useState(false);
-  const [catalogOpen, setCatalogOpen] = useState(false);
   const current = rank === null ? null : coinRankRowForDisplay(rank);
   const canUpgrade = isCoinRankUpgradeEligible({
     rank,
@@ -194,6 +192,8 @@ export default function CoinRankScreen() {
     ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
   });
   const copy = useMemo(() => ({
+    // зачем (владелец 11.10, журнал 35): видимая ссылка на отдельный экран каталога рангов.
+    allRanks: triLang(lang, { ru: 'Все ранги', uk: 'Усі ранги', en: 'All ranks', es: 'Todos los rangos', 'pt-BR': 'Todos os ranks', vi: 'Tất cả hạng', id: 'Semua peringkat', tr: 'Tüm rütbeler', pl: 'Wszystkie rangi' }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
     title: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
     rank: triLang(lang, { ru: 'Ранг', uk: 'Ранг', en: 'Rank', es: 'Rango', 'pt-BR': 'Rank', vi: 'Hạng', id: 'Peringkat', tr: 'Rütbe', pl: 'Ranga' }),
@@ -360,7 +360,7 @@ export default function CoinRankScreen() {
         <V2Pressable
           testID="coin-rank-open-catalog"
           accessibilityLabel={coinRankCatalogTitle(lang)}
-          onPress={() => setCatalogOpen(true)}
+          onPress={() => router.push('/coin_rank_catalog' as never)}
           scaleTo={0.97}
           style={styles.hero}
         >
@@ -448,6 +448,18 @@ export default function CoinRankScreen() {
           </View>
         ) : null}
 
+        {/* зачем (владелец 11.10, журнал 35): каталог рангов — отдельный экран, вход ИЗ «Повысить ранг» ссылкой «Все ранги». */}
+        <V2Pressable
+          testID="coin-rank-all-ranks"
+          accessibilityRole="button"
+          accessibilityLabel={copy.allRanks}
+          onPress={() => router.push('/coin_rank_catalog' as never)}
+          scaleTo={0.97}
+          style={styles.allRanks}
+        >
+          <Text style={[styles.allRanksText, { color: p.text }]}>{copy.allRanks}</Text>
+          <Ionicons name="chevron-forward" size={18} color={p.textSecondary} />
+        </V2Pressable>
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 18, backgroundColor: g.bgBottom }]}>
@@ -466,17 +478,6 @@ export default function CoinRankScreen() {
         </V2Pressable>
         {ready ? <Text style={[styles.footNote, { color: p.textSecondary }]}>{copy.ceremonyNote}</Text> : null}
       </View>
-
-      {/* зачем (решение 7): каталог всех 20 рангов — шторкой кита; чисто вид, повышение и цены здесь не участвуют. */}
-      <KitSheetModal
-        visible={catalogOpen}
-        onRequestClose={() => setCatalogOpen(false)}
-        closeLabel={copy.close}
-        testID="coin-rank-catalog-sheet"
-        header={<Text accessibilityRole="header" style={[styles.catalogTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>}
-      >
-        <CoinRankCatalog glass={g} lang={lang} currentRank={rank} showTitle={false} />
-      </KitSheetModal>
 
       <CoinRankUpgradeCeremony ceremony={visibleCeremony} onDone={dismissCeremony} />
     </View>
@@ -525,6 +526,8 @@ const styles = StyleSheet.create({
   maxState: { minHeight: 120, alignItems: 'center', justifyContent: 'center', gap: 12 },
   maxTitle: { ...V2_TYPE.headline, textAlign: 'center' },
   footer: { paddingHorizontal: V2.screenPad, paddingTop: 12 },
+  allRanks: { minHeight: 48, marginTop: 8, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  allRanksText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   cta: {
     minHeight: V2.cta.height,
     borderRadius: V2.cta.radius,

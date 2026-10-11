@@ -302,3 +302,6 @@
 - (4) фразы «without a separate in-app checkbox» нет нигде (источник и копии); adminSummarizeFeedback — только ручной onCall, по расписанию не вызывается. (9) webrtc/incall и строки камеры нет ни в package.json/lock, app.json, eas.json, android/*.gradle, ios/Podfile*, node_modules; introspect — камеры нет.
 - 🔴 Владельцу/Ядру: **НЕ делать полный `firebase deploy --only functions`** — cardTtsPackWorker (триггер Firestore) уйдёт в прод и начнёт слать текст карточек в OpenAI, а §13 обещает «только на устройстве». Только прицельные деплои до публикации П9.
 - Ждёт владельца: деплой индексов (TTL), публикация политики и условий (admin + knowly-www, в т.ч. /legal/privacy-ios/), ссылка iOS в App Store Connect (до 17.10), нативная сборка до 14.10.
+
+## §AUTH-2350 — 2026-10-11: ⚠️ Ядру — трогаю файлы functions
+- Беру functions/src/card_tts_worker.ts (серверный рубильник config/card_tts_v1.enabled, по умолчанию выкл), новый scripts/functions_deploy_warning.mjs и одну строку predeploy в firebase.json (только предупреждение, не блок). Остальное в functions/ не трогаю. Хэш — сюда же.

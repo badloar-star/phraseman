@@ -8,6 +8,16 @@
 - **Вывод пока (ограниченный):** даже со срезанными Learning V2 и лабораториями главный процесс набирает ~3 ГБ за первые 2 минуты — тот же скачок, что в dev. Значит, основной вес не в контенте Learning V2 (моя оценка 37 % веса проекта этого не объясняет); подозрение смещается на `node_modules`/карты/сам бандлер. Это ещё одна точка, не плато — финал по 10–15-й минуте, замеряет координатор.
 - Моя причина раздувания по коду по-прежнему **не найдена**; следующий дешёвый шаг — E1 (куча 4096) и E5.
 
+## 14.10 — IPA, accentInk, зашитый цвет Шпиля, перенос ThemedArt: четыре коммита
+
+- **`3c382d44f`** — подпись транскрипции в хабе Карточек берёт цвет слова (CardsHubV2.tsx:98), контраст 4.10–4.49 на 23 темах (тест `tests/cards_hub_ipa_contrast.test.ts`). Размер IPA уже 16 при lineHeight 20 — поднимать нечего, высота стопки не менялась.
+- **`ddb4ca43d`** — текст на заливке accent. Корень: `makeLiquidGlassTheme` подменял `t.accent`, а `t.correctText` оставался `#042010` из базы DARK → на accent контраст **1.01–4.5 в 285 из 690 сочетаний**. Добавлено необязательное поле темы `accentInk` (≥ 4.56 на accent во всех 690), `correctText` НЕ тронут — им красят зелёную заливку `correct`. Применено: DialogHowToSaySheet (кнопка «Спросить»), FlashcardsShelves (бейдж «Новый»). Тест `tests/theme_ink_on_accent.test.ts`.
+- **`1ec91fd46`** — SpireFriendsRow: заглушка аватара вместо зашитой белой rgba — `p.hairline` темы; PrimaryButton (общий компонент) красит текст `accentInk` на лице accent. SpireTowerSvg: все цвета уже помечены `theme-exempt` — править нечего. Остальных «настоящих» зашитых цветов в файлах первого выпуска мой скан не находит (карточки, диалоги, шпиль, настройки, пейволы — 0).
+- **`98ab79ecf`** — app/theme/* (ThemedArt, реестр, generated) перенесены в `components/theme/`; WARN expo-router «missing default export» уходит. Файлы были мои (themes-2.0). Поправлены импорты: home.tsx, DailyPhraseCard, FeatureIntroModal, roulette_win_modal, генератор `scripts/gen_themed_art_assets.mjs` (--check ок), 2 теста. Тесты: themed_art, feature_intro_interactions, home_learning_cta — 22/22. Других не-маршрутов в app/theme не было, папка app/theme удалена.
+
+**Не сделано (не первый выпуск / чужие зоны) — `t.correctText` на заливке accent остаётся в:** `app/lesson_complete.tsx:249`, `app/(tabs)/lessons.tsx:1752/1762`, `app/streak_stats.tsx:1316`, `components/home/HomeMistakesLockedSheet.tsx:55`, `components/home/HomeSectionPulseButton.tsx:82`, `components/ui/v2_theme.ts:236/256` (accentText/okInk турнирной палитры). Замена механическая: `t.accentInk ?? t.correctText`, но надо проверять заливку под каждым — на `t.correct` (зелёная) менять нельзя (DailyPhraseCard, VerbLetterBank — остаются как есть).
+
+**Заметка про общий индекс:** после коммита 98ab79ecf в общем индексе остались старые версии моих файлов (MM) и висел пустой `.git/index.lock` (18:08, процессов старше замка не было). Снял замок и сделал `restore --staged` по своим путям под `git_commit.lock`; `git status` по ним чист.
 ## 14.10 — таблица читаемости хаба Карточек на 23 темах + путь до градиентной темы для Сверки
 
 **Таблица:** `docs/phraseman-2.0/evidence/hub_cards_contrast_23_themes.md` (23 темы × тёмная/светлая; худший случай по 3 уровням × 5 значений ползунка; порог 4.5 текст, 3 — слово 44 px и значок).

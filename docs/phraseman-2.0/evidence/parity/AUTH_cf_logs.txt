@@ -1,0 +1,32 @@
+shot welcome 22:09:17
+shot haveacc 22:09:32
+shot chooser 22:09:52
+picked 22:09:53
+shot dialog1 22:10:18
+cancel tapped 22:10:19
+shot after_cancel_5s 22:10:24
+shot after_cancel_15s 22:10:35
+shot chooser2 22:10:53
+picked2 22:10:54
+shot dialog2 22:11:19
+system back 22:11:20
+shot after_back_5s 22:11:26
+shot after_back_15s 22:11:37
+[AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:6a636c2d","localStable":"h:39043d0a","requireOwnership":false,"t":5542157}
+[AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":5566194}
+[AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:6a636c2d","preProviderStable":"h:39043d0a","t":5566205}
+[AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":5567413}
+[AUTH-LINK-GOOGLE] clean_proof dirty {"count":19,"keys":"user_avatar,user_frame,legacy_free_lesson_cap_v1,legacy_free_lesson_migration_v1","t":5567732}
+'[AUTH-SWITCH] handoff-proof', '{"provider":"google","localClean":false,"postCompletionHandoff":true,"stableId":"e2ca5387"}'
+[AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":5567895}
+[AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:6a636c2d","targetUid":"h:d9408b9b","uidChanged":true,"t":5577187}
+[AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:39043d0a","remoteStable":"h:de10a251","branch":"remote","t":5578255}
+[AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":5585553}
+[AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":5585557}
+[AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":5585561}
+[AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":5585564}
+[AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":5589294}
+[WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":5589294}
+[ACC-SWITCH-WIPE] wipe_stages {"closePhoneStateMs":2393,"collectKeysMs":3388,"collectKeysKeys":2218,"noteStashMs":4,"removeKeysMs":1211,"removeKeysKeys":2215,"giftReceiptsMs":5,"customizationMs":29,"dialogueMemoryMs":4,"lateLearningV2Ms":16,"lateLearningV2Keys
+[AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:39043d0a","to":"h:de10a251","tookMs":61043,"t":5603200}
+ALLDONE

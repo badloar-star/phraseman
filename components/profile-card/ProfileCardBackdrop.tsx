@@ -379,7 +379,7 @@ function IceLayers({ center }: { center: Center }) {
           borderRadius: 34 * k,
           transform: [{ rotate: '45deg' }],
           overflow: 'hidden',
-          borderWidth: 1, // guard-ok: кант призмы из макета .st-ice .prism (1px, полупрозрачный)
+          borderWidth: 1, // shadow-ok: кант призмы — часть арта фона визитки (иллюстрация), не контейнер; guard-ok: кант призмы из макета .st-ice .prism (1px, полупрозрачный)
           borderColor: 'rgba(220,245,255,0.35)', // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
           shadowColor: '#96DCFF', shadowOpacity: 0.22, shadowRadius: 30, shadowOffset: { width: 0, height: 0 }, // guard-ok: одна статичная тень, только iOS // theme-exempt: иллюстрация фона карточки профиля — материалы и блики арта
         }]}

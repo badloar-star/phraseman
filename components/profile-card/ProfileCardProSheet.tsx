@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   swatches: { flexDirection: 'row', gap: 10, marginTop: 14, justifyContent: 'space-between' },
   swatchOuter: { flex: 1, maxWidth: 60, aspectRatio: 1 },
   swatchRing: { flex: 1, borderRadius: 18, padding: 2 },
-  swatchRingOn: { borderWidth: 2, padding: 2 }, // guard-ok: выбранный стиль (outline в макете)
+  swatchRingOn: { borderWidth: 2, padding: 2 }, // shadow-ok: кольцо выбранного образца стиля — индикатор выбора, не контейнер; guard-ok: выбранный стиль (outline в макете)
   swatch: { flex: 1, borderRadius: 16, overflow: 'hidden' },
   caption: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 12, gap: 10 },
   captionName: { fontSize: 13, flexShrink: 1 },

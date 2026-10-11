@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch', alignItems: 'center',
     paddingTop: 16, paddingHorizontal: 14, paddingBottom: 18, borderRadius: 28,
     backgroundColor: 'rgba(255,255,255,0.14)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.26)', // guard-ok: стеклянная плашка «Ауры» (.st-aura .glass) // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+    // зачем (владелец 12.10, стиль «Тень»): стеклянная плашка «Ауры» без кромки — отделяет полупрозрачный белый тон на арте
   },
   center: { alignItems: 'center' },
   name: {
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
   penInner: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.18)' }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   lock: {
     marginTop: 12, minHeight: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: 'rgba(255,255,255,0.05)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)', // guard-ok: .vz-lock hairline из макета // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+    backgroundColor: 'rgba(255,255,255,0.12)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация); зачем (владелец 12.10, стиль «Тень»): замок без hairline — тон 0.12 вместо 0.05 + кромка
+    // guard-ok: (.vz-lock hairline макета снят по приказу 12.10) // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
   },
   lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: '700', flexShrink: 1 }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
 });

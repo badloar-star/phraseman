@@ -217,7 +217,7 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
       <Animated.View
         style={[{
           position: 'absolute', left: cx - wave / 2, top: cy - wave / 2, width: wave, height: wave, borderRadius: wave / 2,
-          borderWidth: 3, borderColor: 'rgba(255,255,255,0.85)', // guard-ok: ударная волна из макета (.up-wave), не контейнер // theme-exempt: иллюстрация повышения ранга на карточке профиля
+          borderWidth: 3, borderColor: 'rgba(255,255,255,0.85)', // shadow-ok: ударная волна повышения ранга (анимация-эффект), не контейнер; guard-ok: ударная волна из макета (.up-wave), не контейнер // theme-exempt: иллюстрация повышения ранга на карточке профиля
           shadowColor: '#FFE6AA', shadowOpacity: 0.6, shadowRadius: 12, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация повышения ранга на карточке профиля
         }, wave1]}
       />
@@ -225,7 +225,7 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
         <Animated.View
           style={[{
             position: 'absolute', left: cx - wave / 2, top: cy - wave / 2, width: wave, height: wave, borderRadius: wave / 2,
-            borderWidth: 2, borderColor: 'rgba(255,220,150,0.7)', // guard-ok: вторая волна «Про» (.up-wave.w2) // theme-exempt: иллюстрация повышения ранга на карточке профиля
+            borderWidth: 2, borderColor: 'rgba(255,220,150,0.7)', // shadow-ok: вторая волна «Про» (анимация-эффект), не контейнер; guard-ok: вторая волна «Про» (.up-wave.w2) // theme-exempt: иллюстрация повышения ранга на карточке профиля
           }, wave2]}
         />
       ) : null}
@@ -271,8 +271,8 @@ function RankUpCardGlowBase({ t, radius }: { t: SharedValue<number>; radius: num
   const style = useAnimatedStyle(() => ({ opacity: interpolate(t.value, [0.32, 0.35, 0.7], [0, 1, 0], CLAMP) }));
   return (
     <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius }, style]}>
-      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 14, borderColor: 'rgba(255,220,150,0.16)' }]} /* guard-ok: вспышка канта .up-cardglow, живёт 1 с */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
-      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 2, borderColor: 'rgba(255,236,190,0.9)' }]} /* guard-ok: вспышка канта .up-cardglow */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 14, borderColor: 'rgba(255,220,150,0.16)' }]} /* shadow-ok: вспышка канта (анимация-эффект повышения ранга), не контейнер; guard-ok: вспышка канта .up-cardglow, живёт 1 с */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+      <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: 2, borderColor: 'rgba(255,236,190,0.9)' }]} /* shadow-ok: вспышка канта (анимация-эффект повышения ранга), не контейнер; guard-ok: вспышка канта .up-cardglow */ />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
     </Animated.View>
   );
 }

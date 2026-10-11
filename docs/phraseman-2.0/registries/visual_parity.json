@@ -21439,10 +21439,10 @@
       "id": "overlays-campaigns-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/notices-states.html",
         "phone": 1,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Объявление со ссылкой",
+        "mapping": "manual_rebind"
       },
       "screen": "Глобальное объявление",
       "state": "Объявление с внешней ссылкой",
@@ -21459,18 +21459,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-002",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/notices-states.html",
         "phone": 2,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Объявление без ссылки",
+        "mapping": "manual_rebind"
       },
       "screen": "Глобальное объявление",
       "state": "Объявление без ссылки",
@@ -21487,18 +21488,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-003",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
+        "file": "docs/design/v2-app/notices-states.html",
         "phone": 3,
-        "label": null,
-        "mapping": "no_page"
+        "label": "Скрыто",
+        "mapping": "manual_rebind"
       },
       "screen": "Глобальное объявление",
       "state": "Скрыто после закрытия, срока или фильтра",
@@ -21515,9 +21517,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-004",
@@ -22190,10 +22193,10 @@
       "id": "overlays-campaigns-027",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 27,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 4,
+        "label": "Жалоба на объяснение: причина",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об объяснении",
       "state": "Объяснение · выбор причины",
@@ -22210,18 +22213,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-028",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 28,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 5,
+        "label": "Жалоба: отправка",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об объяснении",
       "state": "Объяснение · отправка",
@@ -22238,18 +22242,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-029",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 29,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 6,
+        "label": "Жалоба: ошибка отправки",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об объяснении",
       "state": "Объяснение · ошибка отправки",
@@ -22266,18 +22271,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-030",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 30,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 7,
+        "label": "Жалоба получена",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об объяснении",
       "state": "Объяснение · получено",
@@ -22294,9 +22300,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-031",
@@ -22476,10 +22483,10 @@
       "id": "overlays-campaigns-037",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 37,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 8,
+        "label": "Приглашённый: код не применён",
+        "mapping": "manual_rebind"
       },
       "screen": "Приветствие приглашённого",
       "state": "Приглашённый · код ещё не применён",
@@ -22496,18 +22503,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-campaigns-038",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 38,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 9,
+        "label": "Приглашённый: код применён",
+        "mapping": "manual_rebind"
       },
       "screen": "Приветствие приглашённого",
       "state": "Приглашённый · код применён",
@@ -22524,9 +22532,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-specialist-001",
@@ -23554,10 +23563,10 @@
       "id": "overlays-specialist-036",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 36,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 10,
+        "label": "Открыт следующий урок",
+        "mapping": "manual_rebind"
       },
       "screen": "Уведомления открытия",
       "state": "Открыт следующий урок",
@@ -23574,18 +23583,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-specialist-037",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 37,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 11,
+        "label": "Открыт экзамен уровня",
+        "mapping": "manual_rebind"
       },
       "screen": "Уведомления открытия",
       "state": "Открыт экзамен уровня",
@@ -23602,18 +23612,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "overlays-specialist-038",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 38,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/notices-states.html",
+        "phone": 12,
+        "label": "Открыт экзамен Lingman",
+        "mapping": "manual_rebind"
       },
       "screen": "Уведомления открытия",
       "state": "Открыт экзамен Lingman",
@@ -23630,9 +23641,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 10, объявления и окна), эталон сразу"
     },
     {
       "id": "themes-001",

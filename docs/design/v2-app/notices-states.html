@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Объявления и окна — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 10 — объявление, жалоба на объяснение, приветствие приглашённого, окна «открыто»; реестр overlays-campaigns-001…003, 027…030, 037, 038 и overlays-specialist-036…038):
+     • components/PromoBanner.tsx — плашка над всем приложением: основа темы, нижние углы 18, текст 13/18 по центру (до 2 строк), шеврон если есть ссылка, кружок-крестик 44; смахивание вправо закрывает.
+       Текст объявления приходит с сервера; здесь — запасной текст из кода «Специальное предложение — загляни» (без «Успей!» — запрет).
+     • components/ExplainReportButton.tsx — форма жалобы: шторка r28, ручка 44×5, «Что именно непонятно?», четыре причины, поле комментария, «Отмена» / «Отправить».
+     • components/ReferralWelcomeHost.tsx — центральная карточка «Тебя пригласили»; без призов и ключей (PM-202).
+     • app/lesson_complete.tsx — окно «открыто»: плитка-иконка, «✦ ✦ ✦», заголовок, подпись, «Поделиться», «Отлично!».
+     Тексты — из кода. Кегли 16/13 (макет главнее кода). Обводки — только 1px полупрозрачные. Тёмная «Аврора» и светлая тема. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --n-sheet: rgba(24,24,29,.985); --n-ctl: #1D1D22; --n-card: #202027; --n-sel: rgba(255,255,255,.1); --n-tx: #fff; --n-sc: #A6A6A8; --n-mu: #75757A; --n-edge: rgba(255,255,255,.13); --n-ink: var(--on); --n-dim: rgba(0,0,0,.6); --n-bad: #FF6B6B; --n-tint: var(--acc); color: var(--n-tx); }
+  .ph.lite { --n-sheet: #FBFBFD; --n-ctl: #ECECF1; --n-card: #F6F6FA; --n-sel: rgba(0,0,0,.07); --n-tx: #0C0C10; --n-sc: #55555D; --n-mu: #86868E; --n-edge: rgba(0,0,0,.12); --n-ink: #fff; --n-dim: rgba(20,20,30,.4); --n-bad: #C23B3B; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .nhome { position: absolute; inset: 0; padding: 62px 20px 0; display: flex; flex-direction: column; } .nhome .t1 { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.4px; } .nhome .r { height: 76px; border-radius: 18px; background: var(--n-ctl); margin-top: 12px; flex: none; }
+  .nban { position: absolute; left: 0; right: 0; top: 0; z-index: 25; padding: 54px 12px 8px; border-radius: 0 0 18px 18px; background: var(--n-sheet); box-shadow: inset 0 0 0 1px var(--n-edge); }
+  .nban .row { min-height: 46px; display: flex; align-items: center; gap: 8px; } .nban .body { flex: 1; min-width: 0; min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; font-size: 13px; line-height: 18px; font-weight: 700; text-align: center; } .nban .body .i { width: 18px; height: 18px; color: var(--n-sc); flex: none; }
+  .nban .x { width: 44px; height: 44px; border-radius: 50%; background: var(--n-ctl); display: flex; align-items: center; justify-content: center; flex: none; } .nban .x .i { width: 20px; height: 20px; }
+  .ndim { position: absolute; inset: 0; z-index: 20; background: var(--n-dim); }
+  .nsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 28px 28px 0 0; padding: 12px 24px 38px; background: var(--n-sheet); box-shadow: inset 0 0 0 1px var(--n-edge), 0 -8px 24px rgba(0,0,0,.25); }
+  .nsh .gr { width: 44px; height: 5px; border-radius: 3px; background: var(--n-mu); opacity: .5; margin: 0 auto 16px; }
+  .nsh .ti { text-align: center; font-size: 21px; line-height: 28px; font-weight: 700; margin-bottom: 14px; }
+  .nrs { min-height: 48px; margin-top: 8px; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; background: var(--n-card); box-shadow: inset 0 0 0 1px var(--n-edge); font-size: 16px; line-height: 21px; font-weight: 600; } .nrs.on { background: var(--n-ctl); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--n-tint) 40%, transparent); }
+  .nrs .i { width: 22px; height: 22px; color: var(--n-sc); flex: none; } .nrs.on .i { color: var(--n-tx); }
+  .nin { margin-top: 12px; min-height: 96px; border-radius: 14px; padding: 12px; background: var(--n-card); box-shadow: inset 0 0 0 1px var(--n-edge); font-size: 16px; line-height: 22px; color: var(--n-mu); }
+  .nbad { margin-top: 10px; text-align: center; font-size: 13px; line-height: 18px; color: var(--n-bad); }
+  .nbt { display: flex; gap: 10px; margin-top: 12px; } .nbt > div { min-height: 48px; border-radius: 16px; padding: 0 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; } .nbt .c { flex: 1; color: var(--n-sc); } .nbt .s { flex: 2; background: var(--n-tint); color: var(--n-ink); } .nbt .s.busy { opacity: .6; }
+  .nsp { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: nsq 900ms linear infinite; } @keyframes nsq { to { transform: rotate(360deg); } }
+  .nexp { position: absolute; inset: 0; padding: 62px 20px 0; } .nexp .hd { display: flex; align-items: center; justify-content: space-between; } .nexp .t1 { font-size: 28px; line-height: 34px; font-weight: 700; } .nexp .fl { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--n-bad); } .nexp .fl .i { width: 22px; height: 22px; } .nexp .fl.ok { color: var(--n-tx); opacity: .7; }
+  .nexp .bx { margin-top: 12px; border-radius: 18px; padding: 16px; background: var(--n-card); display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 1px var(--n-edge); } .nexp .bx i { display: block; height: 12px; border-radius: 6px; background: var(--n-sel); }
+  .ncen { position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .ncard { width: 100%; max-width: 360px; border-radius: 28px; padding: 24px; background: var(--n-sheet); box-shadow: inset 0 0 0 1px var(--n-edge); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .nbadge { width: 62px; height: 62px; border-radius: 22px; background: var(--n-ctl); display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: var(--n-tint); } .nbadge .i { width: 30px; height: 30px; }
+  .ncard .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-bottom: 10px; } .ncard .p { font-size: 16px; line-height: 22px; color: var(--n-sc); margin-bottom: 20px; }
+  .nb1 { align-self: stretch; min-height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 22px; font-weight: 700; background: var(--n-tint); color: var(--n-ink); } .nb2 { align-self: stretch; min-height: 48px; margin-top: 10px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 22px; font-weight: 700; background: var(--n-ctl); }
+  .nun { position: absolute; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: rgba(2,3,6,.72); padding: 0 24px; }
+  .nun .ncard { padding: 28px; } .nun .cir { width: 80px; height: 80px; border-radius: 40px; background: var(--n-ctl); display: flex; align-items: center; justify-content: center; margin-bottom: 4px; } .nun .cir .i { width: 38px; height: 38px; }
+  .nun .st { margin-top: 10px; font-size: 16px; letter-spacing: 6px; color: var(--n-sc); } .nun .h { margin-top: 10px; font-size: 28px; line-height: 34px; font-weight: 900; margin-bottom: 0; } .nun .p { margin: 8px 0 0; font-weight: 500; }
+  .nun .nb2 { margin-top: 22px; gap: 8px; } .nun .nb2 .i { width: 20px; height: 20px; } .nun .nb1 { margin-top: 12px; font-weight: 800; }
+  .nnt { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Объявления и окна — состояния</h1>
+  <p class="page-lead">Группа 10 из «экранов без макета»: глобальное объявление (overlays-campaigns-001…003), жалоба на объяснение (027…030), приветствие приглашённого (037, 038) и окна «открыто» после занятия (overlays-specialist-036…038). Тёмная «Аврора» и светлая тема. Тексты — из кода; текст объявления приходит с сервера, показан запасной.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const R_ON = svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/>');
+const R_OFF = svg('<circle cx="12" cy="12" r="9"/>');
+const SHARE = svg('<path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v6a2 2 0 002 2h10a2 2 0 002-2v-6"/>');
+const CHKC = svg('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>');
+const FLAGF = svg('<path d="M6 21V4" /><path d="M6 4.5c4-2 7.5 2 12 0v9c-4.5 2-8-2-12 0" fill="currentColor"/>');
+const home = (shift) => `<div class="nhome" style="padding-top:${62 + (shift || 0)}px"><div class="t1">Главная</div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div></div>`;
+const banner = (link) => `<div class="nban"><div class="row"><div class="body t"><span>Специальное предложение — загляни</span>${link ? icon('fwd', 's18') : ''}</div><div class="x t">${icon('close', 's20')}</div></div></div>`;
+const explain = (ok) => `<div class="nexp"><div class="hd"><div class="t1">Объяснение</div><div class="fl${ok ? ' ok' : ''}">${ok ? CHKC : FLAGF}</div></div><div class="bx"><i style="width:92%"></i><i style="width:78%"></i><i style="width:86%"></i><i style="width:54%"></i></div><div class="bx"><i style="width:70%"></i><i style="width:90%"></i><i style="width:40%"></i></div></div>`;
+const REASONS = ['Всё равно непонятно', 'Кажется, есть ошибка', 'Не на моём языке', 'Другое'];
+const form = (o) => `<div class="ndim"></div><div class="nsh"><div class="gr"></div><div class="ti">Что именно непонятно?</div>${REASONS.map((t, i) => `<div class="nrs t${i === 0 ? ' on' : ''}">${i === 0 ? R_ON : R_OFF}<span>${t}</span></div>`).join('')}<div class="nin">Расскажи своими словами (необязательно)</div>${o.fail ? '<div class="nbad">Не отправилось. Проверь интернет и попробуй ещё раз.</div>' : ''}<div class="nbt"><div class="c t">Отмена</div><div class="s t${o.busy ? ' busy' : ''}">${o.busy ? '<span class="nsp"></span>Отправляем…' : 'Отправить'}</div></div></div>`;
+const welcome = (code) => `<div class="ndim"></div><div class="ncen"><div class="ncard"><div class="nbadge">${icon('people', 's24')}</div><div class="h">Тебя пригласили</div><div class="p">Тебя позвал друг. Начни учиться — мы рады, что ты с нами.</div><div class="nb1 t">Начать учиться</div>${code ? '<div class="nb2 t">У меня есть код приглашения</div>' : ''}</div></div>`;
+const unlock = (ic, h, p) => `<div class="nun"><div class="ncard"><div class="cir">${ic}</div><div class="st">✦ ✦ ✦</div><div class="h">${h}</div><div class="p">${p}</div><div class="nb2 t">${SHARE}Поделиться</div><div class="nb1 t">Отлично!</div></div></div>`;
+const S = [
+  ['001 · Объявление со ссылкой', 'Плашка над всем приложением: текст, шеврон (тап открывает ссылку) и крестик. Содержимое ниже сдвигается плавно. Смахивание вправо тоже закрывает.', banner(true) + home(62)],
+  ['002 · Объявление без ссылки', 'Нет ссылки — нет и шеврона, текст не нажимается; закрыть можно крестиком или смахиванием.', banner(false) + home(62)],
+  ['003 · Скрыто', 'После закрытия, по сроку кампании, не для этой аудитории или платформы — плашки нет совсем, экран на месте. После закрытия то же предложение не возвращается.', home(0)],
+  ['027 · Жалоба на объяснение: причина', 'Форма открывается с причиной «Всё равно непонятно»; комментарий необязателен (до 300 знаков).', explain(false) + form({})],
+  ['028 · Жалоба: отправка', 'Нажали «Отправить»: кнопка тускнеет, «Отправляем…». В коде форма закрывается сразу, а значок «отправлено» появляется не дожидаясь ответа — этот кадр мгновенный.', explain(false) + form({ busy: true })],
+  ['029 · Жалоба: ошибка отправки', 'Не дошло: форма открывается снова с теми же причиной и текстом и подсказкой; можно повторить.', explain(false) + form({ fail: true })],
+  ['030 · Жалоба получена', 'Флажок стал галочкой и приглушён; повторно жаловаться на это объяснение нельзя.', explain(true)],
+  ['037 · Приглашённый: код ещё не применён', 'Один раз на главной после онбординга. «Начать учиться» закрывает; «У меня есть код приглашения» открывает «Код от друга». Ни призов, ни ключей.', home(0) + welcome(true)],
+  ['038 · Приглашённый: код применён', 'Код уже применён — второй кнопки нет.', home(0) + welcome(false)],
+  ['036 · Открыт следующий урок', 'После занятия, до медали или вместе с ней — очередью. Подпись без пересказа условий.', home(0) + unlock(svg('<path d="M12 4l8.5 4.3L12 12.6 3.5 8.3z"/><path d="M3.5 12.2L12 16.5l8.5-4.3"/><path d="M3.5 16L12 20.3 20.5 16"/>'), 'Новый урок открыт', 'Продолжай обучение, когда захочешь.')],
+  ['037 · Открыт экзамен уровня', 'После занятия, которое открывает экзамен уровня.', home(0) + unlock(CHKC, 'Экзамен уровня открыт', 'Проверь знания для следующего шага.')],
+  ['038 · Открыт экзамен Lingman', 'После занятия, которое открывает экзамен Lingman.', home(0) + unlock(CHKC, 'Экзамен Lingman открыт', 'Новый срез знаний доступен на твоём пути.')],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="nnt">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

@@ -4320,14 +4320,16 @@ async function maybeReseedWipedProgressAfterRestore(
   return 'reseed_started';
 }
 
-async function restoreAndMigrateFromCloudResult(
+async function restoreAndMigrateFromCloudResultTraced(
   syncMissingDocument: boolean,
-  options: CloudRestoreOptions = {},
+  options: CloudRestoreOptions,
+  mark: (stage: string) => void,
 ): Promise<CloudRestoreAttempt> {
   if (!CLOUD_SYNC_ENABLED) return failedCloudRestoreAttempt('transport_unavailable');
   const db = getFirestore();
   if (!db) return failedCloudRestoreAttempt('transport_unavailable');
   const uid = await ensureAnonUser();
+  mark('anon');
   if (!uid) return failedCloudRestoreAttempt('identity_unavailable');
   beginInitialAccountGeneration(uid);
   const accountGeneration = captureAccountGeneration();
@@ -4335,6 +4337,7 @@ async function restoreAndMigrateFromCloudResult(
   if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
   try {
     const stableLink = await ensureStableAuthLinkForStableIdDetailed(uid);
+    mark('stable_link');
     if (!stableLink.ok || stableLink.stableUid !== uid) {
       return {
         status: 'failed',
@@ -4348,12 +4351,15 @@ async function restoreAndMigrateFromCloudResult(
       RESTORE_FIRESTORE_READ_MS,
       'restore_user_doc',
     );
+    mark('user_doc_read');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
+    mark(doc.exists ? 'migration_flag' : 'migration_flag:no_doc');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     if (!doc.exists) {
       if (!migrated && syncMissingDocument) {
         await syncToCloud();
+        mark('sync_missing_doc');
         if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
         await AsyncStorage.setItem('cloud_migration_v1', '1').catch(swallowError('cloud_sync:restoreAndMigrateFromCloudResult'));
       }
@@ -4379,6 +4385,7 @@ async function restoreAndMigrateFromCloudResult(
         )
         : undefined, accountGeneration)
     ));
+    mark('apply');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     // зачем (Account V2, 8I): затёртый 8G облачный progress дозаливается один раз с телефона.
     // Fail-soft: дозаливка никогда не роняет restore.
@@ -4387,21 +4394,64 @@ async function restoreAndMigrateFromCloudResult(
     } catch (error) {
       console.warn(`[PROGRESS-RESEED] restore_hook_failed reason=${String(error).slice(0, 160)}`);
     }
+    mark('reseed');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     for (const target of SYNC_STUDY_TARGETS) {
       await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
+      mark(`mistake_events:${target}`);
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
       // Async import keeps the reward/economy graph outside the cloud-sync and
       // lessons startup bundles while preserving the initialization-cycle guard.
       const { flushPendingMistakeCorrectionRewards } = await import('./mistake_practice_rewards');
       await flushPendingMistakeCorrectionRewards({ accountScope: uid, studyTarget: target });
+      mark(`mistake_rewards:${target}`);
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
     return completedCloudRestoreAttempt(applied);
   } catch (error) {
+    // Немой переход в «failed» запрещён: текст ошибки — в журнал, иначе причину 70-секундного провала не видно.
+    console.warn('[BOOT-RESTORE-STEP] error', String(error).slice(0, 160));
     return failedCloudRestoreAttempt(
       cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error)),
     );
+  }
+}
+
+// зачем (координатор 11.10, «сперва логи»): [BOOT-RESTORE] показал restoreMs=71551 у ПУСТОГО гостя, а шагов внутри не
+// было видно. Одна строка на вызов: время каждой стадии, последняя пройденная стадия (по ней виден ранний выход),
+// status и failureReason. Логика восстановления не меняется — только замер.
+async function restoreAndMigrateFromCloudResult(
+  syncMissingDocument: boolean,
+  options: CloudRestoreOptions = {},
+): Promise<CloudRestoreAttempt> {
+  const startedAt = Date.now();
+  const stages: Record<string, number> = {};
+  let stageAt = startedAt;
+  let lastStage = 'start';
+  const mark = (stage: string) => {
+    const now = Date.now();
+    stages[stage] = now - stageAt;
+    stageAt = now;
+    lastStage = stage;
+  };
+  let attempt: CloudRestoreAttempt | null = null;
+  let thrown: unknown = null;
+  try {
+    attempt = await restoreAndMigrateFromCloudResultTraced(syncMissingDocument, options, mark);
+    return attempt;
+  } catch (error) {
+    thrown = error;
+    throw error;
+  } finally {
+    console.log('[BOOT-RESTORE-STEP]', JSON.stringify({
+      totalMs: Date.now() - startedAt,
+      syncMissingDocument,
+      lastStage,
+      stages,
+      status: attempt?.status ?? null,
+      failureReason: attempt?.failureReason ?? null,
+      ...(thrown ? { thrown: String(thrown).slice(0, 160) } : {}),
+    }));
   }
 }
 

@@ -16,7 +16,7 @@ import { BackButton, FilterChips, SheetRow, type PanelChip } from '../../compone
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import { pluralWord } from '../../constants/plural';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
@@ -63,7 +63,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 /** Верхняя панель: «назад» и квадратная кнопка меню; в режиме выбора — «Отмена» и счётчик. */
-export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, onCreate }: Readonly<{
+export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, onMenu, selectionMode, selectedCount, selectionTotal, onExitSelection, limitLabel, onCreate, onSearch, searchOpen }: Readonly<{
   lang: Lang;
   onBack: () => void;
   onMenu: () => void;
@@ -74,6 +74,9 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
   /** Пилюля остатка тренировок («24/30») и «+» — на экране набора (макет «Свой набор»). */
   limitLabel?: string | null;
   onCreate?: () => void;
+  /** Кнопка поиска в шапке (макет cards-v2: поиск открывается в полосе масштаба); без неё поиск остаётся в заголовочном блоке. */
+  onSearch?: () => void;
+  searchOpen?: boolean;
 }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const g = useLv2Glass();
@@ -100,6 +103,11 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
             <Text style={[styles.pillText, { color: g.text }]}>{limitLabel}</Text>
           </View>
         ) : null}
+        {onSearch ? (
+          <Pressable testID="fc-collection-search" accessibilityRole="button" accessibilityLabel={copy.search} accessibilityState={{ selected: !!searchOpen }} hitSlop={8} onPress={onSearch} style={({ pressed }) => [styles.round, { backgroundColor: searchOpen ? g.dividerTone : g.hairlineSoft }, pressed && styles.pressed]}>
+            <Ionicons name="search" size={20} color={g.text} />
+          </Pressable>
+        ) : null}
         {onCreate ? (
           <Pressable testID="fc-collection-create" accessibilityRole="button" hitSlop={8} onPress={onCreate} style={({ pressed }) => [styles.round, { backgroundColor: g.hairlineSoft }, pressed && styles.pressed]}>
             <Ionicons name="add" size={22} color={g.text} />
@@ -119,12 +127,50 @@ export function useCollectionLimitLabel(): string | null {
   return quota.status === 'waiting' ? null : `${Math.max(0, quota.limit - quota.used)}/${quota.limit}`;
 }
 
-/** Заголовок, число карточек и поиск-капсула. */
+/** Капсула поиска (макет `.srch`): лупа, ввод, крестик. Живёт в полосе масштаба над сеткой (кадр «Поиск») или под заголовком (пустой результат). */
+export const CollectionSearchField = memo(function CollectionSearchField({ lang, value, onChange, onClose, autoFocus }: Readonly<{
+  lang: Lang;
+  value: string;
+  onChange: (value: string) => void;
+  /** Крестик при пустой строке закрывает поиск (если передан). */
+  onClose?: () => void;
+  autoFocus?: boolean;
+}>) {
+  const g = useLv2Glass();
+  const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
+  const { f } = useTheme();
+  const copy = useMemo(() => copyFor(lang), [lang]);
+  return (
+    <View testID="fc-search-field" style={styles.search0}>
+      <Ionicons name="search" size={18} color={g.mutedText} />
+      <TextInput
+        testID="fc-search-input"
+        accessibilityLabel={copy.search}
+        value={value}
+        onChangeText={onChange}
+        placeholder={copy.search}
+        placeholderTextColor={g.mutedText}
+        autoCorrect={false}
+        autoCapitalize="none"
+        autoFocus={autoFocus}
+        returnKeyType="search"
+        style={[styles.searchInput, { color: g.text, fontSize: Math.min(f.body, 17) }]}
+      />
+      {value.length > 0 || onClose ? (
+        <Pressable testID="fc-search-clear" accessibilityRole="button" accessibilityLabel={copy.clear} hitSlop={10} onPress={() => { if (value.length > 0) onChange(''); else onClose?.(); }}>
+          <Ionicons name="close" size={18} color={g.mutedText} />
+        </Pressable>
+      ) : null}
+    </View>
+  );
+});
+
+/** Заголовок «Сохранённые N» (макет cards-v2: 34/40 и число 22 приглушённым) и, если нужно, поиск-капсула под ним. */
 export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, title, cardCount, big = true, titleOnly = false, showSearch, searchInput, onSearchInput }: Readonly<{
   lang: Lang;
   title: string;
   cardCount: number;
-  /** 40/46 у «Сохранённых», 34/40 у набора. */
+  /** Крупный заголовок «Сохранённых» (34/40 с числом рядом); у остальных — прежний 34/40 без числа. */
   big?: boolean;
   /** Кадр «Пусто»: только заголовок, без числа и поиска. */
   titleOnly?: boolean;
@@ -136,32 +182,15 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
   const g = useLv2Glass();
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
-  const { f } = useTheme();
-  const copy = useMemo(() => copyFor(lang), [lang]);
   return (
     <View>
-      <Text testID="fc-collection-title" accessibilityRole="header" style={[big ? styles.titleBig : styles.title, { color: g.text }]}>{title}</Text>
-      {titleOnly ? null : <Text style={[styles.subtitle, { color: g.secondary }]}>{`${cardCount} ${pluralWord(lang, cardCount, copy.cards)}`}</Text>}
+      <View style={styles.titleRow}>
+        <Text testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+        {titleOnly || !big ? null : <Text testID="fc-collection-count" style={[styles.titleCount, { color: g.mutedText }]}>{cardCount}</Text>}
+      </View>
       {showSearch && !titleOnly ? (
-        <View style={styles.search}>
-          <Ionicons name="search" size={18} color={g.mutedText} />
-          <TextInput
-            testID="fc-search-input"
-            accessibilityLabel={copy.search}
-            value={searchInput}
-            onChangeText={onSearchInput}
-            placeholder={big ? copy.search : copy.searchPlaceholder}
-            placeholderTextColor={g.mutedText}
-            autoCorrect={false}
-            autoCapitalize="none"
-            returnKeyType="search"
-            style={[styles.searchInput, { color: g.text, fontSize: Math.min(f.body, 17) }]}
-          />
-          {searchInput.length > 0 ? (
-            <Pressable testID="fc-search-clear" accessibilityRole="button" accessibilityLabel={copy.clear} hitSlop={10} onPress={() => onSearchInput('')}>
-              <Ionicons name="close" size={18} color={g.mutedText} />
-            </Pressable>
-          ) : null}
+        <View style={styles.searchGap}>
+          <CollectionSearchField lang={lang} value={searchInput} onChange={onSearchInput} />
         </View>
       ) : null}
     </View>
@@ -237,10 +266,12 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   cancelBtn: { minHeight: 44, justifyContent: 'center' },
   cancelText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   count: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
-  titleBig: { marginTop: 8, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
-  title: { marginTop: 18, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
-  subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
-  search: { marginTop: 22, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.hairlineSoft },
+  // зачем (Карточки 2.0, макет cards-v2 `ttl`): заголовок 34/40 700, отступ сверху 14, число рядом 22/600 через 12
+  titleRow: { marginTop: 14, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline' },
+  title: { fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
+  titleCount: { marginLeft: 12, fontSize: 22, lineHeight: 28, fontWeight: '600' },
+  searchGap: { marginTop: 22 },
+  search0: { minHeight: 44, borderRadius: 22, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: g.dividerTone, boxShadow: plateBoxShadow(g) },
   searchInput: { flex: 1, paddingVertical: 0, minHeight: 44 },
   langRow: { marginTop: 12, minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   langLabel: { fontSize: 16, lineHeight: 22 },

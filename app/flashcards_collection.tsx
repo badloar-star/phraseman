@@ -56,7 +56,7 @@ import {
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
 import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionGalleryView from './flashcards/CollectionGalleryView';
-import { CollectionMenuSheet, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
+import { CollectionMenuSheet, CollectionSearchField, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
 import { VideoSetView } from './flashcards/VideoSetView';
@@ -492,6 +492,8 @@ export default function FlashcardsScreen() {
     return () => clearTimeout(tm);
   }, [searchInput]);
   const searchActive = searchQuery.trim().length > 0;
+  // зачем (Карточки 2.0, макет cards-v2 «Поиск»): поле поиска «Сохранённых» открывается кнопкой в шапке и живёт в полосе масштаба над сеткой
+  const [searchOpen, setSearchOpen] = useState(false);
 
   /** Один контракт для стрелки и Android Back: сначала закрываем локальный слой. */
   const handleCollectionBack = useCallback(() => {
@@ -511,9 +513,10 @@ export default function FlashcardsScreen() {
       setFilterOpen(false);
       return;
     }
-    if (searchInput.length > 0 || searchActive) {
+    if (searchInput.length > 0 || searchActive || searchOpen) {
       setSearchInput('');
       setSearchQuery('');
+      setSearchOpen(false);
       return;
     }
     if (viewMode === 'deck') {
@@ -521,7 +524,7 @@ export default function FlashcardsScreen() {
       return;
     }
     leaveCollection();
-  }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, openedCardId, savedActionsOpen, searchActive, searchInput, selectionMode, viewMode]);
+  }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, openedCardId, savedActionsOpen, searchActive, searchInput, searchOpen, selectionMode, viewMode]);
 
   // Saved visibility must use the same authoritative feature decision as the
   // save path: Plus/VIP/intro/admin access and the remote global Free switch.
@@ -1288,7 +1291,8 @@ export default function FlashcardsScreen() {
       cardCount={savedCardsForPackLanguage.length}
       // зачем: кадр 7 «Пусто» — только заголовок; поиск нужен, пока он активен (результат «ничего не найдено»)
       titleOnly={isEmpty && !loadError && searchQuery.trim().length === 0 && searchInput.length === 0}
-      showSearch
+      // зачем: поле поиска в заголовке остаётся только для пустого результата (иначе негде поправить запрос); при сетке оно в полосе масштаба
+      showSearch={isEmpty && !loadError && (searchQuery.trim().length > 0 || searchInput.length > 0)}
       searchInput={searchInput}
       onSearchInput={setSearchInput}
     />
@@ -1356,6 +1360,9 @@ export default function FlashcardsScreen() {
             selectedCount={selectedCardIds.length}
             selectionTotal={savedCardsForPackLanguage.length}
             onExitSelection={exitSelectionMode}
+            onSearch={() => setSearchOpen((open) => !open)}
+            searchOpen={searchOpen || searchInput.length > 0}
+            onCreate={openCreateEditor}
           />
         ) : packSurface ? (
           <PackTopBar lang={lang} onBack={handleCollectionBack} onMenu={() => setSavedActionsOpen(true)} />
@@ -1510,6 +1517,9 @@ export default function FlashcardsScreen() {
           <CollectionGalleryView
             cards={listCards}
             searchQuery={savedSurface ? searchQuery : ''}
+            searchField={savedSurface && (searchOpen || searchInput.length > 0)
+              ? <CollectionSearchField lang={lang} value={searchInput} onChange={setSearchInput} onClose={() => setSearchOpen(false)} autoFocus />
+              : undefined}
             gridTopGap={packSurface ? 0 : undefined}
             lang={cardContentLang}
             header={savedSurface ? savedTitleBlock : packInfoBlock}

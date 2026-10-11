@@ -165,7 +165,20 @@ const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
  * 3-D Secure). Это НЕ ошибка: платить повторно не нужно — доступ включится сам,
  * когда платёж подтвердят (слушатель customerInfo / TRANSFER-вебхук).
  */
-export function showPurchasePendingAlert(lang: Lang): void {
+// зачем (координатор 12.10, «сперва логи» и защита новичка): окно «Покупка ждёт подтверждения» зовут из трёх мест потока покупки, и каждое повторное нажатие «Купить» ставило в очередь ещё одно такое же окно (после «OK» оно «возвращалось»).
+// Теперь один показ на покупку: ключ — id продукта (id транзакции при отложенной оплате недоступен), повтор того же ключа в пределах PENDING_ALERT_REPEAT_MS молча пропускается, причина — в журнале [PURCHASE-PENDING].
+const PENDING_ALERT_REPEAT_MS = 30 * 60 * 1000;
+const pendingAlertShownAt = new Map<string, number>();
+
+export function showPurchasePendingAlert(lang: Lang, key: string = 'purchase'): void {
+  const now = Date.now();
+  const last = pendingAlertShownAt.get(key);
+  if (last !== undefined && now - last < PENDING_ALERT_REPEAT_MS) {
+    console.log(`[PURCHASE-PENDING] skip key=${key} уже показывали ${Math.round((now - last) / 1000)}с назад (повтор не раньше ${Math.round(PENDING_ALERT_REPEAT_MS / 60000)} мин)`); // guard-ok: ранний выход называет причину
+    return;
+  }
+  pendingAlertShownAt.set(key, now);
+  console.log(`[PURCHASE-PENDING] show key=${key} lang=${lang} окно ставится в очередь блокирующих окон`); // guard-ok: единичный лог показа
   void enqueueThemedBlockingInfoAlert(
     triLang(lang, {
       ru: 'Покупка ждёт подтверждения',
@@ -1161,7 +1174,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           error: 'no_active_entitlement_after_purchase',
           ...paywallImpressionParams(impression),
         });
-        showPurchasePendingAlert(lang);
+        showPurchasePendingAlert(lang, `product:${pkg.product.identifier}`);
         return;
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
@@ -1282,7 +1295,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           context, source, plan: selected, product_id: pkgOrNull?.product.identifier, paywall: variant,
           ...paywallImpressionParams(impression),
         });
-        showPurchasePendingAlert(lang);
+        showPurchasePendingAlert(lang, `product:${pkgOrNull?.product.identifier ?? 'unknown'}`);
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
@@ -1666,7 +1679,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const timer = setTimeout(() => {
       if (devState === 'pending') {
         console.log('[DEV-STATE] paywall: диалог «ожидание банка или родителя»'); // guard-ok: единичный лог на открытие
-        showPurchasePendingAlert(lang);
+        showPurchasePendingAlert(lang, `dev:${Date.now()}`); // dev: каждый показ — отдельное окно для съёмки
       } else if (devState === 'unknown_outcome') {
         console.log('[DEV-STATE] paywall: диалог «статус покупки не подтверждён»'); // guard-ok: единичный лог на открытие
         void showUnverifiedPurchaseAlert(lang).then((choice) => {

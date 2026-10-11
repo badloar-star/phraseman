@@ -229,7 +229,7 @@ import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: 
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
-import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
+import { OverlayArbiterProvider, useOverlayActiveKey, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
@@ -1888,7 +1888,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (globalBroadcastModal) return;
     globalBroadcastCheckInFlightRef.current = true;
     try {
+      // зачем (координатор 12.10, «сперва логи» и защита новичка): окно-рассылка («Замочки ушли в отпуск!») всплывало поверх Главной сразу после онбординга. Новичку (свежая установка, <24 ч — app/fresh_install_gate.ts)
+      // рассылку не читаем вовсе: меньше чтений и нет окна поверх первого впечатления; со следующего захода после суток — как раньше.
+      const verdict = await readFreshInstallVerdict();
+      if (verdict.fresh) {
+        console.log(`[OVERLAY-QUEUE] broadcast: чтение пропущено — свежая установка reason=${verdict.reason} ageMs=${String(verdict.ageMs)}`); // guard-ok: ранний выход называет причину
+        return;
+      }
       const payload = await fetchPendingGlobalBroadcastModal(studyTarget);
+      console.log(`[OVERLAY-QUEUE] broadcast: запрошено id=${payload?.id ?? 'нет'} kind=${payload?.kind ?? '-'} награда=${payload ? `${payload.rewardType}:${payload.rewardAmount}` : '-'}`); // guard-ok: результат запроса
       if (payload) setGlobalBroadcastModal(payload);
     } finally {
       globalBroadcastCheckInFlightRef.current = false;
@@ -1899,6 +1907,23 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const t = setTimeout(() => { void checkGlobalBroadcastFn(); }, 1400);
     return () => clearTimeout(t);
   }, [checkGlobalBroadcastFn]);
+
+  // зачем (координатор 12.10, «сперва логи» и защита новичка): рассылка могла быть считана ДО конца онбординга (проверка идёт на старте), а видимой становится сразу после него — это и есть окно поверх Главной у новичка.
+  // После онбординга сверяем с воротами свежей установки: новичку считанную рассылку снимаем (на сервере она остаётся непрочитанной и придёт после суток).
+  useEffect(() => {
+    if (!globalBroadcastModal || effectiveShowOnboarding || !ready) return undefined;
+    let cancelled = false;
+    void readFreshInstallVerdict().then((verdict) => {
+      if (cancelled) return;
+      if (verdict.fresh) {
+        console.log(`[OVERLAY-QUEUE] broadcast: id=${globalBroadcastModal.id} снята после онбординга — свежая установка ageMs=${String(verdict.ageMs)}, придёт после суток`); // guard-ok: ветвление называет причину
+        setGlobalBroadcastModal(null);
+        return;
+      }
+      console.log(`[OVERLAY-QUEUE] broadcast: id=${globalBroadcastModal.id} остаётся в очереди окон (не новичок: reason=${verdict.reason})`); // guard-ok: ветвление называет причину
+    });
+    return () => { cancelled = true; };
+  }, [effectiveShowOnboarding, globalBroadcastModal, ready]);
 
   useEffect(() => installForegroundUsageMsTracker(), []);
 
@@ -3197,6 +3222,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     'introFullAccess',
     introFullAccessModal !== null,
   );
+  // зачем (координатор 12.10, «сперва логи» и защита новичка): кто просит окно, в каком порядке очередь и кто сейчас держит слот арбитра — [OVERLAY-QUEUE] (dev). Порядок приоритета: update > authRecovery > releaseNotes > broadcast > appMessageModal > personalAdminMessage > notifNudge > introFullAccess.
+  const overlayHolder = useOverlayActiveKey();
+  useEffect(() => {
+    if (!__DEV__) return;
+    const wants: Record<string, string | boolean | null> = {
+      update: !!updateInfo && !updateModalHiddenForStore,
+      authRecovery: startupAuthRecoveryVisible,
+      releaseNotes: releaseNotesVariant,
+      broadcast: globalBroadcastModal?.id ?? null,
+      appMessageModal: appMessageModalQueue.length > 0 ? appMessageModalQueue.map((m) => m.id).join(',') : null,
+      personalAdminMessage: personalAdminMessage?.id ?? null,
+      notifNudge: notifNudgeVisible,
+      introFullAccess: introFullAccessModal !== null,
+    };
+    const asking = Object.keys(wants).filter((key) => wants[key] !== null && wants[key] !== false);
+    console.log('[OVERLAY-QUEUE]', JSON.stringify({ holder: overlayHolder ?? 'никто', asking, waiting: asking.filter((key) => key !== overlayHolder), wants, onboarding: effectiveShowOnboarding })); // guard-ok: срез очереди окон
+  }, [
+    appMessageModalQueue, effectiveShowOnboarding, globalBroadcastModal, introFullAccessModal, notifNudgeVisible, overlayHolder,
+    personalAdminMessage, releaseNotesVariant, startupAuthRecoveryVisible, updateInfo, updateModalHiddenForStore,
+  ]);
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],

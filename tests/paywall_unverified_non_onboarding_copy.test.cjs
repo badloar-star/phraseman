@@ -21,7 +21,7 @@ test('existing onboarding alert remains isolated from non-onboarding copy', () =
   assert.ok(purchaseCatch);
   assert.match(purchaseCatch, /ONBOARDING_PURCHASE_SOURCES\.has\(source\)/);
   assert.match(purchaseCatch, /showUnverifiedPurchaseAlert\(lang\)/);
-  assert.match(purchaseCatch, /showPurchasePendingAlert\(lang\)/);
+  assert.match(purchaseCatch, /showPurchasePendingAlert\(lang, /);
 });
 
 // зачем (65а, решено по рекомендации; макет 014): окно умеет то, о чём просит его текст —

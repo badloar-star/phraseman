@@ -56,7 +56,8 @@ test('paywall_purchase: логика покупки не тронута, окн�
   assert.equal((files.paywall.match(/void enqueueThemedBlockingInfoAlert\(/g) ?? []).length, 3);
   // зачем (65а, макет 014): «Статус покупки не подтверждён» — окно выбора «Проверить статус / Восстановить покупки».
   assert.equal((files.paywall.match(/return enqueueThemedBlockingChoiceAlert\(/g) ?? []).length, 1);
-  assert.ok(files.paywall.includes('showPurchasePendingAlert(lang)'));
+  // зачем (координатор 12.10): вызовы получили второй аргумент — ключ дедупликации «один показ на покупку»
+  assert.ok(files.paywall.includes('showPurchasePendingAlert(lang, '));
   assert.ok(files.paywall.includes('showUnverifiedPurchaseAlert(lang)'));
 });
 

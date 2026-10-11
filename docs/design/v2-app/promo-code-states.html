@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Промокод — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 4 — «Промокод», реестр overlays-campaigns-004…015):
+     экран app/promo_code_entry.tsx («Настройки → Ввести промокод»): шапка «Промокод» с крестиком, стеклянная карточка «Есть промокод?», поле кода, кнопка «Активировать»
+     и итоговая плашка со значком под кнопкой (успех или одна из причин отказа). Тексты — из кода (feedbackForStatus). Размеры текста 16 и 13; в поле код жирный с разрядкой.
+     Обводки только 1px полупрозрачные. Каждое состояние показано в тёмной «Авроре» и в светлой теме. Праздничное окно VIP после успеха — это группа 9 (подтверждённый доступ). */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --p-card: rgba(26,26,32,.92); --p-ctl: rgba(255,255,255,.08); --p-tx: #fff; --p-sc: #A6A6A8; --p-mu: #75757A; --p-edge: rgba(255,255,255,.13); --p-tint: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.1)); --p-ink: var(--on); color: var(--p-tx); }
+  .ph.lite { --p-card: rgba(255,255,255,.92); --p-ctl: rgba(0,0,0,.06); --p-tx: #0C0C10; --p-sc: #55555D; --p-mu: #86868E; --p-edge: rgba(0,0,0,.11); --p-tint: color-mix(in srgb, var(--acc) 60%, rgba(0,0,0,.1)); --p-ink: #fff; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .phd { height: 56px; margin-top: 52px; position: relative; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 -.5px 0 var(--p-edge); }
+  .phd .t { font-size: 16px; font-weight: 700; } .phd .x { position: absolute; right: 12px; top: 6px; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .pcard { margin: 16px 20px 0; padding: 20px; border-radius: 24px; background: var(--p-card); box-shadow: inset 0 0 0 1px var(--p-edge); display: flex; flex-direction: column; gap: 16px; }
+  .pbr { display: flex; align-items: center; gap: 12px; } .ptile { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: var(--p-ctl); flex: none; }
+  .pbr .h { font-size: 18px; line-height: 26px; font-weight: 800; } .psub { font-size: 16px; line-height: 23px; font-weight: 600; color: var(--p-sc); }
+  .pin { min-height: 56px; border-radius: 16px; padding: 0 16px; display: flex; align-items: center; background: var(--p-ctl); box-shadow: inset 0 0 0 1px var(--p-edge); font-size: 16px; font-weight: 900; letter-spacing: 1px; color: var(--p-mu); } .pin.has { color: var(--p-tx); } .pin.ok { box-shadow: inset 0 0 0 1px var(--p-tint); } .pin .cur { width: 2px; height: 22px; background: var(--acc); margin-left: 2px; }
+  .pbtn { min-height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 800; background: var(--acc); color: var(--p-ink); } .pbtn.off { background: var(--p-ctl); color: var(--p-mu); opacity: .55; }
+  .pspin { width: 20px; height: 20px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: psp 900ms linear infinite; } @keyframes psp { to { transform: rotate(360deg); } }
+  .pfb { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border-radius: 14px; background: var(--p-ctl); box-shadow: inset 0 0 0 1px var(--p-edge); } .pfb .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
+  .pnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Промокод — состояния</h1>
+  <p class="page-lead">Группа 4 из «экранов без макета» (реестр overlays-campaigns-004…015): экран «Настройки → Ввести промокод». Пусто, можно активировать, проверка, срок подтверждён, бессрочный результат, не найден, истёк, лимит исчерпан, уже использован, неверный формат, отключён, ошибка проверки (и «слишком много попыток» — тринадцатым). Каждое состояние — в тёмной «Авроре» и в светлой теме. Тексты — из кода.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const gift = '<svg class="i s24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="4.5" rx="1"/><path d="M5 13.5V20h14v-6.5M12 9v11"/><path d="M12 9c-2.5 0-4.2-1-4.2-2.7S10.6 4 12 9zm0 0c2.5 0 4.2-1 4.2-2.7S13.4 4 12 9z"/></svg>';
+const okI = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>';
+const badI = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>';
+// o: code, valid, busy, fb {ok, text}
+const screen = (o) => `<div class="phd"><span class="t">Промокод</span><span class="x t">${icon('close', 's20')}</span></div>
+  <div class="pcard"><div class="pbr"><span class="ptile">${gift}</span><span class="h">Есть промокод?</span></div>
+  <div class="psub">Введи промокод, чтобы получить Plus-подписку.</div>
+  <div class="pin${o.code ? ' has' : ''}${o.valid ? ' ok' : ''}">${o.code ? `${o.code}${o.cursor ? '<span class="cur"></span>' : ''}` : 'Введи промокод'}</div>
+  <div class="pbtn${o.valid || o.busy ? '' : ' off'} t">${o.busy ? '<span class="pspin"></span>Активируем…' : `${okI}Активировать`}</div>
+  ${o.fb ? `<div class="pfb">${o.fb.ok ? okI : badI}<span class="tx">${o.fb.text}</span></div>` : ''}</div>`;
+const C = 'WELCOME30';
+const S = [
+  ['004 · Пусто', 'Поле пустое, кнопка «Активировать» приглушена и не нажимается.', screen({})],
+  ['005 · Можно активировать', 'Код подходит по формату (3–32 знака: буквы, цифры, «_», «-»): рамка поля чуть ярче, кнопка включилась.', screen({ code: C, valid: true, cursor: true })],
+  ['006 · Проверка', 'Нажали «Активировать»: в кнопке кружок и «Активируем…», повторное нажатие блокируется.', screen({ code: C, valid: true, busy: true })],
+  ['007 · Срок подтверждён', 'Код принят на срок: плашка «Готово! … на 30 дн.»; сразу откроется праздничное окно доступа.', screen({ code: C, valid: true, fb: { ok: true, text: 'Готово! Plus-подписка активирована на 30 дн. Приятного обучения!' } })],
+  ['008 · Бессрочный результат', 'Код даёт Plus навсегда: плашка «Готово! … навсегда».', screen({ code: 'FOREVER', valid: true, fb: { ok: true, text: 'Готово! Plus-подписка активирована навсегда. Приятного обучения!' } })],
+  ['009 · Не найден', 'Такого кода нет или он выключен.', screen({ code: 'ABC123', valid: true, fb: { ok: false, text: 'Такой код не найден или больше не действует.' } })],
+  ['010 · Истёк', 'Срок действия кода закончился.', screen({ code: 'SPRING24', valid: true, fb: { ok: false, text: 'Срок действия кода истёк.' } })],
+  ['011 · Лимит исчерпан', 'Все активации этого кода уже использованы.', screen({ code: 'FRIENDS50', valid: true, fb: { ok: false, text: 'Лимит активаций этого кода исчерпан.' } })],
+  ['012 · Уже использован', 'Этот аккаунт уже активировал код.', screen({ code: C, valid: true, fb: { ok: false, text: 'Ты уже активировал этот код.' } })],
+  ['013 · Неверный формат', 'Сервер считает, что код введён с ошибкой.', screen({ code: 'WELC0ME', valid: true, fb: { ok: false, text: 'Проверь код: похоже, он введён неверно.' } })],
+  ['014 · Отключён', 'Промокоды временно выключены на сервере.', screen({ code: C, valid: true, fb: { ok: false, text: 'Промокоды сейчас временно выключены.' } })],
+  ['015 · Ошибка проверки', 'Сеть или сервер не ответили: просим попробовать ещё раз.', screen({ code: C, valid: true, fb: { ok: false, text: 'Сейчас не получилось активировать код. Попробуй ещё раз.' } })],
+  ['+ · Слишком много попыток', 'После 5 неудачных попыток за 10 минут — пауза. Не отдельная строка реестра, но состояние есть в коде.', screen({ code: 'TRY12345', valid: true, fb: { ok: false, text: 'Слишком много попыток подряд. Попробуй снова через 10 минут.' } })],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, h]) => `<div class="col"><div class="lbl">${t}</div>${ph(h, lite)}<div class="pnote">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

@@ -21433,10 +21433,10 @@
       "id": "overlays-campaigns-004",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 4,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 1,
+        "label": "004 · Пусто",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · пусто",
@@ -21453,18 +21453,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-005",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 5,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 2,
+        "label": "005 · Можно активировать",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · можно применить",
@@ -21481,18 +21482,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-006",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 6,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 3,
+        "label": "006 · Проверка",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · проверка",
@@ -21509,18 +21511,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-007",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 7,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 4,
+        "label": "007 · Срок подтверждён",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · срок подтверждён",
@@ -21537,18 +21540,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-008",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 8,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 5,
+        "label": "008 · Бессрочный результат",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · бессрочный результат",
@@ -21565,18 +21569,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-009",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 9,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 6,
+        "label": "009 · Не найден",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · не найден",
@@ -21593,18 +21598,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-010",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 10,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 7,
+        "label": "010 · Истёк",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · истёк",
@@ -21621,18 +21627,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-011",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 11,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 8,
+        "label": "011 · Лимит исчерпан",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · лимит исчерпан",
@@ -21649,18 +21656,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-012",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 12,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 9,
+        "label": "012 · Уже использован",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · уже использован",
@@ -21677,18 +21685,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-013",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 13,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 10,
+        "label": "013 · Неверный формат",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · неверный формат",
@@ -21705,18 +21714,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-014",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 14,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 11,
+        "label": "014 · Отключён",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · отключён",
@@ -21733,18 +21743,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-015",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 15,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/promo-code-states.html",
+        "phone": 12,
+        "label": "015 · Ошибка проверки",
+        "mapping": "manual_rebind"
       },
       "screen": "Промокод онбординга",
       "state": "Промокод · ошибка проверки",
@@ -21761,9 +21772,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу"
     },
     {
       "id": "overlays-campaigns-016",

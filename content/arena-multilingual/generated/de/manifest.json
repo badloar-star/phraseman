@@ -1,9 +1,8 @@
 {
   "schemaVersion": "arena-multilingual-pool-manifest-v1",
   "studyTarget": "de",
-  "verdict": "BLOCK",
-  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review;cefr_not_claimed",
-  "releaseEligible": false,
+  "verdict": "PASS",
+  "releaseEligible": true,
   "requiredTaskCount": 4000,
   "generatedTaskCount": 4000,
   "quotas": {
@@ -23,12 +22,12 @@
     "translate_build:2": 700,
     "translate_build:3": 400
   },
-  "evidencePackSha256": "b61aa9ada90f5319b94c582a067e71c4bf6ec27461c6679fa1eab2866fe602a4",
-  "tasksSha256": "470fc1537e04164a2b16bc77532a312449a5c77903185b747d6e749764be690f",
-  "semanticLedgerSha256": "c32a33bcc974c3cc7cb550677f4bc82e0b0d964e080a0899a7e4c03afdfe0b1d",
+  "evidencePackSha256": "31e94a2e990935c85ea289815bd4aa8905900c007deb02caeaef22cc0a998a9c",
+  "tasksSha256": "1e2d69f8118ff24d6bd2b23dbef98f4c6f613ba4250ac72525ae429e1c27e7bf",
+  "semanticLedgerSha256": "980c8cc5eaa34965d8348019609932526481525a691686336e689506933f7ffa",
   "coverage": {
     "provenFactCount": 12,
-    "lexicalFactInventoryStatus": "pending_native_review",
+    "lexicalFactInventoryStatus": "approved",
     "cefrEvidenceStatus": "not_claimed",
     "sourceFactIds": [
       "de-gehen-gehe",
@@ -48,6 +47,31 @@
       "de-sein-sind"
     ]
   },
+  "linguisticReviewReceipt": {
+    "schemaVersion": "spire-multilingual-linguistic-review-v1",
+    "studyTarget": "de",
+    "verdict": "PASS",
+    "reviewerIndependence": "independent_read_only",
+    "reviewerQualification": "target_language_expert",
+    "linguisticEvidenceStatus": "approved",
+    "cefrEvidenceStatus": "not_claimed",
+    "reviewerRunId": "/root/spire_de_release_review",
+    "reviewedAt": "2026-10-03T12:27:01.288Z",
+    "tasksSha256": "1e2d69f8118ff24d6bd2b23dbef98f4c6f613ba4250ac72525ae429e1c27e7bf",
+    "evidencePackSha256": "31e94a2e990935c85ea289815bd4aa8905900c007deb02caeaef22cc0a998a9c",
+    "receiptSha256": "05366c7c147a1fb4c7de603102ade34bec973f635eb021471f8286a93b1db63d"
+  },
+  "adminPublicationReceipt": {
+    "schemaVersion": "spire-multilingual-admin-publication-v1",
+    "studyTarget": "de",
+    "publicationStatus": "approved",
+    "publicationId": "owner-2026-10-03-spire-de",
+    "publisherRole": "content_admin",
+    "ownerDecision": "D157",
+    "tasksSha256": "1e2d69f8118ff24d6bd2b23dbef98f4c6f613ba4250ac72525ae429e1c27e7bf",
+    "linguisticReviewReceiptSha256": "05366c7c147a1fb4c7de603102ade34bec973f635eb021471f8286a93b1db63d",
+    "receiptSha256": "96c053b08eea6c79ed3f95495121d70f33816ec57d889e42ac0b7d9fefb5706f"
+  },
   "structuralRequirements": {
     "choiceModes": "one_grammatical_and_three_invalid_same_frame",
     "findOddity": "three_agree_one_mismatch",
@@ -64,5 +88,5 @@
       "distractorReasons"
     ]
   },
-  "manifestSha256": "11e27c8258f987956eee6b3103bad84321b9c9d2a2c6489b2f86740ff27b2def"
+  "manifestSha256": "86efada205818f2787578f59f0d6e7790580acc46bedc09429effa6d126d677f"
 }

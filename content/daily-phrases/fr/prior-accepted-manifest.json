@@ -261,7 +261,7 @@
     },
     {
       "id": "fr-019",
-      "rowSha256": "403824C45BECC37412A80B655DB2E8843304515759663CC655B00E424BC32FED"
+      "rowSha256": "2C76694769A6A072684B1DB083F2612588B1C63C772419DAE389C772B1C78CE2"
     },
     {
       "id": "fr-020",
@@ -325,7 +325,7 @@
     },
     {
       "id": "fr-035",
-      "rowSha256": "B9A2818A41362C407AA47287A336B8F57EA1934B70A607E100CB91CBFEFDA7B8"
+      "rowSha256": "AD9CDC9A276685FB788D8A5B8A26D5DB56DF54BA8E99970DEFF382AFDB0FC758"
     },
     {
       "id": "fr-036",
@@ -597,7 +597,7 @@
     },
     {
       "id": "fr-103",
-      "rowSha256": "A87F42FDE480DB2235D39CD5C845E4FFE831CBDA0A93F95C6938D7FCFD5541F3"
+      "rowSha256": "90E41E76DA7EB2DBAFAFB7DF3ED5D1AB3FF9A8222CBBD0C80F93CB055253685C"
     },
     {
       "id": "fr-104",
@@ -629,7 +629,7 @@
     },
     {
       "id": "fr-111",
-      "rowSha256": "DBA16FF5DF76A6EE7FCE4FCFDD3910AEB3996717E4AD79718FCC29CF20150A43"
+      "rowSha256": "DEE6BDB047948BC397557673392999198BE06B5340E91D6E11D77F78C880D67A"
     },
     {
       "id": "fr-112",
@@ -669,7 +669,7 @@
     },
     {
       "id": "fr-121",
-      "rowSha256": "2B7588DB96F21B63B1CE10E1CC1A66F89DDFE91A2BCFF1118F87C89BA2C9D615"
+      "rowSha256": "9F11D8922B77B5F73220CB40F7C15D0E7A67CA7886B56ADD52E9188267A7B28D"
     },
     {
       "id": "fr-122",
@@ -693,7 +693,7 @@
     },
     {
       "id": "fr-127",
-      "rowSha256": "ABD059321679339275DE8F4FA0616CA22013E832C6FBFC76476ACF8A54F06DD0"
+      "rowSha256": "6111B79C56DDB7DB907D515845F36B0ED73F1AC56D1094C33CB8FD46475985EB"
     },
     {
       "id": "fr-128",
@@ -805,7 +805,7 @@
     },
     {
       "id": "fr-155",
-      "rowSha256": "9AB70C52DE70C58C8C94379D1DA46660A6DC8125B7DB34AFF922F6B4EA4DFFE8"
+      "rowSha256": "79BEA4CB8F5A55374DE61E8B2FFCFC02A8251E502439CC01B17273E7D7B743EF"
     },
     {
       "id": "fr-156",
@@ -895,7 +895,7 @@
   "authorityArtifacts": {
     "bank": {
       "path": "content/daily-phrases/fr/source-bank.json",
-      "sha256": "D97EF2D4CD78DC320E83217273BF6A064C25188A3AA647D040816DC3BF186DA8"
+      "sha256": "83753D63A6094F9860A57946AF2E13BB0D82D284740763767BB68A34E80874FA"
     },
     "sourceEvidence": {
       "path": "content/daily-phrases/fr/authoritative-source-ledger.json",
@@ -950,7 +950,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-016-020.json",
-      "sha256": "B055F6985B49261953845803E649DFF8D0B039B18F524AFC91C0AB4ED23D5A90",
+      "sha256": "59B6BD5960D8FB416ABFC17CE1101E8CFC92FCB6F15F87EB07514C318448A600",
       "rowIds": [
         "fr-016",
         "fr-017",
@@ -983,7 +983,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-031-035.json",
-      "sha256": "4804B5BFAFAE842F5F685FF7CC80396FD325CDB6C31FFF0045196EED209BB8A0",
+      "sha256": "933219455F2343FA4CE61FC865D9B2CF2653D7E83D5C20FC207DA804420714F4",
       "rowIds": [
         "fr-031",
         "fr-032",
@@ -1137,7 +1137,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-101-105.json",
-      "sha256": "69C27285FDCB273690FB0FB3D8EF159359F1258E91A82220D4EE37C8BABEC8C4",
+      "sha256": "04C80368B23A32F453939C0BE2CF90C9A05B03AD3B3040504BE4F3EDA5AD9F80",
       "rowIds": [
         "fr-101",
         "fr-102",
@@ -1159,7 +1159,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-111-115.json",
-      "sha256": "D011D46B54BF1B6B7B832350372B3B78C26A634EE91D1BFDAE40632BA1562F5F",
+      "sha256": "81EFC2B131F302B98D1DE7D8F507223B0076618278CC1F9CD6960742320C3BD7",
       "rowIds": [
         "fr-111",
         "fr-112",
@@ -1181,7 +1181,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-121-125.json",
-      "sha256": "B77BF0FC45591EB169EAD73FE9D874CE4ABADB13FCE0A2A3C5E37E7C9DF12A9E",
+      "sha256": "EECDAB7BDCF0EEE0EC900C91C38F99533859177C0EED49809D98E8EFF7A22833",
       "rowIds": [
         "fr-121",
         "fr-122",
@@ -1192,7 +1192,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-126-130.json",
-      "sha256": "B726EC850F25CDF1F6CF819BC51A3B883CADFEA64A3A40D66AB016A7D74EBD37",
+      "sha256": "16E39FAE79B3BD4AF25BF17B9D3951817D28EB249C66DFC1CCE4EE84CD3F59F7",
       "rowIds": [
         "fr-126",
         "fr-127",
@@ -1247,7 +1247,7 @@
     },
     {
       "path": "content/daily-phrases/fr/authoring/fr-151-155.json",
-      "sha256": "3E4B8C96DADE26C7B8515E2C9D68CB8196D9AF374D1D8A85F56595BA21E43604",
+      "sha256": "E4737ED2746AB32E95B97206E2ED5509DE22444B1903F438196DFD49DDFE1FAD",
       "rowIds": [
         "fr-151",
         "fr-152",
@@ -1311,9 +1311,9 @@
   "independentEditorialReview": {
     "verdict": "ACCEPT",
     "findings": [],
-    "reviewedAt": "2026-09-27T17:12:15.5363768Z",
+    "reviewedAt": "2026-10-04T12:45:57.2817828Z",
     "reviewerIndependence": true,
-    "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176",
+    "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176+/root/review_fr_raw_no3_actual",
     "releaseTrusted": false
   },
   "releaseBoundary": "Editorial continuity only; not a trusted release receipt and not activation approval."

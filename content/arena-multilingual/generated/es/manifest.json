@@ -1,9 +1,8 @@
 {
   "schemaVersion": "arena-multilingual-pool-manifest-v1",
   "studyTarget": "es",
-  "verdict": "BLOCK",
-  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review;cefr_not_claimed",
-  "releaseEligible": false,
+  "verdict": "PASS",
+  "releaseEligible": true,
   "requiredTaskCount": 4000,
   "generatedTaskCount": 4000,
   "quotas": {
@@ -23,12 +22,12 @@
     "translate_build:2": 700,
     "translate_build:3": 400
   },
-  "evidencePackSha256": "a8d23281e8058298e65cc78e4aa40c3fff3ff8e24a79e9c4ed64dfa173fcafdb",
-  "tasksSha256": "199a372be3c48298de768777477a54f1932e7fb22a7998d6acbb8c150bad495a",
-  "semanticLedgerSha256": "b3475b3b6a61a6456886e1a51249e13720e5e9c7028cf989c97c76f982c18fa8",
+  "evidencePackSha256": "6544715c576d47e60d3bc22ea18f3c80eac268007ba73d2c0aa31ec3c98b302d",
+  "tasksSha256": "5fa1de499d15f054b16b50143e4cf54705c0408c9fadcd6ff2c8501c30223593",
+  "semanticLedgerSha256": "324fe9aa548089af57a5071624b17930645f574b9a37f63cd46d87f6642d7230",
   "coverage": {
     "provenFactCount": 12,
-    "lexicalFactInventoryStatus": "pending_native_review",
+    "lexicalFactInventoryStatus": "approved",
     "cefrEvidenceStatus": "not_claimed",
     "sourceFactIds": [
       "es-estar-esta",
@@ -48,6 +47,31 @@
       "es-tener-tienes"
     ]
   },
+  "linguisticReviewReceipt": {
+    "schemaVersion": "spire-multilingual-linguistic-review-v1",
+    "studyTarget": "es",
+    "verdict": "PASS",
+    "reviewerIndependence": "independent_read_only",
+    "reviewerQualification": "target_language_expert",
+    "linguisticEvidenceStatus": "approved",
+    "cefrEvidenceStatus": "not_claimed",
+    "reviewerRunId": "/root/spire_es_release_review",
+    "reviewedAt": "2026-10-03",
+    "tasksSha256": "5fa1de499d15f054b16b50143e4cf54705c0408c9fadcd6ff2c8501c30223593",
+    "evidencePackSha256": "6544715c576d47e60d3bc22ea18f3c80eac268007ba73d2c0aa31ec3c98b302d",
+    "receiptSha256": "9d27ac003e580bbdbf96e17db08b3793f82385e2dd1ed0dacdb2ddba6b94c810"
+  },
+  "adminPublicationReceipt": {
+    "schemaVersion": "spire-multilingual-admin-publication-v1",
+    "studyTarget": "es",
+    "publicationStatus": "approved",
+    "publicationId": "owner-2026-10-03-spire-es",
+    "publisherRole": "content_admin",
+    "ownerDecision": "D155",
+    "tasksSha256": "5fa1de499d15f054b16b50143e4cf54705c0408c9fadcd6ff2c8501c30223593",
+    "linguisticReviewReceiptSha256": "9d27ac003e580bbdbf96e17db08b3793f82385e2dd1ed0dacdb2ddba6b94c810",
+    "receiptSha256": "78d6c175d70a8aebaeb465a364d2fd6c1e0fcba2315f5289de5db3d5226c9616"
+  },
   "structuralRequirements": {
     "choiceModes": "one_grammatical_and_three_invalid_same_frame",
     "findOddity": "three_agree_one_mismatch",
@@ -64,5 +88,5 @@
       "distractorReasons"
     ]
   },
-  "manifestSha256": "38d96da8a083711ffaf783b55ef22954181c3c4b09737d79e1e8cc1840467b18"
+  "manifestSha256": "ae3c10751a8d98915020f2587f7762297c2bfa508c61235317b2fe43d7f7023b"
 }

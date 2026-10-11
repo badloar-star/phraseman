@@ -4,14 +4,94 @@
   "targetLocale": "fr-FR",
   "englishRole": "structure_only_not_linguistic_authority",
   "lexicalFacts": [
-    { "id": "fr-lex-etre-traits", "kind": "umbrella_lexical_fact", "lemma": "être", "role": "adjective", "values": ["heureux", "fatigué", "prêt", "calme", "occupé", "content", "malade", "libre", "fort", "jeune", "sérieux", "gentil", "nerveux", "seul", "sûr", "fier", "actif", "curieux", "patient", "attentif"], "status": "pending_native_review", "sourceIds": ["larousse-etre"] },
-    { "id": "fr-lex-avoir-possessions", "kind": "umbrella_lexical_fact", "lemma": "avoir", "role": "possession_noun_phrase", "values": ["un livre", "un café", "un plan", "un téléphone", "un chat", "un problème", "un verre", "un billet", "un cahier", "un cadeau", "un ami", "un message", "un vélo", "un chien", "un crayon", "un manteau", "un projet", "un travail", "un moment", "un rêve"], "status": "pending_native_review", "sourceIds": ["larousse-avoir"] },
-    { "id": "fr-lex-aller-destinations", "kind": "umbrella_lexical_fact", "lemma": "aller", "role": "destination_phrase", "values": ["au parc", "à l'école", "au magasin", "au bureau", "au restaurant", "au musée", "au cinéma", "au marché", "à la banque", "à l'hôpital", "à la gare", "à la bibliothèque", "à la plage", "au centre", "à l’aéroport", "à l'hôtel", "à la salle", "au théâtre", "au jardin", "à l'université"], "status": "pending_native_review", "sourceIds": ["larousse-aller"] }
+    {
+      "id": "fr-lex-etre-traits", "kind": "umbrella_lexical_fact", "lemma": "être", "role": "adjective",
+      "values": ["heureux", "fatigué", "prêt", "calme", "occupé", "content", "malade", "libre", "fort", "jeune", "sérieux", "gentil", "nerveux", "seul", "sûr", "fier", "actif", "curieux", "patient", "attentif"],
+      "status": "pending_native_review", "sourceIds": ["larousse-etre", "cnrtl-fr-lexicon"],
+      "valueEvidence": [
+        { "value": "heureux", "glossRu": "счастлив", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/heureux" },
+        { "value": "fatigué", "glossRu": "устал", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/fatigué" },
+        { "value": "prêt", "glossRu": "готов", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/prêt" },
+        { "value": "calme", "glossRu": "спокоен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/calme" },
+        { "value": "occupé", "glossRu": "занят", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/occupé" },
+        { "value": "content", "glossRu": "доволен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/content" },
+        { "value": "malade", "glossRu": "болен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/malade" },
+        { "value": "libre", "glossRu": "свободен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/libre" },
+        { "value": "fort", "glossRu": "силён", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/fort" },
+        { "value": "jeune", "glossRu": "молод", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/jeune" },
+        { "value": "sérieux", "glossRu": "серьёзен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/sérieux" },
+        { "value": "gentil", "glossRu": "добр", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/gentil" },
+        { "value": "nerveux", "glossRu": "нервен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/nerveux" },
+        { "value": "seul", "glossRu": "один, без компании", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/seul" },
+        { "value": "sûr", "glossRu": "уверен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/sûr" },
+        { "value": "fier", "glossRu": "горд", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/fier" },
+        { "value": "actif", "glossRu": "активен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/actif" },
+        { "value": "curieux", "glossRu": "любопытен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/curieux" },
+        { "value": "patient", "glossRu": "терпелив", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/patient" },
+        { "value": "attentif", "glossRu": "внимателен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/attentif" }
+      ]
+    },
+    {
+      "id": "fr-lex-avoir-possessions", "kind": "umbrella_lexical_fact", "lemma": "avoir", "role": "possession_noun_phrase",
+      "values": ["un rendez-vous", "une réunion", "un cours", "un examen", "une visite", "un appel", "un entretien", "une réservation", "un voyage", "une permanence", "une rencontre", "une échéance", "une livraison", "une présentation", "un entraînement", "une épreuve", "une formation", "un concert", "un dîner", "une consultation"],
+      "status": "pending_native_review", "sourceIds": ["larousse-avoir", "cnrtl-fr-lexicon"],
+      "valueEvidence": [
+        { "value": "un rendez-vous", "glossRu": "приём", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/rendez-vous" },
+        { "value": "une réunion", "glossRu": "совещание", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/réunion" },
+        { "value": "un cours", "glossRu": "занятие", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/cours" },
+        { "value": "un examen", "glossRu": "экзамен", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/examen" },
+        { "value": "une visite", "glossRu": "визит", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/visite" },
+        { "value": "un appel", "glossRu": "звонок", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/appel" },
+        { "value": "un entretien", "glossRu": "собеседование", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/entretien" },
+        { "value": "une réservation", "glossRu": "бронь", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/réservation" },
+        { "value": "un voyage", "glossRu": "поездка", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/voyage" },
+        { "value": "une permanence", "glossRu": "дежурство", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/permanence" },
+        { "value": "une rencontre", "glossRu": "встреча", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/rencontre" },
+        { "value": "une échéance", "glossRu": "крайний срок", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/échéance" },
+        { "value": "une livraison", "glossRu": "доставка", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/livraison" },
+        { "value": "une présentation", "glossRu": "презентация", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/présentation" },
+        { "value": "un entraînement", "glossRu": "тренировка", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/entraînement" },
+        { "value": "une épreuve", "glossRu": "испытание", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/épreuve" },
+        { "value": "une formation", "glossRu": "курс", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/formation" },
+        { "value": "un concert", "glossRu": "концерт", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/concert" },
+        { "value": "un dîner", "glossRu": "ужин", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/dîner" },
+        { "value": "une consultation", "glossRu": "консультация", "evidenceKind": "lexical_entry", "sourceIds": ["cnrtl-fr-lexicon"], "sourceUrl": "https://www.cnrtl.fr/definition/consultation" }
+      ]
+    },
+    {
+      "id": "fr-lex-aller-destinations", "kind": "umbrella_lexical_fact", "lemma": "aller", "role": "destination_phrase",
+      "values": ["au parc", "à l'école", "au magasin", "au bureau", "au restaurant", "au musée", "au cinéma", "au marché", "à la banque", "à l'hôpital", "à la gare", "à la bibliothèque", "à la plage", "au centre", "à l’aéroport", "à l'hôtel", "à la salle", "au théâtre", "au jardin", "à l'université"],
+      "status": "pending_native_review", "sourceIds": ["larousse-aller", "cnrtl-fr-lexicon", "hachette-french-prepositions"],
+      "valueEvidence": [
+        { "value": "au parc", "glossRu": "в парк", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/parc" },
+        { "value": "à l'école", "glossRu": "в школу", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/école" },
+        { "value": "au magasin", "glossRu": "в магазин", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/magasin" },
+        { "value": "au bureau", "glossRu": "в офис", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/bureau" },
+        { "value": "au restaurant", "glossRu": "в ресторан", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/restaurant" },
+        { "value": "au musée", "glossRu": "в музей", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/musée" },
+        { "value": "au cinéma", "glossRu": "в кино", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/cinéma" },
+        { "value": "au marché", "glossRu": "на рынок", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/marché" },
+        { "value": "à la banque", "glossRu": "в банк", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/banque" },
+        { "value": "à l'hôpital", "glossRu": "в больницу", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/hôpital" },
+        { "value": "à la gare", "glossRu": "на вокзал", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/gare" },
+        { "value": "à la bibliothèque", "glossRu": "в библиотеку", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/bibliothèque" },
+        { "value": "à la plage", "glossRu": "на пляж", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/plage" },
+        { "value": "au centre", "glossRu": "в центр", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/centre" },
+        { "value": "à l’aéroport", "glossRu": "в аэропорт", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/aéroport" },
+        { "value": "à l'hôtel", "glossRu": "в отель", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/hôtel" },
+        { "value": "à la salle", "glossRu": "в зал", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/salle" },
+        { "value": "au théâtre", "glossRu": "в театр", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/théâtre" },
+        { "value": "au jardin", "glossRu": "в сад", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/jardin" },
+        { "value": "à l'université", "glossRu": "в университет", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["cnrtl-fr-lexicon", "hachette-french-prepositions"], "sourceUrl": "https://www.cnrtl.fr/definition/université" }
+      ]
+    }
   ],
   "sources": [
     { "id": "larousse-etre", "label": "Larousse: être", "url": "https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31368" },
     { "id": "larousse-avoir", "label": "Larousse: avoir", "url": "https://www.larousse.fr/dictionnaires/francais/avoir/6735" },
-    { "id": "larousse-aller", "label": "Larousse: aller", "url": "https://www.larousse.fr/dictionnaires/francais/aller/2550" }
+    { "id": "larousse-aller", "label": "Larousse: aller", "url": "https://www.larousse.fr/dictionnaires/francais/aller/2550" },
+    { "id": "cnrtl-fr-lexicon", "label": "CNRTL / TLFi: exact lexical entries linked per value", "url": "https://www.cnrtl.fr/definition/" },
+    { "id": "hachette-french-prepositions", "label": "Hachette Learning French grammar: à + article contractions", "url": "https://media.hachettelearning.com/medialibraries/hodder/samples/french/16-19/grammar-workbook-alevel-french/french-a-level-grammar-workbook-1-sample-pages-9781510417229.pdf" }
   ],
   "facts": [
     { "id": "fr-etre-suis", "lemma": "être", "target": "suis", "sourceRu": "я являюсь", "pos": "verb", "grammar": "present_1sg", "sourceIds": ["larousse-etre"] },

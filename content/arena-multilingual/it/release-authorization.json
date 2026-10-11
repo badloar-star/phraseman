@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "spire-multilingual-release-authorization-v1",
+  "studyTarget": "it",
+  "verdict": "PASS",
+  "reviewerIndependence": "independent_read_only",
+  "reviewerQualification": "target_language_expert",
+  "linguisticEvidenceStatus": "approved",
+  "cefrEvidenceStatus": "not_claimed",
+  "reviewerRunId": "/root/spire_it_linguistic_review",
+  "reviewedAt": "2026-10-03",
+  "evidencePackSha256": "4da7f9fdab082faf20faa0339eeb619472f566dc218378312637c13b700bd65e",
+  "tasksSha256": "2640a2b1b825b0ae6195f1d16777f733ac1a1b091b19038b18e2f46b0ca49f5a",
+  "publicationStatus": "approved",
+  "publicationId": "owner-2026-10-03-spire-it",
+  "publisherRole": "content_admin",
+  "ownerDecision": "D154"
+}

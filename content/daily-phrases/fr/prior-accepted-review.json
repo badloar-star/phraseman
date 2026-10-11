@@ -2,8 +2,8 @@
   "schemaVersion": "daily-phrase-independent-editorial-review-v1",
   "verdict": "ACCEPT",
   "acceptedCount": 176,
-  "reviewedAt": "2026-09-27T17:12:15.5363768Z",
-  "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176",
+  "reviewedAt": "2026-10-04T12:45:57.2817828Z",
+  "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176+/root/review_fr_raw_no3_actual",
   "reviewerIndependence": true,
   "releaseTrusted": false,
   "activationReadinessClaimed": false,
@@ -318,6 +318,11 @@
       "scope": "fr-171..fr-176 English-parity taste/style",
       "reviewerIdentity": "/root/judge_taste_fr066_070",
       "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-176 raw answer-length no-three-in-a-row normalization; exact changed bytes, semantics, one-fault distractors, packet projection, and closed activation",
+      "reviewerIdentity": "/root/review_fr_raw_no3_actual",
+      "verdict": "ACCEPT"
     }
   ],
   "findings": {
@@ -327,7 +332,7 @@
     "P3": []
   },
   "hashesSha256": {
-    "sourceBank": "d97ef2d4cd78dc320e83217273bf6a064c25188a3aa647d040816dc3bf186da8",
+    "sourceBank": "83753d63a6094f9860a57946af2e13bb0d82d284740763767bb68a34e80874fa",
     "authoritativeLedger": "b8d5afee5fe01d6db65291dd6010eb311454da025bdd539e1c20dd7fd3078e75",
     "sourceLedger": "5db5f4f6675075f1d787c441753d98b403b8f6c772b9a610839723d5e6810464",
     "englishBaseline": "a2a744254cea2080ea44326335df573ae828d465ac721f696b1e1f2235873321",
@@ -336,10 +341,10 @@
       "fr-001-005": "2580b269a150f8714133c2223b34accc4b9c728657b0fa8e8ea9e8d4ccd18d4f",
       "fr-006-010": "b12b37a674a5a2d38ef58899e4f1adf9c08f7d1ad8137fe841fd2fb40da33872",
       "fr-011-015": "161bdbcc00fc5d1eebd523067c347cca97c3e48956c5d6c938b7dd48d9c7e84f",
-      "fr-016-020": "b055f6985b49261953845803e649dff8d0b039b18f524afc91c0ab4ed23d5a90",
+      "fr-016-020": "59b6bd5960d8fb416abfc17ce1101e8cfc92fcb6f15f87eb07514c318448a600",
       "fr-021-025": "fff65f020280ff963655a34ef03cf788622c9a72a5cb5946515e2fcce0fc8f5b",
       "fr-026-030": "e45930c2d901f1a75b34847e98f8a089eb6c3795ad22af0c5c14a94650ed8330",
-      "fr-031-035": "4804b5bfafae842f5f685ff7cc80396fd325cdb6c31fff0045196eed209bb8a0",
+      "fr-031-035": "933219455f2343fa4ce61fc865d9b2cf2653d7e83d5c20fc207da804420714f4",
       "fr-036-040": "ea9e017b10410a53a6176fe78d971274ab2aee439230564bccae930e7dff4ce7",
       "fr-041-045": "8b407d635c1bca23a073880f32f2e9a695cc42cbe9f0c9bfcfe0bc2edef2b4a0",
       "fr-046-050": "4dceef2021cc535583e416d09210dc0c24a32089db4ef80867c90b8226d002a8",
@@ -353,17 +358,17 @@
       "fr-086-090": "235edbe32ac6ab0c10be68e22b26f930d09b88f881189926788a5883a1b264b6",
       "fr-091-095": "2d005f8f7fa4782e1259a562c82f97c5e7b070fb2830bcd33d9805acaa69f4cf",
       "fr-096-100": "6fd8ca8e1d95a719ac29bcefe603dbbc7917d4c487322b0fb95643504ed37197",
-      "fr-101-105": "69c27285fdcb273690fb0fb3d8ef159359f1258e91a82220d4ee37c8babec8c4",
+      "fr-101-105": "04c80368b23a32f453939c0be2cf90c9a05b03ad3b3040504be4f3eda5ad9f80",
       "fr-106-110": "46a4f801cf0bb52744203c2dd3208700266c3981fae5068fd8e547692be9e019",
-      "fr-111-115": "d011d46b54bf1b6b7b832350372b3b78c26a634ee91d1bfdae40632ba1562f5f",
+      "fr-111-115": "81efc2b131f302b98d1de7d8f507223b0076618278cc1f9cd6960742320c3bd7",
       "fr-116-120": "48c71cf607fa934521551943039f080d31de61fc5e210b5b2ad79a383c9d8a3a",
-      "fr-121-125": "b77bf0fc45591eb169ead73fe9d874ce4abadb13fce0a2a3c5e37e7c9df12a9e",
-      "fr-126-130": "b726ec850f25cdf1f6cf819bc51a3b883cadfea64a3a40d66ab016a7d74ebd37",
+      "fr-121-125": "eecdab7bdcf0eee0ec900c91c38f99533859177c0eed49809d98e8eff7a22833",
+      "fr-126-130": "16e39fae79b3bd4af25bf17b9d3951817d28eb249c66dfc1cce4ee84cd3f59f7",
       "fr-131-135": "c4590f2613b2d45ec7c83d07cd71496c7b385ee6b8c5ef89167bf971243850b0",
       "fr-136-140": "b65b4e89c9bfacb4e39e7f96be0715c524f7af601b48e33a86e2f46e21426556",
       "fr-141-145": "6bec204aebc4b60f0a3420b1472a954c72441593920d9fe614dfec752c45e361",
       "fr-146-150": "aeb75148518bb7ea260d190472b64fbf5273cf092f70f00b0b13e9e214fe1a16",
-      "fr-151-155": "3e4b8c96dade26c7b8515e2c9d68cb8196d9af374d1d8a85f56595ba21e43604",
+      "fr-151-155": "e4737ed2746ab32e95b97206e2ed5509de22444b1903f438196dfd49ddfe1fad",
       "fr-156-160": "47f0825db31248c17546d3a3938d1d7bae77d60e5f23f059d0b1234fb8b7bb5b",
       "fr-161-165": "b1e9067f33f7c2caceee5efd0443f054a3526ffd527759a3b5fc462cd2ec5fb3",
       "fr-166-170": "ee7b1c58699567d7a67a198a903d29d2907371999b91042b82302089d9267294",
@@ -588,7 +593,8 @@
     "fr166To170Boundaries": "fr-166 is a small targeted boost rather than hands-on work, active participation or general aid; fr-167 is imminence without a completed result; fr-168 is bitter regret over one's own act, decision or omission; fr-169 requires expected action or help plus voluntary zero effort rather than current idleness, trait laziness or inability; fr-170 requires relinquishing and transferring control rather than delegating one task.",
     "fr171To176IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on identical exact hashes with P0-P3 all empty. Three repair-and-rereview cycles removed dry meaning bridges, unsupported duration language, calqued weapon collocations and one audible Ukrainian repetition while preserving independent scenes and warm English-parity prose.",
     "fr171To176Metrics": "All twelve RU/UK narratives pass exact source/style/quiz/structural gates within the English-parity narrative contract; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
-    "fr171To176Boundaries": "fr-171 is skill acquisition through practice rather than generic help; fr-172 is active bracing and endurance rather than passive acceptance; fr-173 is threatening readiness rather than a completed attack; fr-174 is strictly being very well armed rather than generic preparedness; fr-175 is visibly radiating joie de vivre rather than one isolated success; fr-176 is voluntary frank and trusting conversation rather than a forced exhaustive confession."
+    "fr171To176Boundaries": "fr-171 is skill acquisition through practice rather than generic help; fr-172 is active bracing and endurance rather than passive acceptance; fr-173 is threatening readiness rather than a completed attack; fr-174 is strictly being very well armed rather than generic preparedness; fr-175 is visibly radiating joie de vivre rather than one isolated success; fr-176 is voluntary frank and trusting conversation rather than a forced exhaustive confession.",
+    "rawAnswerLengthNoThreeNormalization": "Fresh independent review /root/review_fr_raw_no3_actual accepted findings=[] on the exact normalized bytes. Only distractor text changed in fr-019 RU/UK, fr-035 UK, fr-103 RU, fr-111 UK, fr-121 RU, fr-127 RU, and fr-155 RU; feedback, error codes, meanings, narratives, source bindings, and activation fields remained unchanged. Full RU and UK raw-grapheme scans have maximum correct-longest runs of 2, all packet projections are exact, and active/activationApproved remain false."
   },
   "perBatch": {
     "fr-001-005": "Accepted: RU/UK narratives, meanings, examples, locale independence, and diagnostic distractors.",

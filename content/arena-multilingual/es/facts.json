@@ -4,14 +4,94 @@
   "targetLocale": "es-ES",
   "englishRole": "structure_only_not_linguistic_authority",
   "lexicalFacts": [
-    { "id": "es-lex-ser-traits", "kind": "umbrella_lexical_fact", "lemma": "ser", "role": "trait_adjective", "values": ["fuerte", "joven", "serio", "amable", "sincero", "activo", "curioso", "paciente", "atento", "inteligente", "trabajador", "creativo", "honesto", "generoso", "valiente", "responsable", "prudente", "optimista", "realista", "sociable"], "status": "pending_native_review", "sourceIds": ["rae-ser"] },
-    { "id": "es-lex-estar-locations", "kind": "umbrella_lexical_fact", "lemma": "estar", "role": "location_phrase", "values": ["en casa", "en la escuela", "en la tienda", "en la oficina", "en el restaurante", "en el museo", "en el cine", "en el mercado", "en el banco", "en el hospital", "en la estación", "en la biblioteca", "en la playa", "en el centro", "en el aeropuerto", "en el hotel", "en el gimnasio", "en el teatro", "en el jardín", "en la universidad"], "status": "pending_native_review", "sourceIds": ["rae-estar"] },
-    { "id": "es-lex-tener-possessions", "kind": "umbrella_lexical_fact", "lemma": "tener", "role": "possession_noun_phrase", "values": ["un libro", "un café", "un mapa", "un teléfono", "un gato", "un problema", "un vaso", "un billete", "un cuaderno", "un regalo", "un amigo", "un mensaje", "un coche", "un perro", "un lápiz", "un abrigo", "un plan", "un trabajo", "un minuto", "un sueño"], "status": "pending_native_review", "sourceIds": ["rae-tener"] }
+    {
+      "id": "es-lex-ser-traits", "kind": "umbrella_lexical_fact", "lemma": "ser", "role": "trait_adjective",
+      "values": ["fuerte", "joven", "serio", "amable", "sincero", "activo", "curioso", "paciente", "atento", "inteligente", "trabajador", "creativo", "honesto", "generoso", "valiente", "responsable", "prudente", "optimista", "realista", "sociable"],
+      "status": "pending_native_review", "sourceIds": ["rae-ser", "rae-es-lexicon"],
+      "valueEvidence": [
+        { "value": "fuerte", "glossRu": "силён", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/fuerte" },
+        { "value": "joven", "glossRu": "молод", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/joven" },
+        { "value": "serio", "glossRu": "серьёзен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/serio" },
+        { "value": "amable", "glossRu": "добр", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/amable" },
+        { "value": "sincero", "glossRu": "искренен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/sincero" },
+        { "value": "activo", "glossRu": "активен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/activo" },
+        { "value": "curioso", "glossRu": "любопытен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/curioso" },
+        { "value": "paciente", "glossRu": "терпелив", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/paciente" },
+        { "value": "atento", "glossRu": "внимателен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/atento" },
+        { "value": "inteligente", "glossRu": "умён", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/inteligente" },
+        { "value": "trabajador", "glossRu": "трудолюбив", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/trabajador" },
+        { "value": "creativo", "glossRu": "креативен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/creativo" },
+        { "value": "honesto", "glossRu": "честен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/honesto" },
+        { "value": "generoso", "glossRu": "щедр", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/generoso" },
+        { "value": "valiente", "glossRu": "смел", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/valiente" },
+        { "value": "responsable", "glossRu": "ответственен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/responsable" },
+        { "value": "prudente", "glossRu": "осторожен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/prudente" },
+        { "value": "optimista", "glossRu": "оптимистичен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/optimista" },
+        { "value": "realista", "glossRu": "реалист", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/realista" },
+        { "value": "sociable", "glossRu": "общителен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/sociable" }
+      ]
+    },
+    {
+      "id": "es-lex-estar-locations", "kind": "umbrella_lexical_fact", "lemma": "estar", "role": "location_phrase",
+      "values": ["en casa", "en la escuela", "en la tienda", "en la oficina", "en el restaurante", "en el museo", "en el cine", "en el mercado", "en el banco", "en el hospital", "en la estación", "en la biblioteca", "en la playa", "en el centro", "en el aeropuerto", "en el hotel", "en el gimnasio", "en el teatro", "en el jardín", "en la universidad"],
+      "status": "pending_native_review", "sourceIds": ["rae-estar", "rae-es-lexicon", "rae-es-prepositions"],
+      "valueEvidence": [
+        { "value": "en casa", "glossRu": "дома", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/casa" },
+        { "value": "en la escuela", "glossRu": "в школе", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/escuela" },
+        { "value": "en la tienda", "glossRu": "в магазине", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/tienda" },
+        { "value": "en la oficina", "glossRu": "в офисе", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/oficina" },
+        { "value": "en el restaurante", "glossRu": "в ресторане", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/restaurante" },
+        { "value": "en el museo", "glossRu": "в музее", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/museo" },
+        { "value": "en el cine", "glossRu": "в кинотеатре", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/cine" },
+        { "value": "en el mercado", "glossRu": "на рынке", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/mercado" },
+        { "value": "en el banco", "glossRu": "в банке", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/banco" },
+        { "value": "en el hospital", "glossRu": "в больнице", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/hospital" },
+        { "value": "en la estación", "glossRu": "на станции", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/estación" },
+        { "value": "en la biblioteca", "glossRu": "в библиотеке", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/biblioteca" },
+        { "value": "en la playa", "glossRu": "на пляже", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/playa" },
+        { "value": "en el centro", "glossRu": "в центре", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/centro" },
+        { "value": "en el aeropuerto", "glossRu": "в аэропорту", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/aeropuerto" },
+        { "value": "en el hotel", "glossRu": "в отеле", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/hotel" },
+        { "value": "en el gimnasio", "glossRu": "в спортзале", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/gimnasio" },
+        { "value": "en el teatro", "glossRu": "в театре", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/teatro" },
+        { "value": "en el jardín", "glossRu": "в саду", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/jardín" },
+        { "value": "en la universidad", "glossRu": "в университете", "evidenceKind": "lexical_entry_plus_preposition_rule", "sourceIds": ["rae-es-lexicon", "rae-es-prepositions"], "sourceUrl": "https://dle.rae.es/universidad" }
+      ]
+    },
+    {
+      "id": "es-lex-tener-possessions", "kind": "umbrella_lexical_fact", "lemma": "tener", "role": "possession_noun_phrase",
+      "values": ["una cita", "una reunión", "una clase", "un examen", "una visita", "una llamada", "una entrevista", "una reserva", "un viaje", "un turno", "un encuentro", "una fecha límite", "una entrega", "una presentación", "un entrenamiento", "una prueba", "un curso", "un concierto", "una cena", "un compromiso"],
+      "status": "pending_native_review", "sourceIds": ["rae-tener", "rae-es-lexicon"],
+      "valueEvidence": [
+        { "value": "una cita", "glossRu": "приём", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/cita" },
+        { "value": "una reunión", "glossRu": "совещание", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/reunión" },
+        { "value": "una clase", "glossRu": "занятие", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/clase" },
+        { "value": "un examen", "glossRu": "экзамен", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/examen" },
+        { "value": "una visita", "glossRu": "визит", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/visita" },
+        { "value": "una llamada", "glossRu": "звонок", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/llamada" },
+        { "value": "una entrevista", "glossRu": "собеседование", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/entrevista" },
+        { "value": "una reserva", "glossRu": "бронь", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/reserva" },
+        { "value": "un viaje", "glossRu": "поездка", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/viaje" },
+        { "value": "un turno", "glossRu": "смена", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/turno" },
+        { "value": "un encuentro", "glossRu": "встреча", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/encuentro" },
+        { "value": "una fecha límite", "glossRu": "крайний срок", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/límite" },
+        { "value": "una entrega", "glossRu": "сдача работы", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/entrega" },
+        { "value": "una presentación", "glossRu": "презентация", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/presentación" },
+        { "value": "un entrenamiento", "glossRu": "тренировка", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/entrenamiento" },
+        { "value": "una prueba", "glossRu": "испытание", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/prueba" },
+        { "value": "un curso", "glossRu": "курс", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/curso" },
+        { "value": "un concierto", "glossRu": "концерт", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/concierto" },
+        { "value": "una cena", "glossRu": "ужин", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/cena" },
+        { "value": "un compromiso", "glossRu": "важное дело", "evidenceKind": "lexical_entry", "sourceIds": ["rae-es-lexicon"], "sourceUrl": "https://dle.rae.es/compromiso" }
+      ]
+    }
   ],
   "sources": [
     { "id": "rae-ser", "label": "Diccionario de la lengua española: ser", "url": "https://dle.rae.es/ser" },
     { "id": "rae-estar", "label": "Diccionario de la lengua española: estar", "url": "https://dle.rae.es/estar" },
-    { "id": "rae-tener", "label": "Diccionario de la lengua española: tener", "url": "https://dle.rae.es/tener" }
+    { "id": "rae-tener", "label": "Diccionario de la lengua española: tener", "url": "https://dle.rae.es/tener" },
+    { "id": "rae-es-lexicon", "label": "RAE DLE: exact lexical entries linked per value", "url": "https://dle.rae.es/" },
+    { "id": "rae-es-prepositions", "label": "RAE Glosario de términos gramaticales: preposición", "url": "https://www.rae.es/gtg/preposición" }
   ],
   "facts": [
     { "id": "es-ser-soy", "lemma": "ser", "target": "soy", "sourceRu": "я являюсь", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-ser"] },

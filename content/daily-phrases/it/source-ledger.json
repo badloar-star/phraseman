@@ -1,0 +1,907 @@
+{
+  "schemaVersion": "daily-phrase-source-linkage-v2",
+  "studyTarget": "it",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "status": "SOURCE_COMPLETE_HOLD",
+  "authoritativeLedger": {
+    "path": "authoritative-source-ledger.json",
+    "schemaVersion": "daily-phrase-authoritative-source-ledger-v1",
+    "source": "Treccani — Vocabolario on line, Sinonimi e Contrari, and Lingua Italiana; Accademia della Crusca — Consulenza linguistica",
+    "sourceHomes": [
+      "https://www.treccani.it/vocabolario/",
+      "https://www.treccani.it/magazine/lingua_italiana/",
+      "https://accademiadellacrusca.it/"
+    ],
+    "sourceAliases": [
+      "Treccani — Vocabolario on line, Sinonimi e Contrari, and Lingua Italiana"
+    ],
+    "checkedAt": "2026-10-03T23:12:31.115Z",
+    "requiredCount": 176,
+    "acceptedCount": 176,
+    "status": "SOURCE_COMPLETE_HOLD"
+  },
+  "linkedCandidateRows": [
+    {
+      "rowId": "it-001",
+      "ledgerRow": 0,
+      "sourceId": "it-treccani-verde-essere-al-verde"
+    },
+    {
+      "rowId": "it-002",
+      "ledgerRow": 1,
+      "sourceId": "it-treccani-gamba-essere-in-gamba"
+    },
+    {
+      "rowId": "it-003",
+      "ledgerRow": 2,
+      "sourceId": "it-treccani-abbaglio-prendere-un-abbaglio"
+    },
+    {
+      "rowId": "it-004",
+      "ledgerRow": 3,
+      "sourceId": "it-treccani-cuoio-tirare-le-cuoia"
+    },
+    {
+      "rowId": "it-005",
+      "ledgerRow": 4,
+      "sourceId": "it-treccani-vuotare-vuotare-il-sacco"
+    },
+    {
+      "rowId": "it-006",
+      "ledgerRow": 5,
+      "sourceId": "it-treccani-tagliare-tagliare-la-corda"
+    },
+    {
+      "rowId": "it-007",
+      "ledgerRow": 6,
+      "sourceId": "it-treccani-tirare-per-le-lunghe"
+    },
+    {
+      "rowId": "it-008",
+      "ledgerRow": 7,
+      "sourceId": "it-treccani-battere-stesso-tasto"
+    },
+    {
+      "rowId": "it-009",
+      "ledgerRow": 8,
+      "sourceId": "it-treccani-gamba-passo-piu-lungo"
+    },
+    {
+      "rowId": "it-010",
+      "ledgerRow": 9,
+      "sourceId": "it-treccani-respiro-togliere-il-fiato"
+    },
+    {
+      "rowId": "it-011",
+      "ledgerRow": 10,
+      "sourceId": "it-treccani-mano-avere-le-mani-bucate"
+    },
+    {
+      "rowId": "it-012",
+      "ledgerRow": 11,
+      "sourceId": "it-treccani-incudine-tra-incudine-martello"
+    },
+    {
+      "rowId": "it-013",
+      "ledgerRow": 12,
+      "sourceId": "it-treccani-cadere-cadere-dalle-nuvole"
+    },
+    {
+      "rowId": "it-014",
+      "ledgerRow": 13,
+      "sourceId": "it-treccani-svagato-testa-fra-le-nuvole"
+    },
+    {
+      "rowId": "it-015",
+      "ledgerRow": 14,
+      "sourceId": "it-treccani-testa-costare-un-occhio"
+    },
+    {
+      "rowId": "it-016",
+      "ledgerRow": 15,
+      "sourceId": "it-treccani-lingua-non-avere-peli"
+    },
+    {
+      "rowId": "it-017",
+      "ledgerRow": 16,
+      "sourceId": "it-treccani-dito-mettere-dito-piaga"
+    },
+    {
+      "rowId": "it-018",
+      "ledgerRow": 17,
+      "sourceId": "it-treccani-montinaro-due-piccioni-fava"
+    },
+    {
+      "rowId": "it-019",
+      "ledgerRow": 18,
+      "sourceId": "it-treccani-porcelluzzi-orecchie-mercante"
+    },
+    {
+      "rowId": "it-020",
+      "ledgerRow": 19,
+      "sourceId": "it-treccani-spugna-gettare-la-spugna"
+    },
+    {
+      "rowId": "it-021",
+      "ledgerRow": 20,
+      "sourceId": "it-treccani-lupo-in-bocca-al-lupo"
+    },
+    {
+      "rowId": "it-022",
+      "ledgerRow": 21,
+      "sourceId": "it-treccani-capello-avere-un-diavolo"
+    },
+    {
+      "rowId": "it-023",
+      "ledgerRow": 22,
+      "sourceId": "it-treccani-acqua-acqua-in-bocca"
+    },
+    {
+      "rowId": "it-024",
+      "ledgerRow": 23,
+      "sourceId": "it-treccani-mosca-mosca-bianca"
+    },
+    {
+      "rowId": "it-025",
+      "ledgerRow": 24,
+      "sourceId": "it-treccani-ora-non-vedere-l-ora"
+    },
+    {
+      "rowId": "it-026",
+      "ledgerRow": 25,
+      "sourceId": "it-treccani-ghiaccio-rompere-il-ghiaccio"
+    },
+    {
+      "rowId": "it-027",
+      "ledgerRow": 26,
+      "sourceId": "it-treccani-vanvera-parlare-a-vanvera"
+    },
+    {
+      "rowId": "it-028",
+      "ledgerRow": 27,
+      "sourceId": "it-treccani-carne-mettere-troppa-carne-al-fuoco"
+    },
+    {
+      "rowId": "it-029",
+      "ledgerRow": 28,
+      "sourceId": "it-treccani-manico-coltello-dalla-parte-del-manico"
+    },
+    {
+      "rowId": "it-030",
+      "ledgerRow": 29,
+      "sourceId": "it-treccani-arrampicarsi-sugli-specchi"
+    },
+    {
+      "rowId": "it-031",
+      "ledgerRow": 30,
+      "sourceId": "it-crusca-carro-davanti-ai-buoi"
+    },
+    {
+      "rowId": "it-032",
+      "ledgerRow": 31,
+      "sourceId": "it-treccani-cercare-pelo-nell-uovo"
+    },
+    {
+      "rowId": "it-033",
+      "ledgerRow": 32,
+      "sourceId": "it-treccani-riuscire-ciambelle-col-buco"
+    },
+    {
+      "rowId": "it-034",
+      "ledgerRow": 33,
+      "sourceId": "it-treccani-rimboccare-le-maniche"
+    },
+    {
+      "rowId": "it-035",
+      "ledgerRow": 34,
+      "sourceId": "it-treccani-braccio-braccini-corti"
+    },
+    {
+      "rowId": "it-036",
+      "ledgerRow": 35,
+      "sourceId": "it-treccani-cadere-in-piedi"
+    },
+    {
+      "rowId": "it-037",
+      "ledgerRow": 36,
+      "sourceId": "it-treccani-occhio-foderati-prosciutto"
+    },
+    {
+      "rowId": "it-038",
+      "ledgerRow": 37,
+      "sourceId": "it-treccani-staffa-piede-due-staffe"
+    },
+    {
+      "rowId": "it-039",
+      "ledgerRow": 38,
+      "sourceId": "it-treccani-lavare-lavarsene-le-mani"
+    },
+    {
+      "rowId": "it-040",
+      "ledgerRow": 39,
+      "sourceId": "it-treccani-prezzemolo-essere-come"
+    },
+    {
+      "rowId": "it-041",
+      "ledgerRow": 40,
+      "sourceId": "it-treccani-buca-dare-buca"
+    },
+    {
+      "rowId": "it-042",
+      "ledgerRow": 41,
+      "sourceId": "it-treccani-arma-prime-armi"
+    },
+    {
+      "rowId": "it-043",
+      "ledgerRow": 42,
+      "sourceId": "it-treccani-vaccaro-coda-paglia"
+    },
+    {
+      "rowId": "it-044",
+      "ledgerRow": 43,
+      "sourceId": "it-treccani-fagiolo-capitare-a-fagiolo"
+    },
+    {
+      "rowId": "it-045",
+      "ledgerRow": 44,
+      "sourceId": "it-treccani-mettere-mani-avanti"
+    },
+    {
+      "rowId": "it-046",
+      "ledgerRow": 45,
+      "sourceId": "it-treccani-palla-prendere-al-balzo"
+    },
+    {
+      "rowId": "it-047",
+      "ledgerRow": 46,
+      "sourceId": "it-treccani-voce-capitolo"
+    },
+    {
+      "rowId": "it-048",
+      "ledgerRow": 47,
+      "sourceId": "it-treccani-pelare-gatta"
+    },
+    {
+      "rowId": "it-049",
+      "ledgerRow": 48,
+      "sourceId": "it-treccani-pesce-non-sapere-che-pigliare"
+    },
+    {
+      "rowId": "it-050",
+      "ledgerRow": 49,
+      "sourceId": "it-treccani-manica-asso"
+    },
+    {
+      "rowId": "it-051",
+      "ledgerRow": 50,
+      "sourceId": "it-treccani-tenere-tenere-d-occhio"
+    },
+    {
+      "rowId": "it-052",
+      "ledgerRow": 51,
+      "sourceId": "it-treccani-ora2-fare-le-ore-piccole"
+    },
+    {
+      "rowId": "it-053",
+      "ledgerRow": 52,
+      "sourceId": "it-treccani-debole-avere-un-debole-per"
+    },
+    {
+      "rowId": "it-054",
+      "ledgerRow": 53,
+      "sourceId": "it-treccani-mente-fare-mente-locale"
+    },
+    {
+      "rowId": "it-055",
+      "ledgerRow": 54,
+      "sourceId": "it-treccani-acqua-tirare-acqua-proprio-mulino"
+    },
+    {
+      "rowId": "it-056",
+      "ledgerRow": 55,
+      "sourceId": "it-treccani-alloro-dormire-sugli-allori"
+    },
+    {
+      "rowId": "it-057",
+      "ledgerRow": 56,
+      "sourceId": "it-treccani-baffo-ridere-sotto-i-baffi"
+    },
+    {
+      "rowId": "it-058",
+      "ledgerRow": 57,
+      "sourceId": "it-treccani-faccia-avere-una-faccia-tosta"
+    },
+    {
+      "rowId": "it-059",
+      "ledgerRow": 58,
+      "sourceId": "it-treccani-acqua-affogare-bicchier-acqua"
+    },
+    {
+      "rowId": "it-060",
+      "ledgerRow": 59,
+      "sourceId": "it-treccani-toccare-toccare-ferro"
+    },
+    {
+      "rowId": "it-061",
+      "ledgerRow": 60,
+      "sourceId": "it-treccani-cielo-essere-al-settimo-cielo"
+    },
+    {
+      "rowId": "it-062",
+      "ledgerRow": 61,
+      "sourceId": "it-treccani-lanterna-lucciole-lanterne"
+    },
+    {
+      "rowId": "it-063",
+      "ledgerRow": 62,
+      "sourceId": "it-treccani-pulce-in-orecchio"
+    },
+    {
+      "rowId": "it-064",
+      "ledgerRow": 63,
+      "sourceId": "it-treccani-sereno-fulmine-ciel-sereno"
+    },
+    {
+      "rowId": "it-065",
+      "ledgerRow": 64,
+      "sourceId": "it-treccani-vela-gonfie-vele"
+    },
+    {
+      "rowId": "it-066",
+      "ledgerRow": 65,
+      "sourceId": "it-treccani-carta-carta-bianca"
+    },
+    {
+      "rowId": "it-067",
+      "ledgerRow": 66,
+      "sourceId": "it-treccani-viso-buon-viso-cattivo-gioco"
+    },
+    {
+      "rowId": "it-068",
+      "ledgerRow": 67,
+      "sourceId": "it-treccani-toro-prendere-corna"
+    },
+    {
+      "rowId": "it-069",
+      "ledgerRow": 68,
+      "sourceId": "it-treccani-chiudere-chiudere-un-occhio"
+    },
+    {
+      "rowId": "it-070",
+      "ledgerRow": 69,
+      "sourceId": "it-treccani-piede-piedi-di-piombo"
+    },
+    {
+      "rowId": "it-071",
+      "ledgerRow": 70,
+      "sourceId": "it-treccani-pane-essere-pezzo-di-pane"
+    },
+    {
+      "rowId": "it-072",
+      "ledgerRow": 71,
+      "sourceId": "it-treccani-pasta-avere-mani-in-pasta"
+    },
+    {
+      "rowId": "it-073",
+      "ledgerRow": 72,
+      "sourceId": "it-treccani-fumo-andare-in-fumo"
+    },
+    {
+      "rowId": "it-074",
+      "ledgerRow": 73,
+      "sourceId": "it-treccani-nero-mettere-nero-su-bianco"
+    },
+    {
+      "rowId": "it-075",
+      "ledgerRow": 74,
+      "sourceId": "it-treccani-cielo-non-stare-cielo-terra"
+    },
+    {
+      "rowId": "it-076",
+      "ledgerRow": 75,
+      "sourceId": "it-treccani-puntino-mettere-puntini-sulle-i"
+    },
+    {
+      "rowId": "it-077",
+      "ledgerRow": 76,
+      "sourceId": "it-treccani-erba-far-ogni-erba-fascio"
+    },
+    {
+      "rowId": "it-078",
+      "ledgerRow": 77,
+      "sourceId": "it-treccani-sopra-metterci-pietra-sopra"
+    },
+    {
+      "rowId": "it-079",
+      "ledgerRow": 78,
+      "sourceId": "it-treccani-soffiare-soffiare-sul-fuoco"
+    },
+    {
+      "rowId": "it-080",
+      "ledgerRow": 79,
+      "sourceId": "it-treccani-mano-essere-alla-mano"
+    },
+    {
+      "rowId": "it-081",
+      "ledgerRow": 80,
+      "sourceId": "it-treccani-mano-avere-mani-legate"
+    },
+    {
+      "rowId": "it-082",
+      "ledgerRow": 81,
+      "sourceId": "it-treccani-alto-essere-in-alto-mare"
+    },
+    {
+      "rowId": "it-083",
+      "ledgerRow": 82,
+      "sourceId": "it-treccani-piantare-piantare-in-asso"
+    },
+    {
+      "rowId": "it-084",
+      "ledgerRow": 83,
+      "sourceId": "it-treccani-staffa-perdere-le-staffe"
+    },
+    {
+      "rowId": "it-085",
+      "ledgerRow": 84,
+      "sourceId": "it-treccani-bastone-mettere-bastoni-fra-ruote"
+    },
+    {
+      "rowId": "it-086",
+      "ledgerRow": 85,
+      "sourceId": "it-treccani-franco-farla-franca"
+    },
+    {
+      "rowId": "it-087",
+      "ledgerRow": 86,
+      "sourceId": "it-treccani-croce-a-occhio-e-croce"
+    },
+    {
+      "rowId": "it-088",
+      "ledgerRow": 87,
+      "sourceId": "it-treccani-filo-per-filo-e-segno"
+    },
+    {
+      "rowId": "it-089",
+      "ledgerRow": 88,
+      "sourceId": "it-treccani-camicia-nascere-con-camicia"
+    },
+    {
+      "rowId": "it-090",
+      "ledgerRow": 89,
+      "sourceId": "it-treccani-gola-avere-acqua-alla-gola"
+    },
+    {
+      "rowId": "it-091",
+      "ledgerRow": 90,
+      "sourceId": "it-treccani-spina-stare-sulle-spine"
+    },
+    {
+      "rowId": "it-092",
+      "ledgerRow": 91,
+      "sourceId": "it-treccani-alzare-alzare-il-gomito"
+    },
+    {
+      "rowId": "it-093",
+      "ledgerRow": 92,
+      "sourceId": "it-treccani-aria-fare-castelli-in-aria"
+    },
+    {
+      "rowId": "it-094",
+      "ledgerRow": 93,
+      "sourceId": "it-treccani-otto-in-quattro-e-quattrotto"
+    },
+    {
+      "rowId": "it-095",
+      "ledgerRow": 94,
+      "sourceId": "it-treccani-pelo-per-un-pelo"
+    },
+    {
+      "rowId": "it-096",
+      "ledgerRow": 95,
+      "sourceId": "it-treccani-venire-ai-ferri-corti"
+    },
+    {
+      "rowId": "it-097",
+      "ledgerRow": 96,
+      "sourceId": "it-treccani-botte-essere-in-una-botte-di-ferro"
+    },
+    {
+      "rowId": "it-098",
+      "ledgerRow": 97,
+      "sourceId": "it-treccani-banco-tenere-banco"
+    },
+    {
+      "rowId": "it-099",
+      "ledgerRow": 98,
+      "sourceId": "it-treccani-osso-essere-un-osso-duro"
+    },
+    {
+      "rowId": "it-100",
+      "ledgerRow": 99,
+      "sourceId": "it-treccani-piede-prendere-piede"
+    },
+    {
+      "rowId": "it-101",
+      "ledgerRow": 100,
+      "sourceId": "it-treccani-gamba-prendere-sotto-gamba"
+    },
+    {
+      "rowId": "it-102",
+      "ledgerRow": 101,
+      "sourceId": "it-treccani-battere-non-battere-ciglio"
+    },
+    {
+      "rowId": "it-103",
+      "ledgerRow": 102,
+      "sourceId": "it-treccani-sodo-andare-al-sodo"
+    },
+    {
+      "rowId": "it-104",
+      "ledgerRow": 103,
+      "sourceId": "it-treccani-mano-starsene-mani-in-mano"
+    },
+    {
+      "rowId": "it-105",
+      "ledgerRow": 104,
+      "sourceId": "it-treccani-stucco2-rimanere-di-stucco"
+    },
+    {
+      "rowId": "it-106",
+      "ledgerRow": 105,
+      "sourceId": "it-treccani-buco2-non-cavare-ragno"
+    },
+    {
+      "rowId": "it-107",
+      "ledgerRow": 106,
+      "sourceId": "it-treccani-stretta-mettere-alle-strette"
+    },
+    {
+      "rowId": "it-108",
+      "ledgerRow": 107,
+      "sourceId": "it-treccani-rasoio-filo-del-rasoio"
+    },
+    {
+      "rowId": "it-109",
+      "ledgerRow": 108,
+      "sourceId": "it-treccani-piu-parlare-piu-meno"
+    },
+    {
+      "rowId": "it-110",
+      "ledgerRow": 109,
+      "sourceId": "it-treccani-quadrato2-fare-quadrato"
+    },
+    {
+      "rowId": "it-111",
+      "ledgerRow": 110,
+      "sourceId": "it-treccani-ruba-andare-a-ruba"
+    },
+    {
+      "rowId": "it-112",
+      "ledgerRow": 111,
+      "sourceId": "it-treccani-marcia2-fare-marcia-indietro"
+    },
+    {
+      "rowId": "it-113",
+      "ledgerRow": 112,
+      "sourceId": "it-treccani-fuoco-mettere-mano-sul-fuoco"
+    },
+    {
+      "rowId": "it-114",
+      "ledgerRow": 113,
+      "sourceId": "it-treccani-notte-passare-notte-in-bianco"
+    },
+    {
+      "rowId": "it-115",
+      "ledgerRow": 114,
+      "sourceId": "it-treccani-pollice-avere-pollice-verde"
+    },
+    {
+      "rowId": "it-116",
+      "ledgerRow": 115,
+      "sourceId": "it-treccani-colpo-fare-colpo"
+    },
+    {
+      "rowId": "it-117",
+      "ledgerRow": 116,
+      "sourceId": "it-treccani-vena2-essere-in-vena"
+    },
+    {
+      "rowId": "it-118",
+      "ledgerRow": 117,
+      "sourceId": "it-treccani-bruciapelo-a-bruciapelo"
+    },
+    {
+      "rowId": "it-119",
+      "ledgerRow": 118,
+      "sourceId": "it-treccani-mordere-mordersi-le-mani"
+    },
+    {
+      "rowId": "it-120",
+      "ledgerRow": 119,
+      "sourceId": "it-treccani-discorso-perdere-filo-discorso"
+    },
+    {
+      "rowId": "it-121",
+      "ledgerRow": 120,
+      "sourceId": "it-treccani-giro-prendere-in-giro"
+    },
+    {
+      "rowId": "it-122",
+      "ledgerRow": 121,
+      "sourceId": "it-treccani-capo-senza-capo-ne-coda"
+    },
+    {
+      "rowId": "it-123",
+      "ledgerRow": 122,
+      "sourceId": "it-treccani-gettare-gettare-la-maschera"
+    },
+    {
+      "rowId": "it-124",
+      "ledgerRow": 123,
+      "sourceId": "it-treccani-pane1-rendere-pan-per-focaccia"
+    },
+    {
+      "rowId": "it-125",
+      "ledgerRow": 124,
+      "sourceId": "it-treccani-goccia-goccia-traboccare-vaso"
+    },
+    {
+      "rowId": "it-126",
+      "ledgerRow": 125,
+      "sourceId": "it-treccani-galla1-venire-a-galla"
+    },
+    {
+      "rowId": "it-127",
+      "ledgerRow": 126,
+      "sourceId": "it-treccani-castagna-togliere-castagne-fuoco"
+    },
+    {
+      "rowId": "it-128",
+      "ledgerRow": 127,
+      "sourceId": "it-treccani-corrente1-essere-al-corrente"
+    },
+    {
+      "rowId": "it-129",
+      "ledgerRow": 128,
+      "sourceId": "it-treccani-foglia-mangiare-la-foglia"
+    },
+    {
+      "rowId": "it-130",
+      "ledgerRow": 129,
+      "sourceId": "it-treccani-fuoco-scherzare-col-fuoco"
+    },
+    {
+      "rowId": "it-131",
+      "ledgerRow": 130,
+      "sourceId": "it-treccani-panno-mettersi-nei-panni"
+    },
+    {
+      "rowId": "it-132",
+      "ledgerRow": 131,
+      "sourceId": "it-treccani-scontato-dare-per-scontato"
+    },
+    {
+      "rowId": "it-133",
+      "ledgerRow": 132,
+      "sourceId": "it-treccani-porto2-andare-in-porto"
+    },
+    {
+      "rowId": "it-134",
+      "ledgerRow": 133,
+      "sourceId": "it-treccani-cambiare-cambiare-carte-in-tavola"
+    },
+    {
+      "rowId": "it-135",
+      "ledgerRow": 134,
+      "sourceId": "it-treccani-testa-tenere-testa"
+    },
+    {
+      "rowId": "it-136",
+      "ledgerRow": 135,
+      "sourceId": "it-treccani-somma-tirare-le-somme"
+    },
+    {
+      "rowId": "it-137",
+      "ledgerRow": 136,
+      "sourceId": "it-treccani-stringere-stringere-i-denti"
+    },
+    {
+      "rowId": "it-138",
+      "ledgerRow": 137,
+      "sourceId": "it-treccani-chiodo-avere-chiodo-fisso"
+    },
+    {
+      "rowId": "it-139",
+      "ledgerRow": 138,
+      "sourceId": "it-treccani-lunghezza-stessa-lunghezza-onda"
+    },
+    {
+      "rowId": "it-140",
+      "ledgerRow": 139,
+      "sourceId": "it-treccani-mettere-mettere-radici"
+    },
+    {
+      "rowId": "it-141",
+      "ledgerRow": 140,
+      "sourceId": "it-treccani-dente-avere-dente-avvelenato"
+    },
+    {
+      "rowId": "it-142",
+      "ledgerRow": 141,
+      "sourceId": "it-treccani-bocca-essere-sulla-bocca-tutti"
+    },
+    {
+      "rowId": "it-143",
+      "ledgerRow": 142,
+      "sourceId": "it-treccani-quattro-farsi-in-quattro"
+    },
+    {
+      "rowId": "it-144",
+      "ledgerRow": 143,
+      "sourceId": "it-treccani-acqua-gettare-acqua-fuoco"
+    },
+    {
+      "rowId": "it-145",
+      "ledgerRow": 144,
+      "sourceId": "it-treccani-zappa-tirarsi-zappa-piedi"
+    },
+    {
+      "rowId": "it-146",
+      "ledgerRow": 145,
+      "sourceId": "it-treccani-acqua-scoprire-acqua-calda"
+    },
+    {
+      "rowId": "it-147",
+      "ledgerRow": 146,
+      "sourceId": "it-treccani-puzza-avere-puzza-sotto-naso"
+    },
+    {
+      "rowId": "it-148",
+      "ledgerRow": 147,
+      "sourceId": "it-treccani-pesce-essere-pesce-fuor-acqua"
+    },
+    {
+      "rowId": "it-149",
+      "ledgerRow": 148,
+      "sourceId": "it-treccani-faccia-perdere-la-faccia"
+    },
+    {
+      "rowId": "it-150",
+      "ledgerRow": 149,
+      "sourceId": "it-treccani-malincuore-a-malincuore"
+    },
+    {
+      "rowId": "it-151",
+      "ledgerRow": 150,
+      "sourceId": "it-treccani-padella-cadere-padella-brace"
+    },
+    {
+      "rowId": "it-152",
+      "ledgerRow": 151,
+      "sourceId": "it-treccani-oste-conti-senza-oste"
+    },
+    {
+      "rowId": "it-153",
+      "ledgerRow": 152,
+      "sourceId": "it-treccani-capra-salvare-capra-cavoli"
+    },
+    {
+      "rowId": "it-154",
+      "ledgerRow": 153,
+      "sourceId": "it-treccani-gettare-fumo-negli-occhi"
+    },
+    {
+      "rowId": "it-155",
+      "ledgerRow": 154,
+      "sourceId": "it-treccani-sacco-mettere-nel-sacco"
+    },
+    {
+      "rowId": "it-156",
+      "ledgerRow": 155,
+      "sourceId": "it-treccani-orecchio-essere-tutt-orecchi"
+    },
+    {
+      "rowId": "it-157",
+      "ledgerRow": 156,
+      "sourceId": "it-treccani-parola-mettere-buona-parola"
+    },
+    {
+      "rowId": "it-158",
+      "ledgerRow": 157,
+      "sourceId": "it-treccani-cascare-far-cascare-braccia"
+    },
+    {
+      "rowId": "it-159",
+      "ledgerRow": 158,
+      "sourceId": "it-treccani-pelo-avere-pelo-stomaco"
+    },
+    {
+      "rowId": "it-160",
+      "ledgerRow": 159,
+      "sourceId": "it-treccani-libro-essere-libro-aperto"
+    },
+    {
+      "rowId": "it-161",
+      "ledgerRow": 160,
+      "sourceId": "it-treccani-regola-carte-in-regola"
+    },
+    {
+      "rowId": "it-162",
+      "ledgerRow": 161,
+      "sourceId": "it-treccani-corrente3-andare-contro-corrente"
+    },
+    {
+      "rowId": "it-163",
+      "ledgerRow": 162,
+      "sourceId": "it-treccani-tirare-tirare-in-ballo"
+    },
+    {
+      "rowId": "it-164",
+      "ledgerRow": 163,
+      "sourceId": "it-treccani-salto1-salto-nel-buio"
+    },
+    {
+      "rowId": "it-165",
+      "ledgerRow": 164,
+      "sourceId": "it-treccani-amaro-boccone-amaro"
+    },
+    {
+      "rowId": "it-166",
+      "ledgerRow": 165,
+      "sourceId": "it-treccani-passo2-passi-da-gigante"
+    },
+    {
+      "rowId": "it-167",
+      "ledgerRow": 166,
+      "sourceId": "it-treccani-nodo-nodo-alla-gola"
+    },
+    {
+      "rowId": "it-168",
+      "ledgerRow": 167,
+      "sourceId": "it-treccani-vittoria-cantare-vittoria"
+    },
+    {
+      "rowId": "it-169",
+      "ledgerRow": 168,
+      "sourceId": "it-treccani-pesce-pesce-in-barile"
+    },
+    {
+      "rowId": "it-170",
+      "ledgerRow": 169,
+      "sourceId": "it-treccani-manica-altro-paio-di-maniche"
+    },
+    {
+      "rowId": "it-171",
+      "ledgerRow": 170,
+      "sourceId": "it-treccani-pezza-mettere-una-pezza"
+    },
+    {
+      "rowId": "it-172",
+      "ledgerRow": 171,
+      "sourceId": "it-treccani-seminato-uscire-dal-seminato"
+    },
+    {
+      "rowId": "it-173",
+      "ledgerRow": 172,
+      "sourceId": "it-treccani-latte-fare-venire-latte-ginocchia"
+    },
+    {
+      "rowId": "it-174",
+      "ledgerRow": 173,
+      "sourceId": "it-treccani-palla-essere-palla-al-piede"
+    },
+    {
+      "rowId": "it-175",
+      "ledgerRow": 174,
+      "sourceId": "it-treccani-frutta-essere-alla-frutta"
+    },
+    {
+      "rowId": "it-176",
+      "ledgerRow": 175,
+      "sourceId": "it-treccani-sapere2-saperla-lunga"
+    }
+  ],
+  "releasePolicy": "Source linkage is not editorial approval. Italian Daily Phrase remains closed until all 176 rows and every independent hash-bound review pass."
+}

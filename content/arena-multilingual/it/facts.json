@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "arena-target-fact-pack-v1",
+  "studyTarget": "it",
+  "targetLocale": "it-IT",
+  "englishRole": "structure_only_not_linguistic_authority",
+  "lexicalFacts": [
+    { "id": "it-lex-essere-traits", "kind": "umbrella_lexical_fact", "lemma": "essere", "role": "trait_adjective", "values": ["forte", "affidabile", "serio", "gentile", "sincero", "attivo", "curioso", "paziente", "attento", "intelligente", "laborioso", "creativo", "onesto", "generoso", "coraggioso", "responsabile", "prudente", "ottimista", "realista", "socievole"], "status": "pending_native_review", "sourceIds": ["treccani-essere"] },
+    { "id": "it-lex-avere-possessions", "kind": "umbrella_lexical_fact", "lemma": "avere", "role": "possession_noun_phrase", "values": ["un appuntamento", "una riunione", "una lezione", "un esame", "una visita", "una chiamata", "un colloquio", "una prenotazione", "un viaggio", "un turno", "un incontro", "una scadenza", "una consegna", "una presentazione", "un allenamento", "una prova", "un corso", "un concerto", "una cena", "un impegno"], "status": "pending_native_review", "sourceIds": ["treccani-avere"] },
+    { "id": "it-lex-andare-destinations", "kind": "umbrella_lexical_fact", "lemma": "andare", "role": "destination_phrase", "values": ["al parco", "a scuola", "al negozio", "in ufficio", "al ristorante", "al museo", "al cinema", "al mercato", "in banca", "in ospedale", "alla stazione", "in biblioteca", "in spiaggia", "in centro", "all'aeroporto", "in albergo", "in palestra", "a teatro", "in giardino", "all'università"], "status": "pending_native_review", "sourceIds": ["treccani-andare"] }
+  ],
+  "sources": [
+    { "id": "treccani-essere", "label": "Treccani: essere", "url": "https://www.treccani.it/vocabolario/essere1/" },
+    { "id": "treccani-avere", "label": "Treccani: avere", "url": "https://www.treccani.it/vocabolario/avere/" },
+    { "id": "treccani-andare", "label": "Treccani: andare", "url": "https://www.treccani.it/vocabolario/andare1/" }
+  ],
+  "facts": [
+    { "id": "it-essere-sono", "lemma": "essere", "target": "sono", "sourceRu": "я являюсь", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["treccani-essere"] },
+    { "id": "it-essere-sei", "lemma": "essere", "target": "sei", "sourceRu": "ты являешься", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["treccani-essere"] },
+    { "id": "it-essere-e", "lemma": "essere", "target": "è", "sourceRu": "он является", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["treccani-essere"] },
+    { "id": "it-essere-siamo", "lemma": "essere", "target": "siamo", "sourceRu": "мы являемся", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["treccani-essere"] },
+    { "id": "it-avere-ho", "lemma": "avere", "target": "ho", "sourceRu": "у меня есть", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["treccani-avere"] },
+    { "id": "it-avere-hai", "lemma": "avere", "target": "hai", "sourceRu": "у тебя есть", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["treccani-avere"] },
+    { "id": "it-avere-ha", "lemma": "avere", "target": "ha", "sourceRu": "у него есть", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["treccani-avere"] },
+    { "id": "it-avere-abbiamo", "lemma": "avere", "target": "abbiamo", "sourceRu": "у нас есть", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["treccani-avere"] },
+    { "id": "it-andare-vado", "lemma": "andare", "target": "vado", "sourceRu": "я иду", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["treccani-andare"] },
+    { "id": "it-andare-vai", "lemma": "andare", "target": "vai", "sourceRu": "ты идёшь", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["treccani-andare"] },
+    { "id": "it-andare-va", "lemma": "andare", "target": "va", "sourceRu": "он идёт", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["treccani-andare"] },
+    { "id": "it-andare-andiamo", "lemma": "andare", "target": "andiamo", "sourceRu": "мы идём", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["treccani-andare"] }
+  ],
+  "familyDefinitions": {
+    "guess_phrase": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "fill_gap": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "find_oddity": { "evidence": "inverse_of_verified_grammar_matrix", "requires": ["oddityIndex", "inverseProof", "distractorReasons"] },
+    "translate_build": { "evidence": "same_pos_decoy_and_tokenization_proof", "requires": ["correctTokens", "samePosDecoy", "tokenizationProof", "distractorReasons"] },
+    "speed_match": { "evidence": "one_to_one_bijection", "requires": ["pairs:6", "bijectionProof"] }
+  }
+}

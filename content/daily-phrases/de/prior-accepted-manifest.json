@@ -6,8 +6,8 @@
   "editorialStatus": "EDITORIAL_CONTINUITY_ACCEPTED",
   "releaseTrusted": false,
   "activationApproved": false,
-  "acceptedCount": 150,
-  "acceptedThrough": "de-150",
+  "acceptedCount": 176,
+  "acceptedThrough": "de-176",
   "acceptedRowIds": [
     "de-001",
     "de-002",
@@ -158,7 +158,33 @@
     "de-147",
     "de-148",
     "de-149",
-    "de-150"
+    "de-150",
+    "de-151",
+    "de-152",
+    "de-153",
+    "de-154",
+    "de-155",
+    "de-156",
+    "de-157",
+    "de-158",
+    "de-159",
+    "de-160",
+    "de-161",
+    "de-162",
+    "de-163",
+    "de-164",
+    "de-165",
+    "de-166",
+    "de-167",
+    "de-168",
+    "de-169",
+    "de-170",
+    "de-171",
+    "de-172",
+    "de-173",
+    "de-174",
+    "de-175",
+    "de-176"
   ],
   "acceptedRows": [
     {
@@ -199,7 +225,7 @@
     },
     {
       "id": "de-010",
-      "rowSha256": "1B586F0A33340061C595D668F2CE7599847C2023C5F364E51FB277C0622858CA"
+      "rowSha256": "8CCC6B40286540182A854E96F8EF9427F592061D9B091C4913AFD558951E846E"
     },
     {
       "id": "de-011",
@@ -211,7 +237,7 @@
     },
     {
       "id": "de-013",
-      "rowSha256": "BE06AEA4F60FD1AF073733034FE84AC506AAB56329A823E7CD7CAF6ED68521C0"
+      "rowSha256": "168FC2BB93142BBB4213A38E16A48A7C47EC37215E0F475106FC8D3F5C4E699D"
     },
     {
       "id": "de-014",
@@ -227,7 +253,7 @@
     },
     {
       "id": "de-017",
-      "rowSha256": "E68B8BB4416E6F8A76941CEA1D50909B341121D570A36B65351194F69ADAEC0F"
+      "rowSha256": "E35197A5CC1CFA7141077B55015642F40CF6DDE4B5EC7470A439256DF854F938"
     },
     {
       "id": "de-018",
@@ -235,11 +261,11 @@
     },
     {
       "id": "de-019",
-      "rowSha256": "7DB85D93A50DC6F77E00E5817F419F031040A83A770E7DFEE62474324BE8C9E6"
+      "rowSha256": "99AE2587DFF203E28C1DB9AB90F69FF14A50693C7B064B8158D78583F14405A1"
     },
     {
       "id": "de-020",
-      "rowSha256": "9CE0871163CB1365A622DD70904AC7C4B9C04E3FFDA08B5E7A013F2E3FA49CB9"
+      "rowSha256": "4A4A37937DF9CC012022363620EA11BE6DBE6C0F6D7E23CDF9595C696347F5E7"
     },
     {
       "id": "de-021",
@@ -251,11 +277,11 @@
     },
     {
       "id": "de-023",
-      "rowSha256": "3D2EF62A1D38D023CEA2575A579DCC74B1CDF8723C1FF11E55AB288F4131D13E"
+      "rowSha256": "865E357AC4BCAA589C3B6C22D6892921A688008F4D2469961F5423BDBFD0AB73"
     },
     {
       "id": "de-024",
-      "rowSha256": "CBD6432718E3ABD3634825FBE9B4B827956A6FF34CBE6261F94D9700E0AB9D96"
+      "rowSha256": "BA4DFEFF2F36F984B52FB162538C6093936B2F0119C9212B685B4451C4D2D9A5"
     },
     {
       "id": "de-025",
@@ -271,7 +297,7 @@
     },
     {
       "id": "de-028",
-      "rowSha256": "884F4A2B0CFFF0E4DDAF4DBA32D4217458729126C2B88CBE5CDBAA8611F697BA"
+      "rowSha256": "969ED8C2A8F29BF3354076DA3E43DB58C1C7B9EEC03A2A5173680A5ADA3D1449"
     },
     {
       "id": "de-029",
@@ -291,7 +317,7 @@
     },
     {
       "id": "de-033",
-      "rowSha256": "484C8F045FC1FE086C092569E086F4E85A1D640EC65A8F356D6F474F359EE9A3"
+      "rowSha256": "017ADF13FA8543A0CC8107426B0A3395CE44A51E54733DEDD896332BEDB6CC03"
     },
     {
       "id": "de-034",
@@ -299,11 +325,11 @@
     },
     {
       "id": "de-035",
-      "rowSha256": "AD8763774669090F3C9951A8A42BFE06402B72E9B8F7C58EFC4B1885F0DC574B"
+      "rowSha256": "D4D3EA206F5481FD74B6FC54151CC8B48B679CBEF2EF21D630E2B36A1C4240F6"
     },
     {
       "id": "de-036",
-      "rowSha256": "6C77B61A4F8C5D448ED938E8ACFFCB34F8A0318B62C34C337071ED1F8E85F789"
+      "rowSha256": "DACEB21481BB92ADC75988FAD8C2D988E59984E7C0234CFFCD9B164FF10C5FB8"
     },
     {
       "id": "de-037",
@@ -311,11 +337,11 @@
     },
     {
       "id": "de-038",
-      "rowSha256": "5B7B79AD5E4549C101F59C0CA818A7954213D2F21D6053260F63421F03101646"
+      "rowSha256": "C70F1B5485F2FF8FD5BFDBEF83DEC842CE44EFE84C0EC603560A1EC4245A90E5"
     },
     {
       "id": "de-039",
-      "rowSha256": "ED79D0D998C26F89A73E5CB907DF3A0F4E06DF06B4B81CE2BFF0A928E5DE7E5A"
+      "rowSha256": "E00D657316A3049D6E7E3AD8474D80AD25464D8FB1D5C926A94976CA34197A86"
     },
     {
       "id": "de-040",
@@ -343,7 +369,7 @@
     },
     {
       "id": "de-046",
-      "rowSha256": "DE12FBE13161466E8FBFE5D292E1F983F30D2406D3A36BB7ACAAD4F1EDF080FA"
+      "rowSha256": "B069DB65EDF77140699A5819F913D007832EE79809D7F31D2D9C3EFFFF4C58E6"
     },
     {
       "id": "de-047",
@@ -351,7 +377,7 @@
     },
     {
       "id": "de-048",
-      "rowSha256": "7468EEA88DD229573FF9D453A58CC9D441BED04386D417163C937F42AF735C3A"
+      "rowSha256": "AD9331526D279C03B0A2DDDD1408C2F5880E310065C08300BC247AE34583388C"
     },
     {
       "id": "de-049",
@@ -371,7 +397,7 @@
     },
     {
       "id": "de-053",
-      "rowSha256": "6CD8AB6844E673128D31FA598F42E69DEDC3C79F1DBD46C345C31BF9F9B56075"
+      "rowSha256": "9F5B19B490405ABDB0E70382444A6033A59C63C6D427101B35C257841B51EF28"
     },
     {
       "id": "de-054",
@@ -455,7 +481,7 @@
     },
     {
       "id": "de-074",
-      "rowSha256": "076A210F261B3F81B3B88B1847C157E79A5912AE2A6AD636283D4D2F94839452"
+      "rowSha256": "0C66023B15224DE1F6752EBE244036EABE73D2D67375758F539AB928144E4619"
     },
     {
       "id": "de-075",
@@ -539,7 +565,7 @@
     },
     {
       "id": "de-095",
-      "rowSha256": "E638D43BD7F758681E5ABC5F0DB5E119DC6ED04ED780F00AED8032722628143C"
+      "rowSha256": "8A537A12471C34F46B08E8140104F0E7482F2DC52BE7D14CC791669F5E9B195F"
     },
     {
       "id": "de-096",
@@ -551,7 +577,7 @@
     },
     {
       "id": "de-098",
-      "rowSha256": "B3060B736366DB043F18C151D89BA906815C8206B9BD12DC605F8E981AE169BD"
+      "rowSha256": "6B94A996D5EA00714008C0B44E5BFF86C286761EADF1E3483515ECAE56383DE8"
     },
     {
       "id": "de-099",
@@ -575,7 +601,7 @@
     },
     {
       "id": "de-104",
-      "rowSha256": "5DF24336CD787A40F190EA34FEC6EE94BC7792123B2A6D168B6ADB36DB874574"
+      "rowSha256": "C67958B26FB77A26FCCECCCA34E78A0ABE52CAD21B81CE3FD099771CE78D297E"
     },
     {
       "id": "de-105",
@@ -583,7 +609,7 @@
     },
     {
       "id": "de-106",
-      "rowSha256": "21A017333E78978B6FCB92AF4AFB33E911576D48456C3A0607FB4258F89BD4D5"
+      "rowSha256": "413DFC51B0BAC74DA61ECCF48837E392CD66962BD5AA92D0F60194D03AAD26CD"
     },
     {
       "id": "de-107",
@@ -623,7 +649,7 @@
     },
     {
       "id": "de-116",
-      "rowSha256": "EFBE6BE2AF398BC227400C80C1E4368872FC78618BA5C3354E0F442337FE6706"
+      "rowSha256": "096D6B48DC9FEA10B579E0E535339755AC62FB02AEBFF9339185898B3F8E5768"
     },
     {
       "id": "de-117",
@@ -643,7 +669,7 @@
     },
     {
       "id": "de-121",
-      "rowSha256": "DFFE8E7DA96E573CA4B90AA4FF4D7D7B407B22242CA484959FDC9866A0D5E9DF"
+      "rowSha256": "6FCC9BA89EEF13B4DFCA81E8F4ADB4D2F3E45FE8D06D221C3070EC562F3116B5"
     },
     {
       "id": "de-122",
@@ -655,7 +681,7 @@
     },
     {
       "id": "de-124",
-      "rowSha256": "6ECDA0DBFDAA749242265446F313569A6A62F53846F4F6B788200622A44AAB24"
+      "rowSha256": "935675BAA5291B20B4DB7438679C5E89BA38E95B04DA5A7AB0D95E73BDA2DFCF"
     },
     {
       "id": "de-125",
@@ -667,7 +693,7 @@
     },
     {
       "id": "de-127",
-      "rowSha256": "BFF2EB267B0F7A3E4454A9E1520CA2E17E0214C74953AF29AE5849E8E681A54A"
+      "rowSha256": "12145AC196DC83E59BDA0A7C2D541EFED44DED424191419F1C489B277985D351"
     },
     {
       "id": "de-128",
@@ -691,7 +717,7 @@
     },
     {
       "id": "de-133",
-      "rowSha256": "102AD1C159BEDAF1E1F363AD601B675B7C9370F90550F62DA3717B10313476F8"
+      "rowSha256": "F29BDE6C06661CE28F9DE64950B088BB984B0439770BFF14B8C7D194ECB39829"
     },
     {
       "id": "de-134",
@@ -703,7 +729,7 @@
     },
     {
       "id": "de-136",
-      "rowSha256": "5DE0DDE2CC258F9D0D8BFB721CA93B1AC82B683AF73F4E879395F0BEACF082E3"
+      "rowSha256": "7F7017B6EACB7C2976BF2BD54A9A12DA9BF2EBAFCE529A5C8F039A4AA0DF2B9F"
     },
     {
       "id": "de-137",
@@ -715,7 +741,7 @@
     },
     {
       "id": "de-139",
-      "rowSha256": "1C281440228B86E8328FD6D95D444EB7B8697A54E21DBD54D96D1955CA7B1620"
+      "rowSha256": "256495F9CCDE2C8E24254D3DC1C4B8F9B3394F43268F43993524C307BD54C41B"
     },
     {
       "id": "de-140",
@@ -723,11 +749,11 @@
     },
     {
       "id": "de-141",
-      "rowSha256": "EFD6045D5CCE3BF0F873CF9619F2B760DA512A9F5490D4F9B1F1986879B99B60"
+      "rowSha256": "9A811CC379CF8DA83CCA60B750FF52F6893777034DAB449790A709FC8AFFB292"
     },
     {
       "id": "de-142",
-      "rowSha256": "D2C30EA30B0F338B75B34465A7F9624E0FDCF3B52F7003AA40FC5A638E1380B4"
+      "rowSha256": "630E6629E02FF36198F6DBD87CC1F57C10050D32D926C40E51851E433894E181"
     },
     {
       "id": "de-143",
@@ -760,12 +786,116 @@
     {
       "id": "de-150",
       "rowSha256": "96EF249D64BF7F465AF27ACB5895A43B60034EA543CFBFBD26A2311068340DDF"
+    },
+    {
+      "id": "de-151",
+      "rowSha256": "5BFDDA848F29FB4F5DB4E0936E1324B7BA6EF6A0DB434834AC5C0EEF614609B7"
+    },
+    {
+      "id": "de-152",
+      "rowSha256": "ECFC4CDC60FCB1088E931CF09625809D515D5AB189B73DAB1B082F3DC4B5ED28"
+    },
+    {
+      "id": "de-153",
+      "rowSha256": "1E60EE5718713ECBD8F845798A420775BEC153CE0C4929278097BF02AB3BFB76"
+    },
+    {
+      "id": "de-154",
+      "rowSha256": "170425084C8B11E1E16BE63261FEEB8516E18B636DED9B10789F365EA4B65958"
+    },
+    {
+      "id": "de-155",
+      "rowSha256": "2D82D4FFCE6C4DF5131BC95957AEE39241E9D491F8D144F1160A981ABBDC1FAD"
+    },
+    {
+      "id": "de-156",
+      "rowSha256": "04E56C2DE46DAD7AC7105D78FBEF21FA2CB469CB26CE53BEB6FE819454969DB4"
+    },
+    {
+      "id": "de-157",
+      "rowSha256": "EDC30E5271462BC77DB13824B46196D4A335BD6EF26F6BE3234348D74B6D6158"
+    },
+    {
+      "id": "de-158",
+      "rowSha256": "8803C2D36EEF57E0E0F1976FE889A48C1D9EF84F9C2C09A51FAC51C00DE1E8BE"
+    },
+    {
+      "id": "de-159",
+      "rowSha256": "1BCD15F0C62FBA08809F4325A9C42E770A36FDDFBB3CE744F377F02A6BA8EC7F"
+    },
+    {
+      "id": "de-160",
+      "rowSha256": "A8CA2D8FE9EA52A0DE44462A57B3E1C864E9FC8FA4F96513ACC74463C2A42630"
+    },
+    {
+      "id": "de-161",
+      "rowSha256": "813CD4F56CAFB56F47BB77E2B86EEA4467AC16FA4A6912F89C19705B81ED6C11"
+    },
+    {
+      "id": "de-162",
+      "rowSha256": "F3350D512693D01F9CE4518232B686C1FAF2E371B794DA0CD04ABF444300D4F7"
+    },
+    {
+      "id": "de-163",
+      "rowSha256": "21F39DCB1632A17CFECB56B9BDA7C9438D1CAA8704E719B1D81B61B8F54DEF3A"
+    },
+    {
+      "id": "de-164",
+      "rowSha256": "7CD623E282EDB339B08CCEEC32BFF52983CEC8A1B5811BC7C9695F03A6982875"
+    },
+    {
+      "id": "de-165",
+      "rowSha256": "6351813CFB45650343FC76662A54659A0D75BB5426CF0F4AB410369A19C96CEB"
+    },
+    {
+      "id": "de-166",
+      "rowSha256": "2BAA58777E891E4AD87E5FDEED7C5C5382AA4B6BBE1A16B3B695F20CE00E8A13"
+    },
+    {
+      "id": "de-167",
+      "rowSha256": "99E378CCFDD5818030607616F393966C8CCF4B5F40F5E1C59D7ECFDBFF7418A5"
+    },
+    {
+      "id": "de-168",
+      "rowSha256": "4755F212DFF14552A913F6DD89E3A648AA0AEBDC64E4B96117E44B02BD07940A"
+    },
+    {
+      "id": "de-169",
+      "rowSha256": "1BA51CB10EF650BA8A4EAEC1696C61CE29F9686704172B7BE11C9C9A70D30F8A"
+    },
+    {
+      "id": "de-170",
+      "rowSha256": "A1C52DE8B8BDDFE48CE25AC6379C1F974C21B5F65D28DD419F28D4749B949065"
+    },
+    {
+      "id": "de-171",
+      "rowSha256": "82332A46C60D81EEAA196442D6569B29C73E6F99CD67119922D39DDC1B44065E"
+    },
+    {
+      "id": "de-172",
+      "rowSha256": "27C521CC3751D27A8704F2207ACB390AD0CFF3593460E00AE1149C87F4F5C692"
+    },
+    {
+      "id": "de-173",
+      "rowSha256": "AE567B3C16F43BCEEBEB1A115BF4D3B274ED8C1F4754EAC4D9658B7D909D206B"
+    },
+    {
+      "id": "de-174",
+      "rowSha256": "8C2193C678A8287E34D4D7C552A0A2719AF64BC8789480DDBF1F377F0AC84F65"
+    },
+    {
+      "id": "de-175",
+      "rowSha256": "0FBDD0466D4BB16735116CBF7F38B2BE2BE41E10C0A70BD9C9D214B692CAB380"
+    },
+    {
+      "id": "de-176",
+      "rowSha256": "3682E2ED55C740699264DF32776713C29CC38FCFB68A156DEA90306D1AC3321E"
     }
   ],
   "authorityArtifacts": {
     "bank": {
       "path": "content/daily-phrases/de/source-bank.json",
-      "sha256": "05153C2B8E40FA7372665CF37CF14D85586592AF1EB7137471F5F31D99ED778F"
+      "sha256": "8E993B6781F733110109B4861EFDB5005A2AD82E26777EA1A3CB3486996C324C"
     },
     "sourceEvidence": {
       "path": "content/daily-phrases/de/authoritative-source-ledger.json",
@@ -798,7 +928,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-006-010.json",
-      "sha256": "300D343C6B5DE55156FB23AD5FCB41E13B3D9C5D38CB7374E55748EE36CE3808",
+      "sha256": "567086EF0DA6AF820EAE6FB00ADB0494D200D0FD14008106242AB24E58B0D825",
       "rowIds": [
         "de-006",
         "de-007",
@@ -809,7 +939,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-011-015.json",
-      "sha256": "9CFB23C305832FCA949BC7EEA9146F4ED588377070C13F04D658714A2E35AE72",
+      "sha256": "F3F1E7DBBFFC90D770D8A83D31560DF0660B94080F871230E4C4BB3EC8DD409F",
       "rowIds": [
         "de-011",
         "de-012",
@@ -820,7 +950,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-016-020.json",
-      "sha256": "C3CF14879427525972E30ABD3DDE6124E3667429FA683939769423B0662BA34A",
+      "sha256": "0BC898ECEA29A053CE9B2DDA7C33DAA3FA3E47553CED567F5B5776E0985A9BBE",
       "rowIds": [
         "de-016",
         "de-017",
@@ -831,7 +961,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-021-025.json",
-      "sha256": "D20C12A502DB0B06F7B48E386C8EC19C785E022596FABF90AF401BD3B948A3B7",
+      "sha256": "60464474844893AFB111E2A38D296BCA4E56C29FB13AA4449C87B26F21A9DEF4",
       "rowIds": [
         "de-021",
         "de-022",
@@ -842,7 +972,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-026-030.json",
-      "sha256": "B97C4499CCE69AA000CCDD07DD389DCD2D6FDF900D64BE2BDAD6199F518C07D5",
+      "sha256": "DDBA539245996C54AEBB943BB62707C619CDCFF24A60B2F65E719BF42AA6397A",
       "rowIds": [
         "de-026",
         "de-027",
@@ -853,7 +983,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-031-035.json",
-      "sha256": "C135AFA84BDAE843FEDC7A085AFD18E3C3B7088B107BD25E4ABC4008EB81C629",
+      "sha256": "AB1C6DE0DEA0A1F395F55CD4D0D7658D0FF56DD4A554CE1A8C6305F9E2BBF7DA",
       "rowIds": [
         "de-031",
         "de-032",
@@ -864,7 +994,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-036-040.json",
-      "sha256": "9C340312EDE220C59F311A6CB692EC5761352BB0DA3787068DEB96F6FEB98289",
+      "sha256": "F7DD90C88690C17778DFA886F0F0CE0EEA46C5CC4693D0524A5F6E39AEAD2C80",
       "rowIds": [
         "de-036",
         "de-037",
@@ -886,7 +1016,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-046-050.json",
-      "sha256": "8A810E0B693FFAFC84C96F4A277808B810A9E8E2274FB7BA59352FB7B7F95B10",
+      "sha256": "200B3EEBF715C8B859DFEC5948BB276BC26DF3DB3C127DD7830398DBFD75F02B",
       "rowIds": [
         "de-046",
         "de-047",
@@ -897,7 +1027,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-051-055.json",
-      "sha256": "49B53E0C0A7481CAFD6F5106873EE3B87F9F60027DEB0EB1DCE17D912C452D4E",
+      "sha256": "EDC8AB81389DCF0F58BB911F8F4C4EC8853AF11EDF71A7730E3CB82ECEB180CE",
       "rowIds": [
         "de-051",
         "de-052",
@@ -941,7 +1071,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-071-075.json",
-      "sha256": "1420CDF78E1814732C06173BBBAB3E0C0E7D8F7E4852FD642DBE0D6E56B54B9E",
+      "sha256": "6246E8F947F01F32CE9DE4EF5A1406EC205510126BB13B9FA1B5E8E9E6FFEBD9",
       "rowIds": [
         "de-071",
         "de-072",
@@ -985,7 +1115,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-091-095.json",
-      "sha256": "C455363947B2387BAD6E13677D6CB59E518DA948F2FA9590AB3D08EB6DC6253A",
+      "sha256": "BC1BA1A01DC7B13B99F5FD12CB60FEB478C68031E956DC0DC75595AEFD5B176D",
       "rowIds": [
         "de-091",
         "de-092",
@@ -996,7 +1126,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-096-100.json",
-      "sha256": "7F9FE4D5DD89ABD2488AB9EBA62E2AC1A0DB08AD8D8A1C9DB811455E2CF9D2B9",
+      "sha256": "B58FB59EAC6540DD9974F080F31EB66B56A50511D7A56B3D78EF45DDD3D4D6AC",
       "rowIds": [
         "de-096",
         "de-097",
@@ -1007,7 +1137,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-101-105.json",
-      "sha256": "F6CDF9816BF55555FE2436D1AECC5323D0275313279179B7636FCF8368256E85",
+      "sha256": "C7C308DAC53A1655737A4842079320B3DF1826BF30B610CA91B5E7BD9F999851",
       "rowIds": [
         "de-101",
         "de-102",
@@ -1018,7 +1148,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-106-110.json",
-      "sha256": "7F319DC7F5CC5AB4BC6647B22E07C20354B41B880A1F20CC5A6CFD96C3AC57B4",
+      "sha256": "2600246557B98D0399E3ED2490027680E8945F04A7BA9C200D064F616ED348F4",
       "rowIds": [
         "de-106",
         "de-107",
@@ -1040,7 +1170,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-116-120.json",
-      "sha256": "D4AA60656269474F3528DAE7CB547067E3369FDB0EC0F23B4B57DDE829A79000",
+      "sha256": "BDC870AA4A5B270068159E638626AC6270BEFAF5A3FE85BFD6DCE9EA60175362",
       "rowIds": [
         "de-116",
         "de-117",
@@ -1051,7 +1181,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-121-125.json",
-      "sha256": "821A4AB2AAFEBA4487970961D3BADA2F640835F6A4FD88F8ACB02BCD64F979E5",
+      "sha256": "E8A47DCCDF383628B1F7F8D5A295EC1065072E8AC5E67E25352A43A890EBE7A8",
       "rowIds": [
         "de-121",
         "de-122",
@@ -1062,7 +1192,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-126-130.json",
-      "sha256": "9BAC0DD190C8D9747D11DD3DDEB6473277A2EEDCCD5C973B948187A7AFB60030",
+      "sha256": "4D31351BCA546FE45CCC003F68D4027A78F0BB81E2F94305EB1D42656352FBCD",
       "rowIds": [
         "de-126",
         "de-127",
@@ -1073,7 +1203,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-131-135.json",
-      "sha256": "AF5F7F7B7DDE50F942012E0A3BF3AB1A923813F453087DCBF0AC72814356BD80",
+      "sha256": "26405B8FC29B6285D8CE32E16248B4E8C003079AFB97DE0A1627ACFFAD42E532",
       "rowIds": [
         "de-131",
         "de-132",
@@ -1084,7 +1214,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-136-140.json",
-      "sha256": "035386106F20921858181208F67F0BDF56CBD59B43BC1BD1E1467993EC31F9F3",
+      "sha256": "FC8C273BFB751E66FCB7607A83D3EC7FCE7196340CA7ADFB37F85123EE1F0E05",
       "rowIds": [
         "de-136",
         "de-137",
@@ -1095,7 +1225,7 @@
     },
     {
       "path": "content/daily-phrases/de/authoring/de-141-150.json",
-      "sha256": "EE47C08A19A99B85B8EC1AE1B692E993EC89FC0276AA7AD801367B32ED79B01D",
+      "sha256": "53C8D78FA171C82E64F240A955719443E6EAF8DDC6029FCBBFFAE53A3AFEFB5D",
       "rowIds": [
         "de-141",
         "de-142",
@@ -1108,6 +1238,50 @@
         "de-149",
         "de-150"
       ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-151-160.json",
+      "sha256": "77FE15652D223CC62268975DC637642C71981493DA14B412D8989AFEA828650A",
+      "rowIds": [
+        "de-151",
+        "de-152",
+        "de-153",
+        "de-154",
+        "de-155",
+        "de-156",
+        "de-157",
+        "de-158",
+        "de-159",
+        "de-160"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-161-168.json",
+      "sha256": "3E42DF27A21747E00E6FF157F6B82A0CC11125A24A06D2DB3E62C32B12B8D169",
+      "rowIds": [
+        "de-161",
+        "de-162",
+        "de-163",
+        "de-164",
+        "de-165",
+        "de-166",
+        "de-167",
+        "de-168"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-169-176.json",
+      "sha256": "2AF012C001B428121B6F05CE97EE8837ADE120DED38772895C4A3853343FCC99",
+      "rowIds": [
+        "de-169",
+        "de-170",
+        "de-171",
+        "de-172",
+        "de-173",
+        "de-174",
+        "de-175",
+        "de-176"
+      ]
     }
   ],
   "deterministicGates": {
@@ -1119,9 +1293,9 @@
   "independentEditorialReview": {
     "verdict": "ACCEPT",
     "findings": [],
-    "reviewedAt": "2026-09-28T08:21:23.8593374Z",
+    "reviewedAt": "2026-10-04T13:49:08.036Z",
     "reviewerIndependence": true,
-    "reviewerIdentity": "/root/rereview_de_141_150",
+    "reviewerIdentity": "independent-review-chain:/root/absolute_accept_de_091_100+/root/plan_it_daily_phrase_tooling/review_de_161_168+/root/plan_it_daily_phrase_tooling/review_de_169_176+/root/guardian_it_011_020:de-aggregate-after-p2-repair+/root/review_de_raw_no3_actual",
     "releaseTrusted": false
   },
   "releaseBoundary": "Editorial continuity only; not a trusted release receipt and not activation approval."

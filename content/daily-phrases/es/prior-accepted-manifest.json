@@ -6,8 +6,8 @@
   "editorialStatus": "EDITORIAL_CONTINUITY_ACCEPTED",
   "releaseTrusted": false,
   "activationApproved": false,
-  "acceptedCount": 90,
-  "acceptedThrough": "es-090",
+  "acceptedCount": 176,
+  "acceptedThrough": "es-176",
   "acceptedRowIds": [
     "es-001",
     "es-002",
@@ -98,7 +98,93 @@
     "es-087",
     "es-088",
     "es-089",
-    "es-090"
+    "es-090",
+    "es-091",
+    "es-092",
+    "es-093",
+    "es-094",
+    "es-095",
+    "es-096",
+    "es-097",
+    "es-098",
+    "es-099",
+    "es-100",
+    "es-101",
+    "es-102",
+    "es-103",
+    "es-104",
+    "es-105",
+    "es-106",
+    "es-107",
+    "es-108",
+    "es-109",
+    "es-110",
+    "es-111",
+    "es-112",
+    "es-113",
+    "es-114",
+    "es-115",
+    "es-116",
+    "es-117",
+    "es-118",
+    "es-119",
+    "es-120",
+    "es-121",
+    "es-122",
+    "es-123",
+    "es-124",
+    "es-125",
+    "es-126",
+    "es-127",
+    "es-128",
+    "es-129",
+    "es-130",
+    "es-131",
+    "es-132",
+    "es-133",
+    "es-134",
+    "es-135",
+    "es-136",
+    "es-137",
+    "es-138",
+    "es-139",
+    "es-140",
+    "es-141",
+    "es-142",
+    "es-143",
+    "es-144",
+    "es-145",
+    "es-146",
+    "es-147",
+    "es-148",
+    "es-149",
+    "es-150",
+    "es-151",
+    "es-152",
+    "es-153",
+    "es-154",
+    "es-155",
+    "es-156",
+    "es-157",
+    "es-158",
+    "es-159",
+    "es-160",
+    "es-161",
+    "es-162",
+    "es-163",
+    "es-164",
+    "es-165",
+    "es-166",
+    "es-167",
+    "es-168",
+    "es-169",
+    "es-170",
+    "es-171",
+    "es-172",
+    "es-173",
+    "es-174",
+    "es-175",
+    "es-176"
   ],
   "acceptedRows": [
     {
@@ -119,7 +205,7 @@
     },
     {
       "id": "es-005",
-      "rowSha256": "33CC431D85F9A73DEC815B944EBD67DA5F43E77647AA6F75155CE5BE68984DA5"
+      "rowSha256": "25C14E482BF6B7881D2E5DDBAABE1A048F5F9050E25EE6B33C8714AD6A69E2B4"
     },
     {
       "id": "es-006",
@@ -187,7 +273,7 @@
     },
     {
       "id": "es-022",
-      "rowSha256": "8F95EEF1A0B71C2D3B0841FEDBECC93E08E3CA2B8083317AEC1C43AD18EF62A3"
+      "rowSha256": "7A63E05A345B02DC9746503D5376A4AF90BABA33E70A0337167C80E70B6620C1"
     },
     {
       "id": "es-023",
@@ -199,7 +285,7 @@
     },
     {
       "id": "es-025",
-      "rowSha256": "C33D8B9ABA1D88FAD966983B153CA9F7A7AD3CA040EBEAC717FDC70A03A90C08"
+      "rowSha256": "A20FAAF241EDB475B76927094E16B5101E62041A0E30491384741C40EF6A7339"
     },
     {
       "id": "es-026",
@@ -211,7 +297,7 @@
     },
     {
       "id": "es-028",
-      "rowSha256": "C32500C4EA121C810A3F372E38101D19E2E478D447A4A9E3664E91D792364FAF"
+      "rowSha256": "1B14D5E9B7770D10A31C1C43C63ADE20D8B3BF4CEA2C9D3D927F374A3C3A02DF"
     },
     {
       "id": "es-029",
@@ -223,7 +309,7 @@
     },
     {
       "id": "es-031",
-      "rowSha256": "3FA1932BF5A1BE96F4BC30124BCE9FA8200712800553E02210187149AA217E96"
+      "rowSha256": "6F35F04907F23FA06AB18C23043C92ACCA81B439103E7702EFD24952135B47FD"
     },
     {
       "id": "es-032",
@@ -235,7 +321,7 @@
     },
     {
       "id": "es-034",
-      "rowSha256": "D95F1D4C54B4F6F8C3E494EABD84620ACA8C06579A491011299FE921666E91BA"
+      "rowSha256": "059336297DEFD5679B0A81C63FAD85551841125403BFD720BBFBC9405B44DBB1"
     },
     {
       "id": "es-035",
@@ -243,11 +329,11 @@
     },
     {
       "id": "es-036",
-      "rowSha256": "866733298A8618310AF4F2399CA0529552C1E2226A750A3AE0972EB226EFE7BC"
+      "rowSha256": "A22E064C1A20DD80EE5943825C50709F96970ED19D02E55574DF953AC81E4960"
     },
     {
       "id": "es-037",
-      "rowSha256": "DF965C4A2111B131113C325086D5538506EBA06F84C0926202B947E5882B3528"
+      "rowSha256": "1B9A613C6D3176DB4644CAF294C726C07F5AAA9FFC932833546B5CCB84F19557"
     },
     {
       "id": "es-038",
@@ -255,11 +341,11 @@
     },
     {
       "id": "es-039",
-      "rowSha256": "DAFD82BF4B1CE733EED5A0199D27E2B077AA14BA78A7FEA376FF2DBC2C30D117"
+      "rowSha256": "F5DA631DDFC27552459531A5C3DCF7ECF5A1A2ABC174C64A368AAA92AC966A82"
     },
     {
       "id": "es-040",
-      "rowSha256": "889D3836D82F23689734E137B207AC8525B9FECFC80F5DF425121BFABCF4B540"
+      "rowSha256": "294BC23605D20BCFC3420C16A45F1C3F2C32BBEDA2DB15A9BC8307024B3ECCFE"
     },
     {
       "id": "es-041",
@@ -267,11 +353,11 @@
     },
     {
       "id": "es-042",
-      "rowSha256": "796A6102DE2A5928EF4781854566767B86F8B2EE43E4FDE7DB85AB6B47693A57"
+      "rowSha256": "7D0A5F80DCB5BF5CE3C2912300EB4A5AA43D7FCF7CCA7BB5E4A6D1B41D5D1931"
     },
     {
       "id": "es-043",
-      "rowSha256": "107F1B9BB411321C3A22ADF4FA9E0DAEEB9F936DBC63B6AD2919FCFE4C1B77CF"
+      "rowSha256": "800DBC036E035C9589119F10881BF087A08E5FAA246E137C6E3109ADD587FE62"
     },
     {
       "id": "es-044",
@@ -347,7 +433,7 @@
     },
     {
       "id": "es-062",
-      "rowSha256": "15D45C4CE88FB22F938B8F49319722CFB03F9E311C4F795B2D5308A23CA7AF96"
+      "rowSha256": "F2B5EAD136E456AD153B2D7505694395D977B43F756A78CB39D4631C7DBACFFE"
     },
     {
       "id": "es-063",
@@ -411,7 +497,7 @@
     },
     {
       "id": "es-078",
-      "rowSha256": "5C7B93673AC06DBA4B0980D5F91166CC9BA746F1EA732EB83A58DEE4625E46AB"
+      "rowSha256": "5D3245A5B3928D2F0276A542409ADC41A376D5CDE6DF2A42970D031DBB5F418B"
     },
     {
       "id": "es-079",
@@ -423,7 +509,7 @@
     },
     {
       "id": "es-081",
-      "rowSha256": "A56FA809C61612622DA0037DE57A12077E8786C47919100C3EFBCD53038F2E76"
+      "rowSha256": "DA76AC6B5FC1014A19605B971287E4D01680433EDC2E128739D9E1BF59557D35"
     },
     {
       "id": "es-082",
@@ -443,7 +529,7 @@
     },
     {
       "id": "es-086",
-      "rowSha256": "49588C660D651E76F3389770685D13B73EC9D29F2B69E552C5C53D94A0975F57"
+      "rowSha256": "FD7D79C8D00B2C09B16CBFB95961A7BA92142CFBDF5D7ABE5856573159B55478"
     },
     {
       "id": "es-087",
@@ -460,12 +546,356 @@
     {
       "id": "es-090",
       "rowSha256": "0096FBF3CD5A6265E1971141E12CEABD3DF4FC1DA78F4054EF69929FCFF6E036"
+    },
+    {
+      "id": "es-091",
+      "rowSha256": "1543089BA36ED83CFC74A297BC9A99480013F6D9E972F4FF36D87C29F30D77A3"
+    },
+    {
+      "id": "es-092",
+      "rowSha256": "63D1FD7E944B76DAE3ED5DE5AA50988B37CE282FBDE73555CA40F866A121625F"
+    },
+    {
+      "id": "es-093",
+      "rowSha256": "FAEE0314EEF7037794178AE399A8C3719C83B1E99D20F73629992959090D86B0"
+    },
+    {
+      "id": "es-094",
+      "rowSha256": "01ADABCEE941038301420DBB62AC82E7760B19F6D6FB7423E8D0228582E63451"
+    },
+    {
+      "id": "es-095",
+      "rowSha256": "58F315A469F440EB30D7C6EF2288F8F323793954D4D61E6ABCED0C3B179F58F3"
+    },
+    {
+      "id": "es-096",
+      "rowSha256": "3732F3C2BD06EF7DB97A50B245E999BB7FF9229C79FBBCEAD71D5A1BD2B41EEC"
+    },
+    {
+      "id": "es-097",
+      "rowSha256": "86B21E088243C3831B89D782C154A5BE9400DBE2EB4EB6AD716DF21908590808"
+    },
+    {
+      "id": "es-098",
+      "rowSha256": "50CAC7751C336B00DFA095191A2C02B63F80543E8B9DA44A07E0C6960341421A"
+    },
+    {
+      "id": "es-099",
+      "rowSha256": "9F7C2B63B77A8B371A9E325A773D1285602763B035A78B63F29902E4383B54B1"
+    },
+    {
+      "id": "es-100",
+      "rowSha256": "99C1B04535019CC7B4758B5553C26527D78CE07B795F85A4401DAC2536AFE5E2"
+    },
+    {
+      "id": "es-101",
+      "rowSha256": "6DE9FEE207AA8B18D593EF751D16F09674349242D7CEA2355DEFDD6A370BF48D"
+    },
+    {
+      "id": "es-102",
+      "rowSha256": "1D979B38FBF1F7A94D49F714AA52E395405FE14EB533298E669544DDBC14CFE6"
+    },
+    {
+      "id": "es-103",
+      "rowSha256": "5C68584B06234000F8DD6340779504DFE637007E78EDBD82B8667404F9BF1001"
+    },
+    {
+      "id": "es-104",
+      "rowSha256": "1C3A6E8BBD37682A74700F1DBBFDA09F97978BADCE1DD23174998837D1E26D29"
+    },
+    {
+      "id": "es-105",
+      "rowSha256": "43585E0CF37DC786CE23AAA467F9D54C4D695E7EA00069040B3DCDA2AB6AF5AD"
+    },
+    {
+      "id": "es-106",
+      "rowSha256": "BD80F7DC1350907C2AA72EF1C5752039AD56635086CA8864E3599E1875FB02F8"
+    },
+    {
+      "id": "es-107",
+      "rowSha256": "3B4714F33F8244A167EF54228F1508581D46632104E64A5B50EBBF1F69217C70"
+    },
+    {
+      "id": "es-108",
+      "rowSha256": "3A23E09DDE3C59AA63347A152083ECFC6E99D9F74BC4E26B99147B3161C90A3E"
+    },
+    {
+      "id": "es-109",
+      "rowSha256": "3A41FB149F8EDFD1362C11CE0E83B9579E44F79E9FFD1924B91192D6B4C880C6"
+    },
+    {
+      "id": "es-110",
+      "rowSha256": "E49D9F2953511C59C8A1B36B481C20CCA02BF06B7A8FCFA8AF9EA67363AC8D70"
+    },
+    {
+      "id": "es-111",
+      "rowSha256": "42B1145355E7494CBD1F07BD699FFA3B49987FCC081DF08DA841B3AE60FC56D1"
+    },
+    {
+      "id": "es-112",
+      "rowSha256": "2E1EB9119B77DDA692378287CA06E467BC1376716B7B54D1737C49A882D9BCE0"
+    },
+    {
+      "id": "es-113",
+      "rowSha256": "33DB93742903A7B70EA28FD93266E75CAB31245EF6FD62A8333019213D7BB278"
+    },
+    {
+      "id": "es-114",
+      "rowSha256": "9291B27A09B58C7A21EEED235652F65228BE99F03785806DF523919EBCEF4F7B"
+    },
+    {
+      "id": "es-115",
+      "rowSha256": "4238FC170DB00C7CED7AD4667631151B9484101BAED2B95EF78812DC58E90D09"
+    },
+    {
+      "id": "es-116",
+      "rowSha256": "85166900621121486AE96B62A4D26E312FE151ADAF88D65B1B23C4845BD72316"
+    },
+    {
+      "id": "es-117",
+      "rowSha256": "4D6F63E971CD4BC8F3D941BF5179DE065DBBB4D2C36C140F6CC00E886D00FB42"
+    },
+    {
+      "id": "es-118",
+      "rowSha256": "FDE3AD4C3AB730D783B07ABB76F314FA77DC0CBB95026E4D025B04F73CE046C5"
+    },
+    {
+      "id": "es-119",
+      "rowSha256": "A682CE03F56D70515824F69CDAA0AB1A47E90B94CA30AACBB53A4D70F486156B"
+    },
+    {
+      "id": "es-120",
+      "rowSha256": "F13193631A51E020D93CC5CBF8B83D8EEB4F635E6C8D34B88C760E61D38BF1B1"
+    },
+    {
+      "id": "es-121",
+      "rowSha256": "3C1D309FB9D2F2D56E01DFDB5FCF8E17E67EA64083611E93AC85B7E0B180B553"
+    },
+    {
+      "id": "es-122",
+      "rowSha256": "9523E95B7564CFD6FB4B5FF7B5A9A288D13F9562E324AA72475F90FB781557E3"
+    },
+    {
+      "id": "es-123",
+      "rowSha256": "10D7E85956332B0BBEFD252D630D8543D9C3243D74FCF6C937911E3AF54FDEA9"
+    },
+    {
+      "id": "es-124",
+      "rowSha256": "A5D330614FC668215F78A4B2EE8EDCD1BF31E5297F3ECD347CD1A66452D38EB4"
+    },
+    {
+      "id": "es-125",
+      "rowSha256": "FBED3963397E8CEFEA9CCE9F6AB77A8327AE57E5A90411CA67AA1E4D65F088E9"
+    },
+    {
+      "id": "es-126",
+      "rowSha256": "EF1B650118E059F57A55E6A84E1E2AA96AB571904F51AE9836D45CD593118768"
+    },
+    {
+      "id": "es-127",
+      "rowSha256": "3C4219B9001AD7D80D49A41291739F478FB1484B162D7369CBCA1B530C00B34C"
+    },
+    {
+      "id": "es-128",
+      "rowSha256": "AE894A8D31ABFEF2FE571146BCEFE10444C139E5F4B81D3D883025AF95CEA146"
+    },
+    {
+      "id": "es-129",
+      "rowSha256": "130B097C2BA3BB667EC8F1A4766975C13FA59989501D7106E8074E2CAD6CF8EC"
+    },
+    {
+      "id": "es-130",
+      "rowSha256": "40332304445C2C188422C622EDDEDBE6E9ACC7EF885BE648E39A03A5CA3975F1"
+    },
+    {
+      "id": "es-131",
+      "rowSha256": "B546CAE9627234A6B7A5D3FA4EF367456790A71FE6D99321C5AFE7423BC50D9F"
+    },
+    {
+      "id": "es-132",
+      "rowSha256": "E084FBFA7F907F6AA7817CD4279D09F3BD42321B5A12AA99380D8CB849BF7C39"
+    },
+    {
+      "id": "es-133",
+      "rowSha256": "47552E9D2308C9E2EA72238A597D0BCE72FB5A530F21DABB06EFBB7E3746AF0E"
+    },
+    {
+      "id": "es-134",
+      "rowSha256": "B419C5668C60FCD1A873E24509052F3CDBC58453367CC5EF2FF39DE02E14719F"
+    },
+    {
+      "id": "es-135",
+      "rowSha256": "F1BECC45B14C64DD28D82EFFD1A679B53AB7F890E41137E5A2D03935BAAE6C18"
+    },
+    {
+      "id": "es-136",
+      "rowSha256": "9A96B1848450A337B847F02424CE1B9B36067979770FB9DD0F77FCCF2A80378F"
+    },
+    {
+      "id": "es-137",
+      "rowSha256": "CB4AFEC5FCA225EAB04DC3B487CA993F7E34635B6D789410C934F94F41BE83D3"
+    },
+    {
+      "id": "es-138",
+      "rowSha256": "2951F816B7E156A76604705ACFED01B97109FE0951366ECC73F3318AFA49FA75"
+    },
+    {
+      "id": "es-139",
+      "rowSha256": "69914A5201F00DE2BA4EA9BFE37F1FA91BF5CDE5CF93BC2748E9CCF8CC6922CA"
+    },
+    {
+      "id": "es-140",
+      "rowSha256": "D7CEF1E02BA9F5D912913746C7E46C746D655E24D6248E163BBAF50CDA6E7790"
+    },
+    {
+      "id": "es-141",
+      "rowSha256": "6FD6783DAC89B4D67AAE5DDE6FBE89F1E2417D1BD816CF0142105D319D894E70"
+    },
+    {
+      "id": "es-142",
+      "rowSha256": "A2F3BFC7FB3B032E3910154ABEAA5C62648156567CE3FEBADC63A80F9D0F270D"
+    },
+    {
+      "id": "es-143",
+      "rowSha256": "DD1B5B9D8D7359937FD742E10CCE1C1A6CC37F65E468697EDDB40344D1652FF7"
+    },
+    {
+      "id": "es-144",
+      "rowSha256": "263B9CE6110B5E5B3F980040876C7A740E1740D8C51178CEA689A04D81B3E903"
+    },
+    {
+      "id": "es-145",
+      "rowSha256": "3C7F053571E744EAD74C44FE37A21F59E664BDDBA2D6F547D02AE30970C7FB48"
+    },
+    {
+      "id": "es-146",
+      "rowSha256": "683D7B0C4B9B63840BFE2824D087CE05335F559AE54A03199446888EA9D35A0E"
+    },
+    {
+      "id": "es-147",
+      "rowSha256": "AEFB2D7D98961C2D090C6F7420931FC4994800E8F8C9500818CD0A60E5D1D2FA"
+    },
+    {
+      "id": "es-148",
+      "rowSha256": "9C0AB0F248D9E295F54145363E1826981AB3C308705A518FC5C612B74FF3D6B9"
+    },
+    {
+      "id": "es-149",
+      "rowSha256": "AC0DA81D82AD784F953A526F11DCCC708AD2AD85E873FC3C781B7B86A0F98619"
+    },
+    {
+      "id": "es-150",
+      "rowSha256": "53A5383F0B4C8BC1B1AF13BA2915585E27C80FF8828B1D74F0BE35068B7C3745"
+    },
+    {
+      "id": "es-151",
+      "rowSha256": "FA2A761CAB1CC59F3EE9C31210F22869ABB194472BD9A9B9C90E209C498A6A15"
+    },
+    {
+      "id": "es-152",
+      "rowSha256": "CC519ACE5773425DC8D99F2C72B3B3BB6AC1F058824701D1FE9F8DC0E764D223"
+    },
+    {
+      "id": "es-153",
+      "rowSha256": "08E12F429F556B0A64C8963B0D1AF1F93CDE8743C55E41282A5F06B21C0DBCD1"
+    },
+    {
+      "id": "es-154",
+      "rowSha256": "48B17A961CA0DA99774C8DDEFC2BA69A43FE1F047EE632C41DD2E6CEBCCCF3C7"
+    },
+    {
+      "id": "es-155",
+      "rowSha256": "6EFAFD26664FB78CE0AE30853BB39004A02F44043F5B74D15DC560D07FCD08A3"
+    },
+    {
+      "id": "es-156",
+      "rowSha256": "F26A1F646A6ACB45C0A181789EFF3AD6C6BF3F0E3F9CB8E76BEFF8EC86C425E9"
+    },
+    {
+      "id": "es-157",
+      "rowSha256": "423934470EC33B24E42EBFD3265FBA0A515C6C9EC2F4E7D96B5C45733993D0EC"
+    },
+    {
+      "id": "es-158",
+      "rowSha256": "2D61219240EA4E9FA0331D3F141D861B48A7A412ACC6BAA8FC6A0C0F1FAACC07"
+    },
+    {
+      "id": "es-159",
+      "rowSha256": "2F352F31E5F78BEC25619DFE762E44FD8BCAACACE587C213F4466C35A661200B"
+    },
+    {
+      "id": "es-160",
+      "rowSha256": "5E209EA1BA6A320FDE6B16FE0A6933D61C8C5273808491A7099F159D05C621FB"
+    },
+    {
+      "id": "es-161",
+      "rowSha256": "B6094E8B30444490E8D7D18D27FB5B15D7D89E62B5B176F00E2DD04C0EA6F00A"
+    },
+    {
+      "id": "es-162",
+      "rowSha256": "C918393EFFCC93788263427D1E2F3724BAEB7BB8B4749B591E566C2FEE2595B6"
+    },
+    {
+      "id": "es-163",
+      "rowSha256": "3BBDEDD88412D8C0782EB2283963AAE9B75D3529B15BE28FDB036062436655AC"
+    },
+    {
+      "id": "es-164",
+      "rowSha256": "94C53D8FCA13DCE91FBD1ECEC2B6D3EB9146511EA4349AF39606B43582374C70"
+    },
+    {
+      "id": "es-165",
+      "rowSha256": "CBD3C24B93CBA1A7145181011148076410589AC403A43CEC5C3EBF6C7D432757"
+    },
+    {
+      "id": "es-166",
+      "rowSha256": "25656BB235F03074FC49368E224306B94AE4CB7109469D8CC9E07D672F7CE0B4"
+    },
+    {
+      "id": "es-167",
+      "rowSha256": "0B2E49A6412A5BD228DDAFFBCBC559A8E582134D3B7AA1F4C595584101B7C1F7"
+    },
+    {
+      "id": "es-168",
+      "rowSha256": "947DE2CF7B540FD83921B5F805243BAE13E0F07129E7AEBA66CB9B6523989950"
+    },
+    {
+      "id": "es-169",
+      "rowSha256": "24A58230A0F4909E3CC91568D9C7DE14B2A4C63D35ABBFC90F69A7CCEF37848D"
+    },
+    {
+      "id": "es-170",
+      "rowSha256": "78907B237AB38F91F152817884CBF35563C820BB6302762D012767CBA0ECE1B1"
+    },
+    {
+      "id": "es-171",
+      "rowSha256": "982485491889D196B1314B63A8A07906F6BB22F124B0A940C2CA391357E0E483"
+    },
+    {
+      "id": "es-172",
+      "rowSha256": "B65DC40D2FCFF5B217E1728BDA42D591C9DE24472880F5CB220531B87478F759"
+    },
+    {
+      "id": "es-173",
+      "rowSha256": "9A81224585ACF00573E7A5C11F3287EDB2E5BED8179043AB53E10B447CD54B13"
+    },
+    {
+      "id": "es-174",
+      "rowSha256": "9005EB1F91663D016CF6D68969FEA85F36AD136DC1559EE62C1ECA218EBDFA39"
+    },
+    {
+      "id": "es-175",
+      "rowSha256": "6BBE76DB1DDEA1CFF97F9368FB998834B7656E38F92123125379E89576863AB9"
+    },
+    {
+      "id": "es-176",
+      "rowSha256": "F98A6ABB9EFF4B8A53146502F36E53DF1195791B97BA3CF6A44CA7497374651E"
     }
   ],
   "authorityArtifacts": {
     "bank": {
       "path": "content/daily-phrases/es/source-bank.json",
-      "sha256": "1484839754DC5DA8BF89B59A4E8434582E86A8D28B3B2E76C69B51CF45871673"
+      "sha256": "B5722BA11813B9CB3395C783C2DAF4F57CDA46F20A43286195EF5CB345AA278B"
     },
     "sourceEvidence": {
       "path": "content/daily-phrases/es/cvc-source-ledger.json",
@@ -487,7 +917,7 @@
   "authoringPackets": [
     {
       "path": "content/daily-phrases/es/authoring/es-001-005.json",
-      "sha256": "10E2E9889D60E62050D58DB3FADC28493D6C2A9ACB6FF36B205731138D2141E2",
+      "sha256": "B54299BE8F011B69300A853D4397B32ECBF7CE3633ACAF5B2B0EE5632B724868",
       "rowIds": [
         "es-001",
         "es-002",
@@ -531,7 +961,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-021-025.json",
-      "sha256": "48CF69DCA8265739A429C7C4A470B03940A54B545CC5D384676A90C25CC6A4FA",
+      "sha256": "8689BCA3D53A43CF0F118BA3EE3549BB4CBD31882DCF768854AA44D015955965",
       "rowIds": [
         "es-021",
         "es-022",
@@ -542,7 +972,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-026-030.json",
-      "sha256": "89506C0D8C864D7383E5BC674A574970F49B4D8328F6D1B45610FBB83B6B4D61",
+      "sha256": "D5BADF59E394D2E040C3ACA79C97B96481C94062A969E2F8761E55793A5E1B1D",
       "rowIds": [
         "es-026",
         "es-027",
@@ -553,7 +983,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-031-035.json",
-      "sha256": "D6982671C4378C392824D5CA2C3BE18E30D0A6108CFCA719DAB666DF24DC04F3",
+      "sha256": "B6A1AEF4F7DAADC8672DF1F7DB028D8F7F7C2E917198B24AAFF0941AC54A048E",
       "rowIds": [
         "es-031",
         "es-032",
@@ -564,7 +994,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-036-040.json",
-      "sha256": "39C564E61AD2BF5D01EF729B04D6BEDBF674BA72862E8B5D2C47864D5B43B33C",
+      "sha256": "99BE0D8672D502487949335FAC42E6E81B67EF7482EFF85405E6DDD2697BAD1F",
       "rowIds": [
         "es-036",
         "es-037",
@@ -575,7 +1005,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-041-045.json",
-      "sha256": "0C5ED4C9E8FA7CACBF40B21909F0D129AEF7EACAC5D23569A0DC0DCFB75E7F37",
+      "sha256": "9D565D5A8DD1676071B29D633EBA1C66E94783E4FFA104E909EA165EA831A73F",
       "rowIds": [
         "es-041",
         "es-042",
@@ -619,7 +1049,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-061-065.json",
-      "sha256": "16C8419AF859113D003D0497CA59830069EBEA0AD3666508C2940DAAA02AB0B0",
+      "sha256": "B48579897D6126B3B9418A53B961AF7B3BEDF390CC462367A9F912DF74D3DC8B",
       "rowIds": [
         "es-061",
         "es-062",
@@ -652,7 +1082,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-076-080.json",
-      "sha256": "AEEF6DFDA0F6BD0FD3A466EE73D43CE5E6C0733EBF523451B66091011C2CA177",
+      "sha256": "C27816801B7E7F284466D4214E24CB6C0E407DA0388E8983AF4F203F94FFCDC8",
       "rowIds": [
         "es-076",
         "es-077",
@@ -663,7 +1093,7 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-081-085.json",
-      "sha256": "3CDD1FE5AF4A39927FB9AE8EEA92EB48C9EA5FF4850B8C55EE0C543535E6326D",
+      "sha256": "C507FB7CBA3AE80C88B7F2B110C8369DA998EF8D6CFA894B1B7DF47A2AF323E7",
       "rowIds": [
         "es-081",
         "es-082",
@@ -674,13 +1104,201 @@
     },
     {
       "path": "content/daily-phrases/es/authoring/es-086-090.json",
-      "sha256": "7580276C9A14DABEA7DFC677B27359C667CD3A7D2A60E5EEFAC538DDCE92501F",
+      "sha256": "0E9393DD181F889AA861723CB996F75050D4F64F6FF0C8BA79656E148CDDE8C5",
       "rowIds": [
         "es-086",
         "es-087",
         "es-088",
         "es-089",
         "es-090"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-091-095.json",
+      "sha256": "28693C66671FAD3AC50D1E73AD5AF453218F98808875E1B4451CD8B2F2F50CA4",
+      "rowIds": [
+        "es-091",
+        "es-092",
+        "es-093",
+        "es-094",
+        "es-095"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-096-100.json",
+      "sha256": "B715D01602EE5EA0B89D9A32D7C70FE51EB4B2171E034259CA446EDE7665C05A",
+      "rowIds": [
+        "es-096",
+        "es-097",
+        "es-098",
+        "es-099",
+        "es-100"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-101-105.json",
+      "sha256": "F0B43D5FCBEFF976671401701998AAD19F9A9749550A019404B95681BFE8C180",
+      "rowIds": [
+        "es-101",
+        "es-102",
+        "es-103",
+        "es-104",
+        "es-105"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-106-110.json",
+      "sha256": "880457D4DAE7A5D67BE93F1FD8252CB3BBC8EC06734A4D5C322C1E7D705283B3",
+      "rowIds": [
+        "es-106",
+        "es-107",
+        "es-108",
+        "es-109",
+        "es-110"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-111-115.json",
+      "sha256": "C64EC1F5ADAC2C8611A913E835D03599A711DAF7D6F9D7722317BE5288024DFE",
+      "rowIds": [
+        "es-111",
+        "es-112",
+        "es-113",
+        "es-114",
+        "es-115"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-116-120.json",
+      "sha256": "3B42C47024817F8F22D720AD8EB323F07EAAB86A85D0431CF543F2FC0C51E31D",
+      "rowIds": [
+        "es-116",
+        "es-117",
+        "es-118",
+        "es-119",
+        "es-120"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-121-125.json",
+      "sha256": "4CCB75E6869BF81EA4F8FD7B0B386D4BD38237B289EA787D34449FFE6B439B5F",
+      "rowIds": [
+        "es-121",
+        "es-122",
+        "es-123",
+        "es-124",
+        "es-125"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-126-130.json",
+      "sha256": "3915A574E1A1E82792463D8D1B2D16E7625C91C3B41D0B36D125EE61D36129C2",
+      "rowIds": [
+        "es-126",
+        "es-127",
+        "es-128",
+        "es-129",
+        "es-130"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-131-135.json",
+      "sha256": "21B6FC0786B959069836B69ACE5950D6BFE40E3D864E8BFBAD2C1FE4B19D6F2C",
+      "rowIds": [
+        "es-131",
+        "es-132",
+        "es-133",
+        "es-134",
+        "es-135"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-136-140.json",
+      "sha256": "C7176339993274EEB8080B4D4262D2C212191EAC91EADD2664205AF66D28E3A3",
+      "rowIds": [
+        "es-136",
+        "es-137",
+        "es-138",
+        "es-139",
+        "es-140"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-141-145.json",
+      "sha256": "B87AF3C5052C247BDC2D2804C491D3AB0EA84D70A520BB213E408F3C683BD8DF",
+      "rowIds": [
+        "es-141",
+        "es-142",
+        "es-143",
+        "es-144",
+        "es-145"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-146-150.json",
+      "sha256": "8D4FC07F2DEB342A00963D072A01FE1A51CAF04075B1CE0DF40668FA8FC420CD",
+      "rowIds": [
+        "es-146",
+        "es-147",
+        "es-148",
+        "es-149",
+        "es-150"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-151-155.json",
+      "sha256": "A65EC15D9168E21FB54D1D4F5A47D42EAC693C7D357254D941913A900720573D",
+      "rowIds": [
+        "es-151",
+        "es-152",
+        "es-153",
+        "es-154",
+        "es-155"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-156-160.json",
+      "sha256": "D60B4550DDF207D53F9FDA61D78B989B0D3D8D4B221F8454F70CBC95952951BD",
+      "rowIds": [
+        "es-156",
+        "es-157",
+        "es-158",
+        "es-159",
+        "es-160"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-161-164.json",
+      "sha256": "913FD5363D5663020ABE129899DC3B1F9807ED47ECABEF0636ADFFA5B4C326D1",
+      "rowIds": [
+        "es-161",
+        "es-162",
+        "es-163",
+        "es-164"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-165-170.json",
+      "sha256": "01178A596AFD5293880FF22DF0AEBB659CF0F8D13FC67E1F1432959794C189F2",
+      "rowIds": [
+        "es-165",
+        "es-166",
+        "es-167",
+        "es-168",
+        "es-169",
+        "es-170"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/es/authoring/es-171-176.json",
+      "sha256": "7981F33EFDAA9DA749529476B1DCACFDAFC3687AD50045BA023B60B06D415687",
+      "rowIds": [
+        "es-171",
+        "es-172",
+        "es-173",
+        "es-174",
+        "es-175",
+        "es-176"
       ]
     }
   ],
@@ -693,9 +1311,9 @@
   "independentEditorialReview": {
     "verdict": "ACCEPT",
     "findings": [],
-    "reviewedAt": "2026-09-28T07:45:16.4553567Z",
+    "reviewedAt": "2026-10-04T14:48:11.116Z",
     "reviewerIndependence": true,
-    "reviewerIdentity": "/root/rereview_es_076_090",
+    "reviewerIdentity": "independent-review-chain:/root/review_es_106_120_final_v2+/root/review_es_121_135_actual+/root/review_es_raw_no3_final",
     "releaseTrusted": false
   },
   "releaseBoundary": "Editorial continuity only; not a trusted release receipt and not activation approval."

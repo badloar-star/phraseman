@@ -1,0 +1,532 @@
+{
+  "schemaVersion": "daily-phrase-independent-editorial-review-v1",
+  "studyTarget": "it",
+  "verdict": "ACCEPT",
+  "acceptedCount": 176,
+  "acceptedThrough": "it-176",
+  "reviewedAt": "2026-10-04T14:49:25.529Z",
+  "reviewerIdentity": "independent-review-chain:/root/review_it_001_010_semantic_v2+/root/judge_taste_it_001_010_v2+/root/verify_it_continuity_source30+/root/plan_it_daily_phrase_tooling/review_it_011_015+/root/plan_it_daily_phrase_tooling/review_it_016_020+/root/guardian_it_011_020+/root/guardian_it_011_020:post-aggregate-clue-repair+/root/guardian_it_011_020:source31-40+/root/review_it_source_alias_contract+/root/verify_it_001_020_manifest:source40-continuity+/root/guardian_it_011_020:prephrase21-25+/root/review_it_021_025+/root/guardian_it_011_020:prephrase26-30+/root/plan_it_daily_phrase_tooling/review_it_026_030+/root/guardian_it_011_020:aggregate1-30+/root/research_it_sources_041_050+/root/guardian_it_011_020:source41-50+/root/verify_it_001_020_manifest:source50-continuity+/root/guardian_it_011_020:prephrase31-35+/root/plan_it_daily_phrase_tooling/review_it_031_035+/root/guardian_it_011_020:prephrase36-40+/root/review_it_036_040+/root/research_it_sources_041_050:source51-60+/root/guardian_it_011_020:source51-60+/root/verify_it_001_020_manifest:source60-continuity+/root/guardian_it_011_020:prephrase41-45+/root/review_it_041_045+/root/research_it_sources_061_070+/root/guardian_it_011_020:source61-70+/root/verify_it_001_020_manifest:source70-continuity+/root/guardian_it_011_020:prephrase46-50+/root/review_it_046_050+/root/research_it_sources_071_080+/root/guardian_it_011_020:source71-80+/root/verify_it_001_020_manifest:source80-continuity+/root/guardian_it_011_020:prephrase51-55+/root/review_it_051_055+/root/research_it_sources_071_080:source81-90+/root/guardian_it_011_020:source81-90+/root/verify_it_source90_continuity+/root/guardian_it_011_020:prephrase56-60+/root/review_it_056_060+/root/research_it_sources_091_100+/root/review_it_sources_091_100+/root/verify_it_source100_continuity+/root/guardian_it_061_065+/root/review_it_061_065+/root/guardian_it_066_075+/root/review_it_066_075+/root/research_it_sources_131_140:source101-110+/root/review_it_sources_101_110_reconstructed+/root/verify_it_source110_continuity+/root/guardian_it_076_085+/root/review_it_076_085+/root/review_it_sources_111_120_reconstructed+/root/verify_it_source120_continuity+/root/guardian_it_086_095+/root/review_it_086_095+/root/review_it_sources_121_130_reconstructed+/root/verify_it_source130_continuity+/root/guardian_it_096_105+/root/review_it_096_105+/root/review_it_sources_131_140+/root/verify_it_source140_continuity+/root/review_it_sources_141_150+/root/verify_it_source150_continuity+/root/guardian_it_106_115+/root/review_it_106_115+/root/review_it_sources_151_160+/root/verify_it_source160_continuity+/root/review_it_sources_161_170+/root/verify_it_source170_continuity+/root/review_it_sources_171_176+/root/verify_it_source176_complete+/root/guardian_it_096_105:prephrase116-125+/root/review_it_116_125+/root/review_it_126_135+/root/review_it_136_145+/root/accept_review_it_146_155_zero+/root/review_it_156_165_actual+/root/review_it_166_176_actual+/root/preflight_it_raw_no3_taste+/root/review_it_001_020_independent_accept",
+  "reviewerIndependence": true,
+  "releaseTrusted": false,
+  "activationReadinessClaimed": false,
+  "activationApproved": false,
+  "verifiedInactive": true,
+  "scope": "Independent editorial acceptance for the complete Italian Daily Phrase contour it-001..it-176 after final independent acceptance of it-166..it-176; this is not release, activation, signature, or production approval.",
+  "independentReviewChain": [
+    {
+      "scope": "it-001..it-010 semantic, source, localization, pedagogy and quiz",
+      "reviewerIdentity": "/root/review_it_001_010_semantic_v2",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-010 English-parity taste and narrative style",
+      "reviewerIdentity": "/root/judge_taste_it_001_010_v2",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-010 row-hash continuity after append-only authority extension through it-030",
+      "reviewerIdentity": "/root/verify_it_continuity_source30",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-011..it-015 semantic, locale, narrative style, pedagogy and quiz after exact repair",
+      "reviewerIdentity": "/root/plan_it_daily_phrase_tooling/review_it_011_015",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-016..it-020 semantic, locale, distractor and taste recheck after exact repair",
+      "reviewerIdentity": "/root/plan_it_daily_phrase_tooling/review_it_016_020",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-020 aggregate truth, locale, narrative style, distractor and bank-progression acceptance",
+      "reviewerIdentity": "/root/guardian_it_011_020",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-020 post-repair aggregate recheck after removing repeated-longest-answer clues in it-014 and it-016",
+      "reviewerIdentity": "/root/guardian_it_011_020:post-aggregate-clue-repair",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-031..it-040 authoritative-source semantics, target collisions and scaffold boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:source31-40",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "Italian multi-provider sourceAliases contract and exact ledger-linkage mirroring after P1 repair",
+      "reviewerIdentity": "/root/review_it_source_alias_contract",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-020 row-hash continuity after append-only authority extension through it-040",
+      "reviewerIdentity": "/root/verify_it_001_020_manifest:source40-continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-021..it-025 prephrase truth, collision and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase21-25",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-021..it-025 semantic, locale, narrative style, distractor and progression recheck after four-field repair",
+      "reviewerIdentity": "/root/review_it_021_025",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-026..it-030 prephrase truth, collision and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase26-30",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-026..it-030 semantic, locale, narrative style, distractor and progression recheck after tense repair",
+      "reviewerIdentity": "/root/plan_it_daily_phrase_tooling/review_it_026_030",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-030 aggregate truth, locale, narrative style, distractor and bank-progression acceptance",
+      "reviewerIdentity": "/root/guardian_it_011_020:aggregate1-30",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-041..it-050 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_041_050",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-041..it-050 independent source quotation, semantic-boundary and collision audit",
+      "reviewerIdentity": "/root/guardian_it_011_020:source41-50",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-030 row-hash continuity after append-only authority extension through it-050",
+      "reviewerIdentity": "/root/verify_it_001_020_manifest:source50-continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-031..it-035 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase31-35",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-031..it-035 semantic, locale, literal-image, narrative-style, distractor and progression recheck after P1/P2 repairs",
+      "reviewerIdentity": "/root/plan_it_daily_phrase_tooling/review_it_031_035",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-036..it-040 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase36-40",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-036..it-040 semantic, locale, literal-image, narrative-style, distractor and progression recheck after P1/P2 repairs",
+      "reviewerIdentity": "/root/review_it_036_040",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-051..it-060 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_041_050:source51-60",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-051..it-060 independent source quotation, semantic-boundary and collision audit",
+      "reviewerIdentity": "/root/guardian_it_011_020:source51-60",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-040 row-hash continuity after append-only authority extension through it-060",
+      "reviewerIdentity": "/root/verify_it_001_020_manifest:source60-continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-041..it-045 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase41-45",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-041..it-045 semantic, locale, literal-image, narrative-style, distractor and progression recheck after P1 repairs",
+      "reviewerIdentity": "/root/review_it_041_045",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-061..it-070 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_061_070",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-061..it-070 independent source quotation, semantic-boundary and collision audit",
+      "reviewerIdentity": "/root/guardian_it_011_020:source61-70",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-045 row-hash continuity after append-only authority extension through it-070",
+      "reviewerIdentity": "/root/verify_it_001_020_manifest:source70-continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-046..it-050 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase46-50",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-046..it-050 semantic, locale, literal-image, narrative-style, distractor and progression recheck after P1/P2 repairs",
+      "reviewerIdentity": "/root/review_it_046_050",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-071..it-080 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_071_080",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-071..it-080 independent source quotation, semantic-boundary and collision audit after P2 repairs",
+      "reviewerIdentity": "/root/guardian_it_011_020:source71-80",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-050 row-hash continuity after append-only authority extension through it-080",
+      "reviewerIdentity": "/root/verify_it_001_020_manifest:source80-continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-051..it-055 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase51-55",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-051..it-055 semantic, locale, literal-image, narrative-style, distractor and progression review; initial REVISE followed by same-reviewer ACCEPT after P1/P2 repairs",
+      "reviewerIdentity": "/root/review_it_051_055",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-081..it-090 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_071_080:source81-90",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-081..it-090 independent source quotation, semantic-boundary and collision audit after corrections",
+      "reviewerIdentity": "/root/guardian_it_011_020:source81-90",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-055 row and packet continuity after append-only authority extension through it-090",
+      "reviewerIdentity": "/root/verify_it_source90_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-056..it-060 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_011_020:prephrase56-60",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-056..it-060 semantic, locale, literal-image, narrative-style, distractor and progression review including it-057 and it-060 form checks",
+      "reviewerIdentity": "/root/review_it_056_060",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-091..it-100 official Treccani source research and collision matrix",
+      "reviewerIdentity": "/root/research_it_sources_091_100",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-091..it-100 independent source quotation, usage-marker, semantic-boundary and collision audit",
+      "reviewerIdentity": "/root/review_it_sources_091_100",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-060 row and packet continuity after append-only authority extension through it-100",
+      "reviewerIdentity": "/root/verify_it_source100_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-061..it-065 truth, collision, surface-form and pedagogy boundaries after the prior continuity HOLD and retry",
+      "reviewerIdentity": "/root/guardian_it_061_065",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-061..it-065 semantic, locale, literal-image, narrative-style, distractor and progression review plus the it-064 authority boundary; initial REVISE followed by same-reviewer ACCEPT after P1/P2 repairs",
+      "reviewerIdentity": "/root/review_it_061_065",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-066..it-075 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_066_075",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-066..it-075 semantic, locale, literal-image, narrative-style, distractor and progression review; initial HOLD followed by same-reviewer ACCEPT after exactly three P2 language repairs",
+      "reviewerIdentity": "/root/review_it_066_075",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-101..it-110 official Treccani source reconstruction and collision matrix, including impassive-only it-102",
+      "reviewerIdentity": "/root/research_it_sources_131_140:source101-110",
+      "verdict": "SOURCE_PASS"
+    },
+    {
+      "scope": "it-101..it-110 independent source quotation, usage-marker, semantic-boundary and collision audit after exact it-107 quote repair",
+      "reviewerIdentity": "/root/review_it_sources_101_110_reconstructed",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-075 row and packet continuity after append-only authority extension through it-110",
+      "reviewerIdentity": "/root/verify_it_source110_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-076..it-085 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_076_085",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-076..it-085 semantic, locale, literal-image, narrative-style, distractor and progression review; initial HOLD followed by same-reviewer ACCEPT after four P2 native-language repairs",
+      "reviewerIdentity": "/root/review_it_076_085",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-111..it-120 official Treccani source rows from the exact recovered packet; independent quotation, usage-marker, semantic-boundary and collision audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_111_120_reconstructed",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-085 row and packet continuity after append-only authority extension through it-120",
+      "reviewerIdentity": "/root/verify_it_source120_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-086..it-095 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_086_095",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-086..it-095 semantic, locale, literal-image, narrative-style, distractor and progression review; initial HOLD followed by an exact 24-path repair, second HOLD followed by an exact 5-path repair, then same-reviewer final ACCEPT",
+      "reviewerIdentity": "/root/review_it_086_095",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-121..it-130 official Treccani source rows from the reconstructed packet; live retrieval 10/10, collision findings 0 and final findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_121_130_reconstructed",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-095 row and packet continuity after append-only authority extension through it-130",
+      "reviewerIdentity": "/root/verify_it_source130_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-096..it-105 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_096_105",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-096..it-105 semantic, locale, literal-image, narrative-style, distractor and progression review with findings=[]",
+      "reviewerIdentity": "/root/review_it_096_105",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-131..it-140 independent official-source quotation, usage-marker, semantic-boundary, collision and timestamp audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_131_140",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-105 row and packet continuity after append-only authority extension through it-140",
+      "reviewerIdentity": "/root/verify_it_source140_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-141..it-150 independent official-source quotation, usage-marker, semantic-boundary and collision audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_141_150",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-105 row and packet continuity after append-only authority extension through it-150",
+      "reviewerIdentity": "/root/verify_it_source150_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-106..it-115 prephrase truth, collision, surface-form and pedagogy boundaries",
+      "reviewerIdentity": "/root/guardian_it_106_115",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-106..it-115 semantic, locale, literal-image, narrative-style, distractor and progression review with findings=[]",
+      "reviewerIdentity": "/root/review_it_106_115",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-151..it-160 independent official-source quotation, usage-marker, semantic-boundary and collision audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_151_160",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-115 row and packet continuity after append-only authority extension through it-160",
+      "reviewerIdentity": "/root/verify_it_source160_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-161..it-170 independent official-source quotation, usage-marker, semantic-boundary and collision audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_161_170",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-115 row and packet continuity after append-only authority extension through it-170",
+      "reviewerIdentity": "/root/verify_it_source170_continuity",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-171..it-176 independent official-source quotation, usage-marker, selected-sense, semantic-boundary and collision audit with findings=[]",
+      "reviewerIdentity": "/root/review_it_sources_171_176",
+      "verdict": "SOURCE_ACCEPT"
+    },
+    {
+      "scope": "it-001..it-115 row and packet continuity after completing source authority through it-176; 176/176 exact unique source links, 61 inactive sourced scaffolds, 0 unverified rows and findings=[]",
+      "reviewerIdentity": "/root/verify_it_source176_complete",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-116..it-125 prephrase truth, exact authority/linkage, semantic, style and quiz plans with findings=[]",
+      "reviewerIdentity": "/root/guardian_it_096_105:prephrase116-125",
+      "verdict": "PREPHRASE_PASS"
+    },
+    {
+      "scope": "it-116..it-125 semantic, locale, literal-image, narrative-style, distractor and progression review; initial and follow-up HOLDs followed by final ACCEPT after exact repairs, with findings=[] on the current hashes",
+      "reviewerIdentity": "/root/review_it_116_125",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-126..it-135 semantic, Italian surface-form, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback recheck after all repairs",
+      "reviewerIdentity": "/root/review_it_126_135",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-136..it-145 semantic, Italian surface-form, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback recheck after repairs",
+      "reviewerIdentity": "/root/review_it_136_145",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-146..it-155 semantic, Italian surface-form, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback recheck after repairs",
+      "reviewerIdentity": "/root/accept_review_it_146_155_zero",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-156..it-165 semantic, Italian surface-form, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback review; initial and follow-up HOLDs followed by final exhaustive ACCEPT on the current packet and bank hashes, with findings=[]",
+      "reviewerIdentity": "/root/review_it_156_165_actual",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-166..it-176 semantic, Italian surface-form, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback review; HOLD followed by repair and final exhaustive ACCEPT on the current two packet hashes and full-bank hash, with findings=[]",
+      "reviewerIdentity": "/root/review_it_166_176_actual",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-176 independent full raw-no3 answer-length and Italian taste preflight on current full bank and packet inventory; findings=[]",
+      "reviewerIdentity": "/root/preflight_it_raw_no3_taste",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "it-001..it-020 independent semantic, locale, narrative-style, distractor and quiz acceptance on current bank and authoring packets; findings=[]",
+      "reviewerIdentity": "/root/review_it_001_020_independent_accept",
+      "verdict": "ACCEPT"
+    }
+  ],
+  "reviewerRoles": {
+    "prephrase-guardian": "PASS",
+    "judge_truth": "PASS",
+    "judge_reader": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_distractors": "PASS",
+    "judge_locale": "PASS",
+    "judge_taste": "PASS",
+    "judge_bank_progression": "PASS"
+  },
+  "findings": [],
+  "deterministicGates": {
+    "sourceLink": "PASS",
+    "style": "PASS",
+    "quiz": "PASS",
+    "structural": "STRUCTURAL_PASS"
+  },
+  "authoringPacketPaths": [
+    "content/daily-phrases/it/authoring/it-001-005.json",
+    "content/daily-phrases/it/authoring/it-006-010.json",
+    "content/daily-phrases/it/authoring/it-011-015.json",
+    "content/daily-phrases/it/authoring/it-016-020.json",
+    "content/daily-phrases/it/authoring/it-021-025.json",
+    "content/daily-phrases/it/authoring/it-026-030.json",
+    "content/daily-phrases/it/authoring/it-031-035.json",
+    "content/daily-phrases/it/authoring/it-036-040.json",
+    "content/daily-phrases/it/authoring/it-041-045.json",
+    "content/daily-phrases/it/authoring/it-046-050.json",
+    "content/daily-phrases/it/authoring/it-051-055.json",
+    "content/daily-phrases/it/authoring/it-056-060.json",
+    "content/daily-phrases/it/authoring/it-061-065.json",
+    "content/daily-phrases/it/authoring/it-066-075.json",
+    "content/daily-phrases/it/authoring/it-076-085.json",
+    "content/daily-phrases/it/authoring/it-086-095.json",
+    "content/daily-phrases/it/authoring/it-096-105.json",
+    "content/daily-phrases/it/authoring/it-106-115.json",
+    "content/daily-phrases/it/authoring/it-116-125.json",
+    "content/daily-phrases/it/authoring/it-126-135.json",
+    "content/daily-phrases/it/authoring/it-136-145.json",
+    "content/daily-phrases/it/authoring/it-146-155.json",
+    "content/daily-phrases/it/authoring/it-156-165.json",
+    "content/daily-phrases/it/authoring/it-166-175.json",
+    "content/daily-phrases/it/authoring/it-176-176.json"
+  ],
+  "hashesSha256": {
+    "sourceBank": "42CB5771CC68749F34C5186B4FD4252F445F5102432A729AE9D3DE46E7F5C116",
+    "sourceEvidence": "1FE99089D31E358C4F1C3FABF1BC163E2A4D2697F82CB3F3EE76A2822FB7B91F",
+    "sourceLedger": "CA0FC226B3E7A2509E4E8F5AED0345A2338B566D17F7A274805027DD1E9B6D42",
+    "englishBaseline": "A2A744254CEA2080EA44326335DF573AE828D465AC721F696B1E1F2235873321",
+    "styleContract": "1170D74F22F036DCDC919AF5E7DE17ED1AF47A0E70CD562B56DF95BAFB527812",
+    "authoringPackets": {
+      "it-001-005": "1E2387A83D30FC60B9CA0330BFA75098A4B391E0D350C4F66607298C5B0BF26B",
+      "it-006-010": "EFE7BCAB07A98C3DD523819E4A3873F6AE2972E6EC1A0E188F5BB563D535B024",
+      "it-011-015": "73831C9EB54B66B253587B2812F2ADCC6ECB554285B3C103C1B210BEF2EA0704",
+      "it-016-020": "FCB3A4C3937ECBE685A5DD6291EBD4D566AEF1CE85A6524CC787DFD928522F06",
+      "it-021-025": "DDA7BC9DFC4AFDA28B1A9DEA0C6BAEFDF9B232EB3CFE3FF052B280B77B4BC00D",
+      "it-026-030": "7A6CE08D6953E316F7E29F3B8A8F5A2ADF31C457653F859683FA2B5BC1C3A520",
+      "it-031-035": "12A1542AA60F74EAC96E1386341DA404CA5738CDD0A03108204437BC53F94EA6",
+      "it-036-040": "E7EF762DA8F6ADEDC679B3F4B6FEAE1A9528C158D611FC9E475EB9D924819281",
+      "it-041-045": "EFA355FA2D838626599C980003BAAC7794C194D07FA7FA7E8545D9EF91F5A470",
+      "it-046-050": "9CE4B8F739794FAB72549CC3A0FE2B64AE14A074CE00587F067C79C2DD2F98C0",
+      "it-051-055": "9A22EFFB068C76FC420766E5637873FA4CD39FC23EDCF703E6B0345F43CC03EA",
+      "it-056-060": "7CCB8A53068D49F5F6F8F6F54AE400B870DAF616CF4B9E7D0743AC5C482C063F",
+      "it-061-065": "6B0F528985D39CDF9CB2BCFD8DCD72ED89CD224E3053D46BB0BA49B430FA6D68",
+      "it-066-075": "7EF9DD09544DD40893860792167AED84A14750FEB03EC429E706AA03F39BF2E4",
+      "it-076-085": "C0022A9EC8E9D634637339C79BB4C2376684582AD0393BC0FE9E3E16E9457C08",
+      "it-086-095": "D7E24BED28A358877F57C896EB058247F51D96CE5875A52CF45EAA18569E702B",
+      "it-096-105": "B74A5BC431DA453537C6BECEE23C723FB2ED0E54A607D7BFE24DC2F623C719A2",
+      "it-106-115": "378B21BD1CBB0B36F2E0BCDD0DC97E1145F6A1571A5666DF9CE153FA99903732",
+      "it-116-125": "6322467C9CAFB16D6950EE9AF42D41E1FA0EF3296BB5746E4E41CEF3C07B7B8A",
+      "it-126-135": "2FF17EBC834491E079D6B3A0FF6B8ACAF98E5ADE4832CF3F29AB5C92622E8F56",
+      "it-136-145": "C5C6437705B241D4EAF6203EC6E93E69EDE65E66A4CDFD504C46632A20EB3CFA",
+      "it-146-155": "7FC6A4C86D38835768EB24CB73114C19B376277AAE7E65B61DD23350E45A5F72",
+      "it-156-165": "CF0ECC99B73DA2DB83036620FDB0AAA751CA2D9CA661F9517087D53F58B5D49C",
+      "it-166-175": "910DDD62FEBDFA251452348A18CEBF0B7D921FA923745CA1469A5ADB00200576",
+      "it-176-176": "196DD9581685ED97CBF4B2172DFCFC3ADE2D9A48DC442590197D97E3A34BC983"
+    }
+  },
+  "evidence": {
+    "acceptedPrefix": [
+      "it-001",
+      "it-176"
+    ],
+    "acceptedRows": 176,
+    "packetCount": 25,
+    "packetCoverageExact": true,
+    "packetBankProjectionExact": true,
+    "connectedFocusedTests": "Focused Node and target-isolation Jest gates PASS at accepted176 boundary",
+    "aggregateQuizClueScan": "it-001..it-176 enforceRepeatedLongestAcrossAll=true PASS; findings=[]",
+    "acceptedPrefixRowsSha256": "3E45CBC82C77F9A8E9E69D60AB2B30285ECB99E71AC6596849FB2E7018ACE799",
+    "authorityAcceptedSources": 176,
+    "authorityAppendContinuity": "Fresh /root/review_it_166_176_actual returned ACCEPT with findings=[] after HOLD, repair and exhaustive semantic and Italian surface-form review, RU/UK nativeness, literal-image, narrative-style, distractor and own-scene feedback recheck on the current hashes. The complete accepted contour is now 176/176 rows in 25/25 exact packets with SHA-256 3E45CBC82C77F9A8E9E69D60AB2B30285ECB99E71AC6596849FB2E7018ACE799; source authority remains 176/176 unique exact links.",
+    "sourcedScaffolds": 0,
+    "unverifiedSourceRows": 0,
+    "remainingScaffolds": 0,
+    "allAcceptedRowsClosed": true,
+    "verifiedInactive": true,
+    "mojibakeOrControlFindings": 0,
+    "activationBoundary": "All 176 Italian rows remain inactive and unapproved. This acceptance is editorial continuity only and does not approve release or runtime activation."
+  }
+}

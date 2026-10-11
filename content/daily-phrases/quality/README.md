@@ -30,11 +30,12 @@ Incremental authoring uses a narrower **editorial-continuity manifest** for rows
 ## Non-negotiable section rules
 
 - English `IDIOMS` are an English-only reference and cannot be translated row-for-row to create another target bank.
-- No target phrase, distractor or example may be taken from the English quest pool for ES/FR/DE.
+- No target phrase, distractor or example may be taken from the English quest pool for ES/FR/DE/IT.
 - A source URL alone is not evidence: the truth judge cites the exact source line/definition and explains its relevance to the bank row.
 - Every authored source-linked row must pass `scripts/daily_phrase_source_link_gate.mjs`. It checks the explicit row→ledger index mapping and exact source id, URL, HTTP status, definition quotation, usage marker and snapshot timestamp; learner-facing punctuation may differ only when the lexical word sequence remains identical. Evidence time is row-scoped: `sourceEvidence.checkedAt` must equal that authoritative row's `checkedAt`; the ledger-level timestamp is only a legacy fallback when a row has no timestamp and must never silently rewrite older evidence when new rows are appended.
 - Owner-review previews must expose the evidence retrieval method and HTTP status whenever those fields exist. An official search-result snippet is never displayed as though the dictionary page itself was fetched successfully.
 - Spanish HOLD inventory is source-scaffolded only by `scripts/sync_spanish_daily_phrase_cvc_scaffold.mjs`: it preserves authored rows, maps each remaining row one-to-one to the frozen CVC ledger and keeps all learner text and activation closed. Scaffolding is evidence preparation, never authoring or approval.
+- Italian HOLD inventory is source-scaffolded only by `scripts/scaffold_italian_daily_phrase_bank.mjs`: it accepts partial Treccani/Accademia authority ledgers, produces exactly `it-001`…`it-176`, preserves authored rows only while their canonical source target is unchanged, and keeps every row inactive and unapproved. Missing source rows remain `SOURCE_UNVERIFIED_HOLD`; source evidence never implies editorial acceptance.
 - A plausible sounding explanation is not enough: reader, pedagogy and locale judges each independently verify it.
 - The English baseline calibrates field shape, concise delivery and learning flow. It does not license copying English idioms, examples or culture.
 - Every authoring or edit batch must pass both `scripts/daily_phrase_source_link_gate.mjs` and `scripts/daily_phrase_style_gate.mjs` on the exact changed row ids, then receive a fresh independent `judge_taste` PASS on those exact bytes. Any failure is `HOLD`.

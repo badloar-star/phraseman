@@ -113,7 +113,7 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     if (!LOCAL_ACTIVITY_QUEUE_ENABLED && !canWriteToFirestore) return;
 
     const uid = await getCanonicalUserId().catch((error: unknown) => { reportSwallowed('app_activity:trackActivity', error); return null; });
-    const userName = await AsyncStorage.getItem('user_name').catch((error: unknown) => { reportSwallowed('app_activity:trackActivity', error); return null; });
+    // зачем (§AUTH-0230/§CORE-0158, приватность): имя в журнал активности не кладём — только uid; админка подставит имя сама.
     const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
     const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
     const record = {
@@ -123,7 +123,6 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
       result: meta.result ?? 'info',
       tags: cleanTags(meta.tags),
       uid: uid ?? 'unknown',
-      userName: userName ?? null,
       appVersion,
       buildNumber,
       platform: Platform.OS,
@@ -142,7 +141,7 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     // billable document write.
     if (!canWriteToFirestore) return;
 
-    // Гейт согласия (GDPR/ePrivacy): продуктовую телеметрию (uid+userName+действия)
+    // Гейт согласия (GDPR/ePrivacy): продуктовую телеметрию (uid+действия)
     // НЕ пишем в облако без согласия на аналитику. Трейсы ОШИБОК (result:'error')
     // оставляем — это строго необходимая диагностика стабильности (как Crashlytics),
     // согласия не требует.

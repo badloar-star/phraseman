@@ -18714,7 +18714,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           window._userNameCache[d.id] = name;
           out[d.id] = name;
         });
-      } catch {}
+      } catch (e) {
+        // зачем: немой catch прятал отказ чтения имён — теперь причина видна в консоли.
+        console.warn('[ADMIN-NAMES] resolveUserNames: chunk failed', chunk.length, e && e.message ? e.message : e);
+      }
     }));
     // uid, которых нет в users, кэшируем как пустые — чтобы не спрашивать снова.
     for (const uid of need) {
@@ -38298,6 +38301,32 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   let _appHealthAll = [];
   let _appHealthFiltered = [];
   let _appActivityAll = [];
+  // зачем (§CORE-0158, приватность): app_errors/app_activity больше не хранят имя — админка берёт его по uid
+  // из общего кэша resolveUserNames (30 uid за запрос, кэш на сессию). Старые записи с userName доживают по TTL.
+  function appLogNameFor(r) {
+    const uid = r && r.uid ? String(r.uid) : '';
+    if (!uid) return null;
+    const name = (window._userNameCache || {})[uid] || r.userName || '';
+    return name ? { [uid]: name } : null;
+  }
+  let _appLogNamesInFlight = false;
+  async function resolveAppLogNames() {
+    if (_appLogNamesInFlight) return;
+    const cache = window._userNameCache || {};
+    const missing = [...new Set(_appHealthAll.concat(_appActivityAll).map(r => r && r.uid).filter(uid => uid && cache[uid] === undefined))];
+    if (!missing.length) return;
+    _appLogNamesInFlight = true;
+    try {
+      await resolveUserNames(missing);
+    } catch (e) {
+      console.warn('[ADMIN-NAMES] app logs: names failed', missing.length, e && e.message ? e.message : e);
+      return;
+    } finally {
+      _appLogNamesInFlight = false;
+    }
+    // Все запрошенные uid теперь в кэше (пустые — тоже), повторного запроса не будет.
+    if (typeof window.filterAppHealth === 'function') window.filterAppHealth();
+  }
   let _appHealthLoadedAt = 0;
   let _appActivityLoadedAt = 0;
 
@@ -38370,7 +38399,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
           </div>
           <div style="font-size:12px;color:#aaa;margin-bottom:4px">
-            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.screen || '-')} - ${escapeHtml(r.platform || '?')} - ${renderUserRef(r.uid, r.userName ? { [r.uid]: r.userName } : null, { shortUid: true })}
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.screen || '-')} - ${escapeHtml(r.platform || '?')} - ${renderUserRef(r.uid, appLogNameFor(r), { shortUid: true })}
           </div>
           ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}
         </div>
@@ -38495,6 +38524,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const feature = document.getElementById('ah-feature').value;
     const q = (document.getElementById('ah-search').value || '').trim().toLowerCase();
     const statusFilter = document.getElementById('ah-status-filter')?.value || '';
+    void resolveAppLogNames();
     let rows = _appHealthAll.slice();
     if (sev) rows = rows.filter(r => r.severity === sev);
     if (feature) rows = rows.filter(r => (r.feature || 'app') === feature);
@@ -38502,7 +38532,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     else if (statusFilter) rows = rows.filter(r => r.status === statusFilter);
     if (q) {
       rows = rows.filter(r => [
-        r.context, r.message, r.uid, r.userName, r.appVersion, r.platform, r.fingerprint,
+        r.context, r.message, r.uid, r.userName, (window._userNameCache || {})[r.uid], r.appVersion, r.platform, r.fingerprint,
       ].some(v => String(v || '').toLowerCase().includes(q)));
     }
     _appHealthFiltered = rows;
@@ -38510,7 +38540,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     renderAppActivity(_appActivityAll.filter(r => {
       if (feature && (r.feature || 'app') !== feature) return false;
       if (!q) return true;
-      return [r.action, r.feature, r.screen, r.uid, r.userName, r.appVersion, r.platform, r.result]
+      return [r.action, r.feature, r.screen, r.uid, r.userName, (window._userNameCache || {})[r.uid], r.appVersion, r.platform, r.result]
         .some(v => String(v || '').toLowerCase().includes(q));
     }));
     const health = window._appHealthSourceHealth || { state:'idle', complete:false, truncated:false };
@@ -38539,7 +38569,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
           </div>
           <div style="font-size:12px;color:#aaa;margin-bottom:5px">
-            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.platform || '?')} - v${escapeHtml(r.appVersion || '?')} - ${renderUserRef(r.uid, r.userName ? { [r.uid]: r.userName } : null, { shortUid: true })}
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.platform || '?')} - v${escapeHtml(r.appVersion || '?')} - ${renderUserRef(r.uid, appLogNameFor(r), { shortUid: true })}
           </div>
           <div style="font-size:13px;color:#ddd;margin-bottom:5px">${escapeHtml(r.message || '')}</div>
           ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}

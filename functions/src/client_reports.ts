@@ -409,7 +409,7 @@ function buildReportDoc(
       message: text(payload.message, 2000),
       stack: nullableText(payload.stack, 8000),
       tags: cleanTags(payload.tags),
-      userName: nullableText(payload.userName, 120),
+      // зачем (§CORE-0158, приватность): имя старых сборок в журнал сбоев не сохраняем — только uid из base.
       osVersion: nullableText(payload.osVersion, 80),
       deviceName: nullableText(payload.deviceName, 160),
       // зачем: журнал ошибок живёт 90 дней (TTL по expireAt), см. log_ttl.ts
@@ -426,7 +426,7 @@ function buildReportDoc(
       screen: nullableText(payload.screen, 120),
       result: enumText(payload.result, ['start', 'success', 'blocked', 'error', 'info'] as const, 'info'),
       tags: cleanTags(payload.tags),
-      userName: nullableText(payload.userName, 120),
+      // зачем (§CORE-0158, приватность): имя старых сборок в журнал активности не сохраняем — только uid из base.
       osVersion: nullableText(payload.osVersion, 80),
       appState: nullableText(payload.appState, 40),
       // зачем: журнал активности живёт 90 дней (TTL по expireAt), см. log_ttl.ts

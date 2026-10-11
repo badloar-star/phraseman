@@ -45,7 +45,9 @@ describe('app health throttle cache', () => {
 
     expect(throttleReads).toHaveLength(1);
     expect(throttleWrites).toHaveLength(1);
-    expect(storage.getItem.mock.calls.filter(([key]) => key === 'user_name')).toHaveLength(1);
+    // §CORE-0158: имя в журнал сбоев больше не читается и не отправляется.
+    expect(storage.getItem.mock.calls.filter(([key]) => key === 'user_name')).toHaveLength(0);
+    expect(clientReports.submitClientReport.mock.calls[0][1]).not.toHaveProperty('userName');
     expect(firebase.recordError).toHaveBeenCalledTimes(1);
     expect(clientReports.submitClientReport).toHaveBeenCalledTimes(1);
     expect(clientReports.submitClientReport).toHaveBeenCalledWith(

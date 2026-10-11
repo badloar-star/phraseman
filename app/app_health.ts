@@ -166,7 +166,8 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
     return;
   }
 
-  const userName = await AsyncStorage.getItem('user_name').catch((e) => { warnHealthIo('user_name_read_failed', e); return null; });
+  // зачем (§AUTH-0230/§CORE-0158, приватность): имя в журнал сбоев не кладём — хватает uid из базы отчёта;
+  // админка подставляет имя по uid сама (resolveUserNames), в Telegram и 90-дневный журнал оно не уходит.
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
 
@@ -180,7 +181,6 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
     message: normalized.message.slice(0, MAX_MESSAGE_LEN),
     stack: normalized.stack ? normalized.stack.slice(0, MAX_STACK_LEN) : null,
     tags: cleanTags(meta.tags),
-    userName: userName ?? null,
     appVersion,
     buildNumber,
     platform: Platform.OS,

@@ -36,4 +36,40 @@ describe('«Максимум»: текст кнопки поверх гради�
     expect(rows).toHaveLength(LIQUID_GLASS_THEME_IDS.length);
     expect(bad).toEqual([]);
   });
+
+  // зачем (координатор 12.10 02:25): то же для главной кнопки (ctaInk на cta) и для основного/вторичного текста поверх КАЖДОЙ точки
+  // градиентных фонов и карточек — на всех 21 шагах ползунка, а не только на «Максимуме».
+  it('ctaInk reads on cta, text and secondary read on every bg/card gradient stop, all slider steps', () => {
+    const steps = Array.from({ length: 21 }, (_, i) => i / 20);
+    const bad: string[] = [];
+    const worst: Record<string, { ratio: number; where: string }> = {};
+    const note = (key: string, ratio: number, where: string) => {
+      if (!worst[key] || ratio < worst[key].ratio) worst[key] = { ratio, where };
+      if (ratio < 4.5) bad.push(`${key} ${where}=${ratio.toFixed(2)}`);
+    };
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const appearance of ['dark', 'light'] as const) {
+        for (const intensity of steps) {
+          const g = liquidGlassTokens(id, { level: 'max', appearance, intensity });
+          const where = `${id}|${appearance}|${intensity}`;
+          note('ctaInk / cta', paletteContrast(solid(g.ctaInk), solid(g.cta)), where);
+          (g.bgGradient ?? [g.bg]).forEach((c, i) => {
+            note('text / bgGradient', paletteContrast(solid(g.text), solid(c)), `${where}|stop${i}`);
+            note('secondary / bgGradient', paletteContrast(solid(g.secondary), solid(c)), `${where}|stop${i}`);
+          });
+          (g.cardGradient ?? [g.opaqueCard]).forEach((c, i) => {
+            note('text / cardGradient', paletteContrast(solid(g.text), solid(c)), `${where}|stop${i}`);
+            note('secondary / cardGradient', paletteContrast(solid(g.secondary), solid(c)), `${where}|stop${i}`);
+          });
+        }
+      }
+    }
+    if (process.env.THEME_REPORT === '1') {
+      fs.writeFileSync(
+        path.join(os.tmpdir(), 'theme-gradient-fill-text.md'),
+        ['| Пара | Худший (тема|оформление|шаг) |', '|---|---|', ...Object.entries(worst).map(([k, v]) => `| ${k} | ${v.ratio.toFixed(2)} (${v.where}) |`)].join('\n'),
+      );
+    }
+    expect(bad.slice(0, 40)).toEqual([]);
+  });
 });

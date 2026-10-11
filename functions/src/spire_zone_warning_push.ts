@@ -32,7 +32,7 @@ import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { withCronHeartbeat } from './cron_heartbeat';
 import { compareSpireStanding, spireLiveStandings, type SpireStanding } from './spire_finalize_core';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
-import { spireLiveZoneSize } from './spire_residents';
+import { spireLiveZoneSize, spireWeekStartMs } from './spire_residents';
 import {
   chunkSpirePushMessages,
   isSpirePushOptedOut,
@@ -95,12 +95,61 @@ export type SpireZoneWarningInput = Readonly<{
   status: Exclude<SpireZoneEdgeStatus, null>;
 }>;
 
+// ── Час отправки по поясу человека (🟡 №3 симуляции Шпиля, выкладка после Codex) ──────────────────────────────
+// зачем: один прогон в 20:00 UTC приходил на Бали в 04:00. Теперь крон идёт каждый час в воскресенье 06–22 UTC и
+// шлёт тем, у кого сейчас 20:00 по местному. Кому местные 20:00 воскресенья наступают уже после конца недели
+// (запад США, Гавайи) или слишком близко к нему — запасной прогон в 22:00 UTC. Пояс неизвестен/битый — 20:00 UTC (как было).
+export const SPIRE_ZONE_WARNING_FIRST_RUN_HOUR_UTC = 6;
+export const SPIRE_ZONE_WARNING_LAST_RUN_HOUR_UTC = 22;
+export const SPIRE_ZONE_WARNING_DEFAULT_HOUR_UTC = 20;
+const HOUR_MS = 60 * 60 * 1000;
+
+function localWeekdayHour(tz: string, ms: number): { weekday: string; hour: number } | null {
+  try {
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short', hour: 'numeric', hourCycle: 'h23' }).formatToParts(new Date(ms));
+    const weekday = parts.find((p) => p.type === 'weekday')?.value ?? '';
+    const hour = Number(parts.find((p) => p.type === 'hour')?.value);
+    return weekday && Number.isFinite(hour) ? { weekday, hour } : null;
+  } catch {
+    // зачем: битый пояс (не IANA) — не роняем крон, вызывающий уходит на час по умолчанию.
+    return null;
+  }
+}
+
+/**
+ * Час UTC (воскресенье этой недели), в который человеку слать предупреждение. weekEndMs — понедельник 00:00 UTC.
+ * Ищем воскресные 20:00 по местному среди прогонов крона (06–22 UTC); не нашли — запасной 22:00 UTC (запад) или 06:00
+ * (если местные 20:00 раньше первого прогона, крайний восток); пояса нет — 20:00 UTC.
+ */
+export function spireZoneWarningDueHourUtc(tz: string | null | undefined, weekEndMs: number): number {
+  if (!tz) return SPIRE_ZONE_WARNING_DEFAULT_HOUR_UTC;
+  const sundayStartMs = weekEndMs - 24 * HOUR_MS;
+  for (let h = SPIRE_ZONE_WARNING_FIRST_RUN_HOUR_UTC; h <= SPIRE_ZONE_WARNING_LAST_RUN_HOUR_UTC; h++) {
+    const local = localWeekdayHour(tz, sundayStartMs + h * HOUR_MS);
+    if (!local) return SPIRE_ZONE_WARNING_DEFAULT_HOUR_UTC;
+    if (local.weekday === 'Sun' && local.hour === 20) return h;
+  }
+  const first = localWeekdayHour(tz, sundayStartMs + SPIRE_ZONE_WARNING_FIRST_RUN_HOUR_UTC * HOUR_MS);
+  if (!first) return SPIRE_ZONE_WARNING_DEFAULT_HOUR_UTC;
+  // На первом прогоне у человека уже позже 20:00 воскресенья (крайний восток) — шлём на первом; иначе — на последнем.
+  return first.weekday === 'Sun' && first.hour > 20 ? SPIRE_ZONE_WARNING_FIRST_RUN_HOUR_UTC : SPIRE_ZONE_WARNING_LAST_RUN_HOUR_UTC;
+}
+
+/** Слать ли на этом прогоне: час совпал, или прошлый час пропущен (одна попытка догнать — метка недели не даст дубля). */
+export function isSpireZoneWarningDueNow(tz: string | null | undefined, nowMs: number, weekEndMs: number): boolean {
+  const due = spireZoneWarningDueHourUtc(tz, weekEndMs);
+  const hourNow = new Date(nowMs).getUTCHours();
+  return hourNow === due || hourNow === due + 1;
+}
+
 export type SpireZoneWarningUser = Readonly<{
   expoPushToken?: string | null;
   pushTokenLang?: string | null;
   pushPrefs?: SpirePushPrefs | null;
   /** weekId, за который предупреждение уже отправлено (PM-200). */
   sentForWeekId?: string | null;
+  /** IANA-пояс устройства (users.pushTokenTimezone) — час отправки «20:00 по местному». */
+  timezone?: string | null;
 }>;
 
 export interface SpireZoneWarningCandidate {
@@ -204,6 +253,7 @@ export async function runSpireZoneWarningPush(
   const inputs: SpireZoneWarningInput[] = [];
   let rooms = 0;
   let live = 0;
+  const weekEndMs = spireWeekStartMs(now) + 7 * 24 * HOUR_MS;
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   // eslint-disable-next-line no-constant-condition
@@ -250,6 +300,7 @@ export async function runSpireZoneWarningPush(
         pushTokenLang: typeof data?.pushTokenLang === 'string' ? data.pushTokenLang : null,
         pushPrefs: readSpirePushPrefs(data?.pushPrefs),
         sentForWeekId: readSpirePushMark(data, SPIRE_ZONE_WARNING_PUSH_MARK_FIELD),
+        timezone: typeof data?.pushTokenTimezone === 'string' ? data.pushTokenTimezone : null,
       });
     });
   }
@@ -268,7 +319,12 @@ export async function runSpireZoneWarningPush(
     console.log('[PUSH-PREFS]', JSON.stringify({ event: 'spire_zone_warning_skip', weekId, optedOut, alreadySent, uiLangSkipped }));
   }
 
-  const candidates = buildSpireZoneWarningCandidates(inputs, usersByUid, weekId);
+  // зачем (🟡 №3, приватность): пояс берём из users (читаем ради токена всё равно), а не из строки комнаты — комнату
+  // читает любой вошедший. Кому сейчас не 20:00 по местному — ждут своего часа (счётчик в логе, без uid).
+  const dueInputs = inputs.filter((input) => isSpireZoneWarningDueNow(usersByUid.get(input.uid)?.timezone ?? null, now, weekEndMs));
+  const notDueYet = inputs.length - dueInputs.length;
+  console.log(LOG, JSON.stringify({ event: 'timezone_filter', weekId, hourUtc: new Date(now).getUTCHours(), due: dueInputs.length, notDueYet }));
+  const candidates = buildSpireZoneWarningCandidates(dueInputs, usersByUid, weekId);
   if (candidates.length === 0) {
     console.log(LOG, JSON.stringify({ event: 'skip', reason: 'no_candidates', weekId, rooms, optedOut, alreadySent }));
     return { rooms, live, candidates: 0, sent: 0, failedChunks: 0, optedOut, alreadySent };
@@ -314,7 +370,8 @@ export type { SpireStanding };
  */
 export const spireZoneWarningCron = onSchedule(
   {
-    schedule: 'every sunday 20:00',
+    // зачем (🟡 №3 симуляции Шпиля): каждый час в воскресенье 06–22 UTC — каждому в 20:00 по его поясу.
+    schedule: '0 6-22 * * 0',
     timeZone: 'UTC',
     timeoutSeconds: 300,
     memory: '256MiB',

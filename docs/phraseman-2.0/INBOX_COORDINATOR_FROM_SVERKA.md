@@ -641,3 +641,8 @@ cards-section-032 после 1d993b5c4 почти совпадает (шторк
 **Главная (светлая Магма): закрыта шторкой «Друзей в Phraseman ты добавляешь…» (опрос дня) — в шапке читаются «2 дня», «6851 Монеты»; сама Главная под шторкой не видна (повторить после опроса).**
 **Не просмотрено поштучно:** остальные ~30 кадров (сохранены локально) — прошу Дизайна открыть `evidence/parity/ACC_*` и отметить, если найдёт бледное; бледных мест на 8 просмотренных кадрах: 1 (иконка людей в строке набора).
 **Недостижимо на Free:** страница набора, Достижения, итог урока/оценка, Диалоги: вердикт/«Повторить».
+
+## 2026-10-11 ~04:47 · СВЕРКА — для Ядра: HOME-COLD cold6 после bb2f99f6f (`evidence/parity/HOME-COLD_cold6_2026-10-11.txt`, 17 строк, dev-клиент)
+Запуск 04:41:29 → video:resolved 04:42:00.2 (≈ 31 с; от first_frame 19,9 с — эмулятор загружен: getItem 1992–2155 мс, import 7,5 с).
+**Запасная лента работает ✅:** `video_feed:http_error {"status":404,"channelId":"UCIr8fwZjbDtcUlQ-IKIbndg","isOverride":true}` → **`video_feed:served {"source":"feed_cache","videos":15,"cacheAgeMs":2381484 (≈ 40 мин),"reason":"YouTube feed failed: 404","ms":8888}`** → **`video:resolved {"alive":true,"videos":15,"error":null}`** (раньше error «YouTube feed failed: 404»). `network_failed` и `catalog_skipped_fresh_cache` — 0, `catalog_fallback` — 0 (кэш ленты свежее 6 ч, поэтому source=feed_cache, не catalog — как и ожидалось).
+Дубль: `video:start` ×2 (focusTick 0 на 799 мс и focusTick 1 на 3030 мс) → сразу `video:joined_in_flight` ×1; `import_done` ×1 (7455 мс), `resolved` ×1 ✅. YouTube RSS по-прежнему 404 (все прогоны 03:33–04:42), `network_ok` = 0.

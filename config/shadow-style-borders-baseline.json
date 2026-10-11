@@ -1,10 +1,8 @@
 {
-  "total": 156,
+  "total": 119,
   "files": {
     "app/(tabs)/settings.tsx": 1,
-    "app/ai_companion_session.tsx": 14,
     "app/combined_lesson_pick.tsx": 2,
-    "app/hint.tsx": 8,
     "app/level_exam.tsx": 1,
     "app/pack_opening.tsx": 1,
     "app/preposition_drill.tsx": 4,
@@ -14,10 +12,8 @@
     "app/settings_notifications.tsx": 2,
     "components/ActivityHeatmap365.tsx": 1,
     "components/AiMistakeCard.tsx": 4,
-    "components/AppMessagesInbox.tsx": 6,
     "components/celebration/RewardImpactRings.tsx": 1,
     "components/coins/CoinRankCatalog.tsx": 2,
-    "components/DailyPhraseCard.tsx": 9,
     "components/DeleteAccountConfirmModal.tsx": 2,
     "components/dialogs/DialogGoalsSheet.tsx": 1,
     "components/dialogs/DialogueV2BriefingScreen.tsx": 1,

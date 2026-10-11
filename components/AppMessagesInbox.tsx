@@ -54,6 +54,7 @@ import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
+import { RowDivider } from './v2/RowDivider';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -831,6 +832,7 @@ function AppMessagesInbox({
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
+                <RowDivider edge="bottom" color="rgba(255,255,255,0.09)" /> {/* theme-exempt: светлая линия 0.09 внутри тёмной плашки — постоянная */}
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
@@ -1232,7 +1234,7 @@ function AppMessagesInbox({
                   ],
                 }}
               >
-                <View style={[styles.envelope, { backgroundColor: glass.lightTint, borderColor: glass.glassEdge }]}>
+                <View style={[styles.envelope, { backgroundColor: glass.lightTint }]}>
                   <View style={[styles.envelopeFlap, { borderTopColor: glass.cta }]} />
                   <View style={styles.envelopeShine} />
                 </View>
@@ -1422,8 +1424,7 @@ const styles = StyleSheet.create({
   // Летящий конверт (оверлей). Рисуем кодом — независимо от темы, без ассета.
   envelope: {
     flex: 1,
-    borderRadius: 12,
-    borderWidth: 1,
+    borderRadius: 12, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень (летящий конверт)
     overflow: 'hidden',
     shadowColor: 'black', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     shadowOpacity: 0.3,
@@ -1438,9 +1439,9 @@ const styles = StyleSheet.create({
     left: -2,
     right: -2,
     height: 0,
-    borderLeftWidth: 68,
-    borderRightWidth: 68,
-    borderTopWidth: 50,
+    borderLeftWidth: 68, // shadow-ok: клапан конверта — треугольник из границ View, не обводка
+    borderRightWidth: 68, // shadow-ok: клапан конверта — треугольник из границ View, не обводка
+    borderTopWidth: 50, // shadow-ok: клапан конверта — треугольник из границ View, не обводка
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
   },
@@ -1534,8 +1535,7 @@ const styles = StyleSheet.create({
   // зачем: макет system.html system_17 — плоские строки с точкой слева и тонкой линией снизу, без карточек.
   messageRow: {
     position: 'relative',
-    borderBottomWidth: StyleSheet.hairlineWidth, // guard-ok: разделитель строк, а не рамка контейнера
-    borderBottomColor: 'rgba(255,255,255,0.09)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
+    // зачем (владелец 12.10, стиль «Тень»): линия под строкой — RowDivider (линия-View) с тем же светлым тоном 0.09, не borderBottom
     paddingVertical: 14,
     paddingLeft: 22,
     paddingRight: 4,

@@ -392,8 +392,7 @@ function AiCompanionSession() {
             paddingVertical: 10,
             borderRadius: 20,
             backgroundColor: glassFill(t.bgCard, 0.72),
-            borderWidth: 1,
-            borderColor: glassFill(t.border, 0.76),
+            // зачем (владелец 12.10, стиль «Тень»): стеклянные плашки чата без обводок — отделяют тон заливки и прозрачность
           }}
         >
           <TouchableOpacity
@@ -407,8 +406,6 @@ function AiCompanionSession() {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: glassFill(t.bgSurface, 0.56),
-              borderWidth: 1,
-              borderColor: glassFill(t.border, 0.78),
             }}
           >
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
@@ -451,8 +448,6 @@ function AiCompanionSession() {
                 height: 38,
                 borderRadius: 19,
                 backgroundColor: glassFill(t.bgSurface, 0.56),
-                borderWidth: 1,
-                borderColor: glassFill(t.border, 0.78),
               }}
             />
           </View>
@@ -478,8 +473,6 @@ function AiCompanionSession() {
                   style={{
                     backgroundColor: isUser ? glassFill(t.bgSurface, 0.76) : glassFill(t.bgCard, 0.62),
                     borderRadius: 20,
-                    borderWidth: 1,
-                    borderColor: glassFill(t.border, isUser ? 0.82 : 0.68),
                     paddingHorizontal: 16,
                     paddingVertical: 14,
                     marginBottom: 10,
@@ -579,8 +572,6 @@ function AiCompanionSession() {
                   paddingVertical: 12,
                   paddingHorizontal: 14,
                   backgroundColor: glassFill(t.bgCard, 0.64),
-                  borderWidth: 1,
-                  borderColor: glassFill(t.border, 0.72),
                   marginBottom: 8,
                   flexDirection: 'row',
                   alignItems: 'flex-start',
@@ -667,8 +658,8 @@ function AiCompanionSession() {
                 flex: 1,
                 backgroundColor: glassFill(t.bgCard, 0.74),
                 borderRadius: 20,
-                borderWidth: 1,
-                borderColor: glassFill(t.border, 0.8),
+                borderWidth: 1, // shadow-ok: контур поля ввода сообщения (TextInput), не контейнер
+                borderColor: glassFill(t.border, 0.8), // shadow-ok: контур поля ввода (TextInput)
                 paddingHorizontal: 16,
                 paddingVertical: 12,
                 color: t.textPrimary,
@@ -687,8 +678,6 @@ function AiCompanionSession() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: input.trim() && !sending ? t.accent : t.bgSurface,
-                borderWidth: 1,
-                borderColor: glassFill(t.border, 0.76),
                 opacity: input.trim() && !sending ? 1 : 0.5,
               }}
             >

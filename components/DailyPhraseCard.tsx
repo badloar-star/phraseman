@@ -378,7 +378,6 @@ function DailyPhraseCard({
           homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
           !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
-            borderColor: chrome.border,
             shadowColor: chrome.shadow,
           },
         ]}
@@ -699,7 +698,6 @@ function DailyPhraseCard({
             homeAdditional && { backgroundColor: chrome.iconBg },
             !homeAdditional && {
               backgroundColor: chrome.colors[1] || t.bgCard,
-              borderColor: chrome.border,
               shadowColor: chrome.shadow,
             },
             pressed && styles.pressed,
@@ -939,7 +937,6 @@ function DailyPhraseCard({
                             styles.questOption,
                             {
                               backgroundColor: t.bgCard,
-                              borderColor: t.border,
                             },
                             pressed && styles.pressed,
                           ]}
@@ -1030,7 +1027,7 @@ function DailyPhraseCard({
                     </TonalSurface>
                   )}
                   {/* зачем (владелец 01.10, скрин «Фраза дня»): три одинаковые карточки с подписью сверху, без цветной рамки и полоски. */}
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={styles.detailBlock}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
                     </Text>
@@ -1039,7 +1036,7 @@ function DailyPhraseCard({
                     </Text>
                   </TonalSurface>
 
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={styles.detailBlock}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelMeaning}
                     </Text>
@@ -1048,7 +1045,7 @@ function DailyPhraseCard({
                     </Text>
                   </TonalSurface>
 
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={styles.detailBlock}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelExample}
                     </Text>
@@ -1279,7 +1276,7 @@ const styles = StyleSheet.create({
     width: 94,
     height: 94,
     borderRadius: 47,
-    borderWidth: 2,
+    borderWidth: 2, // shadow-ok: кольцо-вспышка успеха (анимация-эффект), не контейнер
   },
   successBadge: {
     width: 70,
@@ -1346,8 +1343,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   detailBlock: {
-    borderRadius: 16,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43 — тонкая рамка как на скрине владельца
+    borderRadius: 16, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень (блок деталей: тон subtle)
     padding: 14,
   },
   detailLabel: {
@@ -1430,7 +1426,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   questDiagnostic: {
-    borderWidth: 1,
+    borderWidth: 1, // shadow-ok: контур вердикта верно/неверно (цвет задаёт исход ответа), не обводка контейнера
     padding: 13,
   },
   questDiagnosticHeader: {

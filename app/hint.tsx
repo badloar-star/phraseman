@@ -26,7 +26,8 @@ import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { legacyRuUk } from '../constants/i18n';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
-import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
+import { RowDivider } from '../components/v2/RowDivider';
 
 function L(
   lang: Lang,
@@ -141,12 +142,12 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
 
 function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
   return (
-    <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+    <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
+      {/* зачем (владелец 12.10, стиль «Тень»): сетка таблицы — линии-View (RowDivider), не рамки ячеек */}
+      <RowDivider edge="bottom" color={t.border} />
       {cols.map((col, i) => (
-        <View key={i} style={[
-          { flex: 1, paddingVertical: 8, paddingHorizontal: 6, alignItems: 'center' },
-          i < cols.length - 1 && { borderRightWidth: 0.5, borderRightColor: t.border },
-        ]}>
+        <View key={i} style={{ flex: 1, paddingVertical: 8, paddingHorizontal: 6, alignItems: 'center' }}>
+          {i < cols.length - 1 ? <RowDivider edge="right" color={t.border} /> : null}
           <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
             {col}
           </Text>
@@ -158,12 +159,11 @@ function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
 
 function TableRow({ cells, isEven, t, f, firstBold }: { cells: string[]; isEven: boolean; t: any; f: any; firstBold?: boolean }) {
   return (
-    <View style={{ flexDirection: 'row', backgroundColor: isEven ? t.bgCard : t.bgSurface, borderTopWidth: 0.5, borderTopColor: t.border }}>
+    <View style={{ flexDirection: 'row', backgroundColor: isEven ? t.bgCard : t.bgSurface }}>
+      <RowDivider color={t.border} />
       {cells.map((cell, i) => (
-        <View key={i} style={[
-          { flex: 1, paddingVertical: 10, paddingHorizontal: 8, justifyContent: 'center' },
-          i < cells.length - 1 && { borderRightWidth: 0.5, borderRightColor: t.border },
-        ]}>
+        <View key={i} style={{ flex: 1, paddingVertical: 10, paddingHorizontal: 8, justifyContent: 'center' }}>
+          {i < cells.length - 1 ? <RowDivider edge="right" color={t.border} /> : null}
           <Text style={{ color: t.textPrimary, fontSize: 13, fontWeight: (i === 0 && firstBold) ? '700' : '400', lineHeight: 18 }} maxFontSizeMultiplier={1}>
             {cell}
           </Text>
@@ -183,7 +183,7 @@ function Table({ label, headers, rows, t, f, firstBold }: {
           {label}
         </Text>
       )}
-      <View style={{ borderWidth: 0, borderColor: t.border, borderRadius: 12, overflow: 'hidden' }}>
+      <View style={{ borderRadius: 12, overflow: 'hidden' }}>
         <TableHeader cols={headers} t={t} f={f} />
         {rows.map((row, i) => (
           <TableRow key={i} cells={row} isEven={i % 2 === 0} t={t} f={f} firstBold={firstBold} />
@@ -1467,7 +1467,8 @@ function HintScreen() {
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14 }}>
+        <RowDivider edge="bottom" color={t.border} />
         <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
         </TapScale>
@@ -1482,8 +1483,8 @@ function HintScreen() {
       </View>
       <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
-          <TonalSurface radius={16} style={{ borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
-            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
+          <TonalSurface radius={16} style={{ padding: 18, gap: 12 }}>
+            <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="shield-checkmark-outline" size={30} color={t.accentText} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>

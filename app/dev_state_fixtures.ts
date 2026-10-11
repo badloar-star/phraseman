@@ -126,6 +126,8 @@ export type DevStateRequest = Readonly<{
   friendsFail?: readonly DevFriendsFail[] | 'off';
   /** Друзья: окно приглашения на занятие (study_invite), один раз. */
   friendEvent?: DevFriendEvent;
+  /** Окна знакомства с разделами («Позже»): seen — пометить все показанными (не закрывать вручную на каждом кадре), reset — показать снова. */
+  intros?: 'seen' | 'reset';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -184,6 +186,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   };
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
+  request.intros = pick('intros', ['seen', 'reset'] as const);
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed', 'store_unreachable'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
@@ -373,6 +376,18 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
+  }
+  if (request.intros) {
+    await step('intros', request.intros, async () => {
+      const registry = await import('./feature_intro_registry');
+      if (request.intros === 'seen') {
+        const count = await registry.markAllFeatureIntrosSeen();
+        console.log(`[DEV-STATE] intros: помечено показанными ${count} окон знакомства`); // guard-ok: итог фикстуры
+      } else {
+        await registry.resetAllFeatureIntrosSeen();
+        console.log('[DEV-STATE] intros: «показано» сброшено — окна знакомства появятся снова'); // guard-ok: итог фикстуры
+      }
+    });
   }
   if (request.toast) {
     await step('toast', request.toast, async () => {

@@ -66,6 +66,17 @@ export async function markFeatureIntroSeen(id: string): Promise<void> {
     }
 }
 
+// зачем (координатор 12.10, DEV_LINKS_R1): окна знакомства с разделами (first_visit) встают на первый заход в каждый раздел и перекрывают кадр — робот-съёмке нужно пометить все показанными одной ссылкой (`dev_state?intros=seen`).
+export async function markAllFeatureIntrosSeen(): Promise<number> {
+  try {
+    await AsyncStorage.multiSet(FEATURE_INTRO_REGISTRY.map((def) => [seenStorageKey(def.id), '1'] as [string, string]));
+    return FEATURE_INTRO_REGISTRY.length;
+  } catch (e) {
+    DebugLogger.error('feature_intro_registry:markAllFeatureIntrosSeen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    throw e;
+  }
+}
+
 /** Только для витрины движения (DEV Hub): стирает «показано» для ВСЕХ зарегистрированных интро текущего аккаунта. */
 export async function resetAllFeatureIntrosSeen(): Promise<void> {
   try {

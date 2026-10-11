@@ -1,0 +1,227 @@
+# Генератор docs/phraseman-2.0/DEV_LINKS_R1.md из реестра и R1_SHOT_LIST*.md (python scripts/dev_links_r1_generate.py). Правила ссылок — в списке rule(...) ниже.
+import json, re, glob, collections, sys
+
+R = 'C:/appsprojects/phraseman/'
+reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))
+
+def it(o):
+    if isinstance(o, dict):
+        if 'id' in o and 'status' in o:
+            yield o
+        for v in o.values():
+            yield from it(v)
+    elif isinstance(o, list):
+        for v in o:
+            yield from it(v)
+
+rows = [r for r in it(reg) if r.get('release') == 'r1' and r.get('status') in ('pending', 'diff')]
+
+# ── индекс shot-list: id → (источник, заголовок, строка таблицы или шаги группы)
+texts = {}
+for path in sorted(glob.glob(R + 'docs/phraseman-2.0/R1_SHOT_LIST*.md')):
+    name = path.split('/')[-1].replace('.md', '')
+    lines = open(path, encoding='utf-8').read().split('\n')
+    heading = ''
+    steps = []
+    for i, line in enumerate(lines):
+        if re.match(r'^#{2,4} ', line):
+            heading = re.sub(r'^#+\s*', '', line).strip()
+            steps = []
+        elif re.match(r'^\d+\. ', line):
+            if len(steps) < 3:
+                steps.append(line.strip())
+        m = re.match(r'^\|\s*([a-z0-9-]+)\s*\|(.*)$', line)
+        if m and m.group(1) not in texts:
+            cols = [c.strip() for c in m.group(2).split('|')]
+            col = max(cols[:4], key=len) if cols else ''
+            texts[m.group(1)] = ('table', name, heading, col)
+        if 'Кадры в группе' in line:
+            for rid in re.findall(r'\b[a-z]+(?:-[a-z0-9]+)*-\d{3}\b', line):
+                if rid not in texts:
+                    texts[rid] = ('group', name, heading, ' '.join(steps))
+
+def short(s, n=330):
+    s = re.sub(r'\s+', ' ', s).replace('|', '¦')
+    return s if len(s) <= n else s[:n - 1] + '…'
+
+B = 'phraseman://dev_state?'
+# ── правила: (раздел, регулярка по «экран состояние» в нижнем регистре, ссылка, подготовка)
+def L(params, nxt):
+    return f'`{B}{params}&next={nxt.replace("&", "%26")}`'
+
+COMMON = 'onboarding=done&intros=seen'
+RULES = []
+def rule(sections, rx, link, prep=''):
+    RULES.append((tuple(sections), re.compile(rx, re.I), link, prep))
+
+# Диалоги
+D = ['dialogs', 'dialogs-gap']
+rule(D, r'слишком много сообщений|сервис недоступен', L(f'{COMMON}&dev_dialog_fail=service', '/ai_dialog_home'), 'открыть диалог и отправить реплику; «слишком много сообщений» — `dev_dialog_fail=rate_limited`; снять: `dev_dialog_fail=off`')
+rule(D, r'временно недоступны', L(f'{COMMON}&dialogs_paused=1', '/ai_dialog_home'), 'снять: `dialogs_paused=0`')
+rule(D, r'последний ответ|1/30', L(f'{COMMON}&plus=off&dquota=1', '/ai_dialog_home'), 'открыть диалог, отправить реплику — после неё лимит 0/30; снять: `dquota=reset`')
+rule(D, r'не получилось начать диалог', L(f'{COMMON}&energy=3&dev_energy_fail=1', '/ai_dialog_home'), 'открыть диалог → «Начать диалог»; снять: `dev_energy_fail=0`')
+rule(D, r'язык.*проверяется|язык диалогов', '', 'ручной путь: Настройки → «Язык изучения» → язык, для которого диалоги выключены таблицей готовности (D129/D130, `learning_language_surface_readiness.ts`); включает только владелец')
+rule(D, r'— plus|хаб — plus', L(f'{COMMON}&plus=on&dquota=reset', '/ai_dialog_home'), 'у Plus пилюль лимита и энергии нет — так и должно быть')
+rule(D, r'лимит исчерпан|на этот месяц всё|на сегодня всё|0/30|0/10', L(f'{COMMON}&plus=off&dquota=0', '/ai_dialog_home'), 'для стены внутри диалога: `dquota=1`, открыть диалог, отправить реплику')
+rule(D, r'сетевая ошибка|повторить', L(f'{COMMON}&plus=off&dev_dialog_fail=service', '/ai_dialog_home'), 'открыть диалог и отправить реплику; снять: `dev_dialog_fail=off`')
+rule(D, r'rate|слишком часто', L(f'{COMMON}&dev_dialog_fail=rate_limited', '/ai_dialog_home'), 'снять: `dev_dialog_fail=off`')
+rule(D, r'plus.*(дн|лимит)|дневн', L(f'{COMMON}&plus=on&dev_dialog_fail=plus_daily_cap', '/ai_dialog_home'), 'снять: `dev_dialog_fail=off`')
+rule(D, r'приостановлен|на паузе|рубильник|выключ', L(f'{COMMON}&dialogs_paused=1', '/ai_dialog_home'), 'снять: `dialogs_paused=0`')
+rule(D, r'настроени|упало|разозл|злой', L(f'{COMMON}&dev_dialog_mood=sad', '/ai_dialog_home'), 'варианты `happy|smile|neutral|sad|angry`; открыть диалог')
+rule(D, r'свободн|готовим разговор', L(f'{COMMON}&plus=on&hold=freeform_loading', '/ai_dialog_home'), 'снять: `hold=off`')
+rule(D, r'энерги', L(f'{COMMON}&energy=0&dev_energy_fail=1', '/ai_dialog_home'), 'снять: `dev_energy_fail=0`, `energy=5`')
+rule(D, r'хаб', L(f'{COMMON}&plus=off&dquota=reset', '/ai_dialog_home'), 'Plus: заменить `plus=on`')
+
+# Карточки
+C = ['cards', 'cards-section', 'cards-v2', 'cards-gap', 'packs-simple']
+rule(C, r'из видео', L(f'{COMMON}&cards=demo', '/flashcards_video_packs'), 'список роликов грузится из облака: нужна живая сеть эмулятора; превью — журнал `[THUMB]`')
+rule(C, r'подготовка тренировки.*нет наборов|нет наборов', L(COMMON, '/flashcards_training_setup'), 'чистый аккаунт: НЕ применять `cards=demo`')
+rule(C, r'хаб.*(?<!ошибка )загрузк|(?<!ошибка )загрузка.*хаб', L(f'{COMMON}&hold=hub_loading', '/flashcards'), 'снять: `hold=off`')
+rule(C, r'каталог.*(?<!ошибка )загрузк|^загрузка.*(каталог|сообщ)', L(f'{COMMON}&hold=catalog_loading', '/flashcards_packs'), 'снять: `hold=off`')
+rule(C, r'сохран.*(?<!ошибка )загрузк|(?<!ошибка )загрузка.*сохран', L(f'{COMMON}&cards=demo&hold=saved_loading', '/flashcards_collection?cat=saved'), 'снять: `hold=off`')
+rule(C, r'подготов.*(?<!ошибка )загрузк|(?<!ошибка )загрузка наборов|загружаем наборы', L(f'{COMMON}&cards=demo&hold=setup_loading', '/flashcards_training_setup'), 'снять: `hold=off`')
+rule(C, r'голос.*загрузк|загрузка списка голосов', L(f'{COMMON}&cards=demo&hold=voices_loading', '/flashcards_voice_picker'), 'снять: `hold=off`')
+rule(C, r'готовим тренировку', L(f'{COMMON}&cards=demo&hold=quota_waiting', '/flashcards'), 'снять: `hold=off`')
+rule(C, r'не удалось проверить лимит', L(f'{COMMON}&cards=demo&hold=quota_failed', '/flashcards'), 'снять: `hold=off`')
+rule(C, r'быстрый старт', L(f'{COMMON}&cards=demo&hold=swipe_quickstart', '/flashcards'), 'снять: `hold=off`')
+rule(C, r'тренировка не открылась', L(f'{COMMON}&cards=demo&train_gate=fail_blitz', '/flashcards'), 'режимы: `fail_blitz|fail_speaking|fail_swipe_prepare|fail_swipe_quota`; снять: `train_gate=off`')
+rule(C, r'ошибка загрузки|не удалось загрузить', L(f'{COMMON}&cards=demo&fail=saved_load', '/flashcards_collection?cat=saved'), 'снять: `fail=off`')
+rule(C, r'не удалось сохранить|ошибка сохранения', L(f'{COMMON}&cards=demo&fail=card_write', '/flashcards_card_editor'), 'для набора: `fail=pack_write`; снять: `fail=off`')
+rule(C, r'суточный лимит', L(f'{COMMON}&cards=demo_published&fail=publish_daily_limit', '/flashcards_my_packs'), 'открыть свой набор → «Открыть сообществу»; снять: `fail=off`')
+rule(C, r'(устно|говорить).*(нечего|нет)|нечего говорить', L(f'{COMMON}&cards=notranslation&speech=no_speech', '/flashcards'), 'снять: `speech=off`')
+rule(C, r'устно', L(f'{COMMON}&cards=demo&speech=correct', '/flashcards'), 'ответы: `correct|wrong|denied|no_speech|unavailable`; снять: `speech=off`')
+rule(C, r'без перевода|нет карточек с переводом', L(f'{COMMON}&cards=notranslation', '/flashcards'), 'вернуть: `cards=demo`')
+rule(C, r'каталог пуст|пока нет публикаций|здесь появятся', L(f'{COMMON}&catalog=empty', '/flashcards_packs'), 'вернуть: `catalog=demo`')
+rule(C, r'каталог', L(f'{COMMON}&catalog=demo', '/flashcards_packs'), '')
+rule(C, r'лимит.*(50|первые 50)|50 из 50|место.*закончилось', L(f'{COMMON}&plus=off&cards=custom50', '/flashcards_collection?cat=saved'), 'своих карточек 50/50; сохранённых 50 — `cards=demo`+`plus=off`')
+rule(C, r'30 из 30|тренировки на месяц|осталось 0 из 30|лимит free', L(f'{COMMON}&plus=off&cards=demo&quota=exhausted', '/flashcards'), 'вернуть: `quota=reset`')
+rule(C, r'одобрен|отклонён|доработк|снят с продаж', L(f'{COMMON}&cards=demo_published&moderation=approved', '/flashcards'), 'значения `approved|rejected|revision|removed`; окно показывается один раз')
+rule(C, r'опубликован|в сообществе|править набор', L(f'{COMMON}&cards=demo_published', '/flashcards_my_packs'), '')
+rule(C, r'мои наборы|набор открыт|свой набор|чужой|добавлен|отклик|жалоб|правка|создан|новый набор|новая карточка|редактор', L(f'{COMMON}&cards=demo_published&catalog=demo', '/flashcards_my_packs'), 'дальше тапами: набор → нужное состояние (см. shot list)')
+rule(C, r'сохран|стопка|масштаб|колонк|карточка|список|поиск|пусто', L(f'{COMMON}&cards=demo', '/flashcards_collection?cat=saved'), 'пусто: не применять `cards=demo` (чистый аккаунт)')
+rule(C, r'хаб|режим|настройк', L(f'{COMMON}&cards=demo&plus=off', '/flashcards'), 'новичок: без `cards=demo`')
+
+# Пейволы
+P = ['paywalls', 'paywall-gap']
+PM = 'premium_modal?context=energy_empty&source=settings_premium&_dev_state='
+import urllib.parse
+def PL(name, extra=''):
+    direct = f'phraseman://{PM}{name}{extra}'
+    via = f'{B}{COMMON}&next=' + urllib.parse.quote('/' + PM + name + extra, safe='')
+    return f'`{direct}`; через dev_state: `{via}`'
+rule(P, r'управление', L(f'{COMMON}&plus=on&plan=yearly', '/manage_subscription'), 'план: `plan=yearly|monthly|lifetime`; первые 0,3 с — скелетон; force-stop после смены плана')
+rule(P, r'загрузка условий|скелет', PL('loading'), '')
+rule(P, r'ошибка до checkout', PL('store_unreachable'), 'тост приходит через 0,7 с')
+rule(P, r'цен нет|нет цен|ошибка цен', PL('error_no_prices'), '')
+rule(P, r'магазин недоступен|billing', PL('billing_unavailable'), '')
+rule(P, r'справочн|≈', PL('reference'), '')
+rule(P, r'идёт оплата|проверяем покупку|оплата идёт', PL('purchasing'), '')
+rule(P, r'восстанов', PL('restoring'), '')
+rule(P, r'ожидание банка|родител', PL('pending'), 'окно очищается при смене состояния')
+rule(P, r'результат покупки неизвестен|статус покупки не подтверждён|неизвестен.*диалог', PL('unknown_outcome'), '')
+rule(P, r'статус неизвестен|покупка пока не найдена', PL('status_unknown'), 'тост; или `dev_state?toast=status_not_found`')
+rule(P, r'промо|скидка', PL('store_promo'), '')
+rule(P, r'plus твой|напомнить|разрешить напоминание', PL('reminder_prompt'), '')
+rule(P, r'лент|пробн|бесплатно', f'`premium_modal?context=generic&source=settings_premium&_force_trial_ui=1&_force_trial_days=3` (образец N=3; сам срок в проде — из магазина)', 'нужен dev-режим без магазина')
+rule(P, r'тост', f'`dev_state?{COMMON}&toast=restored&next=/(tabs)/settings`', 'тосты: `purchase_confirmed|restored|status_not_found|no_active_subscriptions|status_check_failed|restore_failed|store_unreachable`')
+rule(P, r'карточк|диалог|энерги|контекст', f'`premium_modal?context=flashcard_limit&source=flashcards_collection` (контексты: `dialog_limit`, `flashcard_limit`, `energy_empty`, `generic`)', '')
+
+# Настройки
+S = ['profile', 'settings-gap']
+rule(S, r'плашка|vip|выдач|промо.*доступ|доступ', L(f'{COMMON}&vip=promo', '/(tabs)/settings'), 'после ссылки force-stop → запуск (VIP читается при старте); виды `promo|promo_lifetime|referral|survey|idea|tester|admin|admin_lifetime|off`')
+rule(S, r'опрос|сообщени.*(слот|вверху|внизу)|важное', L(f'{COMMON}&slot=poll', '/(tabs)/settings'), '`slot=poll|poll_voted|message|top|off`')
+rule(S, r'очистк.*кеш|кеш', L(f'{COMMON}&cache=failed', '/(tabs)/settings'), 'снять: `cache=ok`')
+rule(S, r'поддержк|не отправилось|отправлено', L(f'{COMMON}&support=fail', '/support_report'), 'снять: `support=ok`')
+rule(S, r'язык изучения|не удалось сменить', L(f'{COMMON}&studyfail=on', '/(tabs)/settings'), 'снять: `studyfail=off`')
+rule(S, r'приглашени|реферал', L(f'{COMMON}&referral=off', '/referrals'), 'снять: `referral=on`')
+rule(S, r'промокод', L(f'{COMMON}&promo=ok', '/(tabs)/settings'), 'ответы `ok|lifetime|used|expired|disabled|limit|not_found|rate_limited|error|none`')
+rule(S, r'выход|не удалось выйти', L(f'{COMMON}&logout=fail', '/(tabs)/settings'), '`logout=fail|precommit|ok`')
+rule(S, r'удаление', L(f'{COMMON}&delete=fail', '/(tabs)/settings'), 'снять: `delete=ok`')
+rule(S, r'смена аккаунта|сменить аккаунт', L(f'{COMMON}&switch=not_uploaded', '/(tabs)/settings'), '`not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow|ok`')
+rule(S, r'подписк|план|управление', L(f'{COMMON}&plan=yearly', '/(tabs)/settings'), '`yearly|monthly|lifetime|off`')
+rule(S, r'друз', L(f'{COMMON}&dev_friends_fail=add', '/(tabs)/community?section=friends'), 'удержание: `dev_friends_hold=add_request`; приглашение: `friend_event=study_invite`')
+rule(S, r'.', L(f'{COMMON}&plus=off', '/(tabs)/settings'), 'дальше тапами по группе Настроек (см. shot list)')
+
+# Энергия / Главная / рассылки
+E = ['energy-modes', 'overlays-campaigns']
+rule(E, r'энерги', L(f'{COMMON}&energy=0&plus=off&mode=b', '/(tabs)/home'), 'режимы энергии `mode=a|b|server`, `energy=0..5`')
+rule(E, r'рассылк|кампани|сообщени', L(f'{COMMON}', '/(tabs)/home'), 'рассылки новичку 24 ч не показываются: нужен «не новичок» (не проходить онбординг заново)')
+rule(E, r'.', L(f'{COMMON}&plus=off&energy=3', '/(tabs)/home'), '')
+
+# Шпиль/сообщество/онбординг/аккаунт — только ссылки
+O = ['spire', 'spire-gap', 'community', 'onboarding', 'onboarding-paywall', 'auth-gap', 'overlays-runtime']
+rule(O, r'.', '', '')  # заглушка: только текст из shot list
+
+def section_of(rid):
+    return rid.rsplit('-', 1)[0]
+
+AREAS = [
+    ('Карточки', C),
+    ('Диалоги', D),
+    ('Пейволы', P),
+    ('Настройки и профиль', S),
+    ('Главная, энергия, рассылки', E),
+    ('Шпиль, сообщество, онбординг, аккаунт (только ссылки; фикстуры у Тем и Авторизации)', O),
+]
+
+def match(row):
+    sec = section_of(row['id'])
+    label = f"{row.get('screen') or ''} {row.get('state') or ''}".lower()
+    for secs, rx, link, prep in RULES:
+        if sec in secs and rx.search(label):
+            return link, prep
+    return None, ''
+
+out = []
+out.append('# DEV_LINKS_R1 — как добраться до состояния (Дизайн, 12.10)\n')
+out.append('Строки реестра `release=r1`, `status=pending|diff`. Для каждой — готовая ссылка (`dev_state`, `premium_modal?…&_dev_state=…`, `next=…`) или ручной путь, плюс что сделать перед кадром. Источники: реестр, `R1_SHOT_LIST*.md`, `app/dev_state_fixtures.ts`, `app/dev_paywall_state.ts`. Ссылки подобраны по названию состояния — если кадр не тот, смотри колонку «shot list» (точный путь тапами).\n')
+out.append('## Правила перед КАЖДЫМ кадром\n')
+out.append('1. `adb shell am force-stop app.phraseman` → запуск → дождаться «DEV-STATE OK» (экран `dev-state-done`).')
+out.append('2. Ссылка начинается с `phraseman://dev_state?` и всегда содержит `onboarding=done&intros=seen` (**новое**: `intros=seen` помечает все окна знакомства с разделами показанными — не нужно жать «Позже» на каждом экране; `intros=reset` вернёт их).')
+out.append('3. Окна и тосты прошлого кадра: перед новым состоянием пейвола очередь блокирующих окон очищается сама (6bdba4d26). Для остальных — force-stop.')
+out.append('4. Свойства аккаунта: `plus=on|off` (Plus), `free=on` (без dev-Plus), `energy=0..5`, `cards=demo` (64 сохранённые, 4 набора), `catalog=demo|empty`, `quota=N|exhausted|reset`, `dquota=N|reset`. Снимать перепробованные фикстуры значением `off`/`reset`.')
+out.append('5. VIP-плашка и план подписки (`vip=`, `plan=`) читаются при старте: после ссылки force-stop → запуск.')
+out.append('6. Тема кадра: тёмная «Аврора» (Спокойно), если в строке не сказано иное.\n')
+
+need = []
+counts = collections.Counter()
+for title, secs in AREAS:
+    group = [r for r in rows if section_of(r['id']) in secs]
+    if not group:
+        continue
+    group.sort(key=lambda r: r['id'])
+    out.append(f'## {title} ({len(group)})\n')
+    out.append('| id | экран · состояние | ссылка / путь | перед кадром | shot list |')
+    out.append('|---|---|---|---|---|')
+    for r in group:
+        link, prep = match(r)
+        t = texts.get(r['id'])
+        shot = ''
+        if t:
+            shot = f"{t[1].replace('R1_SHOT_LIST_', '').replace('R1_SHOT_LIST', 'ОБЩИЙ')} · {short(t[2], 60)}: {short(t[3], 150)}"
+        nopath = bool(t and re.search(r'НЕТ ПУТИ', t[3]))
+        label = short(f"{r.get('screen') or ''} · {r.get('state') or ''}", 90)
+        if link:
+            counts['link'] += 1
+            cell = link
+        elif link == '' and prep and secs is not O:
+            counts['manual'] += 1
+            cell = prep if prep.startswith('ручной путь') else 'ручной путь: ' + prep
+            prep = ''
+        elif secs is O:
+            counts['shot'] += 1
+            cell = 'ссылка — по shot list (фикстуры не мои)' if t else 'нет в shot list'
+        elif nopath:
+            counts['need'] += 1
+            cell = '**нужна фикстура** (см. shot list)'
+            need.append(r['id'])
+        else:
+            counts['manual'] += 1
+            cell = 'ручной путь — см. shot list'
+        out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} |")
+    out.append('')
+
+out.append('## Итог\n')
+out.append(f"Строк в охвате: {sum(counts.values())}. Готовая ссылка: {counts['link']}. Ручной путь по shot list: {counts['manual']}. Только ссылки по shot list (Шпиль/онбординг/аккаунт): {counts['shot']}. «Нужна фикстура»: {counts['need']}" + (f" — {', '.join(need[:60])}" if need else '') + '.\n')
+open(R + 'docs/phraseman-2.0/DEV_LINKS_R1.md', 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
+print(dict(counts), len(need))

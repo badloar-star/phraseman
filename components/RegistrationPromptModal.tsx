@@ -94,6 +94,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import PressableHybrid from './PressableHybrid';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
 import { useRouter } from 'expo-router';
 import { accountSwitchRequiredCopy, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../app/account_switch_copy';
@@ -1531,7 +1532,6 @@ function RegistrationPromptModal({
               styles.sheet,
               {
                 backgroundColor: glass.opaqueSheet,
-                borderTopColor: glass.glassEdge,
                 maxHeight: cardMaxHeight,
                 bottom: keyboardInset,
               },
@@ -2185,7 +2185,7 @@ function RegistrationPromptModal({
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
                 variant="secondary"
                 // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром.
-                style={[styles.laterButton, styles.laterGhost, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 testID="auth-prompt-later"
               >
@@ -2200,7 +2200,7 @@ function RegistrationPromptModal({
                 accessibilityRole="button"
                 accessibilityLabel={labelLaterAccessibility}
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
-                style={[styles.laterButton, styles.laterGhost, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                style={[styles.laterButton, styles.laterGhost, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
                 testID="auth-prompt-later"
               >
                 <Text style={[styles.laterText, { color: glass.text, fontSize: 16, fontWeight: '700' }]}>
@@ -2243,7 +2243,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    borderTopWidth: 1,
+    // зачем (стиль «Тень», владелец 12.10): шторку отделяет затемнение, верхняя кромка снята
     overflow: 'hidden',
   },
   hybridSheetGlow: {
@@ -2361,8 +2361,7 @@ const styles = StyleSheet.create({
   laterGhost: {
     alignSelf: 'stretch',
     borderRadius: 24,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: `.cta.gh` — тонкий полупрозрачный контур капсулы
-    backgroundColor: 'transparent',
+    // зачем (стиль «Тень»): `.cta.gh` — плашка с малой тенью вместо контура; цвет и тень ставит вызывающий
     marginTop: 10,
   },
   legalLinks: {

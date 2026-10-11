@@ -25,6 +25,7 @@ import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: экран промокода на токенах стекла (макет overlays-campaigns OS-ONB-PROMO-*)
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { writeVipSnapshotForAccount } from './premium_vip_storage';
@@ -331,9 +332,11 @@ export default function PromoCodeEntryScreen() {
             contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34 }}
           >
 
-            <View style={{ padding: 20, gap: 16, borderRadius: 24, backgroundColor: g.opaqueCard, borderWidth: 1, borderColor: g.glassEdge, overflow: 'hidden' }}>
+            {/* зачем (стиль «Тень», владелец 12.10): карточка — плашка с тенью без кромки; overflow: hidden убран, он резал бы тень */}
+            <View style={{ padding: 20, gap: 16, borderRadius: 24, boxShadow: plateBoxShadow(g) }}>
+              <PlateFill g={g} radius={24} />
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}>
+                <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }}>
                   <Ionicons name="gift-outline" size={22} color={g.text} />
                 </View>
                 <View style={{ flex: 1 }}>
@@ -368,7 +371,9 @@ export default function PromoCodeEntryScreen() {
                 style={{
                   minHeight: 56, borderRadius: 16, paddingHorizontal: 16,
                   backgroundColor: g.opaqueControl, color: g.text,
-                  borderWidth: 1, borderColor: inputValid ? g.lightTint : g.glassEdge,
+                  // зачем (стиль «Тень»): нейтральная кромка снята, остаётся только индикатор «код подходит» (кольцо lightTint); 1 px сохранён прозрачным, чтобы поле не прыгало
+                  boxShadow: nestedBoxShadow(g) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
+                  borderWidth: 1, borderColor: inputValid ? g.lightTint : 'transparent',
                   fontSize: f.body ?? 16, fontWeight: '900', letterSpacing: 1,
                 }}
               />
@@ -383,6 +388,7 @@ export default function PromoCodeEntryScreen() {
                   minHeight: 56, borderRadius: 16,
                   alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8,
                   backgroundColor: (inputValid || busy) ? g.cta : g.selected,
+                  boxShadow: nestedBoxShadow(g),
                   opacity: (inputValid || busy) ? 1 : 0.55,
                 }}
               >
@@ -402,7 +408,7 @@ export default function PromoCodeEntryScreen() {
                 <View
                   testID="promo-code-feedback"
                   accessibilityRole="alert"
-                  style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, padding: 12, borderRadius: 14, backgroundColor: g.opaqueControl, borderWidth: 1, borderColor: g.glassEdge }}
+                  style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, padding: 12, borderRadius: 14, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }}
                 >
                   <Ionicons name={feedback.kind === 'ok' ? 'checkmark-circle-outline' : 'close-circle-outline'} size={20} color={g.text} />
                   <Text style={{ flex: 1, color: g.text, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>

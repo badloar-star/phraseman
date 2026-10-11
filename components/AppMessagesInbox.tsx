@@ -53,6 +53,7 @@ import { VIP_SURVEY_ID } from '../app/vip_survey_content';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -655,7 +656,6 @@ function AppMessagesInbox({
     card: glass.selected,
     cardStrong: glass.selected,
     readCard: 'transparent',
-    border: glass.line,
     text: glass.text,
     muted: glass.secondary,
     soft: glass.mutedText,
@@ -663,7 +663,6 @@ function AppMessagesInbox({
   const vipSurveyAccent = glass.cta;
   const vipSurveyAccentText = glass.ctaInk;
   const vipSurveyTint = glass.selected;
-  const vipSurveyBorder = glass.line;
   // Награда (монеты) и «получено» — цвета темы приложения, как и раньше «награда».
   const rewardColor = theme?.gold ?? glass.text;
   const successColor = theme?.correct ?? glass.text;
@@ -740,7 +739,7 @@ function AppMessagesInbox({
               disabled={safeEmbeddedPage === 0}
               activeOpacity={0.75}
               onPress={() => setEmbeddedPage((page) => Math.max(0, page - 1))}
-              style={[styles.roundIcon, { opacity: safeEmbeddedPage === 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
+              style={[styles.roundIcon, { opacity: safeEmbeddedPage === 0 ? 0.35 : 1, backgroundColor: chrome.card }]}
             >
               <Ionicons name="chevron-back" size={20} color={chrome.text} />
             </KitTouchable>
@@ -753,7 +752,7 @@ function AppMessagesInbox({
               disabled={safeEmbeddedPage === maxEmbeddedPage}
               activeOpacity={0.75}
               onPress={() => setEmbeddedPage((page) => Math.min(maxEmbeddedPage, page + 1))}
-              style={[styles.roundIcon, { opacity: safeEmbeddedPage === maxEmbeddedPage ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
+              style={[styles.roundIcon, { opacity: safeEmbeddedPage === maxEmbeddedPage ? 0.35 : 1, backgroundColor: chrome.card }]}
             >
               <Ionicons name="chevron-forward" size={20} color={chrome.text} />
             </KitTouchable>
@@ -793,7 +792,7 @@ function AppMessagesInbox({
           activeOpacity={0.75}
           onPress={closeInbox}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
+          style={[styles.roundIcon, { backgroundColor: chrome.card }]}
         >
           <Ionicons name="close" size={21} color={chrome.text} />
         </KitTouchable>
@@ -836,7 +835,7 @@ function AppMessagesInbox({
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
-                    <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint, borderColor: vipSurveyBorder }]}>
+                    <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint }]}>
                       <Ionicons name="sparkles-outline" size={11} color={glass.accentText} />
                       <Text style={[styles.vipSurveyBadgeText, { color: glass.accentText }]}>{copy.vipSurvey}</Text>
                     </View>
@@ -903,7 +902,7 @@ function AppMessagesInbox({
     const showResults = Boolean(message.pollOptionId);
     const totalVotes = Math.max(0, poll.voteCount);
     return (
-      <View style={[styles.pollCard, { backgroundColor: chrome.card, borderColor: chrome.border }]}>
+      <View style={[styles.pollCard, { backgroundColor: chrome.card }]}>
         <View style={styles.pollHeader}>
           <View style={[styles.pollHeaderIcon, { backgroundColor: glass.opaqueControl }]}>
             <Ionicons name="stats-chart" size={15} color={glass.lightTint} />
@@ -928,8 +927,9 @@ function AppMessagesInbox({
                 style={[
                   styles.pollOption,
                   {
-                    borderColor: selectedOption ? glass.cta : chrome.border,
+                    // зачем (стиль «Тень», владелец 12.10): кромка выбора снята — выбранный вариант тоном и тенью поглубже, плюс радио слева
                     backgroundColor: selectedOption ? glass.selected : glass.opaqueSheet,
+                    boxShadow: selectedOption ? raisedBoxShadow(glass) : nestedBoxShadow(glass),
                   },
                 ]}
               >
@@ -1043,7 +1043,7 @@ function AppMessagesInbox({
               setSelectedId(null);
             }}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
+            style={[styles.roundIcon, { backgroundColor: chrome.card }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </KitTouchable>
@@ -1063,8 +1063,8 @@ function AppMessagesInbox({
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: selected.reaction === 'like' ? glass.cta : chrome.border,
                   backgroundColor: selected.reaction === 'like' ? glass.opaqueControl : chrome.card,
+                  boxShadow: selected.reaction === 'like' ? raisedBoxShadow(glass) : nestedBoxShadow(glass), // зачем (стиль «Тень»): выбранная реакция — тень поглубже, цвет иконки и текста остаётся
                 },
               ]}
             >
@@ -1077,8 +1077,8 @@ function AppMessagesInbox({
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: selected.reaction === 'dislike' ? dangerColor : chrome.border,
                   backgroundColor: selected.reaction === 'dislike' ? glass.opaqueControl : chrome.card,
+                  boxShadow: selected.reaction === 'dislike' ? raisedBoxShadow(glass) : nestedBoxShadow(glass), // зачем (стиль «Тень»): выбранная реакция — тень поглубже, цвет иконки и текста остаётся
                 },
               ]}
             >
@@ -1106,7 +1106,7 @@ function AppMessagesInbox({
               hapticTap();
               setSelectedId(null);
             }}
-            style={[styles.roundIcon, { backgroundColor: chrome.card, borderColor: chrome.border }]}
+            style={[styles.roundIcon, { backgroundColor: chrome.card }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </KitTouchable>
@@ -1127,8 +1127,8 @@ function AppMessagesInbox({
                 style={[
                   styles.reactionButton,
                   {
-                    borderColor: selected.reaction === 'like' ? glass.cta : chrome.border,
                     backgroundColor: selected.reaction === 'like' ? glass.opaqueControl : chrome.card,
+                    boxShadow: selected.reaction === 'like' ? raisedBoxShadow(glass) : nestedBoxShadow(glass), // зачем (стиль «Тень»): выбранная реакция — тень поглубже, цвет иконки и текста остаётся
                   },
                 ]}
               >
@@ -1141,8 +1141,8 @@ function AppMessagesInbox({
                 style={[
                   styles.reactionButton,
                   {
-                    borderColor: selected.reaction === 'dislike' ? dangerColor : chrome.border,
                     backgroundColor: selected.reaction === 'dislike' ? glass.opaqueControl : chrome.card,
+                    boxShadow: selected.reaction === 'dislike' ? raisedBoxShadow(glass) : nestedBoxShadow(glass), // зачем (стиль «Тень»): выбранная реакция — тень поглубже, цвет иконки и текста остаётся
                   },
                 ]}
               >
@@ -1252,7 +1252,6 @@ function AppMessagesInbox({
                 styles.panel,
                 {
                   backgroundColor: glass.opaqueSheet,
-                  borderColor: glass.glassEdge,
                   paddingBottom: Math.max(16, insets.bottom + 12),
                 },
               ]}
@@ -1492,8 +1491,7 @@ const styles = StyleSheet.create({
     minHeight: 360,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    borderWidth: 1,
-    borderBottomWidth: 0,
+    // зачем (стиль «Тень», владелец 12.10): шторку отделяет затемнение, кромки нет
     overflow: 'hidden',
     paddingHorizontal: 16,
     paddingTop: 10,
@@ -1773,12 +1771,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   pollOptions: {
-    gap: 8,
+    gap: 10, // зачем (стиль «Тень»): плашкам нужен зазор ≥10, чтобы тень «дышала»
   },
   pollOption: {
     minHeight: 48,
     borderRadius: 13,
-    borderWidth: 1,
     paddingHorizontal: 11,
     paddingVertical: 10,
   },
@@ -1824,7 +1821,6 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 44,
     borderRadius: 22,
-    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

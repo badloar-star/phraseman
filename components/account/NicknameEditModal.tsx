@@ -51,6 +51,7 @@ import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LUM } from '../../constants/motionHybrid';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
@@ -390,7 +391,8 @@ export default function NicknameEditModal({
         paddingHorizontal: 20,
         paddingTop: 12,
         paddingBottom: isHybrid ? Math.max(20, insets.bottom + 12) : 20,
-        overflow: 'hidden',
+        // зачем (стиль «Тень»): шторку снизу отделяет затемнение (без тени), окно по центру — тень плашки; overflow: hidden убран, он резал бы тень
+        boxShadow: isHybrid ? undefined : plateBoxShadow(glass),
       }}
     >
       <View style={{ width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 10, backgroundColor: glass.glassEdge }} />
@@ -419,6 +421,7 @@ export default function NicknameEditModal({
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: glass.selected,
+              boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): кнопка закрытия — малая тень
               opacity: saving ? 0.5 : 1,
             }}
             onPress={() => { if (saving) return; doHaptic(); close(); }}
@@ -435,10 +438,9 @@ export default function NicknameEditModal({
           testID="nickname-input"
           accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
           style={{
-            // Поле — плашка контрола темы + тонкая полупрозрачная кромка (как в макете).
+            // Поле — вложенная плашка контрола темы с малой тенью, без кромки (стиль «Тень»).
             backgroundColor: glass.opaqueControl,
-            borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка поля — разрешена для PhraseMan 2.0
-            borderColor: glass.line,
+            boxShadow: nestedBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
             color: glass.text,
             fontSize: f.h2,
             minHeight: 52,

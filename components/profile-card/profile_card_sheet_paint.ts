@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { useTheme } from '../ThemeContext';
+import type { BoxShadowValue } from 'react-native';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 
 /**
  * Краски шторок визитки («Текст визитки», «Стиль») из токенов выбранной темы.
@@ -25,7 +27,8 @@ export type ProfileSheetPaint = Readonly<{
   handle: string;
   title: string;
   field: string;
-  fieldEdge: string;
+  /** Тень вложенного поля вместо кромки (стиль «Тень», владелец 12.10). */
+  fieldShadow: BoxShadowValue[];
   fieldInk: string;
   placeholder: string;
   selection: string;
@@ -44,7 +47,7 @@ export function useProfileSheetPaint(): ProfileSheetPaint {
     handle: `${g.mutedText.slice(0, 7)}73`,
     title: g.text,
     field: g.opaqueControl,
-    fieldEdge: g.glassEdge,
+    fieldShadow: nestedBoxShadow(g),
     fieldInk: g.text,
     placeholder: g.mutedText,
     selection: g.accent,

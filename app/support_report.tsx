@@ -5,7 +5,7 @@ import { Keyboard, Text, TextInput, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useLang } from '../components/LangContext';
 import PressableHybrid from '../components/PressableHybrid';
-import SafeLinearGradient from '../components/SafeLinearGradient';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import ScreenGradient from '../components/ScreenGradient';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -100,9 +100,10 @@ export default function SupportReportScreen() {
 
           {state === 'sent' ? (
             <View style={{ flex: 1, minHeight: 360, justifyContent: 'center', paddingVertical: 28 }}>
-              <View style={{ borderRadius: 18, borderWidth: 1, borderColor: glass.glassEdge, backgroundColor: glass.opaqueCard, paddingVertical: 26, paddingHorizontal: 20, overflow: 'hidden', alignItems: 'center' }}>
-                <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
-                <View style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge, alignItems: 'center', justifyContent: 'center' }}>
+              {/* зачем (стиль «Тень», владелец 12.10): плашка с тенью вместо кромки; overflow: hidden убран, он резал бы тень */}
+              <View style={{ borderRadius: 18, boxShadow: plateBoxShadow(glass), paddingVertical: 26, paddingHorizontal: 20, alignItems: 'center' }}>
+                <PlateFill g={glass} radius={18} />
+                <View style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass), alignItems: 'center', justifyContent: 'center' }}>
                   <Ionicons name="checkmark" size={28} color={glass.lightTint} />
                 </View>
                 <Text accessibilityLiveRegion="polite" style={{ color: t.textPrimary, fontSize: scaled(22), lineHeight: scaled(28), fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
@@ -119,7 +120,7 @@ export default function SupportReportScreen() {
                 withSound={false}
                 variant="primary"
                 style={{ marginTop: 18 }}
-                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: glass.accent, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
+                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass), alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
               >
                 <Text style={{ color: glass.accentInk, fontSize: scaled(17), lineHeight: scaled(22), fontWeight: '700' }}>
                   {L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Bitti', 'Gotowe')}
@@ -146,11 +147,11 @@ export default function SupportReportScreen() {
                 multiline
                 maxLength={3000}
                 textAlignVertical="top"
-                style={{ minHeight: 118, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge, paddingVertical: 12, paddingHorizontal: 14, backgroundColor: glass.opaqueCard, color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(21), fontWeight: '400' }}
+                style={{ minHeight: 118, borderRadius: 14, boxShadow: plateBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */, paddingVertical: 12, paddingHorizontal: 14, backgroundColor: glass.plateFillFrom, color: t.textPrimary, fontSize: scaled(15), lineHeight: scaled(21), fontWeight: '400' }}
               />
 
-              <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, borderWidth: 1, borderColor: glass.glassEdge, paddingVertical: 14, paddingHorizontal: 16, backgroundColor: glass.opaqueCard, overflow: 'hidden' }}>
-                <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <View testID="support-diagnostics-disclosure" style={{ marginTop: 12, borderRadius: 14, boxShadow: plateBoxShadow(glass), paddingVertical: 14, paddingHorizontal: 16 }}>
+                <PlateFill g={glass} radius={14} />
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
                   <Ionicons name="checkmark" size={20} color={glass.secondary} />
                   <View style={{ flex: 1, minWidth: 0 }}>
@@ -213,7 +214,7 @@ export default function SupportReportScreen() {
                 withSound={false}
                 variant="primary"
                 style={{ marginTop: 18 }}
-                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: canSend ? glass.cta : glass.opaqueControl, opacity: canSend ? 1 : 0.58, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
+                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: canSend ? glass.cta : glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: canSend ? 1 : 0.58, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
               >
                 <Text style={{ color: canSend ? glass.ctaInk : glass.secondary, fontSize: scaled(17), lineHeight: scaled(22), fontWeight: '700' }}>
                   {L('Отправить', 'Надіслати', 'Send', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')}

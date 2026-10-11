@@ -157,6 +157,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     '../components/LangContext': { useLang: () => ({ lang }) },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
+    '../components/v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], raisedBoxShadow: () => [{ stub: 'raised' }], nestedBoxShadow: () => [{ stub: 'nested' }], actionBoxShadow: () => [{ stub: 'action' }], PlateFill: 'PlateFill', RAISED_LIFT: -3 },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
     '../components/ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
@@ -168,7 +169,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     '../constants/i18n': { triLang: (activeLang, copy) => copy[activeLang] },
     '../constants/liquidGlassThemePalette': {
       liquidGlassTokens: () => ({
-        opaqueCard: '#222', opaqueControl: '#333', selected: '#444', glassEdge: '#555',
+        opaqueCard: '#222', opaqueControl: '#333', selected: '#444', glassEdge: '#555', plateFillFrom: '#262626', dividerTone: '#3a3a3a', accent: '#abc', accentInk: '#111',
         cta: '#f5f5f5', ctaInk: '#111', lightTint: '#fff', secondary: '#aaa', mutedText: '#888',
       }),
     },
@@ -215,7 +216,9 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   assert.match(source, /fontSize:\s*scaled\(34\),\s*lineHeight:\s*scaled\(40\)/);
   assert.match(source, /fontSize:\s*scaled\(15\),\s*lineHeight:\s*scaled\(20\)/);
   assert.match(source, /fontSize:\s*scaled\(11\)[\s\S]*?letterSpacing:\s*1\.7/);
-  assert.match(source, /minHeight:\s*118[\s\S]*?borderRadius:\s*14[\s\S]*?borderWidth:\s*1/);
+  // зачем (стиль «Тень», владелец 12.10): поле описания — плашка с тенью вместо кромки borderWidth:1.
+  assert.match(source, /minHeight:\s*118[\s\S]*?borderRadius:\s*14[\s\S]*?boxShadow:\s*plateBoxShadow\(glass\)/);
+  assert.doesNotMatch(source, /borderWidth|glassEdge/);
   assert.match(source, /marginTop:\s*12[\s\S]*?borderRadius:\s*14[\s\S]*?paddingVertical:\s*14[\s\S]*?paddingHorizontal:\s*16/);
   assert.match(source, /minHeight:\s*48[\s\S]*?marginTop:\s*18[\s\S]*?borderRadius:\s*24/);
   assert.match(source, /automaticallyAdjustKeyboardInsets/);

@@ -20,6 +20,7 @@ import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.6)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
@@ -167,12 +168,11 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     maxWidth: 360,
     backgroundColor: glass.opaqueSheet,
     borderRadius: 26,
-    borderWidth: 1, // guard-ok: 1 px кромка .modal
-    borderColor: glass.glassEdge,
+    // зачем (стиль «Тень», владелец 12.10): окно по центру — тень вместо кромки; overflow: hidden убран, он резал бы тень (заливку со скруглением даёт KitGlassLayer)
+    boxShadow: plateBoxShadow(glass),
     paddingTop: 24,
     paddingHorizontal: 20,
     paddingBottom: 20,
-    overflow: 'hidden' as const,
   };
   const buttonStyle = {
     flex: 1,
@@ -182,14 +182,15 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     paddingVertical: 8,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
-    overflow: 'hidden' as const,
   };
-  const ghostButton = { borderWidth: 1, borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, backgroundColor: 'transparent' }; // guard-ok: .cta.gh
+  // зачем (стиль «Тень»): `.cta.gh` — плашка тоном с малой тенью вместо контура; главная — цвет темы и цветная тень (клип overflow убран: ThemeAccentFill сам со скруглением)
+  const ghostButton = { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) };
+  const accentButton = { backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass) };
   const stageStyle = { width: 68, height: 68, borderRadius: 23, alignSelf: 'center' as const, alignItems: 'center' as const, justifyContent: 'center' as const, marginBottom: 15, backgroundColor: glass.opaqueControl };
   const titleStyle = { color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '800' as const, textAlign: 'center' as const };
   const bodyStyle = { color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: 'center' as const };
   // `.cta` в столбик (подтверждение выхода): 48, r24, на всю ширину.
-  const stackButton = { minHeight: 48, borderRadius: 24, paddingHorizontal: 16, paddingVertical: 10, alignItems: 'center' as const, justifyContent: 'center' as const, overflow: 'hidden' as const };
+  const stackButton = { minHeight: 48, borderRadius: 24, paddingHorizontal: 16, paddingVertical: 10, alignItems: 'center' as const, justifyContent: 'center' as const };
   const ctaText = { fontSize: 16, fontWeight: '700' as const, textAlign: 'center' as const };
 
   return (
@@ -239,7 +240,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   accessibilityRole="button"
                   testID="account-logout-failed-close"
                   onPress={() => { doHaptic(); onStageChange('idle'); }}
-                  style={[buttonStyle, failureKind === 'recovery' ? { backgroundColor: glass.accent } : ghostButton]}
+                  style={[buttonStyle, failureKind === 'recovery' ? accentButton : ghostButton]}
                 >
                   {failureKind === 'recovery' ? <ThemeAccentFill glass={glass} radius={22} /> : null}
                   <Text style={[ctaText, { color: failureKind === 'recovery' ? glass.accentInk : glass.text }]}>
@@ -252,7 +253,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                     accessibilityRole="button"
                     testID="account-logout-failed-retry"
                     onPress={() => { void runLogout(); }}
-                    style={[buttonStyle, { backgroundColor: glass.accent }]}
+                    style={[buttonStyle, accentButton]}
                   >
                     <ThemeAccentFill glass={glass} radius={22} />
                     <Text style={[ctaText, { color: glass.accentInk }]}>
@@ -316,7 +317,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   accessibilityRole="button"
                   testID="account-logout-confirm"
                   onPress={() => { void runLogout(); }}
-                  style={[stackButton, { backgroundColor: glass.accent }]}
+                  style={[stackButton, accentButton]}
                 >
                   <ThemeAccentFill glass={glass} radius={24} />
                   <Text style={[ctaText, { color: glass.accentInk }]}>

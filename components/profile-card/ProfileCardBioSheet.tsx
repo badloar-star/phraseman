@@ -80,7 +80,7 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
           placeholder={t4(lang, PC.addBio)}
           placeholderTextColor={p.placeholder}
           selectionColor={p.selection}
-          style={[styles.field, { backgroundColor: p.field, borderColor: p.fieldEdge, color: p.fieldInk }]}
+          style={[styles.field, { backgroundColor: p.field, boxShadow: p.fieldShadow as unknown as string /* зачем: типы RN для TextInput знают boxShadow только строкой */, color: p.fieldInk }]}
         />
         <View style={styles.meta}>
           <Text style={[styles.metaText, { color: p.hint }]}>{t4(lang, PC.textHint)}</Text>
@@ -141,7 +141,6 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     borderRadius: 18,
-    borderWidth: 1, // guard-ok: поле ввода .vz-field — тонкий полупрозрачный кант (исключение 2.0)
     fontSize: 16,
     lineHeight: 22,
     textAlignVertical: 'top',

@@ -6,7 +6,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import BouncyScrollView from '../BouncyScrollView';
 import ContentWrap from '../ContentWrap';
 import PressableHybrid from '../PressableHybrid';
-import SafeLinearGradient from '../SafeLinearGradient';
+import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import ScreenGradient from '../ScreenGradient';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
 
@@ -78,8 +78,7 @@ export default function LegalDocumentSheet({
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: glass.opaqueControl,
-                borderWidth: 1,
-                borderColor: glass.glassEdge,
+                boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень», владелец 12.10): кнопка без кромки — малая тень
               }}
             >
               <Ionicons name="close" size={20} color={glass.lightTint} />
@@ -119,8 +118,7 @@ export default function LegalDocumentSheet({
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: glass.opaqueControl,
-                borderWidth: 1,
-                borderColor: glass.glassEdge,
+                boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): кнопка без кромки — малая тень
               }}
             >
               {/* зачем: паритет с макетом profile.html PRF-07/08 — на кнопке сайта стрелка вправо (arrowR) */}
@@ -138,18 +136,13 @@ export default function LegalDocumentSheet({
               marginTop: 18,
               marginHorizontal: 20,
               borderRadius: 22,
-              borderWidth: 1,
-              borderColor: glass.glassEdge,
-              backgroundColor: glass.opaqueCard,
-              overflow: 'hidden',
+              // зачем (стиль «Тень»): карточка документа — плашка с тенью без кромки; тень на внешнем слое, клип скруглений прокручиваемого текста — на внутреннем
+              backgroundColor: glass.plateFillFrom,
+              boxShadow: plateBoxShadow(glass),
             }}
           >
-            <SafeLinearGradient
-              testID="legal-document-card-sheen"
-              pointerEvents="none"
-              colors={[glass.selected, 'transparent']}
-              style={{ position: 'absolute', inset: 0 }}
-            />
+            <View testID="legal-document-card-clip" style={{ flex: 1, minHeight: 0, borderRadius: 22, overflow: 'hidden' }}>
+            <PlateFill g={glass} radius={22} />
             <BouncyScrollView
               testID="legal-document-scroll"
               style={{ flex: 1 }}
@@ -196,6 +189,7 @@ export default function LegalDocumentSheet({
                 );
               })}
             </BouncyScrollView>
+            </View>
           </View>
         </ContentWrap>
       </View>

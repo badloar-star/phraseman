@@ -43,6 +43,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, isValidCoinRank } from './coin_rank_table_v1';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -261,7 +262,7 @@ export default function AccountDetailsScreen() {
               <View
                 testID="account-nickname-inline-notice"
                 accessibilityRole="alert"
-                style={{ marginTop: 16, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 14, backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+                style={{ marginTop: 16, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 14, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) /* зачем (стиль «Тень»): плашка отката — тень вместо кромки */ }}
               >
                 <Text style={{ color: glass.text, fontSize: 13, lineHeight: 19 }}>{nameNotice}</Text>
                 <Text testID="account-nickname-restored" style={{ marginTop: 4, color: glass.secondary, fontSize: 13, lineHeight: 17 }}>
@@ -297,7 +298,7 @@ export default function AccountDetailsScreen() {
                       withSound={false}
                       variant="chip"
                       style={{ minHeight: 44, alignSelf: 'center' }}
-                      contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+                      contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) /* зачем (стиль «Тень»): чип «Скопировать» — малая тень */ }}
                     >
                       <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '700' }}>{copyLabel}</Text>
                     </PressableHybrid>

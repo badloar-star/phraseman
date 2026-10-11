@@ -123,7 +123,7 @@ function loadComponent({ fontSize = 'medium', uiScale = 1, themeId = 'graphite' 
     '../BouncyScrollView': { __esModule: true, default: 'BouncyScrollView' },
     '../ContentWrap': { __esModule: true, default: 'ContentWrap' },
     '../PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
-    '../SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
+    '../v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], nestedBoxShadow: () => [{ stub: 'nested' }], PlateFill: 'PlateFill' },
     '../ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
     '../ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
@@ -135,7 +135,7 @@ function loadComponent({ fontSize = 'medium', uiScale = 1, themeId = 'graphite' 
       }),
     },
     '../../constants/liquidGlassThemePalette': {
-      liquidGlassTokens: id => ({ opaqueCard: `opaque-${id}`, opaqueControl: `control-${id}`, glassEdge: `edge-${id}`, lightTint: `tint-${id}`, secondary: `secondary-${id}`, selected: `selected-${id}` }),
+      liquidGlassTokens: id => ({ plateFillFrom: `plate-${id}`, opaqueCard: `opaque-${id}`, opaqueControl: `control-${id}`, glassEdge: `edge-${id}`, lightTint: `tint-${id}`, secondary: `secondary-${id}`, selected: `selected-${id}` }),
     },
     '../../app/stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ top: 11, right: 12, bottom: 13, left: 14 }) },
   };
@@ -238,7 +238,10 @@ test('actual document card is opaque, 13-theme aware, width-clamped, safe on fou
     );
     assert.ok(visit(tree).some(node => node.type === 'ContentWrap'), 'content width is clamped');
     const cardStyle = flattenStyle(findByTestId(tree, 'legal-document-card').props.style);
-    assert.equal(cardStyle.backgroundColor, `opaque-${themeId}`);
+    // зачем (стиль «Тень», владелец 12.10): карточка — заливка плашки темы и plateBoxShadow, без кромки.
+    assert.equal(cardStyle.backgroundColor, `plate-${themeId}`);
+    assert.ok(cardStyle.boxShadow, 'card carries the plate shadow');
+    assert.equal(cardStyle.borderWidth, undefined, 'card has no rim');
     assert.equal(cardStyle.borderRadius, 22);
     assert.equal(cardStyle.marginTop, 18);
     assert.equal(cardStyle.marginHorizontal, 20);
@@ -246,12 +249,9 @@ test('actual document card is opaque, 13-theme aware, width-clamped, safe on fou
     assert.equal(cardStyle.flex, 1);
     assert.equal(cardStyle.flexShrink, 1);
     assert.equal(cardStyle.minHeight, 0);
-    const sheen = findByTestId(tree, 'legal-document-card-sheen');
-    assert.equal(sheen.type, 'SafeLinearGradient');
-    assert.equal(sheen.props.pointerEvents, 'none');
-    assert.deepEqual(Array.from(sheen.props.colors), [`selected-${themeId}`, 'transparent']);
-    assert.equal(flattenStyle(sheen.props.style).position, 'absolute');
-    assert.equal(flattenStyle(sheen.props.style).inset, 0);
+    const clip = findByTestId(tree, 'legal-document-card-clip');
+    assert.equal(flattenStyle(clip.props.style).overflow, 'hidden', 'rounded clip lives on the inner layer, the shadow on the outer one');
+    assert.ok(visit(clip).some(node => node.type === 'PlateFill'), 'plate fill sits inside the clip');
     const scroll = findByTestId(tree, 'legal-document-scroll');
     assert.equal(scroll.type, 'BouncyScrollView');
     assert.equal(flattenStyle(scroll.props.style).flex, 1);

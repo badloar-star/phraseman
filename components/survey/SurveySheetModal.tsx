@@ -30,6 +30,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
+import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { FlowText } from '../text-integrity/FlowText';
 import SurveyQuestionTransition from './SurveyQuestionTransition';
 import SurveyRewardPanel, { type SurveyRewardPanelPhase } from './SurveyRewardPanel';
@@ -676,7 +677,7 @@ function SurveyQuestionFields({
           multiline
           maxLength={500}
           accessibilityLabel={question.text}
-          style={[styles.textInput, { color: glass.text, backgroundColor: glass.opaqueControl, borderColor: glass.line, fontSize: f.body }]}
+          style={[styles.textInput, { color: glass.text, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */, fontSize: f.body }]}
         />
       ) : (
         <View style={styles.options}>
@@ -700,14 +701,15 @@ function SurveyQuestionFields({
                 accessibilityRole="radio"
                 accessibilityLabel={option.label}
                 accessibilityState={{ selected, disabled }}
-                style={[styles.option, { backgroundColor: glass.opaqueControl }]}
+                // зачем (стиль «Тень», владелец 12.10): вариант — плашка с тенью без кромки; выбранный приподнят (сдвиг на внешней обёртке, высота ряда не меняется)
+                style={[styles.option, { backgroundColor: glass.plateFillFrom, boxShadow: selected ? raisedBoxShadow(glass) : plateBoxShadow(glass), transform: selected ? [{ translateY: RAISED_LIFT }] : undefined }]}
                 contentStyle={styles.optionContent}
               >
                 {selected ? (
                   <View
                     testID={`survey-option-${option.id}-tone`}
                     pointerEvents="none"
-                    style={[styles.optionTone, { backgroundColor: glass.selected, borderColor: glass.glassEdge }]}
+                    style={[styles.optionTone, { backgroundColor: glass.selected }]}
                   />
                 ) : null}
                 {/* зачем: невыбранные варианты гаснут до 0.42 (макет A), чтобы
@@ -768,13 +770,13 @@ const styles = StyleSheet.create({
   questionBody: { gap: 16 },
   questionTitle: { fontWeight: '700', lineHeight: 24 },
   options: { gap: 10 },
-  option: { minHeight: 56, borderRadius: 18, overflow: 'hidden' },
+  option: { minHeight: 56, borderRadius: 18 },
   optionContent: { minHeight: 56, paddingHorizontal: 16, paddingVertical: 14 },
-  optionTone: { ...StyleSheet.absoluteFillObject, borderRadius: 18, borderWidth: 1 },
+  optionTone: { ...StyleSheet.absoluteFillObject, borderRadius: 18 },
   optionInner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   optionDimmed: { opacity: 0.42 },
   optionLabel: { flex: 1, fontWeight: '700', lineHeight: 22 },
-  textInput: { minHeight: 120, borderRadius: 16, borderWidth: 1, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
+  textInput: { minHeight: 120, borderRadius: 16, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
   cta: { minHeight: 52, borderRadius: 26, marginTop: 8 },
   ctaContent: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   ctaLabel: { fontWeight: '700', textAlign: 'center' },

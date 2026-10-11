@@ -53,7 +53,7 @@ function SpireTimerRing({ lang, clock, budgetMs, paused }: Props) {
       <View style={s.center} pointerEvents="none">
         <Text style={[s.time, { color: p.text }]}>{text}</Text>
       </View>
-      {/* Место под подпись зарезервировано всегда: пауза не сдвигает задание ниже. */}
+      {/* зачем (spire-gaps-states, координатор 12.10): подпись «таймер на паузе» висит под кольцом абсолютно и места в потоке не занимает — пауза не сдвигает ни кольцо, ни вопрос */}
       <Text importantForAccessibility={paused ? 'auto' : 'no'} style={[s.paused, { color: p.textSecondary, opacity: paused ? 1 : 0 }]}>
         {spireGameText(lang, 'timerPaused')}
       </Text>
@@ -65,7 +65,7 @@ const s = StyleSheet.create({
   wrap: { alignSelf: 'center', alignItems: 'center', width: SIZE },
   center: { position: 'absolute', top: 0, left: 0, width: SIZE, height: SIZE, alignItems: 'center', justifyContent: 'center' },
   time: { fontSize: 30, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  paused: { marginTop: 8, fontSize: 13, fontWeight: '600' },
+  paused: { position: 'absolute', top: SIZE + 8, left: 0, right: 0, textAlign: 'center', fontSize: 13, lineHeight: 17, fontWeight: '600' },
 });
 
 export default memo(SpireTimerRing);

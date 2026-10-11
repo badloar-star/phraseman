@@ -224,10 +224,10 @@ function SpireTaskView(props: Props) {
 }
 
 const s = StyleSheet.create({
-  overRow: { marginTop: 28, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  overRow: { marginTop: 44, flexDirection: 'row', alignItems: 'center', gap: 12 },
   overLine: { flex: 1, height: 1 },
   overline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textAlign: 'center', flexShrink: 1 },
-  question: { marginTop: 14, minHeight: 96, borderRadius: 20, paddingHorizontal: 22, paddingVertical: 20, justifyContent: 'center' },
+  question: { marginTop: 18, minHeight: 96, borderRadius: 20, paddingHorizontal: 22, paddingVertical: 20, justifyContent: 'center' },
   phrase: { fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.3, textAlign: 'center' },
   questionRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   phraseFlex: { flex: 1 },

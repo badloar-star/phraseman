@@ -1375,7 +1375,8 @@ export default function FlashcardsSpeakingSession() {
       {/* зачем (Карточки 2.0 12.10, `sessHdr`): в шапке «Устно» одно название — подзаголовка с названием набора нет */}
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title} />
       {/* зачем (Карточки 2.0 12.10, `sessHdr('Устно', '4 / 20')`): счёт сессии в шапке справа от названия, под полосой его больше нет */}
-      {interactive ? (
+      {interactive && speakingQueueLen > 0 ? (
+        // зачем (аудит Макетов 7a207bc4a): при пустой колоде «1 / 1» не показываем — вместо счёта пустое состояние экрана
         <Text testID="fc-speak-progress" accessible accessibilityLabel={`${progress.position} / ${progress.total}`} style={[styles.headerCount, { color: speakingGlass.secondary }]}>
           {`${progress.position} / ${progress.total}`}
         </Text>

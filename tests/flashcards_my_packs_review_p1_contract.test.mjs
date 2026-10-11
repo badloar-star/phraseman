@@ -35,7 +35,8 @@ test('screen-reader exposes open, edit and delete as separate real actions', () 
   assert.doesNotMatch(renderTile, /accessibilityLabel={`qa-fc-my-packs-pack-/);
   // зачем (11.10, журнал 9): строка — общий PackRow; подпись для чтения экрана — название без хвоста файла, автор/статус, число.
   // зачем (Карточки 2.0, стопка): подпись — название без хвоста файла, автор у добавленного и число карточек
-  assert.match(renderTile, /accessibilityLabel=\{`\$\{formatPackTitleForDisplay\(title\)\}\$\{authorName \? `, \$\{authorName\}` : ''\}, \$\{pack\.cardCount\}`\}/);
+  // зачем (12.10, мёртвый бейдж «На проверке» подключён к стопке): в подпись для чтения экрана добавлен статус проверки
+  assert.match(renderTile, /accessibilityLabel=\{`\$\{formatPackTitleForDisplay\(title\)\}\$\{authorName \? `, \$\{authorName\}` : ''\}, \$\{pack\.cardCount\}\$\{pack\.isPendingUpdateReview \? `, \$\{reviewNote\}` : ''\}`\}/);
   assert.match(renderTile, /fc-my-packs-pack-edit-/);
   assert.match(renderTile, /fc-my-packs-pack-delete-/);
   assert.match(renderTile, /key=\{pack\.id\}/);

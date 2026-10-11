@@ -335,7 +335,8 @@ const baseStyles = StyleSheet.create({
   icon: { width: 46, height: 46, borderRadius: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { minWidth: 0, marginTop: 14 },
   rowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  retry: { alignSelf: 'flex-start', marginTop: 4 },
+  // зачем (аудит Макетов 7a207bc4a): «Повторить» уезжала влево от центрированного заголовка — по центру, как весь блок шторки
+  retry: { alignSelf: 'center', marginTop: 4 },
   retryText: { marginTop: 0, fontWeight: '700' },
   description: { fontSize: 13, lineHeight: 18, marginTop: 2 },
 });

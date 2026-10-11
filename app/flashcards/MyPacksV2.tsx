@@ -97,6 +97,10 @@ function MyPacksV2Inner(props: Props) {
   // зачем (владелец 12.10, cards-v2 mySets()): набор — «стопка» (общий PackDeck): название, «40 · A2», три чипа слов, круглая «играть»;
   // у добавленных — аватар и имя автора. Уровень и первые слова читаются из полей набора, пока их нет — скрыты (ждём от Ядра).
   // Автор добавленного набора — без чтения сети: официальный → «Professor Lingman», иначе ник из каталога или фолбэк.
+  const reviewNote = triLang(lang, {
+    ru: 'На проверке', uk: 'На перевірці', en: 'In review', es: 'En revisión',
+    'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
+  });
   const row = (pack: FlashcardMarketPack, own: boolean) => {
     const title = labelFor(pack);
     const authorName = own ? null : (officialPackAuthorName(pack) ?? communityAuthorLabel(pack.authorName ?? '', lang));
@@ -110,8 +114,9 @@ function MyPacksV2Inner(props: Props) {
         level={packDeckLevel(pack)}
         words={packDeckWords(pack)}
         author={authorName ? { name: authorName } : null}
+        note={pack.isPendingUpdateReview ? reviewNote : null}
         trailing={<PackDeckPlayButton g={g} label={copy.train} testID={`fc-my-packs-pack-play-${pack.id}`} disabled={openingPackId !== null} onPress={() => { void hapticTap(); onTrain(pack); }} />}
-        accessibilityLabel={`${formatPackTitleForDisplay(title)}${authorName ? `, ${authorName}` : ''}, ${pack.cardCount}`}
+        accessibilityLabel={`${formatPackTitleForDisplay(title)}${authorName ? `, ${authorName}` : ''}, ${pack.cardCount}${pack.isPendingUpdateReview ? `, ${reviewNote}` : ''}`}
         testID={`fc-my-packs-pack-${pack.id}`}
         disabled={openingPackId !== null}
         onPress={() => onOpen(pack)}

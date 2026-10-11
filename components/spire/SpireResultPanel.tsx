@@ -51,10 +51,13 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
     const title = o.kind === 'save_failed' ? spireGameText(lang, 'saveFailed')
       : o.failReason === 'timeout' ? spireGameText(lang, 'failTimeout')
         : o.failReason === 'backed_out' ? spireGameText(lang, 'failBack') : spireGameText(lang, 'failHearts');
+    // зачем (аудит Макетов 7a207bc4a, координатор 12.10): при сбое СОХРАНЕНИЯ ступень не провалена по вине игрока — красная строка «Ступень не пройдена» и «Ещё раз»
+    // заставляли думать, что он проиграл. Здесь строки нет, заголовок «Ступень не сохранилась. Попробуй ещё раз», кнопка «Повторить».
+    const saveFailed = o.kind === 'save_failed';
     return {
-      over: spireGameText(lang, 'stepFailed'), overBad: true, title,
+      over: saveFailed ? '' : spireGameText(lang, 'stepFailed'), overBad: true, title,
       sub: spireGameText(lang, 'failSub', { n: o.floorBefore }), pills: [],
-      cta: spireGameText(lang, 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'),
+      cta: spireGameText(lang, saveFailed ? 'retry' : 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'),
     };
   }
   if (o.kind === 'summit') {
@@ -94,7 +97,7 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
   return (
     <View style={[s.panel, { boxShadow: plateBoxShadow(g) }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>
       <PlateFill g={g} radius={24} />
-      <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text>
+      {v.over ? <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text> : null}
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{v.title}</Text>
       <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text>
       {v.pills.length > 0 ? (

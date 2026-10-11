@@ -249,6 +249,8 @@ type DeckProps = Readonly<{
   /** Автор добавленного набора: аватар + имя перед числом (`Ирина · 49 · B2`); у своих наборов null. */
   author?: Readonly<{ name: string; coinRank?: number | null }> | null;
   authorTestID?: string;
+  /** Статус набора в подписи («На проверке»); пусто — не показывается. */
+  note?: string | null;
   highlight?: string;
   emphasis?: PackRowEmphasis;
   /** Правый край карточки: круглая «играть» (Мои наборы) или ♥ (каталог). */
@@ -282,7 +284,7 @@ const DeckAvatar = memo(function DeckAvatar({ g, coinRank }: Readonly<{ g: Glass
 });
 
 function PackDeckBase({
-  g, lang, title, testID, titleTestID, accessibilityLabel, count, level = null, words = [], author = null, authorTestID,
+  g, lang, title, testID, titleTestID, accessibilityLabel, count, level = null, words = [], author = null, authorTestID, note = null,
   highlight, emphasis = 'normal', trailing, onPress, onLongPress, disabled, style, a11yActions,
 }: DeckProps) {
   const lh = useLineScale();
@@ -291,7 +293,9 @@ function PackDeckBase({
   const parts = splitTitleHighlight(shown, highlight);
   const countLevel = packDeckCountLevel(count, level);
   const countText = countLevel.needsUnit ? `${countLevel.text} ${packCardsWord(lang, count)}` : countLevel.text;
-  const subText = author ? `${author.name} · ${countText}` : countText;
+  const baseSub = author ? `${author.name} · ${countText}` : countText;
+  // зачем (координатор 12.10, мёртвый бейдж «На проверке»): статус набора автора живёт в подписи стопки, а не на удалённой плитке хаба
+  const subText = note ? `${baseSub} · ${note}` : baseSub;
   const chipLine = lh(18);
 
   const body = (

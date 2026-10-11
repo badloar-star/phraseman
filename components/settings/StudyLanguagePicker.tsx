@@ -40,7 +40,7 @@ function switchedLanguageToastCopy(target: StudyTarget) {
   return {
     ru: `Теперь учишь ${name}`,
     uk: `Тепер вчиш ${name}`,
-    es: `Ahora estás aprendiendo ${name}`,
+    es: `Ahora estás aprendiendo ${name}`, en: `Now learning ${name}`,
     'pt-BR': `Agora você está aprendendo ${name}`,
     vi: `Bây giờ bạn đang học ${name}`,
     id: `Sekarang kamu belajar ${name}`,

@@ -51,7 +51,7 @@ export interface SurveyRewardPanelProps {
 const ACTION_LABELS = {
   ru: { done: 'Готово', retry: 'Повторить', back: 'Назад' },
   uk: { done: 'Готово', retry: 'Спробувати ще раз', back: 'Назад' },
-  es: { done: 'Listo', retry: 'Intentar de nuevo', back: 'Atrás' },
+  es: { done: 'Listo', retry: 'Intentar de nuevo', back: 'Atrás' }, en: { done: 'Done', retry: 'Try again', back: 'Back' },
   'pt-BR': { done: 'Concluído', retry: 'Tentar novamente', back: 'Voltar' },
   vi: { done: 'Xong', retry: 'Thử lại', back: 'Quay lại' },
   id: { done: 'Selesai', retry: 'Coba lagi', back: 'Kembali' },

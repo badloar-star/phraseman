@@ -91,7 +91,7 @@ export default function BillingIssueToastHost() {
           // что человек сохраняет.
           ru: 'Оплата не прошла — обнови карту, и Plus останется с тобой',
           uk: 'Оплата не пройшла — онови картку, і Plus залишиться з тобою',
-          es: 'El pago no se completó — actualiza la tarjeta y Plus sigue contigo',
+          es: 'El pago no se completó — actualiza la tarjeta y Plus sigue contigo', en: 'Payment failed — update your card and Plus stays with you',
           'pt-BR': 'O pagamento não passou — atualize o cartão e o Plus continua com você',
           vi: 'Thanh toán chưa thành công — cập nhật thẻ để giữ Plus',
           id: 'Pembayaran gagal — perbarui kartu dan Plus tetap milikmu',

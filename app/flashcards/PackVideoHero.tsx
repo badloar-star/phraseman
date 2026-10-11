@@ -62,7 +62,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
   const failToast = useMemo(() => actionToastTri('error', {
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
-    es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.',
+    es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.', en: 'This video isn\'t opening right now. The pack\'s cards are available as usual.',
   }), []);
 
   if (!videoId) return null;

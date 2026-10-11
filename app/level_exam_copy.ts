@@ -27,7 +27,7 @@ export type LevelExamCopy = {
 const formatNames = {
   ru: ['Контекст', 'Сборка фраз', 'Смысл', 'Поиск ошибки', 'Быстрые пары'],
   uk: ['Контекст', 'Складання фраз', 'Значення', 'Пошук помилки', 'Швидкі пари'],
-  es: ['Contexto', 'Construir frases', 'Significado', 'Detectar el error', 'Pares rápidos'],
+  es: ['Contexto', 'Construir frases', 'Significado', 'Detectar el error', 'Pares rápidos'], en: ['Context', 'Phrase building', 'Meaning', 'Error spotting', 'Quick pairs'],
   'pt-BR': ['Contexto', 'Montar frases', 'Significado', 'Encontrar o erro', 'Pares rápidos'],
   vi: ['Ngữ cảnh', 'Ghép câu', 'Ý nghĩa', 'Tìm lỗi', 'Ghép cặp nhanh'],
   id: ['Konteks', 'Susun frasa', 'Makna', 'Temukan kesalahan', 'Pasangan cepat'],

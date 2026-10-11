@@ -223,15 +223,16 @@ function ReportPackModal({
                 </Text>
                 <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
-                    uk: 'Твоя скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєш зробити каталог безпечнішим.',
-                    ru: 'Твоя жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаешь сделать каталог безопаснее.',
-                    en: 'Your report has been saved. We will review it soon. Thanks for helping keep the catalog safe.',
-                    es: 'Tu reporte quedó registrado. Lo revisaremos pronto. Gracias por ayudar a mantener el catálogo seguro.',
-                    'pt-BR': 'Sua denúncia foi registrada. Vamos analisá-la em breve. Obrigado por ajudar a manter o catálogo mais seguro.',
-                    vi: 'Báo cáo của bạn đã được lưu. Chúng tôi sẽ xem xét sớm. Cảm ơn bạn đã giúp danh mục an toàn hơn.',
-                    id: 'Laporanmu sudah tersimpan. Kami akan meninjaunya segera. Terima kasih sudah membantu menjaga katalog tetap aman.',
-                    tr: 'Şikayetin kaydedildi. En kısa sürede inceleyeceğiz. Kataloğu daha güvenli tutmaya yardım ettiğin için teşekkürler.',
-                    pl: 'Twoje zgłoszenie zostało zapisane. Wkrótce je sprawdzimy. Dziękujemy za pomoc w dbaniu o bezpieczeństwo katalogu.',
+                    // зачем (координатор 12.10, cards-059 / образец cards-states №53): коротко, как в одобренном образце — «Спасибо — мы проверим набор.»; прежний длинный абзац сокращён по правилу «без воды»
+                    uk: 'Дякуємо — ми перевіримо набір.',
+                    ru: 'Спасибо — мы проверим набор.',
+                    en: 'Thank you — we will review the pack.',
+                    es: 'Gracias: revisaremos el pack.',
+                    'pt-BR': 'Obrigado — vamos analisar o pack.',
+                    vi: 'Cảm ơn bạn — chúng tôi sẽ kiểm tra bộ thẻ.',
+                    id: 'Terima kasih — kami akan memeriksa paket ini.',
+                    tr: 'Teşekkürler — paketi inceleyeceğiz.',
+                    pl: 'Dziękujemy — sprawdzimy zestaw.',
                   })}
                 </Text>
                 <View style={{ marginTop: 20, gap: 10 }}>

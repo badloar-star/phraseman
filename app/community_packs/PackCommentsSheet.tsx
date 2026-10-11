@@ -187,6 +187,9 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   // зачем (PM-214 A2): без офлайн-дедлайна спиннер мог крутиться без конца. После PACK_COMMENTS_LOAD_DEADLINE_MS сообщаем «не удалось загрузить»
   // с повтором; запоздавший ответ всё равно сливается в список тем же путём.
   const [loadFailed, setLoadFailed] = useState(false);
+  // зачем (координатор 12.10, cards-052 «Набор не добавлен — писать нельзя»): подсказка «писать могут те, кто добавил набор» показывается только когда проверка права записи ЗАВЕРШИЛАСЬ и ответ отрицательный —
+  // иначе она мигала бы у тех, кому писать можно (canWrite поднимается асинхронно).
+  const [writeCheckDone, setWriteCheckDone] = useState(false);
   const [reloadTick, setReloadTick] = useState(0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
@@ -273,6 +276,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     // в памяти есть последняя серверная лента для этого аккаунта и набора, показываем её сразу, а загрузка идёт фоном и сливается через mergeServerComments.
     const remembered = peekPackCommentsMemory(packId);
     setLoadFailed(false);
+    setWriteCheckDone(false);
     if (remembered) {
       setComments((prev) => mergeServerComments(prev, remembered));
       setLoading(false);
@@ -331,6 +335,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       // guard-ok: только поднимаем canWrite (|| с текущим значением), никогда
       // не опускаем — та же защита от гонки, что в отдельном эффекте выше.
       setCanWrite((prev) => prev || finalCanWrite);
+      setWriteCheckDone(true);
+      if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] проверка права записи завершена', { packId, finalCanWrite });
       rememberPackCommentsMemory(packId, serverComments);
       setComments((prev) => mergeServerComments(prev, serverComments));
       setLoadFailed(false);
@@ -903,6 +909,20 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 </Text>
               ) : null}
             </View>
+          ) : writeCheckDone ? (
+            <Text testID="pack-comments-write-locked" style={{ color: glass.mutedText, fontSize: f.sub, textAlign: 'center', paddingTop: 14, paddingHorizontal: 16 }}>
+              {triLang(lang, {
+                ru: 'Писать могут те, кто добавил набор себе.',
+                uk: 'Писати можуть ті, хто додав набір собі.',
+                en: 'Only people who added the pack can write.',
+                es: 'Solo pueden escribir quienes añadieron el pack.',
+                'pt-BR': 'Só quem adicionou o pack pode escrever.',
+                vi: 'Chỉ người đã thêm bộ thẻ mới viết được.',
+                id: 'Hanya yang menambahkan paket ini yang bisa menulis.',
+                tr: 'Yalnızca paketi ekleyenler yazabilir.',
+                pl: 'Pisać mogą tylko osoby, które dodały zestaw.',
+              })}
+            </Text>
           ) : null}
 
           {/* Меню «···»: закрепить/скрыть — автору набора; удалить — своему; пожаловаться — всем. */}

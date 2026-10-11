@@ -145,6 +145,23 @@ describe('смена аккаунта в онбординге — с кнопк�
     expect(onboardingAccountSwitchFailureText('ru', 'pending_shard_spend')).toContain('через минуту');
     expect(onboardingAccountSwitchFailureText('ru', 'whatever')).toBe('Не получилось сменить аккаунт. Прогресс на месте — попробуй ещё раз.');
   });
+
+  it('сбой копии и сбой после маркера — правда, а не «Прогресс на месте» (решение 06:20 п.5)', () => {
+    expect(onboardingAccountSwitchFailureText('ru', 'backup_failed')).toContain('Ничего не удалено');
+    expect(onboardingAccountSwitchFailureText('ru', 'backup_failed')).not.toContain('на месте');
+    for (const reason of ['recovery_required', 'wipe_failed']) {
+      const text = onboardingAccountSwitchFailureText('ru', reason);
+      expect(text).toContain('Перезапусти приложение');
+      expect(text).not.toContain('на месте');
+    }
+    for (const lang of ['uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      expect(onboardingAccountSwitchFailureText(lang, 'backup_failed')).not.toBe(onboardingAccountSwitchFailureText('ru', 'backup_failed'));
+      expect(onboardingAccountSwitchFailureText(lang, 'recovery_required')).not.toBe(onboardingAccountSwitchFailureText('ru', 'recovery_required'));
+    }
+    const source = fs.readFileSync(path.join(__dirname, '../app/onboarding_account_switch_confirm.ts'), 'utf8');
+    expect(source).not.toMatch(/switch_threw reason=\$\{[^}]*\.message/);
+    expect(source).toContain('identityErrorCode(error)');
+  });
 });
 
 describe('удаление гостя: шаг закрытия хранилища не упирается в 1 с (живой прогон 10.10)', () => {

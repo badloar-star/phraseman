@@ -13,6 +13,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { accountSwitchRequiredCopy } from './account_switch_copy';
 import { readAccountSwitchUnsavedCardsDecision } from './account_switch_unsaved_cards';
 import { signOutAndWipeForAccountSwitch } from './auth_provider';
+import { identityErrorCode } from './identity_trace';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from './themed_blocking_alert_queue';
 
 export type OnboardingAccountSwitchOutcome =
@@ -36,6 +37,37 @@ export function onboardingAccountSwitchFailureText(lang: Lang, reason: string): 
       id: 'Progres belum bisa disimpan sebelum ganti — tidak ada koneksi. Periksa internet lalu coba lagi. Progresmu aman.',
       tr: 'Değişiklikten önce ilerleme kaydedilemedi — bağlantı yok. İnterneti kontrol edip tekrar dene. İlerlemen yerinde.',
       pl: 'Nie udało się zapisać postępu przed zmianą — brak połączenia. Sprawdź internet i spróbuj ponownie. Postęp jest bezpieczny.',
+    });
+  }
+  // зачем (решение координатора 06:20 п.5): после 8186fd68a чужая копия в слоте отказа больше не даёт;
+  // backup_failed теперь значит «копию не удалось записать на телефоне» (место/проверка). Повтор
+  // обычно не помогает, а «Сменить без сохранения» тоже требует копию — говорим причину честно.
+  if (reason === 'backup_failed') {
+    return triLang(lang, {
+      ru: 'Не получилось сохранить копию прогресса на этом телефоне. Ничего не удалено — попробуй позже.',
+      uk: 'Не вдалося зберегти копію прогресу на цьому телефоні. Нічого не видалено — спробуй пізніше.',
+      en: 'Couldn’t save a copy of your progress on this phone. Nothing was deleted — try again later.',
+      es: 'No se pudo guardar una copia de tu progreso en este teléfono. No se borró nada: inténtalo más tarde.',
+      'pt-BR': 'Não deu para salvar uma cópia do progresso neste telefone. Nada foi apagado — tente mais tarde.',
+      vi: 'Chưa lưu được bản sao tiến trình trên điện thoại này. Không có gì bị xóa — hãy thử lại sau.',
+      id: 'Salinan progres belum bisa disimpan di ponsel ini. Tidak ada yang dihapus — coba lagi nanti.',
+      tr: 'İlerlemenin kopyası bu telefona kaydedilemedi. Hiçbir şey silinmedi — daha sonra tekrar dene.',
+      pl: 'Nie udało się zapisać kopii postępu na tym telefonie. Nic nie zostało usunięte — spróbuj później.',
+    });
+  }
+  // зачем (то же решение): сбой ПОСЛЕ защитного маркера — «Прогресс на месте» было бы неправдой;
+  // как в Настройках: перезапуск продолжит восстановление.
+  if (reason === 'recovery_required' || reason === 'wipe_failed') {
+    return triLang(lang, {
+      ru: 'Смена аккаунта началась, но не завершилась. Перезапусти приложение — восстановление продолжится.',
+      uk: 'Зміна акаунту почалася, але не завершилася. Перезапусти застосунок — відновлення продовжиться.',
+      en: 'The account switch started but didn’t finish. Restart the app to continue the recovery.',
+      es: 'El cambio de cuenta empezó, pero no terminó. Reinicia la app para continuar la recuperación.',
+      'pt-BR': 'A troca de conta começou, mas não terminou. Reinicie o app para continuar a recuperação.',
+      vi: 'Việc đổi tài khoản đã bắt đầu nhưng chưa xong. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
+      id: 'Pergantian akun sudah dimulai tapi belum selesai. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
+      tr: 'Hesap değişimi başladı ama tamamlanmadı. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
+      pl: 'Zmiana konta się zaczęła, ale nie skończyła. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
     });
   }
   if (reason === 'pending_shard_spend' || reason === 'shard_queue_quarantined' || reason === 'clean_recovery_transition_active') {
@@ -93,7 +125,8 @@ export async function confirmAndSwitchAccountInOnboarding(lang: Lang): Promise<O
     }
     return { kind: 'failed', reason: result.reason };
   } catch (error) {
-    const reason = error instanceof Error ? error.message.slice(0, 80) : typeof error;
+    // зачем (TG-0AE4918142EE): в логе только код — в тексте ошибки бывает почта.
+    const reason = identityErrorCode(error);
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_threw reason=${reason}`);
     return { kind: 'failed', reason };
   }

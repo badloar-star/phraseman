@@ -35,7 +35,8 @@ const MODAL_LIKE = /(Modal|Toast|Sheet|Banner|Celebration|Prompt)\w*\.tsx$/;
 // правила (15.08). Движение кита 2.0 — словарь KIT_MOTION в constants/motionHybrid (только числа kit.css) — такой же
 // законный вход, как гибрид. Это вход по содержимому, а не исключение по имени файла. KitSheetModal — общая
 // шторка кита на KIT_MOTION (как HybridSheetShell для гибрида).
-const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal/;
+// зачем (Дизайн 12.10): FriendsAddSheetShell — общая шторка на KIT_MOTION (словарь кита), её потребители (StudyLanguageSheet и др.) входят через гибрид.
+const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal|FriendsAddSheetShell/;
 
 function hasHybridEntry(file: string): boolean {
   return /Hybrid\w*\.tsx$/.test(path.basename(file))

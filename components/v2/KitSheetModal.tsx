@@ -115,7 +115,6 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
             styles.sheet,
             {
               backgroundColor: glass.opaqueSheet,
-              borderColor: glass.glassEdge, // guard-ok: 1 px кромка .sheet (исключение 2.0)
               maxHeight,
               height: fill ? maxHeight : undefined,
               paddingBottom: 40 + insets.bottom,
@@ -139,12 +138,10 @@ export function KitSheetModal({ visible, onRequestClose, closeLabel, header, chi
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end' },
   backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: `rgba(0,0,0,${KIT_MOTION.dimOpacity})` },
-  // `.sheet`: r28 сверху, поля 12/18/40, кромка 1 px без нижней.
+  // `.sheet`: r28 сверху, поля 12/18/40; без кромки (стиль «Тень»: шторку отделяет затемнение под ней).
   sheet: {
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    borderWidth: 1, // guard-ok: 1 px кромка .sheet
-    borderBottomWidth: 0,
     paddingTop: 12,
     paddingHorizontal: 18,
     overflow: 'hidden',

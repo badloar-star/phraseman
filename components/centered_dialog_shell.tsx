@@ -122,7 +122,7 @@ export default function CenteredDialogShell({
             accessibilityViewIsModal
             style={[
               styles.dialog,
-              { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge, width: dialogWidth, maxHeight: dialogMaxHeight },
+              { backgroundColor: glass.opaqueSheet, width: dialogWidth, maxHeight: dialogMaxHeight },
               dialogStyle,
             ]}
           >
@@ -165,7 +165,6 @@ const styles = StyleSheet.create({
   },
   dialog: {
     borderRadius: 26,
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как в макете
     padding: 20,
     overflow: 'hidden',
   },

@@ -5,6 +5,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useV2Palette } from './useV2Palette';
 import { V2GlassSheen, useV2GlassStyle } from './V2Glass';
+import { nestedBoxShadow, useShadowGlass } from './ShadowSurface';
 
 export type V2Segment<K extends string> = Readonly<{ key: K; label: string }>;
 
@@ -23,6 +24,7 @@ type Props<K extends string> = {
 export default function V2SegmentedControl<K extends string>({ segments, value, onChange, testID }: Props<K>) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
+  const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
   const [width, setWidth] = useState(0);
   const index = Math.max(0, segments.findIndex((s) => s.key === value));
@@ -51,9 +53,9 @@ export default function V2SegmentedControl<K extends string>({ segments, value, 
             s.thumb,
             {
               width: segmentWidth,
-              backgroundColor: p.glassRaised,
-              borderColor: p.stroke,
-              borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+              // зачем (владелец 12.10, стиль «Тень»): выбранный сегмент — приподнятая плашка (заливка raised + малая тень), без кольца.
+              backgroundColor: g.raisedFillFrom,
+              boxShadow: nestedBoxShadow(g),
               transform: [{
                 translateX: anim.interpolate({
                   inputRange: segments.map((_, i) => i),
@@ -95,7 +97,6 @@ const s = StyleSheet.create({
     minHeight: HEIGHT, // зачем (text-integrity): длинная подпись de/fr переносится, а не режется
 
     borderRadius: V2.radius.control,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
     padding: PAD,
   },

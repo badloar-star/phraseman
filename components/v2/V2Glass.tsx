@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useV2Palette } from './useV2Palette';
+import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, useShadowGlass } from './ShadowSurface';
 
 /**
  * «Дымка» стекла — вторая серия референсов владельца 24.09 («вот такую
@@ -55,13 +56,15 @@ export const V2GlassSheen = memo(function V2GlassSheen({ seed = 0 }: { seed?: nu
   );
 });
 
-/** Стиль стеклянной карточки: тёмная тёплая заливка + чёткая светлая кромка. */
+/**
+ * Стиль карточки: плашка стиля «Тень» — заливка и тень из токенов темы, БЕЗ обводки (владелец 12.10, «второй вариант делаем»).
+ * Выбранное/главное (`raised`) — заливка raised и большая тень; сдвиг вверх делает хозяин через transform (высота ряда не меняется).
+ */
 export function useV2GlassStyle(raised = false): ViewStyle {
-  const p = useV2Palette();
+  const g = useShadowGlass();
   return {
-    backgroundColor: raised ? p.glassRaised : p.glass,
-    borderColor: p.stroke,
-    borderWidth: 1, // guard-ok: D43 кромка стекла, как на референсе
+    backgroundColor: raised ? g.raisedFillFrom : g.plateFillFrom,
+    boxShadow: raised ? raisedBoxShadow(g) : plateBoxShadow(g),
     overflow: 'hidden',
   };
 }
@@ -78,6 +81,7 @@ type IconTileProps = {
 /** Стеклянная плашка со значком тёплого оттенка — как у строк референса. */
 export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize = 22, shape = 'square', style }: IconTileProps) {
   const p = useV2Palette();
+  const g = useShadowGlass();
   const radius = shape === 'circle' ? size / 2 : Math.round(size * 0.3);
   return (
     <View
@@ -89,8 +93,7 @@ export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize =
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: p.glassRaised,
-          borderColor: p.stroke,
-          borderWidth: 1, // guard-ok: D43
+          boxShadow: nestedBoxShadow(g), // стиль «Тень»: вложенная плитка — малая тень, без кольца
           overflow: 'hidden',
         },
         style,

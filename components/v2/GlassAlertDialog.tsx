@@ -19,6 +19,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from './KitLiquidGlass';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from './ShadowSurface';
 import { ThemeAccentFill } from './ThemeAccentFill';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
@@ -52,7 +53,7 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
   const settledRef = useRef(false);
   const stack = actions.some((a) => a.label.length > STACK_LABEL_CHARS);
   return (
-    <View testID={testID} style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}>{/* guard-ok: 1 px кромка .or-alert */}
+    <View testID={testID} style={[styles.card, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}>{/* стиль «Тень»: окно без кромки, с тенью */}
       <KitGlassLayer radius={25} />
       {icon ? (
         <View style={[styles.stage, { backgroundColor: glass.opaqueControl }]}>
@@ -78,9 +79,9 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
                 styles.cta,
                 stack ? null : styles.ctaRow,
                 a.ghost
-                  // `.cta.gh`: кромка --outline (белый 30 %) — цвет текста темы на 0x4D, как в FeatureIntroModal.
-                  ? { borderWidth: 1, borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge, backgroundColor: 'transparent' } // guard-ok: .cta.gh — 1 px кромка
-                  : { backgroundColor: glass.accent },
+                  // зачем (стиль «Тень»): второстепенная кнопка `.cta.gh` — плашка с малой тенью вместо контура.
+                  ? { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }
+                  : { backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass) },
                 { opacity: pressed ? 0.88 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
               ]}
             >
@@ -129,8 +130,8 @@ function noop(): void {
 export const GlassAlertDialog = memo(GlassAlertDialogBase);
 
 const styles = StyleSheet.create({
-  // `.or-alert`: поля 20, r25, кромка --line-2, фон --sheet; ширину (поля 24) даёт оболочка.
-  card: { width: '100%', alignSelf: 'center', borderRadius: 25, borderWidth: 1, padding: 20, overflow: 'hidden' }, // guard-ok: 1 px кромка .or-alert
+  // `.or-alert`: поля 20, r25, тень вместо кромки (стиль «Тень»), фон --sheet; ширину (поля 24) даёт оболочка.
+  card: { width: '100%', alignSelf: 'center', borderRadius: 25, padding: 20, overflow: 'hidden' },
   // `.or-stage`: 68, r23, --tile, 15 до заголовка.
   stage: { width: 68, height: 68, borderRadius: 23, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', marginBottom: 15 },
   // `.or-title` 23/29 780.

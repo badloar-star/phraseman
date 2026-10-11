@@ -35,6 +35,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from './V2Pressable';
 import { V2GlassSheen, V2IconTile, useV2GlassStyle } from './V2Glass';
 import { useV2Palette } from './useV2Palette';
+import { actionBoxShadow, nestedBoxShadow, useShadowGlass } from './ShadowSurface';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
@@ -91,6 +92,7 @@ type IconButtonProps = {
 
 export const V2IconButton = memo(function V2IconButton({ icon, onPress, accessibilityLabel, size = V2.iconButton, variant = 'glass', tint = 'text', testID, disabled }: IconButtonProps) {
   const p = useV2Palette();
+  const g = useShadowGlass();
   const color = tint === 'icon' ? p.iconTint : p.text;
   return (
     <V2Pressable
@@ -102,8 +104,9 @@ export const V2IconButton = memo(function V2IconButton({ icon, onPress, accessib
       hitSlop={8}
       style={[
         styles.round,
-        { width: size, height: size, borderRadius: size / 2, borderColor: p.stroke }, // guard-ok: D43
-        variant === 'glass' ? { backgroundColor: p.glassRaised } : { backgroundColor: 'transparent' },
+        { width: size, height: size, borderRadius: size / 2 },
+        // зачем (владелец 12.10, стиль «Тень»): круглая кнопка без кольца — заливка и малая тень; «призрачная» — без заливки и без обводки.
+        variant === 'glass' ? { backgroundColor: p.glassRaised, boxShadow: nestedBoxShadow(g) } : { backgroundColor: 'transparent' },
       ]}
     >
       {variant === 'glass' ? <V2GlassSheen seed={1} /> : null}
@@ -247,6 +250,7 @@ type ButtonProps = {
 export const V2Button = memo(function V2Button({ label, onPress, variant = 'primary', icon, iconPosition = 'trailing', loading, disabled, size = 'large', testID, style }: ButtonProps) {
   const p = useV2Palette();
   const s = useScaledTextStyles(styles);
+  const g = useShadowGlass();
   const height = size === 'large' ? V2.cta.height : 40;
   const fg = variant === 'primary' || variant === 'accent' ? p.ctaText : p.text;
   const bg = variant === 'primary' ? p.cta : variant === 'accent' ? p.accentFill : 'transparent';
@@ -262,7 +266,9 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
       style={[
         s.button,
         { minHeight: height, paddingVertical: 6, borderRadius: height / 2, backgroundColor: bg, opacity: disabled ? 0.45 : 1 },
-        variant === 'secondary' ? { borderWidth: 1, borderColor: p.outline } : null, // guard-ok: D43 контурная кнопка
+        // зачем (стиль «Тень»): кнопка действия — цветная тень; второстепенная вместо контура — плашка с малой тенью.
+        variant === 'primary' || variant === 'accent' ? { boxShadow: actionBoxShadow(g) } : null,
+        variant === 'secondary' ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) } : null,
         size === 'small' ? { paddingHorizontal: 16 } : null,
         style,
       ]}
@@ -283,10 +289,11 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
 
 export const V2Badge = memo(function V2Badge({ label, tone = 'glass' }: { label: string; tone?: 'glass' | 'outline' }) {
   const p = useV2Palette();
+  const g = useShadowGlass();
   const s = useScaledTextStyles(styles);
   return (
     <View
-      style={[s.badge, tone === 'glass' ? { backgroundColor: p.control } : { borderWidth: 1, borderColor: p.stroke }]} // guard-ok: D43
+      style={[s.badge, tone === 'glass' ? { backgroundColor: p.control } : { backgroundColor: g.dividerTone }]} // стиль «Тень»: контурный бейдж — тоном, без обводки
     >
       <Text style={[s.badgeText, { color: p.text, flexShrink: 1 }]}>{label}</Text>
     </View>
@@ -375,9 +382,12 @@ type AnswerState = 'idle' | 'correct' | 'wrong' | 'dimmed';
 /** Вариант ответа в тренировках — контур, текст по центру (референс «Блиц»). */
 export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, state = 'idle', disabled, testID }: { label: string; onPress?: () => void; state?: AnswerState; disabled?: boolean; testID?: string }) {
   const p = useV2Palette();
+  const g = useShadowGlass();
   const s = useScaledTextStyles(styles);
-  const border = state === 'correct' ? p.correct : state === 'wrong' ? p.wrong : p.outline;
-  const bg = state === 'correct' ? `${p.correct}22` : state === 'wrong' ? `${p.wrong}22` : 'transparent';
+  // зачем (стиль «Тень»): ожидающий вариант — плашка с тенью, без контура; кольцо остаётся только у ИСХОДА ответа (верно/неверно) — это индикатор состояния.
+  const resolved = state === 'correct' || state === 'wrong';
+  const border = state === 'correct' ? p.correct : p.wrong;
+  const bg = state === 'correct' ? `${p.correct}22` : state === 'wrong' ? `${p.wrong}22` : g.plateFillFrom;
   return (
     <V2Pressable
       testID={testID}
@@ -385,7 +395,7 @@ export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, sta
       onPress={onPress}
       disabled={disabled}
       scaleTo={0.98}
-      style={[s.answer, { borderColor: border, backgroundColor: bg, opacity: state === 'dimmed' ? 0.45 : 1 }]} // guard-ok: D43 контур варианта ответа
+      style={[s.answer, resolved ? { borderWidth: 1, borderColor: border } : { boxShadow: nestedBoxShadow(g) }, { backgroundColor: bg, opacity: state === 'dimmed' ? 0.45 : 1 }]} // guard-ok: D43 кольцо исхода ответа (семантика верно/неверно)
     >
       <Text style={[s.answerText, { color: p.text }]}>{label}</Text>
     </V2Pressable>
@@ -398,7 +408,7 @@ export function V2SheetFrame({ title, subtitle, onClose, closeLabel = 'Close', c
   const s = useScaledTextStyles(styles);
   return (
     <View
-      style={[s.sheet, { backgroundColor: p.sheet, borderColor: p.stroke, paddingBottom: 16 + bottomInset }]} // guard-ok: D43
+      style={[s.sheet, { backgroundColor: p.sheet, paddingBottom: 16 + bottomInset }]}
     >
       <V2GlassSheen seed={2} />
       <View style={[s.grabber, { backgroundColor: p.textMuted }]} />
@@ -419,7 +429,7 @@ export function V2SheetFrame({ title, subtitle, onClose, closeLabel = 'Close', c
 // зачем (FONTSCALE2, координатор 05.10): при крупном системном шрифте межстрочный растёт вместе с ним, иначе низ букв
 // срезается; шрифт не сжимаем. При 1.0 useScaledTextStyles отдаёт ЭТОТ ЖЕ объект — вид по макету без изменений.
 const styles = StyleSheet.create({
-  round: { alignItems: 'center', justifyContent: 'center', borderWidth: 1, overflow: 'hidden' }, // guard-ok: D43
+  round: { alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   header: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: V2.iconButton + 8 },
   headerCopy: { flex: 1, minWidth: 0 },
   headerTitle: { fontSize: 24, lineHeight: 29, fontWeight: '800', letterSpacing: -0.4 },
@@ -456,10 +466,10 @@ const styles = StyleSheet.create({
   statDivider: { width: 1, height: 30, marginHorizontal: 8 },
   statLabel: { ...V2_TYPE.caption, fontSize: 13 },
   statValue: { fontSize: 13, lineHeight: 18, fontWeight: '700', marginTop: 1 },
-  answer: { minHeight: 58, borderRadius: 16, borderWidth: 1, // guard-ok: D43
+  answer: { minHeight: 58, borderRadius: 16,
     alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, paddingVertical: 12 },
   answerText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
-  sheet: { borderTopLeftRadius: V2.radius.sheet, borderTopRightRadius: V2.radius.sheet, borderWidth: 1, borderBottomWidth: 0, overflow: 'hidden', paddingHorizontal: 16, paddingTop: 10 }, // guard-ok: D43
+  sheet: { borderTopLeftRadius: V2.radius.sheet, borderTopRightRadius: V2.radius.sheet, overflow: 'hidden', paddingHorizontal: 16, paddingTop: 10 },
   grabber: { alignSelf: 'center', width: 40, height: 5, borderRadius: 3, opacity: 0.6, marginBottom: 14 },
   sheetHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginBottom: 16, paddingHorizontal: 4 },
   sheetTitle: { fontSize: 26, lineHeight: 31, fontWeight: '800', letterSpacing: -0.4 },

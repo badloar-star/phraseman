@@ -11,7 +11,9 @@ import {
   raisedShadowStyle,
   RAISED_LIFT,
 } from '../../constants/liquidGlassShadowStyle';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
+import { useTheme } from '../ThemeContext';
 
 /**
  * Стиль «Тень» — контейнеры БЕЗ обводок (решение владельца 12.10, «второй вариант делаем»; docs/design/v2-app/SHADOW_STYLE_SPEC.md,
@@ -48,3 +50,9 @@ export const PlateFill = memo(function PlateFill({ g, radius, raised = false }: 
     />
   );
 });
+
+/** Токены активной темы для мест, которые знают только палитру V2 (useV2Palette): тени и заливки плашки берутся отсюда. */
+export function useShadowGlass(): GlassTokens {
+  const { liquidGlassThemeId } = useTheme();
+  return liquidGlassTokens(liquidGlassThemeId);
+}

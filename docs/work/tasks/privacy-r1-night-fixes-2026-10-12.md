@@ -46,3 +46,5 @@ Governance-ID: TG-87C0CCD06D42
 
 ## Rollback
 - `git revert` каждого коммита.
+
+Governance-ID: TG-87C0CCD06D42 (п.4: удаление react-native-webrtc / react-native-incall-manager, NSCameraUsageDescription; MODIFY_AUDIO_SETTINGS оставлен — нужен голосовым функциям)

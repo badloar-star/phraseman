@@ -45,8 +45,8 @@ describe('website privacy consent contract', () => {
   // зачем: Apple (ITMS-90683) требует purpose string для КАЖДОГО чувствительного
   // API, на который ссылается любая слинкованная библиотека — даже когда само
   // приложение им не пользуется. Сборку 113 отклонили именно за отсутствие
-  // NSCameraUsageDescription: его тянет react-native-webrtc (стек MAX-звонка),
-  // хотя видео там не снимается. Старая версия этого сторожа запрещала
+  // NSCameraUsageDescription: его тянул react-native-webrtc (стек MAX-звонка; пакет удалён 12.10),
+  // хотя видео там не снималось. Старая версия этого сторожа запрещала
   // NSPhotoLibraryUsageDescription как «ненужное», но медиатеку тянут
   // expo-file-system/expo-image, а react-native-view-shot сохраняет картинку
   // с результатами — разрешение обосновано. Поэтому сторожим не отсутствие
@@ -54,13 +54,10 @@ describe('website privacy consent contract', () => {
   it('declares a purpose string for every sensitive API linked into the iOS build', () => {
     const infoPlist = JSON.parse(read('app.json')).expo.ios.infoPlist;
 
-    // Камера — от react-native-webrtc/expo-modules-core; микрофон и распознавание
-    // речи — от произношения и MAX-звонка; медиатека — от expo-file-system/
-    // expo-image и сохранения результатов; движение — от sensor-модуля внутри
-    // react-native-reanimated (useAnimatedSensor в приложении не вызывается,
-    // но CMMotionManager всё равно слинкован).
+    // Микрофон и распознавание речи — от произношения и голосового ввода в диалогах; медиатека — от
+    // expo-file-system/expo-image и сохранения результатов; движение — от sensor-модуля внутри
+    // react-native-reanimated (useAnimatedSensor в приложении не вызывается, но CMMotionManager слинкован).
     const required = [
-      'NSCameraUsageDescription',
       'NSMicrophoneUsageDescription',
       'NSSpeechRecognitionUsageDescription',
       'NSPhotoLibraryUsageDescription',
@@ -71,6 +68,18 @@ describe('website privacy consent contract', () => {
       expect(typeof infoPlist[key]).toBe('string');
       expect(infoPlist[key].trim().length).toBeGreaterThan(20);
     }
+  });
+
+  // зачем (12.10, PRIVACY_R1_GAP, решение советника): камеру тянул только react-native-webrtc (+ incall-manager) от
+  // удалённого MAX-звонка; пакеты удалены, в expo-modules-core камера — только в заголовках интерфейсов. Строка
+  // «разговор с ИИ-учителем» ссылалась на несуществующую функцию. Вернуть пакеты звонка — вернуть и строку с честной причиной.
+  it('does not declare camera access or link the removed call stack', () => {
+    const app = JSON.parse(read('app.json')).expo;
+    expect(app.ios.infoPlist.NSCameraUsageDescription).toBeUndefined();
+    expect(JSON.stringify(app.android?.permissions ?? [])).not.toContain('CAMERA');
+    const pkg = JSON.parse(read('package.json'));
+    expect(pkg.dependencies['react-native-webrtc']).toBeUndefined();
+    expect(pkg.dependencies['react-native-incall-manager']).toBeUndefined();
   });
 
   it('loads cookie settings on generated legal pages', () => {

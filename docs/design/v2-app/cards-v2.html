@@ -149,9 +149,9 @@
   .deck .dk.b { top: 6px; width: 93%; margin-left: -46.5%; opacity: .9; }
   .dc { position: relative; border-radius: 20px; padding: 16px 16px 16px 18px; background: linear-gradient(160deg, #1F1F22, #161618 70%); border: 1px solid var(--line); }
   .dc .dt1 { font-size: 21px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
-  .dc .ds { font-size: 14px; color: var(--sec); margin-top: 3px; font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 8px; }
+  .dc .ds { font-size: 13px; color: var(--sec); margin-top: 3px; font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 8px; }
   .dc .dw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 14px; }
-  .dc .dw .mc { height: 38px; }
+  .dc .dw .mc { height: 38px; font-size: 13px; }
   .pl { width: 44px; height: 44px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: inline-flex; align-items: center; justify-content: center; flex: none;
     box-shadow: inset 0 1px 0 #fff, 0 8px 18px -8px rgba(0,0,0,.8); }
   .av { width: 22px; height: 22px; border-radius: 50%; background: #2A2A2C; display: inline-flex; align-items: center; justify-content: center; color: #8C8C90; flex: none; }
@@ -170,7 +170,7 @@
   .flip .lgf { position: absolute; left: 20px; top: 18px; font-size: 12px; font-weight: 600; color: var(--sec); }
   .flip .vb2 { position: absolute; right: 14px; top: 12px; }
   .flip .fw { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; }
-  .flip .fs { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 8px; }
+  .flip .fs { font-size: 16px; line-height: 20px; color: var(--sec); margin-top: 8px; } .flip .fs.m { color: var(--muted); margin-top: 4px; }
   .flip .turn { position: absolute; right: 16px; bottom: 14px; color: var(--muted); }
   .flip.no .fa, .flip.no .fb { box-shadow: inset 0 0 0 1px rgba(242,118,107,.45), 0 22px 44px -22px rgba(0,0,0,.95); }
   .flip.ok .fa, .flip.ok .fb { box-shadow: inset 0 0 0 1px rgba(111,208,140,.45), 0 22px 44px -22px rgba(0,0,0,.95); }
@@ -206,7 +206,7 @@
   .plus10 { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 13px; background: rgba(111,208,140,.14); color: var(--good); font-size: 14px; font-weight: 700; }
   .hearts span { display: inline-flex; transition: opacity 300ms, transform 300ms; }
   .hearts span.lost { opacity: .2; transform: scale(.85); }
-  .shdr { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+  .shdr { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
   .shdr .tl { flex: 1; min-width: 0; font-size: 20px; font-weight: 700; }
   .shdr .cnt { font-size: 15px; color: var(--sec); font-weight: 600; font-variant-numeric: tabular-nums; }
   .mic { width: 92px; height: 92px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: inline-flex; align-items: center; justify-content: center; box-shadow: inset 0 1px 0 #fff, 0 14px 30px -12px rgba(0,0,0,.8); cursor: pointer; }
@@ -229,8 +229,8 @@
   /* ---------- шторка выбора режима: плитки 2×2 горизонтальные ---------- */
   .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
   .mt { border-radius: 20px; padding: 16px; min-height: 112px; display: flex; flex-direction: column; justify-content: space-between; background: #232326; box-shadow: inset 0 0 0 1px var(--line), inset 0 1px 0 rgba(255,255,255,.08); cursor: pointer; }
-  .mt .n { font-size: 18px; font-weight: 700; margin-top: 14px; }
-  .mt .s { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .mt .n { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 14px; }
+  .mt .s { font-size: 13px; color: var(--sec); margin-top: 2px; }
 
   /* ---------- выбор наборов в настройке ---------- */
   .pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -245,9 +245,10 @@
   /* ---------- пусто, скелеты, тост, итог ---------- */
   .empty { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 640px; }
   .empty.sm { min-height: 0; padding: 30px 0 10px; }
-  .empty .et { font-size: 22px; line-height: 28px; font-weight: 700; margin-top: 20px; }
-  .empty .es { font-size: 16px; color: var(--sec); margin-top: 6px; }
-  .empty .cta { margin-top: 22px; }
+  .empty .et { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 20px; }
+  .empty .es { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 8px; }
+  .empty .cta { margin-top: 26px; }
+  .empty .cta.sm { height: 48px; padding: 0 28px; font-size: 16px; font-weight: 700; gap: 8px; }
   .sk { border-radius: 12px; background: linear-gradient(100deg, #18181A 30%, #222225 50%, #18181A 70%); background-size: 300% 100%; animation: shim 1.4s linear infinite; }
   @keyframes shim { from { background-position: 100% 0; } to { background-position: -50% 0; } }
   .toast { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 30; display: flex; align-items: center; gap: 12px; padding: 0 8px 0 18px; height: 56px; border-radius: 28px;
@@ -261,7 +262,7 @@
   .stt span { font-size: 13px; color: var(--sec); }
   .fab-wrap { position: absolute; left: 0; right: 0; bottom: 30px; z-index: 20; display: flex; justify-content: center; pointer-events: none; }
   .fab-wrap > * { pointer-events: auto; box-shadow: 0 16px 34px -10px rgba(0,0,0,.9) !important; }
-  .acts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 22px; }
+  .acts { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; margin-top: 22px; }
   .act { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--sec); cursor: pointer; }
   .act .o { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #2A2A2D; color: var(--text); box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
   .act.red .o { color: var(--bad); }
@@ -270,7 +271,7 @@
   .mrow.red { color: var(--bad); }
   .erow { display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 8px; border-radius: 16px; background: #161618; box-shadow: inset 0 0 0 1px var(--line); min-height: 72px; }
   .erow .g { color: var(--muted); }
-  .erow .w1 { font-size: 18px; font-weight: 600; } .erow .w2 { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .erow .w1 { font-size: 16px; line-height: 21px; font-weight: 600; } .erow .w2 { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
   .ghostadd { display: flex; align-items: center; justify-content: center; gap: 10px; height: 64px; border-radius: 16px; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px var(--line); color: var(--sec); font-size: 16px; font-weight: 600; cursor: pointer; }
   .shake { animation: shake 420ms cubic-bezier(.36,.07,.19,.97); }
   @keyframes shake { 20%,80% { transform: translateX(-3px); } 40%,60% { transform: translateX(5px); } }
@@ -291,6 +292,17 @@
   .ansc .k { font-size: 16px; font-weight: 700; color: var(--sec); } .ansc .v { font-size: 20px; line-height: 26px; font-weight: 600; margin-top: 8px; }
   .ansc .sg { display: flex; gap: 10px; margin-top: 16px; } .ansc .sg span { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; cursor: pointer; }
   .ansc .sg .n { background: rgba(242,118,107,.14); color: var(--bad); } .ansc .sg .y { background: rgba(111,208,140,.14); color: var(--good); }
+  /* ---------- по коду (сверка 12.10) ---------- */
+  .rb.sq { background: #1C1C1E; }
+  .hrts { display: inline-flex; gap: 4px; color: var(--bad); }
+  .prg { display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .prow { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 10px 16px 10px 10px; border-radius: 20px; margin-top: 10px; font-size: 16px; line-height: 22px; font-weight: 700; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); cursor: pointer; }
+  .prow .ti2 { width: 42px; height: 42px; border-radius: 13px; display: flex; align-items: center; justify-content: center; flex: none; background: rgba(255,255,255,.07); box-shadow: 0 6px 12px -6px rgba(0,0,0,.6); }
+  .prow.red { color: var(--bad); }
+  .langrow { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding: 0 6px; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--sec); }
+  .sechead { display: flex; align-items: baseline; gap: 8px; margin: 22px 4px 12px; font-size: 20px; line-height: 26px; font-weight: 700; } .sechead .n2 { font-weight: 600; color: var(--muted); }
+  .erow2 { display: flex; align-items: center; gap: 12px; min-height: 70px; padding: 10px 14px; border-radius: 16px; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); }
+  .erow2 .w1 { font-size: 16px; line-height: 21px; font-weight: 600; } .erow2 .w2 { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; } .erow2 .g { color: var(--muted); }
 </style>
 </head>
 <body>
@@ -325,6 +337,9 @@
     filter: svg('<path d="M4 6h16M7 12h10M10 18h4"/>'),
     checkbox: svg('<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>'),
     retry: svg('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/>', 's20'),
+    upload: svg('<path d="M7 17.5h10a3.5 3.5 0 00.4-6.98A5.5 5.5 0 006.9 9.4 4 4 0 007 17.5z"/><path d="M12 15v-5M9.8 12l2.2-2.2 2.2 2.2"/>'),
+    copy: svg('<rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6.5a2 2 0 00-2-2h-7a2 2 0 00-2 2v7a2 2 0 002 2h2"/>', 's16'),
+    grip3: svg('<path d="M5 8h14M5 12h14M5 16h14"/>', 's20'),
   };
 
   // ---------- данные ----------
@@ -374,28 +389,41 @@
 
   // ---------- общие детали ----------
   const wc = ([w, tr], i) => `<div class="wc" data-wi="${i}"><div class="ct"><span class="vb">${icon('vol', 's18')}</span><div class="tx"><div class="lg">EN</div><div class="w">${w}</div><div class="tr">${tr}</div></div><span class="dt">${icon('dotsH', 's20')}</span></div></div>`;
-  const zoomBar = (search = '') => `<div class="zbar">${search}<div class="zs"${search ? ' style="margin-top:8px"' : ''}><span class="zi" data-zgo="+1" title="Меньше">${X.zoomS}</span><div class="ztr"><i class="zf"></i>${[0, 1, 2, 3].map((k) => `<i class="zd" style="left:${(k / 3) * 100}%"></i>`).join('')}<b class="zth"></b></div><span class="zi" data-zgo="-1" title="Больше">${X.zoomL}</span></div></div>`;
+  const zoomBar = (search = '') => `<div class="zbar">${search}<div class="zs"${search ? ' style="margin-top:8px"' : ''}><span class="zi" data-zgo="+1" title="Мельче">${X.zoomS}</span><div class="ztr"><i class="zf"></i>${[0, 1, 2, 3].map((k) => `<i class="zd" style="left:${(k / 3) * 100}%"></i>`).join('')}<b class="zth"></b></div><span class="zi" data-zgo="-1" title="Крупнее">${X.zoomL}</span></div></div>`;
   const zgrid = (step, words, still) => `<div class="zg s${step}"${still ? '' : ` data-step="${step}"`}>${words.map(wc).join('')}</div>`;
   const srch = (v, o = {}) => `<div class="srch">${icon('search', 's18')}${v ? `<span class="v">${v}</span>${o.caret ? '<span class="caret"></span>' : ''}<span class="x">${icon('close', 's18')}</span>` : `<span>${o.ph || 'Поиск'}</span>`}</div>`;
   const back = (r = '') => `<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span><span class="flex" style="gap:10px">${r}</span></div>`;
   const ttl = (t, n, st = '') => `<div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px;margin-top:14px;${st}">${t}${n != null ? `<span style="color:var(--muted);font-weight:600;margin-left:12px;font-size:22px;letter-spacing:0">${n}</span>` : ''}</div>`;
-  const empty = (ic, t, s, btn, sm) => `<div class="empty${sm ? ' sm' : ''}"><div class="tile t61">${icon(ic, 's26')}</div><div class="et">${t}</div><div class="es">${s}</div><span class="cta sm t">${btn}</span></div>`;
+  const empty = (ic, t, s, btn, sm) => `<div class="empty${sm ? ' sm' : ''}"><div class="tile t61">${ic.startsWith('<') ? ic : icon(ic, 's28')}</div><div class="et">${t}</div><div class="es">${s}</div><span class="cta sm t">${btn}</span></div>`;
   const flip = (w, tr, o = {}) => `<div class="flip${o.on ? ' on' : ''}${o.cls ? ' ' + o.cls : ''}" style="height:${o.h || 196}px;${o.st || ''}"><div class="fl">
       <div class="fa"><span class="lgf">${o.fl || 'EN'}</span>${o.novol ? '' : `<span class="vb2" data-noflip>${icon('vol', 's18')}</span>`}<div class="fw">${w}</div>${o.fs ? `<div class="fs">${o.fs}</div>` : ''}<span class="turn">${X.turn}</span></div>
-      <div class="fb"><span class="lgf">${o.bl || 'RU'}</span><div class="fw" style="font-size:30px;line-height:36px">${tr}</div>${o.ex ? `<div class="fs">${o.ex}</div>` : ''}<span class="turn">${X.turn}</span></div>
+      <div class="fb"><span class="lgf">${o.bl || 'RU'}</span><div class="fw" style="font-size:30px;line-height:36px">${tr}</div>${o.ex ? `<div class="fs">${o.ex}</div>` : ''}${o.ex2 ? `<div class="fs m">${o.ex2}</div>` : ''}<span class="turn">${X.turn}</span></div>
     </div></div>`;
   const deck = (t, sub, words, right) => `<div class="deck t"><i class="dk a"></i><i class="dk b"></i><div class="dc">
       <div class="flex" style="align-items:flex-start;gap:12px"><div class="grow"><div class="dt1">${t}</div><div class="ds">${sub}</div></div>${right}</div>
       <div class="dw">${words.map((w) => `<span class="mc">${w}</span>`).join('')}</div></div></div>`;
   const likes = (n, on) => `<span class="likes">${icon(on ? 'heartF' : 'heart', 's18')}${n}</span>`;
-  const sessHdr = (t, n) => `<div class="shdr"><span class="rb l t">${icon('close', 's20')}</span><div class="tl">${t}</div><span class="cnt">${n}</span></div>`;
+  const sessHdr = (t, n, tools = '') => `<div class="shdr"><span class="rb l t">${icon('close', 's20')}</span><div class="tl">${t}</div>${n ? `<span class="cnt">${n}</span>` : ''}${tools}</div>`;
+  // зачем (сверка с кодом 12.10): круглый «назад» 42, лупа / плюс / квадратная «⋮» 36 с вертикальными точками (CollectionHeaderV2), сердца сессии красные без подложки (SessionAttemptsHud), плашка монет, флажок «сообщить об ошибке»
+  const rbSearch = `<span class="rb t">${icon('search', 's20')}</span>`;
+  const rbPlus = `<span class="rb t">${icon('plus', 's20')}</span>`;
+  const rbMenu = (open) => `<span class="rb sq t"${open ? ` data-open="${open}"` : ''}>${icon('dotsV', 's18')}</span>`;
+  const backC = (r = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="flex" style="gap:10px">${r}</span></div>`;
+  const hearts = (lost = 0) => `<span class="hrts">${[0, 1, 2].map((i) => icon(i >= 3 - lost ? 'heart' : 'heartF', 's20')).join('')}</span>`;
+  const coinP = (n) => `<span class="pill" style="height:37px;padding:0 10px;gap:6px">${coinImg(5, 18)}${n}</span>`;
+  const flagB = `<span class="rb sq t" style="width:36px;height:36px">${icon('flag', 's18')}</span>`;
+  const prg = (l, r) => `<div class="prg"><span>${l}</span><span>${r}</span></div>`;
+  const sessTools = () => `<span class="flex" style="gap:6px">${hearts(0)}${coinP(40)}${flagB}</span>`;
+  const prow = (ic, t, red) => `<div class="prow t${red ? ' red' : ''}"><span class="ti2">${X[ic] || icon(ic, 's20')}</span>${t}</div>`;
+  const IPA = { Layover: '/ˈleɪoʊvər/' };
 
   // ---------- шторки ----------
   const modeTile = (ic, n, s) => `<div class="mt t"><div class="tile t46">${icon(ic, 's22')}</div><div><div class="n">${n}</div><div class="s">${s}</div></div></div>`;
   const modeSheetInner = `<div class="center"><div style="font-size:22px;line-height:28px;font-weight:700">Режим тренировки</div></div>
     <div class="mgrid">${modeTile('bolt', 'Блиц', '60 секунд')}${modeTile('mic', 'Устно', 'Вслух')}${modeTile('check', 'Правда / ложь', 'Да или нет')}${modeTile('edit', 'Напиши', 'По памяти')}</div>`;
-  const cardSheetInner = (w, tr, ex, on) => `${flip(w, tr, { fs: '', ex, on })}
-    <div class="acts">${[['vol', 'Озвучить'], ['edit', 'Изменить'], ['move', 'В набор'], ['trash', 'Удалить', 1]].map(([ic, l, r]) => `<div class="act t${r ? ' red' : ''}"><span class="o">${X[ic] || icon(ic, 's20')}</span>${l}</div>`).join('')}</div>`;
+  const cardSheetInner = (w, tr, ex, on, ex2) => `${flip(w, tr, { fs: IPA[w] || '', ex, ex2, on })}
+    <div class="acts">${[['vol', 'Озвучить'], ['albums', 'В набор'], ['trash', 'Удалить', 1]].map(([ic, l, r]) => `<div class="act t${r ? ' red' : ''}"><span class="o">${X[ic] || icon(ic, 's20')}</span>${l}</div>`).join('')}</div>`;
+
 
   // =====================================================================
   // ХАБ
@@ -444,30 +472,34 @@
   // =====================================================================
   // СОХРАНЁННЫЕ — масштабируемая сетка
   // =====================================================================
-  const savedTop = back(`<span class="rb t" data-open="smn">${icon('dotsH', 's20')}</span><span class="rb t">${icon('plus', 's20')}</span>`) + ttl('Сохранённые', 64);
+  const savedTop = backC(`${rbSearch}${rbPlus}${rbMenu('smn')}`) + ttl('Сохранённые', 64);
   const savedFab = `<div class="fab-wrap"><span class="cta sm t">${icon('play', 's18')}Тренировать</span></div>`;
-  // зачем (решение 12.10): в приложении меню «⋯» списка — «Показать стопкой / списком», «Фильтр», «Отметить несколько», «Лучшее у сообщества»; на макете его не было, функция остаётся.
-  const savedMenuRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Сохранённые</div>
-      ${[['albums', 'Показать стопкой'], ['filter', 'Фильтр'], ['checkbox', 'Отметить несколько'], ['people', 'Лучшее у сообщества']].map(([ic, t]) => `<div class="mrow t">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`;
-  const cardSheet = sheet('cd', `<div data-cdbody>${cardSheetInner(W[0][0], W[0][1], 'We have a two-hour layover.')}</div>`);
+  // зачем (код, CollectionMenuSheet): строки-плашки с плиткой 42, без заголовка; ниже переключатель «Все / Слова / Фразы» и «Язык набора». «Фильтр» появляется, когда выбраны «Фразы» и есть группы.
+  const savedMenuRows = `${prow('albums', 'Показать стопкой')}${prow('checkbox', 'Отметить несколько')}${prow('people', 'Лучшее у сообщества')}
+      <div class="seg3" data-seg style="margin-top:14px"><span class="on">Все 64</span><span>Слова 52</span><span>Фразы 12</span></div>
+      <div class="langrow"><span>Язык набора</span><span class="pill s">English</span></div>`;
+  const cardSheet = sheet('cd', `<div data-cdbody>${cardSheetInner(W[0][0], W[0][1], 'We have a two-hour layover.', false, 'У нас пересадка два часа.')}</div>`);
   const saved = (step) => phone(`${savedTop}${zoomBar()}${zgrid(step, W)}`, { time: '9:41', fixed: savedFab, overlay: cardSheet + sheet('smn', savedMenuRows) });
   const savedSearch = () => phone(`${savedTop}${zoomBar(srch('ga', { caret: 1 }))}
-      ${zgrid(1, [[`<mark>Ga</mark>te`, 'выход на посадку'], [`Lug<mark>ga</mark>ge`, 'багаж'], [`<mark>Ga</mark>p year`, 'год перерыва'], [`Me<mark>ga</mark>`, 'огромный']])}`, { time: '9:41', overlay: cardSheet });
-  const savedEmpty = () => phone(`${back()}${ttl('Сохранённые')}${empty('bookmark', 'Пока пусто', 'Сохраняй слова из уроков', 'Открыть каталог')}`, { time: '9:41' });
+      ${zgrid(1, [[`<mark>Ga</mark>te`, 'выход на посадку'], [`Lug<mark>ga</mark>ge`, 'багаж'], [`<mark>Ga</mark>p year`, 'год перерыва'], [`Me<mark>ga</mark>`, 'огромный']])}`, { time: '9:41', fixed: savedFab, overlay: cardSheet });
+  const savedEmpty = () => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}${ttl('Сохранённые')}${empty('bookmark', 'Пока пусто', 'Сохраняй слова из уроков', 'Открыть каталог')}`, { time: '9:41' });
   const savedUndo = () => phone(`${savedTop}${zoomBar()}${zgrid(0, W.slice(1, 12))}`, { time: '9:41', overlay: cardSheet,
-    fixed: `<div class="toast">${icon('trash', 's18')}Удалено<span class="cta sm t" style="height:40px">Вернуть</span></div>` });
+    fixed: `${savedFab}<div class="toast">${icon('trash', 's18')}Удалено<span class="cta sm t" style="height:40px">Вернуть</span></div>` });
+
 
   // =====================================================================
   // МОИ НАБОРЫ
   // =====================================================================
   const playBtn = `<span class="pl t">${icon('play', 's20')}</span>`;
-  const mySets = () => phone(`${back(`<span class="rb t">${icon('plus', 's20')}</span>`)}${ttl('Мои наборы', 4)}
+  const mySets = () => phone(`${back(`${rbMenu()}${rbPlus}`)}${ttl('Мои наборы', 4)}
       <div class="stack g14 rise" style="margin-top:22px">
         ${deck('Путешествия', '40 · A2', ['Layover', 'Gate', 'Customs'], playBtn)}
         ${deck('B2 глаголы', `<span class="av">${icon('user', 's16')}</span>Ирина · 49 · B2`, ['Convince', 'Claim', 'Afford'], playBtn)}
         ${deck('Работа', '22 · B1', ['Follow up', 'Deadline', 'Refund'], playBtn)}
         ${deck('Фразовые глаголы', '31 · B1', ['Give up', 'Run out', 'Set off'], playBtn)}</div>`, { time: '9:41' });
-  const mySetsEmpty = () => phone(`${back()}${ttl('Мои наборы')}${empty('layers', 'Наборов нет', 'Собери свой первый', 'Создать набор')}`, { time: '9:41' });
+  // зачем (код, MyPacksV2): «⋮» (поиск, порядок, язык наборов) есть и в пустом состоянии; кнопка «Создать набор» со значком «+»
+  const mySetsEmpty = () => phone(`${back(rbMenu())}${ttl('Мои наборы')}${empty(X.albums.replace('s18', 's28'), 'Наборов нет', 'Собери свой первый', `${icon('plus', 's18')}Создать набор`)}`, { time: '9:41' });
+
 
   // =====================================================================
   // НАБОР ОТКРЫТ
@@ -475,103 +507,124 @@
   const setHead = (o) => `${back(`<span class="rb sq t" data-open="sa">${icon('dotsV', 's18')}</span>`)}
       <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:14px;letter-spacing:-.5px">${o.t}</div>
       ${o.author ? `<div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px"><span class="av" style="width:23px;height:23px">${icon('user', 's16')}</span>${o.author}</div>` : ''}
-      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px"><span class="lvl">${o.l}</span><span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
+      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px">${o.l ? `<span class="lvl">${o.l}</span>` : ''}${o.status || ''}<span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
-  const setActions = sheet('sa', `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>
-      ${[['albums', 'Показать стопкой'], ['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`);
-  const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
+  // зачем (код, PackHeaderV2): у своего набора в строке мета — статус «Только ты» / «В сообществе»; уровня в шапке своего и добавленного набора код не рисует (данные есть — пропуск в коде)
+  const OWN_STATUS = `<span style="display:inline-flex;align-items:center;gap:6px">${X.lock}Только ты</span>`;
+  // зачем (код, CollectionMenuSheet): шторка своего набора — название, «Отправить в сообщество» (пока не опубликован), «Править набор», «Новая карточка», «Удалить набор»; «Показать стопкой» — только у «Сохранённых»
+  const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('edit', 'Править набор')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
+  const setActions = sheet('sa', packRows);
+  const setOwn = () => phone(`${setHead({ t: 'Путешествия', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });
-  const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: added ? 4 : 3, liked: added,
-        btns: added ? `<div class="cta gh t grow">${icon('check', 's18')}В твоих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
-          : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div><span class="rb l t">${icon('heart', 's20')}</span>` })}
+  // зачем (код, CommunityPackSocialBar): до добавления сердце приглушено наполовину; после — «✓ В моих наборах» (кнопка неактивна) и «Тренировать»; лайк добавлением не ставится
+  const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: added ? '' : 'B2', n: 49, likes: 3, liked: false,
+        btns: added ? `<div class="cta gh t grow" style="opacity:.7">${icon('check', 's18')}В моих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
+          : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div><span class="rb l t" style="opacity:.5">${icon('heart', 's20')}</span>` })}
       ${zoomBar()}${zgrid(0, W.slice(13, 28))}`, { time: '9:41', overlay: cardSheet });
-  const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div>` })}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>
-      ${[['albums', 'Показать стопкой'], ['edit', 'Изменить'], ['share', 'Поделиться'], ['plus', 'Новая карточка'], ['trash', 'Удалить набор', 1]].map(([ic, t, r]) => `<div class="mrow t${r ? ' red' : ''}">${X[ic] || icon(ic, 's20')}${t}</div>`).join('')}`, true) });
+  const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}${zoomBar()}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', packRows, true) });
+
 
   // =====================================================================
   // ИЗ ВИДЕО
   // =====================================================================
-  const videoAll = () => phone(`${back()}${ttl('Из видео', 12)}
+  const videoAll = () => phone(`${back(rbMenu())}${ttl('Из видео', 12)}
       <div class="stack rise" style="margin-top:20px">${VIDS.slice(0, 3).map(([t, d, n, k, p]) => `<div class="t" style="margin-bottom:22px">${vthumb(k, d, { prog: p, style: 'border-radius:18px' })}
-        <div class="flex" style="margin-top:12px;align-items:flex-start"><div class="grow"><div class="vt" style="font-size:18px;margin:0">${t}</div><div class="vm">${n} фраз</div></div><span class="cta sm t" style="height:38px">Добавить ${icon('plus', 's16')}</span></div></div>`).join('')}</div>`, { time: '9:41' });
+        <div class="flex" style="margin-top:12px;align-items:flex-start"><div class="grow"><div class="vt" style="font-size:19px;line-height:24px;font-weight:700;margin:0">${t}</div><div class="vm" style="font-size:13px;line-height:18px">${n} фраз</div></div><span class="cta sm t" style="height:38px">Добавить ${icon('plus', 's16')}</span></div></div>`).join('')}</div>`, { time: '9:41' });
   const phrase = (tm, en, ru) => `<div class="wc" style="min-height:118px;height:auto"><div class="ct" style="position:relative;align-items:flex-start;flex-direction:column;gap:0;padding:14px 18px 16px">
       <div class="flex" style="width:100%;justify-content:space-between"><span class="tch">${icon('play', 's16')}${tm}</span><span class="vb" style="width:34px;height:34px">${icon('vol', 's16')}</span></div>
-      <div style="font-size:21px;line-height:27px;font-weight:600;margin-top:10px">${en}</div><div style="font-size:15px;line-height:20px;color:var(--sec);margin-top:3px">${ru}</div></div></div>`;
-  const videoSet = () => phone(`${back(`<span class="rb sq t">${icon('dotsV', 's18')}</span>`)}
+      <div style="font-size:21px;line-height:27px;font-weight:600;margin-top:10px">${en}</div><div style="font-size:16px;line-height:21px;color:var(--sec);margin-top:3px">${ru}</div></div></div>`;
+  // зачем (код, VideoSetView + CommunityPackSocialBar «setAdd»): пока набор не добавлен — одна главная «Добавить себе +», «Тренировать» нет; после добавления — «✓ В моих наборах» и «Тренировать»
+  const videoSet = (added) => phone(`${back(`<span class="rb sq t">${icon('dotsV', 's18')}</span>`)}
       ${vthumb(0, '4:12', { play: 1, prog: 64, style: 'margin-top:14px;border-radius:18px' })}
       <div style="font-size:28px;line-height:34px;font-weight:700;margin-top:16px;letter-spacing:-.4px">Заказ в кафе</div>
       <div class="flex" style="margin-top:8px;gap:18px;color:var(--sec);font-size:15px"><span class="lvl">A2</span><span>18 фраз</span>${likes(12)}</div>
-      <div class="flex" style="gap:10px;margin-top:18px"><div class="cta t grow">${icon('play', 's18')}Тренировать</div><div class="cta gh t grow">Добавить ${icon('plus', 's18')}</div></div>
-      <div style="font-size:17px;font-weight:600;margin:26px 2px 14px">Фразы <span style="color:var(--muted);margin-left:8px">18</span></div>
+      <div class="flex" style="gap:10px;margin-top:18px">${added ? `<div class="cta gh t grow" style="opacity:.7">${icon('check', 's18')}В моих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>` : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div>`}</div>
+      <div style="font-size:19px;line-height:24px;font-weight:600;margin:26px 2px 14px">Фразы <span style="color:var(--muted);margin-left:8px">18</span></div>
       <div class="stack g13">${phrase('0:14', 'Can I get a flat white?', 'Можно флэт уайт?')}${phrase('0:42', 'For here or to go?', 'Здесь или с собой?')}${phrase('1:05', 'Could I have the bill?', 'Можно счёт?')}</div>`, { time: '9:41' });
+
 
   // =====================================================================
   // КАРТОЧКА ОТКРЫТА
   // =====================================================================
   const dimBg = `<div style="opacity:.5">${savedTop}${zgrid(1, W.slice(0, 12), 1)}</div>`;
-  const cardFront = () => phone(dimBg, { time: '9:41', overlay: sheet('c1', cardSheetInner('Layover', 'пересадка', 'We have a two-hour layover.'), true) });
-  const cardBack = () => phone(dimBg, { time: '9:41', overlay: sheet('c2', cardSheetInner('Layover', 'пересадка', 'У нас пересадка два часа.', true), true) });
+  const cardFront = () => phone(dimBg, { time: '9:41', overlay: sheet('c1', cardSheetInner('Layover', 'пересадка', 'We have a two-hour layover.', false, 'У нас пересадка два часа.'), true) });
+  const cardBack = () => phone(dimBg, { time: '9:41', overlay: sheet('c2', cardSheetInner('Layover', 'пересадка', 'We have a two-hour layover.', true, 'У нас пересадка два часа.'), true) });
 
   // =====================================================================
   // СОЗДАНИЕ И РЕДАКТИРОВАНИЕ
   // =====================================================================
-  const mHead = (t, r) => `<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span style="font-size:17px;font-weight:700">${t}</span>${r || '<span style="width:42px"></span>'}</div>`;
+  // зачем (код, EditorHeader): круглый «крестик» 42, заголовок слева 20/700, справа пилюля лимита и квадратная «⋮» (описание, язык набора, очистка черновика)
+  const edHead = (t, right = '') => `<div class="topbar" style="gap:12px"><span class="rb t">${icon('close', 's20')}</span><span style="flex:1;min-width:0;font-size:20px;line-height:26px;font-weight:700">${t}</span><span class="flex" style="gap:8px">${right}</span></div>`;
   // зачем (решение 12.10): переключатель «Кто видит» (Только я / Все) в редакторе набора остаётся — сразу под названием.
   const vis = (pub) => `<div style="margin-top:20px"><div class="flab">Кто видит</div><div class="vseg" data-seg><span${pub ? '' : ' class="on"'}>${X.lock}Только я</span><span${pub ? ' class="on"' : ''}>${X.globe}Все</span></div></div>`;
-  // зачем (решение 12.10): пилюля лимита — реальный лимит МЕСТА, где он сработал (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц).
-  const limPill = (ic, t) => `<span class="pill s">${icon(ic, 's16')}${t}</span>`;
-  const lvls = (on) => `<div class="chips">${['A1', 'A2', 'B1', 'B2', 'C1'].map((l) => `<span class="chipbtn${l === on ? ' on' : ''}" data-chip>${l}</span>`).join('')}</div>`;
-  const newSet = (o = {}) => phone(`${mHead('Новый набор', o.limit ? limPill('layers', o.limit) : '')}
+  // зачем (решение 12.10, код): пилюля лимита — реальный лимит МЕСТА, где он сработал (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц); 32 высотой, 13/600
+  const limPill = (ic, t) => `<span class="pill" style="height:32px;padding:0 12px;gap:6px;font-size:13px;font-weight:600">${ic === 'copy' ? X.copy : icon(ic, 's16')}${t}</span>`;
+  const lvls = (on) => `<div class="chips">${['A1', 'A2', 'B1', 'B2', 'C1'].map((l) => `<span class="chipbtn${l === on ? ' on' : ''}" data-chip style="height:40px;min-width:54px;justify-content:center;padding:0 14px;font-size:16px">${l}</span>`).join('')}</div>`;
+  const secHead = (t, n) => `<div class="sechead"><span>${t}</span><span class="n2">${n}</span></div>`;
+  // зачем (код, EditorCardRow / AddCardRow): строка карточки 70 — слово 16/600, перевод 16/21, справа шеврон (в редактировании — ручка переноса «три полоски» слева и корзина в плитке); «Карточка» — плитка слева и подпись слева
+  const edRow = ([w, t], o = {}) => `<div class="erow2 t">${o.edit ? `<span class="g">${X.grip3}</span>` : ''}<div class="grow"><div class="w1">${w}</div><div class="w2">${t}</div></div>${o.edit ? `<span class="rb t" style="width:36px;height:36px;color:var(--bad)">${icon('trash', 's18')}</span>` : `<span class="ch">${icon('fwd', 's18')}</span>`}</div>`;
+  const addRow = `<div class="erow2 t"><span class="tile t46">${icon('plus', 's20')}</span><div class="w1" style="color:var(--sec)">Карточка</div></div>`;
+  const newSet = (o = {}) => phone(`${edHead('Новый набор', `${o.limit ? limPill('layers', o.limit) : ''}${rbMenu()}`)}
       <div style="margin-top:26px"><div class="flab">Название</div><div class="field"><span>Путешествия</span><span class="caret"></span></div></div>
       ${vis(false)}
       <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('A2')}</div>
-      <div style="margin-top:22px"><div class="flab">Карточки</div>
-        <div class="stack g13">${wc(W[0], 0)}${wc(W[1], 1)}<div class="ghostadd t">${icon('plus', 's20')}Карточка</div></div></div>`, { time: '9:41',
+      ${secHead('Карточки', 2)}
+        <div class="stack g13" style="margin-top:0">${edRow(W[0])}${edRow(W[1])}${addRow}</div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t" data-shake>${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : 'Создать набор'}</div></div>` });
-  const editSet = () => phone(`${mHead('Изменить', '<span style="font-size:16px;font-weight:600">Готово</span>')}
+  const editSet = () => phone(`${edHead('Изменить набор', rbMenu())}
       <div style="margin-top:26px"><div class="flab">Название</div><div class="field">Путешествия</div></div>
       ${vis(false)}
       <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('A2')}</div>
-      <div style="margin-top:22px"><div class="flab">Карточки · 40</div>
-        <div class="stack">${W.slice(0, 5).map(([w, t]) => `<div class="erow"><span class="g">${X.grip}</span><div class="grow"><div class="w1">${w}</div><div class="w2">${t}</div></div><span class="rb t" style="width:36px;height:36px;color:var(--bad)">${icon('trash', 's18')}</span></div>`).join('')}</div></div>`, { time: '9:41' });
-  const newCard = (o = {}) => phone(`${mHead('Новая карточка', o.limit ? limPill('layers', o.limit) : '')}
-      <div data-live style="margin-top:22px">${flip('Layover', 'пересадка', { ex: 'Пример появится тут' })}</div>
-      <div style="margin-top:22px"><div class="flab">Слово или фраза</div><div class="field"><input data-en value="Layover" placeholder="Например, layover"></div></div>
-      <div style="margin-top:14px"><div class="flab">Перевод</div><div class="field"><input data-ru value="пересадка" placeholder="Перевод"></div></div>
-      <div style="margin-top:14px"><div class="flab">Пример</div><div class="field"><input data-ex placeholder="Необязательно"></div></div>
-      <div class="card t" style="margin-top:18px"><div class="row" style="min-height:56px"><div class="tile" style="width:34px;height:34px">${icon('layers', 's18')}</div><div class="tx"><div class="tt m">Путешествия</div></div>${ch}</div></div>`, { time: '9:41',
-    fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : 'Добавить'}</div></div>` });
+      ${secHead('Карточки', 40)}
+        <div class="stack">${W.slice(0, 5).map((w) => edRow(w, { edit: 1 })).join('')}</div>`, { time: '9:41',
+    fixed: `<div class="bot"><div class="cta t">Сохранить</div></div>` });
+  // зачем (код, flashcards_card_editor): заголовок 16/700 по центру; в живом превью озвучки нет, подсказок в полях нет; набор по умолчанию «Мои карточки» (значок albums); при лимите кнопка без замка
+  const newCard = (o = {}) => phone(`<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span style="font-size:16px;font-weight:700">Новая карточка</span>${o.limit ? limPill('layers', o.limit) : '<span style="width:42px"></span>'}</div>
+      <div data-live style="margin-top:22px">${flip('Layover', 'пересадка', { ex: 'Пример появится тут', novol: 1 })}</div>
+      <div style="margin-top:22px"><div class="flab">Слово или фраза</div><div class="field"><input data-en value="Layover"></div></div>
+      <div style="margin-top:14px"><div class="flab">Перевод</div><div class="field"><input data-ru value="пересадка"></div></div>
+      <div style="margin-top:14px"><div class="flab">Пример</div><div class="field"><input data-ex></div></div>
+      <div class="card t" style="margin-top:18px"><div class="row" style="min-height:56px"><div class="tile" style="width:34px;height:34px">${X.albums}</div><div class="tx"><div class="tt m">Мои карточки</div></div>${ch}</div></div>`, { time: '9:41',
+    fixed: `<div class="bot"><div class="cta t" style="${o.limit ? 'min-height:54px;' : ''}">${o.limit ? 'Безлимит с Plus' : 'Добавить'}</div></div>` });
+
 
   // =====================================================================
   // СООБЩЕСТВО
   // =====================================================================
-  const commHead = (q, o = {}) => `${back()}${ttl('Сообщество')}<div style="margin-top:16px">${srch(q, { ph: 'Наборы и авторы', caret: o.caret })}</div>
-      <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 0 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;
+  // зачем (код, flashcards_packs): стрелка «назад» (arrow-back), справа от заголовка круглая акцентная «+» «Создать набор»; по умолчанию выбрана плашка «Новые»; чипы уровней — по данным каталога
+  const commHead = (q, o = {}) => `<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span></div>
+      <div class="flex" style="justify-content:space-between;align-items:center;margin-top:14px"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Сообщество</div><span class="rb l t" style="background:var(--cta);color:var(--cta-ink)">${icon('plus', 's20')}</span></div>
+      <div style="margin-top:16px">${srch(q, { ph: 'Наборы и авторы', caret: o.caret })}</div>
+      <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 1 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;
   const catalog = () => phone(`${commHead('')}
       <div class="stack g14 rise" style="margin-top:20px">${COMM.map(([t, a, c, l, h, w]) => deck(t, `<span class="av">${icon('user', 's16')}</span>${a} · ${c} · ${l}`, [w, ...W.slice((c % 9) + 13, (c % 9) + 15).map((x) => x[0])], likes(h))).join('')}</div>`, { time: '9:41' });
   const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', 'Сбросить поиск').replace('min-height:640px', '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
+
 
   // =====================================================================
   // ТРЕНИРОВКА: режим, настройка, лимит
   // =====================================================================
   const modePick = () => phone(`<div style="opacity:.35">${hubTop}${hero()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
   const pk = (t, n, on) => `<div class="pk${on ? ' on' : ''}" data-pk><div class="t1">${t}</div><div class="t2">${n}</div><span class="chk">${icon('check', 's16')}</span></div>`;
-  const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${o.limit ? limPill('layers', o.limit) : '<span></span>'}</div>
+  // зачем (код, TrainingSetupV2 / flashcards_training_setup): справа вверху пилюля остатка тренировок (copy-outline, «24/30»); у Блица вместо «Сколько» и «Показывать» — «Время» (30 с / 60 с / 90 с); колоды: «Все сохранённые», «Мои карточки», наборы; под названием — «N карточек»
+  const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', o.limit || '24/30')}</div>
       <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
       <div class="sec" style="margin-top:28px"><div class="ti" style="font-size:17px">Что повторяем</div></div>
-      <div class="pick">${pk('Сохранённые', 64, 1)}${pk('Путешествия', 40, 1)}${pk('B2 глаголы', 49)}${pk('Работа', 22)}</div>
-      <div class="sec"><div class="ti" style="font-size:17px">Сколько</div></div>
-      <div class="seg3" data-seg><span>10</span><span class="on">20</span><span>Все</span></div>
-      <div class="sec"><div class="ti" style="font-size:17px">Показывать</div></div>
-      <div class="seg3" data-seg><span class="on">EN → RU</span><span>RU → EN</span></div>`, { time: '9:41',
+      <div class="pick">${pk('Все сохранённые', '64 карточки', 1)}${pk('Мои карточки', '12 карточек')}${pk('Путешествия', '40 карточек', 1)}${pk('B2 глаголы', '49 карточек')}</div>
+      <div class="sec"><div class="ti" style="font-size:17px">Время</div></div>
+      <div class="seg3" data-seg><span>30 с</span><span class="on">60 с</span><span>90 с</span></div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : `${icon('play', 's18')}Начать`}</div></div>` });
-  const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span></div>${empty('layers', 'Нет карточек', 'Сохрани пару слов', 'Открыть каталог')}`, { time: '9:41' });
+  const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', '24/30')}</div>
+      <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
+      <div style="margin-top:40px">${empty(X.albums.replace('s18', 's28'), 'Нет карточек', 'Сохрани пару слов', 'Открыть каталог', 1)}</div>`, { time: '9:41' });
+
 
   // =====================================================================
   // СЕССИИ
   // =====================================================================
+  // зачем (код, flashcards_blitz_session): в шапке Блица — сердца (красные, без подложки, потерянное — контур) и плашка монет; за одну ошибку монеты не списываются
   const blitzHead = (lost = 0) => `<div class="flex" style="gap:8px;margin-top:10px"><span class="rb l t" style="margin-right:12px">${icon('close', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">Блиц</div></div>
-      <span class="pill hearts" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span class="${i >= 3 - lost ? 'lost' : ''}">${icon('heartF', 's18')}</span>`).join('')}</span><span class="pill" style="height:37px;padding:0 12px;gap:7px">${coinImg(5, 18)}${lost ? 30 : 40}</span></div>
+      ${hearts(lost)}${coinP(40)}</div>
     <div class="trk" style="margin-top:20px;height:6px"><i style="width:45%"></i></div>
     <div class="flex" style="justify-content:center;margin-top:14px"><span class="pill" style="height:38px;background:#1F1F21;font-size:18px;padding:0 24px">0:42</span></div>`;
   const opts = ['Пересадка', 'Таможня', 'Посадка', 'Бронь'];
@@ -582,12 +635,16 @@
         if (st === 'ok') { c = i === 0 ? ' ok' : ' fade'; mk = i === 0 ? icon('check', 's20') : ''; }
         if (st === 'no') { c = i === 0 ? ' ok' : i === 2 ? ' no' : ' fade'; mk = i === 0 ? icon('check', 's20') : i === 2 ? icon('close', 's20') : ''; }
         return `<div class="opt t${c}">${o}${mk ? `<span class="mk">${mk}</span>` : ''}</div>`; }).join('')}</div>`, { time: '9:41' });
-  const oral = (st) => phone(`${sessHdr('Устно', '4 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:20%"></i></div>
-      <div style="margin-top:34px">${flip('пересадка', 'Layover', { fl: 'RU', bl: 'EN', novol: 1, on: st === 'ok', cls: st === 'ok' ? 'ok' : '', ex: st === 'ok' ? '' : '' })}</div>
-      <div class="center" style="margin-top:${st === 'ok' ? 40 : 54}px">${st === 'ok' ? '' : `<span class="mic live t">${icon('mic', 's28')}</span><div class="wave">${[14, 26, 18, 34, 22, 30, 16, 24, 12].map((h, i) => `<i style="height:${h}px;animation-delay:${i * 90}ms"></i>`).join('')}</div><div style="color:var(--sec);margin-top:14px;font-size:15px">Скажи по-английски</div>`}</div>`, { time: '9:41',
+  // зачем (код, flashcards_speaking_session): в шапке «Устно» справа от названия счёт «N / M», затем сердца, монеты и флажок; в покое — подсказка, два типа задания (пилюли) и ряд «пропустить · микрофон · послушать»
+  const oral = (st) => phone(`${sessHdr('Устно', '4 / 20', sessTools())}<div class="trk" style="margin-top:18px;height:6px"><i style="width:20%"></i></div>
+      <div style="margin-top:34px">${flip('пересадка', 'Layover', { fl: 'RU', bl: 'EN', novol: 1, on: st === 'ok', cls: st === 'ok' ? 'ok' : '', ex: '' })}</div>
+      <div class="center" style="margin-top:${st === 'ok' ? 40 : 22}px">${st === 'ok' ? '' : `<div style="color:var(--sec);font-size:15px;line-height:20px;max-width:300px;margin:0 auto">Вспомни фразу по переводу. Нажми на микрофон и отвечай.</div>
+        <div class="flex" style="justify-content:center;gap:10px;margin-top:18px;width:100%"><span class="pill s t" style="flex:1;min-width:0;gap:6px;padding:0 10px;font-size:14px;white-space:nowrap;background:#2C2C2E">${icon('mic', 's18')}Скажи по-английски</span><span class="pill s t" style="flex:1;min-width:0;gap:6px;padding:0 10px;font-size:14px;white-space:nowrap;color:var(--sec)">${icon('vol', 's18')}Повтори за диктором</span></div>
+        <div class="flex" style="justify-content:center;align-items:center;gap:30px;margin-top:26px"><span class="rb l t">${icon('arrowR', 's20')}</span><span class="mic t">${icon('mic', 's28')}</span><span class="rb l t">${icon('vol', 's20')}</span></div>`}</div>`, { time: '9:41',
     fixed: st === 'ok' ? `<div class="bot"><div class="ans ok"><span class="vk ok">${icon('check', 's20')}</span><div class="grow"><div class="k">Верно</div><div class="v">layover</div></div><span class="plus10">+10</span></div><div class="cta t">Дальше</div></div>` : '' });
-  const tf = (st) => phone(`${sessHdr('Правда / ложь', '7 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:35%"></i></div>
-      <div class="swz" data-swz><div class="under"></div>
+  // зачем (код, flashcards_swipe): в шапке «Правды / лжи» счёта нет — сердца и монеты справа; номер и общее число — под полосой («7» слева, «20» справа)
+  const tf = (st) => phone(`${sessHdr('Правда / ложь', '', `<span class="flex" style="gap:8px">${hearts(0)}${coinP(40)}</span>`)}<div class="trk" style="margin-top:18px;height:6px"><i style="width:35%"></i></div>${prg(7, 20)}
+      <div class="swz" data-swz style="margin-top:28px"><div class="under"></div>
         <div class="swc"${st === 'no' ? ' style="transform:translateX(-18px) rotate(-3deg)"' : ''}><div class="fa"${st === 'no' ? ' style="box-shadow:inset 0 0 0 1px rgba(242,118,107,.45),0 22px 44px -22px rgba(0,0,0,.95)"' : ''}><div class="fw">Gate</div><div class="eq"></div><div class="ft">таможня</div></div>
           <span class="stmp y">Правда</span><span class="stmp n"${st === 'no' ? ' style="opacity:1"' : ''}>Ложь</span></div></div>
       ${st === 'no' ? '' : `<div class="tfb"><div class="tfx t" data-tf="0"><span class="o">${icon('close', 's28')}</span>Ложь</div><div class="tfx t" data-tf="1"><span class="o">${icon('check', 's28')}</span>Правда</div></div>`}`, { time: '9:41',
@@ -595,8 +652,12 @@
   // зачем (решение 12.10): «Подсказка» (пилюля под полем, справа — начало ответа) и «Показать ответ» (под «Проверить») — функции приложения, остаются.
   const hintRow = (open) => `<div class="hintrow"><span class="hintb t">${X.bulb}Подсказка</span>${open ? '<span class="hintg">layove…</span>' : ''}</div>`;
   const revealLink = `<div class="revl t">${X.eye}Показать ответ</div>`;
-  const write = (st) => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
-      <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">задержка</div></div>
+  // зачем (код, flashcards_recall_session): плашка монет отдельной строкой над шапкой; в шапке — название, сердца, кнопка выбора наборов (albums), флажок; счёта нет — под полосой «выучено» слева и «всего» справа; подпись «Напиши на изучаемом языке»
+  const writeHdr = () => `<div class="flex" style="justify-content:flex-end;margin-top:6px">${coinP(40)}</div>
+      <div class="shdr" style="margin-top:6px"><span class="rb l t">${icon('close', 's20')}</span><div class="tl">Напиши</div><span class="flex" style="gap:8px">${hearts(0)}<span class="rb sq t" style="width:36px;height:36px">${X.albums}</span>${flagB}</span></div>
+      <div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>${prg(9, 20)}`;
+  const write = (st) => phone(`${writeHdr()}
+      <div class="qh" style="margin-top:24px;height:170px"><div class="k">Напиши на изучаемом языке</div><div class="q">задержка</div></div>
       <div class="field${st ? ' ' + st : ''}" style="margin-top:22px;font-size:20px;min-height:60px">${st === 'ok' ? 'delay' : st === 'no' ? 'd<span class="bad">i</span>lay' : 'dela<span class="caret"></span>'}<span style="margin-left:auto;color:${st === 'ok' ? 'var(--good)' : st === 'no' ? 'var(--bad)' : 'transparent'}">${st ? icon(st === 'ok' ? 'check' : 'close', 's20') : ''}</span></div>
       ${st ? '' : hintRow(false)}`, { time: '9:41',
     fixed: `<div class="bot">${st === 'ok' ? `<div class="ans ok"><span class="vk ok">${icon('check', 's20')}</span><div class="grow"><div class="k">Верно</div><div class="v">Delay</div></div><span class="plus10">+10</span></div><div class="cta t">Дальше</div>`
@@ -607,18 +668,20 @@
   // =====================================================================
   // ДОРИСОВАНО ПО ПРИЛОЖЕНИЮ (решения 12.10) — кадры только В КОНЦЕ страницы, чтобы номера прежних телефонов не сдвинулись
   // =====================================================================
-  const savedLimit = () => phone(`${back(`${limPill('bookmark', '50/50')}<span class="rb t">${icon('plus', 's20')}</span>`)}${ttl('Сохранённые', 50)}${zoomBar()}${zgrid(1, W.slice(0, 14), 1)}`, { time: '9:41',
-    fixed: `<div class="bot"><div class="cta t">${icon('unlock', 's18')}Безлимит с Plus</div></div>` });
+  // зачем (код, CollectionGalleryView): при лимите — «Тренировать» остаётся и поднимается над кнопкой «Безлимит с Plus» (56, радиус 28, значок lock-open); в заголовке — ВСЕ сохранённые (64), а пилюля показывает min(сохранённые, 50)/50
+  const savedLimit = () => phone(`${backC(`${limPill('bookmark', '50/50')}${rbSearch}${rbPlus}${rbMenu()}`)}${ttl('Сохранённые', 64)}${zoomBar()}${zgrid(1, W.slice(0, 14), 1)}`, { time: '9:41',
+    fixed: `<div class="fab-wrap" style="bottom:96px"><span class="cta sm t">${icon('play', 's18')}Тренировать</span></div><div class="bot"><div class="cta t" style="min-height:56px;border-radius:28px;font-size:16px">${icon('unlock', 's18')}Безлимит с Plus</div></div>` });
   const savedMenuOpen = () => phone(`${savedTop}${zoomBar()}${zgrid(1, W.slice(0, 12), 1)}`, { time: '9:41', overlay: sheet('smn2', savedMenuRows, true) });
-  const writeHint = () => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
-      <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">пересадка</div></div>
+  const writeHint = () => phone(`${writeHdr()}
+      <div class="qh" style="margin-top:24px;height:170px"><div class="k">Напиши на изучаемом языке</div><div class="q">пересадка</div></div>
       <div class="field" style="margin-top:22px;font-size:20px;min-height:60px">lay<span class="caret"></span></div>
       ${hintRow(true)}`, { time: '9:41', fixed: `<div class="bot"><div class="cta t">Проверить</div>${revealLink}</div>` });
   const resultGood = () => result(false, { ok: 12, v: 'Хороший результат' });
   const resultLow = () => result(false, { ok: 6, v: 'Есть куда расти' });
-  const writeReveal = () => phone(`${sessHdr('Напиши', '9 / 20')}<div class="trk" style="margin-top:18px;height:6px"><i style="width:45%"></i></div>
-      <div class="qh" style="margin-top:30px;height:170px"><div class="k">Как по-английски</div><div class="q">задержка</div></div>
+  const writeReveal = () => phone(`${writeHdr()}
+      <div class="qh" style="margin-top:24px;height:170px"><div class="k">Напиши на изучаемом языке</div><div class="q">задержка</div></div>
       <div class="ansc"><div class="k">Ответ</div><div class="v">Delay</div><div class="sg"><span class="n t">Не знал</span><span class="y t">Знал</span></div></div>`, { time: '9:41' });
+
 
   // =====================================================================
   // ИТОГ
@@ -631,7 +694,7 @@
       <div class="flex" style="justify-content:center;margin-top:16px"><span class="pill">${coinImg(5, 20)}+${ok * 10}</span></div>
       ${clean ? '' : `<div class="sec"><div class="ti">Ошибки<span class="n">${bad}</span></div></div>
       <div class="stack g13">${flip('Gate', 'выход на посадку', { h: 132 })}${flip('Customs', 'таможня', { h: 132 })}</div>`}`, { time: '9:41',
-    fixed: `<div class="bot"><div class="two">${clean ? `<div class="cta gh t">Готово</div><div class="cta t">Ещё раз</div>` : `<div class="cta gh t">Готово</div><div class="cta t">Повторить ошибки</div>`}</div></div>` }); };
+    fixed: `<div class="bot"><div class="two">${clean ? `<div class="cta gh t">Готово</div><div class="cta t">Ещё раз</div>` : `<div class="cta gh t">Готово</div><div class="cta t">Ещё раз</div>`}</div></div>` }); };
 
   // =====================================================================
   // НЕТ СЕТИ
@@ -650,8 +713,8 @@
       col('1 колонка', saved(0)), col('2 колонки', saved(1)), col('3 колонки', saved(2)), col('5 колонок', saved(3)),
       col('Поиск', savedSearch()), col('Удалено — вернуть', savedUndo()), col('Пусто', savedEmpty())]],
     ['sets', 'Мои наборы', '', [col('Мои наборы', mySets()), col('Пусто', mySetsEmpty())]],
-    ['set', 'Набор открыт', '', [col('Свой набор', setOwn()), col('Чужой — до добавления', setOther(false)), col('Чужой — добавлен', setOther(true)), col('Действия с набором', setActionsOpen())]],
-    ['video', 'Из видео', '', [col('Все ролики', videoAll()), col('Набор из видео', videoSet())]],
+    ['set', 'Набор открыт', '', [col('Свой набор', setOwn()), col('Чужой — до добавления', setOther(false)), col('Чужой — добавлен: «В моих наборах»', setOther(true)), col('Действия с набором', setActionsOpen())]],
+    ['video', 'Из видео', '', [col('Все ролики', videoAll()), col('Набор из видео — до добавления', videoSet(false))]],
     ['card', 'Карточка открыта', 'Тап по карточке — разворот 560 мс.', [col('Лицевая сторона', cardFront()), col('Оборот', cardBack())]],
     ['create', 'Создание', '', [col('Новый набор', newSet()), col('Изменить набор', editSet()), col('Новая карточка — превью живое', newCard())]],
     ['comm', 'Сообщество', '', [col('Каталог', catalog()), col('Ничего не найдено', catalogNone())]],
@@ -659,11 +722,11 @@
     ['sess', 'Сессии', '«Правда / ложь» — смахни карточку вправо или влево.', [col('Блиц', blitz()), col('Устно', oral()), col('Правда / ложь', tf()), col('Вспомни и напиши', write())]],
     ['answ', 'Ответы', '', [col('Блиц — верно', blitz('ok')), col('Блиц — неверно', blitz('no')), col('Устно — верно', oral('ok')), col('Правда / ложь — неверно', tf('no')), col('Напиши — верно', write('ok')), col('Напиши — неверно', write('no'))]],
     ['res', 'Итог', '', [col('Итог с ошибками', result(false)), col('Без ошибок', result(true))]],
-    ['net', 'Нет сети', '', [col('Хаб без сети — заменено вариантом А', offlineHub()), col('Каталог без сети', offlineCatalog())]],
+    ['net', 'Нет сети', '', [col('Хаб без сети — заменено вариантом А', offlineHub()), col('Каталог без сети — в коде состояния нет (там «Здесь появятся наборы после публикации.»); образец не в выпуске, пока код не доделан', offlineCatalog())]],
     ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
       col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
       col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),
-      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow())]],
+      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true))]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

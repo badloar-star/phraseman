@@ -27887,14 +27887,14 @@
       "id": "onboarding-paywall-001",
       "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
       "mockup": {
-        "file": "docs/design/v2-app/onboarding-paywall-states.html",
-        "phone": 1,
-        "label": "Онбординг · цена: настоящая цена с условиями автопродления",
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 23,
+        "label": "Онбординг · Цена: настоящая цена",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Координатор 12.10: экраны без макета рисуем мы; макет нарисован по components/CleanOnboarding.tsx (шаг onboardingPaywall), тёмная и светлая, без обводок (стиль «Тень»)",
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
       "screen": "Онбординг · экран цены Plus",
-      "state": "Онбординг · цена: настоящая цена с условиями автопродления",
+      "state": "Онбординг · Цена: настоящая цена",
       "code": [
         "components/CleanOnboarding.tsx"
       ],
@@ -27916,16 +27916,799 @@
       "id": "onboarding-paywall-002",
       "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
       "mockup": {
-        "file": "docs/design/v2-app/onboarding-paywall-states.html",
-        "phone": 2,
-        "label": "Онбординг · цена: справочная цена («Цена уточнится в магазине»)",
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 24,
+        "label": "Онбординг · Цена: справочная цена",
         "mapping": "by_construction"
       },
-      "mockup_pinned": "Координатор 12.10: экраны без макета рисуем мы; макет нарисован по components/CleanOnboarding.tsx (шаг onboardingPaywall), тёмная и светлая, без обводок (стиль «Тень»)",
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
       "screen": "Онбординг · экран цены Plus",
-      "state": "Онбординг · цена: справочная цена («Цена уточнится в магазине»)",
+      "state": "Онбординг · Цена: справочная цена",
       "code": [
         "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-001",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 1,
+        "label": "Онбординг · Приветствие",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Приветствие",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-002",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 2,
+        "label": "Онбординг · Вход: Google / Apple",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Вход: Google / Apple",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-003",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 3,
+        "label": "Онбординг · Вход идёт долго",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Вход идёт долго",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-004",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 4,
+        "label": "Онбординг · Вход: нет сети",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Вход: нет сети",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-005",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 5,
+        "label": "Онбординг · Аккаунта нет",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Аккаунта нет",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-006",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 6,
+        "label": "Онбординг · Вход недоступен",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Вход недоступен",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-007",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 7,
+        "label": "Онбординг · Сейф: «Твои данные — только твои»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Сейф: «Твои данные — только твои»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-008",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 8,
+        "label": "Онбординг · Сейф: ошибка входа",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Сейф: ошибка входа",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-009",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 9,
+        "label": "Онбординг · Знакомство",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Знакомство",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-010",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 10,
+        "label": "Онбординг · Знакомство: длинное имя",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Знакомство: длинное имя",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-011",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 11,
+        "label": "Онбординг · Прогресс",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Прогресс",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-012",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 12,
+        "label": "Онбординг · «Помоги сделать Phraseman лучше»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · «Помоги сделать Phraseman лучше»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-013",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 13,
+        "label": "Онбординг · «Как ты узнал о нас?»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · «Как ты узнал о нас?»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-014",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 14,
+        "label": "Онбординг · «Как ты узнал о нас?»: выбрано",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · «Как ты узнал о нас?»: выбрано",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-015",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 15,
+        "label": "Онбординг · «Какой язык учим?»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · «Какой язык учим?»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-016",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 16,
+        "label": "Онбординг · Уровень (выключен в сборке)",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Уровень (выключен в сборке)",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-017",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 17,
+        "label": "Онбординг · Уровень: выбрано",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Уровень: выбрано",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-018",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 18,
+        "label": "Онбординг · Уведомления",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Уведомления",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-019",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 19,
+        "label": "Онбординг · Почти готово",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Почти готово",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-020",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 20,
+        "label": "Онбординг · Почти готово: «Да»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Почти готово: «Да»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-021",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 21,
+        "label": "Онбординг · Почти готово: «Нет»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Почти готово: «Нет»",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-022",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 22,
+        "label": "Онбординг · Напомним до конца пробного",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Напомним до конца пробного",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-025",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 25,
+        "label": "Онбординг · Цена: загрузка",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг",
+      "state": "Онбординг · Цена: загрузка",
+      "code": [
+        "components/CleanOnboarding.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-026",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 26,
+        "label": "Онбординг · Новый язык: приветствие",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг · мини-онбординг нового языка",
+      "state": "Онбординг · Новый язык: приветствие",
+      "code": [
+        "app/language_welcome.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-027",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 27,
+        "label": "Онбординг · Новый язык: «Зачем тебе…»",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг · мини-онбординг нового языка",
+      "state": "Онбординг · Новый язык: «Зачем тебе…»",
+      "code": [
+        "app/language_welcome.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-028",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 28,
+        "label": "Онбординг · Новый язык: уровень",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг · мини-онбординг нового языка",
+      "state": "Онбординг · Новый язык: уровень",
+      "code": [
+        "app/language_welcome.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "onboarding-029",
+      "source": "COORDINATOR_2026-10-12_NO_MOCKUP",
+      "mockup": {
+        "file": "docs/design/v2-app/onboarding-states.html",
+        "phone": 29,
+        "label": "Онбординг · Новый язык: готово",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Координатор 12.10 + решение владельца: онбординг рисуется КАК ЕСТЬ (светлый Bevel / тёмно-синий экран языка), без стиля «Тень», nobord.js не подключён; эталон «как есть» для робота-сверки",
+      "screen": "Онбординг · мини-онбординг нового языка",
+      "state": "Онбординг · Новый язык: готово",
+      "code": [
+        "app/language_welcome.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,

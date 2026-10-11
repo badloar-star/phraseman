@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Настройки — недостающие состояния</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (задание координатора 12.10): дорисовать состояния Настроек, которых нет в profile.html / redesign-round-1.html (S-A) / overlays-runtime.html.
+     Стиль «Тень» (SHADOW_STYLE_SPEC.md): плашка = градиент 180° белый 8,5 % → 4 % и тень 0 16 28 −14; вложенное 0 6 12 −6; выбранное приподнято на 3 и глубже тень;
+     ни одной обводки (разделитель строк в группе — линия только сверху). Все тексты — из русской ветки кода. Классы с префиксом gs-. */
+  .ph.gs { --gs-s1: rgba(255,255,255,.085); --gs-s2: rgba(255,255,255,.04); --gs-so1: rgba(255,255,255,.15); --gs-so2: rgba(255,255,255,.07);
+    --gs-sh: 0 16px 28px -14px rgba(0,0,0,.75); --gs-sh2: 0 6px 12px -6px rgba(0,0,0,.6); --gs-sho: 0 26px 40px -14px rgba(0,0,0,.9);
+    --gs-ti: rgba(255,255,255,.07); --gs-sec: #A6A6A8; --gs-mut: #6E6E72; --gs-acc: #E9E9EB; --gs-on: #0B0C0E; --gs-bad: #F2766B; --gs-good: #6FD08C; color: #fff; }
+
+  /* плашки */
+  .gs-pl, .gs-grp, .gs-pl2, .gs-pc, .gs-slot, .gs-nav, .gs-den, .gs-ta, .gs-diag, .gs-sent { background: linear-gradient(180deg, var(--gs-s1), var(--gs-s2)); box-shadow: var(--gs-sh); }
+  .gs-nav { background: linear-gradient(180deg, var(--gs-s1), var(--gs-s2)), #161618; }
+  .gs-tile { width: 41px; height: 41px; border-radius: 10px; background: var(--gs-ti); box-shadow: var(--gs-sh2); display: flex; align-items: center; justify-content: center; flex: none; color: #E6E6E8; }
+  .gsi { width: 20px; height: 20px; flex: none; display: block; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .gs svg.i { width: 20px; height: 20px; }
+  .gs svg.i.s16 { width: 16px; height: 16px; } .gs svg.i.s18 { width: 18px; height: 18px; } .gs svg.i.s24 { width: 24px; height: 24px; }
+  .gsi.s16 { width: 16px; height: 16px; } .gsi.s18 { width: 18px; height: 18px; } .gsi.s22 { width: 22px; height: 22px; } .gsi.s24 { width: 24px; height: 24px; }
+
+  /* главная настроек */
+  .gs-h40 { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 10px; }
+  .gs-ti40 { flex: 1; min-width: 0; font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
+  .gs-pc { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 22px; margin-top: 22px; }
+  .gs-pc .coin { flex: none; }
+  .gs-pn { font-size: 19px; line-height: 24px; font-weight: 700; }
+  .gs-ps { font-size: 13px; line-height: 18px; color: var(--gs-sec); margin-top: 2px; }
+  .gs-ey { font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 3px; color: var(--gs-sec); margin: 26px 4px 10px; }
+  .gs-ey2 { font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 1.7px; color: var(--gs-sec); margin: 24px 4px 10px; }
+  .gs-grp { border-radius: 14px; }
+  .gs-row { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 9px 16px; }
+  .gs-row + .gs-row { border-top: 1px solid rgba(255,255,255,.07); }
+  .gs-tx { flex: 1; min-width: 0; }
+  .gs-tt { font-size: 16px; line-height: 22px; font-weight: 600; }
+  .gs-pt { font-size: 16px; line-height: 21px; font-weight: 700; }
+  .gs-st { font-size: 13px; line-height: 18px; color: var(--gs-mut); margin-top: 3px; }
+  .gs-val { font-size: 16px; line-height: 22px; color: var(--gs-sec); text-align: right; max-width: 45%; flex: none; }
+  .gs-ch { color: var(--gs-mut); flex: none; display: flex; }
+  .gs-fs { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .gs-fsh { display: flex; align-items: center; gap: 14px; }
+  .gs-fst { display: flex; gap: 8px; }
+  .gs-ft { flex: 1; min-height: 56px; border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,.06); box-shadow: var(--gs-sh2); color: var(--gs-mut); }
+  .gs-ft b { font-weight: 700; } .gs-ft span { font-size: 13px; line-height: 17px; margin-top: 2px; text-align: center; }
+  .gs-ft.on { background: rgba(255,255,255,.16); color: #fff; }
+  .gs-dets { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+  .gs-pl2 { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 10px 14px; border-radius: 14px; }
+  .gs-pl2.dim { opacity: .45; }
+  .gs-ver { text-align: center; color: var(--gs-mut); font-size: 13px; line-height: 18px; margin-top: 26px; }
+  .gs-sw { width: 48px; height: 29px; border-radius: 16px; padding: 3px; background: rgba(255,255,255,.12); flex: none; display: flex; align-items: center; cursor: pointer; }
+  .gs-sw i { display: block; width: 21px; height: 21px; border-radius: 50%; background: #8E8E93; transition: transform .2s; }
+  .gs-sw.on { background: var(--gs-acc); } .gs-sw.on i { background: var(--gs-on); transform: translateX(19px); }
+  .gs-nav { position: absolute; left: 22px; right: 22px; bottom: 26px; height: 64px; border-radius: 32px; display: flex; align-items: center; justify-content: space-around; z-index: 9; }
+  .gs-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 8; pointer-events: none; background: linear-gradient(rgba(12,12,13,0), #0C0C0D 70%); }
+  .gs-nav .it { width: 54px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: var(--gs-sec); }
+  .gs-nav .it svg { width: 26px; height: 26px; }
+  .gs-nav .it.on { color: #fff; background: var(--gs-ti); box-shadow: 0 8px 14px -6px rgba(0,0,0,.4); }
+
+  /* слот сообщений */
+  .gs-slot { border-radius: 22px; padding: 16px; margin-top: 12px; }
+  .gs-slot.bt { margin-top: 20px; }
+  .gs-sh { display: flex; align-items: center; gap: 10px; }
+  .gs-sm { width: 34px; height: 34px; border-radius: 10px; background: var(--gs-ti); box-shadow: var(--gs-sh2); display: flex; align-items: center; justify-content: center; flex: none; }
+  .gs-sti { flex: 1; font-size: 16px; line-height: 22px; font-weight: 800; }
+  .gs-sbody { margin-top: 10px; font-size: 16px; line-height: 22px; color: var(--gs-sec); }
+  .gs-poll { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .gs-q { font-size: 16px; line-height: 21px; font-weight: 700; margin-bottom: 2px; }
+  .gs-op { display: flex; align-items: center; gap: 10px; min-height: 44px; border-radius: 12px; padding: 9px 12px; background: rgba(255,255,255,.07); font-size: 16px; line-height: 20px; }
+  .gs-op .gsi { color: var(--gs-mut); } .gs-op span { flex: 1; }
+  .gs-op em { width: 42px; text-align: right; font-style: normal; font-size: 13px; font-weight: 700; color: var(--gs-mut); }
+  .gs-op.on { background: rgba(255,255,255,.16); } .gs-op.on .gsi { color: #fff; }
+  .gs-lk { font-size: 13px; line-height: 18px; color: var(--gs-mut); margin-top: 2px; }
+
+  /* подэкраны */
+  .gs-brow { display: flex; align-items: center; justify-content: space-between; min-height: 48px; }
+  .gs-back { width: 48px; height: 44px; margin-top: 4px; display: flex; align-items: center; color: #fff; }
+  .gs-back svg { width: 21px; height: 21px; }
+  .gs-saved { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--gs-good); }
+  .gs-t34 { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; margin-top: 10px; }
+  .gs-sub { font-size: 16px; line-height: 22px; color: var(--gs-mut); margin-top: 7px; }
+  .gs-sub15 { font-size: 15px; line-height: 20px; color: var(--gs-sec); margin-top: 7px; }
+  .gs-stk { display: flex; flex-direction: column; gap: 10px; }
+  .gs-mc { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: 14px; margin-top: 18px; }
+  .gs-mc .gs-tt { font-weight: 700; }
+  .gs-mute { opacity: .45; }
+  .gs-den { display: flex; align-items: center; gap: 10px; padding: 12px 14px; min-height: 64px; border-radius: 14px; margin-top: 12px; background: linear-gradient(180deg, rgba(242,118,107,.2), rgba(242,118,107,.1)); color: var(--gs-bad); font-size: 13px; line-height: 18px; }
+  .gs-nval { font-size: 13px; line-height: 18px; color: var(--gs-sec); margin-left: 8px; }
+  .gs-sl { position: relative; height: 44px; margin-top: 2px; }
+  .gs-sl::before { content: ""; position: absolute; left: 0; right: 0; top: 20px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.18); }
+  .gs-sl i { position: absolute; left: 0; top: 20px; height: 4px; border-radius: 2px; background: #C7C7CC; }
+  .gs-sl b { position: absolute; top: 12px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: #C7C7CC; box-shadow: 0 3px 6px -2px rgba(0,0,0,.5); }
+  .gs-vv { font-size: 16px; line-height: 21px; color: var(--gs-mut); max-width: 120px; text-align: right; flex: none; }
+  .gs-note { margin-top: 12px; border-radius: 14px; padding: 16px; font-size: 14px; line-height: 20px; color: var(--gs-sec); background: linear-gradient(180deg, var(--gs-s1), var(--gs-s2)); box-shadow: var(--gs-sh); }
+  .gs-bad { color: var(--gs-bad); } .gs-bad .gs-tile { color: var(--gs-bad); }
+
+  /* язык */
+  .gs-x { width: 42px; height: 42px; border-radius: 21px; margin-top: 3px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.1); box-shadow: var(--gs-sh2); }
+  .gs-x svg { width: 21px; height: 21px; }
+  .gs-lang.on { background: linear-gradient(180deg, var(--gs-so1), var(--gs-so2)); box-shadow: var(--gs-sho); transform: translateY(-3px); }
+  .gs-flag { border-radius: 10px; object-fit: cover; flex: none; display: block; }
+  .gs-flag.gray { filter: grayscale(1); }
+
+  /* шторка, окна, тосты */
+  .gs-dim { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.6); }
+  .gs-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 50; background: #1B1B1D; border-radius: 28px 28px 0 0; padding: 12px 18px 40px; }
+  .gs-grab { width: 44px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); margin: 0 auto 26px; }
+  .gs-shh { display: flex; align-items: center; gap: 10px; }
+  .gs-shh .gs-tx { flex: 1; }
+  .gs-sht { font-size: 22px; line-height: 28px; font-weight: 700; }
+  .gs-shs { font-size: 13px; line-height: 18px; color: var(--gs-sec); margin-top: 7px; }
+  .gs-xs { width: 35px; height: 35px; border-radius: 18px; background: rgba(255,255,255,.14); box-shadow: var(--gs-sh2); display: flex; align-items: center; justify-content: center; flex: none; }
+  .gs-xs svg { width: 18px; height: 18px; }
+  .gs-toast { position: absolute; z-index: 60; left: 14px; right: 14px; bottom: 116px; min-height: 76px; padding: 12px 14px; border-radius: 20px; display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #2A2B30, #232428); box-shadow: 0 18px 38px rgba(0,0,0,.48); }
+  .gs-rail { align-self: stretch; width: 3px; border-radius: 3px; background: #d9dbe1; flex: none; }
+  .gs-tt44 { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; flex: none; color: #fff; }
+  .gs-tl { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #fff; }
+  .gs-tm { font-size: 16px; line-height: 22px; color: #d1d2d6; margin-top: 3px; }
+
+  /* поддержка и имя */
+  .gs-ta { min-height: 118px; border-radius: 14px; padding: 12px 14px; font-size: 15px; line-height: 21px; }
+  .gs-diag { margin-top: 12px; border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .gs-diag > svg { color: var(--gs-sec); }
+  .gs-dt { font-size: 15px; line-height: 20px; font-weight: 700; }
+  .gs-dd { font-size: 14px; line-height: 20px; color: var(--gs-sec); margin-top: 2px; }
+  .gs-dl { font-size: 14px; line-height: 20px; font-weight: 700; margin-top: 4px; min-height: 44px; display: flex; align-items: center; }
+  .gs-ev { font-size: 12px; line-height: 17px; color: var(--gs-sec); }
+  .gs-evs { display: flex; flex-direction: column; gap: 7px; padding-top: 4px; }
+  .gs-btn { margin-top: 18px; min-height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; padding: 0 20px; font-size: 17px; line-height: 22px; font-weight: 700; background: var(--gs-acc); color: var(--gs-on); box-shadow: 0 14px 24px -10px rgba(233,233,235,.35); }
+  .gs-sent { border-radius: 18px; padding: 26px 20px; display: flex; flex-direction: column; align-items: center; }
+  .gs-sent .gs-ok { width: 52px; height: 52px; border-radius: 26px; background: var(--gs-ti); box-shadow: var(--gs-sh2); display: flex; align-items: center; justify-content: center; }
+  .gs-sent .gs-ok svg { width: 28px; height: 28px; }
+  .gs-sent h3 { margin: 18px 0 0; font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; }
+  .gs-sent p { margin: 8px 0 0; font-size: 14px; line-height: 20px; color: var(--gs-sec); text-align: center; }
+  .gs-inp { min-height: 48px; border-radius: 14px; padding: 12px 14px; font-size: 20px; line-height: 24px; background: rgba(255,255,255,.07); box-shadow: var(--gs-sh2); margin-bottom: 8px; }
+  .gs-av { min-height: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--gs-sec); }
+  .gs-av.ok { color: #fff; } .gs-av.no { color: var(--gs-bad); }
+  .gs-spin { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255,255,255,.2), inset 0 2px 0 0 #A6A6A8; flex: none; }
+  .gs-acts { display: flex; gap: 10px; margin-top: 8px; }
+  .gs-acts div { flex: 1; min-height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; padding: 0 12px; }
+  .gs-acts .c { background: rgba(255,255,255,.14); }
+  .gs-acts .s { background: var(--gs-acc); color: var(--gs-on); }
+  .gs-acts .s.off { opacity: .5; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Настройки — недостающие состояния</h1>
+  <p class="page-lead">Дорисовка к profile.html (PRF-01…23), redesign-round-1.html (S-A) и overlays-runtime.html: профиль с привязкой, Plus/Pro и плашки доступа, нижняя часть списка и «Очистить кеш», слот сообщений и опрос, уведомления, обучение, приватность, языки, поддержка и проверка имени. Стиль «Тень», тёмная тема; тексты — из кода приложения, имена, даты и проценты — условные примеры. Экраны внутри телефона прокручиваются колесом.</p>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { col, block } = K;
+
+/* ---------- значки: свои контурные (в kit их нет) + kit там, где есть ---------- */
+const G = {
+  person: '<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.6-3.8 3.7-6 7.5-6s6.9 2.2 7.5 6"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+  book: '<path d="M12 7c-2-1.6-5-2-8-1.5v12c3-.5 6-.1 8 1.5 2-1.6 5-2 8-1.5v-12C17 5 14 5.4 12 7z"/><path d="M12 7v12"/>',
+  bell: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
+  bellOff: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/><path d="M3.5 3.5l17 17"/>',
+  phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/>',
+  text: '<path d="M5 6V5h14v1M12 5v14M9.5 19h5"/>',
+  diamond: '<path d="M7 4h10l4 5.5L12 21 3 9.5z"/><path d="M3 9.5h18M9.5 4L8 9.5 12 21M14.5 4L16 9.5 12 21"/>',
+  diamondF: '<path d="M7 4h10l4 5.5L12 21 3 9.5z" fill="currentColor"/><path d="M3 9.5h18" stroke="#1A1A1C"/>',
+  tag: '<path d="M3.5 12.5V4.5h8l9 9-8 8z"/><circle cx="8" cy="9" r="1.4"/>',
+  gift: '<rect x="3.5" y="9" width="17" height="4" rx="1"/><path d="M5 13v7h14v-7M12 9v11"/><path d="M12 9c-1-4-5-4.5-5-2s3 2 5 2zm0 0c1-4 5-4.5 5-2s-3 2-5 2z"/>',
+  chatbox: '<path d="M4 5h16v11H10l-4 4v-4H4z"/>',
+  shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',
+  star: '<path d="M12 3.8l2.5 5.3 5.7.7-4.2 4 1.1 5.7L12 16.7 6.9 19.5 8 13.8 3.8 9.8l5.7-.7z"/>',
+  ticket: '<path d="M4 7h16v3a2 2 0 000 4v3H4v-3a2 2 0 000-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/>',
+  sparkles: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4M17 18h4"/>',
+  megaphone: '<path d="M4 10v4h3l7 4V6L7 10z"/><path d="M17.5 9a4 4 0 010 6"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  calendar: '<rect x="4" y="5.5" width="16" height="15" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',
+  radio: '<circle cx="12" cy="12" r="9"/>',
+  radioOn: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" fill="currentColor" stroke="none"/>',
+  okC: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>',
+  noC: '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+  okCF: '<circle cx="12" cy="12" r="9.5" fill="currentColor" stroke="none"/><path d="M8 12.5l3 3 5-6" stroke="#232428" stroke-width="2"/>',
+  alertCF: '<circle cx="12" cy="12" r="9.5" fill="currentColor" stroke="none"/><path d="M12 7.5v5.5M12 16.5h.01" stroke="#232428" stroke-width="2.2"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>',
+};
+const I = (n, c = '') => G[n]
+  ? `<svg class="gsi ${c}" viewBox="0 0 24 24" aria-hidden="true">${G[n]}</svg>`
+  : K.icon(n, c);
+
+/* ---------- кирпичики ---------- */
+const chev = `<span class="gs-ch">${K.icon('fwd', 's18')}</span>`;
+const tile = (n) => `<span class="gs-tile">${I(n, 's20')}</span>`;
+const sw = (on) => `<span class="gs-sw${on ? ' on' : ''}" role="switch" aria-checked="${on ? 'true' : 'false'}"><i></i></span>`;
+const row = (n, title, o = {}) => `<div class="gs-row t">${tile(n)}<div class="gs-tx"><div class="gs-tt">${title}</div></div>${o.right !== undefined ? o.right : `${o.value ? `<span class="gs-val">${o.value}</span>` : ''}${chev}`}</div>`;
+const grp = (rows) => `<div class="gs-grp">${rows.join('')}</div>`;
+const ey = (t, a = '') => `<div class="gs-ey"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
+const ey2 = (t, a = '') => `<div class="gs-ey2"${a ? ` data-gs-a="${a}"` : ''}>${t}</div>`;
+const pl2 = (n, title, o = {}) => `<div class="gs-pl2${o.dim ? ' dim' : ''}">${o.lead || tile(n)}<div class="gs-tx"><div class="gs-pt">${title}</div>${o.sub ? `<div class="gs-st">${o.sub}</div>` : ''}</div>${o.right || ''}</div>`;
+const nav = (on) => `<div class="gs-fade"></div><div class="gs-nav">${['layers', 'bookmark', 'play', 'people', 'gear'].map((n, i) => `<span class="it${i === on ? ' on' : ''}">${n === 'play' ? '<svg class="i" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>' : I(n)}</span>`).join('')}</div>`;
+const backRow = (right = '') => `<div class="gs-brow"><span class="gs-back">${K.icon('back')}</span>${right}</div>`;
+
+/* зачем: прокрутка кадра к нужному месту — data-gs-anchor на телефоне (метка data-gs-a или «end»); без этого длинные экраны были бы видны только сверху */
+const ph = (body, o = {}) => K.phone(body, { time: o.time || '9:41', inStyle: o.inStyle || 'padding-bottom:130px', fixed: o.fixed || '', overlay: o.overlay || '' })
+  .replace('<div class="ph">', `<div class="ph gs"${o.anchor ? ` data-gs-anchor="${o.anchor}"` : ''}>`);
+
+/* ---------- главная настроек (settings.tsx) ---------- */
+const hMain = `<div class="gs-h40"><div class="gs-ti40">Настройки</div>${K.coinImg(5, 44)}</div>`;
+const pcard = (sub) => `<div class="gs-pc t">${K.coinImg(5, 52)}<div class="gs-tx"><div class="gs-pn">Алекс</div><div class="gs-ps">${sub}</div></div></div>`;
+const secProfile = (acc, study) => ey('ПРОФИЛЬ') + grp([row('person', 'Аккаунт', { value: acc }), row('flag', 'Язык интерфейса', { value: 'Русский' }), row('globe', 'Язык изучения', { value: study })]);
+const fontCard = `<div class="gs-fs"><div class="gs-fsh">${tile('text')}<div class="gs-tt">Размер шрифта</div></div><div class="gs-fst">${[['Малый', 12], ['Средний', 14], ['Большой', 17]].map(([n, s], i) => `<div class="gs-ft t${i === 1 ? ' on' : ''}"><b style="font-size:${s}px">A</b><span>${n}</span></div>`).join('')}</div></div>`;
+const secLearn = () => ey('ОБУЧЕНИЕ') + grp([row('book', 'Настройки обучения'), row('bell', 'Уведомления', { value: 'Вкл' }), row('layers', 'Темы', { value: 'Затмение' }), row('phone', 'Тактильный отклик', { right: sw(true) }), fontCard]);
+const det = (n, t, s) => `<div class="gs-pl2">${tile(n)}<div class="gs-tx"><div class="gs-pt">${t}</div><div class="gs-st">${s}</div></div></div>`;
+const secPlus = (p, details = []) => ey('PHRASEMAN PLUS', 'plus') + grp([row(p.filled ? 'diamondF' : 'diamond', p.title, { value: p.value }), row('tag', 'Ввести промокод'), row('gift', 'Пригласить друга')])
+  + (details.length ? `<div class="gs-dets">${details.join('')}</div>` : '');
+const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить кеш', { value: cache }), row('star', 'Оценить в Google Play')]);
+const PLUS_OFF = { title: 'Подписка Plus', value: 'Не активна', filled: false };
+const PLUS_ON = { title: 'Подписка Plus', value: 'Активна', filled: true };
+const mainScreen = (o = {}) => hMain + pcard('Лектор · аккаунт привязан') + secProfile(o.acc || 'Google', o.study || 'English') + secLearn()
+  + secPlus(o.plus || PLUS_OFF, o.details || []) + secHelp(o.cache) + (o.slotBottom || '') + '<div class="gs-ver">Версия 2.0.0 (118)</div>';
+
+/* ---------- слот сообщений (SettingsMessageSlotCard.tsx) ---------- */
+const POLL = [['Больше уроков', 41], ['Больше диалогов', 27], ['Больше карточек', 21], ['Другое', 11]];
+const slotHead = '<div class="gs-sh"><span class="gs-sm">' + I('megaphone', 's18') + '</span><span class="gs-sti">Важное от Phraseman</span></div>';
+const slotPoll = (voted) => `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Расскажи, чего тебе не хватает в приложении — мы читаем каждый ответ.</div><div class="gs-poll" role="radiogroup"><div class="gs-q">Что добавить в первую очередь?</div>`
+  + POLL.map(([t, p], i) => `<div class="gs-op t${voted === i ? ' on' : ''}">${I(voted === i ? 'radioOn' : 'radio', 's22')}<span>${t}</span><em${voted === null ? ' style="visibility:hidden"' : ''}>${p}%</em></div>`).join('')
+  + (voted !== null ? '<div class="gs-lk">Твой выбор сохранён</div>' : '') + '</div></div>';
+const slotMsg = `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Мы обновили приложение: тему оформления теперь можно сменить в настройках.</div></div>`;
+
+/* ---------- уведомления (settings_notifications.tsx) ---------- */
+const nrow = (n, label, on, o = {}) => pl2(n, label, { right: o.val ? `<span class="gs-nval">${o.val}</span><span class="gs-ch">${K.icon('fwd', 's18')}</span>` : sw(on) });
+const notif = (o) => backRow(`<span class="gs-saved" style="opacity:${o.saved ? 1 : 0}">${I('okC', 's16')}Сохранено</span>`)
+  + '<div class="gs-t34">Уведомления</div>'
+  + (o.denied ? `<div class="gs-den t">${I('bellOff', 's18')}<span>Телефон не разрешает уведомления. Проверь разрешение в настройках телефона — переключателя в приложении недостаточно.</span></div>` : '')
+  + `<div class="gs-pl gs-mc">${I('chat', 's20')}<div class="gs-tx"><div class="gs-tt">Разрешить уведомления</div><div class="gs-st">Системное разрешение телефона тоже должно быть включено.</div></div>${sw(o.master)}</div>`
+  + `<div class="${o.master ? '' : 'gs-mute'}">`
+  + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', true)}${nrow('clock', 'Время', true, { val: '20:00' })}${nrow('flame', 'Серия под угрозой', true)}${nrow('bookmark', 'Фраза дня', true)}${nrow('bolt', 'Энергия восстановилась', false)}</div>`
+  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', true)}${nrow('calendar', 'Итоги месяца', false)}</div>`
+  + ey2('Ещё') + `<div class="gs-stk">${nrow('people', 'Друзья', true)}${nrow('tag', 'Скидки и предложения', false)}</div></div>`;
+
+/* ---------- настройки обучения (settings_edu.tsx) ---------- */
+const edu = () => backRow() + '<div class="gs-t34">Настройки обучения</div><div class="gs-sub">Проверка ответа, ввод и единая озвучка</div>'
+  + ey2('ОТВЕТ') + `<div class="gs-stk">${pl2('check', 'Автопроверка', { sub: 'Проверять при наборе последнего слова', right: sw(true) })}${pl2('arrowR', 'Автопереход после ответа', { sub: 'Следующее задание откроется само', right: sw(false) })}${pl2('edit', 'Ввод с клавиатуры', { sub: 'Вводить ответ вручную', right: sw(false) })}${pl2('bolt', 'Вибрация при ошибке', { sub: 'Работает при включённом тактильном отклике (Настройки → «Тактильный отклик»)', right: sw(true) })}</div>`
+  + ey2('ЗВУК') + `<div class="gs-stk">${pl2('vol', 'Звуковые эффекты', { sub: 'Короткие звуки в карточках и тренировках', right: sw(true) })}${pl2('vol', 'Автопроизношение', { sub: 'Озвучивать английскую фразу после ответа', right: sw(true) })}</div>`
+  + `<div class="gs-pl2" style="margin-top:10px;align-items:flex-start">${tile('vol')}<div class="gs-tx"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><div class="gs-pt">Скорость произношения</div><div class="gs-pt" style="color:#E6E6E8">1.0x</div></div><div class="gs-st">Отпусти ползунок — прозвучит пример</div><div class="gs-sl"><i style="width:40%"></i><b style="left:40%"></b></div></div></div>`
+  + `<div class="gs-pl2 t" style="margin-top:10px">${tile('person')}<div class="gs-tx"><div class="gs-pt">Голос озвучки (EN)</div><div class="gs-st">Голос и скорость телефона</div></div><span class="gs-vv">Системный</span>${chev}</div>`;
+
+/* ---------- приватность и данные (privacy_settings.tsx) ---------- */
+const prow = (n, label, o = {}) => pl2(n, label, { sub: o.sub, right: (o.sw !== undefined ? sw(o.sw) : '') + (o.link ? chev : '') });
+const privacy = (o) => backRow() + '<div class="gs-t34">Приватность и данные</div><div class="gs-sub15">Необязательные данные и документы</div>'
+  + ey2('ДАННЫЕ ОБ ИСПОЛЬЗОВАНИИ') + `<div class="gs-stk">${prow('trend', 'Отправлять данные об использовании', { sub: 'Приложение работает и без этого', sw: o.analytics })}</div>`
+  + `<div class="gs-note">${o.analytics ? 'Обезличенные данные о том, как проходит обучение. Не обязательно — приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.' : 'Сейчас данные об использовании не отправляются. Сбор технических сбоев для стабильности продолжается.'}</div>`
+  + ey2('ИИ-ФУНКЦИИ', 'ai') + `<div class="gs-stk">${prow('edit', 'AI-разбор ошибок', { sub: o.ai ? 'При ошибке ИИ объясняет, что не так, и может упростить объяснение' : 'Сейчас не используется', sw: o.ai })}${prow('chat', 'AI-диалоги', { sub: o.ai ? 'Можно общаться с ИИ-собеседником' : 'Сейчас не используются', sw: o.ai })}${prow('layers', 'Память диалогов', { link: true })}</div>`
+  + '<div class="gs-note">Каждая функция работает только после отдельного согласия. В зависимости от функции в OpenAI отправляется текст или речь. Выключено — новые запросы не отправляются.</div>'
+  + ey2('ДОКУМЕНТЫ') + `<div class="gs-stk">${prow('docF', 'Политика конфиденциальности', { link: true })}${prow('docF', 'Условия использования', { link: true })}</div>`
+  + ey2('АККАУНТ') + `<div class="gs-stk"><div class="gs-pl2 t gs-bad">${tile('trash')}<div class="gs-tx"><div class="gs-pt">Удалить аккаунт и данные</div></div>${chev}</div></div>`;
+
+/* ---------- языки (settings_language.tsx, StudyLanguageSheet.tsx) ---------- */
+const flagImg = (f, w, h, gray) => `<img class="gs-flag${gray ? ' gray' : ''}" src="assets/language_${f}.webp" width="${w}" height="${h}" style="width:${w}px;height:${h}px" alt="">`;
+const LANGS = ['Русский', 'Українська', 'Español', 'Português (Brasil)', 'Tiếng Việt', 'Bahasa Indonesia', 'Türkçe', 'Polski'];
+const langScreen = () => `<div class="gs-x t">${K.icon('close')}</div><div class="gs-t34">Язык интерфейса</div><div class="gs-sub">Язык меню и подсказок приложения</div>`
+  + `<div class="gs-stk" style="margin-top:22px">${LANGS.map((n, i) => `<div class="gs-pl2 gs-lang t${i === 0 ? ' on' : ''}"><div class="gs-tx"><div class="gs-pt">${n}</div></div>${i === 0 ? K.icon('check') : chev}</div>`).join('')}</div>`
+  + '<div style="margin-top:2px">' + ey2('ЯЗЫК ИЗУЧЕНИЯ') + '</div>'
+  + `<div class="gs-pl2 t">${flagImg('en', 54, 38)}<div class="gs-tx"><div class="gs-pt">English</div><div class="gs-st">Сейчас изучаешь</div></div>${chev}</div>`;
+const STUDY = [['en', 'English', 'Учу · выбран', 'ok'], ['es_dev', 'Español', 'Учу', 'go'], ['fr_dev', 'Français', 'Новый язык · доступ уточняется', 'lock'], ['de', 'Deutsch', 'Новый язык · доступ уточняется', 'lock'], ['it', 'Italiano', 'Новый язык · доступ уточняется', 'lock']];
+const studySheet = () => `<div class="gs-dim"></div><div class="gs-sheet"><div class="gs-grab"></div><div class="gs-shh"><div class="gs-tx"><div class="gs-sht">Язык изучения</div><div class="gs-shs">Прогресс каждого языка хранится отдельно</div></div><span class="gs-xs t">${K.icon('close')}</span></div>`
+  + `<div class="gs-stk" style="margin-top:20px">${STUDY.map(([f, n, s, k]) => `<div class="gs-pl2 t">${flagImg(f, 58, 40, k === 'lock')}<div class="gs-tx"><div class="gs-pt">${n}</div><div class="gs-st">${s}</div></div>${k === 'ok' ? K.icon('check') : k === 'lock' ? K.icon('lockF', 's18') : '<span style="width:20px"></span>'}</div>`).join('')}</div></div>`;
+const toast = (kind, label, msg) => `<div class="gs-toast" role="status"><span class="gs-rail"></span><span class="gs-tt44">${I(kind === 'ok' ? 'okCF' : 'alertCF', 's22')}</span><div class="gs-tx"><div class="gs-tl">${label}</div><div class="gs-tm">${msg}</div></div></div>`;
+
+/* ---------- поддержка (support_report.tsx) ---------- */
+const EVS = [['12:38:52', 'app_state', 'info'], ['12:39:04', 'navigation', 'info'], ['12:39:31', 'feature_action', 'start'], ['12:39:33', 'feature_action', 'success'], ['12:40:10', 'navigation', 'info'], ['12:40:47', 'feature_action', 'error'], ['12:41:07', 'navigation', 'info']];
+const support = () => backRow() + '<div class="gs-t34">Поддержка</div><div class="gs-sub15">Расскажи, что случилось</div>'
+  + ey2('ОПИСАНИЕ ПРОБЛЕМЫ')
+  + '<div class="gs-ta">В «Карточках» нажимаю «Послушать», но звука нет.</div>'
+  + `<div class="gs-diag">${K.icon('check')}<div class="gs-tx"><div class="gs-dt">Техническая диагностика</div><div class="gs-dd">Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.</div><div class="gs-dl t">Скрыть</div><div class="gs-evs">${EVS.map(([t, e, r]) => `<div class="gs-ev">${t} · ${e} · ${r}</div>`).join('')}</div></div></div>`
+  + '<div class="gs-btn t">Отправить</div>';
+const supportSent = () => backRow() + '<div class="gs-t34">Поддержка</div>'
+  + `<div style="padding:150px 0 0"><div class="gs-sent"><span class="gs-ok">${K.icon('check')}</span><h3>Обращение отправлено</h3><p>Спасибо! Команда всё проверит и ответит в приложении.</p></div><div class="gs-btn t">Готово</div></div>`;
+
+/* ---------- имя (NicknameEditModal.tsx) ---------- */
+const acctGhost = () => backRow() + '<div class="gs-t34">Аккаунт</div>' + `<div class="gs-stk" style="margin-top:22px;opacity:.4">${pl2('person', 'Имя', { right: '<span class="gs-val">Алекс</span>' })}${pl2('chat', 'Способ входа', { right: '<span class="gs-val">Google</span>' })}${pl2('arrowR', 'Выйти и войти под другим аккаунтом')}</div>`;
+const nickSheet = (st) => {
+  const M = { checking: ['Проверяем имя…', '', ''], available: ['Имя свободно', 'ok', 'okC'], taken: ['Имя уже занято', 'no', 'noC'] }[st];
+  const val = st === 'taken' ? 'Delta28' : 'Alexey';
+  const off = st !== 'available';
+  return `<div class="gs-dim" style="background:rgba(0,0,0,.7)"></div><div class="gs-sheet"><div class="gs-grab"></div><div class="gs-shh"><div class="gs-tx"><div class="gs-sht">Изменить имя</div><div class="gs-shs">Ник можно менять раз в 14 дней</div></div><span class="gs-xs t">${K.icon('close')}</span></div>`
+    + `<div class="gs-ey2" style="margin:20px 0 8px">ИМЯ ПРОФИЛЯ</div><div class="gs-inp">${val}</div>`
+    + `<div class="gs-av ${M[1]}">${st === 'checking' ? '<span class="gs-spin"></span>' : I(M[2], 's16')}<span>${M[0]}</span></div>`
+    + `<div class="gs-acts"><div class="c t">Отмена</div><div class="s t${off ? ' off' : ''}">Сохранить</div></div></div>`;
+};
+
+/* ---------- кадры ---------- */
+const DET_PROMO = det('ticket', 'Промокод', 'Действует до 14.11.2026, 18:30');
+const DET_REF = det('people', 'Plus за приглашения', 'Действует до 02.11.2026, 12:00');
+const DET_INTRO = det('sparkles', 'Полный доступ на 3 дня', 'Действует до 14.10.2026, 21:15');
+const DET_PRO = det('ticket', 'Выданный Pro', 'Pro без срока окончания');
+const withNav = { fixed: nav(4) };
+
+document.getElementById('root').innerHTML =
+  block('main', 'Главная настроек: профиль, Plus/Pro, нижняя часть', 'Кадры длиннее экрана: телефон прокручивается, у каждого стоит свой стартовый показ. Профиль без «Войти», группа Plus с плашками доступа, список до «Оценить». Окно «Очистить кеш?» — в overlays-runtime.html.', [
+    col('Профиль привязан: «аккаунт привязан», в строке «Аккаунт» — Google (при входе через Apple там «Apple»), «Войти» нет; ниже «Тактильный отклик» и «Размер шрифта»', ph(mainScreen({}), { ...withNav })),
+    col('Plus не активна: «Подписка Plus · Не активна», «Ввести промокод», «Пригласить друга», группа «Помощь»', ph(mainScreen({}), { ...withNav, anchor: 'plus' })),
+    col('Plus по подписке: значение «Год» (при месячной — «Месяц»; без плана магазина — «Активна»)', ph(mainScreen({ plus: { title: 'Подписка Plus', value: 'Год', filled: true } }), { ...withNav, anchor: 'plus' })),
+    col('Plus по промокоду: плашка «Промокод» · «Действует до …». Другие названия плашки по виду выдачи: «Plus за опрос», «Plus за идею», «Тестерский Plus», «Дополнительный Plus-доступ»', ph(mainScreen({ plus: PLUS_ON, details: [DET_PROMO] }), { ...withNav, anchor: 'plus' })),
+    col('Plus за приглашения + пробный доступ: две плашки — «Plus за приглашения» и «Полный доступ на 3 дня»', ph(mainScreen({ plus: PLUS_ON, details: [DET_REF, DET_INTRO] }), { ...withNav, anchor: 'plus' })),
+    col('Pro без срока (выдан из админки): «Подписка Pro · Активна», плашка «Выданный Pro» · «Pro без срока окончания»', ph(mainScreen({ plus: { title: 'Подписка Pro', value: 'Активна', filled: true }, details: [DET_PRO] }), { ...withNav, anchor: 'plus' })),
+  ]) +
+  block('slot', 'Низ настроек: «Очистить кеш» и слот сообщений', 'Статус чистки живёт значением в строке, без окна. Нижний слот «Важное от Phraseman» — текст приходит с сервера (здесь условный пример): опрос до ответа, опрос после ответа, обычное сообщение.', [
+    col('«Очистить кеш · Чистим…» + слот-опрос до голосования (проценты скрыты, кружки пустые)', ph(mainScreen({ plus: PLUS_ON, cache: 'Чистим…', slotBottom: slotPoll(null) }), { ...withNav, anchor: 'end' })),
+    col('«Очистить кеш · Готово» + слот-опрос после голосования: проценты, выбранный вариант, «Твой выбор сохранён»', ph(mainScreen({ plus: PLUS_ON, cache: 'Готово', slotBottom: slotPoll(0) }), { ...withNav, anchor: 'end' })),
+    col('«Очистить кеш · Не удалось» + слот без опроса (только заголовок и текст)', ph(mainScreen({ plus: PLUS_ON, cache: 'Не удалось', slotBottom: slotMsg }), { ...withNav, anchor: 'end' })),
+  ]) +
+  block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели и месяца), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
+    col('Уведомления: «Сохранено» после переключения; «Время» · 20:00', ph(notif({ master: true, saved: true }), { time: '12:40' })),
+    col('Уведомления, низ списка: «Итоги месяца», блок «Ещё»', ph(notif({ master: true, saved: false }), { time: '12:40', anchor: 'end' })),
+    col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: true, saved: false, denied: true }), { time: '12:41' })),
+    col('Мастер выключен: все строки приглушены', ph(notif({ master: false, saved: true }), { time: '12:41' })),
+  ]) +
+  block('edu', 'Настройки обучения', 'Весь экран по коду: «Вибрация при ошибке», озвучка, ползунок скорости, выбор голоса.', [
+    col('Настройки обучения: ответ и звук', ph(edu(), { time: '13:02' })),
+    col('Настройки обучения, низ: скорость произношения и «Голос озвучки (EN)»', ph(edu(), { time: '13:02', anchor: 'end' })),
+  ]) +
+  block('privacy', 'Приватность и данные', 'Подпись про OpenAI, тумблеры ИИ с их пояснениями, «Память диалогов», «Аккаунт → Удалить аккаунт и данные».', [
+    col('Приватность: данные об использовании включены, ИИ выключен', ph(privacy({ analytics: true, ai: false }), { time: '13:10' })),
+    col('Приватность: ИИ-функции включены, ниже документы и удаление аккаунта', ph(privacy({ analytics: false, ai: true }), { time: '13:10', anchor: 'ai' })),
+  ]) +
+  block('lang', 'Языки интерфейса и изучения', 'Английский интерфейс выключен флагом, поэтому строк восемь. Шторка «Язык изучения» — пять языков.', [
+    col('Язык интерфейса: 8 строк, «Português (Brasil)», внизу «Язык изучения»', ph(langScreen(), { time: '13:15', inStyle: 'padding-bottom:60px' })),
+    col('Шторка «Язык изучения»: «Учу · выбран», «Учу», замок «Новый язык · доступ уточняется»', ph(mainScreen({}), { ...withNav, time: '13:16', overlay: studySheet() })),
+    col('Тост после смены языка: «Готово · Теперь учишь Español»', ph(mainScreen({ study: 'Español' }), { ...withNav, time: '13:16', overlay: toast('ok', 'Готово', 'Теперь учишь Español') })),
+    col('Тост при сбое: «Что-то пошло не так · Не получилось сменить язык. Попробуй ещё раз.»', ph(mainScreen({}), { ...withNav, time: '13:17', overlay: toast('err', 'Что-то пошло не так', 'Не получилось сменить язык. Попробуй ещё раз.') })),
+  ]) +
+  block('support', 'Поддержка', 'Раскрытая диагностика и экран после отправки.', [
+    col('Поддержка: раскрыта «Техническая диагностика» («Скрыть» + список действий)', ph(support(), { time: '12:42' })),
+    col('Поддержка: «Обращение отправлено» и «Готово»', ph(supportSent(), { time: '12:42' })),
+  ]) +
+  block('nick', 'Смена имени: проверка', 'Шторка «Изменить имя» над экраном «Аккаунт»; «Сохранить» недоступна, пока идёт проверка и когда имя занято.', [
+    col('«Проверяем имя…»', ph(acctGhost(), { time: '13:20', overlay: nickSheet('checking') })),
+    col('«Имя свободно»', ph(acctGhost(), { time: '13:20', overlay: nickSheet('available') })),
+    col('«Имя уже занято»', ph(acctGhost(), { time: '13:21', overlay: nickSheet('taken') })),
+  ]);
+
+K.init();
+/* переключатели в кадрах нажимаются */
+document.body.addEventListener('click', (e) => { const s = e.target.closest('.gs-sw'); if (s) { s.classList.toggle('on'); s.setAttribute('aria-checked', String(s.classList.contains('on'))); } });
+/* зачем: стартовая прокрутка кадров к нужному месту (метка data-gs-a или конец экрана) */
+const place = () => document.querySelectorAll('.ph[data-gs-anchor]').forEach((p) => {
+  const scr = p.querySelector('.scr'); const a = p.dataset.gsAnchor;
+  if (!scr) return;
+  if (a === 'end') { scr.scrollTop = scr.scrollHeight; return; }
+  const el = p.querySelector(`[data-gs-a="${a}"]`); const inn = scr.firstElementChild;
+  if (el && inn) scr.scrollTop = Math.max(0, el.getBoundingClientRect().top - inn.getBoundingClientRect().top - 70);
+});
+place(); window.addEventListener('load', () => { place(); setTimeout(place, 400); });
+if (document.fonts) { document.fonts.addEventListener('loadingdone', place); if (document.fonts.ready) document.fonts.ready.then(place); }
+[800, 1600, 3000].forEach((ms) => setTimeout(place, ms)); /* зачем: шрифт Inter и картинки догружаются после первой раскладки — высота экранов растёт, прокрутку ставим заново */
+})();
+</script>
+</body>
+</html>

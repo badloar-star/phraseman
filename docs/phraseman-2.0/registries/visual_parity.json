@@ -33,8 +33,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-001.png",
-      "evidence_at": "2026-10-11T14:17:09.449Z",
-      "evidence_sha256": "61b7c62c1957da1cc5ffbc820d4bb1c3966968ddcaacec5b422c8ec6acd40cb2",
+      "evidence_at": "2026-10-11T15:04:41.257Z",
+      "evidence_sha256": "7178ef320b83efb4edb4ffe02358a8c2e2a7ae338a157c39eb979c9a2c0a9cf3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -34862,6 +34862,763 @@
       "state": "Тост — не удалось восстановить покупки",
       "code": [
         "app/paywall_purchase.ts"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-001",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 1,
+        "label": "Главная — профиль привязан",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — профиль привязан",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-002",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 2,
+        "label": "Главная — Plus не активна",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — Plus не активна",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-003",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 3,
+        "label": "Главная — Plus по подписке",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — Plus по подписке",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-004",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 4,
+        "label": "Главная — Plus по промокоду",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — Plus по промокоду",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-005",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 5,
+        "label": "Главная — Plus за приглашения + пробный доступ",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — Plus за приглашения + пробный доступ",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-006",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 6,
+        "label": "Главная — Pro без срока",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Главная — Pro без срока",
+      "code": [
+        "app/(tabs)/settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-007",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 7,
+        "label": "Очистить кеш — чистим… + опрос до голосования",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Очистить кеш — чистим… + опрос до голосования",
+      "code": [
+        "app/(tabs)/settings.tsx",
+        "components/settings/SettingsMessageSlotCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-008",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 8,
+        "label": "Очистить кеш — готово + опрос после голосования",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Очистить кеш — готово + опрос после голосования",
+      "code": [
+        "app/(tabs)/settings.tsx",
+        "components/settings/SettingsMessageSlotCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-009",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 9,
+        "label": "Очистить кеш — не удалось + слот без опроса",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Очистить кеш — не удалось + слот без опроса",
+      "code": [
+        "app/(tabs)/settings.tsx",
+        "components/settings/SettingsMessageSlotCard.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-010",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 10,
+        "label": "Уведомления — сохранено, время",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Уведомления — сохранено, время",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-011",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 11,
+        "label": "Уведомления — низ списка (итоги месяца, ещё)",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Уведомления — низ списка (итоги месяца, ещё)",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-012",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 12,
+        "label": "Уведомления — телефон не разрешает",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Уведомления — телефон не разрешает",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-013",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 13,
+        "label": "Уведомления — мастер выключен",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Уведомления — мастер выключен",
+      "code": [
+        "app/settings_notifications.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-014",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 14,
+        "label": "Обучение — верх",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Обучение — верх",
+      "code": [
+        "app/settings_edu.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-015",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 15,
+        "label": "Обучение — низ (скорость, голос)",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Обучение — низ (скорость, голос)",
+      "code": [
+        "app/settings_edu.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-016",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 16,
+        "label": "Приватность — ИИ выключен",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Приватность — ИИ выключен",
+      "code": [
+        "app/privacy_settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-017",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 17,
+        "label": "Приватность — ИИ включён, документы, удаление",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Приватность — ИИ включён, документы, удаление",
+      "code": [
+        "app/privacy_settings.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-018",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 18,
+        "label": "Язык интерфейса — 8 языков",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Язык интерфейса — 8 языков",
+      "code": [
+        "app/settings_language.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-019",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 19,
+        "label": "Шторка «Язык изучения» — 5 языков",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Шторка «Язык изучения» — 5 языков",
+      "code": [
+        "components/settings/StudyLanguageSheet.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-020",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 20,
+        "label": "Тост — теперь учишь …",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Тост — теперь учишь …",
+      "code": [
+        "components/settings/StudyLanguagePicker.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-021",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 21,
+        "label": "Тост — не получилось сменить язык",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Тост — не получилось сменить язык",
+      "code": [
+        "components/settings/StudyLanguagePicker.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-022",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 22,
+        "label": "Поддержка — диагностика раскрыта",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Поддержка — диагностика раскрыта",
+      "code": [
+        "app/support_report.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-023",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 23,
+        "label": "Поддержка — обращение отправлено",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Поддержка — обращение отправлено",
+      "code": [
+        "app/support_report.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-024",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 24,
+        "label": "Имя — проверяем",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Имя — проверяем",
+      "code": [
+        "components/account/NicknameEditModal.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-025",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 25,
+        "label": "Имя — свободно",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Имя — свободно",
+      "code": [
+        "components/account/NicknameEditModal.tsx"
+      ],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "settings-gap-026",
+      "source": "COORDINATOR_AUDIT_2026-10-12",
+      "mockup": {
+        "file": "docs/design/v2-app/settings-gaps-states.html",
+        "phone": 26,
+        "label": "Имя — занято",
+        "mapping": "by_construction"
+      },
+      "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
+      "screen": "Настройки",
+      "state": "Имя — занято",
+      "code": [
+        "components/account/NicknameEditModal.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,

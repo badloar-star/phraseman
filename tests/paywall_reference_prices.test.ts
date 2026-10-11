@@ -57,9 +57,14 @@ describe('хук пейвола: цепочка во всех пейволах',
   test('на кнопке была справочная цена — покупка только вторым тапом', () => {
     expect(source).toMatch(/if \(shownSource === 'reference'\) \{[\s\S]{0,300}return;/);
   });
-  test('онбординг (нет «≈», цена идёт в текст об автопродлении) — справочная выключена', () => {
+  // зачем (координатор 12.10: «≈ везде», Дизайн): онбординг тоже показывает справочную цену — но с «≈», а текст об автопродлении строится ТОЛЬКО из
+  // настоящей цены (магазин/кэш): справочная выдала бы чужую валюту за условия подписки.
+  test('онбординг: справочная цена с «≈», условия подписки — только из настоящей цены, тап без магазина — тихая подпись', () => {
     const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
-    expect(onboarding).toMatch(/allowReferencePrice: false/);
+    expect(onboarding).not.toMatch(/allowReferencePrice: false/);
+    expect(onboarding).toMatch(/yearlyPriceSource === 'reference' \? '≈ ' : ''/);
+    expect(onboarding).toMatch(/selectedPriceIsReference[\s\S]{0,400}Цена уточнится в магазине/);
+    expect(onboarding).toMatch(/paywallTapNotice \? 'Попробуй через минуту'/);
   });
   test('тап без магазина в любом пейволе — тихая подсказка, не немой выход', () => {
     expect(source).toMatch(/resilientCheckout=false — тихая подсказка и догрузка[\s\S]{0,200}setTapNotice\(true\);/);

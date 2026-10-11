@@ -2435,15 +2435,17 @@ function CleanOnboarding({
     reloadOfferings,
     handleRestore,
     handlePurchase: paywallHandlePurchase,
+    yearlyPriceSource,
+    monthlyPriceSource,
+    tapNotice: paywallTapNotice,
   } = usePaywallPurchase({
     variant: 'C',
     context: 'onboarding_plan',
     source: 'onboarding_plan',
     lang,
     forceTrialUI: true,
-    // зачем (ревью Opus 11.10): экран не рисует «≈» и строит из цены текст об автопродлении — справочная цена здесь
-    // выдала бы чужую валюту за условия подписки. Кэш последних настоящих цен остаётся. Включить, когда Дизайн добавит «≈».
-    allowReferencePrice: false,
+    // зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d): справочная цена допускается — перед ней «≈», а текст об
+    // автопродлении строится ТОЛЬКО из настоящей цены магазина/кэша (иначе чужая валюта выдавалась бы за условия подписки).
   });
 
   const enabledOrder = useMemo(
@@ -3790,11 +3792,14 @@ function CleanOnboarding({
     // за год ($24.99), период и расчётную цену за месяц ($2.08 / мес) — подписью
     // снизу. Для «Месяца» списываемая сумма и есть месячная цена. Сама цена в
     // плитке одна, без «в год» / «/ мес» — иначе длинные валюты не влезали.
-    const yearlyLabel = yearlyPrice || 'Год';
+    // «≈» только у справочной цены (источник 'reference'); живая и кэш — без него.
+    const yearApprox = yearlyPriceSource === 'reference' ? '≈ ' : '';
+    const monthApprox = monthlyPriceSource === 'reference' ? '≈ ' : '';
+    const yearlyLabel = yearlyPrice ? `${yearApprox}${yearlyPrice}` : 'Год';
     const yearlySubLabel = yearlyPrice
       ? (yearlyPerMonth ? `в год · ${yearlyPerMonth} / мес` : 'в год')
       : undefined;
-    const monthlyLabel = monthlyPrice || 'Месяц';
+    const monthlyLabel = monthlyPrice ? `${monthApprox}${monthlyPrice}` : 'Месяц';
     const monthlySubLabel = monthlyPrice ? 'в месяц' : undefined;
     const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? 'Разовая покупка' : 'Разовый доступ');
     const isLifetime = selectedBillingPlan === 'lifetime';
@@ -3816,8 +3821,11 @@ function CleanOnboarding({
         : 'Отмена в любой момент';
     const selectedSubscriptionPrice = selectedBillingPlan === 'yearly' ? yearlyPrice : monthlyPrice;
     const selectedSubscriptionPeriod = selectedBillingPlan === 'yearly' ? 'год' : 'месяц';
+    const selectedPriceIsReference = (selectedBillingPlan === 'yearly' ? yearlyPriceSource : monthlyPriceSource) === 'reference';
     const subscriptionDisclosure = isLifetime
       ? `${lifetimeLabel}. Разовая покупка — без подписки.`
+      : selectedSubscriptionPrice && selectedPriceIsReference
+        ? 'Цена уточнится в магазине — точные условия подписки покажем перед оформлением.'
       : selectedSubscriptionPrice
         ? buildSubscriptionDisclosureRu({
             trialDays: effectiveTrialDays,
@@ -3863,7 +3871,7 @@ function CleanOnboarding({
               testID="onboarding-paywall-continue"
               flat
             />
-            <ReassureLine label={reassure} />
+            <ReassureLine label={paywallTapNotice ? 'Попробуй через минуту' : reassure} />
             <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
             <Text style={styles.paywallLegalNote}>
               Подписка продлевается автоматически. Отменить можно в настройках магазина.{' '}
@@ -3938,9 +3946,9 @@ function CleanOnboarding({
             else if (action === 'referral') openCodeSheet('referral');
             else void handleRestore();
           }}
-          yearlyPrice={yearlyPrice || 'Год'}
+          yearlyPrice={yearlyPrice ? `${yearApprox}${yearlyPrice}` : 'Год'}
           yearlyPerMonth={yearlyPerMonth || '—'}
-          monthlyPrice={monthlyPrice || 'Месяц'}
+          monthlyPrice={monthlyPrice ? `${monthApprox}${monthlyPrice}` : 'Месяц'}
           lifetimePrice={lifetimeLabel}
           lifetimeAvailable={lifetimeAvailable}
           loading={paywallLoading}

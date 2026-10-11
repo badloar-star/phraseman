@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { captureAccountGeneration } from '../app/account_generation';
+import { getDevDialogSend } from '../app/dev_dialog_state';
 import {
   markAiDialogMonthlyQuotaExhausted,
   readAiDialogMonthlyQuota,
@@ -187,6 +188,12 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     setQuota((current) => (turnId ? settleDialogueV2QuotaTurn(current, turnId, 0) : setDialogueV2QuotaRemaining(current, 0)));
     setQuotaExhausted(true);
     setServerExhausted(true);
+    // зачем (координатор 12.10, dev_dialog_send=quota_exhausted): «исчерпан» от подставного хода не пишем в зеркало —
+    // иначе тестовый аккаунт застрял бы на экране лимита до конца месяца. Экран лимита показывается как обычно.
+    if (getDevDialogSend() === 'quota_exhausted') {
+      console.log('[DEV-STATE] dialogs: send=quota_exhausted — экран лимита показан, зеркало не тронуто');
+      return;
+    }
     if (studyTarget) {
       void markAiDialogMonthlyQuotaExhausted(studyTarget, captureAccountGeneration().stableId, observation ?? undefined);
     }

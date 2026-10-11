@@ -27,6 +27,7 @@ import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
+import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
 export type DevVipKind = 'promo' | 'promo_lifetime' | 'referral' | 'survey' | 'idea' | 'tester' | 'admin' | 'admin_lifetime' | 'off';
 const VIP_KINDS = ['promo', 'promo_lifetime', 'referral', 'survey', 'idea', 'tester', 'admin', 'admin_lifetime', 'off'] as const;
@@ -78,6 +79,8 @@ export type DevStateRequest = Readonly<{
   /** Диалоги (R1 dialogs-*): отказ сервера, настроение, рубильник, удержание загрузки свободного разговора, отказ энергии. off — снять. */
   dialogFail?: DevDialogFail | 'off';
   dialogMood?: DevDialogMood | 'off';
+  /** Подставной ход Диалога без ИИ и без Firestore (координатор 12.10, «N/30»): ok / отказы; off — снять. */
+  dialogSend?: DevDialogSendMode | 'off';
   dialogsPaused?: 'on' | 'off';
   energyFail?: 'on' | 'off';
   /** Тост результата проверки статуса/восстановления покупок (R1 paywall-gap-011…013): показывается через ~0,9 с после ссылки. */
@@ -181,6 +184,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
+  request.dialogSend = pick('dev_dialog_send', [...DEV_DIALOG_SENDS, 'off'] as const);
   const onOff = (key: string): 'on' | 'off' | undefined => {
     const value = pick(key, ['1', 'on', 'true', '0', 'off', 'false'] as const);
     if (value === undefined) return undefined;
@@ -373,6 +377,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         : (request.dialogsPaused === 'on' ? 'paused' : null);
       return setDevDialogState({ fail });
     });
+  }
+  if (request.dialogSend !== undefined) {
+    // зачем (координатор 12.10): старт сессии и ход Диалога без сети — Сверка снимает «N/30» без ИИ на проде.
+    await step('dialogSend', request.dialogSend, async () => setDevDialogState({ send: request.dialogSend === 'off' ? null : request.dialogSend! }));
   }
   if (request.dialogMood !== undefined) {
     await step('dialogMood', request.dialogMood, async () => setDevDialogState({ mood: request.dialogMood === 'off' ? null : request.dialogMood! }));

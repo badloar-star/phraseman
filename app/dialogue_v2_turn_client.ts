@@ -1,5 +1,7 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { getDevDialogSend } from './dev_dialog_state';
+import { devDialogSessionId } from './dev_dialog_send';
 
 import {
   isDialogueV2PreparedBotVoiceToken,
@@ -281,6 +283,13 @@ export function prestartDialogueV2TextSession(selection: DialogueV2SessionStartR
 }
 
 async function requestDialogueV2TextSessionFromNetwork(request: DialogueV2SessionStartRequest): Promise<DialogueV2SessionStartResponse | null> {
+  // зачем (координатор 12.10, dev_dialog_send): при подставном ходе и старт не идёт в сеть — иначе в прод пишется
+  // документ сессии. Здесь же ловится и предстарт с брифинга. В стор-сборке getDevDialogSend() = null.
+  if (getDevDialogSend()) {
+    const session = { ok: true as const, sessionId: devDialogSessionId(Date.now()), expiresAtMs: Date.now() + 30 * 60_000 };
+    console.log(`[DEV-STATE] dialogs: старт сессии подменён (без сети) scenarioId=${request.scenarioId}`); // guard-ok: dev-ветка
+    return session;
+  }
   try {
     const callable = httpsCallable<DialogueV2SessionStartRequest, unknown>(getFunctions(getApp(), FUNCTIONS_REGION), 'dialogueV2SessionStart');
     return safeStartResponse((await callable(request)).data);

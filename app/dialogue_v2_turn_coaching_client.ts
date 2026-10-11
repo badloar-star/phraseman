@@ -6,7 +6,10 @@ import {
   parseDialogueV2PreparedBotVoiceSelection,
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
-import { getDevDialogFail, getDevDialogMood } from './dev_dialog_state';
+import { getDevDialogFail, getDevDialogMood, getDevDialogSend } from './dev_dialog_state';
+import { resolveDevDialogSend } from './dev_dialog_send';
+import { readAiDialogMonthlyQuota } from './ai_dialog_daily_quota';
+import { captureAccountGeneration } from './account_generation';
 import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { DialogueV2TextTurnUnavailableError, type DialogueV2TextTurnStudyTarget } from './dialogue_v2_turn_client';
 
@@ -257,6 +260,25 @@ export async function sendDialogueV2CoachedTextTurn(
   if (devFail) {
     console.log(`[DEV-STATE] dialogs: ход подменён отказом reason=${devFail} scenarioId=${request.scenarioId}`); // guard-ok: dev-ветка
     throw new DialogueV2TurnFailureError(devFail);
+  }
+  // зачем (координатор 12.10, dev_dialog_send): Сверка снимает «N/30» без ИИ на проде — ход подменяется ДО сети с
+  // задержкой как у живого ответа; в стор-сборке getDevDialogSend() = null.
+  const devSend = getDevDialogSend();
+  if (devSend) {
+    const outcome = await resolveDevDialogSend(devSend, {
+      readQuota: () => readAiDialogMonthlyQuota(request.studyTarget, captureAccountGeneration().stableId),
+      wait: (ms) => new Promise<void>((resolve) => { setTimeout(resolve, ms); }),
+      nowMs: () => Date.now(),
+    });
+    if (outcome.kind === 'fail') throw new DialogueV2TurnFailureError(outcome.reason);
+    return {
+      kind: 'reply',
+      replies: [{ personaId: 'dev', text: 'Got it! Tell me a bit more. (dev)' }],
+      replayed: false,
+      preparedBotVoiceSelection: null,
+      quota: { remaining: outcome.remaining, resetAtMs: outcome.resetAtMs, quotaVersion: 1 },
+      coaching: null,
+    };
   }
   const startedAt = Date.now();
   let data: unknown;

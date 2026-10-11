@@ -8,6 +8,7 @@
  * Только `__DEV__ && !IS_STORE_RELEASE`: в стор-сборке геттеры всегда «выключено», а установка отклоняется. Логи: [DEV-STATE].
  */
 import { IS_STORE_RELEASE } from './config';
+import type { DevDialogSendMode } from './dev_dialog_send';
 
 export type DevDialogFail = 'service' | 'rate_limited' | 'plus_daily_cap' | 'paused';
 export type DevDialogMood = 'happy' | 'smile' | 'neutral' | 'sad' | 'angry';
@@ -17,8 +18,9 @@ export const DEV_DIALOG_MOODS = ['happy', 'smile', 'neutral', 'sad', 'angry'] as
 
 const LOG = '[DEV-STATE]';
 
-type State = { fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; energyFail: boolean };
-let state: State = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false };
+// зачем (координатор 12.10): send — подставной ход без ИИ и без Firestore (dev_dialog_send), см. dev_dialog_send.ts.
+type State = { fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; energyFail: boolean; send: DevDialogSendMode | null };
+let state: State = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false, send: null };
 
 function devDialogAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -51,7 +53,12 @@ export function isDevDialogEnergyFail(): boolean {
   return devDialogAvailable() && state.energyFail;
 }
 
+/** Подставной ход (dev_dialog_send): старт сессии и ход без сети. В стор-сборке — всегда null. */
+export function getDevDialogSend(): DevDialogSendMode | null {
+  return devDialogAvailable() ? state.send : null;
+}
+
 /** Только для тестов. */
 export function resetDevDialogState(): void {
-  state = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false };
+  state = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false, send: null };
 }

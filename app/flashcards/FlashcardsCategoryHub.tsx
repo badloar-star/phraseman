@@ -630,7 +630,7 @@ export default function FlashcardsCategoryHub({
         borderColor: t.border,
       }}
     >
-      <Text style={{ fontSize: 13, fontWeight: '700', color: t.textSecond }}>{label}</Text>
+      <Text style={{ fontSize: 13, fontWeight: '700', color: t.accentText }}>{label}</Text>
     </View>
   );
 
@@ -652,7 +652,7 @@ export default function FlashcardsCategoryHub({
       <Ionicons
         name={(packCategoryIonIcon(pack.category) || 'albums-outline') as keyof typeof Ionicons.glyphMap}
         size={Math.round(size * 0.62)}
-        color={pack.isCommunityUgc ? t.accent : t.textPrimary}
+        color={pack.isCommunityUgc ? t.accentText : t.textPrimary}
       />
     );
   };
@@ -702,7 +702,7 @@ export default function FlashcardsCategoryHub({
             {packIcon(pack, packTileIconSize)}
             {openingPackId === pack.id ? (
               <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}>
-                <ActivityIndicator color={t.accent} />
+                <ActivityIndicator color={t.accentText} />
               </View>
             ) : null}
             {pack.cardCount > 0 ? countPill(String(pack.cardCount)) : null}

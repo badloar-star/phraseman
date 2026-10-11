@@ -80,7 +80,7 @@ export default function VerbLetterBank({
         borderBottomWidth: 2, borderBottomColor: t.border, paddingBottom: 8,
       }}>
         {picked.length === 0 ? (
-          <Text style={{ color: t.textSecond, fontSize: f.body, opacity: 0.6 }}>· · ·</Text>
+          <Text style={{ color: t.accentText, fontSize: f.body, opacity: 0.6 }}>· · ·</Text>
         ) : (
           picked.map((tile, i) => (
             <TouchableOpacity
@@ -136,7 +136,7 @@ export default function VerbLetterBank({
             opacity: picked.length === 0 ? 0.4 : 1,
           }}
         >
-          <Ionicons name="backspace-outline" size={18} color={t.textSecond} />
+          <Ionicons name="backspace-outline" size={18} color={t.accentText} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={submit}
@@ -149,7 +149,7 @@ export default function VerbLetterBank({
             opacity: canSubmit ? 1 : 0.6,
           }}
         >
-          <Text style={{ color: canSubmit ? t.correctText : t.textSecond, fontSize: f.bodyLg, fontWeight: '800' }}>
+          <Text style={{ color: canSubmit ? t.correctText : t.accentText, fontSize: f.bodyLg, fontWeight: '800' }}>
             {assembled ? assembled : '—'}
           </Text>
         </TouchableOpacity>

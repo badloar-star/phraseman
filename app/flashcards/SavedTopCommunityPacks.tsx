@@ -116,7 +116,7 @@ function CommunityHighlightRow({ pack, lang, owned, opening, disabled, onOpen }:
             color={g.secondary}
           />
           {pack.cardCount > 0 ? <View testID={`saved-top-pack-count-${pack.id}`} style={[styles.highlightBadge, { backgroundColor: g.sheet }]}><Text style={[styles.highlightBadgeText, { color: g.text }]}>{pack.cardCount}</Text></View> : null}
-          {opening ? <ActivityIndicator size="small" color={g.cta} style={styles.opening} /> : null}
+          {opening ? <ActivityIndicator size="small" color={g.accentText} style={styles.opening} /> : null}
           {owned ? <Ionicons name="checkmark-circle" size={16} color={g.lightTint} style={styles.owned} /> : null}
         </View>
         <FlowText testID={`saved-top-pack-title-${pack.id}`} provenance="user" style={[styles.highlightTitle, { color: g.text }]}>{title}</FlowText>

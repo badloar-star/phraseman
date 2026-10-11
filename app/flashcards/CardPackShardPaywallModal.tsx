@@ -437,7 +437,7 @@ export default function CardPackShardPaywallModal({
   /** Знак валюты рядом с ценой: у монет (рун) свой знак ᚱ, рисуется текстом. */
   const CurrencyMark = useCallback(({ size }: { size: number }) => (
     <Text
-      style={{ fontSize: Math.round(size * 0.82), fontWeight: '900', color: t.gold }}
+      style={{ fontSize: Math.round(size * 0.82), fontWeight: '900', color: t.accentText }}
       maxFontSizeMultiplier={1.2}
     >
       ᚱ
@@ -649,13 +649,13 @@ export default function CardPackShardPaywallModal({
                               {packPng ? (
                                 <Image source={packPng} style={{ width: 64, height: 64 }} contentFit="contain" />
                               ) : (
-                                <Ionicons name={iconName} size={42} color={t.accent} />
+                                <Ionicons name={iconName} size={42} color={t.accentText} />
                               )}
                             </LinearGradient>
                             <View style={{ flex: 1, minWidth: 0 }}>
                               <Text
                                 style={{
-                                  color: t.textSecond,
+                                  color: t.accentText,
                                   fontSize: f.label,
                                   fontWeight: '800',
                                   letterSpacing: 1.2,
@@ -676,7 +676,7 @@ export default function CardPackShardPaywallModal({
                           <Animated.Text
                             entering={FadeInDown.delay(80).duration(420).easing(Easing.out(Easing.cubic))}
                             style={{
-                              color: t.textSecond,
+                              color: t.accentText,
                               fontSize: f.sub,
                               fontWeight: '800',
                               marginTop: 14,
@@ -702,7 +702,7 @@ export default function CardPackShardPaywallModal({
                             style={{ marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                           >
                             <CurrencyMark size={28} />
-                            <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
+                            <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '700' }}>
                               {str.shortageRemaining(Math.max(0, price - balance))}
                             </Text>
                           </Animated.View>
@@ -833,13 +833,13 @@ export default function CardPackShardPaywallModal({
                               {packPng ? (
                                 <Image source={packPng} style={{ width: 64, height: 64 }} contentFit="contain" />
                               ) : (
-                                <Ionicons name={iconName} size={42} color={t.accent} />
+                                <Ionicons name={iconName} size={42} color={t.accentText} />
                               )}
                             </LinearGradient>
                             <View style={{ flex: 1, minWidth: 0 }}>
                               <Text
                                 style={{
-                                  color: t.gold,
+                                  color: t.accentText,
                                   fontSize: f.label,
                                   fontWeight: '800',
                                   letterSpacing: 1.2,
@@ -887,9 +887,9 @@ export default function CardPackShardPaywallModal({
                             {packPng ? (
                               <Image source={packPng} style={{ width: 28, height: 28 }} contentFit="contain" />
                             ) : (
-                              <Ionicons name={iconName} size={22} color={t.textSecond} />
+                              <Ionicons name={iconName} size={22} color={t.accentText} />
                             )}
-                            <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>{meta}</Text>
+                            <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '700' }}>{meta}</Text>
                           </Animated.View>
 
                           <Animated.View
@@ -904,8 +904,8 @@ export default function CardPackShardPaywallModal({
                             }}
                           >
                             <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
-                              <Ionicons name="alert-circle-outline" size={20} color={t.gold} />
-                              <Text style={{ flex: 1, color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: lh(22) }}>
+                              <Ionicons name="alert-circle-outline" size={20} color={t.accentText} />
+                              <Text style={{ flex: 1, color: t.accentText, fontSize: f.body, fontWeight: '700', lineHeight: lh(22) }}>
                                 {str.voucherWarn}
                               </Text>
                             </View>
@@ -932,13 +932,13 @@ export default function CardPackShardPaywallModal({
                               {packPng ? (
                                 <Image source={packPng} style={{ width: 64, height: 64 }} contentFit="contain" />
                               ) : (
-                                <Ionicons name={iconName} size={42} color={t.accent} />
+                                <Ionicons name={iconName} size={42} color={t.accentText} />
                               )}
                             </LinearGradient>
                             <View style={{ flex: 1, minWidth: 0 }}>
                               <Text
                                 style={{
-                                  color: t.textSecond,
+                                  color: t.accentText,
                                   fontSize: f.label,
                                   fontWeight: '800',
                                   letterSpacing: 1.2,
@@ -978,9 +978,9 @@ export default function CardPackShardPaywallModal({
                             {packPng ? (
                               <Image source={packPng} style={{ width: 28, height: 28 }} contentFit="contain" />
                             ) : (
-                              <Ionicons name={iconName} size={22} color={t.textSecond} />
+                              <Ionicons name={iconName} size={22} color={t.accentText} />
                             )}
-                            <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>{meta}</Text>
+                            <Text style={{ color: t.accentText, fontSize: f.caption, fontWeight: '700' }}>{meta}</Text>
                           </Animated.View>
 
                           <Animated.View

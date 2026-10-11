@@ -212,7 +212,7 @@ export default function DeckSelectionTile({
               transition={simpleMotion ? 0 : FC_TIMING.fast}
             />
           ) : (
-            <Ionicons name={deck.icon} size={22} color={selected ? t.accent : t.textMuted} />
+            <Ionicons name={deck.icon} size={22} color={selected ? t.accentText : t.textMuted} />
           )}
         </View>
 
@@ -238,7 +238,7 @@ export default function DeckSelectionTile({
         </View>
 
         <View style={[styles.countBadge, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-          <Text style={[styles.countText, { color: t.textSecond, fontSize: f.caption }]}>{deck.count}</Text>
+          <Text style={[styles.countText, { color: t.accentText, fontSize: f.caption }]}>{deck.count}</Text>
         </View>
 
         <View

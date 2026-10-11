@@ -70,7 +70,7 @@ export default function FlashcardsFilterDropdown({
             onPress={() => onSelect('all')}
             style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 }}
           >
-            <Text style={{ fontSize: f.body, color: savedGlass ? g.text : activeFilter === 'all' ? t.accent : t.textPrimary, fontWeight: activeFilter === 'all' ? '700' : '400' }}>
+            <Text style={{ fontSize: f.body, color: savedGlass ? g.text : activeFilter === 'all' ? t.accentText : t.textPrimary, fontWeight: activeFilter === 'all' ? '700' : '400' }}>
               {triLang(lang, {
                 ru: 'Все',
                 uk: 'Всі',
@@ -83,13 +83,13 @@ export default function FlashcardsFilterDropdown({
                 pl: 'Wszystkie',
               })}
             </Text>
-            {activeFilter === 'all' && <Ionicons name="checkmark" size={16} color={savedGlass ? g.lightTint : t.accent} />}
+            {activeFilter === 'all' && <Ionicons name="checkmark" size={16} color={savedGlass ? g.lightTint : t.accentText} />}
           </TouchableOpacity>
 
           {filterGroups.map((group) => (
             <View key={group.groupKey}>
               <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 0.5, borderTopColor: savedGlass ? g.glassEdge : t.border, backgroundColor: savedGlass ? g.card : t.bgSurface }}>
-                <Text style={{ fontSize: f.caption, color: savedGlass ? g.secondary : t.textSecond, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8 }}>{group.groupLabel}</Text>
+                <Text style={{ fontSize: f.caption, color: savedGlass ? g.secondary : t.accentText, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8 }}>{group.groupLabel}</Text>
               </View>
               {group.items.map((opt) => {
                 const active = activeFilter === opt.key;
@@ -107,8 +107,8 @@ export default function FlashcardsFilterDropdown({
                       borderTopColor: savedGlass ? g.glassEdge : t.border,
                     }}
                   >
-                    <Text style={{ fontSize: f.body, color: savedGlass ? g.text : active ? t.accent : t.textPrimary, fontWeight: active ? '700' : '400' }}>{opt.label}</Text>
-                    {active && <Ionicons name="checkmark" size={16} color={savedGlass ? g.lightTint : t.accent} />}
+                    <Text style={{ fontSize: f.body, color: savedGlass ? g.text : active ? t.accentText : t.textPrimary, fontWeight: active ? '700' : '400' }}>{opt.label}</Text>
+                    {active && <Ionicons name="checkmark" size={16} color={savedGlass ? g.lightTint : t.accentText} />}
                   </TouchableOpacity>
                 );
               })}

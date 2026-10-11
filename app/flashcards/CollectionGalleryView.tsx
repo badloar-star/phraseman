@@ -159,7 +159,7 @@ export default function CollectionGalleryView({
             </Pressable>
           ) : null}
           {searching && cards.length > 0 ? (
-            <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{`${foundLabel} · ${cards.length}`}</Text>
+            <Text testID="fc-search-found" style={[styles.found, { color: g.accentText }]}>{`${foundLabel} · ${cards.length}`}</Text>
           ) : null}
           <View style={[styles.gridWrap, searching && cards.length > 0 && styles.gridWrapFound, gridTopGap !== undefined && { marginTop: gridTopGap }]} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
             <CardsGallery

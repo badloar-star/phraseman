@@ -173,7 +173,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
             ) : null}
             {opening ? (
               <View style={[StyleSheet.absoluteFillObject, styles.openingVeil, { backgroundColor: g.opaqueCard }]} pointerEvents="none">
-                <ActivityIndicator color={g.cta} />
+                <ActivityIndicator color={g.accentText} />
               </View>
             ) : null}
           </Pressable>

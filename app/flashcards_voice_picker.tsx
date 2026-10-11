@@ -210,7 +210,7 @@ export default function FlashcardsVoicePickerScreen() {
         <Ionicons
           name={active ? 'radio-button-on' : 'radio-button-off'}
           size={20}
-          color={active ? t.accent : t.textGhost}
+          color={active ? t.accentText : t.textGhost}
         />
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -230,7 +230,7 @@ export default function FlashcardsVoicePickerScreen() {
                   paddingVertical: 2,
                 }}
               >
-                <Text style={{ color: t.gold, fontSize: f.caption - 1, fontWeight: '800' }}>
+                <Text style={{ color: t.accentText, fontSize: f.caption - 1, fontWeight: '800' }}>
                   {enhancedBadgeLabel}
                 </Text>
               </View>
@@ -259,7 +259,7 @@ export default function FlashcardsVoicePickerScreen() {
             backgroundColor: t.bgCard,
           }}
         >
-          <Ionicons name="volume-medium" size={17} color={t.accent} />
+          <Ionicons name="volume-medium" size={17} color={t.accentText} />
         </TouchableOpacity>
       </TouchableOpacity>
     );
@@ -362,14 +362,14 @@ export default function FlashcardsVoicePickerScreen() {
                     >
                       <Text
                         style={{
-                          color: active ? t.accent : t.textMuted,
+                          color: active ? t.accentText : t.textMuted,
                           fontSize: f.sub,
                           fontWeight: active ? '800' : '600',
                         }}
                       >
                         {rateLabels[p.key]}
                       </Text>
-                      <Text style={{ color: active ? t.accent : t.textGhost, fontSize: f.caption - 1, marginTop: 1 }}>
+                      <Text style={{ color: active ? t.accentText : t.textGhost, fontSize: f.caption - 1, marginTop: 1 }}>
                         {p.value.toFixed(1)}x
                       </Text>
                     </TouchableOpacity>

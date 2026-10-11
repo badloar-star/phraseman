@@ -641,8 +641,8 @@ function FlashcardListItemImpl({
                 paddingVertical: 11,
               }}
             >
-              <Ionicons name="pencil-outline" size={16} color={t.accent} />
-              <FlowText testID={`fc-details-edit-label-${item.id}`} provenance="authored" style={{ color: t.accent, fontSize: f.sub, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}>
+              <Ionicons name="pencil-outline" size={16} color={t.accentText} />
+              <FlowText testID={`fc-details-edit-label-${item.id}`} provenance="authored" style={{ color: t.accentText, fontSize: f.sub, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}>
                 {editLabel}
               </FlowText>
             </TouchableOpacity>
@@ -792,7 +792,7 @@ function FlashcardListItemImpl({
                     paddingVertical: 3,
                   }}
                 >
-                  <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
+                  <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
               {savedGlass ? (
@@ -950,7 +950,7 @@ function FlashcardListItemImpl({
                     paddingVertical: 3,
                   }}
                 >
-                  <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
+                  <Text style={{ color: t.accentText, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
               <ScrollView decelerationRate="fast"
@@ -1054,7 +1054,7 @@ function FlashcardListItemImpl({
                       opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
-                    <Ionicons name="volume-medium" size={15} color={t.accent} />
+                    <Ionicons name="volume-medium" size={15} color={t.accentText} />
                   </TouchableOpacity>
                 </Animated.View>
                 <Animated.View
@@ -1085,7 +1085,7 @@ function FlashcardListItemImpl({
                       opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
-                    <Ionicons name="volume-medium" size={15} color={t.accent} />
+                    <Ionicons name="volume-medium" size={15} color={t.accentText} />
                   </TouchableOpacity>
                 </Animated.View>
               </>
@@ -1110,7 +1110,7 @@ function FlashcardListItemImpl({
                     opacity: voiceDisabled ? 0.42 : 1,
                   }}
                 >
-                  <Ionicons name="volume-medium" size={15} color={t.accent} />
+                  <Ionicons name="volume-medium" size={15} color={t.accentText} />
                 </TouchableOpacity>
               </Animated.View>
             )}
@@ -1130,8 +1130,8 @@ function FlashcardListItemImpl({
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 style={[styles.videoMomentChip, { backgroundColor: `${t.bgSurface}F0`, borderColor: t.border }]}
               >
-                <Ionicons name="play" size={12} color={t.accent} />
-                <Text style={[styles.videoMomentText, { color: t.accent }]}>{formatVideoMoment(videoMomentSec)}</Text>
+                <Ionicons name="play" size={12} color={t.accentText} />
+                <Text style={[styles.videoMomentText, { color: t.accentText }]}>{formatVideoMoment(videoMomentSec)}</Text>
               </TouchableOpacity>
             </View>
           ) : null}
@@ -1154,7 +1154,7 @@ function FlashcardListItemImpl({
                     <Ionicons
                       name="chevron-down"
                       size={22}
-                      color={usePackFace && packCardTheme ? packCardTheme.borderAccent : t.accent}
+                      color={usePackFace && packCardTheme ? packCardTheme.borderAccent : t.accentText}
                     />
                   </Reanimated.View>
                 </Animated.View>

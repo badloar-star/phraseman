@@ -181,7 +181,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', color: g.text },
   rows: { marginTop: 9, gap: 9 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
-  time: { width: 40, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.accent },
+  time: { width: 40, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.accentText },
   rowText: { flex: 1, minWidth: 0 },
   phrase: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   tr: { marginTop: 2, fontSize: 16, lineHeight: 21 },

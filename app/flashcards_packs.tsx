@@ -464,7 +464,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               <Ionicons
                 name={searchOpen ? 'search' : 'search-outline'}
                 size={18}
-                color={searchOpen || communityQuery.trim().length > 0 ? t.accent : g.secondary}
+                color={searchOpen || communityQuery.trim().length > 0 ? t.accentText : g.secondary}
               />
             </TouchableOpacity>
             <PackLanguagePicker
@@ -507,7 +507,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             ) : null}
             <View style={[styles.headerSearchField, embedded ? [styles.headerSearchFieldEmbedded, { backgroundColor: g.hairlineSoft }] : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
               {embedded ? null : <CatalogGlass tint={g.selected} edge={g.glassEdge} />}
-              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.text : t.accent} />
+              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.text : t.accentText} />
               <TextInput
                 ref={searchInputRef}
                 testID="flashcards-packs-search"

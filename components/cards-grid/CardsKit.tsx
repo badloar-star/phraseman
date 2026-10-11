@@ -231,7 +231,7 @@ export const KitSearchField = memo(function KitSearchField({ g, value, onChangeT
 /** «Найдено · N» — мятная строка 12/700 с разрядкой над результатами поиска (`.ov`). */
 export const KitFound = memo(function KitFound({ g, label }: Readonly<{ g: GlassTokens; label: string }>) {
   const lh = useLineScale();
-  return <Text testID="fc-search-found" style={[styles.found, { color: g.accent, lineHeight: lh(16) }]}>{label}</Text>;
+  return <Text testID="fc-search-found" style={[styles.found, { color: g.accentText, lineHeight: lh(16) }]}>{label}</Text>;
 });
 
 /** Переключатель из N сегментов (`.seg3`): плашка 50, сегменты 40, активный — мятный. */

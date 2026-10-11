@@ -3475,8 +3475,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             },
           ]}
         >
-          <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={startBlockReason ? t.textSecond : t.textOnGold} />
-          <Text style={[styles.heroStartText, { color: startBlockReason ? t.textSecond : t.textOnGold, fontSize: f.body }]}>
+          <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={startBlockReason ? t.accentText : t.textOnGold} />
+          <Text style={[styles.heroStartText, { color: startBlockReason ? t.accentText : t.textOnGold, fontSize: f.body }]}>
             {startBlockReason?.label ?? text.start}
           </Text>
         </DuoPressable>
@@ -3529,7 +3529,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <View style={[styles.heroCard, { backgroundColor: glassFill(t.bgSurface, 0.46), shadowColor: t.cardShadow }]}>
         <View style={styles.heroTop}>
           <View style={[styles.heroIcon, { backgroundColor: `${t.accent}22` }]}>
-            <Ionicons name="sparkles-outline" size={22} color={t.accent} />
+            <Ionicons name="sparkles-outline" size={22} color={t.accentText} />
           </View>
           <View style={styles.heroCopy}>
             <Text style={[styles.heroTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{text.smartQueue}</Text>
@@ -3638,7 +3638,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         </View>
       ) : loadingSources && sources.length === 0 ? (
         <View style={styles.loadingBox}>
-          <Ionicons name="albums-outline" size={26} color={t.accent} />
+          <Ionicons name="albums-outline" size={26} color={t.accentText} />
         </View>
       ) : sources.length === 0 ? (
         <View style={[styles.emptyBox, { backgroundColor: glassFill(t.bgSurface, 0.32) }]}>
@@ -3938,8 +3938,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           )}
           {stats.streak >= 3 ? (
             <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: 'transparent' }]}>
-              <Ionicons name="flame-outline" size={12} color={t.gold} />
-              <Text style={[styles.headerStreakText, { color: t.gold, fontSize: f.caption }]}>
+              <Ionicons name="flame-outline" size={12} color={t.accentText} />
+              <Text style={[styles.headerStreakText, { color: t.accentText, fontSize: f.caption }]}>
                 {text.streakLabel} {stats.streak}
               </Text>
             </View>
@@ -4080,7 +4080,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                 })}
               >
                 <View style={[styles.speakButton, isCompactFlashcardsTask && styles.compactSpeakButton, { backgroundColor: t.bgCard }]}>
-                  <Ionicons name="volume-high-outline" size={isCompactFlashcardsTask ? 16 : 18} color={t.textSecond} />
+                  <Ionicons name="volume-high-outline" size={isCompactFlashcardsTask ? 16 : 18} color={t.accentText} />
                 </View>
               </View>
             </View>
@@ -4115,7 +4115,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                 {text.shownTranslation}
               </Text>
               <Text
-                style={[styles.translationText, isCompactFlashcardsTask && styles.compactTranslationText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.body : f.bodyLg }]}
+                style={[styles.translationText, isCompactFlashcardsTask && styles.compactTranslationText, { color: t.accentText, fontSize: isCompactFlashcardsTask ? f.body : f.bodyLg }]}
               >
                 {currentPrompt.shownTranslation}
               </Text>
@@ -4140,7 +4140,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                 <Text
                   style={[
                     styles.feedbackTitle,
-                    { color: feedback.kind === 'wrong' ? t.wrong : t.gold, fontSize: isCompactFlashcardsTask ? f.caption : f.body },
+                    { color: feedback.kind === 'wrong' ? t.wrong : t.accentText, fontSize: isCompactFlashcardsTask ? f.caption : f.body },
                   ]}
                 >
                   {feedback.kind === 'wrong' ? text.wrongTitle : text.hintTitle}
@@ -4178,8 +4178,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               onPress={revealCurrent}
               style={[styles.revealButton, isCompactFlashcardsTask && styles.compactRevealButton, { backgroundColor: t.bgSurface }]}
             >
-              <Ionicons name="eye-outline" size={18} color={t.textSecond} />
-              <Text style={[styles.revealText, { color: t.textSecond, fontSize: f.caption }]}>{text.reveal}</Text>
+              <Ionicons name="eye-outline" size={18} color={t.accentText} />
+              <Text style={[styles.revealText, { color: t.accentText, fontSize: f.caption }]}>{text.reveal}</Text>
             </TouchableOpacity>
             <View style={[styles.answerButtons, isCompactFlashcardsTask && styles.compactAnswerButtons]}>
               <TouchableOpacity

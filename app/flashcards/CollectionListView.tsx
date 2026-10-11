@@ -1052,7 +1052,7 @@ export function CollectionEmptyState({
         onPress={onLeave}
         style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
       >
-        <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
+        <Text style={{ color: t.accentText, fontSize: f.sub, textDecorationLine: 'underline' }}>
           {triLang(lang, {
             ru: 'Наборы сообщества',
             uk: 'Набори спільноти',

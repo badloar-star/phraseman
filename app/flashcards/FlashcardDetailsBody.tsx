@@ -137,7 +137,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
           <Text
             maxFontSizeMultiplier={1.35}
             style={{
-              color: t.textSecond,
+              color: t.accentText,
               fontSize: f.sub,
               lineHeight: lh(Math.round(f.sub * 1.35), 1.35),
               fontWeight: '700',

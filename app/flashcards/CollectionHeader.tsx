@@ -335,7 +335,7 @@ export default function CollectionHeader({
         </FlowText>
         <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 6, flexShrink: 0 }}>
           {selectionMode ? (
-            <Text testID="fc-saved-selection-count" style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '900' }}>
+            <Text testID="fc-saved-selection-count" style={{ color: t.accentText, fontSize: f.caption, fontWeight: '900' }}>
               {selectedCount} / {selectionTotal}
             </Text>
           ) : savedSurface ? (
@@ -380,7 +380,7 @@ export default function CollectionHeader({
               <Ionicons
                 name={viewMode === 'list' ? 'albums-outline' : 'list-outline'}
                 size={VIEW_TOGGLE_ICON_SIZE}
-                color={viewMode === 'deck' ? t.accent : t.textSecond}
+                color={viewMode === 'deck' ? t.accentText : t.accentText}
               />
             </TouchableOpacity>
           )}
@@ -402,15 +402,15 @@ export default function CollectionHeader({
               }}
             >
               {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
-              <Ionicons name="filter-outline" size={12} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond} />
+              <Ionicons name="filter-outline" size={12} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accentText : t.accentText} />
               <FlowText testID="fc-filter-label" provenance="authored"
-                style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond }}
+                style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: savedSurface ? g.text : activeFilter !== 'all' ? t.accentText : t.accentText }}
               >
                 {activeFilter === 'all'
                   ? filterLabel
                   : (filterOptions.find(o => o.key === activeFilter)?.label ?? filterLabel)}
               </FlowText>
-              <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond} />
+              <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accentText : t.accentText} />
             </TouchableOpacity>
           )}
         </View>
@@ -512,11 +512,11 @@ export default function CollectionHeader({
           }}
         >
           {publishBusy ? (
-            <ActivityIndicator size="small" color={t.accent} />
+            <ActivityIndicator size="small" color={t.accentText} />
           ) : (
-            <Ionicons name="earth-outline" size={17} color={t.accent} />
+            <Ionicons name="earth-outline" size={17} color={t.accentText} />
           )}
-          <FlowText testID="fc-publish-label" provenance="authored" style={{ flexShrink: 1, color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+          <FlowText testID="fc-publish-label" provenance="authored" style={{ flexShrink: 1, color: t.accentText, fontSize: f.sub, fontWeight: '800' }}>
             {publishLabel}
           </FlowText>
         </TouchableOpacity>
@@ -580,7 +580,7 @@ export default function CollectionHeader({
           }}
         >
           {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
-          <Ionicons name="search-outline" size={20} color={savedSurface ? g.secondary : searchActive ? t.accent : t.textMuted} />
+          <Ionicons name="search-outline" size={20} color={savedSurface ? g.secondary : searchActive ? t.accentText : t.textMuted} />
           <TextInput
             testID="fc-search-input"
             accessibilityLabel="qa-fc-search-input"

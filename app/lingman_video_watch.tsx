@@ -5,10 +5,10 @@
  * плейлиста и из раздела «Из видео» открывается отдельным экраном, а не встроенным плеером внутри списка.
  * Экран открывается мгновенно из того, что уже есть: ролик — из снимка каталога (или параметров маршрута), фразы —
  * из кэша (память → диск → сеть, только если кэш старше TTL), набор — из кэша каталога видео-наборов; сеть — фоном.
- * Вкладка «Видео» пока остаётся со встроенным плеером: «Тренировать» живёт только там, решение у владельца.
+ * Вкладка «Видео» открывает этот экран по тапу на ролик в сетке (владелец 11.10, макет video-redesign #c1, экран 3): сверху «назад» и закладка,
+ * плеер, полоса прогресса, название, фразы по таймкодам, внизу закреплена «Добавить набор себе · N карточек».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -27,15 +27,19 @@ import { pluralWord } from '../constants/plural';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { captureAccountGeneration } from './account_generation';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import { PanelDock } from '../components/mistakes-panel/PanelKit';
 import { loadVideoMarketPacks, peekVideoMarketPacks } from './community_packs/communityFirestore';
 import { normalizePackLanguage } from './flashcards/pack_languages';
-import { packTitleForInterface, type FlashcardMarketPack } from './flashcards/marketplace';
+import type { FlashcardMarketPack } from './flashcards/marketplace';
 import { formatRelativeVideoDate } from '../components/video/formatRelativeVideoDate';
 import { safeRouterBack } from './navigation_back';
 import { peekYoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 import type { VideoPhrasesSource } from './video_phrases_client';
-
-const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
+import { subscribeYoutubePosition } from './youtube_player_seek_bus';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useVideoFavorites } from '../hooks/use_video_favorites';
+import { actionToastTri, emitAppEvent } from './events';
+import { hapticTap } from '../hooks/use-haptics';
 
 const LOG = '[VIDEO-SCREEN]';
 
@@ -56,6 +60,8 @@ export default function LingmanVideoWatchScreen() {
   const { studyTarget } = useStudyTarget();
   const runtimeActive = useRuntimeActive(true);
   const token = useMemo(() => captureAccountGeneration(), []);
+  const insets = useStableSafeAreaInsets();
+  const favorites = useVideoFavorites();
 
   // Первый кадр: ролик и канал из снимка каталога, иначе — из параметров маршрута.
   const catalog = useMemo(() => peekYoutubeCatalogScreenSnapshot(token), [token]);
@@ -111,51 +117,71 @@ export default function LingmanVideoWatchScreen() {
   }, [router]);
 
   const copy = {
-    close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij film' }),
-    packOverline: triLang(lang, { ru: 'Набор к ролику', uk: 'Набір до ролика', en: 'Video pack', es: 'Pack del vídeo', 'pt-BR': 'Pacote do vídeo', vi: 'Bộ thẻ của video', id: 'Paket video', tr: 'Video paketi', pl: 'Zestaw do filmu' }),
+    back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+    save: triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' }),
+    unsave: triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' }),
   };
   const meta = [channelName, formatRelativeVideoDate(video?.publishedAt, lang), formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
-  const packMeta = pack ? [
-    triLang(lang, {
-      ru: `${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'карточка', few: 'карточки', many: 'карточек' })}`,
-      uk: `${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'картка', few: 'картки', many: 'карток' })}`,
-      en: `${pack.cardCount} cards`, es: `${pack.cardCount} tarjetas`, 'pt-BR': `${pack.cardCount} cartões`, vi: `${pack.cardCount} thẻ`,
-      id: `${pack.cardCount} kartu`, tr: `${pack.cardCount} kart`, pl: `${pack.cardCount} fiszek`,
-    }),
-    (pack.addedCount ?? 0) > 0 ? triLang(lang, { ru: `${pack.addedCount} добавили`, uk: `${pack.addedCount} додали`, en: `${pack.addedCount} added`, es: `${pack.addedCount} añadieron`, 'pt-BR': `${pack.addedCount} adicionaram`, vi: `${pack.addedCount} đã thêm`, id: `${pack.addedCount} menambahkan`, tr: `${pack.addedCount} ekledi`, pl: `${pack.addedCount} dodało` }) : '',
-  ].filter(Boolean).join(' · ') : '';
+  // зачем (макет video-redesign #c1, экран 3): закладка ролика сверху справа — то же избранное, что на карточке в сетке;
+  // вид меняется сразу (стор публикует локально), отказ сети откатывает стор, здесь — тост.
+  const savedVideo = favorites.isSaved(videoId);
+  const toggleSave = useCallback(() => {
+    void favorites.toggle(videoId).then((outcome) => {
+      if (outcome === 'ok') return;
+      console.warn(LOG, 'save:rollback', JSON.stringify({ videoId, outcome })); // guard-ok: откат закладки логируется
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить, попробуй ещё раз', uk: 'Не вдалося зберегти, спробуй ще раз', en: 'Couldn’t save, please try again',
+        es: 'No se pudo guardar, inténtalo de nuevo', 'pt-BR': 'Não foi possível salvar, tente de novo', vi: 'Không lưu được, hãy thử lại',
+        id: 'Gagal menyimpan, coba lagi', tr: 'Kaydedilemedi, tekrar dene', pl: 'Nie udało się zapisać, spróbuj ponownie',
+      }));
+    });
+  }, [favorites, videoId]);
+  // «Добавить набор себе · N карточек» (макет `cta('Добавить набор себе', '30 карточек')`).
+  const ctaLabel = pack ? triLang(lang, {
+    ru: `Добавить набор себе · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'карточка', few: 'карточки', many: 'карточек' })}`,
+    uk: `Додати набір собі · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'картка', few: 'картки', many: 'карток' })}`,
+    en: `Add the pack to mine · ${pack.cardCount} cards`, es: `Añadir el pack · ${pack.cardCount} tarjetas`, 'pt-BR': `Adicionar o pacote · ${pack.cardCount} cartões`,
+    vi: `Thêm bộ thẻ · ${pack.cardCount} thẻ`, id: `Tambahkan paket · ${pack.cardCount} kartu`, tr: `Paketi ekle · ${pack.cardCount} kart`,
+    pl: `Dodaj zestaw · ${pack.cardCount} ${pluralWord(lang, pack.cardCount, { one: 'fiszka', few: 'fiszki', many: 'fiszek' })}`,
+  }) : undefined;
+  // зачем (координатор 11.10): после «Добавить набор себе» кнопка внизу становится «Тренировать» и ведёт к карточкам ролика —
+  // тот же путь, что раньше шёл из встроенного плеера ленты.
+  const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати фрази ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
+  const trainVideo = useCallback(() => {
+    console.log(LOG, 'train', JSON.stringify({ videoId })); // guard-ok: вход в тренировку логируется
+    router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);
+  }, [router, videoId]);
 
   return (
     <ScreenGradient artBackdrop="home">
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView testID="lingman-video-watch" style={styles.container} edges={['top', 'left', 'right']}>
+        {/* зачем (макет video-redesign #c1, экран 3): сверху «назад» слева и закладка ролика справа, затем плеер с полосой прогресса. */}
+        <View style={styles.topbar}>
+          <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.back} onPress={close} hitSlop={8} style={styles.topButton}>
+            <Ionicons name="chevron-back" size={24} color={g.text} />
+          </Pressable>
+          <Pressable
+            testID={`video-save-${videoId}`}
+            accessibilityRole="button"
+            accessibilityLabel={savedVideo ? copy.unsave : copy.save}
+            accessibilityState={{ selected: savedVideo }}
+            onPressIn={() => hapticTap()}
+            onPress={toggleSave}
+            style={[styles.topButton, { backgroundColor: savedVideo ? g.accent : g.opaqueControl }]}
+          >
+            <Ionicons name={savedVideo ? 'bookmark' : 'bookmark-outline'} size={20} color={savedVideo ? g.accentInk : g.text} />
+          </Pressable>
+        </View>
         <View style={styles.player}>
           {videoId && playerOpen ? (
             <YoutubeInlinePlayer videoId={videoId} title={title} active={runtimeActive} presentation="preview" autoPlay startSec={startSec} />
           ) : null}
-          {/* зачем: ✕ макета — круг 34 на тёмной подложке в 12 от края; плеер свою кнопку не рисует (onClose не передан). */}
-          <Pressable testID="lingman-video-watch-close" accessibilityRole="button" accessibilityLabel={copy.close} onPress={close} hitSlop={8} style={styles.close}>
-            <Ionicons name="close" size={16} color={MEDIA_INK} />
-          </Pressable>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} decelerationRate="fast">
+        <WatchProgress videoId={videoId} durationSec={video?.durationSec} trackColor={g.opaqueControl} fillColor={g.accent} />
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.content, { paddingBottom: pack ? 132 + insets.bottom : 32 }]} decelerationRate="fast">
           {title ? <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text> : null}
           {meta ? <Text style={[styles.meta, { color: g.secondary }]}>{meta}</Text> : null}
-          {pack ? (
-            <View testID="lingman-video-watch-pack" style={[styles.pack, { backgroundColor: g.card, borderColor: g.glassEdge }]}>{/* guard-ok: 1px полупрозрачная кромка `.pack` макета (2.0) */}
-              <View style={styles.packRow}>
-                {video?.thumbnailUrl ? <Image accessible={false} source={{ uri: video.thumbnailUrl }} style={styles.packArt} contentFit="cover" cachePolicy="disk" /> : null}
-                <View style={styles.packCopy}>
-                  <Text style={[styles.packOverline, { color: g.secondary }]}>{copy.packOverline}</Text>
-                  <Text style={[styles.packTitle, { color: g.text }]} numberOfLines={2}>{packTitleForInterface(pack, lang)}</Text>
-                  {packMeta ? <Text style={[styles.meta, { color: g.secondary }]}>{packMeta}</Text> : null}
-                </View>
-              </View>
-              <View style={styles.packCta}>
-                <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="previewCta" />
-              </View>
-            </View>
-          ) : null}
           {videoId ? (
             <View style={styles.phrases}>
               <YoutubeVideoPhrases
@@ -163,32 +189,55 @@ export default function LingmanVideoWatchScreen() {
                 packLanguage={packLanguage}
                 sourceTitle={channelName || undefined}
                 testID={`video-phrases-${videoId}`}
+                defaultExpanded
                 onSourceResolved={(from, count) => logOpen(from, count)}
               />
             </View>
           ) : null}
         </ScrollView>
+        {pack ? (
+          // зачем (макет `.bot2`): главная кнопка «Добавить набор себе · N карточек» закреплена внизу под большим пальцем.
+          <PanelDock>
+            <View testID="lingman-video-watch-pack">
+              <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="previewCta" ctaLabel={ctaLabel} ownedCtaLabel={trainLabel} onOwnedCtaPress={trainVideo} />
+            </View>
+          </PanelDock>
+        ) : null}
       </SafeAreaView>
     </ScreenGradient>
   );
 }
 
+/**
+ * Полоса прогресса под плеером (`.bar` макета: 5, радиус 3). Позиция приходит раз в секунду из канала плеера, пока ролик играет;
+ * длительность — из каталога (нет её — полосы нет, ничего не выдумываем).
+ */
+function WatchProgress({ videoId, durationSec, trackColor, fillColor }: { videoId: string; durationSec?: number; trackColor: string; fillColor: string }) {
+  const [positionSec, setPositionSec] = useState(0);
+  useEffect(() => {
+    if (!videoId) return undefined;
+    return subscribeYoutubePosition(videoId, (value) => setPositionSec(value));
+  }, [videoId]);
+  if (typeof durationSec !== 'number' || !Number.isFinite(durationSec) || durationSec <= 0) return null;
+  const ratio = Math.max(0, Math.min(1, positionSec / durationSec));
+  return (
+    <View testID="lingman-video-watch-progress" style={[styles.bar, { backgroundColor: trackColor }]} pointerEvents="none">
+      <View style={[styles.barFill, { width: `${Math.round(ratio * 1000) / 10}%`, backgroundColor: fillColor }]} />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  // зачем: поля экрана 20 (`--pad` макета); плеер выходит за них на всю ширину (`.player { margin: 0 -20px }`).
+  // зачем: поля экрана 20 (`--pad` макета); плеер — кадр 16:9 с радиусом 14 внутри полей (`.th`).
   container: { flex: 1 },
-  player: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
-  close: { position: 'absolute', top: 12, right: 12, width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.55)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  topbar: { height: 44, marginTop: 6, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  topButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  player: { marginTop: 6, marginHorizontal: 20, aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  bar: { height: 5, borderRadius: 3, marginTop: 12, marginHorizontal: 20, overflow: 'hidden' },
+  barFill: { height: 5, borderRadius: 3 },
   content: { paddingHorizontal: 20, paddingBottom: 32 },
   title: { marginTop: 16, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   // зачем: `.vm` макета 14 → 13 по шкале D145.
   meta: { marginTop: 4, fontSize: 13, lineHeight: 18, fontWeight: '400' },
-  pack: { marginTop: 16, borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, padding: 16 }, // guard-ok: `.pack` макета — 1px полупрозрачная кромка 2.0
-  packRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  packArt: { width: 58, height: 58, borderRadius: 12 },
-  packCopy: { flex: 1, minWidth: 0 },
-  packOverline: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
-  // зачем: макет 17/700 → 16 по D145.
-  packTitle: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  packCta: { marginTop: 14 },
-  phrases: { marginTop: 24 },
+  phrases: { marginTop: 20 },
 });

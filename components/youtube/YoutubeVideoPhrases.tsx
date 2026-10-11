@@ -26,6 +26,8 @@ type YoutubeVideoPhrasesProps = {
   packLanguage?: PackLanguage;
   sourceTitle?: string;
   expanded?: boolean;
+  /** Экран ролика (макет video-redesign #c1, экран 3): список фраз раскрыт сразу; без него — свёрнут, как в ленте. */
+  defaultExpanded?: boolean;
   onToggle?: () => void;
   testID?: string;
   /** Откуда пришли фразы (память/диск/сеть) — для лога экрана ролика [VIDEO-SCREEN]. */
@@ -65,7 +67,7 @@ function toastPhraseSaveRollback(reason: string): void {
 const PHRASES_SILENT_RETRIES = 5;
 const PHRASES_RETRY_BASE_MS = 4000;
 
-export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, onToggle, testID, onSourceResolved }: YoutubeVideoPhrasesProps) {
+export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, defaultExpanded = false, onToggle, testID, onSourceResolved }: YoutubeVideoPhrasesProps) {
   const { lang } = useLang();
   const studyTarget = packLanguage;
   // зачем: Liquid Glass (макет video.html «Фразы из видео») — все цвета из токенов
@@ -82,7 +84,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   const lastSelectedRef = useRef<VideoPhrase | null>(null);
   if (selected) lastSelectedRef.current = selected;
   const shown = selected ?? lastSelectedRef.current;
-  const [localExpanded, setLocalExpanded] = useState(false);
+  const [localExpanded, setLocalExpanded] = useState(defaultExpanded);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>(() => (peekCachedVideoPhrases(videoId) ? 'ready' : 'loading'));
   const savingIdsRef = useRef(new Set<string>());
   // зачем: сетевой сбой прятал блок фраз навсегда — в зависимостях
@@ -250,10 +252,10 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       <Text style={[styles.count, { color: glass.mutedText }]}>{phrases.length}</Text>
       <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={16} color={glass.secondary} />
     </Pressable>
-    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? glass.opaqueControl : 'transparent' }]}>
+    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? `${glass.accent}29` : 'transparent' }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => onPhrasePress(phrase, index)} onLongPress={() => setSelected(phrase)} accessibilityState={{ selected: index === activeIndex }} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
-        {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: index === activeIndex ? glass.text : glass.secondary }]}>{formatTimecode(phrase.startSec)}</Text> : null}
-        <View style={styles.rowCopy}><Text style={[styles.phrase, { color: glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
+        {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: index === activeIndex ? glass.accentText : glass.secondary }]}>{formatTimecode(phrase.startSec)}</Text> : null}
+        <View style={styles.rowCopy}><Text style={[styles.phrase, { color: index === activeIndex ? glass.accentText : glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
       </Pressable>
       <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: 'transparent', text: glass.secondary, muted: glass.secondary, accent: glass.text }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
     </View>)}
@@ -313,7 +315,8 @@ const styles = StyleSheet.create({
   toggle: { minHeight: 44, paddingHorizontal: 2, flexDirection: 'row', alignItems: 'center', gap: 10 },
   title: { fontSize: 16, lineHeight: 24, fontWeight: '700' },
   count: { flex: 1, marginLeft: 0, fontSize: 16, lineHeight: 24, fontWeight: '600' },
-  row: { minHeight: 64, borderRadius: 14, paddingLeft: 12, paddingRight: 4, marginTop: 2, flexDirection: 'row', alignItems: 'center' },
+  // зачем (макет video-redesign #c1, `.ph1`): строка от 66; текущая фраза — тон акцента 16 % и текст цветом акцента.
+  row: { minHeight: 66, borderRadius: 14, paddingLeft: 12, paddingRight: 4, marginTop: 2, flexDirection: 'row', alignItems: 'center' },
   rowCopyPressable: { flex: 1, minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: 12 },
   rowCopy: { flex: 1, paddingVertical: 12, paddingRight: 8 },
   rowSave: { alignSelf: 'center' },

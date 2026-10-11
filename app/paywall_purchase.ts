@@ -14,7 +14,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { AppState, Platform } from 'react-native';
 import { awaitWithinInitCap } from './paywall_init_cap';
-import { enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert, type ThemedBlockingAlertAction } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
+import { clearThemedBlockingAlerts, enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert, type ThemedBlockingAlertAction } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { pickPaywallPrice, resolvePaywallReferencePrices, type PaywallPriceSource } from './paywall_reference_prices';
 import { useRouter } from 'expo-router';
@@ -257,10 +257,28 @@ export type PaywallRestoreToastKind =
   | 'status_not_found'
   | 'no_active_subscriptions'
   | 'status_check_failed'
-  | 'restore_failed';
+  | 'restore_failed'
+  | 'store_unreachable';
+
+// зачем (координатор 12.10, dev-состояния пейвола для съёмки): «Не удалось связаться с магазином. Попробуй позже.» — один источник для покупки, восстановления и dev-состояния `store_unreachable` (paywalls-012).
+export function storeUnreachableToast() {
+  return actionToastTri('error', {
+    ru: 'Не удалось связаться с магазином. Попробуй позже.',
+    en: 'Couldn’t reach the store. Try again later.',
+    uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
+    es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
+    'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
+    vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
+    id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
+    tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
+    pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
+  });
+}
 
 export function paywallRestoreToast(kind: PaywallRestoreToastKind) {
   switch (kind) {
+    case 'store_unreachable':
+      return storeUnreachableToast();
     case 'purchase_confirmed':
       return actionToastTri('success', {
         ru: 'Покупка подтверждена',
@@ -1148,17 +1166,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем: голый системный Alert не годится для фирменного фидбека — владелец
         // попросил заменить на тост-механизм (тот же, что в shards_shop/coin_exchange).
         // Ошибка обязана остаться видимой, а не молча уйти в тишину.
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось связаться с магазином. Попробуй позже.',
-          en: 'Couldn’t reach the store. Try again later.',
-          uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
-          es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
-          'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
-          vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
-          id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
-          tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
-          pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
-        }));
+        emitAppEvent('action_toast', storeUnreachableToast());
         void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
         return;
       }
@@ -1429,17 +1437,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
         // зачем: тот же фирменный тост вместо системного Alert, что и в purchase —
         // ошибка подключения к стору при восстановлении обязана остаться видимой.
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось связаться с магазином. Попробуй позже.',
-          en: 'Couldn’t reach the store. Try again later.',
-          uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
-          es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
-          'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
-          vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
-          id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
-          tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
-          pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
-        }));
+        emitAppEvent('action_toast', storeUnreachableToast());
         return;
       }
       const restoreResult = await runRevenueCatOperationForGeneration(
@@ -1703,8 +1701,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // Диалоги и тост dev-состояний открываем после первого кадра окна (очередь алертов сама встанет поверх).
   useEffect(() => {
     if (!devState) return undefined;
+    // зачем (координатор 12.10, dev-состояния пейвола для съёмки): хвост окна прошлого dev-состояния («Покупка ждёт подтверждения») перекрывал следующий кадр (paywalls-015/016/018) — при входе в состояние очередь блокирующих окон очищается.
+    clearThemedBlockingAlerts(`dev_state_enter:${devState}`);
     const timer = setTimeout(() => {
-      if (devState === 'pending') {
+      if (devState === 'store_unreachable') {
+        console.log('[DEV-STATE] paywall: тост «не удалось связаться с магазином» + «Попробуй через минуту» под кнопкой'); // guard-ok: единичный лог на открытие
+        emitAppEvent('action_toast', storeUnreachableToast());
+      } else if (devState === 'pending') {
         console.log('[DEV-STATE] paywall: диалог «ожидание банка или родителя»'); // guard-ok: единичный лог на открытие
         showPurchasePendingAlert(lang, `dev:${Date.now()}`); // dev: каждый показ — отдельное окно для съёмки
       } else if (devState === 'unknown_outcome') {
@@ -1717,7 +1720,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         emitAppEvent('action_toast', paywallRestoreToast('status_not_found'));
       }
     }, 700);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearThemedBlockingAlerts(`dev_state_leave:${devState}`); // уходим с окна — окно не должно переехать на следующий экран
+    };
   }, [devState, lang]);
 
   return {

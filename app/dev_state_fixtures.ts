@@ -81,7 +81,7 @@ export type DevStateRequest = Readonly<{
   dialogsPaused?: 'on' | 'off';
   energyFail?: 'on' | 'off';
   /** Тост результата проверки статуса/восстановления покупок (R1 paywall-gap-011…013): показывается через ~0,9 с после ссылки. */
-  toast?: 'purchase_confirmed' | 'restored' | 'status_not_found' | 'no_active_subscriptions' | 'status_check_failed' | 'restore_failed';
+  toast?: 'purchase_confirmed' | 'restored' | 'status_not_found' | 'no_active_subscriptions' | 'status_check_failed' | 'restore_failed' | 'store_unreachable';
   /** Карточки (R1 «нет пути», Н-1): удержание загрузок через запятую или `off`. */
   hold?: readonly (DevCardsHold | 'freeform_loading')[] | 'off';
   /** Карточки (Н-2, Н-4, Н-6): искусственные сбои чтения/записи через запятую или `off`. */
@@ -185,7 +185,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
   request.energyFail = onOff('dev_energy_fail');
-  request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed'] as const);
+  request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed', 'store_unreachable'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
   const list = <T extends string>(key: string, allowed: readonly T[]): readonly T[] | 'off' | undefined => {
     const raw = one(params[key]);

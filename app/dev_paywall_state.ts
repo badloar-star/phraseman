@@ -16,7 +16,7 @@ import type { StorePromoPricing } from './premium_store_promo_display';
 
 export const DEV_PAYWALL_STATES = [
   'loading', 'live', 'reference', 'error_no_prices', 'billing_unavailable',
-  'purchasing', 'restoring', 'pending', 'unknown_outcome', 'status_unknown', 'store_promo', 'reminder_prompt',
+  'purchasing', 'restoring', 'pending', 'unknown_outcome', 'status_unknown', 'store_promo', 'reminder_prompt', 'store_unreachable',
 ] as const;
 export type DevPaywallState = (typeof DEV_PAYWALL_STATES)[number];
 
@@ -26,6 +26,7 @@ const ALIASES: Readonly<Record<string, DevPaywallState>> = {
   purchase_pending: 'pending',
   purchase_failed: 'unknown_outcome',
   promo: 'store_promo',
+  checkout_error: 'store_unreachable',
 };
 
 const LOG = '[DEV-STATE]';
@@ -146,6 +147,9 @@ export function applyDevPaywallView<T extends PaywallDevView>(state: DevPaywallS
       return { ...view, ...LIVE_PRICES, ...SETTLED, purchasing: true, payStarted: true };
     case 'status_unknown':
       return { ...view, ...LIVE_PRICES, ...SETTLED };
+    case 'store_unreachable':
+      // зачем (координатор 12.10, dev-состояния пейвола для съёмки): paywalls-012 «Ошибка до checkout»: цены магазина на плитках, под кнопкой «Попробуй через минуту» (tapNotice), тост «Не удалось связаться с магазином» приходит из эффекта хука.
+      return { ...view, ...LIVE_PRICES, ...SETTLED, tapNotice: true };
     case 'store_promo': {
       const yearlyPromo: StorePromoPricing = { discountPercent: 30, promoPriceString: '€27,99', standardPriceString: DEV_PREVIEW_YEARLY_PRICE };
       const monthlyPromo: StorePromoPricing = { discountPercent: 25, promoPriceString: '€5,99', standardPriceString: DEV_PREVIEW_MONTHLY_PRICE };

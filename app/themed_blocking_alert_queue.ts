@@ -47,6 +47,16 @@ export function resolveThemedBlockingAlertHead(value: string = THEMED_ALERT_DISM
   notify();
 }
 
+// зачем (координатор 12.10, dev-состояния пейвола для съёмки): после dev-состояния окно (например «Покупка ждёт подтверждения») оставалось в очереди и перекрывало следующий кадр съёмки. Очистка — только для dev-путей.
+export function clearThemedBlockingAlerts(reason: string): number {
+  const count = queue.length;
+  if (count === 0) return 0;
+  console.log(`[THEMED-ALERT] очередь очищена reason=${reason} окон=${count}`); // guard-ok: очистка называет причину
+  while (queue.length > 0) queue.shift()?.resolve(THEMED_ALERT_DISMISSED);
+  notify();
+  return count;
+}
+
 export function enqueueThemedBlockingInfoAlert(
   title: string,
   message: string,

@@ -8,12 +8,14 @@
 // в админке, поменяется и здесь.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { spireGameText } from './spire_game_strings';
 
 type Props = Readonly<{ lang: Lang; visible: boolean; coins: SpireCoinsConfig; onClose: () => void }>;
@@ -32,14 +34,19 @@ export function spireRuleLines(lang: Lang, coins: SpireCoinsConfig): readonly st
 }
 
 function SpireRulesSheet({ lang, visible, coins, onClose }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const lines = spireRuleLines(lang, coins);
+  // зачем (снимок Макетов community-004: 8-е правило «В понедельник…» уходило за край): высота списка считается от экрана, а не константой 440 — 8 правил
+  // помещаются, где экран позволяет; где нет — список прокручивается (шрифт не ужимаем). Запас под заголовок, кнопку «Закрыть», ручку и нижнюю зону.
+  const { height: windowHeight } = useWindowDimensions();
+  const insets = useStableSafeAreaInsets();
+  const listMaxHeight = Math.max(240, Math.min(640, Math.round(windowHeight - insets.top - insets.bottom - 250)));
   return (
     <HybridSheetShell visible={visible} onClose={onClose} closeLabel={spireGameText(lang, 'close')} material="liquid-glass-opaque" testID="spire-rules-sheet">
       {({ requestDismiss }) => (
         <View style={s.body}>
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireGameText(lang, 'rulesTitle')}</Text>
-          <ScrollView style={s.list} contentContainerStyle={s.listContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
+          <ScrollView style={[s.list, { maxHeight: listMaxHeight }]} contentContainerStyle={s.listContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
             {/* guard-ok: ровно 8 строк правил, виртуализация не нужна */}
             {lines.map((line, i) => (
               <View key={`rule-${i + 1}`} style={s.row}>
@@ -50,7 +57,7 @@ function SpireRulesSheet({ lang, visible, coins, onClose }: Props) {
               </View>
             ))}
           </ScrollView>
-          <V2Pressable onPress={requestDismiss} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }]} testID="spire-rules-close">
+          <V2Pressable onPress={requestDismiss} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }, sh.action(p.cta)]} testID="spire-rules-close">
             <Text style={[s.ctaText, { color: p.ctaText }]}>{spireGameText(lang, 'close')}</Text>
           </V2Pressable>
         </View>

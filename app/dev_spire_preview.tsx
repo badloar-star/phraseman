@@ -55,7 +55,7 @@ function StepPreview({ state, exitOpen }: Readonly<{ state: SpirePreviewState; e
       answering={preview.answering}
       exitOpen={exitOpen}
       studyTarget="en"
-      showEnergy={false}
+      showEnergy // зачем (снимки Макетов spire-007/008): в шапке ступени справа две пилюли — сердца и «⚡ N»; у игрока без Plus энергия показывается
       onBack={noop}
       onChoice={noop}
       onTokens={noop}

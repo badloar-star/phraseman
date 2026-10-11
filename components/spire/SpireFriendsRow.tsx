@@ -12,11 +12,12 @@ import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { spireTierName } from '../../modules/spire/tier_names';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import type { SpireFriendChip } from './spire_room_types';
 
 function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: readonly SpireFriendChip[] }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   // зачем (отчёт тем 14.10): заглушка аватара была зашитой белой rgba(255,255,255,0.12) — на светлой теме почти невидима; берём тон темы (hairline).
   if (friends.length === 0) return null;
   return (
@@ -26,7 +27,7 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
         {friends.map((f) => {
           const stone = f.tier === null ? '—' : spireTierName(f.tier, lang);
           return (
-            <View key={f.uid} style={[s.chip, { backgroundColor: p.control }]} accessible accessibilityLabel={`${f.name}, ${stone}`}>
+            <View key={f.uid} style={[s.chip, { backgroundColor: p.control }, sh.nested]} accessible accessibilityLabel={`${f.name}, ${stone}`}>
               {f.coinRank !== null ? <AvatarView avatar="" coinRank={f.coinRank} size={30} /> : <View style={[s.dot, { backgroundColor: p.hairline }]} />}
               <Text style={[s.name, { color: p.text }]}>{f.name}</Text>
               <Text style={[s.stone, { color: p.textSecondary }]}>{stone}</Text>

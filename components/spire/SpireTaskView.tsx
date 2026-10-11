@@ -21,6 +21,7 @@ import type { SpireFeedback } from '../../app/spire/use_spire_step_runner';
 import V2Pressable from '../v2/V2Pressable';
 import { lv2Alpha } from '../learning-v2/LearningV2Glass';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
 import { localizeSpireOddityPrompt } from './spire_oddity_prompt';
 
@@ -53,7 +54,7 @@ function strings(value: unknown): string[] {
 type Tone = 'idle' | 'ok' | 'no';
 
 function Option({ label, tone, disabled, onPress, testID }: Readonly<{ label: string; tone: Tone; disabled: boolean; onPress: () => void; testID: string }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const bg = tone === 'ok' ? lv2Alpha(p.correct, 0.22) : tone === 'no' ? lv2Alpha(p.wrong, 0.22) : p.card;
   return (
     <V2Pressable
@@ -62,7 +63,7 @@ function Option({ label, tone, disabled, onPress, testID }: Readonly<{ label: st
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled, selected: tone !== 'idle' }}
-      style={[s.opt, { backgroundColor: bg }]}
+      style={[s.opt, { backgroundColor: bg }, sh.nested]}
       testID={testID}
     >
       <Text style={[s.optText, { color: p.text }]}>{label}</Text>
@@ -88,7 +89,7 @@ function ChoiceTask({ task, feedback, disabled, onChoice }: Props) {
 }
 
 function BuildTask({ task, feedback, disabled, onTokens }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const bank = useMemo(() => strings(task.payload.wordBank), [task]);
   const need = Math.max(1, Number(task.payload.correctTokenCount) || 1);
   const [picked, setPicked] = useState<readonly number[]>([]);
@@ -107,7 +108,7 @@ function BuildTask({ task, feedback, disabled, onTokens }: Props) {
     <View style={s.stack}>
       <View style={[s.answer, { backgroundColor: answerBg }]} accessibilityLabel={picked.map((k) => bank[k]).join(' ')}>
         {picked.map((k) => (
-          <V2Pressable key={`a${k}`} onPress={() => remove(k)} disabled={disabled} accessibilityRole="button" accessibilityLabel={bank[k]} style={[s.token, { backgroundColor: p.cardRaised }]}>
+          <V2Pressable key={`a${k}`} onPress={() => remove(k)} disabled={disabled} accessibilityRole="button" accessibilityLabel={bank[k]} style={[s.token, { backgroundColor: p.cardRaised }, sh.nested]}>
             <Text style={[s.tokenText, { color: p.text }]}>{bank[k]}</Text>
           </V2Pressable>
         ))}
@@ -123,7 +124,7 @@ function BuildTask({ task, feedback, disabled, onTokens }: Props) {
               accessibilityRole="button"
               accessibilityLabel={word}
               accessibilityState={{ disabled: disabled || used }}
-              style={[s.token, { backgroundColor: p.control, opacity: used ? 0.3 : 1 }]}
+              style={[s.token, { backgroundColor: p.control, opacity: used ? 0.3 : 1 }, sh.nested]}
               testID={`spire-word-${i}`}
             >
               <Text style={[s.tokenText, { color: p.text }]}>{word}</Text>
@@ -136,7 +137,7 @@ function BuildTask({ task, feedback, disabled, onTokens }: Props) {
 }
 
 function ItemsTask({ task, feedback, disabled, onItems }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const items = useMemo(() => (Array.isArray(task.payload.items) ? task.payload.items as Record<string, unknown>[] : []), [task]);
   const [chosen, setChosen] = useState<readonly number[]>([]);
   const index = Math.min(chosen.length, Math.max(0, items.length - 1));
@@ -167,7 +168,7 @@ function ItemsTask({ task, feedback, disabled, onItems }: Props) {
 }
 
 function SpireTaskView(props: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const { lang, task } = props;
   const promptKey = PROMPT_KEY[task.mode] ?? 'promptGuess';
   const rawPhrase = typeof task.payload.phrase === 'string' ? task.payload.phrase
@@ -204,7 +205,7 @@ function SpireTaskView(props: Props) {
         <View style={[s.overLine, { backgroundColor: p.divider }]} />
       </View>
       {phrase && task.kind !== 'match' && task.kind !== 'timeattack' ? (
-        <View style={[s.question, { backgroundColor: p.cardRaised }]}>
+        <View style={[s.question, { backgroundColor: p.cardRaised }, sh.plate]}>
           <View style={s.questionRow}>
             {/* зачем (Ядро 01.10): задание на слух — фраза до ответа скрыта (иначе это подсказка),
                 после ответа показывается в разборе. */}
@@ -214,7 +215,7 @@ function SpireTaskView(props: Props) {
               <Text accessibilityRole="header" style={[s.phrase, s.phraseFlex, { color: p.text }]}>{phrase}</Text>
             )}
             {hasAudio ? (
-              <V2Pressable onPress={listen} accessibilityRole="button" accessibilityLabel={listenLabel} style={[s.listen, { backgroundColor: p.card }]} testID="spire-task-listen">
+              <V2Pressable onPress={listen} accessibilityRole="button" accessibilityLabel={listenLabel} style={[s.listen, { backgroundColor: p.card }, sh.nested]} testID="spire-task-listen">
                 <Ionicons name="volume-high" size={22} color={p.text} />
               </V2Pressable>
             ) : null}

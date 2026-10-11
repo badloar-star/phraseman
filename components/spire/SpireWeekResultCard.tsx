@@ -16,6 +16,7 @@ import { spireTierName } from '../../modules/spire/tier_names';
 import AvatarView from '../AvatarView';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
@@ -37,7 +38,7 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
 }
 
 function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const { title, sub } = spireWeekResultLines(lang, result);
   // зачем (макет community.html COM-SPIRE-WEEK, anim-pop): монета «выпрыгивает» один раз
   // при появлении карточки. Нативный драйвер, без цикла; «уменьшить движение» — сразу на месте.
@@ -52,7 +53,7 @@ function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
     transform: [{ scale: pop.interpolate({ inputRange: [0, 1], outputRange: [0.55, 1] }) }],
   };
   return (
-    <View style={[s.card, { backgroundColor: p.cardRaised }]} accessible={false} testID="spire-week-result">
+    <View style={[s.card, { backgroundColor: p.cardRaised }, sh.plate]} accessible={false} testID="spire-week-result">
       <Animated.View style={popStyle} testID="spire-week-result-pop">
         {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={52} /> : <View style={[s.dot, { backgroundColor: p.control }]} />}
       </Animated.View>
@@ -65,7 +66,7 @@ function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
         onPress={onClose}
         accessibilityRole="button"
         accessibilityLabel={spireGameText(lang, 'close')}
-        style={[s.close, { backgroundColor: p.control }]}
+        style={[s.close, { backgroundColor: p.control }, sh.nested]}
         hitSlop={8}
         testID="spire-week-result-close"
       >

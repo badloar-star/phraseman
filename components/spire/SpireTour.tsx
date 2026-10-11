@@ -17,6 +17,7 @@ import { spireTierName } from '../../modules/spire/tier_names';
 import V2Pressable from '../v2/V2Pressable';
 import SpireTowerSvg from './SpireTowerSvg';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireGameText } from './spire_game_strings';
 
 const IMG_HEIGHT = 340;
@@ -35,7 +36,7 @@ function TourTower({ lang }: Readonly<{ lang: Lang }>) {
 }
 
 function TourRing() {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const r = 59;
   const c = 2 * Math.PI * r;
   return (
@@ -47,7 +48,7 @@ function TourRing() {
         </Svg>
         <View style={s.ringCenter}><Text style={[s.ringText, { color: p.text }]}>10</Text></View>
       </View>
-      <View style={[s.heartPill, { backgroundColor: p.control }]}>
+      <View style={[s.heartPill, { backgroundColor: p.control }, sh.nested]}>
         <Ionicons name="heart" size={20} color={p.text} />
         <Ionicons name="heart" size={20} color={p.text} />
         <Ionicons name="heart" size={20} color={p.text} />
@@ -57,11 +58,11 @@ function TourRing() {
 }
 
 function TourStones({ lang }: Readonly<{ lang: Lang }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   return (
     <View style={s.stones}>
       {[2, 1, 0].map((tier) => (
-        <View key={`tier-${tier}`} style={[s.stone, { backgroundColor: tier === 1 ? p.cardRaised : p.card }]}>
+        <View key={`tier-${tier}`} style={[s.stone, { backgroundColor: tier === 1 ? p.cardRaised : p.card }, sh.nested]}>
           <Text style={[s.stoneText, { color: p.text }]}>{spireTierName(tier, lang)}</Text>
           {tier < 2 ? <Ionicons name="arrow-up" size={18} color={p.correct} /> : null}
         </View>
@@ -73,7 +74,7 @@ function TourStones({ lang }: Readonly<{ lang: Lang }>) {
 type Props = Readonly<{ lang: Lang; visible: boolean; onDone: () => void }>;
 
 function SpireTour({ lang, visible, onDone }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const insets = useStableSafeAreaInsets();
   const [page, setPage] = useState(0);
   const last = page === 2;
@@ -102,7 +103,7 @@ function SpireTour({ lang, visible, onDone }: Props) {
           {[0, 1, 2].map((i) => <View key={`dot-${i}`} style={[s.dot, { backgroundColor: i === page ? p.text : p.control }]} />)}
         </View>
         <View style={s.spacer} />
-        <V2Pressable onPress={next} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }]} testID="spire-tour-next">
+        <V2Pressable onPress={next} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }, sh.action(p.cta)]} testID="spire-tour-next">
           <Text style={[s.ctaText, { color: p.ctaText }]}>{spireGameText(lang, last ? 'start' : 'next')}</Text>
           <Ionicons name="arrow-forward" size={20} color={p.ctaText} />
         </V2Pressable>

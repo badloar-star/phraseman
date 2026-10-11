@@ -17,6 +17,7 @@ import type { SpireStepOutcome } from '../../app/spire/use_spire_game';
 import AvatarView from '../AvatarView';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
@@ -35,9 +36,9 @@ type Props = Readonly<{
 }>;
 
 function CoinPill({ amount, rank }: Readonly<{ amount: number; rank: number | null }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   return (
-    <View style={[s.pill, { backgroundColor: p.control }]}>
+    <View style={[s.pill, { backgroundColor: p.control }, sh.nested]}>
       {rank !== null ? <AvatarView avatar="" coinRank={rank} size={22} /> : <Ionicons name="ellipse" size={18} color={p.textSecondary} />}
       <Text style={[s.pillText, { color: p.text }]}>{`+${amount}`}</Text>
     </View>
@@ -92,7 +93,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
 }
 
 function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onHigher, onLater }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const g = useShadowGlass();
   const v = describe(lang, outcome, coins, myPlace);
   return (
@@ -112,7 +113,7 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
         accessibilityRole="button"
         accessibilityLabel={v.cta}
         accessibilityState={{ disabled: busy, busy }}
-        style={[s.cta, { backgroundColor: p.cta, opacity: busy ? 0.6 : 1 }]}
+        style={[s.cta, { backgroundColor: p.cta, opacity: busy ? 0.6 : 1 }, sh.action(p.cta)]}
         testID="spire-result-cta"
       >
         <Text style={[s.ctaText, { color: p.ctaText }]}>{v.cta}</Text>

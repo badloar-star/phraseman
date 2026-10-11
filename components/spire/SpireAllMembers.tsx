@@ -16,6 +16,7 @@ import { V2 } from '../../constants/v2Style';
 import { SPIRE_ZONE_RATIO } from '../../modules/spire/residents';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsShort } from './spire_plurals';
@@ -36,7 +37,7 @@ export function spireZonesFor(sorted: readonly SpireMemberRow[]): readonly Zone[
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void }>;
 
 function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const { rows, zones } = useMemo(() => {
     const sorted = [...members].sort((a, b) => b.steps - a.steps);
     return { rows: sorted, zones: spireZonesFor(sorted) };
@@ -76,7 +77,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
   return (
     <View style={s.root} testID="spire-all-screen">
       <View style={s.header}>
-        <V2Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={spireText(lang, 'back')} style={[s.back, { backgroundColor: p.control }]} testID="spire-all-back">
+        <V2Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={spireText(lang, 'back')} style={[s.back, { backgroundColor: p.control }, sh.nested]} testID="spire-all-back">
           <Ionicons name="chevron-back" size={20} color={p.text} />
         </V2Pressable>
         <View style={s.headText}>

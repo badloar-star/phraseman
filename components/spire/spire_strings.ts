@@ -48,5 +48,8 @@ export function spireText(lang: Lang, key: SpireStringKey): string {
 
 /** «до конца недели 2 д 14 ч» */
 export function spireTimeLeftText(lang: Lang, days: number, hours: number): string {
-  return `${spireText(lang, 'untilEnd')} ${days} ${spireText(lang, 'dayUnit')} ${hours} ${spireText(lang, 'hourUnit')}`;
+  // зачем (снимки Макетов spire-004/011/013…, «0 д 2 ч»): одинокая «ч» уходила на вторую строку. Число и единица, а также «д» и следующее число склеены
+  // неразрывными пробелами (U+00A0): срок «0 д 2 ч» переносится целиком, а не обрывается посреди.
+  const nb = '\u00A0';
+  return `${spireText(lang, 'untilEnd')} ${days}${nb}${spireText(lang, 'dayUnit')}${nb}${hours}${nb}${spireText(lang, 'hourUnit')}`;
 }

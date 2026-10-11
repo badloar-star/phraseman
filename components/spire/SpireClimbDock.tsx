@@ -17,6 +17,7 @@ import type { SpireStartBlock } from '../../app/spire/use_spire_game';
 import { useEnergy, useEnergyCountdown } from '../EnergyContext';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 
@@ -31,7 +32,7 @@ type Props = Readonly<{
 }>;
 
 function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const router = useRouter();
   const { energy, bonusEnergy, isUnlimited, energyReady } = useEnergy();
   const noEnergy = !premium && !isUnlimited && energyReady && energy + bonusEnergy < 1;
@@ -44,7 +45,7 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
     return (
       <View testID="spire-dock-no-energy">
         <View
-          style={[s.cta, { backgroundColor: p.control }]}
+          style={[s.cta, { backgroundColor: p.control }, sh.nested]}
           accessible
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}
@@ -76,7 +77,7 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
         disabled={!enabled}
         accessibilityLabel={note ? `${spireText(lang, 'climb')}. ${note}` : spireText(lang, 'climb')}
         accessibilityState={{ disabled: !enabled, busy }}
-        style={[s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }]}
+        style={[s.cta, { backgroundColor: p.cta, opacity: enabled ? 1 : 0.4 }, enabled ? sh.action(p.cta) : null]}
         testID="spire-climb"
       >
         <Text style={[s.ctaText, { color: p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>

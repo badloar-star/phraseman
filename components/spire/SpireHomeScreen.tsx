@@ -41,6 +41,8 @@ import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpireBgBottom, useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
+import SpireEnergyPill from './SpireEnergyPill';
 import SpireAllMembers from './SpireAllMembers';
 import SpireClimbDock from './SpireClimbDock';
 import SpireFloorInfo from './SpireFloorInfo';
@@ -94,7 +96,7 @@ const SPIRE_BETA_LANGS: readonly string[] = ['es', 'de', 'fr', 'it'];
 
 export default function SpireHomeScreen() {
   const { lang } = useLang();
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const bgBottom = useSpireBgBottom();
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
@@ -236,12 +238,12 @@ export default function SpireHomeScreen() {
             onPress={openRules}
             accessibilityRole="button"
             accessibilityLabel={spireGameText(lang, 'rulesTitle')}
-            style={[s.rulesBtn, { backgroundColor: p.control }]}
+            style={[s.rulesBtn, { backgroundColor: p.control }, sh.nested]}
             testID="spire-rules-open"
           >
             <Ionicons name="information" size={20} color={p.text} />
           </V2Pressable>
-          {hasPremiumAccess ? null : <EnergyBar ownerActive={runtimeOwnerId === 'spire'} glass />}
+          <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
         </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">

@@ -11,6 +11,7 @@ import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
@@ -24,7 +25,7 @@ type Props = Readonly<{
 
 /** Кружок-заглушка с инициалом: ранга монеты у участника комнаты в данных нет. */
 export function SpireInitial({ name, size }: Readonly<{ name: string; size: number }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   return (
     <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: p.control, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ color: p.text, fontSize: size * 0.42, fontWeight: '700' }}>{name.trim().slice(0, 1).toUpperCase() || '—'}</Text>
@@ -33,7 +34,7 @@ export function SpireInitial({ name, size }: Readonly<{ name: string; size: numb
 }
 
 function SpirePodium({ lang, members, onOpenAll }: Props) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const ranked = members ? [...members].sort((a, b) => b.steps - a.steps) : [];
   const top = ranked.slice(0, 3);
   const meIndex = ranked.findIndex((m) => m.isMe);
@@ -57,7 +58,7 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
                 <SpireInitial name={m.name} size={place === 1 ? 56 : 46} />
                 <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
                 <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
-                <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }]}>
+                <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>
                 </View>
               </View>
@@ -70,7 +71,7 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
         disabled={!hasRoom}
         accessibilityLabel={allLabel}
         accessibilityState={{ disabled: !hasRoom }}
-        style={[s.all, { backgroundColor: p.control, opacity: hasRoom ? 1 : 0.5 }]}
+        style={[s.all, { backgroundColor: p.control, opacity: hasRoom ? 1 : 0.5 }, sh.nested]}
         testID="spire-all-members"
       >
         <Text style={[s.allText, { color: p.text }]}>{allLabel}</Text>

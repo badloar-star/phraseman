@@ -25,6 +25,8 @@ import SpireExitSheet from './SpireExitSheet';
 import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
 import { useSpirePalette } from './useSpirePalette';
+import { useSpireShadow } from './useSpireShadow';
+import SpireEnergyPill from './SpireEnergyPill';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 
@@ -40,9 +42,9 @@ type Props = Readonly<{
 }>;
 
 function Hearts({ lang, hearts }: Readonly<{ lang: Lang; hearts: number }>) {
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   return (
-    <View style={[s.hearts, { backgroundColor: p.control }]} accessible accessibilityLabel={spireGameText(lang, 'hearts', { n: hearts })}>
+    <View style={[s.hearts, { backgroundColor: p.control }, sh.nested]} accessible accessibilityLabel={spireGameText(lang, 'hearts', { n: hearts })}>
       {Array.from({ length: SPIRE_STEP_MAX_HEARTS }, (_, i) => (
         // guard-ok: ровно 3 неподвижных сердца, порядок не меняется
         <Ionicons key={`heart-${i}`} name="heart" size={18} color={i < hearts ? p.text : p.textMuted} style={i < hearts ? null : s.heartOff} />
@@ -81,7 +83,7 @@ export type SpireStepLayoutProps = Readonly<{
 /** Чистая вёрстка ступени: шапка, кольцо, задание, подсказка после ошибки, «k / 10». Без раннера и сети. */
 export function SpireStepLayout(props: SpireStepLayoutProps) {
   const { lang, ctx, budgetMs, hearts, clock, paused, preparing, task, taskIndex, feedback, answering, exitOpen, studyTarget, showEnergy } = props;
-  const p = useSpirePalette();
+  const p = useSpirePalette(); const sh = useSpireShadow();
   const insets = useStableSafeAreaInsets();
   const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
   const fb = feedback && !feedback.ok ? feedback : null;
@@ -92,7 +94,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           onPress={props.onBack}
           accessibilityRole="button"
           accessibilityLabel={spireText(lang, 'back')}
-          style={[s.back, { backgroundColor: p.control }]}
+          style={[s.back, { backgroundColor: p.control }, sh.nested]}
           testID="spire-step-back"
         >
           <Ionicons name="chevron-back" size={20} color={p.text} />
@@ -102,7 +104,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           <Text style={[s.sub, { color: p.textSecondary }]}>{`${spireText(lang, 'floor')} ${ctx.floor} · ${spireTierName(ctx.tier, lang)}`}</Text>
         </View>
         <Hearts lang={lang} hearts={hearts} />
-        {showEnergy ? <EnergyBar glass ownerActive={false} /> : null}
+        {showEnergy ? <SpireEnergyPill ownerActive={false} /> : null}
       </View>
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View style={s.ringWrap}>
@@ -125,7 +127,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         )}
         {props.reportSlot}
         {fb ? (
-          <View style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }]} accessibilityLiveRegion="polite" testID="spire-step-hint">
+          <View style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }, sh.plate]} accessibilityLiveRegion="polite" testID="spire-step-hint">
             {fb.correctText ? (
               <Text style={[s.hintText, { color: p.text }]}>
                 {`${spireGameText(lang, 'correctIs')} `}<Text style={s.hintBold}>{fb.correctText}</Text>
@@ -138,7 +140,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
               disabled={exitOpen}
               accessibilityRole="button"
               accessibilityLabel={spireGameText(lang, 'onward')}
-              style={[s.onward, { backgroundColor: p.cta }]}
+              style={[s.onward, { backgroundColor: p.cta }, sh.action(p.cta)]}
               testID="spire-step-continue"
             >
               <Text style={[s.onwardText, { color: p.ctaText }]}>{spireGameText(lang, 'onward')}</Text>

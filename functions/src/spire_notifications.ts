@@ -117,7 +117,11 @@ export function readSpirePushPrefs(raw: unknown): SpirePushPrefs | null {
  * Нет поля = старый клиент = слать (как у остальных серверных пушей).
  */
 export function isSpirePushOptedOut(prefs: SpirePushPrefs | null | undefined): boolean {
-  return prefs?.league === false || prefs?.streak === false;
+  // зачем (11.10, profile-006): у Шпиля появился свой тумблер «События Шпиля» → клиент пишет pushPrefs.league
+  // (= мастер && тумблер). Если поле есть — решает только оно: иначе человек, выключивший «Серию под угрозой»,
+  // молча терял и пуши Шпиля, хотя их тумблер включён. Нет поля (старый клиент) — прежнее правило через streak.
+  if (typeof prefs?.league === 'boolean') return prefs.league === false;
+  return prefs?.streak === false;
 }
 
 /** Поля-метки «уже отправлено за эту неделю» в users/{uid} (значение = weekId). */

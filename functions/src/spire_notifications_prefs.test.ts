@@ -13,6 +13,10 @@ describe('readSpirePushPrefs / isSpirePushOptedOut (PM-200)', () => {
     expect(isSpirePushOptedOut({ streak: true })).toBe(false);
     expect(isSpirePushOptedOut(null)).toBe(false);
   });
+  it('свой тумблер Шпиля (league) главнее «Серии»: streak=false не глушит Шпиль при league=true', () => {
+    expect(isSpirePushOptedOut({ league: true, streak: false })).toBe(false);
+    expect(isSpirePushOptedOut({ league: false, streak: true })).toBe(true);
+  });
   it('метка недели — только непустая строка', () => {
     expect(readSpirePushMark({ f: '2026-W40' }, 'f')).toBe('2026-W40');
     expect(readSpirePushMark({ f: 1 }, 'f')).toBeNull();

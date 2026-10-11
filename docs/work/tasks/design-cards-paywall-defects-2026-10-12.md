@@ -1,7 +1,7 @@
 # Task packet: Дефекты кода по снимкам Макетов — Карточки (cards-005, cards-011, cards-v2-001) и пейволы Plus (paywall-gap-001/004/007)
 
 Governance-ID: TG-CF4028AFD0D9
-Status: In progress
+Status: Done
 Owner: сессия «2 · ДИЗАЙН» по заданию координатора (12.10)
 Related epic/enabler: docs/phraseman-2.0/registries/visual_parity.json (diffs этих строк), docs/design/v2-app/cards-v2.html, cards-section.html, paywall-gaps-states.html
 

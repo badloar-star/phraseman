@@ -464,6 +464,12 @@ export interface PaywallPurchaseArgs {
    * включает превью-триал ТОЛЬКО в dev-бандле. В сторе игнорируется.
    */
   forceTrialUI?: boolean;
+  /**
+   * DEV/QA: сколько дней показывать в превью-триале (`_force_trial_days=7`); без значения — DEV_FORCE_TRIAL_DEFAULT_DAYS.
+   * зачем (координатор 12.10, paywall-gap-001/004/007): образец рисует N дней, а превью всегда показывало 3 — расхождение данных нельзя было отделить
+   * от расхождения кода. В сторе игнорируется (работает только вместе с forceTrialUI в DEV_IAP_BYPASS); боевое N всегда из магазина.
+   */
+  forceTrialDays?: number | null;
   /** Allowlisted legacy lesson id to reopen after confirmed access. */
   resumeLessonId?: number | null;
   /**
@@ -479,9 +485,12 @@ export interface PaywallPurchaseArgs {
   resilientCheckout?: boolean;
 }
 
+/** Дней превью-триала в dev, когда `_force_trial_days` не задан. */
+export const DEV_FORCE_TRIAL_DEFAULT_DAYS = 3;
+
 let onboardingPaywallHookMounts = 0; // зачем: счётчик перемонтирований хука онбординга для [ONB-PAYWALL-WAIT]
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState: devStateArg = null }: PaywallPurchaseArgs) {
   // зачем (координатор 12.10, R1 «нет пути»): явный `_dev_state` окна сильнее состояния по ссылке `dev_state?paywall=…` (пейвол онбординга); в стор-сборке оба null.
   const devState = devStateArg ?? getDevPaywallLinkState();
   const router = useRouter();
@@ -913,7 +922,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
-  const subscriptionTrialDays = trial.hasTrial ? trial.days : devForceTrial ? 3 : null;
+  const devTrialDays = devForceTrial ? (forceTrialDays && forceTrialDays > 0 ? forceTrialDays : DEV_FORCE_TRIAL_DEFAULT_DAYS) : null;
+  const subscriptionTrialDays = trial.hasTrial ? trial.days : devTrialDays;
   const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
   // зачем (владелец 2026-09-30): пробный показывается на карточке ГОДА независимо от
   // выбранного тарифа — поэтому его длительность читается из годового пакета отдельно.
@@ -923,7 +933,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     () => getTrialInfo(packages.yearly, yearlyProductId ? introEligibility[yearlyProductId] ?? 'unknown' : 'unknown'),
     [introEligibility, packages.yearly, yearlyProductId],
   );
-  const yearlyTrialDays = yearlyTrial.hasTrial ? yearlyTrial.days : devForceTrial ? 3 : null;
+  const yearlyTrialDays = yearlyTrial.hasTrial ? yearlyTrial.days : devTrialDays;
+  const yearlyTrialSource: 'store' | 'dev_force' | 'none' = yearlyTrial.hasTrial ? 'store' : devTrialDays ? 'dev_force' : 'none';
   const selectedAvailable = DEV_IAP_BYPASS || Boolean(selectedPkg);
   const ctaDisabled = purchasing || loading || restoring || !selectedAvailable;
 
@@ -1674,7 +1685,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     packages, reloadOfferings,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
-    trial, trialDays, yearlyTrialDays, ctaDisabled, selectedAvailable,
+    trial, trialDays, yearlyTrialDays, yearlyTrialSource, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
     exitOffer,
     allowTrialReminder, skipTrialReminder,

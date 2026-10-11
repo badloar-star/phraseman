@@ -40,7 +40,7 @@ import { PaywallContextIcon } from './PaywallContextIcons';
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
 
-type Params = { _dev_state?: string | string[]; _force_trial_ui?: string | string[]; resume_kind?: string; resume_lesson_id?: string; lessons_done?: string; streak?: string };
+type Params = { _dev_state?: string | string[]; _force_trial_ui?: string | string[]; _force_trial_days?: string | string[]; resume_kind?: string; resume_lesson_id?: string; lessons_done?: string; streak?: string };
 
 function firstParam(raw: string | string[] | undefined): string | undefined {
   return Array.isArray(raw) ? raw[0] : raw;
@@ -59,6 +59,11 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const ctx = entry.context;
   const source = entry.source;
   const forceTrialUI = firstParam(params._force_trial_ui) === '1';
+  // зачем (координатор 12.10): dev-превью триала с заданным N (`_force_trial_days=7`); мусор и значения вне 1…60 игнорируются. В стор-сборке не действует (хук требует DEV_IAP_BYPASS).
+  const forceTrialDays = useMemo(() => {
+    const n = Number(firstParam(params._force_trial_days));
+    return Number.isInteger(n) && n >= 1 && n <= 60 ? n : null;
+  }, [params._force_trial_days]);
   // зачем (координатор 12.10, R1 «нет пути»): dev-состояние окна (`_dev_state=loading|error_no_prices|…`), в стор-сборке всегда null
   const devPaywallStateParam = firstParam(params._dev_state);
   const devPaywallState = useMemo(() => parseDevPaywallState(devPaywallStateParam), [devPaywallStateParam]);
@@ -84,7 +89,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   }, [contextual, ctx, headline.copyContext, headline.firstBenefit, lang, source]);
 
   const p = usePaywallPurchase({
-    variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, resumeLessonId, impression, devState: devPaywallState,
+    variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, forceTrialDays, resumeLessonId, impression, devState: devPaywallState,
     disableExitOffer: true,
     // зачем (D158): Plus-окно — кнопка всегда активна, цены из кэша, потолок загрузки.
     resilientCheckout: true,
@@ -132,8 +137,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   useEffect(() => {
     DebugLogger.info('[PAYWALL]', `окно Plus: состояние=${state} цены=${p.pricesFromCache ? 'кэш' : hasPrices ? 'магазин' : 'нет'} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} `
-      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source} превью=${String(p.previewPrices)} причина=${p.storeUnavailableReason ?? '-'} источникЦены=${p.priceSource} dev=${String(__DEV__)}`);
-  }, [ctx, hasPrices, p.previewPrices, p.priceSource, p.storeUnavailableReason, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
+      + `пробныйГода=${yearlyTrialDays ?? 'нет'} источникПробного=${yearlyTrialDays ? p.yearlyTrialSource : 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source} превью=${String(p.previewPrices)} причина=${p.storeUnavailableReason ?? '-'} источникЦены=${p.priceSource} dev=${String(__DEV__)}`);
+  }, [ctx, hasPrices, p.previewPrices, p.priceSource, p.yearlyTrialSource, p.storeUnavailableReason, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
 
   // Мгновенный выбор тарифа; лента пробного появляется/уходит плавно, без скачка.
   const { selected, selectPlan: selectPlanInHook } = p;

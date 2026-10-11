@@ -26,7 +26,9 @@ function sandbox(files) {
 
 test('боевой код: ни одного безусловного перехода на маршрут, вырезанный из стор-сборки', async () => {
   const result = await audit(ROOT);
-  assert.ok(result.routes.includes('app/learning-v2/session/[id].tsx'), 'регулярка стор-режима разобрана, LV2 вырезан');
+  // зачем (владелец 11.10): курс V2 входит в стор-сборку — вырезаны только его дев-экраны.
+  assert.ok(result.routes.includes('app/_learning_v2_authoring_preview.tsx'), 'регулярка стор-режима разобрана, дев-экраны V2 вырезаны');
+  assert.ok(!result.routes.includes('app/learning-v2/session/[id].tsx'), 'занятие Learning V2 в стор-сборке есть');
   assert.deepEqual(
     result.holes.map((hole) => `${hole.file}:${hole.line} → ${hole.route}`),
     [],
@@ -41,25 +43,27 @@ test('префикс маршрута: группы и динамические 
 });
 
 test('новая безусловная ссылка на вырезанный маршрут — дыра; с условием стор-режима — нет', async () => {
-  const route = 'app/learning-v2/session/[id].tsx';
+  // зачем (11.10): занятие V2 теперь в стор-сборке — образец вырезанного маршрута берём из дев-экранов V2.
+  const route = 'app/learning_v2_modes_showcase_run/[family].tsx';
   const open = sandbox({
     [route]: 'export default function S() { return null; }\n',
-    'app/home_tile.tsx': "export function go(router) {\n  router.push('/learning-v2/session/7');\n}\n",
+    'app/home_tile.tsx': "export function go(router) {\n  router.push('/learning_v2_modes_showcase_run/rhythm');\n}\n",
   });
   const holes = (await audit(open)).holes;
   assert.equal(holes.length, 1);
   assert.equal(holes[0].file, 'app/home_tile.tsx');
-  assert.equal(holes[0].route, '/learning-v2/session/');
+  assert.equal(holes[0].route, '/learning_v2_modes_showcase_run/');
 
   const guarded = sandbox({
     [route]: 'export default function S() { return null; }\n',
-    'app/home_tile.tsx': "import { IS_STORE_RELEASE } from './config';\nexport function go(router) {\n  if (IS_STORE_RELEASE) return;\n  router.push('/learning-v2/session/7');\n}\n",
+    'app/home_tile.tsx': "import { IS_STORE_RELEASE } from './config';\nexport function go(router) {\n  if (IS_STORE_RELEASE) return;\n  router.push('/learning_v2_modes_showcase_run/rhythm');\n}\n",
   });
   assert.deepEqual((await audit(guarded)).holes, []);
 });
 
 test('лог-блок if (__DEV__) — не условие, а сравнение пути — не переход', async () => {
-  const route = 'app/learning-v2/session/[id].tsx';
+  // зачем (11.10): занятие V2 теперь в стор-сборке — образец вырезанного маршрута берём из дев-экранов V2.
+  const route = 'app/learning_v2_modes_showcase_run/[family].tsx';
   const dir = sandbox({
     [route]: 'export default function S() { return null; }\n',
     'app/screen.tsx': [
@@ -67,9 +71,9 @@ test('лог-блок if (__DEV__) — не условие, а сравнени�
       '  if (__DEV__) {',
       "    console.log('[TRACE] go');",
       '  }',
-      "  if (pathname.startsWith('/learning-v2/session/')) return 'lv2';",
+      "  if (pathname.startsWith('/learning_v2_modes_showcase_run/')) return 'lv2';",
       '  router.push({',
-      "    pathname: '/learning-v2/session/[id]',",
+      "    pathname: '/learning_v2_modes_showcase_run/[family]',",
       '  });',
       '}',
     ].join('\n'),

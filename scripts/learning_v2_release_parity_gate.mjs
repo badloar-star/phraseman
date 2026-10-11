@@ -560,9 +560,16 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       console.warn(`[V2-RELEASE-PARITY] помощник поверхности стор-сборки не загрузился (${error instanceof Error ? error.message : String(error)}) — ворота строгие`);
       return null;
     });
+    const buildServer = surface?.learningV2CourseSourcesAbsentOnBuildServer?.(PROJECT_ROOT) ?? { skip: false, reason: "surface_helper_missing" };
     if (surface && surface.announceLearningV2StoreSkip("[V2-RELEASE-PARITY]", PROJECT_ROOT)) {
       process.exitCode = 0;
+    } else if (buildServer.skip) {
+      // зачем (владелец 11.10, V2 входит в стор-сборку): на сервере EAS исходников курса нет (.easignore /content/) —
+      // сверку здесь выполнить нельзя; строгий прогон — локально в release:precheck перед сборкой.
+      console.warn(`[V2-RELEASE-PARITY] сервер EAS: исходников курса в архиве нет (${buildServer.reason}) — сверка выполняется только локально в npm run release:precheck`);
+      process.exitCode = 0;
     } else {
+    console.log(`[V2-RELEASE-PARITY] строгая сверка (${buildServer.reason})`);
     const scopeResult = validateEnglishReleaseScope();
     const semanticResult = runSourceReleaseSemanticParity();
     const qualityResult = validateReleaseQuality();

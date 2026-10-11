@@ -77,6 +77,21 @@ export function learningV2StoreSkipDecision(root, env = process.env) {
   return { skip: true, reason: 'learning_v2_excluded_from_store', routes: routes.length, reachable: [] };
 }
 
+/**
+ * Сервер EAS: исходников курса в архиве нет (.easignore исключает /content/), поэтому сверку «исходник = выпуск = копия
+ * приложения» там выполнить физически нельзя — она строгая локально, в `npm run release:precheck`.
+ *
+ * зачем (владелец 11.10, «LEARNING V2 ПОПАДАЕТ»): после снятия выреза ворота паритета на сервере падали бы не на качестве
+ * курса, а на отсутствии папки. Признак срабатывает ТОЛЬКО на сервере EAS и ТОЛЬКО при отсутствии исходников.
+ * @returns {{ skip: boolean, reason: string }}
+ */
+export function learningV2CourseSourcesAbsentOnBuildServer(root, env = process.env) {
+  if (env.EAS_BUILD !== 'true') return { skip: false, reason: 'not_eas_build_server' };
+  const sources = path.join(root, 'content', 'learning-v2-course');
+  if (fs.existsSync(sources)) return { skip: false, reason: 'course_sources_present' };
+  return { skip: true, reason: 'course_sources_not_in_eas_archive' };
+}
+
 /** Печатает решение одной строкой; true — вызывающие ворота должны выйти с кодом 0. */
 export function announceLearningV2StoreSkip(gateLog, root, env = process.env) {
   const decision = learningV2StoreSkipDecision(root, env);

@@ -8,7 +8,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-import { learningV2StoreSkipDecision } from '../scripts/store_release_surface.mjs';
+import { learningV2CourseSourcesAbsentOnBuildServer, learningV2StoreSkipDecision } from '../scripts/store_release_surface.mjs';
 import { parseParityWaiver } from '../scripts/visual_parity_gate.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -66,9 +66,20 @@ test('нет router.ctx.js → пропуска нет (строго по умо
   assert.equal(learningV2StoreSkipDecision(dir, { EXPO_PUBLIC_STORE_RELEASE: '1' }).skip, false);
 });
 
-test('настоящий проект: стор-режим вырезает весь Learning V2', () => {
+// зачем (владелец 11.10, «LEARNING V2 ПОПАДАЕТ»): вырез снят — в стор-режиме ворота V2 строгие, пропуска нет.
+test('настоящий проект: Learning V2 входит в стор-сборку, ворота V2 не пропускаются', () => {
   const decision = learningV2StoreSkipDecision(ROOT, { EXPO_PUBLIC_STORE_RELEASE: '1' });
-  assert.equal(decision.skip, true, JSON.stringify(decision));
+  assert.equal(decision.skip, false, JSON.stringify(decision));
+  assert.equal(decision.reason, 'learning_v2_route_reachable_in_store');
+  assert.ok(decision.reachable.includes('app/learning-v2/session/[id].tsx'), JSON.stringify(decision));
+});
+
+test('сервер EAS без исходников курса: сверка паритета только локально; во всех других случаях — строго', () => {
+  const dir = sandbox(EXCLUDING);
+  assert.deepEqual(learningV2CourseSourcesAbsentOnBuildServer(dir, { EAS_BUILD: 'true' }), { skip: true, reason: 'course_sources_not_in_eas_archive' });
+  assert.equal(learningV2CourseSourcesAbsentOnBuildServer(dir, {}).skip, false);
+  fs.mkdirSync(path.join(dir, 'content', 'learning-v2-course'), { recursive: true });
+  assert.equal(learningV2CourseSourcesAbsentOnBuildServer(dir, { EAS_BUILD: 'true' }).skip, false);
 });
 
 test('PARITY_GATE_WAIVER: формат owner-дата:причина, иначе отказ', () => {

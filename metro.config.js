@@ -204,11 +204,8 @@ const storeReleaseVipSurveyDevAuthStubPath = path.join(
   'vip_survey_dev_auth_stub.ts',
 );
 // зачем: D70/D78 — биржа жемчуга удалена, её стор-заглушка больше не нужна.
-const storeReleaseSessionRuneCompositeStubPath = path.join(
-  __dirname,
-  'store_release_stubs',
-  'learning_session_rune_reward_composite_stub.ts',
-);
+// зачем (владелец 11.10, «LEARNING V2 ПОПАДАЕТ»): заглушка наград сессии V2 (бросала learning_v2_store_disabled) снята —
+// курс входит в стор-сборку, и награда за занятие обязана начисляться настоящим модулем.
 const storeReleaseDevModules = new Set([
   './_admin_settings_testers',
   './_admin_intro_preview',
@@ -259,16 +256,6 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     return {
       type: 'sourceFile',
       filePath: storeReleaseVipSurveyDevAuthStubPath,
-    };
-  }
-
-  if (
-    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
-    moduleName === '../modules/learning-v2/progress/learning_session_rune_reward_composite_v1'
-  ) {
-    return {
-      type: 'sourceFile',
-      filePath: storeReleaseSessionRuneCompositeStubPath,
     };
   }
 

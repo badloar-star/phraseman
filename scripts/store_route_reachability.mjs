@@ -33,11 +33,6 @@ export const ALLOWED = Object.freeze([
     route: null,
     reason: 'реестр дев-витрины: рисует только app/_motion_showcase.tsx (вырезан), вход app/motion_showcase.tsx пускает лишь при __DEV__ && !IS_STORE_RELEASE',
   },
-  {
-    file: 'app/(tabs)/lessons.tsx',
-    route: '/learning-v2/session/',
-    reason: 'запуск занятия со страницы V2; оба входа на неё (чип и кнопка «V2») закрыты LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY (52d420253), сторож lessons_entry_opens_legacy_guard',
-  },
 ]);
 
 function allowedReason(file, route) {
@@ -102,6 +97,9 @@ export async function audit(root = ROOT) {
   const targets = routes
     .filter((file) => !path.basename(file).startsWith('_'))
     .map((file) => ({ file, prefix: routePrefix(file), pattern: linkPattern(routePrefix(file)) }));
+  // зачем (владелец 11.10, V2 в стор-сборке): страница V2 — дыра, только пока занятие V2 вырезано из стор-сборки
+  // (тогда с неё любая сессия падает в «неизвестный маршрут»). Маршрут занятия есть — переход на страницу законный.
+  const v2SessionExcluded = excludedSet.has('app/learning-v2/session/[id].tsx');
   const findings = [];
   for (const full of listSources(root)) {
     const rel = path.relative(root, full).replace(/\\/g, '/');
@@ -109,7 +107,7 @@ export async function audit(root = ROOT) {
     const lines = fs.readFileSync(full, 'utf8').split(/\r?\n/);
     lines.forEach((line, index) => {
       if (/^\s*(\/\/|\*|\/\*)/.test(line)) return; // комментарии — не навигация
-      const setPageV2 = /setPage\(\s*["']v2["']\s*\)|initialPage\s*=\s*["']v2["']/.test(line);
+      const setPageV2 = v2SessionExcluded && /setPage\(\s*["']v2["']\s*\)|initialPage\s*=\s*["']v2["']/.test(line);
       // Строка-маршрут — ссылка, только если она в переходе (на этой или предыдущей строке): сравнения
       // pathname === '…' / startsWith и реестры-классификаторы в сторе ничего не открывают.
       const navigating = NAVIGATION.test(line) || NAVIGATION.test(lines[index - 1] ?? '');

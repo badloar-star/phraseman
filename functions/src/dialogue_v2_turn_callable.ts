@@ -673,6 +673,8 @@ export async function executeDialogueV2TextTurn(
       userMessage: input.userMessage,
       studyTarget: packet.studyTarget,
       objectiveIds: packet.scenario.objectives.map((objective) => objective.id),
+      // зачем (dialogs-038): страховка конца диалога по числу ходов — сервер знает номер хода в сессии.
+      sessionTurnCount: groupState.turnCount,
       assertStudyLanguage: dependencies.assertStudyLanguage,
     });
     coaching = parsedCoaching.coaching;

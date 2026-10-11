@@ -186,8 +186,33 @@ export type DialogueV2CoachingParseContext = Readonly<{
   userMessage: string;
   studyTarget: DialogueV2StudyTarget;
   objectiveIds: readonly string[];
+  /** Номер хода в сессии (для страховки конца диалога); нет — страховка по числу ходов не применяется. */
+  sessionTurnCount?: number;
   assertStudyLanguage(text: string, studyTarget: DialogueV2StudyTarget): void;
 }>;
+
+/**
+ * Принять ли «диалог окончен» от модели.
+ * зачем (Сверка 11.10, dialogs-038: диалог закрылся после 2-й реплики, цели 5–6 не выполнены, карточка цели пропала):
+ * модель сама решает «персонаж закрыл сцену» и может сделать это рано. Конец засчитываем, только если активная цель —
+ * последняя, или разговор уже длинный (страховка от вечного диалога, если модель не называет цель). Чистая функция.
+ */
+export function acceptDialogueEnded(input: Readonly<{
+  modelEnded: boolean;
+  activeObjectiveId: string | null;
+  objectiveIds: readonly string[];
+  sessionTurnCount?: number;
+}>): { ended: boolean; reason: 'not_requested' | 'last_objective' | 'long_dialogue' | 'no_objectives' | 'premature' } {
+  if (!input.modelEnded) return { ended: false, reason: 'not_requested' };
+  if (input.objectiveIds.length === 0) return { ended: true, reason: 'no_objectives' };
+  const last = input.objectiveIds[input.objectiveIds.length - 1];
+  if (input.activeObjectiveId !== null && input.activeObjectiveId === last) return { ended: true, reason: 'last_objective' };
+  // Одна цель и модель не назвала активную — это и есть последняя.
+  if (input.activeObjectiveId === null && input.objectiveIds.length === 1) return { ended: true, reason: 'last_objective' };
+  const minTurns = Math.max(6, input.objectiveIds.length * 2);
+  if (typeof input.sessionTurnCount === 'number' && input.sessionTurnCount >= minTurns) return { ended: true, reason: 'long_dialogue' };
+  return { ended: false, reason: 'premature' };
+}
 
 export type DialogueV2CoachingParseResult = Readonly<{
   coaching: DialogueV2TurnCoaching;
@@ -254,8 +279,16 @@ export function parseDialogueV2TurnCoaching(
     }
   }
 
-  const dialogueEnded = raw.dialogueEnded === true;
   if (typeof raw.dialogueEnded !== 'boolean') dropped.push('dialogueEnded');
+  const endDecision = acceptDialogueEnded({
+    modelEnded: raw.dialogueEnded === true,
+    activeObjectiveId,
+    objectiveIds: context.objectiveIds,
+    sessionTurnCount: context.sessionTurnCount,
+  });
+  const dialogueEnded = endDecision.ended;
+  // Преждевременный конец снимаем и называем причину (только имя поля — без текстов, их пишет вызывающий лог).
+  if (endDecision.reason === 'premature') dropped.push('dialogueEnded_premature');
 
   return Object.freeze({
     coaching: Object.freeze({

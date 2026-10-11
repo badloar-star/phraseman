@@ -14,6 +14,7 @@ import {
 import {
   DIALOGUE_V2_COACHING_MAX_OUTPUT_TOKENS,
   DIALOGUE_V2_EMPTY_COACHING,
+  acceptDialogueEnded,
   parseDialogueV2TurnCoaching,
 } from './dialogue_v2_turn_coaching';
 
@@ -237,5 +238,34 @@ describe('Dialogue V2 turn coaching (D112)', () => {
     expect(result.coaching.betterPhrasing).toBeNull();
     expect(result.coaching.dialogueEnded).toBe(true);
     expect(result.coaching.mood).toBe('happy');
+  });
+});
+
+// зачем (Сверка 11.10, dialogs-038): модель закрыла сцену после 2-й реплики при невыполненных целях — конец снимается.
+describe('acceptDialogueEnded — преждевременный конец диалога', () => {
+  const objectives = ['goal_1', 'goal_2', 'goal_3', 'goal_4', 'goal_5', 'goal_6'];
+  it('модель не просит конец — нет конца', () => {
+    expect(acceptDialogueEnded({ modelEnded: false, activeObjectiveId: 'goal_6', objectiveIds: objectives })).toEqual({ ended: false, reason: 'not_requested' });
+  });
+  it('конец на последней цели — принимается', () => {
+    expect(acceptDialogueEnded({ modelEnded: true, activeObjectiveId: 'goal_6', objectiveIds: objectives }).ended).toBe(true);
+  });
+  it('конец на 2-й цели после 2 ходов — снимается (dialogs-038)', () => {
+    expect(acceptDialogueEnded({ modelEnded: true, activeObjectiveId: 'goal_2', objectiveIds: objectives, sessionTurnCount: 2 }))
+      .toEqual({ ended: false, reason: 'premature' });
+  });
+  it('длинный разговор — принимается и без последней цели (страховка от вечного диалога)', () => {
+    expect(acceptDialogueEnded({ modelEnded: true, activeObjectiveId: 'goal_3', objectiveIds: objectives, sessionTurnCount: 12 }).reason).toBe('long_dialogue');
+  });
+  it('разбор хода снимает преждевременный конец и называет поле', () => {
+    const result = parseDialogueV2TurnCoaching({
+      replyTranslations: ['a'], replyExplanations: ['b'], betterPhrasing: null, hint: null, mood: 'happy',
+      activeObjectiveId: 'goal_2', dialogueEnded: true,
+    }, {
+      replyCount: 1, userMessage: 'Hi', studyTarget: 'en', objectiveIds: objectives, sessionTurnCount: 2,
+      assertStudyLanguage: () => undefined,
+    });
+    expect(result.coaching.dialogueEnded).toBe(false);
+    expect(result.droppedFields).toContain('dialogueEnded_premature');
   });
 });

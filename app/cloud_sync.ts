@@ -296,6 +296,7 @@ import { CARD_DELETION_JOURNAL_KEY, readCardDeletionJournal } from './flashcards
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
+import { gcDelta, gcSnapshot } from './mem_probe';
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -4220,12 +4221,18 @@ async function applyRestoreFromUserDoc(
 ): Promise<boolean> {
   const startedAt = Date.now();
   const points: Record<string, number> = {};
+  // Сборки мусора за шаг (счётчик общий на приложение: у параллельной работы дельта шире самого шага).
+  const gcPoints: Record<string, string | null> = {};
   let pointAt = startedAt;
+  let gcAt = gcSnapshot();
   let lastPoint = 'start';
   const applyMark = (point: string) => {
     const now = Date.now();
+    const gcNow = gcSnapshot();
     points[point] = now - pointAt;
+    gcPoints[point] = gcDelta(gcAt, gcNow);
     pointAt = now;
+    gcAt = gcNow;
     lastPoint = point;
   };
   let applied: boolean | null = null;
@@ -4242,6 +4249,8 @@ async function applyRestoreFromUserDoc(
       tailMs: Date.now() - pointAt,
       lastPoint,
       points,
+      gc: gcPoints,
+      tailGc: gcDelta(gcAt, gcSnapshot()),
       applied,
       ...(thrown ? { thrown: String(thrown).slice(0, 160) } : {}),
     }));
@@ -4492,12 +4501,17 @@ async function restoreAndMigrateFromCloudResult(
 ): Promise<CloudRestoreAttempt> {
   const startedAt = Date.now();
   const stages: Record<string, number> = {};
+  const gcStages: Record<string, string | null> = {};
   let stageAt = startedAt;
+  let gcStageAt = gcSnapshot();
   let lastStage = 'start';
   const mark = (stage: string) => {
     const now = Date.now();
+    const gcNow = gcSnapshot();
     stages[stage] = now - stageAt;
+    gcStages[stage] = gcDelta(gcStageAt, gcNow);
     stageAt = now;
+    gcStageAt = gcNow;
     lastStage = stage;
   };
   let attempt: CloudRestoreAttempt | null = null;
@@ -4514,6 +4528,7 @@ async function restoreAndMigrateFromCloudResult(
       syncMissingDocument,
       lastStage,
       stages,
+      gc: gcStages,
       status: attempt?.status ?? null,
       failureReason: attempt?.failureReason ?? null,
       ...(thrown ? { thrown: String(thrown).slice(0, 160) } : {}),

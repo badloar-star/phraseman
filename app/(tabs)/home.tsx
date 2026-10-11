@@ -127,6 +127,7 @@ function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
 }
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
 import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../../components/v2/ShadowSurface';
+import { gcDelta, gcSnapshot } from '../mem_probe';
 import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем (координатор 05.10, пакет 05:26: [JS-STALL] 1,5 с — вычисление чанка Главной до первого кадра; план
@@ -1565,6 +1566,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // зачем (координатор 11.10, «сперва логи»): parallel6 стоил 2,8–27,9 с, а пять чтений внутри мерились одним
             // числом. Каждая часть отмечает своё время — видно, какая держит первый кадр данных Главной.
             const partsStartedAt = Date.now();
+            const partsGcAt = gcSnapshot();
             const parts: Record<string, number> = {};
             const timed = <T,>(label: string, promise: Promise<T>): Promise<T> => promise.then(
               (value) => { parts[label] = Date.now() - partsStartedAt; return value; },
@@ -1589,7 +1591,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     return getPersonalProgressSnapshot();
                 })),
             ]);
-            console.log('[HOME-LOADDATA-PARTS] parallel6', JSON.stringify({ totalMs: Date.now() - partsStartedAt, parts }));
+            console.log('[HOME-LOADDATA-PARTS] parallel6', JSON.stringify({ totalMs: Date.now() - partsStartedAt, parts, gc: gcDelta(partsGcAt, gcSnapshot()) }));
             step('parallel6');
             const homeStorage = new Map(homeStoragePairs);
             const name = homeStorage.get('user_name') ?? null;
@@ -1710,8 +1712,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             step('titles+achievements+greeting');
             step('titles+achievements');
             const lessonsReadStartedAt = Date.now();
+            const lessonsReadGcAt = gcSnapshot();
             const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
-            console.log('[HOME-LOADDATA-PARTS] lessons_read', JSON.stringify({ ms: Date.now() - lessonsReadStartedAt, keys: lessonKeys.length + 1 }));
+            console.log('[HOME-LOADDATA-PARTS] lessons_read', JSON.stringify({ ms: Date.now() - lessonsReadStartedAt, keys: lessonKeys.length + 1, gc: gcDelta(lessonsReadGcAt, gcSnapshot()) }));
             const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
             // зачем: контракт tests/home_lesson_progress_single_pass — каждый сохранённый

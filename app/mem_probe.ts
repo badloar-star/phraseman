@@ -44,6 +44,23 @@ export function logMemoryOnce(tag: string, extra: Record<string, unknown> = {}):
   logMemory(tag, extra);
 }
 
+/**
+ * Счётчик сборок мусора сейчас — для разницы «до/после шага».
+ * зачем (координатор 11.10: за минуту старта 1056 сборок и 22,5 с в GC при куче 40–60 МБ): ищем шаг, который
+ * выделяет память по кругу. null — нет Hermes (тесты, веб).
+ */
+export function gcSnapshot(): { gc: number; gcMs: number } | null {
+  const stats = readHermesStats();
+  if (!stats || typeof stats.js_numGCs !== 'number') return null;
+  return { gc: stats.js_numGCs, gcMs: typeof stats.js_gcTime === 'number' ? Math.round(stats.js_gcTime * 1000) : 0 };
+}
+
+/** Разница сборок между двумя снимками: «сколько сборок и мс GC пришлось на шаг». */
+export function gcDelta(from: { gc: number; gcMs: number } | null, to: { gc: number; gcMs: number } | null): string | null {
+  if (!from || !to) return null;
+  return `${to.gc - from.gc}gc/${to.gcMs - from.gcMs}ms`;
+}
+
 /** Готовая Главная: замер сейчас и через 60 с (фоновые загрузки после первого кадра). */
 export function armMemoryProbeAfterHomePaint(): void {
   logMemoryOnce('home_painted');

@@ -40,8 +40,9 @@ const LEGAL_FILES = [
   // 12.10 (ночью, решения советника по PRIVACY_R1_GAP): §3/§4/§5/§6/§10/§11/§12 — аварийная копия, вход по коду, Шпиль и компьютерные участники, ИИ-проверка наборов и черновики ответов, состав обращения, язык и пояс при push, свободный чат; дата 12 октября.
   ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '7d89628c5bfe163abb44f1aa029bc6ee0edd7be5e8707e34466e023c14e65d54'],
   ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '9d3e5c7634be5853bfd37fe06cc5ea7706fe47f717d3eac33a17450842692c08'],
-  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '41074944d0d737fc9fa2cf670e172df0c2e56fdc4dd51a9666b40a3678c046b9'],
-  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '936e2e7b62c86cd0b551de5a69ab045bc83b73e631e19e727957d821e3e813cd'],
+  // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
+  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'f863b642c155a27f95a2b1b02f01d1032d27f6f247d0e1c5bb83cf90cb875d5c'],
+  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'ab826ddfd649854a51a4228b7423b0cc6ab984b4067b98b3ebb9fc5c9c71c4df'],
 ];
 
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');

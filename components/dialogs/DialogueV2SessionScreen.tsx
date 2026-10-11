@@ -40,6 +40,8 @@ import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
 import DialogWhySheet from './DialogWhySheet';
+import { useDialogInputLayoutTrace } from './glass/useDialogInputLayoutTrace';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { DialogueGlassExitSheet } from './glass/DialogueGlassExitSheet';
 
 // зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C24 (Liquid Glass):
@@ -276,6 +278,10 @@ export function DialogueV2SessionScreen({
     scrollRef.current?.scrollToEnd({ animated: true });
   }, []);
 
+  // зачем (координатор 12.10, «сперва логи», Сверка dialogs-030/031): где стоит строка ввода после отправки — [DLG-INPUT-LAYOUT] (высота клавиатуры, зазор до низа окна, нижний отступ безопасной зоны).
+  const inputInsets = useStableSafeAreaInsets();
+  const inputTrace = useDialogInputLayoutTrace({ sending, bottomMode: String(bottom), insetBottom: inputInsets.bottom });
+
   // зачем (сверка dialogs-030/-016, 🔴 «после отправки клавиатура скрыта, а поле ввода осталось приподнятым — пустая полоса ~150px»):
   // на Android при windowSoftInputMode=adjustResize режим height у KeyboardAvoidingView удваивает сдвиг и после скрытия клавиатуры не возвращает высоту.
   // Режим padding возвращает нижний отступ в 0 сам. Сперва логи: высота клавиатуры при показе/скрытии печатается в [DIALOGUE-KEYBOARD].
@@ -511,7 +517,7 @@ export function DialogueV2SessionScreen({
           <DialogueGlassSummaryPill glass={glass} testID="dialogue-v2-session-summary-pill" label={coachingLabels.summary} onPress={onOpenSummary} />
         ) : null}
         {bottom === 'input' ? (
-          <View style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
+          <View ref={inputTrace.barRef} collapsable={false} onLayout={inputTrace.onBarLayout} style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Pressable
                 onPressIn={onStartVoice}

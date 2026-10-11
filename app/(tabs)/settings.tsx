@@ -902,7 +902,9 @@ export default function SettingsMain() {
 
         {/* зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): шапка «Настройки» 40/46
             без подзаголовка, справа монета ранга; Dev Hub переехал в подвал строкой рядом с версией. */}
-        <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
+        <View
+          onLayout={(event) => { if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
+          style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
           <Text accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
             {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>

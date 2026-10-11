@@ -26,10 +26,21 @@ export const PackBackBare = memo(function PackBackBare({ g, onPress, label, test
   );
 });
 
+// зачем (координатор 12.10, «сперва логи»): один раз на тему — какая заливка и тень у круглых/квадратных плашек шапки наборов ([PACK-BAR-LAYOUT]); «плоские» на кадре = заливка плашки почти равна фону темы.
+const loggedPlateThemes = new Set<string>();
+function tracePlate(kind: string, g: GlassTokens, size: number): void {
+  if (!__DEV__) return;
+  const key = `${kind}|${String(g.plateFillFrom)}|${String(g.bg)}`;
+  if (loggedPlateThemes.has(key)) return;
+  loggedPlateThemes.add(key);
+  console.log(`[PACK-BAR-LAYOUT] ${kind} размер=${size} заливка=${String(g.plateFillFrom)} фон темы=${String(g.bg)} тень=${plateBoxShadow(g)}`); // guard-ok: замер оформления
+}
+
 /** `.rb` 42 / `.rb.l` 48 — круглая кнопка-плашка с иконкой (стиль «Тень»: заливка и тень, без кольца). */
 export const PackRoundButton = memo(function PackRoundButton({ g, icon, onPress, label, testID, size = 42, iconSize = 20, disabled, style }: Readonly<{
   g: GlassTokens; icon: IonName; onPress: () => void; label: string; testID?: string; size?: 42 | 48; iconSize?: number; disabled?: boolean; style?: StyleProp<ViewStyle>;
 }>) {
+  tracePlate('round', g, size);
   return (
     <KitTouchable
       testID={testID}

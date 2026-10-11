@@ -390,14 +390,14 @@ Governance-ID: TG-A280B7BED1F1
 | dialogs-gap-015 | dialogs-gaps-states.html №15 | G-D05 | `dialogue-v2-session-more` → `dialogue-v2-session-menu` | №2 | Т |
 | dialogs-gap-016 | dialogs-gaps-states.html №16 | — | НЕТ ПУТИ: тост «Энергия возвращена» — при отказе сервиса на первом ходе (`settleEnergy('refund')`, dialogue_v2_session.tsx:380). Нужно: `dev_dialog_fail=service` | №2 | Т |
 | dialogs-gap-017 | dialogs-gaps-states.html №17 | — | НЕТ ПУТИ: тост «Не получилось начать диалог» — `confirmSpendOne` вернул `cancelled` или бросил (dialogue_v2_briefing.tsx:~257). Нужно: `dev_energy_fail=1` | №2 | Т |
-| spire-gap-001 | spire-gaps-states.html №1 | — | НЕТ ПУТИ: «вставь слово» (`fill_gap`) — в превью нет такого состояния (только choice/build/items); в настоящей игре тип приходит случайно из пакета. Нужно: `state=step_gap` | Г | Т |
-| spire-gap-002 | spire-gaps-states.html №2 | — | НЕТ ПУТИ: «найди лишнее» (`find_oddity`) — то же. Нужно: `state=step_odd` | Г | Т |
+| spire-gap-001 | spire-gaps-states.html №1 | — | `dev_spire_preview?state=step_gap` («вставь слово», `fill_gap`) | Г | Т |
+| spire-gap-002 | spire-gaps-states.html №2 | — | `dev_spire_preview?state=step_odd` («найди лишнее», `find_oddity`; подпись на языке интерфейса) | Г | Т |
 | spire-gap-003 | spire-gaps-states.html №3 | G-S01 | `state=step_build` («собери перевод») | Г | Т |
-| spire-gap-004 | spire-gaps-states.html №4 | — | НЕТ ПУТИ: «послушай и выбери» (`listen_choose`, кнопка `spire-task-listen`). Нужно: `state=step_listen_choose` | Г | Т |
-| spire-gap-005 | spire-gaps-states.html №5 | — | НЕТ ПУТИ: «послушай и собери» (`listen_build`). Нужно: `state=step_listen_build` | Г | Т |
+| spire-gap-004 | spire-gaps-states.html №4 | — | `dev_spire_preview?state=step_listen_choose` («послушай и выбери», кнопка `spire-task-listen`) | Г | Т |
+| spire-gap-005 | spire-gaps-states.html №5 | — | `dev_spire_preview?state=step_listen_build` («послушай и собери») | Г | Т |
 | spire-gap-006 | spire-gaps-states.html №6 | G-S01 | `state=step_items` («найди пары») | Г | Т |
 | spire-gap-007 | spire-gaps-states.html №7 | G-S04 | комната загружена, авиарежим, тап `spire-climb` → строка причины + «Повторить» | №2 | Т |
-| spire-gap-008 | spire-gaps-states.html №8 | — | НЕТ ПУТИ: «задания недели ещё готовятся» (`pack_missing`) — сервер не отдал пакет; в превью `startBlock` всегда null. Нужно: `state=block_missing` | Г | Т |
+| spire-gap-008 | spire-gaps-states.html №8 | — | `dev_spire_preview?state=block_missing` («задания недели ещё готовятся», `pack_missing`); `state=block_offline` — «нет сети» у «Подняться» | Г | Т |
 | spire-gap-009 | spire-gaps-states.html №9 | G-S01 | `state=empty`: «Подняться» неактивна (`spire-climb`, disabled) | Г | Т |
 | spire-gap-010 | spire-gaps-states.html №10 | G-S01 | `state=empty`, прокрутка вниз: пьедестал без людей, `spire-all-members` неактивна | Г | Т |
 | spire-gap-011 | spire-gaps-states.html №11 | G-S01 | `state=locked` (`spire-locked`) | Г | Т |
@@ -405,8 +405,8 @@ Governance-ID: TG-A280B7BED1F1
 | spire-gap-013 | spire-gaps-states.html №13 | G-S04 | на ступени `spire-step-back` → `spire-exit-confirm` → причина «прервана» | №2 | Т |
 | spire-gap-014 | spire-gaps-states.html №14 | G-S01 | `state=save_failed` (панель «Ступень не сохранилась», кнопка «Повторить», testID `spire-result-save_failed`) | Г | Т |
 | spire-gap-015 | spire-gaps-states.html №15 | G-S01 | `state=weekresult` (promoted) | Г | Т |
-| spire-gap-016 | spire-gaps-states.html №16 | — | НЕТ ПУТИ: «остаёшься» — в мока зашито promoted=true. Нужно: `state=weekresult_stay` | Г | Т |
-| spire-gap-017 | spire-gaps-states.html №17 | — | НЕТ ПУТИ: «спускаешься» (demoted). Нужно: `state=weekresult_down` | Г | Т |
+| spire-gap-016 | spire-gaps-states.html №16 | — | `dev_spire_preview?state=weekresult_stay` («остаёшься»: promoted=false, ранг тот же) | Г | Т |
+| spire-gap-017 | spire-gaps-states.html №17 | — | `dev_spire_preview?state=weekresult_down` («спускаешься»: demoted=true, ранг ниже) | Г | Т |
 | spire-gap-018 | spire-gaps-states.html №18 | G-S01 | `state=rules`, начало списка | Г | Т |
 | spire-gap-019 | spire-gaps-states.html №19 | G-S01 | `state=rules`, прокрутить шторку до конца | Г | Т |
 | spire-gap-020 | spire-gaps-states.html №20 | G-S01 | `state=step_prep`: «Готовим ступень…», кольцо на паузе | Г | Т |
@@ -433,12 +433,12 @@ Governance-ID: TG-A280B7BED1F1
 Каждая строка — id, причина, что нужно от Ядра. Группы «сбой сети» сюда не входят (описаны в группах).
 
 **Шпиль (dev_spire_preview).** Все пункты — добавить состояния в components/spire/spire_preview_fixtures.ts (SPIRE_PREVIEW_STATES) и в моки; маршрут и компоненты те же, что в бою.
-- spire-015, spire-gap-016, spire-gap-017 — итог недели «остаёшься» / «спускаешься»: у `weekresult` зашито promoted=true. Добавить `weekresult_stay`, `weekresult_down`.
-- spire-010 (частично) — нет итога ступени вида «passed» (`spire-result-passed`). Добавить `state=passed`. Сейчас только `win`/`summit`/`lose`/`save_failed`.
-- spire-012 (частично) — `win` показывает этаж 7→8, а в макете этаж 4→5 «впереди Страж». Добавить `state=guard` (floor 5, `spireIsGuard`).
-- spire-gap-001/002/004/005 — виды заданий «вставь слово», «найди лишнее», «послушай и выбери/собери». Добавить `step_gap`, `step_odd`, `step_listen_choose`, `step_listen_build`.
-- spire-gap-008 — `startBlock` в мока всегда null. Добавить `block_missing` (и для удобства `block_offline`, чтобы не включать авиарежим).
-- Шторка выхода и флажок жалобы (spire-009, spire-gap-021) в превью не рисуются (`exitSlot=null`, `reportSlot=null`); сняты только в настоящей игре. Желательно `&exit=1`, `&report=1`.
+- ✅ (14.10, `df4cc67e0`) spire-015, spire-gap-016, spire-gap-017 — итог недели «остаёшься» / «спускаешься»: `state=weekresult_stay`, `state=weekresult_down`.
+- ✅ (14.10) spire-010 — итог ступени «passed» (`spire-result-passed`): `state=passed`.
+- ✅ (14.10) spire-012 — этаж 4→5 «впереди Страж»: `state=guard` (этаж 5, `spireIsGuard`).
+- ✅ (14.10) spire-gap-001/002/004/005 — виды заданий: `step_gap`, `step_odd`, `step_listen_choose`, `step_listen_build`.
+- ✅ (14.10) spire-gap-008 — `state=block_missing` и `state=block_offline`.
+- ✅ (14.10) Шторка выхода (spire-009): `&exit=1` на любом `step_*`. Флажок жалобы (spire-gap-021) в превью по-прежнему не рисуется — нажатие отправляет жалобу в сеть; снимается в настоящей игре.
 
 **Диалоги.** Нужны фикстуры сессии (рядом с app/dialogue_v2_visual_fixture.tsx, он статичный и не покрывает эти состояния) и поля в `dev_state`.
 - dialogs-004, 034, 035 — лимит 0/30, 1/30, стена лимита: зеркало квоты. `dev_state?dialogs_quota=N` (запись через `recordAiDialogMonthlyQuotaFromServer`).

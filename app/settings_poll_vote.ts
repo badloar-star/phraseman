@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SettingsPollVoteState = {
@@ -53,7 +53,15 @@ export async function readSettingsPollVote(owner: string, messageId: string): Pr
   return (await readVotes(owner)).find((vote) => vote.messageId === messageId) ?? null;
 }
 
+/** Префикс id dev-кампаний слота сообщений (app_messages.ts → devSeedSettingsMessageSlot): такие голоса в сеть не уходят никогда. */
+export const DEV_SETTINGS_CAMPAIGN_ID_PREFIX = 'dev-state-';
+
 async function defaultTransport(input: { messageId: string; optionId: string; requestId: string; stableId: string }): Promise<SettingsPollVoteResponse> {
+  // зачем (координатор 14.10, dev-кампании для съёмки): голос за выдуманную кампанию не должен писаться на сервер.
+  if (input.messageId.startsWith(DEV_SETTINGS_CAMPAIGN_ID_PREFIX)) {
+    console.warn(`[DEV-STATE] settings_poll_vote: голос за dev-кампанию ${input.messageId} в сеть не отправляется`);
+    throw new Error('dev_state_campaign_no_network');
+  }
   if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('settings_poll_vote_unavailable');
   const functions = (await import('@react-native-firebase/functions')).default;
   const result = await functions().httpsCallable('submitSettingsPollVote')(input);
@@ -99,6 +107,29 @@ export async function submitSettingsPollVoteOptimistically(
   } finally {
     if (voteSubmissionQueue.get(queueKey) === operation) voteSubmissionQueue.delete(queueKey);
   }
+}
+
+/**
+ * DEV (R1-съёмка): выставить локальный голос dev-кампании («Спасибо, выбор сохранён» + проценты) или снять его (optionId = null).
+ * Только dev-сборка и только id с префиксом dev-state-; пишет один локальный ключ, в сеть ничего не уходит. Лог [DEV-STATE].
+ */
+export async function devSetSettingsPollVote(owner: string, messageId: string, optionId: string | null): Promise<boolean> {
+  if (!(typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE)) {
+    console.warn('[DEV-STATE] settings_poll_vote: отказ, не dev-сборка');
+    return false;
+  }
+  if (!owner || !messageId.startsWith(DEV_SETTINGS_CAMPAIGN_ID_PREFIX)) {
+    console.warn(`[DEV-STATE] settings_poll_vote: отказ owner=${owner ? 'есть' : 'нет'} messageId=${messageId}`);
+    return false;
+  }
+  const votes = await readVotes(owner);
+  const rest = votes.filter((vote) => vote.messageId !== messageId);
+  const next = optionId === null
+    ? rest
+    : [...rest, { messageId, optionId, requestId: `dev-${Date.now().toString(36)}`, status: 'synced' as const, updatedAtMs: Date.now() }];
+  await writeVotes(owner, next);
+  console.log(`[DEV-STATE] settings_poll_vote: ${messageId} → ${optionId === null ? 'голос снят' : `голос ${optionId} (synced, локально)`}; всего записей ${next.length}`);
+  return true;
 }
 
 export async function flushSettingsPollVotes(owner: string, transport: SettingsPollVoteTransport = defaultTransport): Promise<void> {

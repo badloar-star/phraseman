@@ -372,9 +372,9 @@ Governance-ID: TG-A280B7BED1F1
 | settings-gap-004 | settings-gaps-states.html №4 | G-A07 | ввести реальный код D30 → плашка `settings-vip-card` «Промокод · Действует до …» (УСЛОВНО, коды заводит владелец) | гость | тёмная/Спокойно |
 | settings-gap-005 | settings-gaps-states.html №5 | G-A01 | ЧАСТИЧНО: сразу после онбординга плашка «Полный доступ на 3 дня» (без `plus=`); плашка «Plus за приглашения» — НЕТ ПУТИ | гость | тёмная/Спокойно |
 | settings-gap-006 | settings-gaps-states.html №6 | — | НЕТ ПУТИ: «Подписка Pro · Активна / Выданный Pro / Pro без срока» — нужен `isPro` + `vip_plan=admin_vip` без даты | — | — |
-| settings-gap-007 | settings-gaps-states.html №7 | G-A03 | «Очистить кеш» → «Очистить» + серия скриншотов: «Чистим…»; слот-опрос — НЕТ ПУТИ без кампании | гость | тёмная/Спокойно |
-| settings-gap-008 | settings-gaps-states.html №8 | G-A03 | та же последовательность, кадр «Готово» ≈2,2 с; слот-опрос после голосования — НЕТ ПУТИ без кампании | гость | тёмная/Спокойно |
-| settings-gap-009 | settings-gaps-states.html №9 | G-A03 | НЕТ ПУТИ: «Не удалось» только при сбое AsyncStorage (`cache_reset.ts:109`); слот-сообщение — нужна кампания | — | — |
+| settings-gap-007 | settings-gaps-states.html №7 | G-A03 | «Очистить кеш» → «Очистить» + серия скриншотов: «Чистим…»; слот-опрос — предварительно `dev_state?slot=poll` и `next=/(tabs)/settings` (14.10) | гость | тёмная/Спокойно |
+| settings-gap-008 | settings-gaps-states.html №8 | G-A03 | та же последовательность, кадр «Готово» ≈2,2 с; слот-опрос после голосования — предварительно `dev_state?slot=poll_voted` (14.10) | гость | тёмная/Спокойно |
+| settings-gap-009 | settings-gaps-states.html №9 | G-A03 | НЕТ ПУТИ: «Не удалось» только при сбое AsyncStorage (`cache_reset.ts:109`); слот-сообщение — `dev_state?slot=message` (14.10) | — | — |
 | settings-gap-010 | settings-gaps-states.html №10 | G-A04 | выставить время 20:00 в окне «Время» → «OK»; снять в течение 1,4 с («Сохранено») | гость | тёмная/Спокойно |
 | settings-gap-011 | settings-gaps-states.html №11 | G-A04 | прокрутка в конец: «Итоги месяца», «Ещё» | гость | тёмная/Спокойно |
 | settings-gap-012 | settings-gaps-states.html №12 | G-A04 | мастер ВКЛ → системное «Не разрешать» (или `pm revoke POST_NOTIFICATIONS`) → красная плашка (API 33+) | гость | тёмная/Спокойно |
@@ -394,7 +394,7 @@ Governance-ID: TG-A280B7BED1F1
 | settings-gap-026 | settings-gaps-states.html №26 | G-A11 | под B ввести `Сверка Тест` (имя C из G-A02) → «Имя уже занято» | B | тёмная/Спокойно |
 | settings-gap-027 | settings-gaps-states.html №27 | G-A04 | мастер ВКЛ, «Ежедневное напоминание» выкл → «Время» приглушено | гость | тёмная/Спокойно |
 | settings-gap-028 | settings-gaps-states.html №28 | G-A04 | тап «Время» (content-desc «Время») → окно с барабанами | гость | тёмная/Спокойно |
-| settings-gap-029 | settings-gaps-states.html №29 | G-A03 | НЕТ ПУТИ: верхний слот `settings-message-slot-top` — серверная кампания | — | — |
+| settings-gap-029 | settings-gaps-states.html №29 | G-A03 | `dev_state?slot=top&next=/(tabs)/settings`: верхний слот `settings-message-slot-top` (14.10) | гость | тёмная/Спокойно |
 | settings-gap-030 | settings-gaps-states.html №30 | G-A03 | НЕТ ПУТИ: строка `settings-invite-banner` скрыта рубильником приглашений | — | — |
 | settings-gap-031 | settings-gaps-states.html №31 | G-A02 | авиарежим ВКЛ → ввод имени → «Проверим при сохранении» (УСЛОВНО) | гость | тёмная/Спокойно |
 | settings-gap-032 | settings-gaps-states.html №32 | G-A02 | пустое поле → `nickname-save` → окно «Введи имя» | гость | тёмная/Спокойно |
@@ -412,7 +412,7 @@ Governance-ID: TG-A280B7BED1F1
 - `onboarding-025`, `onboarding-paywall-001` (и `onboarding-023`) — «Цена: загрузка» / «настоящая цена»: в dev магазин не опрашивается (`DEV_IAP_BYPASS`). Предложение: `dev_state?paywall=loading|live|reference|failed` (подставляет состояние `usePaywallPurchase` для онбординга).
 - `profile-016`, `profile-017`, `profile-018` (= `paywalls-019`, `paywalls-021`) — варианты «Годовая / Месячная / Разовая» в «Управлении подпиской» и значение «Год» в Настройках (`settings-gap-003`): нужен `premium_plan`/`premium_rc_product_id` (пишет только покупка). Предложение: `dev_state?plan=yearly|monthly|lifetime` (пишет `premium_plan`, `premium_rc_product_id` + срок).
 - `settings-gap-005` (плашка «Plus за приглашения»), `settings-gap-006` (Pro без срока), часть `settings-gap-004` без реального кода — нужен `isVip`/`isPro` и `vip_plan`: предложение `dev_state?vip=promo|referral|survey|idea|tester|admin|admin_pro_lifetime\&until=<ms>` (локальный VIP-снимок через `writeVipSnapshotForAccount`, `promo_code_entry.tsx:161-185`).
-- `settings-gap-007…009`, `settings-gap-029` — слот сообщений/опрос Настроек: нужна кампания в `app_messages`. Предложение: `dev_state?slot=poll|poll_voted|message|top` (подмена `selectSettingsMessageSlots`); для `settings-gap-009` ещё `cache=failed`.
+- ✅ (14.10) `settings-gap-007…009`, `settings-gap-029` — слот сообщений/опрос Настроек: `dev_state?slot=poll|poll_voted|message|top|off` (dev-кампании `dev-state-…`, только локальные ключи). Остаётся нет пути: `settings-gap-009` в части «Не удалось» очистки кеша (сбой AsyncStorage, нужен `cache=failed`).
 - `settings-gap-030`, `overlays-campaigns-025` — рубильник приглашений выключен: предложение `dev_state?referral=off`.
 - `overlays-campaigns-014` — глобальный `promo_disabled`: предложение `dev_state?promo=off`.
 - `settings-gap-021` — сбой смены языка изучения: предложение `dev_state?studyfail=on`.

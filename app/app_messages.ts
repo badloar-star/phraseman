@@ -2,7 +2,7 @@ import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import {
@@ -1938,6 +1938,97 @@ export async function resumePendingReportReplyShardClaims(): Promise<{ resolved:
   }
   if (resolved > 0) emitAppEvent('app_messages_local_changed');
   return { resolved, pending };
+}
+
+// ── DEV: кампании слота сообщений Настроек для съёмки R1 ───────────────────────────────────
+// зачем (координатор 14.10, R1_SHOT_LIST settings-gap-007…009, 029): слот и опрос Настроек целиком серверные (Firestore app_messages),
+// без кампании в админке кадры не снять. Сид кладёт ВЫДУМАННЫЕ кампании (id с префиксом dev-state-) только в локальные ключи устройства:
+// локальное хранилище превью сообщений (его читает refreshAppMessagesSnapshotOnce) и кэш снимка. В Firestore НЕ пишет; голос за такую
+// кампанию в сеть не уходит (settings_poll_vote.ts). В стор-сборке функция отказывает.
+export const DEV_SETTINGS_CAMPAIGN_PREFIX = 'dev-state-';
+export type DevSettingsSlotKind = 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
+export const DEV_SETTINGS_SLOT_KINDS: readonly DevSettingsSlotKind[] = ['poll', 'poll_voted', 'message', 'top', 'off'];
+
+type DevCampaignText = Readonly<Record<'ru' | 'uk' | 'es' | 'ptBr' | 'vi' | 'id' | 'tr' | 'pl', string>>;
+const DEV_POLL_QUESTION: DevCampaignText = {
+  ru: 'Что улучшить в первую очередь?', uk: 'Що покращити насамперед?', es: '¿Qué mejoramos primero?', ptBr: 'O que melhorar primeiro?',
+  vi: 'Nên cải thiện điều gì trước?', id: 'Apa yang harus diperbaiki dulu?', tr: 'Önce neyi geliştirelim?', pl: 'Co poprawić w pierwszej kolejności?',
+};
+const DEV_POLL_OPTIONS: ReadonlyArray<{ id: string; text: DevCampaignText; count: number }> = [
+  { id: 'speed', count: 42, text: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', ptBr: 'Velocidade', vi: 'Tốc độ', id: 'Kecepatan', tr: 'Hız', pl: 'Szybkość' } },
+  { id: 'content', count: 31, text: { ru: 'Больше заданий', uk: 'Більше завдань', es: 'Más ejercicios', ptBr: 'Mais exercícios', vi: 'Thêm bài tập', id: 'Lebih banyak latihan', tr: 'Daha fazla görev', pl: 'Więcej zadań' } },
+  { id: 'design', count: 27, text: { ru: 'Оформление', uk: 'Оформлення', es: 'Diseño', ptBr: 'Visual', vi: 'Giao diện', id: 'Tampilan', tr: 'Tasarım', pl: 'Wygląd' } },
+];
+const DEV_MESSAGE_TITLE: DevCampaignText = {
+  ru: 'Новое в Phraseman', uk: 'Нове в Phraseman', es: 'Novedades en Phraseman', ptBr: 'Novidades no Phraseman',
+  vi: 'Có gì mới trong Phraseman', id: 'Baru di Phraseman', tr: "Phraseman'da yenilikler", pl: 'Nowości w Phraseman',
+};
+const DEV_MESSAGE_BODY: DevCampaignText = {
+  ru: 'Мы добавили Шпиль и обновили Карточки. Загляни и расскажи, как тебе.', uk: 'Ми додали Шпиль і оновили Картки. Зазирни та розкажи, як тобі.',
+  es: 'Añadimos Spire y renovamos las Tarjetas. Échales un vistazo.', ptBr: 'Adicionamos o Spire e renovamos os Cartões. Dê uma olhada.',
+  vi: 'Chúng tôi đã thêm Spire và làm mới Thẻ. Hãy xem thử.', id: 'Kami menambahkan Spire dan memperbarui Kartu. Coba lihat.',
+  tr: 'Spire eklendi ve Kartlar yenilendi. Bir göz at.', pl: 'Dodaliśmy Spire i odświeżyliśmy Karty. Zajrzyj.',
+};
+
+function devCampaignRow(id: string, slot: SettingsMessageSlot, kind: 'poll' | 'message', nowMs: number): Record<string, unknown> {
+  const texts = (prefix: string, t: DevCampaignText): Record<string, string> => ({
+    [prefix + 'Ru']: t.ru, [prefix + 'Uk']: t.uk, [prefix + 'Es']: t.es, [prefix + 'PtBr']: t.ptBr,
+    [prefix + 'Vi']: t.vi, [prefix + 'Id']: t.id, [prefix + 'Tr']: t.tr, [prefix + 'Pl']: t.pl,
+  });
+  const row: Record<string, unknown> = {
+    id, kind, active: true, audience: 'all', deliverySurface: 'settings', settingsSlot: slot, controlPercent: 0, priority: 1,
+    createdAtMs: nowMs, updatedAtMs: nowMs, expiresAtMs: nowMs + APP_MESSAGE_TTL_MS,
+    ...texts('title', kind === 'poll' ? DEV_POLL_QUESTION : DEV_MESSAGE_TITLE),
+    ...texts('message', kind === 'poll' ? DEV_POLL_QUESTION : DEV_MESSAGE_BODY),
+  };
+  if (kind === 'poll') {
+    row.poll = {
+      ...texts('question', DEV_POLL_QUESTION),
+      options: DEV_POLL_OPTIONS.map((option) => ({ id: option.id, ...texts('text', option.text) })),
+      counts: Object.fromEntries(DEV_POLL_OPTIONS.map((option) => [option.id, option.count])),
+      voteCount: DEV_POLL_OPTIONS.reduce((sum, option) => sum + option.count, 0),
+    };
+  }
+  return row;
+}
+
+/** Выставить dev-кампанию слота Настроек (poll — опрос без голоса, poll_voted — опрос с голосом, message — сообщение внизу, top — сообщение вверху, off — убрать). */
+export async function devSeedSettingsMessageSlot(kind: DevSettingsSlotKind, stableId: string): Promise<{ ok: boolean; reason: string }> {
+  const tag = '[DEV-STATE] settings_slot';
+  if (!(typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE)) {
+    console.warn(`${tag} отказ: не dev-сборка kind=${kind}`);
+    return { ok: false, reason: 'not_dev_build' };
+  }
+  const ownerUid = await getAppMessagesOwnerUid();
+  console.log(`${tag} вход kind=${kind} stableId=${stableId ? 'есть' : 'нет'} ownerUid=${ownerUid ? 'есть' : 'нет'}`);
+  if (!ownerUid) {
+    console.warn(`${tag} отказ: владелец сообщений не определён (нет аккаунта/гостя)`);
+    return { ok: false, reason: 'no_owner' };
+  }
+  const nowMs = Date.now();
+  const rows: Record<string, unknown>[] = kind === 'off' ? []
+    : kind === 'message' ? [devCampaignRow(`${DEV_SETTINGS_CAMPAIGN_PREFIX}message`, 'bottom', 'message', nowMs)]
+      : kind === 'top' ? [devCampaignRow(`${DEV_SETTINGS_CAMPAIGN_PREFIX}top`, 'top', 'message', nowMs)]
+        : [devCampaignRow(`${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`, 'bottom', 'poll', nowMs)];
+  const devMessages = rows.map((row) => normalizeAppMessage(String(row.id), row, nowMs));
+  const isDev = (id: string) => id.startsWith(DEV_SETTINGS_CAMPAIGN_PREFIX);
+
+  const localBefore = await readLocalPreviewMessages(ownerUid);
+  await writeLocalPreviewMessages([...localBefore.filter((message) => !isDev(message.id)), ...devMessages], ownerUid);
+
+  const cached = await readCachedSnapshot();
+  const withState = devMessages.map((message): AppMessageWithState => ({
+    ...message, readAtMs: null, dismissedAtMs: null, reaction: null, pollOptionId: null, unread: false,
+    personalModalAcknowledgedAtMs: null, appMessageModalAcknowledgedAtMs: null,
+  }));
+  const snapshot: AppMessagesSnapshot = { messages: [...cached.messages.filter((message) => !isDev(message.id)), ...withState], unreadCount: cached.unreadCount };
+  await writeCachedSnapshot(snapshot, ownerUid);
+
+  const { devSetSettingsPollVote } = await import('./settings_poll_vote');
+  const voteOk = await devSetSettingsPollVote(stableId, `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`, kind === 'poll_voted' ? DEV_POLL_OPTIONS[0]!.id : null);
+  emitAppEvent('app_messages_local_changed');
+  console.log(`${tag} итог kind=${kind} кампаний=${devMessages.length} (id: ${devMessages.map((message) => message.id).join(',') || 'нет'}) голос=${kind === 'poll_voted' ? 'отдан локально' : 'снят'} voteStoreOk=${String(voteOk)} кэш=${snapshot.messages.length} сообщений`);
+  return { ok: true, reason: kind };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

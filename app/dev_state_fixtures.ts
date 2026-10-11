@@ -64,6 +64,8 @@ export type DevStateRequest = Readonly<{
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
   cards?: 'demo' | 'demo_lessons' | 'custom50';
+  /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
+  slot?: 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
   next?: string;
 }>;
 
@@ -110,6 +112,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   request.free = pick('free', ['on', 'off'] as const);
   request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50'] as const);
+  request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   const next = Array.isArray(params.next) ? params.next[0] : params.next;
   if (typeof next === 'string' && next.startsWith('/')) request.next = next;
   else if (next !== undefined) rejected.next = `маршрут должен начинаться с «/», пришло ${String(next)}`;
@@ -212,6 +215,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('dquota', String(request.dquota), async () => {
       const { applyDialogQuota } = await import('./dev_state_cards_demo');
       await applyDialogQuota(await getStableId(), request.dquota!);
+    });
+  }
+  if (request.slot) {
+    await step('slot', request.slot, async () => {
+      const { devSeedSettingsMessageSlot } = await import('./app_messages');
+      const seeded = await devSeedSettingsMessageSlot(request.slot!, await getStableId());
+      if (!seeded.ok) throw new Error(seeded.reason);
     });
   }
   const result = { applied, skipped, next: request.next ?? null };

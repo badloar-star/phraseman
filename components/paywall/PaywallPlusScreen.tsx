@@ -93,7 +93,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   // зачем (D158): есть цены (живые или из кэша) — рисуем их; иначе скелетон ТОЛЬКО пока идёт загрузка
   // (она ограничена потолком), а после потолка — спокойное «Сейчас недоступно». Вечного скелетона нет.
-  const hasPrices = !!(p.yearlyPrice || p.monthlyPrice);
+  // зачем (координатор 11.10): в dev без магазина (previewPrices) плитки рисуются с предпросмотром цен, как при готовых ценах; блок «Цены не загрузились»
+  // — только когда предпросмотра нет. В релизной конфигурации previewPrices всегда false, остаётся честная ошибка.
+  const hasPrices = !!(p.yearlyPrice || p.monthlyPrice) || p.previewPrices;
   const state: PaywallPlusState = hasPrices ? 'ready' : (!p.offeringsSettled || p.loading) ? 'loading' : 'error';
   // зачем (Сверка 11.10: «состояние мигает error → тихий повтор → loading → error, плитки пустые между ними»): после первого «Цены не загрузились»
   // на месте плиток остаётся это сообщение, пока не придут цены; тихий повтор показывается только вращением на кнопке «Ещё раз», а не сменой блока.
@@ -121,8 +123,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   useEffect(() => {
     DebugLogger.info('[PAYWALL]', `окно Plus: состояние=${state} цены=${p.pricesFromCache ? 'кэш' : hasPrices ? 'магазин' : 'нет'} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} `
-      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source}`);
-  }, [ctx, hasPrices, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
+      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source} превью=${String(p.previewPrices)} причина=${p.storeUnavailableReason ?? '-'} dev=${String(__DEV__)}`);
+  }, [ctx, hasPrices, p.previewPrices, p.storeUnavailableReason, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
 
   // Мгновенный выбор тарифа; лента пробного появляется/уходит плавно, без скачка.
   const { selected, selectPlan: selectPlanInHook } = p;

@@ -87,6 +87,12 @@ test('store-unavailable reason picks the text; dev price preview names its butto
   }
 });
 
+test('dev price preview draws the plan tiles with prices; the error block is only for previewPrices=false (координатор 11.10)', () => {
+  const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+  assert.match(screen, /const hasPrices = !!\(p\.yearlyPrice \|\| p\.monthlyPrice\) \|\| p\.previewPrices;/);
+  assert.match(screen, /превью=\$\{String\(p\.previewPrices\)\} причина=\$\{p\.storeUnavailableReason \?\? '-'\} dev=\$\{String\(__DEV__\)\}/, 'журнал [PAYWALL] называет причину');
+});
+
 test('the no-prices note exists in all nine languages', () => {
   const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
   const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith('fineNoPrices: LP('));

@@ -74,11 +74,13 @@ const BarRim = memo(function BarRim({ width, color }: { width: number; color: st
     <Svg pointerEvents="none" width={width} height={h} style={StyleSheet.absoluteFill}>
       <Defs>
         <SvgLinearGradient id="v2TabRim" x1="0" y1="0" x2="1" y2="0">
+          {/* зачем (владелец 11.10, капсом «обрезано справа»; диагноз координатора): кромка капсулы справа почти исчезала (0.08–0.1) и читалась
+              как срез. Теперь правый конец не бледнее 0.45, середина — не бледнее 0.2: капсула видна по всему периметру. */}
           <Stop offset="0" stopColor={color} stopOpacity={0.62} />
-          <Stop offset="0.22" stopColor={color} stopOpacity={0.24} />
-          <Stop offset="0.55" stopColor={RIM_SHEEN} stopOpacity={0.1} />
-          <Stop offset="0.8" stopColor={RIM_SHEEN} stopOpacity={0.08} />
-          <Stop offset="1" stopColor={color} stopOpacity={0.24} />
+          <Stop offset="0.22" stopColor={color} stopOpacity={0.32} />
+          <Stop offset="0.55" stopColor={RIM_SHEEN} stopOpacity={0.2} />
+          <Stop offset="0.8" stopColor={RIM_SHEEN} stopOpacity={0.24} />
+          <Stop offset="1" stopColor={color} stopOpacity={0.45} />
         </SvgLinearGradient>
       </Defs>
       <Rect x={0.5} y={0.5} width={width - 1} height={h - 1} rx={(h - 1) / 2} fill="none" stroke="url(#v2TabRim)" strokeWidth={1} />
@@ -91,14 +93,16 @@ const CapFill = memo(function CapFill({ width, color }: { width: number; color: 
     <Svg width={width} height={CAP_H} style={StyleSheet.absoluteFill}>
       <Defs>
         <RadialGradient id="v2TabCapFill" cx="22%" cy="0%" rx="120%" ry="95%" fx="22%" fy="0%">
+          {/* зачем: заливка плашки не гаснет к правому краю (было 0.03) — минимум 0.10, иначе плашка выглядит срезанной справа */}
           <Stop offset="0" stopColor={color} stopOpacity={0.32} />
-          <Stop offset="0.55" stopColor={color} stopOpacity={0.08} />
-          <Stop offset="1" stopColor={RIM_SHEEN} stopOpacity={0.03} />
+          <Stop offset="0.55" stopColor={color} stopOpacity={0.16} />
+          <Stop offset="1" stopColor={RIM_SHEEN} stopOpacity={0.1} />
         </RadialGradient>
         <SvgLinearGradient id="v2TabCapRim" x1="0" y1="0" x2="1" y2="1">
-          <Stop offset="0" stopColor={color} stopOpacity={0.8} />
-          <Stop offset="0.5" stopColor={color} stopOpacity={0.14} />
-          <Stop offset="1" stopColor={color} stopOpacity={0.32} />
+          {/* зачем: кромка плашки равномерная по периметру (было 0.8 → 0.14 → 0.32 по диагонали: справа-снизу почти пропадала) */}
+          <Stop offset="0" stopColor={color} stopOpacity={0.7} />
+          <Stop offset="0.5" stopColor={color} stopOpacity={0.5} />
+          <Stop offset="1" stopColor={color} stopOpacity={0.6} />
         </SvgLinearGradient>
       </Defs>
       <Rect x={0} y={0} width={width} height={CAP_H} rx={CAP_RADIUS} fill="url(#v2TabCapFill)" />
@@ -306,6 +310,33 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     });
     setWidth(w);
   }, [count, activeIndex, windowWidth, insets.left, insets.right, geo.width, geo.overflow]);
+  // зачем (координатор 11.10, «один кадр должен дать причину»): ширины ЯЧЕЕК вкладок, измеренные самой раскладкой, — рядом с шириной окна,
+  // отступами и ожидаемой слотовой шириной. Если сумма ячеек или правый край последней выходят за внутренний край капсулы — это и есть обрезка.
+  const cellsRef = useRef<Array<{ x: number; w: number } | undefined>>([]);
+  const rowWidthRef = useRef(0);
+  const cellsLogTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reportCells = useCallback(() => {
+    if (cellsLogTimerRef.current) clearTimeout(cellsLogTimerRef.current);
+    cellsLogTimerRef.current = setTimeout(() => {
+      cellsLogTimerRef.current = null;
+      const cells = cellsRef.current.slice(0, count);
+      const measured = cells.filter((c): c is { x: number; w: number } => !!c);
+      if (measured.length < count) {
+        DebugLogger.warn('[TABBAR]', `cells incomplete measured=${measured.length}/${count} windowW=${Math.round(windowWidth * 10) / 10} insetL=${insets.left} insetR=${insets.right}`);
+        return;
+      }
+      const sum = measured.reduce((acc, c) => acc + c.w, 0);
+      const last = measured[measured.length - 1]!;
+      const lastRight = last.x + last.w;
+      const innerRight = rowWidthRef.current > 0 ? rowWidthRef.current : 0;
+      const cut = innerRight > 0 && lastRight > innerRight + 0.5;
+      const line = `cells windowW=${Math.round(windowWidth * 10) / 10} insetL=${insets.left} insetR=${insets.right} count=${count} fontScale=${PixelRatio.getFontScale()} `
+        + `rowW=${Math.round(rowWidthRef.current * 10) / 10} expectedSlot=${Math.round(((geo.width - PAD * 2) / count) * 10) / 10} `
+        + `widths=[${measured.map((c) => Math.round(c.w * 10) / 10).join(',')}] xs=[${measured.map((c) => Math.round(c.x * 10) / 10).join(',')}] `
+        + `sum=${Math.round(sum * 10) / 10} lastRight=${Math.round(lastRight * 10) / 10}${cut ? ' [CELLS-OVERFLOW]' : ''}`;
+      if (cut) DebugLogger.warn('[TABBAR]', line); else DebugLogger.info('[TABBAR]', line);
+    }, 120);
+  }, [count, geo.width, insets.left, insets.right, windowWidth]);
   const capScale = capLift.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
   const capBright = capLift.interpolate({ inputRange: [0, 1], outputRange: [0, 0.08] });
   const iconPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.88] });
@@ -343,7 +374,11 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         </Animated.View>
       ) : null}
       {/* Касания ловит сама капсула (координата от её края), пункты — только вид и доступность. */}
-      <View pointerEvents="none" style={s.row}>
+      <View
+        pointerEvents="none"
+        style={s.row}
+        onLayout={(e) => { rowWidthRef.current = e.nativeEvent.layout.width; reportCells(); }}
+      >
         {items.map((item, i) => {
           const on = i === activeIndex;
           // Активный значок: в «Спокойно» accentBright = cta (как было), иначе — цвет темы.
@@ -353,6 +388,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
               key={item.key}
               testID={`tab-${item.key}`}
               style={s.tab}
+              onLayout={(e) => { cellsRef.current[i] = { x: e.nativeEvent.layout.x, w: e.nativeEvent.layout.width }; reportCells(); }}
               accessible
               accessibilityRole="tab"
               accessibilityLabel={item.label}

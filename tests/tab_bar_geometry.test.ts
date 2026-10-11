@@ -49,4 +49,25 @@ describe('V2TabBar source', () => {
     expect(src).toContain('measureInWindow');
     expect(src).toContain('OVERFLOW');
   });
+
+  test('rims and fills never fade out on the right side (owner 11.10: «обрезано справа» was a visual cut)', () => {
+    const opacities = (id: string): number[] => {
+      const block = src.slice(src.indexOf(`id="${id}"`), src.indexOf('</SvgLinearGradient>', src.indexOf(`id="${id}"`)) + 30);
+      return [...block.matchAll(/stopOpacity=\{([\d.]+)\}/g)].map((m) => Number(m[1]));
+    };
+    const bar = opacities('v2TabRim');
+    expect(bar[bar.length - 1]).toBeGreaterThanOrEqual(0.45);
+    expect(Math.min(...bar.slice(2, 4))).toBeGreaterThanOrEqual(0.2);
+    expect(Math.min(...opacities('v2TabCapRim'))).toBeGreaterThanOrEqual(0.5);
+    const radial = src.slice(src.indexOf('id="v2TabCapFill"'), src.indexOf('</RadialGradient>'));
+    const fill = [...radial.matchAll(/stopOpacity=\{([\d.]+)\}/g)].map((m) => Number(m[1]));
+    expect(fill[fill.length - 1]).toBeGreaterThanOrEqual(0.1);
+  });
+
+  test('logs the measured cell widths next to window width, insets and tab count (one frame gives the cause)', () => {
+    expect(src).toContain('cells windowW=');
+    expect(src).toContain('widths=[');
+    expect(src).toContain('[CELLS-OVERFLOW]');
+    expect(src).toMatch(/onLayout=\{\(e\) => \{ cellsRef\.current\[i\]/);
+  });
 });

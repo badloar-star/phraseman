@@ -187,7 +187,7 @@ export function evaluateRegistry(root, registry, options = {}) {
   const rows = Array.isArray(registry?.rows) ? registry.rows : [];
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
   const sverkaOpen = options.sverkaOpenDiffs ?? new Map();
-  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, no_release_surface: 0, other: 0 };
+  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, no_release_surface: 0, blocked: 0, other: 0 };
   const storeRegex = options.storeRouteRegex !== undefined ? options.storeRouteRegex : storeRouteRegex(root);
   for (const row of rows) {
     if (row.status in counts) counts[row.status] += 1;
@@ -314,7 +314,12 @@ async function main() {
     return result.ok ? 0 : 1;
   }
   const { counts } = result;
-  console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} нарушений=${result.violations.length}`);
+  console.log(`${LOG} строк=${counts.total} match=${counts.match} pending=${counts.pending} diff=${counts.diff} no_mockup=${counts.no_mockup} no_release_surface=${counts.no_release_surface} blocked=${counts.blocked} removed_by_owner=${counts.removed_by_owner} нарушений=${result.violations.length}`);
+  // зачем (координатор 11.10: «синхронизируй гейт с тем, что Сверка отмечает match»): раньше было видно только число match, а проходит ли каждая
+  // отмеченная строка сам гейт (привязка к коду, свежая склейка, анимация) — нет. Теперь явно: сколько отмечено и сколько из них проходит.
+  const matchIds = new Set(registry.rows.filter((row) => row.status === 'match').map((row) => row.id));
+  const badMatch = new Set(result.violations.filter((violation) => matchIds.has(violation.id)).map((violation) => violation.id));
+  console.log(`${LOG} match отмечено Сверкой/владельцем: ${matchIds.size}, проходят гейт: ${matchIds.size - badMatch.size}${badMatch.size ? ` · не проходят: ${[...badMatch].join(', ')} (причины — code_unmapped / evidence_stale / anim_evidence_missing, строки ниже)` : ''}`);
   if (result.ok) {
     console.log(`${LOG} OK: приложение = макет по всем строкам реестра`);
     return 0;

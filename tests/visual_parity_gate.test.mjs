@@ -139,6 +139,12 @@ test('реестр: строки без макета в папке — no_mockup
       assert.ok(row.reviewed_by, `${row.id}: no_release_surface без reviewed_by`);
       continue;
     }
+    // зачем (координатор 11.10: синхронизация гейта с отметками Сверки): Сверка ставит diff — склейка снята и записан непустой список отличий.
+    // Это НЕ «ранняя match» (гейт такую строку не пропускает: status_diff), поэтому реестр с diff — норма, но без списка отличий — нет.
+    if (row.status === 'diff') {
+      assert.ok(Array.isArray(row.diffs) && row.diffs.length > 0, `${row.id}: diff без списка отличий`);
+      continue;
+    }
     if (row.mockup_pinned) {
       assert.equal(row.status, 'pending', `${row.id}: переведённая строка стартует pending`);
       continue;
@@ -149,6 +155,18 @@ test('реестр: строки без макета в папке — no_mockup
     }
     assert.equal(row.status, row.mockup.file ? 'pending' : 'no_mockup', `${row.id}: статус ${row.status} при макете ${row.mockup.file}`);
   }
+});
+
+test('счётчики гейта: blocked считается отдельно, сумма строк сходится', () => {
+  const rows = [
+    { id: 'a-001', status: 'blocked', blocked_reason: 'x', screen: 'S', state: 'T', mockup: { file: 'f' }, code: [], diffs: [] },
+    { id: 'a-002', status: 'pending', screen: 'S', state: 'T', mockup: { file: 'f' }, code: [], diffs: [] },
+    { id: 'a-003', status: 'diff', screen: 'S', state: 'T', mockup: { file: 'f' }, code: [], diffs: ['d'] },
+  ];
+  const { counts } = evaluateRegistry(process.cwd(), { rows }, { sverkaOpenDiffs: new Map(), runGit: () => null, storeRouteRegex: null });
+  assert.equal(counts.blocked, 1);
+  assert.equal(counts.other, 0);
+  assert.equal(counts.blocked + counts.pending + counts.diff + counts.match + counts.no_mockup + counts.removed_by_owner + counts.no_release_surface + counts.other, counts.total);
 });
 
 // зачем (координатор 05:50): `npm run parity:build` пересобирает реестр из матрицы — ручные решения человека

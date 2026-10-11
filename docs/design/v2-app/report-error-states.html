@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сообщить об ошибке — состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 3 — «Сообщить об ошибке», реестр overlays-campaigns-031…036):
+     шторка components/ReportErrorButton.tsx: форма, подсказка «минимум 10 символов», отправка в фоне (оптимистично), «принято», «не отправилось», «подожди минуту».
+     Тексты — из кода, ничего не выдумано; поле ввода — многострочное, до 500 знаков. Размеры текста 16 и 13 (заголовок шторки 18 по коду). Обводка — только 1px полупрозрачная.
+     Каждое состояние в тёмной «Авроре» и в светлой теме. Кнопка «Нашёл ошибку?» в сборке магазина скрыта — видят тестеры (флаг REPORT_ERROR_ENABLED). */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --r-sheet: rgba(24,24,29,.985); --r-surf: #1D1D22; --r-hi: rgba(255,255,255,.14); --r-tx: #fff; --r-sc: #A6A6A8; --r-mu: #75757A; --r-edge: rgba(255,255,255,.13); --r-ink: var(--on); --r-dim: rgba(0,0,0,.55); --r-bad: #FF7A7A; color: var(--r-tx); }
+  .ph.lite { --r-sheet: #FBFBFD; --r-surf: #ECECF1; --r-hi: rgba(0,0,0,.08); --r-tx: #0C0C10; --r-sc: #55555D; --r-mu: #86868E; --r-edge: rgba(0,0,0,.11); --r-ink: #fff; --r-dim: rgba(20,20,30,.38); --r-bad: #C23B3B; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  /* подложка: экран, где нажали «Нашёл ошибку?» */
+  .rund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .rund .t1 { font-size: 28px; font-weight: 700; } .rund .c { height: 74px; border-radius: 18px; background: var(--r-surf); margin-top: 12px; }
+  .rund .lk { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 13px; line-height: 18px; color: var(--r-sc); }
+  .rdim { position: absolute; inset: 0; z-index: 20; background: var(--r-dim); }
+  .rsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 28px 28px 0 0; padding: 12px 24px 36px; display: flex; flex-direction: column; gap: 12px; background: var(--r-sheet); box-shadow: inset 0 0 0 1px var(--r-edge), 0 -8px 24px rgba(0,0,0,.25); }
+  .rsh .gr { align-self: center; width: 44px; height: 5px; border-radius: 3px; background: var(--r-mu); opacity: .5; margin-bottom: 4px; }
+  .rsh .ti { text-align: center; font-size: 18px; line-height: 24px; font-weight: 700; }
+  .rsh .sb2 { text-align: center; font-size: 16px; line-height: 22px; color: var(--r-sc); margin-bottom: 4px; }
+  .rin { margin-top: 4px; min-height: 150px; padding: 12px; border-radius: 14px; background: var(--r-surf); box-shadow: inset 0 0 0 1px var(--r-edge); font-size: 16px; line-height: 22px; color: var(--r-mu); }
+  .rin.err { background: color-mix(in srgb, var(--r-bad) 12%, transparent); } .rin.has { color: var(--r-tx); }
+  .rhint { margin-top: -4px; text-align: right; font-size: 13px; line-height: 17px; color: var(--r-bad); }
+  .rrow { display: flex; gap: 12px; margin-top: 8px; }
+  .rbtn { flex: 1; min-height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; background: var(--r-surf); color: var(--r-sc); }
+  .rbtn.send { flex: 2; background: var(--acc); color: var(--r-ink); } .rbtn.busy { opacity: .6; } .rbtn.stretch { flex: none; align-self: stretch; margin-top: 8px; background: var(--acc); color: var(--r-ink); }
+  .rok { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 0 0; text-align: center; } .rok .a { font-size: 18px; line-height: 24px; font-weight: 700; } .rok .b { font-size: 16px; line-height: 22px; color: var(--r-sc); }
+  .rbg { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--r-sc); }
+  .rsp { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid color-mix(in srgb, currentColor 30%, transparent); border-top-color: currentColor; animation: rsp 900ms linear infinite; flex: none; } @keyframes rsp { to { transform: rotate(360deg); } }
+  .rnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Сообщить об ошибке — состояния</h1>
+  <p class="page-lead">Группа 3 из «экранов без макета» (реестр overlays-campaigns-031…036). Шторка «Нашёл ошибку?»: форма, «минимум 10 символов», отправка в фоне, «принято», «не отправилось», «подожди минуту». Каждое состояние — в тёмной «Авроре» и в светлой теме. Тексты — из кода.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone } = K;
+const und = '<div class="rund"><div class="t1">Итог урока</div><div class="c"></div><div class="c"></div><div class="c"></div><div class="lk">Нашёл ошибку?</div></div><div class="rdim"></div>';
+const head = '<div class="gr"></div>';
+const form = (o) => `${head}<div class="ti">Нашёл ошибку?</div><div class="sb2">Опиши, что не так — мы починим.</div>
+  <div class="rin${o.err ? ' err' : ''}${o.text ? ' has' : ''}">${o.text || 'Что случилось?'}</div>${o.err ? '<div class="rhint">Минимум 10 символов.</div>' : ''}
+  <div class="rrow"><span class="rbtn t">Отмена</span><span class="rbtn send${o.busy ? ' busy' : ''} t">${o.busy ? '<span class="rsp"></span>Отправляю...' : 'Отправить'}</span></div>`;
+const box = (a, b, btn, extra = '') => `${head}<div class="rok"><div class="a">${a}</div><div class="b">${b}</div>${extra}<span class="rbtn stretch t">${btn}</span></div>`;
+const S = [
+  ['031 · Форма', 'Шторка открылась поверх экрана: заголовок, подсказка, пустое поле «Что случилось?», «Отмена» и «Отправить».', form({})],
+  ['032 · Минимум 10 символов', 'Нажали «Отправить» с короткой запиской: поле подкрашивается тоном ошибки (без рамки), справа «Минимум 10 символов.». Пишешь дальше — подсказка пропадает.', form({ err: true, text: 'Не то' })],
+  ['033 · Оптимистичная отправка', 'Окно сразу показывает «Сообщение принято!», а сама отправка идёт в фоне: «Отправляем в фоне» с кружком. Ждать ответ сервера не нужно.', box('Сообщение принято!', 'Спасибо! Проверим и исправим.', 'Готово', '<div class="rbg"><span class="rsp"></span>Отправляем в фоне</div>')],
+  ['034 · Сервер подтвердил', 'Сервер принял: строка «Отправляем в фоне» исчезает; шторка закроется сама через секунду или по «Готово».', box('Сообщение принято!', 'Спасибо! Проверим и исправим.', 'Готово')],
+  ['035 · Не отправилось', 'Сервер не принял: честное «Не отправилось» вместо «принято»; «Попробовать снова» возвращает к форме с тем же текстом.', box('Не отправилось', 'Не отправилось. Попробуй ещё раз.', 'Попробовать снова')],
+  ['036 · Ограничение одной минуты', 'Репорт уже уходил меньше минуты назад: «Подожди минуту» и «Закрыть».', box('Подожди минуту', 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.', 'Закрыть')],
+];
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+const grid = (lite) => S.map(([t, n, sh]) => `<div class="col"><div class="lbl">${t}</div>${ph(und + `<div class="rsh">${sh}</div>`, lite)}<div class="rnote">${n}</div></div>`).join('');
+document.getElementById('root').innerHTML = `<section class="block" id="dark"><h2>Тёмная «Аврора»</h2><div class="phones">${grid(false)}</div></section><section class="block" id="light"><h2>Светлая тема</h2><div class="phones">${grid(true)}</div></section>`;
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

@@ -22189,10 +22189,10 @@
       "id": "overlays-campaigns-031",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 31,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 1,
+        "label": "031 · Форма",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · форма",
@@ -22209,18 +22209,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-032",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 32,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 2,
+        "label": "032 · Минимум 10 символов",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · минимум 10 символов",
@@ -22237,18 +22238,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-033",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 33,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 3,
+        "label": "033 · Оптимистичная отправка",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · оптимистическая отправка",
@@ -22265,18 +22267,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-034",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 34,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 4,
+        "label": "034 · Сервер подтвердил",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · сервер подтвердил",
@@ -22293,18 +22296,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-035",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 35,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 5,
+        "label": "035 · Не отправилось",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · не отправилось",
@@ -22321,18 +22325,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-036",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": null,
-        "phone": 36,
-        "label": null,
-        "mapping": "no_page"
+        "file": "docs/design/v2-app/report-error-states.html",
+        "phone": 6,
+        "label": "036 · Ограничение одной минуты",
+        "mapping": "manual_rebind"
       },
       "screen": "Сообщить об ошибке",
       "state": "Ошибка · ограничение одной минуты",
@@ -22349,9 +22354,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "no_mockup",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 3, «Сообщить об ошибке»; светлая тема — телефоны 7–12), эталон сразу"
     },
     {
       "id": "overlays-campaigns-037",

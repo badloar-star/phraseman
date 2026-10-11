@@ -131,6 +131,11 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
         emitAppEvent('action_toast', actionToastTri('error', toastCopy.failed));
         setAdding(false);
       }
+    }).catch((error: unknown) => {
+      // зачем (аудит Optimistic UI 12.10): отказ записи без catch оставлял кнопку «занятой» навсегда и не говорил человеку, что карточка не добавилась
+      console.warn(`${TAG} «В набор»: запись упала packId=${packId}: ${error instanceof Error ? error.message : String(error)}`);
+      emitAppEvent('action_toast', actionToastTri('error', toastCopy.failed));
+      setAdding(false);
     });
   }, [adding, onClose, sourceCard]);
 

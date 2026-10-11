@@ -1205,13 +1205,20 @@ export default function FlashcardsScreen() {
     });
   }, [loadAll, packUndo, unhidePackCard]);
   useEffect(() => () => { if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current); }, []);
+  const openedSaveInFlightRef = useRef(false);
   const onToggleOpenedSave = useCallback(() => {
     const card = openedCard;
     if (!card) return;
+    // зачем (аудит Optimistic UI 12.10): двойной тап запускал две встречные записи (убрать и снова добавить) с устаревшим `before` — защёлка до ответа
+    if (openedSaveInFlightRef.current) {
+      console.log(`[PACK-CARD-SAVE] повторный тап отклонён: запись ещё идёт cardId=${card.id}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    openedSaveInFlightRef.current = true;
     const before = openedSaved;
     setOpenedSaved(!before); // Optimistic UI: галочка сразу, запись догоняет
     fcHaptic('tap');
-    void togglePackCardSaved(card, before, packDeeplink, studyTarget).then((result) => {
+    void togglePackCardSaved(card, before, packDeeplink, studyTarget).finally(() => { openedSaveInFlightRef.current = false; }).then((result) => {
       if (result === 'limit_reached') {
         setOpenedSaved(before);
         openPremiumLimit();

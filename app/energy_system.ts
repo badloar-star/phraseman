@@ -20,7 +20,7 @@ import {
 
 export type EnergyState = EnergyStateV2;
 
-const ENERGY_STORAGE_KEY = 'energy_state';
+export const ENERGY_STORAGE_KEY = 'energy_state'; // зачем: экспорт нужен dev-инструментам Dev Hub (app/dev_energy_tools.ts) — один ключ, без копии строки
 /** Локальный интервал восстановления: серверный конфиг больше не управляет энергией. */
 // PM-083 (BIBLE «+1 за 10 минут»): 0→5 занимает 50 минут.
 export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;

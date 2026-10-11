@@ -41,7 +41,15 @@ export type DevToolAction =
   // которая показывает анимацию празднования получения Плюс или Про».
   // Раньше это жило только внутри витрины движения — два уровня вглубь.
   | 'preview-celebration-plus'
-  | 'preview-celebration-pro';
+  | 'preview-celebration-pro'
+  // зачем (координатор 12.10): проверить режим энергии Б на эмуляторе, не включая его в проде — локальный override режима и быстрая
+  // установка энергии. Plus вкл/выкл — существующие 'grant-plus' / 'revoke-plus'.
+  | 'dev-energy-mode-a'
+  | 'dev-energy-mode-b'
+  | 'dev-energy-mode-server'
+  | 'dev-energy-set-5'
+  | 'dev-energy-set-1'
+  | 'dev-energy-set-0';
 
 export type DevToolIcon =
   | 'call-outline'
@@ -84,7 +92,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline' | 'diamond-outline' | 'gift-outline';
+  icon: 'call-outline' | 'flash-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline' | 'diamond-outline' | 'gift-outline';
   testID: string;
   /**
    * Секция свёрнута при открытии хаба.
@@ -97,6 +105,26 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  /**
+   * зачем (координатор 12.10): «ЧТОБЫ ВЛАДЕЛЬЦУ И СВЕРКЕ ТЕСТИРОВАТЬ режим Б на эмуляторе БЕЗ включения в проде». Локальный переключатель
+   * режима энергии (поверх серверного ключа energy_mistake_charge) и быстрые состояния «Энергия: 5 / 1 / 0». Plus вкл/выкл — в секции «Plus».
+   * order: -4 — самая первая секция хаба.
+   */
+  {
+    id: 'energy-modes',
+    order: -4,
+    title: 'Режим энергии (проверка)',
+    icon: 'flash-outline',
+    testID: 'dev-section-energy-modes',
+    tools: [
+      { id: 'energy-mode-a', order: 10, title: 'Режим А', detail: 'Энергия за старт занятия, за ошибки сердечки. Только на этом устройстве.', actionLabel: 'Включить', action: 'dev-energy-mode-a', icon: 'flash-outline', testID: 'dev-energy-mode-a' },
+      { id: 'energy-mode-b', order: 20, title: 'Режим Б', detail: 'Старт бесплатный, каждая ошибка снимает 1 энергию, на последней — остановка. Только на этом устройстве.', actionLabel: 'Включить', action: 'dev-energy-mode-b', icon: 'flash-outline', testID: 'dev-energy-mode-b' },
+      { id: 'energy-mode-server', order: 30, title: 'Как на сервере', detail: 'Снять локальный выбор: режим берётся из рубильника energy_mistake_charge.', actionLabel: 'Снять', action: 'dev-energy-mode-server', icon: 'sync-outline', testID: 'dev-energy-mode-server' },
+      { id: 'energy-set-5', order: 40, title: 'Энергия: 5', detail: 'Полный запас, часы восстановления с нуля.', actionLabel: 'Поставить', action: 'dev-energy-set-5', icon: 'add-circle-outline', testID: 'dev-energy-set-5' },
+      { id: 'energy-set-1', order: 50, title: 'Энергия: 1', detail: 'Последняя энергия: баннер и красный пульс, следующая ошибка остановит занятие.', actionLabel: 'Поставить', action: 'dev-energy-set-1', icon: 'remove-circle-outline', testID: 'dev-energy-set-1' },
+      { id: 'energy-set-0', order: 60, title: 'Энергия: 0', detail: 'Пустой запас: старт без энергии показывает шторку «Нужна энергия».', actionLabel: 'Поставить', action: 'dev-energy-set-0', icon: 'remove-circle-outline', testID: 'dev-energy-set-0' },
+    ],
+  },
   /**
    * зачем (владелец 2026-09-21): «в девхаб в самом вверху добавь обе анимации
    * в приложении чтобы я мог запустить и проверить их». order: -3 — выше

@@ -26,6 +26,7 @@ import {
 import { emitAppEvent } from '../../app/events';
 import { makeDevRunesSeed } from '../../app/dev_practice_runes_seed';
 import { setDevAsFreeFlag } from '../../app/dev_as_free_flag';
+import { devSetEnergy, setDevEnergyModeOverride } from '../../app/dev_energy_tools';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -474,6 +475,29 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'open-manage-subscription':
         requestClose(false, () => router.push({ pathname: '/manage_subscription', params: { source: 'dev_hub' } } as never));
         return;
+      // зачем (координатор 12.10): проверка режима энергии Б на эмуляторе без рубильника в проде — локальный override и быстрые состояния.
+      case 'dev-energy-mode-a':
+      case 'dev-energy-mode-b':
+      case 'dev-energy-mode-server': {
+        const mode = action === 'dev-energy-mode-a' ? 'start_charge' : action === 'dev-energy-mode-b' ? 'mistake_charge' : null;
+        void setDevEnergyModeOverride(mode).then((applied) => {
+          setNotice(!applied
+            ? 'Переключатель работает только в dev-сборке.'
+            : mode === 'mistake_charge' ? 'Режим Б включён на этом устройстве. Новые занятия идут по режиму Б.'
+              : mode === 'start_charge' ? 'Режим А включён на этом устройстве.'
+                : 'Локальный выбор снят: режим берётся с сервера.');
+        });
+        return;
+      }
+      case 'dev-energy-set-5':
+      case 'dev-energy-set-1':
+      case 'dev-energy-set-0': {
+        const amount = action === 'dev-energy-set-5' ? 5 : action === 'dev-energy-set-1' ? 1 : 0;
+        void devSetEnergy(amount).then((applied) => {
+          setNotice(applied ? `Энергия: ${amount}.` : 'Не удалось поставить энергию (только dev-сборка).');
+        });
+        return;
+      }
       case 'grant-plus':
         void applyPlusOverride('granted');
         return;

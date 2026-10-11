@@ -3,6 +3,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import EnergyNeededSheet from '../components/energy/EnergyNeededSheet';
+import { emitEnergyToast } from '../components/energy/energy_toasts';
 
 let mockEnergy = 0;
 let mockOnRequestClose: (() => void) | undefined;
@@ -13,6 +14,7 @@ jest.mock('react-native', () => ({
   TouchableOpacity: 'TouchableOpacity',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
 }));
+jest.mock('../components/energy/energy_toasts', () => ({ emitEnergyToast: jest.fn() }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../constants/liquidGlassThemePalette', () => ({
   liquidGlassTokens: () => ({ opaqueSheet: '#222', opaqueControl: '#333', accent: '#0f0', accentInk: '#000', text: '#fff', secondary: '#aaa' }),
@@ -74,6 +76,21 @@ describe('EnergyNeededSheet', () => {
     await view.rerender(<EnergyNeededSheet visible onWait={jest.fn()} onPlus={jest.fn()} onRestored={onRestored} />);
     await view.rerender(<EnergyNeededSheet visible onWait={jest.fn()} onPlus={jest.fn()} onRestored={onRestored} />);
     expect(onRestored).toHaveBeenCalledTimes(1);
+    expect(emitEnergyToast).toHaveBeenCalledWith('energy_restored');
+    expect(emitEnergyToast).toHaveBeenCalledTimes(1);
+  });
+
+  test('«Подожду» не снимает ожидание: энергия вернулась при закрытой шторке — тост «Энергия восстановилась», колбэки не зовутся (макет Б8)', async () => {
+    const onWait = jest.fn();
+    const onRestored = jest.fn();
+    const view = await render(<EnergyNeededSheet visible onWait={onWait} onPlus={jest.fn()} onRestored={onRestored} />);
+    await view.rerender(<EnergyNeededSheet visible={false} onWait={onWait} onPlus={jest.fn()} onRestored={onRestored} />);
+    expect(emitEnergyToast).not.toHaveBeenCalled();
+    mockEnergy = 1;
+    await view.rerender(<EnergyNeededSheet visible={false} onWait={onWait} onPlus={jest.fn()} onRestored={onRestored} />);
+    expect(emitEnergyToast).toHaveBeenCalledWith('energy_restored');
+    expect(onRestored).not.toHaveBeenCalled();
+    expect(onWait).not.toHaveBeenCalled();
   });
 
   test('шторка открыта при достаточной энергии — не закрывается сама (не было нехватки)', async () => {
@@ -83,6 +100,7 @@ describe('EnergyNeededSheet', () => {
     await render(<EnergyNeededSheet visible onWait={onWait} onPlus={jest.fn()} onRestored={onRestored} />);
     expect(onRestored).not.toHaveBeenCalled();
     expect(onWait).not.toHaveBeenCalled();
+    expect(emitEnergyToast).not.toHaveBeenCalled();
   });
 
   test('без onRestored восстановление закрывает шторку через onWait', async () => {

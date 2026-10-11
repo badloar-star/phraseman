@@ -3,8 +3,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react-native';
 import EnergyAttemptsHud from '../components/energy/EnergyAttemptsHud';
+import { emitEnergyToast } from '../components/energy/energy_toasts';
 
 let mockUnlimited = false;
+let mockEnergy = 2;
 const mockBack = jest.fn();
 const mockStopProps: { current: { visible: boolean; onResume: () => void; onExit: () => void } | null } = { current: null };
 const mockHudProps: { current: Record<string, unknown> | null } = { current: null };
@@ -12,6 +14,7 @@ const mockHudProps: { current: Record<string, unknown> | null } = { current: nul
 jest.mock('react-native', () => ({
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
 }));
+jest.mock('../components/energy/energy_toasts', () => ({ emitEnergyToast: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack }) }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../constants/liquidGlassThemePalette', () => ({
@@ -19,7 +22,7 @@ jest.mock('../constants/liquidGlassThemePalette', () => ({
 }));
 jest.mock('../constants/i18n', () => ({ triLang: (_lang: string, txt: Record<string, string>) => txt.ru }));
 jest.mock('../components/EnergyContext', () => ({
-  useEnergy: () => ({ energy: 2, bonusEnergy: 1, maxEnergy: 5, isUnlimited: mockUnlimited }),
+  useEnergy: () => ({ energy: mockEnergy, bonusEnergy: 1, maxEnergy: 5, isUnlimited: mockUnlimited }),
 }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { wrong: '#f55' }, liquidGlassThemeId: 'x' }) }));
@@ -37,7 +40,7 @@ const attempts = (phase: string, loss = 0, resume = jest.fn()) => ({
 });
 
 describe('EnergyAttemptsHud', () => {
-  beforeEach(() => { jest.clearAllMocks(); mockUnlimited = false; mockStopProps.current = null; mockHudProps.current = null; });
+  beforeEach(() => { jest.clearAllMocks(); mockUnlimited = false; mockEnergy = 2; mockStopProps.current = null; mockHudProps.current = null; });
 
   test('активное занятие: пилюля с энергией (с подарочной), карточка остановки скрыта', async () => {
     await render(<EnergyAttemptsHud attempts={attempts('active', 3)} locale="ru" testID="hud" />);
@@ -74,5 +77,26 @@ describe('EnergyAttemptsHud', () => {
     mockStopProps.current?.onExit();
     expect(custom).toHaveBeenCalledTimes(1);
     expect(mockBack).toHaveBeenCalledTimes(1);
+  });
+
+  test('последняя энергия (1 с подарочной 0): предупреждение один раз, не у Plus и не в остановке (макет Б3)', async () => {
+    mockEnergy = 0; // energy 0 + bonus 1 = 1
+    const view = await render(<EnergyAttemptsHud attempts={attempts('active')} locale="ru" testID="hud" />);
+    expect(emitEnergyToast).toHaveBeenCalledWith('last_energy');
+    await view.rerender(<EnergyAttemptsHud attempts={attempts('active', 0)} locale="ru" testID="hud" />);
+    expect(emitEnergyToast).toHaveBeenCalledTimes(1);
+  });
+
+  test('энергии больше одной — предупреждения нет', async () => {
+    mockEnergy = 3;
+    await render(<EnergyAttemptsHud attempts={attempts('active')} locale="ru" testID="hud" />);
+    expect(emitEnergyToast).not.toHaveBeenCalled();
+  });
+
+  test('Plus с единицей энергии — предупреждения нет', async () => {
+    mockEnergy = 0;
+    mockUnlimited = true;
+    await render(<EnergyAttemptsHud attempts={attempts('active')} locale="ru" testID="hud" />);
+    expect(emitEnergyToast).not.toHaveBeenCalled();
   });
 });

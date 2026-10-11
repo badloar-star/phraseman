@@ -11,6 +11,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useEnergy, useEnergyCountdown } from '../EnergyContext';
 import EnergyIcon from '../EnergyIcon';
+import { emitEnergyToast } from './energy_toasts';
 import { useLang } from '../LangContext';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
@@ -63,6 +64,7 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
     if (!visible || !isUnlimited || resumedRef.current) return;
     resumedRef.current = true;
     DebugLogger.info(TAG, 'Plus подтверждён при открытой карточке → onResume()');
+    emitEnergyToast('plus_resumed'); // макет Б6: «Plus активирован — продолжаем с того же вопроса»
     onResume();
   }, [visible, isUnlimited, onResume]);
 

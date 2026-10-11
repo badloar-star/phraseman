@@ -3,6 +3,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import EnergyStopSheet from '../components/energy/EnergyStopSheet';
+import { emitEnergyToast } from '../components/energy/energy_toasts';
 
 const mockPush = jest.fn();
 let mockUnlimited = false;
@@ -18,6 +19,7 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ push: mockPush }),
   useFocusEffect: (effect: () => void) => { require('react').useEffect(effect, []); },
 }));
+jest.mock('../components/energy/energy_toasts', () => ({ emitEnergyToast: jest.fn() }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 jest.mock('../constants/liquidGlassThemePalette', () => ({
   liquidGlassTokens: () => ({ opaqueSheet: '#222', opaqueControl: '#333', accent: '#0f0', accentInk: '#000', text: '#fff', secondary: '#aaa' }),
@@ -97,5 +99,6 @@ describe('EnergyStopSheet', () => {
     await view.rerender(<EnergyStopSheet visible onExit={jest.fn()} onResume={onResume} />);
     await view.rerender(<EnergyStopSheet visible onExit={jest.fn()} onResume={onResume} />);
     expect(onResume).toHaveBeenCalledTimes(1);
+    expect(emitEnergyToast).toHaveBeenCalledWith('plus_resumed');
   });
 });

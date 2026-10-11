@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'expo-router';
 
 import { DebugLogger } from '../../app/debug-logger';
@@ -7,6 +7,7 @@ import { triLang } from '../../constants/i18n';
 import { useEnergy } from '../EnergyContext';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import { emitEnergyToast } from './energy_toasts';
 import EnergyMistakeHud from './EnergyMistakeHud';
 import EnergyStopSheet from './EnergyStopSheet';
 
@@ -47,6 +48,18 @@ function EnergyAttemptsHud({ attempts, testID, onStoppedExit }: Props) {
   const have = energy + bonusEnergy;
   const stopped = attempts.state.phase === 'stopped_no_energy';
   const { resumeAfterPlus } = attempts;
+
+  // зачем (макет Б3): на последней энергии предупреждаем один раз за заход на единицу — «следующая ошибка остановит занятие».
+  // Не предупреждаем у Plus и в остановке; ушли с единицы (восстановилась, потратилась) — следующий заход на неё предупредит снова.
+  const warnedAtOneRef = useRef(false);
+  const lastEnergy = have === 1 && !isUnlimited && attempts.state.phase === 'active';
+  useEffect(() => {
+    if (!lastEnergy) { warnedAtOneRef.current = false; return; }
+    if (warnedAtOneRef.current) return;
+    warnedAtOneRef.current = true;
+    DebugLogger.info(TAG, `последняя энергия → предупреждение testID=${testID}`);
+    emitEnergyToast('last_energy');
+  }, [lastEnergy, testID]);
 
   const onResume = useCallback(() => { resumeAfterPlus(); }, [resumeAfterPlus]);
   const onExit = useCallback(() => {

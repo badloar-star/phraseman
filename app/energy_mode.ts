@@ -13,6 +13,7 @@
 import { useEffect, useState } from 'react';
 import { getRemoteBool } from './remote_flags';
 import { onAppEvent } from './events';
+import { peekDevEnergyModeOverride } from './dev_energy_tools';
 import type { EnergyActivityKey } from './energy_contract';
 
 export type EnergyMode = 'start_charge' | 'mistake_charge';
@@ -37,6 +38,16 @@ const MISTAKE_CHARGE_ACTIVITIES: ReadonlySet<EnergyActivityKey> = new Set<Energy
 let lastLoggedMode: EnergyMode | null = null;
 
 export function peekEnergyMode(): EnergyMode {
+  // зачем (координатор 12.10): локальный переключатель режима из Dev Hub побеждает серверный ключ — только в dev-сборке (в релизе null),
+  // чтобы проверить режим Б на эмуляторе, не включая его в проде.
+  const devOverride = peekDevEnergyModeOverride();
+  if (devOverride) {
+    if (devOverride !== lastLoggedMode) {
+      lastLoggedMode = devOverride;
+      console.warn('[ENERGY-MODE] resolved from DEV override', JSON.stringify({ mode: devOverride })); // guard-ok: dev-override виден в логе
+    }
+    return devOverride;
+  }
   let mode: EnergyMode = 'start_charge';
   try {
     mode = getRemoteBool(ENERGY_MISTAKE_CHARGE_FLAG) ? 'mistake_charge' : 'start_charge';

@@ -10,6 +10,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useEnergy } from '../EnergyContext';
 import EnergyIcon from '../EnergyIcon';
+import { emitEnergyToast } from './energy_toasts';
 import { useLang } from '../LangContext';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
@@ -78,23 +79,25 @@ function EnergyNeededSheet({ visible, onWait, onPlus, onRestored, required = 1 }
   const { energy, bonusEnergy, maxEnergy } = useEnergy();
   const have = energy + bonusEnergy;
   const missing = Math.max(0, required - have);
-  const openedShortRef = useRef(false);
 
   useEffect(() => {
-    if (!visible) { openedShortRef.current = false; return; }
+    if (!visible) return;
     DebugLogger.info(TAG, `шторка показана energy=${energy} bonus=${bonusEnergy} max=${maxEnergy} required=${required}`);
     soundDirector.request('pm.energy.empty', { scope: 'energy-needed-sheet', dedupeKey: 'visible' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
-  // зачем (макет Б8): энергия вернулась, пока шторка открыта, — идём дальше. Реагируем только если шторка открылась при нехватке.
+  // зачем (макет Б8): энергия вернулась — «Энергия восстановилась» и можно начинать. Взводится, когда шторку показали при нехватке, и
+  // остаётся взведённой после «Подожду»: хозяин держит компонент смонтированным даже при visible=false, так что тост придёт и на экране списка.
+  // Если шторка ещё открыта — она идёт дальше сама (onRestored) или закрывается (onWait).
+  const armedRef = useRef(false);
   useEffect(() => {
-    if (!visible) return;
-    if (missing > 0) { openedShortRef.current = true; return; }
-    if (!openedShortRef.current) return;
-    openedShortRef.current = false;
-    DebugLogger.info(TAG, `энергия восстановилась при открытой шторке have=${have} required=${required} → ${onRestored ? 'onRestored' : 'onWait'}`);
-    (onRestored ?? onWait)();
+    if (visible && missing > 0) armedRef.current = true;
+    if (!armedRef.current || missing > 0) return;
+    armedRef.current = false;
+    DebugLogger.info(TAG, `энергия восстановилась have=${have} required=${required} visible=${String(visible)} → тост${visible ? ` + ${onRestored ? 'onRestored' : 'onWait'}` : ''}`);
+    emitEnergyToast('energy_restored');
+    if (visible) (onRestored ?? onWait)();
   }, [visible, missing, have, required, onRestored, onWait]);
 
   const title = triLang(lang, {

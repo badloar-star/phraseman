@@ -29,8 +29,10 @@ assert.ok(
 );
 
 assert.ok(!lesson.includes('LessonEnergyLightning'), 'active lesson must not render the energy asset');
+// зачем (Ядро 11.10, сторож был красным с efe19ae9d): разовое списание при входе живёт в общей «проверке первого вопроса»
+// (useFirstQuestionEnergyGate + canChargeClassicLessonEntry), а не в прежнем confirmSpendOneRef — проверяем действующий путь.
 assert.ok(
-  lesson.includes('confirmSpendOneRef.current(') && lesson.includes('Энергия при входе в урок'),
+  lesson.includes('useFirstQuestionEnergyGate(') && lesson.includes('canChargeClassicLessonEntry'),
   'removing the lesson asset must not remove the one-time entry debit',
 );
 

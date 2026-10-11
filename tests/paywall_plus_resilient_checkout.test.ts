@@ -170,7 +170,10 @@ describe('Plus-окно: тап без offerings грузит; цены на к�
       .mockResolvedValue(OFFERINGS);
     const { result } = await mount();
     await advance(0);
-    expect(result.current.yearlyPrice).toBe('');
+    // зачем (владелец 11.10: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ»): без магазина и кэша — справочная цена с «≈»,
+    // а не пустая плитка; покупка по ней всё равно не начинается (второй тап — по живой цене, проверено ниже).
+    expect(result.current.yearlyPrice).toBe('€39,99');
+    expect(result.current.yearlyPriceSource).toBe('reference');
     expect(result.current.selectedAvailable).toBe(false);
 
     await act(async () => { void result.current.handlePurchase(); });
@@ -379,7 +382,8 @@ describe('Plus-окно: зависшая загрузка не блокируе
 });
 
 describe('Plus-окно: кэш цен между запусками (D158)', () => {
-  test('первый кадр показывает кэш, пока магазин молчит; без флага кэша нет', async () => {
+  // зачем (владелец 11.10, «цены везде»): кэш последних настоящих цен теперь во всех пейволах, не только в окне Plus.
+  test('первый кадр показывает кэш, пока магазин молчит; кэш — во всех пейволах', async () => {
     await savePaywallPriceCache({
       yearly: { productId: 'prod_yearly', price: '$49.99', perMonth: '$4.17' },
       monthly: { productId: 'prod_monthly', price: '$7.99', perMonth: '' },
@@ -396,9 +400,10 @@ describe('Plus-окно: кэш цен между запусками (D158)', ()
     expect(first.result.current.pricesFromCache).toBe(true);
 
     const plain = await mount(false);
-    expect(plain.frames[0].yearlyPrice).toBe('');
-    expect(plain.result.current.yearlyPrice).toBe('');
-    expect(plain.result.current.pricesFromCache).toBe(false);
+    expect(plain.frames[0].yearlyPrice).toBe('$49.99');
+    expect(plain.result.current.yearlyPrice).toBe('$49.99');
+    expect(plain.result.current.pricesFromCache).toBe(true);
+    expect(plain.result.current.yearlyPriceSource).toBe('cache');
   });
 
   test('после успешной загрузки в кэш уходят только публичные строки цен и id пакетов', async () => {

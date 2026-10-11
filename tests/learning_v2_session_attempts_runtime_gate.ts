@@ -45,10 +45,13 @@ for (const player of players) {
 }
 
 const direct = players[0].source;
+// зачем (Ядро 11.10, сторож был красным давно): в плеере ДВА обработчика ответа, и сравнение первых вхождений по всему
+// файлу ловило чужой блок. Правило то же, но для КАЖДОГО списания сердечка: перед ним в том же обработчике стоит ранний
+// выход на technical_invalid.
+const wrongAt = [...direct.matchAll(/verdict: "pedagogical_wrong"/g)].map((m) => m.index ?? -1);
 assert.ok(
-  direct.includes('verdict.resultCode === "technical_invalid"') &&
-    direct.indexOf('verdict.resultCode === "technical_invalid"') <
-      direct.indexOf('verdict: "pedagogical_wrong"'),
+  wrongAt.length > 0 &&
+    wrongAt.every((at) => /=== "technical_invalid"/.test(direct.slice(Math.max(0, at - 2500), at))),
   "technical-invalid voice/input outcomes must exit before attempt consumption",
 );
 assert.ok(

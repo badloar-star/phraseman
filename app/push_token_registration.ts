@@ -122,6 +122,9 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
     // Пропускаем запись, если этот же токен уже был записан (тот же юзер, lang, tz).
     const cacheKey = `${stableId}:${token}:${lang}:${timezone}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_TOKEN_LOCAL_KEY);
+    // зачем (координатор 12.10, диагностика): какой язык пушей уходит на сервер и был ли он уже записан (без токена и uid).
+    const lastLang = typeof lastWritten === 'string' ? lastWritten.split(':').slice(-2, -1)[0] ?? null : null;
+    console.log('[PUSH-LANG]', JSON.stringify({ step: 'register', lang, lastLang, cacheHit: lastWritten === cacheKey }));
     if (lastWritten === cacheKey) return true;
 
     // зачем: firebaseAuthUid — server-owned (firestore.rules

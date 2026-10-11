@@ -752,6 +752,12 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
     }
     const langRaw = await AsyncStorage.getItem('app_lang');
     const lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
+    // зачем (координатор 12.10, диагностика): этот lang уходит на сервер как pushTokenLang (по нему решаются пуши Шпиля)
+    // и в локальные напоминания. Сравниваем с фактическим языком интерфейса — расхождение = пуши не на том языке.
+    void import('./ui_lang_resolved').then(({ peekResolvedUiLang }) => {
+      const uiLang = peekResolvedUiLang();
+      console.log('[PUSH-LANG]', JSON.stringify({ step: 'boot_lang', storedAppLang: langRaw, chosen: lang, uiLang, mismatch: uiLang !== null && uiLang !== lang, notifEnabled: notifEnabledRaw === 'true' }));
+    }).catch((error: unknown) => console.warn('[PUSH-LANG] boot_lang_log_failed', error instanceof Error ? error.message : String(error)));
 
     // ── 3. Восстановление напоминаний: daily ИЛИ per-day (расписание), не оба
     const notifEnabled = notifEnabledRaw;

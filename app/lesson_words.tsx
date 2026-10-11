@@ -3180,12 +3180,12 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       />
       <ThemedConfirmModal
         visible={practiceRepeatConfirm}
-        title={pickTriLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Pengulangan', tr: 'Tekrar', pl: 'Powtórka' })}
+        title={pickTriLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso', en: 'Review', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Pengulangan', tr: 'Tekrar', pl: 'Powtórka' })}
         message={
           pickTriLang(lang, {
             ru: 'Твой путь сохранён. Это тренировка — выученные фразы не сбросятся.',
             uk: 'Твій шлях збережено. Це тренування — виучені фрази не скинуться.',
-            es: 'El progreso está guardado. Es solo práctica: las palabras aprendidas no se reinician.',
+            es: 'El progreso está guardado. Es solo práctica: las palabras aprendidas no se reinician.', en: 'Your path is saved. This is practice — learned phrases won\'t reset.',
             'pt-BR': 'O progresso foi salvo. Isto é só treino: as palavras aprendidas não serão reiniciadas.',
             vi: 'Tiến độ đã được lưu. Đây chỉ là luyện tập: các từ đã học sẽ không bị đặt lại.',
             id: 'Progres tersimpan. Ini hanya latihan: kata yang sudah dipelajari tidak akan direset.',
@@ -3193,8 +3193,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             pl: 'Postęp zapisany. To tylko trening: nauczone słowa nie zostaną zresetowane.',
           })
         }
-        cancelLabel={pickTriLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
-        confirmLabel={pickTriLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Lặp lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' })}
+        cancelLabel={pickTriLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', en: 'Cancel', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+        confirmLabel={pickTriLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', en: 'Repeat', 'pt-BR': 'Repetir', vi: 'Lặp lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' })}
         onCancel={() => setPracticeRepeatConfirm(false)}
         onConfirm={() => {
           setPracticeRepeatConfirm(false);
@@ -3208,18 +3208,18 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   if (!current) {
     // зачем: скелет вместо голого текста (макет wordsLoading): геометрия первого кадра = итоговая.
-    return <WordsTrainingSkeleton header={renderTrainingHeader()} glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />;
+    return <WordsTrainingSkeleton header={renderTrainingHeader()} glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', en: 'Preparing practice…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />;
   }
 
   const ROUND_CONFIG: Record<RoundType, { label: string; color: string; bg: string; icon: string }> = {
     recognition: {
-      label: pickTriLang(lang, { ru: 'Узнавание', uk: 'Впізнавання', es: 'Reconocimiento', 'pt-BR': 'Reconhecimento', vi: 'Nhận diện', id: 'Pengenalan', tr: 'Tanıma', pl: 'Rozpoznawanie' }),
+      label: pickTriLang(lang, { ru: 'Узнавание', uk: 'Впізнавання', es: 'Reconocimiento', en: 'Recognition', 'pt-BR': 'Reconhecimento', vi: 'Nhận diện', id: 'Pengenalan', tr: 'Tanıma', pl: 'Rozpoznawanie' }),
       color: t.correct,
       bg: t.correctBg,
       icon: 'eye-outline',
     },
     context: {
-      label: pickTriLang(lang, { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' }),
+      label: pickTriLang(lang, { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', en: 'Context', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' }),
       color: '#4A9EFF', // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
       bg: 'rgba(74,158,255,0.14)', // theme-exempt: слова урока: верно/неверно и цвета форм — семантика (токены good/bad — у «Тем»)
       icon: 'text-outline',
@@ -3258,7 +3258,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           <PracticeQuestionCard
             glass={glass}
             minHeight={150}
-            kicker={pickTriLang(lang, { ru: 'Вставь слово в предложение:', uk: 'Встав слово у речення:', es: 'Coloca la palabra en la frase:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
+            kicker={pickTriLang(lang, { ru: 'Вставь слово в предложение:', uk: 'Встав слово у речення:', es: 'Coloca la palabra en la frase:', en: 'Put the word in the sentence:', 'pt-BR': 'Coloque a palavra na frase:', vi: 'Điền từ vào câu:', id: 'Masukkan kata ke dalam kalimat:', tr: 'Kelimeyi cümleye yerleştir:', pl: 'Wstaw słowo do zdania:' })}
           >
             {(() => {
               const parts = current.question.split('...');
@@ -3278,7 +3278,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             kicker={pickTriLang(lang, {
               ru: 'Выбери английский перевод:',
               uk: 'Обери англійський переклад:',
-              es: 'Elige la traducción en inglés:',
+              es: 'Elige la traducción en inglés:', en: 'Choose the English translation:',
               'pt-BR': 'Escolha a tradução em inglês:',
               vi: 'Chọn bản dịch tiếng Anh:',
               id: 'Pilih terjemahan bahasa Inggris:',
@@ -3361,8 +3361,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           screen="lesson_words"
           dataId={`word_${current.correctOption.replace(/\s+/g,'_')}`}
           dataText={[
-            `${pickTriLang(lang, { ru: 'Вопрос', uk: 'Питання', es: 'Pregunta', 'pt-BR': 'Pergunta', vi: 'Câu hỏi', id: 'Pertanyaan', tr: 'Soru', pl: 'Pytanie' })}: ${current.question}`,
-            `${pickTriLang(lang, { ru: 'Варианты', uk: 'Варіанти', es: 'Opciones', 'pt-BR': 'Opções', vi: 'Các lựa chọn', id: 'Pilihan', tr: 'Seçenekler', pl: 'Opcje' })}: ${current.options.map(o=>o===current.correctOption?`[✓${o}]`:o).join(' | ')}`,
+            `${pickTriLang(lang, { ru: 'Вопрос', uk: 'Питання', es: 'Pregunta', en: 'Question', 'pt-BR': 'Pergunta', vi: 'Câu hỏi', id: 'Pertanyaan', tr: 'Soru', pl: 'Pytanie' })}: ${current.question}`,
+            `${pickTriLang(lang, { ru: 'Варианты', uk: 'Варіанти', es: 'Opciones', en: 'Options', 'pt-BR': 'Opções', vi: 'Các lựa chọn', id: 'Pilihan', tr: 'Seçenekler', pl: 'Opcje' })}: ${current.options.map(o=>o===current.correctOption?`[✓${o}]`:o).join(' | ')}`,
           ].join('\n')}
           style={{ alignSelf: 'flex-end', marginBottom: 4 }}
           textColor={glass.secondary}
@@ -3436,7 +3436,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               <View style={{ marginHorizontal: hPad, marginTop: 12 }}>
                 <PracticeCta
                   glass={glass}
-                  label={pickTriLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Comenzar práctica', 'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening' })}
+                  label={pickTriLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Comenzar práctica', en: 'Start practice', 'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening' })}
                   trailingArrow
                   onPress={() => { hapticTap(); onStartTraining(); }}
                 />
@@ -3448,7 +3448,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               dataText={pickTriLang(lang, {
                 ru: `Словарь урока ${lessonId ?? ''}`,
                 uk: `Словник уроку ${lessonId ?? ''}`,
-                es: `Vocabulario de la lección ${lessonId ?? ''}`,
+                es: `Vocabulario de la lección ${lessonId ?? ''}`, en: `Lesson ${lessonId ?? ''} vocabulary`,
                 'pt-BR': `Vocabulário da lição ${lessonId ?? ''}`,
                 vi: `Từ vựng bài ${lessonId ?? ''}`,
                 id: `Kosakata pelajaran ${lessonId ?? ''}`,
@@ -3735,7 +3735,7 @@ function LessonWords() {
           />
         ) : !wordProgressReady ? (
           <View testID="lesson-words-training-progress-loading" style={{ flex:1 }}>
-            <WordsTrainingSkeleton glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />
+            <WordsTrainingSkeleton glass={glass} kicker={pickTriLang(lang, { ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', es: 'Preparando práctica…', en: 'Preparing practice…', 'pt-BR': 'Preparando treino…', vi: 'Đang chuẩn bị luyện tập…', id: 'Menyiapkan latihan…', tr: 'Alıştırma hazırlanıyor…', pl: 'Przygotowuję trening…' })} />
           </View>
         ) : (
           <Training

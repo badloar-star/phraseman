@@ -28,14 +28,14 @@ export type VipSurveyAnswers = Record<string, VipSurveyAnswer>;
  * прода, см. ALL_MODALS_AUDIT_2026-06-21.md §8). Теперь каждый язык переведён.
  * Сигнатура — объект, чтобы случайно не «уронить» язык в английский снова.
  */
-type Loc8 = { ru: string; uk: string; es: string; ptBR: string; vi: string; id: string; tr: string; pl: string };
+type Loc8 = { ru: string; uk: string; en?: string; es: string; ptBR: string; vi: string; id: string; tr: string; pl: string };
 function loc(t: Loc8): Record<Lang, string> {
   return {
     ru: t.ru,
     uk: t.uk,
     // зачем: en — чисто UI-язык, у опроса нет отдельного английского текста —
     // RU-фолбэк, как остальные content-локали без en-source в проекте.
-    en: t.ru,
+    en: t.en ?? t.ru,
     es: t.es,
     'pt-BR': t.ptBR,
     vi: t.vi,
@@ -47,8 +47,8 @@ function loc(t: Loc8): Record<Lang, string> {
 
 /** Повторяющиеся пункты опроса (Уроки/Карточки и т.п.) — один источник перевода. */
 const COMMON = {
-  lessons: loc({ ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', ptBR: 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }),
-  flashcards: loc({ ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', ptBR: 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' }),
+  lessons: loc({ ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', en: 'Lessons', ptBR: 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }),
+  flashcards: loc({ ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', en: 'Cards', ptBR: 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' }),
 };
 
 export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
@@ -57,7 +57,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Что в приложении помогает учиться лучше всего?',
       uk: 'Що в застосунку допомагає вчитися найкраще?',
-      es: '¿Qué parte de la app te ayuda a aprender mejor?',
+      es: '¿Qué parte de la app te ayuda a aprender mejor?', en: 'What in the app helps you learn best?',
       ptBR: 'O que no app mais ajuda você a aprender?',
       vi: 'Điều gì trong ứng dụng giúp bạn học tốt nhất?',
       id: 'Apa di aplikasi yang paling membantumu belajar?',
@@ -67,7 +67,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'lessons', text: COMMON.lessons },
       { id: 'flashcards', text: COMMON.flashcards },
-      { id: 'nothing_yet', text: loc({ ru: 'Пока ничего', uk: 'Поки нічого', es: 'Nada por ahora', ptBR: 'Nada por enquanto', vi: 'Chưa có gì', id: 'Belum ada', tr: 'Henüz yok', pl: 'Na razie nic' }) },
+      { id: 'nothing_yet', text: loc({ ru: 'Пока ничего', uk: 'Поки нічого', es: 'Nada por ahora', en: 'Nothing yet', ptBR: 'Nada por enquanto', vi: 'Chưa có gì', id: 'Belum ada', tr: 'Henüz yok', pl: 'Na razie nic' }) },
     ],
   },
   {
@@ -75,7 +75,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Где хочется задержаться подольше?',
       uk: 'Де хочеться затриматися довше?',
-      es: '¿Dónde te gustaría pasar más tiempo?',
+      es: '¿Dónde te gustaría pasar más tiempo?', en: 'Where would you like to spend more time?',
       ptBR: 'Onde você quer passar mais tempo?',
       vi: 'Bạn muốn dành nhiều thời gian hơn ở đâu?',
       id: 'Di mana kamu ingin menghabiskan lebih banyak waktu?',
@@ -85,7 +85,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'lessons', text: COMMON.lessons },
       { id: 'flashcards', text: COMMON.flashcards },
-      { id: 'mistake_practice', text: loc({ ru: 'Отработка ошибок', uk: 'Відпрацювання помилок', es: 'Práctica de errores', ptBR: 'Prática de erros', vi: 'Luyện tập lỗi sai', id: 'Latihan kesalahan', tr: 'Hata çalışması', pl: 'Praca nad błędami' }) },
+      { id: 'mistake_practice', text: loc({ ru: 'Отработка ошибок', uk: 'Відпрацювання помилок', es: 'Práctica de errores', en: 'Mistake practice', ptBR: 'Prática de erros', vi: 'Luyện tập lỗi sai', id: 'Latihan kesalahan', tr: 'Hata çalışması', pl: 'Praca nad błędami' }) },
     ],
   },
   {
@@ -93,7 +93,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Когда становится менее интересно?',
       uk: 'Коли стає менш цікаво?',
-      es: '¿Cuándo se vuelve menos interesante?',
+      es: '¿Cuándo se vuelve menos interesante?', en: 'When does it get less interesting?',
       ptBR: 'Quando fica menos interessante?',
       vi: 'Khi nào việc học trở nên kém thú vị?',
       id: 'Kapan belajar jadi kurang menarik?',
@@ -101,12 +101,12 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
       pl: 'Kiedy nauka staje się mniej ciekawa?',
     }),
     options: [
-      { id: 'too_easy', text: loc({ ru: 'Слишком легко', uk: 'Занадто легко', es: 'Demasiado fácil', ptBR: 'Fácil demais', vi: 'Quá dễ', id: 'Terlalu mudah', tr: 'Çok kolay', pl: 'Za łatwo' }) },
-      { id: 'too_hard', text: loc({ ru: 'Слишком сложно', uk: 'Занадто складно', es: 'Demasiado difícil', ptBR: 'Difícil demais', vi: 'Quá khó', id: 'Terlalu sulit', tr: 'Çok zor', pl: 'Za trudno' }) },
-      { id: 'unclear_mistakes', text: loc({ ru: 'Непонятны ошибки', uk: 'Незрозумілі помилки', es: 'Los errores no se entienden', ptBR: 'Os erros não são claros', vi: 'Lỗi sai khó hiểu', id: 'Kesalahan tidak jelas', tr: 'Hatalar belirsiz', pl: 'Błędy są niejasne' }) },
-      { id: 'too_much_text', text: loc({ ru: 'Много текста', uk: 'Багато тексту', es: 'Demasiado texto', ptBR: 'Texto demais', vi: 'Quá nhiều chữ', id: 'Terlalu banyak teks', tr: 'Çok fazla metin', pl: 'Za dużo tekstu' }) },
-      { id: 'no_progress', text: loc({ ru: 'Не вижу прогресс', uk: 'Не бачу прогрес', es: 'No veo progreso', ptBR: 'Não vejo progresso', vi: 'Không thấy tiến bộ', id: 'Tidak melihat kemajuan', tr: 'İlerleme göremiyorum', pl: 'Nie widzę postępu' }) },
-      { id: 'never', text: loc({ ru: 'Не бывает', uk: 'Не буває', es: 'Nunca pasa', ptBR: 'Nunca acontece', vi: 'Không bao giờ', id: 'Tidak pernah', tr: 'Hiç olmuyor', pl: 'Nigdy' }) },
+      { id: 'too_easy', text: loc({ ru: 'Слишком легко', uk: 'Занадто легко', es: 'Demasiado fácil', en: 'Too easy', ptBR: 'Fácil demais', vi: 'Quá dễ', id: 'Terlalu mudah', tr: 'Çok kolay', pl: 'Za łatwo' }) },
+      { id: 'too_hard', text: loc({ ru: 'Слишком сложно', uk: 'Занадто складно', es: 'Demasiado difícil', en: 'Too hard', ptBR: 'Difícil demais', vi: 'Quá khó', id: 'Terlalu sulit', tr: 'Çok zor', pl: 'Za trudno' }) },
+      { id: 'unclear_mistakes', text: loc({ ru: 'Непонятны ошибки', uk: 'Незрозумілі помилки', es: 'Los errores no se entienden', en: 'The mistakes aren\'t clear', ptBR: 'Os erros não são claros', vi: 'Lỗi sai khó hiểu', id: 'Kesalahan tidak jelas', tr: 'Hatalar belirsiz', pl: 'Błędy są niejasne' }) },
+      { id: 'too_much_text', text: loc({ ru: 'Много текста', uk: 'Багато тексту', es: 'Demasiado texto', en: 'Too much text', ptBR: 'Texto demais', vi: 'Quá nhiều chữ', id: 'Terlalu banyak teks', tr: 'Çok fazla metin', pl: 'Za dużo tekstu' }) },
+      { id: 'no_progress', text: loc({ ru: 'Не вижу прогресс', uk: 'Не бачу прогрес', es: 'No veo progreso', en: 'I don\'t see progress', ptBR: 'Não vejo progresso', vi: 'Không thấy tiến bộ', id: 'Tidak melihat kemajuan', tr: 'İlerleme göremiyorum', pl: 'Nie widzę postępu' }) },
+      { id: 'never', text: loc({ ru: 'Не бывает', uk: 'Не буває', es: 'Nunca pasa', en: 'It never does', ptBR: 'Nunca acontece', vi: 'Không bao giờ', id: 'Tidak pernah', tr: 'Hiç olmuyor', pl: 'Nigdy' }) },
     ],
   },
   {
@@ -114,7 +114,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Что непонятно с первого раза?',
       uk: 'Що незрозуміло з першого разу?',
-      es: '¿Qué no queda claro al principio?',
+      es: '¿Qué no queda claro al principio?', en: 'What isn\'t clear at first?',
       ptBR: 'O que não fica claro de primeira?',
       vi: 'Điều gì khó hiểu ngay từ đầu?',
       id: 'Apa yang membingungkan di awal?',
@@ -122,11 +122,11 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
       pl: 'Co jest niejasne za pierwszym razem?',
     }),
     options: [
-      { id: 'what_next', text: loc({ ru: 'Что делать дальше', uk: 'Що робити далі', es: 'Qué hacer después', ptBR: 'O que fazer depois', vi: 'Làm gì tiếp theo', id: 'Apa selanjutnya', tr: 'Sonra ne yapmalı', pl: 'Co robić dalej' }) },
+      { id: 'what_next', text: loc({ ru: 'Что делать дальше', uk: 'Що робити далі', es: 'Qué hacer después', en: 'What to do next', ptBR: 'O que fazer depois', vi: 'Làm gì tiếp theo', id: 'Apa selanjutnya', tr: 'Sonra ne yapmalı', pl: 'Co robić dalej' }) },
       { id: 'lessons', text: COMMON.lessons },
       { id: 'flashcards', text: COMMON.flashcards },
-      { id: 'mistakes', text: loc({ ru: 'Ошибки', uk: 'Помилки', es: 'Errores', ptBR: 'Erros', vi: 'Lỗi sai', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }) },
-      { id: 'all_clear', text: loc({ ru: 'Всё понятно', uk: 'Усе зрозуміло', es: 'Todo está claro', ptBR: 'Tudo está claro', vi: 'Mọi thứ đều rõ', id: 'Semua jelas', tr: 'Her şey açık', pl: 'Wszystko jasne' }) },
+      { id: 'mistakes', text: loc({ ru: 'Ошибки', uk: 'Помилки', es: 'Errores', en: 'Mistakes', ptBR: 'Erros', vi: 'Lỗi sai', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }) },
+      { id: 'all_clear', text: loc({ ru: 'Всё понятно', uk: 'Усе зрозуміло', es: 'Todo está claro', en: 'Everything is clear', ptBR: 'Tudo está claro', vi: 'Mọi thứ đều rõ', id: 'Semua jelas', tr: 'Her şey açık', pl: 'Wszystko jasne' }) },
     ],
   },
   {
@@ -134,7 +134,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Что ты ожидал(а) увидеть в приложении, но не нашёл(ла)?',
       uk: 'Що ти очікував(ла) побачити в застосунку, але не знайшов(ла)?',
-      es: '¿Qué esperabas encontrar en la app pero no estaba?',
+      es: '¿Qué esperabas encontrar en la app pero no estaba?', en: 'What did you expect to see in the app but didn\'t find?',
       ptBR: 'O que você esperava encontrar no app, mas não achou?',
       vi: 'Bạn mong thấy gì trong ứng dụng nhưng không tìm thấy?',
       id: 'Apa yang kamu harapkan ada di aplikasi tapi tidak ada?',
@@ -142,13 +142,13 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
       pl: 'Czego spodziewałeś się w aplikacji, ale tego nie znalazłeś?',
     }),
     options: [
-      { id: 'more_explanations', text: loc({ ru: 'Больше объяснений', uk: 'Більше пояснень', es: 'Más explicaciones', ptBR: 'Mais explicações', vi: 'Nhiều giải thích hơn', id: 'Lebih banyak penjelasan', tr: 'Daha çok açıklama', pl: 'Więcej wyjaśnień' }) },
-      { id: 'more_examples', text: loc({ ru: 'Больше примеров', uk: 'Більше прикладів', es: 'Más ejemplos', ptBR: 'Mais exemplos', vi: 'Nhiều ví dụ hơn', id: 'Lebih banyak contoh', tr: 'Daha çok örnek', pl: 'Więcej przykładów' }) },
-      { id: 'more_topics', text: loc({ ru: 'Больше тем', uk: 'Більше тем', es: 'Más temas', ptBR: 'Mais temas', vi: 'Nhiều chủ đề hơn', id: 'Lebih banyak topik', tr: 'Daha çok konu', pl: 'Więcej tematów' }) },
-      { id: 'more_practice', text: loc({ ru: 'Больше практики', uk: 'Більше практики', es: 'Más práctica', ptBR: 'Mais prática', vi: 'Nhiều luyện tập hơn', id: 'Lebih banyak latihan', tr: 'Daha çok pratik', pl: 'Więcej praktyki' }) },
-      { id: 'more_stats', text: loc({ ru: 'Больше статистики', uk: 'Більше статистики', es: 'Más estadísticas', ptBR: 'Mais estatísticas', vi: 'Nhiều thống kê hơn', id: 'Lebih banyak statistik', tr: 'Daha çok istatistik', pl: 'Więcej statystyk' }) },
-      { id: 'learning_plan', text: loc({ ru: 'План обучения', uk: 'План навчання', es: 'Plan de estudio', ptBR: 'Plano de estudo', vi: 'Kế hoạch học tập', id: 'Rencana belajar', tr: 'Öğrenme planı', pl: 'Plan nauki' }) },
-      { id: 'found_all', text: loc({ ru: 'Всё нашёл(ла)', uk: 'Усе знайшов(ла)', es: 'Lo encontré todo', ptBR: 'Encontrei tudo', vi: 'Tôi đã tìm thấy hết', id: 'Aku menemukan semuanya', tr: 'Hepsini buldum', pl: 'Znalazłem wszystko' }) },
+      { id: 'more_explanations', text: loc({ ru: 'Больше объяснений', uk: 'Більше пояснень', es: 'Más explicaciones', en: 'More explanations', ptBR: 'Mais explicações', vi: 'Nhiều giải thích hơn', id: 'Lebih banyak penjelasan', tr: 'Daha çok açıklama', pl: 'Więcej wyjaśnień' }) },
+      { id: 'more_examples', text: loc({ ru: 'Больше примеров', uk: 'Більше прикладів', es: 'Más ejemplos', en: 'More examples', ptBR: 'Mais exemplos', vi: 'Nhiều ví dụ hơn', id: 'Lebih banyak contoh', tr: 'Daha çok örnek', pl: 'Więcej przykładów' }) },
+      { id: 'more_topics', text: loc({ ru: 'Больше тем', uk: 'Більше тем', es: 'Más temas', en: 'More topics', ptBR: 'Mais temas', vi: 'Nhiều chủ đề hơn', id: 'Lebih banyak topik', tr: 'Daha çok konu', pl: 'Więcej tematów' }) },
+      { id: 'more_practice', text: loc({ ru: 'Больше практики', uk: 'Більше практики', es: 'Más práctica', en: 'More practice', ptBR: 'Mais prática', vi: 'Nhiều luyện tập hơn', id: 'Lebih banyak latihan', tr: 'Daha çok pratik', pl: 'Więcej praktyki' }) },
+      { id: 'more_stats', text: loc({ ru: 'Больше статистики', uk: 'Більше статистики', es: 'Más estadísticas', en: 'More stats', ptBR: 'Mais estatísticas', vi: 'Nhiều thống kê hơn', id: 'Lebih banyak statistik', tr: 'Daha çok istatistik', pl: 'Więcej statystyk' }) },
+      { id: 'learning_plan', text: loc({ ru: 'План обучения', uk: 'План навчання', es: 'Plan de estudio', en: 'Study plan', ptBR: 'Plano de estudo', vi: 'Kế hoạch học tập', id: 'Rencana belajar', tr: 'Öğrenme planı', pl: 'Plan nauki' }) },
+      { id: 'found_all', text: loc({ ru: 'Всё нашёл(ла)', uk: 'Усе знайшов(ла)', es: 'Lo encontré todo', en: 'I found everything', ptBR: 'Encontrei tudo', vi: 'Tôi đã tìm thấy hết', id: 'Aku menemukan semuanya', tr: 'Hepsini buldum', pl: 'Znalazłem wszystko' }) },
     ],
   },
   {
@@ -156,7 +156,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Какой экран перегружен?',
       uk: 'Який екран перевантажений?',
-      es: '¿Qué pantalla se siente sobrecargada?',
+      es: '¿Qué pantalla se siente sobrecargada?', en: 'Which screen feels overloaded?',
       ptBR: 'Qual tela parece sobrecarregada?',
       vi: 'Màn hình nào trông quá tải?',
       id: 'Layar mana yang terasa terlalu penuh?',
@@ -164,11 +164,11 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
       pl: 'Który ekran wydaje się przeładowany?',
     }),
     options: [
-      { id: 'home', text: loc({ ru: 'Главная', uk: 'Головна', es: 'Inicio', ptBR: 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }) },
+      { id: 'home', text: loc({ ru: 'Главная', uk: 'Головна', es: 'Inicio', en: 'Home', ptBR: 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }) },
       { id: 'lessons', text: COMMON.lessons },
       { id: 'flashcards', text: COMMON.flashcards },
-      { id: 'profile', text: loc({ ru: 'Профиль', uk: 'Профіль', es: 'Perfil', ptBR: 'Perfil', vi: 'Hồ sơ', id: 'Profil', tr: 'Profil', pl: 'Profil' }) },
-      { id: 'none', text: loc({ ru: 'Нет такого', uk: 'Немає такого', es: 'Ninguna', ptBR: 'Nenhuma', vi: 'Không có', id: 'Tidak ada', tr: 'Yok', pl: 'Żaden' }) },
+      { id: 'profile', text: loc({ ru: 'Профиль', uk: 'Профіль', es: 'Perfil', en: 'Profile', ptBR: 'Perfil', vi: 'Hồ sơ', id: 'Profil', tr: 'Profil', pl: 'Profil' }) },
+      { id: 'none', text: loc({ ru: 'Нет такого', uk: 'Немає такого', es: 'Ninguna', en: 'None', ptBR: 'Nenhuma', vi: 'Không có', id: 'Tidak ada', tr: 'Yok', pl: 'Żaden' }) },
     ],
   },
   {
@@ -176,7 +176,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Что бы ты улучшил(а) прямо на этой неделе?',
       uk: 'Що б ти покращив(ла) прямо цього тижня?',
-      es: '¿Qué mejorarías esta misma semana?',
+      es: '¿Qué mejorarías esta misma semana?', en: 'What would you improve this very week?',
       ptBR: 'O que você melhoraria já nesta semana?',
       vi: 'Bạn sẽ cải thiện điều gì ngay tuần này?',
       id: 'Apa yang akan kamu perbaiki minggu ini?',
@@ -191,7 +191,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Какую функцию добавить?',
       uk: 'Яку функцію додати?',
-      es: '¿Qué función deberíamos añadir?',
+      es: '¿Qué función deberíamos añadir?', en: 'Which feature should we add?',
       ptBR: 'Qual recurso devemos adicionar?',
       vi: 'Nên thêm tính năng nào?',
       id: 'Fitur apa yang sebaiknya ditambahkan?',
@@ -206,7 +206,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     title: loc({
       ru: 'Если бы ты рекомендовал(а) приложение другу, что бы ты ему о нём рассказал(а)?',
       uk: 'Якби ти рекомендував(ла) застосунок другу, що б ти йому розповів(ла) про застосунок?',
-      es: 'Si recomendaras la app a un amigo, ¿qué le contarías sobre ella?',
+      es: 'Si recomendaras la app a un amigo, ¿qué le contarías sobre ella?', en: 'If you recommended the app to a friend, what would you tell them about it?',
       ptBR: 'Se você recomendasse o app a um amigo, o que contaria sobre ele?',
       vi: 'Nếu giới thiệu ứng dụng cho một người bạn, bạn sẽ nói gì về nó?',
       id: 'Kalau kamu merekomendasikan aplikasi ini ke teman, apa yang akan kamu ceritakan?',

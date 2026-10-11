@@ -84,7 +84,7 @@ const life = '<div class="mnote">Разовая покупка — без спи
 const restore = (busy) => `<div class="mrs t">${REFRESH}<span class="tx">Восстановить покупки</span>${busy ? '<span class="msp"></span>' : svg('<path d="M9 5l7 7-7 7"/>', 'ch')}</div>`;
 const cancel = '<div class="mcn t">' + OPEN + 'Перейти к отмене</div>';
 const foot = '<div class="mft">Цена и период всегда берутся из App Store / Google Play.</div>';
-const change = (busy) => `<div class="mchg t"><div class="cp"><div class="t1">Перейти на годовой план</div><div class="t2">Дешевле в пересчёте на месяц</div></div>${busy ? '<span class="msp"></span>' : ARROWC}</div>`;
+const change = (busy) => `<div class="mchg t"><div class="cp"><div class="t1">Перейти на годовой план</div><div class="t2">Дешевле в пересчёте — ≈ €39,99/год</div></div>${busy ? '<span class="msp"></span>' : ARROWC}</div>`;
 // scroll: сдвиг содержимого вверх (экран прокручивается)
 const screen = (inner, o = {}) => `<div class="mpg"><div class="mw" style="transform:translateY(-${o.scroll || 0}px)"><div class="mclose t">${icon('back', 's20')}</div><div class="mh1">Подписка Plus</div>${inner}</div></div>`;
 const dim = '<div class="mdim"></div>';
@@ -98,7 +98,7 @@ const base = (plan) => screen(card(plan, next) + benefits());
 const S = [
   ['019 · Управление подпиской', 'Годовая подписка: статус, дата следующего списания, что включено. Ниже — прокрутка.', base('Годовая подписка')],
   ['019 · …прокрутка вниз (годовая)', 'Восстановить покупки, «Перейти к отмене» и пояснение про источник цены. Карточки «Перейти на годовой» нет.', screen(card('Годовая подписка', next) + benefits() + restore() + cancel + foot, { scroll: 470 })],
-  ['019 · Месячная: можно перейти на годовой', 'Только при месячной подписке и если годовой план есть в магазине. Сумма приходит из магазина; здесь запасной текст без суммы.', screen(card('Месячная подписка', next) + benefits() + change() + restore() + cancel + foot, { scroll: 560 })],
+  ['019 · Месячная: можно перейти на годовой', 'Только при месячной подписке и если годовой план есть в магазине. Подпись с ценой видна всегда: живая цена магазина → последняя настоящая → справочная с «≈» (как здесь); в покупку справочная не уходит.', screen(card('Месячная подписка', next) + benefits() + change() + restore() + cancel + foot, { scroll: 560 })],
   ['020 · Загрузка плана', 'Название — общее «Подписка Plus», даты нет; вместо списка — три серых блока.', screen(card('Подписка Plus') + '<div class="mskw"><div class="msk" style="height:64px"></div><div class="msk" style="height:64px"></div><div class="msk" style="width:70%;height:48px"></div></div>')],
   ['021 · Разовая покупка', 'Phraseman Pro: без даты списания, без «Перейти на годовой» и без отмены.', screen(card('Phraseman Pro', life) + benefits())],
   ['021 · …прокрутка вниз (разовая)', 'Только «Восстановить покупки» и пояснение; кнопки отмены нет.', screen(card('Phraseman Pro', life) + benefits() + restore() + foot, { scroll: 400 })],

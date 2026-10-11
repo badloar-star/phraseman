@@ -83,7 +83,8 @@ const STATES = [['1 · Энергия', 'energy', 'ok'], ['2 · ИИ-разбо�
   ['6 · Серия, заморозка', 'streak', 'ok'], ['7 · Диалоги', 'dialog', 'ok'], ['8 · Итог бесплатных уроков', 'done', 'ok'], ['9 · Цена недоступна', 'energy', 'err'], ['10 · Загрузка цен', 'energy', 'load']];
 const YEAR = '3 990 ₽ в год', MON = '490 ₽ в месяц';
 const links = '<div class="links"><span class="t">Восстановить</span><span class="t">Условия</span><span class="t">Конфиденциальность</span></div>';
-const errBox = `<div class="err"><div class="a">Цены не загрузились</div><div class="b">Проверь интернет</div><span class="ret t">${icon('up', 's18')}Ещё раз</span></div>`;
+// зачем (приложение, коммит 960f2de5f; координатор 12.10): блок «Цены не загрузились» и «Ещё раз» убраны — тихая строка той же высоты, что плитки; цены докачиваются в фоне
+const errBox = `<div class="err" style="min-height:140px;display:flex;align-items:center;justify-content:center;background:none;box-shadow:none"><div class="b" style="margin:0;font-size:13px;line-height:18px">Цена уточнится в магазине</div></div>`;
 const loadBox = '<div style="display:flex;flex-direction:column;gap:10px"><div class="sk"></div><div class="sk" style="height:60px"></div></div>';
 const ctaTxt = (st) => (st === 'ok' ? 'Начать 7 дней бесплатно' : 'Оформить Plus');
 const fine = (st) => (st === 'ok' ? '<div class="fine">Потом 3 990 ₽ в год. Отмена в любой момент.</div>' : '<div class="fine">Кнопка работает и без цен — цена покажется в магазине.</div>');

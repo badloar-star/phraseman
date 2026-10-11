@@ -326,8 +326,11 @@ export async function resetCardsViewPrefs(): Promise<string> {
   const { setCollectionViewMode } = await import('./flashcards/collection_view_prefs');
   saveGalleryStep(GALLERY_DEFAULT_STEP);
   setCollectionViewMode('list');
-  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list' })); // guard-ok: единичный лог на ссылку
-  return `step=${GALLERY_DEFAULT_STEP},list`;
+  // зачем: черновик нового набора переживает перезапуск — кадр «Новый набор» после кадра «Новая карточка (Test)» открылся бы с чужим текстом
+  const { clearCommunityPackCreateDraft } = await import('./community_packs/communityPackDraftStorage');
+  await clearCommunityPackCreateDraft(TARGET);
+  console.log('[DEV-STATE] cards view prefs', JSON.stringify({ galleryStep: GALLERY_DEFAULT_STEP, viewMode: 'list', packDraft: 'cleared' })); // guard-ok: единичный лог на ссылку
+  return `step=${GALLERY_DEFAULT_STEP},list,draft=cleared`;
 }
 
 /**

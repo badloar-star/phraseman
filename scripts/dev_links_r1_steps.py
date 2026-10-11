@@ -36,7 +36,7 @@ TILE3 = 'tap:#fc-gallery-tile-*@3'
 SELECT = 'tap:#fc-menu-select'
 DECK = 'tap:#fc-saved-view-deck'
 SEARCH = ['tap:#fc-collection-search', 'tap:#fc-search-input']
-DEMO = 'cards=demo'
+DEMO = 'cards=demo&plus=on'
 
 add(['cards-005', 'cards-section-005'], [], DEMO, SAVED, note='список, 2 колонки (шаг по умолчанию)')
 add('cards-v2-006', [], DEMO, SAVED, note='2 колонки')
@@ -56,4 +56,37 @@ add('cards-006', [TILE], DEMO, SAVED, note='карточка раскрыта (�
 add('cards-v2-020', [TILE], DEMO, SAVED, note='карточка открыта, лицевая сторона')
 add(['cards-v2-021', 'cards-section-017'], [TILE, 'tap:#fc-expanded-card-flip'], DEMO, SAVED, note='оборот карточки')
 add(['cards-section-015', 'cards-v2-010'], [TILE, 'tap:#fc-expanded-delete'], DEMO, SAVED, note='карточка удалена — плашка «Вернуть»')
-add(['cards-009', 'cards-section-007', 'cards-v2-011'], [], 'cards=empty', SAVED, note='пустые «Сохранённые» (cards=empty очищает данные прошлого кадра)')
+add(['cards-009', 'cards-section-007', 'cards-v2-011'], [], 'cards=empty&plus=off', SAVED, note='пустые «Сохранённые» (cards=empty очищает данные прошлого кадра)')
+
+
+# ───────────────────────── Карточки · «Мои наборы», экран своего набора, создание набора, редактор карточки ─────────────────────────
+# Демо-наборы cards=demo: Путешествия (на проверке), B2 глаголы, Работа, Фразовые глаголы (id — app/dev_state_cards_demo.ts, DEMO_OWN_PACKS).
+MYPACKS = '/flashcards_my_packs'
+WORK = 'local_pack_dev_demo_work'
+TRAVEL = 'local_pack_dev_demo_travel'
+ROW_WORK = f'tap:#fc-my-packs-pack-{WORK}'
+ROW_TRAVEL = f'tap:#fc-my-packs-pack-{TRAVEL}'
+DEMO_PLUS = 'cards=demo&plus=on'
+EMPTY_FREE = 'cards=empty&plus=off'
+EMPTY_PLUS = 'cards=empty&plus=on'
+CREATE = '/community_pack_create'
+
+add(['cards-011', 'cards-v2-012', 'cards-section-009'], [], DEMO_PLUS, MYPACKS, note='«Мои наборы», 4 демо-набора')
+add(['cards-013', 'cards-v2-013', 'cards-section-011'], [], EMPTY_FREE, MYPACKS, note='«Мои наборы» пусто (cards=empty)')
+add('cards-012', [f'long:#fc-my-packs-pack-{WORK}', f'tap:#fc-my-packs-pack-delete-{WORK}'], DEMO_PLUS, MYPACKS, note='долгое нажатие → «Удалить» → окно подтверждения')
+add('cards-045', [f'long:#fc-my-packs-pack-{WORK}', f'tap:#fc-my-packs-pack-delete-{WORK}', 'tap:#fc-delete-pack-confirm-confirm'], DEMO_PLUS, MYPACKS, note='набор удалён — тост (удаляет «Работа» на устройстве; восстановить ссылкой cards=demo)')
+add('cards-046', ['tap:#fc-my-packs-menu', 'tap:#fc-my-packs-menu-search', 'tap:#fc-my-packs-search', 'type:zzzqq'], DEMO_PLUS, MYPACKS, note='поиск без совпадений')
+add(['cards-section-012', 'cards-v2-014'], [ROW_WORK], DEMO_PLUS, MYPACKS, note='открыт свой набор «Работа»')
+add('cards-v2-017', [ROW_WORK, 'tap:#fc-pack-menu'], DEMO_PLUS, MYPACKS, note='действия с набором (шторка ⋯)')
+add('cards-gap-030', [ROW_TRAVEL], DEMO_PLUS, MYPACKS, note='набор «Путешествия» — на проверке')
+
+add(['cards-section-019', 'cards-v2-022', 'cards-023'], [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (черновик сбрасывается фикстурой)')
+add('cards-section-020', ['tap:#ugc-pack-first-card'], EMPTY_PLUS, CREATE, note='шторка «Новая карточка»')
+add('cards-v2-024', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
+add('cards-067', ['tap:#ugc-pack-menu'], EMPTY_PLUS, CREATE, note='меню набора')
+add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE, note='сохранить пустую форму — «Проверь поля» (тост)')
+add(['cards-065', 'cards-section-021', 'cards-v2-023'], [], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='правка своего набора «Работа»')
+add('cards-024', ['tap:#ugc-pack-add-card'], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='новая карточка в существующем наборе (шторка)')
+
+add('cards-021', [], DEMO_PLUS, '/flashcards_card_editor?create=1&cat=custom', note='новая карточка (редактор)')
+add('cards-063', [], DEMO_PLUS, '/flashcards_card_editor?id=dev_missing_card', note='карточка не найдена')

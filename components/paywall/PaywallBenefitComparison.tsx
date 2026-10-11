@@ -20,6 +20,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
+import { RowDivider } from '../v2/RowDivider';
 import { COPY, LP, compareMore, pick, type L9 } from './PaywallPlusCopy';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -104,7 +105,8 @@ export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }
   return (
     <View style={[S.card, glass]}>
       {PAYWALL_MAIN_BENEFITS.map((benefit, index) => (
-        <View key={benefit.icon} style={[S.benefitRow, index > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
+        <View key={benefit.icon} style={S.benefitRow}>
+          {index > 0 ? <RowDivider color={g.line} /> : null}
           <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
             <Ionicons name={benefit.icon} size={20} color={g.text} />
           </View>
@@ -137,7 +139,8 @@ export const PaywallPlusComparison = memo(function PaywallPlusComparison({ lang,
       </View>
       <View accessibilityRole="list">
         {rows.map((row) => (
-          <View key={row.id} accessibilityRole="text" style={[S.cmpRow, { borderTopColor: g.line }]}>
+          <View key={row.id} accessibilityRole="text" style={S.cmpRow}>
+            <RowDivider color={g.line} />
             <Text style={[S.cmpLabel, S.cmpLabelText, { color: g.text }]}>{pick(lang, row.label)}</Text>
             <Text style={[S.cmpCell, { color: g.mutedText }]}>{pick(lang, row.free)}</Text>
             <Text style={[S.cmpCell, S.cmpPlusCell, S.cmpPlusValue, { color: g.text }]}>{pick(lang, row.plus)}</Text>
@@ -149,8 +152,9 @@ export const PaywallPlusComparison = memo(function PaywallPlusComparison({ lang,
         accessibilityRole="button"
         accessibilityState={{ expanded: open }}
         onPress={toggle}
-        style={({ pressed }) => [S.more, { borderTopColor: g.line, opacity: pressed ? 0.7 : 1 }]}
+        style={({ pressed }) => [S.more, { opacity: pressed ? 0.7 : 1 }]}
       >
+        <RowDivider color={g.line} />
         <Text style={[S.moreText, { color: g.secondary }]}>
           {open ? pick(lang, COPY.collapse) : compareMore(lang, PAYWALL_COMPARISON_ROWS.length)}
         </Text>
@@ -169,12 +173,12 @@ const S = StyleSheet.create({
   benefitDetail: { marginTop: 2, fontSize: 13, lineHeight: 17 },
   cmpHead: { flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 40, paddingHorizontal: 14 },
   cmpHeadCell: { width: 84, fontSize: 13, fontWeight: '700', letterSpacing: 1.6 },
-  cmpRow: { flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 44, paddingVertical: 8, paddingHorizontal: 14, borderTopWidth: StyleSheet.hairlineWidth },
+  cmpRow: { flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 44, paddingVertical: 8, paddingHorizontal: 14 }, // зачем (владелец 12.10, стиль «Тень»): разделитель — линия-View (RowDivider), а не borderTop/borderBottom
   cmpLabel: { flex: 1, minWidth: 0 },
   cmpLabelText: { fontSize: 16, lineHeight: 21, fontWeight: '600' }, // зачем (paywall-gaps-states): название строки 16/600
   cmpCell: { width: 84, fontSize: 13, lineHeight: 17 },
   cmpPlusCell: { width: 88 },
   cmpPlusValue: { fontWeight: '700' },
-  more: { minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, borderTopWidth: StyleSheet.hairlineWidth },
+  more: { minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   moreText: { fontSize: 13, fontWeight: '700' },
 });

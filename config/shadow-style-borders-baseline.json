@@ -1,5 +1,5 @@
 {
-  "total": 247,
+  "total": 240,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -59,9 +59,6 @@
     "components/MistakeEli5Modal.tsx": 1,
     "components/mistakes-panel/PracticeKit.tsx": 2,
     "components/NotificationCenterButton.tsx": 3,
-    "components/paywall/PaywallBenefitComparison.tsx": 3,
-    "components/paywall/PaywallProofCards.tsx": 3,
-    "components/paywall/paywallShared.tsx": 1,
     "components/PersonalAdminMessageModal.tsx": 2,
     "components/PlayerProfileModal.tsx": 1,
     "components/PlusBadge.tsx": 1,

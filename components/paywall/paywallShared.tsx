@@ -364,7 +364,7 @@ export function PaywallCloseButton({ onPress, chrome, style }: {
   return (
     <KitTouchable
       onPress={onPress}
-      style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }, style]}
+      style={[S.closeBtn, { backgroundColor: chrome.cardBg }, style]}
       hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
     >
       <Ionicons name="close" size={18} color={chrome.textMuted} />
@@ -544,7 +544,7 @@ const S = StyleSheet.create({
   },
   closeBtn: {
     alignSelf: 'flex-start', marginBottom: 7,
-    width: 40, height: 40, borderRadius: 20, borderWidth: 1,
+    width: 40, height: 40, borderRadius: 20, // зачем (владелец 12.10, стиль «Тень»): кнопка закрытия без кольца — отделяет тон cardBg
     alignItems: 'center', justifyContent: 'center',
   },
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },

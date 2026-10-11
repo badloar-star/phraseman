@@ -20,6 +20,7 @@ import type { ProgressMirror } from '../../app/paywall_progress_mirror';
 import type { PaywallProfile } from '../../app/paywall_profile';
 import type { PaywallChrome } from './paywallShared';
 import { hapticTap } from '../../hooks/use-haptics';
+import { RowDivider } from '../v2/RowDivider';
 
 // ── обёртка-карточка ──────────────────────────────────────────────────────────
 function ProofCard({ title, chrome, children }: { title?: string; chrome: PaywallChrome; children: React.ReactNode }) {
@@ -305,7 +306,9 @@ export function PersonalizationProofCard({
       </View>
 
       {stats.length > 0 && (
-        <View style={[S.personalStats, { borderTopColor: `${accent}24`, borderBottomColor: `${accent}24` }]}>
+        <View style={S.personalStats}>
+          <RowDivider color={`${accent}24`} />
+          <RowDivider edge="bottom" color={`${accent}24`} />
           {stats.map((s) => (
             <View key={s.label} style={S.personalStat}>
               <Text
@@ -376,11 +379,9 @@ export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrom
         {VALUE_CARDS.map((card, index) => (
           <View
             key={card.title.ru}
-            style={[
-              S.valPoint,
-              index > 0 && { borderTopColor: `${accent}22`, borderTopWidth: StyleSheet.hairlineWidth },
-            ]}
+            style={S.valPoint}
           >
+            {index > 0 ? <RowDivider color={`${accent}22`} /> : null}
             <View style={S.valPointMark}>
               <View style={[S.valPointIconShell, { backgroundColor: `${accent}16`, borderColor: `${accent}34` }]}>
                 <Ionicons name={card.icon} size={21} color={accent} />
@@ -507,8 +508,9 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
               LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
               setOpen(isOpen ? -1 : i);
             }}
-            style={[S.faqQ, i < qa.length - 1 && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: chrome.cardBorder }]}
+            style={S.faqQ}
           >
+            {i < qa.length - 1 ? <RowDivider edge="bottom" color={chrome.cardBorder} /> : null}
             <View style={S.faqHead}>
               <Text style={[S.faqQText, { color: chrome.textPrimary }]}>{item.q}</Text>
               <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={15} color={chrome.textMuted} />
@@ -549,8 +551,7 @@ const S = StyleSheet.create({
   personalSub: { fontSize: 13, lineHeight: 18, marginTop: 8 },
   personalStats: {
     flexDirection: 'row',
-    marginTop: 14, paddingTop: 12, paddingBottom: 12,
-    borderTopWidth: StyleSheet.hairlineWidth, borderBottomWidth: StyleSheet.hairlineWidth,
+    marginTop: 14, paddingTop: 12, paddingBottom: 12, // зачем (владелец 12.10, стиль «Тень»): разделитель — линия-View (RowDivider), а не borderTop/borderBottom
   },
   personalStat: {
     flex: 1, minWidth: 0,

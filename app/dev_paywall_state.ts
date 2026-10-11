@@ -1,0 +1,138 @@
+/**
+ * DEV-состояния пейвола Plus для робот-съёмки: `premium_modal?…&_dev_state=<имя>` (R1_SHOT_LIST «нет пути», paywalls-011…016/018, paywall-gap-006).
+ *
+ * зачем (координатор 12.10): часть состояний пейвола невозможна в dev без магазина — скелетон загрузки (loadOfferings выходит при DEV_IAP_BYPASS),
+ * ошибка цен, «≈» справочной цены, идёт оплата, ожидание банка, неизвестный исход, промо магазина, экран «Plus твой. Напомнить…».
+ * Здесь — чистая подмена того, что хук usePaywallPurchase отдаёт экрану; магазин, сеть, Firestore и покупки НЕ вызываются.
+ * Только `__DEV__ && !IS_STORE_RELEASE`: в стор-сборке parseDevPaywallState всегда null, а applyDevPaywallView возвращает вид без изменений.
+ * Логи: [DEV-STATE] на каждой ветке.
+ */
+import { IS_STORE_RELEASE } from './config';
+import { DEV_PREVIEW_MONTHLY_PRICE, DEV_PREVIEW_YEARLY_PER_MONTH, DEV_PREVIEW_YEARLY_PRICE } from './paywall_dev_preview';
+import type { StoreUnavailableReason } from './paywall_billing_unavailable';
+import type { PaywallPriceSource } from './paywall_reference_prices';
+import { resolvePaywallReferencePrices } from './paywall_reference_prices';
+import type { StorePromoPricing } from './premium_store_promo_display';
+
+export const DEV_PAYWALL_STATES = [
+  'loading', 'live', 'reference', 'error_no_prices', 'billing_unavailable',
+  'purchasing', 'restoring', 'pending', 'unknown_outcome', 'status_unknown', 'store_promo', 'reminder_prompt',
+] as const;
+export type DevPaywallState = (typeof DEV_PAYWALL_STATES)[number];
+
+/** Псевдонимы из заданий («failed», «purchase_pending»…) → каноническое имя. */
+const ALIASES: Readonly<Record<string, DevPaywallState>> = {
+  failed: 'error_no_prices',
+  purchase_pending: 'pending',
+  purchase_failed: 'unknown_outcome',
+  promo: 'store_promo',
+};
+
+const LOG = '[DEV-STATE]';
+
+function devPaywallAvailable(): boolean {
+  return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
+}
+
+/** Параметр маршрута → состояние. В стор-сборке и на неизвестное значение — null (с логом причины). */
+export function parseDevPaywallState(raw: unknown): DevPaywallState | null {
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (typeof value !== 'string' || !value.trim()) return null;
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: _dev_state игнорируется — не dev-сборка`, { value }); // guard-ok: ранний выход логируется
+    return null;
+  }
+  const key = value.trim().toLowerCase();
+  const state = (DEV_PAYWALL_STATES as readonly string[]).includes(key) ? (key as DevPaywallState) : ALIASES[key] ?? null;
+  if (!state) {
+    console.warn(`${LOG} paywall: неизвестное _dev_state=${key}; допустимо: ${DEV_PAYWALL_STATES.join('|')}`); // guard-ok: ранний выход логируется
+    return null;
+  }
+  console.log(`${LOG} paywall: _dev_state=${state}`); // guard-ok: единичный лог на открытие окна
+  return state;
+}
+
+export type PaywallDevView = {
+  loading: boolean;
+  offeringsSettled: boolean;
+  offeringsFailed: boolean;
+  storeUnavailableReason: StoreUnavailableReason | null;
+  previewPrices: boolean;
+  priceSource: PaywallPriceSource;
+  pricesApproximate: boolean;
+  yearlyPriceSource: PaywallPriceSource;
+  monthlyPriceSource: PaywallPriceSource;
+  yearlyPrice: string;
+  monthlyPrice: string;
+  yearlyPerMonth: string;
+  monthlyPerMonth: string;
+  pricesFromCache: boolean;
+  purchasing: boolean;
+  payStarted: boolean;
+  restoring: boolean;
+  tapNotice: boolean;
+  storePromo: Readonly<Record<'yearly' | 'monthly' | 'lifetime', StorePromoPricing | null>>;
+  selectedPromo: StorePromoPricing | null;
+  trialReminderPrompt: { days: number; priceLabel: string; trialStartMs: number } | null;
+};
+
+const NO_PRICES = {
+  yearlyPrice: '', monthlyPrice: '', yearlyPerMonth: '', monthlyPerMonth: '',
+  priceSource: 'none' as PaywallPriceSource, yearlyPriceSource: 'none' as PaywallPriceSource, monthlyPriceSource: 'none' as PaywallPriceSource,
+  pricesApproximate: false, pricesFromCache: false, previewPrices: false,
+};
+
+const LIVE_PRICES = {
+  yearlyPrice: DEV_PREVIEW_YEARLY_PRICE, monthlyPrice: DEV_PREVIEW_MONTHLY_PRICE, yearlyPerMonth: DEV_PREVIEW_YEARLY_PER_MONTH, monthlyPerMonth: DEV_PREVIEW_MONTHLY_PRICE,
+  priceSource: 'store' as PaywallPriceSource, yearlyPriceSource: 'store' as PaywallPriceSource, monthlyPriceSource: 'store' as PaywallPriceSource,
+  pricesApproximate: false, pricesFromCache: false, previewPrices: false,
+};
+
+const SETTLED = { loading: false, offeringsSettled: true, offeringsFailed: false, storeUnavailableReason: null as StoreUnavailableReason | null };
+
+/** Подмена вида хука. Чистая функция: без состояния, сети и магазина. Вне dev-сборки возвращает вид как есть. */
+export function applyDevPaywallView<T extends PaywallDevView>(state: DevPaywallState | null, view: T, selected: 'monthly' | 'yearly' | 'lifetime'): T {
+  if (!state) return view;
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: подмена вида отклонена — не dev-сборка`, { state }); // guard-ok: ранний выход логируется
+    return view;
+  }
+  switch (state) {
+    case 'loading':
+      return { ...view, ...NO_PRICES, loading: true, offeringsSettled: false, offeringsFailed: false, storeUnavailableReason: null };
+    case 'live':
+      return { ...view, ...LIVE_PRICES, ...SETTLED };
+    case 'reference': {
+      const reference = resolvePaywallReferencePrices();
+      console.log(`${LOG} paywall: reference yearly=${reference.yearly} monthly=${reference.monthly}`); // guard-ok: единичный лог
+      return {
+        ...view, ...SETTLED,
+        yearlyPrice: reference.yearly, monthlyPrice: reference.monthly, yearlyPerMonth: reference.yearlyPerMonth ?? '', monthlyPerMonth: '',
+        priceSource: 'reference', yearlyPriceSource: 'reference', monthlyPriceSource: 'reference',
+        pricesApproximate: true, pricesFromCache: false, previewPrices: false,
+      };
+    }
+    case 'error_no_prices':
+      return { ...view, ...NO_PRICES, loading: false, offeringsSettled: true, offeringsFailed: true, storeUnavailableReason: 'network' };
+    case 'billing_unavailable':
+      return { ...view, ...NO_PRICES, loading: false, offeringsSettled: true, offeringsFailed: true, storeUnavailableReason: 'billing_unavailable' };
+    case 'purchasing':
+      return { ...view, ...LIVE_PRICES, ...SETTLED, purchasing: true, payStarted: true };
+    case 'restoring':
+      return { ...view, ...LIVE_PRICES, ...SETTLED, restoring: true };
+    case 'pending':
+    case 'unknown_outcome':
+      // Как на макете: под диалогом тарифы и кнопка неактивны (идёт/шла оплата).
+      return { ...view, ...LIVE_PRICES, ...SETTLED, purchasing: true, payStarted: true };
+    case 'status_unknown':
+      return { ...view, ...LIVE_PRICES, ...SETTLED };
+    case 'store_promo': {
+      const yearlyPromo: StorePromoPricing = { discountPercent: 30, promoPriceString: '€27,99', standardPriceString: DEV_PREVIEW_YEARLY_PRICE };
+      const monthlyPromo: StorePromoPricing = { discountPercent: 25, promoPriceString: '€5,99', standardPriceString: DEV_PREVIEW_MONTHLY_PRICE };
+      const storePromo = { yearly: yearlyPromo, monthly: monthlyPromo, lifetime: null };
+      return { ...view, ...LIVE_PRICES, ...SETTLED, storePromo, selectedPromo: storePromo[selected] ?? null };
+    }
+    case 'reminder_prompt':
+      return { ...view, ...LIVE_PRICES, ...SETTLED, trialReminderPrompt: { days: 3, priceLabel: DEV_PREVIEW_YEARLY_PRICE, trialStartMs: Date.now() } };
+  }
+}

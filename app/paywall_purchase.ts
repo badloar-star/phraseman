@@ -60,6 +60,7 @@ import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { applyDevPaywallView, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
@@ -164,7 +165,7 @@ const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
  * 3-D Secure). Это НЕ ошибка: платить повторно не нужно — доступ включится сам,
  * когда платёж подтвердят (слушатель customerInfo / TRANSFER-вебхук).
  */
-function showPurchasePendingAlert(lang: Lang): void {
+export function showPurchasePendingAlert(lang: Lang): void {
   void enqueueThemedBlockingInfoAlert(
     triLang(lang, {
       ru: 'Покупка ждёт подтверждения',
@@ -204,7 +205,7 @@ export function unverifiedPurchaseAlertActions(lang: Lang): readonly ThemedBlock
   ];
 }
 
-function showUnverifiedPurchaseAlert(lang: Lang): Promise<UnverifiedPurchaseChoice | 'dismiss'> {
+export function showUnverifiedPurchaseAlert(lang: Lang): Promise<UnverifiedPurchaseChoice | 'dismiss'> {
   return enqueueThemedBlockingChoiceAlert(
     triLang(lang, {
       ru: 'Статус покупки не подтверждён',
@@ -230,6 +231,89 @@ function showUnverifiedPurchaseAlert(lang: Lang): Promise<UnverifiedPurchaseChoi
     }),
     unverifiedPurchaseAlertActions(lang),
   );
+}
+
+/**
+ * Тосты результата проверки статуса / восстановления покупок — один источник для handleRestore и для dev-переключателя
+ * `dev_state?toast=…` (app/dev_paywall_state.ts, R1 paywall-gap-011/012/013): снимок показывает ровно те же строки, что и покупатель.
+ */
+export type PaywallRestoreToastKind =
+  | 'purchase_confirmed'
+  | 'restored'
+  | 'status_not_found'
+  | 'no_active_subscriptions'
+  | 'status_check_failed'
+  | 'restore_failed';
+
+export function paywallRestoreToast(kind: PaywallRestoreToastKind) {
+  switch (kind) {
+    case 'purchase_confirmed':
+      return actionToastTri('success', {
+        ru: 'Покупка подтверждена',
+        en: 'Purchase confirmed', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
+        vi: 'Đã xác nhận giao dịch', id: 'Pembelian terkonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
+      });
+    case 'restored':
+      return actionToastTri('success', {
+        ru: 'Покупки восстановлены',
+        en: 'Purchases restored',
+        uk: 'Покупки відновлено',
+        es: 'Compras restauradas',
+        'pt-BR': 'Compras restauradas',
+        vi: 'Đã khôi phục giao dịch mua',
+        id: 'Pembelian dipulihkan',
+        tr: 'Satın alımlar geri yüklendi',
+        pl: 'Zakupy przywrócone',
+      });
+    case 'status_not_found':
+      return actionToastTri('error', {
+        ru: 'Покупка пока не найдена. Нажми «Восстановить покупки».',
+        en: 'We can’t find the purchase yet. Tap “Restore purchases”.',
+        uk: 'Покупку поки не знайдено. Натисни «Відновити покупки».',
+        es: 'Aún no encontramos la compra. Toca «Restaurar compras».',
+        'pt-BR': 'Ainda não encontramos a compra. Toque em «Restaurar compras».',
+        vi: 'Chưa tìm thấy giao dịch. Hãy chạm «Khôi phục giao dịch».',
+        id: 'Pembelian belum ditemukan. Ketuk «Pulihkan pembelian».',
+        tr: 'Satın alma henüz bulunamadı. «Satın alımları geri yükle»ye dokun.',
+        pl: 'Nie znaleźliśmy jeszcze zakupu. Wybierz «Przywróć zakupy».',
+      });
+    case 'no_active_subscriptions':
+      return actionToastTri('error', {
+        ru: 'Активных подписок не обнаружено.',
+        en: 'No active subscriptions found.',
+        uk: 'Активних підписок не знайдено.',
+        es: 'No hay suscripciones activas.',
+        'pt-BR': 'Nenhuma assinatura ativa encontrada.',
+        vi: 'Không có gói đăng ký đang hoạt động.',
+        id: 'Tidak ada langganan aktif.',
+        tr: 'Aktif abonelik bulunamadı.',
+        pl: 'Nie znaleziono aktywnych subskrypcji.',
+      });
+    case 'status_check_failed':
+      return actionToastTri('error', {
+        ru: 'Не удалось проверить статус. Попробуй позже.',
+        en: 'Couldn’t check the status. Try again later.',
+        uk: 'Не вдалося перевірити статус. Спробуй пізніше.',
+        es: 'No se pudo comprobar el estado. Inténtalo más tarde.',
+        'pt-BR': 'Não foi possível verificar o status. Tente mais tarde.',
+        vi: 'Không kiểm tra được trạng thái. Hãy thử lại sau.',
+        id: 'Tidak bisa mengecek status. Coba lagi nanti.',
+        tr: 'Durum kontrol edilemedi. Daha sonra tekrar dene.',
+        pl: 'Nie udało się sprawdzić statusu. Spróbuj później.',
+      });
+    case 'restore_failed':
+      return actionToastTri('error', {
+        ru: 'Не удалось восстановить покупки. Попробуй позже.',
+        en: 'Couldn’t restore purchases. Try again later.',
+        uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
+        es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
+        'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',
+        vi: 'Không khôi phục được giao dịch mua. Hãy thử lại sau.',
+        id: 'Tidak bisa memulihkan pembelian. Coba lagi nanti.',
+        tr: 'Satın alımlar geri yüklenemedi. Daha sonra tekrar dene.',
+        pl: 'Nie udało się przywrócić zakupów. Spróbuj później.',
+      });
+  }
 }
 
 function showDevPurchasePreviewAlert(lang: Lang): void {
@@ -358,6 +442,11 @@ function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
 
 export interface PaywallPurchaseArgs {
   /**
+   * DEV/съёмка (R1 «нет пути»): `_dev_state=<имя>` из маршрута premium_modal — подмена того, что хук отдаёт экрану (скелетон загрузки,
+   * ошибка цен, «≈», идёт оплата, промо магазина…); магазин и покупки не вызываются. null/undefined и любая стор-сборка — без эффекта.
+   */
+  devState?: DevPaywallState | null;
+  /**
    * Справочная цена на плитках (последнее звено «живая → кэш → справочная»). По умолчанию да.
    * зачем (ревью Opus 11.10): экран, который не умеет рисовать «≈» и строит из цены юридический текст об автопродлении
    * (онбординг), обязан выключить её — иначе условия подписки показаны в чужой валюте и с выдуманной суммой.
@@ -390,7 +479,9 @@ export interface PaywallPurchaseArgs {
   resilientCheckout?: boolean;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true }: PaywallPurchaseArgs) {
+let onboardingPaywallHookMounts = 0; // зачем: счётчик перемонтирований хука онбординга для [ONB-PAYWALL-WAIT]
+
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true, devState = null }: PaywallPurchaseArgs) {
   const router = useRouter();
   const { refillToMax } = useEnergy();
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
@@ -612,6 +703,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     offeringsLoadInFlightRef.current = { promise, startedAt, seq };
     return promise;
   }, [context, impression, resilientCheckout, source, variant]);
+
+  // зачем (координатор 12.10, 🔴 пустой экран перед пейволом онбординга; СПЕРВА ЛОГИ): если хук онбординга смонтировался
+  // заново на переходе «Напомним → Продолжить» — это видно по счётчику mount#; и когда именно появились цены.
+  useEffect(() => {
+    if (context !== 'onboarding_plan') return undefined;
+    const mountedAt = Date.now();
+    onboardingPaywallHookMounts += 1;
+    console.log(`[ONB-PAYWALL-WAIT] hook:mount#${onboardingPaywallHookMounts} cache=${peekPaywallPriceCache() ? 'память' : 'нет'}`); // guard-ok: единичный лог
+    return () => {
+      console.log(`[ONB-PAYWALL-WAIT] hook:unmount живёт=${Date.now() - mountedAt}ms`); // guard-ok: единичный лог
+    };
+  }, [context]);
 
   useEffect(() => {
     if (DEV_IAP_BYPASS) return;
@@ -1331,21 +1434,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
-        emitAppEvent('action_toast', mode === 'check' ? actionToastTri('success', {
-          ru: 'Покупка подтверждена',
-          en: 'Purchase confirmed', uk: 'Покупку підтверджено', es: 'Compra confirmada', 'pt-BR': 'Compra confirmada',
-          vi: 'Đã xác nhận giao dịch', id: 'Pembelian terkonfirmasi', tr: 'Satın alma doğrulandı', pl: 'Zakup potwierdzony',
-        }) : actionToastTri('success', {
-          ru: 'Покупки восстановлены',
-          en: 'Purchases restored',
-          uk: 'Покупки відновлено',
-          es: 'Compras restauradas',
-          'pt-BR': 'Compras restauradas',
-          vi: 'Đã khôi phục giao dịch mua',
-          id: 'Pembelian dipulihkan',
-          tr: 'Satın alımlar geri yüklendi',
-          pl: 'Zakupy przywrócone',
-        }));
+        emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'purchase_confirmed' : 'restored'));
         void trackEvent('subscription_restored', { context, paywall: variant, mode });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (source === 'onboarding') {
@@ -1367,27 +1456,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем (65а, ревью): после «Проверить статус» фраза «подписок нет» толкает к повторной покупке, когда списание
         // могло пройти, — в режиме проверки направляем к восстановлению.
         console.warn('[PAYWALL] entitlement_sync:no_access', JSON.stringify({ mode })); // guard-ok: ранний исход логируется
-        emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
-          ru: 'Покупка пока не найдена. Нажми «Восстановить покупки».',
-          en: 'We can’t find the purchase yet. Tap “Restore purchases”.',
-          uk: 'Покупку поки не знайдено. Натисни «Відновити покупки».',
-          es: 'Aún no encontramos la compra. Toca «Restaurar compras».',
-          'pt-BR': 'Ainda não encontramos a compra. Toque em «Restaurar compras».',
-          vi: 'Chưa tìm thấy giao dịch. Hãy chạm «Khôi phục giao dịch».',
-          id: 'Pembelian belum ditemukan. Ketuk «Pulihkan pembelian».',
-          tr: 'Satın alma henüz bulunamadı. «Satın alımları geri yükle»ye dokun.',
-          pl: 'Nie znaleźliśmy jeszcze zakupu. Wybierz «Przywróć zakupy».',
-        }) : actionToastTri('error', {
-          ru: 'Активных подписок не обнаружено.',
-          en: 'No active subscriptions found.',
-          uk: 'Активних підписок не знайдено.',
-          es: 'No hay suscripciones activas.',
-          'pt-BR': 'Nenhuma assinatura ativa encontrada.',
-          vi: 'Không có gói đăng ký đang hoạt động.',
-          id: 'Tidak ada langganan aktif.',
-          tr: 'Aktif abonelik bulunamadı.',
-          pl: 'Nie znaleziono aktywnych subskrypcji.',
-        }));
+        emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'status_not_found' : 'no_active_subscriptions'));
       }
     } catch (syncError: unknown) {
       // зачем: сбой самого восстановления (сеть/стор) — тот же тост-механизм,
@@ -1397,27 +1466,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         name: syncError instanceof Error ? syncError.name : typeof syncError,
         code: (syncError as { code?: unknown } | null)?.code ?? null,
       })); // guard-ok: catch логирует причину
-      emitAppEvent('action_toast', mode === 'check' ? actionToastTri('error', {
-        ru: 'Не удалось проверить статус. Попробуй позже.',
-        en: 'Couldn’t check the status. Try again later.',
-        uk: 'Не вдалося перевірити статус. Спробуй пізніше.',
-        es: 'No se pudo comprobar el estado. Inténtalo más tarde.',
-        'pt-BR': 'Não foi possível verificar o status. Tente mais tarde.',
-        vi: 'Không kiểm tra được trạng thái. Hãy thử lại sau.',
-        id: 'Tidak bisa mengecek status. Coba lagi nanti.',
-        tr: 'Durum kontrol edilemedi. Daha sonra tekrar dene.',
-        pl: 'Nie udało się sprawdzić statusu. Spróbuj później.',
-      }) : actionToastTri('error', {
-        ru: 'Не удалось восстановить покупки. Попробуй позже.',
-        en: 'Couldn’t restore purchases. Try again later.',
-        uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
-        es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
-        'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',
-        vi: 'Không khôi phục được giao dịch mua. Hãy thử lại sau.',
-        id: 'Tidak bisa memulihkan pembelian. Coba lagi nanti.',
-        tr: 'Satın alımlar geri yüklenemedi. Daha sonra tekrar dene.',
-        pl: 'Nie udało się przywrócić zakupów. Spróbuj później.',
-      }));
+      emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'status_check_failed' : 'restore_failed'));
     } finally {
       operationRef.current = null;
       setRestoring(false);
@@ -1584,20 +1633,50 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     doClose(reason);
   }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial, impression, disableExitOffer]);
 
+  // зачем (координатор 12.10, 🔴 пустой экран перед пейволом): когда именно хук онбординга получил цены и какого источника.
+  const onbWaitStartRef = useRef(Date.now());
+  useEffect(() => {
+    if (context !== 'onboarding_plan') return;
+    console.log(`[ONB-PAYWALL-WAIT] hook:state +${Date.now() - onbWaitStartRef.current}ms loading=${String(loading)} settled=${String(offeringsSettled)} failed=${String(offeringsFailed)} reason=${String(storeUnavailableReason)} priceSource=${priceSource} yearly=${yearlyPrice || '—'} monthly=${monthlyPrice || '—'}`); // guard-ok: смена состояния, не кадр
+  }, [context, loading, offeringsSettled, offeringsFailed, storeUnavailableReason, priceSource, yearlyPrice, monthlyPrice]);
+
+  // зачем (координатор 12.10, R1 «нет пути»): dev-подмена вида окна (см. app/dev_paywall_state.ts); без devState — вид как есть.
+  const shown = applyDevPaywallView(devState, {
+    loading, offeringsSettled, offeringsFailed, storeUnavailableReason, previewPrices, priceSource, pricesApproximate,
+    yearlyPriceSource, monthlyPriceSource, yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth, pricesFromCache,
+    purchasing, payStarted, restoring, tapNotice, storePromo, selectedPromo, trialReminderPrompt,
+  }, selected);
+
+  // Диалоги и тост dev-состояний открываем после первого кадра окна (очередь алертов сама встанет поверх).
+  useEffect(() => {
+    if (!devState) return undefined;
+    const timer = setTimeout(() => {
+      if (devState === 'pending') {
+        console.log('[DEV-STATE] paywall: диалог «ожидание банка или родителя»'); // guard-ok: единичный лог на открытие
+        showPurchasePendingAlert(lang);
+      } else if (devState === 'unknown_outcome') {
+        console.log('[DEV-STATE] paywall: диалог «статус покупки не подтверждён»'); // guard-ok: единичный лог на открытие
+        void showUnverifiedPurchaseAlert(lang).then((choice) => {
+          console.log(`[DEV-STATE] paywall: выбор в диалоге = ${choice} (в dev ничего не запускается)`); // guard-ok: единичный лог
+        });
+      } else if (devState === 'status_unknown') {
+        console.log('[DEV-STATE] paywall: тост «покупка пока не найдена»'); // guard-ok: единичный лог на открытие
+        emitAppEvent('action_toast', paywallRestoreToast('status_not_found'));
+      }
+    }, 700);
+    return () => clearTimeout(timer);
+  }, [devState, lang]);
+
   return {
     selected, selectPlan,
-    packages, loading, purchasing, restoring,
-    offeringsFailed, offeringsSettled, reloadOfferings, payStarted,
-    tapNotice, pricesFromCache, storeUnavailableReason, previewPrices, priceSource, pricesApproximate,
-    yearlyPriceSource, monthlyPriceSource,
-    yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
+    packages, reloadOfferings,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
-    storePromo, selectedPromo,
     trial, trialDays, yearlyTrialDays, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
     exitOffer,
-    trialReminderPrompt, allowTrialReminder, skipTrialReminder,
+    allowTrialReminder, skipTrialReminder,
+    ...shown,
   };
 }
 

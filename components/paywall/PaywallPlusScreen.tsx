@@ -7,6 +7,7 @@
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { parseDevPaywallState } from '../../app/dev_paywall_state';
 import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
@@ -39,7 +40,7 @@ import { PaywallContextIcon } from './PaywallContextIcons';
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
 
-type Params = { _force_trial_ui?: string | string[]; resume_kind?: string; resume_lesson_id?: string; lessons_done?: string; streak?: string };
+type Params = { _dev_state?: string | string[]; _force_trial_ui?: string | string[]; resume_kind?: string; resume_lesson_id?: string; lessons_done?: string; streak?: string };
 
 function firstParam(raw: string | string[] | undefined): string | undefined {
   return Array.isArray(raw) ? raw[0] : raw;
@@ -58,6 +59,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const ctx = entry.context;
   const source = entry.source;
   const forceTrialUI = firstParam(params._force_trial_ui) === '1';
+  // зачем (координатор 12.10, R1 «нет пути»): dev-состояние окна (`_dev_state=loading|error_no_prices|…`), в стор-сборке всегда null
+  const devPaywallStateParam = firstParam(params._dev_state);
+  const devPaywallState = useMemo(() => parseDevPaywallState(devPaywallStateParam), [devPaywallStateParam]);
   const resumeLessonId = params.resume_kind === 'course_lesson' ? parseResumeLessonId(params.resume_lesson_id) : null;
   const [impression] = useState(() => createPaywallAnalyticsImpression(() => entry.impressionId));
   const entryAnalytics = useMemo(() => paywallEntryAnalyticsParams(entry), [entry]);
@@ -80,7 +84,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   }, [contextual, ctx, headline.copyContext, headline.firstBenefit, lang, source]);
 
   const p = usePaywallPurchase({
-    variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, resumeLessonId, impression,
+    variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, resumeLessonId, impression, devState: devPaywallState,
     disableExitOffer: true,
     // зачем (D158): Plus-окно — кнопка всегда активна, цены из кэша, потолок загрузки.
     resilientCheckout: true,

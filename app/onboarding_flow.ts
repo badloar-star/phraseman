@@ -221,13 +221,24 @@ export async function runOnboardingTransitionEffects(
   busy: { current: boolean },
   effects: OnboardingTransitionEffects,
 ): Promise<boolean> {
-  if (!decision.preparePaywall || busy.current) return false;
+  // зачем (координатор 12.10, 🔴 пустой экран 20–35 с перед пейволом; СПЕРВА ЛОГИ): чего ждёт переход и сколько каждое звено.
+  if (!decision.preparePaywall || busy.current) {
+    console.log(`[ONB-PAYWALL-WAIT] effects:skip preparePaywall=${String(decision.preparePaywall)} busy=${String(busy.current)}`); // guard-ok: ранний выход логируется
+    return false;
+  }
   busy.current = true;
+  const t0 = Date.now();
+  const lap = (label: string) => console.log(`[ONB-PAYWALL-WAIT] effects:${label} +${Date.now() - t0}ms`); // guard-ok: единичный лог на переход
   try {
-    if (decision.createPendingPlan) await effects.createPendingPlan();
+    lap(`start createPending=${String(decision.createPendingPlan)} trackView=${String(decision.trackPaywallView)}`);
+    if (decision.createPendingPlan) { await effects.createPendingPlan(); lap('createPendingPlan_done'); }
     await effects.preparePaywall();
-    if (decision.trackPaywallView) await effects.trackPaywallView();
+    lap('preparePaywall_done');
+    if (decision.trackPaywallView) { await effects.trackPaywallView(); lap('trackPaywallView_done'); }
     return true;
+  } catch (error) {
+    console.warn(`[ONB-PAYWALL-WAIT] effects:failed +${Date.now() - t0}ms ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина не глотается
+    throw error;
   } finally {
     busy.current = false;
   }

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Без обводок — пять способов выделять</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 12.10: «покажи макет главной и нескольких экранов, если убрать все обводки у контейнеров, и несколько вариантов, как лучше выделять без обводки»):
+     одни и те же три экрана — «Главная» (по скриншоту эмулятора), «Настройки», «Диалоги» — в пяти вариантах, где КОНТЕЙНЕРЫ БЕЗ ЕДИНОЙ ОБВОДКИ;
+     различаются только способом отделить плашку от фона и выделить главное/выбранное:
+     1 · Тон — плашка чуть светлее фона, выбранное ещё светлее;  2 · Тень — мягкая падающая тень и лёгкий подъём выбранного;
+     3 · Цветная заливка — градиент цветов темы, выбранное насыщеннее;  4 · Единая панель — вложенные строки без плашек, только тонкие разделители между строками, выбранное — цветная точка и акцентный текст;
+     5 · Вдавленные — плашки «утоплены» в экран внутренней тенью, выбранное подсвечено цветом темы.
+     Содержимое Главной — как на скриншоте владельца; картинок не выдумываю: плитки с иконками, ролики — цветные заглушки. Только тёмная тема, выбор цвета темы сверху. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .nb { position: absolute; inset: 0; padding: 52px 16px 0; overflow: hidden; color: #fff; }
+  .nb .sf { border: 0; background: rgba(255,255,255,.07); color: #fff; }
+  .cir { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: none; } .cir .i { width: 22px; height: 22px; }
+  .pl { height: 46px; padding: 0 14px; border-radius: 23px; display: inline-flex; align-items: center; gap: 10px; flex: none; } .pl .i { width: 20px; height: 20px; color: var(--acc); } .pl b { display: block; font-size: 16px; line-height: 17px; font-weight: 700; } .pl span { display: block; font-size: 13px; line-height: 15px; color: var(--sec); }
+  .hrow { display: flex; align-items: center; gap: 10px; }
+  .big { border-radius: 24px; padding: 16px 18px; position: relative; }
+  .lc { margin-top: 14px; } .lc .t { font-size: 20px; line-height: 25px; font-weight: 700; } .lc .pr { display: flex; align-items: center; gap: 12px; margin-top: 12px; } .lc .bar { flex: 1; height: 8px; border-radius: 4px; background: rgba(255,255,255,.12); overflow: hidden; } .lc .bar i { display: block; width: 8%; height: 100%; background: var(--acc); border-radius: 4px; } .lc .n { font-size: 16px; color: var(--sec); font-weight: 600; } .lc .lb { position: absolute; right: 14px; bottom: 12px; height: 34px; padding: 0 14px; border-radius: 17px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 700; }
+  .tls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; } .tl { height: 124px; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; font-size: 18px; font-weight: 800; } .tl .i { width: 40px; height: 40px; color: var(--acc); }
+  .sh { display: flex; align-items: center; justify-content: space-between; margin: 18px 4px 10px; font-size: 22px; font-weight: 700; } .sh a { font-size: 16px; font-weight: 600; color: var(--acc); }
+  .vs { display: flex; gap: 10px; } .vt { height: 118px; border-radius: 20px; flex: 1; padding: 12px; display: flex; align-items: flex-end; font-size: 16px; line-height: 20px; font-weight: 800; background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #101014), color-mix(in srgb, var(--g2) 40%, #0a0a0d)); }
+  .td .k { font-size: 13px; letter-spacing: 2px; font-weight: 700; color: var(--sec); margin: 2px 4px 12px; }
+  .rw { display: flex; align-items: center; gap: 12px; min-height: 66px; padding: 8px 14px 8px 12px; border-radius: 18px; margin-top: 8px; } .rw .ck { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.1); flex: none; } .rw .ti { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex: none; } .rw .ti .i { width: 22px; height: 22px; color: var(--acc); } .rw .x { flex: 1; min-width: 0; font-size: 18px; line-height: 22px; font-weight: 700; } .rw .x s { display: block; text-decoration: none; font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 500; margin-top: 1px; } .rw .c { font-size: 16px; font-weight: 700; color: var(--sec); }
+  .nav { position: absolute; left: 22px; right: 22px; bottom: 26px; height: 64px; border-radius: 32px; display: flex; align-items: center; justify-content: space-around; z-index: 9; } .nav .it { width: 54px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: var(--sec); } .nav .it .i { width: 26px; height: 26px; } .nav .it.on { color: var(--acc); }
+  .h1 { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; margin: 14px 4px 14px; }
+  .gr { border-radius: 22px; margin-top: 8px; overflow: hidden; } .gr .rw { margin: 0; border-radius: 0; min-height: 60px; } .gl { margin: 18px 6px 8px; font-size: 13px; letter-spacing: 1.7px; font-weight: 700; color: var(--sec); }
+  .pf { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 22px; } .pf .nm { flex: 1; font-size: 19px; font-weight: 700; } .pf .nm s { display: block; text-decoration: none; font-size: 13px; color: var(--sec); font-weight: 500; margin-top: 2px; } .pf .go { height: 34px; padding: 0 14px; border-radius: 17px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; }
+  .dc { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 22px; margin-top: 10px; } .dc .ti { width: 52px; height: 52px; border-radius: 18px; display: flex; align-items: center; justify-content: center; flex: none; } .dc .ti .i { width: 26px; height: 26px; color: var(--acc); } .dc .x { flex: 1; min-width: 0; font-size: 19px; line-height: 24px; font-weight: 700; } .dc .x s { display: block; text-decoration: none; font-size: 15px; color: var(--sec); font-weight: 500; margin-top: 3px; } .dc .f { font-size: 15px; color: var(--sec); font-weight: 700; } .dc .pp { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 8px; background: var(--acc); color: var(--on); font-size: 13px; font-weight: 700; margin-left: 8px; vertical-align: 2px; }
+  /* ====== пять способов (контейнеры без обводки) ====== */
+  .ph.v1 .sf { background: rgba(255,255,255,.075); } .ph.v1 .sf .sf, .ph.v1 .sf .ti { background: rgba(255,255,255,.07); } .ph.v1 .sf.on { background: rgba(255,255,255,.16); } .ph.v1 .nav .it.on { background: rgba(255,255,255,.12); }
+  .ph.v2 .sf { background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); } .ph.v2 .sf .sf { box-shadow: 0 6px 12px -6px rgba(0,0,0,.6); } .ph.v2 .sf .ti { background: rgba(255,255,255,.07); } .ph.v2 .sf.on { background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.07)); box-shadow: 0 26px 40px -14px rgba(0,0,0,.9); transform: translateY(-3px); } .ph.v2 .nav .it.on { background: rgba(255,255,255,.1); box-shadow: 0 8px 14px -6px rgba(0,0,0,.7); }
+  .ph.v3 .sf { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 22%, #15151a), #0f0f13 62%, color-mix(in srgb, var(--g2) 15%, #0f0f13)); } .ph.v3 .sf .sf, .ph.v3 .sf .ti { background: rgba(255,255,255,.06); } .ph.v3 .sf.on { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 50%, #15151a), color-mix(in srgb, var(--g2) 34%, #101014)); } .ph.v3 .nav .it.on { background: color-mix(in srgb, var(--acc) 22%, transparent); }
+  .ph.v4 .sf.big, .ph.v4 .gr, .ph.v4 .pf, .ph.v4 .tl, .ph.v4 .pl, .ph.v4 .cir, .ph.v4 .nav { background: rgba(255,255,255,.065); } .ph.v4 .sf .sf, .ph.v4 .gr .rw, .ph.v4 .td .rw { background: transparent; border-radius: 0; } .ph.v4 .rw + .rw { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); margin-top: 0; } .ph.v4 .dc { background: rgba(255,255,255,.065); } .ph.v4 .sf.on { background: rgba(255,255,255,.065); } .ph.v4 .sf.on::before { content: ""; position: absolute; left: 10px; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--acc); } .ph.v4 .lc.on .t, .ph.v4 .dc.on .x { color: var(--acc); } .ph.v4 .nav .it.on::after { content: ""; position: absolute; bottom: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--acc); } .ph.v4 .nav .it { position: relative; } .ph.v4 .rw .ti, .ph.v4 .rw .ck { background: rgba(255,255,255,.08); }
+  .ph.v5 .sf { background: rgba(0,0,0,.3); box-shadow: inset 0 2px 7px rgba(0,0,0,.6), inset 0 -1px 0 rgba(255,255,255,.04); } .ph.v5 .sf .sf { background: rgba(255,255,255,.05); box-shadow: none; } .ph.v5 .sf .ti, .ph.v5 .rw .ck { background: rgba(255,255,255,.07); } .ph.v5 .sf.on { background: color-mix(in srgb, var(--acc) 20%, rgba(0,0,0,.3)); } .ph.v5 .nav .it.on { background: color-mix(in srgb, var(--acc) 24%, transparent); }
+  .ph .lb { background: rgba(255,255,255,.12); }
+  .nbv { margin-top: 34px; } .nbv h2 { font-size: 22px; margin: 0 0 4px; } .nbv p { font-size: 16px; color: var(--sec); max-width: 880px; margin: 0 0 14px; line-height: 22px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Без обводок — пять способов выделять</h1>
+  <p class="page-lead">Три экрана — «Главная» (как на вашем скриншоте), «Настройки», «Диалоги» — без единой обводки у контейнеров. Пять вариантов, чем заменить обводку: тон, тень, цветная заливка, единая панель с разделителями, вдавленные плашки. В каждом показано и выделение главного: текущий урок, активная вкладка, «Свободный разговор». Цвет темы можно переключить сверху.</p>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, coinImg } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const FLAME = svg('<path d="M12 21c-3.6 0-6.5-2.6-6.5-6.3 0-3.3 2.3-5 3.3-7.7.6 1.6 1.6 2.6 2.7 3.1C11.4 7 12.8 4.6 15 3c-.2 3 3.5 5.4 3.5 11.2C18.5 18 15.6 21 12 21z"/>');
+const BELL = svg('<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>');
+const nav = (on) => `<div class="nav sf">${[['home', icon('layers')], ['book', icon('bookmark')], ['play', icon('play')], ['people', icon('people')], ['set', svg('<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>')]].map(([k, ic], i) => `<span class="it${i === on ? ' on' : ''}">${ic}</span>`).join('')}</div>`;
+const row = (ic, t, s, c, o = {}) => `<div class="rw sf${o.on ? ' on' : ''}">${o.ck ? '<span class="ck"></span>' : ''}<span class="ti sf">${ic}</span><div class="x">${t}${s ? `<s>${s}</s>` : ''}</div><span class="c">${c || ''}</span></div>`;
+const home = () => `<div class="nb"><div class="hrow"><span class="pl sf">${FLAME}<div><b>2 дня</b><span>Серия</span></div></span><span class="pl sf" style="flex:1">${coinImg(5, 22)}<div><b>6854</b><span>Монеты</span></div></span><span class="cir sf">${BELL}</span><span style="width:52px;height:52px;flex:none">${coinImg(5, 52)}</span></div>
+  <div class="big sf lc on" style="padding-bottom:16px"><div class="t">Местоимения и глагол To Be</div><div class="pr"><div class="bar"><i></i></div><span class="n">4 / 50</span><span class="cir sf" style="width:38px;height:38px">${icon('fwd', 's20')}</span></div><span class="lb" style="right:14px;top:14px;bottom:auto">Урок 1</span></div>
+  <div class="tls"><div class="tl sf">${icon('layers')}Уроки</div><div class="tl sf">${icon('chat')}Диалоги</div><div class="tl sf">${icon('bookmark')}Карточки</div></div>
+  <div class="sh">Видео<a>Смотреть все ›</a></div><div class="vs"><div class="vt">Английский: собери фразу</div><div class="vt">Говори целыми фразами</div></div>
+  <div class="big sf td" style="margin-top:16px;padding:16px 12px 10px"><div class="k">СЕГОДНЯ</div>${row(icon('chat', 's22'), 'Потренировать диалог', '', '0/1', { ck: 1 })}${row(icon('layers', 's22'), 'Повторить карточки', 'Не менее 10 слов', '8/10', { ck: 1 })}${row(icon('trend', 's22'), 'Исправить ошибки', '', '1/5', { ck: 1 })}</div>${nav(0)}</div>`;
+const settings = () => `<div class="nb"><div class="h1">Настройки</div><div class="pf sf on"><span style="width:52px;height:52px;flex:none">${coinImg(5, 52)}</span><div class="nm">Delta 28003<s>Лектор · не привязан</s></div><span class="go sf">Войти</span></div>
+  <div class="gl">ПРОФИЛЬ</div><div class="gr sf">${row(icon('user', 's22'), 'Аккаунт', '', 'Не привязан ›')}${row(icon('flag', 's22'), 'Язык интерфейса', '', 'Русский ›')}${row(icon('layers', 's22'), 'Язык изучения', '', 'English ›')}</div>
+  <div class="gl">ОБУЧЕНИЕ</div><div class="gr sf">${row(icon('bolt', 's22'), 'Настройки обучения', '', '›')}${row(icon('chat', 's22'), 'Уведомления', '', 'Вкл ›')}${row(icon('layers', 's22'), 'Темы', '', 'Графит ›')}</div>
+  <div class="gl">PHRASEMAN PLUS</div><div class="gr sf">${row(icon('bolt', 's22'), 'Подписка Plus', '', 'Не активна ›', { on: 0 })}${row(icon('bookmark', 's22'), 'Ввести промокод', '', '›')}</div>${nav(4)}</div>`;
+const dialogs = () => `<div class="nb"><div class="h1" style="font-size:36px;line-height:42px;margin-bottom:6px">Диалоги</div><div style="font-size:16px;color:var(--sec);margin:0 4px 6px">Практикуйте язык в жизненных ситуациях</div>
+  <div class="dc sf on" style="margin-top:16px"><span class="ti sf">${icon('chat', 's26')}</span><div class="x">Свободный разговор<span class="pp">PLUS</span><s>Практика без сценария</s></div>${icon('fwd', 's20')}</div>
+  <div class="dc sf"><span class="ti sf">${icon('bolt', 's26')}</span><div class="x">Каждый день<s>Повседневные диалоги</s></div><span class="f">0/11 ›</span></div>
+  <div class="dc sf"><span class="ti sf">${icon('play', 's26')}</span><div class="x">Путешествия<s>В поездках и на отдыхе</s></div><span class="f">0/8 ›</span></div>
+  <div class="dc sf"><span class="ti sf">${icon('people', 's26')}</span><div class="x">Общение<s>Знакомства и разговоры</s></div><span class="f">0/13 ›</span></div>
+  <div class="dc sf"><span class="ti sf">${icon('layers', 's26')}</span><div class="x">Ситуации<s>Разные жизненные сценарии</s></div><span class="f">0/19 ›</span></div>${nav(1)}</div>`;
+const V = [
+  ['1 · Тон', 'Плашка чуть светлее фона, вложенное — ещё на ступень светлее. Выбранное (текущий урок, активная вкладка, «Свободный разговор») — самый светлый тон. Спокойнее всего, проще всего в коде.'],
+  ['2 · Тень', 'Мягкая тень под плашкой и лёгкий блик сверху вместо линии. Выбранное приподнимается и бросает тень глубже. Самый «объёмный» вид, чуть дороже по отрисовке на слабых телефонах.'],
+  ['3 · Цветная заливка', 'Градиент цветов выбранной темы внутри плашки, без кромки. Выбранное насыщеннее. Самый «фирменный» вариант: тема видна во всех плашках.'],
+  ['4 · Единая панель', 'Группа строк — одна панель, строки внутри без плашек, между ними тонкие разделители. Выбранное — цветная точка и акцентный заголовок, без заливки. Самый чистый и лёгкий для глаз, но выбранное менее заметно.'],
+  ['5 · Вдавленные', 'Плашки «утоплены» в экран внутренней тенью — как гравировка. Выбранное подсвечено цветом темы. Выглядит дорого и строго, хорошо читается на светлых телефонах.'],
+];
+document.getElementById('root').innerHTML = V.map(([t, d], i) => `<section class="nbv"><h2>${t}</h2><p>${d}</p><div class="phones">${[['Главная', home], ['Настройки', settings], ['Диалоги', dialogs]].map(([n, f]) => `<div class="col"><div class="lbl">${n}</div>${phone(f(), {}).replace('class="ph"', `class="ph v${i + 1}"`)}</div>`).join('')}</div></section>`).join('');
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

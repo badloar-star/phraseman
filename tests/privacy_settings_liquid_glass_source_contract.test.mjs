@@ -106,6 +106,7 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
   const cloud = name => () => { order.push(`cloud:${name}`); return Promise.resolve(); };
   const router = { push: route => calls.push.push(route) };
   const modules = {
+    '../components/settings/switch_chrome': { switchTrackBorder: (glass) => glass.glassEdge }, // 11.10: граница дорожки переключателя по теме (светлая — secondary 65 %)
     react: { __esModule: true, default: React, ...React },
     'react-native': { Text: 'Text', View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },

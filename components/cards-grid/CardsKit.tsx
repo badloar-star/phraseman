@@ -86,7 +86,8 @@ export const KitIconTile = memo(function KitIconTile({ g, icon }: Readonly<{ g: 
   return (
     <View style={styles.tile}>
       <LinearGradient pointerEvents="none" colors={iconTileColors(g, a, b)} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
-      <Ionicons name={icon} size={20} color={g.mediaInk} />
+      {/* зачем (Сверка 11.10): в светлой плитка бледная (1.4–2.6:1 к белому mediaInk) — значок текстовым цветом темы, в тёмной прежний mediaInk */}
+      <Ionicons name={icon} size={20} color={g.isLight ? g.text : g.mediaInk} />
       <Sheen g={g} radius={10} />
     </View>
   );

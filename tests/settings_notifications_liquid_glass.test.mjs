@@ -42,7 +42,7 @@ const protectedHashes = {
   // зачем (темы 2.0): кнопка OK модалки — роли цвета темы accent/accentInk (в «Спокойно» = cta/ctaInk).
   // 04.10: OM-TIME — кнопки 48, «Отмена» 700, двоеточие 300, поля панели колёс 18/28.
   // 11.10: «Темы» (cb4ecb396) дописали в разметку комментарий theme-exempt к чёрному затемнению — вид прежний.
-  TimeModal: 'e66dd54c7393221b3fbfd5a41b33c74c93eb354e5fbcf5f7478f24106e62cd9a',
+  TimeModal: 'e3537ef7107f8faedc8451ec70c6611d701336e35179516932bbbb9304c2468e', // 11.10: граница дорожки переключателя — switchTrackBorder(glass)
   scheduleTime: 'ba0a7abb3016f9ad6d07373ff26b07a699ca06431ef0ddcfff3268319f36cce1',
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',

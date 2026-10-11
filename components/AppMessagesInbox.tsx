@@ -669,7 +669,7 @@ function AppMessagesInbox({
   const successColor = theme?.correct ?? glass.text;
   // Ошибка/«не нравится» остаётся красной.
   const dangerColor = theme?.wrong ?? 'red';
-  const bellColor = theme?.accent ?? glass.cta;
+  const bellColor = theme?.accentText ?? glass.accentText;
 
   const renderEmbeddedSection = () => {
     if (!centerVisible) return null;
@@ -837,8 +837,8 @@ function AppMessagesInbox({
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
                     <View style={[styles.vipSurveyBadge, { backgroundColor: vipSurveyTint, borderColor: vipSurveyBorder }]}>
-                      <Ionicons name="sparkles-outline" size={11} color={vipSurveyAccent} />
-                      <Text style={[styles.vipSurveyBadgeText, { color: vipSurveyAccent }]}>{copy.vipSurvey}</Text>
+                      <Ionicons name="sparkles-outline" size={11} color={glass.accentText} />
+                      <Text style={[styles.vipSurveyBadgeText, { color: glass.accentText }]}>{copy.vipSurvey}</Text>
                     </View>
                   ) : message.kind === 'report_reply' ? (
                     <>
@@ -1006,7 +1006,7 @@ function AppMessagesInbox({
       <View style={[styles.vipSurveyCard, { backgroundColor: chrome.card }]}>
         <View style={styles.vipSurveyCardTop}>
           <View style={[styles.vipSurveyIcon, { backgroundColor: vipSurveyTint }]}>
-            <Ionicons name="sparkles" size={18} color={vipSurveyAccent} />
+            <Ionicons name="sparkles" size={18} color={glass.accentText} />
           </View>
           <View style={styles.vipSurveyTextWrap}>
             <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>{copy.vipSurvey}</Text>

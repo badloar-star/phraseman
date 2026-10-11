@@ -71,7 +71,7 @@ export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
 
   const ringColor = level >= 1 ? t.gold : t.accent;
   const showGlow = level >= 2;
-  const numberColor = level >= 1 ? t.gold : t.textPrimary;
+  const numberColor = level >= 1 ? t.accentText : t.textPrimary;
 
   const glowStyle = useMemo(
     () =>

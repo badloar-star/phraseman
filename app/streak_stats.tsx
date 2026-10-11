@@ -894,6 +894,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         textSecond: string;
         textMuted: string;
         accent: string;
+        accentText: string; // зачем (Сверка 04:49): акцент как текст — «Все 9», значки, цифры серии
     };
     f: {
         label: number;
@@ -979,7 +980,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                     textPrimary: t.textPrimary,
                     textSecond: t.textSecond,
                     textMuted: t.textMuted,
-                    accent: t.accent,
+                    accent: t.accentText, // зачем (Сверка): линия и подписи графика — акцент как текст
                 }}/>
           </>) : null}
       </React.Fragment>);
@@ -1406,7 +1407,7 @@ function StreakHeroCard({
     // зачем (макет results.html RES-08): тап по огню открывает «Стадии серии».
     const [stagesOpen, setStagesOpen] = useState(false);
     // BUG 4: вся карточка — от главного акцента темы (единый hue).
-    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
+    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accentText; // зачем (Сверка 04:49): «Все 9», значки и цифры серии — акцент как текст (в светлой «Максимум» заливка бледная)
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const streakCaption = triLang(lang, {
         ru: pluralRu(totalStreak, 'день подряд', 'дня подряд', 'дней подряд'),
@@ -1512,7 +1513,7 @@ function WeekAnalyticsCard({
     onSelectMetric: (metric: StatsPrimaryMetric) => void;
 }) {
     // BUG 4: главный акцент темы — единый hue для графика, сегментов и скраб-пузыря.
-    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
+    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accentText; // зачем (Сверка 04:49): «Все 9», значки и цифры серии — акцент как текст (в светлой «Максимум» заливка бледная)
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const [scrubHintSeen, setScrubHintSeen] = useState(true);
     useEffect(() => {
@@ -1675,7 +1676,7 @@ function AllMetricsFoldCard({ t, f, lang, themeMode, isGoldTheme, insights, tota
     const [open, setOpen] = useState(false);
     const tone = 'weekRhythm' as const;
     // BUG 4: вся карточка — от главного акцента темы (единый hue).
-    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
+    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accentText; // зачем (Сверка 04:49): «Все 9», значки и цифры серии — акцент как текст (в светлой «Максимум» заливка бледная)
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const tileBg = isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2;
     const currentMinutes = Math.max(0, insights.weekComparison.currentMinutes);
@@ -1771,7 +1772,7 @@ function RecentAchievementsCard({
     const latest = recentIds
         .map((id) => ALL_ACHIEVEMENTS.find((achievement) => achievement.id === id))
         .filter((achievement): achievement is NonNullable<typeof achievement> => achievement != null);
-    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
+    const accent = isGoldTheme ? GOLD_RICH.champagne : t.accentText; // зачем (Сверка 04:49): «Все 9», значки и цифры серии — акцент как текст (в светлой «Максимум» заливка бледная)
     return (<TouchableOpacity testID="stats-recent-achievements" activeOpacity={0.84} onPress={onPress} style={{ paddingHorizontal: 2, paddingVertical: 8, backgroundColor: 'transparent' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
@@ -2644,6 +2645,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             textSecond: t.textSecond,
                             textMuted: t.textMuted,
                             accent: t.accent,
+                            accentText: t.accentText,
                         }} f={f} lang={lang} data={lifetimeStats!} expandedKind={expandedLifetimeKind} onToggleMetric={(kind) => {
                             if (!isPremium && !statsDevUnlock)
                                 return;

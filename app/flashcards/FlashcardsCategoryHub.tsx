@@ -472,7 +472,7 @@ export default function FlashcardsCategoryHub({
    * рендерятся на обычной поверхности, поэтому берём цвета прямо из темы.
    */
   const isGradientSurface = false;
-  const hubLabelAccent = t.accent;
+  const hubLabelAccent = t.accentText; // зачем (Сверка, светлая Максимум): подпись плитки — акцент как ТЕКСТ, а не бледная заливка
 
   /** Свой набор: добавлен, авторский, или id в общем `ownedPackIds` (легаси-ветка). */
   const isCommunityPackMine = useCallback(

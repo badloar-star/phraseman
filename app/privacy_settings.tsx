@@ -9,6 +9,7 @@
  * документы — мелким шрифтом в подвале, удаление — голой серой строкой. Теперь
  * общий экран настроек показывает один ряд «Приватность и данные» → сюда.
  */
+import { switchTrackBorder } from '../components/settings/switch_chrome';
 import React, { useCallback, useRef, useState } from 'react';
 import { Text, View, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -65,7 +66,7 @@ function LocalSwitch({ value, onValueChange, accessibilityLabel, glass }: LocalS
       style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
       contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
     >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}>
+      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : glass.opaqueControl, borderWidth: 1, borderColor: switchTrackBorder(glass) }}>
         <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : glass.secondary, transform: [{ translateX: value ? 19 : 0 }] }} />
       </View>
     </PressableHybrid>

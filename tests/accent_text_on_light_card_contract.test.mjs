@@ -42,6 +42,33 @@ test('no accent fill token paints text or icons: use accentText', () => {
   assert.deepEqual(bad, [], 'текст/значок цветом акцента — t.accentText (g.accentText); заливка accent/cta/gold остаётся заливкой');
 });
 
+// локальные псевдонимы вида `const accent = t.accent`, которыми потом красят color: тот же дефект, что и прямой t.accent
+const ALIAS_DEF = new RegExp(`(?:const|let)${BS}s+(${BS}w+)${BS}s*(?::[^=]+)?=${BS}s*(?:[^;]*?[?:]${BS}s*)?(?:t|theme|g|glass)${BS}.(?:accent|cta|textSecond|gold|accentBright)${BS}b`);
+// осознанные исключения: цвет набора (не тема), семантика оценки, заливка кнопки с белым текстом
+const ALIAS_OK = new Set(['app/flashcards/PhraseCard.tsx:accent', 'app/pack_opening.tsx:accent', 'app/streak_stats.tsx:scoreAccent', 'components/VipSurveyModal.tsx:accent']);
+
+test('no local alias of an accent fill token paints text or icons', () => {
+  const bad = [];
+  for (const file of collectStoreSurfaceFiles(ROOT)) {
+    if (/^constants\//.test(file)) continue;
+    const lines = normalizeEol(readFileSync(join(ROOT, file), 'utf8')).split(String.fromCharCode(10));
+    const names = new Set();
+    lines.forEach((line) => {
+      if (/^\s*(\/\/|\*)/.test(line) || /accentText/.test(line)) return;
+      const m = ALIAS_DEF.exec(line);
+      if (m && !ALIAS_OK.has(`${file}:${m[1]}`)) names.add(m[1]);
+    });
+    for (const name of names) {
+      const use = new RegExp(`(?<![A-Za-z.])color(?:=${BS}{|:${BS}s*)[^,}]*?${BS}b${name}${BS}b`);
+      lines.forEach((line, i) => {
+        if (/^\s*(\/\/|\*)/.test(line) || /accent-text-ok:/.test(line)) return;
+        if (use.test(line)) bad.push(`${file}:${i + 1} [${name}] ${line.trim().slice(0, 110)}`);
+      });
+    }
+  }
+  assert.deepEqual(bad, [], 'псевдоним заливочного токена красит текст/значок — определи его через accentText');
+});
+
 test('accentText is part of the theme object', () => {
   const src = normalizeEol(readFileSync(join(ROOT, 'constants', 'liquidGlassThemePalette.ts'), 'utf8'));
   assert.match(src, /accentText:\s*t\.accentText/);

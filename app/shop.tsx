@@ -173,7 +173,7 @@ function ShopTile({ item, onPress }: TileProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [from, to, glyph] = MEDAL_TONES[item.tone];
-  const priceColor = t.gold;
+  const priceColor = t.accentText; // зачем (Сверка): цена — текст цветом акцента (≥ 4.5:1), не бледное золото
   return (
     <Pressable
       testID={`shop-tile-${item.id}`}

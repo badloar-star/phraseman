@@ -194,7 +194,7 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
     <View style={styles.dock} pointerEvents="box-none">
       <LinearGradient
         pointerEvents="none"
-        colors={[`${g.bg}00`, `${g.bg}EB`, `${g.bg}EB`]}
+        colors={[`${g.bgBottom}00`, `${g.bgBottom}F2`, `${g.bgBottom}F2`]} // зачем (Сверка 11.10): на градиентных темах плоский g.bg давал серую полосу и просвечивающий список; низ градиента фона совпадает с экраном
         locations={[0, 0.4, 1]}
         style={StyleSheet.absoluteFill}
       />

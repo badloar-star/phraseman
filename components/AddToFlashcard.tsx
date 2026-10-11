@@ -248,7 +248,7 @@ function AddToFlashcard({
   };
 
   const iconName = saved ? 'bookmark' : 'bookmark-outline';
-  const iconColor = saved ? t.accent : t.textMuted;
+  const iconColor = saved ? t.accentText : t.textMuted;
 
   const box = Math.max(34, size + 12);
 

@@ -21,7 +21,7 @@ type Props = {
  */
 function ClozeGapText({ text, style, gapColor: gapColorProp, ...rest }: Props) {
   const { theme: t } = useTheme();
-  const gapColor = gapColorProp ?? t.accent;
+  const gapColor = gapColorProp ?? t.accentText;
 
   if (!text.includes('__')) {
     return (

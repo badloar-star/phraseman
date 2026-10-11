@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { switchTrackBorder } from '../components/settings/switch_chrome';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
@@ -73,7 +74,7 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
           justifyContent: 'center',
           backgroundColor: value ? glass.selected : glass.opaqueControl,
           borderWidth: 1,
-          borderColor: glass.glassEdge,
+          borderColor: switchTrackBorder(glass),
         }}
       >
         <View

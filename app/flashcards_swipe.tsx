@@ -3664,7 +3664,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
                 ]}
               >
                 <View style={[styles.sourceIcon, { backgroundColor: `${selected ? selectedAccent : source.accent}22` }]}>
-                  <Ionicons name={source.icon as any} size={21} color={selected ? selectedAccent : source.accent} />
+                  <Ionicons name={source.icon as any} size={21} color={selected ? t.accentText : source.accent} />
                 </View>
                 <View style={styles.sourceTextBox}>
                   {/* зачем: text-integrity — название и подпись набора переносятся, ряд растёт. */}

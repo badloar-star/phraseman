@@ -912,3 +912,8 @@ precheck записан: 22 ok, 13 diff. Адресно:
 
 ## profile-031…035 → removed_by_owner (по решению координатора, 11.10, ~17:30)
 Причина записана: «правило владельца 22.09: уведомления об удалении не показываются». Через reg_edit.mjs, число строк 941 не изменилось.
+
+## Перепривязки и «осознанные отличия» (11.10, ~17:45)
+- cards-section-028 → cards-v2.html, кадр «Каталог» (телефон 25); packs-simple-001 → cards-v2.html, кадр «Ничего не найдено» (телефон 26; в cards-v2 это catalogNone). code[] обеих: flashcards_packs.tsx, FlashcardsCategoryHub, components/packs/{PackRow,PackScreenKit,packDeckModel}. Статус → pending (нужна пересъёмка), старый образец сохранён в prev_mockup.
+- Диалоги 001/002/004/005/010: precheck.kind = «осознанное отличие» (миры + «ты» / D111 / D129–D130 / «ты»); образец правят Макеты.
+- profile-031…035 → removed_by_owner (причина записана). Число строк 941 не менялось.

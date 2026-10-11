@@ -58,6 +58,7 @@ import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
 import { StatCountUpText } from '../components/stats/StatCountUpText';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { DEFAULT_STATS_PRIMARY_METRIC, normalizeStatsPrimaryMetric, recentUnlockedAchievementIds, type StatsPrimaryMetric } from './stats_primary_metric';
 import { statsPrimaryMetricKey } from './target_storage_keys';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
@@ -936,7 +937,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 paddingVertical: 7,
-                borderBottomWidth: 0.5,
+                borderBottomWidth: 0.5, // shadow-ok: разделитель-линия между строками метрик, не контейнер
                 borderBottomColor: t.border,
                 gap: 8,
             }}>
@@ -1003,9 +1004,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             borderRadius: 18,
             padding: 16,
             marginBottom: 12,
-            borderWidth: 0,
-            borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
-        }}>
+            }}>
       <Text style={{
             color: isGoldTheme ? GOLD_RICH.champagne : t.accentText,
             fontSize: f.label,
@@ -1224,7 +1223,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
 
       {/* Дни и время — конкретные факты недели. */}
       <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
-        {weekFacts.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 96, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, alignItems: 'center', justifyContent: 'flex-start' }}>
+        {weekFacts.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 96, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, alignItems: 'center', justifyContent: 'flex-start' }}>
             <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
               <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
@@ -1303,7 +1302,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
           </Text>
         </View>) : null}
 
-      {showAction ? (<View style={{ marginTop: 14, borderRadius: 16, padding: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
+      {showAction ? (<View style={{ marginTop: 14, borderRadius: 16, padding: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, }}>
           <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}>
             <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="sparkles" size={19} color={scoreAccent}/>
@@ -1653,7 +1652,7 @@ function WeekAnalyticsCard({
             </View>))}
           </View>
           {progressParts.length > 0 ? (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 12, paddingTop: 10, borderTopWidth: 1, borderTopColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 12, paddingTop: 10, borderTopWidth: 1 /* shadow-ok: разделитель-линия внутри карточки */, borderTopColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
               <Ionicons name={weekDeltaMinutes !== null && weekDeltaMinutes < 0 ? 'trending-down-outline' : 'trending-up-outline'} size={15} color={t.textMuted} />
               <Text style={{ flex: 1, color: t.accentText, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.35 }}>
                 {progressParts.join(' · ')}
@@ -2405,7 +2404,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 </Reanimated.View>
                 {/* зачем (results.html streak(), решение владельца 04.10 (б)): под серией «Ваша неделя» столбиками и строка
                     ритма — точно по макету. Подробная аналитика недели и всё прежнее остаются ниже без изменений. */}
-                <View testID="stats-week-spark" style={{ borderRadius: 14, padding: 18, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .card */ }}>
+                <View testID="stats-week-spark" style={{ borderRadius: 14, padding: 18, backgroundColor: statsGlass.plateFillFrom, boxShadow: plateBoxShadow(statsGlass) /* «Тень» 12.10: плашка без кромки */ }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ flex: 1, color: t.textPrimary, fontSize: 19, lineHeight: 24, fontWeight: '700' }}>
                       {triLang(lang, { ru: 'Твоя неделя', uk: 'Твій тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
@@ -2440,7 +2439,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   accessibilityRole="button"
                   accessibilityLabel={`${coachMetrics.status}. ${coachMetrics.rhythmCaption}`}
                   onPress={() => { hapticTap(); scrollRef.current?.scrollTo({ y: Math.max(0, weekAnalyticsYRef.current), animated: true }); }}
-                  style={({ pressed }) => [{ minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingHorizontal: 14, borderRadius: 14, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .list-row */ }, pressed && { opacity: 0.85 }]}
+                  style={({ pressed }) => [{ minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingHorizontal: 14, borderRadius: 14, backgroundColor: statsGlass.plateFillFrom, boxShadow: plateBoxShadow(statsGlass) /* «Тень» 12.10: строка-плашка без кромки */ }, pressed && { opacity: 0.85 }]}
                 >
                   <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: statsGlass.opaqueControl }}>
                     <Ionicons name="trending-up" size={20} color={statsGlass.text} />
@@ -2502,7 +2501,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     hapticTap();
                     setDetailsOpen((v) => !v);
                 }}>
-                  <StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? null : null]}>
+                  <StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} scrim="stats" style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }, !isGoldTheme ? null : null]}>
                     <View style={{ width: 42, height: 42, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent), alignItems: 'center', justifyContent: 'center' }}>
                       <Ionicons name="bar-chart-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : t.accentText}/>
                     </View>
@@ -2531,7 +2530,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 {(() => {
                         // У новичка график — простыня пустых столбиков; вместо неё честная заглушка.
                         if (allTimeDays.filter(d => d.ms > 0).length < 3) {
-                            return (<StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 20, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, alignItems: 'center' }}>
+                            return (<StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 20, alignItems: 'center' }}>
                             <Ionicons name="bar-chart-outline" size={24} color={t.textMuted}/>
                             <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', marginTop: 8, lineHeight: f.sub * 1.4 }}>
                               {triLang(lang, {
@@ -2558,7 +2557,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                 active: false,
                             }));
                         const maxMs = Math.max(...timeDaysChart.map(d => d.ms), 1);
-                        return (<StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 16, paddingBottom: 8, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
+                        return (<StatsCardArtSurface name="archiveMap" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={16} scrim="stats" style={{ borderRadius: 16, padding: 16, paddingBottom: 8, }}>
                       <View style={{
                                 flexDirection: 'row',
                                 alignItems: 'center',
@@ -2566,17 +2565,14 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                 borderRadius: 12,
                                 padding: 3,
                                 backgroundColor: t.bgSurface,
-                                borderWidth: 0,
-                                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
-                            }}>
+                                }}>
                         <View style={{
                                 flex: 1,
                                 paddingVertical: 10,
                                 borderRadius: 9,
                                 alignItems: 'center',
                                 backgroundColor: t.bgCard ?? t.bgSurface2,
-                                borderWidth: 0.5,
-                                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+                                boxShadow: nestedBoxShadow(statsGlass), // зачем («Тень» 12.10): активный сегмент — тон и малая тень вместо кромки 0.5
                             }}>
                           <Text style={{
                                 color: t.textPrimary,

@@ -72,6 +72,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -2744,7 +2745,7 @@ function WordsTrainingSkeleton({ glass, kicker, header }: { glass: ReturnType<ty
       </PracticeQuestionCard>
       <View style={{ gap:13, marginTop:23 }}>
         {[0,1,2,3].map(i => (
-          <View key={i} style={{ minHeight:56, borderRadius:16, backgroundColor:glass.opaqueCard, borderWidth:StyleSheet.hairlineWidth, borderColor:glass.line, alignItems:'center', justifyContent:'center' }}>
+          <View key={i} style={{ minHeight:56, borderRadius:16, backgroundColor:glass.plateFillFrom, boxShadow:plateBoxShadow(glass), alignItems:'center', justifyContent:'center' }}>
             <View style={{ width:'50%', height:14, borderRadius:7, backgroundColor:glass.opaqueControl }} />
           </View>
         ))}
@@ -3323,10 +3324,11 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
                 paddingVertical: 10,
                 paddingHorizontal: mark ? 34 : 12,
                 borderRadius: 14,
-                // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0); ответ — цветная кромка.
-                borderWidth: 1, // guard-ok
-                borderColor: mark === 'correct' ? WORD_ANSWER_OK_EDGE : mark === 'wrong' ? WORD_ANSWER_BAD_EDGE : glass.glassEdge,
-                backgroundColor: on || pressed ? glass.selected : glass.opaqueCard,
+                // зачем («Тень» 12.10): вариант `.opt` — плашка с тенью, без кромки; кольцо остаётся только у исхода «верно/неверно»
+                borderWidth: mark ? 1 : 0, // shadow-ok: кольцо исхода ответа верно/неверно
+                borderColor: mark === 'correct' ? WORD_ANSWER_OK_EDGE : mark === 'wrong' ? WORD_ANSWER_BAD_EDGE : 'transparent',
+                boxShadow: plateBoxShadow(glass),
+                backgroundColor: on || pressed ? glass.selected : glass.plateFillFrom,
                 opacity: dim ? 0.4 : 1,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -3487,10 +3489,9 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
                 marginBottom: 10,
                 minHeight: 58,
                 borderRadius: 16,
-                // guard-ok: 1 px полупрозрачная кромка карточки слова макета (исключение PhraseMan 2.0).
-                borderWidth: StyleSheet.hairlineWidth, // guard-ok
-                borderColor: glass.line,
-                backgroundColor: speaking ? glass.selected : glass.opaqueCard,
+                // зачем («Тень» 12.10): карточка слова — плашка с тенью без кромки
+                boxShadow: plateBoxShadow(glass),
+                backgroundColor: speaking ? glass.selected : glass.plateFillFrom,
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 14,
@@ -3762,7 +3763,7 @@ function LessonWords() {
       {!frenchVocabularyBlocked && (
       // Сегмент «Тренировка / Список» (макет `.tabbar .seg`): скругление 22, высота 44, активный — плитка-выделение.
       <View style={{ paddingHorizontal:20, paddingTop:10, paddingBottom: Math.max(insets.bottom, 12) }}>
-        <View style={{ flexDirection:'row', height:44, padding:3, borderRadius:22, backgroundColor:glass.opaqueCard, borderWidth:StyleSheet.hairlineWidth /* guard-ok */, borderColor:glass.line }}>
+        <View style={{ flexDirection:'row', height:44, padding:3, borderRadius:22, backgroundColor:glass.plateFillFrom, boxShadow:plateBoxShadow(glass) }}>
         {(['train','list'] as const).map(key => {
           const isActive = tab === key;
           const label = key === 'train' ? ws.training : ws.wordList;
@@ -3771,7 +3772,7 @@ function LessonWords() {
               testID={key === 'train' ? 'lesson-words-tab-train' : 'lesson-words-tab-list'}
               accessibilityRole="tab"
               accessibilityState={{ selected: isActive }}
-              style={{ flex:1, alignItems:'center', justifyContent:'center', borderRadius:19, backgroundColor: isActive ? glass.opaqueControl : 'transparent' }}
+              style={{ flex:1, alignItems:'center', justifyContent:'center', borderRadius:19, backgroundColor: isActive ? glass.raisedFillFrom : 'transparent', boxShadow: isActive ? nestedBoxShadow(glass) : undefined }}
               onPress={() => {
                 setUserTab(key);
               }}

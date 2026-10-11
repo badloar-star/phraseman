@@ -3313,7 +3313,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   style={[
                     styles.voiceResultCard,
                     lv2CardStyle(g),
-                    { borderColor: voiceAttemptResult.passed ? g.goodEdge : g.badEdge }, // guard-ok: 1 px кромка вердикта
+                    { borderColor: voiceAttemptResult.passed ? g.goodEdge : g.badEdge, borderWidth: StyleSheet.hairlineWidth }, // shadow-ok: кольцо исхода ответа (верно/неверно)
                   ]}
                 >
                   <SpeakingInlineResultStars

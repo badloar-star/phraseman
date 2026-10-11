@@ -144,6 +144,7 @@ import EnergyBar from "../../components/EnergyBar";
 import { useEnergy } from "../../components/EnergyContext";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
+import { nestedBoxShadow, plateBoxShadow } from "../../components/v2/ShadowSurface";
 import { isAiDialogEnabled } from "../ai_dialog_flags";
 import {
   getVerifiedPremiumAccessStatus,
@@ -997,34 +998,8 @@ const LessonCard = React.memo(function LessonCard({
             borderRadius: cardRadius,
             overflow: "hidden",
             backgroundColor: isUnlocked ? "transparent" : lockedCardBaseColor,
-            borderWidth: isOliveTheme
-              ? 0
-              : isGoldTheme || isSagePorcelainCard
-                ? 1
-                : USE_ELITE_LESSONS_MAP
-                  ? 1
-                  : useSketchLessonVisual && isUnlocked
-                    ? 1.5
-                    : 0,
-            borderColor: isGoldTheme
-              ? isCurrent
-                ? GOLD_RICH.hairlineStrong
-                : isUnlocked
-                  ? goldHairline
-                  : GOLD_RICH.hairlineQuiet
-              : isSagePorcelainCard
-                ? rgbaHexCached(
-                    lessonAccent,
-                    isCurrent ? 0.56 : isUnlocked ? 0.38 : 0.26,
-                  )
-                : USE_ELITE_LESSONS_MAP
-                  ? rgbaHexCached(
-                      lessonAccent,
-                      isCurrent ? 0.7 : isUnlocked ? 0.36 : 0.16,
-                    )
-                  : useSketchLessonVisual && isUnlocked
-                    ? rgbaHexCached(lessonAccent, 0.44)
-                    : "transparent",
+            // зачем («Тень» 12.10): обводка карточки урока (золото / шалфей / элитная карта / эскиз) убрана — контейнеры без обводок;
+            // карточку отделяют градиентная заливка слоёв и тень обёртки (shadow* выше)
           }}
         >
           {/* Card background */}
@@ -5188,7 +5163,7 @@ export default function LessonsTab({
               flexDirection: "row",
               gap: 16,
               paddingHorizontal: 18,
-              borderBottomWidth: 1,
+              borderBottomWidth: 1, // shadow-ok: разделитель-линия под переключателем страниц, не контейнер
               borderBottomColor: t.border,
               marginBottom: 2,
             }}
@@ -5421,8 +5396,7 @@ export default function LessonsTab({
                       height: 44,
                       borderRadius: 22,
                       backgroundColor: learnGlass.opaqueControl,
-                      borderWidth: 1,
-                      borderColor: learnGlass.glassEdge,
+                      boxShadow: nestedBoxShadow(learnGlass), // зачем («Тень» 12.10): круглая кнопка без кромки, с малой тенью
                     }}
                     contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
                   >
@@ -5476,9 +5450,8 @@ export default function LessonsTab({
                   gap: 8,
                   paddingLeft: 14,
                   paddingRight: legacyLessonQuery ? 0 : 14,
-                  backgroundColor: learnGlass.opaqueControl,
-                  borderWidth: 1,
-                  borderColor: learnGlass.glassEdge,
+                  backgroundColor: learnGlass.plateFillFrom,
+                  boxShadow: plateBoxShadow(learnGlass), // зачем («Тень» 12.10): поле поиска — плашка без кромки
                 }}
               >
                 <Ionicons name="search" size={18} color={learnGlass.secondary} />
@@ -5566,8 +5539,7 @@ export default function LessonsTab({
                       height: 40,
                       borderRadius: 20,
                       backgroundColor: learnGlass.opaqueControl,
-                      borderWidth: 1,
-                      borderColor: learnGlass.glassEdge,
+                      boxShadow: nestedBoxShadow(learnGlass),
                     }}
                     contentStyle={{
                       height: 40,
@@ -5610,8 +5582,7 @@ export default function LessonsTab({
                         height: 40,
                         borderRadius: 20,
                         backgroundColor: learnGlass.opaqueControl,
-                        borderWidth: 1,
-                        borderColor: learnGlass.glassEdge,
+                        boxShadow: nestedBoxShadow(learnGlass),
                         opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
                       }}
                       contentStyle={{
@@ -5944,14 +5915,9 @@ export default function LessonsTab({
                 style={{
                   backgroundColor: learnGlass.opaqueControl,
                   borderRadius: 18,
-                  borderWidth: 1, // guard-ok: 1 px кромка макета
-                  borderColor: learnGlass.glassEdge,
+                  boxShadow: plateBoxShadow(learnGlass), // зачем («Тень» 12.10): тост-плашка без кромки, с тенью плашки
                   paddingHorizontal: 20,
                   paddingVertical: 12,
-                  shadowColor: t.cardShadow,
-                  shadowOpacity: 0.35,
-                  shadowRadius: 14,
-                  shadowOffset: { width: 0, height: 6 },
                   ...noAndroidOutline, // зачем: Android рисует квадрат вокруг скруглённой плашки без непрозрачного фона (сторож android_no_square_outline)
                 }}
               >

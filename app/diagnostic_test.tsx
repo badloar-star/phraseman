@@ -57,6 +57,7 @@ import { DebugLogger } from './debug-logger';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
+import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import {
   ExamFooter, ExamHeader, ExamKvCard, ExamOption, ExamPill, ExamQuietButton, ExamStatRow,
   ExamTile, ExamTrack, ExamVerdict, GlassTimerRing, examCardStyle, type ExamOptionState,
@@ -1807,7 +1808,7 @@ export default function DiagnosticTest() {
                         setBuildBank(prev => prev.filter((_, i) => i !== wi));
                         setBuildSelected(prev => [...prev, word]);
                       }}
-                      style={({ pressed }) => ({ backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge, borderWidth: StyleSheet.hairlineWidth, borderRadius: 14, minHeight: 44, paddingHorizontal: 16, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
+                      style={({ pressed }) => ({ backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), borderRadius: 14, minHeight: 44, paddingHorizontal: 16, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
                       <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>{word}</Text>
                     </Pressable>
@@ -1822,9 +1823,10 @@ export default function DiagnosticTest() {
             <View>
               <View style={{
                 flexDirection: 'row',
-                borderRadius: 16, overflow: 'hidden',
-                backgroundColor: typeSubmitted ? (chosen === q.correct ? t.correctBg : t.wrongBg) : glass.opaqueCard,
-                borderColor: glass.glassEdge, borderWidth: StyleSheet.hairlineWidth,
+                // зачем («Тень» 12.10): поле ввода — плашка с тенью без кромки; overflow hidden убран (резал бы тень, ввод прозрачный)
+                borderRadius: 16,
+                backgroundColor: typeSubmitted ? (chosen === q.correct ? t.correctBg : t.wrongBg) : glass.plateFillFrom,
+                boxShadow: plateBoxShadow(glass),
               }}>
                 <TextInput
                   ref={inputRef}

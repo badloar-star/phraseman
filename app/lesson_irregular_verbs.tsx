@@ -59,6 +59,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -816,8 +817,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
                     {cf.isTarget ? (
                       <View style={{
                         minWidth: 92, height: 48, paddingHorizontal: 12, borderRadius: 14,
-                        // guard-ok: 1 px ячейка-пропуск `.chain .q` макета (исключение PhraseMan 2.0).
-                        borderWidth: 1, // guard-ok
+                        borderWidth: 1, // shadow-ok: ячейка-пропуск `.chain .q` — пунктир / кольцо исхода ответа, не контейнер
                         borderStyle: feedbackTint ? 'solid' : 'dashed',
                         borderColor: feedbackTint ?? glass.mutedText,
                         alignItems: 'center', justifyContent: 'center',
@@ -876,10 +876,9 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
                   style={({ pressed }) => ({
                     flex: 1, minHeight: 56, paddingVertical: 10, paddingHorizontal: state === 'idle' ? 12 : 36, borderRadius: 16,
                     alignItems: 'center', justifyContent: 'center',
-                    // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0).
-                    borderWidth: StyleSheet.hairlineWidth, // guard-ok
-                    borderColor: glass.line,
-                    backgroundColor: pressed ? glass.selected : glass.opaqueCard,
+                    // зачем («Тень» 12.10): вариант `.opt` — плашка с тенью, без кромки
+                    boxShadow: plateBoxShadow(glass),
+                    backgroundColor: pressed ? glass.selected : glass.plateFillFrom,
                     opacity: dim ? 0.4 : 1,
                     transform: [{ scale: pressed && phase === 'answering' ? 0.98 : 1 }],
                   })}
@@ -999,9 +998,8 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
       <View style={{
         marginHorizontal: 16, marginTop: 22, borderRadius: 20, overflow: 'hidden', paddingTop: 6,
-        // guard-ok: 1 px полупрозрачная кромка карточки-таблицы макета (исключение PhraseMan 2.0).
-        borderWidth: StyleSheet.hairlineWidth, // guard-ok
-        borderColor: glass.line, backgroundColor: glass.opaqueCard,
+        // зачем («Тень» 12.10): карточка-таблица — плашка с тенью без кромки; overflow hidden оставлен — клипует горизонтальную прокрутку (тень может обрезаться на iOS)
+        boxShadow: plateBoxShadow(glass), backgroundColor: glass.plateFillFrom,
       }}>
       <Animated.ScrollView
         horizontal
@@ -1269,7 +1267,7 @@ function LessonIrregularVerbs() {
                   // зачем: скелет вместо крутилки — геометрия первого кадра = итоговая (макет wordsLoading).
                   <View testID="irregular-verbs-progress-loading" style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
                     <PracticeProgressRow glass={glass} progress={0} flush />
-                    <View style={{ marginTop: 30, minHeight: 200, borderRadius: 16, backgroundColor: glass.opaqueCard, borderWidth: StyleSheet.hairlineWidth /* guard-ok */, borderColor: glass.line, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ marginTop: 30, minHeight: 200, borderRadius: 16, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), alignItems: 'center', justifyContent: 'center' }}>
                       <View style={{ width: '60%', height: 26, borderRadius: 8, backgroundColor: glass.opaqueControl }} />
                     </View>
                   </View>
@@ -1310,7 +1308,7 @@ function LessonIrregularVerbs() {
           {/* Сегмент «Учить / Словарь» (макет `.tabbar .seg`): скругление 22, высота 44, активный — плитка-выделение. */}
           {!frenchIrregularBlocked && (
           <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: Math.max(insets.bottom, 12) }}>
-            <View style={{ flexDirection: 'row', height: 44, padding: 3, borderRadius: 22, backgroundColor: glass.opaqueCard, borderWidth: StyleSheet.hairlineWidth /* guard-ok */, borderColor: glass.line }}>
+            <View style={{ flexDirection: 'row', height: 44, padding: 3, borderRadius: 22, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}>
             {(['learn', 'dict'] as const).map(key => {
               const isActive = tab === key;
               const label = key === 'dict'
@@ -1340,7 +1338,7 @@ function LessonIrregularVerbs() {
                 <Pressable key={key}
                   accessibilityRole="tab"
                   accessibilityState={{ selected: isActive }}
-                  style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: isActive ? glass.opaqueControl : 'transparent' }}
+                  style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: isActive ? glass.raisedFillFrom : 'transparent', boxShadow: isActive ? nestedBoxShadow(glass) : undefined }}
                   onPress={() => {
                     Keyboard.dismiss();
                     setUserTab(key);

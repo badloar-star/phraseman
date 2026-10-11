@@ -34,6 +34,7 @@ import FriendsFoundCard from '../../components/friends/FriendsFoundCard';
 import FriendsEmptyState from '../../components/friends/FriendsEmptyState';
 import DailyPollCard from '../../components/friends/DailyPollCard';
 import { FriendsFeedbackRow, FriendsRoundButton, FriendsSectionTitle, useFriendsGlass } from '../../components/friends/FriendsGlassKit';
+import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { FlowText } from '../../components/text-integrity';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
@@ -683,15 +684,13 @@ function AddFriendModal({
                 {inputLabel}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
+                {/* зачем («Тень» 12.10): `.field` — плашка с тенью, без кромки; тень на обёртке (у TextInput boxShadow не типизирован) */}
+                <View style={{ flex: 1, backgroundColor: glass.plateFillFrom, borderRadius: 14, boxShadow: plateBoxShadow(glass) }}>
                 <TextInput
                   ref={searchInputRef}
                   testID="friends-code-input"
                   accessibilityLabel={inputLabel}
                   style={{
-                    // зачем: `.field` макета — тон поверхности темы + тонкая 1 px полупрозрачная кромка.
-                    flex: 1, backgroundColor: glass.opaqueControl, borderRadius: 14,
-                    borderWidth: 1, // guard-ok: 1 px glassEdge, как `.field` макета
-                    borderColor: glass.glassEdge,
                     minHeight: 54,
                     paddingHorizontal: 14, paddingVertical: 12,
                     fontSize: 16 * textScale, fontWeight: '400', color: glass.text,
@@ -709,6 +708,7 @@ function AddFriendModal({
                   }}
                   onSubmitEditing={onSearch}
                 />
+                </View>
                 <FriendsRoundButton
                   glass={glass}
                   testID="friends-search"
@@ -763,8 +763,8 @@ function AddFriendModal({
                 onPress={onShareCode}
                 style={({ pressed }) => ({
                   minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center',
-                  borderWidth: 1, // guard-ok: контур .cta.gh (исключение 2.0)
-                  borderColor: glass.glassEdge, opacity: pressed ? 0.72 : 1, marginTop: 0,
+                  // зачем («Тень» 12.10): контурная кнопка `.cta.gh` стала плашкой с тенью
+                  backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), opacity: pressed ? 0.72 : 1, marginTop: 0,
                 })}
               >
                 <Text style={{ color: glass.text, fontSize: 16 * textScale, fontWeight: '700' }}>{shareLabel}</Text>

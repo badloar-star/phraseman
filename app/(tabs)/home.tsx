@@ -126,6 +126,7 @@ function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
   return state.counted ? 'counted' : 'pending';
 }
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
+import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../../components/v2/ShadowSurface';
 import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем (координатор 05.10, пакет 05:26: [JS-STALL] 1,5 с — вычисление чанка Главной до первого кадра; план
@@ -509,6 +510,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
     const nav = useGuardedNav();
     const { theme: t, f, themeMode, liquidGlassAppearance } = useTheme();
+    const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): строки окна званий — плашки с тенью, выбранная приподнята; обводок нет
     // зачем (владелец 04.10, «первые ассеты готовы, вшивай»): предметы 2.0 — светлый комплект у светлых тем, тёмный у тёмных и градиентных.
     const homeArtTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
     const myCoinRank = useMyCoinRank();
@@ -2346,7 +2348,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Старая разметка V1 и флаг раскладки удалены 01.10.
         return renderHomeV2();
     };
-    const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
     const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
     // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
     const { allTitles, earnedTitles, currentTitleKey } = computeHomeTitles({
@@ -2449,12 +2450,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     {titleModalSubtitle}
                   </Text>
                 </View>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, boxShadow: nestedBoxShadow(shadowGlass) }}>
                   <Ionicons name="close" size={22} color={t.textPrimary}/>
                 </TouchableOpacity>
               </View>
 
-              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
+              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} numberOfLines={2}>
                   {titleModalEarnedLabel}
                 </Text>
@@ -2463,8 +2464,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <ScrollView decelerationRate="fast" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
-                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
-                        <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20', borderWidth: 1, borderColor: titleColor + '55' }}>
+                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), boxShadow: item.current ? raisedBoxShadow(shadowGlass) : plateBoxShadow(shadowGlass), transform: item.current ? [{ translateY: RAISED_LIFT }] : undefined }}>
+                        <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20' }}>
                           <Ionicons name={item.current ? 'ribbon' : 'checkmark-circle'} size={20} color={titleColor}/>
                         </View>
                         <View style={{ flex: 1, minWidth: 0 }}>

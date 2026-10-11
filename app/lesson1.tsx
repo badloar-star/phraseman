@@ -143,6 +143,7 @@ import { PracticeCta } from '../components/practice/PracticeStates';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -1154,7 +1155,7 @@ const LessonContent = React.memo(function LessonContent({
             ref={runeFlightOriginRef}
             collapsable={false}
             testID="lesson1-answer-divider"
-            style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? glass.warn : glass.line, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? `${glass.warn.slice(0, 7)}14` : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+            style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1 /* shadow-ok: линия-подчёркивание зоны ответа, не контейнер */, borderBottomColor: emptyTapFlash ? glass.warn : glass.line, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? `${glass.warn.slice(0, 7)}14` : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {(status === 'result' || speakingResult) ? (
               <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
@@ -1287,7 +1288,7 @@ const LessonContent = React.memo(function LessonContent({
               }],
             }}>
               {wasWrong && (
-                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, borderWidth: 1, borderColor: glass.glassEdge }}>
+                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, boxShadow: nestedBoxShadow(glass) }}>
                   <Text
                     testID="lesson1-correct-answer-on-wrong"
                     // зачем (Сверка 21:05, светлая тема): зелёный t.correct на розовой плашке ошибки почти не читается — в светлой берём цвет текста темы
@@ -1365,8 +1366,7 @@ const LessonContent = React.memo(function LessonContent({
             backgroundColor: glass.card,
             borderRadius: 18,
             padding: 14,
-            borderWidth: 1,
-            borderColor: glass.glassEdge,
+            boxShadow: plateBoxShadow(glass), // зачем («Тень» 12.10): подсказка — плашка без кромки
           }}>
             <Text style={{ color: glass.secondary, fontSize: f.small, lineHeight: Math.round(f.small * 1.45) }}>{grammarHintText}</Text>
           </Animated.View>
@@ -1418,12 +1418,11 @@ const LessonContent = React.memo(function LessonContent({
                       disabled={wordDispatchPending}
                       style={{
                         width: '100%',
-                        backgroundColor: isFlashing ? glass.cta : glass.opaqueControl,
+                        backgroundColor: isFlashing ? glass.cta : glass.plateFillFrom,
                         paddingVertical: linkedSliceCompact ? 7 : (compact ? 10 : 15),
                         minHeight: 52,
                         borderRadius: 18,
-                        borderWidth: 1,
-                        borderColor: glass.glassEdge,
+                        boxShadow: plateBoxShadow(glass), // зачем («Тень» 12.10): кнопка-слово — плашка без кромки
                       }}
                       onPress={() => {
                         if (showTapHint) setShowTapHint(false);

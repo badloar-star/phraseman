@@ -1334,12 +1334,12 @@ function MistakePracticeSessionScreen() {
               </View>
             ) : null}
             {/* зачем (Сверка mistakes-panel-016, .pr + .pr): строки панели «Почему» разделены линией 1 px */}
-            <View style={[styles.whyRowText, feedback.userAnswer.trim() ? [styles.whyDivider, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft }] }] : null]}>
+            <View style={[styles.whyRowText, feedback.userAnswer.trim() ? [styles.whyDivider, { borderTopWidth: StyleSheet.hairlineWidth /* shadow-ok: разделитель-линия между строками разбора */, borderTopColor: g.dividerTone }] : null]}>
               <Text testID="mistake-verdict-explanation" style={[styles.whyBody, { color: g.text }]}>
                 {whyText || (mistakeExplain.aiMistakeState === 'loading' ? pcopy.thinking : '')}
               </Text>
             </View>
-            <View style={[styles.whyRow, styles.whyDivider, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft }] }]}>
+            <View style={[styles.whyRow, styles.whyDivider, { borderTopWidth: StyleSheet.hairlineWidth /* shadow-ok: разделитель-линия между строками разбора */, borderTopColor: g.dividerTone }]}>
               <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
               <DiffValue g={g} segments={diff.correct} baseColor={mpColors(g).okText} style={styles.whyValue} />
             </View>

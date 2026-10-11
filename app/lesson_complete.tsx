@@ -196,8 +196,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
           borderTopRightRadius: panelRadius,
           padding: 28,
           paddingBottom: Math.max(40, bottomInset + 20),
-          borderTopWidth: 0.5,
-          borderColor: t.border,
+          // зачем («Тень» 12.10): шторку отделяет затемнение, верхняя кромка 0.5 убрана
           alignItems: 'center',
           overflow: 'hidden',
         }}>
@@ -221,8 +220,6 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                     paddingHorizontal: 12,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 0,
-                    borderColor: t.border,
                     overflow: 'hidden',
                   }}
                   onPress={handleNo}
@@ -1375,8 +1372,6 @@ export default function LessonComplete() {
           height: 36,
           borderRadius: 18,
           backgroundColor: glassFill(t.bgCard, 0.46),
-          borderWidth: 0,
-          borderColor: t.border,
           justifyContent: 'center',
           alignItems: 'center',
           overflow: 'hidden',
@@ -1453,7 +1448,7 @@ export default function LessonComplete() {
           {/* Совет отдохнуть */}
           <View style={{
             backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 14,
-            padding: 16, borderWidth: 0, borderColor: t.border,
+            padding: 16,
             width: '100%', marginBottom: 36,
             flexDirection: 'row', alignItems: 'center', gap: 12,
             overflow: 'hidden',
@@ -1492,7 +1487,6 @@ export default function LessonComplete() {
               style={{
                 width: '100%', backgroundColor: t.bgSurface,
                 borderRadius: 16, padding: 18,
-                borderWidth: 0, borderColor: t.border,
                 overflow: 'hidden',
               }}
               onPress={goNext}

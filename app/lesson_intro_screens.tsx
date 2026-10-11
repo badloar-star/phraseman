@@ -18,7 +18,7 @@ import { BlurView } from 'expo-blur';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
+import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
@@ -62,6 +62,7 @@ import {
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LessonIntroExampleRow, introExampleEnStyle } from '../components/lessons/LessonIntroGlass';
+import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
@@ -235,6 +236,9 @@ function IntroBlockCard({
         opacity,
         transform: [{ translateY }, { scale }],
         marginBottom: 14,
+        // зачем («Тень» 12.10): тень плашки на внешней обёртке — внутренняя карточка клипует блюр (overflow hidden) и тень бы обрезала
+        borderRadius: cardRadius,
+        boxShadow: plateBoxShadow(glass),
       }}
     >
       <View
@@ -244,8 +248,6 @@ function IntroBlockCard({
           {
             backgroundColor: cardBg,
             borderRadius: cardRadius,
-            borderColor: glass.glassEdge,
-            ...getVolumetricShadow(themeMode, t, 2),
           },
         ]}
       >
@@ -736,9 +738,8 @@ export default function LessonIntroScreens({
               styles.skipBtn,
               {
                 backgroundColor: introGlass.opaqueControl,
-                borderColor: introGlass.glassEdge,
+                boxShadow: nestedBoxShadow(introGlass),
                 borderRadius: 22,
-                overflow: 'hidden',
               },
             ]}
           >
@@ -776,7 +777,7 @@ export default function LessonIntroScreens({
               styles.reportFlag,
               {
                 backgroundColor: introGlass.opaqueControl,
-                borderColor: introGlass.glassEdge,
+                boxShadow: nestedBoxShadow(introGlass),
               },
             ]}
           />
@@ -911,7 +912,6 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
   },
   skipBtn: {
     width: 44,
@@ -919,7 +919,6 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
   },
   scrollContent: {
     paddingHorizontal: 18,
@@ -933,7 +932,6 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
     overflow: 'hidden',
-    borderWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
   },
   glassSheen: {

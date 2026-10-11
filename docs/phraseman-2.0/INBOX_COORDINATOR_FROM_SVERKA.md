@@ -614,3 +614,9 @@ cards-section-032 после 1d993b5c4 почти совпадает (шторк
   🟡 Во время анимации «монета летит» монета перекрывает слово «ФРАЗА» (кадр 03:04) — ожидаемая анимация награды.
 - «Слова»: нет входа в шторке режимов (Блиц, Устно, Правда/ложь, Вспомни и напиши) — не дефект.
 - Plus-состояния (итог диалога/вердикт, «Повторить», голос, микрофон, PLUS-бейдж), итог урока, рулетка, оценка, согласие ИИ: **нет достижимого состояния на Free** (Эмулятор подтвердил: dev-Plus не включается, запрещено владельцем).
+
+## 2026-10-11 ~03:40 · СВЕРКА — для Ядра: HOME-COLD cold4 после 94ff34d65 (`evidence/parity/HOME-COLD_cold4_2026-10-11.txt`, 15 строк, dev-клиент)
+Запуск 03:33:10 → video:resolved 03:33:47.9 (≈ 38 с до resolved от запуска; от first_frame 3,8 с).
+**Дубль убран ✅:** `video:start` ×1 (sinceFirstRender 352 мс; было 2405 и 4289), `video:import_done` ×1 (2331 мс; было 10,8 и 12,7 с), `video:resolved` ×1 (alive:true, 3418 мс, sinceFirstRender 3770 мс; было 15 538/15 635), `video:joined_in_flight` 0 (повторного запуска не было). first_frame→video:start теперь 352 мс.
+**Но `network_ok` = 0, а лента снова 404:** `video_feed:http_error {"status":404,"channelId":"UCIr8fwZjbDtcUlQ-IKIbndg","isOverride":true}` → `network_failed` «YouTube feed failed: 404», fallback none, показан кэш из 15 видео (alive:true, error в resolved = 404). В cold1 (01:36) и cold3 (01:59) 404 был/не был по-разному: в cold3 `network_ok` ×2 — 404 нестабилен. Теперь известно: канал `UCIr8fwZjbDtcUlQ-IKIbndg`, **isOverride=true** (канал подставлен из переопределения — возможно, dev/админ-override указывает на несуществующий канал или ленту).
+Прочее: PREMIUM-RESOLVE/RC-IDENTITY в этом прогоне вне окна (строки в файле — только HOME-COLD).

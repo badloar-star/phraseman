@@ -1,6 +1,7 @@
 import type { AppTier } from './app_tier';
 import type { Decision, Department } from './decision';
 import { classifySeverity, SEVERITY_ORDER } from './severity';
+import { redactAdminAlertText } from '../admin_alert_privacy';
 
 /**
  * Сборка сводки Джарвиса для Telegram.
@@ -74,7 +75,9 @@ function escapeHtml(value: string): string {
  * авторов нельзя: история мессенджера не стирается.
  */
 function stripContacts(value: string): string {
-  return value
+  // зачем (§CORE-0160, решение координатора): тот же общий фильтр, что у оповещений — почта, телефон, секреты;
+  // ниже — прежние правила Джарвиса (длинные токены, «uid …»).
+  return redactAdminAlertText(value)
     .replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[скрыто]')
     .replace(/\b[a-zA-Z0-9_-]{16,}\b/g, '[скрыто]')
     .replace(/\buid\s+\S+/gi, '[скрыто]');

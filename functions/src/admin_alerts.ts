@@ -97,13 +97,6 @@ async function enqueueLegacyAlert(
   }));
 }
 
-function escapeHtml(value: unknown): string {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
 /** Trim + cut to `max` chars with an ellipsis; `max <= 0` drops the field entirely. */
 function clip(value: unknown, max: number): string {
   if (max <= 0) return '';
@@ -170,93 +163,6 @@ export const adminAlertOnUserReport = onDocumentCreated(
 );
 
 // ── 2. Critical app error (app_errors, severity=critical) ────────────────────
-function redactKnownIdentifiers(value: unknown, data: Record<string, unknown>): string {
-  let out = String(value ?? '');
-  const identifiers = [data.uid, data.authUid, data.stableUid]
-    .map((identifier) => String(identifier ?? '').trim())
-    .filter(Boolean);
-  if (identifiers.length === 0) return out;
-  // Поле может прийти как сырым, так и уже HTML-escaped. Длинные
-  // варианты удаляем первыми, чтобы сырой `&` не разорвал `&amp;`.
-  const forms = [...new Set(identifiers.flatMap((identifier) => [identifier, escapeHtml(identifier)]))]
-    .sort((a, b) => b.length - a.length);
-  for (const form of forms) out = out.split(form).join('');
-  return out;
-}
-
-interface CriticalAlertLimits {
-  message: number;
-  errorName: number;
-  feature: number;
-  screen: number;
-  appVersion: number;
-  platform: number;
-  componentStack: number;
-  stack: number;
-}
-
-function buildCriticalErrorAlert(data: Record<string, unknown>, limits: CriticalAlertLimits): string {
-  const safe = (value: unknown) => redactKnownIdentifiers(value, data);
-  const message = escapeHtml(clip(safe(data.message || data.context), limits.message) || 'нет описания');
-  const errorName = clip(safe(data.errorName), limits.errorName);
-  const feature = escapeHtml(clip(safe(data.feature || data.context), limits.feature) || '—');
-  const screen = clip(safe(data.screen), limits.screen);
-  const appVersion = clip(safe(data.appVersion), limits.appVersion);
-  const platform = clip(safe(data.platform), limits.platform);
-  const stack = clip(safe(data.stack), limits.stack);
-  const tags = data.tags && typeof data.tags === 'object' && !Array.isArray(data.tags)
-    ? data.tags as Record<string, unknown>
-    : {};
-  const componentStack = clip(safe(tags.componentStack || tags.culprit), limits.componentStack);
-
-  return (
-    `🔴 <b>Critical error</b>\n\n` +
-    `Feature: ${feature}${screen ? ` · ${escapeHtml(screen)}` : ''}\n` +
-    `App: v${escapeHtml(appVersion || '?')} (${escapeHtml(platform || '?')})\n` +
-    `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
-    `${componentStack ? `Где:\n<pre>${escapeHtml(componentStack)}</pre>\n` : ''}` +
-    `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
-    `\n<i>Открой админку → App Health.</i>`
-  );
-}
-
-/** Build one critical-error Telegram message. Exported for focused contract tests. */
-export function formatCriticalErrorAlert(
-  data: Record<string, unknown>,
-  suppressedSince = 0,
-): string {
-  const attempts: CriticalAlertLimits[] = [
-    {
-      message: 600, errorName: 120, feature: 120, screen: 120,
-      appVersion: 40, platform: 20, componentStack: 700, stack: 700,
-    },
-    {
-      message: 350, errorName: 100, feature: 100, screen: 100,
-      appVersion: 40, platform: 20, componentStack: 450, stack: 250,
-    },
-    {
-      message: 180, errorName: 80, feature: 80, screen: 80,
-      appVersion: 40, platform: 20, componentStack: 360, stack: 120,
-    },
-    {
-      message: 80, errorName: 60, feature: 60, screen: 60,
-      appVersion: 30, platform: 20, componentStack: 260, stack: 0,
-    },
-  ];
-  const safeSuppressed = Number.isFinite(suppressedSince) && suppressedSince > 0
-    ? Math.min(Math.floor(suppressedSince), Number.MAX_SAFE_INTEGER)
-    : 0;
-  const suffix = safeSuppressed > 0
-    ? `\n<i>Повторов с прошлого письма: ${safeSuppressed}</i>`
-    : '';
-  let text = '';
-  for (const limits of attempts) {
-    text = `${buildCriticalErrorAlert(data, limits)}${suffix}`;
-    if (text.length <= TELEGRAM_TEXT_LIMIT) return text;
-  }
-  return text;
-}
-
 export const adminAlertOnCriticalError = onDocumentCreated(
   { document: 'app_errors/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
@@ -323,105 +229,12 @@ export const adminAlertOnCriticalError = onDocumentCreated(
   },
 );
 
-// ── 3. Content reports — every report is sent immediately ───────────────────
 /** Окно тишины для повторов одного и того же critical (контекст+uid). */
 const CRITICAL_ALERT_DEDUPE_MS = 30 * 60 * 1000;
-const TELEGRAM_TEXT_LIMIT = 4096;
 
-interface ContentReportLimits {
-  category: number;
-  screen: number;
-  dataId: number;
-  comment: number;
-  content: number;
-  answer: number;
-  userName: number;
-  deviceOS: number;
-  deviceOSVersion: number;
-  deviceModel: number;
-  appVersion: number;
-  platform: number;
-}
-
-const DEFAULT_CONTENT_REPORT_LIMITS: ContentReportLimits = {
-  category: 80,
-  screen: 120,
-  dataId: 180,
-  comment: 1000,
-  content: 1000,
-  answer: 300,
-  userName: 120,
-  deviceOS: 40,
-  deviceOSVersion: 20,
-  deviceModel: 60,
-  appVersion: 40,
-  platform: 20,
-};
-
-/** Build the full-report Telegram message for one error_reports doc. Exported for tests. */
-export function formatContentReportAlert(
-  data: Record<string, unknown>,
-  limits: ContentReportLimits = DEFAULT_CONTENT_REPORT_LIMITS,
-): string {
-  const safe = (value: unknown) => redactKnownIdentifiers(value, data);
-  const category = clip(safe(data.category), limits.category);
-  const screen = clip(safe(data.screen), limits.screen) || '—';
-  const dataId = clip(safe(data.dataId), limits.dataId);
-  const comment = clip(safe(data.comment), limits.comment) || '—';
-  const content = clip(safe(data.dataText), limits.content);
-  const answer = clip(safe(data.userAnswer), limits.answer);
-  const userLine = [
-    clip(safe(data.userName), limits.userName) || '—',
-    `стрик ${Number(data.userStreak) || 0}`,
-    data.userPremium ? 'Premium' : 'Free',
-    `${Number(data.userDaysInApp) || 0} дн. в апке`,
-  ].join(' · ');
-  const deviceLine = [
-    [clip(safe(data.deviceOS), limits.deviceOS), clip(safe(data.deviceOSVersion), limits.deviceOSVersion)].filter(Boolean).join(' '),
-    clip(safe(data.deviceModel), limits.deviceModel),
-    `app v${clip(safe(data.appVersion), limits.appVersion) || '?'} (${clip(safe(data.platform), limits.platform) || '?'})`,
-  ].filter(Boolean).join(' · ');
-
-  const title = category && category !== 'free_text'
-    ? `📝 <b>Content-репорт</b> · ${escapeHtml(category)}`
-    : `📝 <b>Content-репорт</b>`;
-  const lines = [title, '', `💬 ${escapeHtml(comment)}`, ''];
-  lines.push(`Экран: <b>${escapeHtml(screen)}</b>${dataId ? ` · <code>${escapeHtml(dataId)}</code>` : ''}`);
-  if (content) lines.push(`<pre>${escapeHtml(content)}</pre>`);
-  if (answer) lines.push(`Ответ юзера: ${escapeHtml(answer)}`);
-  lines.push('', `👤 ${escapeHtml(userLine)}`, `📱 ${escapeHtml(deviceLine)}`, '', '<i>Открой админку → Reports.</i>');
-  return lines.join('\n');
-}
-
-/**
- * Same as formatContentReportAlert, but guarantees the Telegram 4096-char limit
- * by re-clipping progressively harder (never slices mid-tag). Exported for tests.
- */
-export function formatContentReportAlertSafe(data: Record<string, unknown>): string {
-  const attempts: ContentReportLimits[] = [
-    DEFAULT_CONTENT_REPORT_LIMITS,
-    { ...DEFAULT_CONTENT_REPORT_LIMITS, comment: 350, content: 350, answer: 100 },
-    {
-      category: 60, screen: 80, dataId: 120,
-      comment: 100, content: 0, answer: 0,
-      userName: 80, deviceOS: 30, deviceOSVersion: 20, deviceModel: 50,
-      appVersion: 30, platform: 20,
-    },
-    {
-      category: 0, screen: 40, dataId: 0,
-      comment: 80, content: 0, answer: 0,
-      userName: 60, deviceOS: 20, deviceOSVersion: 10, deviceModel: 20,
-      appVersion: 20, platform: 10,
-    },
-  ];
-  let text = '';
-  for (const limits of attempts) {
-    text = formatContentReportAlert(data, limits);
-    if (text.length <= TELEGRAM_TEXT_LIMIT) return text;
-  }
-  return text;
-}
-
+// ── 3. Content reports — every report is sent immediately ───────────────────
+// зачем (§CORE-0160): прямые форматтеры formatCriticalErrorAlert / formatContentReportAlert(Safe) удалены —
+// вызовов не было, а они печатали userName мимо белого списка. Все оповещения идут через admin_alert_privacy.
 /**
  * Падение/оживание крона → Telegram (владелец 2026-08-29: «панель видна,
  * только когда я в неё смотрю — упавший крон должен будить сам»).

@@ -69,6 +69,17 @@ describe('Jarvis telegram digest — short, honest, safe to render as HTML', () 
     expect(text).not.toContain('abc123');
   });
 
+  // §CORE-0160: дайджест идёт через общий фильтр оповещений — телефон тоже скрыт.
+  test('never leaks a phone number into the message', () => {
+    const text = buildTelegramDigest({
+      decisions: [decision({ finding: 'Перезвонить +7 912 345-67-89 сегодня' } as Partial<Decision>)],
+      appTier: 'growth',
+      departmentErrors: [],
+    });
+    expect(text).not.toContain('345-67-89');
+    expect(text).toContain('[телефон скрыт]');
+  });
+
   test('P0 findings sort ahead of lower severities, even if reported later', () => {
     // зачем: при обрезке до пяти находок важное не должно потеряться из-за
     // порядка, в котором департаменты просто вернули решения.

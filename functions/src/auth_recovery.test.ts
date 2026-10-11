@@ -1178,21 +1178,19 @@ describe('authConfirmRecoveryCode', () => {
       handoffEligibleUntil: NOW + 10 * 60 * 1000,
     });
 
-    // Telegram-алерт: есть маски, нет email.
+    // Telegram-алерт (§CORE-0160): только факт и количества — ни uid, ни его фрагментов, ни email.
     const { sendTelegramAlert } = require('./admin_alerts');
     expect(sendTelegramAlert).toHaveBeenCalledTimes(1);
     const alertText = String(sendTelegramAlert.mock.calls[0][1]);
     expect(alertText).toContain('🔐');
-    expect(alertText).toContain('gle-uid'); // хвост нового provider uid
-    expect(alertText).toContain('Предыдущие uid: 1');
+    expect(alertText).not.toContain('gle-uid');
+    expect(alertText).toContain('Старых uid: 1');
     expectNoSensitiveValues(alertText);
     expect(alertText).not.toContain(STABLE);
     expect(alertText).not.toContain('new-google-uid');
     expect(alertText).not.toContain('old-provider-uid');
     const alertCodeValues = Array.from(alertText.matchAll(/<code>(.*?)<\/code>/g), (match) => match[1]);
-    expect(alertCodeValues).toHaveLength(2);
-    expect(alertCodeValues[0]).toMatch(/^stab.+-123$/);
-    expect(alertCodeValues[1]).toMatch(/^.+gle-uid$/);
+    expect(alertCodeValues).toHaveLength(0);
 
     // Повторное использование кода запрещено.
     writeLog.length = 0;

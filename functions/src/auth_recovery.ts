@@ -443,19 +443,6 @@ function readLinkedAuth(userData: FirebaseFirestore.DocumentData): {
   };
 }
 
-function escapeTelegramHtml(value: unknown): string {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
-/** Маска stable_id для алертов: только края UUID, без PII. */
-function maskStableId(stableId: string): string {
-  if (stableId.length <= 8) return '***';
-  return `${stableId.slice(0, 4)}…${stableId.slice(-4)}`;
-}
-
 function buildRecoveryEmailText(code: string): string {
   // Двуязычное письмо (RU + EN): код крупно, TTL, «если не вы — игнорируйте».
   return [
@@ -982,14 +969,11 @@ export const authConfirmRecoveryCode = onCall(CONFIRM_RECOVERY_CALLABLE_OPTIONS,
 
   if (outcome.kind === 'success') {
     try {
+      // зачем (§CORE-0160, решение координатора): в Telegram ни uid, ни его фрагментов — только факт и количества.
       const text =
-      `🔐 <b>Восстановление аккаунта</b>\n\n` +
-      `Stable: <code>${escapeTelegramHtml(maskStableId(stableId))}</code>\n` +
-      `Новый провайдер: <code>…${escapeTelegramHtml(newUid.slice(-8))}</code>\n` +
-      `Предыдущие uid: ${outcome.previousProviderUids.length}` +
-      (outcome.previousStableIdDisplacement
-        ? `\nВытеснён stable: <code>${escapeTelegramHtml(maskStableId(outcome.previousStableIdDisplacement))}</code>`
-        : '');
+      `🔐 <b>Вход восстановлен</b>\n\n` +
+      `Старых uid: ${outcome.previousProviderUids.length}` +
+      (outcome.previousStableIdDisplacement ? `\nВытеснен другой аккаунт: да` : '');
       await sendTelegramAlert(
         ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '',
         text,

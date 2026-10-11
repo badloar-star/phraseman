@@ -54,7 +54,10 @@ export const ADMIN_ALERT_DETAIL_LABELS = Object.freeze([
 const COMMON_DETAIL_LABELS = ['Экран', 'Устройство', 'ОС', 'Язык обучения', 'Ник в событии'];
 const MONEY_DETAIL_LABELS = ['Период подписки', 'Причина отмены', 'Причина истечения', 'Причина возврата', 'Число продлений', 'Автопродление', 'Окончание подписки'];
 const RATING_DETAIL_LABELS = ['Отзыв', 'Урок / сессия'];
-const ERROR_DETAIL_LABELS = ['Ошибка', 'Сообщение ошибки', 'Контекст', 'Стек ошибки', 'Повторов'];
+const ERROR_DETAIL_LABELS = ['Ошибка', 'Сообщение ошибки', 'Контекст', 'Где упало', 'Стек ошибки', 'Повторов'];
+// зачем (§CORE-0160, решение координатора): текст человека из сигнала безопасности — самый чувствительный;
+// в Telegram только начало, полный — в админке.
+const DETAIL_TEXT_CAPS: Readonly<Record<string, number>> = Object.freeze({ 'Текст пользователя': 300 });
 const REFERRAL_DETAIL_LABELS = ['Награда'];
 const DETAIL_POLICY: Partial<Readonly<Record<AdminAlertType, readonly string[]>>> = Object.freeze({
   contentReport: ['Текст репорта', 'Контент', 'Ответ пользователя', 'Стрик', 'Дней в приложении', 'Доступ'],
@@ -329,7 +332,7 @@ export function sanitizeAdminAlertPayload(
       const cleaned = redactAdminAlertText(value).trim();
       if (!cleaned) return [];
       if (remaining <= 0) return [{ label: String(label), value: '[Лимит пересылки текста — остальные данные в админке]' }];
-      const limit = Math.min(50_000, remaining);
+      const limit = Math.min(DETAIL_TEXT_CAPS[String(label)] ?? 50_000, remaining);
       let prefix = cleaned.slice(0, limit);
       if (/[\uD800-\uDBFF]$/.test(prefix)) prefix = prefix.slice(0, -1);
       remaining -= prefix.length;

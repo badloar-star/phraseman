@@ -3,7 +3,9 @@ import { join, relative } from 'path';
 import { ADMIN_ALERT_IDS } from './admin_alert_catalog';
 import { redactAdminAlertText, renderAdminAlertMessages } from './admin_alert_privacy';
 
-// зачем (§CORE-0159, решение координатора 11.10): в Telegram не уходят почта, телефон и uid. Оповещения
+// ПРАВИЛО (§CORE-0159/§CORE-0160, решение координатора 11.10): в Telegram — ни почты, ни телефона, ни uid
+// (и его фрагментов); публичный ник можно, кроме оповещений о сбоях (там и ника нет).
+// зачем: в Telegram не уходят почта, телефон и uid. Оповещения
 // идут через очередь с белым списком (admin_alert_privacy); прямая отправка мимо него — только у известных
 // рабочих каналов (поддержка, бот оплаты, восстановление входа, Джарвис). Новый прямой отправитель
 // обязан идти через enqueueAdminAlert — иначе этот сторож падает.
@@ -56,4 +58,27 @@ describe('nothing personal reaches Telegram', () => {
       expect(text).not.toContain('7700 900123');
     },
   );
+
+  it('the safety-flag user text is cut to about 300 characters (full text stays in the admin panel)', () => {
+    const userText = 'а'.repeat(2000);
+    const text = renderAdminAlertMessages({ eventType: 'safetyFlag', occurredAtMs: 1725000000000,
+      payload: { details: [{ label: 'Текст пользователя', value: userText }] } as never }).join('\n');
+    expect(text).not.toContain('а'.repeat(301));
+    expect(text).toContain('а'.repeat(300));
+  });
+
+  it('error alerts still say where the app crashed (ErrorBoundary component stack)', () => {
+    const text = renderAdminAlertMessages({ eventType: 'criticalError', occurredAtMs: 1725000000000,
+      payload: { details: [{ label: 'Где упало', value: 'in RecyclerViewComponent' }] } as never }).join('\n');
+    expect(text).toContain('RecyclerViewComponent');
+  });
+
+  it('the account-recovery alert carries no uid fragments; dead direct formatters stay deleted', () => {
+    const recovery = readFileSync(join(SRC, 'auth_recovery.ts'), 'utf8');
+    expect(recovery).not.toMatch(/maskStableId|newUid\.slice\(-8\)|Новый провайдер/);
+    expect(recovery).toContain('Старых uid: ${outcome.previousProviderUids.length}');
+    const alerts = readFileSync(join(SRC, 'admin_alerts.ts'), 'utf8');
+    expect(alerts).not.toMatch(/export function format(CriticalErrorAlert|ContentReportAlert)/);
+    expect(readFileSync(join(SRC, 'jarvis', 'telegram_digest.ts'), 'utf8')).toContain('return redactAdminAlertText(value)');
+  });
 });

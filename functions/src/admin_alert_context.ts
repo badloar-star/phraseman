@@ -93,7 +93,9 @@ function eventDetails(eventType: AdminAlertType, data: AlertSourceRow): AdminAle
       if (typeof data.userPremium === 'boolean') add('Доступ', data.userPremium ? 'Premium' : 'Free');
       break;
     case 'criticalError': case 'appErrorDigest': case 'paymentWebhookFailure':
-      pick('Ошибка', 'errorName'); pick('Сообщение ошибки', 'message'); pick('Контекст', 'context', 'feature'); pick('Стек ошибки', 'stack');
+      pick('Ошибка', 'errorName'); pick('Сообщение ошибки', 'message'); pick('Контекст', 'context', 'feature');
+      // зачем (§CORE-0160): место падения из ErrorBoundary — его печатал только удалённый прямой форматтер (регрессия 31.08, «react · root»).
+      pick('Где упало', 'tags.componentStack', 'tags.culprit'); pick('Стек ошибки', 'stack');
       break;
     case 'lessonRating': case 'vocabDialogueRating': case 'arenaRating':
       pick('Отзыв', 'message', 'comment'); pick('Урок / сессия', 'entityLabel', 'entityId'); break;

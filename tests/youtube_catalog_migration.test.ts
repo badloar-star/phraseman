@@ -47,9 +47,10 @@ describe("YouTube catalog migration and rollback bridge", () => {
     );
     const legacyRuntime = read("app/lingman_youtube.ts");
     expect(legacyRuntime).toContain("mergePinnedVideos(pinned, feed)");
-    // зачем (11.10): чтение кэша вынесено в переменную `cached` — запасной путь тот же: кэш → встроенные видео канала.
-    expect(legacyRuntime).toMatch(
-      /readCachedVideos\(\)\)?;?[\s\S]{0,600}\?\? \(isDefaultChannel \? FALLBACK_VIDEOS : \[\]\)/,
-    );
+    // зачем (11.10, §CORE-0170): при сбое RSS лента собирается явными ветками — свежий кэш → каталог → старый кэш →
+    // встроенные видео ТОЛЬКО своего канала (переопределённому каналу чужой список не показываем). Смысл прежний.
+    expect(legacyRuntime).toContain('const cachedEntry = await readCachedVideoEntry();');
+    expect(legacyRuntime).toContain("if (cachedEntry) return build(cachedEntry.videos, 'feed_cache_stale');");
+    expect(legacyRuntime).toContain("return build(isDefaultChannel ? FALLBACK_VIDEOS : [], isDefaultChannel ? 'builtin' : 'none');");
   });
 });

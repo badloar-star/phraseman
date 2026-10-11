@@ -91,8 +91,11 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
       iconTint: g.level === 'calm' ? g.secondary : g.accentText,
       glowA: g.bgGlow[0],
       glowB: g.bgGlow[1],
-      smoke: g.level === 'max' ? solid(g.cardSmoke[0]) : '#FFFFFF',
-      smokeBoost: g.level === 'max' ? 4 : 1,
+      // зачем (приказ владельца 14.10: «тёмные пятна в светлых темах проявляются на белом»): в светлом «Максимуме» дымка брала solid(cardSmoke[0]); у градиентных
+      // тем cardSmoke = #00000000, solid() отбрасывал альфу → ЧЁРНАЯ дымка ×4 на белой плашке; у тонированных — серо-голубые пятна. Правило светлых тем:
+      // внутри плашки блик только светлее неё — дымка всегда белая, без усиления.
+      smoke: '#FFFFFF',
+      smokeBoost: 1,
       tileFrom: g.accentTile,
       tileTo: g.opaqueCard,
       sheet: g.opaqueSheet,

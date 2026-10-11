@@ -8,6 +8,8 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import type { LingmanYoutubeVideo } from '../../../app/lingman_youtube';
 import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
+import { colorWithAlpha } from '../../v2/plateAlpha';
+import { HOME_PLATE_ALPHA } from './homePlate';
 
 type Props = {
   videos: readonly LingmanYoutubeVideo[];
@@ -53,7 +55,7 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
               accessibilityRole="button"
               accessibilityLabel={`${title}: ${video.title}`}
               onPress={() => setActiveVideoId(video.id)}
-              style={[s.card, { backgroundColor: p.glassRaised }]}
+              style={[s.card, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]}
             >
               <Image source={{ uri: video.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={100} accessible={false} />
               <View style={s.cardContent}>
@@ -67,8 +69,8 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
         // при любом статусе без данных те же скелетоны резервной геометрии 246x138.
         // status оставлен в Props для совместимости с Home; повтор загрузки — на стороне Home.
         <View testID="home-v2-video-loading" style={s.placeholderRow} accessibilityLabel={title}>
-          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised }]} />
-          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised }]} />
+          <View style={[s.placeholderCard, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]} />
+          <View style={[s.placeholderCard, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]} />
         </View>
       )}
       {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} onClose={() => setActiveVideoId(null)} /> : null}

@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
-import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
+import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
 
 /**
@@ -15,10 +15,10 @@ import type { HomeFeatureTile } from './home_v2_types';
  */
 export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
   const p = useV2Palette();
-  const glass = useV2GlassStyle();
+  const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
-      {tiles.map((tile, index) => (
+      {tiles.map((tile) => (
         <V2Pressable
           key={tile.key}
           testID={`home-quick-tile-${tile.key}`}
@@ -29,7 +29,6 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           outerStyle={s.tileSlot}
           style={[s.tile, glass]}
         >
-          <V2GlassSheen seed={index + 2} />
           <View pointerEvents="none" style={s.art}>
             <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
           </View>

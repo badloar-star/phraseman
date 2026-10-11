@@ -5,6 +5,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useV2Palette } from './useV2Palette';
 import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, useShadowGlass } from './ShadowSurface';
+import { colorWithAlpha } from './plateAlpha';
 
 /**
  * «Дымка» стекла — вторая серия референсов владельца 24.09 («вот такую
@@ -76,10 +77,12 @@ type IconTileProps = {
   /** 'square' — скруглённый квадрат (строки списков), 'circle' — круг. */
   shape?: 'square' | 'circle';
   style?: StyleProp<ViewStyle>;
+  /** Абсолютная альфа фона плитки (0..1). Нет — как раньше (непрозрачный). Только фон: значок остаётся 100 %. Нужен Главной (приказ владельца 11.10 19:2x). */
+  bgAlpha?: number;
 };
 
 /** Стеклянная плашка со значком тёплого оттенка — как у строк референса. */
-export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize = 22, shape = 'square', style }: IconTileProps) {
+export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize = 22, shape = 'square', style, bgAlpha }: IconTileProps) {
   const p = useV2Palette();
   const g = useShadowGlass();
   const radius = shape === 'circle' ? size / 2 : Math.round(size * 0.3);
@@ -92,7 +95,7 @@ export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize =
           borderRadius: radius,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: p.glassRaised,
+          backgroundColor: bgAlpha === undefined ? p.glassRaised : colorWithAlpha(p.glassRaised, bgAlpha),
           boxShadow: nestedBoxShadow(g), // стиль «Тень»: вложенная плитка — малая тень, без кольца
           overflow: 'hidden',
         },
@@ -101,7 +104,7 @@ export const V2IconTile = memo(function V2IconTile({ name, size = 44, iconSize =
     >
       <LinearGradient
         pointerEvents="none"
-        colors={[p.tileFrom, p.tileTo]}
+        colors={bgAlpha === undefined ? [p.tileFrom, p.tileTo] : [colorWithAlpha(p.tileFrom, bgAlpha), colorWithAlpha(p.tileTo, bgAlpha)]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={StyleSheet.absoluteFill}

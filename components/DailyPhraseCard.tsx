@@ -58,7 +58,9 @@ import { useRequestedFeatureIntro } from '../hooks/use_requested_feature_intro';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
-import { V2GlassSheen, V2IconTile, useV2GlassStyle } from './v2/V2Glass';
+import { V2IconTile } from './v2/V2Glass';
+import { colorWithAlpha } from './v2/plateAlpha';
+import { HOME_PLATE_ALPHA, useHomePlateStyle } from './home/v2/homePlate';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
@@ -99,7 +101,7 @@ function DailyPhraseCard({
   const homeV2 = variant === 'homeV2';
   const homeAdditional = variant === 'homeAdditional' || homeV2;
   const v2 = useV2Palette();
-  const v2Glass = useV2GlassStyle();
+  const v2Glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
   const phraseOfDayArt = getHomeSupportingArt(themeMode).phraseOfDay;
@@ -642,7 +644,6 @@ function DailyPhraseCard({
           accessibilityLabel={`${title}. ${phrase.english}. ${phraseCopy.literal}`}
           style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
-          <V2GlassSheen seed={4} />
           {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
               картинка сама служит иконкой-цитатой, без второго графического слоя. */}
           <Image source={phraseArt} style={styles.v2Art} contentFit="contain" accessible={false} />
@@ -663,7 +664,7 @@ function DailyPhraseCard({
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
                 onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
               >
                 <Ionicons name="volume-medium-outline" size={18} color={v2.iconTint} />
               </Pressable>
@@ -675,7 +676,7 @@ function DailyPhraseCard({
                 // зачем: сохранить фразу можно только после ответа на вопрос дня —
                 // звезда открывает шторку, где закладка и сам вопрос.
                 onPress={openDetails}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
               >
                 <Ionicons name="star-outline" size={18} color={v2.iconTint} />
               </Pressable>

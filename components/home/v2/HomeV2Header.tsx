@@ -4,7 +4,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import { FlowText } from '../../text-integrity/FlowText';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
-import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
+import { useHomePlateLog, useHomePlateStyle } from './homePlate';
 import KitSpinner from '../../v2/KitSpinner';
 
 type StatChip = Readonly<{
@@ -32,14 +32,14 @@ type Props = {
 /** One compact utility row; the Home title and slogan are intentionally absent. */
 export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing = false }: Props) {
   const p = useV2Palette();
-  const glass = useV2GlassStyle();
+  const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
+  useHomePlateLog(); // [HOME-PLATE]: один раз на показ Главной
   return (
     <View testID="home-v2-header" style={s.root}>
       <View style={s.topRow}>
         <View style={s.stats}>
-          {stats.map((stat, index) => {
+          {stats.map((stat) => {
             const content = <>
-              <V2GlassSheen seed={index} />
               <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={p.text} /> : stat.icon}</View>
               <View style={s.statCopy}>
                 <FlowText testID={`${stat.testID}-value`} provenance="authored" style={[s.statValue, { color: p.text }]}>{stat.value}</FlowText>

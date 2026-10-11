@@ -5,7 +5,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
-import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
+import { colorWithAlpha } from '../../v2/plateAlpha';
+import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import { nestedBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
 
 type Props = {
@@ -38,7 +39,7 @@ type Props = {
  */
 export default function HomeV2ContinueCard({ title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
-  const glass = useV2GlassStyle();
+  const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
@@ -54,12 +55,11 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
       scaleTo={0.98}
       style={[s.card, glass]}
     >
-      <V2GlassSheen seed={0} />
       <View pointerEvents="none" style={[s.art, pending ? s.artPending : null]}>
         <Image source={art} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} accessible={false} />
         {badge && !pending ? (
           <View
-            style={[s.badge, { backgroundColor: p.control, boxShadow: nestedBoxShadow(shadowGlass) }]}
+            style={[s.badge, { backgroundColor: colorWithAlpha(p.control, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}
           >
             <Text style={[s.badgeText, { color: p.text }]}>{badge}</Text>
           </View>
@@ -81,7 +81,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
           ) : (
             <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
           )}
-          <View style={[s.arrow, { backgroundColor: p.glassRaised, boxShadow: nestedBoxShadow(shadowGlass) }]}>
+          <View style={[s.arrow, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }]}>
             <Ionicons name="chevron-forward" size={16} color={p.text} />
           </View>
         </View>

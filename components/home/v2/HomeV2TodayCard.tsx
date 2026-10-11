@@ -4,7 +4,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
-import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../../v2/V2Glass';
+import { V2IconTile } from '../../v2/V2Glass';
+import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -31,11 +32,10 @@ type Props = {
  */
 export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }: Props) {
   const p = useV2Palette();
-  const glass = useV2GlassStyle();
-  const rowGlass = useV2GlassStyle(true);
+  // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
+  const rowGlass = useHomePlateStyle(true);
   return (
-    <View testID="home-v2-today" style={[s.card, glass]}>
-      <V2GlassSheen seed={3} />
+    <View testID="home-v2-today" style={s.card}>
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
       <View style={s.list}>
         {tasks.map((task, index) => {
@@ -55,13 +55,12 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
               scaleTo={0.98}
               style={[s.row, rowGlass]}
             >
-              <V2GlassSheen seed={index + 1} />
               <View
                 style={[s.check, task.done ? { backgroundColor: p.iconTint, borderColor: p.iconTint } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
               >
                 {task.done ? <Ionicons name="checkmark" size={14} color={p.card} /> : null}
               </View>
-              <V2IconTile name={KIND_ICON[task.kind]} size={36} iconSize={19} />
+              <V2IconTile name={KIND_ICON[task.kind]} size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
               <View style={s.copy}>
                 <Text style={[s.taskTitle, { color: p.text }]}>{task.title}</Text>
                 {task.subtitle ? (
@@ -81,9 +80,8 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
             scaleTo={0.98}
             style={[s.row, rowGlass]}
           >
-            <V2GlassSheen seed={tasks.length + 1} />
             <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
-            <V2IconTile name="clipboard-outline" size={36} iconSize={19} />
+            <V2IconTile name="clipboard-outline" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
             <View style={s.copy}>
               <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
               {surveyRow.subtitle ? (

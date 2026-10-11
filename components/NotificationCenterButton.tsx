@@ -39,6 +39,7 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
+import { colorWithAlpha } from './v2/plateAlpha';
 import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -624,7 +625,7 @@ function NotificationCenterButton({
         accessibilityLabel={combinedUnreadCount > 0 ? `${copy.title}: ${combinedUnreadCount}` : copy.title}
         onPress={open}
         style={styles.headerPressable}
-        contentStyle={[styles.headerButton, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }]}
+        contentStyle={[styles.headerButton, { backgroundColor: colorWithAlpha(v2.glassRaised, 0.5), borderColor: v2.stroke }]} // зачем: приказ владельца 11.10 19:2x — фон кнопки Главной 50 % (альфа цвета, значок и бейдж 100 %)
       >
         {/* зачем (2.0, референс владельца 24.09): круглая кнопка на графите,
             непрочитанное — светлая точка, число уходит в подпись для скринридера. */}

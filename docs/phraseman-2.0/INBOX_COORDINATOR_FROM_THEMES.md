@@ -8,6 +8,27 @@
 - **Вывод пока (ограниченный):** даже со срезанными Learning V2 и лабораториями главный процесс набирает ~3 ГБ за первые 2 минуты — тот же скачок, что в dev. Значит, основной вес не в контенте Learning V2 (моя оценка 37 % веса проекта этого не объясняет); подозрение смещается на `node_modules`/карты/сам бандлер. Это ещё одна точка, не плато — финал по 10–15-й минуте, замеряет координатор.
 - Моя причина раздувания по коду по-прежнему **не найдена**; следующий дешёвый шаг — E1 (куча 4096) и E5.
 
+## 14.10 ночь — стиль «Тень» без обводок на экранах первого выпуска: пачки (база сторожа 266 → 229)
+
+Все пачки: контейнеры без рамок, borderColor убран вместе с borderWidth; разделители строк — линия-View высотой в волосок (новый `components/v2/RowDivider.tsx`, edge top/bottom/left), а не borderTop/Left; кнопки и окна отделяет тон + малая внешняя тень (`nestedBoxShadow`/`plateBoxShadow`). Индикаторы (кольцо радио, пульс последней энергии, треугольная стрелка-указатель) помечены `shadow-ok: <причина>`. Базу снижал скриптом только по тронутым файлам. Тесты, которые требовали рамки, приведены к решению владельца 12.10.
+
+| пачка | коммит | что |
+|---|---|---|
+| Энергия | `740a1f531` | NoEnergyModal (окно, «Позже»), EnergyInfoPopover (окно, внешний контур стрелки удалён), EnergyMistakeHud (shadow-ok) |
+| Настройки | `378737b0a` | SettingsGlassRows (разделители групп), settings_themes (разделители, кольцо радио) |
+| Пейволы | `b392f401c` | PaywallBenefitComparison, PaywallProofCards (преимущества, FAQ, личная статистика), paywallShared (кнопка закрытия без кольца) |
+| Диалоги + Карточки | `5a8cace60` | итог диалога (цели, ошибки, статистика — вертикальный разделитель), панель категорий карточек |
+| Карточки | `14846af3f` | FlashcardDetailsBody (направляющая блоков) |
+| Диалоги + ИИ | `fd9c5cf98` | DialogScenarioTile (строка, пилюля уровня), AiLimitUpsellCard |
+
+Область по списку координатора (Карточки, Диалоги, Шпиль, Настройки, пейволы, энергия) теперь по сторожу: **0 обводок вне пометок**. Оставлено осознанно:
+- `app/settings_notifications.tsx:76` — подсветка выбранной строки колеса выбора времени: это защищённый кусок SimplePicker (тест `settings_notifications_liquid_glass` требует байт-в-байт), не трогал.
+- `EnergyMistakeHud` — пилюля с кромкой 1px **по макету** energy-modes-states.html (исключение PhraseMan 2.0 24.09) помечена shadow-ok: это прямой конфликт «макет = эталон» и «Тень без обводок» (приказ владельца 12.10) — решение за владельцем/координатором; снять — одна строка.
+- `FlashcardsHubScreen.tsx` (Макеты), онбординг, файлы аккаунта и приватности — не трогал.
+
+Осталось в базе 229 вне названной области (крупнейшие): `app/ai_companion_session` 14, `VipSurveyModal` 13, `ExamResultPreviewAdminModal` 12, `DailyPhraseCard` 9 (шторка деталей, не Главная), `hint` 8, `achievements_screen` 7, `ActionToast` 6, `AppMessagesInbox` 6, `ExplainReportButton` 6, `FriendStudyInviteModal` 6, `lesson_help_theory_*` 12, `VerbLetterBank` 5, `NotificationCenterButton` 3 (центр уведомлений), `FeatureIntroModal` 2. Скажи, какие из них брать следующими (VerbLetterBank/ActionToast/FeatureIntroModal/ExplainSheet встречаются на экранах первого выпуска).
+
+Прогнано: ратчет `shadow_style_no_container_borders` зелёный после каждой пачки; контракты затронутых разделов зелёные. Красные не из моих пачек (чужие свежие файлы): `navigation_back_underlay_contract` (`coin_rank_catalog`, `EnergyAttemptsHud`), `results_coins_profile_liquid_glass…` (EnergyBar в swipe), `gustav_french_*`, `interaction_responsiveness_contract`.
 ## 14.10 ночь — обводки по сверке снимков 6b3890202 сняты: таб-бар, колокольчик, «Фраза дня» — `19d104523`
 
 - **Таб-бар (`components/v2/V2TabBar.tsx`)**: удалены SVG-ободок капсулы (`BarRim`, градиент `v2TabRim`), вторая кромка (`innerRim`, `borderWidth:1 rgba(255,255,255,.045)`) и рамка вокруг активной вкладки (stroke-Rect и градиент `v2TabCapRim` в `CapFill`). Остались тон стекла темы, заливка активной плашки (`CapFill`, не гаснет вправо) и внешняя тень бара.

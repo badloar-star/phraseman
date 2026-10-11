@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     height: 34,
     borderRadius: 17,
     paddingHorizontal: 11,
-    borderWidth: 1, // guard-ok: тонкая 1px кромка пилюли — как на макете energy-modes-states.html (исключение PhraseMan 2.0, 24.09)
+    borderWidth: 1, // shadow-ok: тонкая 1px кромка пилюли по макету energy-modes-states.html (исключение PhraseMan 2.0, 24.09; решение владельца 12.10 vs макет — вопрос координатору); guard-ok: тонкая 1px кромка пилюли — как на макете energy-modes-states.html (исключение PhraseMan 2.0, 24.09)
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   zero: { opacity: 0.75 },
-  warnRing: { ...StyleSheet.absoluteFillObject, borderRadius: 17, borderWidth: 1.5 }, // guard-ok: красный пульс последней энергии, кромка 1.5px — по макету (gwarn); typo-exempt: кромка пульса 1.5 по макету energy-modes-states.html
+  warnRing: { ...StyleSheet.absoluteFillObject, borderRadius: 17, borderWidth: 1.5 }, // shadow-ok: красный пульс-индикатор последней энергии (состояние, не контейнер); guard-ok: красный пульс последней энергии, кромка 1.5px — по макету (gwarn); typo-exempt: кромка пульса 1.5 по макету energy-modes-states.html
   valueBox: { minWidth: 10, alignItems: 'center', justifyContent: 'center' },
   value: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center', fontVariant: ['tabular-nums'] },
   fly: { position: 'absolute', alignSelf: 'center', top: 6, zIndex: 9 },

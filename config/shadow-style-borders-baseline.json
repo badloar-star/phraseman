@@ -1,5 +1,5 @@
 {
-  "total": 266,
+  "total": 252,
   "files": {
     "app/(tabs)/community.tsx": 1,
     "app/(tabs)/settings.tsx": 1,
@@ -33,8 +33,6 @@
     "components/dialogs/DialogGoalsSheet.tsx": 1,
     "components/dialogs/DialogueV2BriefingScreen.tsx": 1,
     "components/DialogScenarioTile.tsx": 4,
-    "components/energy/EnergyInfoPopover.tsx": 8,
-    "components/energy/EnergyMistakeHud.tsx": 2,
     "components/ErrorBoundary.tsx": 2,
     "components/ExamResultPreviewAdminModal.tsx": 12,
     "components/ExplainButton.tsx": 1,
@@ -61,7 +59,6 @@
     "components/MaintenanceGate.tsx": 4,
     "components/MistakeEli5Modal.tsx": 1,
     "components/mistakes-panel/PracticeKit.tsx": 2,
-    "components/NoEnergyModal.tsx": 4,
     "components/NotificationCenterButton.tsx": 3,
     "components/paywall/PaywallBenefitComparison.tsx": 3,
     "components/paywall/PaywallProofCards.tsx": 3,

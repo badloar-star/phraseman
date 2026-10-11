@@ -36,7 +36,8 @@ test('energy popover uses the 13-theme opaque liquid-glass material and real ico
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /backgroundColor: glass\.opaqueCard/);
   assert.match(source, /colors=\{\[glass\.selected, 'transparent'\]\}/);
-  assert.match(source, /borderColor: glass\.glassEdge/);
+  // зачем (владелец 12.10, стиль «Тень»): у окна нет обводки — отделяют тон и тень обёртки cardShadow.
+  assert.doesNotMatch(source, /borderColor: glass\.glassEdge/);
   assert.match(source, /styles\.cardShadow/);
   assert.match(source, /<Ionicons name="flash" size=\{18\}/);
   assert.doesNotMatch(source, /⚡|♾️|BlurView|glassFill/);

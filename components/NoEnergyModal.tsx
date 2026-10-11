@@ -38,6 +38,7 @@ import { chargesEnergyOnMistake, useEnergyMode } from '../app/energy_mode';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, plateBoxShadow } from './v2/ShadowSurface';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
 
@@ -495,7 +496,7 @@ function NoEnergyModal({
               laterPress();
             }}
             activeOpacity={0.76}
-            style={[sx.action, { borderWidth: 1, borderColor: glass.glassEdge }]}
+            style={[sx.action, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
           >
             <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
           </TouchableOpacity>
@@ -528,7 +529,7 @@ function NoEnergyModal({
         laterPress();
       }}
       activeOpacity={0.76}
-      style={[sx.action, sx.actionStacked, { borderWidth: 1, borderColor: glass.glassEdge }]}
+      style={[sx.action, sx.actionStacked, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень
     >
       <Text style={[sx.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
     </TouchableOpacity>
@@ -626,7 +627,8 @@ function NoEnergyModal({
   const variantCard = variant === 'learn' ? sx.learnCard : variant === 'course' ? sx.courseCard : null;
   const variantContent = variant === 'learn' ? sx.learnContent : variant === 'course' ? sx.courseContent : null;
 
-  const cardSurface = { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge };
+  // зачем (владелец 12.10, стиль «Тень» без обводок): плашку отделяют тон и малая внешняя тень (рамки у окна нет).
+  const cardSurface = { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) };
 
   if (neededSheetMode) {
     return (
@@ -774,7 +776,6 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignSelf: 'center',
     borderRadius: 26,
-    borderWidth: 1,
   },
   classicCard: {
     maxHeight: '100%',

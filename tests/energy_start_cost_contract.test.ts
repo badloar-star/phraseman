@@ -114,7 +114,8 @@ describe('numeric energy v2 contract', () => {
     expect(bar).toContain('visible={popoverVisible}');
     expect(popoverLayout).toContain('MAX_POPOVER_WIDTH = 220');
     expect(popover).toContain('backgroundColor: glass.opaqueCard');
-    expect(popover).toContain('borderColor: glass.glassEdge');
+    // зачем (владелец 12.10, стиль «Тень»): у окна нет обводки — отделяют тон и тень обёртки cardShadow.
+    expect(popover).not.toContain('borderColor: glass.glassEdge');
     expect(popover).toContain('layout.arrowLeft');
     expect(popover).toContain('1 энергия каждые');
     expect(popover).toContain("ru: 'Через'");

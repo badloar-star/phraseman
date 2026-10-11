@@ -9,7 +9,9 @@ const source = readFileSync(new URL('../components/NoEnergyModal.tsx', import.me
 test('NoEnergyModal takes every surface from the active Liquid Glass tokens', () => {
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
   assert.ok(source.includes('glass.opaqueSheet'), 'opaque base, no see-through hole');
-  assert.ok(source.includes('glass.glassEdge'), 'hairline glass edge');
+  // зачем (владелец 12.10, стиль «Тень»): окно и кнопка «Позже» без обводок — тон и малая тень вместо кромки.
+  assert.ok(!source.includes('glass.glassEdge'), 'no outline: стиль «Тень»');
+  assert.ok(source.includes('plateBoxShadow(glass)') && source.includes('nestedBoxShadow(glass)'), 'shadow instead of border');
   assert.ok(source.includes('glass.accent') && source.includes('glass.accentInk'), 'Plus CTA uses the pale CTA token pair');
   assert.ok(source.includes('glass.text') && source.includes('glass.secondary'), 'text tokens');
   assert.ok(!source.includes('NO_ENERGY_MODAL_CHROME'), 'per-mode green/gold palettes are gone');

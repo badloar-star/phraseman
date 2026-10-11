@@ -324,10 +324,12 @@ export default function CommunityPackSocialBar({
       }
       console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res}`); // guard-ok
       setSnapshot(before);
+      // зачем (баг владельца 11.10): добавление — локальная запись без сети, единственный отказ — `unavailable`
+      // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось добавить набор. Проверь связь и попробуй ещё раз.',
-        uk: 'Не вдалося додати набір. Перевір зв’язок і спробуй ще раз.',
-        es: 'No se pudo añadir el pack. Comprueba la conexión e inténtalo de nuevo.',
+        ru: 'Этот набор пока нельзя добавить себе.',
+        uk: 'Цей набір поки не можна додати собі.',
+        es: 'Este pack todavía no se puede añadir.',
       }));
     })();
   }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);

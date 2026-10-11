@@ -31,12 +31,46 @@ export type AddPackToLibraryResult =
  * «Добавить себе»: локальное владение пишем сразу (UI обновляется оптимистично),
  * серверный счётчик добавлений догоняет в фоне и дедуплицируется по пользователю.
  */
+/**
+ * Набор фраз ролика (строка «Видео → Наборы», `app/video_phrase_set_packs.ts`) и его документ сообщества.
+ *
+ * зачем (баг владельца 11.10: «+» у наборов Professor Lingman → «Не удалось добавить набор · Проверь связь»;
+ * факт из журнала: `[PACK-SOCIAL] добавление отклонено pack=video:cnrVN_uz7Sg причина=unavailable`):
+ * строка рисует общий «+», а набор фраз ролика собран клиентом БЕЗ `isCommunityUgc` → ранний отказ ниже.
+ * По решению владельца 23.09 набор ролика — ОБЫЧНЫЙ документ `community_packs/video_<videoId>`
+ * (`functions/src/video_phrases.ts` → `videoPackId`), поэтому «Добавить себе» идёт через него.
+ * Префиксы продублированы здесь, чтобы не тянуть в действие загрузчик каталога YouTube;
+ * сторож — tests/video_pack_add_maps_to_community_doc.test.ts (сверяет с исходниками клиента и сервера).
+ */
+export const VIDEO_PHRASE_SET_PACK_ID_PREFIX = 'video:';
+export const VIDEO_COMMUNITY_PACK_ID_PREFIX = 'video_';
+const YOUTUBE_VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
+
+export function communityPackIdForVideoPhraseSet(packId: string): string | null {
+  if (!packId.startsWith(VIDEO_PHRASE_SET_PACK_ID_PREFIX)) return null;
+  const videoId = packId.slice(VIDEO_PHRASE_SET_PACK_ID_PREFIX.length);
+  return YOUTUBE_VIDEO_ID.test(videoId) ? `${VIDEO_COMMUNITY_PACK_ID_PREFIX}${videoId}` : null;
+}
+
 export async function addCommunityPackToLibrary(
   pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'>,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<AddPackToLibraryResult> {
-  if (!pack?.id) return 'unavailable';
-  if (!pack.isCommunityUgc) return 'unavailable';
+  if (!pack?.id) {
+    console.warn('[PACK-ADD] unavailable reason=no_pack_id'); // guard-ok: ранний выход называет причину
+    return 'unavailable';
+  }
+  const videoCommunityId = communityPackIdForVideoPhraseSet(pack.id);
+  if (videoCommunityId) {
+    // зачем: см. communityPackIdForVideoPhraseSet — добавляем документ сообщества ролика, а не клиентскую сборку фраз.
+    console.log(`[PACK-ADD] video_phrase_set mapped from=${pack.id} to=${videoCommunityId} target=${studyTarget ?? 'default'}`); // guard-ok
+    return addCommunityPackToLibrary({ ...pack, id: videoCommunityId, isCommunityUgc: true }, studyTarget);
+  }
+  if (!pack.isCommunityUgc) {
+    console.warn(`[PACK-ADD] unavailable reason=not_community_ugc pack=${pack.id}`); // guard-ok: ранний выход называет причину
+    return 'unavailable';
+  }
+  console.log(`[PACK-ADD] in pack=${pack.id} target=${studyTarget ?? 'default'}`); // guard-ok: вход в добавление
 
   /**
    * ПРИЧИНА БАГА «лайк не ставится» (владелец, iPhone), часть 2.
@@ -55,6 +89,7 @@ export async function addCommunityPackToLibrary(
       titleUk: pack.titleUk,
       titleEs: pack.titleEs,
     });
+    console.log(`[PACK-ADD] result=already_added pack=${pack.id}`); // guard-ok
     return 'already_added';
   }
 
@@ -73,6 +108,7 @@ export async function addCommunityPackToLibrary(
     messageUk: `Набір «${pack.titleUk}» додано в «Картки».`,
     messageEs: `El pack «${titleEs}» se ha añadido en Tarjetas.`,
   });
+  console.log(`[PACK-ADD] result=added pack=${pack.id}`); // guard-ok
   return 'added';
 }
 

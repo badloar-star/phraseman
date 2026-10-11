@@ -25,7 +25,6 @@ const ALLOWED = {
   'components/learning-v2/horizons/HorizonArtwork.tsx': [1, 'фон горизонтов, гейт фокуса и AppState'],
   'components/onboarding_aha/SpeechBeat.tsx': [1, 'онбординг не трогаем (владелец)'],
   'components/onboarding_aha/TypewriterText.tsx': [1, 'онбординг не трогаем (владелец)'],
-  'components/paywall/PaywallPlus.tsx': [1, 'скелетон цен (загрузка)'],
   'components/profile-card/useLoop.ts': [1, 'общий хук; вызывающие гейтят сами'],
   'modules/learning-v2/modes/listen_choose_mode_v1.tsx': [1, 'кнопка звука, пока идёт звук'],
   'components/ForceUpdateGate.tsx': [1, 'только принудительное обновление без выхода'],

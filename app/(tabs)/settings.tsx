@@ -168,6 +168,14 @@ function writeSettingsPeek(patch: Partial<Omit<SettingsPeek, 'owner'>>): void {
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
+  // зачем (координатор 11.10, «сперва логи»): phraseman://settings вешал приложение (addViewAt «already has a parent»,
+  // белый экран). Монтирование/размонтирование экрана рядом со строками [DEEPLINK-SETTINGS] из _layout показывает,
+  // не смонтировались ли две копии настроек одновременно.
+  useEffect(() => {
+    const mountedAt = Date.now();
+    console.log('[DEEPLINK-SETTINGS] screen:mount', JSON.stringify({ at: mountedAt }));
+    return () => console.log('[DEEPLINK-SETTINGS] screen:unmount', JSON.stringify({ livedMs: Date.now() - mountedAt }));
+  }, []);
   const { theme: t, liquidGlassThemeId, fontSize, setFontSize, f } = useTheme();
   // зачем (владелец 2026-09-29): корень «Настройки» — 1 в 1 по макету PRF-01; все цвета плашек
   // берутся из общих токенов 13 тем Liquid Glass, как на уже перенесённых дочерних экранах.

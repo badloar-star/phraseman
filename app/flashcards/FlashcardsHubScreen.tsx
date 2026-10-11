@@ -42,7 +42,8 @@ import { FC_DEFAULT_SESSION_SIZE, setLastPreset } from './mode_prefs';
 import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
-import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_language_contour';
+import { loadSelectedSavedContour, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
+
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
@@ -117,6 +118,17 @@ function mergeCatalogs(...catalogs: readonly FlashcardMarketPack[][]): Flashcard
 
 /** Потолок ожидания квоты после раннего тапа (§90). */
 const EARLY_TAP_CEILING_MS = 15_000;
+
+// зачем (координатор 11.10, «сперва логи»): у гостя с 64 сохранёнными стопка показывала заглушку «Boarding pass».
+// Итог верхней карточки — в журнал только при смене (компонент рендерится часто), вместе с причиной из контура.
+let lastHubTopCardLog = '';
+function logHubTopCardOutcome(word: string | null, trainingLocked: boolean): void {
+  const outcome = trainingLocked ? 'limit_out' : word ? 'word' : 'stub_boarding_pass';
+  const key = `${outcome}|${word ?? ''}`;
+  if (key === lastHubTopCardLog) return;
+  lastHubTopCardLog = key;
+  console.log('[HUB-TOPCARD] shown', JSON.stringify({ outcome, word, contour: peekSelectedSavedContourDiagnostics() }));
+}
 
 export default function FlashcardsHubScreen() {
   const { liquidGlassThemeId, statusBarLight } = useTheme(); // зачем (Сверка 18:25, светлая тема): значки строки состояния не белые на светлом
@@ -603,6 +615,7 @@ export default function FlashcardsHubScreen() {
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
   const topCard = peekSelectedSavedContour()?.[0] ?? null;
+  logHubTopCardOutcome(topCard?.en ?? null, trainingLocked);
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
   const resetDate = (() => {

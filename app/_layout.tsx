@@ -497,6 +497,12 @@ const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
 
 /** Сколько ждём, пока expo-router сам откроет тёплую ссылку, прежде чем открыть её вручную. */
 const WARM_DEEP_LINK_SELF_OPEN_WAIT_MS = 400;
+// зачем (координатор 11.10, «сперва логи»): phraseman://settings дважды вешал приложение (красный экран addViewAt
+// «already has a parent», белый экран 4+ мин). Каждая развилка обработки ссылки пишет одну строку: что пришло, готов ли
+// навигатор, где мы сейчас, какой переход сделан. Значения параметров маскируются (maskDeepLinkForLog).
+function deeplinkSettingsTrace(step: string, data: Record<string, unknown>): void {
+  console.log('[DEEPLINK-SETTINGS]', step, JSON.stringify(data));
+}
 
 function normalizeWarmDeepLink(url: string): string | null {
   const normalized = redirectSystemPath({ path: url, initial: false });
@@ -1499,6 +1505,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           JSON.stringify({ url: maskDeepLinkForLog(url), target: maskDeepLinkForLog(target) }),
         );
       }
+      deeplinkSettingsTrace('url_event', {
+        url: maskDeepLinkForLog(url),
+        target: target ? maskDeepLinkForLog(target) : null,
+        currentPath: pathnameRef.current ?? null,
+      });
       if (!target) return;
       setPendingWarmDeepLink(target);
     });
@@ -1507,9 +1518,23 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     const targetIsDevUtilityRoute = isDevUtilityRoutePath(pendingWarmDeepLink);
-    if (!pendingWarmDeepLink || !ready || !rootNavigationReady || isBanned || (showOnboarding && !targetIsDevUtilityRoute)) return;
+    if (!pendingWarmDeepLink || !ready || !rootNavigationReady || isBanned || (showOnboarding && !targetIsDevUtilityRoute)) {
+      if (pendingWarmDeepLink) {
+        deeplinkSettingsTrace('open:wait', {
+          target: maskDeepLinkForLog(pendingWarmDeepLink), ready, rootNavigationReady, isBanned, showOnboarding,
+          currentPath: pathnameRef.current ?? null,
+        });
+      }
+      return;
+    }
     const target = pendingWarmDeepLink;
     setPendingWarmDeepLink(null);
+    deeplinkSettingsTrace('open:start', {
+      target: maskDeepLinkForLog(target),
+      currentPath: pathnameRef.current ?? null,
+      devUtility: isDevUtilityRoutePath(target),
+      tabsGroup: isTabsGroupRoutePath(target),
+    });
 
     if (isDevUtilityRoutePath(target)) {
       if (!ENABLE_DEV_TOOLS) {
@@ -1524,6 +1549,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     if (isTabsGroupRoutePath(target)) {
       traceLessonExit('layout:deeplink_tabs_replace', { target: maskDeepLinkForLog(target) });
+      deeplinkSettingsTrace('open:tabs_replace', { target: maskDeepLinkForLog(target), currentPath: pathnameRef.current ?? null });
       router.replace(target as Href);
       return;
     }
@@ -1542,6 +1568,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     warmDeepLinkTimerRef.current = setTimeout(() => {
       warmDeepLinkTimerRef.current = null;
       const currentPath = pathnameRef.current?.replace(/\/$/, '') || '';
+      deeplinkSettingsTrace('open:self_open_check', { targetPath, currentPath, willPush: !(targetPath && targetPath === currentPath) });
       if (targetPath && targetPath === currentPath) {
         if (__DEV__) {
           console.log("[V2-PAGE] deeplink:skip_already_open", JSON.stringify({ target: maskDeepLinkForLog(target), currentPath }));
@@ -1568,6 +1595,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // Забранная ссылка держится в ref: перезапуск эффекта до смены маршрута не должен вернуть Главную.
     if (initialDeepLinkRef.current === undefined) initialDeepLinkRef.current = consumeInitialDeepLinkTarget();
     const rootTarget = initialDeepLinkRef.current ?? '/(tabs)/home';
+    deeplinkSettingsTrace('root_replace', {
+      pathname: pathname ?? null,
+      initialLink: initialDeepLinkRef.current ? maskDeepLinkForLog(initialDeepLinkRef.current) : null,
+      target: maskDeepLinkForLog(rootTarget),
+    });
     traceLessonExit('layout:rootIndex_replace_home', {
       pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname),
       ready,
@@ -1599,6 +1631,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
     const previous = lastPathRef.current;
     lastPathRef.current = pathname;
+    if (/settings/i.test(pathname) || /settings/i.test(previous ?? '')) {
+      deeplinkSettingsTrace('path_change', { previous: previous ?? null, next: pathname });
+    }
     void trackActivity('navigation:screen_view', {
       feature: 'navigation',
       screen: pathname,

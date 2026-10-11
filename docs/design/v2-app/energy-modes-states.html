@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="cards-glass.css">
 <style>
   /* зачем (владелец 11.10 через координатора, ENERGY_MODES_OWNER_BRIEF_2026-10-11.md: «прям анимация», все состояния обоих режимов, тёмная + светлая):
-     РЕЖИМ А (как сейчас): за НАЧАЛО занятия −1 энергия; за ошибку гаснет сердечко и сбрасывается серия монет («×N»).
+     РЕЖИМ А (первый выпуск): за НАЧАЛО занятия −1 энергия; за ошибку гаснет сердечко. Серии монет «×N» в коде уроков нет.
      РЕЖИМ Б (новый): за начало ничего; каждая ошибка снимает 1 энергию, сердечек нет; иконка энергии трясётся и «−1» вылетает; ошибка на ПОСЛЕДНЕЙ энергии останавливает занятие (не наказание, а пауза);
      шторка Plus «продолжить сейчас — вернёшься на тот же вопрос»; после покупки занятие продолжается; без энергии новое занятие не начать — шторка «Нужна энергия» с таймером; энергия вернулась → можно начать.
      Режим Б — уроки, слова, неправильные глаголы, Learning V2, «Карточки: тренировка». Диалоги и «Фраза дня» энергию за ошибки не снимают ни в одном режиме.
@@ -87,7 +87,7 @@
 <body>
 <div class="page">
   <h1 class="page-h1">Два режима энергии — состояния и анимации</h1>
-  <p class="page-lead">Новое ТЗ владельца (ENERGY_MODES_OWNER_BRIEF_2026-10-11): переключатель режима в админке. Режим А — первый выпуск, поведение кода по умолчанию (−1 энергия за старт, сердечки; серия монет «×N» — допущение по смыслу ТЗ, в коде не подтверждена). Режим Б включается ТОЛЬКО флагом energy_mistake_charge (в первом выпуске выкл.) — энергия за ошибки: без сердечек, «−1» вылетает, на последней энергии занятие останавливается, Plus продолжает с того же вопроса, без энергии новое не начать. Каждая анимация проигрывается сама при появлении кадра и по кнопке «Повторить анимацию». Тёмная «Аврора» и светлая тема.</p>
+  <p class="page-lead">Новое ТЗ владельца (ENERGY_MODES_OWNER_BRIEF_2026-10-11): переключатель режима в админке. Режим А — первый выпуск, поведение кода по умолчанию (−1 энергия за старт, сердечки; серии монет в коде уроков нет — не рисуется). Режим Б включается ТОЛЬКО флагом energy_mistake_charge (в первом выпуске выкл.) — энергия за ошибки: без сердечек, «−1» вылетает, на последней энергии занятие останавливается, Plus продолжает с того же вопроса, без энергии новое не начать. Каждая анимация проигрывается сама при появлении кадра и по кнопке «Повторить анимацию». Тёмная «Аврора» и светлая тема.</p>
   <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
   <div class="ctl"><div class="chips2" id="chips"></div></div>
   <div id="root"></div>
@@ -159,8 +159,8 @@ KINDS.forEach(([k, nm]) => {
 add('n', 'Диалоги — энергия не меняется', 'Ошибка в диалоге энергию не снимает ни в одном режиме (у диалогов свои лимиты реплик).', dlgScr, null);
 add('n', 'Фраза дня — энергия не меняется', 'Ошибка квиза не снимает энергию ни в одном режиме. Вариант выделен как неверный, цифра 4 на месте.', qotdScr, null);
 // Д. Режим А
-add('a', 'А1 · Старт занятия: −1 энергия', 'Режим А (как сейчас): при старте цифра «проваливается» 5 → 4. Сердечки 3/3, серия монет «×3».', lessonScr({ kind: 'lesson', mode: 'a', en: 5, combo: 3 }), 'astart');
-add('a', 'А2 · Ошибка: сердечко гаснет, серия сбрасывается', 'Одно сердечко гаснет, «×3» схлопывается — серия монет сбрасывается. Энергия не меняется.', lessonScr({ kind: 'lesson', mode: 'a', en: 4, combo: 3 }), 'aerr');
+add('a', 'А1 · Старт занятия: −1 энергия', 'Режим А (первый выпуск): при старте цифра «проваливается» 5 → 4. Сердечки 3/3.', lessonScr({ kind: 'lesson', mode: 'a', en: 5 }), 'astart');
+add('a', 'А2 · Ошибка: сердечко гаснет', 'Одно сердечко гаснет. Энергия не меняется. Серии монет в коде уроков нет.', lessonScr({ kind: 'lesson', mode: 'a', en: 4 }), 'aerr');
 add('a', 'А3 · Нет энергии при старте', 'Режим А (первый выпуск): нет энергии — окно «Энергия закончилась». Текст в приложении — одна из нескольких фраз (lesson1_energy.ts), выбирается случайно; здесь первая. Кнопки «Открыть Plus» и «Позже» (NoEnergyModal).', listUnder('', 0) + `<div class="gdim on"></div><div class="gdlg"><div class="ic">${BOLT}</div><div class="tt">Энергия закончилась</div><div class="bd">Дай знаниям немного уложиться. +1 ⚡ вернётся через 7 минут. Или забудь о паузах с Плюс прямо сейчас.</div><div class="gbt">Открыть Plus</div><div class="gbt gh">Позже</div></div>`, null);
 
 // ---------- анимации ----------
@@ -179,7 +179,7 @@ const ANIM = {
   need(ph) { const t = q(ph, '[data-timer]'); const dots = ph.querySelectorAll('.gdots i'); later(ph, () => { q(ph, '.gdim').classList.add('on'); q(ph, '.gsh').classList.add('on'); }, 500); let s = 9 * 60; t.textContent = '09:00'; ph._i = setInterval(() => { s = Math.max(0, s - 37); const m = String(Math.floor(s / 60)).padStart(2, '0'), x = String(s % 60).padStart(2, '0'); t.textContent = m + ':' + x; }, 600); },
   restore(ph) { const e = q(ph, '[data-en]'); later(ph, () => { setEn(ph, 1, { text: '+1', up: true }); e.classList.add('glow'); }, 900); later(ph, () => q(ph, '[data-toast]').classList.add('on'), 1300); later(ph, () => { const c = q(ph, '[data-start]'); c.classList.remove('off'); }, 1700); later(ph, () => q(ph, '[data-toast]').classList.remove('on'), 3600); },
   astart(ph) { const e = q(ph, '[data-en]'); later(ph, () => { e.classList.add('drop'); q(ph, '.nv').textContent = 4; e.classList.remove('drop'); void e.offsetWidth; e.classList.add('drop'); const f = e.querySelector('.fly'); f.textContent = '−1'; f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }, 900); },
-  aerr(ph) { const hs = ph.querySelectorAll('.ghp .h'); const cb = q(ph, '[data-combo]'); later(ph, () => { bad(ph); }, 500); later(ph, () => { hs[2].classList.add('pop', 'lost'); const x = q(ph, '.ghp'); x.classList.remove('shake'); void x.offsetWidth; x.classList.add('shake'); }, 1100); later(ph, () => cb.classList.add('gone'), 1500); later(ph, () => { const t = q(ph, '[data-bad]'); if (t) t.classList.remove('bad'); const x = q(ph, '.ga'); if (x) x.classList.remove('bad'); }, 2600); },
+  aerr(ph) { const hs = ph.querySelectorAll('.ghp .h'); later(ph, () => { bad(ph); }, 500); later(ph, () => { hs[2].classList.add('pop', 'lost'); const x = q(ph, '.ghp'); x.classList.remove('shake'); void x.offsetWidth; x.classList.add('shake'); }, 1100); later(ph, () => { const t = q(ph, '[data-bad]'); if (t) t.classList.remove('bad'); const x = q(ph, '.ga'); if (x) x.classList.remove('bad'); }, 2600); },
 };
 const reset = (ph) => { (ph._t || []).forEach(clearTimeout); ph._t = []; if (ph._i) { clearInterval(ph._i); ph._i = null; } ph.innerHTML = ph._init; };
 const play = (col) => { const ph = col.querySelector('.ph'); const a = ph.dataset.anim; if (!a || !ANIM[a]) return; reset(ph); ANIM[a](ph, JSON.parse(ph.dataset.args || '{}')); };
@@ -188,7 +188,7 @@ const play = (col) => { const ph = col.querySelector('.ph'); const a = ph.datase
 const BLK = { b: ['Под флагом energy_mistake_charge (выкл.): режим Б — «энергия за ошибки», урок, все состояния', 'Восемь кадров по порядку ТЗ: занятие, ошибка, последняя энергия, остановка, шторка Plus, покупка, выход без энергии, восстановление. «Повторить анимацию» перезапускает каждый кадр.'],
   o: ['Под флагом energy_mistake_charge (выкл.): режим Б — слова, неправильные глаголы, Learning V2, «Карточки: тренировка»', 'Тот же набор в каждом виде занятий: занятие (без сердечек), ошибка (тряска и «−1»), остановка с шторкой Plus. Экран шторки и сценарий восстановления — как в уроке (Б5–Б8).'],
   n: ['Энергию за ошибки не снимают', 'Диалоги и «Фраза дня» не меняются ни в одном режиме — показано как «без изменений».'],
-  a: ['Режим А — ПЕРВЫЙ ВЫПУСК (флаг energy_mistake_charge выключен по умолчанию): за старт −1 энергия, сердечки', 'За начало занятия −1 энергия, за ошибку гаснет сердечко и сбрасывается серия монет «×N». Серия монет — допущение по смыслу ТЗ («сбрасываются монетки»).'] };
+  a: ['Режим А — ПЕРВЫЙ ВЫПУСК (флаг energy_mistake_charge выключен по умолчанию): за старт −1 энергия, сердечки', 'За начало занятия −1 энергия, за ошибку гаснет сердечко. Серии монет «×N» в коде уроков нет — не рисуется.'] };
 const renderGrid = (lite) => ['b', 'o', 'n', 'a'].map((b) => `<section class="block" id="${lite ? 'l' : 'd'}-${b}"><h2>${BLK[b][0]}</h2><p>${BLK[b][1]}</p><div class="phones">${S.filter((x) => x.blk === b).map((x) => { const p = phone(x.html, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}" data-anim="${x.anim || ''}" data-args='${JSON.stringify(x.args || {})}'`); return `<div class="col gcol"><div class="lbl">${x.title}</div>${p}${x.anim ? '<div class="grpl t" data-replay>Повторить анимацию</div>' : ''}<div class="gnote">${x.note}</div></div>`; }).join('')}</div></section>`).join('');
 document.getElementById('root').innerHTML = `<h2 id="dark" style="font-size:22px;margin:28px 0 0">Тёмная «Аврора»</h2>${renderGrid(false)}<h2 id="light" style="font-size:22px;margin:40px 0 0">Светлая тема</h2>${renderGrid(true)}`;
 K.init();

@@ -4,6 +4,7 @@ import { AccessibilityInfo, Animated, Easing, Pressable, StyleSheet, Text, View 
 import Svg, { Circle, Path } from 'react-native-svg';
 
 import PressableHybrid from '../../PressableHybrid';
+import { nestedBoxShadow } from '../../v2/ShadowSurface';
 import { triLang, type Lang } from '../../../constants/i18n';
 import type { DialogueV2CoachingMood } from '../../../app/dialogue_v2_turn_coaching_client';
 import { DialogueGlassCta, dialogueGlassCardStyle, type DialogueGlass } from './DialogueGlassKit';
@@ -67,7 +68,7 @@ export function DialogueGlassQuotaPill({ glass, text, accessibilityLabel, testID
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
-      style={[styles.pill, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]} // guard-ok: 1 px кромка PhraseMan 2.0
+      style={[styles.pill, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (стиль «Тень»): пилюля без кромки — малая тень
     >
       <Ionicons name="chatbubble-ellipses-outline" size={16} color={glass.text} />
       <Text maxFontSizeMultiplier={1.2} style={[styles.pillText, { color: glass.text }]}>{text}</Text>
@@ -136,7 +137,7 @@ export function DialogueGlassReplyAction({
         styles.replyAction,
         {
           backgroundColor: active ? glass.selected : glass.opaqueControl,
-          borderColor: glass.glassEdge, // guard-ok: 1 px кромка .ab
+          boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): кнопка под репликой без кромки — малая тень
           opacity: pressed ? 0.7 : 1,
         },
       ]}
@@ -234,10 +235,7 @@ export function DialogueGlassSummaryPill({ glass, label, onPress, testID }: Read
 }
 
 const styles = StyleSheet.create({
-  pill: {
-    height: 32, paddingHorizontal: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 6,
-    borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка PhraseMan 2.0
-  },
+  pill: { height: 32, paddingHorizontal: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   goalHit: { alignSelf: 'stretch', marginTop: 14 },
   goal: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingLeft: 10, paddingRight: 12 },
@@ -247,10 +245,7 @@ const styles = StyleSheet.create({
   goalLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
   hintHit: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
   hintButton: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
-  replyAction: {
-    minHeight: 36, paddingHorizontal: 14, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 7,
-    borderWidth: 1, // guard-ok: 1 px кромка кнопки под репликой (макет .ab)
-  },
+  replyAction: { minHeight: 36, paddingHorizontal: 14, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 7 },
   replyActionText: { fontSize: 13, fontWeight: '700' },
   fixButton: { marginTop: 8, height: 30, paddingHorizontal: 12, borderRadius: 15, flexDirection: 'row', alignItems: 'center', gap: 6 },
   fixButtonText: { fontSize: 13, fontWeight: '600' },

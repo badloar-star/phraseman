@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import PressableHybrid from '../../PressableHybrid';
 import { useTheme } from '../../ThemeContext';
 import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
 import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
@@ -13,7 +14,8 @@ import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 // токенов активной из 13 тем: круглая «‹» (.rb.l), квадратная «⋯» (.rb.sq), главная кнопка
 // (.cta / .cta.sm / .cta.dis), стеклянная карточка (.bcard), системная плашка ошибки
 // (.syserr) и экран-гейт (.gate). Только ВИД: что делает нажатие, решает экран/маршрут.
-// Обводки — только 1 px полупрозрачная кромка темы (исключение PhraseMan 2.0).
+// зачем (стиль «Тень», владелец 12.10): контейнеры БЕЗ обводок и внутренних кромок — плашку отделяет тень
+// (docs/design/v2-app/SHADOW_STYLE_SPEC.md, эталон shadow-style-etalon.html «Диалоги»); числа берутся из components/v2/ShadowSurface.
 
 export type DialogueGlass = ReturnType<typeof liquidGlassTokens>;
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -25,29 +27,22 @@ export function useDialogueGlass(): DialogueGlass {
   return liquidGlassTokens(liquidGlassThemeId);
 }
 
-/** Карточка `.bcard`/`.goal`: непрозрачное стекло + 1 px кромка. */
+/** Карточка `.bcard`/`.goal`: плашка стиля «Тень» — заливка плашки и тень вниз, без обводки и кромки. */
 export function dialogueGlassCardStyle(glass: DialogueGlass, radius = 18): ViewStyle {
+  // зачем (стиль «Тень»): прежняя кромка (borderWidth, bevelHi/bevelLo, hairlineSoft) снята — плашку отделяет plateBoxShadow;
+  // overflow: 'hidden' убран, иначе тень обрезается на iOS (содержимое карточек — текст и кнопки, скругление им не нужно).
   return {
     borderRadius: radius,
-    backgroundColor: glass.opaqueCard,
-    borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка стекла (макет dialogs.html)
-    borderColor: glass.glassEdge, // guard-ok: 1 px кромка стекла
-    overflow: 'hidden',
-    // зачем (DIFF_BURNDOWN dialogs-014: «карточка цели и пузырь без стеклянной кромки темы, плоские»): кромка макета `--lg-rim` из токенов —
-    // светлая линия сверху-слева, тёмная снизу-справа и тонкое кольцо; внутренние тени не меняют размеры.
-    boxShadow: [
-      { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelHi },
-      { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelLo },
-      { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: glass.hairlineSoft },
-    ],
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass),
   };
 }
 
-/** Тон кнопок шапки + 1 px кромка темы. */
+/** Тон кнопок шапки: вложенная плашка стиля «Тень» — тон и малая тень, без кромки. */
 function controlFill(glass: DialogueGlass): ViewStyle {
   return {
     backgroundColor: glass.opaqueControl,
-    borderColor: glass.glassEdge, // guard-ok: 1 px полупрозрачная кромка PhraseMan 2.0
+    boxShadow: nestedBoxShadow(glass),
   };
 }
 
@@ -134,7 +129,12 @@ export function DialogueGlassCta({
       style={[small ? styles.ctaSmallHit : styles.ctaHit, style]}
       contentStyle={[
         small ? styles.ctaSmall : styles.cta,
-        { backgroundColor: light ? glass.accent : glass.opaqueControl, opacity: disabled ? 0.72 : 1 },
+        {
+          backgroundColor: light ? glass.accent : glass.opaqueControl,
+          // зачем (стиль «Тень»): главная — цветная тень темы, вторичная — малая тень; выключенная плоская
+          boxShadow: disabled ? undefined : light ? actionBoxShadow(glass) : nestedBoxShadow(glass),
+          opacity: disabled ? 0.72 : 1,
+        },
       ]}
     >
       {light ? <ThemeAccentFill glass={glass} radius={small ? 22 : 26} /> : null}
@@ -228,14 +228,8 @@ export function DialogueGlassGate({
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   hit44: { width: 44, height: 44 },
-  round44: {
-    width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка PhraseMan 2.0
-  },
-  square44: {
-    width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center',
-    borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка PhraseMan 2.0
-  },
+  round44: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  square44: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   ctaHit: { alignSelf: 'stretch' },
   cta: {
     minHeight: 52, borderRadius: 26, paddingHorizontal: 52,

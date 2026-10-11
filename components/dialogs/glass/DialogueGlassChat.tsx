@@ -2,6 +2,7 @@ import React from 'react';
 import { AccessibilityInfo, Animated, Easing, StyleSheet, Text, View, type TextStyle, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
 import type { DialogueGlass } from './DialogueGlassKit';
 
 // зачем (владелец 2026-09-30, макет dialogs.html C1–C17/F2): лента диалога — реплика
@@ -24,7 +25,7 @@ export function DialogueGlassAvatar({ glass, compact }: Readonly<{ glass: Dialog
   );
 }
 
-/** Цвета пузыря по автору: «Вы» — светлый (lightTint), собеседник — стекло с кромкой. */
+/** Цвета пузыря по автору: «Вы» — светлый (lightTint), собеседник — плашка с тенью. */
 export function dialogueGlassBubbleInk(glass: DialogueGlass, author: DialogueGlassAuthor): string {
   return author === 'learner' ? glass.ctaInk : glass.text;
 }
@@ -48,9 +49,9 @@ export function DialogueGlassBubble({ glass, author, who, avatar, children, acti
   const bubble: ViewStyle = learner
     ? { backgroundColor: glass.lightTint }
     : {
-      backgroundColor: glass.opaqueCard,
-      borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка пузыря (макет .msg.b .bub)
-      borderColor: glass.glassEdge, // guard-ok: 1 px кромка
+      // зачем (стиль «Тень»): пузырь собеседника — плашка с тенью, без кромки
+      backgroundColor: glass.plateFillFrom,
+      boxShadow: plateBoxShadow(glass),
     };
   return (
     <View testID={testID} style={[styles.row, learner ? styles.rowEnd : styles.rowStart]}>
@@ -89,12 +90,14 @@ export function dialogueGlassActionStyle(glass: DialogueGlass, live: boolean): V
     justifyContent: 'center',
     gap: 7,
     backgroundColor: live ? glass.cta : glass.opaqueControl,
+    // зачем (стиль «Тень»): кнопка под репликой — вложенная плашка с малой тенью
+    boxShadow: nestedBoxShadow(glass),
   };
 }
 
 /**
  * Круглая кнопка строки ввода `.ibar .rbtn` — 52: микрофон слева и «↑» справа.
- * `live` — белая заливка (идёт запись / можно отправить), иначе тон темы с кромкой.
+ * `live` — белая заливка (идёт запись / можно отправить), иначе тон темы; обе с малой тенью, без кромки.
  */
 export function dialogueGlassRoundButtonStyle(glass: DialogueGlass, live: boolean): ViewStyle {
   return {
@@ -104,8 +107,8 @@ export function dialogueGlassRoundButtonStyle(glass: DialogueGlass, live: boolea
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: live ? glass.cta : glass.opaqueControl,
-    borderWidth: live ? 0 : 1, // guard-ok: 1 px кромка круглой кнопки (макет .ibar .rbtn)
-    borderColor: glass.glassEdge, // guard-ok: 1 px кромка
+    // зачем (стиль «Тень»): кромка круглой кнопки снята — отделяет малая тень
+    boxShadow: nestedBoxShadow(glass),
   };
 }
 
@@ -123,9 +126,9 @@ export function dialogueGlassFieldStyle(glass: DialogueGlass): TextStyle {
     textAlignVertical: 'center',
     borderRadius: 26,
     paddingHorizontal: 18,
-    backgroundColor: glass.opaqueControl,
-    borderWidth: 1, // guard-ok: 1 px кромка поля (макет .ibar .fld)
-    borderColor: glass.glassEdge, // guard-ok: 1 px кромка
+    // зачем (стиль «Тень»): поле ввода — плашка с тенью вместо кромки
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
   };
 }
 
@@ -166,8 +169,8 @@ export function DialogueGlassTyping({ glass, testID, avatar }: Readonly<{
       {avatar ? <DialogueGlassAvatar glass={glass} compact /> : null}
       <View
         style={[styles.typing, {
-          backgroundColor: glass.opaqueCard,
-          borderColor: glass.glassEdge, // guard-ok: 1 px кромка (макет .typing)
+          backgroundColor: glass.plateFillFrom,
+          boxShadow: plateBoxShadow(glass), // зачем (стиль «Тень»): «печатает» — плашка с тенью, без кромки
         }]}
       >
         {values.map((value, index) => (
@@ -199,9 +202,6 @@ const styles = StyleSheet.create({
   bubbleText: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
   actionsEnd: { justifyContent: 'flex-end' },
-  typing: {
-    flexDirection: 'row', alignItems: 'center', gap: 6, height: 52, paddingHorizontal: 20, borderRadius: 20,
-    borderWidth: 1, // guard-ok: 1 px кромка (макет .typing)
-  },
+  typing: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 52, paddingHorizontal: 20, borderRadius: 20 },
   dot: { width: 8, height: 8, borderRadius: 4 },
 });

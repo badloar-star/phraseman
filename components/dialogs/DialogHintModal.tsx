@@ -17,6 +17,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 
@@ -43,16 +44,8 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
         testID={testID}
         // зачем: VoiceOver не достаёт до фона — жест «escape» закрывает окно.
         onAccessibilityEscape={onClose}
-        // зачем (DIFF_BURNDOWN dialogs-017: «окно висит без кромки и тени»): светлая кромка, кольцо и тень окна — токены темы.
-        style={[styles.card, {
-          backgroundColor: glass.opaqueSheet,
-          borderColor: glass.line,
-          boxShadow: [
-            { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelHi },
-            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: glass.hairlineSoft },
-            { offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -12, color: glass.dropShadow },
-          ],
-        }]}
+        // зачем (стиль «Тень», владелец 12.10): окно по центру без кромки и без внутренних фасок — отделяет тень плашки.
+        style={[styles.card, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}
       >
         <View style={styles.head}>
           <Ionicons name="bulb-outline" size={24} color={glass.text} accessibilityElementsHidden />
@@ -81,7 +74,7 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
 }
 
 const styles = StyleSheet.create({
-  // зачем (Сверка dialogs-017, dialogs.html .modal): окно подсказки по центру, как в макете; кромка 1 px --line.
-  card: { borderRadius: 26, borderWidth: 1, paddingHorizontal: 22, paddingTop: 24, paddingBottom: 22 }, // guard-ok: 1 px кромка .modal
+  // зачем (Сверка dialogs-017, dialogs.html .modal): окно подсказки по центру, как в макете; без кромки (стиль «Тень»).
+  card: { borderRadius: 26, paddingHorizontal: 22, paddingTop: 24, paddingBottom: 22 },
   head: { flexDirection: 'row', alignItems: 'center', gap: 12 },
 });

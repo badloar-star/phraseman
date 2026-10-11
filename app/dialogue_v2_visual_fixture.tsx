@@ -14,6 +14,7 @@ import {
 import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2BriefingScreen';
 import { DialogueV2FreeformScreen } from '../components/dialogs/DialogueV2FreeformScreen';
 import { DialogueV2SessionScreen } from '../components/dialogs/DialogueV2SessionScreen';
+import { PlateFill, plateBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
 import { useV2Palette } from '../components/v2/useV2Palette';
 
 const interfaceLang: Lang = 'ru';
@@ -54,12 +55,23 @@ function FixtureHeading({ children }: Readonly<{ children: string }>) {
   return <Text style={{ color: palette.text, ...V2_TYPE.section, marginTop: V2.gap }}>{children}</Text>;
 }
 
+/** Рамка экрана-образца: тень на внешнем слое, клип скругления — на внутреннем (стиль «Тень»: без контура, overflow не режет тень). */
+function FixtureFrame({ height, children }: Readonly<{ height: number; children: React.ReactNode }>) {
+  const g = useShadowGlass();
+  return (
+    <View style={{ height, borderRadius: V2.radius.card, boxShadow: plateBoxShadow(g) }}>
+      <View style={{ flex: 1, overflow: 'hidden', borderRadius: V2.radius.card }}>{children}</View>
+    </View>
+  );
+}
+
 /**
  * Dev-only, static visual inspection route. It does not authenticate, load a
  * catalogue, invoke a callable, save state, or verify release readiness.
  */
 export default function DialogueV2VisualFixtureRoute() {
   const palette = useV2Palette();
+  const g = useShadowGlass();
 
   if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/" />;
 
@@ -67,7 +79,8 @@ export default function DialogueV2VisualFixtureRoute() {
     <View testID="dialogue-v2-visual-fixture" style={{ flex: 1, backgroundColor: palette.bg }}>
       <SafeAreaView edges={['top']} style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ padding: V2.screenPad, paddingBottom: V2.screenPad * 2, gap: V2.gap }} decelerationRate="fast">
-          <View style={{ borderRadius: V2.radius.card, backgroundColor: palette.glassRaised, borderColor: palette.stroke, borderWidth: 1, padding: V2.gap }}>
+          <View style={{ borderRadius: V2.radius.card, boxShadow: plateBoxShadow(g), padding: V2.gap }}>
+            <PlateFill g={g} radius={V2.radius.card} />{/* зачем (стиль «Тень»): плашка без обводки */}
             <Text accessibilityRole="header" style={{ color: palette.text, ...V2_TYPE.title }}>Dialogue V2 · DEV</Text>
             <Text style={{ color: palette.textSecondary, ...V2_TYPE.body, marginTop: 6 }}>
               Компонентная визуальная фикстура · данные статичны · без Auth/Firebase/Functions/release verification.
@@ -81,7 +94,7 @@ export default function DialogueV2VisualFixtureRoute() {
           <DialogueV2CatalogueSection items={fixtureCatalogue} worlds={fixtureWorlds} labels={{ lockedAtRank: (rank) => `Откроется на ранге ${rank}` }} onPressItem={noop} />
 
           <FixtureHeading>Брифинг / Briefing</FixtureHeading>
-          <View style={{ height: 680, overflow: 'hidden', borderRadius: V2.radius.card, borderColor: palette.stroke, borderWidth: 1 }}>
+          <FixtureFrame height={680}>
             <DialogueV2BriefingScreen
               title="Согласовать план"
               cefr="A2"
@@ -94,10 +107,10 @@ export default function DialogueV2VisualFixtureRoute() {
               onBack={noop}
               onStart={noop}
             />
-          </View>
+          </FixtureFrame>
 
           <FixtureHeading>Свободный разговор / Freeform</FixtureHeading>
-          <View style={{ height: 410, overflow: 'hidden', borderRadius: V2.radius.card, borderColor: palette.stroke, borderWidth: 1 }}>
+          <FixtureFrame height={410}>
             <DialogueV2FreeformScreen
               title="Свободный разговор"
               memoryNote="Статический пример интерфейса"
@@ -117,10 +130,10 @@ export default function DialogueV2VisualFixtureRoute() {
               onDiscardVoice={noop}
               onPlayVoice={noop}
             />
-          </View>
+          </FixtureFrame>
 
           <FixtureHeading>Сценарный чат / Scenario chat</FixtureHeading>
-          <View style={{ height: 410, overflow: 'hidden', borderRadius: V2.radius.card, borderColor: palette.stroke, borderWidth: 1 }}>
+          <FixtureFrame height={410}>
             <DialogueV2SessionScreen
               title="Согласовать план"
               messages={fixtureSessionMessages}
@@ -146,7 +159,7 @@ export default function DialogueV2VisualFixtureRoute() {
               onPlayPreparedBotVoice={noop}
               onComplete={noop}
             />
-          </View>
+          </FixtureFrame>
         </ScrollView>
       </SafeAreaView>
     </View>

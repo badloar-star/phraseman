@@ -6,6 +6,7 @@ import { triLang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useLang } from '../LangContext';
 import { PressableScale } from '../feedback/PressableScale';
+import { nestedBoxShadow, PlateFill, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../v2/ShadowSurface';
 import { useV2Palette } from '../v2/useV2Palette';
 
 export type DialogueV2PlusToolsProps = Readonly<{
@@ -22,6 +23,7 @@ export function DialogueV2PlusTools({
   onOpenFreeform,
 }: DialogueV2PlusToolsProps) {
   const p = useV2Palette();
+  const g = useShadowGlass();
   const { lang } = useLang();
   const rows = [
     {
@@ -42,8 +44,9 @@ export function DialogueV2PlusTools({
   return (
     <View testID="dialogue-v2-plus-tools" style={{ gap: V2.gapTight, marginTop: V2.gap }}>
       {rows.map((row) => (
+        // зачем (стиль «Тень», эталон «Диалоги»: «Свободный разговор» приподнят): сдвиг — на внешней обёртке, высота ряда не меняется.
+        <View key={row.id} style={{ transform: [{ translateY: RAISED_LIFT }] }}>
         <PressableScale
-          key={row.id}
           testID={`dialogue-v2-plus-tool-${row.id}`}
           onPress={row.onPress}
           disabled={!accessResolved}
@@ -64,9 +67,7 @@ export function DialogueV2PlusTools({
           style={{
             minHeight: V2.rowMinHeight,
             borderRadius: V2.radius.row,
-            backgroundColor: p.glassRaised,
-            borderColor: p.stroke,
-            borderWidth: 1,
+            boxShadow: raisedBoxShadow(g),
             paddingHorizontal: 12,
             paddingVertical: 10,
             flexDirection: 'row',
@@ -75,7 +76,8 @@ export function DialogueV2PlusTools({
             opacity: accessResolved ? 1 : 0.62,
           }}
         >
-          <View style={{ width: V2.rowIcon, height: V2.rowIcon, borderRadius: V2.radius.tile, backgroundColor: p.control, alignItems: 'center', justifyContent: 'center' }}>
+          <PlateFill g={g} radius={V2.radius.row} raised />
+          <View style={{ width: V2.rowIcon, height: V2.rowIcon, borderRadius: V2.radius.tile, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name={row.icon} size={21} color={p.iconTint} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
@@ -95,6 +97,7 @@ export function DialogueV2PlusTools({
             <Ionicons name="chevron-forward" size={19} color={p.textMuted} />
           )}
         </PressableScale>
+        </View>
       ))}
     </View>
   );

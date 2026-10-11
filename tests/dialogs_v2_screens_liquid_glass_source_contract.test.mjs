@@ -52,9 +52,10 @@ test('session C*: header .dh with «⋯» menu, no divider line, bubbles/typing/
   assert.match(session, /<DialogueGlassTyping/);
   assert.match(chat, /useNativeDriver: true/);
   assert.match(session, /<DialogueGlassBubble/);
-  // Пузырь «Вы» — светлый нейтральный (lightTint), чужой — стекло с 1px кромкой.
+  // Пузырь «Вы» — светлый нейтральный (lightTint), чужой — плашка стиля «Тень»: заливка плашки и тень, без кромки (владелец 12.10).
   assert.match(chat, /glass\.lightTint/);
-  assert.match(chat, /borderWidth: 1, \/\/ guard-ok/);
+  assert.match(chat, /boxShadow: plateBoxShadow\(glass\)/);
+  assert.doesNotMatch(chat, /borderWidth|glassEdge/);
   // D111/D112 (владелец 2026-09-30): настроение и месячный остаток теперь приходят с сервера и
   // рисуются; энергии в V2-диалогах решения нет — её по-прежнему не рисуем.
   // 30.09 (владелец: энергия как урок; макет B6): пилюля энергии в шапке, только по флагу showEnergy.

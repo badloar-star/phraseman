@@ -6,11 +6,12 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { PressableScale } from '../feedback/PressableScale';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
 
@@ -213,8 +214,8 @@ export function DialogueV2CatalogueSection({
                         ) : null}
                       </View>
 
-                      {/* `.lvl`: 38×26, радиус 8, поля 0·9, тон control с тонкой кромкой. */}
-                      <View style={{ minWidth: 38, height: 26, backgroundColor: glass.opaqueCard, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, borderColor: glass.line }}>{/* guard-ok: 1px кромка `.lvl` (исключение 2.0) */}
+                      {/* `.lvl`: 38×26, радиус 8, поля 0·9; вложенная плашка стиля «Тень» — тон и малая тень, без кромки. */}
+                      <View style={{ minWidth: 38, height: 26, backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass), borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ color: glass.text, fontSize: 13, lineHeight: 17, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
                           {item.cefr}
                         </Text>

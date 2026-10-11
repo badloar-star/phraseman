@@ -28,6 +28,7 @@ import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
+import { PlateFill, plateBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { safeRouterBack } from './navigation_back';
@@ -157,6 +158,7 @@ export default function DialogueV2MemoryRoute() {
   const { lang } = useLang();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const p = useV2Palette();
+  const g = useShadowGlass();
   const copy = useMemo(() => memoryCopy(lang), [lang]);
   // зачем (владелец 01.10: «никаких загружается / не загрузилось»): повторный заход — сразу последняя
   // полученная память этого языка; сбой сети — тихий повтор в фоне, текста об ошибке нет.
@@ -268,8 +270,9 @@ export default function DialogueV2MemoryRoute() {
       disabled={clearing || !supportedTarget(studyTarget)}
       accessibilityRole="button"
       accessibilityState={{ disabled: clearing || !supportedTarget(studyTarget) }}
-      style={{ minHeight: V2.cta.height, borderRadius: V2.cta.radius, backgroundColor: p.control, borderColor: p.stroke, borderWidth: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: clearing ? 0.65 : 1 }}
+      style={{ minHeight: V2.cta.height, borderRadius: V2.cta.radius, boxShadow: plateBoxShadow(g), alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: clearing ? 0.65 : 1 }}
     >
+      <PlateFill g={g} radius={V2.cta.radius} />{/* зачем (стиль «Тень»): кнопка — плашка с тенью вместо контура */}
       <Text style={{ color: p.wrong, ...V2_TYPE.headline, textAlign: 'center' }}>{clearing ? copy.clearing : copy.clear}</Text>
     </PressableScale>
   );
@@ -335,7 +338,8 @@ export default function DialogueV2MemoryRoute() {
           {memory && !hasMemory ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text> : null}
 
           {memory?.sharedSummary ? (
-            <View style={{ borderRadius: V2.radius.card, backgroundColor: p.glass, borderColor: p.stroke, borderWidth: 1, padding: 14, gap: V2.gapTight }}>
+            <View style={{ borderRadius: V2.radius.card, boxShadow: plateBoxShadow(g), padding: 14, gap: V2.gapTight }}>
+              <PlateFill g={g} radius={V2.radius.card} />{/* зачем (стиль «Тень»): плашка без обводки */}
               <Text style={{ color: p.text, ...V2_TYPE.section }}>{copy.summary}</Text>
               <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.completed}: {memory.sharedSummary.completedObjectives}</Text>
               {memory.sharedSummary.strengths.length ? (
@@ -358,10 +362,11 @@ export default function DialogueV2MemoryRoute() {
           ) : null}
 
           {memory?.scenarioCheckpoints.length ? (
-            <View style={{ gap: V2.gapTight }}>
+            <View style={{ gap: 10 /* стиль «Тень»: плашкам нужен зазор ≥10, чтобы тень «дышала» */ }}>
               <Text style={{ color: p.text, ...V2_TYPE.section }}>{copy.progress}</Text>
               {memory.scenarioCheckpoints.map((checkpoint) => (
-                <View key={checkpoint.scenarioId} style={{ borderRadius: V2.radius.card, backgroundColor: p.glassRaised, borderColor: p.stroke, borderWidth: 1, padding: 14, gap: 4 }}>
+                <View key={checkpoint.scenarioId} style={{ borderRadius: V2.radius.card, boxShadow: plateBoxShadow(g), padding: 14, gap: 4 }}>
+                  <PlateFill g={g} radius={V2.radius.card} />
                   <Text style={{ color: p.text, ...V2_TYPE.headline }}>{labels.scenarioTitles.get(checkpoint.scenarioId) ?? copy.dialogue}</Text>
                   <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.completed}: {checkpoint.completedObjectiveIds.length}</Text>
                   <Text style={{ color: p.textMuted, ...V2_TYPE.caption }}>{copy.nextTask}: {checkpoint.nextObjectiveIndex + 1}</Text>

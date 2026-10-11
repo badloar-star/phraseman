@@ -4,6 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 import {
   DialogueGlassBackButton,
   DialogueGlassCta,
@@ -75,7 +76,7 @@ export function DialogueV2BriefingScreen({
             <View style={{ width: 88, height: 88, borderRadius: 28, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
               <Ionicons name="chatbubbles-outline" size={40} color={glass.text} />
             </View>
-            <View style={[styles.level, { backgroundColor: glass.opaqueControl, borderColor: glass.line }]}>{/* guard-ok: 1px кромка `.lvl` (исключение 2.0) */}
+            <View style={[styles.level, { backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }]}>{/* зачем (стиль «Тень»): плашка уровня `.lvl` — вложенная, без кромки */}
               <Text maxFontSizeMultiplier={1.3} style={[styles.levelText, { color: glass.text }]}>{cefr}</Text>
             </View>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
@@ -90,7 +91,7 @@ export function DialogueV2BriefingScreen({
             {objectives.map((objective, index) => (
               <View
                 key={objective.id}
-                style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : null]}
+                style={[styles.obj, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.dividerTone } : null]}
               >
                 {/* зачем (сверка dialogs-008, макет `.obj .n`): цифра в видимом кружке (control 0x1C1C1E на карточке 0x161618) — тон от цвета текста темы, токен opaqueControl сливался с карточкой */}
                 <View style={[styles.num, { backgroundColor: glassTone(glass.text, 0.10) }]}>
@@ -129,8 +130,8 @@ const styles = StyleSheet.create({
   top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row' },
   scroll: { paddingHorizontal: 16, paddingBottom: 28 },
   hero: { alignItems: 'center', marginTop: 18 },
-  // dialogs.html B `.lvl`: 38×26, радиус 8, поля 0·9, тонкая кромка.
-  level: { marginTop: 14, minWidth: 38, height: 26, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth },
+  // dialogs.html B `.lvl`: 38×26, радиус 8, поля 0·9; без кромки (стиль «Тень»).
+  level: { marginTop: 14, minWidth: 38, height: 26, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center' },
   levelText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   title: { marginTop: 10, fontSize: 32, lineHeight: 38, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
   briefCard: { marginTop: 22, padding: 18 },

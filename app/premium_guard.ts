@@ -309,6 +309,10 @@ type RealPremiumRefreshSnapshot = Readonly<{
   adminExplicitRevoked: boolean;
 }>;
 
+// зачем (координатор 11.10, прогон на эмуляторе без Play): RevenueCat не сконфигурирован → каждая проверка доступа
+// звала getAppUserID и сыпала «no singleton instance» в журнал по кругу. Причину пишем ОДИН раз, дальше молча пропуск.
+let _rcNotConfiguredLogged = false;
+
 /** RevenueCat may take seconds; entitlement gates must never wait for it. */
 function refreshRealPremiumInBackground(
   generation: AccountGenerationToken,
@@ -320,6 +324,18 @@ function refreshRealPremiumInBackground(
   let refresh!: Promise<void>;
   refresh = (async () => {
     try {
+      // Нет метода (старая версия SDK) → считаем настроенным: прежнее поведение.
+      const configured = typeof Purchases.isConfigured !== 'function' ? true : await Purchases.isConfigured().catch((error: unknown) => {
+        if (!_rcNotConfiguredLogged) console.warn('[PREMIUM-RC] isConfigured failed — пропускаю обновление', error instanceof Error ? error.message : String(error));
+        return false;
+      });
+      if (!configured) {
+        if (!_rcNotConfiguredLogged) {
+          _rcNotConfiguredLogged = true;
+          console.warn('[PREMIUM-RC] RevenueCat не настроен — фоновое обновление Plus пропускается (дальше без повторов)');
+        }
+        return;
+      }
       const rcAppUserIdBefore = await Purchases.getAppUserID().catch(noteSwallowedAs('premium_guard:promise_5', ''));
       if (!accountGenerationIsCurrent(generation) || rcAppUserIdBefore !== generation.stableId) return;
       const info = await Promise.race([
@@ -885,7 +901,9 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
       if (!accountGenerationIsCurrent(generation)) return false;
       await cloudSync.restoreFromCloud();
       return accountGenerationIsCurrent(generation);
-    } catch {
+    } catch (error) {
+      // Немой catch запрещён: облако не ответило — доступ остаётся по локальному решению, причина в журнале.
+      console.warn('[PREMIUM-CLOUD] restoreFromCloud failed', error instanceof Error ? error.message : String(error));
       return false;
     } finally {
       _cloudAccessRefreshInFlight = null;

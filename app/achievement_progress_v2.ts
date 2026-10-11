@@ -224,22 +224,59 @@ export async function loadFoundationProgress(
     return isCurrentAccountGeneration(token)
       ? normalizeFoundationProgress(raw)
       : createEmptyFoundationProgress();
-  } catch {
+  } catch (error) {
+    // Немой catch запрещён: битый/недоступный снимок прогресса — причина в журнале, значение по умолчанию прежнее.
+    console.warn('[FOUNDATION-LOCK] load failed — пустой прогресс', error instanceof Error ? error.message : String(error));
     return createEmptyFoundationProgress();
   }
 }
+
+// зачем (координатор 11.10, прогон авторизации: [ACCOUNT-LOCK] hold > 3 с, держатель _updateFoundationProgress):
+// функция держит замок аккаунта и ВНУТРИ ждёт замок хранилища. Сперва логи: разбивка времени покажет, что именно
+// держит — ожидание второго замка или сам диск. Пишем только медленные вызовы.
+const FOUNDATION_SLOW_MS = 250;
 
 export async function updateFoundationProgress(
   reducer: (current: AchievementFoundationProgressV2) => AchievementFoundationProgressV2,
   token: AccountGenerationToken = captureAccountGeneration(),
 ): Promise<AchievementFoundationProgressV2> {
   if (!token.stableId || !isCurrentAccountGeneration(token)) return createEmptyFoundationProgress();
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
-    if (!isCurrentAccountGeneration(token)) return createEmptyFoundationProgress();
-    const raw = await AsyncStorage.getItem(ACHIEVEMENT_FOUNDATION_PROGRESS_KEY);
-    if (!isCurrentAccountGeneration(token)) return createEmptyFoundationProgress();
-    const next = normalizeFoundationProgress(reducer(normalizeFoundationProgress(raw)));
-    await AsyncStorage.setItem(ACHIEVEMENT_FOUNDATION_PROGRESS_KEY, JSON.stringify(next));
-    return isCurrentAccountGeneration(token) ? next : createEmptyFoundationProgress();
-  }));
+  const t0 = Date.now();
+  let tAccount = 0;
+  let tStorage = 0;
+  let tRead = 0;
+  let tReduce = 0;
+  let tWrite = 0;
+  let exit = 'done';
+  try {
+    return await withAccountTransitionLock(async () => {
+      tAccount = Date.now();
+      return withStorageLock(async () => {
+        tStorage = Date.now();
+        if (!isCurrentAccountGeneration(token)) { exit = 'stale_before_read'; return createEmptyFoundationProgress(); }
+        const raw = await AsyncStorage.getItem(ACHIEVEMENT_FOUNDATION_PROGRESS_KEY);
+        tRead = Date.now();
+        if (!isCurrentAccountGeneration(token)) { exit = 'stale_after_read'; return createEmptyFoundationProgress(); }
+        const next = normalizeFoundationProgress(reducer(normalizeFoundationProgress(raw)));
+        tReduce = Date.now();
+        await AsyncStorage.setItem(ACHIEVEMENT_FOUNDATION_PROGRESS_KEY, JSON.stringify(next));
+        tWrite = Date.now();
+        return isCurrentAccountGeneration(token) ? next : createEmptyFoundationProgress();
+      });
+    });
+  } finally {
+    const totalMs = Date.now() - t0;
+    if (totalMs > FOUNDATION_SLOW_MS) {
+      const span = (from: number, to: number) => (from && to ? to - from : null);
+      console.warn('[FOUNDATION-LOCK] slow update', JSON.stringify({
+        totalMs,
+        waitAccountLockMs: span(t0, tAccount),
+        waitStorageLockMs: span(tAccount, tStorage),
+        readMs: span(tStorage, tRead),
+        reduceMs: span(tRead, tReduce),
+        writeMs: span(tReduce, tWrite),
+        exit,
+      }));
+    }
+  }
 }

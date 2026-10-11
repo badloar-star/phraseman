@@ -315,8 +315,13 @@ export default function FlashcardsHubScreen() {
       void catalogLoadRevision;
       // Local settled count refreshes even on a warm Hub return from My Packs.
       void getCanonicalUserId().then((userId) => {
-        if (!cancelled) setMyPackCount(peekMyPacksCount(studyTarget, userId));
-      }).catch(() => {
+        // зачем (Сверка: у плитки «Мои наборы» нет числа при 4 наборах в фикстуре): peekMyPacksCount отдаёт число только если экран «Мои наборы»
+        // уже один раз прогрузился; на свежем входе там null. Лог показывает значение и откуда оно, ниже загрузчик подставляет локальный счёт.
+        const settled = peekMyPacksCount(studyTarget, userId);
+        console.log('[HUB-TILES] mine:settled', JSON.stringify({ settled, userId: userId ? 'есть' : 'нет', studyTarget, source: settled === null ? 'нет снимка «Мои наборы» → ждём локальный счёт' : 'снимок «Мои наборы»' })); // guard-ok: единичный лог на вход
+        if (!cancelled) setMyPackCount(settled);
+      }).catch((error: unknown) => {
+        console.warn('[HUB-TILES] mine:settled FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
         if (!cancelled) setMyPackCount(null);
       });
       /**
@@ -398,6 +403,12 @@ export default function FlashcardsHubScreen() {
         setCatalog((prev) => (sameCatalog(prev, merged) ? prev : merged));
         const nextOwned = [...new Set([...owned, ...authored.map((pack) => pack.id)])];
         setOwnedCommunityPackIds((prev) => (sameIds(prev, nextOwned) ? prev : nextOwned));
+        // зачем: нет снимка «Мои наборы» — берём локальный счёт (свои наборы с устройства + добавленные из сообщества); снимок, когда появится, перекроет его
+        setMyPackCount((prev) => {
+          const next = prev ?? nextOwned.length;
+          console.log('[HUB-TILES] mine:local', JSON.stringify({ prev, local: nextOwned.length, authored: authored.length, ownedCommunity: owned.length, shown: next, source: prev === null ? 'локальный счёт' : 'снимок «Мои наборы»' })); // guard-ok: единичный лог на вход
+          return next;
+        });
         setCatalogLoadState('ready');
       })();
       return () => {

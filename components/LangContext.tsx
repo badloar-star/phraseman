@@ -8,6 +8,7 @@ import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 import { publishResolvedUiLang } from '../app/ui_lang_resolved';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { actionToastTri, emitAppEvent } from '../app/events';
 
 export type { Lang };
 
@@ -1221,6 +1222,19 @@ function initialLangFromPeekOrDevice(): Lang {
   return initial;
 }
 
+/** Тост отката языка: запись выбора не удалась, интерфейс вернулся к прежнему языку. */
+export const LANG_ROLLBACK_TOAST = actionToastTri('error', {
+  ru: 'Не удалось сохранить язык — попробуй ещё раз',
+  uk: 'Не вдалося зберегти мову — спробуй ще раз',
+  en: 'Couldn’t save the language — please try again',
+  es: 'No se pudo guardar el idioma: inténtalo de nuevo',
+  'pt-BR': 'Não foi possível salvar o idioma — tente de novo',
+  vi: 'Không lưu được ngôn ngữ — hãy thử lại',
+  id: 'Bahasa gagal disimpan — coba lagi',
+  tr: 'Dil kaydedilemedi — tekrar dene',
+  pl: 'Nie udało się zapisać języka — spróbuj ponownie',
+});
+
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   const [lang, setLangState] = useState<Lang>(() => initialLangFromPeekOrDevice());
   const [langHydrated, setLangHydrated] = useState(false);
@@ -1314,6 +1328,10 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
         writePeekAppLang(previous);
         setLangState(previous);
         emitAppLangChanged(previous, l);
+        // зачем (обзор R1, координатор 12.10): откат был молчаливым — человек видел, как язык «сам» вернулся. Тост
+        // только при реальном откате и без более нового выбора (ветка ниже его не показывает).
+        console.warn(`[LANG-SWITCH] ui_lang_rollback_toast shown failed=${l} back_to=${previous} reason=${reason}`);
+        emitAppEvent('action_toast', LANG_ROLLBACK_TOAST);
       } else {
         console.warn(`[LANG-SWITCH] ui_lang_rollback_skipped current=${langRef.current} failed=${l} reason=newer_choice`);
       }

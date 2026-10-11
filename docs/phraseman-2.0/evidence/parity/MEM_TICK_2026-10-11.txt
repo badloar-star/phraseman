@@ -1,0 +1,72 @@
+ LOG  [DAILY-PHRASE-PEEK] hydrate {"state":"ready","ms":47,"today":"2026-10-11","keys":["2026-10-11","2026-10-12"]}
+ LOG  [MEM-TICK] {"tSec":7,"route":"/home","heapMb":40,"gc":"43gc/726ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":65,"pendingTimeouts":23,"firestoreReads":{"users":3}}
+ LOG  [COLD-START] phone_state.gate:home_painted proc=6435169ms src=_layout
+ LOG  [MEM] home_painted {"heapMb":40,"allocatedMb":34,"externalMb":78.6,"numGCs":144,"gcTimeMs":2163}
+ LOG  [MEM-TICK] {"tSec":16,"route":"/home","heapMb":40,"gc":"66gc/1312ms","intervals":2,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1,"anonymous <- loadModuleImplementation":1},"timeoutsCreated":41,"pendingTimeouts":7,"firestoreReads":{"banned_users":1,"users":1,"config":1}}
+ LOG  [COLD-START] phone_state.gate:home_painted proc=6448625ms src=_layout
+ LOG  [MEM-TICK] {"tSec":25,"route":"/home","heapMb":44,"gc":"122gc/2267ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":55,"pendingTimeouts":6,"firestoreReads":{"config":1,"users":3,"query":1}}
+ LOG  [DAILY-PHRASE-PEEK] hydrate {"state":"ready","ms":4036,"today":"2026-10-11","keys":["2026-10-11","2026-10-12"]}
+ LOG  [MEM-TICK] {"tSec":31,"route":"/home","heapMb":40,"gc":"58gc/1139ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":52,"pendingTimeouts":2,"firestoreReads":{"query":1}}
+ LOG  [IDIOMS-LOAD] first require {"ms":115,"count":176,"gc":"0gc/0ms","caller":"at rememberPeekPhrases"}
+ LOG  [MEM-TICK] {"tSec":36,"route":"/home","heapMb":44,"gc":"51gc/898ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":122,"pendingTimeouts":3,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":45,"route":"/home","heapMb":64,"gc":"231gc/2497ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":43,"pendingTimeouts":5,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":50,"route":"/home","heapMb":72,"gc":"43gc/565ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":139,"pendingTimeouts":0,"firestoreReads":{"query":2}}
+ LOG  [MEM-TICK] {"tSec":55,"route":"/home","heapMb":72,"gc":"18gc/240ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":60,"route":"/home","heapMb":72,"gc":"44gc/844ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":65,"route":"/home","heapMb":68,"gc":"51gc/833ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":70,"route":"/home","heapMb":68,"gc":"24gc/263ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":75,"route":"/home","heapMb":68,"gc":"18gc/226ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM] home_painted+60s {"heapMb":68,"allocatedMb":50.5,"externalMb":75.9,"numGCs":806,"gcTimeMs":11960}
+ LOG  [MEM-TICK] {"tSec":80,"route":"/home","heapMb":68,"gc":"18gc/224ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":86,"route":"/home","heapMb":68,"gc":"21gc/280ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":9,"pendingTimeouts":1,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":91,"route":"/home","heapMb":68,"gc":"1gc/15ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":96,"route":"/home","heapMb":68,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":101,"route":"/home","heapMb":68,"gc":"1gc/11ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":5,"route":"unknown","heapMb":32,"gc":"39gc/903ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":40,"pendingTimeouts":8,"firestoreReads":{}}
+ LOG  [DAILY-PHRASE-PEEK] hydrate {"state":"ready","ms":86,"today":"2026-10-11","keys":["2026-10-11","2026-10-12"]}
+ LOG  [MEM-TICK] {"tSec":10,"route":"/","heapMb":32,"gc":"40gc/898ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":37,"pendingTimeouts":2,"firestoreReads":{"users":3}}
+ LOG  [COLD-START] phone_state.gate:home_painted proc=6552720ms src=_layout
+ LOG  [MEM] home_painted {"heapMb":36,"allocatedMb":29.8,"externalMb":91.4,"numGCs":157,"gcTimeMs":3124}
+ LOG  [MEM-TICK] {"tSec":16,"route":"/","heapMb":36,"gc":"79gc/1506ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":13,"pendingTimeouts":1,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":23,"route":"/","heapMb":36,"gc":"80gc/1339ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":3,"pendingTimeouts":0,"firestoreReads":{"query":1,"users":1}}
+ LOG  [IDIOMS-LOAD] first require {"ms":80,"count":176,"gc":"0gc/0ms","caller":"at rememberPeekPhrases"}
+ LOG  [COLD-START] phone_state.gate:home_painted proc=6568884ms src=_layout
+ LOG  [MEM-TICK] {"tSec":29,"route":"/","heapMb":44,"gc":"82gc/1424ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":52,"pendingTimeouts":14,"firestoreReads":{"users":2}}
+ LOG  [DAILY-PHRASE-PEEK] hydrate {"state":"ready","ms":797,"today":"2026-10-11","keys":["2026-10-11","2026-10-12"]}
+ LOG  [DAILY-PHRASE-PEEK] hydrate {"state":"ready","ms":460,"today":"2026-10-11","keys":["2026-10-11","2026-10-12"]}
+ LOG  [MEM-TICK] {"tSec":5,"route":"unknown","heapMb":32,"gc":"39gc/631ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":55,"pendingTimeouts":9,"firestoreReads":{"users":2}}
+ LOG  [MEM-TICK] {"tSec":11,"route":"/","heapMb":32,"gc":"44gc/1083ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":22,"pendingTimeouts":2,"firestoreReads":{"users":1}}
+ LOG  [MEM-TICK] {"tSec":17,"route":"/","heapMb":36,"gc":"57gc/1308ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":5,"pendingTimeouts":0,"firestoreReads":{"users":1}}
+ LOG  [COLD-START] phone_state.gate:home_painted proc=6596926ms src=_layout
+ LOG  [MEM] home_painted {"heapMb":40,"allocatedMb":32.5,"externalMb":60.3,"numGCs":246,"gcTimeMs":4653}
+ LOG  [MEM-TICK] {"tSec":23,"route":"/","heapMb":40,"gc":"119gc/1903ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":21,"pendingTimeouts":2,"firestoreReads":{"query":1}}
+ LOG  [IDIOMS-LOAD] first require {"ms":104,"count":176,"gc":"0gc/0ms","caller":"at rememberPeekPhrases"}
+ LOG  [MEM-TICK] {"tSec":35,"route":"/","heapMb":60,"gc":"248gc/2557ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":15,"pendingTimeouts":6,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":40,"route":"/","heapMb":60,"gc":"51gc/890ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":19,"pendingTimeouts":1,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":45,"route":"/","heapMb":60,"gc":"21gc/543ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":4,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":50,"route":"/","heapMb":56,"gc":"60gc/1304ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":6,"pendingTimeouts":1,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":55,"route":"/","heapMb":56,"gc":"13gc/266ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":5,"pendingTimeouts":1,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":60,"route":"/","heapMb":56,"gc":"2gc/55ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":65,"route":"/","heapMb":56,"gc":"1gc/14ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":70,"route":"/","heapMb":56,"gc":"2gc/31ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":75,"route":"/","heapMb":56,"gc":"1gc/8ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":80,"route":"/","heapMb":56,"gc":"1gc/11ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM] home_painted+60s {"heapMb":56,"allocatedMb":42.9,"externalMb":117.4,"numGCs":674,"gcTimeMs":10688}
+ LOG  [MEM-TICK] {"tSec":85,"route":"/","heapMb":56,"gc":"1gc/10ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":90,"route":"/","heapMb":56,"gc":"1gc/7ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":95,"route":"/","heapMb":56,"gc":"1gc/8ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":100,"route":"/","heapMb":56,"gc":"1gc/8ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":106,"route":"/","heapMb":56,"gc":"1gc/9ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":111,"route":"/","heapMb":56,"gc":"1gc/11ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":116,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":121,"route":"/","heapMb":56,"gc":"1gc/8ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":126,"route":"/","heapMb":56,"gc":"1gc/12ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":131,"route":"/","heapMb":56,"gc":"8gc/109ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":6,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":136,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":141,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":146,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":151,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":156,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":161,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":166,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}
+ LOG  [MEM-TICK] {"tSec":171,"route":"/","heapMb":56,"gc":"0gc/0ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":1,"pendingTimeouts":0,"firestoreReads":{}}

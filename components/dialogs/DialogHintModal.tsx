@@ -43,7 +43,16 @@ export default function DialogHintModal({ visible, onClose, lang, hint, testID }
         testID={testID}
         // зачем: VoiceOver не достаёт до фона — жест «escape» закрывает окно.
         onAccessibilityEscape={onClose}
-        style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.line }]}
+        // зачем (DIFF_BURNDOWN dialogs-017: «окно висит без кромки и тени»): светлая кромка, кольцо и тень окна — токены темы.
+        style={[styles.card, {
+          backgroundColor: glass.opaqueSheet,
+          borderColor: glass.line,
+          boxShadow: [
+            { inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelHi },
+            { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: glass.hairlineSoft },
+            { offsetX: 0, offsetY: 18, blurRadius: 40, spreadDistance: -12, color: glass.dropShadow },
+          ],
+        }]}
       >
         <View style={styles.head}>
           <Ionicons name="bulb-outline" size={24} color={glass.text} accessibilityElementsHidden />

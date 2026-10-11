@@ -33,6 +33,13 @@ export function dialogueGlassCardStyle(glass: DialogueGlass, radius = 18): ViewS
     borderWidth: 1, // guard-ok: 1 px полупрозрачная кромка стекла (макет dialogs.html)
     borderColor: glass.glassEdge, // guard-ok: 1 px кромка стекла
     overflow: 'hidden',
+    // зачем (DIFF_BURNDOWN dialogs-014: «карточка цели и пузырь без стеклянной кромки темы, плоские»): кромка макета `--lg-rim` из токенов —
+    // светлая линия сверху-слева, тёмная снизу-справа и тонкое кольцо; внутренние тени не меняют размеры.
+    boxShadow: [
+      { inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelHi },
+      { inset: true, offsetX: -1, offsetY: -1.5, blurRadius: 0, spreadDistance: -0.2, color: glass.bevelLo },
+      { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: glass.hairlineSoft },
+    ],
   };
 }
 

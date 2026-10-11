@@ -53,6 +53,7 @@ export type LiquidGlassSurfaceRoles = Readonly<{
 
 type SurfaceSource = Readonly<{
   bg: string;
+  bgTop?: string;
   opaqueCard: string;
   opaqueControl: string;
   opaqueSheet: string;
@@ -110,8 +111,8 @@ export function legibleOn(color: string, toward: string, surfaces: readonly stri
  * зачем (находка Сверки 12.10): на светлых градиентных темах значки и дорожки выключенных переключателей были ≈ 1,5:1 — их
  * красили тонами поверхности; здесь тон берётся от текста темы, поэтому читается в любой теме и на любом шаге ползунка.
  */
-function nonTextTone(t: SurfaceSource, from: number, min: number): string {
-  const against = [t.opaqueCard, t.card, t.opaqueSheet, t.opaqueControl, t.bg].map(hex6);
+function nonTextTone(t: SurfaceSource, from: number, min: number, extra: readonly string[] = []): string {
+  const against = [t.opaqueCard, t.card, t.opaqueSheet, t.opaqueControl, t.bg, ...extra].map(hex6);
   for (let k = from; k <= 1.0001; k += 0.02) {
     const tone = mixSurfaceHex(t.opaqueCard, t.text, Math.min(k, 1));
     if (against.every((bg) => ratio(tone, bg) >= min)) return tone;
@@ -123,8 +124,6 @@ function nonTextTone(t: SurfaceSource, from: number, min: number): string {
 const LIGHT_SHADOW_BASE = '#282850';
 
 export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurfaceRoles {
-  const iconMuted = nonTextTone(t, 0.40, 3.2);
-  const trackOff = nonTextTone(t, 0.32, 3.1);
   // Стиль «Тень»: числа — из спеки; тон светлой тени и нижний тон плашки — от темы, поэтому ползунок и тема их меняют.
   const tintShare = { calm: 0.35, accent: 0.55, max: 0.75 }[t.level ?? 'calm'];
   const tinted = t.shadowTint.length > 7 ? mixSurfaceHex(LIGHT_SHADOW_BASE, t.shadowTint, tintShare) : LIGHT_SHADOW_BASE;
@@ -154,6 +153,11 @@ export function deriveLiquidGlassSurfaceRoles(t: SurfaceSource): LiquidGlassSurf
         raisedShadowSoft: 'rgba(0,0,0,0)',
         dividerTone: 'rgba(255,255,255,0.07)',
       };
+  // зачем (аудит контраста «Тени» 14.10, решение координатора п.63): неактивные значки и дорожки были 2,75–2,94 на верхнем тоне фона (светлые
+  // grad_magma / grad_midnight) и на выбранной плашке (тёмное, интенсивность 0, все темы). Теперь подбор идёт и по ним — сдвиг ровно до порога.
+  const extraSurfaces = [shadowStyle.raisedFillFrom, ...(t.bgTop ? [t.bgTop] : [])];
+  const iconMuted = nonTextTone(t, 0.40, 3.2, extraSurfaces);
+  const trackOff = nonTextTone(t, 0.32, 3.1, extraSurfaces);
   if (t.isLight) {
     return Object.freeze({
       deepBase: mixSurfaceHex(t.opaqueControl, '#000000', 0.08),

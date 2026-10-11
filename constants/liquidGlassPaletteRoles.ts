@@ -78,6 +78,7 @@ const withAlpha = (hex: string, opacity: number) => `${hex}${hex2(toByte(opacity
 
 type RoleSource = Readonly<{
   bg: string;
+  bgTop?: string;
   opaqueCard: string;
   opaqueControl: string;
   isLight: boolean;
@@ -92,7 +93,8 @@ const ROLE_HUES = {
 const LEVEL_KEYS = ['A1', 'A2', 'B1', 'B2'] as const;
 
 export function deriveLiquidGlassPaletteRoles(t: RoleSource) {
-  const surfaces = [t.opaqueCard, t.bg, t.opaqueControl].map((c) => c.slice(0, 7));
+  // зачем (аудит контраста 14.10, п.63): статусный текст лежит и прямо на верхнем тоне фона — в светлых градиентных темах там было 3,87–4,47.
+  const surfaces = [t.opaqueCard, t.bg, t.opaqueControl, ...(t.bgTop ? [t.bgTop] : [])].map((c) => c.slice(0, 7));
   const k = clamp01(t.intensity);
   const dark = !t.isLight;
   // Припылённо в «Спокойно», насыщеннее к «Максимуму».

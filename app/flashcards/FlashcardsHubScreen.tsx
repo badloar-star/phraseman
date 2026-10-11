@@ -49,6 +49,7 @@ import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
 import { pickTopCommunityPacks } from './SavedTopCommunityPacks';
+import { checkOnlineNow, getNetStatus, subscribeNetStatus } from '../net_status';
 import { formatDuration } from './VideoPackRow';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
@@ -137,6 +138,9 @@ export default function FlashcardsHubScreen() {
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   // зачем (Карточки 2.0, плитка «Мои наборы»): обложки стопки — названия и размеры своих наборов; уже загружаются для владения, держим сами пакеты.
+  // зачем (Карточки 2.0, состояние «Нет сети»): сеть-статус приложения уже опрашивается централизованно (net_status) — тут только подписка, своих запросов нет.
+  const [netOffline, setNetOffline] = useState<boolean>(() => getNetStatus() === 'offline');
+  useEffect(() => subscribeNetStatus((online) => setNetOffline(!online)), []);
   const [authoredPacks, setAuthoredPacks] = useState<LocalAuthorPack[]>([]);
   const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
   // My Packs includes unpublished author packs that the Hub catalog does not know.
@@ -664,6 +668,9 @@ export default function FlashcardsHubScreen() {
     all: triLang(lang, { ru: 'Все', uk: 'Усі', en: 'All', es: 'Todos', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
     best: triLang(lang, { ru: 'Лучшее у сообщества', uk: 'Найкраще у спільноти', en: 'Best of the community', es: 'Lo mejor de la comunidad', 'pt-BR': 'Melhores da comunidade', vi: 'Nổi bật của cộng đồng', id: 'Terbaik dari komunitas', tr: 'Topluluğun en iyileri', pl: 'Najlepsze ze społeczności' }),
     phrases: (n: number) => triLang(lang, { ru: `${n} фраз`, uk: `${n} фраз`, en: `${n} phrases`, es: `${n} frases`, 'pt-BR': `${n} frases`, vi: `${n} cụm`, id: `${n} frasa`, tr: `${n} ifade`, pl: `${n} zwrotów` }),
+    offTitle: triLang(lang, { ru: 'Нет сети', uk: 'Немає мережі', en: 'No connection', es: 'Sin conexión', 'pt-BR': 'Sem conexão', vi: 'Không có mạng', id: 'Tidak ada jaringan', tr: 'Bağlantı yok', pl: 'Brak sieci' }),
+    offSub: triLang(lang, { ru: 'Твои карточки доступны', uk: 'Твої картки доступні', en: 'Your cards are available', es: 'Tus tarjetas están disponibles', 'pt-BR': 'Seus cartões estão disponíveis', vi: 'Thẻ của bạn vẫn dùng được', id: 'Kartumu tetap tersedia', tr: 'Kartların kullanılabilir', pl: 'Twoje karty są dostępne' }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' }),
     cardsN: (n: number) => triLang(lang, { ru: `${n} карточек`, uk: `${n} карток`, en: `${n} cards`, es: `${n} tarjetas`, 'pt-BR': `${n} cartões`, vi: `${n} thẻ`, id: `${n} kartu`, tr: `${n} kart`, pl: `${n} kart` }),
   };
   const translationOf = (card: { ru?: string; uk?: string; es?: string; sourceLocales?: unknown }): string => {
@@ -722,6 +729,10 @@ export default function FlashcardsHubScreen() {
               mine: { title: copy.mine, count: fmt(myPackCount), empty: myPackCount === 0, emptyLabel: hubCopy.createShort, covers: myCovers, onPress: () => (myPackCount === 0 ? openCreatePack() : router.push('/flashcards_my_packs' as never)) },
             }}
             video={videoItems.length > 0 ? { title: copy.videoShort, allLabel: hubCopy.all, items: videoItems, onAll: () => router.push('/flashcards_video_packs' as never) } : null}
+            skeleton={catalogLoadState === 'loading' && !netOffline ? { videoTitle: copy.videoShort, communityTitle: hubCopy.best } : null}
+            offline={netOffline && videoItems.length === 0 && communityItems.length === 0
+              ? { title: hubCopy.offTitle, sub: hubCopy.offSub, retryLabel: hubCopy.retry, onRetry: () => { void checkOnlineNow().catch(noteSwallowedAs('FlashcardsHubScreen:offlineRetry.checkOnlineNow', false)).then((online) => { if (online) reloadCatalog(); }); } }
+              : null}
             community={communityItems.length > 0 ? { title: hubCopy.best, allLabel: hubCopy.all, items: communityItems, onAll: () => router.push('/flashcards_packs' as never) } : null}
             reduceMotion={reduceMotion}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}

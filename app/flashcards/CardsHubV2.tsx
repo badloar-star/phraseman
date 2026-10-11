@@ -14,6 +14,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } fr
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlowText } from '../../components/text-integrity/FlowText';
+import SkeletonBlock from '../../components/SkeletonShimmer';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
 
 export type CardsHubVideoItem = Readonly<{ id: string; title: string; meta: string; thumbUrl: string | null; duration: string; onPress: () => void }>;
@@ -41,6 +42,10 @@ type Props = Readonly<{
   }>;
   video: Readonly<{ title: string; allLabel: string; items: readonly CardsHubVideoItem[]; onAll: () => void }> | null;
   community: Readonly<{ title: string; allLabel: string; items: readonly CardsHubCommunityItem[]; onAll: () => void }> | null;
+  /** Первое в жизни открытие без кэша: на месте ленты и чарта — скелеты (макет `hubLoad`). */
+  skeleton?: Readonly<{ videoTitle: string; communityTitle: string }> | null;
+  /** Нет сети и показывать из кэша нечего: блок «Нет сети / Твои карточки доступны / Повторить» (макет `offlineHub`). */
+  offline?: Readonly<{ title: string; sub: string; retryLabel: string; onRetry: () => void }> | null;
   reduceMotion: boolean;
   onBack: () => void;
   onCreate: () => void;
@@ -103,7 +108,7 @@ const Tile = memo(function Tile({ g, testID, title, count, onPress, icon, childr
   );
 });
 
-function CardsHubV2Inner({ g, title, hero, yours, video, community, reduceMotion, onBack, onCreate, ctaRef, labels }: Props) {
+function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, offline, reduceMotion, onBack, onCreate, ctaRef, labels }: Props) {
   const { fontScale } = useWindowDimensions();
   const fs = Math.max(1, fontScale);
   // зачем (large font): высота hero растёт с системным шрифтом, чтобы слово и подпись не резались; сам шрифт не сжимаем.
@@ -175,6 +180,48 @@ function CardsHubV2Inner({ g, title, hero, yours, video, community, reduceMotion
           </Tile>
         </View>
       </Rise>
+
+      {offline ? (
+        <Rise index={idx++} reduceMotion={reduceMotion}>
+          <View style={styles.offline} testID="fc-cards-hub-offline">
+            <View style={[styles.offTile, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
+              <Ionicons name="cloud-offline-outline" size={26} color={g.text} />
+            </View>
+            <FlowText testID="fc-cards-hub-offline-title" provenance="authored" style={[styles.offTitle, { color: g.text }]}>{offline.title}</FlowText>
+            <FlowText testID="fc-cards-hub-offline-sub" provenance="authored" style={[styles.offSub, { color: g.secondary }]}>{offline.sub}</FlowText>
+            <Pressable testID="fc-cards-hub-offline-retry" accessibilityRole="button" accessibilityLabel={offline.retryLabel} onPress={offline.onRetry}
+              style={({ pressed }) => [styles.offBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}>
+              <Ionicons name="refresh" size={18} color={g.accentInk} />
+              <FlowText testID="fc-cards-hub-offline-retry-label" provenance="authored" style={[styles.offBtnText, { color: g.accentInk }]}>{offline.retryLabel}</FlowText>
+            </Pressable>
+          </View>
+        </Rise>
+      ) : skeleton && !hasVideo && !hasCommunity ? (
+        <View testID="fc-cards-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+          <SectionHead g={g} title={skeleton.videoTitle} />
+          {/* guard-ok: два статичных блока скелета, не данные */}
+          <ScrollView horizontal scrollEnabled={false} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
+            {[0, 1].map((n) => (
+              <View key={n} style={styles.vcard}>
+                <SkeletonBlock width={252} height={142} borderRadius={14} />
+                <SkeletonBlock width="70%" height={16} borderRadius={6} style={styles.skLine} />
+                <SkeletonBlock width="30%" height={12} borderRadius={6} style={styles.skLineSm} />
+              </View>
+            ))}
+          </ScrollView>
+          <SectionHead g={g} title={skeleton.communityTitle} />
+          {[0, 1, 2].map((n) => (
+            <View key={n} style={styles.cr}>
+              <SkeletonBlock width={18} height={18} borderRadius={6} />
+              <SkeletonBlock width={92} height={46} borderRadius={10} />
+              <View style={styles.crText}>
+                <SkeletonBlock width="60%" height={16} borderRadius={6} />
+                <SkeletonBlock width="35%" height={12} borderRadius={6} style={styles.skLineSm} />
+              </View>
+            </View>
+          ))}
+        </View>
+      ) : null}
 
       {hasVideo && video ? (
         <Rise index={idx++} reduceMotion={reduceMotion}>
@@ -273,6 +320,14 @@ const styles = StyleSheet.create({
   mcText: { fontSize: 13, lineHeight: 16, fontWeight: '600' },
   rail: { gap: 12, paddingRight: 20 },
   vcard: { width: 252 },
+  skLine: { marginTop: 12 },
+  skLineSm: { marginTop: 8 },
+  offline: { alignItems: 'center', paddingTop: 30, paddingBottom: 10 },
+  offTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  offTitle: { marginTop: 20, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
+  offSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  offBtn: { marginTop: 22, minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  offBtnText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   vfr: { aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden' },
   dur: { position: 'absolute', right: 8, bottom: 10, paddingVertical: 3, paddingHorizontal: 7, borderRadius: 6, backgroundColor: 'rgba(0,0,0,0.72)' }, // theme-exempt: плашка длительности поверх кадра ролика — темнота в любой теме
   durText: { fontSize: 13, lineHeight: 16, fontWeight: '600', color: '#FFFFFF', fontVariant: ['tabular-nums'] }, // theme-exempt: белый текст на тёмной плашке длительности

@@ -27,6 +27,7 @@ import {
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
 import { resolvePremiumPackages, syncRevenueCatIdentity } from '../app/revenuecat_init';
+import { PREMIUM_IDENTITY_WAIT_MS, waitForIdentitySyncBounded } from '../app/premium_identity_wait';
 import { markVipGrantSeenWithoutCelebration, processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
@@ -197,6 +198,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const premiumAccountTransitionActiveRef = useRef(false);
   const resolvedReloadEpochRef = useRef<number | null>(null);
   const reloadRunnerRef = useRef<(() => Promise<void>) | null>(null);
+  // Актуальный публичный reload — для пересчёта, когда синхронизация RevenueCat придёт позже потолка ожидания.
+  const latestReloadRef = useRef<(() => Promise<void>) | null>(null);
   const cloudRefreshRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const [premiumListenerRevision, setPremiumListenerRevision] = useState(0);
 
@@ -251,8 +254,24 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // поэтому при неудаче просто продолжаем расчёт как обычно; флаг
       // остаётся true и sync попробуется снова на следующем reload().
       if (!isReloadCurrent()) { traceExit('stale_before_identity'); return; }
-      const identityReady = await syncRevenueCatIdentity(isReloadCurrent).catch(noteSwallowedAs('PremiumContext:promise_1', false));
-      traceStep(`identity_sync:${String(identityReady)}`);
+      // зачем (Сверка ~23:30: [RC-IDENTITY] sync:slow 53 467 мс; координатор 00:56): без Play Billing или при плохой
+      // сети синхронизация шла минуту, и подписчик всё это время видел замки Plus. Долгое ожидание приравнено к
+      // неудаче (fail-open выше): ждём не дольше PREMIUM_IDENTITY_WAIT_MS, считаем по проверенному кэшу/облаку, а
+      // поздний успех той же эпохи один раз пересчитывает доступ.
+      const identityWait = await waitForIdentitySyncBounded(
+        syncRevenueCatIdentity(isReloadCurrent).catch(noteSwallowedAs('PremiumContext:promise_1', false)),
+        (lateReady) => {
+          console.warn('[RC-IDENTITY] premium_reload:late_sync', JSON.stringify({ lateReady, epoch: reloadEpoch, current: isReloadCurrent() }));
+          if (!lateReady || !isReloadCurrent()) return;
+          premiumIdentityRequiredRef.current = false;
+          void latestReloadRef.current?.();
+        },
+      );
+      const identityReady = identityWait.ready;
+      if (identityWait.timedOut) {
+        console.warn('[RC-IDENTITY] premium_reload:wait_capped', JSON.stringify({ waitMs: PREMIUM_IDENTITY_WAIT_MS, epoch: reloadEpoch }));
+      }
+      traceStep(`identity_sync:${identityWait.timedOut ? 'capped' : String(identityReady)}`);
       if (!isReloadCurrent()) { traceExit('stale_after_identity'); return; }
       if (identityReady) premiumIdentityRequiredRef.current = false;
     }
@@ -378,6 +397,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       console.warn('[PREMIUM-RESOLVE] reload:not_resolved', JSON.stringify({ requestedEpoch, currentEpoch: premiumReloadEpochRef.current, resolvedEpoch: resolvedReloadEpochRef.current }));
     }
   }, [runReload]);
+  latestReloadRef.current = reload;
 
   useEffect(() => {
     const subscription = subscribePremiumHydrationSignals((signal) => {

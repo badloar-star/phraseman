@@ -153,6 +153,12 @@ describe('PremiumContext VIP event contract', () => {
     // только пропускает сброс premiumIdentityRequiredRef (ретрай на будущее).
     expect(reloadBody).not.toContain('if (!identityReady || !isReloadCurrent()) return;');
     expect(reloadBody).toContain('if (identityReady) premiumIdentityRequiredRef.current = false;');
+    // зачем (координатор 00:56, [RC-IDENTITY] sync:slow 53 467 мс): ожидание синхронизации ограничено потолком, а поздний
+    // успех той же эпохи один раз пересчитывает доступ — подписчик не видит замки Plus минуту.
+    expect(reloadBody).toContain('waitForIdentitySyncBounded(');
+    expect(reloadBody).toContain('if (!lateReady || !isReloadCurrent()) return;');
+    expect(reloadBody).toContain('void latestReloadRef.current?.();');
+    expect(source).toContain('latestReloadRef.current = reload;');
     expect(reloadBody).toContain('resolvedReloadEpochRef.current = reloadEpoch');
     expect(publicReloadBody).toContain('resolvedReloadEpochRef.current === requestedEpoch');
     expect(publicReloadBody).toContain('setAccessResolved(true)');

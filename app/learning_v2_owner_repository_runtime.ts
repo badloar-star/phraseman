@@ -48,7 +48,12 @@ import {
   canonicalJsonV1,
   hashCanonicalBody,
 } from '../modules/learning-v2/policies/decision_registry';
-import { admitCurrentLearningV2CourseSessionPublicationV3 } from './learning_v2_course_released_session_client_v3';
+// зачем (координатор 11.10, холодный старт): модуль в цепочке старта (_layout → планировщик завершений V2), а клиент
+// курса тянет манифест factory_native (~0,6 с). Нужен только при подготовленных наградах — вычисляем лениво.
+type ReleasedSessionClientV3 = typeof import('./learning_v2_course_released_session_client_v3');
+const admitCurrentLearningV2CourseSessionPublicationV3 = ((...args) =>
+  (require('./learning_v2_course_released_session_client_v3') as ReleasedSessionClientV3)
+    .admitCurrentLearningV2CourseSessionPublicationV3(...args)) as ReleasedSessionClientV3['admitCurrentLearningV2CourseSessionPublicationV3'];
 
 export interface LearningV2AccountBindingV1 {
   readonly schemaVersion: 'learning-v2-account-binding.v2';

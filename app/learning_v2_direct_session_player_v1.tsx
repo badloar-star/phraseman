@@ -111,15 +111,25 @@ import {
   resolveLearningV2Session1VoiceDevJumpV1,
   runLearningV2Session1VoiceDevJumpV1,
 } from "./learning_v2_session1_voice_dev_jump_v1";
-import {
-  bundledLearningV2CourseSessionMaterialV3,
-  consumeLearningV2CourseSessionReadyHandoffV3,
-  peekLearningV2CourseSessionReadyHandoffKeysV3,
-  resolveLearningV2CourseSessionReadyMaterialV3,
-  type LearningV2CourseReleasedSessionCurrentLocatorV3,
-  type LearningV2CourseReleasedSessionMaterialV3,
-  type LearningV2CourseSessionReadyHandleV3,
+import type {
+  LearningV2CourseReleasedSessionCurrentLocatorV3,
+  LearningV2CourseReleasedSessionMaterialV3,
+  LearningV2CourseSessionReadyHandleV3,
 } from "./learning_v2_course_released_session_client_v3";
+// зачем (координатор 11.10, холодный старт): этот файл роутер в dev вычисляет на старте как маршрут, и статический
+// импорт клиента курса тянул на первый кадр Главной манифест factory_native (~0,6 с), хотя Learning V2 в первом
+// выпуске скрыт. Клиент вычисляется лениво — при первом вызове, то есть при открытии сессии. Вызовы ниже прежние.
+type ReleasedSessionClientV3 = typeof import("./learning_v2_course_released_session_client_v3");
+const releasedSessionClientV3 = (): ReleasedSessionClientV3 =>
+  require("./learning_v2_course_released_session_client_v3") as ReleasedSessionClientV3;
+const bundledLearningV2CourseSessionMaterialV3 = ((...args) =>
+  releasedSessionClientV3().bundledLearningV2CourseSessionMaterialV3(...args)) as ReleasedSessionClientV3["bundledLearningV2CourseSessionMaterialV3"];
+const consumeLearningV2CourseSessionReadyHandoffV3 = ((...args) =>
+  releasedSessionClientV3().consumeLearningV2CourseSessionReadyHandoffV3(...args)) as ReleasedSessionClientV3["consumeLearningV2CourseSessionReadyHandoffV3"];
+const peekLearningV2CourseSessionReadyHandoffKeysV3 = ((...args) =>
+  releasedSessionClientV3().peekLearningV2CourseSessionReadyHandoffKeysV3(...args)) as ReleasedSessionClientV3["peekLearningV2CourseSessionReadyHandoffKeysV3"];
+const resolveLearningV2CourseSessionReadyMaterialV3 = ((...args) =>
+  releasedSessionClientV3().resolveLearningV2CourseSessionReadyMaterialV3(...args)) as ReleasedSessionClientV3["resolveLearningV2CourseSessionReadyMaterialV3"];
 import { createLearningV2CourseSessionCompletedSpoolV1 } from "./learning_v2_course_session_completed_spool_v1";
 import {
   learningV2SessionStars,

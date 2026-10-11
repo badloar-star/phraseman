@@ -19,7 +19,13 @@ import {
 import NoEnergyModal from "../../../components/NoEnergyModal";
 import { useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { isLearningV2DirectSessionUnready, isLearningV2LegacySessionUnready } from "../../../app/energy_contract";
-import { consumeLearningV2CourseSessionReadyHandoffV3 } from "../../../app/learning_v2_course_released_session_client_v3";
+// зачем (координатор 11.10, холодный старт): роутер в dev вычисляет ВСЕ маршруты на старте, и статический импорт
+// тянул на первый кадр Главной клиент курса + манифест factory_native (~0,7 с из 1,3 с этого маршрута), хотя
+// Learning V2 в первом выпуске скрыт. Модуль вычисляется лениво — при первом открытии сессии.
+type ReleasedSessionClientV3 = typeof import("../../../app/learning_v2_course_released_session_client_v3");
+const consumeLearningV2CourseSessionReadyHandoffV3: ReleasedSessionClientV3["consumeLearningV2CourseSessionReadyHandoffV3"] = (input) =>
+  (require("../../../app/learning_v2_course_released_session_client_v3") as ReleasedSessionClientV3)
+    .consumeLearningV2CourseSessionReadyHandoffV3(input);
 import { resolveLearningV2SessionRouteCoordinatesV1 } from "../../../app/learning_v2_session_route_coordinates_v1";
 import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -117,7 +123,11 @@ import {
   type RequiredSessionTaskCompletionInputV3,
 } from "../../../modules/learning-v2/progress/required_session_completion_envelope";
 import { createRequiredSessionLocalCommitCoordinator } from "../../../modules/learning-v2/progress/required_session_local_commit";
-import { getLesson1SessionRuntime } from "../../../modules/learning-v2/runtime/lesson1_session_runtime";
+// Тот же ленивый приём: среда урока 1 (≈0,26 с с данными урока) — только когда сессия реально открыта.
+type Lesson1SessionRuntimeModule = typeof import("../../../modules/learning-v2/runtime/lesson1_session_runtime");
+const getLesson1SessionRuntime: Lesson1SessionRuntimeModule["getLesson1SessionRuntime"] = () =>
+  (require("../../../modules/learning-v2/runtime/lesson1_session_runtime") as Lesson1SessionRuntimeModule)
+    .getLesson1SessionRuntime();
 import {
   evaluateLearningV2ActivityReleasedSessionTaskV1,
   getLearningV2ActivityReleasedSessionRuntimeSummaryV1,

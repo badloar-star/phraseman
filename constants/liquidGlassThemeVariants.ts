@@ -272,7 +272,9 @@ function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: Liquid
   const aLo = oklchToHex(0.45, cc, h);
   // зачем (PM-033): текст цветом темы на светлом фоне — на ступень темнее кнопки; у зелёно-бирюзовых
   // тонов (Шалфей/Эвкалипт/Марина) цвет кнопки L .52 давал тексту 4.06–4.34 < 4.5. Кнопка не меняется.
-  const aText = oklchToHex(0.47, cc, h);
+  // зачем (координатор 12.10 04:55): у Шалфея/Эвкалипта текст акцента на светлой ПЛАШКЕ (opaqueControl) давал 4.33–4.40 < 4.5 —
+  // зелёно-бирюзовые тона (оттенок 140–200°) на ступень глубже (L .44). Кнопка (`a`) и остальные темы не меняются.
+  const aText = oklchToHex(h >= 140 && h <= 200 ? 0.44 : 0.47, cc, h);
   const a2 = oklchToHex(0.52, cc, h2);
   const byFam = {
     gem: { g: [aHi, a, aLo], deg: 172, p: [aLo, aHi] },

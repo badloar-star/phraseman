@@ -1246,6 +1246,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (homePaintedForPhoneState) return;
     const sub = onAppEvent('app_home_screen_ready', () => {
       coldStartMark('phone_state.gate:home_painted', '_layout');
+      // зачем (координатор 11.10, ANR при 1,87 ГБ pss): размер JS-кучи на готовой Главной и через минуту.
+      void import('./mem_probe').then((m) => m.armMemoryProbeAfterHomePaint())
+        .catch((error: unknown) => console.warn('[MEM] probe import failed', error instanceof Error ? error.message : String(error)));
       setHomePaintedForPhoneState(true);
     });
     return () => sub.remove();

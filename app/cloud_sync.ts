@@ -3653,11 +3653,12 @@ async function unlockFlashcardPagesAfterRestore(
   }
 }
 
-async function applyRestoreFromUserDoc(
+async function applyRestoreFromUserDocTraced(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
-  isCurrent: () => boolean = () => true,
-  afterLegacyRestore?: (root: Record<string, unknown>) => void,
-  vipGeneration?: AccountGenerationToken,
+  isCurrent: () => boolean,
+  afterLegacyRestore: ((root: Record<string, unknown>) => void) | undefined,
+  vipGeneration: AccountGenerationToken | undefined,
+  applyMark: (point: string) => void,
 ): Promise<boolean> {
   const assertCurrent = () => {
     if (!isCurrent()) throw new Error('stale_account_generation');
@@ -3703,6 +3704,7 @@ async function applyRestoreFromUserDoc(
     // Retired level field is ignored; customization fallback is deterministic
     // and never derives authority from the removed progression system.
     const selectionLevel = 1;
+    applyMark('at:authority');
     const authority = await resolveCustomizationSelectionAuthority({
       token: vipGeneration,
       cloudSelection: {
@@ -3741,14 +3743,17 @@ async function applyRestoreFromUserDoc(
   }
 
   try {
+    applyMark('at:stats_import');
     const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
     assertCurrent();
+    applyMark('at:stats_en');
     cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData['stats_daily_breakdown_v1'],
       'en',
     );
     assertCurrent();
     const frenchStatsKey = statsDailyBreakdownKey('fr');
+    applyMark('at:stats_fr');
     cloudData[frenchStatsKey] = await reconcileStatsDailyBreakdownWithCloud(
       cloudData[frenchStatsKey],
       'fr',
@@ -3799,6 +3804,7 @@ async function applyRestoreFromUserDoc(
   let localLastActiveRaw: string | null;
   let localStreakLastRaw: string | null;
   try {
+    applyMark('at:streak_reads');
     [localStreakRaw, localLastActiveRaw, localStreakLastRaw] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('last_active_date'),
@@ -3817,6 +3823,7 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   const localStreak = parseProgressInt(localStreakRaw);
   const cloudStreak = parseProgressInt(cloudData['streak_count']);
+  applyMark('at:pending_events');
   const hasPendingProgressEvents = phoneStateOwnsCore ? false : await (async () => {
     try {
       const progressEventsClient = await import('./progress_events_client');
@@ -3876,6 +3883,7 @@ async function applyRestoreFromUserDoc(
       'vip_admin_grant_at',
     ] as const;
     const stickyPairs: [string, string][] = [];
+    applyMark('at:sticky_keys_loop');
     for (const key of stickyKeys) {
       const val = cloudData[key];
       // Используем premiumValuePresent для premium/vip-ключей: пустая строка '' !== null,
@@ -3887,6 +3895,7 @@ async function applyRestoreFromUserDoc(
     // cards-2.0 (E4): merge-ключи применяются и в sticky-ветке («локальный legacy reward
     // выше») — звёзды/клеймы с другого устройства нельзя терять ни в одном
     // направлении (union claimed / max stars).
+    applyMark('at:fc_merge_loop');
     for (const [fcKey, fcStrategy] of Object.entries(FC_RESTORE_MERGE_STRATEGIES)) {
       const cloudVal = cloudData[fcKey];
       if (cloudVal === null || cloudVal === undefined) continue;
@@ -3900,6 +3909,7 @@ async function applyRestoreFromUserDoc(
     }
     }
     // Локальный legacy reward ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
+    applyMark('at:user_name');
     const localNameRaw = await AsyncStorage.getItem('user_name');
     const localName = (localNameRaw ?? '').trim();
     const cloudName = cloudData['user_name'];
@@ -3909,12 +3919,14 @@ async function applyRestoreFromUserDoc(
     // #10 multi-device: even when local legacy reward ≥ cloud, a strictly-additive lifetime
     // counter may be higher in cloud (the other device bumped it). Pull the max so
     // the counter never regresses on this device.
+    applyMark('at:counters_multiget');
     const localCounterMap = Object.fromEntries(
       await AsyncStorage.multiGet([
         ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
       ]),
     ) as Record<string, string | null>;
     assertCurrent();
+    applyMark('at:monotonic_loop');
     for (const key of getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey)) {
       const cloudVal = cloudData[key];
       if (cloudVal === null || cloudVal === undefined) continue;
@@ -3934,6 +3946,7 @@ async function applyRestoreFromUserDoc(
       stickyPairs.push(...buildStickyServerProgressPairs(cloudData));
     }
     const cloudLoginBonus = cloudData['login_bonus_v1'];
+    applyMark('at:login_bonus');
     const localLoginBonus = await AsyncStorage.getItem('login_bonus_v1');
     assertCurrent();
     const mergedLoginBonus = loginBonusMergeValue(localLoginBonus, cloudLoginBonus);
@@ -3947,6 +3960,7 @@ async function applyRestoreFromUserDoc(
     // при следующем пуше клиент затирает её локальным значением. Owned мержим объединением
     // (union), чтобы не потерять локально купленные ауры; активную ауру и gift-флаг из облака
     // применяем как есть (админ авто-надевает выданную).
+    applyMark('at:auras');
     const mergedOwnedAuras = mergeOwnedFlagMap(
       await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY),
       cloudData[AVATAR_AURA_OWNED_KEY],
@@ -3959,6 +3973,7 @@ async function applyRestoreFromUserDoc(
       isOwnedUnionRestoreKey(k) && k !== AVATAR_AURA_OWNED_KEY && targetScopedRestoreInfo(k) === null,
     );
     if (stickyOwnedKeys.length > 0) {
+      applyMark('at:sticky_owned');
       const localOwnedMap = Object.fromEntries(
         await AsyncStorage.multiGet(stickyOwnedKeys),
       ) as Record<string, string | null>;
@@ -3985,6 +4000,7 @@ async function applyRestoreFromUserDoc(
     // а уроки — нет.
     const stickyLessonKeys = getRuntimeSyncKeys().filter(isMonotonicLessonRestoreKey);
     if (stickyLessonKeys.length > 0) {
+      applyMark('at:sticky_lessons');
       const localLessonStickyMap = Object.fromEntries(
         await AsyncStorage.multiGet(stickyLessonKeys),
       ) as Record<string, string | null>;
@@ -4004,21 +4020,26 @@ async function applyRestoreFromUserDoc(
     if (cloudGiftAura != null && String(cloudGiftAura).trim() !== '') {
       stickyPairs.push([AVATAR_AURA_GIFT_OWNED_KEY, String(cloudGiftAura)]);
     }
+    applyMark('at:target_sticky');
     stickyPairs.push(...await buildTargetScopedStickyRestorePairs(cloudData));
+    applyMark('at:daily_helpers_loop');
     for (const key of dailyLessonHelperKeysForToday()) {
       const value = cloudData[key];
       if (value === null || value === undefined) continue;
       const localValue = await AsyncStorage.getItem(key);
       if (!localValue) stickyPairs.push([key, cloudProgressStorageValue(key, value)]);
     }
+    applyMark('at:gift_perks');
     const authoritativeGiftPerks = await buildGiftEntitlementStickyPairs(cloudData);
     stickyPairs.push(...authoritativeGiftPerks.pairs);
     // зачем (8J): sticky-ветка (local ≥ cloud — обычный случай активного человека) страниц
     // не читает. Без этого замок, поставленный сбоем чтения, жил бы почти вечно и карточки
     // не уходили бы в облако. Перечитываем ТОЛЬКО запертые ключи: у остальных ни одного
     // лишнего чтения Firestore.
+    applyMark('at:fc_locks');
     const stickyFlashcardLocks = await readFlashcardPagesWriteLocks(FLASHCARD_PAGES_RESTORE_KEYS.map(([key]) => key));
     assertCurrent();
+    applyMark('at:fc_pages');
     const stickyFlashcardPages = stickyFlashcardLocks.size > 0
       ? await restoreFlashcardPagesForKeys(
         cloudData, legacyV2SkipOnRestore, assertCurrent, stickyFlashcardLocks, (key) => stickyFlashcardLocks.has(key),
@@ -4028,19 +4049,23 @@ async function applyRestoreFromUserDoc(
     let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
+      applyMark('at:personal_plan');
       await applyPersonalPlanRestorePairs(stickyPairs);
       assertCurrent();
       appliedStickyState = true;
     }
+    applyMark('at:fc_unlock');
     if (stickyFlashcardPages) await unlockFlashcardPagesAfterRestore(stickyFlashcardPages.unlockKeys, assertCurrent);
     if (authoritativeGiftPerks.removeKeys.length > 0) {
       assertCurrent();
+      applyMark('at:gift_remove');
       await AsyncStorage.multiRemove(authoritativeGiftPerks.removeKeys);
       assertCurrent();
       appliedStickyState = true;
     }
     // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
     if (cloudVipActive !== null && !stripPremiumActive && vipGeneration && vipOwnerStableId) {
+      applyMark('at:vip_snapshot');
       await writeMergedCloudVipSnapshot(vipGeneration, {
         vip_active: cloudVipActive ? 'true' : 'false',
         vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
@@ -4054,8 +4079,10 @@ async function applyRestoreFromUserDoc(
     }
     if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
+      applyMark('at:snapshot_write');
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
       assertCurrent();
+      applyMark('at:complete_true');
       return completeRestore(true);
     }
     return completeRestore(false);
@@ -4180,6 +4207,45 @@ async function applyRestoreFromUserDoc(
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
   assertCurrent();
   return completeRestore(true);
+}
+
+// зачем (координатор 11.10, «сперва логи»): [BOOT-RESTORE-STEP] показал стадию apply 25–44 с при пустом госте.
+// Внутри ~40 ожиданий хранилища подряд (часть — по ключу в цикле). Отметки at:<шаг> ставятся ПЕРЕД шагом: число у
+// отметки = время, потраченное до неё (на предыдущий шаг). Одна строка на вызов; логика не меняется.
+async function applyRestoreFromUserDoc(
+  doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
+  isCurrent: () => boolean = () => true,
+  afterLegacyRestore?: (root: Record<string, unknown>) => void,
+  vipGeneration?: AccountGenerationToken,
+): Promise<boolean> {
+  const startedAt = Date.now();
+  const points: Record<string, number> = {};
+  let pointAt = startedAt;
+  let lastPoint = 'start';
+  const applyMark = (point: string) => {
+    const now = Date.now();
+    points[point] = now - pointAt;
+    pointAt = now;
+    lastPoint = point;
+  };
+  let applied: boolean | null = null;
+  let thrown: unknown = null;
+  try {
+    applied = await applyRestoreFromUserDocTraced(doc, isCurrent, afterLegacyRestore, vipGeneration, applyMark);
+    return applied;
+  } catch (error) {
+    thrown = error;
+    throw error;
+  } finally {
+    console.log('[BOOT-RESTORE-APPLY]', JSON.stringify({
+      totalMs: Date.now() - startedAt,
+      tailMs: Date.now() - pointAt,
+      lastPoint,
+      points,
+      applied,
+      ...(thrown ? { thrown: String(thrown).slice(0, 160) } : {}),
+    }));
+  }
 }
 
 /**

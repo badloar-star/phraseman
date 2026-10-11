@@ -1562,8 +1562,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const pool = HOME_GREETING_POOLS[lang] ?? HOME_GREETING_POOLS.ru;
             const greetingPromise = pool.length > 0 ? resolveDailyGreeting(pool, lang) : null;
             greetingPromise?.catch(noteSwallowedHandler('home:loadData.prestart_greeting'));
+            // зачем (координатор 11.10, «сперва логи»): parallel6 стоил 2,8–27,9 с, а пять чтений внутри мерились одним
+            // числом. Каждая часть отмечает своё время — видно, какая держит первый кадр данных Главной.
+            const partsStartedAt = Date.now();
+            const parts: Record<string, number> = {};
+            const timed = <T,>(label: string, promise: Promise<T>): Promise<T> => promise.then(
+              (value) => { parts[label] = Date.now() - partsStartedAt; return value; },
+              (error: unknown) => { parts[`${label}:failed`] = Date.now() - partsStartedAt; throw error; },
+            );
             const [homeStoragePairs, currentWeekMarkers, weekPts, premiumSignalPairs, personalProgress] = await Promise.all([
-                AsyncStorage.multiGet([
+                timed('home_keys', AsyncStorage.multiGet([
                     'user_name',
                     'week_days_done',
                     HOME_SELECTED_TITLE_KEY,
@@ -1571,16 +1579,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     HOME_WEEK_DOT_ANIMATION_KEY,
                     // зачем: рамка аватара читалась отдельным походом в хранилище после блока — теперь вместе с ним.
                     'user_frame',
-                ]),
-                readCurrentStreakWeekMarkers(),
+                ])),
+                timed('streak_week_markers', readCurrentStreakWeekMarkers()),
                 Promise.resolve(0),
-                AsyncStorage.multiGet(['premium_active']),
+                timed('premium_active', AsyncStorage.multiGet(['premium_active'])),
                 // зачем (немой catch запрещён): сбой гидрации прогресса пишет причину; значение — прежний снимок.
-                hydratePersonalProgress().catch((error: unknown) => {
+                timed('personal_progress', hydratePersonalProgress().catch((error: unknown) => {
                     noteSwallowedHandler('home:loadData.hydratePersonalProgress')(error);
                     return getPersonalProgressSnapshot();
-                }),
+                })),
             ]);
+            console.log('[HOME-LOADDATA-PARTS] parallel6', JSON.stringify({ totalMs: Date.now() - partsStartedAt, parts }));
             step('parallel6');
             const homeStorage = new Map(homeStoragePairs);
             const name = homeStorage.get('user_name') ?? null;
@@ -1700,7 +1709,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
             step('titles+achievements+greeting');
             step('titles+achievements');
+            const lessonsReadStartedAt = Date.now();
             const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
+            console.log('[HOME-LOADDATA-PARTS] lessons_read', JSON.stringify({ ms: Date.now() - lessonsReadStartedAt, keys: lessonKeys.length + 1 }));
             const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
             // зачем: контракт tests/home_lesson_progress_single_pass — каждый сохранённый
@@ -1746,8 +1757,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     // 8 346 мс из 9 247 всей загрузки Главной. Пакетная версия
                     // читает всё одним multiGet и решает в памяти; логика доступа
                     // та же.
+                    const unlockStartedAt = Date.now();
                     const { resolveLastAvailableLessonId } = await import('../lesson_lock_system');
                     lastId = await resolveLastAvailableLessonId(lastId, studyTarget, isPremium);
+                    console.log('[HOME-LOADDATA-PARTS] unlock_loop', JSON.stringify({ ms: Date.now() - unlockStartedAt, lastId }));
                 } catch (e) {
       // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
       DebugLogger.error('home:lastId', e instanceof Error ? e : new Error(String(e)), 'warning');

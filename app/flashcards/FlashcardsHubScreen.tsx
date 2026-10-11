@@ -43,6 +43,7 @@ import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
 import { loadSelectedSavedContour, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
+import { logMemoryOnce } from '../mem_probe';
 
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
@@ -615,6 +616,8 @@ export default function FlashcardsHubScreen() {
 
   // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
   const topCard = peekSelectedSavedContour()?.[0] ?? null;
+  // зачем (координатор 11.10): ANR на тапе по «Карточкам» при 1,87 ГБ pss — размер кучи на первом открытии хаба.
+  logMemoryOnce('cards_hub_open');
   logHubTopCardOutcome(topCard?.en ?? null, trainingLocked);
   const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.

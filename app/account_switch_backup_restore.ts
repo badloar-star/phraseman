@@ -13,6 +13,10 @@
 //   • Доливаем ТОЛЬКО отсутствующие ключи (текущее значение == null): облачный
 //     restore всегда главнее, копия лишь закрывает дыры, которых облако не знало.
 //   • Копия старше 30 дней считается протухшей и удаляется.
+//   • Слот пуст или занят чужой копией → берём самую свежую полку
+//     `account_switch_emergency_backup_shelved_v1:<текущий владелец>:<время>`
+//     (туда выход другого аккаунта откладывает чужую копию) с теми же проверками;
+//     после доливания удаляется ровно эта полка (TG-0AE4918142EE).
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,7 +34,7 @@ import {
   utf8ByteLengthV1,
 } from '../modules/learning-v2/policies/decision_registry';
 import { DebugLogger, reportSwallowed } from './debug-logger';
-import { identityErrorCode, identityTrace } from './identity_trace';
+import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
 
 // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
 // константа там не экспортируется. При смене ключа менять в обоих местах.
@@ -142,9 +146,13 @@ async function multiGetExactly(
   return rows;
 }
 
-async function removeBackupRootExactly(): Promise<void> {
-  await AsyncStorage.removeItem(BACKUP_KEY);
-  if (await AsyncStorage.getItem(BACKUP_KEY) !== null) {
+// Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX).
+// Формат ключа полки: `<prefix><stableId владельца>:<base36 ms>`.
+const SHELVED_PREFIX = 'account_switch_emergency_backup_shelved_v1:';
+
+async function removeBackupRootExactly(rootKey: string = BACKUP_KEY): Promise<void> {
+  await AsyncStorage.removeItem(rootKey);
+  if (await AsyncStorage.getItem(rootKey) !== null) {
     throw new Error('account_switch_backup_restore_indeterminate');
   }
 }
@@ -269,7 +277,32 @@ export type BackupRestoreOptions = Readonly<{
    * блокировка; с потолком вызывающий откладывает копию вместо доливания.
    */
   lockTimeoutMs?: number;
+  /**
+   * Не искать полки (`…_shelved_v1:<владелец>:<время>`), только слот.
+   * зачем (TG-0AE4918142EE): доливание из save идёт посреди выхода из аккаунта —
+   * там нужен только слот с меткой merge, а не возврат старых полок в живое хранилище.
+   */
+  skipShelves?: boolean;
+  /**
+   * Получить список ключей хранилища, если восстановление его уже прочитало
+   * (за вычетом снятых им полок). зачем (ревью TG-92BAE5BC536D, LOW): чистка полок
+   * pruneShelvedAccountSwitchBackups берёт его вместо второго getAllKeys за вход.
+   */
+  onKeysScanned?: (keys: readonly string[]) => void;
 }>;
+
+/**
+ * Можно ли на этом пути входа доставать полки владельца.
+ *
+ * зачем (ревью TG-92BAE5BC536D, MEDIUM 1): полка — снимок владельца на момент его
+ * прошлого выхода. Доливать её можно только в ТОЛЬКО ЧТО стёртое хранилище (вход со
+ * сменой аккаунта). На входах без стирания (linked_restore, created_restore,
+ * keeplocal_restore_same) живые данные новее любой полки: долив вернул бы ключи,
+ * которые человек удалил, и уже отправленные очереди (v2:outbox:*, операции монет).
+ */
+export function shelvesAllowedForPostAuthStage(stage: string): boolean {
+  return stage === 'swap_restore' || stage === 'keeplocal_restore';
+}
 
 export async function restoreAccountSwitchEmergencyBackupIfSafe(
   isCurrent: () => boolean = () => true,
@@ -283,47 +316,321 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
 
   if (options.lockTimeoutMs !== undefined) {
     const locked = await withAccountTransitionLockWithDeadline(
-      () => restoreUnderLock(generationIsCurrent),
+      () => restoreUnderLock(generationIsCurrent, options),
       options.lockTimeoutMs,
     );
     return locked.completed ? locked.value : { status: 'lock_busy' };
   }
-  return withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent));
+  return withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent, options));
 }
 
-async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<BackupRestoreResult> {
-  return (async () => {
-    if (!generationIsCurrent()) return { status: 'stale_generation' };
-    const raw = await AsyncStorage.getItem(BACKUP_KEY);
-    if (!raw) {
-      // Раунд 3: метка без копии больше ничего не значит — убираем.
-      if (await AsyncStorage.getItem(MERGE_ALIAS_KEY) !== null) await removeMergeAlias('no_backup');
-      return { status: 'no_backup' };
+/** Канонический id читается не больше одного раза за восстановление (слот + полки). */
+function memoizeCurrentId(): () => Promise<string | null> {
+  let pending: Promise<string | null> | null = null;
+  return () => {
+    pending ??= getCanonicalUserId().catch((error: unknown) => {
+      // зачем: PM-229 — без причины нельзя отличить «аккаунт неизвестен» от сбоя чтения.
+      reportSwallowed('account_switch_backup_restore:canonical_user_id', error);
+      return null;
+    });
+    return pending;
+  };
+}
+
+async function restoreUnderLock(
+  generationIsCurrent: () => boolean,
+  options: BackupRestoreOptions,
+): Promise<BackupRestoreResult> {
+  const resolveCurrentId = memoizeCurrentId();
+  const scan = createShelfScan();
+  const meta: RestoreMeta = { ownCopyCreatedAt: null };
+  try {
+    const slot = await restoreSlotUnderLock(generationIsCurrent, resolveCurrentId, meta);
+    if (slot.status === 'restored') {
+      // зачем (ревью TG-92BAE5BC536D, MEDIUM 1): своя копия из слота новее полок того
+      // же владельца, отложенных раньше её создания — снять их, иначе при следующем
+      // входе с пустым слотом старая полка воскресила бы удалённое и отправленное.
+      await retireSupersededOwnShelves(scan, generationIsCurrent, resolveCurrentId, meta);
+      return slot;
     }
+    if (slot.status !== 'no_backup' && slot.status !== 'different_account') return slot;
+    if (options.skipShelves === true) return slot;
+    // зачем (TG-0AE4918142EE, §AUTH-0330): слот копии на телефоне один. Выход Б кладёт
+    // копию A на полку, и раньше её не доставал никто — ранг, визитка, «Мои ошибки» и
+    // кошелёк A пропадали. Теперь при пустом/чужом слоте возвращаем самую свежую полку
+    // ТЕКУЩЕГО владельца теми же проверками, что и слот.
+    const shelf = await restoreFreshestOwnShelfUnderLock(scan, generationIsCurrent, resolveCurrentId, meta);
+    if (shelf?.status === 'restored') {
+      await retireSupersededOwnShelves(scan, generationIsCurrent, resolveCurrentId, meta);
+    }
+    return shelf ?? slot;
+  } finally {
+    scan.report(options.onKeysScanned);
+  }
+}
+
+/** Что известно о восстановленной копии: время создания СВОЕЙ копии (не по метке merge). */
+type RestoreMeta = { ownCopyCreatedAt: number | null };
+
+/** Один getAllKeys за восстановление; снятые полки вычитаются из отчёта для чистки. */
+type ShelfScan = Readonly<{
+  keys: () => Promise<readonly string[] | null>;
+  forget: (key: string) => void;
+  /** Ключи полок из прочитанного списка, ещё не снятые этим восстановлением. */
+  remainingShelves: () => string[];
+  report: (sink: ((keys: readonly string[]) => void) | undefined) => void;
+}>;
+
+function createShelfScan(): ShelfScan {
+  let scanned: readonly string[] | null = null;
+  let attempted = false;
+  const removed = new Set<string>();
+  return {
+    keys: async () => {
+      if (attempted) return scanned;
+      attempted = true;
+      try {
+        scanned = await AsyncStorage.getAllKeys();
+      } catch (error) {
+        console.warn(`[ACC-MUT] backup:shelf_scan_failed code=${identityErrorCode(error)}`);
+        scanned = null;
+      }
+      return scanned;
+    },
+    forget: (key) => { removed.add(key); },
+    remainingShelves: () => (scanned ?? []).filter((key) => key.startsWith(SHELVED_PREFIX) && !removed.has(key)),
+    report: (sink) => {
+      if (!sink || scanned === null) return;
+      try {
+        sink(scanned.filter((key) => !removed.has(key)));
+      } catch (error) {
+        console.warn(`[ACC-MUT] backup:shelf_scan_report_failed code=${identityErrorCode(error)}`);
+      }
+    },
+  };
+}
+
+async function restoreSlotUnderLock(
+  generationIsCurrent: () => boolean,
+  resolveCurrentId: () => Promise<string | null>,
+  meta: RestoreMeta,
+): Promise<BackupRestoreResult> {
+  if (!generationIsCurrent()) return { status: 'stale_generation' };
+  const raw = await AsyncStorage.getItem(BACKUP_KEY);
+  if (!raw) {
+    // Раунд 3: метка без копии больше ничего не значит — убираем.
+    if (await AsyncStorage.getItem(MERGE_ALIAS_KEY) !== null) await removeMergeAlias('no_backup');
+    return { status: 'no_backup' };
+  }
+  return restoreFromRoot({ kind: 'slot', rootKey: BACKUP_KEY, raw }, generationIsCurrent, resolveCurrentId, meta);
+}
+
+/** Страницы v3 по корню (без полной проверки: только чтобы снять их вместе с корнем). */
+function pageKeysOfRoot(raw: string): string[] {
+  try {
+    const root = JSON.parse(raw) as { version?: unknown; backupId?: unknown; pageCount?: unknown };
+    if (root.version !== 3 || typeof root.backupId !== 'string' || !/^[a-z0-9-]{3,80}$/.test(root.backupId)
+      || !Number.isSafeInteger(root.pageCount) || Number(root.pageCount) < 0
+      || Number(root.pageCount) > BACKUP_MAX_PAGES) return [];
+    const backupId = root.backupId;
+    return Array.from({ length: Number(root.pageCount) }, (_, index) => `${BACKUP_PAGE_PREFIX}${backupId}:${index}`);
+  } catch (error) {
+    console.warn(`[ACC-MUT] backup:shelf_root_unparsable code=${identityErrorCode(error)}`);
+    return [];
+  }
+}
+
+function backupIdOfRoot(raw: string | null): string | null {
+  if (raw === null) return null;
+  try {
+    const value = (JSON.parse(raw) as { backupId?: unknown }).backupId;
+    return typeof value === 'string' ? value : null;
+  } catch (error) {
+    console.warn(`[ACC-MUT] backup:slot_root_unparsable code=${identityErrorCode(error)}`);
+    return null;
+  }
+}
+
+/**
+ * Снять полки текущего владельца, отложенные НЕ ПОЗЖЕ создания только что долитой
+ * своей копии (метка ≤ createdAt): эта копия — более поздний снимок того же человека.
+ * Снимаем корень и его страницы; полку, чьи страницы делит слот, страниц не лишаем;
+ * полку с чужим владельцем внутри не трогаем.
+ */
+async function retireSupersededOwnShelves(
+  scan: ShelfScan,
+  generationIsCurrent: () => boolean,
+  resolveCurrentId: () => Promise<string | null>,
+  meta: RestoreMeta,
+): Promise<void> {
+  const createdAt = meta.ownCopyCreatedAt;
+  if (createdAt === null) {
+    console.warn('[ACC-MUT] backup:shelf_retire_skipped reason=no_own_created_at');
+    return;
+  }
+  const keys = await scan.keys();
+  if (keys === null || !keys.some((key) => key.startsWith(SHELVED_PREFIX))) return;
+  const currentId = await resolveCurrentId();
+  if (!currentId || !generationIsCurrent()) {
+    console.warn(`[ACC-MUT] backup:shelf_retire_skipped reason=${currentId ? 'stale_generation' : 'no_current_id'}`);
+    return;
+  }
+  const candidates = ownShelfCandidates(keys, currentId);
+  if (candidates.length === 0) return;
+  const owner = identityTag(currentId);
+  const slotBackupId = backupIdOfRoot(await AsyncStorage.getItem(BACKUP_KEY));
+  for (const candidate of candidates) {
+    const stamp = candidate.stampedAt.toString(36);
+    try {
+      const raw = await AsyncStorage.getItem(candidate.key);
+      if (raw === null) { scan.forget(candidate.key); continue; }
+      const inner = (() => {
+        try {
+          return JSON.parse(raw) as { stableId?: unknown; createdAt?: unknown };
+        } catch (error) {
+          console.warn(`[ACC-MUT] backup:shelf_root_unparsable code=${identityErrorCode(error)}`);
+          return null;
+        }
+      })();
+      if (inner?.stableId !== currentId) {
+        console.warn(`[ACC-MUT] backup:shelf_retire_skipped reason=inner_owner_mismatch owner=${owner} stamp=${stamp}`);
+        continue;
+      }
+      // зачем (ревью TG-2307361A2567, LOW): возраст — по createdAt ВНУТРИ копии, а не по
+      // метке в имени ключа (она ставится в момент откладывания и зависит от часов того
+      // выхода). Метка — только запасной путь для старых копий без createdAt.
+      const copyCreatedAt = Number.isSafeInteger(inner?.createdAt) ? Number(inner?.createdAt) : candidate.stampedAt;
+      if (copyCreatedAt > createdAt) continue;
+      // 2б: страницы, которые держит слот или другая оставшаяся полка (дубль), не трогаем.
+      const backupId = backupIdOfRoot(raw);
+      const sharedWithShelf = backupId !== null && await (async () => {
+        for (const other of scan.remainingShelves()) {
+          if (other === candidate.key) continue;
+          if (backupIdOfRoot(await AsyncStorage.getItem(other)) === backupId) return true;
+        }
+        return false;
+      })();
+      const pageKeys = backupId === slotBackupId || sharedWithShelf ? [] : pageKeysOfRoot(raw);
+      for (let offset = 0; offset < pageKeys.length; offset += BACKUP_PAGE_MAX_PAIRS) {
+        await AsyncStorage.multiRemove(pageKeys.slice(offset, offset + BACKUP_PAGE_MAX_PAIRS));
+      }
+      await AsyncStorage.removeItem(candidate.key);
+      scan.forget(candidate.key);
+      console.warn(`[ACC-MUT] backup:shelf_retired reason=superseded owner=${owner} stamp=${stamp} pages=${pageKeys.length}`);
+    } catch (error) {
+      console.warn(`[ACC-MUT] backup:shelf_retire_failed owner=${owner} stamp=${stamp} code=${identityErrorCode(error)}`);
+    }
+  }
+}
+
+type ShelfCandidate = Readonly<{ key: string; stampedAt: number }>;
+
+/** Полки владельца `ownerId`, свежие первыми. Ключ чужого владельца сюда не попадает. */
+function ownShelfCandidates(keys: readonly string[], ownerId: string): ShelfCandidate[] {
+  const prefix = `${SHELVED_PREFIX}${ownerId}:`;
+  return keys
+    .filter((key) => key.startsWith(prefix))
+    .map((key) => ({ key, stamp: key.slice(prefix.length) }))
+    // зачем: остаток после `<владелец>:` — только метка base36; иначе это ключ другого
+    // владельца, чей id начинается с `<ownerId>:` (двоеточие в метке не встречается).
+    .filter(({ stamp }) => /^[0-9a-z]{1,13}$/.test(stamp))
+    .map(({ key, stamp }) => ({ key, stampedAt: parseInt(stamp, 36) }))
+    .filter(({ stampedAt }) => Number.isSafeInteger(stampedAt) && stampedAt > 0)
+    .sort((left, right) => right.stampedAt - left.stampedAt);
+}
+
+/**
+ * Вернуть самую свежую годную полку текущего владельца. null — полки не было
+ * (или ни одна не подошла): вызывающий отдаёт результат слота.
+ *
+ * Инварианты: владелец сверяется ВНУТРИ копии (корень и каждая страница v3), а не
+ * только по имени ключа; метка merge на полки не действует; после успешного
+ * доливания удаляется ровно эта полка (корень и её страницы), остальные не трогаем.
+ */
+async function restoreFreshestOwnShelfUnderLock(
+  scan: ShelfScan,
+  generationIsCurrent: () => boolean,
+  resolveCurrentId: () => Promise<string | null>,
+  meta: RestoreMeta,
+): Promise<BackupRestoreResult | null> {
+  const keys = await scan.keys();
+  if (keys === null) return null;
+  // Дешёвый ранний выход: полок нет вовсе — канонический id не читаем.
+  if (!keys.some((key) => key.startsWith(SHELVED_PREFIX))) return null;
+  const currentId = await resolveCurrentId();
+  if (!generationIsCurrent()) return { status: 'stale_generation' };
+  if (!currentId) {
+    console.warn('[ACC-MUT] backup:shelf_skipped reason=no_current_id');
+    return null;
+  }
+  const candidates = ownShelfCandidates(keys, currentId);
+  if (candidates.length === 0) return null;
+  const owner = identityTag(currentId);
+  for (const [index, candidate] of candidates.entries()) {
+    const stamp = candidate.stampedAt.toString(36);
+    const raw = await AsyncStorage.getItem(candidate.key);
+    if (raw === null) {
+      console.warn(`[ACC-MUT] backup:shelf_skipped reason=vanished owner=${owner} stamp=${stamp}`);
+      continue;
+    }
+    const result = await restoreFromRoot(
+      { kind: 'shelf', rootKey: candidate.key, raw },
+      generationIsCurrent,
+      resolveCurrentId,
+      meta,
+    );
+    if (result.status === 'restored' || result.status === 'expired') scan.forget(candidate.key);
+    if (result.status === 'restored') {
+      console.warn(
+        `[ACC-MUT] backup:restored_from_shelf owner=${owner} stamp=${stamp} restoredKeys=${result.restoredKeys} skippedExisting=${result.skippedExisting} olderShelvesLeft=${candidates.length - index - 1}`,
+      );
+      return result;
+    }
+    if (result.status === 'stale_generation' || result.status === 'lock_busy') {
+      console.warn(`[ACC-MUT] backup:shelf_aborted reason=${result.status} owner=${owner} stamp=${stamp}`);
+      return result;
+    }
+    // invalid / expired / upgrade_required / different_account (владелец внутри не тот):
+    // эта полка не годится — пробуем следующую по свежести. Битую полку не удаляем
+    // (кроме протухшей): её уберёт pruneShelvedAccountSwitchBackups через 30 дней.
+    console.warn(`[ACC-MUT] backup:shelf_skipped reason=${result.status} owner=${owner} stamp=${stamp}`);
+  }
+  return null;
+}
+
+type RestoreRootSource = Readonly<{ kind: 'slot' | 'shelf'; rootKey: string; raw: string }>;
+
+async function restoreFromRoot(
+  source: RestoreRootSource,
+  generationIsCurrent: () => boolean,
+  resolveCurrentId: () => Promise<string | null>,
+  meta: RestoreMeta,
+): Promise<BackupRestoreResult> {
+  return (async () => {
+    const { raw } = source;
     if (raw.length > BACKUP_PAGE_MAX_BYTES) return { status: 'upgrade_required' };
 
     const backup = parseBackup(raw);
     if (!backup) {
-      await removeBackupRootExactly();
+      // зачем: битая полка может быть единственным следом данных — снимает её только
+      // 30-дневная чистка; битый слот, как и раньше, удаляется сразу.
+      if (source.kind === 'slot') await removeBackupRootExactly(source.rootKey);
       return { status: 'invalid' };
     }
 
     if (typeof backup.createdAt === 'number' && Date.now() - backup.createdAt > BACKUP_MAX_AGE_MS) {
       if (backup.version === 3) await removeBackupPagesExactly(backup);
-      await removeBackupRootExactly();
+      await removeBackupRootExactly(source.rootKey);
       return { status: 'expired' };
     }
 
-    const currentId = await getCanonicalUserId().catch((error: unknown) => {
-      // зачем: PM-229 — без причины нельзя отличить «аккаунт неизвестен» от сбоя чтения.
-      reportSwallowed('account_switch_backup_restore:canonical_user_id', error);
-      return null;
-    });
+    const currentId = await resolveCurrentId();
     if (!generationIsCurrent()) return { status: 'stale_generation' };
     // Раунд 3 (§135 ❓2): копия гостя A принимается для B только по метке
     // подтверждённого merge(A→B); иначе — чужой аккаунт, копию не трогаем.
+    // Метка относится к слоту; полка доливается только своему владельцу.
     let mergedFrom: string | null = null;
-    if (backup.stableId && currentId && backup.stableId !== currentId) {
+    if (source.kind === 'slot' && backup.stableId && currentId && backup.stableId !== currentId) {
       const alias = await readAccountSwitchBackupMergeAlias();
       if (!generationIsCurrent()) return { status: 'stale_generation' };
       if (alias && alias.from === backup.stableId && alias.to === currentId) mergedFrom = alias.from;
@@ -346,7 +653,11 @@ async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<Bac
       || (!key.includes(mergedFrom) && !(skipAllGraphKeys && isLearningV2SpoolGraphKey(key)));
     let skippedForeignKeys = 0;
     const finishMergedRestore = async (restoredKeys: number, skippedExisting: number): Promise<void> => {
-      if (mergedFrom === null) return;
+      if (mergedFrom === null) {
+        // Своя копия долита: её время создания решает, какие свои полки устарели (MEDIUM 1).
+        meta.ownCopyCreatedAt = Number.isSafeInteger(backup.createdAt) ? backup.createdAt : null;
+        return;
+      }
       await removeMergeAlias('restored');
       identityTrace('[ACC-BACKUP-MERGE]', 'restored', {
         restoredKeys,
@@ -480,7 +791,7 @@ async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<Bac
         throw new Error('account_switch_backup_restore_indeterminate');
       }
       if (!generationIsCurrent()) return { status: 'stale_generation' };
-      await removeBackupRootExactly();
+      await removeBackupRootExactly(source.rootKey);
       await removeBackupPagesExactly(backup);
       await finishMergedRestore(restoredKeys, skippedExisting);
       return { status: 'restored', restoredKeys, skippedExisting };
@@ -494,7 +805,7 @@ async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<Bac
     skippedForeignKeys = typedPairs.length - candidates.length;
     graphKeysInCopy = typedPairs.filter(([key]) => isLearningV2SpoolGraphKey(key)).length;
     if (candidates.length === 0) {
-      await removeBackupRootExactly();
+      await removeBackupRootExactly(source.rootKey);
       return { status: 'invalid' };
     }
     const candidateKeys = new Set<string>();
@@ -552,7 +863,7 @@ async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<Bac
       }
     }
     if (!generationIsCurrent()) return { status: 'stale_generation' };
-    await removeBackupRootExactly();
+    await removeBackupRootExactly(source.rootKey);
     await finishMergedRestore(restoredKeys, skippedExisting);
     return { status: 'restored', restoredKeys, skippedExisting };
   })();

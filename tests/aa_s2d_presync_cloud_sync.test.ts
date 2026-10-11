@@ -265,6 +265,258 @@ describe('AA S2d 🔴2 — presync never adopts and never reports a false succes
     await expect(saveAccountSwitchEmergencyBackup('t', 'stable-a')).rejects.toThrow('account_switch_backup_other_owner_pending');
   });
 
+  // TG-0AE4918142EE: выход из аккаунта откладывает чужую v3-копию на полку ЦЕЛИКОМ —
+  // корень на полке, страницы на месте (раньше save подчищал их как «прежние» и полка
+  // оставалась пустой оболочкой); в логе — reason=normal_switch, без сырых id.
+  it('TG-0AE4918142EE: exit path shelves a foreign v3 copy with its pages intact (reason=normal_switch)', async () => {
+    const policy = require('../app/user_id_policy') as { getCanonicalUserId: jest.Mock };
+    await AsyncStorage.setItem('user_name', 'owner-a-name');
+    await expect(saveAccountSwitchEmergencyBackup('a_exit', 'stable-a')).resolves.toBe(true);
+    const aRoot = (await AsyncStorage.getItem('account_switch_emergency_backup_latest_v1'))!;
+    const aManifest = JSON.parse(aRoot) as { backupId: string; pageCount: number };
+    expect(aManifest.pageCount).toBeGreaterThan(0);
+
+    policy.getCanonicalUserId.mockResolvedValue('stable-c');
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await expect(saveAccountSwitchEmergencyBackup('c_exit', 'stable-c', {
+        allowShelveOtherOwnerBackup: true,
+        shelveReason: 'normal_switch',
+      })).resolves.toBe(true);
+      const lines = warn.mock.calls.map((call) => call.map(String).join(' ')).filter((line) => line.includes('[ACC-MUT] backup:'));
+      expect(lines.some((line) => line.includes('backup:shelved_other_owner reason=normal_switch'))).toBe(true);
+      expect(lines.some((line) => line.includes('other_owner_blocked'))).toBe(false);
+      for (const line of lines) {
+        expect(line).not.toContain('stable-a');
+        expect(line).not.toContain('stable-c');
+      }
+    } finally {
+      warn.mockRestore();
+      policy.getCanonicalUserId.mockImplementation(async () => 'stable-a');
+    }
+
+    const keys = await AsyncStorage.getAllKeys();
+    const shelved = keys.filter((key) => key.startsWith('account_switch_emergency_backup_shelved_v1:stable-a:'));
+    expect(shelved).toHaveLength(1);
+    expect(await AsyncStorage.getItem(shelved[0])).toBe(aRoot);
+    for (let index = 0; index < aManifest.pageCount; index += 1) {
+      expect(await AsyncStorage.getItem(`account_switch_emergency_backup_page_v1:${aManifest.backupId}:${index}`)).not.toBeNull();
+    }
+    await expect(readAccountSwitchEmergencyBackupSummary()).resolves.toMatchObject({ stableId: 'stable-c' });
+  });
+
+  // ── Ревью TG-92BAE5BC536D ─────────────────────────────────────────────────
+  const SHELF = 'account_switch_emergency_backup_shelved_v1:';
+  const SLOT = 'account_switch_emergency_backup_latest_v1';
+  const day = 24 * 60 * 60 * 1000;
+
+  /** Копия stable-a в слоте, затем выход stable-c (штатный) откладывает её на полку. */
+  async function shelveAByExitOfC(): Promise<{ lines: string[] }> {
+    const policy = require('../app/user_id_policy') as { getCanonicalUserId: jest.Mock };
+    await AsyncStorage.setItem('user_name', 'owner-a-name');
+    await expect(saveAccountSwitchEmergencyBackup('a_exit', 'stable-a')).resolves.toBe(true);
+    policy.getCanonicalUserId.mockResolvedValue('stable-c');
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await expect(saveAccountSwitchEmergencyBackup('c_exit', 'stable-c', {
+        allowShelveOtherOwnerBackup: true, shelveReason: 'normal_switch',
+      })).resolves.toBe(true);
+      return { lines: warn.mock.calls.map((call) => call.map(String).join(' ')) };
+    } finally {
+      warn.mockRestore();
+      policy.getCanonicalUserId.mockImplementation(async () => 'stable-a');
+    }
+  }
+
+  it('MEDIUM 2: потолок по числу — не больше 3 полок, вытесняется самая старая (лог reason=cap)', async () => {
+    const now = Date.now();
+    const oldest = `${SHELF}stable-x:${(now - 3 * day).toString(36)}`;
+    const middle = `${SHELF}stable-y:${(now - 2 * day).toString(36)}`;
+    const newest = `${SHELF}stable-z:${(now - 1 * day).toString(36)}`;
+    for (const [key, owner] of [[oldest, 'stable-x'], [middle, 'stable-y'], [newest, 'stable-z']] as const) {
+      await AsyncStorage.setItem(key, JSON.stringify({ version: 2, stableId: owner, pairs: [['k', 'v']] }));
+    }
+
+    const { lines } = await shelveAByExitOfC();
+
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELF));
+    expect(shelves).toHaveLength(3);
+    expect(shelves).not.toContain(oldest);
+    expect(shelves.some((key) => key.startsWith(`${SHELF}stable-a:`))).toBe(true);
+    expect(lines.some((line) => line.includes('backup:shelf_evicted reason=cap'))).toBe(true);
+    expect(lines.some((line) => /backup:shelved_other_owner reason=normal_switch .*shelfCount=3 shelfBytes=\d+ evicted=1/.test(line))).toBe(true);
+    for (const line of lines.filter((item) => item.includes('[ACC-MUT] backup:'))) {
+      expect(line).not.toContain('stable-x');
+      expect(line).not.toContain('stable-a');
+    }
+  });
+
+  it('MEDIUM 2: потолок по объёму — полка сверх 16 МБ в сумме вытесняется, только что отложенная остаётся', async () => {
+    const now = Date.now();
+    const big = `${SHELF}stable-big:${(now - day).toString(36)}`;
+    // Живая полка (страница :0 на месте) с манифестом на 20 МБ.
+    await AsyncStorage.setItem(big, JSON.stringify({
+      version: 3, schemaVersion: 'account-switch-emergency-backup.v3', backupId: 'big-b1', stableId: 'stable-big',
+      pageCount: 1, totalUtf8Bytes: 20 * 1024 * 1024,
+    }));
+    await AsyncStorage.setItem('account_switch_emergency_backup_page_v1:big-b1:0', 'page-bytes');
+
+    await shelveAByExitOfC();
+
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELF));
+    expect(shelves).not.toContain(big);
+    expect(shelves).toHaveLength(1);
+    expect(shelves[0].startsWith(`${SHELF}stable-a:`)).toBe(true);
+  });
+
+  // ── Ревью TG-2307361A2567 (2а/2б/2в) ──
+  const PAGE = 'account_switch_emergency_backup_page_v1:';
+  const v3Root = (owner: string, backupId: string, totalUtf8Bytes: number): string => JSON.stringify({
+    version: 3, schemaVersion: 'account-switch-emergency-backup.v3', backupId, stableId: owner,
+    pageCount: 1, totalUtf8Bytes,
+  });
+
+  it('2а: оболочка (корень без страниц) вытесняется раньше живой полки и весит только корень', async () => {
+    const now = Date.now();
+    const liveOld = `${SHELF}stable-x:${(now - 3 * day).toString(36)}`;
+    const liveMid = `${SHELF}stable-y:${(now - 2 * day).toString(36)}`;
+    // Оболочка — самая СВЕЖАЯ по метке и «весит» 15 МБ по манифесту, но страниц нет.
+    const shell = `${SHELF}stable-s:${(now - 1 * day).toString(36)}`;
+    await AsyncStorage.setItem(liveOld, JSON.stringify({ version: 2, stableId: 'stable-x', pairs: [['k', 'v']] }));
+    await AsyncStorage.setItem(liveMid, JSON.stringify({ version: 2, stableId: 'stable-y', pairs: [['k', 'v']] }));
+    await AsyncStorage.setItem(shell, v3Root('stable-s', 'shell-s1', 15 * 1024 * 1024));
+    const debug = require('../app/debug-logger') as { DebugLogger: { error: (...args: unknown[]) => void } };
+    const persisted = jest.spyOn(debug.DebugLogger, 'error').mockImplementation(() => undefined);
+    let lines: string[] = [];
+    try {
+      ({ lines } = await shelveAByExitOfC());
+      // 2в: вытеснение — в постоянный журнал (DebugLogger), только метки и числа.
+      const persistedTitles = persisted.mock.calls.map((call) => String(call[0]));
+      expect(persistedTitles.some((title) => title.includes('backup:shelf_evicted reason=shell'))).toBe(true);
+    } finally {
+      persisted.mockRestore();
+    }
+
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELF));
+    expect(shelves).not.toContain(shell);
+    expect(shelves).toContain(liveOld);
+    expect(shelves).toContain(liveMid);
+    expect(shelves).toHaveLength(3);
+    expect(lines.some((line) => line.includes('backup:shelf_evicted reason=cap'))).toBe(false);
+    expect(lines.join('\n')).not.toContain('stable-s');
+  });
+
+  it('2б: старший дубль вытеснен по потолку — у свежего дубля страницы на месте; дубли в объёме — один раз', async () => {
+    const now = Date.now();
+    const dupOld = `${SHELF}stable-d:${(now - 4 * day).toString(36)}`;
+    const dupNew = `${SHELF}stable-d:${(now - 1 * day).toString(36)}`;
+    const other1 = `${SHELF}stable-o:${(now - 2 * day).toString(36)}`;
+    const dupRoot = v3Root('stable-d', 'dup-d1', 10 * 1024 * 1024);
+    await AsyncStorage.setItem(`${PAGE}dup-d1:0`, 'page-bytes');
+    await AsyncStorage.setItem(dupOld, dupRoot);
+    await AsyncStorage.setItem(dupNew, dupRoot);
+    await AsyncStorage.setItem(other1, JSON.stringify({ version: 2, stableId: 'stable-o', pairs: [['k', 'v']] }));
+
+    const { lines } = await shelveAByExitOfC();
+
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELF));
+    // Потолок 3: A (только что), dupNew, other1; dupOld — четвёртый.
+    expect(shelves).not.toContain(dupOld);
+    expect(shelves).toContain(dupNew);
+    expect(shelves).toContain(other1);
+    expect(await AsyncStorage.getItem(`${PAGE}dup-d1:0`)).toBe('page-bytes');
+    // Объём: 10 МБ дубля посчитаны один раз (иначе было бы >20 МБ и вытеснение other1).
+    const shelfBytes = Number(/shelfBytes=(\d+)/.exec(lines.find((line) => line.includes('backup:shelved_other_owner'))!)![1]);
+    expect(shelfBytes).toBeLessThan(11 * 1024 * 1024);
+  });
+
+  it('2б: два дубля в объёме не вытесняют друг друга, если места хватает', async () => {
+    const now = Date.now();
+    const dupOld = `${SHELF}stable-d:${(now - 2 * day).toString(36)}`;
+    const dupNew = `${SHELF}stable-d:${(now - 1 * day).toString(36)}`;
+    const dupRoot = v3Root('stable-d', 'dup-d2', 10 * 1024 * 1024);
+    await AsyncStorage.setItem(`${PAGE}dup-d2:0`, 'page-bytes');
+    await AsyncStorage.setItem(dupOld, dupRoot);
+    await AsyncStorage.setItem(dupNew, dupRoot);
+
+    await shelveAByExitOfC();
+
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELF));
+    expect(shelves).toContain(dupOld);
+    expect(shelves).toContain(dupNew);
+  });
+
+  it('2б: 30-дневная чистка не снимает страницы, которые держит свежий дубль; последний корень — снимает', async () => {
+    const now = Date.UTC(2026, 9, 11);
+    const expiredDup = `${SHELF}stable-d:${(now - 40 * day).toString(36)}`;
+    const freshDup = `${SHELF}stable-d:${(now - 2 * day).toString(36)}`;
+    const dupRoot = v3Root('stable-d', 'dup-d3', 1000);
+    await AsyncStorage.setItem(`${PAGE}dup-d3:0`, 'page-bytes');
+    await AsyncStorage.setItem(expiredDup, dupRoot);
+    await AsyncStorage.setItem(freshDup, dupRoot);
+
+    await expect(pruneShelvedAccountSwitchBackups(now)).resolves.toBe(1);
+    expect(await AsyncStorage.getItem(expiredDup)).toBeNull();
+    expect(await AsyncStorage.getItem(freshDup)).toBe(dupRoot);
+    expect(await AsyncStorage.getItem(`${PAGE}dup-d3:0`)).toBe('page-bytes');
+
+    // Оба дубля протухли → снимаются оба, страницы — вместе с последним.
+    await expect(pruneShelvedAccountSwitchBackups(now + 30 * day)).resolves.toBe(1);
+    expect(await AsyncStorage.getItem(freshDup)).toBeNull();
+    expect(await AsyncStorage.getItem(`${PAGE}dup-d3:0`)).toBeNull();
+  });
+
+  it('LOW: сбой записи новой копии после откладывания — слот пуст, полка и её страницы целы', async () => {
+    const policy = require('../app/user_id_policy') as { getCanonicalUserId: jest.Mock };
+    await AsyncStorage.setItem('user_name', 'owner-a-name');
+    await expect(saveAccountSwitchEmergencyBackup('a_exit', 'stable-a')).resolves.toBe(true);
+    const aRoot = (await AsyncStorage.getItem(SLOT))!;
+    const aManifest = JSON.parse(aRoot) as { backupId: string; pageCount: number };
+    const setItemMock = AsyncStorage.setItem as unknown as jest.Mock;
+    const originalSet = setItemMock.getMockImplementation()!;
+    setItemMock.mockImplementation(async (key: string, value: string) => {
+      if (key.startsWith('account_switch_emergency_backup_page_v1:') && !key.includes(aManifest.backupId)) {
+        throw new Error('storage_write_failed');
+      }
+      return originalSet(key, value);
+    });
+    policy.getCanonicalUserId.mockResolvedValue('stable-c');
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await expect(saveAccountSwitchEmergencyBackup('c_exit', 'stable-c', {
+        allowShelveOtherOwnerBackup: true, shelveReason: 'normal_switch',
+      })).rejects.toThrow('storage_write_failed');
+      expect(warn.mock.calls.map((call) => String(call[0])).some((line) => line.includes('backup:rollback_slot_cleared reason=previous_shelved'))).toBe(true);
+    } finally {
+      warn.mockRestore();
+      setItemMock.mockImplementation(originalSet);
+      policy.getCanonicalUserId.mockImplementation(async () => 'stable-a');
+    }
+
+    expect(await AsyncStorage.getItem(SLOT)).toBeNull();
+    const shelves = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(`${SHELF}stable-a:`));
+    expect(shelves).toHaveLength(1);
+    expect(await AsyncStorage.getItem(shelves[0])).toBe(aRoot);
+    for (let index = 0; index < aManifest.pageCount; index += 1) {
+      expect(await AsyncStorage.getItem(`account_switch_emergency_backup_page_v1:${aManifest.backupId}:${index}`)).not.toBeNull();
+    }
+    expect((await AsyncStorage.getAllKeys()).filter((key) => (
+      key.startsWith('account_switch_emergency_backup_page_v1:') && !key.includes(aManifest.backupId)
+    ))).toEqual([]);
+  });
+
+  it('LOW: чистка берёт готовый список ключей и не зовёт getAllKeys второй раз', async () => {
+    const now = Date.UTC(2026, 9, 11);
+    const oldKey = `${SHELF}stable-y:${(now - 41 * day).toString(36)}`;
+    await AsyncStorage.setItem(oldKey, JSON.stringify({ version: 2, stableId: 'stable-y', pairs: [] }));
+    const known = await AsyncStorage.getAllKeys();
+    (AsyncStorage.getAllKeys as unknown as jest.Mock).mockClear();
+
+    await expect(pruneShelvedAccountSwitchBackups(now, known)).resolves.toBe(1);
+    expect(AsyncStorage.getAllKeys).not.toHaveBeenCalled();
+    expect(await AsyncStorage.getItem(oldKey)).toBeNull();
+  });
+
   // ── Раунд 4 (L-R3-4): очистка отложенных копий — по ключу и не чаще раза в сутки ──
   it('L-R3-4: a broken shelved key does not stop the loop; every key is handled separately', async () => {
     const now = Date.UTC(2026, 9, 4);

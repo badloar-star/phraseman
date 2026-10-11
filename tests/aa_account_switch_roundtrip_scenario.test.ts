@@ -256,11 +256,16 @@ jest.mock('../app/firebase', () => ({ logEvent: () => undefined, recordError: ()
 // eslint-disable-next-line import/first
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // eslint-disable-next-line import/first
-import { signOutAndWipeForAccountSwitch } from '../app/auth_provider';
+import { __tryRestoreAccountSwitchBackupForTests, signOutAndWipeForAccountSwitch } from '../app/auth_provider';
 // eslint-disable-next-line import/first
 import { restoreFromCloudDetailed, wipeLocalAccountData } from '../app/cloud_sync';
 // eslint-disable-next-line import/first
-import { restoreAccountSwitchEmergencyBackupIfSafe } from '../app/account_switch_backup_restore';
+import {
+  restoreAccountSwitchEmergencyBackupIfSafe,
+  shelvesAllowedForPostAuthStage,
+} from '../app/account_switch_backup_restore';
+// eslint-disable-next-line import/first
+import { peekStoredLevelSpinStarsForBoot } from '../app/level_spin_star_grants';
 // eslint-disable-next-line import/first
 import {
   __resetAccountGenerationForTests,
@@ -284,6 +289,32 @@ const A: Account = { stable: 'stable-A', auth: 'auth-A', sub: 'google-sub-A', na
 const B: Account = { stable: 'stable-B', auth: 'auth-B', sub: 'google-sub-B', name: 'Боря' };
 const BACKUP_ROOT = 'account_switch_emergency_backup_latest_v1';
 const SHELVED_PREFIX = 'account_switch_emergency_backup_shelved_v1:';
+// Ключ, который есть только у Б (тот же класс, что ранг монеты A: в облако не ходит).
+const B_ONLY_KEY = `coin_rank_v1:${'stable-B'}`;
+const B_ONLY_VALUE = '{"schemaVersion":"coin-rank-state.v1","rank":9}';
+// Настоящая проекция кошелька (её разбирает peekStoredLevelSpinStarsForBoot): 350 монет
+// от сервера + 5 за практику, ещё не подтверждённые сервером (ожидающая операция) = 355.
+const A_PENDING_PRACTICE_OPERATION = {
+  schemaVersion: 'client-practice-rune-operation.v1',
+  operationId: 'practice_rune:lesson_s1_1',
+  ownerStableId: 'stable-A',
+  activity: 'lesson',
+  sessionKey: 's1',
+  completionOrdinal: 1,
+  amount: 5,
+  reason: 'practice_session_reward',
+  createdAtMs: 1_700_000_000_000,
+  requestFingerprint: 'a'.repeat(64),
+};
+const A_PROJECTION = JSON.stringify({
+  schemaVersion: 'client-level-spin-star-projection.v3',
+  ownerStableId: 'stable-A',
+  operations: [A_PENDING_PRACTICE_OPERATION],
+  acknowledged: {},
+  serverBalance: 350,
+  serverEarnedTotal: 400,
+  serverSeq: 3,
+});
 const PLUS_EXPIRY = String(Date.UTC(2099, 0, 1));
 const A_CARDS = JSON.stringify([{ id: 'card-a-1', en: 'to look forward to', ru: 'ждать с нетерпением', createdAt: 1_700_000_000_000 }]);
 
@@ -299,7 +330,12 @@ function aProgressKeys(lv2Key: string, lv2Value: string): ProbeKey[] {
     { label: 'Имя', key: 'user_name', value: A.name },
     { label: 'Plus (план)', key: 'premium_plan', value: 'monthly' },
     { label: 'Plus (срок)', key: 'premium_expiry', value: PLUS_EXPIRY },
-    { label: 'Монеты (проекция кошелька)', key: `level_spin_star_projection_v1:${A.stable}`, value: '{"balance":350}' },
+    { label: 'Монеты (проекция кошелька)', key: `level_spin_star_projection_v1:${A.stable}`, value: A_PROJECTION },
+    // Требование координатора (а): очередь рун/монет, не подтверждённая сервером.
+    { label: 'Руны: outbox начислений', key: `level_spin_star_grant_outbox_v1:${A.stable}`, value: '{"version":1,"entries":["grant-a-1"]}' },
+    { label: 'Руны: операция', key: `level_spin_star_operation_v1:${A.stable}:level_spin%3Areq-a.base`, value: '{"version":1,"state":"pending"}' },
+    { label: 'Руны: подготовленная', key: `level_spin_star_prepared_v1:${A.stable}`, value: '{"version":1,"prepared":["req-a"]}' },
+    { label: 'Руны: журнал практики', key: `practice_rune_journal_v1:${A.stable}:practice-op-a`, value: '{"version":1,"amount":5}' },
     { label: 'Ранг монеты', key: `coin_rank_v1:${A.stable}`, value: '{"schemaVersion":"coin-rank-state.v1","rank":3}' },
     { label: 'Визитка «Про»', key: `profile_card_pro_v1:${A.stable}`, value: '{"schemaVersion":"profile-card-pro.v1","owned":true}' },
     { label: 'Карта Learning V2', key: lv2Key, value: lv2Value },
@@ -420,7 +456,24 @@ type ScenarioResult = {
   bExitNormal: unknown;
   bExitForced: unknown;
   shelvedAfterBExit: string[];
+  /** reason=… из лога `backup:shelved_other_owner` за время выхода Б. */
+  shelvedAfterBExitReasons: string[];
   backupOwnerBeforeAReturn: string | null;
+  /** Полки после возврата A (до повторного выхода A). */
+  shelvedAfterAReturn: string[];
+  /** Страницы полки A, оставшиеся после возврата A (0 — сняты вместе с корнем). */
+  orphanPagesOfAShelfAfterAReturn: number;
+  backupOwnerAfterAReturn: string | null;
+  /** Ключ, который был только у Б (в его копии), — у A после возврата (null — нет). */
+  bOnlyKeyAtAReturn: string | null;
+  /** Видимый баланс монет A: на телефоне до выхода / после возврата / после повторного долива. */
+  coinsSeeded: number | null;
+  coinsAfterAReturn: number | null;
+  secondRestore: string;
+  /** Ключи, которые изменил повторный долив сразу после возврата (ожидается пусто). */
+  changedBySecondRestore: string[];
+  coinsAfterSecondRestore: number | null;
+  noWipeEntry: NoWipeEntryTrace | null;
   a: SignInTrace;
   /** Ключи у Б, в имени которых есть id или отпечаток A. */
   aNamedKeysAtB: string[];
@@ -493,10 +546,16 @@ async function logoutLikeAccountLogoutFlow(): Promise<{ normal: unknown; forced:
 async function runScenario(withB: boolean): Promise<ScenarioResult> {
   const keys = await seedAccountAOnPhone();
   const aScopeHash = deriveLocalOfflineProgressAccountScopeHash(A.stable);
+  const coinsSeeded = await peekCoins();
 
   // 1. Штатный выход A с сетью.
   const aExit = await signOutAndWipeForAccountSwitch();
   const aBackupKeys = await backupRootPairKeys();
+  // Снимок первой копии A (корень + страницы) — для сценария «старая полка» ниже.
+  const aFirstBackupRoot = await AsyncStorage.getItem(BACKUP_ROOT);
+  const aFirstBackupPages = new Map(
+    [...(await dumpStorage()).entries()].filter(([key]) => key.startsWith('account_switch_emergency_backup_page_v1:')),
+  );
   const afterAExit = await dumpStorage();
   const cloudAfterAExit = new Map(keys.map(({ key }) => [key, cloudHasForA(key)]));
 
@@ -505,6 +564,7 @@ async function runScenario(withB: boolean): Promise<ScenarioResult> {
   let bExitForced: unknown = null;
   let aNamedKeysAtB: string[] = [];
   let bOwnLv2Key: string | null = null;
+  let shelvedAfterBExitReasons: string[] = [];
   if (withB) {
     // 2. Вход Б.
     b = await signInOnThisPhone(B);
@@ -513,17 +573,34 @@ async function runScenario(withB: boolean): Promise<ScenarioResult> {
     ));
     const bLv2Key = `learning-v2:course-local-progress:v1:${deriveLocalOfflineProgressAccountScopeHash(B.stable)}`;
     bOwnLv2Key = b.afterBackup.get(bLv2Key) ?? null;
+    // Б успел заработать своё, что живёт только локально (едет в его копию).
+    await AsyncStorage.setItem(B_ONLY_KEY, B_ONLY_VALUE);
     // 3. Выход Б.
+    const linesBefore = consoleLines.length;
     const exit = await logoutLikeAccountLogoutFlow();
     bExitNormal = exit.normal;
     bExitForced = exit.forced;
+    shelvedAfterBExitReasons = consoleLines.slice(linesBefore)
+      .map((line) => /backup:shelved_other_owner reason=([a-z_]+)/.exec(line)?.[1] ?? null)
+      .filter((value): value is string => value !== null);
   }
   const shelvedAfterBExit = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(SHELVED_PREFIX));
+  const aShelfBackupIds = await Promise.all(shelvedAfterBExit.map(async (key) => (
+    (JSON.parse((await AsyncStorage.getItem(key))!) as { backupId?: string }).backupId ?? ''
+  )));
   const rootRaw = await AsyncStorage.getItem(BACKUP_ROOT);
   const backupOwnerBeforeAReturn = rootRaw ? (JSON.parse(rootRaw) as { stableId: string }).stableId : null;
 
   // 4. Вход A на том же телефоне.
   const a = await signInOnThisPhone(A);
+  const keysAfterAReturn = await AsyncStorage.getAllKeys();
+  const shelvedAfterAReturn = keysAfterAReturn.filter((key) => key.startsWith(SHELVED_PREFIX));
+  const orphanPagesOfAShelfAfterAReturn = keysAfterAReturn.filter((key) => aShelfBackupIds.some((backupId) => (
+    backupId !== '' && key.startsWith(`account_switch_emergency_backup_page_v1:${backupId}:`)
+  ))).length;
+  const rootAfterARaw = await AsyncStorage.getItem(BACKUP_ROOT);
+  const backupOwnerAfterAReturn = rootAfterARaw ? (JSON.parse(rootAfterARaw) as { stableId: string }).stableId : null;
+  const bOnlyKeyAtAReturn = a.afterBackup.get(B_ONLY_KEY) ?? null;
 
   const observations = keys.map(({ label, key, value }): Observation => {
     const atAReturn = a.afterBackup.get(key) ?? null;
@@ -548,13 +625,79 @@ async function runScenario(withB: boolean): Promise<ScenarioResult> {
     };
   });
 
+  // (б) Монеты после возврата и повторный долив (второй вход / двойной вызов): ничего не
+  // удваивается и не меняется.
+  const coinsAfterAReturn = await peekCoins();
+  const beforeSecondRestore = await dumpStorage();
+  const secondRestore = (await restoreAccountSwitchEmergencyBackupIfSafe(() => true)).status;
+  const afterSecondRestore = await dumpStorage();
+  const changedBySecondRestore = [...new Set([...beforeSecondRestore.keys(), ...afterSecondRestore.keys()])]
+    .filter((key) => beforeSecondRestore.get(key) !== afterSecondRestore.get(key));
+  const coinsAfterSecondRestore = await peekCoins();
+
+  // (б) Вход БЕЗ стирания (linked_restore) при лежащей старой полке A: A потратил 50 монет,
+  // очередь начислений ушла на сервер — старая полка не должна вернуть ни то, ни другое.
+  let noWipeEntry: NoWipeEntryTrace | null = null;
+  if (withB) {
+    const outboxKey = `level_spin_star_grant_outbox_v1:${A.stable}`;
+    const projectionKey = `level_spin_star_projection_v1:${A.stable}`;
+    const oldShelfKey = `${SHELVED_PREFIX}${A.stable}:${(Date.now() - 60_000).toString(36)}`;
+    await AsyncStorage.multiSet([...aFirstBackupPages.entries(), [oldShelfKey, aFirstBackupRoot!]]);
+    await AsyncStorage.removeItem(outboxKey);
+    await AsyncStorage.setItem(projectionKey, JSON.stringify({ ...JSON.parse(A_PROJECTION), serverBalance: 300 }));
+    const generation = captureAccountGeneration();
+    const status = (await restoreAccountSwitchEmergencyBackupIfSafe(
+      () => isCurrentAccountGeneration(generation, A.stable),
+      { skipShelves: !shelvesAllowedForPostAuthStage('linked_restore') },
+    )).status;
+    const outboxAfter = await AsyncStorage.getItem(outboxKey);
+    const coinsAfter = await peekCoins();
+    const oldShelfStillThere = (await AsyncStorage.getItem(oldShelfKey)) !== null;
+    // Обратный контроль: тот же вызов БЕЗ skipShelves долил бы старую полку и вернул outbox —
+    // иначе тест подтвердил бы и пустую реализацию.
+    const controlStatus = (await restoreAccountSwitchEmergencyBackupIfSafe(
+      () => isCurrentAccountGeneration(generation, A.stable),
+      { skipShelves: !shelvesAllowedForPostAuthStage('swap_restore') },
+    )).status;
+    noWipeEntry = {
+      status,
+      outboxAfter,
+      coinsAfter,
+      oldShelfStillThere,
+      controlStatus,
+      controlOutboxAfter: await AsyncStorage.getItem(outboxKey),
+    };
+    // Вернуть телефон к состоянию «после возврата A», чтобы повторный выход шёл как прежде.
+    await AsyncStorage.multiRemove([oldShelfKey, ...aFirstBackupPages.keys()]);
+    await AsyncStorage.setItem(outboxKey, keys.find((item) => item.key === outboxKey)!.value);
+    await AsyncStorage.setItem(projectionKey, A_PROJECTION);
+  }
+
   // Повторный штатный выход A: кто теперь держит слот аварийной копии.
   const aSecondExitNormal = withB ? await signOutAndWipeForAccountSwitch() : null;
 
   return {
-    aExit, b, bExitNormal, bExitForced, shelvedAfterBExit, backupOwnerBeforeAReturn,
+    aExit, b, bExitNormal, bExitForced, shelvedAfterBExit, shelvedAfterBExitReasons,
+    backupOwnerBeforeAReturn, shelvedAfterAReturn, orphanPagesOfAShelfAfterAReturn,
+    backupOwnerAfterAReturn, bOnlyKeyAtAReturn,
+    coinsSeeded, coinsAfterAReturn, secondRestore, changedBySecondRestore, coinsAfterSecondRestore, noWipeEntry,
     a, aNamedKeysAtB, bOwnLv2Key, aSecondExitNormal, observations,
   };
+}
+
+type NoWipeEntryTrace = Readonly<{
+  status: string;
+  outboxAfter: string | null;
+  coinsAfter: number | null;
+  oldShelfStillThere: boolean;
+  controlStatus: string;
+  controlOutboxAfter: string | null;
+}>;
+
+/** Видимый баланс монет текущего владельца — тем же разбором, что Главная при старте. */
+async function peekCoins(): Promise<number | null> {
+  const visible = await peekStoredLevelSpinStarsForBoot(captureAccountGeneration());
+  return visible?.balance ?? null;
 }
 
 function row(result: ScenarioResult, key: string): Observation {
@@ -612,81 +755,159 @@ describe('AA: A → выход → Б → выход → A на том же те
     expect(item.source).toBe('локальный ключ по отпечатку');
   });
 
-  // НАХОДКА (не известная ранее): слот аварийной копии на телефоне один. Финальный
-  // снимок A лежит в нём после выхода A; Б при входе его не трогает (different_account),
-  // а штатный выход Б не может записать свой снимок поверх чужого → отказ
-  // backup_failed / account_switch_backup_other_owner_pending. AccountLogoutFlow
-  // тут же делает форсированный выход, который ОТКЛАДЫВАЕТ копию A в
-  // account_switch_emergency_backup_shelved_v1:<A>:<время> (вернуть — только вручную,
-  // через 30 дней её удалит pruneShelvedAccountSwitchBackups). При возврате A в слоте
-  // уже копия Б → different_account → ключи A, которые жили только в копии, не возвращаются.
-  // Повторный штатный выход A упирается в тот же отказ (теперь копия Б).
-  test('5. НАХОДКА: штатный выход Б отказывает из-за копии A, форсированный откладывает её', () => {
-    expect(result.bExitNormal).toEqual({
-      ok: false, reason: 'backup_failed', detail: 'account_switch_backup_other_owner_pending',
-    });
-    expect(result.bExitForced).toEqual({ ok: true, synced: true });
+  // Было (находка ca9e27c79, §AUTH-0330): слот копии на телефоне один, штатный выход Б
+  // отказывал с account_switch_backup_other_owner_pending, AccountLogoutFlow шёл в
+  // форсированный выход, копия A уходила на полку, которую никто не доставал.
+  // Стало (TG-0AE4918142EE): штатный выход Б сам откладывает копию A на полку
+  // (`backup:shelved_other_owner reason=normal_switch`), а вход A берёт её с полки.
+  test('5. штатный выход Б проходит без форсированного: копия A — на полке, вход A забирает её', () => {
+    expect(result.bExitNormal).toEqual({ ok: true, synced: true });
+    expect(result.bExitForced).toBeNull();
     expect(result.shelvedAfterBExit).toHaveLength(1);
     expect(result.shelvedAfterBExit[0].startsWith(`${SHELVED_PREFIX}${A.stable}:`)).toBe(true);
+    expect(result.shelvedAfterBExitReasons).toEqual(['normal_switch']);
     expect(result.backupOwnerBeforeAReturn).toBe(B.stable);
-    expect(result.a.backup).toBe('different_account');
-    expect(result.aSecondExitNormal).toEqual({
-      ok: false, reason: 'backup_failed', detail: 'account_switch_backup_other_owner_pending',
-    });
+    expect(result.a.backup).toBe('restored');
+    // Повторный штатный выход A: копия Б в слоте теперь тоже уходит на полку, не отказ.
+    expect(result.aSecondExitNormal).toEqual({ ok: true, synced: true });
   });
 
-  // ИЗВЕСТНАЯ ПОТЕРЯ (§AA-45a в INBOX_COORDINATOR_FROM_CORE.md, §AUTH-0010 в
-  // INBOX_COORDINATOR_FROM_AUTH.md; полоса Ядра): ранг монеты и визитка «Про» в облако не
-  // ходят, их единственный путь назад — аварийная копия. В сценарии A→Б→A копию A
-  // откладывает форсированный выход Б (тест 5) → у A их нет. Когда Ядро отправит ключи в
-  // облако (или слот копии станет на владельца) — тест «проснётся»: снять .failing.
-  test.failing('6. ИЗВЕСТНАЯ ПОТЕРЯ §AA-45a/§AUTH-0010: ранг монеты coin_rank_v1: возвращается к A', () => {
+  test('5a. после долива полка A удалена вместе со страницами; копия Б осталась в слоте нетронутой', () => {
+    expect(result.shelvedAfterAReturn.filter((key) => key.startsWith(`${SHELVED_PREFIX}${A.stable}:`))).toEqual([]);
+    expect(result.orphanPagesOfAShelfAfterAReturn).toBe(0);
+    expect(result.backupOwnerAfterAReturn).toBe(B.stable);
+  });
+
+  test('5b. полка чужого владельца не доливается: у A после возврата нет значений Б', () => {
+    // Своё у Б — имя из облака Б; оно не должно оказаться у A.
+    const name = row(result, 'user_name');
+    expect(name.atAReturn).toBe(A.name);
+    expect(result.bOnlyKeyAtAReturn).toBeNull();
+  });
+
+  // Ранг монеты и визитка «Про» в облако не ходят (§AA-45a/§AUTH-0010, полоса Ядра):
+  // на ЭТОМ телефоне их возвращает полка A. «Другой телефон» — отдельная задача.
+  test('6. ранг монеты coin_rank_v1: возвращается к A (с полки)', () => {
     const item = row(result, 'coin_rank_v1:');
     expect(item.atAReturn).toBe(item.seeded);
   });
 
-  test.failing('7. ИЗВЕСТНАЯ ПОТЕРЯ §AA-45a/§AUTH-0010: визитка «Про» profile_card_pro_v1: возвращается к A', () => {
+  test('7. визитка «Про» profile_card_pro_v1: возвращается к A (с полки)', () => {
     const item = row(result, 'profile_card_pro_v1:');
     expect(item.atAReturn).toBe(item.seeded);
   });
 
-  // НОВАЯ ПОТЕРЯ (тот же механизм, что тест 5): локальный журнал «Моих ошибок»
-  // (mistake_practice_v2::…) стирается при выходе, forceSyncToCloud его не выгружает
-  // (события уходят только обычным doSyncToCloud). Не выгруженные до выхода события
-  // возвращались бы только из копии A, а её отложил выход Б. Облачный путь событий
-  // в этом тесте заглушен — то, что успело уйти обычной синхронизацией, вернётся.
-  test.failing('8. НОВАЯ ПОТЕРЯ: локальный журнал «Моих ошибок» возвращается к A', () => {
+  // Локальный журнал «Моих ошибок» forceSyncToCloud не выгружает (только doSyncToCloud);
+  // облачный путь событий здесь заглушен — журнал возвращает полка A.
+  test('8. локальный журнал «Моих ошибок» возвращается к A', () => {
     const item = row(result, 'mistake_practice');
     expect(item.inCloudAfterAExit).toBe(false);
     expect(item.atAReturn).toBe(item.seeded);
   });
 
-  // НОВАЯ ПОТЕРЯ: проекция кошелька монет level_spin_star_projection_v1:<A> (в ней же
-  // неподтверждённые сервером начисления) — только в копии; копию отложил выход Б.
-  // Баланс на сервере (users.stars) этот тест не моделирует.
-  test.failing('9. НОВАЯ ПОТЕРЯ: проекция кошелька монет возвращается к A', () => {
+  // Проекция кошелька монет level_spin_star_projection_v1:<A> — только в копии.
+  test('9. проекция кошелька монет возвращается к A', () => {
     const item = row(result, 'level_spin_star_projection_v1:');
     expect(item.atAReturn).toBe(item.seeded);
   });
 
-  test('10. фиксация потерь: ровно четыре ключа живут только в копии A и пропадают', () => {
-    const lost = result.observations.filter((item) => item.source === 'ПОТЕРЯН');
-    expect(lost.map((item) => item.key.split(':')[0]).sort()).toEqual([
+  test('10. потерь 0: все ключи «только в копии A» вернулись из аварийной копии', () => {
+    expect(result.observations.filter((item) => item.source === 'ПОТЕРЯН').map((item) => item.key)).toEqual([]);
+    const fromBackup = result.observations.filter((item) => item.source === 'аварийная копия');
+    expect(fromBackup.map((item) => item.key.split(':')[0]).sort()).toEqual([
       'coin_rank_v1',
+      'level_spin_star_grant_outbox_v1',
+      'level_spin_star_operation_v1',
+      'level_spin_star_prepared_v1',
       'level_spin_star_projection_v1',
       'mistake_practice_v2',
+      'practice_rune_journal_v1',
       'profile_card_pro_v1',
     ]);
-    for (const item of lost) {
+    for (const item of fromBackup) {
       expect({ key: item.key, cloud: item.inCloudAfterAExit, backup: item.inAFirstBackup })
         .toEqual({ key: item.key, cloud: false, backup: true });
     }
+  });
+
+  // Требование координатора (а): очередь рун/монет и журнал практики не отправлены
+  // серверу до выхода — у A после возврата они на месте ровно теми же байтами.
+  test('11. (а) outbox рун, операция, подготовленная и журнал практики — у A на месте', () => {
+    for (const prefix of [
+      'level_spin_star_grant_outbox_v1:',
+      'level_spin_star_operation_v1:',
+      'level_spin_star_prepared_v1:',
+      'practice_rune_journal_v1:',
+    ]) {
+      const item = row(result, prefix);
+      expect({ prefix, atA: item.atAReturn, source: item.source }).toEqual({ prefix, atA: item.seeded, source: 'аварийная копия' });
+      expect({ prefix, leakedToB: item.atB === item.seeded }).toEqual({ prefix, leakedToB: false });
+    }
+  });
+
+  // Требование координатора (б): монеты не уходят ни в плюс, ни в минус.
+  test('12. (б) баланс монет A после A→Б→A равен исходному, повторный долив ничего не удваивает', () => {
+    // 350 от сервера + 5 за практику, ожидающие подтверждения.
+    expect(result.coinsSeeded).toBe(355);
+    expect(result.coinsAfterAReturn).toBe(result.coinsSeeded);
+    const projection = row(result, 'level_spin_star_projection_v1:');
+    expect(projection.atAReturn).toBe(projection.seeded);
+    // Ожидающая операция вернулась ровно одна — не потеряна и не удвоена.
+    const operations = (JSON.parse(projection.atAReturn!) as { operations: Array<{ operationId: string }> }).operations;
+    expect(operations.map((operation) => operation.operationId)).toEqual([A_PENDING_PRACTICE_OPERATION.operationId]);
+    // Второй вход/долив: в слоте копия Б, полки A уже нет — ничего не меняется.
+    expect(result.secondRestore).toBe('different_account');
+    expect(result.changedBySecondRestore).toEqual([]);
+    expect(result.coinsAfterSecondRestore).toBe(result.coinsSeeded);
+  });
+
+  test('13. (б) вход без стирания при старой полке A: потраченное и отправленное не воскресает', () => {
+    const outboxSeeded = row(result, 'level_spin_star_grant_outbox_v1:').seeded;
+    expect(result.noWipeEntry).toEqual({
+      // Слот держит копию Б, полки на этом пути не смотрятся.
+      status: 'different_account',
+      outboxAfter: null,
+      // 300 от сервера + 5 ожидающих за практику.
+      coinsAfter: 305,
+      oldShelfStillThere: true,
+      // Обратный контроль: с полками (как на входе со стиранием) outbox вернулся бы.
+      controlStatus: 'restored',
+      controlOutboxAfter: outboxSeeded,
+    });
   });
 });
 
 // Контроль: тот же A уходит и сразу возвращается (без Б). Слот копии занят им самим →
 // копия доливается, и ключи «только в копии» на месте. Значит, потеря тестов 6–9 — от
 // чужой копии в единственном слоте, а не от выхода как такового.
+// Ревью TG-2307361A2567: связка «этап входа → полки» в настоящем tryRestoreAccountSwitchBackup.
+// Полки доливаются только во вход со стиранием (swap_restore, keeplocal_restore).
+describe('Этап входа → полки (tryRestoreAccountSwitchBackup, все пять этапов)', () => {
+  const cases: ReadonlyArray<readonly [string, boolean]> = [
+    ['swap_restore', true],
+    ['keeplocal_restore', true],
+    ['linked_restore', false],
+    ['created_restore', false],
+    ['keeplocal_restore_same', false],
+  ];
+  test.each(cases)('%s → полка долита: %s', async (stage, expectRestored) => {
+    resetPhoneAndCloud();
+    mockStable.id = A.stable;
+    beginAccountGeneration(A.stable);
+    const shelfKey = `${SHELVED_PREFIX}${A.stable}:${(Date.now() - 1_000).toString(36)}`;
+    await AsyncStorage.setItem(shelfKey, JSON.stringify({
+      version: 1, createdAt: Date.now() - 2_000, stableId: A.stable, pairs: [['stage_probe_key', 'from-shelf']],
+    }));
+
+    await __tryRestoreAccountSwitchBackupForTests(stage, () => true);
+
+    expect({ stage, restored: await AsyncStorage.getItem('stage_probe_key') === 'from-shelf' })
+      .toEqual({ stage, restored: expectRestored });
+    expect({ stage, shelfKept: await AsyncStorage.getItem(shelfKey) !== null })
+      .toEqual({ stage, shelfKept: !expectRestored });
+  });
+});
+
 describe('Контроль: A → выход → A (без Б) на том же телефоне', () => {
   let result: ScenarioResult;
   beforeAll(async () => {

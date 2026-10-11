@@ -147,7 +147,11 @@ import {
   hasQuarantinedShardDeltaQueue,
   readShardDeltaQueue,
 } from './shards_delta_queue';
-import { restoreAccountSwitchEmergencyBackupIfSafe, writeAccountSwitchBackupMergeAlias } from './account_switch_backup_restore';
+import {
+  restoreAccountSwitchEmergencyBackupIfSafe,
+  shelvesAllowedForPostAuthStage,
+  writeAccountSwitchBackupMergeAlias,
+} from './account_switch_backup_restore';
 import { applyFutureKeptStashAfterReturn } from './flashcards_future_kept_stash';
 import { classifyPresyncBackupRefusal } from './presync_backup_refusal';
 import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
@@ -575,8 +579,18 @@ async function tryRestoreAccountSwitchBackup(
   stage: string,
   isCurrent: () => boolean = () => true,
 ): Promise<void> {
+  // зачем (ревью TG-92BAE5BC536D): полки доливаются только во вход со стиранием; список
+  // ключей, прочитанный восстановлением, отдаём чистке полок (один getAllKeys за вход).
+  const shelvesAllowed = shelvesAllowedForPostAuthStage(stage);
+  let scannedKeys: readonly string[] | undefined;
   try {
-    const res = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent);
+    const res = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent, {
+      skipShelves: !shelvesAllowed,
+      onKeysScanned: (keys) => { scannedKeys = keys; },
+    });
+    if (!shelvesAllowed) {
+      identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelves_skipped', { stage, reason: 'entry_without_wipe', status: res.status });
+    }
     if (res.status === 'restored') {
       logAuthEvent('auth_switch_backup_restored', { stage, keys: res.restoredKeys });
     }
@@ -598,11 +612,17 @@ async function tryRestoreAccountSwitchBackup(
   }
   // AA S2d раунд 3 (ревью п.2): отложенные копии старше 30 дней — давняя утечка.
   try {
-    await pruneShelvedAccountSwitchBackups();
+    await pruneShelvedAccountSwitchBackups(undefined, scannedKeys);
   } catch (error) {
     identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { stage, code: identityErrorCode(error) });
   }
 }
+
+/**
+ * Только для тестов: связка «этап входа → полки» проверяется поведением настоящего
+ * tryRestoreAccountSwitchBackup (ревью TG-2307361A2567), а не по исходнику.
+ */
+export const __tryRestoreAccountSwitchBackupForTests = tryRestoreAccountSwitchBackup;
 
 /**
  * Судьба аварийной копии гостя A после свапа на B (вызов под замком смены аккаунта).
@@ -3770,7 +3790,13 @@ async function signOutAndWipeForAccountSwitchReserved(
     // с account_switch_backup_other_owner_pending и человек был заперт в аккаунте
     // до возвращения того владельца (или до протухания копии через 30 дней).
     // Копия при этом не удаляется, а откладывается — см. cloud_sync.ts.
-    const backupOptions = { allowShelveOtherOwnerBackup: discardPendingShardSpend };
+    // зачем (TG-0AE4918142EE): теперь и ШТАТНЫЙ выход откладывает чужую копию на полку,
+    // а не отказывает: отказ толкал AccountLogoutFlow в форсированный выход без
+    // синхронизации. Полку забирает её владелец при входе (account_switch_backup_restore).
+    const backupOptions = {
+      allowShelveOtherOwnerBackup: true,
+      shelveReason: discardPendingShardSpend ? 'forced_switch' : 'normal_switch',
+    } as const;
     if ((await hasQuarantinedShardDeltaQueue(switchOwnerStableId)) && !discardPendingShardSpend) {
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'shard_queue_quarantined' });
       return { ok: false, reason: 'shard_queue_quarantined' };

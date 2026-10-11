@@ -1,0 +1,388 @@
+diff --git a/app/cloud_sync.ts b/app/cloud_sync.ts
+index e2ea58b70..5da68f812 100644
+--- a/app/cloud_sync.ts
++++ b/app/cloud_sync.ts
+@@ -4681,14 +4724,25 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
+  * она протухает через 30 дней. Пока её нет — человек заперт в аккаунте.
+  *
+  * Копию НЕ удаляем: она может быть единственным следом чужого офлайн-прогресса.
+- * Переименовываем ТОЛЬКО корневой ключ; страницы с данными не трогаем вообще,
+- * поэтому содержимое остаётся целым и восстановимо вручную поддержкой.
++ * Переименовываем ТОЛЬКО корневой ключ; страницы с данными не трогаем вообще
++ * (и save ниже их больше не подчищает), поэтому содержимое остаётся целым.
++ * Владелец получает её обратно сам: при его входе restoreAccountSwitchEmergencyBackupIfSafe
++ * берёт самую свежую его полку, когда слот пуст или чужой (TG-0AE4918142EE).
++ * Литерал префикса продублирован в app/account_switch_backup_restore.ts.
+  */
+ const ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX = 'account_switch_emergency_backup_shelved_v1:';
+ 
++type AccountSwitchBackupShelveReason =
++  | 'normal_switch'
++  | 'forced_switch'
++  | 'merge_unconfirmed'
++  | 'merge_fold_failed'
++  | 'unspecified';
++
+ async function shelveOtherOwnerAccountSwitchBackup(
+   previousBackupRaw: string,
+   otherOwnerStableId: string,
++  reason: AccountSwitchBackupShelveReason,
+ ): Promise<void> {
+   const shelvedKey = `${ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX}${otherOwnerStableId}:${Date.now().toString(36)}`;
+   // Сначала пишем копию под новым именем и только потом снимаем старый корень —
+@@ -4699,13 +4753,196 @@ async function shelveOtherOwnerAccountSwitchBackup(
+     throw new Error('account_switch_backup_shelve_verification_failed');
+   }
+   await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
++  let inventory: ShelvedBackupInventory = { count: -1, bytes: -1, evicted: 0 };
++  try {
++    inventory = await enforceShelvedBackupCap(shelvedKey);
++  } catch (error) {
++    // Потолок — забота о месте, а не о данных: сбой не отменяет уже отложенную копию.
++    console.warn(`[ACC-MUT] backup:shelf_cap_failed code=${identityErrorCode(error)}`);
++  }
+   console.warn(
+     // зачем (AA S2d, ревью): без сырого stableId — метка identityTag; ключ несёт id
+     // владельца в имени, поэтому в лог идёт только его метка времени.
+-    `[ACC-MUT] backup:shelved_other_owner owner=${identityTag(otherOwnerStableId)} stamp=${shelvedKey.slice(shelvedKey.lastIndexOf(':') + 1)} bytes=${previousBackupRaw.length}`,
++    `[ACC-MUT] backup:shelved_other_owner reason=${reason} owner=${identityTag(otherOwnerStableId)} stamp=${shelvedKey.slice(shelvedKey.lastIndexOf(':') + 1)} bytes=${previousBackupRaw.length} shelfCount=${inventory.count} shelfBytes=${inventory.bytes} evicted=${inventory.evicted}`,
+   );
+ }
+ 
++/**
++ * Потолок полок на телефоне. зачем (ревью TG-92BAE5BC536D, MEDIUM 2): каждая полка —
++ * полная копия аккаунта (до 512 страниц, потолок копии 128 МБ), а база хранилища на
++ * Android — 64 МБ (android/gradle.properties AsyncStorage_db_size_in_MB). Без потолка
++ * чередование аккаунтов копило бы полки, пока база не упрётся в предел и не начнёт
++ * отказывать в записи ЖИВЫМ данным. 3 полки и 16 МБ в сумме оставляют ≥48 МБ живым
++ * данным и слоту; только что отложенная полка не вытесняется никогда (её владелец
++ * иначе теряет всё) — даже если одна весит больше 16 МБ, вытесняются остальные.
++ */
++const SHELVED_BACKUP_MAX_COUNT = 3;
++const SHELVED_BACKUP_MAX_TOTAL_BYTES = 16 * 1024 * 1024;
++
++type ShelvedBackupInventory = Readonly<{ count: number; bytes: number; evicted: number }>;
++
++/** Что о корне копии нужно для места и страниц (без полной проверки цепочки). */
++type LooseBackupRoot = Readonly<{ backupId: string | null; pageCount: number; dataBytes: number }>;
++
++function looseBackupRoot(raw: string | null): LooseBackupRoot {
++  if (raw === null) return { backupId: null, pageCount: 0, dataBytes: 0 };
++  try {
++    const parsed = JSON.parse(raw) as { version?: unknown; backupId?: unknown; pageCount?: unknown; totalUtf8Bytes?: unknown };
++    if (parsed.version !== 3 || typeof parsed.backupId !== 'string' || !/^[a-z0-9-]{3,80}$/.test(parsed.backupId)) {
++      return { backupId: null, pageCount: 0, dataBytes: 0 };
++    }
++    return {
++      backupId: parsed.backupId,
++      pageCount: Number.isSafeInteger(parsed.pageCount)
++        ? Math.max(0, Math.min(Number(parsed.pageCount), ACCOUNT_SWITCH_BACKUP_MAX_PAGES)) : 0,
++      dataBytes: Number.isSafeInteger(parsed.totalUtf8Bytes) ? Math.max(0, Number(parsed.totalUtf8Bytes)) : 0,
++    };
++  } catch (error) {
++    console.warn(`[ACC-MUT] backup:shelf_root_unparsable code=${identityErrorCode(error)}`);
++    return { backupId: null, pageCount: 0, dataBytes: 0 };
++  }
++}
++
++/**
++ * Держит ли ещё какой-то корень (слот или другая полка из `otherShelfKeys`) страницы
++ * этого backupId. зачем (ревью TG-2307361A2567, 2б): после обрыва бывают дубли — два
++ * корня на одни страницы; снятие старшего дубля не должно оставить младшего оболочкой.
++ */
++async function backupPagesHeldElsewhere(
++  backupId: string,
++  otherShelfKeys: readonly string[],
++): Promise<'slot' | 'shelf' | 'unreadable' | null> {
++  if (looseBackupRoot(await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY)).backupId === backupId) return 'slot';
++  for (const key of otherShelfKeys) {
++    try {
++      if (looseBackupRoot(await AsyncStorage.getItem(key)).backupId === backupId) return 'shelf';
++    } catch (error) {
++      // Не прочли соседний корень — считаем, что он может делить страницы (безопасная сторона).
++      console.warn(`[ACC-MUT] backup:shelf_neighbour_unreadable code=${identityErrorCode(error)}`);
++      return 'unreadable';
++    }
++  }
++  return null;
++}
++
++/**
++ * Снять полку вместе со страницами v3. Страницы, которые делит слот или любая из
++ * оставшихся полок (`otherShelfKeys`, тот же backupId), не трогаем.
++ */
++async function removeShelvedBackupWithPages(key: string, otherShelfKeys: readonly string[]): Promise<number> {
++  const root = looseBackupRoot(await AsyncStorage.getItem(key));
++  let removedPages = 0;
++  if (root.backupId !== null && root.pageCount > 0) {
++    const holder = await backupPagesHeldElsewhere(root.backupId, otherShelfKeys.filter((other) => other !== key));
++    if (holder !== null) {
++      console.warn(`[ACC-MUT] backup:shelf_pages_kept reason=shared_with_${holder}`);
++    } else {
++      for (let offset = 0; offset < root.pageCount; offset += 128) {
++        await AsyncStorage.multiRemove(Array.from(
++          { length: Math.min(128, root.pageCount - offset) },
++          (_, pageIndex) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${root.backupId}:${offset + pageIndex}`,
++        ));
++      }
++      removedPages = root.pageCount;
++    }
++  }
++  await AsyncStorage.removeItem(key);
++  return removedPages;
++}
++
++type ShelfDescriptor = Readonly<{
++  key: string;
++  stampedAt: number;
++  backupId: string | null;
++  rootBytes: number;
++  dataBytes: number;
++  /** Корень v3 без первой страницы: восстановить нельзя (оболочка до правки или дубль после долива). */
++  shell: boolean;
++}>;
++
++async function describeShelf(key: string, raw: string): Promise<ShelfDescriptor> {
++  const stamp = parseInt(key.slice(key.lastIndexOf(':') + 1), 36);
++  const root = looseBackupRoot(raw);
++  const shell = root.backupId !== null && root.pageCount > 0
++    && await AsyncStorage.getItem(`${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${root.backupId}:0`) === null;
++  return {
++    key,
++    // Ключ без читаемой метки считаем самым старым.
++    stampedAt: Number.isSafeInteger(stamp) ? stamp : 0,
++    backupId: root.backupId,
++    rootBytes: utf8ByteLengthV1(raw),
++    // Оболочка весит только корень: страниц, на которые указывает манифест, нет.
++    dataBytes: shell ? 0 : root.dataBytes,
++    shell,
++  };
++}
++
++/**
++ * Вытеснить полки сверх потолка (кроме `keepKey`). Порядок (ревью TG-2307361A2567, 2а):
++ * оболочки снимаются всегда и первыми — они не восстановимы и не должны держать место
++ * вместо живой полки; затем живые — самые старые первыми. Дубли (один backupId)
++ * считаются в объёме один раз, а их общие страницы не снимаются, пока жив хоть один корень.
++ */
++async function enforceShelvedBackupCap(keepKey: string): Promise<ShelvedBackupInventory> {
++  const keys = await AsyncStorage.getAllKeys();
++  const shelfKeys = keys.filter((key) => key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX));
++  const shelves: ShelfDescriptor[] = [];
++  for (const key of shelfKeys) {
++    const raw = await AsyncStorage.getItem(key);
++    if (raw !== null) shelves.push(await describeShelf(key, raw));
++  }
++  // Только что отложенная — первой, затем живые свежие, оболочки — в хвосте.
++  shelves.sort((left, right) => (
++    (right.key === keepKey ? 1 : 0) - (left.key === keepKey ? 1 : 0)
++    || (left.shell ? 1 : 0) - (right.shell ? 1 : 0)
++    || right.stampedAt - left.stampedAt
++  ));
++  let count = 0;
++  let bytes = 0;
++  const countedBackupIds = new Set<string>();
++  const toEvict: Array<Readonly<{ shelf: ShelfDescriptor; reason: 'cap' | 'shell' }>> = [];
++  for (const shelf of shelves) {
++    const addBytes = shelf.rootBytes
++      + (shelf.backupId !== null && countedBackupIds.has(shelf.backupId) ? 0 : shelf.dataBytes);
++    const keep = shelf.key === keepKey || (!shelf.shell
++      && count + 1 <= SHELVED_BACKUP_MAX_COUNT && bytes + addBytes <= SHELVED_BACKUP_MAX_TOTAL_BYTES);
++    if (keep) {
++      count += 1;
++      bytes += addBytes;
++      if (shelf.backupId !== null) countedBackupIds.add(shelf.backupId);
++    } else {
++      toEvict.push({ shelf, reason: shelf.shell ? 'shell' : 'cap' });
++    }
++  }
++  // Оболочки — первыми (они уже в хвосте сортировки; снимаем их раньше живых).
++  toEvict.sort((left, right) => (left.reason === 'shell' ? 0 : 1) - (right.reason === 'shell' ? 0 : 1));
++  const present = new Set(shelfKeys);
++  let evicted = 0;
++  for (const { shelf, reason } of toEvict) {
++    const owner = identityTag(shelf.key.slice(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX.length, shelf.key.lastIndexOf(':')));
++    try {
++      const pages = await removeShelvedBackupWithPages(shelf.key, [...present]);
++      present.delete(shelf.key);
++      evicted += 1;
++      // зачем (2в): в постоянный журнал — только метки и числа; человеку ничего не показываем.
++      identityTrace('[ACC-SWITCH-WIPE]', `backup:shelf_evicted reason=${reason}`, {
++        owner,
++        stamp: shelf.stampedAt.toString(36),
++        bytes: shelf.rootBytes + shelf.dataBytes,
++        pages,
++      }, { persist: true });
++    } catch (error) {
++      // Не смогли снять — она по-прежнему занимает место: учитываем в итоге.
++      count += 1;
++      bytes += shelf.rootBytes + shelf.dataBytes;
++      identityTrace('[ACC-SWITCH-WIPE]', 'backup:shelf_evict_failed', {
++        owner, stamp: shelf.stampedAt.toString(36), code: identityErrorCode(error),
++      }, { persist: true });
++    }
++  }
++  return { count, bytes, evicted };
++}
++
+ /**
+  * Отложить аварийную копию, только если она принадлежит `ownerStableId`.
+  *
+@@ -4726,7 +4963,7 @@ export async function shelveAccountSwitchEmergencyBackupOf(ownerStableId: string
+     });
+     return false;
+   }
+-  await shelveOtherOwnerAccountSwitchBackup(raw, ownerStableId);
++  await shelveOtherOwnerAccountSwitchBackup(raw, ownerStableId, 'merge_unconfirmed');
+   return true;
+ }
+ 
+@@ -4742,7 +4979,14 @@ const SHELVED_BACKUP_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+ const SHELVED_PRUNE_LAST_RUN_KEY = 'account_switch_shelved_prune_last_run_v1';
+ const SHELVED_PRUNE_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
+ 
+-export async function pruneShelvedAccountSwitchBackups(nowMs: number = Date.now()): Promise<number> {
++export async function pruneShelvedAccountSwitchBackups(
++  nowMs: number = Date.now(),
++  /**
++   * Список ключей, уже прочитанный восстановлением копии в этом же входе.
++   * зачем (ревью TG-92BAE5BC536D, LOW): один getAllKeys за вход вместо двух.
++   */
++  knownKeys?: readonly string[],
++): Promise<number> {
+   // зачем (AA S2d раунд 4, L-R3-4): getAllKeys по всему хранилищу — не на каждом входе;
+   // раз в сутки достаточно для 30-дневного срока.
+   try {
+@@ -4758,11 +5002,13 @@ export async function pruneShelvedAccountSwitchBackups(nowMs: number = Date.now(
+   let failed = 0;
+   let keys: readonly string[];
+   try {
+-    keys = await AsyncStorage.getAllKeys();
++    keys = knownKeys ?? await AsyncStorage.getAllKeys();
+   } catch (error) {
+     identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { code: identityErrorCode(error), removed });
+     return removed;
+   }
++  // TG-2307361A2567 (2б): оставшиеся полки — чтобы не снять страницы, общие с дублем.
++  const presentShelves = new Set(keys.filter((key) => key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX)));
+   for (const [index, key] of keys.entries()) {
+     if (!key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX)) continue;
+     const stampedAt = parseInt(key.slice(key.lastIndexOf(':') + 1), 36);
+@@ -4770,15 +5016,10 @@ export async function pruneShelvedAccountSwitchBackups(nowMs: number = Date.now(
+     // зачем (L-R3-4): битый/нечитаемый ключ не останавливает очистку остальных;
+     // ключ несёт id владельца — в лог идёт только его порядковый номер.
+     try {
+-      const raw = await AsyncStorage.getItem(key);
+-      const identity = raw === null ? null : parsePreviousAccountSwitchBackupIdentity(raw);
+-      if (raw !== null && identity?.backupId) {
+-        const parsed = JSON.parse(raw) as { pageCount?: unknown };
+-        const pageCount = Number.isSafeInteger(parsed.pageCount) ? Number(parsed.pageCount) : 0;
+-        const pageKeys = Array.from({ length: pageCount }, (_, pageIndex) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${identity.backupId}:${pageIndex}`);
+-        if (pageKeys.length > 0) await AsyncStorage.multiRemove(pageKeys);
+-      }
+-      await AsyncStorage.removeItem(key);
++      // TG-92BAE5BC536D: общий помощник с вытеснением по потолку (страницы слота и
++      // оставшихся дублей не трогает).
++      await removeShelvedBackupWithPages(key, [...presentShelves]);
++      presentShelves.delete(key);
+       removed += 1;
+     } catch (error) {
+       failed += 1;
+@@ -4842,6 +5083,9 @@ async function foldMergedGuestBackupBeforeNewBackup(
+   if (!alias || alias.from !== owner || alias.to !== current) return false;
+   const restored = await restoreAccountSwitchEmergencyBackupIfSafe(undefined, {
+     lockTimeoutMs: MERGED_GUEST_BACKUP_LOCK_TIMEOUT_MS,
++    // зачем (TG-0AE4918142EE): посреди выхода нужен только слот с меткой merge —
++    // полки текущего владельца в живое хранилище здесь не возвращаем.
++    skipShelves: true,
+   }).catch((error: unknown) => {
+     identityTrace('[ACC-BACKUP-MERGE]', 'save fold_failed', { code: identityErrorCode(error) }, { persist: true });
+     return null;
+@@ -4851,7 +5095,7 @@ async function foldMergedGuestBackupBeforeNewBackup(
+     return true;
+   }
+   if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) === previousBackupRaw) {
+-    await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, owner);
++    await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, owner, 'merge_fold_failed');
+   }
+   await clearAccountSwitchBackupMergeAlias('shelved_before_new_backup');
+   identityTrace('[ACC-BACKUP-MERGE]', 'save shelved_instead', {
+@@ -4937,11 +5181,17 @@ export async function saveAccountSwitchEmergencyBackup(
+   expectedStableId?: string,
+   options?: {
+     /**
+-     * Разрешить отложить чужую копию в сторону. Передаётся ТОЛЬКО с
+-     * форсированного выхода: обычный путь обязан по-прежнему отказывать,
+-     * чтобы чужая копия не отодвигалась молча при штатной смене аккаунта.
++     * Разрешить отложить чужую копию на полку. Передаёт выход из аккаунта
++     * (signOutAndWipeForAccountSwitch) — и штатный, и форсированный.
++     * зачем (TG-0AE4918142EE): раньше штатный выход отказывал
++     * (`account_switch_backup_other_owner_pending`), AccountLogoutFlow тут же шёл в
++     * форсированный выход БЕЗ синхронизации, а полку никто не доставал. Теперь полку
++     * возвращает её владельцу restoreAccountSwitchEmergencyBackupIfSafe, поэтому
++     * откладывать безопасно. Без флага (вход с копией гостя, clean-install) — прежний отказ.
+      */
+     allowShelveOtherOwnerBackup?: boolean;
++    /** Для лога `backup:shelved_other_owner reason=…`: какой путь отложил копию. */
++    shelveReason?: 'normal_switch' | 'forced_switch';
+   },
+ ): Promise<boolean> {
+   if (await isAccountDeleteIdentityQuarantined()) return false;
+@@ -4971,11 +5221,13 @@ export async function saveAccountSwitchEmergencyBackup(
+   if (previousBackupRaw !== null && previousBackupIdentity === null) {
+     throw new Error('account_switch_backup_history_upgrade_required');
+   }
++  // Копию другого владельца отложили на полку: её страницы теперь принадлежат полке.
++  let shelvedPreviousBackup = false;
+   if (previousBackupRaw !== null && previousBackupIdentity !== null
+     && previousBackupIdentity.stableId !== stableId) {
+-    // Ранний выход: копия принадлежит ДРУГОМУ аккаунту. Обычный путь отказывает
+-    // (чужой прогресс важнее удобства), форсированный — откладывает её в сторону,
+-    // иначе человек заперт в аккаунте до возвращения того владельца.
++    // Ранний выход: копия принадлежит ДРУГОМУ аккаунту. Без разрешения (вход с копией
++    // гостя, clean-install) — отказ; выход из аккаунта откладывает её на полку, откуда
++    // её вернёт себе владелец при входе (TG-0AE4918142EE).
+     if (options?.allowShelveOtherOwnerBackup !== true) {
+       console.warn(
+         // зачем (AA S2d, ревью): без сырых stableId — только метки identityTag.
+@@ -4983,7 +5235,12 @@ export async function saveAccountSwitchEmergencyBackup(
+       );
+       throw new Error('account_switch_backup_other_owner_pending');
+     }
+-    await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, previousBackupIdentity.stableId);
++    await shelveOtherOwnerAccountSwitchBackup(
++      previousBackupRaw,
++      previousBackupIdentity.stableId,
++      options?.shelveReason ?? 'unspecified',
++    );
++    shelvedPreviousBackup = true;
+   }
+   // зачем (AA 2.0, S1e): прежняя копия ТОГО ЖЕ владельца заменяется целиком — её локальные версии
+   // карточек (ещё не долитые) объединяем с живыми в новой копии, а не затираем.
+@@ -5142,7 +5399,12 @@ export async function saveAccountSwitchEmergencyBackup(
+     // Root-last publication makes prior pages unreachable. Reclaim them in
+     // bounded chunks after the new root is verified; a cleanup failure never
+     // invalidates the new snapshot and can be retried by later storage GC.
+-    if (previousBackupRaw !== null) {
++    // зачем (TG-0AE4918142EE): страницы ОТЛОЖЕННОЙ чужой копии не трогаем — их корень
++    // теперь на полке, и без страниц полка v3 не восстановима (так полка A оставалась
++    // пустой оболочкой после выхода Б).
++    if (shelvedPreviousBackup) {
++      console.warn(`[ACC-MUT] backup:previous_pages_kept reason=shelved owner=${identityTag(previousBackupIdentity?.stableId ?? null)}`);
++    } else if (previousBackupRaw !== null) {
+       try {
+         const previous = JSON.parse(previousBackupRaw) as Record<string, unknown>;
+         if (previous.version === 3 && typeof previous.backupId === 'string' &&
+@@ -5164,7 +5426,11 @@ export async function saveAccountSwitchEmergencyBackup(
+     }
+   } catch (e) {
+     try {
+-      if (previousBackupRaw == null) {
++      // зачем (TG-0AE4918142EE): отложенная чужая копия уже проверенно лежит на полке —
++      // возвращать её корень ещё и в слот значит держать дубль с теми же страницами
++      // (долив слота снял бы страницы, и полка стала бы пустой оболочкой).
++      if (previousBackupRaw == null || shelvedPreviousBackup) {
++        if (shelvedPreviousBackup) console.warn('[ACC-MUT] backup:rollback_slot_cleared reason=previous_shelved');
+         await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+         if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) !== null) {
+           throw new Error('account_switch_backup_rollback_failed');

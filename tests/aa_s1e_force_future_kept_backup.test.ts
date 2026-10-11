@@ -354,7 +354,8 @@ describe('S1e — встройка (cloud_sync, auth_provider)', () => {
 
   test('вход: версии возвращаются в список после доливания копии', () => {
     const body = bodyOf(read('auth_provider.ts'), 'tryRestoreAccountSwitchBackup');
-    const restoreAt = body.indexOf('await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent)');
+    // TG-92BAE5BC536D: вызов получил опции (полки только во вход со стиранием).
+    const restoreAt = body.indexOf('await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent');
     const applyAt = body.indexOf('await applyFutureKeptStashAfterReturn(');
     expect(restoreAt).toBeGreaterThan(0);
     expect(applyAt).toBeGreaterThan(restoreAt);

@@ -60,6 +60,7 @@ import { CollectionMenuSheet, CollectionSearchField, CollectionTitleBlock, Colle
 import { FREE_SAVED_CARD_LIMIT } from './flashcards/free_limit';
 import { claimPackDelete, deleteOwnPackEverywhere, releasePackDelete } from './community_packs/deleteOwnPack';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
+import { packDeckLevel } from '../components/packs/packDeckModel';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
 import { VideoSetView } from './flashcards/VideoSetView';
 import { togglePackCardSaved } from './flashcards/save_pack_card';
@@ -1305,6 +1306,8 @@ export default function FlashcardsScreen() {
           : null}
       onTrain={listCards.length > 0 ? onTrainThisPack : null}
       cardCount={listCards.length}
+      // зачем (сверка Макетов e4e4149d0): в шапке своего и добавленного набора не было уровня (A2/B2), хотя он есть в документе набора — тот же чип `.lvl`, что в каталоге.
+      level={packDeckLevel(currentMarketPack)}
     />
   ) : null;
 

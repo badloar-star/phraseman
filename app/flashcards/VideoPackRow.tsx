@@ -286,5 +286,5 @@ const baseStyles = StyleSheet.create({
   count: { marginTop: 4, fontSize: 13, lineHeight: 17 },
   // владелец 11.10: единый компактный стиль названий в списках роликов и наборов.
   titlePlain: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
-  countPlain: { marginTop: 2, fontSize: 11, lineHeight: 14, opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову
+  countPlain: { marginTop: 2, fontSize: 11, lineHeight: 14, opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

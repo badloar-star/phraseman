@@ -54,5 +54,5 @@ const baseStyles = StyleSheet.create({
   stackOne: { position: 'absolute', top: -6, left: 12, right: 12, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
   stackTwo: { position: 'absolute', top: -11, left: 24, right: 24, height: 14, borderTopLeftRadius: 12, borderTopRightRadius: 12 },
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
-  count: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову
+  count: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

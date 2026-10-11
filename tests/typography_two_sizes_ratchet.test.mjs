@@ -22,7 +22,9 @@ const ALLOWED = new Set([13, 16]);
 // не влезает (колонка 26 pt, бейдж на углу кнопки). Строка с пометкой «d145-micro: <причина>» не считается,
 // но ТОЛЬКО в этих файлах: в любом другом файле пометка игнорируется, чтобы не стать лазейкой.
 const MICRO_MARKER = /d145-micro:\s*\S/;
-const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx']);
+// зачем (владелец 11.10, прямое слово): мета видео-карточек (длительность/автор/число фраз) — 11 sp; только эти четыре файла.
+const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx',
+  'app/flashcards/VideoPackRow.tsx', 'components/youtube/YoutubePlaylistGridCard.tsx', 'components/youtube/YoutubeVideoCard.tsx', 'components/youtube/YoutubeVideoGridCard.tsx']);
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);

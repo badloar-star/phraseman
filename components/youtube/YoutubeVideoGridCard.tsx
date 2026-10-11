@@ -118,5 +118,5 @@ const baseStyles = StyleSheet.create({
   bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
   // владелец 11.10: название 13/17 вес 600 (2 строки, минимум две — ряды одной высоты), мета 11/14.
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
-  meta: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову
+  meta: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85, minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

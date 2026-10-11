@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   // владелец 11.10: в списке роликов плейлиста название компактнее — 13/17 вес 600, мета 11/14 приглушённым акцентным тоном.
   titleCompact: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },
-  metaCompact: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову
+  metaCompact: { marginTop: 2, fontSize: 11, lineHeight: 14, fontWeight: '400', opacity: 0.85 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
   titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   titleCopy: { flex: 1, minWidth: 0 },
   saveBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },

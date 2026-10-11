@@ -75,6 +75,11 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
       hairline: g.line,
       outline: alphaHex(solid(g.text), 0.24),
       divider: g.line,
+      // зачем (владелец 11.10: Шпиль следует теме; замер 13.10): в светлом оформлении зелёный/красный «верно/неверно» из старой
+      // базы давали на белой карточке 2.08/3.32, а на светлом фоне 1.55/2.48 — подписи зон («Вверх»/«Вниз») и стрелки не читались.
+      // Семантические токены темы держат ≥ 4.5 на карточке и ≥ 3 на фоне. Тёмное оформление не меняется (там старые цвета читаются).
+      correct: g.good,
+      wrong: g.bad,
       text: g.text,
       textSecondary: g.secondary,
       textMuted: g.mutedText,

@@ -128,6 +128,7 @@ describe('useMistakeExplain bundled ELI5 state', () => {
 
     const hook = await renderHook(() => useMistakeExplain({
       active: true,
+      autoStart: true,
       phraseKey: 'phrase-1:wrong-answer',
       lessonId: 7,
       phraseId: 'phrase-1',
@@ -684,9 +685,46 @@ describe('useMistakeExplain bundled ELI5 state', () => {
   });
 });
 
+describe('useMistakeExplain: ручной запуск по умолчанию (журнал 15)', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    callExplainMistakeMock.mockReset();
+    jest.useRealTimers();
+    consentGranted = true;
+    consentHydrated = true;
+    consentDecision = true;
+    consentSubscriber = null;
+    netStatus = 'online';
+    netSubscriber = null;
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('account-a');
+  });
+
+  afterEach(async () => {
+    await cleanup();
+  });
+
+  it('does not request the AI breakdown on its own; the tap does', async () => {
+    callExplainMistakeMock.mockResolvedValue(fullResponse('Tap explanation'));
+    const { autoStart: _autoStart, ...manualInput } = baseInput();
+    const hook = await renderHook(() => useMistakeExplain(manualInput));
+
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 50)); });
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+    expect(hook.result.current.aiMistakeState).toBe('idle');
+
+    await act(async () => { hook.result.current.explain(); });
+    await waitFor(() => expect(hook.result.current.aiMistakeState).toBe('ready'));
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+});
+
 function baseInput(active = true) {
   return {
     active,
+    // зачем (владелец 11.10, журнал 15): набор ниже проверяет механику автозагрузки и повторов — её включает autoStart; ручной режим (по умолчанию) — в отдельных тестах.
+    autoStart: true,
     phraseKey: 'phrase-1:wrong-answer',
     lessonId: 7,
     phraseId: 'phrase-1',

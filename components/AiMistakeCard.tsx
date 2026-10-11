@@ -217,15 +217,17 @@ export default function AiMistakeCard({
       ) : null}
 
       {state === 'idle' ? (
-        <Pressable
-          testID="ai-mistake-explain-button"
-          accessibilityRole="button"
-          onPress={onExplain}
-          style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
-        >
-            <Ionicons name="sparkles-outline" size={16} color={t.accentText} />
-          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
-            {triLang(lang, {
+        // зачем (владелец 11.10, журнал 15; макет learn D5 `.aic .bt`): разбор запускается ТОЛЬКО по тапу — две кнопки рядом:
+        // «Разобрать мой ответ» (ИИ-разбор) и «Объяснить проще». Без тапа к ИИ ничего не уходит.
+        <View style={styles.actionRow}>
+          <Pressable
+            testID="ai-mistake-explain-button"
+            accessibilityRole="button"
+            onPress={onExplain}
+            style={({ pressed }) => [styles.actionButton, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
+          >
+            <Text style={[styles.actionText, { color: t.textPrimary }]}>
+              {triLang(lang, {
                 ru: 'Разобрать мой ответ',
                 uk: 'Розібрати мою відповідь',
                 en: 'Break down my answer',
@@ -235,9 +237,32 @@ export default function AiMistakeCard({
                 id: 'Analisis jawaban saya',
                 tr: 'Cevabımı analiz et',
                 pl: 'Przeanalizuj odpowiedź',
-            })}
-          </Text>
-        </Pressable>
+              })}
+            </Text>
+          </Pressable>
+          {onOpenSimple ? (
+            <Pressable
+              testID="ai-mistake-simple-button"
+              accessibilityRole="button"
+              onPress={onOpenSimple}
+              style={({ pressed }) => [styles.actionButton, styles.actionGhost, { borderColor: t.border }, pressed && { opacity: 0.78 }]}
+            >
+              <Text style={[styles.actionText, { color: t.textPrimary }]}>
+                {triLang(lang, {
+                  ru: 'Объяснить проще',
+                  uk: 'Пояснити простіше',
+                  en: 'Explain more simply',
+                  es: 'Explicarlo más fácil',
+                  'pt-BR': 'Explicar de forma mais simples',
+                  vi: 'Giải thích đơn giản hơn',
+                  id: 'Jelaskan lebih sederhana',
+                  tr: 'Daha basit açıkla',
+                  pl: 'Wyjaśnij prościej',
+                })}
+              </Text>
+            </Pressable>
+          ) : null}
+        </View>
       ) : null}
     </View>
   );
@@ -295,6 +320,32 @@ const styles = StyleSheet.create({
   reportRow: {
     alignItems: 'flex-start',
     marginTop: 12, // отделяем кнопку-репорт от текста разбора (теперь это кнопка с контейнером)
+  },
+  // `.aic .bt` макета: две кнопки по 40+, поровну, зазор 10; ghost — тонкая кромка 1 px (исключение 2.0).
+  actionRow: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 4,
+  },
+  actionButton: {
+    alignItems: 'center',
+    borderRadius: 22,
+    flex: 1,
+    justifyContent: 'center',
+    minHeight: 44,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  actionGhost: {
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: ghost-кнопка `.cta.gh` макета — тонкая полупрозрачная кромка 2.0
+  },
+  actionText: {
+    flexShrink: 1,
+    fontSize: 16,
+    fontWeight: '700',
+    lineHeight: 21,
+    textAlign: 'center',
   },
   simpleButton: {
     alignItems: 'center',

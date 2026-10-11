@@ -38,6 +38,7 @@ import {
   shouldConsumeFreeMistakeExplain,
 } from './mistake_explain_plus_gate';
 import { hapticTap } from '../hooks/use-haptics';
+import { actionToastTri, emitAppEvent } from './events';
 import { getNetStatus, subscribeNetStatus, type NetStatus } from './net_status';
 import {
   hasAiExplainConsentDecision,
@@ -69,6 +70,11 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 export interface UseMistakeExplainInput {
   /** Whether to run at all (e.g. result shown AND the answer was wrong). */
   active: boolean;
+  /**
+   * Запускать разбор сразу на экране результата (прежнее поведение, нужное «Моим ошибкам»). По умолчанию false: разбор — по тапу
+   * (владелец 11.10, журнал 15).
+   */
+  autoStart?: boolean;
   /** Stable key for the current phrase+result; changing it resets + invalidates. */
   phraseKey: string;
   /** Synthetic lesson id for cache bucketing (plan modes pass a mode-derived id). */
@@ -173,6 +179,7 @@ function isSameAccountGeneration(a: AccountGenerationToken, b: AccountGeneration
 export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExplainResult {
   const {
     active,
+    autoStart = false,
     phraseKey,
     lessonId,
     phraseId,
@@ -742,9 +749,21 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   openEli5Ref.current = (backgroundRetry = false) => { void openEli5(backgroundRetry); };
 
+  // зачем (владелец 11.10, журнал 15; макет learn D5): ИИ-разбор ошибки запускается ТОЛЬКО по тапу «Разобрать мой ответ» — автозапуска на экране
+  // результата «Неверно» больше нет (квота/энергия тратятся только по выбору человека). Бывшая автозагрузка (согласие → лимит → запрос)
+  // теперь целиком в requestMistakeExplanation; здесь — один след на каждую ошибку, чтобы «разбор не пришёл» читался по логу.
+  useEffect(() => {
+    if (!active || autoStart) return;
+    console.log(`[MISTAKE-EXPLAIN] manual_only: ждём тап phrase=${phraseKey} net=${netStatus} state=${aiMistakeState} consent=${isAiExplainConsentGranted() ? 'granted' : hasAiExplainConsentDecision() ? 'denied' : 'undecided'} freeLeft=${freeExplainsLeft} premium=${hasPremiumAccess}`); // guard-ok: вход в экран результата
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, phraseKey]);
+
+  // зачем (владелец 11.10, журнал 15): автозагрузка разбора осталась ТОЛЬКО для экранов, которые просят её явно (autoStart — «Мои ошибки»).
+  // Урок и планы запускают разбор тапом.
   useEffect(() => {
     // зачем (координатор 04.10, «Почему» почти всегда общая фраза; «сперва логи»): каждый выход
     // автозагрузки пишет, ЧТО её остановило — иначе «ИИ не ответил» неотличимо от «запроса не было».
+    if (!autoStart) return;
     if (!active || netStatus !== 'online' || aiMistakeState !== 'idle') {
       if (active) {
         console.log(`[MISTAKE-EXPLAIN] autoload:skip net=${netStatus} state=${aiMistakeState} phrase=${phraseKey}`); // guard-ok: ранний выход
@@ -780,16 +799,33 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     }
     console.log(`[MISTAKE-EXPLAIN] autoload:request freeLeft=${freeExplainsLeft} premium=${hasPremiumAccess} phrase=${phraseKey}`); // guard-ok
     void explain(false);
-  }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick, hasPremiumAccess, freeExplainsLeft, paidUnlockedForPhrase]);
+  }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick, hasPremiumAccess, freeExplainsLeft, paidUnlockedForPhrase, autoStart]);
 
   const requestMistakeExplanation = useCallback(() => {
-    if (!active || netStatusRef.current !== 'online') return;
+    if (!active) {
+      console.log(`[MISTAKE-EXPLAIN] tap:ignored reason=inactive phrase=${phraseKey}`); // guard-ok: ранний выход
+      return;
+    }
+    if (netStatusRef.current !== 'online') {
+      // зачем: раньше тап офлайн молча ничего не делал — теперь человек видит причину и может повторить, когда сеть вернётся.
+      console.log(`[MISTAKE-EXPLAIN] tap:offline net=${netStatusRef.current} phrase=${phraseKey}`); // guard-ok: ранний выход
+      hapticTap();
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Нет сети — разбор появится, когда она вернётся. Нажми ещё раз.', uk: 'Немає мережі — розбір з’явиться, коли вона повернеться. Натисни ще раз.',
+        en: 'No connection. Tap again once you’re back online.', es: 'Sin conexión. Vuelve a tocar cuando la tengas.',
+        'pt-BR': 'Sem conexão. Toque de novo quando voltar a rede.', vi: 'Không có mạng. Hãy chạm lại khi có mạng.',
+        id: 'Tidak ada koneksi. Ketuk lagi saat sudah online.', tr: 'Bağlantı yok. İnternet gelince tekrar dokun.', pl: 'Brak sieci. Dotknij ponownie, gdy wróci.',
+      }));
+      return;
+    }
     if (!isAiExplainConsentGranted()) {
+      console.log(`[MISTAKE-EXPLAIN] tap:consent_gate decision=${hasAiExplainConsentDecision() ? 'denied' : 'undecided'} phrase=${phraseKey}`); // guard-ok: ветка согласия
       setConsentGateVisible(true);
       return;
     }
+    console.log(`[MISTAKE-EXPLAIN] tap:request freeLeft=${freeExplainsLeft} premium=${hasPremiumAccess} paid=${paidUnlockedForPhrase === phraseKey} phrase=${phraseKey}`); // guard-ok: запрос по тапу
     void explain(true);
-  }, [active, explain]);
+  }, [active, explain, freeExplainsLeft, hasPremiumAccess, paidUnlockedForPhrase, phraseKey]);
 
   const onConsentAccept = useCallback(() => {
     setConsentGateVisible(false);
@@ -852,7 +888,9 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     void openEli5(false, true);
   }, [openEli5, phraseId]);
 
-  const consentBlocksCard = active && !isAiExplainConsentGranted();
+  // зачем (журнал 15): без автозапуска согласие спрашивается по тапу, поэтому карточка с кнопками видна и тем, кто ещё не решил;
+  // скрываем её только у тех, кто согласие явно отклонил.
+  const consentBlocksCard = active && !isAiExplainConsentGranted() && (autoStart || hasAiExplainConsentDecision());
 
   return {
     aiMistakeState: consentBlocksCard

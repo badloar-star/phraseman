@@ -769,6 +769,8 @@ function MistakePracticeSessionScreen() {
    */
   const mistakeExplain = useMistakeExplain({
     active: feedback !== null && !feedback.correct && feedback.userAnswer.trim().length > 0,
+    // зачем (журнал 15): в уроке разбор запускается тапом, а на этом экране текст «Почему» грузится сам, как раньше (нет кнопки разбора).
+    autoStart: true,
     phraseKey: `${session?.sessionId ?? ''}:${entry?.exercise.exerciseId ?? ''}:${feedback?.userAnswer ?? ''}`,
     // Синтетический lessonId: раздел ошибок не принадлежит уроку, но кэш
     // серверный ключуется парой (фраза, ответ) — номер лишь бакетирует.

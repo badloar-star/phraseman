@@ -95,7 +95,9 @@ function CardsHubV2Inner({
   // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
   // в светлой теме берём текст темы, в тёмных остаётся прежний (mediaInk).
   const faceInk = g.isLight ? g.text : g.mediaInk;
-  const faceInkSoft = g.isLight ? g.secondary : g.mediaInkSoft;
+  // зачем (таблица docs/phraseman-2.0/evidence/hub_cards_contrast_23_themes.md, решение координатора 14.10): приглушённый цвет подписи
+  // транскрипции на тонированной заливке стопки давал контраст 1.57–5.33 (нечитаемо на всех 23 темах) — берём цвет слова, 4.10–4.49.
+  const faceInkSoft = faceInk;
   const float = useSharedValue(0);
   // зачем (Performance Bible, сторож perf_freeze_contract): бесконечное «парение» живёт только пока экран в фокусе и приложение на переднем плане.
   const runtimeActive = useRuntimeActive();

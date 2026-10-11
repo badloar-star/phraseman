@@ -11,7 +11,7 @@ Related epic/enabler: непрерывная сверка паритета (RELE
 
 ## Scope
 
-In scope: docs/design/v2-app/spire.html, spire-gaps-states.html, paywall-gaps-states.html (и родственные образцы пейволов при необходимости), cards-v2.html (новый кадр «Из видео» только если его нет), registries/visual_parity.json (привязки по id).
+In scope: docs/design/v2-app/spire.html, spire-gaps-states.html, paywall-gaps-states.html (и родственные образцы пейволов при необходимости), cards-v2.html (новый кадр «Из видео» только если его нет), shadow-style-etalon.html (Главная: арт плиток home_menu/aurora и значки таб-бара Ionicons по коду; стиль «Тень» не трогать) и копии ресурсов в assets образца, registries/visual_parity.json (привязки по id).
 
 Out of scope: код приложения; cards-section.html (под замком владельца); добавление функций Шпиля в R1.
 

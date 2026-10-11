@@ -93,6 +93,9 @@ export const PAYWALL_SOURCE_VALUES = [
   'dialogue_v2_memory',
   'dialogs_companion',
   'spire_no_energy',
+  // зачем (Ядро 11.10): тап по пушу «VIP заканчивается» (notification_tap_handler) — источника не было в списке,
+  // и в стор-сборке окно Plus закрывалось само вместо показа.
+  'notification_premium_expiry',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];

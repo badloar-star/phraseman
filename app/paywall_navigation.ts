@@ -57,6 +57,15 @@ export function openPremiumPaywall(
   mode: PaywallNavigationMode = 'push',
 ): void {
   const normalized = normalizePaywallParams(params);
+  // зачем (владелец 11.10: «пейвол почему-то не открывается… не вижу контекста»): первое звено цепочки [PAYWALL-OPEN] —
+  // кто и с каким context/source позвал окно. Без этой строки «не открылось» неотличимо от «не позвали вовсе».
+  console.log('[PAYWALL-OPEN] вызов', JSON.stringify({ // guard-ok: одна строка на тап по входу в пейвол
+    mode,
+    branch: normalized.manage === '1' ? 'manage_subscription' : 'premium_modal',
+    context: normalized.context ?? null,
+    source: normalized.source ?? null,
+    keys: Object.keys(normalized),
+  }));
   if (normalized.manage === '1') {
     // зачем: раньше сюда доезжал голый '/manage_subscription' без параметров —
     // экран терял уже известный план (settings.tsx уже знает premiumPlan синхронно)

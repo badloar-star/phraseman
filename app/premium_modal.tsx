@@ -97,6 +97,34 @@ export default function PremiumModalDispatcher() {
         impressionId: paywallImpressionId,
         cachedEntitlement,
       });
+  // зачем (владелец 11.10: «пейвол почему-то не открывается»): решение окна со ВСЕМИ значениями, которые его приняли.
+  // Раньше «dismiss по Plus» был немым — у человека с доступом окно закрывалось само, и в журнале не было ни строки.
+  // Пишем один раз на смену решения, не на каждый кадр.
+  const decision = isManageContext ? 'manage' : (entryResolution?.decision ?? 'none');
+  const loggedDecisionRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (loggedDecisionRef.current === decision) return;
+    loggedDecisionRef.current = decision;
+    const reason = decision === 'dismiss'
+      ? (accessInputs.hasPremiumAccess ? 'plus_access' : 'unknown_context_or_source')
+      : decision === 'wait' ? 'access_unresolved' : decision;
+    const log = decision === 'dismiss' ? console.warn : console.log;
+    log('[PAYWALL-OPEN] решение окна', JSON.stringify({ // guard-ok: одна строка на смену решения
+      decision,
+      reason,
+      context: firstParam(params.context) || null,
+      source: firstParam(params.source) || null,
+      shownContext: entryResolution?.decision === 'show' ? entryResolution.entry.context : null,
+      accessResolved,
+      hasPremiumAccess,
+      cachedEntitlement,
+      waitCeilingPassed,
+      accessFrom: accessInputs.source,
+      rootNavReady,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [decision]);
+
   if (!accessResolved && entryResolution?.decision === 'show' && !cachedShowLoggedRef.current) {
     cachedShowLoggedRef.current = true;
     // Лёгкий console.log: debug-logger тянет config/Platform в транзитный экран без нужды.

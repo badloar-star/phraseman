@@ -26,7 +26,9 @@ export function serverPushTapRoute(data: Record<string, unknown>): ServerPushTap
   switch (data.type) {
     case 'premium_expiry_reminder':
       return data.kind === 'vip'
-        ? { pathname: '/premium_modal', params: { context: 'notification_premium_expiry', source: 'notification_premium_expiry' } }
+        // зачем (Ядро 11.10, «пейвол не открывается»): контекста 'notification_premium_expiry' нет в белом списке —
+        // в стор-сборке диспетчер закрывал окно молча (rejectUnknown → dismiss). VIP истекает → честный контекст vip_expired.
+        ? { pathname: '/premium_modal', params: { context: 'vip_expired', source: 'notification_premium_expiry' } }
         : { pathname: '/manage_subscription', params: { source: 'notification_premium_expiry' } };
     case 'spire_week_result':
     case 'spire_zone_warning':

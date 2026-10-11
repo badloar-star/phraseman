@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { AppState, Platform } from 'react-native';
+import { awaitWithinInitCap } from './paywall_init_cap';
 import { enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert, type ThemedBlockingAlertAction } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { pickPaywallPrice, resolvePaywallReferencePrices, type PaywallPriceSource } from './paywall_reference_prices';
@@ -1033,6 +1034,27 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     setPurchasing(true);
     setTapNotice(false);
+    // зачем (координатор 12.10, Optimistic UI R1): у пейвола онбординга (не resilientCheckout) старт магазина и синхронизация личности ждались без потолка — кнопка могла крутиться вечно, оплата ещё не начата.
+    // Тот же потолок, что в окне Plus. По истечении: кнопка свободна (finally), «Магазин не отвечает. Попробуй ещё раз» + подсказка под кнопкой. Сама оплата не затрагивается.
+    const stopBeforePayment = (step: 'initRevenueCat' | 'syncRevenueCatIdentity', ms: number): void => {
+      DebugLogger.warn('[PAYWALL]', `покупка: ${step} не ответил за ${ms} мс (потолок ${LOAD_GATE_TOTAL_MS}) — оплата не начата, кнопка свободна`);
+      void trackEvent('purchase_failed', {
+        context, plan: selected, paywall: variant, error: `${step}_timeout`, ...paywallImpressionParams(impression),
+      });
+      if (!isOperationAccountCurrent() || lifeRef.current.dead) return;
+      setTapNotice(true);
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Магазин не отвечает. Попробуй ещё раз.',
+        uk: 'Магазин не відповідає. Спробуй ще раз.',
+        en: 'The store isn’t responding. Try again.',
+        es: 'La tienda no responde. Inténtalo de nuevo.',
+        'pt-BR': 'A loja não está respondendo. Tente de novo.',
+        vi: 'Cửa hàng không phản hồi. Hãy thử lại.',
+        id: 'Toko tidak merespons. Coba lagi.',
+        tr: 'Mağaza yanıt vermiyor. Tekrar dene.',
+        pl: 'Sklep nie odpowiada. Spróbuj ponownie.',
+      }));
+    };
     try {
       if (!pkgOrNull) {
         // зачем (D158): кнопка Plus всегда активна. Offerings ещё нет — грузим их ПРЯМО НА ТАПЕ
@@ -1099,7 +1121,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           return;
         }
       } else {
-        await initRevenueCat(isOperationAccountCurrent);
+        const capped = await awaitWithinInitCap('initRevenueCat', initRevenueCat(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, `${variant}:${source}`);
+        if (capped.status === 'timeout') { stopBeforePayment('initRevenueCat', capped.ms); return; }
+        if (capped.status === 'error') throw capped.error; // отказ старта — прежнее поведение (общий catch ниже)
       }
       let identityReady: boolean;
       if (resilientCheckout) {
@@ -1115,7 +1139,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           return;
         }
       } else {
-        identityReady = await syncRevenueCatIdentity(isOperationAccountCurrent);
+        const capped = await awaitWithinInitCap('syncRevenueCatIdentity', syncRevenueCatIdentity(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, `${variant}:${source}`);
+        if (capped.status === 'timeout') { stopBeforePayment('syncRevenueCatIdentity', capped.ms); return; }
+        if (capped.status === 'error') throw capped.error; // прежнее поведение
+        identityReady = capped.value;
       }
       if (!identityReady) {
         // зачем: голый системный Alert не годится для фирменного фидбека — владелец

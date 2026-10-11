@@ -105,6 +105,8 @@ export interface UseStudyLanguageSelectionArgs {
   onSwitchStart?: (code: StudyTarget) => void;
   /** После успешного переключения на уже начатый язык. */
   onSwitched?: () => void | Promise<void>;
+  /** Запись не удалась и язык НЕ сменился — откатить оптимистичную отметку (тост об ошибке хук показывает сам). */
+  onSwitchFailed?: (code: StudyTarget) => void;
 }
 
 /**
@@ -120,6 +122,7 @@ export function useStudyLanguageSelection({
   onBeforeNavigate,
   onSwitchStart,
   onSwitched,
+  onSwitchFailed,
 }: UseStudyLanguageSelectionArgs) {
   const router = useRouter();
   // зачем (аудит «мгновенное открытие», 04.10): если список начатых языков уже известен в памяти (по аккаунту) — берём его первым кадром и считаем
@@ -198,6 +201,7 @@ export function useStudyLanguageSelection({
           // зачем: раньше здесь был try/finally без catch — отказ записи уходил в немой unhandled rejection.
           // Язык не сменился (контекст читает хранилище), поэтому откат — только честное сообщение.
           console.warn(`${logTag} switch_failed to=${code} step=${typeof step === 'string' ? step : 'unknown'} reason=${reason}`);
+          onSwitchFailed?.(code); // отметка «активный» возвращается на прежний язык
           emitAppEvent('action_toast', actionToastTri('error', switchFailedToastCopy()));
         } finally {
           busyRef.current = false;
@@ -211,7 +215,7 @@ export function useStudyLanguageSelection({
     onBeforeNavigate?.();
     router.push({ pathname: '/language_welcome', params: { target: code } } as any);
     return 'welcome';
-  }, [activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, onSwitchStart, onBeforeNavigate, reloadStarted, logTag]);
+  }, [activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, onSwitchStart, onSwitchFailed, onBeforeNavigate, reloadStarted, logTag]);
 
   return { options, startedLanguages, startedLanguagesResolved, busy, select };
 }
@@ -228,7 +232,25 @@ export default function StudyLanguagePicker({
   // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора — общий хук ниже.
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const { options, startedLanguages, busy, select: onSelect } = useStudyLanguageSelection({ lang, activeTarget, onSwitched });
+// зачем (координатор 12.10, Optimistic UI R1): отметка «активный» переезжает на выбранный язык в кадре тапа (как в шторке языка), не дожидаясь записи и контекста; отказ записи — откат (тост ошибки показывает хук).
+  const [pendingTarget, setPendingTarget] = useState<StudyTarget | null>(null);
+  const shownTarget = pendingTarget ?? activeTarget;
+  const { options, startedLanguages, busy, select: onSelect } = useStudyLanguageSelection({
+    lang, activeTarget, onSwitched,
+    onSwitchStart: (code) => { console.log(`[STUDY-LANG-PICK] strip_optimistic shown=${code} was=${activeTarget}`); setPendingTarget(code); }, // guard-ok: оптимистичная отметка
+    onSwitchFailed: (code) => { console.warn(`[STUDY-LANG-PICK] strip_rollback failed=${code} back_to=${activeTarget}`); setPendingTarget(null); }, // guard-ok: откат называет причину
+  });
+  // Контекст догнал (activeTarget стал выбранным) — отметка берётся из него; страховка: если не догнал за 3 с и запись уже не идёт — снимаем, чтобы метка не залипла.
+  useEffect(() => {
+    if (pendingTarget === null) return undefined;
+    if (pendingTarget === activeTarget) { setPendingTarget(null); return undefined; }
+    if (busy) return undefined;
+    const timer = setTimeout(() => {
+      console.warn(`[STUDY-LANG-PICK] strip_pending_cleared target=${pendingTarget} active=${activeTarget} reason=context_did_not_catch_up`); // guard-ok: страховка называет причину
+      setPendingTarget(null);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [pendingTarget, activeTarget, busy]);
   // зачем (координатор 12.10, profile-005 роняет qemu c0000005): вход шторки и тяжёлые слои — плитки с тенью boxShadow и флаги.
   const pickerLoggedRef = useRef(false);
   if (!pickerLoggedRef.current) {
@@ -252,7 +274,7 @@ export default function StudyLanguagePicker({
       contentContainerStyle={{ gap: CARD_GAP, paddingVertical: 2, paddingRight: 20 }}
     >
       {options.map((code) => {
-        const active = code === activeTarget;
+        const active = code === shownTarget;
         const learning = startedLanguages.includes(code);
         const flagAsset = languageFlagAssetFor(code);
         return (

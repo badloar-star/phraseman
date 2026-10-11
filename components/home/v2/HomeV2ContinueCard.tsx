@@ -49,9 +49,10 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ busy: pending }}
-      disabled={pending}
-      onPress={onPress}
-      onLongPress={onLongPress}
+      // зачем (координатор 12.10, Optimistic UI R1): на скелете тап раньше был «мёртвым» (disabled — ни сжатия, ни следа). Теперь карточка
+      // нажимается (scale 0.98) и ничего не открывает; журнал press:ignored остаётся.
+      onPress={pending ? () => { console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'pending_skeleton' })); } : onPress} // guard-ok: ранний выход называет причину
+      onLongPress={pending ? undefined : onLongPress}
       scaleTo={0.98}
       style={[s.card, glass]}
     >

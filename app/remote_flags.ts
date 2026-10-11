@@ -131,6 +131,9 @@ export type RemoteBoolKey =
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
+  // Справочные цены Plus (владелец 11.10: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ») — JSON
+  // {"yearly","monthly","yearlyPerMonth"}; пусто → зашитая страховка (app/paywall_reference_prices.ts).
+  | 'paywall_reference_prices'
   | 'maintenance_ru'
   | 'maintenance_uk'
   | 'maintenance_es'
@@ -326,6 +329,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
+  paywall_reference_prices: '',
   maintenance_ru: '',
   maintenance_uk: '',
   maintenance_es: '',
@@ -466,6 +470,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   ]);
   const allowedTexts = new Set<RemoteTextKey>([
     'min_app_version', 'store_url_ios', 'store_url_android', 'manual_update_campaign_id',
+    'paywall_reference_prices',
     'manual_update_mode', 'manual_update_target_build', 'manual_update_platform',
     'manual_update_title_ru', 'manual_update_title_uk', 'manual_update_title_es',
     'manual_update_body_ru', 'manual_update_body_uk', 'manual_update_body_es',

@@ -2441,6 +2441,9 @@ function CleanOnboarding({
     source: 'onboarding_plan',
     lang,
     forceTrialUI: true,
+    // зачем (ревью Opus 11.10): экран не рисует «≈» и строит из цены текст об автопродлении — справочная цена здесь
+    // выдала бы чужую валюту за условия подписки. Кэш последних настоящих цен остаётся. Включить, когда Дизайн добавит «≈».
+    allowReferencePrice: false,
   });
 
   const enabledOrder = useMemo(

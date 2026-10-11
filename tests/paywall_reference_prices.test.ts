@@ -1,0 +1,70 @@
+// зачем (владелец 11.10, капсом: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ»): на плитках пейвола цена видна всегда —
+// живая из магазина → последняя настоящая (кэш) → справочная (рубильник → зашитая страховка). Живая всегда главнее.
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  PAYWALL_REFERENCE_PRICES_BUILTIN,
+  parsePaywallReferencePrices,
+  pickPaywallPrice,
+  resolvePaywallReferencePrices,
+} from '../app/paywall_reference_prices';
+import { applyRemoteConfigSnapshot } from '../app/remote_flags';
+
+describe('цепочка цены', () => {
+  test('живая цена магазина главнее кэша и справочной', () => {
+    expect(pickPaywallPrice({ store: '39,99 €', cache: '€35', reference: '€39,99' })).toEqual({ price: '39,99 €', source: 'store' });
+  });
+  test('нет живой — последняя настоящая из кэша', () => {
+    expect(pickPaywallPrice({ store: '', cache: '€35', reference: '€39,99' })).toEqual({ price: '€35', source: 'cache' });
+  });
+  test('нет ни живой, ни кэша — справочная (никогда не пусто)', () => {
+    expect(pickPaywallPrice({ store: '', reference: '€39,99' })).toEqual({ price: '€39,99', source: 'reference' });
+  });
+  test('показать нечего — none (магазин ответил без этого плана: цену не выдумываем)', () => {
+    expect(pickPaywallPrice({ store: '' })).toEqual({ price: '', source: 'none' });
+  });
+});
+
+describe('справочные цены', () => {
+  test('пусто или мусор в рубильнике — зашитая страховка', () => {
+    expect(parsePaywallReferencePrices('')).toBe(PAYWALL_REFERENCE_PRICES_BUILTIN);
+    expect(parsePaywallReferencePrices('not json')).toBe(PAYWALL_REFERENCE_PRICES_BUILTIN);
+    expect(parsePaywallReferencePrices('{"yearly":"€39,99"}')).toBe(PAYWALL_REFERENCE_PRICES_BUILTIN);
+    expect(parsePaywallReferencePrices('{"yearly":"abc","monthly":"€7,99"}')).toBe(PAYWALL_REFERENCE_PRICES_BUILTIN);
+  });
+  test('рубильник задаёт свои цены без релиза', () => {
+    expect(parsePaywallReferencePrices('{"yearly":"$44.99","monthly":"$8.99","yearlyPerMonth":"$3.75"}'))
+      .toEqual({ yearly: '$44.99', monthly: '$8.99', yearlyPerMonth: '$3.75', source: 'remote' });
+  });
+  test('рубильник подхватывается из снимка remote config', () => {
+    applyRemoteConfigSnapshot({ texts: { paywall_reference_prices: '{"yearly":"€41","monthly":"€8"}' } });
+    expect(resolvePaywallReferencePrices()).toMatchObject({ yearly: '€41', monthly: '€8', source: 'remote' });
+    applyRemoteConfigSnapshot({});
+    expect(resolvePaywallReferencePrices()).toBe(PAYWALL_REFERENCE_PRICES_BUILTIN);
+  });
+});
+
+describe('хук пейвола: цепочка во всех пейволах', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'paywall_purchase.ts'), 'utf8');
+  test('кэш цен — не только в окне Plus', () => {
+    expect(source).toMatch(/useState<PaywallPriceCache \| null>\(\s*\(\) => peekPaywallPriceCache\(\),\s*\)/);
+    expect(source).not.toMatch(/resilientCheckout \? peekPaywallPriceCache\(\)/);
+    expect(source).not.toMatch(/const cacheYearly = resilientCheckout/);
+  });
+  test('справочная цена — только пока магазин ни разу не ответил, без кэша и не на экранах без «≈»', () => {
+    expect(source).toMatch(/const referencePrices = allowReferencePrice && !offeringsEverLoaded && !cacheYearly && !cacheMonthly/);
+  });
+  test('на кнопке была справочная цена — покупка только вторым тапом', () => {
+    expect(source).toMatch(/if \(shownSource === 'reference'\) \{[\s\S]{0,300}return;/);
+  });
+  test('онбординг (нет «≈», цена идёт в текст об автопродлении) — справочная выключена', () => {
+    const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+    expect(onboarding).toMatch(/allowReferencePrice: false/);
+  });
+  test('тап без магазина в любом пейволе — тихая подсказка, не немой выход', () => {
+    expect(source).toMatch(/resilientCheckout=false — тихая подсказка и догрузка[\s\S]{0,200}setTapNotice\(true\);/);
+  });
+  test('хук отдаёт источник цены пейволам', () => {
+    expect(source).toMatch(/priceSource, pricesApproximate,/);
+  });
+});

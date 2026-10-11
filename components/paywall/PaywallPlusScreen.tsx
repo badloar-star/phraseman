@@ -115,7 +115,12 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     DebugLogger.info('[PAYWALL-PLUS]', 'тихий повтор цен');
     reloadOfferings();
   }, [reloadOfferings]);
-  useLoadGate({ id: 'paywall-plus-prices', status: state, retry: retryPrices });
+  // зачем (владелец 11.10: «цены видны всегда»): на плитках может стоять справочная или кэш-цена — окно «готово», но живые
+  // цены магазина ещё не пришли. Фоновые повторы не прекращаются, пока цена не из магазина.
+  const priceGateStatus: PaywallPlusState = state === 'ready' && (p.priceSource === 'reference' || p.priceSource === 'cache')
+    ? (p.offeringsSettled && !p.loading ? 'error' : 'loading')
+    : state;
+  useLoadGate({ id: 'paywall-plus-prices', status: priceGateStatus, retry: retryPrices });
   // Пробный — ТОЛЬКО из магазина и только когда цены реально пришли.
   const yearlyTrialDays = pricesReady ? p.yearlyTrialDays : null;
   const monthlyTrialDays = pricesReady && p.selected === 'monthly' ? p.trialDays : null;
@@ -123,8 +128,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   useEffect(() => {
     DebugLogger.info('[PAYWALL]', `окно Plus: состояние=${state} цены=${p.pricesFromCache ? 'кэш' : hasPrices ? 'магазин' : 'нет'} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} `
-      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source} превью=${String(p.previewPrices)} причина=${p.storeUnavailableReason ?? '-'} dev=${String(__DEV__)}`);
-  }, [ctx, hasPrices, p.previewPrices, p.storeUnavailableReason, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
+      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source} превью=${String(p.previewPrices)} причина=${p.storeUnavailableReason ?? '-'} источникЦены=${p.priceSource} dev=${String(__DEV__)}`);
+  }, [ctx, hasPrices, p.previewPrices, p.priceSource, p.storeUnavailableReason, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
 
   // Мгновенный выбор тарифа; лента пробного появляется/уходит плавно, без скачка.
   const { selected, selectPlan: selectPlanInHook } = p;

@@ -15,6 +15,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { AppState, Platform } from 'react-native';
 import { enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert, type ThemedBlockingAlertAction } from './themed_blocking_alert_queue'; // зачем: стеклянные окна вместо нативного Alert (overlays-runtime «purchase pending / status unknown»)
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { pickPaywallPrice, resolvePaywallReferencePrices, type PaywallPriceSource } from './paywall_reference_prices';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import Purchases, { INTRO_ELIGIBILITY_STATUS, PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
@@ -356,6 +357,12 @@ function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
 }
 
 export interface PaywallPurchaseArgs {
+  /**
+   * Справочная цена на плитках (последнее звено «живая → кэш → справочная»). По умолчанию да.
+   * зачем (ревью Opus 11.10): экран, который не умеет рисовать «≈» и строит из цены юридический текст об автопродлении
+   * (онбординг), обязан выключить её — иначе условия подписки показаны в чужой валюте и с выдуманной суммой.
+   */
+  allowReferencePrice?: boolean;
   variant: PaywallVariantLabel;
   context: string;
   source: string;
@@ -383,7 +390,7 @@ export interface PaywallPurchaseArgs {
   resilientCheckout?: boolean;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false, resilientCheckout = false, allowReferencePrice = true }: PaywallPurchaseArgs) {
   const router = useRouter();
   const { refillToMax } = useEnergy();
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
@@ -412,8 +419,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [offeringsSettled, setOfferingsSettled] = useState(false);
   // Тихая подпись после сбоя тапа («Попробуй через минуту»): без красного и без иконки.
   const [tapNotice, setTapNotice] = useState(false);
+  // зачем (владелец 11.10: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ»): кэш последних настоящих цен — во ВСЕХ пейволах,
+  // а не только в окне Plus (resilientCheckout). Это публичные строки цен, без промо и пробного.
   const [cachedPrices, setCachedPrices] = useState<PaywallPriceCache | null>(
-    () => (resilientCheckout ? peekPaywallPriceCache() : null),
+    () => peekPaywallPriceCache(),
   );
   // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
   // включая Phraseman Pro — поэтому даём ретрай, а не молча скрываем.
@@ -555,7 +564,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         if (!deadRef.dead && isLatest()) {
           if (result.ok) {
             setTapNotice(false);
-            if (resilientCheckout) {
+            {
               const entry = (pkg: PurchasesPackage | undefined) => (pkg ? {
                 productId: pkg.product.identifier,
                 price: storePriceTrim(pkg.product.priceString),
@@ -627,13 +636,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   // зачем (D158): кэш цен с диска — если в памяти процесса его ещё не было (первый кадр после холодного старта).
   useEffect(() => {
-    if (!resilientCheckout || cachedPrices) return undefined;
+    if (cachedPrices) return undefined;
     let alive = true;
     void hydratePaywallPriceCache().then((cache) => {
       if (alive && cache) setCachedPrices(cache);
     });
     return () => { alive = false; };
-  }, [cachedPrices, resilientCheckout]);
+  }, [cachedPrices]);
 
   // Ручной ретрай для UI (кнопка «Повторить» при offeringsFailed).
   const reloadOfferings = useCallback(() => {
@@ -656,13 +665,51 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     reason: storeUnavailableReason,
   });
   const showPreviewPrices = DEV_IAP_BYPASS || previewPrices;
-  const cacheYearly = resilientCheckout && !offeringsEverLoaded ? cachedPrices?.yearly : undefined;
-  const cacheMonthly = resilientCheckout && !offeringsEverLoaded ? cachedPrices?.monthly : undefined;
-  const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString) || cacheYearly?.price || (showPreviewPrices ? DEV_PREVIEW_YEARLY_PRICE : '');
-  const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString) || cacheMonthly?.price || (showPreviewPrices ? DEV_PREVIEW_MONTHLY_PRICE : '');
+  const cacheYearly = !offeringsEverLoaded ? cachedPrices?.yearly : undefined;
+  const cacheMonthly = !offeringsEverLoaded ? cachedPrices?.monthly : undefined;
+  // зачем (владелец 11.10: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ»): цепочка «живая → последняя настоящая (кэш) →
+  // справочная». Справочная — только пока магазин ни разу не ответил (ответил без плана — плана нет, цену не выдумываем).
+  // В покупку справочная цена не уходит: платёж всегда по живой цене магазина.
+  // ревью Opus 11.10: справочная — только если кэша нет вовсе (не смешивать валюту кэша и справочника на двух тарифах);
+  // разбор рубильника — не на каждом рендере, а при его изменении.
+  const [referenceConfigTick, setReferenceConfigTick] = useState(0);
+  useEffect(() => {
+    const sub = onAppEvent('remote_config_changed', () => setReferenceConfigTick((tick) => tick + 1));
+    return () => sub.remove();
+  }, []);
+  const referencePricesResolved = useMemo(() => resolvePaywallReferencePrices(), [referenceConfigTick]);
+  const referencePrices = allowReferencePrice && !offeringsEverLoaded && !cacheYearly && !cacheMonthly
+    ? referencePricesResolved
+    : null;
+  const yearlyPick = pickPaywallPrice({
+    store: storePriceTrim(packages.yearly?.product?.priceString),
+    cache: cacheYearly?.price,
+    reference: referencePrices?.yearly,
+    devPreview: showPreviewPrices ? DEV_PREVIEW_YEARLY_PRICE : undefined,
+  });
+  const monthlyPick = pickPaywallPrice({
+    store: storePriceTrim(packages.monthly?.product?.priceString),
+    cache: cacheMonthly?.price,
+    reference: referencePrices?.monthly,
+    devPreview: showPreviewPrices ? DEV_PREVIEW_MONTHLY_PRICE : undefined,
+  });
+  const yearlyPrice = yearlyPick.price;
+  const monthlyPrice = monthlyPick.price;
   const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString) || (DEV_IAP_BYPASS ? DEV_PREVIEW_LIFETIME_PRICE : '');
-  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly) || cacheYearly?.perMonth || (showPreviewPrices ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
+  const yearlyPerMonth = storePricePerMonthTrim(packages.yearly)
+    || cacheYearly?.perMonth
+    || (yearlyPick.source === 'reference' ? referencePrices?.yearlyPerMonth ?? '' : '')
+    || (showPreviewPrices ? DEV_PREVIEW_YEARLY_PER_MONTH : '');
   const pricesFromCache = !!(cacheYearly || cacheMonthly);
+  /** Откуда цены на плитках: 'store' — живые; 'cache' — последние настоящие; 'reference' — справочные (рисовать «≈» и
+   *  «цена уточнится в магазине»); 'dev_preview' — только дев-сборка; 'none' — показать нечего. */
+  const priceSource: PaywallPriceSource = yearlyPick.source !== 'none' ? yearlyPick.source : monthlyPick.source;
+  const yearlyPriceSource: PaywallPriceSource = yearlyPick.source;
+  const monthlyPriceSource: PaywallPriceSource = monthlyPick.source;
+  const pricesApproximate = yearlyPick.source === 'reference' || monthlyPick.source === 'reference';
+  useEffect(() => {
+    DebugLogger.info('[PAYWALL-PRICE]', `цены на плитках: год=${yearlyPrice || '—'}(${yearlyPick.source}) месяц=${monthlyPrice || '—'}(${monthlyPick.source}) справочная=${String(allowReferencePrice)} storeUnavailable=${storeUnavailableReason ?? 'нет'} ever=${String(offeringsEverLoaded)}`);
+  }, [allowReferencePrice, monthlyPick.source, monthlyPrice, offeringsEverLoaded, storeUnavailableReason, yearlyPick.source, yearlyPrice]);
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
   // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —
@@ -845,7 +892,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       return;
     }
     if (!pkgOrNull && !resilientCheckout) {
-      DebugLogger.info('[PAYWALL]', `тап: пакета для плана=${selected} нет, resilientCheckout=false — выход`);
+      // зачем (владелец 11.10, цены видны всегда): на плитке теперь справочная/кэш-цена, поэтому тап без магазина не может
+      // быть немым — тихое «Попробуй через минуту» и фоновая догрузка цен (покупка — следующим тапом по живой цене).
+      DebugLogger.info('[PAYWALL]', `тап: пакета для плана=${selected} нет, resilientCheckout=false — тихая подсказка и догрузка (цена=${priceSource})`);
+      setTapNotice(true);
+      void loadOfferings(lifeRef.current);
       return;
     }
     operationRef.current = 'purchase';
@@ -891,6 +942,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           trialDays: freshTrial.hasTrial ? (freshTrial.days ?? null) : null,
           promoPrice: freshPromo?.promoPriceString ?? null,
         };
+        // ревью Opus 11.10: на кнопке была справочная цена («≈ … уточнится в магазине») — даже при совпадении строк
+        // покупаем только вторым тапом, когда на экране уже живая цена магазина.
+        const shownSource = selected === 'yearly' ? yearlyPick.source : selected === 'monthly' ? monthlyPick.source : 'store';
+        if (shownSource === 'reference') {
+          DebugLogger.info('[PAYWALL]', `reference_price_wait_second_tap: план=${selected} было=${shownTerms.price} стало=${freshTerms.price} — окно обновлено живой ценой, ждём второй тап`);
+          return;
+        }
         if (!paywallTermsEqual(shownTerms, freshTerms)) {
           DebugLogger.info('[PAYWALL]', `terms_changed_wait_second_tap: план=${selected} было=${JSON.stringify(shownTerms)} стало=${JSON.stringify(freshTerms)} — окно обновлено, ждём второй тап`);
           return;
@@ -1154,7 +1212,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       setPurchasing(false);
       setPayStarted(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId, resilientCheckout, loadOfferings, pricesFromCache, lifetimePrice, yearlyPrice, monthlyPrice, yearlyTrialDays, trialDays, selectedPromo, previewPrices]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId, resilientCheckout, loadOfferings, pricesFromCache, lifetimePrice, yearlyPrice, monthlyPrice, yearlyTrialDays, trialDays, selectedPromo, previewPrices, priceSource, yearlyPick.source, monthlyPick.source]);
 
   // ── экран после покупки: напоминание о конце пробного ─────────────────────
   const finishAfterTrialReminderPrompt = useCallback(() => {
@@ -1522,7 +1580,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     selected, selectPlan,
     packages, loading, purchasing, restoring,
     offeringsFailed, offeringsSettled, reloadOfferings, payStarted,
-    tapNotice, pricesFromCache, storeUnavailableReason, previewPrices,
+    tapNotice, pricesFromCache, storeUnavailableReason, previewPrices, priceSource, pricesApproximate,
+    yearlyPriceSource, monthlyPriceSource,
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,

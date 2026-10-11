@@ -89,6 +89,14 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // (она ограничена потолком), а после потолка — спокойное «Сейчас недоступно». Вечного скелетона нет.
   const hasPrices = !!(p.yearlyPrice || p.monthlyPrice);
   const state: PaywallPlusState = hasPrices ? 'ready' : (!p.offeringsSettled || p.loading) ? 'loading' : 'error';
+  // зачем (Сверка 11.10: «состояние мигает error → тихий повтор → loading → error, плитки пустые между ними»): после первого «Цены не загрузились»
+  // на месте плиток остаётся это сообщение, пока не придут цены; тихий повтор показывается только вращением на кнопке «Ещё раз», а не сменой блока.
+  const [sawPricesError, setSawPricesError] = useState(false);
+  useEffect(() => {
+    if (state === 'error') setSawPricesError(true);
+    else if (state === 'ready') setSawPricesError(false);
+  }, [state]);
+  const plansShown: PaywallPlusState = state === 'loading' && sawPricesError ? 'error' : state;
   // Пробный — только из магазина: цены из кэша его не несут (yearlyTrialDays берётся из пакета).
   const pricesReady = state === 'ready' && !!p.yearlyPrice;
   // зачем (D158 / PM-214, 04.10): цены докачиваем фоном общим useLoadGate (паузы 1/3/8 с, повтор при
@@ -188,9 +196,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 leadBenefit={contextual && headline.firstBenefit ? headline.firstBenefit : undefined} />
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                   «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
-              {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-              {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} /> : null}
-              {state === 'ready' ? (
+              {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
+              {plansShown === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} retrying={state === 'loading'} /> : null}
+              {plansShown === 'ready' ? (
                 <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                   yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
                   yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}

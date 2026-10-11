@@ -10,8 +10,8 @@
 //  • кнопка закреплена внизу, сравнение раскрывается на месте, никаких окон;
 //  • все цвета — токены АКТИВНОЙ темы (темы бесплатны), своих цветов нет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useRef } from 'react';
-import { ActivityIndicator, Animated, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo } from 'react';
+import { ActivityIndicator, Linking, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
@@ -20,7 +20,7 @@ import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
 import { DebugLogger } from '../../app/debug-logger';
-import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import SkeletonBlock from '../SkeletonShimmer';
 import { LinearGradient } from '../SafeLinearGradient';
 import V2Pressable from '../v2/V2Pressable';
 import { PaywallPlusBenefits, PaywallPlusComparison } from './PaywallBenefitComparison';
@@ -237,23 +237,16 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
 });
 
 // ── цены грузятся: скелет той же высоты, что и карточки ────────────────────
+// зачем (Сверка 11.10: «плитки пустые, нет скелета»): прежний мигающий прямоугольник тона opaqueControl при самом тусклом такте был почти
+// неотличим от шторки. Теперь общий shimmer-блок проекта (бегущий блик, Reanimated, уважает «уменьшить движение») с явными цветами по теме.
 export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({ g }: { g: GlassTokens }) {
-  const reduceMotion = useReduceMotion();
-  const pulse = useRef(new Animated.Value(0.55)).current;
-  useEffect(() => {
-    if (reduceMotion) { pulse.setValue(0.75); return undefined; }
-    const loop = Animated.loop(Animated.sequence([
-      Animated.timing(pulse, { toValue: 1, duration: 650, useNativeDriver: true }),
-      Animated.timing(pulse, { toValue: 0.55, duration: 650, useNativeDriver: true }),
-    ]));
-    loop.start();
-    return () => loop.stop();
-  }, [pulse, reduceMotion]);
+  const baseColor = g.opaqueControl;
+  const highlightColor = g.isLight ? g.opaqueSheet : `${g.text}24`;
   return (
     <View testID="paywall-plans-skeleton" accessibilityRole="progressbar">
       <View style={S.planRow}>
-        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueControl }]} />
-        <Animated.View style={[S.skeleton, S.planCell, { height: PLAN_CARD_HEIGHT, opacity: pulse, backgroundColor: g.opaqueControl }]} />
+        <View style={S.planCell}><SkeletonBlock width="100%" height={PLAN_CARD_HEIGHT} borderRadius={22} baseColor={baseColor} highlightColor={highlightColor} /></View>
+        <View style={S.planCell}><SkeletonBlock width="100%" height={PLAN_CARD_HEIGHT} borderRadius={22} baseColor={baseColor} highlightColor={highlightColor} /></View>
       </View>
     </View>
   );

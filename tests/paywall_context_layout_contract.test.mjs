@@ -61,6 +61,16 @@ test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet =
   assert.ok(!/backgroundColor: g\.opaqueSheet/.test(screen), 'шторка не на opaqueSheet (в графите он равен плиткам)');
 });
 
+test('plan tiles are never empty: shimmer skeleton, or the «prices did not load» block that stays through silent retries (Сверка 11.10)', () => {
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.match(plus, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
+  assert.match(plus, /<SkeletonBlock width="100%" height=\{PLAN_CARD_HEIGHT\}/);
+  const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+  assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);
+  assert.match(screen, /plansShown === 'loading' \? <PaywallPlusPlansSkeleton/);
+  assert.match(screen, /plansShown === 'error' \? <PaywallPlusPlansUnavailable[^>]*retrying=\{state === 'loading'\}/);
+});
+
 test('the no-prices note exists in all nine languages', () => {
   const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
   const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith('fineNoPrices: LP('));

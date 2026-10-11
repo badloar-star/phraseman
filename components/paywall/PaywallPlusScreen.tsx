@@ -203,7 +203,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
                   «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
               {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-              {plansShown === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} retrying={state === 'loading'} /> : null}
+              {plansShown === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} onRetry={retryPrices} retrying={state === 'loading'} reason={p.storeUnavailableReason} /> : null}
               {plansShown === 'ready' ? (
                 <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                   yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
@@ -211,7 +211,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                   yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
               ) : null}
             </PaywallPlusScroll>
-            <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
+            <PaywallPlusDock lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               restoring={p.restoring} restoreDisabled={checkoutInFlight || state === 'loading'}

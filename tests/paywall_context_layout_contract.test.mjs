@@ -71,6 +71,22 @@ test('plan tiles are never empty: shimmer skeleton, or the «prices did not load
   assert.match(screen, /plansShown === 'error' \? <PaywallPlusPlansUnavailable[^>]*retrying=\{state === 'loading'\}/);
 });
 
+test('store-unavailable reason picks the text; dev price preview names its button (Ядро a56214453)', () => {
+  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+  assert.match(plus, /reason\?: 'billing_unavailable' \| 'network' \| null;/);
+  assert.match(plus, /storeMissing \? COPY\.storeUnavailable : COPY\.checkInternet/);
+  assert.match(plus, /onRetry && !storeMissing/);
+  const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+  assert.match(screen, /reason=\{p\.storeUnavailableReason\}/);
+  assert.match(screen, /p\.previewPrices \? pick\(lang, COPY\.pricesPreview\)/);
+  const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
+  for (const key of ['storeUnavailable', 'pricesPreview']) {
+    const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith(key + ': LP('));
+    assert.ok(line, key);
+    assert.equal((line.match(/'[^']*'|"[^"]*"/g) ?? []).length, 9, key + ': 9 языков');
+  }
+});
+
 test('the no-prices note exists in all nine languages', () => {
   const copy = read('components', 'paywall', 'PaywallPlusCopy.ts');
   const line = copy.split(String.fromCharCode(10)).find((l) => l.trim().startsWith('fineNoPrices: LP('));

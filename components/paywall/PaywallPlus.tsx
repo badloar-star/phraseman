@@ -256,15 +256,18 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
 // зачем (D158): вечный скелетон убран; на месте цен — спокойное «Сейчас недоступно», кнопка покупки жива.
 // зачем (координатор 14:45/17:25): вместо пустых плашек — понятное «недоступно» и кнопка повтора на месте цен
 // (те же размеры; стили retry/retryText кита). Повтор — тот же reloadOfferings, что тихо гоняет useLoadGate.
-export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g, onRetry, retrying }: {
+export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g, onRetry, retrying, reason }: {
   lang: Lang; g: GlassTokens; onRetry?: () => void; retrying?: boolean;
+  /** Почему цен нет (Ядро a56214453): 'billing_unavailable' — магазина на устройстве нет (повтор бессмыслен), иначе — сеть. */
+  reason?: 'billing_unavailable' | 'network' | null;
 }) {
+  const storeMissing = reason === 'billing_unavailable';
   return (
     <View testID="paywall-plans-unavailable">
       <View style={[S.skeleton, S.unavailableBox, S.planRowTop, { height: PLAN_CARD_HEIGHT, backgroundColor: g.opaqueControl }]}>
         <Text style={[S.unavailableText, { color: g.text }]}>{pick(lang, COPY.pricesFailed)}</Text>
-        <Text style={[S.unavailableSub, { color: g.secondary }]}>{pick(lang, COPY.checkInternet)}</Text>
-        {onRetry ? (
+        <Text style={[S.unavailableSub, { color: g.secondary }]}>{pick(lang, storeMissing ? COPY.storeUnavailable : COPY.checkInternet)}</Text>
+        {onRetry && !storeMissing ? (
           <V2Pressable testID="paywall-prices-retry" accessibilityRole="button" accessibilityState={{ busy: !!retrying }}
             disabled={retrying} onPress={onRetry} withHaptic={false} scaleTo={0.95}
             outerStyle={S.retryGap} style={[S.retry, { backgroundColor: paywallSheetBg(g) }]}>

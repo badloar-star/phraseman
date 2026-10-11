@@ -55,6 +55,8 @@ describe('legal copies sync contract', () => {
       [['admin', 'v2', 'oauth-privacy.html'], privacyDate],
       [['knowly-www', 'legal', 'terms', 'index.html'], termsDate],
       [['knowly-www', 'legal', 'privacy', 'index.html'], privacyDate],
+      // 12.10: iOS-версия политики на сайте (/legal/privacy-ios/) — тот же канон, та же дата.
+      [['knowly-www', 'legal', 'privacy-ios', 'index.html'], privacyDate],
       [['knowly-www', 'legal', 'data-deletion', 'index.html'], privacyDate],
     ];
 

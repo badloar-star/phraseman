@@ -6,6 +6,7 @@
  * - admin/oauth-privacy.html (легаси-путь) + admin/v2/oauth-privacy.html (публикуемый)
  * - knowly-www/legal/terms/index.html
  * - knowly-www/legal/privacy/index.html
+ * - knowly-www/legal/privacy-ios/index.html (iOS-версия, с 12.10)
  * - knowly-www/legal/data-deletion/index.html
  *
  * Run: npm run legal:sync
@@ -350,6 +351,7 @@ function main() {
 
   const terms = JSON.parse(fs.readFileSync(path.join(LEGAL, 'terms_of_use_en.json'), 'utf8'));
   const privacy = JSON.parse(fs.readFileSync(path.join(LEGAL, 'privacy_policy_en.json'), 'utf8'));
+  const privacyIos = JSON.parse(fs.readFileSync(path.join(LEGAL, 'privacy_policy_en_ios.json'), 'utf8'));
   const termsDate = extractDate(terms);
   const privacyDate = extractDate(privacy);
   const termsTitle = 'Terms of Use - Phraseman by Knowly';
@@ -374,6 +376,16 @@ function main() {
     path.join(KNOWLY_WWW, 'legal', 'privacy', 'index.html'),
     { title: privacyTitle, sections: privacy, date: privacyDate },
     knowlyPage({ title: privacyTitle, sections: privacy, date: privacyDate, active: 'privacy' }),
+  );
+  // зачем (12.10, PRIVACY_R1_GAP): в приложении на iOS показывается privacy_policy_en_ios.json, а на сайте была только
+  // общая (Android) версия — ссылка в App Store вела на текст с Google Play. Отдельная страница /legal/privacy-ios/;
+  // публикует владелец (деплой hosting:knowly-www) и ставит ссылку в App Store Connect.
+  const privacyIosTitle = 'Privacy Policy (iOS) - Phraseman by Knowly';
+  const privacyIosDate = extractDate(privacyIos);
+  writeLegalIntoExistingPage(
+    path.join(KNOWLY_WWW, 'legal', 'privacy-ios', 'index.html'),
+    { title: privacyIosTitle, sections: privacyIos, date: privacyIosDate },
+    knowlyPage({ title: privacyIosTitle, sections: privacyIos, date: privacyIosDate, active: 'privacy' }),
   );
   writeDataDeletionIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'data-deletion', 'index.html'),

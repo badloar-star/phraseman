@@ -49,7 +49,16 @@ export type SpireStanding = Readonly<{
   steps: number;
   reachedAtMs: number;
   totalMs: number;
+  /** Когда вошёл в комнату (spire_groups.members[uid].joinedAtMs); 0 — неизвестно (боты, старые строки). */
+  joinedAtMs?: number;
 }>;
+
+/**
+ * D61: отчёты последних 10 минут недели засчитываются уже в НОВУЮ неделю.
+ * зачем (симуляция Шпиля 11.10, 🟡 №2): вошедший в эти 10 минут физически не может набрать ступени в своей комнате,
+ * и раньше его понижали «за ноль». Теперь такой участник без ступеней не понижается (повышение и места — как были).
+ */
+export const SPIRE_LATE_JOIN_GRACE_MS = 10 * 60 * 1000;
 
 export type SpireRewardCoins = Readonly<{
   /** Монеты за 1/2/3 место недели (config/spire_v1.coins.weekPlace1..3). */
@@ -73,6 +82,8 @@ export type SpireMemberWeekResult = Readonly<{
   zoneSize: number;
   promoted: boolean;
   demoted: boolean;
+  /** D61: вошёл в последние 10 минут недели без ступеней — понижение снято. */
+  lateJoinProtected: boolean;
   prevTier: number;
   newTier: number;
   rewardCoins: SpireRewardCoins;
@@ -142,6 +153,7 @@ export function spireLiveStandings(members: Readonly<Record<string, unknown>>): 
       steps,
       reachedAtMs: steps > 0 ? nonNegativeInt(member.reachedAtMs) : 0,
       totalMs: steps > 0 ? nonNegativeInt(member.totalMs) : 0,
+      joinedAtMs: nonNegativeInt(member.joinedAtMs),
     });
   }
   return out;
@@ -178,6 +190,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   const roomTotal = room.length;
 
   const results: Record<string, SpireMemberWeekResult> = {};
+  const lateJoinCutoffMs = input.weekStartMs + WEEK_MS - SPIRE_LATE_JOIN_GRACE_MS;
   for (const me of live) {
     const liveRank = 1 + live.filter((o) => compareSpireStanding(o, me) < 0).length;
     const bottomRank = 1 + live.filter((o) => compareSpireStanding(o, me) > 0).length;
@@ -189,8 +202,10 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     const promotionEligible = scored && zoneSize > 0 && liveRank <= zoneSize;
     const promoted = promotionEligible && tier < SPIRE_FINAL_MAX_TIER;
     const inZeroZone = !scored && hasAnyScorer;
+    const lateJoinProtected = !scored && (me.joinedAtMs ?? 0) >= lateJoinCutoffMs;
     const demoted = hasAnyScorer
       && !promotionEligible
+      && !lateJoinProtected
       && (inZeroZone || (zoneSize > 0 && bottomRank <= zoneSize))
       && tier > 0;
     const place = scored ? placeCoins(liveRank, input.coins) : 0;
@@ -207,6 +222,7 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
       zoneSize,
       promoted,
       demoted,
+      lateJoinProtected,
       prevTier: tier,
       newTier: promoted ? tier + 1 : demoted ? tier - 1 : tier,
       rewardCoins: { place, promotion, total: place + promotion },

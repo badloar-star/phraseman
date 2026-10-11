@@ -1,6 +1,8 @@
 # Task packet: хвосты release:precheck — сторож классификации, «Утром решить», 🟡 Шпиля
 
-Governance-ID: TG-37A3E6009C45
+Governance-ID: TG-E4F380695F2B
+Previous-Governance-ID: TG-3698EA6BB282
+Previous-Governance-ID: TG-37A3E6009C45
 Status: In progress
 Owner: сессия «1 · Ядро» (координатор 12.10 после 22767e6f4).
 

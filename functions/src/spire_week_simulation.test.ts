@@ -24,7 +24,7 @@ afterAll(() => {
 const config = spireConfigStatus(null).config;
 const WEEK_START = Date.UTC(2026, 9, 5); // понедельник 05.10.2026 00:00 UTC
 
-type M = { steps: number; reachedAtMs?: number; totalMs?: number };
+type M = { steps: number; reachedAtMs?: number; totalMs?: number; joinedAtMs?: number };
 function room(tier: number, members: Record<string, M>, cohortDay = 0): ReturnType<typeof computeSpireRoomResults> {
   const input: SpireRoomFinalizeInput = {
     groupId: `sim_t${tier}`,
@@ -35,6 +35,7 @@ function room(tier: number, members: Record<string, M>, cohortDay = 0): ReturnTy
       steps: m.steps,
       reachedAtMs: m.reachedAtMs ?? (m.steps > 0 ? WEEK_START + 1000 * (100 - m.steps) : 0),
       totalMs: m.totalMs ?? m.steps * 90_000,
+      joinedAtMs: m.joinedAtMs ?? WEEK_START + cohortDay * 86_400_000,
     }])),
     coins: config.coins,
     tuning: config.residents,
@@ -124,8 +125,17 @@ describe('3) вход посреди недели, в последний час;
     const threeWeeksLater = spireWeekId(new Date(WEEK_START + 21 * 86_400_000));
     fact('3 вернулся', `сохранённая комната недели ${lb.spireGroups.en.weekId}, сейчас ${threeWeeksLater} → savedSpireGroupId = ${String(savedSpireGroupId(lb, 'en', threeWeeksLater))} (новый вход в текущую неделю)`);
     expect(savedSpireGroupId(lb, 'en', threeWeeksLater)).toBeNull();
-    const lateJoiner = room(4, { early: { steps: 12 }, late: { steps: 0 } }, 6);
-    fact('3 вход в последний час', `этаж 4, вошёл в вс 23:55, ступени последних 10 мин уходят в новую неделю (D61) → ${moves(lateJoiner)}`);
+    // D61 (🟡 №2 симуляции, исправлено 12.10): вошедший в последние 10 минут без ступеней не понижается.
+    const weekEnd = WEEK_START + 7 * 86_400_000;
+    const lateJoiner = room(4, {
+      early: { steps: 12 },
+      late: { steps: 0, joinedAtMs: weekEnd - 5 * 60_000 },
+      idle: { steps: 0, joinedAtMs: weekEnd - 3 * 3_600_000 },
+    }, 6);
+    fact('3 вход в последние 10 минут', `этаж 4: late (вс 23:55) ${lateJoiner.results.late.demoted ? '↓ БАГ' : '= OK'} protected=${lateJoiner.results.late.lateJoinProtected}; idle (вс 21:00, 0 ступеней) ${lateJoiner.results.idle.demoted ? '↓' : '='}`);
+    expect(lateJoiner.results.late.demoted).toBe(false);
+    expect(lateJoiner.results.late.lateJoinProtected).toBe(true);
+    expect(lateJoiner.results.idle.demoted).toBe(true);
   });
 });
 

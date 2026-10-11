@@ -5,6 +5,7 @@ import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated'
 import type { LevelExamPhraseBuilderTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 
 type Props = {
   task: LevelExamPhraseBuilderTask;
@@ -44,7 +45,7 @@ export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange
               accessibilityRole="button"
               onPress={() => onChange([...selectedTokenIds, token.id])}
               accessibilityLabel={`${token.text}, add`}
-              style={({ pressed }) => [styles.tile, styles.tileBorder, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge, opacity: pressed ? 0.8 : 1 }]}
+              style={({ pressed }) => [styles.tile, { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass), opacity: pressed ? 0.8 : 1 }]}
             >
               <Text style={[styles.tileText, { color: glass.text }]}>{token.text}</Text>
             </Pressable>
@@ -58,7 +59,6 @@ export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange
 const styles = StyleSheet.create({
   answer: { minHeight: 84, borderRadius: 16, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
   tile: { minHeight: 44, borderRadius: 14, paddingHorizontal: 16, justifyContent: 'center' },
-  tileBorder: { borderWidth: StyleSheet.hairlineWidth }, // guard-ok: 1 px glassEdge
   tileUsed: { opacity: 0.4 },
   tileText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   bank: { flexDirection: 'row', flexWrap: 'wrap' },

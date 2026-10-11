@@ -33,6 +33,7 @@ import { learningV2NewWordFlipHintV1 } from "../../modules/learning-v2/modes/mod
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { useTheme } from "../ThemeContext";
 import { Lv2Cta, Lv2Explain, useLv2Glass } from "./LearningV2Glass";
+import { plateBoxShadow } from "../v2/ShadowSurface";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 import { useLineScale } from '../../hooks/useLineScale';
 
@@ -317,7 +318,7 @@ export default function LearningV2NewWordEncounterOverlay({
           styles.sheet,
           {
             backgroundColor: g.opaqueSheet,
-            borderColor: g.glassEdge, // guard-ok: 1 px кромка макета
+            boxShadow: plateBoxShadow(g), // зачем («Тень» 12.10): окно по центру без кромки, с тенью плашки
             opacity: RNAnimated.multiply(
               entranceProgress,
               pocketFlight.interpolate({
@@ -494,16 +495,10 @@ const styles = StyleSheet.create({
     maxHeight: "62%",
     gap: 10,
     overflow: "visible",
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px кромка макета
     borderRadius: 22,
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 14,
-    shadowColor: "#000", // theme-exempt: затемнение под окном и тень — чёрные в любой теме
-    shadowOpacity: 0.24,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 10,
   },
   cardScroll: {
     flexShrink: 1,

@@ -4,13 +4,14 @@ import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } fro
 import Svg, { Circle } from 'react-native-svg';
 
 import { PracticeAnswerMark, PracticeBackButton, type PracticeGlass } from '../practice/PracticeChrome';
+import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30): диагностика, зачёт уровня и финальный экзамен переносятся
 // 1 в 1 по макету learn.html (Liquid Glass, блоки J/K/L). Общие детали — шапка, кольцо
 // таймера, карточка «kv», плитка-герой, тройка цифр `.pc3`, вариант ответа `.opt` и
 // подвал с кнопкой — собраны здесь один раз для трёх экранов. Только ВИД: логику
-// ответов, таймеров, энергии и наград решают экраны. Обводки — только 1 px
-// полупрозрачные (glassEdge), цвета верно/неверно передаёт экран (токены темы).
+// ответов, таймеров, энергии и наград решают экраны. Обводок у контейнеров нет (стиль «Тень», владелец 12.10):
+// плашку отделяют заливка и тень из components/v2/ShadowSurface; цвета верно/неверно передаёт экран (токены темы).
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -103,7 +104,7 @@ export function ExamKvCard({
   style?: StyleProp<ViewStyle>;
 }) {
   return (
-    <View style={[styles.card, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }, style]}>
+    <View style={[styles.card, { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }, style]}>
       <View style={styles.cardRow}>
         <View style={styles.cardMain}>
           {label ? <Text style={[styles.kvLabel, { color: glass.secondary }]}>{label}</Text> : null}
@@ -159,7 +160,7 @@ export function ExamStatRow({
   glass, items,
 }: { glass: PracticeGlass; items: ReadonlyArray<{ value: string; label: string }> }) {
   return (
-    <View style={[styles.stats, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}>
+    <View style={[styles.stats, { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }]}>
       {items.map((it, i) => (
         <View key={`${it.label}-${i}`} style={styles.statCell}>
           <Text style={[styles.statValue, { color: glass.text }]}>{it.value}</Text>
@@ -189,7 +190,9 @@ export function ExamOption({
   accessibilityLabel?: string;
 }) {
   const ink = state === 'ok' ? okColor : state === 'no' ? noColor : glass.text;
-  const bg = state === 'ok' ? okBg : state === 'no' ? noBg : glass.opaqueCard;
+  const bg = state === 'ok' ? okBg : state === 'no' ? noBg : glass.plateFillFrom;
+  // зачем (владелец 12.10, «Тень»): вариант без обводки; выбранный (`pressed`) приподнят тенью и сдвигом вверх, остальные — плашка
+  const lifted = state === 'pressed';
   return (
     <Pressable
       testID={testID}
@@ -202,7 +205,8 @@ export function ExamOption({
         styles.opt,
         {
           backgroundColor: state === 'pressed' ? glass.selected : bg,
-          borderColor: glass.glassEdge,
+          boxShadow: lifted ? raisedBoxShadow(glass) : plateBoxShadow(glass),
+          transform: lifted ? [{ translateY: RAISED_LIFT }] : undefined,
           opacity: pressed ? 0.85 : 1,
         },
       ]}
@@ -253,13 +257,12 @@ export function ExamFooter({
   );
 }
 
-/** Общий стиль карточки для экранов (радиус 20, кромка 1 px). */
+/** Общий стиль карточки для экранов (радиус 20, заливка и тень плашки, без обводки). */
 export function examCardStyle(glass: PracticeGlass): ViewStyle {
   return {
-    backgroundColor: glass.opaqueCard,
+    backgroundColor: glass.plateFillFrom,
     borderRadius: CARD_RADIUS,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px полупрозрачная кромка макета
-    borderColor: glass.glassEdge,
+    boxShadow: plateBoxShadow(glass),
   };
 }
 
@@ -274,8 +277,7 @@ const styles = StyleSheet.create({
   ringText: { fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] },
   track: { height: 6, borderRadius: 3, overflow: 'hidden' },
   trackFill: { height: '100%', borderRadius: 3 },
-  // guard-ok: кромка карточек макета — 1 px полупрозрачная (исключение PhraseMan 2.0)
-  card: { borderRadius: CARD_RADIUS, borderWidth: StyleSheet.hairlineWidth, padding: 16 },
+  card: { borderRadius: CARD_RADIUS, padding: 16 },
   cardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   cardMain: { flex: 1, minWidth: 0 },
   kvLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
@@ -286,12 +288,12 @@ const styles = StyleSheet.create({
   heroTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   heroTitle: { marginTop: 18, fontWeight: '700', textAlign: 'center' },
   heroSub: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
-  stats: { marginTop: 18, borderRadius: CARD_RADIUS, borderWidth: StyleSheet.hairlineWidth, flexDirection: 'row', paddingVertical: 14 },
+  stats: { marginTop: 18, borderRadius: CARD_RADIUS, flexDirection: 'row', paddingVertical: 14 },
   statCell: { flex: 1, alignItems: 'center', paddingHorizontal: 4 },
   statValue: { fontSize: 22, lineHeight: 28, fontWeight: '700', fontVariant: ['tabular-nums'] },
   statLabel: { fontSize: 13, lineHeight: 18, marginTop: 2, textAlign: 'center' },
   opt: {
-    minHeight: 56, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, // guard-ok
+    minHeight: 56, borderRadius: 16,
     paddingVertical: 14, paddingLeft: 18, paddingRight: 52, justifyContent: 'center',
   },
   optText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },

@@ -12,6 +12,7 @@ import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
 import { useLv2Glass } from "./LearningV2Glass";
+import { nestedBoxShadow } from "../v2/ShadowSurface";
 import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
 
 type Props = Readonly<{
@@ -348,7 +349,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
           hitSlop={10}
           style={({ pressed }) => [
             sx.close,
-            { borderColor: g.glassEdge, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.7 : 1 }, // зачем («Тень» 12.10): кнопка закрытия — вложенная плитка, не контур
           ]}
         >
           <Ionicons name="close" size={18} color={g.text} />
@@ -413,7 +414,7 @@ const styles = StyleSheet.create({
     // зачем (`.scr > .in` padding-top 52 ≈ 8 под статус-баром; `.dh` линия 1 px внутри полей страницы).
     paddingTop: 8,
     paddingBottom: 16,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: разделитель-линия `.dh` под шапкой, не контейнер
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-between",
@@ -422,8 +423,8 @@ const styles = StyleSheet.create({
   eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 3 },
   title: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: "700", letterSpacing: -0.5 },
   count: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: "400" },
-  // `.rb.sq`: 36, r12, без заливки, кромка --line-2.
-  close: { marginTop: 8, width: 36, height: 36, borderRadius: 12, borderWidth: 1, alignItems: "center", justifyContent: "center" },
+  // `.rb.sq`: 36, r12; «Тень» 12.10 — тон и малая тень вместо кромки.
+  close: { marginTop: 8, width: 36, height: 36, borderRadius: 12, alignItems: "center", justifyContent: "center" },
   listContent: { paddingBottom: 44 },
   // Поиск: тон подложки, без обводки контейнера (закон владельца).
   searchRow: {
@@ -458,7 +459,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 2,
     paddingRight: 6,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: разделитель-линия между строками словаря
     flexDirection: "row",
     alignItems: "center",
     gap: 14,

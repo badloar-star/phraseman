@@ -13,6 +13,7 @@ import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
 import { lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
+import { nestedBoxShadow } from "../v2/ShadowSurface";
 import { useScaledTextStyles } from "../../hooks/useLineScale";
 
 type Props = Readonly<{
@@ -106,7 +107,7 @@ export default function LearningV2WordPocketOverlayV1({
           hitSlop={10}
           style={({ pressed }) => [
             sx.close,
-            { borderColor: g.glassEdge, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.7 : 1 }, // зачем («Тень» 12.10): кнопка закрытия — вложенная плитка, не контур
           ]}
         >
           <Ionicons name="close" size={18} color={g.text} />
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: разделитель-линия под шапкой, не контейнер
   },
   eyebrow: {
     fontSize: 13,
@@ -210,7 +211,6 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 12,
-    borderWidth: 1, // guard-ok: кромка `.rb.sq` (исключение PhraseMan 2.0)
     alignItems: "center",
     justifyContent: "center",
   },

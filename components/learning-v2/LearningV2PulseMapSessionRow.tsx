@@ -181,7 +181,7 @@ function LearningV2PulseMapSessionRowImpl({
             testID={`${testIDPrefix}-${sessionOrdinal}-stars`}
             pointerEvents="none"
             accessible={false}
-            style={[styles.sessionStars, { backgroundColor: starsBackground, borderColor: starsBorder }]}
+            style={[styles.sessionStars, { backgroundColor: starsBackground }]}
           >
             {Array.from({ length: completedStars }, (_, starIndex) => (
               <Ionicons key={starIndex} name="star" size={14} color={starsBorder} />
@@ -208,9 +208,7 @@ const styles = StyleSheet.create({
   // Ширина 206 считается так, чтобы подпись не вылезла за экран при крайнем
   // смещении змейки: width/2 + 82 <= 390/2 - 10.
   nodeLabel: { position: 'absolute', alignSelf: 'center', width: 206, alignItems: 'center' },
-  // guard-ok: это не обводка контейнера, а золотая окантовка бейджа звёзд —
-  // перенесена дословно из прежнего кода строки. Внешний вид не меняем:
-  // владелец просил починить прокрутку, а не переделывать карту.
+  // зачем («Тень» 12.10): золотая окантовка бейджа звёзд убрана — бейдж отделяет тень, цвет звёзд остаётся.
   sessionStars: {
     position: 'absolute',
     bottom: -16,
@@ -218,7 +216,6 @@ const styles = StyleSheet.create({
     minWidth: 30,
     paddingHorizontal: 7,
     borderRadius: 12,
-    borderWidth: 1, // guard-ok: окантовка бейджа звёзд, не контейнера
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

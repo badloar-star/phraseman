@@ -4,13 +4,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30): тренировки карточек переносятся 1 в 1 по макету practice.html
 // (Liquid Glass). Шапка занятия (круглая «‹» 34 в области нажатия 44, заголовок 20/700,
 // подзаголовок 15), пилюля таймера, круглая кнопка-иконка и отметка верно/неверно на ответе
 // собраны здесь один раз для Блица / «Вспомни» / «Устно» / «Правда-Ложь». Только ВИД:
-// логика квоты, энергии, оценки и наград остаётся в экранах. Обводки — только 1 px
-// полупрозрачные (glassEdge), как в макете; цвета верно/неверно задаёт вызывающий.
+// логика квоты, энергии, оценки и наград остаётся в экранах. Обводок нет (стиль «Тень», владелец 12.10):
+// круглая кнопка — плашка с малой тенью (nestedBoxShadow); цвета верно/неверно задаёт вызывающий.
 
 export type PracticeGlass = ReturnType<typeof liquidGlassTokens>;
 
@@ -43,8 +44,8 @@ export function PracticeBackButton({
       hitSlop={HIT}
       style={({ pressed }) => [styles.touch, large ? styles.touchLarge : null, { opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] }]}
     >
-      <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
-        {/* зачем (сверка 04.10, kit.css `.rb::after`): круг — стекло с бликом и кромкой, а не плоский. */}
+      <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
+        {/* зачем (сверка 04.10; «Тень» 12.10): круг — плашка с градиентом и малой тенью, без кромки. */}
         <KitGlassLayer radius={large ? 24 : PRACTICE_ROUND / 2} />
         <Ionicons name="chevron-back" size={20} color={color} />
       </View>
@@ -75,7 +76,7 @@ export function PracticeRoundIconButton({
       hitSlop={HIT}
       style={({ pressed }) => [styles.touch, { opacity: disabled ? 0.45 : pressed ? 0.7 : 1 }]}
     >
-      <View style={[styles.round, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+      <View style={[styles.round, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
         <KitGlassLayer radius={PRACTICE_ROUND / 2} />
         <Ionicons name={icon} size={18} color={color} />
       </View>
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   touch: { width: PRACTICE_TOUCH, height: PRACTICE_TOUCH, alignItems: 'center', justifyContent: 'center' },
   round: {
     width: PRACTICE_ROUND, height: PRACTICE_ROUND, borderRadius: PRACTICE_ROUND / 2,
-    alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden',
+    alignItems: 'center', justifyContent: 'center', // зачем («Тень» 12.10): без overflow hidden — иначе обрежет тень круга; градиент уже со скруглением
   },
   touchLarge: { width: 48, height: 48 },
   roundLarge: { width: 48, height: 48, borderRadius: 24 },

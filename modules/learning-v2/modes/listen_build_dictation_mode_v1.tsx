@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
     minHeight: 64,
     width: "100%",
     marginTop: 22,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: линия-подчёркивание зоны ответа `.ans`, не контейнер
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",

@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     // `.ans`: min-height 64, линия --line-2, padding 10/0/12, margin-top 22, по центру по вертикали.
     minHeight: 64,
     marginTop: 22,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // shadow-ok: линия-подчёркивание зоны ответа `.ans`, не контейнер
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",

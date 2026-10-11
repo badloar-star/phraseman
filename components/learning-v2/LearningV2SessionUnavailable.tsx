@@ -12,6 +12,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLineScale } from '../../hooks/useLineScale';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLv2Glass } from './LearningV2Glass';
 
 export function learningV2SessionUnavailableDefaultHint(lang: Lang): string {
@@ -56,7 +57,7 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
           onPress={onClose}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px кромка .rb (исключение 2.0)
+            { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: круглая кнопка без кромки
           ]}
         >
           <KitGlassLayer radius={21} />
@@ -76,7 +77,7 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
           accessibilityRole="button"
           accessibilityLabel={backLabel}
           onPress={onBack}
-          style={({ pressed }) => [styles.back, { borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 }]} // guard-ok: 1 px контур .cta.gh
+          style={({ pressed }) => [styles.back, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.72 : 1 }]} // «Тень» 12.10: контурная кнопка стала плашкой с тенью
         >
           <Text style={[styles.backText, { color: g.text, lineHeight: lh(21) }]}>{backLabel}</Text>
         </Pressable>
@@ -85,7 +86,7 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
             accessibilityRole="button"
             accessibilityLabel={retry.label}
             onPress={retry.onPress}
-            style={({ pressed }) => [styles.back, { backgroundColor: g.accent, borderColor: 'transparent', opacity: pressed ? 0.8 : 1 }]} // guard-ok: без видимой кромки
+            style={({ pressed }) => [styles.back, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g), opacity: pressed ? 0.8 : 1 }]}
           >
             <Text style={[styles.backText, { color: g.accentInk, lineHeight: lh(21) }]}>{retry.label}</Text>
           </Pressable>
@@ -105,8 +106,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    borderWidth: 1, // guard-ok: кромка \`.rb\` (исключение PhraseMan 2.0)
-    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -121,7 +120,6 @@ const styles = StyleSheet.create({
     minHeight: 42,
     borderRadius: 21,
     paddingHorizontal: 18,
-    borderWidth: 1, // guard-ok: контурная кнопка \`.cta.gh\`
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,

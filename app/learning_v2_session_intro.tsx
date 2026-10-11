@@ -19,6 +19,7 @@ import Animated, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LEARNING_V2_OWNER_LAYOUT } from "../components/learning-v2/learningV2OwnerLayout";
 import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
+import { nestedBoxShadow, plateBoxShadow } from "../components/v2/ShadowSurface";
 
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 import { useLang } from "../components/LangContext";
@@ -513,10 +514,10 @@ export default function LearningV2SessionIntro({
             style={sx.closeButton}
             contentStyle={[
               sx.closeButtonFace,
-              { backgroundColor: g.opaqueControl, borderColor: g.glassEdge },
+              { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) },
             ]}
           >
-            {/* зачем (learning-v2.html `.shd .rb` + kit.css `.rb::after`): круг 42 — стекло с кромкой, крестик 20. */}
+            {/* зачем (learning-v2.html `.shd .rb`; «Тень» 12.10): круг 42 — плашка с малой тенью без кромки, крестик 20. */}
             <KitGlassLayer radius={21} />
             <Ionicons name="close" size={20} color={g.text} />
           </PressableHybrid>
@@ -659,14 +660,16 @@ export default function LearningV2SessionIntro({
                           contentStyle={[
                             sx.answerChoice,
                             {
-                              // зачем (learning-v2.html, `.ach`): верный — зелёная заливка .12 и
-                              // кромка 1 px того же цвета, неверный — красная .10; обычный — плита.
+                              // зачем (learning-v2.html, `.ach`; «Тень» 12.10): верный — зелёная заливка .12 и кольцо исхода,
+                              // неверный — красная .10 и кольцо; обычный — плита с тенью без обводки.
                               backgroundColor: correct
                                 ? g.goodSoft
                                 : wrong
                                   ? lv2Alpha(g.bad, 0.1)
                                   : g.opaqueCard,
-                              borderColor: correct ? g.good : wrong ? g.bad : g.line, // guard-ok: 1 px кромка макета (`.ach` --line)
+                              borderColor: correct ? g.good : wrong ? g.bad : 'transparent',
+                              borderWidth: correct || wrong ? 1 : 0, // shadow-ok: кольцо исхода ответа верно/неверно
+                              boxShadow: plateBoxShadow(g),
                             },
                           ]}
                         >
@@ -779,8 +782,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    borderWidth: 1, // guard-ok: 1 px кромка `.rb` (исключение PhraseMan 2.0)
-    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -861,7 +862,6 @@ const styles = StyleSheet.create({
   answerChoice: {
     minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight,
     borderRadius: 14,
-    borderWidth: 1, // guard-ok: 1 px кромка макета
     paddingLeft: 10,
     paddingRight: 14,
     paddingVertical: 8,

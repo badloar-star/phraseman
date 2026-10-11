@@ -20,6 +20,7 @@ import type { RequiredSessionTaskCompletionInputV3 } from '../modules/learning-v
 import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { isShortScreen } from '../constants/layout-scale';
+import type { BoxShadowValue } from 'react-native';
 
 type IntroCheckResult = 'idle' | 'wrong' | 'correct';
 
@@ -293,6 +294,10 @@ export default function LearningV2SessionIntroCheck({
   );
 }
 
+// зачем («Тень» 12.10): экран проверки на фиксированной тёмной палитре без токенов темы — обводки сняты, плашки отделяет тень тех же чисел спеки
+const PLATE_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 16, blurRadius: 28, spreadDistance: -14, color: 'rgba(0,0,0,0.75)' }]; // theme-exempt: фиксированная тёмная палитра экрана, тень плашки спеки
+const NESTED_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 6, blurRadius: 12, spreadDistance: -6, color: 'rgba(0,0,0,0.6)' }]; // theme-exempt: фиксированная тёмная палитра экрана, тень вложенного спеки
+
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#10151D' },
   top: { paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -301,7 +306,7 @@ const styles = StyleSheet.create({
   progressFill: { height: '100%', borderRadius: 8, backgroundColor: '#F8C84E' },
   counter: { minWidth: 46, height: 34, borderRadius: 14, backgroundColor: '#202936', alignItems: 'center', justifyContent: 'center' },
   counterText: { color: '#E9EEF4', fontWeight: '700', fontSize: 13 },
-  starCounter: { minWidth: 58, height: 38, borderRadius: 16, backgroundColor: '#2D2819', borderWidth: 1, borderColor: '#66562A', paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5 },
+  starCounter: { minWidth: 58, height: 38, borderRadius: 16, backgroundColor: '#2D2819', boxShadow: NESTED_SHADOW, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5 },
   starCounterText: { color: '#FFF1B8', fontWeight: '700', fontSize: 16 },
   // Скролл-оболочка держит flex:1, а сам контент растёт по содержимому:
   // flexGrow:1 сохраняет прежнее «занимает всё место», когда текста мало.
@@ -312,11 +317,11 @@ const styles = StyleSheet.create({
   contentShort: { paddingTop: 14 },
   eyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 11, marginBottom: 18 },
   eyebrowRowShort: { marginBottom: 10 },
-  eyebrowIcon: { width: 42, height: 42, borderRadius: 15, backgroundColor: '#F8C84E1F', borderWidth: 1, borderColor: '#F8C84E55', alignItems: 'center', justifyContent: 'center' },
+  eyebrowIcon: { width: 42, height: 42, borderRadius: 15, backgroundColor: '#F8C84E1F', boxShadow: NESTED_SHADOW, alignItems: 'center', justifyContent: 'center' },
   eyebrowCopy: { flex: 1 },
   eyebrow: { color: '#F8C84E', fontSize: 13, lineHeight: 17, letterSpacing: 1.4, fontWeight: '700' },
   eyebrowDetail: { color: '#7F8B99', fontSize: 13, lineHeight: 18, marginTop: 2, fontWeight: '700' },
-  questionCard: { minHeight: 180, borderRadius: 28, backgroundColor: '#1B2430', borderWidth: 1, borderColor: '#39485A', padding: 24, justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 24, shadowOffset: { width: 0, height: 14 }, elevation: 8 },
+  questionCard: { minHeight: 180, borderRadius: 28, backgroundColor: '#1B2430', padding: 24, justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 24, shadowOffset: { width: 0, height: 14 }, elevation: 8 },
   // Карточка вопроса: на низком экране минимум ниже, текст всё равно ведёт.
   questionCardShort: { minHeight: 132, padding: 18 },
   questionNumber: { color: '#758395', fontSize: 13, lineHeight: 19, letterSpacing: 1.5, fontWeight: '700', textAlign: 'center' },
@@ -324,16 +329,16 @@ const styles = StyleSheet.create({
   choices: { gap: 11, marginTop: 18 },
   // Карточки ответов остаются 62pt высотой (палец), сокращаем только зазоры.
   choicesShort: { gap: 8, marginTop: 12 },
-  choice: { minHeight: 62, borderRadius: 20, backgroundColor: '#1A222D', borderWidth: 1, borderColor: '#344151', paddingHorizontal: 15, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  choiceCorrect: { backgroundColor: '#203A25', borderColor: '#8EE65A' },
-  choiceWrong: { backgroundColor: '#3A2327', borderColor: '#FB7185' },
+  choice: { minHeight: 62, borderRadius: 20, backgroundColor: '#1A222D', boxShadow: PLATE_SHADOW, paddingHorizontal: 15, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  choiceCorrect: { backgroundColor: '#203A25', borderColor: '#8EE65A', borderWidth: 1 }, // shadow-ok: кольцо исхода «верно»
+  choiceWrong: { backgroundColor: '#3A2327', borderColor: '#FB7185', borderWidth: 1 }, // shadow-ok: кольцо исхода «неверно»
   choiceIndex: { width: 32, height: 32, borderRadius: 11, backgroundColor: '#2A3543', color: '#BFC9D4', textAlign: 'center', textAlignVertical: 'center', lineHeight: 32, fontWeight: '900' },
   choiceIndexCorrect: { backgroundColor: '#8EE65A', color: '#07110A' },
   choiceIndexWrong: { backgroundColor: '#FB7185', color: '#07110A' },
   choiceText: { flex: 1, color: '#EDF2F7', fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  bottom: { paddingHorizontal: 18, paddingTop: 12, backgroundColor: '#121821F2', borderTopWidth: 1, borderTopColor: '#273341' },
+  bottom: { paddingHorizontal: 18, paddingTop: 12, backgroundColor: '#121821F2' },
   feedbackWrong: { color: '#FF9B9B', fontWeight: '700', lineHeight: 20, marginBottom: 8 },
-  rewardMoment: { minHeight: 72, borderRadius: 18, borderWidth: 1, borderColor: '#6B5726', backgroundColor: '#2B2619', paddingHorizontal: 13, paddingVertical: 9, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  rewardMoment: { minHeight: 72, borderRadius: 18, boxShadow: NESTED_SHADOW, backgroundColor: '#2B2619', paddingHorizontal: 13, paddingVertical: 9, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 12 },
   rewardStars: { flexDirection: 'row', alignItems: 'center', gap: 2 },
   rewardCopy: { flex: 1 },
   feedbackCorrect: { color: '#FFF2B5', fontWeight: '700', fontSize: 16 },

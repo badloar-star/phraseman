@@ -212,6 +212,7 @@ import { resolveLearningV2SessionRouteCoordinatesV1 } from "./learning_v2_sessio
 import { isPulseLessonAuthored } from "../components/learning-v2/learningV2PulseGeometry";
 import { useLineScale } from "../hooks/useLineScale";
 import { KitGlassLayer } from "../components/v2/KitLiquidGlass";
+import { actionBoxShadow, nestedBoxShadow } from "../components/v2/ShadowSurface";
 import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
 
 const first = (value: string | string[] | undefined) =>
@@ -2305,7 +2306,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           styles.devJumpToVoiceButton,
           {
             backgroundColor: g.accent,
-            borderColor: g.text,
+            boxShadow: actionBoxShadow(g),
             opacity: pressed ? 0.72 : 1,
           },
         ]}
@@ -2575,7 +2576,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             onPress={exitLearningV2Session}
             style={({ pressed }) => [
               styles.checkpointClose,
-              { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 },
+              { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 },
             ]}
           >
             <KitGlassLayer radius={21} />
@@ -2605,7 +2606,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           <Text style={[styles.checkpointBody, { color: g.secondary, lineHeight: lh(24) }]}>
             {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
           </Text>
-          <View testID="learning-v2-checkpoint-no-hints" style={[styles.checkpointPill, { borderColor: g.glassEdge }]}>
+          <View testID="learning-v2-checkpoint-no-hints" style={[styles.checkpointPill, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
             <Ionicons name="lock-closed" size={16} color={g.text} />
             <Text style={[styles.checkpointPillText, { color: g.text, lineHeight: lh(21) }]}>{checkpointCopy.noHints}</Text>
           </View>
@@ -3422,8 +3423,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                     pointerEvents="none"
                     style={styles.wordPocketMiniature}
                   >
-                    <View style={[styles.wordPocketMiniBack, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]} />
-                    <View style={[styles.wordPocketMiniFace, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>
+                    <View style={[styles.wordPocketMiniBack, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]} />{/* shadow-ok: миниатюра-иконка карточек в футере (арт 25×21), не контейнер */}
+                    <View style={[styles.wordPocketMiniFace, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>{/* shadow-ok: миниатюра-иконка карточек (арт), не контейнер */}
                       <Ionicons name="text-outline" size={14} color={g.text} />
                     </View>
                   </View>
@@ -3591,8 +3592,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    borderWidth: 1, // guard-ok: 1 px кромка `.rb` (исключение PhraseMan 2.0)
-    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -3604,7 +3603,6 @@ const styles = StyleSheet.create({
     minHeight: 30,
     paddingHorizontal: 13,
     borderRadius: 15,
-    borderWidth: 1, // guard-ok: контурная пилюля `.pill.ol`
     flexDirection: "row",
     alignItems: "center",
     gap: 7,
@@ -3678,7 +3676,6 @@ const styles = StyleSheet.create({
     minHeight: 46,
     paddingHorizontal: 14,
     borderRadius: 16,
-    borderWidth: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -3897,8 +3894,8 @@ const styles = StyleSheet.create({
   },
   footerIconWrap: { position: "relative" },
   wordPocketMiniature: { width: 30, height: 26, alignItems: "center", justifyContent: "center" },
-  wordPocketMiniBack: { position: "absolute", width: 25, height: 21, borderWidth: 1, borderRadius: 4, transform: [{ rotate: "-12deg" }, { translateX: -2 }] },
-  wordPocketMiniFace: { width: 25, height: 21, borderWidth: 1, borderBottomWidth: 3, borderRadius: 4, alignItems: "center", justifyContent: "center", transform: [{ rotate: "6deg" }] },
+  wordPocketMiniBack: { position: "absolute", width: 25, height: 21, borderWidth: 1 /* shadow-ok: арт-миниатюра */, borderRadius: 4, transform: [{ rotate: "-12deg" }, { translateX: -2 }] },
+  wordPocketMiniFace: { width: 25, height: 21, borderWidth: 1 /* shadow-ok: арт-миниатюра */, borderBottomWidth: 3, borderRadius: 4, alignItems: "center", justifyContent: "center", transform: [{ rotate: "6deg" }] },
   footerMicEqualizer: {
     position: "absolute",
     bottom: 36,

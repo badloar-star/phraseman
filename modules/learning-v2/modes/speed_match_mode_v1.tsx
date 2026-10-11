@@ -35,6 +35,7 @@ import Animated, {
 import { scheduleOnRN } from "react-native-worklets";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Lv2Explain, Lv2Option, lv2CardStyle, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
+import { actionBoxShadow, plateBoxShadow } from "../../../components/v2/ShadowSurface";
 
 import { useLearningV2CompactPractice, useLearningV2PracticeViewportHost } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useArenaSound } from "../../../hooks/use_arena_sound";
@@ -373,7 +374,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               onPress={() => restartRound(true)}
               style={({ pressed }) => [
                 sx.timeoutButton,
-                { backgroundColor: "transparent", borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px контурная кнопка
+                { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: контурная кнопка стала плашкой с тенью
               ]}
             >
               <Text style={[sx.timeoutButtonText, { color: g.text }]}>
@@ -385,7 +386,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               onPress={() => restartRound(false)}
               style={({ pressed }) => [
                 sx.timeoutButton,
-                { backgroundColor: g.accent, opacity: pressed ? 0.72 : 1 },
+                { backgroundColor: g.accent, boxShadow: actionBoxShadow(g), opacity: pressed ? 0.72 : 1 },
               ]}
             >
               <Text style={[sx.timeoutButtonText, { color: g.accentInk }]}>
@@ -450,8 +451,6 @@ const styles = StyleSheet.create({
     // `.cta.sm`: 42, r21, 16/600.
     minHeight: 42,
     borderRadius: 21,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px
-    borderColor: "transparent",
     paddingHorizontal: 14,
     paddingVertical: 10,
     alignItems: "center",

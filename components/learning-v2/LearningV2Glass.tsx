@@ -12,6 +12,7 @@ import {
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
+import { actionBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
 
@@ -20,8 +21,8 @@ import { useTheme } from '../ThemeContext';
 // плита-вариант `.opt`, главная кнопка `.cta`, пояснение `.expl`, карточка — собраны здесь один
 // раз вместо разрозненных копий цветов в каждом из ~20 файлов. Только ВИД: проверка ответов,
 // энергия, попытки, награды и озвучка остаются в экранах. Цвета — токены темы; «верно/неверно»
-// взяты из kit.css макета (--good/--bad). Обводки — только 1 px полупрозрачные (исключение
-// PhraseMan 2.0). Хаптик — только на управляющих кнопках (CTA); чипы-слова и плиты — без него
+// взяты из kit.css макета (--good/--bad). Обводок у контейнеров НЕТ (стиль «Тень», владелец 12.10):
+// плашку отделяют тень и заливка из components/v2/ShadowSurface; кольцо остаётся только у исхода «верно/неверно». Хаптик — только на управляющих кнопках (CTA); чипы-слова и плиты — без него
 // сверх уже имеющегося (правило владельца: на плитках/буквах вибрация, но не клик-звук).
 
 /** kit.css: --good / --bad. */
@@ -94,13 +95,13 @@ export function lv2NodePaint(
 
 export type Lv2Verdict = 'idle' | 'ok' | 'bad' | 'dim';
 
-/** Карточка `.card`/`.expl`: радиус 16, непрозрачная заливка, кромка 1 px. */
+/** Карточка `.card`/`.expl`: радиус 16, непрозрачная заливка и тень плашки — без обводки (стиль «Тень»). */
 export function lv2CardStyle(g: Lv2Glass, radius = 16): ViewStyle {
+  // зачем (владелец 12.10, «Тень»): кромка 1 px убрана, плашку отделяет тень; плоская заливка вместо градиента — функция отдаёт только стиль
   return {
-    backgroundColor: g.opaqueCard,
+    backgroundColor: g.plateFillFrom,
     borderRadius: radius,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px полупрозрачная кромка макета
-    borderColor: g.glassEdge, // guard-ok: 1 px
+    boxShadow: plateBoxShadow(g),
   };
 }
 
@@ -157,7 +158,7 @@ export const Lv2Chip = memo(function Lv2Chip({
 
 /**
  * Плита-вариант `.opt`/`.mc`: высота от 56, текст по центру 17/600, отметка верно/неверно справа.
- * Выбранный вариант светлее; верный/неверный — заливка .12 и кромка 1 px того же цвета.
+ * Выбранный вариант приподнят (тень и сдвиг вверх); верный/неверный — заливка .12 и кольцо исхода 1 px того же цвета.
  */
 export const Lv2Option = memo(function Lv2Option({
   label, onPress, verdict = 'idle', selected, disabled, compact, accessibilityLabel, textStyle, style, showMark = true, testID,
@@ -178,8 +179,10 @@ export const Lv2Option = memo(function Lv2Option({
   const ok = verdict === 'ok';
   const bad = verdict === 'bad';
   // зачем (темы 2.0): выбор в цвете темы; «верно/ошибка» темой не красятся никогда.
-  const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.accentSoft : g.opaqueCard;
-  const edge = ok ? g.goodEdge : bad ? g.badEdge : selected ? (g.level === 'accent' || g.level === 'max' ? g.accentBorder : g.text) : g.glassEdge;
+  // зачем (владелец 12.10, «Тень»): у плиты нет обводки; кольцо остаётся ТОЛЬКО у исхода ответа верно/неверно, выбранное приподнято тенью и сдвигом.
+  const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.accentSoft : g.plateFillFrom;
+  const edge = ok ? g.goodEdge : bad ? g.badEdge : null;
+  const lifted = !!selected && !ok && !bad;
   const ink = ok ? g.good : bad ? g.bad : g.text;
   return (
     <Pressable
@@ -198,7 +201,10 @@ export const Lv2Option = memo(function Lv2Option({
         compact && styles.optCompact,
         {
           backgroundColor: bg,
-          borderColor: edge, // guard-ok: 1 px
+          borderColor: edge ?? 'transparent',
+          borderWidth: edge ? StyleSheet.hairlineWidth : 0, // shadow-ok: кольцо исхода ответа верно/неверно
+          boxShadow: lifted ? raisedBoxShadow(g) : plateBoxShadow(g),
+          transform: lifted ? [{ translateY: RAISED_LIFT }] : undefined,
           opacity: verdict === 'dim' ? 0.45 : pressed ? 0.86 : 1,
           paddingRight: showMark && (ok || bad) ? 48 : 18,
           paddingLeft: showMark && (ok || bad) ? 48 : 18,
@@ -235,7 +241,8 @@ export const Lv2Cta = memo(function Lv2Cta({
 }) {
   const g = useLv2Glass();
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
-  const bg = disabled ? g.opaqueControl : ghost ? 'transparent' : g.accent;
+  // зачем (владелец 12.10, «Тень»): контурная кнопка `.cta.gh` стала плашкой с малой тенью; кнопка действия — цветная тень темы
+  const bg = disabled ? g.opaqueControl : ghost ? g.plateFillFrom : g.accent;
   const ink = disabled ? g.mutedText : ghost ? g.text : g.accentInk;
   return (
     <Pressable
@@ -254,8 +261,7 @@ export const Lv2Cta = memo(function Lv2Cta({
         styles.cta,
         {
           backgroundColor: bg,
-          borderColor: ghost ? g.glassEdge : 'transparent', // guard-ok: 1 px
-          borderWidth: ghost ? StyleSheet.hairlineWidth : 0, // guard-ok: 1 px полупрозрачная кромка
+          boxShadow: disabled ? undefined : ghost ? plateBoxShadow(g) : actionBoxShadow(g),
           opacity: pressed ? 0.88 : 1,
           transform: [{ scale: pressed ? 0.985 : 1 }],
         },
@@ -294,7 +300,7 @@ const styles = StyleSheet.create({
   // `.chip` 17/600 (D145 → 16).
   chipText: { fontSize: 16, lineHeight: 21, fontWeight: '600' },
   opt: {
-    minHeight: 58, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, // guard-ok: кромка макета 1 px
+    minHeight: 58, borderRadius: 14,
     paddingVertical: 12, alignItems: 'center', justifyContent: 'center',
   },
   optCompact: { minHeight: 48, paddingVertical: 8 },

@@ -19,7 +19,9 @@ assert.match(chrome, /PRACTICE_ROUND = 34/);
 assert.match(chrome, /fontSize: 20, lineHeight: 26, fontWeight: '700'/);
 assert.match(chrome, /minHeight: 38, borderRadius: 19, paddingHorizontal: 24/);
 assert.doesNotMatch(chrome, /borderWidth: [2-9]|adjustsFontSizeToFit/);
-assert.match(chrome, /StyleSheet\.hairlineWidth/);
+// зачем (Тень 12.10): круглые кнопки шапки без кромки — плашка с малой тенью; обводки (hairlineWidth/glassEdge) запрещены
+assert.doesNotMatch(chrome, /StyleSheet\.hairlineWidth|glassEdge/);
+assert.match(chrome, /nestedBoxShadow\(glass\)/);
 assert.ok(chrome.split('\n').length <= 400);
 
 for (const [name, source] of Object.entries(modes)) {
@@ -50,7 +52,10 @@ assert.match(states, /minHeight: 44, borderRadius: 22/, '.cta.sm keeps a 44 dp t
 assert.match(states, /width: 61, height: 61, borderRadius: 16/, 'state tile 61/16');
 assert.match(states, /track: \{ height: 6, borderRadius: 3/, 'progress track 6 px');
 assert.match(states, /fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: \['tabular-nums'\]/, '.prog labels 16/700 D145');
-assert.match(states, /borderRadius: 16, borderWidth: StyleSheet\.hairlineWidth/, '.qc radius 16 with a 1 px edge');
+// зачем (Тень 12.10): карточка вопроса `.qc` — плашка с тенью, без кромки 1 px и без overflow hidden (он режет тень)
+assert.match(states, /borderRadius: 16,\s/, '.qc radius 16');
+assert.doesNotMatch(states, /borderWidth: StyleSheet\.hairlineWidth/, '.qc has no border');
+assert.match(states, /boxShadow: plateBoxShadow\(glass\)/, '.qc has the plate shadow');
 
 // Пусто / мало карточек / ошибка загрузки / данные тренировки не открылись — единая панель.
 for (const [name, source, ids] of [

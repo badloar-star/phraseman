@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { isAttemptsStopEffect, isAttemptsInputBlocked } from "../../session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { KitGlassLayer } from "../../../components/v2/KitLiquidGlass";
+import { nestedBoxShadow } from "../../../components/v2/ShadowSurface";
 import * as Crypto from "expo-crypto";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { LinearGradient } from "../../../components/SafeLinearGradient";
@@ -37,6 +38,7 @@ import {
   Text,
   useWindowDimensions,
   View,
+  type BoxShadowValue,
 } from "react-native";
 import Animated, {
   FadeIn,
@@ -1477,7 +1479,6 @@ function LearningV2LegacySessionScreen() {
               styles.modeIcon,
               {
                 backgroundColor: `${meta.accent}22`,
-                borderColor: `${meta.accent}66`,
               },
             ]}
           >
@@ -2180,7 +2181,7 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
             onPress={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
             style={({ pressed }) => [
               styles.gateSkeletonClose,
-              { backgroundColor: gateGlass.opaqueControl, borderColor: gateGlass.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px кромка .rb (исключение 2.0)
+              { backgroundColor: gateGlass.opaqueControl, boxShadow: nestedBoxShadow(gateGlass), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: без кромки
             ]}
           >
             <KitGlassLayer radius={21} />
@@ -2232,6 +2233,10 @@ export default function LearningV2SessionScreen() {
   );
 }
 
+// зачем («Тень» 12.10): устаревший экран на фиксированной тёмной палитре без токенов темы — обводки сняты, плашки отделяет тень тех же чисел спеки
+const LEGACY_PLATE_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 16, blurRadius: 28, spreadDistance: -14, color: "rgba(0,0,0,0.75)" }]; // theme-exempt: фиксированная тёмная палитра экрана, тень плашки спеки
+const LEGACY_NESTED_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 6, blurRadius: 12, spreadDistance: -6, color: "rgba(0,0,0,0.6)" }]; // theme-exempt: фиксированная тёмная палитра экрана, тень вложенного спеки
+
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#10151D" },
   // Скелет энергетического гейта: та же геометрия шапки, что и у плеера, —
@@ -2247,8 +2252,6 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    borderWidth: 1, // guard-ok: 1 px кромка .rb (исключение PhraseMan 2.0)
-    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -2325,8 +2328,7 @@ const styles = StyleSheet.create({
     height: 38,
     borderRadius: 16,
     backgroundColor: "#2D2819",
-    borderWidth: 1,
-    borderColor: "#66562A",
+    boxShadow: LEGACY_NESTED_SHADOW,
     paddingHorizontal: 9,
     flexDirection: "row",
     alignItems: "center",
@@ -2351,7 +2353,7 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 15,
-    borderWidth: 1,
+    boxShadow: LEGACY_NESTED_SHADOW,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -2365,8 +2367,6 @@ const styles = StyleSheet.create({
   heroCard: {
     minHeight: 222,
     backgroundColor: "#1B2430",
-    borderWidth: 1,
-    borderColor: "#2C3949",
     borderRadius: 30,
     padding: 24,
     alignItems: "center",
@@ -2438,14 +2438,13 @@ const styles = StyleSheet.create({
     minHeight: 62,
     borderRadius: 20,
     backgroundColor: "#1A222D",
-    borderWidth: 1,
-    borderColor: "#344151",
+    boxShadow: LEGACY_PLATE_SHADOW,
     paddingHorizontal: 15,
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
   },
-  choiceCorrect: { backgroundColor: "#203A25", borderColor: "#8EE65A" },
+  choiceCorrect: { backgroundColor: "#203A25", borderColor: "#8EE65A", borderWidth: 1 }, // shadow-ok: кольцо исхода «верно»
   choiceIndex: {
     width: 32,
     height: 32,
@@ -2468,8 +2467,6 @@ const styles = StyleSheet.create({
   answerWell: {
     minHeight: 78,
     borderRadius: 22,
-    borderWidth: 1,
-    borderColor: "#3A4859",
     backgroundColor: "#121821",
     padding: 12,
     flexDirection: "row",
@@ -2480,8 +2477,7 @@ const styles = StyleSheet.create({
   answerPlaceholder: { color: "#6F7B89", fontWeight: "600", marginLeft: 4 },
   answerToken: {
     backgroundColor: "#31402D",
-    borderColor: "#6FAE50",
-    borderWidth: 1,
+    boxShadow: LEGACY_NESTED_SHADOW,
     borderRadius: 12,
     paddingHorizontal: 11,
     paddingVertical: 8,
@@ -2498,8 +2494,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 15,
     backgroundColor: "#222C39",
-    borderWidth: 1,
-    borderColor: "#3D4A5B",
+    boxShadow: LEGACY_NESTED_SHADOW,
     justifyContent: "center",
   },
   tileUsed: { opacity: 0.28 },
@@ -2526,8 +2521,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 6,
     borderRadius: 18,
-    borderWidth: 1,
-    borderColor: "#354252",
+    boxShadow: LEGACY_NESTED_SHADOW,
     backgroundColor: "#111821E8",
   },
   compactActionButton: {
@@ -2548,8 +2542,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 12,
     backgroundColor: "#121821F2",
-    borderTopWidth: 1,
-    borderTopColor: "#273341",
   },
   feedbackWrong: { color: "#FF9B9B", fontWeight: "700", marginBottom: 8 },
   actionMessage: {
@@ -2563,8 +2555,7 @@ const styles = StyleSheet.create({
   rewardMoment: {
     minHeight: 58,
     borderRadius: 18,
-    borderWidth: 1,
-    borderColor: "#6B5726",
+    boxShadow: LEGACY_NESTED_SHADOW,
     backgroundColor: "#2B2619",
     paddingHorizontal: 13,
     paddingVertical: 9,
@@ -2668,8 +2659,6 @@ const styles = StyleSheet.create({
     maxHeight: "90%",
     borderRadius: 32,
     backgroundColor: "#1B2430",
-    borderWidth: 1,
-    borderColor: "#3C4655",
     shadowColor: "#000",
     shadowOpacity: 0.45,
     shadowRadius: 30,
@@ -2698,8 +2687,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F8C84E18",
-    borderWidth: 1,
-    borderColor: "#F8C84E55",
     shadowColor: "#FFD75A",
     shadowOpacity: 0.35,
     shadowRadius: 28,
@@ -2750,8 +2737,7 @@ const styles = StyleSheet.create({
     minHeight: 62,
     borderRadius: 16,
     backgroundColor: "#141B24",
-    borderWidth: 1,
-    borderColor: "#303B49",
+    boxShadow: LEGACY_NESTED_SHADOW,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 8,

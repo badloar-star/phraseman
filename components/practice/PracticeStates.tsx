@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { PracticeGlass } from './PracticeChrome';
 import { KitCtaGloss, KitGlassLayer } from '../v2/KitLiquidGlass';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30, второй проход practice.html): служебные состояния тренировок
 // (пусто / мало карточек / ошибка загрузки / данные тренировки не открылись), строка
@@ -177,16 +178,16 @@ export interface PracticeQuestionCardProps {
   testID?: string;
 }
 
-/** Карточка вопроса `.qc`: радиус 16, кромка 1 px, подпись 16 вторичным цветом над текстом. */
+/** Карточка вопроса `.qc`: радиус 16, плашка с тенью без кромки, подпись 16 вторичным цветом над текстом. */
 export function PracticeQuestionCard({
   glass, kicker, children, minHeight = 160, style, testID,
 }: PracticeQuestionCardProps) {
   return (
     <View
       testID={testID}
-      style={[styles.qc, { minHeight, backgroundColor: glass.opaqueCard, borderColor: glass.line }, style]}
+      style={[styles.qc, { minHeight, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }, style]}
     >
-      {/* зачем (Сверка practice-001, kit.css `.qc::after`): карточка вопроса — стекло с бликом и светлой кромкой, как в Блице. */}
+      {/* зачем (Сверка practice-001; «Тень» 12.10): карточка вопроса — плашка с градиентом и тенью, без кромки. */}
       <KitGlassLayer radius={16} />
       {kicker ? <Text style={[styles.qcKicker, { color: glass.secondary }]}>{kicker}</Text> : null}
       {children}
@@ -219,8 +220,8 @@ const styles = StyleSheet.create({
   progressLabel: { minWidth: 44, fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   progressRight: { textAlign: 'right' },
   qc: {
-    // guard-ok: 1 px полупрозрачная кромка `.qc` макета (исключение PhraseMan 2.0).
-    borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden', // guard-ok
+    // зачем («Тень» 12.10): без overflow hidden — он обрезал бы тень плашки; слой стекла уже со скруглением
+    borderRadius: 16,
     alignItems: 'center', justifyContent: 'center', paddingVertical: 22, paddingHorizontal: 28,
   },
   qcKicker: { fontSize: 16, lineHeight: 21, textAlign: 'center' },

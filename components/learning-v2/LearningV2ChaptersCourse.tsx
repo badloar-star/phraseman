@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } fr
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
+import { nestedBoxShadow } from "../v2/ShadowSurface";
 import PressableHybrid from "../PressableHybrid";
 import LearningV2MapNode from "../LearningV2MapNode";
 import CoinRewardFlight, { type CoinRewardFlightPoint } from "../rewards/CoinRewardFlight";
@@ -289,7 +290,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
                     <Text style={[styles.nodeNumber, { color: paint.ink }]}>{row.sessionOrdinal}</Text>
                   </View>
                 </LearningV2MapNode>
-                {stars > 0 ? <View pointerEvents="none" style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
+                {stars > 0 ? <View pointerEvents="none" style={[styles.nodeStars, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
               </Lv2Reveal>
               <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{isCheckpoint ? triLang(props.lang, { ru: "Проверка главы", en: "Chapter check", uk: "Перевірка розділу", es: "Repaso del capítulo", "pt-BR": "Revisão do capítulo", vi: "Kiểm tra chương", id: "Uji bab", tr: "Bölüm testi", pl: "Sprawdzian rozdziału" }) : triLang(props.lang, { ru: `Занятие ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Заняття ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Buổi ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Ders ${row.sessionOrdinal}`, pl: `Zajęcia ${row.sessionOrdinal}` })}</Text>
             </View>;
@@ -327,7 +328,7 @@ const styles = StyleSheet.create({
   nodeWrap: { width: 64, height: 70, alignItems: "center" },
   nodeInner: { alignItems: "center", justifyContent: "center", gap: 1 },
   nodeNumber: { fontSize: 13, lineHeight: 16, fontWeight: "700" },
-  nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, borderWidth: StyleSheet.hairlineWidth, flexDirection: "row", alignItems: "center", gap: 1 },
+  nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, flexDirection: "row", alignItems: "center", gap: 1 },
   sessionLabel: { width: 82, fontSize: 13, lineHeight: 17, textAlign: "center", marginTop: 10 },
   allLessons: { borderRadius: 28, marginTop: 6 }, allLessonsContent: { minHeight: 56, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }, allLessonsText: { fontSize: 16, fontWeight: "700" }, lessonCard: { marginBottom: 2 }, fallbackLesson: { borderRadius: 14 }, fallbackLessonContent: { minHeight: 76, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 12 }, lessonCopy: { flex: 1 }, lessonMeta: { fontSize: 13, fontWeight: "600", marginBottom: 2 }, lessonTitle: { fontSize: 16, fontWeight: "700" }, legacyButton: { borderRadius: 28, marginTop: 6 }, legacyButtonContent: { minHeight: 48, alignItems: "center", justifyContent: "center" },
 });

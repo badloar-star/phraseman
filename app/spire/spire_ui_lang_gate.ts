@@ -25,7 +25,7 @@ export function logSpireUiLangGate(decision: SpireUiLangDecision, where: string)
   const key = `${decision.lang}:${decision.allowed}`;
   if (key === lastLogged) return;
   lastLogged = key;
-  console.log('[SPIRE-GATE]', JSON.stringify({ lang: decision.lang, allowed: decision.allowed, reason: decision.reason, where }));
+  console.log('[SPIRE]', '[SPIRE-GATE]', JSON.stringify({ lang: decision.lang, allowed: decision.allowed, reason: decision.reason, where }));
 }
 
 /** Только для тестов. */

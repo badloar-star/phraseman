@@ -2,6 +2,7 @@ import React from 'react';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
+import { spireReportSubmitVerdict } from './spire_report_verdict';
 import {
   buildSpireTaskReportSubmission,
   type SpireTaskReportSubmissionInput,
@@ -46,7 +47,7 @@ export function SpireTaskReportButton({
             removeFromRemainingRun(taskId);
           },
         });
-        return result.serverConfirmed || safeLocalRemoval ? 'sent' : 'failed';
+        return spireReportSubmitVerdict({ serverConfirmed: result.serverConfirmed, queuedAndRemoved: safeLocalRemoval, taskId: claim.taskId });
       }}
     />
   );

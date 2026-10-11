@@ -15,7 +15,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager } from 'react-native';
 
-import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
+import { spireStepBudgetMs, type SpireConfigDoc, type SpireTimerConfig } from '../../modules/spire/config_contract';
+import { SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
   SPIRE_REPORT_FLUSH_INTERVAL_MS,
@@ -44,6 +45,31 @@ import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView }
 const LOG = '[SPIRE]';
 
 export type SpireStepSession = Readonly<{ pick: SpireStepPick; ctx: SpireStepContext; attempt: number; runId: string }>;
+
+/**
+ * Ступень открыта, пакет недели ещё грузится (обзор R1, п.1): экран «Готовим ступень…» стоит с первого тапа.
+ * budgetMs — оценка до пакета; точное время подставит настоящая ступень (раскладка та же).
+ */
+export type SpirePendingStep = Readonly<{ prepId: string; ctx: SpireStepContext; budgetMs: number }>;
+
+// зачем: до пакета точного бюджета нет (он зависит от видов заданий набора). Повтор того же этажа берёт
+// последний настоящий бюджет из памяти процесса, иначе — среднее по видам × 10 заданий с тем же спадом по этажу.
+const lastBudgetByFloor = new Map<number, number>();
+
+export function spireEstimateStepBudgetMs(timer: SpireTimerConfig, floor: number): number {
+  const known = lastBudgetByFloor.get(floor);
+  if (typeof known === 'number' && known > 0) return known;
+  const bases = Object.values(timer.baseMsByKind).filter((n): n is number => typeof n === 'number' && n > 0);
+  if (bases.length === 0) return 0;
+  const avg = bases.reduce((a, b) => a + b, 0) / bases.length;
+  const decay = Math.max(timer.floorMinRatio, 1 - timer.perFloorDecay * Math.max(0, floor - 1));
+  return Math.round(avg * SPIRE_STEP_TASK_COUNT * decay);
+}
+
+/** Только для тестов. */
+export function __resetSpireBudgetEstimateForTests(): void {
+  lastBudgetByFloor.clear();
+}
 
 /** Итог ступени для панели на сцене башни — только память экрана. */
 export type SpireStepOutcome = Readonly<{
@@ -77,6 +103,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const [friends, setFriends] = useState<readonly SpireFriendChip[]>([]);
   const [weekResult, setWeekResult] = useState<SpireWeekResultView | null>(null);
   const [session, setSession] = useState<SpireStepSession | null>(null);
+  const [pending, setPending] = useState<SpirePendingStep | null>(null);
+  const prepIdRef = useRef<string | null>(null);
   const [outcome, setOutcome] = useState<SpireStepOutcome | null>(null);
   const [starting, setStarting] = useState(false);
   const [startBlock, setStartBlock] = useState<SpireStartBlock>(null);
@@ -178,38 +206,76 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     setStarting(true);
     setStartBlock(null);
     setOutcome(null);
+    const weekKey = spireCurrentWeekKey(Date.now());
+    const cur = weekRef.current && weekRef.current.weekKey === weekKey ? weekRef.current : null;
+    const floor = cur?.floor ?? 1;
+    const stepInFloor = cur?.stepInFloor ?? 0;
+    // зачем (обзор R1 п.1, координатор 12.10): первый тап в Шпиле. Раньше при непрогретом пакете кнопка тускнела
+    // до ответа сети без отклика. Теперь экран ступени открывается сразу («Готовим ступень…»), пакет догружается
+    // внутри. Энергия по-прежнему списывается только на первом задании (раннер).
+    const prepId = `${weekKey}:${floor}:${stepInFloor + 1}:${Date.now()}`;
+    prepIdRef.current = prepId;
+    const startedAt = Date.now();
+    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor) });
+    DebugLogger.info(LOG, `game: ступень открыта сразу (Готовим…) prep=${prepId} — пакет догружаем`);
+    const stillMine = (where: string): boolean => {
+      if (prepIdRef.current === prepId) return true;
+      DebugLogger.info(LOG, `game: подготовка ${prepId} отменена или заменена (${where}, сейчас=${String(prepIdRef.current)}) — результат игнорируем`);
+      return false;
+    };
+    const failStart = (block: Exclude<SpireStartBlock, null>, why: string) => {
+      DebugLogger.warn(LOG, `game: старт невозможен (${why}) → экран ступени закрыт, на кнопке ${block} и «Повторить» за ${Date.now() - startedAt} мс`);
+      setPending(null);
+      setStartBlock(block);
+    };
     try {
-      const weekKey = spireCurrentWeekKey(Date.now());
-      const cur = weekRef.current && weekRef.current.weekKey === weekKey ? weekRef.current : null;
-      const floor = cur?.floor ?? 1;
-      const stepInFloor = cur?.stepInFloor ?? 0;
       const packLoad: SpirePackLoad = await spireEnsureWeekPack(gate, { lang, tier, weekId: weekKey });
+      if (!stillMine('pack')) return;
       if (!packLoad.pack) {
-        DebugLogger.warn(LOG, `game: старт невозможен — пакета нет (status=${packLoad.status} reason=${packLoad.reason})`);
-        setStartBlock(packLoad.status === 'offline' ? 'pack_offline' : 'pack_missing');
+        failStart(packLoad.status === 'offline' ? 'pack_offline' : 'pack_missing', `пакета нет: status=${packLoad.status} reason=${packLoad.reason}`);
         return;
       }
       const attempt = await spirePeekStepAttempt(ids.uid, lang, weekKey, floor, stepInFloor + 1);
+      if (!stillMine('attempt')) return;
       const pick = spirePickStepPlan(packLoad.pack, {
         floor, step: stepInFloor + 1, attempt,
         budgetMs: (kinds) => spireStepBudgetMs(config.timer, floor, kinds),
       });
       if (!pick) {
-        DebugLogger.warn(LOG, `game: в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
-        setStartBlock('pack_missing');
+        failStart('pack_missing', `в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
         return;
       }
+      lastBudgetByFloor.set(floor, pick.plan.budgetMs);
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
-      DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source}`);
+      DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
       setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor }, attempt, runId });
+      setPending(null);
     } catch (error) {
-      DebugLogger.warn(LOG, `game: старт упал (${error instanceof Error ? error.message : String(error)})`);
-      setStartBlock('pack_missing');
+      if (!stillMine('error')) return;
+      failStart('pack_missing', `старт упал: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
-      startingRef.current = false;
-      setStarting(false);
+      // Отменённая подготовка уже сняла замок сама (cancelPendingStep) — новый старт не трогаем.
+      if (prepIdRef.current === prepId) {
+        prepIdRef.current = null;
+        startingRef.current = false;
+        setStarting(false);
+      }
     }
   }, [gate, lang, config, session, ids, tier, room]);
+
+  /** «Назад» на экране «Готовим ступень…» до пакета: закрыть без энергии и без штрафа; поздний пакет игнорируется. */
+  const cancelPendingStep = useCallback(() => {
+    const prep = prepIdRef.current;
+    if (!prep) {
+      DebugLogger.info(LOG, 'game: отмена подготовки — подготовки нет, пропуск');
+      return;
+    }
+    DebugLogger.info(LOG, `game: подготовка ${prep} отменена человеком до пакета — энергия не тронута`);
+    prepIdRef.current = null;
+    startingRef.current = false;
+    setStarting(false);
+    setPending(null);
+  }, []);
 
   // ── Итог ступени: сначала экран (optimistic), потом диск; не записалось — откат ──
   const onStepFinish = useCallback((finish: SpireStepFinish) => {
@@ -275,7 +341,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     uid: ids?.uid ?? null,
     stableId: ids?.stableId ?? null,
     roomLoad, rows, myPlace, tier, friends, weekResult, dismissWeekResult,
-    session, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
+    session, pending, cancelPendingStep, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
   };
 }
 

@@ -13,7 +13,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import type { SpireStepSession } from '../../app/spire/use_spire_game';
+import type { SpirePendingStep, SpireStepSession } from '../../app/spire/use_spire_game';
 import { useSpireStepRunner, type SpireClock, type SpireFeedback, type SpireStepFinish } from '../../app/spire/use_spire_step_runner';
 import { SPIRE_STEP_MAX_HEARTS, SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
 import SpireTaskReportButton from '../../modules/spire/SpireTaskReportButton';
@@ -134,6 +134,8 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
               </Text>
             ) : null}
             {fb.mistakeSaved ? <Text style={[s.hintSub, { color: p.textSecondary }]}>{spireGameText(lang, 'mistakeSaved')}</Text> : null}
+            {/* зачем (обзор R1 п.4): запись в «Мои ошибки» упала — тихо, тем же тоном, без красного и значков (D158) */}
+            {fb.mistakeSaved === false ? <Text style={[s.hintSub, { color: p.textSecondary }]} testID="spire-step-mistake-not-saved">{spireGameText(lang, 'mistakeNotSaved')}</Text> : null}
             {/* зачем (владелец 30.09): ответ висит до «Дальше», таймер в это время стоит. */}
             <V2Pressable
               onPress={props.onContinue}
@@ -219,12 +221,66 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
   );
 }
 
-function SpireStepScreen(props: Readonly<Omit<Props, 'session'> & { session: SpireStepSession | null }>) {
-  const { session } = props;
-  const exitRef = useRef<(() => void) | null>(null);
+// Часы, которые стоят: до пакета задания нет и время не идёт (кольцо на паузе, как в фазе списания).
+const STOPPED_CLOCK: SpireClock = { get: () => 0, subscribe: () => () => undefined };
+
+/**
+ * «Готовим ступень…» ДО пакета недели (обзор R1 п.1): тот же кадр, что фаза списания энергии в макете
+ * spire-gaps-states, — шапка, кольцо на паузе, «Готовим ступень…», «1 / 10». «Назад» — отмена без энергии.
+ */
+function PendingStepBody({ lang, pending, studyTarget, showEnergy, onCancel, exitRef }: Readonly<{
+  lang: Lang;
+  pending: SpirePendingStep;
+  studyTarget: string;
+  showEnergy: boolean;
+  onCancel: () => void;
+  exitRef: MutableRefObject<(() => void) | null>;
+}>) {
+  exitRef.current = onCancel;
   return (
-    <Modal visible={session !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => exitRef.current?.()} statusBarTranslucent>
-      {session ? <StepBody key={session.runId} {...props} session={session} exitRef={exitRef} /> : null}
+    <SpireStepLayout
+      lang={lang}
+      ctx={pending.ctx}
+      budgetMs={pending.budgetMs}
+      hearts={SPIRE_STEP_MAX_HEARTS}
+      clock={STOPPED_CLOCK}
+      paused
+      preparing
+      task={undefined}
+      taskIndex={0}
+      feedback={null}
+      answering={false}
+      exitOpen={false}
+      studyTarget={studyTarget}
+      showEnergy={showEnergy}
+      onBack={onCancel}
+      onChoice={noopAnswer}
+      onTokens={noopAnswer}
+      onItems={noopAnswer}
+      onContinue={noopAnswer}
+      reportSlot={null}
+      exitSlot={null}
+    />
+  );
+}
+
+function noopAnswer(): void {
+  // зачем: до пакета задания нет, отвечать нечем — вёрстка просто не рисует задание.
+}
+
+function SpireStepScreen(props: Readonly<Omit<Props, 'session'> & {
+  session: SpireStepSession | null;
+  pending: SpirePendingStep | null;
+  onCancelPending: () => void;
+}>) {
+  const { session, pending, onCancelPending, ...rest } = props;
+  const exitRef = useRef<(() => void) | null>(null);
+  // зачем (обзор R1 п.1): модалка открывается в тот же тап — сначала подготовка, затем та же модалка показывает ступень.
+  return (
+    <Modal visible={session !== null || pending !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => exitRef.current?.()} statusBarTranslucent>
+      {session ? <StepBody key={session.runId} {...rest} session={session} exitRef={exitRef} />
+        : pending ? <PendingStepBody key={pending.prepId} lang={rest.lang} pending={pending} studyTarget={rest.studyTarget} showEnergy={rest.showEnergy} onCancel={onCancelPending} exitRef={exitRef} />
+          : null}
     </Modal>
   );
 }

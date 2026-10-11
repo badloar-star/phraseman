@@ -32,7 +32,7 @@ import {
 } from '../../modules/spire/step_machine';
 import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
-import { spireCaptureMistake } from './spire_mistake_capture';
+import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
 
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
@@ -91,7 +91,15 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const intent = useEnergySessionIntent('spire_step', `${ctx.weekKey}:${ctx.lang}:f${ctx.floor}:s${ctx.stepInFloor + 1}`, input.runId);
   const [phase, setPhase] = useState<SpireRunnerPhase>('charging');
   const [state, setState] = useState<SpireStepState>(() => createSpireStepState(pick.plan));
-  const [feedback, setFeedback] = useState<SpireFeedback | null>(null);
+  const [feedback, setFeedbackState] = useState<SpireFeedback | null>(null);
+  // зачем (обзор R1 п.2): canAnswer читал feedback из замыкания — после ВЕРНОГО ответа фаза остаётся 'active', и второй
+  // тап в том же кадре прошёл бы в следующее задание. Ref пишется синхронно вместе с состоянием.
+  const feedbackRef = useRef<SpireFeedback | null>(null);
+  const setFeedback = useCallback((next: SpireFeedback | null | ((cur: SpireFeedback | null) => SpireFeedback | null)) => {
+    const value = typeof next === 'function' ? next(feedbackRef.current) : next;
+    feedbackRef.current = value;
+    setFeedbackState(value);
+  }, []);
   const [exitOpen, setExitOpen] = useState(false);
   const stateRef = useRef(state);
   const clock = useMemo(() => createClock(), []);
@@ -104,6 +112,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   inputRef.current = input;
   const exitOpenRef = useRef(false);
   exitOpenRef.current = exitOpen;
+  const phaseRef = useRef<SpireRunnerPhase>(phase);
+  phaseRef.current = phase;
   const aliveRef = useRef(true);
 
   const commit = useCallback((next: SpireStepState) => {
@@ -261,12 +271,24 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       return;
     }
     const task = pick.tasks[fb.taskIndex];
-    void spireCaptureMistake({ studyTarget: inputRef.current.studyTarget, attemptKey: `${inputRef.current.runId}:${fb.taskIndex}`, task, correct, given })
-      .then((saved) => setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved: saved } : cur)));
+    // зачем (обзор R1 п.4): «не сохранилось» человеку — только при настоящем сбое записи (false); штатный пропуск
+    // (пары, «найди лишнее», язык без журнала) оставляет null и ничего не показывает.
+    void spireCaptureMistakeOutcome({ studyTarget: inputRef.current.studyTarget, attemptKey: `${inputRef.current.runId}:${fb.taskIndex}`, task, correct, given })
+      .then((outcome) => {
+        const mistakeSaved = outcome === 'saved' ? true : outcome === 'failed' ? false : null;
+        DebugLogger.info(LOG, `step: «Мои ошибки» задание ${fb.taskIndex + 1} → ${outcome} (строка: ${mistakeSaved === true ? 'сохранена' : mistakeSaved === false ? 'не удалось' : 'нет'})`);
+        setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved } : cur));
+      });
     // Правильный ответ висит до «Дальше» (continueAfterReveal), автоперехода нет.
   }, [commit, finish, later, pick.tasks]);
 
-  const canAnswer = () => phase === 'playing' && stateRef.current.phase === 'active' && feedback === null && !exitOpen;
+  const canAnswer = (): boolean => {
+    const ok = phaseRef.current === 'playing' && stateRef.current.phase === 'active' && feedbackRef.current === null && !exitOpenRef.current;
+    if (!ok) {
+      DebugLogger.info(LOG, `step: ответ отклонён (runner=${phaseRef.current} step=${stateRef.current.phase} feedback=${feedbackRef.current ? (feedbackRef.current.ok ? 'верный' : 'ошибка') : 'нет'} exit=${String(exitOpenRef.current)}) — двойной тап или ответ не ко времени`);
+    }
+    return ok;
+  };
 
   const submitChoice = useCallback((optionIndex: number) => {
     if (!canAnswer()) return;
@@ -319,10 +341,12 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const requestExit = useCallback(() => {
     if (finishedRef.current) return;
     DebugLogger.info(LOG, `step: запрошен выход (phase=${stateRef.current.phase})`);
+    exitOpenRef.current = true; // зачем (R1 п.2): тап по ответу в том же кадре, что «назад», уже не пройдёт
     setExitOpen(true);
   }, []);
   const cancelExit = useCallback(() => {
     lastTickRef.current = Date.now();
+    exitOpenRef.current = false;
     setExitOpen(false);
     // Пока шторка была открыта, приложение могло уйти в фон — снимаем паузу здесь.
     const cur = stateRef.current;
@@ -333,6 +357,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     }
   }, [commit]);
   const confirmExit = useCallback(() => {
+    exitOpenRef.current = false;
     setExitOpen(false);
     const cur = stateRef.current;
     if (phase === 'charging') {

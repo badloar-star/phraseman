@@ -41,16 +41,28 @@ function str(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+/**
+ * Итог записи: 'saved' — журнал записал (честно «сохранена»); 'skipped' — штатно не пишется (язык без журнала,
+ * пары / «найди лишнее», ответ не восстановлен, журнал сам отказал по правилам) — человеку ничего не говорим;
+ * 'failed' — запись УПАЛА (хранилище) — тихая строка «не удалось сохранить».
+ * зачем (обзор R1 п.4): раньше и пропуск, и сбой были одним false — строку о сбое нельзя было показать честно.
+ */
+export type SpireMistakeOutcome = 'saved' | 'skipped' | 'failed';
+
 /** true — журнал записал ошибку (можно честно сказать «сохранена»). */
 export async function spireCaptureMistake(input: SpireMistakeInput): Promise<boolean> {
+  return (await spireCaptureMistakeOutcome(input)) === 'saved';
+}
+
+export async function spireCaptureMistakeOutcome(input: SpireMistakeInput): Promise<SpireMistakeOutcome> {
   const { task } = input;
   if (!isMistakeStudyTargetValue(input.studyTarget)) {
     DebugLogger.info(LOG, `mistake: язык ${input.studyTarget} не пишется в журнал ошибок — пропуск`);
-    return false;
+    return 'skipped';
   }
   if (input.correct === null) {
     DebugLogger.info(LOG, `mistake: верный ответ ${task.taskId} не восстановлен — не пишем`);
-    return false;
+    return 'skipped';
   }
   const phrase = str(task.payload.phrase);
   const options = Array.isArray(task.payload.options) ? task.payload.options.map(str) : [];
@@ -67,7 +79,7 @@ export async function spireCaptureMistake(input: SpireMistakeInput): Promise<boo
   }
   if (!content || !content.canonicalTarget) {
     DebugLogger.info(LOG, `mistake: режим ${task.mode} не пишется в «Мои ошибки» — пропуск`);
-    return false;
+    return 'skipped';
   }
   try {
     const result = await captureCurrentAccountObjectiveAttempt({
@@ -83,10 +95,10 @@ export async function spireCaptureMistake(input: SpireMistakeInput): Promise<boo
       },
     });
     DebugLogger.info(LOG, `mistake: ${task.taskId} → ${result.kind}${result.kind === 'ignored' ? ` (${result.reason})` : ''}`);
-    return result.kind === 'captured';
+    return result.kind === 'captured' ? 'saved' : 'skipped';
   } catch (error) {
-    DebugLogger.warn(LOG, `mistake: запись ${task.taskId} упала (${error instanceof Error ? error.message : String(error)})`);
-    return false;
+    DebugLogger.warn(LOG, `mistake: запись ${task.taskId} упала (${error instanceof Error ? error.message : String(error)}) → человеку тихая строка «не удалось сохранить»`);
+    return 'failed';
   }
 }
 

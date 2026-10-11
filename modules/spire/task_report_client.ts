@@ -209,7 +209,13 @@ export function buildSpireTaskReportSubmission(input: SpireTaskReportSubmissionI
           payload,
           { expectedStableUid: input.stableUid, idempotencyKey: reportKey },
         );
-      } catch {
+      } catch (error: unknown) {
+        // зачем (обзор R1 п.3): был немой catch — сетевой отказ жалобы не оставлял следа. Жалоба уже в очереди
+        // (если persisted), очередь дошлёт; кнопка покажет «отправим позже».
+        console.warn('[SPIRE-REPORT]', JSON.stringify({
+          step: 'send_threw', taskId: input.taskId, persisted,
+          reason: error instanceof Error ? error.message : String(error),
+        }));
         result = null;
       }
       // A task may leave the current run only after either a durable local

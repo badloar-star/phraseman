@@ -216,7 +216,7 @@ export default function SpireHomeScreen() {
     return <View style={s.root}><SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} /></View>;
   }
 
-  const climbReady = game.live && game.tier !== null && game.session === null;
+  const climbReady = game.live && game.tier !== null && game.session === null && game.pending === null;
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: bottomPad + (game.outcome ? 300 : 120) }]} showsVerticalScrollIndicator={false} decelerationRate="fast">
@@ -285,6 +285,8 @@ export default function SpireHomeScreen() {
         <SpireStepScreen
           lang={lang}
           session={game.session}
+          pending={game.pending}
+          onCancelPending={game.cancelPendingStep}
           uid={game.uid}
           stableId={game.stableId}
           studyTarget={String(studyTarget)}

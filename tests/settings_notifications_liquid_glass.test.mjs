@@ -168,7 +168,8 @@ test('time is a separate trailing value while its localized label remains free t
   const timeRow = source.slice(source.indexOf('accessibilityLabel={timeLabel}'), source.indexOf('</PressableHybrid>', source.indexOf('accessibilityLabel={timeLabel}')));
   assert.ok(timeRow.includes('accessibilityValue={{ text: `${pad(hour)}:${pad(minute)}` }}'), 'screen readers receive the current time as the control value');
   assert.match(timeRow, /<FlowText[^>]*style=\{\{[^}]*flex:\s*1,\s*minWidth:\s*0[^}]*\}\}>\{timeLabel\}<\/FlowText>/);
-  assert.match(timeRow, /<View style=\{\{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 \}\}>[\s\S]*\{pad\(hour\)\}:\{pad\(minute\)\}[\s\S]*chevron-forward/);
+  // зачем (settings-gaps-states .gs-nval, 12.10): значение времени и шеврон через 14, а не 4
+  assert.match(timeRow, /<View style=\{\{ flexDirection: 'row', alignItems: 'center', gap: 14[^}]*marginLeft: 8 \}\}>[\s\S]*\{pad\(hour\)\}:\{pad\(minute\)\}[\s\S]*chevron-forward/);
   assert.ok(timeRow.includes("style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '400' }}"), 'the trailing value matches the mock secondary 13px regular D145 treatment');
 });
 

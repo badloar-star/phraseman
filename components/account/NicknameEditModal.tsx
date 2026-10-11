@@ -157,6 +157,8 @@ export default function NicknameEditModal({
       void checkNameAvailabilityDetailed(trimmed)
         .then((result) => {
           if (!active || availabilityRequestRef.current !== requestId) return;
+          // зачем (логи, settings-gaps-states): статус 'error' от проверки раньше уходил без следа — видно, что человек увидит «Проверим при сохранении»
+          if (result.status === 'error') DebugLogger.error('NicknameEditModal:checkAvailabilityStatus', new Error('availability_status_error'), 'warning');
           if (result.status !== 'error') {
             const cache = availabilityCacheRef.current;
             if (cache.size >= NAME_AVAILABILITY_CACHE_LIMIT) cache.clear();
@@ -164,7 +166,8 @@ export default function NicknameEditModal({
           }
           setAvailabilityStatus(result.status);
         })
-        .catch(() => {
+        .catch((error: unknown) => {
+          DebugLogger.error('NicknameEditModal:checkAvailability', error, 'warning');
           if (active && availabilityRequestRef.current === requestId) setAvailabilityStatus('error');
         });
     }, NAME_AVAILABILITY_DEBOUNCE_MS);
@@ -401,10 +404,10 @@ export default function NicknameEditModal({
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
-            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700' }}>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, lineHeight: 28 /* зачем (settings-gaps-states, 12.10): заголовок шторки 22/28 как в макете, не зависит от шага шрифта f.h2 */, fontWeight: '700' }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
-            <Text style={{ color: glass.secondary, fontSize: f.caption, marginTop: 7 /* зачем: паритет profile.html (13.10): отступ подзаголовка 7 */ }}>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18 /* зачем (settings-gaps-states): подпись шторки 13/18 (.gs-shs), а не f.caption=15 при «Средний» */, marginTop: 7 /* зачем: паритет profile.html (13.10): отступ подзаголовка 7 */ }}>
               {L('Ник можно менять раз в 14 дней', 'Нік можна змінювати раз на 14 днів', 'You can change it once every 14 days', 'Puedes cambiarlo una vez cada 14 días', 'Você pode mudar uma vez a cada 14 dias', 'Có thể đổi 14 ngày một lần', 'Bisa diganti sekali tiap 14 hari', '14 günde bir değiştirebilirsin', 'Zmiana raz na 14 dni')}
             </Text>
           </View>
@@ -446,7 +449,7 @@ export default function NicknameEditModal({
             backgroundColor: glass.opaqueControl,
             boxShadow: nestedBoxShadow(glass) as unknown as string /* зачем: типы RN для стиля TextInput знают boxShadow только строкой, на деле массив работает */,
             color: glass.text,
-            fontSize: f.h2,
+            fontSize: 20, // зачем (settings-gaps-states): ввод имени 20 как в макете (.gs-av), не f.h2=21
             // зачем: паритет profile.html (13.10): поле 48, r14, поля 12/14
             minHeight: 48,
             paddingHorizontal: 14,
@@ -481,7 +484,7 @@ export default function NicknameEditModal({
             <Text
               testID="nickname-availability"
               accessibilityLiveRegion="polite"
-              style={{ color: availabilityColor, fontSize: f.caption, fontWeight: '600', flexShrink: 1 }}
+              style={{ color: availabilityColor, fontSize: 13, lineHeight: 18, fontWeight: '600', flexShrink: 1 /* зачем (settings-gaps-states): статус имени 13/18 как в макете */ }}
             >
               {availabilityMessage}
             </Text>

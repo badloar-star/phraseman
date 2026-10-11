@@ -56,6 +56,8 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
   const { theme: t, f } = useTheme();
   const g = useShadowGlass();
   const [vote, setVote] = useState<SettingsPollVoteState | null>(null);
+  // зачем (settings-gaps-states): голос, отданный на этом экране, ещё не в серверных счётчиках кампании — прибавляем его локально, чтобы проценты считались с учётом выбора
+  const [castHereOptionId, setCastHereOptionId] = useState<string | null>(null);
   const copy = useMemo(() => pickAppMessageText(campaign, lang), [campaign, lang]);
   const question = useMemo(() => (
     campaign.poll ? pickAppMessagePollQuestion(campaign.poll, lang) : ''
@@ -64,6 +66,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
   useEffect(() => {
     let active = true;
     setVote(null);
+    setCastHereOptionId(null);
     if (campaign.kind === 'poll' && ownerStableId) {
       void readSettingsPollVote(ownerStableId, campaign.id).then((stored) => {
         if (active) setVote(stored);
@@ -90,6 +93,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
       updatedAtMs: Date.now(),
     };
     setVote(optimistic);
+    setCastHereOptionId(optionId);
     void submitSettingsPollVoteOptimistically(ownerStableId, campaign.id, optionId).then(setVote);
     void trackEvent('settings_poll_vote', {
       campaign_id: campaign.id,
@@ -98,7 +102,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
     });
   };
 
-  const totalVotes = campaign.poll?.voteCount ?? 0;
+  const totalVotes = (campaign.poll?.voteCount ?? 0) + (castHereOptionId ? 1 : 0);
   return (
     <View
       testID={`settings-message-slot-${campaign.settingsSlot}`}
@@ -151,14 +155,14 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
                 <Text style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
                   {pickAppMessagePollOptionText(option, lang)}
                 </Text>
-                <Text style={[styles.percent, { color: locked ? t.textMuted : 'transparent', fontSize: f.caption }]}>
-                  {percent(campaign.poll?.counts[option.id] ?? 0, totalVotes)}
+                <Text style={[styles.percent, { color: locked ? t.textMuted : 'transparent', fontSize: 13, fontWeight: '700' /* зачем (settings-gaps-states): проценты 13 жирным как в макете, не f.caption=15 */ }]}>
+                  {percent((campaign.poll?.counts[option.id] ?? 0) + (castHereOptionId === option.id ? 1 : 0), totalVotes)}
                 </Text>
               </Pressable>
             );
           })}
           {vote ? (
-            <Text style={[styles.locked, { color: t.textMuted, fontSize: f.caption }]}>{lockedVoteLabel(lang)}</Text>
+            <Text style={[styles.locked, { color: t.textMuted, fontSize: 13, lineHeight: 18 /* зачем (settings-gaps-states): подпись 13/18 */ }]}>{lockedVoteLabel(lang)}</Text>
           ) : null}
         </View>
       ) : null}

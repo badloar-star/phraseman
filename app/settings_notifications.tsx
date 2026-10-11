@@ -246,6 +246,26 @@ export default function SettingsNotifications() {
     }, [])
   );
 
+  // зачем (settings-gaps-states): разрешение могли отозвать в системных настройках — мастер включён, а красной плашки не было.
+  // Отдельный эффект, чтобы не менять защищённый эффект гидратации выше; проверка локальная, без сети и без запроса разрешения.
+  useFocusEffect(
+    useCallback(() => {
+      let alive = true;
+      void (async () => {
+        try {
+          const storedPrefs = await hydrateNotifPrefsFromStorage();
+          const granted = await isNotificationPermissionGranted();
+          if (!alive) return;
+          setNeedsPermission(Boolean(storedPrefs.master) && !granted);
+          console.log(`[NOTIF-SETTINGS] focus_permission master=${String(storedPrefs.master)} granted=${String(granted)}`); // guard-ok: единичный лог на вход на экран
+        } catch (error: unknown) {
+          console.warn(`[NOTIF-SETTINGS] focus_permission_check_failed reason=${error instanceof Error ? error.message : String(error)}`);
+        }
+      })();
+      return () => { alive = false; };
+    }, [])
+  );
+
   const flashSaved = () => { setSaved(true); setTimeout(() => setSaved(false), 1400); };
 
   // Общий хвост: сохранение фоном, проверка разрешения при включении, откат при ошибке.
@@ -396,7 +416,7 @@ export default function SettingsNotifications() {
                 importantForAccessibility={saved && !needsPermission ? 'auto' : 'no-hide-descendants'}
                 style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center', gap: 4, opacity: saved && !needsPermission ? 1 : 0 }}
               >
-                <Ionicons name="checkmark-circle" size={16} color={t.correct} />
+                <Ionicons name="checkmark-circle-outline" size={16} color={t.correct} />
                 <Text style={{ color: t.correct, fontSize: 13 }}>{savedLabel}</Text>
               </View>
             </View>
@@ -446,7 +466,7 @@ export default function SettingsNotifications() {
                 <FlowText testID="notif-master-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
                   {masterLabel}
                 </FlowText>
-                <FlowText testID="notif-master-hint" provenance="authored" style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, marginTop: 2 }}>
+                <FlowText testID="notif-master-hint" provenance="authored" style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, marginTop: 3 }}>
                   {masterHint}
                 </FlowText>
               </View>
@@ -474,9 +494,9 @@ export default function SettingsNotifications() {
                   <PlateFill g={glass} radius={14} />
                   <RowIcon name="time-outline" glass={glass} />
                   <FlowText testID="notif-time-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>{timeLabel}</FlowText>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 /* зачем (settings-gaps-states .gs-nval): значение и шеврон через 14, шеврон 18 */, marginLeft: 8 }}>
                     <FlowText testID="notif-time-value" provenance="authored" style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '400' }}>{pad(hour)}:{pad(minute)}</FlowText>
-                    <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+                    <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
                   </View>
                 </PressableHybrid>
                 <ToggleRow label={streakLabel} icon="flame-outline" value={prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} />

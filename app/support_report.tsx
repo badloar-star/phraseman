@@ -134,7 +134,7 @@ export default function SupportReportScreen() {
               </Text>
               {/* зачем: паритет с макетом PRF-09 — длинной расшифровки под подзаголовком в макете нет (правило владельца: без длинных подписей) */}
 
-              <Text style={{ color: glass.secondary, fontSize: scaled(11), lineHeight: scaled(16), fontWeight: '700', letterSpacing: 1.7, textTransform: 'uppercase', marginTop: 24, marginBottom: 8 }}>
+              <Text style={{ color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18), fontWeight: '700', letterSpacing: 1.7, textTransform: 'uppercase', marginTop: 24, marginBottom: 10, marginHorizontal: 4 /* зачем (settings-gaps-states .gs-ey2): метка 13/18, снизу 10, сбоку 4 */ }}>
                 {L('Описание проблемы', 'Опис проблеми', 'Problem description', 'Descripción del problema', 'Descrição do problema', 'Mô tả vấn đề', 'Deskripsi masalah', 'Sorun açıklaması', 'Opis problemu')}
               </Text>
               <TextInput

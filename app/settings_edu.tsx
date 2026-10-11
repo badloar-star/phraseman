@@ -121,7 +121,10 @@ export default function SettingsEdu() {
   useFocusEffect(
     useCallback(() => {
       let alive = true;
-      void loadSettings().then(setS);
+      void loadSettings().then(setS).catch((error: unknown) => {
+        // зачем (логи, settings-gaps-states): сбой чтения настроек оставлял значения снимка без причины в журнале
+        console.warn(`[SETTINGS-EDU] load_settings_failed reason=${error instanceof Error ? error.message : String(error)}`);
+      });
       setFcSfx(isFcSfxEnabled());
       setFcAutoSpeak(isFcAutoSpeakEnabled());
       void getVoicePrefs()
@@ -260,6 +263,11 @@ export default function SettingsEdu() {
     },
   ];
 
+  // зачем (логи, settings-gaps-states): тумблер звука меняется сразу (Optimistic UI), а сбой записи раньше терялся молча
+  const logToggleSaveFailure = (key: string) => (error: unknown) => {
+    console.warn(`[SETTINGS-EDU] toggle_save_failed key=${key} reason=${error instanceof Error ? error.message : String(error)}`);
+  };
+
   const soundRows = [
     {
       testID: 'fc-sfx-toggle',
@@ -267,7 +275,7 @@ export default function SettingsEdu() {
       label: L({ ru: 'Звуковые эффекты', uk: 'Звукові ефекти', en: 'Sound effects', es: 'Efectos de sonido', 'pt-BR': 'Efeitos sonoros', vi: 'Hiệu ứng âm thanh', id: 'Efek suara', tr: 'Ses efektleri', pl: 'Efekty dźwiękowe' }),
       sub: L({ ru: 'Короткие звуки в карточках и тренировках', uk: 'Короткі звуки у картках і тренуваннях', en: 'Brief sounds in cards and training', es: 'Sonidos breves en tarjetas y entrenamientos', 'pt-BR': 'Sons curtos em cartões e treinos', vi: 'Âm thanh ngắn trong thẻ và luyện tập', id: 'Suara singkat di kartu dan latihan', tr: 'Kartlarda ve antrenmanlarda kısa sesler', pl: 'Krótkie dźwięki w fiszkach i ćwiczeniach' }),
       icon: 'volume-high-outline' as const,
-      onValueChange: (value: boolean) => { setFcSfx(value); void setFcSfxEnabled(value); },
+      onValueChange: (value: boolean) => { setFcSfx(value); void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx')); },
     },
     {
       testID: 'fc-autospeak-toggle',
@@ -275,7 +283,7 @@ export default function SettingsEdu() {
       label: L({ ru: 'Автопроизношение', uk: 'Автовимова', en: 'Auto pronunciation', es: 'Pronunciación automática', 'pt-BR': 'Pronúncia automática', vi: 'Tự động phát âm', id: 'Pelafalan otomatis', tr: 'Otomatik telaffuz', pl: 'Automatyczna wymowa' }),
       sub: L({ ru: 'Озвучивать английскую фразу после ответа', uk: 'Озвучувати англійську фразу після відповіді', en: 'Read the English phrase after answering', es: 'Leer la frase en inglés después de responder', 'pt-BR': 'Ler a frase em inglês após responder', vi: 'Đọc câu tiếng Anh sau khi trả lời', id: 'Bacakan frasa Inggris setelah menjawab', tr: 'Cevaptan sonra İngilizce ifadeyi oku', pl: 'Odczytaj angielskie zdanie po odpowiedzi' }),
       icon: 'volume-high-outline' as const,
-      onValueChange: (value: boolean) => { setFcAutoSpeak(value); void setFcAutoSpeakEnabled(value); },
+      onValueChange: (value: boolean) => { setFcAutoSpeak(value); void Promise.resolve(setFcAutoSpeakEnabled(value)).catch(logToggleSaveFailure('fc_autospeak')); },
     },
   ];
 
@@ -346,7 +354,7 @@ export default function SettingsEdu() {
             </View>)}
             </View>
 
-            <View style={[rowStyle, { marginTop: 10 }]}>
+            <View style={[rowStyle, { marginTop: 10, alignItems: 'flex-start' /* зачем (settings-gaps-states): в карточке скорости значок вверху, как в макете */ }]}>
               <PlateFill g={glass} radius={14} />
               <RowIcon name="volume-high-outline" />
               <View style={{ flex: 1, minWidth: 0 }}>
@@ -367,6 +375,7 @@ export default function SettingsEdu() {
                     update('speechRate', rate);
                     stopAudio();
                     if (voicePlaybackPolicy.isEnabled()) speakAudio('a dark horse', rate, { language: 'en-US' });
+                    else console.log(`[SETTINGS-EDU] speech_rate_preview_skipped reason=voice_disabled rate=${rate}`); // guard-ok: единичный лог на жест, причина тишины при отпускании ползунка
                   }}
                   minimumTrackTintColor={t.textSecond}
                   maximumTrackTintColor={t.border}

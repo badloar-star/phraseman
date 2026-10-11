@@ -22,7 +22,7 @@ import { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
 import KitSpinner from '../components/v2/KitSpinner';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import CoinRankUpgradeCeremony from '../components/level_up/CoinRankUpgradeCeremony';
-import { LinearGradient } from '../components/SafeLinearGradient';
+import V2Backdrop from '../components/v2/V2Backdrop';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
 import V2Pressable from '../components/v2/V2Pressable';
 import { useV2Palette } from '../components/v2/useV2Palette';
@@ -332,11 +332,8 @@ export default function CoinRankScreen() {
 
   return (
     <View style={[styles.root, { backgroundColor: g.bg }]}>
-      <LinearGradient
-        pointerEvents="none"
-        colors={[g.bgTop, g.bgBottom]}
-        style={StyleSheet.absoluteFill}
-      />
+      {/* зачем (coins-002): общий фон 2.0 — почти чёрный bg с едва светлым верхом и свечениями темы; собственный градиент bgTop→bgBottom давал плоский тёмно-синий без виньетки. */}
+      <V2Backdrop />
 
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
         <V2Pressable

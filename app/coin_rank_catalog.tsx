@@ -8,7 +8,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import CoinRankCatalog, { coinRankCatalogTitle } from '../components/coins/CoinRankCatalog';
-import { LinearGradient } from '../components/SafeLinearGradient';
+import V2Backdrop from '../components/v2/V2Backdrop';
 import V2Pressable from '../components/v2/V2Pressable';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
@@ -32,7 +32,8 @@ export default function CoinRankCatalogScreen() {
 
   return (
     <View testID="coin-rank-catalog-screen" style={[styles.root, { backgroundColor: g.bg }]}>
-      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bgBottom]} style={StyleSheet.absoluteFill} />
+      {/* зачем (coins-002): общий фон 2.0 — почти чёрный bg с едва светлым верхом и свечениями темы; собственный градиент bgTop→bgBottom давал плоский тёмно-синий без виньетки. */}
+      <V2Backdrop />
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
         <V2Pressable
           testID="coin-rank-catalog-back"

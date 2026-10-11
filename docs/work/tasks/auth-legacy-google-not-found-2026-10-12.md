@@ -47,3 +47,5 @@ Governance-ID: TG-EEBDBDBA8A60
 Откат коммита.
 
 Governance-ID: TG-960DC469AE78 (11.10 ~17:50: отчёт координатору о d90f7bcb2 и запрос окна эмулятора записан в INBOX_COORDINATOR_FROM_AUTH.md — сообщение сессии задержано)
+
+Governance-ID: TG-BA49980F37AE (11.10 ~18:00: сторож overlays_runtime — 7-е delayMs:360 в Настройках добавлено 4ee55fbc4 (окно «Нужно завершить смену» после сорванной принудительной смены) — обновить число в тесте с «зачем»; затем privacy_settings → switchOffTrackTone)

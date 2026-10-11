@@ -42,7 +42,9 @@ test('settings: те же обработчики — очистка кеша и 
   assert.equal((files.settings.match(/onPress: runForcedAccountSwitchWithoutSaving/g) ?? []).length, 3);
   // 30.09: +2 окна отказа смены аккаунта (OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED / RECOVERY-REQUIRED).
   // 02.10 (Account V2, 8L): +1 стеклянное подтверждение «Несохранённые карточки будут удалены».
-  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 6);
+  // 11.10 (§AUTH-0105, 4ee55fbc4): +1 окно «Нужно завершить смену аккаунта», если принудительная смена
+  // сорвалась после маркера (recovery_required / wipe_failed) — вместо ложного «Всё осталось на месте».
+  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 7);
 });
 
 test('lingman: кнопка «Settings» по-прежнему открывает системные настройки уведомлений', () => {

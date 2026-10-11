@@ -6,6 +6,7 @@ import {
   type ArenaDifficulty,
 } from './arena_content_generation';
 import {
+  ARENA_STUDY_TARGETS,
   ARENA_TASK_MODES,
   resolveArenaStudyTarget,
   type ArenaStudyTarget,
@@ -109,6 +110,7 @@ const TARGET_MARKERS: Readonly<Record<ArenaStudyTarget, readonly string[]>> = Ob
   es: Object.freeze(['el', 'la', 'los', 'las', 'estoy', 'está', 'soy', 'hoy', 'casa', 'con', 'desde']),
   fr: Object.freeze(['le', 'la', 'les', 'je', 'suis', 'est', 'aujourd’hui', "aujourd'hui", 'maison', 'avec']),
   de: Object.freeze(['der', 'die', 'das', 'ich', 'bin', 'ist', 'heute', 'haus', 'mit', 'aus']),
+  it: Object.freeze(['il', 'la', 'io', 'sono', 'sei', 'oggi', 'casa', 'con', 'da', 'andiamo']),
 });
 
 function wordSet(values: readonly string[]): Set<string> {
@@ -120,7 +122,7 @@ function targetIdentityMatches(target: ArenaStudyTarget, values: readonly string
   const score = (candidate: ArenaStudyTarget) => TARGET_MARKERS[candidate]
     .filter((marker) => words.has(normalized(marker))).length;
   const own = score(target);
-  const strongestOther = Math.max(...(['en', 'es', 'fr', 'de'] as const)
+  const strongestOther = Math.max(...ARENA_STUDY_TARGETS
     .filter((candidate) => candidate !== target).map(score));
   return own > 0 && own > strongestOther;
 }

@@ -25,7 +25,7 @@ export const ARENA_PUBLICATION_PAGE_LIMIT = 400 as const;
 export const ARENA_PUBLICATION_TASK_COUNT = 4_000 as const;
 const HASH = /^[a-f0-9]{64}$/u;
 const REQUEST_ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{2,199}$/u;
-const TARGETS = new Set<ArenaStudyTarget>(['es', 'fr', 'de']);
+const TARGETS = new Set<ArenaStudyTarget>(['es', 'fr', 'de', 'it']);
 
 function canonical(value: unknown): string {
   if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);

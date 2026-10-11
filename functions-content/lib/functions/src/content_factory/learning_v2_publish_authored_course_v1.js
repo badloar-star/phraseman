@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminPublishAuthoredLearningV2Course = void 0;
 exports.publishAuthoredLearningV2Course = publishAuthoredLearningV2Course;
+exports.assertLesson1ReleaseParityForPublishV1 = assertLesson1ReleaseParityForPublishV1;
 // зачем: между написанным курсом и приложением не было НИ ОДНОГО способа
 // публикации — ни скрипта, ни кнопки. Сервер отвечал head_missing, приложение
 // показывало «Сессия недоступна / NOT FOUND», и владелец не мог открыть ни
@@ -65,6 +66,7 @@ const authored_sessions_v1_1 = require("../../../modules/learning-v2/content/sou
 const session_package_from_shard_v1_1 = require("../../../modules/learning-v2/content/source/session_package_from_shard_v1");
 const session_shard_from_source_v1_1 = require("../../../modules/learning-v2/content/source/session_shard_from_source_v1");
 const course_topology_v1_1 = require("../../../modules/learning-v2/content/course_topology_v1");
+const lesson1_release_parity_v1_1 = require("../../../modules/learning-v2/content/lesson1_release_parity_v1");
 const course_session_release_package_v1_1 = require("../../../modules/learning-v2/runtime/course_session_release_package_v1");
 // зачем: конвертер отдаёт детей под своими именами (evaluatorCapsule), а
 // контракт знает их как виды (evaluator_capsule). Таблица связывает одно с
@@ -404,6 +406,38 @@ async function publishAuthoredLearningV2Course(input, deps) {
             .root.rootFingerprint,
     });
 }
+/**
+ * Сторож D150 (координатор, 2026-10-01): эталон урока 1 — встроенный релиз.
+ * Пока у авторского урока 1 набор новых слов ИЛИ профиль занятия отличаются от
+ * релиза, публикация авторского курса en запрещена: иначе людям подменили бы
+ * проверенный урок непроверенным. Эталон недоступен — тоже отказ (fail-closed).
+ * Причина всегда пишется в лог [PUBLISH-PARITY] и возвращается на экран.
+ */
+function assertLesson1ReleaseParityForPublishV1(targetLanguage, authoredSessions, computeMismatches = lesson1_release_parity_v1_1.lesson1ReleaseParityMismatchesV1) {
+    if (targetLanguage !== "en") {
+        console.info("[PUBLISH-PARITY] skip: not the English course", { targetLanguage });
+        return;
+    }
+    let mismatches;
+    try {
+        mismatches = computeMismatches(authoredSessions);
+    }
+    catch (error) {
+        const reason = error instanceof Error ? error.message : String(error);
+        console.error("[PUBLISH-PARITY] refused: release reference unavailable", { reason });
+        throw new https_1.HttpsError("failed-precondition", "publish_lesson1_release_reference_unavailable", { reason });
+    }
+    if (mismatches.length > 0) {
+        console.warn("[PUBLISH-PARITY] refused: authored lesson 1 diverges from the bundled release", {
+            count: mismatches.length,
+            first: mismatches.slice(0, 5),
+        });
+        throw new https_1.HttpsError("failed-precondition", "publish_lesson1_diverges_from_release", { count: mismatches.length, first: mismatches.slice(0, 10) });
+    }
+    console.info("[PUBLISH-PARITY] ok: authored lesson 1 matches the bundled release", {
+        sessions: authoredSessions.length,
+    });
+}
 exports.adminPublishAuthoredLearningV2Course = (0, https_1.onCall)({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
     const role = (0, roles_1.hasAdminRole)(request.auth?.token?.adminRole)
         ? request.auth.token.adminRole
@@ -446,6 +480,7 @@ exports.adminPublishAuthoredLearningV2Course = (0, https_1.onCall)({ region: REG
     const first = authored_sessions_v1_1.AUTHORED_EPISODE_01_SESSIONS[0];
     if (!first)
         throw new https_1.HttpsError("failed-precondition", "publish_no_sessions_authored");
+    assertLesson1ReleaseParityForPublishV1(input.targetLanguage, authored_sessions_v1_1.AUTHORED_EPISODE_01_SESSIONS);
     // зачем: индекс урока требует все восемь локалей интерфейса, а автор пишет
     // три (ru, uk, es). Разворачиваем тем же способом, что и шард: недостающие
     // помечаются как непереведённые, а не подменяются русским молча. Без этого

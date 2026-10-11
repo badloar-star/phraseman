@@ -27,6 +27,68 @@ function accepted(existing: SpireTaskIncident | null, reportId: string, nowMs: n
 }
 
 describe('Spire canonical incident contract', () => {
+  test('German report quarantines its exact task and verified restore returns it to future packs', () => {
+    const germanTaskId = 'arena-de-fill_gap-1-0000';
+    const first = planAcceptedSpireTaskReport({
+      existing: null,
+      evidence: {
+        reportId: 'de-report-1', studyTarget: 'de', taskId: germanTaskId, weekId: '2026-W40', tier: 1,
+        packHash: 'sp1_abcdefghijklmnopqrstuvwxyz123456', reason: 'Неверный ответ', mode: 'fill_gap', difficulty: 1,
+      },
+      nowMs: 100,
+      flags: parseSpireTaskFlagsDocStrict(null, 'de'),
+    });
+    expect(first.incident).toMatchObject({ studyTarget: 'de', taskId: germanTaskId, state: 'quarantined' });
+    expect(first.nextFlags.flagged[germanTaskId]).toBeDefined();
+    const restored = planSpireTaskIncidentStateChange({
+      incident: first.incident, nextState: 'restored', actorUid: 'admin-1', nowMs: 200, flags: first.nextFlags,
+    });
+    expect(restored.incident).toMatchObject({ studyTarget: 'de', state: 'restored', revision: 2 });
+    expect(restored.nextFlags.flagged[germanTaskId]).toBeUndefined();
+    expect(spireTaskIncidentId('de', germanTaskId)).toBe(`de__${germanTaskId}`);
+  });
+
+  test('Italian report quarantines config/spire_task_flags_it and verified restore returns it to future packs', () => {
+    const italianTaskId = 'arena-it-fill_gap-1-0000';
+    const first = planAcceptedSpireTaskReport({
+      existing: null,
+      evidence: {
+        reportId: 'it-report-1', studyTarget: 'it', taskId: italianTaskId, weekId: '2026-W40', tier: 1,
+        packHash: 'sp1_abcdefghijklmnopqrstuvwxyz123456', reason: 'Неверный ответ', mode: 'fill_gap', difficulty: 1,
+      },
+      nowMs: 100,
+      flags: parseSpireTaskFlagsDocStrict(null, 'it'),
+    });
+    expect(first.incident).toMatchObject({ studyTarget: 'it', taskId: italianTaskId, state: 'quarantined' });
+    expect(first.nextFlags).toMatchObject({ studyTarget: 'it' });
+    expect(first.nextFlags.flagged[italianTaskId]).toBeDefined();
+    const restored = planSpireTaskIncidentStateChange({
+      incident: first.incident, nextState: 'restored', actorUid: 'admin-1', nowMs: 200, flags: first.nextFlags,
+    });
+    expect(restored.incident).toMatchObject({ studyTarget: 'it', state: 'restored', revision: 2 });
+    expect(restored.nextFlags.flagged[italianTaskId]).toBeUndefined();
+    expect(spireTaskIncidentId('it', italianTaskId)).toBe(`it__${italianTaskId}`);
+  });
+
+  test('English Spire report quarantines and restores its exact published task ID', () => {
+    const englishTaskId = 'spire-en-listen-en:lesson-03:session-43:i02';
+    const first = planAcceptedSpireTaskReport({
+      existing: null,
+      evidence: {
+        reportId: 'en-report-1', studyTarget: 'en', taskId: englishTaskId, weekId: '2026-W40', tier: 1,
+        packHash: 'sp1_abcdefghijklmnopqrstuvwxyz123456', reason: 'Wrong audio', mode: 'listen', difficulty: 1,
+      },
+      nowMs: 100,
+      flags: parseSpireTaskFlagsDocStrict(null, 'en'),
+    });
+    expect(first.incident).toMatchObject({ studyTarget: 'en', taskId: englishTaskId, state: 'quarantined' });
+    expect(first.nextFlags.flagged[englishTaskId]).toBeDefined();
+    const restored = planSpireTaskIncidentStateChange({
+      incident: first.incident, nextState: 'restored', actorUid: 'admin-1', nowMs: 200, flags: first.nextFlags,
+    });
+    expect(restored.nextFlags.flagged[englishTaskId]).toBeUndefined();
+  });
+
   test('first report quarantines and later reports increment a bounded incident without changing revision', () => {
     let plan = accepted(null, 'r-1', 100);
     expect(plan.incident).toMatchObject({ state: 'quarantined', quarantineOwner: 'incident', manualHoldActive: false, revision: 1, reportCount: 1, latestReportId: 'r-1' });

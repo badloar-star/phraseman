@@ -5,7 +5,7 @@ import { spireInspectMultilingualPool, type SpireMultilingualLang } from './spir
 
 /**
  * Интеграционная проверка на РЕАЛЬНОМ контенте (не синтетике): все 4000
- * заданий на язык × 3 языка проходят конвертер и серверную проверку
+ * заданий на язык × 4 языка проходят конвертер и серверную проверку
  * validateTournamentTaskForNewRoom без единого фейла среди converted.
  * Один прогон занимает секунды (12000 записей, чистые функции, без сети).
  */
@@ -15,7 +15,7 @@ function readRows(lang: SpireMultilingualLang): unknown[] {
   return text.split('\n').filter((line) => line.trim()).map((line) => JSON.parse(line));
 }
 
-describe.each<SpireMultilingualLang>(['es', 'de', 'fr'])('spireInspectMultilingualPool на реальном контенте (%s)', (lang) => {
+describe.each<SpireMultilingualLang>(['es', 'de', 'fr', 'it'])('spireInspectMultilingualPool на реальном контенте (%s)', (lang) => {
   test('конвертирует 4000/4000 заданий, все converted проходят validateTournamentTaskForNewRoom', () => {
     const rows = readRows(lang);
     expect(rows).toHaveLength(4000);

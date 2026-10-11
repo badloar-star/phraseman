@@ -9,6 +9,7 @@ exports.selectLearningV2CourseSessionInteractionAudioV1 = selectLearningV2Course
 exports.learningV2CourseSessionInteractionVoiceIndexV1 = learningV2CourseSessionInteractionVoiceIndexV1;
 const voice_playback_policy_v1_1 = require("../contracts/voice_playback_policy_v1");
 const decision_registry_1 = require("../policies/decision_registry");
+const course_session_limits_v1_1 = require("./course_session_limits_v1");
 const course_session_client_children_v1_1 = require("./course_session_client_children_v1");
 exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1 = "learning-v2-course-session-audio-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1 = 4 * 1024 * 1024;
@@ -322,7 +323,8 @@ function learningV2CourseSessionInteractionVoiceIndexV1(input) {
         !ID_RE.test(input.courseSessionId) ||
         !Number.isSafeInteger(input.interactionOrdinal) ||
         input.interactionOrdinal < 1 ||
-        input.interactionOrdinal > 22)
+        input.interactionOrdinal >
+            course_session_limits_v1_1.LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1)
         fail();
     const cycleOffset = Number.parseInt((0, decision_registry_1.hashCanonicalBody)({
         schemaVersion: "learning-v2-course-session-voice-cycle.v1",

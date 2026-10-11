@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SESSION_PRACTICE_CARD_COUNT_V1 = exports.SESSION_PHRASE_COUNT_V1 = exports.UNTRANSLATED_MARKER = void 0;
+exports.SESSION_PRACTICE_CARD_COUNT_V1 = exports.SESSION_PHRASE_COUNT_V1 = exports.VOCABULARY_STAGE_INSTRUCTION = exports.FAMILY_INSTRUCTION = exports.UNTRANSLATED_MARKER = void 0;
 exports.expandLocalized = expandLocalized;
 exports.learningV2SingleTargetSuccessV1 = learningV2SingleTargetSuccessV1;
 exports.buildSessionShardFromSource = buildSessionShardFromSource;
@@ -62,6 +62,7 @@ function expandLocalized(source) {
         ru: source.ru,
         uk: source.uk,
         es: source.es,
+        en: source.en,
         'pt-BR': source['pt-BR'],
         vi: source.vi,
         id: source.id,
@@ -80,6 +81,7 @@ function expandLocalizedIntroRuns(source) {
         ru: source.ru,
         uk: source.uk,
         es: source.es,
+        en: source.en,
         'pt-BR': source['pt-BR'],
         vi: source.vi,
         id: source.id,
@@ -167,7 +169,8 @@ function completeAuthoredIntroRuns(page, phrases) {
  * Инструкция к карточке зависит от механики, а не от фразы: собрать, услышать,
  * выбрать форму. Пишем по-человечески, без жаргона семей.
  */
-const FAMILY_INSTRUCTION = Object.freeze({
+// Экспорт — для сторожа инвариантов (instruction берётся из таблицы копирайта).
+exports.FAMILY_INSTRUCTION = Object.freeze({
     listen_choose: {
         ru: 'Послушайте и выберите то, что услышали.',
         uk: 'Послухайте й оберіть те, що почули.',
@@ -239,7 +242,7 @@ const FAMILY_INSTRUCTION = Object.freeze({
         pl: 'Powtórz na głos i porównaj ze wzorem.',
     },
 });
-const VOCABULARY_STAGE_INSTRUCTION = Object.freeze({
+exports.VOCABULARY_STAGE_INSTRUCTION = Object.freeze({
     recognize: {
         ru: 'Послушайте и выберите услышанное слово.',
         uk: 'Послухайте й виберіть почуте слово.',
@@ -301,7 +304,7 @@ function learningV2SingleTargetSuccessV1(target, explanation) {
         : `${cleanTarget} — ${remainder}`;
 }
 function cardCopy(phrase, family) {
-    const instruction = FAMILY_INSTRUCTION[family] ?? FAMILY_INSTRUCTION.phrase_builder;
+    const instruction = exports.FAMILY_INSTRUCTION[family] ?? exports.FAMILY_INSTRUCTION.phrase_builder;
     // зачем: подсказка — это объяснение фразы из источника, а не «попробуйте ещё».
     // Владелец требует богатый разбор на каждой карточке.
     const localized = phrase.localizedDetails;
@@ -602,7 +605,7 @@ function buildSessionShardFromSource(source) {
         };
         const learnerCopy = gridVocabulary && expandedGridMeaning
             ? (() => {
-                const instructionByLocale = expandLocalized(VOCABULARY_STAGE_INSTRUCTION.retrieve_meaning);
+                const instructionByLocale = expandLocalized(exports.VOCABULARY_STAGE_INSTRUCTION.retrieve_meaning);
                 const localized = (select) => Object.fromEntries(generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, select(locale)]));
                 return {
                     instructionByLocale,
@@ -622,7 +625,7 @@ function buildSessionShardFromSource(source) {
                     }));
                     const localized = (select) => Object.fromEntries(generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, select(locale)]));
                     return {
-                        instructionByLocale: expandLocalized(VOCABULARY_STAGE_INSTRUCTION[vocabularyStage]),
+                        instructionByLocale: expandLocalized(exports.VOCABULARY_STAGE_INSTRUCTION[vocabularyStage]),
                         hintByLocale: guidance,
                         successMessageByLocale: localized((locale) => learningV2SingleTargetSuccessV1(targetText, guidance[locale])),
                         retryMessageByLocale: localized((locale) => feedback[0]?.byLocale[locale] ?? guidance[locale]),

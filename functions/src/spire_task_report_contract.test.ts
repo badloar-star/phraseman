@@ -60,9 +60,29 @@ describe('Spire task report contract', () => {
     expect(() => verifySpireTaskClaimAgainstPack(parsed, pack, claim.packHash)).toThrow('spire_task_report_pack_mismatch');
   });
 
-  test('rejects English and malformed identity fields before any pack read', () => {
-    expect(() => parseSpireTaskReportClaim({ ...claim, studyTarget: 'en' })).toThrow('spire_task_report_lang_invalid');
+  test('accepts an exact English Spire task identity from the published pack', () => {
+    const englishBody = {
+      ...packBody,
+      lang: 'en' as const,
+      floors: [{
+        floor: 1,
+        steps: [{ step: 1, sets: [{ tasks: [{ taskId: 'spire-en-listen-en:lesson-03:session-43:i02', mode: 'listen', kind: 'listen', difficulty: 1, payload: {} }] }] }],
+      }],
+    };
+    const englishHash = spirePackHash(englishBody);
+    const englishClaim = parseSpireTaskReportClaim({
+      ...claim,
+      taskId: 'spire-en-listen-en:lesson-03:session-43:i02',
+      studyTarget: 'en',
+      packHash: englishHash,
+    });
+    expect(verifySpireTaskClaimAgainstPack(englishClaim, { ...englishBody, packHash: englishHash }, englishHash))
+      .toMatchObject({ studyTarget: 'en', mode: 'listen' });
+  });
+
+  test('rejects cross-language and malformed identity fields before any pack read', () => {
     expect(() => parseSpireTaskReportClaim({ ...claim, studyTarget: 'de' })).toThrow('spire_task_report_task_invalid');
+    expect(() => parseSpireTaskReportClaim({ ...claim, studyTarget: 'en', taskId: 'arena-es-fill_gap-1-0000' })).toThrow('spire_task_report_task_invalid');
     expect(() => parseSpireTaskReportClaim({ ...claim, weekId: '../2026-W40' })).toThrow('spire_task_report_week_invalid');
     expect(() => parseSpireTaskReportClaim({ ...claim, taskId: '../task' })).toThrow('spire_task_report_task_invalid');
   });

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.hasLearningV2NewWordCardEditorialV1 = hasLearningV2NewWordCardEditorialV1;
 exports.learningV2NewWordCardEditorialV1 = learningV2NewWordCardEditorialV1;
 const generator_course_contract_1 = require("../generator_course_contract");
 const episode_02_session_01_editorial_v2_1 = require("./episode_02_session_01_editorial_v2");
@@ -555,6 +556,11 @@ const SESSION_07_FULL_B1_EDITORIAL = Object.freeze([
 ]);
 for (const entry of SESSION_07_FULL_B1_EDITORIAL) {
     EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
+}
+// Есть ли готовый текст карточки слова (без броска). Нужен сборщику занятия,
+// чтобы не ломать всё занятие, когда для слова ещё не написан текст карточки.
+function hasLearningV2NewWordCardEditorialV1(targetLanguage, lexicalItemId) {
+    return EDITORIAL_BY_KEY.has(`${targetLanguage}\u0000${lexicalItemId}`);
 }
 function learningV2NewWordCardEditorialV1(input) {
     const entry = EDITORIAL_BY_KEY.get(`${input.targetLanguage}\u0000${input.lexicalItemId}`);

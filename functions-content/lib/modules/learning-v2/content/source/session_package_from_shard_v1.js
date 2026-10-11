@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ownWordExerciseLexicalIds = ownWordExerciseLexicalIds;
+exports.wordCardGapsV1 = wordCardGapsV1;
 exports.buildSessionChildBodiesFromShard = buildSessionChildBodiesFromShard;
 // зачем: между написанной сессией и публикацией зияла дыра. Шард — то, что
 // пишет автор: интро, карточки, дистракторы. Пакет — то, что принимает сервер:
@@ -206,6 +208,38 @@ function modeNativeFeedbackByResponseId(card, locale) {
     const wrongEntries = entries.filter((entry) => !entry.correct);
     return Object.freeze(Object.fromEntries(wrongEntries.map((entry) => [entry.responseId, entry.feedbackByLocale[locale]])));
 }
+// зачем (координатор, 2026-10-01): человек видел две одинаковые кнопки
+// («nervous» дважды, «eres» дважды) — авторский дистрактор совпадал со словом
+// фразы или с другим дистрактором. Сравнение точное, с учётом регистра:
+// «I»/«i» — намеренная ловушка на заглавную, не дубль. Если уникальных
+// дистракторов не хватает — вариантов меньше, но без повторов. Сами слова
+// фразы не трогаем: повтор внутри фразы нужен для её сборки.
+function distinctDistractorTokens(orderedTokens, distractors) {
+    const limit = Math.max(0, 8 - orderedTokens.length);
+    const seen = new Set(orderedTokens);
+    const kept = [];
+    for (const token of distractors) {
+        if (kept.length >= limit)
+            break;
+        if (seen.has(token))
+            continue;
+        seen.add(token);
+        kept.push(token);
+    }
+    return kept;
+}
+// Тот же принцип для выбора смысла: из вариантов с одинаковым текстом
+// оставляем верный (если он среди них), иначе первый.
+function distinctChoiceOptions(options, correctIds) {
+    const winnerByText = new Map();
+    for (const option of options) {
+        const current = winnerByText.get(option.text);
+        if (current === undefined || (!correctIds.has(current) && correctIds.has(option.responseId))) {
+            winnerByText.set(option.text, option.responseId);
+        }
+    }
+    return options.filter((option) => winnerByText.get(option.text) === option.responseId);
+}
 function modeNativeLearnerTaskProjection(card, locale) {
     const payload = card.modePayload;
     if (!payload)
@@ -223,7 +257,7 @@ function modeNativeLearnerTaskProjection(card, locale) {
                     responseId: `${card.cardId}:token:${index + 1}`,
                     text,
                 })),
-                ...payload.authoredDistractorTokens.slice(0, Math.max(0, 8 - payload.orderedTokens.length)).map((text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text })),
+                ...distinctDistractorTokens(payload.orderedTokens, payload.authoredDistractorTokens).map((text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text })),
             ],
             feedbackByResponseId,
         };
@@ -231,10 +265,10 @@ function modeNativeLearnerTaskProjection(card, locale) {
     if (payload.family === 'listen_choose') {
         return {
             prompt: instruction,
-            responseOptions: payload.localizedMeaningChoices.map((choice) => ({
+            responseOptions: distinctChoiceOptions(payload.localizedMeaningChoices.map((choice) => ({
                 responseId: choice.responseId,
                 text: choice.meaningByLocale?.[locale] ?? choice.targetText,
-            })),
+            })), new Set(payload.choiceFeedback.filter((entry) => entry.correct).map((entry) => entry.responseId))),
             feedbackByResponseId,
         };
     }
@@ -246,7 +280,7 @@ function modeNativeLearnerTaskProjection(card, locale) {
                     responseId: `${card.cardId}:token:${index + 1}`,
                     text,
                 })),
-                ...payload.authoredDistractorTokens.slice(0, Math.max(0, 8 - payload.orderedTokens.length)).map((text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text })),
+                ...distinctDistractorTokens(payload.orderedTokens, payload.authoredDistractorTokens).map((text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text })),
             ],
             feedbackByResponseId,
         };
@@ -703,6 +737,45 @@ function localizedResponseFeedback(card, practiceCards, allowUnavailableAuthored
  * проверка. Теперь id — один, приходит от вызывающей стороны (топологии),
  * и утечь в двух местах по-разному больше не может.
  */
+// Слова сессии, у которых есть СОБСТВЕННОЕ упражнение (цель упражнения —
+// само слово). Экспортируется для отчёта гейта качества «новое слово без
+// своего упражнения».
+function ownWordExerciseLexicalIds(practiceCards) {
+    const ids = new Set();
+    for (const card of practiceCards) {
+        if (card.family === 'speed_match')
+            continue;
+        const lexicalItemId = card.contentItem.intentId.replace(/:contact-\d+$/u, '');
+        if (/-word-[^:]+$/u.test(lexicalItemId))
+            ids.add(lexicalItemId);
+    }
+    return ids;
+}
+function hasNewWordCardEditorialV1(targetLanguage, lexicalItemId, practiceCards) {
+    if ((0, learning_v2_new_word_card_editorial_v1_1.hasLearningV2NewWordCardEditorialV1)(targetLanguage, lexicalItemId))
+        return true;
+    if (targetLanguage !== 'es')
+        return false;
+    const card = practiceCards.find((candidate) => candidate.contentItem.intentId.startsWith(`${lexicalItemId}:`));
+    return card !== undefined && (0, es_learning_v2_new_word_card_editorial_v1_1.esLearningV2NewWordCardEditorialV1)({
+        targetLanguage,
+        lexicalItemId,
+        targetText: card.contentItem.target.text,
+    }) !== undefined;
+}
+// Отчёт гейта качества (не блокирующий): новые слова манифеста, которые не
+// получат карточку-знакомство, и почему. Список уходит координатору.
+function wordCardGapsV1(practiceCards, targetLanguage, newVocabularyIds) {
+    const own = ownWordExerciseLexicalIds(practiceCards);
+    return newVocabularyIds.flatMap((lexicalItemId) => {
+        if (!own.has(lexicalItemId))
+            return [{ lexicalItemId, reason: 'no_own_exercise' }];
+        if (!hasNewWordCardEditorialV1(targetLanguage, lexicalItemId, practiceCards)) {
+            return [{ lexicalItemId, reason: 'no_card_copy' }];
+        }
+        return [];
+    });
+}
 function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionId, options) {
     const locale = interfaceLocale;
     // Интро: три страницы, у каждой свой вопрос внизу.
@@ -740,10 +813,21 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
         ? shard.cards
         : practiceCards;
     const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
+    // зачем: для планов занятий 1–2 число новых слов было зашито как 3. Когда в
+    // занятие 1 добавили четвёртое слово (en: ready, es: verdad), карточка-знакомство
+    // четвёртого слова молча перестала строиться, а сборщик шарда при этом уже
+    // передавал в хореографию 4 (newVocabulary.length) — два сборщика расходились.
+    // Число новых слов этих планов = число слов в их таблице «соедините пары»
+    // (speed_match: «I · am · here · ready»); нет таблицы — прежнее значение 3.
+    const fixedPlanVocabularyCount = () => {
+        const grid = authoredPracticeCards.find((card) => card.family === 'speed_match');
+        const words = grid?.contentItem.target.text.split(' · ').filter((word) => word.trim()) ?? [];
+        return words.length > 0 ? words.length : 3;
+    };
     const vocabularyCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
-        ? 3
+        ? fixedPlanVocabularyCount()
         : shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
-            ? 3
+            ? fixedPlanVocabularyCount()
             : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(cardTargets);
     const phraseCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
         ? 3
@@ -889,8 +973,28 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
     // and silently skipped later ones.
     const newWordOrderByCardId = new Map();
     const introducedLexicalItemIds = new Set();
+    // зачем (координатор, 2026-10-01): после сжатия занятий до 6–7 упражнений
+    // (D149) вывод числа новых слов по старой раскладке «20 мест, 3 касания»
+    // возвращал 0, и в en-занятиях 3–55 карточки-знакомства не строились вовсе.
+    // У сжатых планов слово с собственным упражнением узнаётся по id намерения
+    // «…-word-<слово>:contact-N» — оно же id слова в манифесте. Карточку можно
+    // повесить ТОЛЬКО на такое упражнение: клиент требует, чтобы сохраняемая
+    // фраза карточки совпадала с фразой упражнения. Карточку строим, только если
+    // для слова уже написан текст карточки (редакторский реестр) — текст не
+    // выдумываем, а без него раньше падало ВСЁ занятие. Слова без своего
+    // упражнения или без текста карточки — в отчёт гейта качества
+    // (wordCardGapsV1). Число для хореографии (vocabularyCount) не трогаем —
+    // от него зависит профиль занятия.
+    const isFixedWordPlan = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+        || shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1;
+    const cardableWordIds = isFixedWordPlan
+        ? null
+        : new Set([...ownWordExerciseLexicalIds(authoredPracticeCards)].filter((lexicalItemId) => hasNewWordCardEditorialV1(shard.targetLanguage, lexicalItemId, authoredPracticeCards)));
+    const wordCardLimit = cardableWordIds === null
+        ? vocabularyCount
+        : Math.max(vocabularyCount, cardableWordIds.size);
     for (const card of authoredPracticeCards) {
-        if (introducedLexicalItemIds.size >= vocabularyCount)
+        if (introducedLexicalItemIds.size >= wordCardLimit)
             break;
         // A four-pair Speed Match board is a retrieval interaction, not a word
         // encounter. Its synthetic grid intent must never request an editorial
@@ -902,6 +1006,8 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
             throw new Error(`learning_v2_new_word_card_lexical_id_invalid:${card.contentItem.intentId}`);
         }
         if (introducedLexicalItemIds.has(lexicalItemId))
+            continue;
+        if (cardableWordIds !== null && !cardableWordIds.has(lexicalItemId))
             continue;
         introducedLexicalItemIds.add(lexicalItemId);
     }

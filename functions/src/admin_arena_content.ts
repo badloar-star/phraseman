@@ -2,6 +2,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import deManifest from '../../content/arena-multilingual/generated/de/manifest.json';
 import esManifest from '../../content/arena-multilingual/generated/es/manifest.json';
 import frManifest from '../../content/arena-multilingual/generated/fr/manifest.json';
+import itManifest from '../../content/arena-multilingual/generated/it/manifest.json';
 import { arenaCanonicalSha256 } from './arena_content_generation';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 
@@ -15,8 +16,15 @@ import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_
  * publication path.
  */
 
-export const ARENA_ADMIN_CONTENT_TARGETS = ['es', 'fr', 'de'] as const;
+export const ARENA_ADMIN_CONTENT_TARGETS = ['es', 'fr', 'de', 'it'] as const;
 export type ArenaAdminContentTarget = typeof ARENA_ADMIN_CONTENT_TARGETS[number];
+
+const ARENA_ADMIN_OWNER_DECISION_BY_TARGET: Readonly<Record<ArenaAdminContentTarget, string>> = Object.freeze({
+  es: 'D155',
+  fr: 'D156',
+  de: 'D157',
+  it: 'D154',
+});
 
 const REQUIRED_TASK_COUNT = 4_000;
 const HASH = /^[a-f0-9]{64}$/u;
@@ -48,6 +56,7 @@ const BUNDLED_MANIFESTS: Readonly<Record<ArenaAdminContentTarget, unknown>> = Ob
   es: esManifest,
   fr: frManifest,
   de: deManifest,
+  it: itManifest,
 });
 
 function isRecord(value: unknown): value is Row {
@@ -60,7 +69,7 @@ function isTarget(value: unknown): value is ArenaAdminContentTarget {
 }
 
 export type ArenaAdminManifestValidation = Readonly<
-  { ok: true; code: 'manifest_valid_draft' }
+  { ok: true; code: 'manifest_valid_draft' | 'manifest_valid_release' }
   | { ok: false; code:
     | 'target_unsupported'
     | 'manifest_schema_invalid'
@@ -71,6 +80,7 @@ export type ArenaAdminManifestValidation = Readonly<
     | 'quota_matrix_invalid'
     | 'hash_invalid'
     | 'coverage_not_reviewed'
+    | 'release_receipt_invalid'
     | 'manifest_hash_mismatch' }
 >;
 
@@ -81,7 +91,39 @@ function exactQuotaMatrix(value: unknown): boolean {
     && expected.every(([key, count]) => value[key] === count);
 }
 
-/** Validates manifest identity while preserving its mandatory DRAFT/BLOCK state. */
+function validReleaseReceipts(manifest: Row, expectedTarget: ArenaAdminContentTarget): boolean {
+  const linguistic = manifest.linguisticReviewReceipt;
+  const publication = manifest.adminPublicationReceipt;
+  if (!isRecord(linguistic) || !isRecord(publication)) return false;
+  const { receiptSha256: linguisticHash, ...linguisticBody } = linguistic;
+  const { receiptSha256: publicationHash, ...publicationBody } = publication;
+  return linguistic.schemaVersion === 'spire-multilingual-linguistic-review-v1'
+    && linguistic.studyTarget === expectedTarget
+    && linguistic.verdict === 'PASS'
+    && linguistic.reviewerIndependence === 'independent_read_only'
+    && linguistic.reviewerQualification === 'target_language_expert'
+    && linguistic.linguisticEvidenceStatus === 'approved'
+    && linguistic.cefrEvidenceStatus === 'not_claimed'
+    && typeof linguistic.reviewerRunId === 'string'
+    && linguistic.reviewerRunId.trim().length > 0
+    && typeof linguistic.reviewedAt === 'string'
+    && linguistic.reviewedAt.trim().length > 0
+    && linguistic.tasksSha256 === manifest.tasksSha256
+    && linguistic.evidencePackSha256 === manifest.evidencePackSha256
+    && linguisticHash === arenaCanonicalSha256(linguisticBody)
+    && publication.schemaVersion === 'spire-multilingual-admin-publication-v1'
+    && publication.studyTarget === expectedTarget
+    && publication.publicationStatus === 'approved'
+    && typeof publication.publicationId === 'string'
+    && publication.publicationId.trim().length > 0
+    && publication.publisherRole === 'content_admin'
+    && publication.ownerDecision === ARENA_ADMIN_OWNER_DECISION_BY_TARGET[expectedTarget]
+    && publication.tasksSha256 === manifest.tasksSha256
+    && publication.linguisticReviewReceiptSha256 === linguisticHash
+    && publicationHash === arenaCanonicalSha256(publicationBody);
+}
+
+/** Validates either a fail-closed draft or a fully receipt-bound release manifest. */
 export function validateArenaAdminDraftManifest(
   manifest: unknown,
   expectedTarget: unknown,
@@ -96,25 +138,38 @@ export function validateArenaAdminDraftManifest(
     || manifest.generatedTaskCount !== REQUIRED_TASK_COUNT) {
     return { ok: false, code: 'task_count_not_exact' };
   }
-  if (manifest.verdict !== 'BLOCK' || manifest.releaseEligible !== false) {
+  const releaseCandidate = manifest.verdict === 'PASS' && manifest.releaseEligible === true;
+  const draftCandidate = manifest.verdict === 'BLOCK' && manifest.releaseEligible === false;
+  if (!releaseCandidate && !draftCandidate) {
     return { ok: false, code: 'draft_release_state_invalid' };
-  }
-  const blockReason = typeof manifest.blockReason === 'string' ? manifest.blockReason : '';
-  if (REQUIRED_BLOCK_REASONS.some((reason) => !blockReason.split(';').includes(reason))) {
-    return { ok: false, code: 'block_reason_incomplete' };
   }
   if (!exactQuotaMatrix(manifest.quotas)) return { ok: false, code: 'quota_matrix_invalid' };
   if ([manifest.evidencePackSha256, manifest.tasksSha256, manifest.semanticLedgerSha256,
     manifest.manifestSha256].some((value) => typeof value !== 'string' || !HASH.test(value))) {
     return { ok: false, code: 'hash_invalid' };
   }
-  if (!isRecord(manifest.coverage)
-    || manifest.coverage.lexicalFactInventoryStatus !== 'pending_native_review') {
-    return { ok: false, code: 'coverage_not_reviewed' };
-  }
   const { manifestSha256, ...body } = manifest;
   if (manifestSha256 !== arenaCanonicalSha256(body)) {
     return { ok: false, code: 'manifest_hash_mismatch' };
+  }
+  if (releaseCandidate) {
+    if (!isRecord(manifest.coverage)
+      || manifest.coverage.lexicalFactInventoryStatus !== 'approved'
+      || manifest.coverage.cefrEvidenceStatus !== 'not_claimed') {
+      return { ok: false, code: 'coverage_not_reviewed' };
+    }
+    if (!validReleaseReceipts(manifest, expectedTarget)) {
+      return { ok: false, code: 'release_receipt_invalid' };
+    }
+    return { ok: true, code: 'manifest_valid_release' };
+  }
+  const blockReason = typeof manifest.blockReason === 'string' ? manifest.blockReason : '';
+  if (REQUIRED_BLOCK_REASONS.some((reason) => !blockReason.split(';').includes(reason))) {
+    return { ok: false, code: 'block_reason_incomplete' };
+  }
+  if (!isRecord(manifest.coverage)
+    || manifest.coverage.lexicalFactInventoryStatus !== 'pending_native_review') {
+    return { ok: false, code: 'coverage_not_reviewed' };
   }
   return { ok: true, code: 'manifest_valid_draft' };
 }
@@ -129,20 +184,23 @@ function statusRow(target: ArenaAdminContentTarget, manifest: unknown) {
   const requiredTaskCount = Number(row.requiredTaskCount) || 0;
   const generatedTaskCount = Number(row.generatedTaskCount) || 0;
   const valid = validation.ok;
+  const released = validation.ok && validation.code === 'manifest_valid_release';
   return Object.freeze({
     studyTarget: target,
     requiredTaskCount,
     generatedTaskCount,
     countComplete: requiredTaskCount === REQUIRED_TASK_COUNT
       && generatedTaskCount === REQUIRED_TASK_COUNT,
-    verdict: valid ? 'BLOCK' as const : 'BLOCK' as const,
-    blockReason: valid
-      ? stringField(row, 'blockReason')
+    verdict: released ? 'PASS' as const : 'BLOCK' as const,
+    blockReason: released
+      ? ''
+      : valid
+        ? stringField(row, 'blockReason')
       : `manifest_validation_failed:${validation.code}`,
-    releaseEligible: false as const,
+    releaseEligible: released,
     manifestIntegrity: valid ? 'PASS' as const : 'BLOCK' as const,
-    reviewReadiness: 'BLOCK' as const,
-    publicationDecision: 'BLOCK' as const,
+    reviewReadiness: released ? 'PASS' as const : 'BLOCK' as const,
+    publicationDecision: released ? 'PASS' as const : 'BLOCK' as const,
     manifestSha256: stringField(row, 'manifestSha256'),
     tasksSha256: stringField(row, 'tasksSha256'),
     semanticLedgerSha256: stringField(row, 'semanticLedgerSha256'),

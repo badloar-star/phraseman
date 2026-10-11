@@ -141,7 +141,7 @@ function currentWeekKey(nowMs: number): string {
 }
 
 /** Языки Шпиля — зеркало SPIRE_LANGS из spire_progress_contract.ts (PM-275/276). */
-const SPIRE_LANGS = ['en', 'es', 'de', 'fr'] as const;
+const SPIRE_LANGS = ['en', 'es', 'de', 'fr', 'it'] as const;
 const SPIRE_WEEK_RECORD_SCHEMA_VERSION = 'spire-week-record.v1';
 
 /**

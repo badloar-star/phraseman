@@ -1,14 +1,16 @@
 import {
+  spireTaskIdBelongsToTarget,
   spireTaskFlagAdd,
   spireTaskFlagRemove,
   type SpireTaskFlagsDoc,
 } from './spire_task_flag_contract';
+import type { ArenaStudyTarget } from './arena_target_registry';
 import { createHash } from 'crypto';
 
 export const SPIRE_TASK_INCIDENTS_COLLECTION = 'spire_task_incidents' as const;
 export const SPIRE_TASK_INCIDENT_SCHEMA = 'spire-task-incident-v1' as const;
 
-export type SpireTaskIncidentLang = 'es' | 'fr' | 'de';
+export type SpireTaskIncidentLang = ArenaStudyTarget;
 export type SpireTaskIncidentState = 'quarantined' | 'restored';
 export type SpireTaskQuarantineOwner = 'incident' | 'manual';
 
@@ -55,7 +57,7 @@ function positiveInteger(value: unknown): value is number {
 
 export function spireTaskIncidentId(lang: SpireTaskIncidentLang, taskId: string): string {
   const cleanTaskId = String(taskId ?? '').trim();
-  if (!cleanTaskId.startsWith(`arena-${lang}-`) || !/^[A-Za-z0-9_-]{1,200}$/u.test(cleanTaskId)) {
+  if (!spireTaskIdBelongsToTarget(cleanTaskId, lang)) {
     throw new Error('spire_task_incident_task_invalid');
   }
   return `${lang}__${cleanTaskId}`;

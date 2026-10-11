@@ -38,16 +38,23 @@ import { ARENA_STUDY_TARGETS, type ArenaStudyTarget } from './arena_target_regis
 export const SPIRE_TASK_FLAGS_SCHEMA_VERSION = 'spire-task-flags-v1' as const;
 export const SPIRE_TASK_FLAGS_COLLECTION = 'config' as const;
 
-/** T41 покрывает только es/de/fr (пулы без проверки носителем); en остаётся в Арене. */
-export const SPIRE_FLAGGABLE_STUDY_TARGETS = ARENA_STUDY_TARGETS
-  .filter((t): t is Exclude<ArenaStudyTarget, 'en'> => t !== 'en');
+/** Все канонические контуры Шпиля поддерживают карантин задания по жалобе. */
+export const SPIRE_FLAGGABLE_STUDY_TARGETS: readonly ArenaStudyTarget[] = ARENA_STUDY_TARGETS;
 
-export function spireTaskFlagsDocId(lang: Exclude<ArenaStudyTarget, 'en'>): string {
+export function spireTaskFlagsDocId(lang: ArenaStudyTarget): string {
   return `spire_task_flags_${lang}`;
 }
 
-export function isSpireFlaggableStudyTarget(value: unknown): value is Exclude<ArenaStudyTarget, 'en'> {
+export function isSpireFlaggableStudyTarget(value: unknown): value is ArenaStudyTarget {
   return (SPIRE_FLAGGABLE_STUDY_TARGETS as readonly string[]).includes(String(value ?? ''));
+}
+
+export function spireTaskIdBelongsToTarget(taskId: unknown, studyTarget: ArenaStudyTarget): boolean {
+  const value = String(taskId ?? '').trim();
+  if (!value || value.length > 200 || !/^[A-Za-z0-9][A-Za-z0-9_:-]*$/u.test(value)) return false;
+  return studyTarget === 'en'
+    ? value.startsWith('arena-en-') || value.startsWith('spire-en-')
+    : value.startsWith(`arena-${studyTarget}-`);
 }
 
 export type SpireTaskFlagEntry = Readonly<{
@@ -60,7 +67,7 @@ export type SpireTaskFlagEntry = Readonly<{
 
 export type SpireTaskFlagsDoc = Readonly<{
   schemaVersion: typeof SPIRE_TASK_FLAGS_SCHEMA_VERSION;
-  studyTarget: Exclude<ArenaStudyTarget, 'en'>;
+  studyTarget: ArenaStudyTarget;
   /** Ключ — taskId, значение — запись флага. Object, не массив: O(1) на сборке пакета. */
   flagged: Readonly<Record<string, SpireTaskFlagEntry>>;
 }>;
@@ -77,13 +84,13 @@ function hasExactKeys(value: Record<string, unknown>, expected: readonly string[
 function validTaskId(value: unknown): value is string {
   const s = String(value ?? '').trim();
   // формат сгенерированного пула: arena-{lang}-{mode}-{difficulty}-{index}
-  return s.length > 0 && s.length <= 200 && /^[a-z0-9][a-z0-9_-]*$/i.test(s);
+  return s.length > 0 && s.length <= 200 && /^[a-z0-9][a-z0-9_:-]*$/i.test(s);
 }
 
-function parseFlagEntry(raw: unknown, studyTarget?: Exclude<ArenaStudyTarget, 'en'>): SpireTaskFlagEntry | null {
+function parseFlagEntry(raw: unknown, studyTarget?: ArenaStudyTarget): SpireTaskFlagEntry | null {
   if (!isRecord(raw)) return null;
   if (!validTaskId(raw.taskId)) return null;
-  if (studyTarget && !String(raw.taskId).startsWith(`arena-${studyTarget}-`)) return null;
+  if (studyTarget && !spireTaskIdBelongsToTarget(raw.taskId, studyTarget)) return null;
   const flaggedAtMs = raw.flaggedAtMs;
   const flaggedByUid = String(raw.flaggedByUid ?? '').trim();
   if (typeof flaggedAtMs !== 'number' || !Number.isFinite(flaggedAtMs) || flaggedAtMs <= 0) return null;
@@ -103,7 +110,7 @@ function parseFlagEntry(raw: unknown, studyTarget?: Exclude<ArenaStudyTarget, 'e
  */
 export function parseSpireTaskFlagsDocStrict(
   raw: unknown,
-  studyTarget: Exclude<ArenaStudyTarget, 'en'>,
+  studyTarget: ArenaStudyTarget,
 ): SpireTaskFlagsDoc {
   if (raw === null || raw === undefined) return parseSpireTaskFlagsDoc(null, studyTarget);
   if (!isRecord(raw)
@@ -135,7 +142,7 @@ export function parseSpireTaskFlagsDocStrict(
 /** Документа нет / повреждён → честный пустой список, не падение (та же логика, что spireConfigStatus). */
 export function parseSpireTaskFlagsDoc(
   raw: unknown,
-  studyTarget: Exclude<ArenaStudyTarget, 'en'>,
+  studyTarget: ArenaStudyTarget,
 ): SpireTaskFlagsDoc {
   const doc = isRecord(raw) ? raw : {};
   const rawFlagged = isRecord(doc.flagged) ? doc.flagged : {};
@@ -164,7 +171,7 @@ export function spireTaskFlagAdd(
   doc: SpireTaskFlagsDoc,
   input: Readonly<{ taskId: string; reason: string; flaggedAtMs: number; flaggedByUid: string }>,
 ): SpireTaskFlagsDoc {
-  if (!validTaskId(input.taskId) || !String(input.taskId).startsWith(`arena-${doc.studyTarget}-`)) {
+  if (!validTaskId(input.taskId) || !spireTaskIdBelongsToTarget(input.taskId, doc.studyTarget)) {
     throw new Error('spire_task_flag_invalid_task_id');
   }
   const flaggedByUid = String(input.flaggedByUid ?? '').trim();

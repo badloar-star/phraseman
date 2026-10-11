@@ -71,7 +71,7 @@ if (fs.existsSync(knowledgeFrom)) {
  * производный от content/arena-multilingual/generated/{lang}/tasks.jsonl,
  * который И ЕСТЬ источник правды и уже в git.
  */
-const multilingualLangs = ['es', 'de', 'fr'];
+const multilingualLangs = ['es', 'de', 'fr', 'it'];
 const multilingualSrcTo = path.resolve(__dirname, '..', 'src', 'generated');
 const multilingualLibTo = path.resolve(__dirname, '..', 'lib', 'functions', 'src', 'generated');
 let multilingualCopied = 0;

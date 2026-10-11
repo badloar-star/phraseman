@@ -8,6 +8,7 @@ exports.evaluateLearningV2CourseSessionInteractionV1 = evaluateLearningV2CourseS
 exports.isLearningV2CourseSessionEvaluatorCapsuleChildV1 = isLearningV2CourseSessionEvaluatorCapsuleChildV1;
 const local_evaluator_capsule_v1_1 = require("./local_evaluator_capsule_v1");
 const decision_registry_1 = require("../policies/decision_registry");
+const course_session_limits_v1_1 = require("./course_session_limits_v1");
 exports.LEARNING_V2_COURSE_SESSION_EVALUATOR_CAPSULE_CHILD_SCHEMA_V1 = "learning-v2-course-session-evaluator-capsule-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_EVALUATOR_CAPSULE_CHILD_MAX_BYTES_V1 = 512 * 1024;
 const HASH_RE = /^[a-f0-9]{64}$/u;
@@ -71,7 +72,7 @@ function parseBody(value) {
             local_evaluator_capsule_v1_1.V2_LOCAL_EVALUATOR_NORMALIZATION_PROFILE_HASH_V1 ||
         !Array.isArray(value.entries) ||
         value.entries.length < 9 ||
-        value.entries.length > 22 ||
+        value.entries.length > course_session_limits_v1_1.LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1 ||
         value.entryCount !== value.entries.length ||
         value.assessmentSecrecy !== "none_device_inspectable" ||
         value.verdictAuthority !== "local_provisional_only" ||

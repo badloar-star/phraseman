@@ -39,7 +39,7 @@ export const SPIRE_REPORT_SCHEMA_VERSION = 'spire-step-report.v1' as const;
 export const SPIRE_WEEK_RECORD_SCHEMA_VERSION = 'spire-week-record.v1' as const;
 
 /** TOWER.md §4.8: шпиль свой на каждый изучаемый язык. */
-export const SPIRE_LANGS = ['en', 'es', 'de', 'fr'] as const;
+export const SPIRE_LANGS = ['en', 'es', 'de', 'fr', 'it'] as const;
 export type SpireLang = typeof SPIRE_LANGS[number];
 
 /** Больше этого за один вызов не принимаем — клиент режет пачку сам. */

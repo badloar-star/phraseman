@@ -9,8 +9,8 @@ import {
 } from './arena_target_registry';
 
 export const ARENA_POOL_TASK_COUNT = 4_000 as const;
-export const ARENA_REQUIRED_GENERATION_TARGETS = Object.freeze(['es', 'fr', 'de'] as const);
-export const ARENA_REQUIRED_GENERATION_PLAN = Object.freeze({ es: 4_000, fr: 4_000, de: 4_000 } as const);
+export const ARENA_REQUIRED_GENERATION_TARGETS = Object.freeze(['es', 'fr', 'de', 'it'] as const);
+export const ARENA_REQUIRED_GENERATION_PLAN = Object.freeze({ es: 4_000, fr: 4_000, de: 4_000, it: 4_000 } as const);
 export const ARENA_DIFFICULTIES = Object.freeze([1, 2, 3] as const);
 export const ARENA_CEFR_BANDS = Object.freeze(['A1', 'A2', 'B1', 'B2'] as const);
 export type ArenaDifficulty = typeof ARENA_DIFFICULTIES[number];
@@ -68,8 +68,8 @@ export type ArenaGeneratorProfile = Readonly<{
   schemaVersion: 'arena-generator-profile-v1';
   studyTarget: ArenaStudyTarget;
   sourceLocale: 'ru';
-  targetLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
-  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
+  targetLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT';
+  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT';
   cefrBands: readonly ArenaCefrBand[];
   modes: readonly ArenaTaskMode[];
   difficulties: readonly ArenaDifficulty[];

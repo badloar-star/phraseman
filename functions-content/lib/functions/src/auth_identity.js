@@ -33,20 +33,27 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authStampAnonOwnership = exports.ANON_MERGE_CLAIM_TTL_MS = exports.authRecoveryHint = exports.authEnsureStableLink = void 0;
-exports.describeAppCheckHeader = describeAppCheckHeader;
+exports.authStampAnonOwnership = exports.ANON_MERGE_LEGACY_AUTH_SKEW_MS = exports.ANON_MERGE_NONCE_MAX_LENGTH = exports.ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED = exports.ANON_MERGE_CLAIM_TTL_MS = exports.authRecoveryHint = exports.authEnsureStableLink = void 0;
 exports.ensureAuthLinkDoc = ensureAuthLinkDoc;
 exports.linkStableAuthUid = linkStableAuthUid;
+exports.dedupStarsSourceId = dedupStarsSourceId;
 exports.cleanupLegacyAuthIdentityDuplicates = cleanupLegacyAuthIdentityDuplicates;
 exports.resolveStableUidForAuth = resolveStableUidForAuth;
 exports.resolveStableUidForAuthInTransaction = resolveStableUidForAuthInTransaction;
 exports.ensureStableLinkForAuth = ensureStableLinkForAuth;
 exports.maskEmailForRecoveryHint = maskEmailForRecoveryHint;
 exports.buildRecoveryHintFromUserData = buildRecoveryHintFromUserData;
+exports.hashAnonMergeNonce = hashAnonMergeNonce;
+exports.generateAnonMergeNonce = generateAnonMergeNonce;
 exports.readAnonMergeClaim = readAnonMergeClaim;
+exports.logDeviceHeaderPresence = logDeviceHeaderPresence;
+exports.authTimeMsFromToken = authTimeMsFromToken;
+exports.verifyAnonMergeClaimNonce = verifyAnonMergeClaimNonce;
+exports.parseAnonMergeNonce = parseAnonMergeNonce;
 exports.stampAnonOwnershipForAuth = stampAnonOwnershipForAuth;
 exports.requireAnonymousOwnershipStampProvider = requireAnonymousOwnershipStampProvider;
 const admin = __importStar(require("firebase-admin"));
+const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const email_contacts_1 = require("./email_contacts");
@@ -54,8 +61,14 @@ const account_id_1 = require("./account_id");
 const account_gate_1 = require("./account_gate");
 const account_delete_job_1 = require("./account_delete_job");
 const growth_daily_aggregate_1 = require("./growth_daily_aggregate");
+const swallowed_error_1 = require("./swallowed_error");
+const auth_merge_stars_transfer_1 = require("./auth_merge_stars_transfer");
+const stars_ledger_1 = require("./stars_ledger");
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
+// зачем (M-1): серверный аудит перепривязок по метке — для отката; клиентам закрыт (rules правит координатор).
+const ANON_RELINK_AUDIT = 'anon_relink_audit';
+const ANON_RELINK_AUDIT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const LEADERBOARD = 'leaderboard';
 const LEAGUE_GROUPS = 'league_groups';
 const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
@@ -70,9 +83,20 @@ function throwIdentityRetired(subject) {
         recovery: 'create_fresh_anonymous',
     });
 }
+/**
+ * 8F: класс и код ошибки для логов — без сообщения (Firestore может вставить в него пути с uid).
+ * зачем: 8D — TypeError в эмуляторе (admin.firestore.FieldValue undefined) выглядел как
+ * «identity_check_unavailable» без единой строки причины (правило владельца «немой catch»).
+ */
+function identityErrorTag(error) {
+    const name = error instanceof Error ? error.name : typeof error;
+    const code = typeof error === 'object' && error !== null && 'code' in error ? String(error.code) : 'none';
+    return `name=${name} code=${code}`;
+}
 function throwIdentityCheckUnavailable(error) {
     if (error instanceof https_1.HttpsError)
         throw error;
+    console.warn(JSON.stringify({ event: 'identity_check_unavailable', cause: identityErrorTag(error) }));
     throw new https_1.HttpsError('unavailable', 'identity_check_unavailable');
 }
 async function readIdentityOrThrow(read) {
@@ -144,35 +168,6 @@ async function assertSelectionDeletionNotPending(db, selection, reads = database
         await assertStableDeletionNotPendingFromReads(db, reads, stableId);
     }
 }
-function readHeaderValue(value) {
-    if (Array.isArray(value))
-        return String(value[0] ?? '');
-    return typeof value === 'string' ? value : '';
-}
-function describeAppCheckHeader(value) {
-    const token = readHeaderValue(value).trim();
-    const dotCount = token ? token.split('.').length - 1 : 0;
-    let kind = 'missing';
-    if (token) {
-        const lower = token.toLowerCase();
-        if (lower === 'null' || lower === 'undefined')
-            kind = lower;
-        else if (lower.startsWith('bearer '))
-            kind = 'bearer_prefixed';
-        else if (dotCount === 2 && token.length > 80)
-            kind = 'jwt_like';
-        else if (token.length < 80)
-            kind = 'short_non_jwt';
-        else
-            kind = 'long_non_jwt';
-    }
-    return {
-        kind,
-        present: token.length > 0,
-        length: token.length,
-        dotCount,
-    };
-}
 function normalizeStableId(value) {
     return String(value ?? '').trim();
 }
@@ -229,8 +224,10 @@ async function enrichMetadataFromAuth(authUid, provider, metadata) {
     try {
         rec = await admin.auth().getUser(authUid);
     }
-    catch {
-        return metadata; // auth недоступен — оставляем как есть (не рушим вход)
+    catch (error) {
+        // auth недоступен — оставляем как есть (не рушим вход); 8F: причина в лог, без uid.
+        console.warn(JSON.stringify({ event: 'auth_metadata_enrich_unavailable', cause: identityErrorTag(error) }));
+        return metadata;
     }
     const authEmail = cleanNullableString(rec.email, 320)
         ?? cleanNullableString(rec.providerData.find((p) => p.email)?.email, 320);
@@ -390,10 +387,16 @@ async function findLiveAuthLinkAnchor(db, authUid, reads = databaseIdentityReads
 function readAnonClaimFingerprint(userData) {
     const claim = userData.anon_merge_claim;
     if (!claim || typeof claim !== 'object')
-        return { authUid: '', at: null };
+        return { authUid: '', at: null, nonceHash: '' };
     const authUid = normalizeStableId(claim.authUid);
     const atValue = Number(claim.at);
-    return { authUid, at: Number.isFinite(atValue) ? atValue : null };
+    const rawHash = claim.nonceHash;
+    return {
+        authUid,
+        at: Number.isFinite(atValue) ? atValue : null,
+        // зачем: подмена хэша между assert и транзакцией должна ломать сверку отпечатка.
+        nonceHash: typeof rawHash === 'string' ? rawHash : '',
+    };
 }
 function stableOwnerProofFromSnapshots(userSnap, linkSnap, authorization, existingOwnerIds = []) {
     const userData = userSnap.data() ?? {};
@@ -404,6 +407,7 @@ function stableOwnerProofFromSnapshots(userSnap, linkSnap, authorization, existi
         linkedAuthUid: normalizeStableId(userData.linkedAuth?.providerUid),
         anonClaimAuthUid: claim.authUid,
         anonClaimAt: claim.at,
+        anonClaimNonceHash: claim.nonceHash,
         authLinkExists: linkSnap.exists,
         authLinkStableId: normalizeStableId(linkSnap.data()?.stable_id),
         existingOwnerIds: [...existingOwnerIds].sort(),
@@ -452,10 +456,24 @@ async function assertStableOwner(db, authUid, stableId, options, reads = databas
     // остаётся в Keychain/AsyncStorage. Разрешаем перепривязать анонимный uid к тому
     // же stable_id, если: (а) аккаунт не имеет provider-привязки (чисто анонимный),
     // (б) новый uid ещё не занят другим stable_id, (в) явно запрошен allowAnonRelink.
+    // зачем (M-1 HIGH-1): свежая метка с хэшем nonce — это ещё и «предъяви nonce»; иначе любой
+    // вошедший (свежий Google / анонимный allowAnonRelink) получал аккаунт жертвы без слияния.
+    let anonRelinkNonceDenied = null;
     if (!canonicalLinkConflicts &&
         (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
         hasFreshPreviousOwnerProof &&
-        !linkedAuthUid) {
+        !linkedAuthUid &&
+        anonClaim) {
+        const relinkCaller = options?.anonMergeCaller ? { ...options.anonMergeCaller, door: 'relink' } : undefined;
+        const verdict = verifyAnonMergeClaimNonce(anonClaim, options?.anonMergeNonce, relinkCaller);
+        if (!verdict.ok)
+            anonRelinkNonceDenied = verdict.reason;
+    }
+    if (!canonicalLinkConflicts &&
+        (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
+        hasFreshPreviousOwnerProof &&
+        !linkedAuthUid &&
+        anonRelinkNonceDenied === null) {
         const existingByAuth = await readIdentityOrThrow(reads.getQuery(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1)));
         const existingOwnerIds = (existingByAuth?.docs ?? []).map((doc) => doc.id).sort();
         if (existingOwnerIds.length === 0 || existingOwnerIds.every((id) => id === stableId)) {
@@ -475,6 +493,7 @@ async function assertStableOwner(db, authUid, stableId, options, reads = databas
         linkedAuthUid: linkedAuthUid || null,
         allowProviderRelink: options?.allowProviderRelink === true,
         allowAnonRelink: options?.allowAnonRelink === true,
+        anonRelinkNonceDenied,
     }));
     throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
 }
@@ -577,6 +596,7 @@ async function repairIdentityDocumentsAtomically(db, authUid, stableId, options)
                     currentProof.linkedAuthUid === expectedProof.linkedAuthUid &&
                     currentProof.anonClaimAuthUid === expectedProof.anonClaimAuthUid &&
                     currentProof.anonClaimAt === expectedProof.anonClaimAt &&
+                    currentProof.anonClaimNonceHash === expectedProof.anonClaimNonceHash &&
                     currentProof.authLinkExists === expectedProof.authLinkExists &&
                     currentProof.authLinkStableId === expectedProof.authLinkStableId;
                 if ((expectedProof.userExists && !userSnap.exists) ||
@@ -617,6 +637,23 @@ async function repairIdentityDocumentsAtomically(db, authUid, stableId, options)
                         lastSignInAt: options.metadata?.lastSignInAt ?? now,
                         devicePlatform: options.metadata?.devicePlatform ?? 'web',
                     };
+                }
+                // зачем (M-1, решение координатора): перепривязка по метке одноразовая — метка гасится в
+                // той же транзакции, а для отката пишется серверный аудит (30 дней).
+                if (expectedProof?.authorization === 'anon_relink' && userAuthUidChanged) {
+                    userPatch.anon_merge_claim = admin.firestore.FieldValue.delete();
+                    transaction.set(db.collection(ANON_RELINK_AUDIT).doc(), {
+                        stableId,
+                        previousAuthUid: currentUserAuthUid,
+                        newAuthUid: authUid,
+                        provider: options.provider ?? 'anonymous',
+                        claimAt: currentProof.anonClaimAt,
+                        at: now,
+                        mode: expectedProof.anonClaimNonceHash ? 'nonce' : 'legacy',
+                        // зачем (security-ревью №2): TTL Firestore работает только по Timestamp (политика в firestore.indexes.json).
+                        expiresAt: admin.firestore.Timestamp.fromMillis(now + ANON_RELINK_AUDIT_TTL_MS),
+                    });
+                    console.warn(`[ANON-MERGE-CLAIM] anon_relink_done stable=${stableId.slice(0, 8)} mode=${expectedProof.anonClaimNonceHash ? 'nonce' : 'legacy'}`);
                 }
                 transaction.set(userRef, userPatch, { merge: true });
             }
@@ -686,7 +723,7 @@ async function finishUserIdentityRepairBestEffort(db, stableId, authUid, userAut
     const now = Date.now();
     let repairedIdentityLink = userAuthUidChanged;
     const lbRef = db.collection(LEADERBOARD).doc(stableId);
-    const lbSnap = await lbRef.get().catch(() => null);
+    const lbSnap = await lbRef.get().catch((0, swallowed_error_1.swallowed)('auth_identity:lbRef.get()', null));
     if (lbSnap?.exists) {
         const currentLeaderboardAuthUid = String(lbSnap.data()?.firebaseAuthUid ?? '').trim();
         if (currentLeaderboardAuthUid !== authUid) {
@@ -717,11 +754,13 @@ async function repairStableAuthUid(db, selection, authUid, ownerProof) {
     });
     await finishUserIdentityRepairBestEffort(db, selection.stableUid, authUid, repair.userAuthUidChanged);
 }
-async function ensureStableIdentityPair(db, authUid, selection, provider, metadata) {
+async function ensureStableIdentityPair(db, authUid, selection, provider, metadata, anonMergeNonce = null, anonMergeCaller = null) {
     await assertStableAccountMergeNotPending(db, selection.sourceStableIds);
     const ownerProof = await assertStableOwner(db, authUid, selection.stableUid, {
         allowProviderRelink: Boolean(provider),
         allowAnonRelink: !provider,
+        anonMergeNonce,
+        anonMergeCaller,
         allowedAuthLinkStableIds: selection.sourceStableIds,
     });
     const repair = await repairIdentityDocumentsAtomically(db, authUid, selection.stableUid, {
@@ -889,7 +928,7 @@ async function cleanupLegacyLeagueMembers(db, stableId, authUid) {
     return cleanupDuplicateLeagueMembers(db, stableId, authUid);
 }
 async function hideNameIndexForDuplicateUid(db, duplicateUid, stableId) {
-    const snap = await db.collection('name_index').where('uid', '==', duplicateUid).limit(50).get().catch(() => null);
+    const snap = await db.collection('name_index').where('uid', '==', duplicateUid).limit(50).get().catch((0, swallowed_error_1.swallowed)('auth_identity:ex).where(uid, ==, duplicateUid).limit(50).get()', null));
     if (!snap || snap.empty)
         return 0;
     const batch = db.batch();
@@ -907,6 +946,64 @@ async function hideNameIndexForDuplicateUid(db, duplicateUid, stableId) {
     await batch.commit();
     return hidden;
 }
+const DEDUP_STARS_LOG = '[ACCOUNT-DEDUP-STARS]';
+/**
+ * зачем (L-1, координатор 03.10): монеты дубля при скрытии переезжают на stableId тем же
+ * механизмом 8T. Якорь opId — детерминированный `dedup_<sha256(stable\u0000duplicate)>`
+ * (70 символов + `.N` ≤ 96 — проходит OP_ID_RE журнала), повтор чистки не удваивает.
+ */
+function dedupStarsSourceId(stableId, duplicateUid) {
+    return `dedup_${(0, crypto_1.createHash)('sha256').update(`${stableId}\u0000${duplicateUid}`).digest('hex')}`;
+}
+/** Только чтения (prepare). Любая неувязка → null: перенос пропущен, скрытие дубля идёт как раньше. */
+async function prepareDuplicateStarsTransfer(tx, db, stableId, authUid, duplicateSnap, stableUserRef) {
+    const tag = `stable=${stableId.slice(0, 8)} duplicate=${duplicateSnap.id.slice(0, 8)}`;
+    const duplicateData = duplicateSnap.data() || {};
+    const balance = (0, stars_ledger_1.normalizeStars)(duplicateData.stars).balance;
+    const skip = (reason) => ({ prepared: null, skipReason: reason, balance });
+    // Ноль монет — ни одного лишнего чтения (ни документа стабильного, ни расписок).
+    if (balance <= 0)
+        return { prepared: null, skipReason: null, balance };
+    if (duplicateData.identityHidden === true && duplicateData.canonicalStableId !== stableId) {
+        console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=hidden_under_other_canonical balance=${balance}`);
+        return skip('hidden_under_other_canonical');
+    }
+    try {
+        const stableSnap = await tx.get(stableUserRef);
+        if (!stableSnap.exists) {
+            console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=stable_user_missing balance=${balance}`);
+            return skip('stable_user_missing');
+        }
+        // зачем (ревью L-1, LOW-2): в скрытый аккаунт монеты переносить нельзя — там они застрянут.
+        if (stableSnap.data()?.identityHidden === true) {
+            console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=stable_hidden balance=${balance}`);
+            return skip('stable_hidden');
+        }
+        const prepared = await (0, auth_merge_stars_transfer_1.prepareAccountMergeStarsTransfer)(tx, db, {
+            winnerStableId: stableId,
+            loserStableId: duplicateSnap.id,
+            winnerSnap: stableSnap,
+            loserSnap: duplicateSnap,
+            outboxId: dedupStarsSourceId(stableId, duplicateSnap.id),
+            authUid,
+            nowMs: Date.now(),
+        });
+        console.log(`${DEDUP_STARS_LOG} prepared ${tag} balance=${balance} status=${prepared.record.status} reason=${prepared.record.reason ?? '-'} chunks=${prepared.record.chunks} remainder=${prepared.record.remainder}`);
+        const status = prepared.record.status;
+        const transferredFully = status === 'transferred' && !(prepared.record.remainder > 0);
+        return {
+            prepared,
+            skipReason: transferredFully || status === 'already_applied' || status === 'nothing_to_transfer'
+                ? null
+                : `${status}:${prepared.record.reason ?? (prepared.record.remainder > 0 ? 'remainder' : '-')}`,
+            balance,
+        };
+    }
+    catch (error) {
+        console.error(`${DEDUP_STARS_LOG} skip ${tag} reason=prepare_threw balance=${balance} message=${String(error?.message ?? error).slice(0, 120)}`);
+        return skip('prepare_threw');
+    }
+}
 async function cleanupSiblingStableIdentityDuplicates(db, stableId, authUid) {
     const out = {
         leaderboardMerged: 0,
@@ -916,7 +1013,7 @@ async function cleanupSiblingStableIdentityDuplicates(db, stableId, authUid) {
         leagueGroupsTouched: 0,
         leagueMembersHidden: 0,
     };
-    const siblingsSnap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(50).get().catch(() => null);
+    const siblingsSnap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(50).get().catch((0, swallowed_error_1.swallowed)('auth_identity:re(firebaseAuthUid, ==, authUid).limit(50).get()', null));
     if (!siblingsSnap || siblingsSnap.empty)
         return out;
     for (const sibling of siblingsSnap.docs) {
@@ -926,13 +1023,36 @@ async function cleanupSiblingStableIdentityDuplicates(db, stableId, authUid) {
         const siblingData = sibling.data() || {};
         if (siblingData.identityHidden === true && siblingData.canonicalStableId === stableId)
             continue;
+        const stableUserRef = db.collection(USERS).doc(stableId);
         const stableLbRef = db.collection(LEADERBOARD).doc(stableId);
         const duplicateLbRef = db.collection(LEADERBOARD).doc(duplicateUid);
+        let starsSkip = null;
+        let ownerChanged = false;
         await db.runTransaction(async (tx) => {
-            const [stableLbSnap, duplicateLbSnap] = await Promise.all([
+            starsSkip = null;
+            ownerChanged = false;
+            // зачем (L-1): журнал разрешает один prepare на uid за попытку; Admin SDK повторяет колбэк
+            // с тем же tx — сбрасываем защиту в начале каждой попытки.
+            (0, stars_ledger_1.beginStarLedgerTransactionAttempt)(tx);
+            const [stableLbSnap, duplicateLbSnap, duplicateUserSnap] = await Promise.all([
                 tx.get(stableLbRef),
                 tx.get(duplicateLbRef),
+                tx.get(sibling.ref),
             ]);
+            // зачем (ревью L-1, MEDIUM-1): список дублей получен запросом ВНЕ транзакции. Если дубль успели
+            // перепривязать к другому входу (relink/merge), его монеты и скрытие — уже не наше дело.
+            const currentOwner = String(duplicateUserSnap.data()?.firebaseAuthUid ?? '');
+            if (!duplicateUserSnap.exists || currentOwner !== authUid) {
+                console.warn(`${DEDUP_STARS_LOG} skip stable=${stableId.slice(0, 8)} duplicate=${duplicateUid.slice(0, 8)} reason=auth_uid_changed exists=${duplicateUserSnap.exists}`);
+                ownerChanged = true;
+                return;
+            }
+            // Все чтения (включая расписки журнала) — до первой записи транзакции.
+            const starsPreparation = await prepareDuplicateStarsTransfer(tx, db, stableId, authUid, duplicateUserSnap, stableUserRef);
+            const starsPrepared = starsPreparation.prepared;
+            if (starsPreparation.skipReason) {
+                starsSkip = { reason: starsPreparation.skipReason, balance: starsPreparation.balance };
+            }
             if (duplicateLbSnap.exists) {
                 const merge = legacyLeaderboardMerge(stableLbSnap.data() || {}, duplicateLbSnap.data() || {}, authUid);
                 tx.set(stableLbRef, merge, { merge: true });
@@ -946,6 +1066,9 @@ async function cleanupSiblingStableIdentityDuplicates(db, stableId, authUid) {
                 out.leaderboardMerged += 1;
                 out.leaderboardHidden += 1;
             }
+            // Журнал пишет stars+расписки (merge) ДО скрытия: поле stars скрытие не трогает.
+            if (starsPrepared)
+                (0, auth_merge_stars_transfer_1.commitAccountMergeStarsTransfer)(tx, starsPrepared);
             tx.set(sibling.ref, {
                 identityHidden: true,
                 canonicalStableId: stableId,
@@ -954,7 +1077,17 @@ async function cleanupSiblingStableIdentityDuplicates(db, stableId, authUid) {
             }, { merge: true });
             out.usersHidden += 1;
         });
-        out.nameIndexHidden += await hideNameIndexForDuplicateUid(db, duplicateUid, stableId).catch(() => 0);
+        if (ownerChanged)
+            continue;
+        // зачем (ревью L-1, LOW-3): дубль скрыт, а монеты (часть) остались на нём — следующие чистки
+        // его пропускают, поэтому оставляем кандидата на ручной разбор, а не только строку лога.
+        const skipped = starsSkip;
+        if (skipped) {
+            await recordIdentityCleanupCandidate(db, stableId, authUid, 'dedup_stars_skipped', {
+                duplicateUid, balance: skipped.balance, skipReason: skipped.reason,
+            }).catch((0, swallowed_error_1.swallowed)('auth_identity:record_dedup_stars_skipped', undefined));
+        }
+        out.nameIndexHidden += await hideNameIndexForDuplicateUid(db, duplicateUid, stableId).catch((0, swallowed_error_1.swallowed)('auth_identity:hide_name_index_for_duplicate_uid', 0));
         const leagueStats = await cleanupDuplicateLeagueMembers(db, stableId, duplicateUid);
         out.leagueGroupsTouched += leagueStats.leagueGroupsTouched;
         out.leagueMembersHidden += leagueStats.leagueMembersHidden;
@@ -986,7 +1119,7 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
         return { ...stats, skipped: true };
     const now = Date.now();
     const userRef = db.collection(USERS).doc(stableId);
-    const userSnap = await userRef.get().catch(() => null);
+    const userSnap = await userRef.get().catch((0, swallowed_error_1.swallowed)('auth_identity:userRef.get()', null));
     const userData = userSnap?.data() || {};
     if (String(userData.firebaseAuthUid ?? '').trim() !== authUid)
         return { ...stats, skipped: true };
@@ -998,7 +1131,7 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
     const legacyLbRef = db.collection(LEADERBOARD).doc(authUid);
     const [stableLbSnap, legacyLbSnap, authLinkSnap] = await Promise.all([
         readIdentityOrThrow(stableLbRef.get()),
-        legacyLbRef.get().catch(() => null),
+        legacyLbRef.get().catch((0, swallowed_error_1.swallowed)('auth_identity:legacyLbRef.get()', null)),
         readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get()),
     ]);
     const stableLeaderboardAuthUid = String(stableLbSnap?.data()?.firebaseAuthUid ?? '').trim();
@@ -1013,7 +1146,7 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
                 linkedStableId,
                 legacyLeaderboardExists: true,
                 reason: opts?.reason ?? 'unknown',
-            }).catch(() => { });
+            }).catch((0, swallowed_error_1.swallowed)('auth_identity:)', undefined));
             stats.candidatesRecorded += 1;
         }
         return { ...stats, skipped: true };
@@ -1072,10 +1205,10 @@ async function findVerifiedAccountAliasSelection(db, reads, authUid) {
     try {
         indexSnap = await reads.getDocument(db.collection(account_id_1.ACCOUNT_ID_INDEX).doc((0, account_id_1.accountIdIndexDocId)(authUid)));
     }
-    catch {
+    catch (error) {
         // The alias map is an optimization layer. Preserve the canonical resolver's
         // fail-open-to-the-established-ladder behavior when the index is unavailable.
-        console.warn(JSON.stringify({ event: 'account_id_lookup_unavailable' }));
+        console.warn(JSON.stringify({ event: 'account_id_lookup_unavailable', cause: identityErrorTag(error) }));
         return null;
     }
     if (!indexSnap.exists)
@@ -1095,8 +1228,8 @@ async function findVerifiedAccountAliasSelection(db, reads, authUid) {
     try {
         userSnap = await reads.getDocument(db.collection(USERS).doc(stableId));
     }
-    catch {
-        console.warn(JSON.stringify({ event: 'account_id_lookup_verify_failed' }));
+    catch (error) {
+        console.warn(JSON.stringify({ event: 'account_id_lookup_verify_failed', cause: identityErrorTag(error) }));
         return null;
     }
     if (!userSnap.exists)
@@ -1494,13 +1627,14 @@ async function rotateRetiredProviderStableLink(db, authUid, retiredStableId, fre
         throwIdentityCheckUnavailable(error);
     }
 }
-async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInProvider, metadata) {
+async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInProvider, metadata, anonMergeNonce = null, callerAuthTimeMs = null) {
     const stableId = normalizeStableId(requestedStableId);
     const provider = signInProvider === 'google.com'
         ? 'google'
         : signInProvider === 'apple.com'
             ? 'apple'
             : null;
+    const anonMergeCaller = { provider: signInProvider, authTimeMs: callerAuthTimeMs };
     const allowProviderRelink = Boolean(provider);
     const allowAnonRelink = !allowProviderRelink;
     if (stableId.length > 160) {
@@ -1563,12 +1697,14 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
         else if (linkedStableId && linkedStableId !== stableId) {
             const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, {
                 allowProviderRelink: true,
+                anonMergeNonce,
+                anonMergeCaller,
                 repairLinks: false,
             });
             await ensureStableIdentityPair(db, authUid, {
                 stableUid: linkedStableUid,
                 sourceStableIds: [linkedStableId, linkedStableUid],
-            }, provider, metadata);
+            }, provider, metadata, anonMergeNonce, anonMergeCaller);
             return { ok: true, stableUid: linkedStableUid, authUid, identityReady: true };
         }
         if (!linkedStableId) {
@@ -1576,12 +1712,14 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
             if (existingUserSelection && existingUserSelection.stableUid !== stableId) {
                 const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
                     allowProviderRelink: true,
+                    anonMergeNonce,
+                    anonMergeCaller,
                     repairLinks: false,
                 });
                 await ensureStableIdentityPair(db, authUid, {
                     stableUid,
                     sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
-                }, provider, metadata);
+                }, provider, metadata, anonMergeNonce, anonMergeCaller);
                 return { ok: true, stableUid, authUid, identityReady: true };
             }
         }
@@ -1592,12 +1730,14 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
             const stableUid = await resolveStableUidForAuth(db, authUid, existingAnchor.selection.stableUid, {
                 allowProviderRelink,
                 allowAnonRelink,
+                anonMergeNonce,
+                anonMergeCaller,
                 repairLinks: false,
             });
             await ensureStableIdentityPair(db, authUid, {
                 stableUid,
                 sourceStableIds: [...existingAnchor.selection.sourceStableIds, stableUid],
-            }, provider, metadata);
+            }, provider, metadata, anonMergeNonce, anonMergeCaller);
             return { ok: true, stableUid, authUid, identityReady: true };
         }
         const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
@@ -1605,12 +1745,14 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
             const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
                 allowProviderRelink,
                 allowAnonRelink,
+                anonMergeNonce,
+                anonMergeCaller,
                 repairLinks: false,
             });
             await ensureStableIdentityPair(db, authUid, {
                 stableUid,
                 sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
-            }, provider, metadata);
+            }, provider, metadata, anonMergeNonce, anonMergeCaller);
             return { ok: true, stableUid, authUid, identityReady: true };
         }
         const bootstrap = await bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata);
@@ -1644,12 +1786,12 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
                 await ensureStableIdentityPair(db, authUid, {
                     stableUid: bootstrap.stableUid,
                     sourceStableIds: [bootstrap.stableUid],
-                }, provider, metadata);
+                }, provider, metadata, anonMergeNonce, anonMergeCaller);
             }
             return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
         }
     }
-    const relinkOptions = { allowProviderRelink, allowAnonRelink };
+    const relinkOptions = { allowProviderRelink, allowAnonRelink, anonMergeNonce, anonMergeCaller };
     const stableUid = await resolveStableUidForAuth(db, authUid, stableId, {
         ...relinkOptions,
         repairLinks: false,
@@ -1657,7 +1799,7 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
     await ensureStableIdentityPair(db, authUid, {
         stableUid,
         sourceStableIds: [...new Set([stableId, stableUid].filter(Boolean))],
-    }, provider, metadata);
+    }, provider, metadata, anonMergeNonce, anonMergeCaller);
     return { ok: true, stableUid, authUid, identityReady: true };
 }
 exports.authEnsureStableLink = (0, https_1.onCall)({
@@ -1687,18 +1829,16 @@ exports.authEnsureStableLink = (0, https_1.onCall)({
         return { ok: true, warm: true };
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
-    if (!request.app) {
-        console.warn(JSON.stringify({
-            event: 'app_check_header_shape',
-            function: 'authEnsureStableLink',
-            header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
-        }));
-    }
+    // зачем (App Check запломбирован навсегда, клиентский App Check удалён): request.app теперь ВСЕГДА пуст, и прежняя
+    // диагностика формы заголовка писала warn на каждый вызов (~200/15 мин на проде — шум и деньги за логи). Убрана.
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
     const metadata = normalizeAuthLinkMetadata(request.data?.linkMetadata);
-    return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata);
+    // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
+    const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
+    logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
+    return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce, authTimeMsFromToken(request.auth.token));
 });
 // ── Recovery hint: каким аккаунтом входить (маскированный email) ─────────────
 // После переустановки юзер видит recovery-модалку, но не помнит, КАКОЙ Google/
@@ -1765,6 +1905,20 @@ exports.authRecoveryHint = (0, https_1.onCall)({
 // чужим stable_id метку поставить НЕ может (нет анонимного токена жертвы), поэтому
 // чужой аккаунт поглотить нельзя. Метка пишется только владельцем дока.
 exports.ANON_MERGE_CLAIM_TTL_MS = 10 * 60 * 1000;
+// зачем (M-1, координатор 03.10): метка {authUid, at} доказывала лишь «анонимный владелец
+// её поставил», но не привязывала слияние к вызывающему: знающий stableId жертвы мог в
+// 10-минутное окно поглотить её аккаунт. Теперь stamp по запросу выдаёт клиенту одноразовый
+// nonce, а на документе лежит только sha256. Старый клиент (1.6.24) nonce не просит —
+// его метка без nonceHash идёт прежним путём, пока включён выключатель ниже.
+// Выключить (false) после min_app_version 2.0: тогда метка без nonceHash слияние не открывает.
+exports.ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED = true;
+exports.ANON_MERGE_NONCE_MAX_LENGTH = 128;
+function hashAnonMergeNonce(nonce) {
+    return (0, crypto_1.createHash)('sha256').update(nonce, 'utf8').digest('hex');
+}
+function generateAnonMergeNonce() {
+    return (0, crypto_1.randomBytes)(32).toString('base64url');
+}
 function readAnonMergeClaim(userData, now, ttlMs = exports.ANON_MERGE_CLAIM_TTL_MS) {
     const claim = (userData ?? {}).anon_merge_claim;
     if (!claim || typeof claim !== 'object')
@@ -1775,9 +1929,94 @@ function readAnonMergeClaim(userData, now, ttlMs = exports.ANON_MERGE_CLAIM_TTL_
         return null;
     if (now - at > ttlMs)
         return null; // stale → not a valid proof
-    return { authUid };
+    const rawHash = claim.nonceHash;
+    const nonceHash = typeof rawHash === 'string' && rawHash.length > 0 ? rawHash : null;
+    return { authUid, nonceHash, at };
 }
-async function stampAnonOwnershipForAuth(db, authUid, requestedStableId, now = Date.now()) {
+/** Допуск часов между auth_time вызывающего и меткой. */
+exports.ANON_MERGE_LEGACY_AUTH_SKEW_MS = 5000;
+/**
+ * Только измерение (решение координатора): есть ли у вызова заголовки устройства — чтобы понять,
+ * можно ли потом сверять «то же устройство». Значения заголовков НЕ логируются.
+ */
+function logDeviceHeaderPresence(fn, headers) {
+    const has = (name) => {
+        const value = headers?.[name];
+        return Array.isArray(value) ? value.length > 0 : String(value ?? '').length > 0;
+    };
+    console.log(`[ANON-MERGE-CLAIM] device_headers fn=${fn} hasInstanceIdHeader=${has('firebase-instance-id-token')}` +
+        ` hasGmpIdHeader=${has('x-firebase-gmpid')}`);
+}
+/** auth_time (секунды) из токена вызывающего → миллисекунды, либо null. */
+function authTimeMsFromToken(token) {
+    const seconds = Number(token?.auth_time);
+    return Number.isFinite(seconds) && seconds > 0 ? seconds * 1000 : null;
+}
+function shortUid(uid) {
+    return uid.slice(0, 8);
+}
+/**
+ * Единая проверка nonce для метки anon_merge_claim. Вызывается в каждом месте, где метка
+ * открывает слияние. nonce НЕ логируется. Метка с nonceHash никогда не понижается до legacy.
+ */
+function verifyAnonMergeClaimNonce(claim, presentedNonce, caller, legacyEnabled = exports.ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED) {
+    const uid = shortUid(claim.authUid);
+    if (claim.nonceHash) {
+        if (!presentedNonce) {
+            console.warn(`[ANON-MERGE-CLAIM] nonce_required uid=${uid}`);
+            return { ok: false, reason: 'nonce_required' };
+        }
+        const presented = Buffer.from(hashAnonMergeNonce(presentedNonce), 'utf8');
+        const stored = Buffer.from(claim.nonceHash, 'utf8');
+        if (presented.length !== stored.length || !(0, crypto_1.timingSafeEqual)(presented, stored)) {
+            console.warn(`[ANON-MERGE-CLAIM] nonce_mismatch uid=${uid} stored=${claim.nonceHash.slice(0, 6)}`);
+            return { ok: false, reason: 'nonce_mismatch' };
+        }
+        const nonceAgeMs = typeof caller?.authTimeMs === 'number' && typeof claim.at === 'number'
+            ? caller.authTimeMs - claim.at
+            : 'unknown';
+        console.log(`[ANON-MERGE-CLAIM] nonce_ok uid=${uid} authAgeMs=${nonceAgeMs}`);
+        return { ok: true, mode: 'nonce', nonceHash: claim.nonceHash };
+    }
+    if (!legacyEnabled) {
+        console.warn(`[ANON-MERGE-CLAIM] legacy_disabled uid=${uid}`);
+        return { ok: false, reason: 'legacy_disabled' };
+    }
+    // зачем (M-1 HIGH-1, решение координатора): клиент 1.6.24 nonce не шлёт, но законный вызывающий
+    // в его пути ВСЕГДА провайдерский (google/apple) и вошёл ПОСЛЕ постановки метки. Анонимный
+    // вызывающий или давно открытая сессия атакующего — отказ. На публикации (триггер/cron,
+    // без запроса) эти проверки уже прошли при резервировании — там их пропускаем.
+    if (!caller?.skipLegacyCallerChecks) {
+        const provider = String(caller?.provider ?? '').trim();
+        if (provider !== 'google.com' && provider !== 'apple.com') {
+            console.warn(`[ANON-MERGE-CLAIM] legacy_anonymous_caller uid=${uid} provider=${provider || 'none'}`);
+            return { ok: false, reason: 'legacy_anonymous_caller' };
+        }
+        const authTimeMs = caller?.authTimeMs;
+        const claimAt = claim.at;
+        if (typeof authTimeMs !== 'number' || !Number.isFinite(authTimeMs) ||
+            typeof claimAt !== 'number' || !Number.isFinite(claimAt) ||
+            authTimeMs < claimAt - exports.ANON_MERGE_LEGACY_AUTH_SKEW_MS) {
+            console.warn(`[ANON-MERGE-CLAIM] legacy_signed_in_before_claim uid=${uid} provider=${provider}` +
+                ` authAgeMs=${typeof authTimeMs === 'number' && typeof claimAt === 'number' ? authTimeMs - claimAt : 'unknown'}`);
+            return { ok: false, reason: 'legacy_signed_in_before_claim' };
+        }
+        console.warn(`[ANON-MERGE-CLAIM] legacy_path uid=${uid} door=${caller?.door ?? 'unknown'} provider=${provider} authAgeMs=${authTimeMs - claimAt}`);
+        return { ok: true, mode: 'legacy', nonceHash: null };
+    }
+    console.warn(`[ANON-MERGE-CLAIM] legacy_path uid=${uid} publication=1`);
+    return { ok: true, mode: 'legacy', nonceHash: null };
+}
+/** Валидация необязательного nonce из запроса merge: строка ≤ 128 или отсутствует. */
+function parseAnonMergeNonce(value) {
+    if (value === undefined || value === null)
+        return null;
+    if (typeof value !== 'string' || value.length === 0 || value.length > exports.ANON_MERGE_NONCE_MAX_LENGTH) {
+        throw new https_1.HttpsError('invalid-argument', 'anon_merge_nonce_invalid');
+    }
+    return value;
+}
+async function stampAnonOwnershipForAuth(db, authUid, requestedStableId, now = Date.now(), nonceRequested = false) {
     const stableId = normalizeStableId(requestedStableId);
     if (!stableId || stableId.length > 160) {
         throw new https_1.HttpsError('invalid-argument', 'stable_id_required');
@@ -1786,8 +2025,17 @@ async function stampAnonOwnershipForAuth(db, authUid, requestedStableId, now = D
         requireKnownIdentity: true,
         repairLinks: false,
     });
-    await db.collection(USERS).doc(stableUid).set({ anon_merge_claim: { authUid, at: now }, updatedAt: now }, { merge: true });
-    return { ok: true, stableUid };
+    // зачем (M-1): nonce существует только в ответе клиенту; в документ идёт один sha256.
+    // Без флага — прежняя метка без nonceHash и прежняя форма ответа (клиент 1.6.24).
+    // mergeFields заменяет поле метки ЦЕЛИКОМ (set+merge:true слил бы вложенные карты и оставил
+    // бы старый nonceHash после повторного stamp без флага).
+    const mergeNonce = nonceRequested ? generateAnonMergeNonce() : null;
+    const claim = { authUid, at: now };
+    if (mergeNonce)
+        claim.nonceHash = hashAnonMergeNonce(mergeNonce);
+    await db.collection(USERS).doc(stableUid).set({ anon_merge_claim: claim, updatedAt: now }, { mergeFields: ['anon_merge_claim', 'updatedAt'] });
+    console.log(`[ANON-MERGE-CLAIM] stamped uid=${shortUid(authUid)} nonce=${mergeNonce ? 'issued' : 'none'}`);
+    return mergeNonce ? { ok: true, stableUid, mergeNonce } : { ok: true, stableUid };
 }
 function requireAnonymousOwnershipStampProvider(signInProvider) {
     if (String(signInProvider ?? '').trim() !== 'anonymous') {
@@ -1803,17 +2051,11 @@ exports.authStampAnonOwnership = (0, https_1.onCall)(callable_options_1.HOT_CALL
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     requireAnonymousOwnershipStampProvider(request.auth.token?.firebase?.sign_in_provider);
-    if (!request.app) {
-        console.warn(JSON.stringify({
-            event: 'app_check_header_shape',
-            function: 'authStampAnonOwnership',
-            header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
-        }));
-    }
+    logDeviceHeaderPresence('authStampAnonOwnership', request.rawRequest?.headers);
     const db = admin.firestore();
     const authUid = request.auth.uid;
     try {
-        return await stampAnonOwnershipForAuth(db, authUid, request.data?.stableId);
+        return await stampAnonOwnershipForAuth(db, authUid, request.data?.stableId, Date.now(), request.data?.nonceRequested === true);
     }
     catch (error) {
         if (error?.code === 'permission-denied') {

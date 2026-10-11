@@ -9,6 +9,7 @@ import {
   spireReleaseMultilingualPool,
 } from './spire_multilingual_pool';
 import type { TournamentTask } from './tournament_core';
+import { ARENA_REFERENCE_MODE_DIFFICULTY_QUOTAS } from './arena_content_generation';
 
 function grammarOptions(correctIndex: number) {
   return ['a', 'b', 'c', 'd'].map((_, i) => ({
@@ -247,10 +248,108 @@ function sha(value: unknown): string {
   return createHash('sha256').update(canonical(value), 'utf8').digest('hex');
 }
 
-function releaseFixture() {
-  const rows: Record<string, unknown>[] = Array.from({ length: SPIRE_MULTILINGUAL_REQUIRED_TASKS }, (_, index) => choiceRow('guess_phrase', {
-    taskId: `arena-es-guess_phrase-1-${String(index).padStart(4, '0')}`,
+function normalizeSemanticValue(value: unknown): unknown {
+  if (typeof value === 'string') return value.normalize('NFC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase();
+  if (Array.isArray(value)) return value.map(normalizeSemanticValue);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value as Record<string, unknown>)
+      .map(([key, item]) => [key, normalizeSemanticValue(item)]));
+  }
+  return value;
+}
+
+function semanticCore(row: Record<string, unknown>): unknown {
+  const mode = row.mode as string;
+  const payload = row.payload as Record<string, any>;
+  if (mode === 'guess_phrase' || mode === 'fill_gap') {
+    const correct = payload.options[payload.correctIndex];
+    return {
+      mode,
+      promptRu: payload.promptRu,
+      correctSentence: `${payload.stem.prefix}${correct}${payload.stem.suffix}`,
+      distractors: payload.options.filter((_: string, index: number) => index !== payload.correctIndex).sort(),
+    };
+  }
+  if (mode === 'find_oddity') return {
+    mode,
+    promptRu: payload.promptRu,
+    oddity: payload.options[payload.oddityIndex],
+    grammatical: payload.options.filter((_: string, index: number) => index !== payload.oddityIndex).sort(),
+  };
+  if (mode === 'translate_build') return {
+    mode,
+    promptRu: payload.promptRu,
+    correctAnswer: payload.correctAnswer,
+    decoy: payload.samePosDecoy.token,
+  };
+  return {
+    mode,
+    promptRu: payload.promptRu,
+    pairs: payload.pairs
+      .map(({ tileLeft, tileRight }: { tileLeft: string; tileRight: string }) => ({ tileLeft, tileRight }))
+      .sort((left: { tileLeft: string; tileRight: string }, right: { tileLeft: string; tileRight: string }) =>
+        `${left.tileLeft}\u0000${left.tileRight}`.localeCompare(`${right.tileLeft}\u0000${right.tileRight}`)),
+  };
+}
+
+function withSemanticSignature(row: Record<string, unknown>): Record<string, unknown> {
+  return { ...row, semanticSignature: sha(normalizeSemanticValue(semanticCore(row))) };
+}
+
+function releaseRow(mode: string, difficulty: number, index: number): Record<string, unknown> {
+  const common = {
+    taskId: `arena-es-${mode}-${difficulty}-${String(index).padStart(4, '0')}`,
+    difficulty,
+  };
+  if (mode === 'guess_phrase' || mode === 'fill_gap') return withSemanticSignature(choiceRow(mode, {
+    ...common,
+    payload: {
+      promptRu: `Я силён. Вариант ${difficulty}-${index}.`,
+      stem: { prefix: 'Yo ', suffix: ` fuerte ${difficulty}-${index}.` },
+      options: ['soy', 'eres', 'es', 'somos'],
+      correctIndex: 0,
+      grammarMatrix: { options: grammarOptions(0) },
+    },
   }));
+  if (mode === 'find_oddity') return withSemanticSignature(choiceRow(mode, {
+    ...common,
+    payload: {
+      promptRu: `Найдите фразу с ошибкой. Вариант ${difficulty}-${index}.`, options: [`a ${difficulty}-${index}`, `b ${difficulty}-${index}`, `c ${difficulty}-${index}`, `d ${difficulty}-${index}`], oddityIndex: 2,
+      inverseProof: { options: [
+        { grammatical: true, reason: 'subject_verb_person_agree' },
+        { grammatical: true, reason: 'subject_verb_person_agree' },
+        { grammatical: false, reason: 'only_error_subject_verb_person_mismatch' },
+        { grammatical: true, reason: 'subject_verb_person_agree' },
+      ] },
+    },
+  }));
+  if (mode === 'translate_build') return withSemanticSignature({
+    schemaVersion: 'arena-multilingual-task-v1', studyTarget: 'es', mode, ...common,
+    payload: {
+      promptRu: `Я нахожусь в банке. Вариант ${difficulty}-${index}.`, correctAnswer: 'Yo estoy en el banco.', correctTokens: ['Yo', 'estoy', 'en', 'el', 'banco.'],
+      tokenBank: ['estás', 'en', 'Yo', 'estoy', 'el', 'banco.'], correctTokenCount: 5,
+      samePosDecoy: { token: 'estás' },
+    },
+  });
+  const pairs = [
+    ['я есть', 'soy'], ['ты есть', 'eres'], ['он есть', 'es'],
+    ['мы есть', 'somos'], ['я имею', 'tengo'], ['ты имеешь', 'tienes'],
+  ].map(([tileLeft, tileRight], pairIndex) => ({
+    left: `Полный перевод ${difficulty}-${index}-${pairIndex}.`, right: `Frase completa ${difficulty}-${index}-${pairIndex}.`, tileLeft, tileRight,
+    factId: `fact-${pairIndex}`, senseEvidence: { sourceFactIds: [`fact-${pairIndex}`] },
+  }));
+  return withSemanticSignature({
+    schemaVersion: 'arena-multilingual-task-v1', studyTarget: 'es', mode, ...common,
+    payload: { promptRu: `Соедините пары. Вариант ${difficulty}-${index}.`, pairs },
+  });
+}
+
+function releaseFixture() {
+  const rows: Record<string, unknown>[] = [];
+  for (const [cell, count] of Object.entries(ARENA_REFERENCE_MODE_DIFFICULTY_QUOTAS)) {
+    const [mode, difficulty] = cell.split(':');
+    for (let index = 0; index < count; index += 1) rows.push(releaseRow(mode, Number(difficulty), index));
+  }
   const tasksSha256 = sha(rows);
   const evidencePackSha256 = 'e'.repeat(64);
   const reviewReceiptBody = {
@@ -281,7 +380,9 @@ function releaseFixture() {
     releaseEligible: true,
     requiredTaskCount: SPIRE_MULTILINGUAL_REQUIRED_TASKS,
     generatedTaskCount: SPIRE_MULTILINGUAL_REQUIRED_TASKS,
+    quotas: ARENA_REFERENCE_MODE_DIFFICULTY_QUOTAS,
     tasksSha256,
+    semanticLedgerSha256: sha(rows.map((row) => row.semanticSignature)),
     evidencePackSha256,
     coverage: { lexicalFactInventoryStatus: 'approved' },
     linguisticReviewReceipt,
@@ -339,6 +440,45 @@ describe('spire multilingual release boundary', () => {
   ])('fail-closed: %s', (_label, mutate, reason) => {
     const { rows, manifest } = releaseFixture();
     expect(spireMultilingualReleaseGate('es', rows, mutate(manifest))).toEqual({ ok: false, reason });
+  });
+
+  test('fail-closed when quotas are missing or do not match the 4,000 rows', () => {
+    const { rows, manifest } = releaseFixture();
+    const { quotas: _missing, ...withoutQuotas } = manifest;
+    expect(spireMultilingualReleaseGate('es', rows, resign(withoutQuotas))).toEqual({
+      ok: false, reason: 'manifest_quota_matrix_invalid',
+    });
+    const changedRows = [...rows];
+    changedRows[0] = { ...changedRows[0], difficulty: 2 };
+    const rebound = bindReviewedTaskHash(manifest, sha(changedRows));
+    expect(spireMultilingualReleaseGate('es', changedRows, rebound)).toEqual({
+      ok: false, reason: 'manifest_quota_matrix_mismatch',
+    });
+  });
+
+  test('fail-closed when the semantic ledger is missing or differs from task signatures', () => {
+    const { rows, manifest } = releaseFixture();
+    const { semanticLedgerSha256: _missing, ...withoutLedger } = manifest;
+    expect(spireMultilingualReleaseGate('es', rows, resign(withoutLedger))).toEqual({
+      ok: false, reason: 'manifest_semantic_ledger_invalid',
+    });
+    expect(spireMultilingualReleaseGate('es', rows, resign({
+      ...manifest, semanticLedgerSha256: '0'.repeat(64),
+    }))).toEqual({ ok: false, reason: 'manifest_semantic_ledger_mismatch' });
+  });
+
+  test('fail-closed when a stored semantic signature is not the recomputed learner core', () => {
+    const { rows, manifest } = releaseFixture();
+    const changedRows = [...rows];
+    changedRows[0] = { ...changedRows[0], semanticSignature: 'f'.repeat(64) };
+    const rebound = bindReviewedTaskHash({
+      ...manifest,
+      semanticLedgerSha256: sha(changedRows.map((row) => row.semanticSignature)),
+    }, sha(changedRows));
+    expect(spireMultilingualReleaseGate('es', changedRows, rebound)).toEqual({
+      ok: false,
+      reason: 'bundle_semantic_signature_mismatch',
+    });
   });
 
   test('PASS/eligible и пересчитанный self-hash не заменяют независимый языковой и CEFR receipt', () => {
@@ -447,45 +587,30 @@ describe('spire multilingual release boundary', () => {
     });
   });
 
-  test('PASS на 4000 исходных строк всё равно блокируется, если хотя бы одна строка не конвертируется', () => {
+  test('PASS на 4000 исходных строк блокируется до конвертации, если semantic payload одной строки исчез', () => {
     const { rows, manifest } = releaseFixture();
     rows[10] = {
-      schemaVersion: 'arena-multilingual-task-v1',
-      taskId: 'arena-es-speed_match-1-0010',
-      studyTarget: 'es',
-      mode: 'speed_match',
-      difficulty: 1,
-      payload: { pairs: [] },
+      ...rows[10],
+      payload: {},
     };
     const withNewTaskHash = bindReviewedTaskHash(manifest, sha(rows));
     expect(spireReleaseMultilingualPool('es', rows, withNewTaskHash)).toEqual({
       ok: false,
-      reason: 'converted_task_count_mismatch',
+      reason: 'bundle_semantic_signature_mismatch',
     });
   });
 
-  test('PASS и 4000 converted не обходят строгий контракт игровых задач', () => {
-    const rows: Record<string, unknown>[] = Array.from(
-      { length: SPIRE_MULTILINGUAL_REQUIRED_TASKS },
-      (_, index) => ({
-        schemaVersion: 'arena-multilingual-task-v1',
-        taskId: `arena-es-translate_build-1-${String(index).padStart(4, '0')}`,
-        studyTarget: 'es',
-        mode: 'translate_build',
-        difficulty: 1,
-        payload: {
-          promptRu: 'Я.',
-          correctTokens: ['yo'],
-          tokenBank: ['no'],
-          correctTokenCount: 1,
-        },
-      }),
-    );
-    const { manifest } = releaseFixture();
+  test('PASS не обходит semantic boundary повреждённым translate payload', () => {
+    const { rows, manifest } = releaseFixture();
+    const translateIndex = rows.findIndex((row) => row.mode === 'translate_build');
+    rows[translateIndex] = {
+      ...rows[translateIndex],
+      payload: { promptRu: 'Я.', correctTokens: ['yo'], tokenBank: ['no'], correctTokenCount: 1 },
+    };
     const withNewTaskHash = bindReviewedTaskHash(manifest, sha(rows));
     expect(spireReleaseMultilingualPool('es', rows, withNewTaskHash)).toEqual({
       ok: false,
-      reason: 'converted_task_invalid',
+      reason: 'bundle_semantic_signature_mismatch',
     });
   });
 });

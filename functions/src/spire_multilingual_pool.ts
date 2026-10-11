@@ -47,9 +47,10 @@
  */
 
 import { createHash } from 'crypto';
+import { ARENA_REFERENCE_MODE_DIFFICULTY_QUOTAS } from './arena_content_generation';
 import { validateTournamentTaskForNewRoom, type TournamentTask } from './tournament_core';
 
-export type SpireMultilingualLang = 'es' | 'de' | 'fr';
+export type SpireMultilingualLang = 'es' | 'de' | 'fr' | 'it';
 export const SPIRE_MULTILINGUAL_REQUIRED_TASKS = 4_000;
 
 type RawGrammarOption = Readonly<{ token?: string; grammatical?: boolean; reason?: string }>;
@@ -325,6 +326,74 @@ function canonicalSha256(value: unknown): string {
   return createHash('sha256').update(canonical(value), 'utf8').digest('hex');
 }
 
+function normalizeSemanticValue(value: unknown): unknown {
+  if (typeof value === 'string') {
+    return value.normalize('NFC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase();
+  }
+  if (Array.isArray(value)) return value.map(normalizeSemanticValue);
+  if (isRecord(value)) {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, normalizeSemanticValue(item)]));
+  }
+  return value;
+}
+
+function semanticLearnerCoreForRow(row: Record<string, unknown>): unknown | null {
+  const mode = row.mode;
+  const payload = row.payload;
+  if (typeof mode !== 'string' || !isRecord(payload)) return null;
+  if (mode === 'guess_phrase' || mode === 'fill_gap') {
+    const options = payload.options;
+    const correctIndex = payload.correctIndex;
+    const stem = payload.stem;
+    if (!Array.isArray(options) || !options.every((option) => typeof option === 'string')
+      || !Number.isInteger(correctIndex) || !isRecord(stem)
+      || typeof stem.prefix !== 'string' || typeof stem.suffix !== 'string') return null;
+    const correct = options[correctIndex as number];
+    if (typeof correct !== 'string') return null;
+    return normalizeSemanticValue({
+      mode,
+      promptRu: payload.promptRu,
+      correctSentence: `${stem.prefix}${correct}${stem.suffix}`,
+      distractors: options.filter((_, index) => index !== correctIndex).sort(),
+    });
+  }
+  if (mode === 'find_oddity') {
+    const options = payload.options;
+    const oddityIndex = payload.oddityIndex;
+    if (!Array.isArray(options) || !options.every((option) => typeof option === 'string')
+      || !Number.isInteger(oddityIndex) || typeof options[oddityIndex as number] !== 'string') return null;
+    return normalizeSemanticValue({
+      mode,
+      promptRu: payload.promptRu,
+      oddity: options[oddityIndex as number],
+      grammatical: options.filter((_, index) => index !== oddityIndex).sort(),
+    });
+  }
+  if (mode === 'translate_build') {
+    const decoy = payload.samePosDecoy;
+    if (typeof payload.correctAnswer !== 'string' || !isRecord(decoy) || typeof decoy.token !== 'string') return null;
+    return normalizeSemanticValue({
+      mode,
+      promptRu: payload.promptRu,
+      correctAnswer: payload.correctAnswer,
+      decoy: decoy.token,
+    });
+  }
+  if (mode === 'speed_match') {
+    const pairs = payload.pairs;
+    if (!Array.isArray(pairs)) return null;
+    const visiblePairs: Array<{ tileLeft: string; tileRight: string }> = [];
+    for (const pair of pairs) {
+      if (!isRecord(pair) || typeof pair.tileLeft !== 'string' || typeof pair.tileRight !== 'string') return null;
+      visiblePairs.push({ tileLeft: pair.tileLeft, tileRight: pair.tileRight });
+    }
+    visiblePairs.sort((left, right) =>
+      `${left.tileLeft}\u0000${left.tileRight}`.localeCompare(`${right.tileLeft}\u0000${right.tileRight}`));
+    return normalizeSemanticValue({ mode, promptRu: payload.promptRu, pairs: visiblePairs });
+  }
+  return null;
+}
+
 /**
  * Fail-closed граница прямого пула Шпиля. Структурно корректный JSONL ещё не
  * является публикацией: сборщик принимает его только вместе с PASS-манифестом,
@@ -377,6 +446,46 @@ export function spireMultilingualReleaseGate(
     || (isRecord(row.payload) && 'cefrBand' in row.payload)
   ))) {
     return { ok: false, reason: 'bundle_unsupported_cefr_claim' };
+  }
+  const expectedQuotaEntries = Object.entries(ARENA_REFERENCE_MODE_DIFFICULTY_QUOTAS);
+  const manifestQuotas = manifest.quotas;
+  if (!isRecord(manifestQuotas)
+    || Object.keys(manifestQuotas).length !== expectedQuotaEntries.length
+    || expectedQuotaEntries.some(([cell, count]) => manifestQuotas[cell] !== count)) {
+    return { ok: false, reason: 'manifest_quota_matrix_invalid' };
+  }
+  const actualQuotas = Object.fromEntries(expectedQuotaEntries.map(([cell]) => [cell, 0])) as Record<string, number>;
+  for (const row of rows) {
+    if (!isRecord(row) || typeof row.mode !== 'string' || !Number.isInteger(row.difficulty)) {
+      return { ok: false, reason: 'manifest_quota_matrix_mismatch' };
+    }
+    const cell = `${row.mode}:${row.difficulty}`;
+    if (!(cell in actualQuotas)) return { ok: false, reason: 'manifest_quota_matrix_mismatch' };
+    actualQuotas[cell] += 1;
+  }
+  if (expectedQuotaEntries.some(([cell, count]) => actualQuotas[cell] !== count)) {
+    return { ok: false, reason: 'manifest_quota_matrix_mismatch' };
+  }
+  if (typeof manifest.semanticLedgerSha256 !== 'string'
+    || !/^[a-f0-9]{64}$/u.test(manifest.semanticLedgerSha256)) {
+    return { ok: false, reason: 'manifest_semantic_ledger_invalid' };
+  }
+  const semanticSignatures = rows.map((row) => isRecord(row) && typeof row.semanticSignature === 'string'
+    ? row.semanticSignature : '');
+  if (semanticSignatures.some((signature) => !/^[a-f0-9]{64}$/u.test(signature))
+    || new Set(semanticSignatures).size !== rows.length) {
+    return { ok: false, reason: 'bundle_semantic_signature_invalid' };
+  }
+  const recomputedSemanticSignatures = rows.map((row) => isRecord(row)
+    ? canonicalSha256(semanticLearnerCoreForRow(row))
+    : '');
+  if (rows.some((row, index) => !isRecord(row)
+    || semanticLearnerCoreForRow(row) === null
+    || semanticSignatures[index] !== recomputedSemanticSignatures[index])) {
+    return { ok: false, reason: 'bundle_semantic_signature_mismatch' };
+  }
+  if (manifest.semanticLedgerSha256 !== canonicalSha256(semanticSignatures)) {
+    return { ok: false, reason: 'manifest_semantic_ledger_mismatch' };
   }
   const tasksSha256 = canonicalSha256(rows);
   if (manifest.tasksSha256 !== tasksSha256) return { ok: false, reason: 'manifest_tasks_hash_mismatch' };

@@ -9,6 +9,7 @@ import {
   isSpireFlaggableStudyTarget,
   parseSpireTaskFlagsDocStrict,
   spireFlaggedTaskIds,
+  spireTaskIdBelongsToTarget,
   spireTaskFlagAdd,
   spireTaskFlagRemove,
   spireTaskFlagsDocId,
@@ -24,7 +25,7 @@ import {
   type SpireTaskIncidentState,
 } from './spire_task_incident_contract';
 
-type SpireFlaggableLang = 'es' | 'de' | 'fr';
+type SpireFlaggableLang = SpireTaskIncidentLang;
 type Row = Record<string, unknown>;
 
 function requireSpireTaskFlagWriter(request: { auth?: { uid?: string; token?: Row } | null }): {
@@ -68,7 +69,7 @@ function cleanToken(value: unknown, max = 200): string {
 
 function requireTaskId(data: Row, lang: SpireFlaggableLang): string {
   const taskId = cleanToken(data.taskId, 200);
-  if (!taskId || !taskId.startsWith(`arena-${lang}-`)) {
+  if (!taskId || !spireTaskIdBelongsToTarget(taskId, lang)) {
     throw new HttpsError('invalid-argument', 'spire_task_incident_task_invalid');
   }
   return taskId;
@@ -123,8 +124,12 @@ function decodeSpireIncidentCursor(raw: string): SpireIncidentPageCursor | null 
     const latestReportedAtMs = Number(parsed.latestReportedAtMs);
     const rawId = String(parsed.id ?? '').trim();
     const id = cleanToken(rawId, 204);
+    const separator = id.indexOf('__');
+    const lang = id.slice(0, separator);
+    const taskId = id.slice(separator + 2);
     if (parsed.v !== 1 || !Number.isSafeInteger(latestReportedAtMs) || latestReportedAtMs < 1
-      || !id || id !== rawId || !/^(?:es|fr|de)__arena-(?:es|fr|de)-[A-Za-z0-9_-]+$/u.test(id)) throw new Error('invalid');
+      || !id || id !== rawId || separator < 1 || !isSpireFlaggableStudyTarget(lang)
+      || spireTaskIncidentId(lang, taskId) !== id) throw new Error('invalid');
     return { latestReportedAtMs, id };
   } catch {
     throw new HttpsError('invalid-argument', 'spire_task_incident_cursor_invalid');

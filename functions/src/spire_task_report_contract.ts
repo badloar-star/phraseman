@@ -4,11 +4,12 @@ import {
   spirePackHash,
   type SpirePack,
 } from './spire_pack_contract';
-import { isSpireFlaggableStudyTarget } from './spire_task_flag_contract';
+import type { ArenaStudyTarget } from './arena_target_registry';
+import { isSpireFlaggableStudyTarget, spireTaskIdBelongsToTarget } from './spire_task_flag_contract';
 
 export type SpireTaskReportClaim = Readonly<{
   taskId: string;
-  studyTarget: 'es' | 'fr' | 'de';
+  studyTarget: ArenaStudyTarget;
   weekId: string;
   tier: number;
   packHash: string;
@@ -27,7 +28,6 @@ export type VerifiedSpireTaskClaim = SpireTaskReportClaim & Readonly<{
 
 type Row = Record<string, unknown>;
 
-const TASK_ID_RE = /^arena-(es|fr|de)-[a-z0-9_-]{1,170}$/u;
 const WEEK_ID_RE = /^\d{4}-W(?:0[1-9]|[1-4]\d|5[0-3])$/u;
 const PACK_HASH_RE = /^[A-Za-z0-9:_-]{8,128}$/u;
 
@@ -49,7 +49,7 @@ export function parseSpireTaskReportClaim(value: unknown): SpireTaskReportClaim 
   const packHash = String(input.packHash ?? '').trim();
   const reason = String(input.reason ?? '').trim().slice(0, 2000);
   if (!isSpireFlaggableStudyTarget(studyTarget)) throw new Error('spire_task_report_lang_invalid');
-  if (!TASK_ID_RE.test(taskId) || !taskId.startsWith(`arena-${studyTarget}-`)) throw new Error('spire_task_report_task_invalid');
+  if (!spireTaskIdBelongsToTarget(taskId, studyTarget)) throw new Error('spire_task_report_task_invalid');
   if (!WEEK_ID_RE.test(weekId)) throw new Error('spire_task_report_week_invalid');
   if (!PACK_HASH_RE.test(packHash)) throw new Error('spire_task_report_pack_hash_invalid');
   if (reason.length < 2) throw new Error('spire_task_report_reason_required');

@@ -177,7 +177,7 @@ async function loadFlaggedTaskIds(db: admin.firestore.Firestore, lang: SpireLang
 
 /* --------------------------- прямая публикация es/de/fr ------------------- */
 
-const MULTILINGUAL_LANGS = new Set<string>(['es', 'de', 'fr']);
+const MULTILINGUAL_LANGS = new Set<string>(['es', 'de', 'fr', 'it']);
 
 /**
  * Ленивый require, как sourceDays() в admin_tournament_tasks.ts: файл

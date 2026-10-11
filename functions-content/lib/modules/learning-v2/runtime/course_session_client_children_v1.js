@@ -12,6 +12,7 @@ const generator_course_contract_1 = require("../content/generator_course_contrac
 const intro_semantic_runs_v1_1 = require("../content/intro_semantic_runs_v1");
 const decision_registry_1 = require("../policies/decision_registry");
 const mode_native_payload_v1_1 = require("../contracts/mode_native_payload_v1");
+const course_session_limits_v1_1 = require("./course_session_limits_v1");
 exports.LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 = "learning-v2-course-session-intro-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1 = "learning-v2-course-session-learner-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_AUXILIARY_CHILD_SCHEMA_V1 = "learning-v2-course-session-auxiliary-child.v1";
@@ -333,7 +334,8 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
     exactKeys(value, LEARNER_ROOT_KEYS);
     if (!Array.isArray(value.interactions) ||
         value.interactions.length < 6 ||
-        value.interactions.length > 19 ||
+        value.interactions.length >
+            course_session_limits_v1_1.LEARNING_V2_COURSE_SESSION_MAX_PRACTICE_INTERACTIONS_V1 ||
         !LANGUAGE_RE.test(String(value.targetLanguage)) ||
         !["standard", "rapid", "voice_heavy"].includes(String(value.interactionProfile)))
         fail();
@@ -495,7 +497,7 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
     exactKeys(value, AUX_ROOT_KEYS);
     if (!Array.isArray(value.entries) ||
         value.entries.length < 9 ||
-        value.entries.length > 22)
+        value.entries.length > course_session_limits_v1_1.LEARNING_V2_COURSE_SESSION_MAX_TOTAL_INTERACTIONS_V1)
         fail();
     const ids = new Set();
     const entries = Object.freeze(value.entries.map((entry) => {

@@ -77,8 +77,8 @@ describe('PM-286 listen/dictate in the weekly pack', () => {
     }
   });
 
-  it('is en-only (Q34 (а)): es/de/fr get nothing', () => {
-    for (const lang of ['es', 'de', 'fr']) {
+  it('is en-only (Q34 (а)): es/de/fr/it get nothing', () => {
+    for (const lang of ['es', 'de', 'fr', 'it']) {
       const pool = spireListenDraftPool(lang, draftRows);
       expect(pool.released).toBe(false);
       expect(pool.tasks).toHaveLength(0);

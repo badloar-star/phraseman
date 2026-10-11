@@ -29,6 +29,34 @@ import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — не
 
 export const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
 export const FREE_AUTHOR_PACK_LIMIT = 3;
+/** Текст ошибки сохранения при исчерпанном лимите Free — по нему экран показывает человеческий текст, а не код. */
+export const FREE_AUTHOR_PACK_LIMIT_ERROR = 'free_author_pack_limit_reached';
+
+/**
+ * Сколько своих наборов у человека и упёрся ли он в лимит Free.
+ *
+ * зачем (координатор 11.10, Карточки 2.0): Free узнавал о лимите 3/3 только ПОСЛЕ того, как заполнил весь набор,
+ * и видел сырой код ошибки. Экран «Новый набор» проверяет лимит заранее и сразу предлагает «Безлимит с Plus».
+ * Считается по аккаунту на устройстве (все языки), Firestore не читается.
+ */
+export type AuthorPackQuota = Readonly<{
+  count: number;
+  /** null — без лимита (Plus). */
+  limit: number | null;
+  limitReached: boolean;
+}>;
+
+export function authorPackQuotaFor(count: number, isPremium: boolean): AuthorPackQuota {
+  const safeCount = Math.max(0, Math.floor(Number(count) || 0));
+  if (isPremium) return { count: safeCount, limit: null, limitReached: false };
+  return { count: safeCount, limit: FREE_AUTHOR_PACK_LIMIT, limitReached: safeCount >= FREE_AUTHOR_PACK_LIMIT };
+}
+
+/** Последнее известное число своих наборов (процесс) — мгновенный первый кадр; null — ещё не считали. */
+let lastKnownAuthorPackCount: number | null = null;
+export function peekAuthorPackCount(): number | null {
+  return lastKnownAuthorPackCount;
+}
 
 const warmPacksByKey = new BoundedScopeCache<LocalAuthorPack[]>(20);
 
@@ -195,7 +223,8 @@ export async function saveLocalAuthorPack(
     : `${LOCAL_AUTHOR_PACK_ID_PREFIX}${now}_${++localPackSequence}`;
   const existing = list.find((p) => p.id === id);
   if (!existing && opts?.isPremium !== true && accountPacks.length >= FREE_AUTHOR_PACK_LIMIT) {
-    throw new Error('free_author_pack_limit_reached');
+    console.warn('[AUTHOR-PACK-QUOTA] сохранение отклонено: лимит Free', JSON.stringify({ count: accountPacks.length, limit: FREE_AUTHOR_PACK_LIMIT })); // guard-ok: ранний выход логируется
+    throw new Error(FREE_AUTHOR_PACK_LIMIT_ERROR);
   }
   // зачем (PM-108-A3): приватный по умолчанию. Раньше `publishToCommunity !== false`
   // делал публичным любой набор, где флаг не передан (undefined). Публичность
@@ -228,6 +257,7 @@ export async function saveLocalAuthorPack(
   };
   const merged = existing ? list.map((p) => (p.id === id ? next : p)) : [...list, next];
   await writePacks(merged, target);
+  lastKnownAuthorPackCount = accountPacks.length + (existing ? 0 : 1);
   return id;
   });
 }
@@ -248,7 +278,19 @@ export async function removeLocalAuthorPack(id: string, studyTarget?: RuntimeStu
   const list = await readPacksForTarget(target);
   if (!list.some((p) => p.id === id)) return;
   await writePacks(list.filter((p) => p.id !== id), target);
+  if (lastKnownAuthorPackCount !== null) lastKnownAuthorPackCount = Math.max(0, lastKnownAuthorPackCount - 1);
   });
+}
+
+/** Счётчик своих наборов + флаг лимита. Только устройство; при «stale» (смена аккаунта) — последнее известное. */
+export async function loadAuthorPackQuota(isPremium: boolean): Promise<AuthorPackQuota> {
+  const result = await loadLocalAuthorPacksResult();
+  if (result.status === 'ready') {
+    lastKnownAuthorPackCount = result.packs.length;
+  } else {
+    console.warn('[AUTHOR-PACK-QUOTA] список наборов не готов (смена аккаунта) — беру последнее известное', JSON.stringify({ lastKnown: lastKnownAuthorPackCount })); // guard-ok: ранний выход логируется
+  }
+  return authorPackQuotaFor(lastKnownAuthorPackCount ?? result.packs.length, isPremium);
 }
 
 /** Карточки локального набора в формате коллекции (`sourceId = DEV:<packId>`). */

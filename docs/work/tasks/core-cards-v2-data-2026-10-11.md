@@ -1,6 +1,6 @@
 # Task packet: Карточки 2.0 — данные от Ядра (длительность роликов, уровень набора, «Продолжить», «Первые 50 слов», поиск, «Устно», Блиц) + храповик шрифтов на dev_state
 
-Governance-ID: TG-A98A59DB13AC
+Governance-ID: TG-EC6FFA4A4D50
 Status: In progress
 Owner: сессия «1 · Ядро» (координатор 11.10; разбор `docs/work/tasks/cards-v2/GAP_ANALYSIS.md`, TG-04890C4DB9FA; срок — вечер 13.10).
 

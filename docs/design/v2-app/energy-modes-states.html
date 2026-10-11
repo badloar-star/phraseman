@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Два режима энергии — состояния и анимации</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 11.10 через координатора, ENERGY_MODES_OWNER_BRIEF_2026-10-11.md: «прям анимация», все состояния обоих режимов, тёмная + светлая):
+     РЕЖИМ А (как сейчас): за НАЧАЛО занятия −1 энергия; за ошибку гаснет сердечко и сбрасывается серия монет («×N»).
+     РЕЖИМ Б (новый): за начало ничего; каждая ошибка снимает 1 энергию, сердечек нет; иконка энергии трясётся и «−1» вылетает; ошибка на ПОСЛЕДНЕЙ энергии останавливает занятие (не наказание, а пауза);
+     шторка Plus «продолжить сейчас — вернёшься на тот же вопрос»; после покупки занятие продолжается; без энергии новое занятие не начать — шторка «Нужна энергия» с таймером; энергия вернулась → можно начать.
+     Режим Б — уроки, слова, неправильные глаголы, Learning V2, «Карточки: тренировка». Диалоги и «Фраза дня» энергию за ошибки не снимают ни в одном режиме.
+     Каждая анимация проигрывается при появлении кадра на экране и по кнопке «Повторить анимацию». Бонусы за серию не рисуем (владелец: «пока без бонусов»).
+     Тексты новых окон — предложение (в коде ещё нет), помечены в заметках; тексты «Энергия закончилась», «Открыть Plus», «Позже» и контекст «Энергия 0» — из утверждённых. Кегли 16/13. Обводки — только 1px полупрозрачные. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --g-ctl: #1D1D22; --g-card: #202027; --g-sel: rgba(255,255,255,.1); --g-tx: #fff; --g-sc: #A6A6A8; --g-mu: #75757A; --g-edge: rgba(255,255,255,.13); --g-ink: var(--on); --g-tint: var(--acc); --g-dim: rgba(0,0,0,.62); --g-sheet: rgba(24,24,29,.985); --g-bad: #FF6B6B; --g-badbg: rgba(255,107,107,.16); --g-ok: #5FD6A0; color: var(--g-tx); }
+  .ph.lite { --g-ctl: #ECECF1; --g-card: #F6F6FA; --g-sel: rgba(0,0,0,.07); --g-tx: #0C0C10; --g-sc: #55555D; --g-mu: #86868E; --g-edge: rgba(0,0,0,.12); --g-ink: #fff; --g-dim: rgba(20,20,30,.4); --g-sheet: #FBFBFD; --g-bad: #C23B3B; --g-badbg: rgba(194,59,59,.12); --g-ok: #1E8F5E; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  .gp { position: absolute; inset: 0; padding-top: 52px; overflow: hidden; }
+  .gbody { transition: filter 520ms ease, opacity 520ms ease; } .frozen .gbody { filter: saturate(.25); opacity: .5; }
+  /* шапка занятия */
+  .gh { display: flex; align-items: center; gap: 6px; padding: 10px 16px 0; }
+  .grb { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); flex: none; margin-right: 4px; } .grb .i { width: 20px; height: 20px; }
+  .gtt { flex: 1; min-width: 0; } .gtt .a { font-size: 20px; line-height: 24px; font-weight: 700; white-space: nowrap; } .gtt .b { font-size: 13px; line-height: 18px; color: var(--g-sc); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gpl { position: relative; height: 34px; padding: 0 11px; border-radius: 17px; display: inline-flex; align-items: center; gap: 6px; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
+  .gpl .i { width: 16px; height: 16px; }
+  .en .i { color: var(--g-tint); } .en.zero { opacity: .75; } .en.zero .i { color: var(--g-mu); } .en.zero .nv { color: var(--g-bad); }
+  .en .nv { display: inline-block; min-width: 10px; text-align: center; } .en .nv.tick { animation: gtick 420ms cubic-bezier(.3,1.4,.5,1); }
+  @keyframes gtick { 0% { transform: translateY(-9px) scale(.7); opacity: 0; } 100% { transform: none; opacity: 1; } }
+  .en.shake { animation: gshake 520ms cubic-bezier(.3,1.4,.5,1); } .en.shake .i { animation: gboltshake 520ms ease; }
+  @keyframes gshake { 0%,100% { transform: none; } 15% { transform: translateX(-6px) rotate(-3deg); } 35% { transform: translateX(6px) rotate(3deg); } 55% { transform: translateX(-4px); } 75% { transform: translateX(3px); } }
+  @keyframes gboltshake { 0%,100% { transform: none; } 50% { transform: scale(1.25); } }
+  .en .fly { position: absolute; left: 50%; top: 50%; font-size: 16px; font-weight: 800; color: var(--g-bad); opacity: 0; pointer-events: none; z-index: 9; margin-left: -10px; margin-top: -10px; }
+  .en .fly.go { animation: gfly 900ms cubic-bezier(.2,.8,.3,1) forwards; } .en .fly.up { color: var(--g-ok); }
+  @keyframes gfly { 0% { opacity: 0; transform: translateY(0) scale(.8); } 15% { opacity: 1; transform: translateY(-6px) scale(1.2); } 100% { opacity: 0; transform: translateY(-44px) scale(1); } }
+  .en.warn { animation: gwarn 1100ms ease-in-out 3; } @keyframes gwarn { 0%,100% { box-shadow: inset 0 0 0 1px var(--g-edge); } 50% { box-shadow: inset 0 0 0 1.5px var(--g-bad), 0 0 0 5px var(--g-badbg); } }
+  .en.warn .nv { color: var(--g-bad); } .en.glow { animation: gglow 1000ms ease-out; } @keyframes gglow { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--g-ok) 70%, transparent); } 100% { box-shadow: 0 0 0 16px transparent; } }
+  .en.drop .nv { animation: gdrop 560ms cubic-bezier(.3,1.4,.5,1); } @keyframes gdrop { 0% { transform: translateY(-14px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+  .ghp .h { display: inline-flex; color: #FF6B8B; } .ghp .h .i { width: 16px; height: 16px; } .ghp .h.lost { opacity: .22; } .ghp .h.pop { animation: ghpop 700ms cubic-bezier(.3,1.4,.5,1); } @keyframes ghpop { 0% { transform: scale(1); opacity: 1; } 30% { transform: scale(1.5); } 100% { transform: scale(.8); opacity: .22; } }
+  .gcb { height: 34px; padding: 0 11px; border-radius: 17px; display: inline-flex; align-items: center; background: var(--g-tint); color: var(--g-ink); font-size: 16px; font-weight: 800; flex: none; transition: transform 420ms ease, opacity 420ms ease; } .gcb.gone { transform: scale(.4); opacity: 0; width: 0; padding: 0; margin: 0 -3px; overflow: hidden; }
+  .gcn { gap: 6px; } .gcn img { border-radius: 50%; }
+  /* тело занятия */
+  .gcells { display: flex; gap: 2px; margin: 20px 16px 0; align-items: center; } .gcells i { flex: 1; height: 7px; border-radius: 4px; background: var(--g-ctl); } .gcells i.ok { background: var(--g-tx); opacity: .85; } .gcells i.no { background: var(--g-bad); opacity: 1; } .gcells i.cur { background: var(--g-mu); } .gcells b { margin-left: 8px; font-size: 13px; font-weight: 600; color: var(--g-sc); }
+  .gk { margin: 22px 20px 0; font-size: 13px; line-height: 18px; color: var(--g-sc); font-weight: 600; } .gs { margin: 4px 20px 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.3px; }
+  .ga { margin: 22px 16px 0; min-height: 60px; border-radius: 16px; padding: 14px 16px; background: var(--g-card); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 20px; line-height: 30px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; } .ga .cur { width: 2px; height: 24px; background: var(--g-tint); animation: gblink 1s steps(2) infinite; } @keyframes gblink { 50% { opacity: 0; } }
+  .ga.bad { box-shadow: inset 0 0 0 1.5px var(--g-bad); background: var(--g-badbg); }
+  .gt { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 16px 0; } .gw { padding: 11px 17px; border-radius: 14px; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 20px; line-height: 24px; font-weight: 600; transition: background 200ms, transform 200ms; } .gw.used { opacity: .28; }
+  .gw.bad, .gopt.bad, .gvb.bad { background: var(--g-badbg); box-shadow: inset 0 0 0 1.5px var(--g-bad); color: var(--g-bad); animation: gbadpop 360ms ease; } @keyframes gbadpop { 0% { transform: scale(1); } 40% { transform: scale(.94); } 100% { transform: scale(1); } }
+  .gww { font-size: 40px; line-height: 46px; font-weight: 800; text-align: center; margin: 30px 16px 0; letter-spacing: -.5px; } .gwh { text-align: center; margin: 20px 16px 0; font-size: 13px; color: var(--g-sc); font-weight: 600; }
+  .gog { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 16px 0; } .gopt { height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 20px; font-weight: 700; }
+  .gvh { margin: 22px 20px 0; display: flex; gap: 8px; } .gvh span { height: 30px; padding: 0 12px; border-radius: 15px; display: inline-flex; align-items: center; background: var(--g-ctl); font-size: 13px; font-weight: 700; color: var(--g-sc); } .gvh span.on { background: var(--g-tint); color: var(--g-ink); }
+  .gvl { display: flex; flex-direction: column; gap: 10px; margin: 20px 16px 0; } .gvb { min-height: 58px; border-radius: 16px; padding: 0 18px; display: flex; align-items: center; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 20px; font-weight: 700; }
+  .gtm { margin: 20px 16px 0; height: 8px; border-radius: 4px; background: var(--g-ctl); overflow: hidden; } .gtm i { display: block; height: 100%; width: 62%; border-radius: 4px; background: var(--g-tint); }
+  .gcard { margin: 22px 16px 0; border-radius: 22px; padding: 22px 18px; text-align: center; background: var(--g-card); box-shadow: inset 0 0 0 1px var(--g-edge); } .gcard .k { font-size: 13px; color: var(--g-sc); font-weight: 600; } .gcard .w { font-size: 34px; line-height: 40px; font-weight: 800; margin-top: 8px; }
+  /* затемнение, карточка остановки, шторки */
+  .gdim { position: absolute; inset: 0; z-index: 20; background: var(--g-dim); opacity: 0; pointer-events: none; transition: opacity 420ms ease; } .gdim.on { opacity: 1; }
+  .gmod { position: absolute; left: 22px; right: 22px; top: 50%; z-index: 30; border-radius: 26px; padding: 22px 20px 18px; background: var(--g-sheet); box-shadow: inset 0 0 0 1px var(--g-edge), 0 24px 60px rgba(0,0,0,.4); opacity: 0; transform: translateY(-46%) scale(.94); pointer-events: none; transition: opacity 420ms cubic-bezier(.23,1,.32,1), transform 480ms cubic-bezier(.23,1,.32,1); } .gmod.on { opacity: 1; transform: translateY(-50%) scale(1); }
+  .gmod .ic { width: 56px; height: 56px; border-radius: 18px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); color: var(--g-mu); } .gmod .ic .i { width: 28px; height: 28px; }
+  .gmod .tt { text-align: center; font-size: 23px; line-height: 29px; font-weight: 800; } .gmod .bd { text-align: center; font-size: 16px; line-height: 22px; color: var(--g-sc); margin-top: 8px; }
+  .gbt { margin-top: 16px; min-height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--g-tint); color: var(--g-ink); } .gbt.gh { margin-top: 8px; background: var(--g-ctl); color: var(--g-tx); } .gbt.off { opacity: .45; }
+  .gsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 8px 16px 30px; background: var(--g-sheet); box-shadow: inset 0 0 0 1px var(--g-edge), 0 -10px 40px rgba(0,0,0,.35); transform: translateY(104%); transition: transform 560ms cubic-bezier(.23,1,.32,1); } .gsh.on { transform: none; }
+  .gsh .hd { width: 40px; height: 5px; border-radius: 3px; background: var(--g-edge); margin: 0 auto 12px; }
+  .gsh .ct { display: flex; align-items: center; gap: 12px; } .gsh .tile { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--g-tint); background: color-mix(in srgb, var(--g-tint) 18%, transparent); } .gsh .tile .i { width: 24px; height: 24px; } .gsh .pillx { height: 32px; padding: 0 13px; border-radius: 16px; display: inline-flex; align-items: center; background: var(--g-ctl); font-size: 13px; font-weight: 700; }
+  .gsh .h1 { margin: 14px 4px 0; font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.5px; } .gsh .sub { margin: 6px 4px 0; font-size: 16px; line-height: 22px; color: var(--g-sc); }
+  .gsh .lead { margin-top: 14px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 22px; background: var(--g-ctl); font-size: 16px; font-weight: 700; } .gsh .lead .ok { width: 28px; height: 28px; border-radius: 50%; background: var(--g-tint); color: var(--g-ink); display: flex; align-items: center; justify-content: center; } .gsh .lead .ok .i { width: 16px; height: 16px; }
+  .gsh .plans { display: flex; gap: 10px; margin-top: 12px; } .gsh .pc { flex: 1; border-radius: 22px; padding: 14px; background: var(--g-ctl); font-size: 13px; line-height: 18px; color: var(--g-sc); } .gsh .pc.on { background: color-mix(in srgb, var(--g-tint) 14%, var(--g-ctl)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--g-tint) 55%, transparent); } .gsh .pc b { display: block; font-size: 22px; line-height: 27px; color: var(--g-tx); font-weight: 800; } .gsh .pc .n { font-size: 16px; line-height: 22px; font-weight: 700; color: var(--g-tx); }
+  .gsh .cta { margin-top: 14px; min-height: 58px; border-radius: 29px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; background: var(--g-tint); color: var(--g-ink); transition: transform 160ms ease; } .gsh .cta.press { transform: scale(.97); } .gsh .fine { margin-top: 8px; text-align: center; font-size: 13px; line-height: 18px; color: var(--g-sc); }
+  .gspin { width: 22px; height: 22px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--g-ink) 30%, transparent); border-top-color: var(--g-ink); animation: gsp 800ms linear infinite; display: none; } .gsh .cta.busy .gspin { display: inline-block; } @keyframes gsp { to { transform: rotate(360deg); } }
+  .gdone { position: absolute; left: 22px; right: 22px; top: 42%; z-index: 40; border-radius: 26px; padding: 20px; background: var(--g-sheet); box-shadow: inset 0 0 0 1px var(--g-edge), 0 24px 60px rgba(0,0,0,.4); text-align: center; opacity: 0; transform: scale(.9); transition: opacity 300ms, transform 420ms cubic-bezier(.3,1.4,.5,1); pointer-events: none; } .gdone.on { opacity: 1; transform: none; } .gdone .ok { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 10px; background: var(--g-tint); color: var(--g-ink); display: flex; align-items: center; justify-content: center; } .gdone .ok .i { width: 28px; height: 28px; } .gdone .t { font-size: 20px; font-weight: 800; } .gdone .s { font-size: 16px; color: var(--g-sc); margin-top: 4px; }
+  .gtag { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 12; text-align: center; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--g-sc); }
+  .gwarn { margin: 14px 16px 0; padding: 12px 14px; border-radius: 16px; background: var(--g-badbg); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--g-bad) 45%, transparent); font-size: 16px; line-height: 22px; font-weight: 600; display: flex; gap: 10px; align-items: flex-start; } .gwarn .i { width: 20px; height: 20px; color: var(--g-bad); flex: none; margin-top: 1px; }
+  .gtmr { text-align: center; margin-top: 14px; } .gtmr .v { font-size: 44px; line-height: 50px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -1px; } .gtmr .l { font-size: 13px; color: var(--g-sc); font-weight: 600; }
+  .gdots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; } .gdots i { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); color: var(--g-mu); } .gdots i.on { background: color-mix(in srgb, var(--g-tint) 22%, var(--g-ctl)); color: var(--g-tint); } .gdots i .i { width: 15px; height: 15px; }
+  .gtoast { position: absolute; left: 16px; right: 16px; top: 58px; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--g-sheet); box-shadow: inset 0 0 0 1px var(--g-edge), 0 14px 34px rgba(0,0,0,.35); font-size: 16px; font-weight: 700; opacity: 0; transform: translateY(-16px); transition: opacity 320ms, transform 420ms cubic-bezier(.23,1,.32,1); } .gtoast.on { opacity: 1; transform: none; } .gtoast .i { width: 22px; height: 22px; color: var(--g-ok); }
+  .glist { padding: 8px 20px 0; } .glist .t1 { font-size: 30px; line-height: 36px; font-weight: 700; margin: 8px 0 14px; } .glist .r { height: 70px; border-radius: 18px; background: var(--g-ctl); margin-top: 10px; display: flex; align-items: center; padding: 0 16px; font-size: 16px; font-weight: 700; gap: 12px; } .glist .r .n { width: 40px; height: 40px; border-radius: 12px; background: var(--g-sel); display: flex; align-items: center; justify-content: center; }
+  .gcta { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 12; min-height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--g-tint); color: var(--g-ink); transition: opacity 400ms, transform 300ms; } .gcta.off { opacity: .4; background: var(--g-ctl); color: var(--g-tx); }
+  .gdlg { position: absolute; left: 22px; right: 22px; top: 50%; transform: translateY(-50%); z-index: 30; border-radius: 26px; padding: 22px 20px 18px; background: var(--g-sheet); box-shadow: inset 0 0 0 1px var(--g-edge), 0 24px 60px rgba(0,0,0,.4); }
+  .gdlg .ic { width: 56px; height: 56px; border-radius: 18px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); color: var(--g-tint); } .gdlg .ic .i { width: 28px; height: 28px; } .gdlg .tt { text-align: center; font-size: 23px; line-height: 29px; font-weight: 800; } .gdlg .bd { text-align: center; font-size: 16px; line-height: 22px; color: var(--g-sc); margin-top: 8px; }
+  .grpl { margin-top: 10px; min-height: 44px; padding: 0 18px; border-radius: 22px; display: inline-flex; align-items: center; gap: 8px; background: var(--g-rbg, rgba(255,255,255,.1)); color: inherit; font-size: 16px; font-weight: 700; cursor: pointer; user-select: none; }
+  .gcol { display: flex; flex-direction: column; align-items: center; } .gnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: 6px; line-height: 18px; }
+  .gbadge { position: absolute; left: 16px; right: 16px; bottom: 30px; z-index: 12; text-align: center; padding: 12px 14px; border-radius: 18px; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); font-size: 16px; line-height: 22px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Два режима энергии — состояния и анимации</h1>
+  <p class="page-lead">Новое ТЗ владельца (ENERGY_MODES_OWNER_BRIEF_2026-10-11): переключатель режима в админке. Режим А — как сейчас (−1 энергия за старт, сердечки, серия монет). Режим Б — энергия за ошибки: без сердечек, «−1» вылетает, на последней энергии занятие останавливается, Plus продолжает с того же вопроса, без энергии новое не начать. Каждая анимация проигрывается сама при появлении кадра и по кнопке «Повторить анимацию». Тёмная «Аврора» и светлая тема.</p>
+  <div class="page-nav"><a href="#dark">Тёмная «Аврора»</a><a href="#light">Светлая</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, coinImg } = K;
+const svg = (p, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const BOLT = svg('<path d="M13.5 2.5L4.5 13.8h6.4L9.8 21.5l9-11.3h-6.4z" fill="currentColor" stroke="none"/>');
+const HEART = svg('<path d="M12 20.5s-7.5-4.6-9.6-9C1 8.2 3.2 4.6 6.9 4.6c2.1 0 3.4 1.1 5.1 3 1.7-1.9 3-3 5.1-3 3.7 0 5.9 3.6 4.5 6.9-2.1 4.4-9.6 9-9.6 9z" fill="currentColor" stroke="none"/>');
+const CHECK = svg('<path d="M5 12.5l4.5 4.5L19 7.5" stroke-width="2.4"/>');
+const WARN = svg('<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/>');
+const BACK = svg('<path d="M15 5l-7 7 7 7"/>');
+const LAYERS = svg('<path d="M12 4l8.5 4.3L12 12.6 3.5 8.3z"/><path d="M3.5 12.2L12 16.5l8.5-4.3"/><path d="M3.5 16L12 20.3 20.5 16"/>');
+
+// ---------- детали шапки ----------
+const en = (n, o = {}) => `<span class="gpl en${o.zero ? ' zero' : ''}" data-en="${n}">${BOLT}<span class="nv">${n}</span><span class="fly">−1</span></span>`;
+const hearts = (lost = 0) => `<span class="gpl ghp" data-hearts>${[0, 1, 2].map((i) => `<span class="h${i >= 3 - lost ? ' lost' : ''}">${HEART}</span>`).join('')}</span>`;
+const combo = (n) => `<span class="gcb" data-combo>×${n}</span>`;
+const coins = `<span class="gpl gcn">${coinImg(5, 18)}1 240</span>`;
+const head = (o) => `<div class="gh"><span class="grb t">${BACK}</span><div class="gtt"><div class="a">${o.title}</div><div class="b">${o.sub}</div></div>${o.plus ? '' : en(o.en, { zero: o.en === 0 })}${o.mode === 'a' ? (o.combo ? combo(o.combo) : '') + hearts(o.lost || 0) : ''}${o.nocoins ? '' : coins}</div>`;
+const cells = (cur, ok, no) => `<div class="gcells">${Array.from({ length: 24 }, (_, i) => `<i class="${ok.includes(i) ? 'ok' : no.includes(i) ? 'no' : i === cur ? 'cur' : ''}"></i>`).join('')}<b>${cur + 1}/50</b></div>`;
+
+// ---------- тела занятий ----------
+const BODY = {
+  lesson: () => `${cells(6, [0, 1, 2, 3, 4, 5], [])}<div class="gk">Собери фразу:</div><div class="gs">Она работает каждый день</div><div class="ga"><span>She</span><span class="cur"></span></div><div class="gt">${['works', 'She', 'every', 'day', 'work', 'is', 'at', 'the'].map((w) => `<span class="gw t${w === 'She' ? ' used' : ''}"${w === 'work' ? ' data-bad' : ''}>${w}</span>`).join('')}</div>`,
+  words: () => `${cells(3, [0, 1, 2], [])}<div class="gwh">Выбери перевод</div><div class="gww">Сильный</div><div class="gog">${['strong', 'sick', 'serious', 'smart', 'strange', 'strict'].map((w) => `<span class="gopt t"${w === 'sick' ? ' data-bad' : ''}>${w}</span>`).join('')}</div>`,
+  verbs: () => `<div class="gvh"><span class="on">V2 · прошедшее</span><span>3 / 12 выучено</span></div><div class="gk">Выбери форму:</div><div class="gs">go — идти</div><div class="gvl">${['went', 'gone', 'goed', 'goes'].map((w) => `<span class="gvb t"${w === 'gone' ? ' data-bad' : ''}>${w}</span>`).join('')}</div>`,
+  v2: () => `${cells(6, [0, 1, 2, 3, 4, 5], [])}<div class="gk">ЛОВУШКА · 2 / 3</div><div class="gs">Она работает каждый день</div><div class="ga"><span>She</span><span class="cur"></span></div><div class="gt">${['works', 'She', 'every', 'day', 'work', 'is', 'at', 'the'].map((w) => `<span class="gw t${w === 'She' ? ' used' : ''}"${w === 'work' ? ' data-bad' : ''}>${w}</span>`).join('')}</div>`,
+  cards: () => `<div class="gtm"><i></i></div><div class="gcard"><div class="k">Выбери перевод + слово</div><div class="w">Сильный</div></div><div class="gog">${['strong', 'sick', 'serious', 'smart'].map((w) => `<span class="gopt t"${w === 'sick' ? ' data-bad' : ''}>${w}</span>`).join('')}</div>`,
+};
+const HEAD = {
+  lesson: { title: 'Урок 3', sub: 'A1' }, words: { title: 'Слова', sub: 'Урок 3 · 4 из 6' }, verbs: { title: 'Неправильные глаголы', sub: 'Урок 3' },
+  v2: { title: 'Занятие 3', sub: 'Урок 1 · Learning V2' }, cards: { title: 'Блиц', sub: '2 набора' },
+};
+// слои поверх занятия
+const stopCard = `<div class="gdim"></div><div class="gmod"><div class="ic">${BOLT}</div><div class="tt">Энергия закончилась</div><div class="bd">Занятие остановлено, а не потеряно. Продолжи с Plus сейчас — вернёшься на тот же вопрос. Или подожди: +1 энергия вернётся через 9 минут.</div><div class="gbt">Продолжить с Plus</div><div class="gbt gh">Выйти из занятия</div></div>`;
+const plusSheet = (o = {}) => `<div class="gdim${o.shown ? ' on' : ''}"></div><div class="gsh${o.shown ? ' on' : ''}"><div class="hd"></div><div class="ct"><span class="tile">${BOLT}</span><span class="pillx">Энергия 0</span></div><div class="h1">Энергия закончилась</div><div class="sub">С Plus она не тратится — занимайся дальше сразу.</div><div class="lead"><span class="ok">${CHECK}</span>Вернёшься на тот же вопрос</div><div class="plans"><div class="pc on"><span class="n">Год</span><b>3 990 ₽</b>7 дней бесплатно</div><div class="pc"><span class="n">Месяц</span><b>490 ₽</b>без пробного периода</div></div><div class="cta" data-cta><span class="gspin"></span><span class="lb">Оформить Plus</span></div><div class="fine">Потом 3 990 ₽ в год. Отмена в любой момент.</div></div><div class="gdone"><div class="ok">${CHECK}</div><div class="t">Plus активирован</div><div class="s">Продолжаем с того же вопроса</div></div>`;
+const lessonScr = (o) => { const h = HEAD[o.kind]; return `<div class="gp${o.frozen ? ' frozen' : ''}">${head({ ...h, mode: o.mode || 'b', en: o.en, plus: o.plus, lost: o.lost, combo: o.combo, nocoins: o.kind === 'verbs' || o.kind === 'cards' })}<div class="gbody">${o.warn ? '<div class="gwarn">' + WARN + '<span>Последняя энергия: следующая ошибка остановит занятие.</span></div>' : ''}${BODY[o.kind]()}</div>${o.layers || ''}</div>`; };
+// «нужна энергия»: подложка — список
+const listUnder = (cta, en0) => `<div class="gp"><div class="glist"><div class="t1" style="display:flex;align-items:center;gap:10px">Обучение<span style="flex:1"></span>${en0 !== undefined ? en(en0, { zero: en0 === 0 }) : ''}</div><div class="r"><span class="n">1</span>Местоимения и глагол To Be</div><div class="r"><span class="n">2</span>Отрицание и вопросы (To Be)</div><div class="r"><span class="n">3</span>Present Simple: Утверждение</div></div>${cta || ''}</div>`;
+const needSheet = `<div class="gdim"></div><div class="gsh"><div class="hd"></div><div class="h1" style="text-align:center">Нужна энергия</div><div class="sub" style="text-align:center">Чтобы начать занятие, нужна 1 энергия. Следующая вернётся через</div><div class="gtmr"><div class="v" data-timer>09:00</div><div class="l">энергия 0 из 5</div></div><div class="gdots">${[0, 1, 2, 3, 4].map((i) => `<i${i === 0 ? '' : ''}>${BOLT}</i>`).join('')}</div><div class="cta">Продолжить с Plus</div><div class="fine" style="margin-top:6px"><span class="gbt gh" style="min-height:44px;margin:4px 0 0">Подожду</span></div></div>`;
+const restoreScr = `<div class="gp">${'<div class="glist"><div class="t1" style="display:flex;align-items:center;gap:10px">Обучение<span style="flex:1"></span>' + en(0, { zero: true }) + '</div><div class="r"><span class="n">1</span>Местоимения и глагол To Be</div><div class="r"><span class="n">2</span>Отрицание и вопросы (To Be)</div><div class="r"><span class="n">3</span>Present Simple: Утверждение</div></div>'}<div class="gtoast" data-toast>${BOLT}<span>Энергия восстановилась</span></div><div class="gcta off" data-start>Начать занятие</div></div>`;
+// без изменений
+const dlgScr = `<div class="gp"><div class="gh"><span class="grb t">${BACK}</span><div class="gtt"><div class="a">Закажи кофе</div><div class="b">Диалог</div></div><span class="gpl">${BOLT}4<span style="width:1px;height:16px;background:var(--g-edge)"></span>${svg('<path d="M20 11.5c0 4.1-3.6 7.5-8 7.5-1.2 0-2.3-.2-3.3-.6L4 20l1.3-3.7C4.5 15 4 13.3 4 11.5 4 7.4 7.6 4 12 4s8 3.4 8 7.5z"/>')}9/10</span></div><div class="gbody"><div style="margin:26px 16px 0;padding:14px 16px;border-radius:18px;background:var(--g-ctl);font-size:16px;line-height:22px"><div style="font-size:13px;color:var(--g-sc);font-weight:700;margin-bottom:4px">Мия · бариста</div>Hi! What can I get started for you today?</div><div style="margin:12px 16px 0 60px;padding:14px 16px;border-radius:18px;background:var(--g-card);box-shadow:inset 0 0 0 1px var(--g-edge);font-size:16px;line-height:22px"><div style="font-size:13px;color:var(--g-sc);font-weight:700;margin-bottom:4px">Вы</div>I want cappuccino.</div><div style="margin:12px 16px 0 16px;padding:14px 16px;border-radius:18px;background:var(--g-ctl);font-size:16px;line-height:22px">Sure! Did you mean “I’d like a cappuccino, please”?</div></div><div class="gbadge">Ошибка в диалоге энергию не снимает ни в одном режиме — действуют лимиты реплик</div></div>`;
+const qotdScr = `<div class="gp"><div class="gh"><span class="grb t">${BACK}</span><div class="gtt"><div class="a">Фраза дня</div><div class="b">Квиз</div></div>${en(4)}</div><div class="gbody"><div class="gk">Выбери перевод:</div><div class="gs">Break a leg!</div><div class="gvl">${['Ни пуха ни пера!', 'Сломай ногу!', 'Удачного дня!'].map((w, i) => `<span class="gvb${i === 1 ? ' bad' : ''}">${w}</span>`).join('')}</div></div><div class="gbadge">Ошибка квиза «Фразы дня» энергию не снимает ни в одном режиме</div></div>`;
+
+// ---------- список кадров ----------
+const S = [];
+const add = (blk, title, note, html, anim, args) => S.push({ blk, title, note, html, anim, args });
+// B. Режим Б — занятие
+add('b', 'Б1 · Занятие: энергия без сердечек', 'Режим Б: в шапке только энергия 4 (и монеты); сердечек нет, за старт ничего не списано.', lessonScr({ kind: 'lesson', en: 4 }), null);
+add('b', 'Б2 · Ошибка: иконка трясётся, «−1» вылетает', 'Неверная плитка краснеет, иконка энергии трясётся, над ней вылетает «−1», цифра перекатывается 4 → 3. Занятие идёт дальше.', lessonScr({ kind: 'lesson', en: 4 }), 'err', { to: 3 });
+add('b', 'Б3 · Осталась 1 энергия — предупреждение', 'Иконка пульсирует красным, под шапкой — спокойное предупреждение. Текст — предложение.', lessonScr({ kind: 'lesson', en: 1, warn: true }), 'warn');
+add('b', 'Б4 · Ошибка на последней энергии → занятие останавливается', 'Тряска, «−1», энергия 0 — и занятие мягко замирает (цвет уходит, ответы недоступны), поверх карточка «Энергия закончилась». Не наказание, а пауза: вернёшься на тот же вопрос.', lessonScr({ kind: 'lesson', en: 1, layers: stopCard }), 'stop');
+add('b', 'Б5 · Шторка Plus на остановке', 'Из карточки остановки — контекстный пейволл «Шторка» (текст «Энергия закончилась / С Plus она не тратится…» утверждён). Кнопка ведёт к покупке; позади остановленное занятие.', lessonScr({ kind: 'lesson', en: 0, frozen: true, layers: plusSheet() }), 'sheet');
+add('b', 'Б6 · После покупки занятие продолжается', 'Оплата → «Plus активирован» → шторка уходит, энергии больше нет в шапке, занятие оживает на том же вопросе.', lessonScr({ kind: 'lesson', en: 0, frozen: true, layers: plusSheet({ shown: true }) }), 'buy');
+add('b', 'Б7 · Вышел с нулём энергии — новое занятие не начать', 'Тап по уроку: шторка «Нужна энергия» с таймером до следующей единицы (10 минут на единицу) и Plus. Таймер тикает.', listUnder('', 0) + needSheet, 'need');
+add('b', 'Б8 · Энергия восстановилась — можно начать', 'Таймер дошёл до нуля: «+1» влетает в иконку, всплывает «Энергия восстановилась», кнопка «Начать занятие» оживает.', restoreScr, 'restore');
+// В. Остальные виды занятий в режиме Б
+const KINDS = [['words', 'Слова'], ['verbs', 'Неправильные глаголы (отработка)'], ['v2', 'Learning V2 — занятие'], ['cards', 'Карточки: тренировка']];
+KINDS.forEach(([k, nm]) => {
+  add('o', `${nm} · занятие`, 'Режим Б: только энергия, сердечек нет.', lessonScr({ kind: k, en: 4 }), null);
+  add('o', `${nm} · ошибка`, 'Та же анимация: тряска, «−1», 4 → 3.', lessonScr({ kind: k, en: 4 }), 'err', { to: 3 });
+  add('o', `${nm} · остановка`, 'Ошибка на последней энергии: занятие останавливается, шторка Plus «продолжить сейчас».', lessonScr({ kind: k, en: 1, layers: stopCard }), 'stop');
+});
+// Г. Без изменений
+add('n', 'Диалоги — энергия не меняется', 'Ошибка в диалоге энергию не снимает ни в одном режиме (у диалогов свои лимиты реплик).', dlgScr, null);
+add('n', 'Фраза дня — энергия не меняется', 'Ошибка квиза не снимает энергию ни в одном режиме. Вариант выделен как неверный, цифра 4 на месте.', qotdScr, null);
+// Д. Режим А
+add('a', 'А1 · Старт занятия: −1 энергия', 'Режим А (как сейчас): при старте цифра «проваливается» 5 → 4. Сердечки 3/3, серия монет «×3».', lessonScr({ kind: 'lesson', mode: 'a', en: 5, combo: 3 }), 'astart');
+add('a', 'А2 · Ошибка: сердечко гаснет, серия сбрасывается', 'Одно сердечко гаснет, «×3» схлопывается — серия монет сбрасывается. Энергия не меняется.', lessonScr({ kind: 'lesson', mode: 'a', en: 4, combo: 3 }), 'aerr');
+add('a', 'А3 · Нет энергии при старте', 'Режим А: нет энергии — окно «Энергия закончилась», +1 вернётся через 7 минут, «Открыть Plus» или «Позже» (из приложения).', listUnder('', 0) + `<div class="gdim on"></div><div class="gdlg"><div class="ic">${BOLT}</div><div class="tt">Энергия закончилась</div><div class="bd">+1 вернётся через 7 минут. В Plus энергия не тратится.</div><div class="gbt">Открыть Plus</div><div class="gbt gh">Позже</div></div>`, null);
+
+// ---------- анимации ----------
+const q = (ph, s) => ph.querySelector(s);
+const later = (ph, fn, ms) => { (ph._t = ph._t || []).push(setTimeout(fn, ms)); };
+const setEn = (ph, to, o = {}) => { const e = q(ph, '[data-en]'); if (!e) return; const nv = e.querySelector('.nv'); const fly = e.querySelector('.fly'); if (o.fly !== false) { e.classList.remove('shake'); void e.offsetWidth; e.classList.add('shake'); fly.textContent = o.text || '−1'; fly.classList.toggle('up', !!o.up); fly.classList.remove('go'); void fly.offsetWidth; fly.classList.add('go'); }
+  setTimeout(() => { nv.textContent = to; nv.classList.remove('tick'); void nv.offsetWidth; nv.classList.add('tick'); e.classList.toggle('zero', to === 0); e.classList.remove('warn'); }, 260); };
+const bad = (ph) => { const t = q(ph, '[data-bad]'); if (t) t.classList.add('bad'); const a = q(ph, '.ga'); if (a) a.classList.add('bad'); };
+const ANIM = {
+  err(ph, a) { later(ph, () => bad(ph), 500); later(ph, () => setEn(ph, a.to), 1100); later(ph, () => { const t = q(ph, '[data-bad]'); if (t) t.classList.remove('bad'); const x = q(ph, '.ga'); if (x) x.classList.remove('bad'); }, 2400); },
+  warn(ph) { const e = q(ph, '[data-en]'); later(ph, () => e.classList.add('warn'), 400); },
+  stop(ph) { later(ph, () => bad(ph), 500); later(ph, () => setEn(ph, 0), 1100); later(ph, () => { q(ph, '.gp').classList.add('frozen'); q(ph, '.gdim').classList.add('on'); }, 2200); later(ph, () => q(ph, '.gmod').classList.add('on'), 2700); },
+  sheet(ph) { later(ph, () => { q(ph, '.gdim').classList.add('on'); q(ph, '.gsh').classList.add('on'); }, 500); },
+  buy(ph) { const c = q(ph, '[data-cta]'); later(ph, () => c.classList.add('press'), 900); later(ph, () => { c.classList.remove('press'); c.classList.add('busy'); q(ph, '.lb').textContent = 'Оформляем…'; }, 1150); later(ph, () => { c.classList.remove('busy'); q(ph, '.gdone').classList.add('on'); }, 2300);
+    later(ph, () => { q(ph, '.gdone').classList.remove('on'); q(ph, '.gsh').classList.remove('on'); q(ph, '.gdim').classList.remove('on'); }, 3500); later(ph, () => { q(ph, '.gp').classList.remove('frozen'); const e = q(ph, '[data-en]'); e.style.transition = 'opacity 400ms, transform 400ms'; e.style.opacity = 0; e.style.transform = 'scale(.6)'; setTimeout(() => e.remove(), 420); }, 3900); },
+  need(ph) { const t = q(ph, '[data-timer]'); const dots = ph.querySelectorAll('.gdots i'); later(ph, () => { q(ph, '.gdim').classList.add('on'); q(ph, '.gsh').classList.add('on'); }, 500); let s = 9 * 60; t.textContent = '09:00'; ph._i = setInterval(() => { s = Math.max(0, s - 37); const m = String(Math.floor(s / 60)).padStart(2, '0'), x = String(s % 60).padStart(2, '0'); t.textContent = m + ':' + x; }, 600); },
+  restore(ph) { const e = q(ph, '[data-en]'); later(ph, () => { setEn(ph, 1, { text: '+1', up: true }); e.classList.add('glow'); }, 900); later(ph, () => q(ph, '[data-toast]').classList.add('on'), 1300); later(ph, () => { const c = q(ph, '[data-start]'); c.classList.remove('off'); }, 1700); later(ph, () => q(ph, '[data-toast]').classList.remove('on'), 3600); },
+  astart(ph) { const e = q(ph, '[data-en]'); later(ph, () => { e.classList.add('drop'); q(ph, '.nv').textContent = 4; e.classList.remove('drop'); void e.offsetWidth; e.classList.add('drop'); const f = e.querySelector('.fly'); f.textContent = '−1'; f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }, 900); },
+  aerr(ph) { const hs = ph.querySelectorAll('.ghp .h'); const cb = q(ph, '[data-combo]'); later(ph, () => { bad(ph); }, 500); later(ph, () => { hs[2].classList.add('pop', 'lost'); const x = q(ph, '.ghp'); x.classList.remove('shake'); void x.offsetWidth; x.classList.add('shake'); }, 1100); later(ph, () => cb.classList.add('gone'), 1500); later(ph, () => { const t = q(ph, '[data-bad]'); if (t) t.classList.remove('bad'); const x = q(ph, '.ga'); if (x) x.classList.remove('bad'); }, 2600); },
+};
+const reset = (ph) => { (ph._t || []).forEach(clearTimeout); ph._t = []; if (ph._i) { clearInterval(ph._i); ph._i = null; } ph.innerHTML = ph._init; };
+const play = (col) => { const ph = col.querySelector('.ph'); const a = ph.dataset.anim; if (!a || !ANIM[a]) return; reset(ph); ANIM[a](ph, JSON.parse(ph.dataset.args || '{}')); };
+
+// ---------- сборка страницы ----------
+const BLK = { b: ['Режим Б — «энергия за ошибки»: урок, все состояния', 'Восемь кадров по порядку ТЗ: занятие, ошибка, последняя энергия, остановка, шторка Plus, покупка, выход без энергии, восстановление. «Повторить анимацию» перезапускает каждый кадр.'],
+  o: ['Режим Б — слова, неправильные глаголы, Learning V2, «Карточки: тренировка»', 'Тот же набор в каждом виде занятий: занятие (без сердечек), ошибка (тряска и «−1»), остановка с шторкой Plus. Экран шторки и сценарий восстановления — как в уроке (Б5–Б8).'],
+  n: ['Энергию за ошибки не снимают', 'Диалоги и «Фраза дня» не меняются ни в одном режиме — показано как «без изменений».'],
+  a: ['Режим А — для сравнения (как в приложении сейчас)', 'За начало занятия −1 энергия, за ошибку гаснет сердечко и сбрасывается серия монет «×N». Серия монет — допущение по смыслу ТЗ («сбрасываются монетки»).'] };
+const renderGrid = (lite) => ['b', 'o', 'n', 'a'].map((b) => `<section class="block" id="${lite ? 'l' : 'd'}-${b}"><h2>${BLK[b][0]}</h2><p>${BLK[b][1]}</p><div class="phones">${S.filter((x) => x.blk === b).map((x) => { const p = phone(x.html, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}" data-anim="${x.anim || ''}" data-args='${JSON.stringify(x.args || {})}'`); return `<div class="col gcol"><div class="lbl">${x.title}</div>${p}${x.anim ? '<div class="grpl t" data-replay>Повторить анимацию</div>' : ''}<div class="gnote">${x.note}</div></div>`; }).join('')}</div></section>`).join('');
+document.getElementById('root').innerHTML = `<h2 id="dark" style="font-size:22px;margin:28px 0 0">Тёмная «Аврора»</h2>${renderGrid(false)}<h2 id="light" style="font-size:22px;margin:40px 0 0">Светлая тема</h2>${renderGrid(true)}`;
+K.init();
+document.querySelectorAll('.ph').forEach((ph) => { ph._init = ph.innerHTML; });
+document.body.addEventListener('click', (e) => { const b = e.target.closest('[data-replay]'); if (b) play(b.closest('.col')); });
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { play(e.target); io.unobserve(e.target); } }), { threshold: 0.55 });
+document.querySelectorAll('.col').forEach((c) => { if (c.querySelector('.ph').dataset.anim) io.observe(c); });
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const Th = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', Th[1]); p.style.setProperty('--g2', Th[2]); if (p.classList.contains('lite')) { p.style.setProperty('--acc', `color-mix(in srgb, ${Th[1]} 78%, #000)`); } else { p.style.setProperty('--acc', Th[3]); p.style.setProperty('--on', Th[4]); } }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((Th, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${Th[1]},${Th[2]})"></i>${Th[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

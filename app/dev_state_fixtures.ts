@@ -71,6 +71,8 @@ export type DevStateRequest = Readonly<{
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
   cards?: 'demo' | 'demo_lessons' | 'custom50' | 'demo_published' | 'notranslation';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
+  /** Гипотеза падения qemu (координатор 14.10): off — все boxShadow стиля «Тень» выключены в памяти процесса, on — вернуть. */
+  shadows?: 'on' | 'off';
   slot?: 'poll' | 'poll_voted' | 'message' | 'top' | 'off';
   /** Диалоги (R1 dialogs-*): отказ сервера, настроение, рубильник, удержание загрузки свободного разговора, отказ энергии. off — снять. */
   dialogFail?: DevDialogFail | 'off';
@@ -180,6 +182,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     return value === '1' || value === 'on' || value === 'true' ? 'on' : 'off';
   };
   request.dialogsPaused = onOff('dialogs_paused');
+  request.shadows = onOff('shadows');
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
@@ -340,6 +343,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('dquota', String(request.dquota), async () => {
       const { applyDialogQuota } = await import('./dev_state_cards_demo');
       await applyDialogQuota(await getStableId(), request.dquota!);
+    });
+  }
+  if (request.shadows) {
+    await step('shadows', request.shadows, async () => {
+      const { setDevShadowsOff } = await import('../constants/liquidGlassShadowStyle');
+      return setDevShadowsOff(request.shadows === 'off');
     });
   }
   if (request.slot) {

@@ -15,6 +15,7 @@ import {
   preloadLearningV2CourseSessionAudioV1,
   type LearningV2CourseSessionAudioPreloadHandleV1,
 } from "./learning_v2_course_session_audio_preload_v1";
+import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
 import {
   buildLearningV2FactoryBundledAudioChildV1,
   learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
@@ -922,6 +923,15 @@ export function bundledLearningV2CourseSessionMaterialV3(
   // scripted_repeat_compare (mode-native формат), она обязана попасть в одну
   // из bundled-веток, иначе exactInteraction бросает fail() на несовпадении
   // count.
+  // зачем (восстановлено 2026-09-13): английская сессия 1 имеет собственную
+  // bundled-озвучку (learning_v2_session1_production_audio_v1.ts). Ветка была
+  // потеряна при переписывании на испанские сессии — без неё сторож выпуска
+  // блокировал КАЖДЫЙ коммит в репозитории, а сессия ушла бы в сеть и показала
+  // «Сессия недоступна / stable_identity_unavailable».
+  const bindsSessionOneProductionAudio =
+    locator.targetLanguage === "en" &&
+    locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 1;
   const bindsEsSessionOneProductionAudio =
     locator.targetLanguage === "es" &&
     locator.lessonOrdinal === 1 &&
@@ -943,7 +953,9 @@ export function bundledLearningV2CourseSessionMaterialV3(
   // возвращает null ЗДЕСЬ, ещё до показа экрана: потолок бандла её не
   // откроет, и она просто не появится в списке доступных.
   const hasBundledAudio =
-    bindsEsSessionOneProductionAudio || bindsEsSessionTwoProductionAudio;
+    bindsSessionOneProductionAudio ||
+    bindsEsSessionOneProductionAudio ||
+    bindsEsSessionTwoProductionAudio;
   // зачем (владелец, 2026-08-28, DEV_LEARNING_V2_AUDIOLESS_SESSIONS в
   // app/config.ts): испанские сессии пишутся быстрее, чем для них генерируют
   // bundled-озвучку — без этого написанная сессия 3+ честно закрыта потолком
@@ -968,14 +980,16 @@ export function bundledLearningV2CourseSessionMaterialV3(
     (interaction) => interaction.audioTargetIds.length > 0,
   );
   if (needsAudio && !hasBundledAudio) return null;
-  const audioChild = bindsEsSessionOneProductionAudio
-    ? buildLearningV2EsSession1BundledAudioChildV1(children.learner)
-    : bindsEsSessionTwoProductionAudio
-      ? buildLearningV2EsSession2BundledAudioChildV1(children.learner)
-      : materializeLearningV2CourseSessionAudioChildV1({
-        learner: children.learner,
-        interactions: Object.freeze([]),
-      });
+  const audioChild = bindsSessionOneProductionAudio
+    ? buildLearningV2Session1BundledAudioChildV1(children.learner)
+    : bindsEsSessionOneProductionAudio
+      ? buildLearningV2EsSession1BundledAudioChildV1(children.learner)
+      : bindsEsSessionTwoProductionAudio
+        ? buildLearningV2EsSession2BundledAudioChildV1(children.learner)
+        : materializeLearningV2CourseSessionAudioChildV1({
+          learner: children.learner,
+          interactions: Object.freeze([]),
+        });
   const bindsSessionOneRewardPublication =
     locator.targetLanguage === "en" && locator.lessonOrdinal === 1 &&
     locator.sessionOrdinal === 1;

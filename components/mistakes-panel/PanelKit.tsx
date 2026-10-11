@@ -194,8 +194,8 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
     <View style={styles.dock} pointerEvents="box-none">
       <LinearGradient
         pointerEvents="none"
-        colors={[`${g.bgBottom}00`, `${g.bgBottom}F2`, `${g.bgBottom}F2`]} // зачем (Сверка 11.10): на градиентных темах плоский g.bg давал серую полосу и просвечивающий список; низ градиента фона совпадает с экраном
-        locations={[0, 0.4, 1]}
+        colors={[`${g.bgBottom}00`, `${g.bgBottom}FF`, `${g.bgBottom}FF`]} // зачем (Сверка 06:07): под самой кнопкой фон сплошной (F2 пропускал строку списка); затухание вверх оставлено
+        locations={[0, 0.35, 1]}
         style={StyleSheet.absoluteFill}
       />
       <View style={{ paddingBottom: Math.max(20, insets.bottom + 12) }}>{children}</View>

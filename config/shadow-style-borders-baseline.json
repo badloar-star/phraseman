@@ -1,5 +1,5 @@
 {
-  "total": 97,
+  "total": 96,
   "files": {
     "app/(tabs)/settings.tsx": 1,
     "app/combined_lesson_pick.tsx": 2,
@@ -33,7 +33,6 @@
     "components/ReportErrorButton.tsx": 4,
     "components/SpeakingButton.tsx": 1,
     "components/VipSurveyModal.tsx": 13,
-    "components/YearWheel.tsx": 2,
-    "components/v2/V2Kit.tsx": 1
+    "components/YearWheel.tsx": 2
   }
 }

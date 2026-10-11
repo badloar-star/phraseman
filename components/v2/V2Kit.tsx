@@ -395,7 +395,7 @@ export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, sta
       onPress={onPress}
       disabled={disabled}
       scaleTo={0.98}
-      style={[s.answer, resolved ? { borderWidth: 1, borderColor: border } : { boxShadow: nestedBoxShadow(g) }, { backgroundColor: bg, opacity: state === 'dimmed' ? 0.45 : 1 }]} // guard-ok: D43 кольцо исхода ответа (семантика верно/неверно)
+      style={[s.answer, resolved ? { borderWidth: 1, borderColor: border } : { boxShadow: nestedBoxShadow(g) }, { backgroundColor: bg, opacity: state === 'dimmed' ? 0.45 : 1 }]} // guard-ok: D43 кольцо исхода ответа (семантика верно/неверно) shadow-ok: кольцо исхода ответа — семантика, не контейнер
     >
       <Text style={[s.answerText, { color: p.text }]}>{label}</Text>
     </V2Pressable>

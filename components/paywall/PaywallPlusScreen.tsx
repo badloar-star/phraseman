@@ -33,13 +33,13 @@ import {
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
-import { paywallContextHeadline, type PaywallContextHeadline } from '../../app/paywall_context_headline';
+import { paywallContextHeadline, paywallEntryFactsFromParams, type PaywallContextHeadline } from '../../app/paywall_context_headline';
 import { PaywallContextIcon } from './PaywallContextIcons';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
 
-type Params = { _force_trial_ui?: string | string[]; resume_kind?: string; resume_lesson_id?: string };
+type Params = { _force_trial_ui?: string | string[]; resume_kind?: string; resume_lesson_id?: string; lessons_done?: string; streak?: string };
 
 function firstParam(raw: string | string[] | undefined): string | undefined {
   return Array.isArray(raw) ? raw[0] : raw;
@@ -64,7 +64,13 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // зачем (владелец 11.10: «все пейволы должны быть контекстными всегда»): тексты окна — по месту входа. Тексты берутся
   // из уже написанных paywall_copy.ts (контракт app/paywall_context_headline.ts); вход без своего текста (generic) —
   // прежняя шапка пробного периода.
-  const headline = useMemo(() => paywallContextHeadline(ctx, lang), [ctx, lang]);
+  // зачем (утверждённые тексты 11.10): пилюля «Урок 4 закрыт» / «Серия 12 дней» берёт числа из параметров входа.
+  const lessonsDoneParam = params.lessons_done;
+  const streakParam = params.streak;
+  const headline = useMemo(
+    () => paywallContextHeadline(ctx, lang, paywallEntryFactsFromParams({ lessons_done: lessonsDoneParam, streak: streakParam })),
+    [ctx, lang, lessonsDoneParam, streakParam],
+  );
   const contextual = headline.copyContext !== 'generic' && !!headline.title;
   // зачем (макет paywall-context-redesign #c1): пилюля «что закончилось» рядом со значком входа. Поле `pill` в контракт вносит Ядро;
   // пока его нет — пилюли нет (ничего не выдумываем).

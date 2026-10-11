@@ -1,24 +1,24 @@
 /**
- * Контракт контекста окна Plus: «контекст → заголовок / подзаголовок / первая выгода».
+ * Контракт контекста окна Plus: «контекст → заголовок / подзаголовок / первая выгода / пилюля „что закончилось“».
  *
- * зачем (владелец 11.10: «Я НЕ ВИЖУ КОНТЕКСТА! ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ ВСЕГДА»; координатор 14:45):
- * экран Plus получает entry.context, но шапка его не показывала — контекст уходил только в аналитику. Тексты под каждый
- * контекст в 9 языках уже написаны (app/paywall_copy.ts) и раньше жили в удалённых пейволах A–G. Эта функция
- * ничего не сочиняет: только выбирает готовую строку. Подключение к шапке — по макету Дизайна (гейт «приложение = макет»).
- *
- * Язык без своей строки (например, нет английской выгоды) — пустая строка, а НЕ русская подстановка:
- * русский текст англоязычному человеку хуже, чем отсутствие строки. Пробелы видит сторож
- * tests/paywall_context_headline_contract.test.ts.
+ * зачем (владелец 11.10: «ВСЕ ПЕЙВОЛЫ ДОЛЖНЫ БЫТЬ КОНТЕКСТНЫМИ ВСЕГДА»; тексты утверждены владельцем 11.10 —
+ * таблица сессии 3, docs/design/v2-app/paywall-context-texts.md): окно говорит про место, откуда человек пришёл.
+ * Тексты на 9 языках — app/paywall_context_texts.ts (числа из констант кода). Вход без своего текста и снятые входы
+ * (`theme`, `arena_limit`) получают общий текст `generic`, а экран оставляет прежнюю шапку пробного периода.
  */
 import type { Lang } from '../constants/i18n';
 import type { PremiumContext } from './premium_context';
 import {
-  CONTEXT_BENEFITS,
-  CONTEXT_BENEFITS_PLANNED,
-  PAYWALL_PLANNED_COPY,
-  getPaywallCopy,
-  type PremiumPlannedCopy,
-} from './paywall_copy';
+  PAYWALL_RETIRED_CONTEXTS,
+  isPaywallTextLang,
+  paywallContextPill,
+  paywallContextTexts,
+  type PaywallEntryFacts,
+  type PaywallTextContext,
+  type PaywallTextLang,
+} from './paywall_context_texts';
+
+export type { PaywallEntryFacts } from './paywall_context_texts';
 
 export type PaywallContextHeadline = Readonly<{
   /** Контекст, чьи тексты реально взяты (свой или generic). */
@@ -26,47 +26,41 @@ export type PaywallContextHeadline = Readonly<{
   title: string;
   subtitle: string;
   firstBenefit: string;
+  /** Пилюля «что закончилось / что закрыто» (макет #c1). Пустая строка — пилюли нет. */
+  pill: string;
 }>;
 
-type PlannedLang = Exclude<keyof PremiumPlannedCopy, never>;
-
-function planned(copy: PremiumPlannedCopy | undefined, lang: PlannedLang): string {
-  return String(copy?.[lang] ?? '').trim();
+function textContext(ctx: PremiumContext): PaywallTextContext | 'generic' {
+  if ((PAYWALL_RETIRED_CONTEXTS as readonly string[]).includes(ctx)) return 'generic';
+  return ctx as PaywallTextContext;
 }
 
-function firstBenefitFor(ctx: PremiumContext, lang: Lang): string {
-  const row = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic)[0];
-  if (!row) return '';
-  if (lang === 'ru' || lang === 'uk' || lang === 'es') return String(row[lang] ?? '').trim();
-  const own = planned(row, lang as PlannedLang);
-  if (own) return own;
-  // зачем: часть строк держит перевод в параллельной таблице CONTEXT_BENEFITS_PLANNED.
-  return planned((CONTEXT_BENEFITS_PLANNED[ctx] ?? CONTEXT_BENEFITS_PLANNED.generic)[0], lang as PlannedLang);
+/** Язык интерфейса → язык текстов (неизвестный — английский, но никогда не русская подстановка). */
+function textLang(lang: Lang): PaywallTextLang {
+  return isPaywallTextLang(lang) ? lang : 'en';
 }
 
-export function paywallContextHeadline(ctx: PremiumContext, lang: Lang): PaywallContextHeadline {
-  const hasOwnCopy = getPaywallCopy(ctx) !== getPaywallCopy('generic') || ctx === 'generic';
-  const copyContext: PremiumContext | 'generic' = hasOwnCopy ? ctx : 'generic';
-  if (lang === 'ru' || lang === 'uk' || lang === 'es') {
-    const copy = getPaywallCopy(ctx);
-    const suffix = lang === 'ru' ? 'Ru' : lang === 'uk' ? 'Uk' : 'Es';
-    return {
-      copyContext,
-      title: copy[`title${suffix}`].trim(),
-      subtitle: copy[`subtitle${suffix}`].trim(),
-      firstBenefit: firstBenefitFor(ctx, lang),
-    };
-  }
-  // зачем: у части контекстов нет текста на этом языке (mastery/avatar_aura/arena_limit без en) — тогда честный
-  // общий текст этого же языка, а не пустая шапка и не русская подстановка.
-  const own = PAYWALL_PLANNED_COPY[ctx];
-  const ownHasLang = !!own && !!planned(own.title, lang as PlannedLang);
-  const hero = ownHasLang && own ? own : PAYWALL_PLANNED_COPY.generic;
+/** Факты входа из параметров маршрута: номер закрытого урока (`lessons_done` + 1) и длина серии (`streak`). */
+export function paywallEntryFactsFromParams(params: Readonly<Record<string, string | string[] | undefined>>): PaywallEntryFacts {
+  const first = (raw: string | string[] | undefined) => Number(Array.isArray(raw) ? raw[0] : raw);
+  const lessonsDone = first(params.lessons_done);
+  const streak = first(params.streak);
   return {
-    copyContext: ownHasLang ? ctx : 'generic',
-    title: planned(hero.title, lang as PlannedLang),
-    subtitle: planned(hero.subtitle, lang as PlannedLang),
-    firstBenefit: firstBenefitFor(ctx, lang),
+    lessonNumber: Number.isSafeInteger(lessonsDone) && lessonsDone >= 0 ? lessonsDone + 1 : null,
+    streakDays: Number.isSafeInteger(streak) && streak > 0 ? streak : null,
+  };
+}
+
+export function paywallContextHeadline(ctx: PremiumContext, lang: Lang, facts: PaywallEntryFacts = {}): PaywallContextHeadline {
+  const copyContext = textContext(ctx);
+  const tl = textLang(lang);
+  const text = paywallContextTexts()[copyContext][tl];
+  return {
+    copyContext,
+    title: text.title,
+    subtitle: text.subtitle,
+    firstBenefit: text.benefit,
+    pill: copyContext === 'generic' ? '' : paywallContextPill(copyContext, tl, facts),
   };
 }
 

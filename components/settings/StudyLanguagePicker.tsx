@@ -229,6 +229,18 @@ export default function StudyLanguagePicker({
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { options, startedLanguages, busy, select: onSelect } = useStudyLanguageSelection({ lang, activeTarget, onSwitched });
+  // зачем (координатор 12.10, profile-005 роняет qemu c0000005): вход шторки и тяжёлые слои — плитки с тенью boxShadow и флаги.
+  const pickerLoggedRef = useRef(false);
+  if (!pickerLoggedRef.current) {
+    pickerLoggedRef.current = true;
+    console.log('[PROFILE-RENDER] study_picker render_start', JSON.stringify({
+      themeId: liquidGlassThemeId, tiles: options.length, activeTarget, plateShadow: plateBoxShadow(glass), raisedShadow: raisedBoxShadow(glass),
+      flagSize: `${FLAG_WIDTH}x${FLAG_HEIGHT}`,
+    }));
+  }
+  useEffect(() => {
+    console.log('[PROFILE-RENDER] study_picker mounted');
+  }, []);
 
   return (
     <ScrollView
@@ -278,7 +290,13 @@ export default function StudyLanguagePicker({
               }}
             >
               {flagAsset ? (
-                <Image source={flagAsset} style={{ width: FLAG_WIDTH, height: FLAG_HEIGHT }} resizeMode="cover" />
+                <Image
+                  source={flagAsset}
+                  style={{ width: FLAG_WIDTH, height: FLAG_HEIGHT }}
+                  resizeMode="cover"
+                  onLoad={() => console.log(`[PROFILE-RENDER] study_picker flag loaded code=${code}`)}
+                  onError={(event) => console.warn(`[PROFILE-RENDER] study_picker flag error code=${code} error=${String(event.nativeEvent?.error ?? 'unknown').slice(0, 120)}`)}
+                />
               ) : (
                 <Text style={{ fontSize: 27 }}>{LEARNING_LANGUAGE_CONTOURS[code].flagGlyph}</Text>
               )}

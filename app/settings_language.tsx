@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
@@ -49,10 +49,34 @@ export default function SettingsLanguage() {
   // зачем (стиль «Тень», владелец 12.10): строка — плашка с тенью без кромки; выбранный язык приподнят (RAISED_LIFT на внешней обёртке), overflow не ставим — клип резал бы тень.
   const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
   const activeRowStyle = { ...rowStyle, boxShadow: raisedBoxShadow(glass) };
+  // зачем (координатор 12.10, profile-004/005 роняют qemu c0000005): строки [PROFILE-RENDER] — вход экрана и каждый тяжёлый слой
+  // (фон V2Backdrop: SVG-радиальный + линейный градиент на весь экран; тени boxShadow с размытием на каждой строке; флаги).
+  // Последняя строка перед падением укажет слой. Сперва логи, без починки.
+  // Ленивый инициализатор useState вызывается один раз — строка входа без лишнего хука.
+  useState(() => {
+    console.log('[PROFILE-RENDER] settings_language render_start', JSON.stringify({
+      themeId: liquidGlassThemeId, studyTarget, interfaceRows: getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).length,
+      rowShadow: rowStyle.boxShadow, activeShadow: activeRowStyle.boxShadow, backdrop: 'ScreenGradient→V2Backdrop(svg radial + linear)',
+    }));
+    return true;
+  });
+  useEffect(() => {
+    console.log('[PROFILE-RENDER] settings_language mounted');
+  }, []);
+  useEffect(() => {
+    if (studySheetVisible) console.log('[PROFILE-RENDER] settings_language study_sheet open (profile-005)');
+  }, [studySheetVisible]);
 
   return (
     <ScreenGradient>
-      <View testID="settings-language-screen" style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
+      <View
+        testID="settings-language-screen"
+        style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}
+        onLayout={(event) => {
+          const { width, height } = event.nativeEvent.layout;
+          console.log('[PROFILE-RENDER] settings_language layout', JSON.stringify({ width: Math.round(width), height: Math.round(height) }));
+        }}
+      >
         <ContentWrap>
           {/* зачем: паритет profile.html PRF-03 (13.10): поля экрана 20, круг «Закрыть» 42 со значком 21, разрядка заголовка −0.5 */}
           <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }} scrollEventThrottle={16}>
@@ -116,7 +140,16 @@ export default function SettingsLanguage() {
             <SettingsGlassRow
               glass={glass}
               testID="settings-language-study-row"
-              leading={<Image source={STUDY_FLAG[studyTarget]} accessible={false} style={{ width: 54, height: 38, borderRadius: 10 }} contentFit="cover" />}
+              leading={(
+                <Image
+                  source={STUDY_FLAG[studyTarget]}
+                  accessible={false}
+                  style={{ width: 54, height: 38, borderRadius: 10 }}
+                  contentFit="cover"
+                  onLoad={(event) => console.log('[PROFILE-RENDER] settings_language flag loaded', JSON.stringify({ studyTarget, w: event.source.width, h: event.source.height }))}
+                  onError={(event) => console.warn('[PROFILE-RENDER] settings_language flag error', JSON.stringify({ studyTarget, error: String(event.error).slice(0, 120) }))}
+                />
+              )}
               title={STUDY_NAME[studyTarget]}
               sub={triLang(lang as Lang, { ru: 'Сейчас изучаешь', uk: 'Зараз вивчаєш', en: 'Currently learning', es: 'Estudias ahora', 'pt-BR': 'Estudando agora', vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Şu an öğreniyorsun', pl: 'Teraz się uczysz' })}
               onPress={() => setStudySheetVisible(true)}

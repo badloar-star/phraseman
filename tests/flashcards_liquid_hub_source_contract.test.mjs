@@ -533,8 +533,10 @@ test('Cards 2.0 hub: hero CTA with the monthly remainder, two library tiles, vid
   const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
   for (const route of ["'/flashcards_collection'", "'/flashcards_my_packs'", "'/flashcards_packs'", "'/flashcards_video_packs'"]) assert.match(hub, new RegExp(route), `route ${route}`);
   assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
-  for (const id of ['fc-cards-hub-train', 'fc-cards-hub-hero', 'fc-cards-hub-tile-saved', 'fc-cards-hub-tile-mine', 'fc-cards-hub-video-', 'fc-cards-hub-community-']) assert.ok(view.includes(id), id);
-  assert.match(view, /hasVideo && video/, 'video rail hidden when there are no video packs');
-  assert.match(view, /hasCommunity && community/, 'community chart hidden when the catalog is empty');
+  for (const id of ['fc-cards-hub-train', 'fc-cards-hub-hero', 'fc-cards-hub-tile-${t.id}']) assert.ok(view.includes(id), id);
+  // зачем (приказ владельца 11.10): низ хаба — четыре крупные плитки; ленты роликов и чарта сообщества больше нет
+  assert.match(view, /styles\.tiles/, 'tiles grid');
+  for (const id of ['saved', 'mine', 'video', 'community']) assert.ok(hub.includes(`id: '${id}' as const`), `tile ${id}`);
+  assert.doesNotMatch(view, /hasVideo|hasCommunity|SectionHead/, 'no rails or chart on the hub');
   assert.doesNotMatch(view, /borderWidth|borderColor/, 'Shadow style: no container outlines on the hub');
 });

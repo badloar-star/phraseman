@@ -13,7 +13,7 @@ test('hero height grows with the system font, text is never shrunk', () => {
 });
 
 test('titles and captions wrap through FlowText; only single-word chips are clamped', () => {
-  for (const style of ['styles.hw', 'styles.hs', 'styles.ctaText', 'styles.ytt', 'styles.vt', 'styles.crTitle']) {
+  for (const style of ['styles.hw', 'styles.hs', 'styles.ctaText', 'styles.tileTitle', 'styles.tileCount']) {
     const wraps = source.includes(`provenance="external" style={[${style},`) || source.includes(`provenance="authored" style={[${style},`);
     assert.ok(wraps, `${style} wraps through FlowText`);
   }

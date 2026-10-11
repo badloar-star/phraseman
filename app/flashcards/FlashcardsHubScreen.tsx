@@ -48,11 +48,8 @@ import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_lang
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
-import { pickTopCommunityPacks } from './SavedTopCommunityPacks';
-import { checkOnlineNow, getNetStatus, subscribeNetStatus } from '../net_status';
 import { STARTER_FIRST_50_DECK_ID, STARTER_FIRST_50_TITLE, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
 import { latestPackContinue, loadPackContinuePositions, peekPackContinuePositions, subscribePackContinue } from './pack_continue_position';
-import { formatDuration } from './VideoPackRow';
 import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
 import { peekStoredPackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
@@ -140,9 +137,6 @@ export default function FlashcardsHubScreen() {
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   // зачем (Карточки 2.0, плитка «Мои наборы»): обложки стопки — названия и размеры своих наборов; уже загружаются для владения, держим сами пакеты.
-  // зачем (Карточки 2.0, состояние «Нет сети»): сеть-статус приложения уже опрашивается централизованно (net_status) — тут только подписка, своих запросов нет.
-  const [netOffline, setNetOffline] = useState<boolean>(() => getNetStatus() === 'offline');
-  useEffect(() => subscribeNetStatus((online) => setNetOffline(!online)), []);
   // зачем (Карточки 2.0 12.10, данные Ядра ee01d089a): герой «Продолжить» показывает набор и позицию («Путешествия · 12 из 40») из памяти устройства;
   // 0 чтений Firestore. Нет сохранённой позиции — прежний герой (последняя сохранённая карточка).
   const [continuePos, setContinuePos] = useState(() => latestPackContinue(peekPackContinuePositions(studyTarget) ?? {}));
@@ -167,22 +161,15 @@ export default function FlashcardsHubScreen() {
     return applyCommunityPacksFilter(filterVideoPacks(packs), '', 'new', packLanguage).length;
   }, [studyTarget]);
   const [videoPackCount, setVideoPackCount] = useState<number | null>(() => countVideoPacks(peekVideoPhraseSetPacks()));
-  // зачем (Карточки 2.0, лента «Из видео» на хабе): те же наборы и тот же фильтр языка, что у счётчика; кэш 6 ч — без лишних запросов.
-  const listVideoPacks = useCallback((packs: readonly FlashcardMarketPack[] | null): FlashcardMarketPack[] => {
-    if (!packs) return [];
-    const packLanguage = peekStoredPackLanguage() ?? defaultPackLanguageForStudyTarget(studyTarget);
-    return applyCommunityPacksFilter(filterVideoPacks(packs), '', 'new', packLanguage).slice(0, 8);
-  }, [studyTarget]);
-  const [videoPacks, setVideoPacks] = useState<FlashcardMarketPack[]>(() => listVideoPacks(peekVideoPhraseSetPacks()));
   useEffect(() => {
     let cancelled = false;
     void loadVideoPhraseSetPacks().then((packs) => {
-      if (!cancelled) { setVideoPackCount(countVideoPacks(packs)); setVideoPacks(listVideoPacks(packs)); }
+      if (!cancelled) setVideoPackCount(countVideoPacks(packs));
     }).catch((error: unknown) => {
       console.warn('[FC-DECKS] hub:video count FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok
     });
     return () => { cancelled = true; };
-  }, [countVideoPacks, listVideoPacks]);
+  }, [countVideoPacks]);
   /**
    * зачем (владелец: «раздел открывается и происходит скачок, моргание»):
    * состояние стартовало в 'loading' ВСЕГДА, даже когда тёплый каталог уже лежал
@@ -693,11 +680,6 @@ export default function FlashcardsHubScreen() {
     if (byLocale) return byLocale;
     return (lang === 'uk' ? card.uk : lang === 'es' ? card.es ?? card.ru : card.ru) ?? '';
   };
-  const savedPreviewCards = peekSelectedSavedContour() ?? [];
-  const myCovers = [
-    ...authoredPacks.map((pack) => ({ title: formatPackTitleForDisplay(pack.title), count: pack.cards.length })),
-    ...catalog.filter((pack) => ownedCommunityPackIds.includes(pack.id) && !isLocalAuthorPackId(pack.id)).map((pack) => ({ title: packTitleForInterface(pack, lang), count: pack.cardCount })),
-  ].slice(0, 3).map((c) => ({ title: c.title, count: String(c.count) }));
   const continuePack = continuePos
     ? (authoredPacks.find((pack) => pack.id === continuePos.packId) ?? null) ?? (catalog.find((pack) => pack.id === continuePos.packId) ?? null)
     : null;
@@ -718,23 +700,13 @@ export default function FlashcardsHubScreen() {
       : continuePos && continuePack
         ? { overline: hubCopy.cont, word: continueWord, sub: `${continueTitle} · ${continuePos.index} ${ofWord} ${continuePos.total}`, progress: Math.max(0, Math.min(1, continuePos.index / continuePos.total)), ctaLabel: hubCopy.cont, ctaLocked: false }
         : { overline: hubCopy.cont, word: topCard?.en ?? 'Boarding pass', sub: topCard ? translationOf(topCard) : '', progress: null, ctaLabel: topCard ? hubCopy.cont : trainLabel, ctaLocked: false };
-  const openVideoPack = (pack: FlashcardMarketPack) => openTopPack(pack);
-  const videoItems = videoPacks.map((pack) => ({
-    id: pack.id,
-    title: packTitleForInterface(pack, lang),
-    meta: hubCopy.phrases(pack.cardCount),
-    thumbUrl: pack.videoId ? `https://i.ytimg.com/vi/${encodeURIComponent(String(pack.videoId).trim())}/mqdefault.jpg` : null,
-    duration: formatDuration(pack.videoDurationSec),
-    onPress: () => openVideoPack(pack),
-  }));
-  const communityItems = pickTopCommunityPacks(catalog, 3).map((pack) => ({
-    id: pack.id,
-    title: packTitleForInterface(pack, lang),
-    sub: `${pack.authorName ?? ''} · ${hubCopy.cardsN(pack.cardCount)}`.replace(/^ · /, ''),
-    word: packTitleForInterface(pack, lang),
-    likes: fmt(pack.likesCount ?? 0),
-    onPress: () => openTopPack(pack),
-  }));
+  // зачем (приказ владельца 11.10: «4 кнопки крупные внизу»): четыре плитки хаба — Сохранённые, Мои наборы, Из видео, Сообщество
+  const hubTiles = [
+    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
+    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
+  ];
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
@@ -763,17 +735,7 @@ export default function FlashcardsHubScreen() {
               },
               onMode: () => { pendingDeckRef.current = null; onTrainPress(); },
             }}
-            yours={{
-              title: copy.library,
-              saved: { title: copy.saved, count: fmt(savedCount), empty: savedCount === 0, emptyLabel: hubCopy.empty, words: savedPreviewCards.slice(0, 4).map((c) => c.en), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-              mine: { title: copy.mine, count: fmt(myPackCount), empty: myPackCount === 0, emptyLabel: hubCopy.createShort, covers: myCovers, onPress: () => (myPackCount === 0 ? openCreatePack() : router.push('/flashcards_my_packs' as never)) },
-            }}
-            video={videoItems.length > 0 ? { title: copy.videoShort, allLabel: hubCopy.all, items: videoItems, onAll: () => router.push('/flashcards_video_packs' as never) } : null}
-            skeleton={catalogLoadState === 'loading' && !netOffline ? { videoTitle: copy.videoShort, communityTitle: hubCopy.best, allLabel: hubCopy.all, onVideoAll: () => router.push('/flashcards_video_packs' as never), onCommunityAll: () => router.push('/flashcards_packs' as never) } : null}
-            offline={netOffline && videoItems.length === 0 && communityItems.length === 0
-              ? { title: hubCopy.offTitle, sub: hubCopy.offSub, retryLabel: hubCopy.retry, onRetry: () => { void checkOnlineNow().catch(noteSwallowedAs('FlashcardsHubScreen:offlineRetry.checkOnlineNow', false)).then((online) => { if (online) reloadCatalog(); }); } }
-              : null}
-            community={communityItems.length > 0 ? { title: hubCopy.best, allLabel: hubCopy.all, items: communityItems, onAll: () => router.push('/flashcards_packs' as never) } : null}
+            tiles={hubTiles}
             reduceMotion={reduceMotion}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
             onSearch={() => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub', search: '1' } } as never)}

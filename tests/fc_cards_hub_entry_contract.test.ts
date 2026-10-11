@@ -19,14 +19,16 @@ describe('approved Cards hub entry', () => {
     if (!exists) return;
 
     const hub = fs.readFileSync(hubPath, 'utf8');
-    // зачем (владелец 12.10, «Карточки 2.0» cards-v2.html утверждены целиком): хаб — hero «Продолжить», «Твои карточки» (Сохранённые, Мои наборы), лента «Из видео» и чарт «Лучшее у сообщества»; прежний хаб А заменён.
+    // зачем (приказ владельца 11.10: «верни хаб как был, 4 кнопки внизу»): верх — hero «Продолжить» (cards-v2), низ — сетка 2×2 из четырёх КРУПНЫХ плиток;
+    // «Твои карточки», лента «Из видео» и чарт сообщества убраны.
     expect(hub).toContain('CardsHubV2');
-    expect(hub).toContain('pickTopCommunityPacks');
+    expect(hub).not.toContain('pickTopCommunityPacks');
     expect(hub).toContain("pathname: '/flashcards_collection'");
     expect(hub).toContain("router.push('/flashcards_my_packs'");
     expect(hub).toContain("router.push('/flashcards_packs'");
     const view = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
-    for (const id of ['tile-saved', 'tile-mine', 'video-', 'community-']) expect(view).toContain(`fc-cards-hub-${id}`);
+    for (const id of ['saved', 'mine', 'video', 'community']) expect(hub).toContain(`id: '${id}' as const`);
+    expect(view).toContain('fc-cards-hub-tile-${t.id}');
     expect(view).toContain('fc-cards-hub-train');
     expect(hub).not.toContain('<Ionicons name="barbell-outline"');
     expect(hub).not.toContain('FlashcardsTabBar');

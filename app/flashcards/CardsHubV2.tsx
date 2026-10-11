@@ -1,24 +1,28 @@
 /**
- * Хаб «Карточки 2.0» — утверждён владельцем 12.10 (макет docs/design/v2-app/cards-v2.html, блок «Хаб»; перекрывает прежний «вариант А» из CARDS_LOCKED).
+ * Хаб «Карточки 2.0».
  *
- * зачем (владелец: «да подтверждаю. этот хаб и все остальное тут в карточки 2.0 все в работу»): экран прокручивается и состоит из секций —
- * шапка (назад, «+»), заголовок, hero «Продолжить» (стопка плашек, слово, подпись, полоса позиции, главная кнопка и кнопка режимов),
- * «Твои карточки» (две плитки: мозаика сохранённых и стопка обложек наборов), лента «Из видео» (карточки 252) и чарт «Лучшее у сообщества».
- * Чистый вид без данных и навигации — всё приходит пропсами из FlashcardsHubScreen. Стиль «Тень»: плашки без обводок (components/v2/ShadowSurface).
- * Секции, для которых у приложения пока нет данных (позиция «Продолжить», чарт без наборов), скрываются, а не выдумываются.
+ * зачем (приказ владельца 11.10 по хабу: «верни хаб как был, 4 кнопки внизу… не большие три карточки парящие, а вот как сейчас… но внизу было
+ * 4 кнопки крупные»): ВЕРХ — как сейчас (шапка с лупой и «+», заголовок, hero «Продолжить» со стопкой, главная кнопка и кнопка режимов);
+ * НИЗ — сетка 2×2 из четырёх КРУПНЫХ плиток: Сохранённые, Мои наборы, Из видео, Сообщество (иконка сверху слева, название и счётчик снизу).
+ * «Твои карточки» (две плитки), лента «Из видео» с роликами и чарт «Лучшее у сообщества» убраны. Стиль «Тень»: плашки без обводок.
+ * Чистый вид без данных и навигации — всё приходит пропсами из FlashcardsHubScreen.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
 import React, { memo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlowText } from '../../components/text-integrity/FlowText';
-import SkeletonBlock from '../../components/SkeletonShimmer';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
 
-export type CardsHubVideoItem = Readonly<{ id: string; title: string; meta: string; thumbUrl: string | null; duration: string; onPress: () => void }>;
-export type CardsHubCommunityItem = Readonly<{ id: string; title: string; sub: string; word: string; likes: string; onPress: () => void }>;
+export type CardsHubTile = Readonly<{
+  id: 'saved' | 'mine' | 'video' | 'community';
+  icon: keyof typeof Ionicons.glyphMap;
+  title: string;
+  /** Счётчик под названием; пусто — число ещё не известно (подпись плитки тогда без числа). */
+  count: string;
+  onPress: () => void;
+}>;
 
 type Props = Readonly<{
   g: GlassTokens;
@@ -35,17 +39,8 @@ type Props = Readonly<{
     onCta: () => void;
     onMode: () => void;
   }>;
-  yours: Readonly<{
-    title: string;
-    saved: Readonly<{ title: string; count: string; empty: boolean; emptyLabel: string; words: readonly string[]; onPress: () => void }>;
-    mine: Readonly<{ title: string; count: string; empty: boolean; emptyLabel: string; covers: readonly Readonly<{ title: string; count: string }>[]; onPress: () => void }>;
-  }>;
-  video: Readonly<{ title: string; allLabel: string; items: readonly CardsHubVideoItem[]; onAll: () => void }> | null;
-  community: Readonly<{ title: string; allLabel: string; items: readonly CardsHubCommunityItem[]; onAll: () => void }> | null;
-  /** Первое в жизни открытие без кэша: на месте ленты и чарта — скелеты (макет `hubLoad`). */
-  skeleton?: Readonly<{ videoTitle: string; communityTitle: string; allLabel: string; onVideoAll: () => void; onCommunityAll: () => void }> | null;
-  /** Нет сети и показывать из кэша нечего: блок «Нет сети / Твои карточки доступны / Повторить» (макет `offlineHub`). */
-  offline?: Readonly<{ title: string; sub: string; retryLabel: string; onRetry: () => void }> | null;
+  /** Четыре крупные плитки внизу (сетка 2×2). */
+  tiles: readonly CardsHubTile[];
   reduceMotion: boolean;
   onBack: () => void;
   /** Лупа в шапке (макет `hubTop`); поиск по трём группам — у Ядра, пока открывает поиск «Сохранённых». */
@@ -70,53 +65,11 @@ function RoundBtn({ g, icon, label, onPress, testID }: Readonly<{ g: GlassTokens
   );
 }
 
-function SectionHead({ g, title, allLabel, onAll }: Readonly<{ g: GlassTokens; title: string; allLabel?: string; onAll?: () => void }>) {
-  return (
-    <View style={styles.sec}>
-      <Text accessibilityRole="header" style={[styles.secTitle, { color: g.text }]}>{title}</Text>
-      {allLabel && onAll ? (
-        <Pressable accessibilityRole="button" accessibilityLabel={allLabel} onPress={onAll} hitSlop={10} style={({ pressed }) => [styles.secAll, pressed && styles.pressed]}>
-          <Text style={[styles.secAllText, { color: g.secondary }]}>{allLabel}</Text>
-          <Ionicons name="chevron-forward" size={16} color={g.secondary} />
-        </Pressable>
-      ) : null}
-    </View>
-  );
-}
-
-/** Мини-плашка слова (макет `.mc`): мозаика сохранённых и обложки чарта. */
-function WordChip({ g, text, style }: Readonly<{ g: GlassTokens; text: string; style?: object }>) {
-  return (
-    <View style={[styles.mc, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }, style]}>
-      <Text numberOfLines={1} style={[styles.mcText, { color: g.text }]}>{text}</Text>
-    </View>
-  );
-}
-
-const Tile = memo(function Tile({ g, testID, title, count, onPress, icon, children }: Readonly<{ g: GlassTokens; testID: string; title: string; count: string; onPress: () => void; icon: keyof typeof Ionicons.glyphMap; children: React.ReactNode }>) {
-  return (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={count === '' ? title : `${title}, ${count}`} onPress={onPress}
-      style={({ pressed }) => [styles.tile, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-      <PlateFill g={g} radius={22} />
-      {children}
-      <View style={styles.yft}>
-        <View style={styles.yftText}>
-          <FlowText testID="fc-cards-hub-tile-title" provenance="authored" style={[styles.ytt, { color: g.text }]}>{title}</FlowText>
-          <FlowText testID="fc-cards-hub-tile-count" provenance="authored" style={[styles.ysu, { color: g.secondary }]}>{count}</FlowText>
-        </View>
-        <Ionicons name={icon} size={18} color={g.secondary} style={styles.yftIcon} />
-      </View>
-    </Pressable>
-  );
-});
-
-function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, offline, reduceMotion, onBack, onSearch, onCreate, ctaRef, labels }: Props) {
+function CardsHubV2Inner({ g, title, hero, tiles, reduceMotion, onBack, onSearch, onCreate, ctaRef, labels }: Props) {
   const { fontScale } = useWindowDimensions();
   const fs = Math.max(1, fontScale);
   // зачем (large font): высота hero растёт с системным шрифтом, чтобы слово и подпись не резались; сам шрифт не сжимаем.
   const heroH = Math.round(192 * (fs > 1 ? Math.min(fs, 1.4) : 1));
-  const hasVideo = !!video && video.items.length > 0;
-  const hasCommunity = !!community && community.items.length > 0;
   let idx = 0;
 
   return (
@@ -162,125 +115,33 @@ function CardsHubV2Inner({ g, title, hero, yours, video, community, skeleton, of
       </Rise>
 
       <Rise index={idx++} reduceMotion={reduceMotion}>
-        <SectionHead g={g} title={yours.title} />
-        <View style={styles.ygrid}>
-          <Tile g={g} testID="fc-cards-hub-tile-saved" title={yours.saved.title} count={yours.saved.empty ? yours.saved.emptyLabel : yours.saved.count} onPress={yours.saved.onPress} icon="bookmark-outline">
-            <View style={[styles.ymos, yours.saved.empty && styles.dim]}>
-              {(yours.saved.empty ? ['', '', '', ''] : yours.saved.words.slice(0, 4)).map((w, i) => <WordChip key={`m${i}`} g={g} text={w} style={styles.ymosItem} />)}
-            </View>
-          </Tile>
-          <Tile g={g} testID="fc-cards-hub-tile-mine" title={yours.mine.title} count={yours.mine.empty ? yours.mine.emptyLabel : yours.mine.count} onPress={yours.mine.onPress} icon="layers-outline">
-            <View style={styles.ystk}>
-              {yours.mine.empty ? (
-                <View style={[styles.cv, styles.cvEmpty, { top: 40, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
-                  <Ionicons name="add" size={20} color={g.secondary} />
-                </View>
-              ) : yours.mine.covers.slice(0, 3).map((c, i) => (
-                <View key={`c${i}`} style={[styles.cv, { top: (2 - i) * 20, zIndex: 3 - i, backgroundColor: g.plateFillTo, boxShadow: nestedBoxShadow(g) }]}>
-                  <Text numberOfLines={1} style={[styles.cvTitle, { color: g.text }]}>{c.title}</Text>
-                  <Text style={[styles.cvCount, { color: g.secondary }]}>{c.count}</Text>
-                </View>
-              )).reverse()}
-            </View>
-          </Tile>
-        </View>
-      </Rise>
-
-      {offline ? (
-        <Rise index={idx++} reduceMotion={reduceMotion}>
-          <View style={styles.offline} testID="fc-cards-hub-offline">
-            <View style={[styles.offTile, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
-              <Ionicons name="cloud-offline-outline" size={26} color={g.text} />
-            </View>
-            <FlowText testID="fc-cards-hub-offline-title" provenance="authored" style={[styles.offTitle, { color: g.text }]}>{offline.title}</FlowText>
-            <FlowText testID="fc-cards-hub-offline-sub" provenance="authored" style={[styles.offSub, { color: g.secondary }]}>{offline.sub}</FlowText>
-            <Pressable testID="fc-cards-hub-offline-retry" accessibilityRole="button" accessibilityLabel={offline.retryLabel} onPress={offline.onRetry}
-              style={({ pressed }) => [styles.offBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.pressed]}>
-              <Ionicons name="refresh" size={18} color={g.accentInk} />
-              <FlowText testID="fc-cards-hub-offline-retry-label" provenance="authored" style={[styles.offBtnText, { color: g.accentInk }]}>{offline.retryLabel}</FlowText>
+        <View style={styles.tiles}>
+          {tiles.map((t) => (
+            <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={t.count === '' ? t.title : `${t.title}. ${t.count}`} onPress={t.onPress}
+              style={({ pressed }) => [styles.tile, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
+              {/* зачем (Тень 12.10, приказ владельца 11.10): крупная плитка — плашка (градиент 180° + тень), без фасок и кольца */}
+              <PlateFill g={g} radius={26} />
+              <View style={[styles.tileIcon, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
+                <Ionicons name={t.icon} size={24} color={g.text} />
+              </View>
+              <View>
+                <FlowText testID={`fc-cards-hub-tile-title-${t.id}`} provenance="authored" style={[styles.tileTitle, { color: g.text }]}>{t.title}</FlowText>
+                <FlowText testID={`fc-cards-hub-tile-count-${t.id}`} provenance="authored" style={[styles.tileCount, { color: g.secondary }]}>{t.count === '' ? ' ' : t.count}</FlowText>
+              </View>
             </Pressable>
-          </View>
-        </Rise>
-      ) : skeleton && !hasVideo && !hasCommunity ? (
-        <View testID="fc-cards-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-          <SectionHead g={g} title={skeleton.videoTitle} allLabel={skeleton.allLabel} onAll={skeleton.onVideoAll} />
-          {/* guard-ok: два статичных блока скелета, не данные */}
-          <ScrollView horizontal scrollEnabled={false} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
-            {[0, 1].map((n) => (
-              <View key={n} style={styles.vcard}>
-                <SkeletonBlock width={252} height={142} borderRadius={14} />
-                <SkeletonBlock width="70%" height={16} borderRadius={6} style={styles.skLine} />
-                <SkeletonBlock width="30%" height={12} borderRadius={6} style={styles.skLineSm} />
-              </View>
-            ))}
-          </ScrollView>
-          <SectionHead g={g} title={skeleton.communityTitle} allLabel={skeleton.allLabel} onAll={skeleton.onCommunityAll} />
-          {[0, 1, 2].map((n) => (
-            <View key={n} style={styles.cr}>
-              <SkeletonBlock width={18} height={18} borderRadius={6} />
-              <SkeletonBlock width={92} height={46} borderRadius={10} />
-              <View style={styles.crText}>
-                <SkeletonBlock width="60%" height={16} borderRadius={6} />
-                <SkeletonBlock width="35%" height={12} borderRadius={6} style={styles.skLineSm} />
-              </View>
-            </View>
           ))}
         </View>
-      ) : null}
-
-      {hasVideo && video ? (
-        <Rise index={idx++} reduceMotion={reduceMotion}>
-          <SectionHead g={g} title={video.title} allLabel={video.allLabel} onAll={video.onAll} />
-          <ScrollView /* guard-ok: лента «Из видео» — не более 8 роликов */ horizontal showsHorizontalScrollIndicator={false} decelerationRate="fast" snapToInterval={264} snapToAlignment="start" contentContainerStyle={styles.rail}>
-            {video.items.map((v) => (
-              <Pressable key={v.id} testID={`fc-cards-hub-video-${v.id}`} accessibilityRole="button" accessibilityLabel={`${v.title}, ${v.meta}`} onPress={v.onPress}
-                style={({ pressed }) => [styles.vcard, pressed && styles.pressed]}>
-                <View style={[styles.vfr, { backgroundColor: g.opaqueControl, boxShadow: plateBoxShadow(g) }]}>
-                  {v.thumbUrl ? <Image source={{ uri: v.thumbUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={0} accessible={false} /> : null}
-                  {v.duration ? <View style={styles.dur}><Text style={styles.durText}>{v.duration}</Text></View> : null}
-                </View>
-                <FlowText testID="fc-cards-hub-video-title" provenance="external" style={[styles.vt, { color: g.text }]}>{v.title}</FlowText>
-                <FlowText testID="fc-cards-hub-video-meta" provenance="authored" style={[styles.vm, { color: g.secondary }]}>{v.meta}</FlowText>
-              </Pressable>
-            ))}
-          </ScrollView>
-        </Rise>
-      ) : null}
-
-      {hasCommunity && community ? (
-        <Rise index={idx++} reduceMotion={reduceMotion}>
-          <SectionHead g={g} title={community.title} allLabel={community.allLabel} onAll={community.onAll} />
-          <View>
-            {community.items.map((c, i) => (
-              <React.Fragment key={c.id}>
-              {/* зачем (стиль «Тень»): разделитель строк чарта — тонкий View, а не рамка контейнера */}
-              {i > 0 ? <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: g.dividerTone }} /> : null}
-              <Pressable testID={`fc-cards-hub-community-${c.id}`} accessibilityRole="button" accessibilityLabel={`${i + 1}. ${c.title}, ${c.sub}`} onPress={c.onPress}
-                style={({ pressed }) => [styles.cr, pressed && styles.pressed]}>
-                <Text style={[styles.rk, { color: g.mutedText }]}>{i + 1}</Text>
-                <View style={styles.cov}>
-                  <View pointerEvents="none" style={[styles.covBack, { backgroundColor: g.plateFillTo, boxShadow: nestedBoxShadow(g) }]} />
-                  <WordChip g={g} text={c.word} style={styles.covChip} />
-                </View>
-                <View style={styles.crText}>
-                  <FlowText testID="fc-cards-hub-community-title" provenance="external" style={[styles.crTitle, { color: g.text }]}>{c.title}</FlowText>
-                  <FlowText testID="fc-cards-hub-community-sub" provenance="external" style={[styles.crSub, { color: g.secondary }]}>{c.sub}</FlowText>
-                </View>
-                <View style={styles.likes}>
-                  <Ionicons name="heart-outline" size={16} color={g.secondary} />
-                  <Text style={[styles.likesText, { color: g.secondary }]}>{c.likes}</Text>
-                </View>
-              </Pressable>
-              </React.Fragment>
-            ))}
-          </View>
-        </Rise>
-      ) : null}
+      </Rise>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, paddingHorizontal: 16, paddingVertical: 18, justifyContent: 'space-between' },
+  tileIcon: { width: 52, height: 52, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  tileTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700' },
+  tileCount: { fontSize: 16, lineHeight: 21 },
   root: { flex: 1 },
   content: { paddingHorizontal: 20, paddingBottom: 120 },
   pressed: { opacity: 0.82 },
@@ -303,52 +164,6 @@ const styles = StyleSheet.create({
   cta: { flex: 1, minHeight: 56, borderRadius: 28, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   modeBtn: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  sec: { marginTop: 30, marginBottom: 14, marginHorizontal: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 9 },
-  secTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', flexShrink: 1 },
-  secAll: { flexDirection: 'row', alignItems: 'center', gap: 2, minHeight: 32 },
-  secAllText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  ygrid: { flexDirection: 'row', gap: 12 },
-  tile: { flex: 1, borderRadius: 22, paddingTop: 12, paddingHorizontal: 12, paddingBottom: 14 },
-  ymos: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, height: 92, alignContent: 'flex-start' },
-  ymosItem: { width: '48%', flexGrow: 1, height: 43 },
-  dim: { opacity: 0.28 },
-  ystk: { position: 'relative', height: 92 },
-  cv: { position: 'absolute', left: 0, right: 0, height: 52, borderRadius: 11, paddingVertical: 8, paddingHorizontal: 10, flexDirection: 'row', justifyContent: 'space-between' },
-  cvEmpty: { justifyContent: 'center', alignItems: 'center' },
-  cvTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700', flexShrink: 1 },
-  cvCount: { fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] },
-  yft: { marginTop: 14, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'flex-end', gap: 8 },
-  yftText: { flex: 1, minWidth: 0 },
-  yftIcon: { marginBottom: 2 },
-  ytt: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  ysu: { marginTop: 1, fontSize: 13, lineHeight: 18, fontVariant: ['tabular-nums'] },
-  mc: { height: 40, borderRadius: 9, paddingHorizontal: 10, justifyContent: 'center', minWidth: 0 },
-  mcText: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
-  rail: { gap: 12, paddingRight: 20 },
-  vcard: { width: 252 },
-  skLine: { marginTop: 12 },
-  skLineSm: { marginTop: 8 },
-  offline: { alignItems: 'center', paddingTop: 30, paddingBottom: 10 },
-  offTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  offTitle: { marginTop: 20, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
-  offSub: { marginTop: 6, fontSize: 16, lineHeight: 22, textAlign: 'center' },
-  offBtn: { marginTop: 22, minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  offBtnText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  vfr: { aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden' },
-  dur: { position: 'absolute', right: 8, bottom: 10, paddingVertical: 3, paddingHorizontal: 7, borderRadius: 6, backgroundColor: 'rgba(0,0,0,0.72)' }, // theme-exempt: плашка длительности поверх кадра ролика — темнота в любой теме
-  durText: { fontSize: 13, lineHeight: 17, fontWeight: '600', color: '#FFFFFF', fontVariant: ['tabular-nums'] }, // theme-exempt: белый текст на тёмной плашке длительности
-  vt: { marginTop: 10, fontSize: 16, lineHeight: 21, fontWeight: '600' },
-  vm: { marginTop: 2, fontSize: 13, lineHeight: 18, fontVariant: ['tabular-nums'] },
-  cr: { paddingVertical: 12, paddingHorizontal: 2, flexDirection: 'row', alignItems: 'center', gap: 14 },
-  rk: { width: 18, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', fontVariant: ['tabular-nums'] },
-  cov: { position: 'relative', width: 92, height: 46 },
-  covBack: { position: 'absolute', left: 7, right: 7, top: -5, height: 12, borderRadius: 8 },
-  covChip: { height: 46, borderRadius: 10 },
-  crText: { flex: 1, minWidth: 0 },
-  crTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  crSub: { marginTop: 2, fontSize: 13, lineHeight: 18 },
-  likes: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  likesText: { fontSize: 13, lineHeight: 18, fontWeight: '600', fontVariant: ['tabular-nums'] },
 });
 
 export default memo(CardsHubV2Inner);

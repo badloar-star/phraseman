@@ -45,6 +45,7 @@ import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
 import { loadSelectedSavedContour, peekFirstSavedCardAnyLanguage, peekSelectedSavedContour, peekSelectedSavedContourDiagnostics } from './saved_language_contour';
 import { logMemoryOnce } from '../mem_probe';
+import { isDevCardsHeld } from '../dev_cards_state';
 
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
@@ -526,9 +527,10 @@ export default function FlashcardsHubScreen() {
    * так, будто лимит не исчерпан. Ждём мы только 'waiting' — это нормальная
    * загрузка, которая вот-вот закончится сама.
    */
-  const trainingEntryReady = quotaPreview.status === 'allowed'
+  // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `hold=quota_waiting|quota_failed` держит квоту «не готова» — шторка режимов остаётся на «Готовим тренировку…» / «Не получилось подготовить»; в стор-сборке геттеры выключены.
+  const trainingEntryReady = !(isDevCardsHeld('quota_waiting') || isDevCardsHeld('quota_failed')) && (quotaPreview.status === 'allowed'
     || quotaPreview.status === 'unavailable'
-    || quotaPreview.status === 'stale_account';
+    || quotaPreview.status === 'stale_account');
   const trainingRemaining = Math.max(0, quotaPreview.limit - quotaPreview.used);
   const trainAccessibilityLabel = trainingLocked
     ? `${copy.train}. ${copy.trainA11yExhausted}`
@@ -562,7 +564,7 @@ export default function FlashcardsHubScreen() {
       setEarlyTap(null);
       return undefined;
     }
-    if (earlyTap !== 'waiting') return undefined;
+    if (earlyTap !== 'waiting' || isDevCardsHeld('quota_waiting')) return undefined;
     const timer = setTimeout(() => {
       console.warn(`[FC-TRAIN-ENTRY] early_tap:timeout за ${EARLY_TAP_CEILING_MS}мс — статус квоты="${quotaPreview.status}"`);
       setEarlyTap('failed');
@@ -650,7 +652,7 @@ export default function FlashcardsHubScreen() {
           console.log(`[FC-TRAIN-ENTRY] early_tap:waiting статус квоты="${quotaPreview.status}"`);
           pendingModeRef.current = null;
           earlyTapStartedAtRef.current = Date.now();
-          setEarlyTap('waiting');
+          setEarlyTap(isDevCardsHeld('quota_failed') ? 'failed' : 'waiting');
           setModeSheetVisible(true);
           return;
         }
@@ -753,7 +755,7 @@ export default function FlashcardsHubScreen() {
             topIpa={trainingLocked ? limitOutSub : (topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/')}
             trainLabel={trainLabel}
             trainLocked={trainingLocked}
-            tiles={tiles}
+            tiles={isDevCardsHeld('hub_loading') ? tiles.map((tile) => ({ ...tile, count: '' })) : tiles}
             reduceMotion={reduceMotion}
             availableHeight={windowHeight - insets.top - insets.bottom}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}

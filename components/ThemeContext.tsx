@@ -43,6 +43,7 @@ export const FONT_SCALE: Record<FontSize, number> = {
 export const FONT_SIZE_LABELS: Record<FontSize, {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -53,6 +54,7 @@ export const FONT_SIZE_LABELS: Record<FontSize, {
   small: {
     ru: 'Маленький',
     uk: 'Маленький',
+    en: 'Small',
     es: 'Pequeño',
     'pt-BR': 'Pequeno',
     vi: 'Nhỏ',
@@ -63,6 +65,7 @@ export const FONT_SIZE_LABELS: Record<FontSize, {
   medium: {
     ru: 'Средний',
     uk: 'Середній',
+    en: 'Medium',
     es: 'Mediano',
     'pt-BR': 'Médio',
     vi: 'Vừa',
@@ -73,6 +76,7 @@ export const FONT_SIZE_LABELS: Record<FontSize, {
   large: {
     ru: 'Большой',
     uk: 'Великий',
+    en: 'Large',
     es: 'Grande',
     'pt-BR': 'Grande',
     vi: 'Lớn',

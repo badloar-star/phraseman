@@ -82,6 +82,7 @@ function localeForLang(lang: string): string {
   const locales: Record<string, string> = {
     ru: 'ru-RU',
     uk: 'uk-UA',
+    en: 'en-US',
     es: 'es-ES',
     'pt-BR': 'pt-BR',
     vi: 'vi-VN',

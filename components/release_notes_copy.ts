@@ -10,7 +10,7 @@
 import type Ionicons from '@expo/vector-icons/Ionicons';
 
 export type ReleaseNotesLocale =
-  | 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+  | 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
 type LocaleMap<T> = Record<ReleaseNotesLocale, T>;
 
@@ -61,6 +61,23 @@ const UK: ReleaseNotesTexts = {
   footer: 'Ось тепер усе. Можна йти дивитися, що ми наробили.',
   cta: 'Піти подивитися',
   close: 'Закрити оновлення',
+};
+
+// зачем (координатор 12.10, подготовка к английскому интерфейсу): английский вариант окна «что нового» (при lang=en раньше показывался русский).
+const EN: ReleaseNotesTexts = {
+  pill: "What's new",
+  title: 'We changed everything again',
+  subtitle: 'Relax: here is what moved and why.',
+  items: [
+    { icon: 'flash-outline', tone: 'gold', title: 'First, about energy', body: 'It no longer vanishes when you miss. Energy is now spent when a session starts. If you leave early, the next start asks for energy again. Fair and upfront.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'You have three tries', body: 'When they run out, the session ends too. Want to keep going? Restore your tries with coins.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'And where do coins come from?', body: 'No secret mines. Finish sessions and drills — you will soon see how easily they add up.' },
+    { icon: 'person-outline', tone: 'blue', title: 'We refreshed your look', body: 'New avatars and auras are already in your profile styling. Take a look — yours might be waiting.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '"Route" is packing its bags', body: 'Few people used it, and it weighed a lot. It works a little longer, then we say goodbye — and the app gets lighter.' },
+  ],
+  footer: 'That is everything. Go and see what we did.',
+  cta: 'Go and see',
+  close: 'Close update',
 };
 
 const ES: ReleaseNotesTexts = {
@@ -162,6 +179,7 @@ const PL: ReleaseNotesTexts = {
 const RELEASE_NOTES_BY_LOCALE: LocaleMap<ReleaseNotesTexts> = {
   ru: RU,
   uk: UK,
+  en: EN,
   es: ES,
   'pt-BR': PT_BR,
   vi: VI,

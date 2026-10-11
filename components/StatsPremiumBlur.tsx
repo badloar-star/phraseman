@@ -42,6 +42,7 @@ export interface StatsPremiumBlurProps {
 const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -52,6 +53,7 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   stats: {
     ru: 'Разбор твоего пути',
     uk: 'Розбір твого шляху',
+    en: 'Your progress breakdown',
     es: 'Análisis de tu progreso',
     'pt-BR': 'Análise do seu progresso',
     vi: 'Phân tích tiến độ của bạn',
@@ -62,6 +64,7 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   heatmap: {
     ru: 'Годовой пульс обучения',
     uk: 'Річний пульс навчання',
+    en: 'Your yearly learning pulse',
     es: 'Pulso anual de aprendizaje',
     'pt-BR': 'Pulso anual de estudo',
     vi: 'Nhịp học trong năm',
@@ -72,6 +75,7 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   patterns: {
     ru: 'Карта твоих слабых мест',
     uk: 'Карта твоїх слабких місць',
+    en: 'Map of your weak spots',
     es: 'Mapa de tus puntos débiles',
     'pt-BR': 'Mapa dos seus pontos fracos',
     vi: 'Bản đồ điểm yếu của bạn',
@@ -82,6 +86,7 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   percentiles: {
     ru: 'Где ты среди всех учеников',
     uk: 'Де ти серед усіх учнів',
+    en: 'Where you stand among all learners',
     es: 'Tu posición entre todos los alumnos',
     'pt-BR': 'Sua posição entre todos os alunos',
     vi: 'Vị trí của bạn giữa các học viên',

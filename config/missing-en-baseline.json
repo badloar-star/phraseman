@@ -1,24 +1,7 @@
 {
-  "total": 32,
-  "files": 16,
+  "total": 0,
+  "files": 0,
   "updatedAt": "2026-10-11",
   "note": "Храповик: число словарей ru+uk без en может только уменьшаться. Обновлять через --update.",
-  "perFile": {
-    "app/lesson_words.tsx": 10,
-    "components/StatsPremiumBlur.tsx": 4,
-    "components/ThemeContext.tsx": 3,
-    "app/learning_v2_direct_session_intro_adapter_v1.ts": 2,
-    "components/dev/motion_showcase/sections/press_icons_tabbar.tsx": 2,
-    "app/learning_v2_course_session_save_card_v1.ts": 1,
-    "app/source_locales.ts": 1,
-    "components/ActivityHeatmap365.tsx": 1,
-    "components/dev/motion_showcase/sections/toasts_copy.ts": 1,
-    "components/premium_celebration/celebrationContent.ts": 1,
-    "components/premium_celebration/celebrationScenes.ts": 1,
-    "components/release_notes_copy.ts": 1,
-    "constants/avatars.ts": 1,
-    "constants/i18n.ts": 1,
-    "constants/lessons.ts": 1,
-    "modules/learning-v2/curriculum/en/lexical_senses_en_v2.ts": 1
-  }
+  "perFile": {}
 }

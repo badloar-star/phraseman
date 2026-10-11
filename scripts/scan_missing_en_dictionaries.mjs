@@ -29,7 +29,10 @@ const SKIP_FILE = /(^|\/)(__tests__|node_modules|\.worktrees|\.claude|\.codex-tm
 // учебный материал остаётся на языке источника (app/config.ts, ENGLISH_UI_LOCALE_ENABLED). Плюс неподключённый модуль онбординга-«ага».
 // app/manage_subscription.tsx: причины отмены защищены побайтовым контрактом (tests/manage_subscription_liquid_glass_source_contract), англ. добавляет владелец контракта.
 // app/app_messages.ts: сообщения слота приходят из админки на 8 языках (AppMessage без полей en по замыслу; en → ru, см. комментарий в файле).
-const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_|flashcards\/(deck_sources|FlashcardListItem|audioSession|marketplace|FlashcardDetailsBody|PhraseCard))|hooks\/use-flashcards|app\/manage_subscription|app\/app_messages\.ts|components\/onboarding_aha\//;
+const SKIP_CONTENT = /app\/(pos_micro_diagnosis|preposition_explanations|preposition_overrides|irregular_verbs_data|lesson_words_spanish_gloss|quiz_data_|lesson_teaching_notes|french_|flashcards\/(deck_sources|FlashcardListItem|audioSession|marketplace|FlashcardDetailsBody|PhraseCard))|hooks\/use-flashcards|app\/manage_subscription|app\/app_messages\.ts|components\/onboarding_aha\/|app\/lesson_words\.tsx|app\/source_locales\.ts|app\/learning_v2_direct_session_intro_adapter_v1\.ts|app\/learning_v2_course_session_save_card_v1\.ts|modules\/learning-v2\/curriculum\/|components\/dev\//;
+// зачем (координатор 12.10, подготовка к английскому): app/lesson_words.tsx — словарь-глоссарий слов урока (переводы английского слова на языки ученика; ключ `en` — само слово, как в Word.en; заголовки частей речи для en добавлены отдельно, POS_LABELS_EN);
+// app/source_locales.ts, learning_v2_direct_session_intro_adapter_v1.ts, learning_v2_course_session_save_card_v1.ts, modules/learning-v2/curriculum/ — обвязка ЯЗЫКОВ-ИСТОЧНИКОВ контента (английский не язык-источник, см. комментарий app/source_locales.ts);
+// components/dev/ — витрина разработчика, игроку не показывается (так же исключена в scan_untranslated_ui).
 
 function listFiles() {
   const out = execFileSync('git', ['ls-files', '--', ...SCAN_DIRS], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });

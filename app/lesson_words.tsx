@@ -234,6 +234,12 @@ const POS_LABELS_PL: Record<POS,string> = {
   adverbs:'Przysłówki', nouns:'Rzeczowniki', prepositions:'Przyimki', conjunctions:'Spójniki', articles:'Przedimki', phrases:'Konstrukcje',
 };
 
+// зачем (координатор 12.10, подготовка к английскому интерфейсу): заголовки частей речи на английском — раньше при lang=en заголовок брал русский.
+const POS_LABELS_EN: Record<POS,string> = {
+  pronouns:'Pronouns', verbs:'Verbs (to be)', irregular_verbs:'Irregular verbs', adjectives:'Adjectives',
+  adverbs:'Adverbs', nouns:'Nouns', prepositions:'Prepositions', conjunctions:'Conjunctions', articles:'Articles', phrases:'Constructions',
+};
+
 const FUNCTION_WORDS: Record<string, Word> = {
   a: { en: 'a', ru: 'неопределённый артикль', uk: 'неозначений артикль', es: 'un / una', 'pt-BR': 'um / uma', vi: 'mạo từ không xác định', id: 'artikel tak tentu', tr: 'belirsiz artikel', pl: 'przedimek nieokreślony', pos: 'articles' },
   an: { en: 'an', ru: 'неопределённый артикль перед гласной', uk: 'неозначений артикль перед голосною', es: 'un / una', 'pt-BR': 'um / uma antes de som vocálico', vi: 'mạo từ không xác định trước âm nguyên âm', id: 'artikel tak tentu sebelum bunyi vokal', tr: 'ünlü ses öncesi belirsiz artikel', pl: 'przedimek nieokreślony przed samogłoską', pos: 'articles' },
@@ -2433,6 +2439,7 @@ const groupByPOS = (words: Word[], lang: Lang) => {
       title: pickTriLang(lang, {
         ru: POS_LABELS_RU[k],
         uk: POS_LABELS_UK[k],
+        en: POS_LABELS_EN[k],
         es: POS_LABELS_ES[k],
         'pt-BR': POS_LABELS_PT_BR[k],
         vi: POS_LABELS_VI[k],

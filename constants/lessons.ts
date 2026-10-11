@@ -286,10 +286,47 @@ export const LESSON_NAMES_PL = [
   'Powtórka końcowa',
 ] as const;
 
+// зачем (координатор 12.10, подготовка к английскому интерфейсу): названия 32 уроков на английском.
+export const LESSON_NAMES_EN = [
+  'Pronouns and the verb To Be',  // 1
+  'Negatives and questions (To Be)',  // 2
+  'Present Simple: Affirmative',  // 3
+  'Present Simple: Negative',  // 4
+  'Present Simple: Questions',  // 5
+  'Wh-questions',  // 6
+  'The verb To Have',  // 7
+  'Prepositions of time',  // 8
+  'There is / There are',  // 9
+  'Modal verbs',  // 10
+  'Past Simple: Regular',  // 11
+  'Past Simple: Irregular',  // 12
+  'Future Simple',  // 13
+  'Degrees of comparison',  // 14
+  'Possessive pronouns',  // 15
+  'Phrasal verbs',  // 16
+  'Present Continuous',  // 17
+  'The imperative',  // 18
+  'Prepositions of place',  // 19
+  'Articles',  // 20
+  'Indefinite pronouns',  // 21
+  'The gerund',  // 22
+  'Passive Voice',  // 23
+  'Present Perfect',  // 24
+  'Past Continuous',  // 25
+  'Conditional sentences',  // 26
+  'Reported speech',  // 27
+  'Reflexive pronouns',  // 28
+  'Used to',  // 29
+  'Relative Clauses',  // 30
+  'Complex Object',  // 31
+  'Final review',  // 32
+] as const;
+
 export function lessonNamesForLang(lang: Lang): readonly string[] {
   const namesByLang: Partial<Record<Lang, readonly string[]>> = {
     ru: LESSON_NAMES_RU,
     uk: LESSON_NAMES_UK,
+    en: LESSON_NAMES_EN,
     es: LESSON_NAMES_ES,
     'pt-BR': LESSON_NAMES_PT_BR,
     vi: LESSON_NAMES_VI,

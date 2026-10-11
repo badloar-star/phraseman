@@ -49,6 +49,22 @@ export const CERT_ASPECT = CERT_W / CERT_H;
 const CERT_LEVEL = 'B2';
 
 const COPY = {
+  // зачем (координатор 12.10, подготовка к английскому интерфейсу): без ключа en строка `COPY[lang].eyebrow` падала с TypeError (класс крэша 27.08)
+  en: {
+    eyebrow: 'PHRASEMAN APP',
+    sub: 'Internal test · 2026',
+    title: `PHRASEMAN ${CERT_LEVEL}`,
+    presented: 'Award presented to the user',
+    achievement: `has reached level ${CERT_LEVEL} in the app test`,
+    professor: 'Phraseman App',
+    scoreLabel: 'Score',
+    accuracyLabel: 'Accuracy',
+    dateLabel: 'Date',
+    signatureLabel: 'Signature',
+    professorName: 'Phraseman App',
+    disclaimerLine1: 'Internal app award · Not an official qualification',
+    disclaimerLine2: 'Level is a self-assessment against the CEFR descriptors (Council of Europe)',
+  },
   ru: {
     eyebrow: 'PHRASEMAN APP',
     sub: 'Внутренний тест · 2026',
@@ -257,7 +273,7 @@ const LingmanCertificateSvg = memo(
       { name, score, total, pct, certId, completedAt, lang, layoutWidth = CERT_W },
       ref
     ) {
-      const c = COPY[lang];
+      const c = COPY[lang as keyof typeof COPY] ?? COPY.en;
       // Если имя ещё не введено — НЕ ставим фолбэк («Студент Phraseman» и т.п.):
       // пусть линия для подписи остаётся пустой, имя появится только после ввода.
       const trimmedName = (name || '').trim();

@@ -823,7 +823,9 @@ export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown 
   // зачем (координатор 12.10, подготовка к включению английского интерфейса): словарь без ключа `en` молча отдавал РУССКИЙ.
   // Английского текста в нём нет, поэтому берём ближайший латинский запасной (es) и пишем [I18N-FALLBACK] один раз на строку,
   // чтобы дыры в словарях были видны в журнале, а не в глазах англоязычного человека.
-  if (lang === 'en') return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
+  // Только при включённом английском интерфейсе: пока ENGLISH_UI_LOCALE_ENABLED=false, любой путь, передавший 'en' (язык контента и т. п.),
+  // получает прежнее поведение (ru), чтобы у текущих пользователей ничего не поменялось.
+  if (lang === 'en' && ENGLISH_UI_LOCALE_ENABLED) return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
   return txt.ru as WidenTriLangValue<T[keyof T]>;
 }
 

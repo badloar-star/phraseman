@@ -141,6 +141,7 @@ import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
 import { hydrateAiExplainConsentFromStorage } from './ai_explain_consent';
 import { hydrateAiDialogConsentFromStorage } from './ai_dialog_consent';
+import { notifNudgeCopy } from './notif_nudge_copy';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -3317,29 +3318,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     <NotificationPermissionModal
       visible={appOverlaysEnabled && notifNudgeModalVisible}
       lang={lang}
-      title={
-        lang === 'es'
-          ? `Llevas ${notifNudgeMissedDays} ${notifNudgeMissedDays === 1 ? 'día' : 'días'} sin practicar`
-          : lang === 'uk'
-          ? `Ти пропустив ${notifNudgeMissedDays} ${notifNudgeMissedDays === 1 ? 'день' : 'днів'}`
-          : `Ты пропустил ${notifNudgeMissedDays} ${notifNudgeMissedDays === 1 ? 'день' : notifNudgeMissedDays < 5 ? 'дня' : 'дней'}`
-      }
-      body={
-        lang === 'es'
-          ? 'Para no perder la racha, activa los recordatorios. Te avisaremos a tiempo, sin molestar.'
-          : lang === 'uk'
-          ? 'Щоб не зривати серію, увімкни нагадування. Ми нагадаємо вчасно і без спаму.'
-          : 'Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.'
-      }
-      points={
-        lang === 'es'
-          ? ['Recordatorios en el momento adecuado', 'Te ayudan a mantener la racha y el progreso', 'Puedes desactivarlos en cualquier momento']
-          : lang === 'uk'
-          ? ['Нагадування в потрібний час', 'Підтримка стріку та прогресу', 'Вимикається в будь-який момент']
-          : ['Напоминания в нужное время', 'Поддержка цепочки и прогресса', 'Отключается в любой момент']
-      }
-      confirmLabel={lang === 'es' ? 'Activar recordatorios' : lang === 'uk' ? 'Увімкнути нагадування' : 'Включить напоминания'}
-      cancelLabel={lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
+      // зачем (координатор 12.10): тексты окна — на 9 языков из app/notif_nudge_copy.ts (раньше es/uk/ru цепочкой, остальные видели русский)
+      title={notifNudgeCopy(lang, notifNudgeMissedDays).title}
+      body={notifNudgeCopy(lang, notifNudgeMissedDays).body}
+      points={notifNudgeCopy(lang, notifNudgeMissedDays).points}
+      confirmLabel={notifNudgeCopy(lang, notifNudgeMissedDays).confirmLabel}
+      cancelLabel={notifNudgeCopy(lang, notifNudgeMissedDays).cancelLabel}
       onCancel={() => setNotifNudgeVisible(false)}
       onConfirm={async () => {
         const notifications = await loadNotificationsModule().catch(noteSwallowedAs('_layout:AppContent.loadNotificationsModule', null));

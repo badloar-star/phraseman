@@ -1371,14 +1371,46 @@ const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   locked: "lock-closed",
 });
 
-function neutralLearningV2SessionOutcome(sessionOrdinal: number): string {
+// зачем (координатор 12.10): запасной текст «чему научишься» (когда каталог курса не дал свой) был только русским;
+// теперь на 9 языков. Каждый новый гость проходит урок 1 сразу после онбординга, поэтому это первый выпуск.
+function neutralLearningV2SessionOutcome(sessionOrdinal: number, lang: Lang): string {
   if (sessionOrdinal <= 4) {
-    return "Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.";
+    return triLang(lang, {
+      ru: 'Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.',
+      uk: 'Ти зрозумієш, як am, is і are перетворюють окремі слова на закінчену фразу.',
+      en: 'You will see how am, is and are turn separate words into a whole phrase.',
+      es: 'Entenderás cómo am, is y are convierten palabras sueltas en una frase completa.',
+      "pt-BR": 'Você vai entender como am, is e are transformam palavras soltas em uma frase completa.',
+      vi: 'Bạn sẽ hiểu cách am, is và are biến những từ rời rạc thành một câu hoàn chỉnh.',
+      id: 'Kamu akan paham bagaimana am, is, dan are mengubah kata-kata lepas menjadi frasa utuh.',
+      tr: 'am, is ve are’in tek tek kelimeleri nasıl tam bir cümleye dönüştürdüğünü anlayacaksın.',
+      pl: 'Zrozumiesz, jak am, is i are zamieniają pojedyncze słowa w pełne zdanie.',
+    });
   }
   if (sessionOrdinal <= 8) {
-    return "Ты научишься собирать простые фразы с глаголом to be.";
+    return triLang(lang, {
+      ru: 'Ты научишься собирать простые фразы с глаголом to be.',
+      uk: 'Ти навчишся складати прості фрази з дієсловом to be.',
+      en: 'You will learn to build simple phrases with the verb to be.',
+      es: 'Aprenderás a formar frases sencillas con el verbo to be.',
+      "pt-BR": 'Você vai aprender a montar frases simples com o verbo to be.',
+      vi: 'Bạn sẽ học cách ghép những câu đơn giản với động từ to be.',
+      id: 'Kamu akan belajar menyusun frasa sederhana dengan kata kerja to be.',
+      tr: 'to be fiiliyle basit cümleler kurmayı öğreneceksin.',
+      pl: 'Nauczysz się układać proste zdania z czasownikiem to be.',
+    });
   }
-  return "Ты сможешь без подсказки применять am, is и are в разговоре.";
+  return triLang(lang, {
+      ru: 'Ты сможешь без подсказки применять am, is и are в разговоре.',
+      uk: 'Ти зможеш без підказки використовувати am, is і are в розмові.',
+      en: 'You will be able to use am, is and are in conversation without hints.',
+      es: 'Podrás usar am, is y are en una conversación sin ayuda.',
+      "pt-BR": 'Você vai conseguir usar am, is e are em uma conversa, sem dicas.',
+      vi: 'Bạn sẽ dùng được am, is và are khi trò chuyện mà không cần gợi ý.',
+      id: 'Kamu akan bisa memakai am, is, dan are dalam percakapan tanpa petunjuk.',
+      tr: 'am, is ve are’i ipucu olmadan konuşmada kullanabileceksin.',
+      pl: 'Będziesz umieć używać am, is i are w rozmowie bez podpowiedzi.',
+    });
 }
 
 function neutralLearningV2SessionOutcomeKind(
@@ -2041,6 +2073,8 @@ function chapterLessonsWord(count: number, lang: Lang): string {
   switch (lang) {
     case "uk":
       return pluralSlavic(count, "урок", "уроки", "уроків");
+    case "en":
+      return count === 1 ? "lesson" : "lessons";
     case "es":
       return count === 1 ? "lección" : "lecciones";
     case "pt-BR":
@@ -2942,6 +2976,7 @@ export default function LessonsTab({
     (selectedLearningV2Session
       ? neutralLearningV2SessionOutcome(
           selectedLearningV2Session.sessionOrdinal,
+          lang,
         )
       : "");
   const selectedLearningV2NewWordCount = selectedLearningV2Session && studyTarget === "en"

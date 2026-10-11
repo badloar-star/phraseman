@@ -36,7 +36,15 @@ export function devStudyTargetsForUiLang(uiLang: Lang): readonly StudyTargetLang
   return ['en'];
 }
 
-const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang, Record<StudyTargetLang, string>> = {
+// зачем (координатор 12.10, подготовка к английскому интерфейсу): ключ en — страховка, чтобы чтение по языку интерфейса не падало с undefined
+const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang | 'en', Record<StudyTargetLang, string>> = {
+  en: {
+    en: 'English',
+    es: 'Spanish',
+    fr: 'French',
+    de: 'German',
+    it: 'Italian',
+  },
   ru: {
     en: 'Английский',
     es: 'Испанский',
@@ -57,7 +65,7 @@ export function studyTargetLabelForSourceUiLang(
   target: StudyTargetLang,
   uiLang: StudyTargetSourceUiLang,
 ): string {
-  return SOURCE_UI_STUDY_TARGET_LABELS[uiLang][target];
+  return (SOURCE_UI_STUDY_TARGET_LABELS[uiLang] ?? SOURCE_UI_STUDY_TARGET_LABELS.en)[target];
 }
 
 function isAllowedForUiLang(value: unknown, uiLang: Lang): value is StudyTargetLang {

@@ -1,4 +1,5 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -132,6 +133,12 @@ function logHubTopCardOutcome(word: string | null, trainingLocked: boolean): voi
 }
 
 export default function FlashcardsHubScreen() {
+  // зачем (координатор 12.10, утечка памяти в хабе; сперва логи): mount/unmount хаба с размерами кэшей и слушателей — по нему видно, что растёт с каждым заходом.
+  useHubLifecycle('FlashcardsHubScreen');
+  useFocusEffect(useCallback(() => {
+    noteHubSubscription('FlashcardsHubScreen.focus', 'on');
+    return () => noteHubSubscription('FlashcardsHubScreen.focus', 'off');
+  }, []));
   const { liquidGlassThemeId, statusBarLight } = useTheme(); // зачем (Сверка 18:25, светлая тема): значки строки состояния не белые на светлом
   const g = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();

@@ -12,6 +12,7 @@
  * неудачи), удачное открытие по-прежнему стоит один запрос или ноль (память).
  */
 import type { CardItem } from '../flashcards/types';
+import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import { actionToastTri, emitAppEvent } from '../events';
@@ -104,3 +105,6 @@ export function emitPackNotDownloadedToast(): void {
     pl: 'Zestaw nie jest jeszcze pobrany — potrzebny internet.',
   }));
 }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('community.packOpens', () => packOpens.size);

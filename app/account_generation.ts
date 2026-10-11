@@ -1,4 +1,5 @@
 import { materializePhoneStateLineage } from '../modules/phone-state/account_secret';
+import { registerHubCacheProbe } from './hub_lifecycle_probe';
 import { DebugLogger } from './debug-logger';
 
 export type AccountGenerationToken = Readonly<{
@@ -349,3 +350,6 @@ export function __resetAccountGenerationForTests(): void {
   accountLockHoldHistory = [];
   generationListeners.clear();
 }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('account_generation.listeners', () => generationListeners.size);

@@ -8,6 +8,7 @@
  * Анимации — только transform на UI-потоке: лёгкое «парение» верхней карточки (6 с, не крутится при reduceMotion).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import React, { memo, useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
@@ -92,6 +93,7 @@ function CardsHubV2Inner({
   g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
   onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight, fresh,
 }: Props) {
+  useHubLifecycle('CardsHubV2'); // зачем (координатор 12.10, утечка памяти в хабе; сперва логи)
   // зачем (Сверка 10.10, светлая тема): заливки стопки и плиток-значков в светлых темах светлые, белый «ink на медиа» на них не читается —
   // в светлой теме берём текст темы, в тёмных остаётся прежний (mediaInk).
   const faceInk = g.isLight ? g.text : g.mediaInk;
@@ -103,8 +105,9 @@ function CardsHubV2Inner({
   const runtimeActive = useRuntimeActive();
   useEffect(() => {
     if (reduceMotion || !runtimeActive) return undefined;
+    noteHubSubscription('CardsHubV2.floatLoop', 'on');
     float.value = withRepeat(withTiming(-8, { duration: 5000, easing: Easing.inOut(Easing.sin) }), -1, true);
-    return () => { float.value = 0; };
+    return () => { float.value = 0; noteHubSubscription('CardsHubV2.floatLoop', 'off'); };
   }, [float, reduceMotion, runtimeActive]);
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
   const [a, b] = themePair(g);

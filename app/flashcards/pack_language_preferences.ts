@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import {
   isStudyPackLanguage,
   type PackLanguage,
@@ -37,3 +38,6 @@ export async function setStoredPackLanguage(language: PackLanguage): Promise<voi
 
 /* expo-router route shim: keeps the storage helper out of the route tree. */
 export default function __RouteShim() { return null; }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('pack_language.listeners', () => listeners.size);

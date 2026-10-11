@@ -1,4 +1,5 @@
 import { flashcardsDeleteHintSeenKey, type RuntimeStudyTarget } from '../target_storage_keys';
+import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import { useLang } from '../../components/LangContext';
 import {
   flashcardsCommunityPacksAvailableForTarget,
@@ -1245,3 +1246,9 @@ export function usePackBrowseVisual(args: {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('collection.savedCards', () => _savedCardsCache?.length ?? 0);
+registerHubCacheProbe('collection.customCards', () => _customCardsCache?.length ?? 0);
+registerHubCacheProbe('collection.enToUk', () => _enToUkCache?.size ?? 0);
+registerHubCacheProbe('collection.stagedOwnedPackCards', () => stagedOwnedPackMarketCards?.cards.length ?? 0);

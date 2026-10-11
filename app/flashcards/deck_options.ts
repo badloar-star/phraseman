@@ -13,6 +13,7 @@
  * Ошибка любого отдельного набора не роняет список.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import type Ionicons from '@expo/vector-icons/Ionicons';
 import { captureAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
@@ -602,3 +603,7 @@ export function __resetDeckOptionsWarmCacheForTests(): void {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('deck_options.warmAvailableCardCounts', () => _warmAvailableCardCounts.size);
+registerHubCacheProbe('deck_options.warmDeckOptions', () => _warmDeckOptions?.options.length ?? 0);

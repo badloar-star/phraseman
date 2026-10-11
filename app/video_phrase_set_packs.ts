@@ -12,6 +12,7 @@
 // раза в 6 ч; первый кадр — из кэша на диске.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerHubCacheProbe } from './hub_lifecycle_probe';
 import { DebugLogger } from './debug-logger';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import { normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
@@ -226,3 +227,6 @@ export async function loadVideoPhraseSetPacks(options?: { forceRemote?: boolean 
   })();
   return inFlight;
 }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('video_packs.memory', () => memory?.packs.length ?? 0);

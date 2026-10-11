@@ -1,4 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
+import { registerHubCacheProbe } from '../hub_lifecycle_probe';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { FlashcardMarketPack, FlashcardPackCategory } from '../flashcards/marketplace';
@@ -836,3 +837,9 @@ export async function fetchCommunityPackMetaResult(
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// зачем (координатор 12.10, утечка памяти в хабе Карточек; сперва логи): размеры кэшей этого модуля попадают в [HUB-LIFECYCLE] на mount/unmount хаба; вне dev — пусто.
+registerHubCacheProbe('community.catalogInFlight', () => catalogInFlight.size);
+registerHubCacheProbe('community.authorPacksLastKnown', () => authorPacksLastKnown.size);
+registerHubCacheProbe('community.catalogPacks', () => _communityCatalogCache?.packs.length ?? 0);
+registerHubCacheProbe('community.videoCatalogPacks', () => _videoCatalogCache?.packs.length ?? 0);

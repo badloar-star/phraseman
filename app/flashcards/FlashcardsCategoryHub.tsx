@@ -323,7 +323,7 @@ function CommunityPackRowBase({
             </FlowText>
             {isTop ? (
               <View pointerEvents="none" style={[rowStyles.topTag, { backgroundColor: t.accent }]}>
-                <Text style={[rowStyles.topTagText, { color: t.correctText }]}>{topLabel}</Text>
+                <Text style={[rowStyles.topTagText, { color: t.textOnGold }]}>{topLabel}</Text>
               </View>
             ) : null}
           </View>

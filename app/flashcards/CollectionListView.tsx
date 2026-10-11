@@ -625,8 +625,8 @@ export default function CollectionListView({
               flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}
           >
-            <Ionicons name="add-circle-outline" size={20} color={t.correctText} />
-            <Text style={{ fontSize: f.body, fontWeight: '700', color: t.correctText }}>
+            <Ionicons name="add-circle-outline" size={20} color={t.textOnGold} />
+            <Text style={{ fontSize: f.body, fontWeight: '700', color: t.textOnGold }}>
               {triLang(lang, {
                 ru: 'Добавить карточку', uk: 'Додати картку', en: 'Add a card', es: 'Añadir tarjeta',
                 'pt-BR': 'Adicionar cartão', vi: 'Thêm thẻ', id: 'Tambah kartu', tr: 'Kart ekle', pl: 'Dodaj kartę',

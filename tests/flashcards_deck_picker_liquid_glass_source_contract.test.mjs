@@ -358,7 +358,7 @@ test('protects pre-edit business, classic, default tile, and dependency contract
     hash: 'de0ad33d93b0190fe26645e2b23f5dbeae11b03adfd592fb74ff52327feec66f',
   });
   assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '83d8a194736fa8c698ce5f516184a845c74684435d94955d6e54bfa7d920d40c');
-  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '87d893860d8ef451c51f5c8b5dfbfd33549456a1e2807041b419a71b1f22ca6c');
+  assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '13a5013996b4b0d6147341368b9703f9ad77ecc1a02d208e1501a9a3e7882b6f'); // 11.10: галочка выбора берёт цвет из t.textOnGold (текст на акценте по теме), не из t.correctText
   assert.deepEqual(protectedShellCoordination(shellSource), {
     count: 32,
     // зачем (координатор 10.10, гейт «приложение = макет»): хэш обновлён — вход и выход шторки перешли на kit.css `.sheet`

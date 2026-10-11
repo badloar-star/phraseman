@@ -491,7 +491,7 @@ export default function CommunityPackSocialBar({
       >
         {isAdded
           ? <Ionicons name="checkmark" size={16} color={g.text} />
-          : <Text style={{ color: t.correctText, fontSize: 13, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
+          : <Text style={{ color: t.textOnGold, fontSize: 13, lineHeight: lh(18), fontWeight: '700' }}>{shortAdd}</Text>}
       </TouchableOpacity>
     );
   }
@@ -519,7 +519,7 @@ export default function CommunityPackSocialBar({
       >
         {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
         {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
-        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
+        <Text style={{ color: isAdded ? g.text : t.textOnGold, fontSize: 16, lineHeight: lh(22), fontWeight: '700' }}>
           {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         </Text>
       </TouchableOpacity>

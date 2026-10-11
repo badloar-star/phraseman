@@ -39,9 +39,10 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // з�
 // зачем (координатор 10.10, гейт «приложение = макет»): движение шторки — kit.css `.sheet`: 440 мс cubic-bezier(.2,1,.3,1) в обе стороны,
 // затемнение 260 мс; шторка стартует за нижним краем экрана без выцветания (как общий HybridSheetShell).
 const SHEET_HIDDEN = Dimensions.get('window').height;
-let sheetEaseCache: ((t: number) => number) | null = null;
+type SheetEase = ReturnType<typeof REasing.bezier>; // зачем: Easing.bezier в Reanimated возвращает фабрику, а не функцию (tsc)
+let sheetEaseCache: SheetEase | null = null;
 // зачем: кривая создаётся лениво — тесты с урезанным мок-Reanimated (без Easing.bezier) не должны падать при загрузке модуля.
-const sheetEase = (): ((t: number) => number) => {
+const sheetEase = (): SheetEase => {
   if (!sheetEaseCache) sheetEaseCache = REasing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
   return sheetEaseCache;
 };

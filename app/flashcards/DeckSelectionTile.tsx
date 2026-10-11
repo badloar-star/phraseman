@@ -251,7 +251,7 @@ export default function DeckSelectionTile({
           ]}
         >
           <Reanimated.View style={checkStyle}>
-            <Ionicons name="checkmark" size={16} color={t.correctText} />
+            <Ionicons name="checkmark" size={16} color={t.textOnGold} />
           </Reanimated.View>
         </View>
       </Pressable>

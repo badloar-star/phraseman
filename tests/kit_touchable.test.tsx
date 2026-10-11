@@ -46,3 +46,15 @@ it('lets the caller override the default button role (tabs, links)', async () =>
   );
   expect(view.getByTestId('tab').props.accessibilityRole).toBe('tab');
 });
+
+// зачем (Авторизация 11.10, ошибка типа AppMessagesInbox:1165): кнопка колокольчика измеряет себя через ref.current.measureInWindow —
+// KitTouchable как замена TouchableOpacity обязан отдавать ref на нативный View.
+it('forwards ref to the underlying view (measureInWindow needs it)', async () => {
+  const ref = React.createRef<import('react-native').View>();
+  await render(
+    <KitTouchable ref={ref} testID="bell" onPress={() => undefined}>
+      <Text>🔔</Text>
+    </KitTouchable>,
+  );
+  expect(ref.current).not.toBeNull();
+});

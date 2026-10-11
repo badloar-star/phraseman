@@ -674,7 +674,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               onPress={() => { void hapticTap(); setCommunitySort('new'); }}
               style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: t.accent } : null]}
             >
-              <Text style={[styles.bottomTabText, { color: communitySort === 'new' ? t.correctText : g.secondary }]}>{newPacksLabel}</Text>
+              <Text style={[styles.bottomTabText, { color: communitySort === 'new' ? t.textOnGold : g.secondary }]}>{newPacksLabel}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-create"
@@ -687,7 +687,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               }}
               style={[styles.bottomCreateTab, { backgroundColor: t.accent }]}
             >
-              <Ionicons name="add" size={24} color={t.correctText} />
+              <Ionicons name="add" size={24} color={t.textOnGold} />
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-sort-popular"
@@ -697,7 +697,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               onPress={() => { void hapticTap(); setCommunitySort('popular'); }}
               style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: t.accent } : null]}
             >
-              <Text style={[styles.bottomTabText, { color: communitySort === 'popular' ? t.correctText : g.secondary }]}>{topPacksLabel}</Text>
+              <Text style={[styles.bottomTabText, { color: communitySort === 'popular' ? t.textOnGold : g.secondary }]}>{topPacksLabel}</Text>
             </TouchableOpacity>
           </View>
         </View>

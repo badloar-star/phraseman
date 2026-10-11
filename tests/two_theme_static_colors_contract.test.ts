@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -29,6 +29,22 @@ const FILES = [
   'app/runes_wallet.tsx',
   'app/promo_code_entry.tsx',
   'app/lesson_complete.tsx',
+  // каталог наборов (Сверка 11.10, светлая тема): зелёный текст на чёрной заливке — теперь текст на акценте берётся из токена темы
+  'app/flashcards/FlashcardsCategoryHub.tsx',
+  'app/flashcards_packs.tsx',
+  'app/community_packs/CommunityPackSocialBar.tsx',
+  'app/flashcards/CollectionListView.tsx',
+  'app/flashcards/DeckSelectionTile.tsx',
+];
+
+// файлы, где залитые акцентом элементы (бейдж «Топ», пилюли «Новые/Топ», «+», «Добавить», галочка выбора) обязаны брать
+// цвет текста/значка из токена темы (t.textOnGold = accentInk), а не из t.correctText (тёмно-зелёный из базовой темы)
+const ACCENT_FILL_FILES = [
+  'app/flashcards/FlashcardsCategoryHub.tsx',
+  'app/flashcards_packs.tsx',
+  'app/community_packs/CommunityPackSocialBar.tsx',
+  'app/flashcards/CollectionListView.tsx',
+  'app/flashcards/DeckSelectionTile.tsx',
 ];
 
 const COLOR_LITERAL = /#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(|['"](?:white|black)['"]/;
@@ -77,5 +93,29 @@ describe('two-theme static colors', () => {
       const [a, b] = [lum(t.bg), lum(t.text)].sort((x, y) => y - x);
       expect((a + 0.05) / (b + 0.05)).toBeGreaterThanOrEqual(4.5);
     }
+  });
+
+  test.each(ACCENT_FILL_FILES)('%s: no t.correctText on accent fills (text on accent comes from the theme)', (file) => {
+    expect(fs.readFileSync(path.join(ROOT, file), 'utf8')).not.toContain('correctText');
+  });
+
+  test('accentInk is readable on accent in every theme, both appearances, calm and max (>= 3:1)', () => {
+    const lum = (hex: string) => {
+      const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+        .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    };
+    const weak: string[] = [];
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const appearance of ['dark', 'light'] as const) {
+        for (const intensity of [0, 1]) {
+          const t = liquidGlassTokens(id, { level: intensity ? 'max' : 'calm', appearance, intensity });
+          const [a, b] = [lum(t.accent.slice(0, 7)), lum(t.accentInk.slice(0, 7))].sort((x, y) => y - x);
+          const ratio = (a + 0.05) / (b + 0.05);
+          if (ratio < 3) weak.push(`${id}/${appearance}/${intensity ? 'max' : 'calm'}: ${ratio.toFixed(2)} (${t.accentInk} on ${t.accent})`);
+        }
+      }
+    }
+    expect(weak).toEqual([]);
   });
 });

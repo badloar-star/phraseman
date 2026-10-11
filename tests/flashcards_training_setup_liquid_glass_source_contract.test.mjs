@@ -19,7 +19,7 @@ const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 const PROTECTED_FILES = new Map([
-  ['app/flashcards/DeckSelectionTile.tsx', '6283c46bc5118941b976303282fcc867adb352926161bab97c7289e5e322c01c'], // 11.10 (координатор, D145): рамка плитки 1.5 → 1 pt (hairline), только стиль
+  ['app/flashcards/DeckSelectionTile.tsx', 'f9e18476c933669f0d05c34937540f303ef3b9ca162aa74992a5508b001bb9a8'], // 11.10 (координатор): рамка плитки 1.5 → 1 pt (D145); галочка выбора — цвет t.textOnGold вместо t.correctText (текст на акценте по теме)
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
   // зачем (text-integrity 01.10): сняты обрезки подписей, кнопки и плашки растут по тексту — бизнес-логика не менялась.
   // зачем (FONTSCALE2, координатор 05.10): межстрочный растёт с системным шрифтом (useScaledTextStyles), поле поиска minHeight;

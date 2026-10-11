@@ -1,13 +1,13 @@
-import React, { memo, useMemo, useRef, useCallback } from 'react';
-import { Animated, Pressable, StyleSheet, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
+import React, { forwardRef, memo, useMemo, useRef, useCallback } from 'react';
+import { Animated, Pressable, StyleSheet, type PressableProps, type StyleProp, type View, type ViewStyle } from 'react-native';
 import { KIT_PRESS_DOWN, KIT_PRESS_OPACITY_DOWN, KIT_PRESS_OPACITY_UP, KIT_PRESS_SCALE, KIT_PRESS_UP } from '../constants/kitPress';
 import { useSystemReduceMotion } from '../hooks/use_system_reduce_motion';
 
 // зачем: Pressable, обёрнутый в Animated, создаётся лениво — тесты, импортирующие экран с урезанным react-native (без Animated),
 // не должны падать на импорте модуля.
-let AnimatedPressableCache: React.ComponentType<PressableProps & { style?: unknown }> | null = null;
+let AnimatedPressableCache: React.ComponentType<PressableProps & { style?: unknown; ref?: React.Ref<View> }> | null = null;
 function getAnimatedPressable() {
-  if (!AnimatedPressableCache) AnimatedPressableCache = Animated.createAnimatedComponent(Pressable) as unknown as React.ComponentType<PressableProps & { style?: unknown }>;
+  if (!AnimatedPressableCache) AnimatedPressableCache = Animated.createAnimatedComponent(Pressable) as unknown as React.ComponentType<PressableProps & { style?: unknown; ref?: React.Ref<View> }>;
   return AnimatedPressableCache;
 }
 
@@ -25,7 +25,8 @@ type Props = Omit<PressableProps, 'style' | 'children'> & {
  * раскладка не меняется (нет «ловушки TapScale», внутреннего Animated.View и принудительного stretch). Подходит для
  * точечной замены TouchableOpacity без правки вёрстки вызывающего места.
  */
-function KitTouchableBase({ style, children, activeOpacity: _activeOpacity, onPressIn, onPressOut, disabled, ...rest }: Props) {
+// зачем (AppMessagesInbox измеряет кнопку через ref → measureInWindow): drop-in для TouchableOpacity обязан отдавать ref на View.
+const KitTouchableBase = forwardRef<View, Props>(function KitTouchableBase({ style, children, activeOpacity: _activeOpacity, onPressIn, onPressOut, disabled, ...rest }, ref) {
   const scale = useRef(new Animated.Value(1)).current;
   const pressOpacity = useRef(new Animated.Value(1)).current;
   const reduceMotion = useSystemReduceMotion();
@@ -53,6 +54,7 @@ function KitTouchableBase({ style, children, activeOpacity: _activeOpacity, onPr
   const AnimatedPressable = getAnimatedPressable();
   return (
     <AnimatedPressable
+      ref={ref}
       accessibilityRole="button"
       {...rest}
       disabled={disabled}
@@ -63,7 +65,7 @@ function KitTouchableBase({ style, children, activeOpacity: _activeOpacity, onPr
       {children}
     </AnimatedPressable>
   );
-}
+});
 
 export const KitTouchable = memo(KitTouchableBase);
 export default KitTouchable;

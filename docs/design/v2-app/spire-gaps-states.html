@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шпиль — недостающие состояния</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (координатор 12.10, аудит покрытия): в spire.html нет 22 состояний, которые есть в коде components/spire/**.
+   Раскладка, шапки, башня, пьедестал и стиль — из spire.html, но в стиле «Тень» (SHADOW_STYLE_SPEC.md):
+   плашки без обводок — градиент 180° белый 8,5% → 4% и тень, вложенное — малая тень. Классы с префиксом sg-. */
+:root { --sg-plate: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); --sg-sel: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.07)); --sg-shadow: 0 16px 28px -14px rgba(0,0,0,.75); --sg-nest: 0 6px 12px -6px rgba(0,0,0,.6); }
+
+/* ---------- башня (как в spire.html; окно без кромки, с тенью) ---------- */
+.sg-tv { position: relative; height: 400px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; background: #131315; box-shadow: var(--sg-shadow); scrollbar-width: none; }
+.sg-tv::-webkit-scrollbar { display: none; }
+.sg-tv.tall { height: 470px; }
+.sg-tv svg { display: block; width: 100%; }
+svg[data-tower] .fl { cursor: pointer; }
+svg[data-tower] .fl .selr { opacity: 0; transition: opacity 200ms; }
+svg[data-tower] .fl.sel .selr { opacity: 1; }
+svg[data-tower] .fl .face { transition: filter 300ms; }
+svg[data-tower] .fl.sel .face { filter: brightness(1.12); }
+svg[data-tower] .win.lit { fill: #EEF0F6; }
+svg[data-tower] .win.past { fill: #3A3A40; }
+svg[data-tower] .win.dark { fill: #0B0B0D; }
+svg[data-tower] .fl:not(.mine) .wglow { opacity: 0; }
+svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
+
+/* ---------- шапка главного экрана ---------- */
+.sg-h1 { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; }
+.sg-trow { display: flex; align-items: center; gap: 10px; }
+/* зачем: пилюля «бета» у es/de/fr/it (SpireHomeScreen:226-231), 13/17 жирный, разрядка .3 */
+.sg-beta { height: 23px; padding: 0 8px; border-radius: 10px; background: #2A2A2D; box-shadow: var(--sg-nest); color: var(--sec); font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: .3px; display: inline-flex; align-items: center; flex: none; }
+.sg-sub { font-size: 16px; line-height: 20px; color: var(--sec); margin-top: 6px; }
+.sg-rb { width: 44px; height: 44px; border-radius: 50%; background: var(--control); box-shadow: var(--sg-nest); display: flex; align-items: center; justify-content: center; flex: none; }
+
+/* ---------- плашки главного экрана ---------- */
+.sg-fi { display: flex; align-items: center; gap: 12px; padding: 14px 16px; margin-top: 14px; min-height: 72px; border-radius: 16px; background: var(--sg-plate); box-shadow: var(--sg-shadow); }
+.sg-fi .tt { font-size: 19px; line-height: 24px; font-weight: 700; }
+.sg-fi .st { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.sg-fi .who { display: flex; align-items: center; flex: none; }
+.sg-fi .who img { border-radius: 50%; box-shadow: 0 0 0 2px #1A1A1C; margin-left: -8px; }
+.sg-fi .who img:first-child { margin-left: 0; }
+.sg-friends { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 10px; -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
+.sg-friends::-webkit-scrollbar { display: none; }
+.sg-fr { flex: none; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px 0 8px; border-radius: 23px; background: var(--control); box-shadow: var(--sg-nest); font-size: 16px; font-weight: 700; white-space: nowrap; }
+.sg-fr .s { color: var(--sec); }
+.sg-pod { display: flex; align-items: flex-end; justify-content: center; gap: 12px; margin-top: 18px; }
+.sg-pc { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.sg-pc img { border-radius: 50%; display: block; }
+.sg-pc .nm { font-size: 16px; font-weight: 700; text-align: center; max-width: 110px; }
+.sg-pc .sp { font-size: 13px; line-height: 18px; color: var(--sec); }
+.sg-pc .blk { width: 100%; border-radius: 14px 14px 6px 6px; background: var(--sg-plate); box-shadow: var(--sg-nest); display: flex; justify-content: center; padding-top: 10px; font-size: 20px; font-weight: 700; }
+.sg-pc.p1 .blk { height: 88px; background: var(--sg-sel); transform: translateY(-3px); box-shadow: 0 26px 40px -14px rgba(0,0,0,.9); }
+.sg-pc.p2 .blk { height: 66px; } .sg-pc.p3 .blk { height: 50px; }
+.sg-all { margin-top: 16px; min-height: 52px; padding: 0 20px; border-radius: 26px; background: var(--control); box-shadow: var(--sg-nest); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; font-weight: 600; }
+.sg-all.off { opacity: .5; }
+
+/* ---------- нижняя зона: кнопка и затухание ---------- */
+.sg-bp { position: absolute; left: 20px; right: 20px; bottom: 40px; z-index: 20; }
+.sg-bp.sc::before { content: ""; position: absolute; left: -20px; right: -20px; top: -40px; bottom: -40px; background: linear-gradient(180deg, rgba(12,12,13,0), rgba(12,12,13,.96) 32%, #0C0C0D); z-index: -1; pointer-events: none; }
+/* зачем: причина старта (SpireClimbDock:67-71) — строка над кнопкой, без красного */
+.sg-dnote { font-size: 13px; line-height: 18px; color: var(--sec); text-align: center; margin-bottom: 10px; }
+
+/* ---------- панель итога на сцене башни ---------- */
+.sg-panel { background: var(--sg-plate), #18181A; border-radius: 24px; padding: 18px 20px 16px; box-shadow: 0 20px 44px -12px rgba(0,0,0,.85); }
+.sg-over { font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--sec); }
+.sg-panel .sg-over { text-align: center; }
+.sg-panel .sg-over.bad { color: var(--bad); }
+.sg-panel .ti { font-size: 24px; line-height: 30px; font-weight: 700; text-align: center; margin-top: 8px; }
+.sg-panel .su { font-size: 16px; line-height: 21px; color: var(--sec); text-align: center; margin-top: 6px; }
+.sg-panel .cta { height: 56px; border-radius: 28px; margin-top: 18px; }
+.sg-ghost { margin-top: 8px; min-height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+
+/* ---------- карточка итога недели ---------- */
+.sg-week { display: flex; gap: 14px; align-items: flex-start; margin-top: 16px; padding: 16px; border-radius: 20px; background: var(--sg-sel); box-shadow: var(--sg-shadow); }
+.sg-week .sg-wt { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 6px; }
+.sg-week .sg-ws { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 4px; }
+.sg-x { width: 36px; height: 36px; border-radius: 50%; background: var(--control); box-shadow: var(--sg-nest); display: flex; align-items: center; justify-content: center; flex: none; }
+
+/* ---------- ступень ---------- */
+.sg-ring { position: relative; width: 132px; height: 132px; margin: 34px auto 0; }
+.sg-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.sg-ring .tm { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.3px; }
+.sg-ring .pz { position: absolute; left: 0; right: 0; bottom: -26px; text-align: center; font-size: 13px; color: var(--sec); font-weight: 600; }
+.sg-ovl { display: flex; align-items: center; gap: 14px; margin-top: 44px; color: var(--sec); }
+.sg-ovl::before, .sg-ovl::after { content: ""; flex: 1; height: 1px; background: var(--line-2); }
+.sg-ovl span { font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.sg-qc { position: relative; margin-top: 18px; min-height: 96px; padding: 20px 22px; border-radius: 20px; background: var(--sg-plate); box-shadow: var(--sg-shadow); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.sg-qc .q { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.3px; }
+.sg-qc .q2 { font-size: 17px; line-height: 23px; color: var(--sec); margin-top: 8px; }
+.sg-qc .q.mute { color: var(--sec); font-size: 24px; line-height: 30px; }
+.sg-qc.sp { padding: 24px 70px; min-height: 104px; }
+.sg-snd { position: absolute; right: 16px; top: 50%; margin-top: -22px; width: 44px; height: 44px; border-radius: 50%; background: var(--control); box-shadow: var(--sg-nest); display: flex; align-items: center; justify-content: center; }
+.sg-stack > * + * { margin-top: 13px; }
+.sg-opt { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 58px; padding: 12px 22px; border-radius: 16px; background: var(--sg-plate); box-shadow: var(--sg-shadow); font-size: 16.5px; line-height: 21px; font-weight: 700; }
+.sg-body { margin-top: 18px; }
+.sg-ans { min-height: 64px; padding: 10px; border-radius: 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--sg-plate); box-shadow: var(--sg-shadow); }
+.sg-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.sg-tk { min-height: 44px; padding: 0 14px; border-radius: 12px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 700; background: var(--control); box-shadow: var(--sg-nest); }
+.sg-ans .sg-tk { background: #34343A; }
+.sg-tk.used { opacity: .3; }
+.sg-ih { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 12px 18px; border-radius: 16px; background: var(--sg-sel); box-shadow: var(--sg-shadow); margin-bottom: 18px; }
+.sg-ih .p { flex: 1; font-size: 19px; line-height: 24px; font-weight: 700; }
+.sg-ih .c { font-size: 16px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+/* зачем: флажок жалобы (SpireStepScreen:172) — только красный значок справа под заданием, текст есть лишь для скринридера */
+.sg-rep { min-height: 44px; margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; color: var(--bad); padding-right: 6px; }
+.sg-foot { margin-top: 22px; text-align: center; color: var(--sec); font-size: 16px; font-weight: 700; }
+.sg-prep { margin-top: 40px; text-align: center; color: var(--sec); font-size: 16px; line-height: 22px; }
+
+/* ---------- шторка правил ---------- */
+.sg-sht-t { font-size: 22px; line-height: 28px; font-weight: 700; }
+.sg-rl { max-height: 440px; overflow-y: auto; scrollbar-width: none; margin-top: 14px; }
+.sg-rl::-webkit-scrollbar { display: none; }
+.sg-rl .r { display: flex; align-items: flex-start; gap: 12px; }
+.sg-rl .r + .r { margin-top: 14px; }
+.sg-rl .n { width: 28px; height: 28px; border-radius: 50%; background: var(--control); box-shadow: var(--sg-nest); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex: none; }
+.sg-rl .l { flex: 1; font-size: 16px; line-height: 22px; }
+
+/* ---------- экран «откроется позже» ---------- */
+.sg-lock { font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Шпиль — недостающие состояния</h1>
+  <p class="page-lead">Что есть в коде components/spire/**, но не нарисовано в spire.html: шесть видов заданий ступени, сбой старта, экран «откроется позже», три провала, три исхода недели, правила, «Готовим ступень…», флажок жалобы и «бета». Раскладка и башня — из spire.html, подача — в стиле «Тень». Тексты — русская ветка кода, примеры заданий и цифры условные.</p>
+  <nav class="page-nav"><a href="#tasks">Задания</a><a href="#start">Старт не удался</a><a href="#locked">Откроется позже</a><a href="#fails">Провалы</a><a href="#week">Итог недели</a><a href="#rules">Правила</a><a href="#misc">Мелочи</a></nav>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, sheet, energy, coinImg } = K;
+
+/* ===================== ДАННЫЕ КОМНАТЫ (как в spire.html, 30 человек) ===================== */
+const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
+const STEPS = [47, 39, 33, 31, 29, 27, 25, 24, 22, 21, 19, 18, 17, 15, 14, 12, 11, 11, 9, 8, 7, 6, 5, 5, 4, 3, 2, 1, 0, 0];
+const RANKS = [12, 9, 7, 11, 6, 8, 5, 4, 10, 3, 7, 6, 2, 9, 5, 1, 8, 4, 3, 6, 2, 0, 7, 1, 5, 3, 0, 2, 1, 0];
+const ROOM = NAMES.map((name, i) => ({ name, steps: STEPS[i], rank: RANKS[i], me: name === 'Денис' }));
+const ME = ROOM.find((m) => m.me);
+/* зачем: чип друга в коде подписан ИМЕНЕМ КАМНЯ (SpireFriendsRow: сервер отдаёт tier, а не этаж), а не «N этаж» как в spire.html */
+const FRIENDS = [{ name: 'Аня', rank: 12, stone: 'Мрамор' }, { name: 'Kirill', rank: 10, stone: 'Гранит' }, { name: 'Лидия', rank: 1, stone: 'Гранит' }, { name: 'Sergio', rank: 2, stone: 'Базальт' }];
+
+/* ===================== МЕХАНИКА ЭТАЖЕЙ (как в spire.html) ===================== */
+const FLOORS = 15;
+const stepsIn = (f) => (f <= 5 ? 4 + f : 10);
+const cum = (f) => { let s = 0; for (let i = 1; i <= f; i++) s += stepsIn(i); return s; };
+const isGuard = (f) => f % 5 === 0;
+const floorCoins = (f) => 10 * f * (isGuard(f) ? 2 : 1);
+const floorOf = (steps) => { for (let f = 1; f <= FLOORS; f++) if (steps < cum(f)) return f; return FLOORS + 1; };
+const doneIn = (steps, f) => steps - cum(f - 1);
+const onFloor = (f) => ROOM.filter((m) => !m.me && floorOf(m.steps) === f);
+
+/* ===================== БАШНЯ (копия из spire.html + флаг noRivals) ===================== */
+// зачем: нужны кадры «комнаты ещё нет» (Шпиль без маркера и без соперников: SpireTower — «если локальной недели нет, маркера нет вовсе»),
+// поэтому к башне из spire.html добавлены флаг o.noRivals и защита от этажа 0. Остальное — как было.
+const TW = 390, CX = 195;
+const FH = (f) => (isGuard(f) ? 60 : 46);
+const FW = (f) => 196 - (f - 1) * 5;
+function towerGeom() {
+  const topPad = 300, basePad = 96; let h = 0;
+  for (let f = 1; f <= FLOORS; f++) h += FH(f);
+  const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
+  for (let f = 1; f <= FLOORS; f++) { const fh = FH(f), w = FW(f); yb -= fh; floors.push({ f, y: yb, h: fh, w, x0: CX - w / 2 }); }
+  return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y };
+}
+const G = towerGeom();
+const markerXY = (fl) => ({ x: fl.x0 + fl.w + 34, y: fl.y + fl.h / 2 + 2 });
+const winPath = (x, y, w, hh) => `M${x.toFixed(1)} ${(y + w / 2).toFixed(1)}a${(w / 2).toFixed(1)} ${(w / 2).toFixed(1)} 0 0 1 ${w.toFixed(1)} 0V${y + hh}H${x.toFixed(1)}Z`;
+function winState(f, myFloor, o) {
+  if (o.summit) return f === FLOORS ? 'lit' : 'past';
+  if (o.celebrate && f === o.celebrate) return 'lit';
+  if (f === myFloor) return 'lit';
+  return f < myFloor ? 'past' : 'dark';
+}
+function stones(fl) {
+  const { f, y, h, w, x0 } = fl; const r = w / 2; let d = '', hl = ''; let row = 0;
+  for (let yy = y + 11; yy < y + h; yy += 11, row++) {
+    d += `M${x0} ${yy}Q${CX} ${yy + 4} ${x0 + w} ${yy}`;
+    hl += `M${x0} ${yy + 1.2}Q${CX} ${yy + 5.2} ${x0 + w} ${yy + 1.2}`;
+    for (let t = -1.35 + (row % 2) * 0.14; t < 1.4; t += 0.28) { const x = CX + r * Math.sin(t); d += `M${x.toFixed(1)} ${(yy - 11 + 1.5 * Math.cos(t)).toFixed(1)}V${(yy + 3 * Math.cos(t)).toFixed(1)}`; }
+  }
+  return `<path d="${d}" stroke="rgba(0,0,0,.34)" stroke-width="1.1" fill="none" clip-path="url(#cl${f})"/><path d="${hl}" stroke="rgba(255,255,255,.045)" stroke-width="1" fill="none" clip-path="url(#cl${f})"/>`;
+}
+function windows(fl, st) {
+  const { f, y, w } = fl; const r = w / 2; const g = isGuard(f);
+  const ts = f >= 12 ? [-0.55, 0.55] : [-0.72, 0, 0.72];
+  let out = '';
+  ts.forEach((t) => {
+    const big = g && t === 0; const ww = (big ? 16 : 12) * Math.cos(t), wh = big ? 30 : 20;
+    const x = CX + r * Math.sin(t) - ww / 2, yy = y + (g ? 22 : 12) - (big ? 6 : 0);
+    const d = winPath(x, yy, ww, wh);
+    out += `<path class="win ${st}" d="${d}"/>`;
+    if (st === 'lit') out += `<path class="wglow" d="${d}" fill="#EEF0F6" filter="url(#wglow)"/>`;
+    out += `<rect x="${(x - 2).toFixed(1)}" y="${yy + wh}" width="${(ww + 4).toFixed(1)}" height="2.6" rx="1" fill="#6B6B72"/>`;
+  });
+  return out;
+}
+function parapet(fl) {
+  const { y, w, x0 } = fl; const r = w / 2 + 7;
+  let out = `<rect x="${x0 - 7}" y="${y - 4}" width="${w + 14}" height="10" rx="2" fill="url(#cylCorn)"/>`;
+  for (let t = -1.32; t <= 1.33; t += 0.3) {
+    const mw = 11 * Math.cos(t), x = CX + r * Math.sin(t) - mw / 2, sh = 0.62 - 0.38 * Math.sin(t + 0.45);
+    const c = Math.round(66 + 44 * sh);
+    out += `<rect x="${x.toFixed(1)}" y="${y - 17}" width="${mw.toFixed(1)}" height="14" rx="1.2" fill="rgb(${c},${c},${c + 5})"/>`;
+  }
+  for (let t = -1.25; t <= 1.26; t += 0.25) { const cw = 6 * Math.cos(t), x = CX + (w / 2 + 3) * Math.sin(t) - cw / 2; out += `<path d="M${x.toFixed(1)} ${y + 6}h${cw.toFixed(1)}l-1 7h${(-cw + 2).toFixed(1)}Z" fill="rgba(0,0,0,.45)"/>`; }
+  return out;
+}
+function floorSvg(fl, myFloor, o) {
+  const { f, y, h, w, x0 } = fl; const g = isGuard(f), st = winState(f, myFloor, o);
+  const mine = f === myFloor && !o.summit;
+  const others = o.noRivals ? [] : onFloor(f); const shown = Math.min(others.length, 2); const extra = others.length - shown;
+  let avs = '';
+  if (others.length) {
+    const ax = x0 - 10 - (22 + (shown - 1) * 13) - (extra ? 22 : 0);
+    others.slice(0, shown).forEach((m, k) => { avs += `<circle cx="${ax + 11 + k * 13}" cy="${y + h / 2}" r="11.5" fill="#0C0C0D"/><image href="${K.coin(m.rank)}" x="${ax + k * 13}" y="${y + h / 2 - 11}" width="22" height="22"/>`; });
+    if (extra) avs += `<text x="${ax + 22 + (shown - 1) * 13 + 5}" y="${y + h / 2 + 4}" font-size="11" font-weight="700" fill="#9A9A9E">+${extra}</text>`;
+  }
+  const label = o.clean ? '' : f === FLOORS ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '';
+  if (o.clean) avs = '';
+  const lit = mine || st === 'lit';
+  return `<g class="fl${mine ? ' mine' : ''}${f === o.sel ? ' sel' : ''}" data-floor="${f}">
+    <clipPath id="cl${f}"><rect x="${x0}" y="${y}" width="${w}" height="${h}"/></clipPath>
+    ${lit ? `<ellipse class="halo2" cx="${CX}" cy="${y + h / 2}" rx="${w / 2 + 70}" ry="${h}" fill="url(#litfloor)"/>` : ''}
+    <rect class="face" x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#${g ? 'cylG' : 'cyl'})"/>
+    ${stones(fl)}
+    <rect x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#under)"/>
+    ${windows(fl, st)}
+    ${g ? '' : `<rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="7" rx="3" fill="url(#cylCorn)"/><rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="1.4" rx=".7" fill="rgba(255,255,255,.28)"/>`}
+    ${avs}
+    ${o.clean ? '' : `<text class="fn" x="14" y="${y + h / 2 + (label ? 0 : 5)}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? '#FFFFFF' : '#6E6E72'}" text-anchor="middle">${f}</text>`}
+    ${label ? `<text x="20" y="${y + h / 2 + 14}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="#8E8E92" text-anchor="middle">${label}</text>` : ''}
+    <rect class="selr" x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>
+    <rect x="0" y="${y - 4}" width="${TW}" height="${h + 4}" fill="transparent"/>
+  </g>`;
+}
+function spireSvg(o) {
+  const t = G.floors[FLOORS - 1]; const dw = t.w - 22, dx = CX - dw / 2, yd = t.y - 34, apex = yd - 168, rw = dw + 26;
+  const big = o.summit; let shingles = '';
+  for (let yy = yd - 10; yy > apex + 10; yy -= 11) { const k = (yd - yy) / (yd - apex); const hw = (rw / 2) * (1 - k); shingles += `M${(CX - hw).toFixed(1)} ${yy}Q${CX} ${(yy + 4 * (1 - k)).toFixed(1)} ${(CX + hw).toFixed(1)} ${yy}`; }
+  const dwin = [-0.5, 0, 0.5].map((a) => { const ww = 9 * Math.cos(a), x = CX + (dw / 2) * Math.sin(a) - ww / 2; return `<path class="win ${big || o.myFloor > FLOORS ? 'lit' : 'dark'}" d="${winPath(x, yd + 9, ww, 15)}"/>`; }).join('');
+  return `<g>
+    <rect x="${dx}" y="${yd}" width="${dw}" height="34" fill="url(#cyl)"/>
+    ${dwin}
+    <rect x="${CX - rw / 2}" y="${yd - 4}" width="${rw}" height="8" rx="4" fill="url(#cylCorn)"/>
+    <polygon points="${CX - rw / 2},${yd} ${CX + rw / 2},${yd} ${CX},${apex}" fill="url(#cone)"/>
+    <path d="${shingles}" stroke="rgba(0,0,0,.38)" stroke-width="1.1" fill="none"/>
+    <polygon points="${CX - rw / 2},${yd} ${CX - rw * 0.12},${yd} ${CX},${apex}" fill="rgba(255,255,255,.06)"/>
+    <circle cx="${CX}" cy="${apex - 14}" r="${big ? 90 : 34}" fill="url(#glow)"/>
+    <line x1="${CX}" y1="${apex + 4}" x2="${CX}" y2="${apex - 12}" stroke="#D6D6D8" stroke-width="2"/>
+    <circle cx="${CX}" cy="${apex - 16}" r="${big ? 7 : 5.5}" fill="#FFFFFF"/>
+  </g>`;
+}
+function skySvg() {
+  const y = G.top - 250; let stars = '';
+  const pts = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
+  pts.forEach(([x, yy], i) => { stars += `<circle cx="${x}" cy="${y - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="rgba(255,255,255,${i % 2 ? 0.35 : 0.55})"/>`; });
+  return `${stars}<g filter="url(#blur)"><ellipse cx="60" cy="${G.top - 150}" rx="120" ry="14" fill="rgba(255,255,255,.07)"/><ellipse cx="330" cy="${G.top - 170}" rx="130" ry="16" fill="rgba(255,255,255,.06)"/><ellipse cx="80" cy="${G.top - 96}" rx="100" ry="10" fill="rgba(255,255,255,.04)"/><ellipse cx="320" cy="${G.top - 90}" rx="110" ry="11" fill="rgba(255,255,255,.045)"/></g>
+    <text x="${CX}" y="${G.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="#5E5E62" text-anchor="middle">НАД ОБЛАКАМИ</text>`;
+}
+function markerSvg(o) {
+  const fl = G.floors[Math.min(o.myFloor, FLOORS) - 1]; const p = markerXY(fl);
+  return `<g class="mk" data-mk style="transform:translate(${p.x}px,${p.y}px)">
+    <line x1="-24" y1="0" x2="-13" y2="0" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-dasharray="2 3"/>
+    <circle r="28" fill="url(#glow)"/>
+    <circle r="20" fill="#0C0C0D" stroke="#F2F1F6" stroke-width="1.6"/>
+    <image href="${K.coin(ME.rank)}" x="-17" y="-17" width="34" height="34"/>
+  </g>`;
+}
+function towerSvg(o = {}) {
+  const myFloor = o.myFloor ?? floorOf(o.mySteps ?? ME.steps);
+  o.myFloor = myFloor; o.sel = o.sel ?? myFloor;
+  const b = G.floors[0];
+  return `<svg viewBox="0 0 ${TW} ${G.H}" width="${TW}" height="${G.H}" xmlns="http://www.w3.org/2000/svg" data-tower>
+  <defs>
+    <linearGradient id="cyl" x1="0" x2="1"><stop offset="0" stop-color="#1F1F23"/><stop offset=".16" stop-color="#3D3D44"/><stop offset=".36" stop-color="#5A5A62"/><stop offset=".55" stop-color="#46464D"/><stop offset=".8" stop-color="#2C2C31"/><stop offset="1" stop-color="#18181B"/></linearGradient>
+    <linearGradient id="cylG" x1="0" x2="1"><stop offset="0" stop-color="#232328"/><stop offset=".16" stop-color="#46464D"/><stop offset=".36" stop-color="#67676F"/><stop offset=".55" stop-color="#505058"/><stop offset=".8" stop-color="#303035"/><stop offset="1" stop-color="#1A1A1D"/></linearGradient>
+    <linearGradient id="cylCorn" x1="0" x2="1"><stop offset="0" stop-color="#2A2A2F"/><stop offset=".35" stop-color="#77777F"/><stop offset=".6" stop-color="#55555C"/><stop offset="1" stop-color="#222226"/></linearGradient>
+    <linearGradient id="cone" x1="0" x2="1"><stop offset="0" stop-color="#1E1E22"/><stop offset=".35" stop-color="#55555D"/><stop offset=".6" stop-color="#3A3A41"/><stop offset="1" stop-color="#151518"/></linearGradient>
+    <linearGradient id="under" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".45" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <radialGradient id="litfloor"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101013"/><stop offset=".5" stop-color="#17171A"/><stop offset="1" stop-color="#0E0E10"/></linearGradient>
+    <radialGradient id="ground" cy=".2"><stop offset="0" stop-color="#26262A"/><stop offset="1" stop-color="#0E0E10" stop-opacity="0"/></radialGradient>
+    <filter id="wglow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+  <rect width="${TW}" height="${G.H}" fill="url(#sky)"/>
+  <ellipse cx="${CX}" cy="${G.top - 120}" rx="200" ry="260" fill="rgba(255,255,255,.03)"/>
+  ${skySvg()}
+  <ellipse cx="${CX}" cy="${G.base + 44}" rx="210" ry="40" fill="url(#ground)"/>
+  <ellipse cx="${CX}" cy="${G.base + 30}" rx="${b.w / 2 + 64}" ry="12" fill="rgba(0,0,0,.55)"/>
+  <rect x="${b.x0 - 30}" y="${G.base + 16}" width="${b.w + 60}" height="14" rx="3" fill="url(#cylCorn)" opacity=".7"/>
+  <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="16" rx="3" fill="url(#cylCorn)"/>
+  <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="1.5" fill="rgba(255,255,255,.25)"/>
+  ${G.floors.map((fl) => floorSvg(fl, myFloor, o)).join('')}
+  ${G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map(parapet).join('')}
+  ${spireSvg(o)}
+  ${o.noMarker ? '' : markerSvg(o)}
+</svg>`;
+}
+const towerView = (o = {}, cls = '') => { const my = Math.max(1, Math.min(o.myFloor ?? floorOf(o.mySteps ?? ME.steps), FLOORS)); const fl = G.floors[my - 1]; return `<div class="sg-tv ${cls}" data-center="${o.centerY ?? (fl.y + fl.h / 2)}">${towerSvg(o)}</div>`; };
+
+/* карточка этажа; noWeek — локальной недели нет: «Ты здесь» не пишем (SpireFloorInfo при myFloor = null) */
+const floorInfo = (f, o = {}) => {
+  const others = o.noWeek ? [] : onFloor(f); const steps = o.mySteps ?? ME.steps; const my = o.myFloor ?? floorOf(steps); const g = isGuard(f);
+  const tt = `Этаж ${f}${f === FLOORS ? ' · Вершина' : g ? ' · Страж' : ''}`;
+  let st;
+  if (o.noWeek) st = `${stepsIn(f)} ступеней`;
+  else if (f === my) st = `Ты здесь · ${doneIn(steps, f)} из ${stepsIn(f)} ступеней`; else if (f < my) st = `Пройден · ${stepsIn(f)} ступеней`; else st = `${stepsIn(f)} ступеней`;
+  const c = `${floorCoins(f)} монет за этаж${g ? ' (×2)' : ''}${f === FLOORS ? ' + 200' : ''}`;
+  return `<div class="sg-fi"${o.noWeek ? '' : ' data-finfo'}><div class="grow"><div class="tt">${tt}</div><div class="st">${st} · ${c}</div></div><div class="who">${others.slice(0, 4).map((m) => coinImg(m.rank, 28)).join('')}</div></div>`;
+};
+
+/* ===================== ГЛАВНЫЙ ЭКРАН ===================== */
+const INFO = `<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg>`;
+/* зачем: шапка как в коде (SpireHomeScreen:220-244): название + «бета» + подзаголовок «камень · до конца недели», кнопка правил (i) и энергия;
+   в spire.html кнопки правил нет — её рисуем здесь */
+const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Шпиль</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energy(o.energy ?? 3)}</div>`;
+const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
+const podium = () => {
+  const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
+  const pd = (m, p) => `<div class="sg-pc p${p} t">${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${m.steps} ступ.</div><div class="blk">${p}</div></div>`;
+  const myIdx = [...ROOM].sort((a, b) => b.steps - a.steps).findIndex((m) => m.me) + 1;
+  return `<div class="sec" style="margin:26px 2px 0"><div class="ti">Комната недели</div><div class="ac">${ROOM.length}</div></div><div class="sg-pod">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div><div class="sg-all t">Все участники · ${myIdx}</div>`;
+};
+/* зачем: комнаты нет (SpirePodium:36-46) — вместо числа людей «—», пьедестала нет, «Все участники · —» неактивна (50%) */
+const podiumDash = () => `<div class="sec" style="margin:26px 2px 0"><div class="ti">Комната недели</div><div class="ac">—</div></div><div class="sg-all off">Все участники · —</div>`;
+const homeScr = (o = {}) => {
+  const t = o.tower || {};
+  const fin = o.finfo !== undefined ? o.finfo : floorInfo(t.sel ?? floorOf(ME.steps), { mySteps: t.mySteps, myFloor: t.myFloor });
+  return `${homeHead(o)}${o.top || ''}<div style="margin-top:18px">${towerView(t)}</div>${fin}${o.friends === false ? '' : friendsRow()}${o.podium !== undefined ? o.podium : podium()}`;
+};
+const dock = (o = {}) => `<div class="sg-bp sc">${o.note ? `<div class="sg-dnote">${o.note}</div>` : ''}<div class="cta t"${o.dim ? ' style="opacity:.4"' : ''}>${o.label ?? 'Подняться'}<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
+const homePhone = (o = {}, dockHtml = dock(), extra = {}) => phone(homeScr(o), { fixed: dockHtml, inStyle: `padding-bottom:${o.pb ?? 120}px`, ...extra });
+
+/* ===================== 1. ЗАДАНИЯ СТУПЕНИ ===================== */
+/* зачем: шапка ступени — как stepHead в spire.html (назад · «Ступень N» · «Этаж · камень» · сердца · энергия) */
+const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin-top:6px"><span class="rb l t" style="margin-right:8px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;line-height:25px;font-weight:700">Ступень 8</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:2px;white-space:nowrap">Этаж 4 · Гранит</div></div>
+  <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span>${energy(e, { s: true })}</div>`;
+const ringHtml = (left = '1:12', frac = .72, paused = false) => `<div class="sg-ring"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="${paused ? '#8E8E92' : '#E9E9EB'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="${(370.7 * (1 - frac)).toFixed(1)}"/></svg><div class="tm">${left}</div>${paused ? '<div class="pz">таймер на паузе</div>' : ''}</div>`;
+const FLAG = `<div class="sg-rep" aria-label="Сообщить об ошибке в задании Шпиля">${icon('flag', 's18')}</div>`;
+const qCard = (main, sub) => `<div class="sg-qc"><div class="q">${main}</div>${sub ? `<div class="q2">${sub}</div>` : ''}</div>`;
+/* зачем: «на слух» (SpireTaskView:203-212) — до ответа фраза скрыта, вместо неё серое «Прослушать» и кнопка озвучки справа */
+const listenCard = () => `<div class="sg-qc sp"><div class="q mute">Прослушать</div><span class="sg-snd t">${icon('vol', 's20')}</span></div>`;
+const opts = (list) => `<div class="sg-stack sg-body">${list.map((t) => `<div class="sg-opt t">${t}</div>`).join('')}</div>`;
+const tokens = (picked, bank) => `<div class="sg-body"><div class="sg-ans">${picked.map((w) => `<span class="sg-tk t">${w}</span>`).join('')}</div><div class="sg-bank">${bank.map((w) => `<span class="sg-tk t${picked.includes(w) ? ' used' : ''}">${w}</span>`).join('')}</div></div>`;
+const stepPhone = (o) => phone(`${stepHead(o.hearts ?? 3, o.e ?? 2)}${ringHtml(o.left ?? '1:12', o.frac ?? .72, o.paused)}${o.prompt ? `<div class="sg-ovl"><span>${o.prompt}</span></div>` : ''}${o.body}${o.flag === false ? '' : FLAG}<div class="sg-foot">${o.n} / 10</div>`);
+
+/* тексты заданий — условные примеры в формате пакета недели (payload.phrase / options / wordBank) */
+const tFillGap = () => stepPhone({ prompt: 'Вставь слово', n: 2, body: qCard('Can I help ___ with that?', 'Могу я помочь тебе с этим?') + opts(['them', 'you', 'him', 'her']) });
+const tOdd = () => stepPhone({ prompt: 'Найди лишнее', n: 5, hearts: 2, left: '0:58', frac: .58, body: qCard('Найди фразу, которую нужно исправить.') + opts(['I am from Spain.', 'I am from Russia.', 'They am from Russia.', 'I am from Italy.']) });
+const tBuild = () => stepPhone({ prompt: 'Собери перевод', n: 4, left: '1:05', frac: .65, body: qCard('Она работает каждый день') + tokens(['She', 'works'], ['She', 'works', 'every', 'day', 'work', 'the', 'is']) });
+const tListenChoose = () => stepPhone({ prompt: 'Послушай и выбери', n: 6, left: '0:49', frac: .49, body: listenCard() + opts(['landlord', 'landmark', 'landslide']) });
+const tListenBuild = () => stepPhone({ prompt: 'Послушай и собери', n: 8, hearts: 2, left: '0:33', frac: .33, body: listenCard() + tokens(['Where', 'are'], ['Where', 'shops', 'the', 'is', 'are']) });
+/* зачем: «Найди пары» в коде — НЕ две колонки: по одному слову сверху (счётчик «2 / 6») и столбик вариантов перевода (SpireTaskView ItemsTask) */
+const tPairs = () => stepPhone({ prompt: 'Найди пары', n: 7, left: '0:41', frac: .41, body: `<div class="sg-body"><div class="sg-ih"><div class="p">room</div><div class="c">2 / 6</div></div><div class="sg-stack">${['комната', 'учится', 'слово', 'кофе'].map((t) => `<div class="sg-opt t">${t}</div>`).join('')}</div></div>` });
+
+/* ===================== 2. СТАРТ НЕ УДАЛСЯ ===================== */
+const startOffline = () => homePhone({ tower: { mySteps: 25, sel: 4 }, pb: 150 }, dock({ note: 'Нет сети — задания недели не скачались', label: 'Повторить' }));
+const startMissing = () => homePhone({ tower: { mySteps: 25, sel: 4 }, pb: 150 }, dock({ note: 'Задания этой недели ещё готовятся', label: 'Повторить' }));
+/* зачем: комната недоступна и локальной недели нет (новая неделя): камня нет → «—» в подзаголовке, маркера и соперников на башне нет,
+   «Подняться» неактивна (climbReady = false, SpireHomeScreen:216) */
+const noRoomOpts = () => ({ stone: '—', left: '5 д 9 ч', friends: false, tower: { myFloor: 0, noMarker: true, noRivals: true, sel: 1 }, finfo: floorInfo(1, { noWeek: true }) });
+const noRoomTop = () => homePhone({ ...noRoomOpts(), podium: podiumDash() }, dock({ dim: true }));
+const noRoomLow = () => homePhone({ ...noRoomOpts(), podium: podiumDash() }, dock({ dim: true })).replace('<div class="scr">', '<div class="scr" data-scroll="bottom">');
+
+/* ===================== 3. ОТКРОЕТСЯ ПОЗЖЕ ===================== */
+const locked = () => phone(`<div class="sg-lock">Шпиль откроется чуть позже</div>`, { inStyle: 'min-height:100%;display:flex;align-items:center;justify-content:center;padding:0 40px' });
+
+/* ===================== 4. ПРОВАЛЫ ===================== */
+const scenePhone = (towerOpts, panel) => phone(`<div class="flex" style="gap:14px;margin-top:6px"><div class="grow"><div style="font-size:20px;line-height:25px;font-weight:700">Гранит</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:2px">Этаж ${towerOpts.sel} · до конца недели 2 д 14 ч</div></div>${energy(2)}</div><div style="margin-top:16px">${towerView(towerOpts, 'tall')}</div>`,
+  { fixed: `<div class="sg-bp"><div class="sg-panel">${panel}</div></div>` });
+/* зачем: все три провала — одна панель SpireResultPanel (kind failed/save_failed): красная строка «Ступень не пройдена», заголовок по причине,
+   подпись «Остаёшься на N этаже. Новый набор из 10 заданий», «Ещё раз» и «Позже» */
+const failPanel = (title) => `<div class="sg-over bad">Ступень не пройдена</div><div class="ti">${title}</div><div class="su">Остаёшься на 4 этаже. Новый набор из 10 заданий</div><div class="cta t">Ещё раз</div><div class="sg-ghost t">Позже</div>`;
+const failTimeout = () => scenePhone({ mySteps: 25, sel: 4 }, failPanel('Время вышло'));
+const failBack = () => scenePhone({ mySteps: 25, sel: 4 }, failPanel('Ступень прервана'));
+const failSave = () => scenePhone({ mySteps: 25, sel: 4 }, failPanel('Ступень не сохранилась. Попробуй ещё раз'));
+
+/* ===================== 5. ИТОГ НЕДЕЛИ ===================== */
+/* зачем: тексты по spireGameText weekUp / weekStay / weekDown и spireWeekResultLines: «N место · K ступеней · +монеты монет» или «новая неделя, все с 1 этажа».
+   Маркер на 1 этаже — как в spire.html (в коде до первой ступени новой недели локальной недели нет и маркер не рисуется — см. отчёт) */
+const weekCard = (title, sub) => `<div class="sg-week">${coinImg(ME.rank, 52)}<div class="grow"><div class="sg-over">Итог недели</div><div class="sg-wt">${title}</div><div class="sg-ws">${sub}</div></div><span class="sg-x t">${icon('close', 's16')}</span></div>`;
+const newWeek = (title, sub, stone) => homePhone({ stone, left: '6 д 22 ч', top: weekCard(title, sub), tower: { mySteps: 0, myFloor: 1, sel: 1 } });
+const weekUp = () => newWeek('Ты поднимаешься в Базальт', '2 место · 39 ступеней · +200 · +100 монет', 'Базальт');
+const weekStay = () => newWeek('Остаёшься в шпиле Гранит', '12 место · 25 ступеней · новая неделя, все с 1 этажа', 'Гранит');
+const weekDown = () => newWeek('Ты спускаешься в Гранит', '27 место · 5 ступеней · новая неделя, все с 1 этажа', 'Гранит');
+
+/* ===================== 6. ПРАВИЛА ===================== */
+/* зачем: восемь правил — spire_game_strings rule1…rule8; числа правил 6 и 7 подставляются из config/spire_v1 (значения по умолчанию:
+   10 за ступень, 10×N за этаж, Страж ×2, вершина +200; места 300 / 200 / 150, повышение +100) */
+const RULES = [
+  'Каждую неделю — новый шпиль: 15 этажей и комната на 30 человек.',
+  'Ступень — 10 заданий, общий таймер и 3 сердца. Ошибка снимает сердце.',
+  'Энергия списывается, когда появляется первое задание ступени.',
+  'Место в комнате — по пройденным ступеням. При равенстве выше тот, кто дошёл раньше.',
+  'Верхние 15% переходят в шпиль выше, нижние 15% и все без ступеней спускаются.',
+  'Монеты: 10 за ступень, за этаж N — 10×N, у Стража ×2, за вершину +200.',
+  'За места недели: 300 / 200 / 150 монет, за повышение +100.',
+  'В понедельник все начинают с 1 этажа.',
+];
+const rulesSheet = (end) => sheet('rules', `<div class="sg-sht-t">Правила Шпиля</div><div class="sg-rl"${end ? ' data-end' : ''}>${RULES.map((t, i) => `<div class="r"><span class="n">${i + 1}</span><div class="l">${t}</div></div>`).join('')}</div><div class="cta t" style="height:56px;border-radius:28px;margin-top:20px" data-close>Закрыть</div>`, true);
+const rulesTop = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { overlay: rulesSheet(false) });
+const rulesEnd = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { overlay: rulesSheet(true) });
+
+/* ===================== 7. МЕЛОЧИ ===================== */
+/* зачем: фаза 'charging' раннера — идёт списание энергии (D72), задания ещё нет: кольцо на паузе, вместо задания «Готовим ступень…», счётчик 1 / 10 */
+const preparing = () => phone(`${stepHead(3, 3)}${ringHtml('1:40', 1, true)}<div class="sg-prep">Готовим ступень…</div><div class="sg-foot">1 / 10</div>`);
+/* зачем: то же «Выбери перевод», что в spire.html, но с флажком жалобы справа под вариантами (SpireStepScreen:172: виден, пока можно отвечать) */
+const stepWithFlag = () => stepPhone({ prompt: 'Выбери перевод', n: 3, body: qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность']) });
+const betaMain = () => homePhone({ beta: true, tower: { mySteps: 25, sel: 4 } });
+
+/* ===================== СБОРКА СТРАНИЦЫ ===================== */
+document.getElementById('root').innerHTML = [
+  block('tasks', '1. Задания ступени — шесть видов', 'Шапка, кольцо и «k / 10» — как в кадре «Выбери перевод» (spire.html). Вид задания задаёт серая подпись над карточкой. Справа под заданием — красный флажок жалобы. Примеры фраз условные, формат — из пакета недели.', [
+    col('Вставь слово · fill_gap', tFillGap()),
+    col('Найди лишнее · find_oddity', tOdd()),
+    col('Собери перевод · translate_build (2 слова из 4 набрано)', tBuild()),
+    col('Послушай и выбери · listen_choose (фраза скрыта до ответа)', tListenChoose()),
+    col('Послушай и собери · listen_build (2 слова из 4 набрано)', tListenBuild()),
+    col('Найди пары · speed_match (второе слово из шести)', tPairs())]),
+  block('start', '2. Старт не удался и «Подняться» неактивна', 'Над кнопкой появляется причина, а вместо «Подняться» — «Повторить». Если комнаты нет и своей недели тоже, кнопка «Подняться» бледная, подзаголовок «—», пьедестала нет.', [
+    col('Нет сети — задания недели не скачались', startOffline()),
+    col('Задания этой недели ещё готовятся', startMissing()),
+    col('Комнаты ещё нет: «Подняться» неактивна', noRoomTop()),
+    col('Там же ниже: «Комната недели —» и «Все участники · —»', noRoomLow())]),
+  block('locked', '3. Шпиль откроется чуть позже', 'Выключена функция (config/spire_v1) или пауза комнаты без данных: одна фраза по центру, ничего живого и никаких запросов.', [
+    col('Шпиль откроется чуть позже', locked())]),
+  block('fails', '4. Провалы ступени', 'Одна панель, меняется только заголовок. Рядом с «Сердца закончились» из spire.html.', [
+    col('Время вышло', failTimeout()),
+    col('Ступень прервана (вышел из ступени)', failBack()),
+    col('Ступень не сохранилась — маркер откатился на 4 этаж', failSave())]),
+  block('week', '5. Итог недели — три исхода', 'Карточка при первом заходе новой недели, закрывается крестиком. Заголовок по решению сервера; вторая строка — место, ступени, монеты. Прежние кадры «Ты поднялся в Базальт» из spire.html устарели.', [
+    col('Ты поднимаешься в …', weekUp()),
+    col('Остаёшься в шпиле …', weekStay()),
+    col('Ты спускаешься в …', weekDown())]),
+  block('rules', '6. Правила Шпиля', 'Шторка по кнопке (i) в шапке. Восемь правил, список прокручивается (высота до 440). Монеты в правилах 6 и 7 — из настроек сервера.', [
+    col('Правила — начало списка', rulesTop()),
+    col('Правила — список прокручен до конца', rulesEnd())]),
+  block('misc', '7. Мелочи', '«Готовим ступень…» во время списания энергии, флажок жалобы и пилюля «бета» у испанского, немецкого, французского и итальянского.', [
+    col('Готовим ступень… (списывается энергия)', preparing()),
+    col('Ступень с флажком «Сообщить об ошибке в задании Шпиля»', stepWithFlag()),
+    col('Главный экран: пилюля «бета» (es / de / fr / it)', betaMain())]),
+].join('');
+
+/* ===================== ПОВЕДЕНИЕ ===================== */
+document.querySelectorAll('[data-scroll="bottom"]').forEach((s) => { s.scrollTop = s.scrollHeight; });
+document.querySelectorAll('.sg-rl[data-end]').forEach((l) => { l.scrollTop = l.scrollHeight; });
+// свой этаж по центру окна башни
+document.querySelectorAll('.sg-tv').forEach((v) => { const c = Number(v.dataset.center); v.scrollTop = Math.max(0, c - v.clientHeight / 2); });
+// тап по этажу: подсветка и карточка этажа (там, где у карточки есть data-finfo)
+document.body.addEventListener('click', (e) => {
+  const fl = e.target.closest('.fl'); if (!fl) return;
+  const ph = fl.closest('.ph'); const f = Number(fl.dataset.floor);
+  ph.querySelectorAll('.fl.sel').forEach((n) => n.classList.remove('sel')); fl.classList.add('sel');
+  const info = ph.querySelector('[data-finfo]'); const mine = ph.querySelector('.fl.mine'); const my = mine ? Number(mine.dataset.floor) : floorOf(ME.steps);
+  if (info) info.outerHTML = floorInfo(f, { myFloor: my });
+});
+K.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пейвол Plus — недостающие состояния</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 1 — «Пейвол Plus: цена и покупка», реестр paywalls-011…016 и 018, без 017 «Уход с пейволла»:
+     перехвата выхода нет, D115). Окно — та же шторка «вариант 1» из paywall-context-redesign.html (утверждена владельцем), которую уже собрал код:
+     components/paywall/PaywallPlus.tsx, PaywallPlusScreen.tsx, app/paywall_purchase.ts, диалоги — components/v2/GlassAlertDialog.tsx.
+     Все тексты — русские строки из кода, ничего не выдумано; картинок нет. Размеры текста только 16 и 13 (крупно только заголовки шторки и окна по коду). Обводки — только 1px полупрозрачные.
+     Каждое состояние показано дважды: тёмная «Аврора» и светлая тема. Цены и пробный период в макете примерные — их отдаёт магазин. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph { --w-sheet: rgba(24,24,29,.985); --w-surf: #1D1D22; --w-hi: rgba(255,255,255,.14); --w-tx: #fff; --w-sc: #A6A6A8; --w-mu: #75757A; --w-edge: rgba(255,255,255,.13); --w-ink: var(--on); --w-dim: rgba(0,0,0,.62); color: var(--w-tx); }
+  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); --w-ink: #fff; background: #E3E3EA !important; }
+  .ph.lite::before { opacity: .22; }
+  .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
+  /* подложка — экран, откуда открылось окно */
+  .wund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; }
+  .wund .t1 { font-size: 28px; font-weight: 700; } .wund .r { height: 64px; border-radius: 18px; background: var(--w-surf); margin-top: 12px; }
+  .wdim { position: absolute; inset: 0; z-index: 20; background: var(--w-dim); }
+  /* шторка */
+  .wsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; background: var(--w-sheet); box-shadow: inset 0 1.5px 0 -.2px var(--w-hi), inset 0 0 0 1px var(--w-edge); padding-bottom: 30px; }
+  .whd { width: 40px; height: 5px; border-radius: 3px; background: var(--w-edge); margin: 8px auto 0; }
+  .wctx { display: flex; align-items: center; gap: 12px; padding: 14px 14px 0 20px; }
+  .wtile { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex: none; color: var(--acc); background: color-mix(in srgb, var(--acc) 18%, transparent); }
+  .wpill { min-height: 32px; border-radius: 16px; padding: 0 13px; display: flex; align-items: center; background: var(--w-surf); font-size: 13px; line-height: 18px; font-weight: 700; }
+  .wcl { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--w-surf); flex: none; margin-left: auto; }
+  .wh1 { margin: 16px 20px 0; font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.5px; }
+  .wsub { margin: 6px 20px 0; font-size: 16px; line-height: 22px; color: var(--w-sc); }
+  .wbody { padding: 14px 16px 18px; }
+  .wlead { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 22px; background: var(--w-surf); }
+  .wlead .ok { width: 28px; height: 28px; border-radius: 50%; background: var(--acc); color: var(--w-ink); display: flex; align-items: center; justify-content: center; flex: none; }
+  .wlead .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wrow { display: flex; gap: 10px; margin-top: 14px; } .wcell { flex: 1; min-width: 0; }
+  .wcard { min-height: 160px; border-radius: 22px; padding: 14px; background: var(--w-surf); }
+  .wcard.on { background: color-mix(in srgb, var(--acc) 14%, var(--w-surf)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); }
+  .wnm { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wbadge { min-height: 22px; padding: 0 9px; border-radius: 11px; background: var(--acc); color: var(--w-ink); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; }
+  .wbig { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; } .wmon { font-size: 16px; line-height: 22px; font-weight: 700; }
+  .wsm { font-size: 13px; line-height: 18px; color: var(--w-sc); } .wstr { font-size: 13px; line-height: 18px; color: var(--w-mu); text-decoration: line-through; }
+  .wtrial { display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px; box-shadow: inset 0 1px 0 var(--w-edge); font-size: 13px; line-height: 18px; font-weight: 700; color: var(--acc); }
+  .wphome .wcard { opacity: .5; }
+  /* скелет и «недоступно» */
+  .wsk { min-height: 160px; border-radius: 22px; background: linear-gradient(100deg, var(--w-surf) 30%, var(--w-hi) 50%, var(--w-surf) 70%); }
+  .wun { margin-top: 14px; min-height: 160px; border-radius: 22px; background: var(--w-surf); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 16px; text-align: center; }
+  .wun .a { font-size: 16px; line-height: 22px; font-weight: 700; } .wun .b { font-size: 13px; line-height: 18px; color: var(--w-sc); margin-top: 4px; }
+  /* зачем (приложение, коммит 960f2de5f; координатор 12.10): вместо блока «Цены не загрузились» — тихая строка той же высоты, что плитки (160): 13px, приглушённая, по центру; без красного, без иконки, без «Ещё раз» */
+  .wqn { margin-top: 14px; min-height: 160px; display: flex; align-items: center; justify-content: center; padding: 0 16px; text-align: center; font-size: 13px; line-height: 18px; color: var(--w-mu); }
+  .wretry { margin-top: 12px; min-height: 44px; padding: 0 16px; border-radius: 22px; background: var(--w-sheet); display: flex; align-items: center; font-size: 16px; font-weight: 700; }
+  /* промо магазина */
+  .wpromo { padding: 14px; border-radius: 18px; background: var(--w-surf); text-align: center; margin-bottom: 12px; }
+  .wpromo .k { font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--w-mu); }
+  .wpromo .rw { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .wpromo .pc { height: 35px; padding: 0 17px; border-radius: 18px; background: var(--w-sheet); display: inline-flex; align-items: center; align-self: center; font-size: 16px; font-weight: 700; }
+  .wpromo .pr { font-size: 21px; font-weight: 800; } .wpromo .st { font-size: 13px; font-weight: 700; color: var(--w-mu); text-decoration: line-through; } .wpromo .th { font-size: 13px; line-height: 21px; color: var(--w-sc); margin-top: 9px; }
+  /* закреплённая кнопка */
+  .wdock { padding: 14px 16px 0; }
+  .wcta { min-height: 58px; border-radius: 29px; padding: 12px 20px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--w-ink); font-size: 16px; line-height: 22px; font-weight: 700; text-align: center; box-shadow: 0 8px 26px color-mix(in srgb, var(--acc) 30%, transparent); }
+  .wcta.off { opacity: .55; }
+  .wfine { margin-top: 9px; font-size: 13px; line-height: 18px; text-align: center; color: var(--w-mu); }
+  .wlinks { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 14px; } .wlinks span { min-height: 44px; padding: 0 10px; display: flex; align-items: center; font-size: 13px; line-height: 18px; color: var(--w-mu); } .wlinks span.off { opacity: .45; }
+  .wspin { width: 24px; height: 24px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--w-ink) 30%, transparent); border-top-color: var(--w-ink); animation: wsp 900ms linear infinite; } @keyframes wsp { to { transform: rotate(360deg); } }
+  /* диалог (GlassAlertDialog) и тост (ActionToast) */
+  .wal { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 24px 60px rgba(0,0,0,.45); }
+  .wal .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; } .wal .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--w-sc); }
+  .wal .ac { display: flex; gap: 9px; margin-top: 18px; } .wal .bt { flex: 1; min-width: 0; min-height: 44px; border-radius: 22px; padding: 8px 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; line-height: 20px; font-weight: 700; background: var(--acc); color: var(--w-ink); } .wal .bt.gh { background: var(--w-surf); color: var(--w-tx); }
+  .wtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 14px 34px rgba(0,0,0,.4); }
+  .wtoast .ti { width: 41px; height: 41px; border-radius: 10px; background: var(--w-surf); display: flex; align-items: center; justify-content: center; flex: none; font-size: 22px; font-weight: 800; }
+  .wtoast .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 600; }
+  .wnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+  /* ---- зачем (координатор 12.10, аудит покрытия): кадры пейвола Plus по коду (PaywallPlus.tsx, PaywallPlusCopy.ts, PaywallBenefitComparison.tsx, PaywallTrialReminderPrompt.tsx, paywall_context_texts.ts, paywall_purchase.ts). Префикс pg-. ---- */
+  .pg-full { position: absolute; inset: 0; z-index: 30; background: var(--w-sheet); padding: 54px 0 0; overflow: hidden; }
+  .pg-top { display: flex; align-items: center; padding: 8px 20px 0; } .pg-kick { font-size: 13px; line-height: 18px; font-weight: 800; letter-spacing: 1.2px; color: var(--w-mu); flex: 1; }
+  .pg-lab { margin: 18px 20px 8px; font-size: 13px; line-height: 18px; font-weight: 800; letter-spacing: 1.2px; color: var(--w-mu); }
+  .pg-ben { display: flex; align-items: center; gap: 12px; margin: 0 16px 8px; padding: 8px 14px; border-radius: 20px; background: var(--w-surf); }
+  .pg-ben .ic { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex: none; color: var(--acc); background: color-mix(in srgb, var(--acc) 16%, transparent); }
+  .pg-ben .t1 { font-size: 16px; line-height: 22px; font-weight: 700; } .pg-ben .t2 { font-size: 13px; line-height: 18px; color: var(--w-sc); }
+  .pg-cmp { margin: 0 16px; border-radius: 22px; background: var(--w-surf); padding: 4px 14px; }
+  .pg-cmp .h, .pg-cmp .r { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; line-height: 18px; }
+  .pg-cmp .h { font-weight: 800; letter-spacing: 1px; color: var(--w-mu); } .pg-cmp .r + .r, .pg-cmp .h + .r { box-shadow: inset 0 1px 0 var(--w-edge); }
+  .pg-cmp .a { flex: 1.3; font-size: 16px; font-weight: 600; line-height: 21px; } .pg-cmp .f, .pg-cmp .p { flex: 1; text-align: right; color: var(--w-sc); } .pg-cmp .p { font-weight: 700; color: var(--w-tx); } .pg-cmp .h .f, .pg-cmp .h .p { color: var(--w-mu); }
+  .pg-more { margin: 10px 16px 0; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--w-surf); }
+  .pg-tl { margin: 14px 0 0; border-radius: 22px; background: var(--w-surf); padding: 16px 16px 6px; }
+  .pg-tl .row { display: flex; gap: 14px; } .pg-tl .rail { display: flex; flex-direction: column; align-items: center; width: 32px; flex: none; }
+  .pg-tl .dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--w-sheet); } .pg-tl .dot.on { background: var(--acc); color: var(--w-ink); }
+  .pg-tl .ln { flex: 1; width: 2px; background: var(--w-edge); margin: 4px 0; min-height: 14px; }
+  .pg-tl .cp { padding-bottom: 14px; } .pg-tl .t1 { font-size: 16px; line-height: 22px; font-weight: 700; } .pg-tl .t2 { font-size: 13px; line-height: 18px; color: var(--w-sc); margin-top: 2px; }
+  .pg-bell { width: 88px; height: 88px; border-radius: 28px; margin: 110px auto 0; display: flex; align-items: center; justify-content: center; background: var(--w-surf); }
+  .pg-h { margin: 24px 24px 0; font-size: 28px; line-height: 33px; font-weight: 800; letter-spacing: -.5px; text-align: center; } .pg-p { margin: 10px 24px 0; font-size: 16px; line-height: 22px; text-align: center; color: var(--w-sc); }
+  .pg-btm { position: absolute; left: 24px; right: 24px; bottom: 34px; } .pg-ghost { min-height: 50px; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--w-sc); }
+  .pg-sel { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); background: color-mix(in srgb, var(--acc) 14%, var(--w-surf)); }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Пейвол Plus — недостающие состояния</h1>
+  <p class="page-lead">Вход «Plus» из Настроек без контекста, лента пробного периода, выбранный «Месяц», экран «Plus твой. Напомнить…», пейволы Карточек (тренировки, свои фразы, свой набор, место закончилось — теперь 50) и тосты покупки — по коду приложения. Окно по-прежнему «вариант 1» (утверждено владельцем). Только тёмная «Аврора».</p>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const gift = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="4.5" rx="1"/><path d="M5 13.5V20h14v-6.5M12 9v11"/><path d="M12 9c-2.5 0-4.2-1-4.2-2.7S10.6 4 12 9zm0 0c2.5 0 4.2-1 4.2-2.7S13.4 4 12 9z"/></svg>';
+// контекст входа — утверждённый «Энергия закончилась» (paywall-context-texts.md): значок входа, пилюля «что закончилось», заголовок, фраза, выгода
+const CX = { icon: 'bolt', pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', ben: 'Занятия без ожидания' };
+const YEAR = '3 990 ₽', MON = '490 ₽', PER = '≈ 333 ₽ в месяц';
+const head = (o = {}) => `<div class="whd"></div><div class="wctx"><span class="wtile">${icon(CX.icon, 's24')}</span><span class="wpill">${CX.pill}</span><span class="wcl"${o.closeOff ? ' style="opacity:.45"' : ''}>${icon('close', 's18')}</span></div><div class="wh1">${CX.title}</div><div class="wsub">${CX.sub}</div>`;
+const lead = `<div class="wlead"><span class="ok">${icon('check', 's16')}</span><span class="tx">${CX.ben}</span></div>`;
+const plans = (o = {}) => `<div class="wrow${o.off ? ' wphome' : ''}"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div>${o.promo ? `<div class="wstr" style="margin-top:3px">${YEAR}</div>` : ''}<div class="wbig" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '2 790 ₽' : YEAR}</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">${PER}</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
+  <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div>${o.promo ? `<div class="wstr" style="margin-top:3px">${MON}</div>` : ''}<div class="wmon" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '340 ₽' : MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
+// справочные цены (app/paywall_reference_prices.ts): «≈» перед суммой, «≈ €3,33 в месяц» у года
+const plansRef = `<div class="wrow"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div><div class="wbig" style="margin-top:3px">≈ €39,99</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">≈ €3,33 в месяц</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
+  <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div><div class="wmon" style="margin-top:3px">≈ €7,99</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
+const skel = '<div class="wrow"><div class="wcell"><div class="wsk"></div></div><div class="wcell"><div class="wsk"></div></div></div>';
+const unav = '<div class="wqn">Цена уточнится в магазине</div>';
+// зачем (координатор 11.10): магазин недоступен на этом устройстве (billing_unavailable) — повтор бессмыслен, поэтому БЕЗ кнопки «Ещё раз»
+const unavBilling = '<div class="wqn">Магазин недоступен на этом устройстве</div>';
+const promo = '<div class="wpromo"><div class="k">Скидка действует сейчас</div><div class="rw"><span class="pc">−30%</span><span class="pr">2 790 ₽</span><span class="st">3 990 ₽</span></div><div class="th">далее 3 990 ₽</div></div>';
+const dock = (o = {}) => `<div class="wdock"><div class="wcta${o.off ? ' off' : ''}">${o.spin ? '<span class="wspin"></span>' : o.label}</div><div class="wfine">${o.fine}</div>
+  <div class="wlinks"><span${o.restoreOff ? ' class="off"' : ''}>${o.restoring ? 'Восстанавливаем…' : 'Восстановить'}</span><span>Условия</span><span>Конфиденциальность</span></div></div>`;
+const sheet = (o) => `<div class="wsh">${head(o)}<div class="wbody">${o.body}</div>${o.dock}</div>`;
+const und = '<div class="wund"><div class="t1">Урок</div><div class="r"></div><div class="r"></div><div class="r"></div></div>';
+const alert = (title, body, btns) => `<div class="wdim"></div><div class="wal"><div class="tt">${title}</div><div class="bd">${body}</div><div class="ac">${btns}</div></div>`;
+const toast = (txt, mark) => `<div class="wtoast"><span class="ti">${mark}</span><span class="tx">${txt}</span></div>`;
+const FINE_YEAR = 'Потом 3 990 ₽ в год. Отмена в любой момент.';
+const CTA_TRIAL = 'Начать 7 дней бесплатно';
+const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
+
+
+// ================= НОВЫЕ КАДРЫ (аудит 12.10) =================
+const ctxHead = (c, o = {}) => `<div class="whd"></div><div class="wctx"><span class="wtile">${icon(c.icon, 's24')}</span>${c.pill ? `<span class="wpill">${c.pill}</span>` : ''}<span class="wcl"${o.closeOff ? ' style="opacity:.45"' : ''}>${icon('close', 's18')}</span></div><div class="wh1">${c.title}</div><div class="wsm" style="margin:6px 20px 0;font-size:16px;line-height:22px;color:var(--w-sc)">${c.sub}</div>`;
+const ctxLead = (t) => `<div class="wlead"><span class="ok">${icon('check', 's16')}</span><span class="tx">${t}</span></div>`;
+const ctxSheet = (c, body, dockHtml, o = {}) => und + `<div class="wsh">${ctxHead(c, o)}<div class="wbody">${ctxLead(c.ben)}${body}</div>${dockHtml}</div>`;
+const trialDock = dock({ label: 'Начать 7 дней бесплатно', fine: 'Потом 3 990 ₽ в год. Отмена в любой момент.' });
+const plansSel = (month) => `<div class="wrow"><div class="wcell"><div class="wcard${month ? '' : ' on'}"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div><div class="wbig" style="margin-top:3px">${YEAR}</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">${PER}</div>${month ? '' : `<div class="wtrial">${gift}7 дней бесплатно</div>`}</div></div>
+  <div class="wcell"><div class="wcard${month ? ' on' : ''}"><div class="wnm">Месяц</div><div class="wmon" style="margin-top:3px">${MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
+// лента пробного (PaywallPlusTrialTimeline): Сегодня → День 5 → День 7
+const timeline = `<div class="pg-tl">${[['gift', 'Сегодня', 'Открывается всё, что есть в Plus', true], ['bell', 'День 5', 'Пришлём напоминание, что пробный период заканчивается', false], ['card', 'День 7', 'Списание 3 990 ₽. Отменить можно в любой момент до этого', false]].map(([ic, t, d, on], k, a) => `<div class="row"><div class="rail"><span class="dot${on ? ' on' : ''}">${ic === 'gift' ? gift : ic === 'bell' ? icon('bolt', 's16') : icon('check', 's16')}</span>${k < a.length - 1 ? '<i class="ln"></i>' : ''}</div><div class="cp"><div class="t1">${t}</div><div class="t2">${d}</div></div></div>`).join('')}</div>`;
+// выгоды и сравнение (PAYWALL_MAIN_BENEFITS / PAYWALL_COMPARISON_ROWS)
+const BEN = [['layers', 'Карточки без ограничений', 'Сохраняй, создавай наборы, тренируйся'], ['edit', 'Все 32 урока курса', 'Бесплатно — уроки 1–3'], ['bulb', 'AI разбирает каждую ошибку', 'Бесплатно — 3 разбора в день'], ['bolt', 'Энергия не тратится', 'Учись без пауз'], ['flag', '3 заморозки серии в месяц', 'Пропустил день — серия цела']];
+const CMP = [['Сохранённые фразы', 'До 50', 'Безлимит'], ['Свои карточки', 'До 50', 'Безлимит'], ['Свои наборы', 'До 3', 'Безлимит'], ['Тренировки с карточками', '30 в месяц', 'Безлимит'], ['Основной курс', 'Уроки 1–3', 'Все 32'], ['Реплики в AI-диалогах', '30 в месяц', 'Безлимит'],
+  ['Произношение', '3 в день', 'Безлимит'], ['AI-разборы ошибок', '3 в день', 'Безлимит'], ['Работа над ошибками', '1 в день', 'Безлимит'], ['Разбор диалога', 'Кратко', 'Полный'], ['Комбинированный урок', '—', 'Есть'], ['Энергия', 'Тратится', 'Не тратится'], ['Заморозки серии', '—', '3 в месяц'], ['Статистика', 'Основная', 'Подробная']];
+const cmpTable = (n) => `<div class="pg-cmp"><div class="h"><span class="a"></span><span class="f">FREE</span><span class="p">PLUS</span></div>${CMP.slice(0, n).map(([a, f, p]) => `<div class="r"><span class="a">${a}</span><span class="f">${f}</span><span class="p">${p}</span></div>`).join('')}</div>`;
+const fullTop = `<div class="pg-top"><span class="pg-kick">PHRASEMAN PLUS</span><span class="wcl">${icon('close', 's18')}</span></div><div class="wh1" style="margin-top:12px">Plus бесплатно на 7 дней</div><div class="wsm" style="margin:6px 20px 0;font-size:16px;line-height:22px;color:var(--w-sc)">Напомним за 2 дня до списания. Отмена в один тап.</div>`;
+const fullBen = `<div class="pg-lab">ЧТО ВХОДИТ</div>${BEN.map(([ic, t, d]) => `<div class="pg-ben"><span class="ic">${icon(ic, 's20')}</span><div><div class="t1">${t}</div><div class="t2">${d}</div></div></div>`).join('')}`;
+const full = (inner, dockHtml) => `<div class="pg-full">${inner}${dockHtml ? `<div style="position:absolute;left:0;right:0;bottom:0;padding-bottom:30px;background:var(--w-sheet)">${dockHtml}</div>` : ''}</div>`;
+const tCards = (pill, title, sub, ben, ic) => ({ icon: ic, pill, title, sub, ben });
+const CX_LIMIT = tCards('50 из 50 фраз', 'Место для карточек закончилось', 'Бесплатно — 50 фраз. С Plus сохраняй сколько хочешь.', 'Безлимит на личную базу карточек', 'layers');
+const CX_TRAIN = tCards('30 из 30 тренировок', 'Тренировки на месяц закончились', 'Бесплатно — 30 тренировок в месяц. С Plus счётчика нет.', 'Игровая тренировка сохранённых фраз', 'play');
+const CX_CREATE = tCards('', 'Добавь свою фразу', 'Услышал в сериале или на работе — сохрани, и приложение будет её тренировать.', 'Свои фразы с переводом и озвучкой', 'plus');
+const CX_PACK = tCards('', 'Собери свой набор', 'Фразы для поездки, работы или сериала — в одном месте.', 'Своя колода под любую задачу', 'layers');
+const cxFrame = (c) => ph(ctxSheet(c, plans(), trialDock));
+const reminder = `<div class="pg-full"><div class="pg-bell">${icon('bolt', 's26').replace('<svg', '<svg style="display:none"')}<svg class="i s24" viewBox="0 0 24 24" aria-hidden="true" style="width:38px;height:38px"><path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/></svg></div><div class="pg-h">Plus твой. Напомнить о конце пробного периода?</div><div class="pg-p">Пришлём одно уведомление за 2 дня до списания — чтобы ты спокойно решил(а), оставлять ли подписку.</div><div class="pg-btm"><div class="wcta">Разрешить напоминание</div><div class="pg-ghost">Не сейчас</div></div></div>`;
+
+const S2 = [
+  ['Вход «Plus» из Настроек — верх', 'Без контекстного окна: «PHRASEMAN PLUS», «Plus бесплатно на 7 дней», «ЧТО ВХОДИТ» (5 выгод), тарифы, кнопка (PaywallPlus.tsx:63-100, 283-307).', () => ph(full(fullTop + fullBen + `<div style="padding:6px 16px 0">${plans().replace('<div class="wrow">', '<div class="wrow" style="margin-top:6px">')}</div>`, trialDock))],
+  ['Вход из Настроек — «FREE И PLUS» свёрнуто', 'Шесть строк сравнения и «Все 14 возможностей» (PaywallBenefitComparison.tsx).', () => ph(full(`<div class="pg-lab" style="margin-top:6px">FREE И PLUS</div>${cmpTable(6)}<div class="pg-more">Все 14 возможностей</div>`, ''))],
+  ['Вход из Настроек — «FREE И PLUS» развёрнуто', 'Все 14 строк и «Свернуть».', () => ph(full(`<div class="pg-lab" style="margin-top:6px">FREE И PLUS</div>${cmpTable(14)}<div class="pg-more">Свернуть</div>`, ''))],
+  ['Лента пробного периода', 'Над тарифами у года с пробным: «Сегодня → День 5 → День 7 · Списание» (PaywallPlus.tsx:116-150).', () => ph(ctxSheet({ icon: 'bolt', pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', ben: 'Занятия без ожидания' }, timeline.replace('class="pg-tl"', 'class="pg-tl" style="margin-top:12px"') + plans(), trialDock))],
+  ['Выбран «Месяц»', 'Кнопка «Оформить за 490 ₽ в месяц», мелко «Затем 490 ₽ в месяц · Отмена в любой момент» (PaywallPlusCopy.ts).', () => ph(ctxSheet({ icon: 'bolt', pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', ben: 'Занятия без ожидания' }, plansSel(true), dock({ label: 'Оформить за 490 ₽ в месяц', fine: 'Затем 490 ₽ в месяц · Отмена в любой момент' })))],
+  ['После покупки: «Plus твой. Напомнить…»', 'Экран после оформления с пробным: разрешить напоминание за 2 дня до списания (PaywallTrialReminderPrompt.tsx).', () => ph(reminder)],
+  ['Карточки — место закончилось (50)', 'flashcard_limit: пилюля «50 из 50 фраз» (прежний кадр с «20» устарел).', () => cxFrame(CX_LIMIT)],
+  ['Карточки — тренировки на месяц закончились', 'flashcard_training: пилюля «30 из 30 тренировок».', () => cxFrame(CX_TRAIN)],
+  ['Карточки — добавь свою фразу', 'flashcard_create: без пилюли.', () => cxFrame(CX_CREATE)],
+  ['Карточки — собери свой набор', 'pack_create: без пилюли.', () => cxFrame(CX_PACK)],
+  ['Тост — покупка подтверждена', 'После «Проверить статус», если покупка нашлась (paywall_purchase.ts:1332).', () => ph(und + sheet({ body: lead + plans(), dock: trialDock }) + toast('Покупка подтверждена', '✓'))],
+  ['Тост — покупки восстановлены', 'После «Восстановить» (paywall_purchase.ts:1335).', () => ph(und + sheet({ body: lead + plans(), dock: trialDock }) + toast('Покупки восстановлены', '✓'))],
+  ['Тост — не удалось восстановить', 'paywall_purchase.ts:1403. Другие исходы: «Активных подписок не обнаружено.», «Не удалось проверить статус. Попробуй позже.».', () => ph(und + sheet({ body: lead + plans(), dock: trialDock }) + toast('Не удалось восстановить покупки. Попробуй позже.', '!'))],
+];
+document.getElementById('root').innerHTML = `<section class="block"><div class="phones">${S2.map(([t, n, f]) => `<div class="col"><div class="lbl">${t}</div>${f()}<div class="wnote">${n}</div></div>`).join('')}</div></section>`;
+K.init();
+document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', '#38E0AA'); p.style.setProperty('--g2', '#7C5CFF'); p.style.setProperty('--acc', '#7EF0C8'); p.style.setProperty('--on', '#04261D'); });
+})();
+</script>
+</body>
+</html>

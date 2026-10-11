@@ -70,3 +70,18 @@
 (13) Проверить нужны ли: монетная покупка набора (CardPackShardPaywallModal.tsx), «Продолжить тренировку/Начать заново» и «Идеальный раунд» в swipe (мёртвый код при quick=1?).
 Реестр: cards-v2-045…047 указывают code flashcards_recall_session.tsx — должно быть flashcards_collection.tsx / flashcards_card_editor.tsx / community_pack_create.tsx; для flashcards_voice_picker, FlashcardsFilterDropdown, communityModerationAlerts, PaywallTrialReminderPrompt, PaywallBenefitComparison, CardPackShardPaywallModal строк нет.
 ПЕЙВОЛЫ дыры: (1) Пейвол без контекста — вход «Plus» из Настроек: шапка PHRASEMAN PLUS, «Plus бесплатно на 7 дней», «ЧТО ВХОДИТ» (5), «FREE И PLUS» (6 из 14, «Все 14 возможностей», «Свернуть») (PaywallPlus.tsx:63-100,283-307; PaywallBenefitComparison.tsx:34-92; PaywallPlusCopy.ts:100-147). (2) Лента пробного «Сегодня → День 5 → День 7 · Списание…» (PaywallPlus.tsx:116-150; Copy:100-147). (3) После покупки «Plus твой. Напомнить о конце пробного периода?»+«Разрешить напоминание»/«Не сейчас» (PaywallTrialReminderPrompt.tsx; Copy:197-215). (4) Контексты flashcard_training («Тренировки на месяц закончились», «30 из 30 тренировок»), flashcard_create («Добавь свою фразу»), pack_create («Собери свой набор»), speaking (paywall_context_texts.ts:205-227); кадр «Карточки» устарел: «20 из 20 фраз» → «50 из 50 фраз», «двадцать»→«пятьдесят» (+paywall-context-texts.md строка 9). (11) тосты «Покупки восстановлены»/«Покупка подтверждена». Месяц выбран (кнопка «Оформить за … в месяц», «Затем … в месяц · Отмена в любой момент»). «Не удалось подтвердить смену плана. Проверь подписку в магазине.» (manage_subscription.tsx:432). Строка про Plus при смене аккаунта (account_switch_copy.ts:40).
+
+## СТАТУС ДОРИСОВКИ (обновлено 12.10)
+| Область | Страница | Кадров | Строки реестра | Статус |
+|---|---|---|---|---|
+| Авторизация и аккаунт | `accounts-gaps-states.html` | 18 | `auth-gap-001…018` | ДОРИСОВАНО |
+| Диалоги (память, итог, свободный разговор, редкие состояния сессии) | `dialogs-gaps-states.html` | 17 | `dialogs-gap-001…017` | ДОРИСОВАНО |
+| Диалоги — правки существующих кадров | `dialogs.html` (хаб, «ты», D111, F1/F2, меню, «не в выпуске» для Макса) | — | подписи dialogs-001/002/004/005/010/034/035 | ДОРИСОВАНО |
+| Шпиль | `spire-gaps-states.html` | 22 | `spire-gap-001…022` | ДОРИСОВАНО |
+| Карточки | `cards-gaps-states.html` + `cards-v2.html` (кадры 45–52) | 38 + 8 | `cards-gap-001…038`, `cards-v2-045…052` | ДОРИСОВАНО |
+| Настройки (главная, уведомления, обучение, приватность, языки, поддержка, имя) | `settings-gaps-states.html` | — | — | В РАБОТЕ |
+| Пейволы (из Настроек без контекста, лента пробного, напоминание, контексты карточек, месяц, тосты) | `paywall-gaps-states.html` (+ правка 20→50 в `paywall-context-redesign.html` и `paywall-context-texts.md`) | 13 | `paywall-gap-001…013` | ДОРИСОВАНО |
+| Темы | `profile.html` PRF-06 | 1 | profile-008 | ДОРИСОВАНО |
+
+Не рисовалось, потому что в коде недостижимо или уже есть: бейдж «На проверке» в «Моих наборах» (функция `renderOwnedPackTile` нигде не вызывается — мёртвый код); подтверждение «Выйти из аккаунта?» (стадия `confirm` недостижима); отказы удаления аккаунта (есть в `overlays-runtime.html`).
+Замечания к коду из прохода: «1 / 1» на пустом экране «Устно» (`speakingProgress: total = max(1, …)`); кнопка «Повторить» в шторке режима уезжает влево (`alignSelf: flex-start`); при `save_failed` Шпиль пишет «Ступень не пройдена», хотя ступень могла быть пройдена; текст `settings_language.tsx:121` «Сейчас изучаете» (вы).

@@ -251,7 +251,7 @@ export default function DialogHowToSaySheet({
               </View>
 
               <View style={styles.header}>
-                <Ionicons name="language" size={22} color={t.accent} />
+                <Ionicons name="language" size={22} color={t.accentText} />
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} maxFontSizeMultiplier={1.2}>
                   {triLang(lang, {
                     ru: 'Как сказать…', uk: 'Як сказати…', en: 'How to say…', es: 'Cómo decir…',
@@ -398,7 +398,7 @@ export default function DialogHowToSaySheet({
                           </Text>
                         ) : null}
                       </View>
-                      <Ionicons name="arrow-up-circle" size={22} color={t.accent} />
+                      <Ionicons name="arrow-up-circle" size={22} color={t.accentText} />
                     </Pressable>
                   ))}
                   <Text

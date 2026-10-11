@@ -76,7 +76,7 @@ export default function DialogHelperRow({
           ]}
           testID={testID ? `${testID}-hint` : undefined}
         >
-          <Ionicons name="bulb" size={20} color={t.accent} />
+          <Ionicons name="bulb" size={20} color={t.accentText} />
           <Text
             style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}
             maxFontSizeMultiplier={1.2}
@@ -115,7 +115,7 @@ export default function DialogHelperRow({
           ]}
           testID={testID ? `${testID}-howtosay` : undefined}
         >
-          <Ionicons name="language" size={20} color={t.accent} />
+          <Ionicons name="language" size={20} color={t.accentText} />
         </Pressable>
 
         {/* guard-ok: не более 3 чипов (сервер режет suggestions до трёх) —

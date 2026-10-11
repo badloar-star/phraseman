@@ -2634,7 +2634,7 @@ export function SpeakingPanel({
                 <SpeakingScoreStars
                   score={effectiveScore}
                   passThreshold={passThreshold}
-                  color={mTheme.accent}
+                  color={mTheme.accentText}
                   emptyColor={mTheme.border}
                   animate
                 />
@@ -2643,7 +2643,7 @@ export function SpeakingPanel({
               <VoiceEqualizer
                 ref={equalizerRef}
                 active={listening}
-                color={mTheme.accent}
+                color={mTheme.accentText}
                 idleColor={mTheme.border}
               />
             )}
@@ -2771,7 +2771,7 @@ export function SpeakingPanel({
               на системном пути — прямой перезапуск прослушивания. */}
           {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
             <Pressable onPress={holdModeView ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
-              <Text style={[styles.retryText, { color: mTheme.accent }]}>
+              <Text style={[styles.retryText, { color: mTheme.accentText }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', en: 'Say it again', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>
             </Pressable>

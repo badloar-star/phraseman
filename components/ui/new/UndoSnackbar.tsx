@@ -153,7 +153,7 @@ export default function UndoSnackbar({
               cx={17}
               cy={17}
               r={RING_R}
-              stroke={t.accent}
+              stroke={t.accentText}
               strokeWidth={3}
               strokeLinecap="round"
               fill="none"
@@ -169,7 +169,7 @@ export default function UndoSnackbar({
         </View>
 
         <View style={styles.body}>
-          <Text style={[styles.label, { color: t.accent }]}>{label.toUpperCase()}</Text>
+          <Text style={[styles.label, { color: t.accentText }]}>{label.toUpperCase()}</Text>
           <Text style={[styles.msg, { color: t.textPrimary, fontSize: f.bodyLg }]}>
             {message}
           </Text>
@@ -185,7 +185,7 @@ export default function UndoSnackbar({
             { backgroundColor: t.accentBg, transform: [{ scale: pressed ? 0.94 : 1 }] },
           ]}
         >
-          <Text style={[styles.actionText, { color: t.accent }]}>{undoLabel}</Text>
+          <Text style={[styles.actionText, { color: t.accentText }]}>{undoLabel}</Text>
         </Pressable>
       </View>
     </Reanimated.View>

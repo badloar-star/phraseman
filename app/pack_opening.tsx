@@ -725,7 +725,7 @@ export default function PackOpeningScreen() {
               onPress={onRevealAll}
               style={[styles.secondaryBtn, { borderColor: accent }]}
             >
-              <Text style={{ color: accent, fontSize: f.body, fontWeight: '600' }}>
+              <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '600' }}>
                 {triLang(lang, {
                   ru: 'Открыть все',
                   uk: 'Відкрити всі',

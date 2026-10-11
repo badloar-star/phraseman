@@ -93,7 +93,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
           pl: 'Wyjaśnij prościej',
         })}
       >
-        <Ionicons name="bulb-outline" size={18} color={t.accent} />
+        <Ionicons name="bulb-outline" size={18} color={t.accentText} />
         <Text style={[styles.label, { color: t.textPrimary, fontSize: f.sub }]} numberOfLines={1}>
           {triLang(uiLang, {
             ru: 'Объяснить просто',

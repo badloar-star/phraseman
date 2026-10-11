@@ -48,7 +48,7 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
         </View>
         {locked ? (
           <View style={[styles.plus, { backgroundColor: t.accentBg }]}>
-            <Text style={[styles.plusText, { color: t.accent }]}>Plus</Text>
+            <Text style={[styles.plusText, { color: t.accentText }]}>Plus</Text>
           </View>
         ) : <Ionicons name="chevron-forward" size={21} color={t.textMuted} />}
         {/* зачем (PM-086, владелец 2026-09-24): ценник энергии убран —

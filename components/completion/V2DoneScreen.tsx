@@ -15,6 +15,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLang } from '../LangContext';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { peekRunes } from '../../app/runes_system';
 import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -124,7 +125,7 @@ export const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass;
   // Hermes не всегда группирует toLocaleString — делим на тройки сами (неразрывный пробел).
   const text = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   return (
-    <View testID="v2-done-balance" accessible accessibilityLabel={`${value} ${runeWord(lang, value)}`} style={[s.balance, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+    <View testID="v2-done-balance" accessible accessibilityLabel={`${value} ${runeWord(lang, value)}`} style={[s.balance, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
       <Image source={HOME_RUNE_ICON_SOURCE} style={s.balanceCoin} contentFit="contain" accessible={false} />
       <Text style={[s.balanceText, { color: g.text }]}>{text}</Text>
     </View>
@@ -183,16 +184,16 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         {props.starsNote ? <Text style={[s.starsNote, { color: g.secondary }]}>{props.starsNote}</Text> : null}
 
         {hasStats ? (
-          <View style={[s.stats, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+          <View style={[s.stats, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={s.stat}>
               <Text style={[s.statNum, { color: g.good }]}>{correct}</Text>
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.correct}</Text>
             </View>
-            <View style={[s.stat, s.statDivider, { borderColor: g.line }]}>
+            <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]}>
               <Text style={[s.statNum, { color: g.bad }]}>{wrong}</Text>
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.wrong}</Text>
             </View>
-            <View style={[s.stat, s.statDivider, { borderColor: g.line }]}>
+            <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]}>
               <Text style={[s.statNum, { color: g.text }]}>{accuracy}%</Text>
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.accuracy}</Text>
             </View>
@@ -203,7 +204,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         <CoinAward amount={Math.max(0, Math.round(props.coinsGained))} lang={lang} g={g} animate={animate} />
 
         {props.plusNote ? (
-          <View style={[s.panel, s.plusNote, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+          <View style={[s.panel, s.plusNote, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={[s.tile, { backgroundColor: g.opaqueControl }]}>
               <Ionicons name="lock-closed" size={20} color={g.text} />
             </View>
@@ -215,14 +216,14 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         ) : null}
 
         {props.errors && props.errors.length > 0 ? (
-          <View style={[s.panel, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+          <View style={[s.panel, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={s.errHead}>
               <Text style={[s.errTitle, { color: g.text }]}>{c.errors}</Text>
               <Text style={[s.errCount, { color: g.mutedText }]}>{props.errors.length}</Text>
             </View>
             {props.errors.map((e, i) => (
               // зачем (practice.html `.er`): слово слева колонкой 92, справа «было → стало»; между строками тонкая линия.
-              <View key={`${e.label}-${i}`} style={[s.errRow, i === 0 ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
+              <View key={`${e.label}-${i}`} style={[s.errRow, i === 0 ? null : { borderTopWidth: StyleSheet.hairlineWidth /* shadow-ok: разделитель-линия между строками */, borderTopColor: g.dividerTone }]}>
                 <Text style={[s.errLabel, { color: g.text }]}>{e.label}</Text>
                 <View style={s.errLine}>
                   <Text style={[s.errWas, { color: g.bad }]}>{e.was}</Text>
@@ -235,7 +236,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <Pressable
                 accessibilityRole="button"
                 onPress={() => { hapticTap(); props.onRepeatErrors?.(); }}
-                style={[s.ghost, { borderColor: g.line }]}
+                style={[s.ghost, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}
               >
                 <Ionicons name="refresh" size={18} color={g.text} />
                 <Text style={[s.ghostText, { color: g.text }]}>{c.repeatErrors}</Text>
@@ -276,8 +277,8 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: 20 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 44 },
-  // guard-ok: 1px полупрозрачная обводка плашки — по макету 2.0
-  balance: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 40, borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 12 },
+  // зачем («Тень» 12.10): плашки без обводок — заливка и тень из ShadowSurface
+  balance: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 40, borderRadius: 20, paddingHorizontal: 12 },
   balanceCoin: { width: 20, height: 20 },
   balanceText: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   round: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
@@ -288,10 +289,9 @@ const s = StyleSheet.create({
   scoreText: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stars: { flexDirection: 'row', justifyContent: 'center', gap: 14, marginTop: 22 },
   starsNote: { textAlign: 'center', fontSize: 16, fontWeight: '700', marginTop: 10 },
-  // guard-ok: 1px полупрозрачная обводка — по макету 2.0 (исключение владельца 24.09)
-  stats: { flexDirection: 'row', borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, marginTop: 20, paddingVertical: 15 },
+  stats: { flexDirection: 'row', borderRadius: 16, marginTop: 20, paddingVertical: 15 },
   stat: { flex: 1, alignItems: 'center' },
-  statDivider: { borderLeftWidth: StyleSheet.hairlineWidth },
+  statDivider: { borderLeftWidth: StyleSheet.hairlineWidth }, // shadow-ok: вертикальный разделитель-линия между цифрами, не контейнер
   statNum: { fontSize: 30, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
   statLabel: { fontSize: 13, fontWeight: '600', marginTop: 4 },
   // зачем (practice.html `.award`): монета → число 14, число 34/700; подпись «монет» в 10 от числа.
@@ -299,8 +299,7 @@ const s = StyleSheet.create({
   awardCoin: { width: 44, height: 44 },
   awardNum: { fontSize: 34, fontWeight: '700', letterSpacing: -0.5, fontVariant: ['tabular-nums'] },
   awardUnit: { fontSize: 16, fontWeight: '600', marginLeft: -4 },
-  // guard-ok: 1px полупрозрачная обводка — по макету 2.0
-  panel: { borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, marginTop: 14, padding: 16 },
+  panel: { borderRadius: 16, marginTop: 14, padding: 16 },
   plusNote: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   tile: { width: 46, height: 46, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   plusTitle: { fontSize: 16, fontWeight: '700' },
@@ -313,8 +312,8 @@ const s = StyleSheet.create({
   errLine: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', rowGap: 6, columnGap: 10 },
   errWas: { fontSize: 16, fontWeight: '600', textDecorationLine: 'line-through' },
   errOk: { fontSize: 16, fontWeight: '600' },
-  // guard-ok: контурная кнопка «Повторить ошибки» — по макету 2.0
-  ghost: { height: 44, borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  // зачем («Тень» 12.10): контурная кнопка «Повторить ошибки» стала вложенной плиткой с малой тенью
+  ghost: { height: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   ghostText: { fontSize: 16, fontWeight: '600' },
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 12 },
   cta: { height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },

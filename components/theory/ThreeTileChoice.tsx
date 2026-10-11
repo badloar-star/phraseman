@@ -102,7 +102,7 @@ export default function ThreeTileChoice({
             isCorrect
               ? { color: onBrightText(theme.onAccentText), backgroundColor: theme.correct }
               : picked
-                ? { color: theme.wrong, borderColor: theme.wrong, borderWidth: 1 }
+                ? { color: theme.wrong, borderColor: theme.wrong, borderWidth: 1 } // shadow-ok: кольцо исхода «неверно» вокруг выбранного слова в тексте
                 : { color: theme.textMuted, borderColor: accent, borderWidth: 0},
           ]}
         >

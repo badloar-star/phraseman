@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    borderWidth: 2,
+    borderWidth: 2, // shadow-ok: анимированное кольцо-вспышка попытки (пульс индикатора), не контейнер
   },
 });
 

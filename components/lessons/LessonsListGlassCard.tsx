@@ -11,7 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import PressableHybrid from '../PressableHybrid';
-import { KitGlassLayer, KIT_GLASS_DROP } from '../v2/KitLiquidGlass';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import type { Lang } from '../../constants/i18n';
 import {
   lessonsGlassAlpha,
@@ -110,9 +110,8 @@ function UnlockGlow({ glass, onDone }: { glass: LessonsListGlass; onDone: () => 
         StyleSheet.absoluteFill,
         {
           borderRadius: 14,
-          borderWidth: 1, // guard-ok: светлая кромка подсветки из макета (A14), держится 1.4 с
-          borderColor: lessonsGlassAlpha(glass.text, 0.55), // guard-ok
-          backgroundColor: lessonsGlassAlpha(glass.text, 0.04),
+          // зачем («Тень» 12.10): светлая кромка подсветки (A14) убрана — подсветку держит тон заливки поверх плашки, 1.4 с
+          backgroundColor: lessonsGlassAlpha(glass.text, 0.12),
         },
         style,
       ]}
@@ -149,8 +148,8 @@ function NumberCircle({ glass, num, state, current }: {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: done ? glass.cta : 'transparent',
-        borderWidth: done ? 0 : 1, // guard-ok: 1 px кромка круга номера, как .num в макете
-        borderColor: current && !locked ? lessonsGlassAlpha(glass.text, 0.55) : locked ? glass.line : glass.glassEdge, // guard-ok
+        borderWidth: done ? 0 : 1, // shadow-ok: кольцо-индикатор состояния круга номера (текущий / закрыт / обычный), не контейнер
+        borderColor: current && !locked ? lessonsGlassAlpha(glass.text, 0.55) : locked ? glass.line : glass.glassEdge, // shadow-ok: индикатор состояния
       }}
     >
       {done ? (
@@ -241,8 +240,8 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       withHaptic={false}
       variant="card"
       pressScaleTo={0.975}
-      // зачем (kit.css --lg-drop): у карточек макета мягкая тень снизу.
-      style={{ marginHorizontal: 20, marginTop: 9, borderRadius: 14, boxShadow: KIT_GLASS_DROP }}
+      // зачем («Тень» 12.10): тень плашки (по токенам темы) теперь на самой карточке — в lessonsGlassCardStyle; у обёртки только поля.
+      style={{ marginHorizontal: 20, marginTop: 10, borderRadius: 14 }}
       contentStyle={[
         lessonsGlassCardStyle(glass, 14),
         { minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 14 },

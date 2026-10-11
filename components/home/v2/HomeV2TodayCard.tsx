@@ -101,7 +101,6 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
 const s = StyleSheet.create({
   card: {
     borderRadius: V2.radius.card,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     // зачем (владелец 04.10, по скриншоту: «сделай контейнеры внутри шире»): боковой отступ блока
     // 12 → 6 — строки задач шире на 12 px; заголовок сдвинут, чтобы стоять на прежней линии.
     paddingHorizontal: 6,
@@ -109,11 +108,11 @@ const s = StyleSheet.create({
     paddingTop: 16,
   },
   header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6, marginLeft: 12, marginBottom: 12 },
-  list: { gap: 6 },
+  // зачем («Тень» 12.10): между строками-плашками ≥ 10, иначе тени слипаются
+  list: { gap: 10 },
   row: {
     minHeight: 58,
     borderRadius: V2.radius.row,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 14,
@@ -123,7 +122,7 @@ const s = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    borderWidth: 1.5, // guard-ok: D43 кружок-отметка задачи, как на референсе
+    borderWidth: 1.5, // shadow-ok: кружок-отметка задачи (индикатор выполнено/нет, как радио), не контейнер
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   outer: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: StyleSheet.hairlineWidth, // shadow-ok: кромка круга-иллюстрации резервной растровой иконки (арт), не контейнер
     overflow: 'hidden',
   },
   inner: {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   highlight: {
     position: 'absolute',
     top: '12%',
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: StyleSheet.hairlineWidth, // shadow-ok: блик-линия внутри иллюстрации, не контейнер
   },
 });
 

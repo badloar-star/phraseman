@@ -20,7 +20,9 @@ test('меню урока: презентационные части вынес�
     assert.ok(!menu.includes(name), `${name} больше не рисует меню урока`);
   }
   assert.ok(menuGlass.split('\n').length <= 400, 'файл набора ≤ 400 строк');
-  assert.ok(menuGlass.includes('glass.opaqueControl') && menuGlass.includes('glass.glassEdge'), 'токены темы, а не свои цвета');
+  // зачем (Тень 12.10): рамка glassEdge убрана — карточка меню это плашка (plateFillFrom + plateBoxShadow), кнопка — opaqueControl + nestedBoxShadow
+  assert.ok(menuGlass.includes('glass.opaqueControl') && menuGlass.includes('glass.plateFillFrom') && menuGlass.includes('plateBoxShadow(glass)'), 'токены темы, а не свои цвета');
+  assert.ok(!menuGlass.includes('glassEdge') && !/borderWidth/.test(menuGlass), 'меню урока без обводок');
   assert.ok(!/#[0-9A-Fa-f]{3,8}\b/.test(stripComments(menuGlass)), 'в наборе меню нет собственных hex-цветов');
 });
 

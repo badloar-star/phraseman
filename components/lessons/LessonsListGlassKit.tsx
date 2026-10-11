@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, View, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLineScale } from '../../hooks/useLineScale';
 
 // зачем (владелец 2026-09-30): список уроков вкладки «Обучение» переносится «1 в 1» по макету
 // learn.html A1–A9 (Liquid Glass 2.0). На эмуляторе вкладка ещё рисовала старые оливково-зелёные
 // градиентные плашки с золотым Plus. Здесь собраны общие кирпичи списка — токены 13 тем
-// (liquidGlassTokens), тонкая 1 px полупрозрачная кромка, тексты на девяти языках.
+// (liquidGlassTokens), плашки без обводок (стиль «Тень» 12.10), тексты на девяти языках.
 // Логика доступа, прогресса, энергии и экзаменов остаётся в app/(tabs)/lessons.tsx.
 
 export type LessonsListGlass = ReturnType<typeof liquidGlassTokens>;
@@ -20,15 +21,13 @@ export function lessonsGlassAlpha(hex: string, opacity: number): string {
   return `${hex}${a.toUpperCase()}`;
 }
 
-/** `.card` макета: тон карточки темы + тонкая полупрозрачная кромка стекла. */
+/** `.card` макета: плашка стиля «Тень» — тон карточки темы и тень плашки, без кромки. */
 export function lessonsGlassCardStyle(glass: LessonsListGlass, radius: number): ViewStyle {
+  // зачем («Тень» 12.10): кромка 1 px убрана; overflow hidden убран — он режет тень (слои внутри карточки уже со скруглением)
   return {
     borderRadius: radius,
-    backgroundColor: glass.opaqueCard,
-    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка PhraseMan 2.0, как в макете
-    // зачем (Сверка learn-002: кромка светлее/толще макета): у `.card` кромка --line, а не более светлая glassEdge.
-    borderColor: glass.line, // guard-ok: 1 px кромка стекла 2.0
-    overflow: 'hidden',
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass),
   };
 }
 

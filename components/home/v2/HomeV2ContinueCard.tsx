@@ -6,6 +6,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
+import { nestedBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
 
 type Props = {
   title: string;
@@ -38,6 +39,7 @@ type Props = {
 export default function HomeV2ContinueCard({ title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
+  const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): значок-плашка и стрелка — вложенные, с малой тенью вместо кромки
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
   return (
@@ -57,7 +59,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
         <Image source={art} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} accessible={false} />
         {badge && !pending ? (
           <View
-            style={[s.badge, { backgroundColor: p.control, borderColor: p.hairline }]} // guard-ok: D43
+            style={[s.badge, { backgroundColor: p.control, boxShadow: nestedBoxShadow(shadowGlass) }]}
           >
             <Text style={[s.badgeText, { color: p.text }]}>{badge}</Text>
           </View>
@@ -79,7 +81,7 @@ export default function HomeV2ContinueCard({ title, done, total, art, artWide = 
           ) : (
             <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
           )}
-          <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
+          <View style={[s.arrow, { backgroundColor: p.glassRaised, boxShadow: nestedBoxShadow(shadowGlass) }]}>
             <Ionicons name="chevron-forward" size={16} color={p.text} />
           </View>
         </View>
@@ -92,7 +94,6 @@ const s = StyleSheet.create({
   card: {
     height: 80,
     borderRadius: V2.radius.card,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     overflow: 'hidden',
     flexDirection: 'row',
   },
@@ -111,7 +112,6 @@ const s = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 13,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -122,5 +122,5 @@ const s = StyleSheet.create({
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8 },
   track: { flex: 1, height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },
-  arrow: { width: 28, height: 28, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
+  arrow: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
 });

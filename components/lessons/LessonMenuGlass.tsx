@@ -1,17 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { useLineScale } from '../../hooks/useLineScale';
 
 // зачем (владелец 2026-09-29): меню урока переносится «1 в 1» по макету learn.html B1–B5
 // (Liquid Glass). Раньше экран собирался из общего V2Kit с его собственной палитрой, из-за чего
 // размеры (название 26/800, звёзды в рамке-пилюле, значок 52) расходились с макетом. Здесь
 // презентационные части меню собраны один раз из токенов 13 тем: без своих цветов, без
-// толстых обводок (только тонкая полупрозрачная 1 px), области нажатия ≥ 44 dp.
+// обводок (стиль «Тень», владелец 12.10: плашку отделяют градиент и тень), области нажатия ≥ 44 dp.
 // Логика пунктов, доступа, энергии и маршрутов остаётся в app/lesson_menu.tsx.
 
 export type LessonMenuGlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -26,17 +27,26 @@ function rowIconColor(glass: LessonMenuGlassTokens): string {
   return glass.level === 'accent' || glass.level === 'max' ? glass.accentBright : glass.text;
 }
 
+// зачем («Тень» 12.10): карточка меню — плашка с тенью, без кромки и без overflow hidden (он режет тень); дымку «Максимума» клипует свой слой
 function cardStyle(glass: LessonMenuGlassTokens, radius: number) {
   return {
     borderRadius: radius,
-    backgroundColor: glass.opaqueCard,
-    borderWidth: 1, // guard-ok: тонкая полупрозрачная кромка PhraseMan 2.0
-    borderColor: glass.glassEdge,
-    overflow: 'hidden' as const,
+    backgroundColor: glass.plateFillFrom,
+    boxShadow: plateBoxShadow(glass),
   };
 }
 
-/** Круглая кнопка шапки (назад / настройки): 44+ dp, плоский тон темы и тонкая кромка. */
+/** Дымка «Максимума» поверх плашки: прямоугольные пятна обрезаются скруглением своего слоя, а не контейнера (иначе клип съест тень). */
+function ClippedSmoke({ glass, radius }: { glass: LessonMenuGlassTokens; radius: number }) {
+  if (glass.level !== 'max') return null;
+  return (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: 'hidden' }]}>
+      <ThemeGlassSmoke glass={glass} />
+    </View>
+  );
+}
+
+/** Круглая кнопка шапки (назад / настройки): 44+ dp, тон темы и малая тень, без кромки. */
 export function LessonMenuRoundButton({
   glass,
   icon,
@@ -71,12 +81,10 @@ export function LessonMenuRoundButton({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: glass.opaqueControl,
-        borderWidth: 1, // guard-ok: тонкая полупрозрачная кромка PhraseMan 2.0
-        borderColor: glass.glassEdge,
-        overflow: 'hidden',
+        boxShadow: nestedBoxShadow(glass),
       }}
     >
-      {/* зачем (сверка learn-020 п.1–2, kit.css `.rb::after`): круг — стекло с бликом сверху и тенью снизу, не плоский. */}
+      {/* зачем (сверка learn-020 п.1–2; «Тень» 12.10): круг — плашка с градиентом и малой тенью, без кромки. */}
       <KitGlassLayer radius={box / 2} />
       <Ionicons name={icon} size={20} color={glass.text} />
     </PressableHybrid>
@@ -168,10 +176,9 @@ export function LessonMenuRow({
         opacity: dimmed || disabled ? DIMMED_OPACITY : 1,
       }}
     >
-      {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
-      <ThemeGlassSmoke glass={glass} />
-      {/* зачем (сверка learn-020 п.5, kit.css `.card::after`): строка — стекло: блик 150°, светлая кромка сверху. */}
+      {/* зачем («Тень» 12.10): строка — плашка с градиентом 180° и тенью; цветная дымка «Максимума» (темы 2.0) ложится поверх заливки. */}
       <KitGlassLayer radius={14} />
+      <ClippedSmoke glass={glass} radius={14} />
       <View
         style={{
           width: 46,
@@ -220,8 +227,8 @@ export function LessonMenuTip({
         paddingHorizontal: 16,
       }}
     >
-      <ThemeGlassSmoke glass={glass} />
       <KitGlassLayer radius={22} />
+      <ClippedSmoke glass={glass} radius={22} />
       <View
         style={{
           width: 55,

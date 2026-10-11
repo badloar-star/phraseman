@@ -136,7 +136,7 @@ export function VictoryBurst({
         {stats && stats.length > 0 ? (
           <View style={styles.statsRow}>
             {stats.map((s, i) => (
-              <View key={`vs-${i}`} style={[styles.statCard, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+              <View key={`vs-${i}`} style={[styles.statCard, { backgroundColor: t.bgSurface }]}>
                 <Text style={[styles.statValue, { color: t.accentText }]}>{s.value}</Text>
                 <Text style={[styles.statLabel, { color: t.textMuted }]}>{s.label}</Text>
               </View>

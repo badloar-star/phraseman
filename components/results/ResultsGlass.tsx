@@ -3,17 +3,18 @@ import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from '../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30): экраны итогов и полка достижений переносятся «1 в 1» по макету
 // results.html (Liquid Glass). Презентационные части собраны один раз из токенов 13 тем:
 // круглая кнопка назад ≥ 44 dp, плитка 61 (radius 16) со значком, счётчик-пилюля и пустое
-// состояние. Без своих цветов и толстых рамок — только 1 px полупрозрачная кромка темы.
+// состояние. Без своих цветов и без рамок (стиль «Тень» 12.10): круглая кнопка — тон темы и малая тень.
 // Логика экранов (загрузка, награды, звёзды, маршруты) остаётся на месте.
 
 export type ResultsGlassTokens = ReturnType<typeof liquidGlassTokens>;
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
-/** Круглая кнопка «назад» шапки макета: 44 dp, плоский тон темы и тонкая кромка. */
+/** Круглая кнопка «назад» шапки макета: 44 dp, тон темы и малая тень, без кромки. */
 export function ResultsGlassBackButton({
   glass,
   onPress,
@@ -45,8 +46,7 @@ export function ResultsGlassBackButton({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: glass.opaqueControl,
-        borderWidth: 1, // guard-ok: тонкая полупрозрачная кромка PhraseMan 2.0
-        borderColor: glass.glassEdge,
+        boxShadow: nestedBoxShadow(glass),
       }}
     >
       <Ionicons name={icon} size={20} color={glass.text} />

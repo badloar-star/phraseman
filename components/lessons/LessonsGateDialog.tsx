@@ -14,6 +14,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
+import { plateBoxShadow } from '../v2/ShadowSurface';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень окна — чёрная в любой теме
@@ -35,7 +36,7 @@ function LessonsGateDialogBase({ visible, icon, title, message, closeLabel, onCl
   const lh = useLineScale();
   return (
     <HybridAlertShell visible={visible} onRequestClose={onClose} placement="center" shadowColor={EXEMPT_COLOR_1} testID="lessons-gate-dialog">
-      <View style={[styles.dlg, { backgroundColor: glass.opaqueSheet, borderColor: glass.line }]}>{/* guard-ok: 1 px кромка .dlg */}
+      <View style={[styles.dlg, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}>{/* «Тень» 12.10: окно по центру без кромки, с тенью плашки */}
         <KitGlassLayer radius={24} />
         <View style={[styles.icon, { backgroundColor: glass.opaqueControl }]}>
           <Ionicons name={icon === 'school' ? 'school-outline' : 'lock-closed'} size={icon === 'school' ? 28 : 26} color={glass.text} />
@@ -68,12 +69,10 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignSelf: 'center',
     borderRadius: 24,
-    borderWidth: 1, // guard-ok: 1 px кромка .dlg (исключение 2.0)
     paddingTop: 26,
     paddingHorizontal: 22,
     paddingBottom: 22,
     alignItems: 'center',
-    overflow: 'hidden',
   },
   // `.dlg .ic`: круг 64 #242426, значок 28, 16 до заголовка.
   icon: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 16 },

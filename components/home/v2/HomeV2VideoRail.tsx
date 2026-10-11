@@ -53,7 +53,7 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
               accessibilityRole="button"
               accessibilityLabel={`${title}: ${video.title}`}
               onPress={() => setActiveVideoId(video.id)}
-              style={[s.card, { borderColor: p.stroke, backgroundColor: p.glassRaised }]}
+              style={[s.card, { backgroundColor: p.glassRaised }]}
             >
               <Image source={{ uri: video.thumbnailUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={100} accessible={false} />
               <View style={s.cardContent}>
@@ -67,8 +67,8 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
         // при любом статусе без данных те же скелетоны резервной геометрии 246x138.
         // status оставлен в Props для совместимости с Home; повтор загрузки — на стороне Home.
         <View testID="home-v2-video-loading" style={s.placeholderRow} accessibilityLabel={title}>
-          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised, borderColor: p.stroke }]} />
-          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised, borderColor: p.stroke }]} />
+          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised }]} />
+          <View style={[s.placeholderCard, { backgroundColor: p.glassRaised }]} />
         </View>
       )}
       {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} onClose={() => setActiveVideoId(null)} /> : null}
@@ -86,5 +86,5 @@ const s = StyleSheet.create({
   card: { width: 246, height: 138, borderRadius: 0, overflow: 'hidden' },
   cardContent: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start', padding: 8 },
   placeholderRow: { height: 138, flexDirection: 'row', gap: 9, overflow: 'hidden' },
-  placeholderCard: { width: 246, height: 138, borderRadius: 0, borderWidth: StyleSheet.hairlineWidth },
+  placeholderCard: { width: 246, height: 138, borderRadius: 0 },
 });

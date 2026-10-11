@@ -76,8 +76,9 @@ export default function HomeV2Header({ bellSlot, avatarSlot, stats, refreshing =
 
 const s = StyleSheet.create({
   root: { paddingTop: 4 },
-  topRow: { flexDirection: 'row', alignItems: 'center', gap: 7 },
-  stats: { flex: 1, minWidth: 0, flexDirection: 'row', gap: 6 },
+  topRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
+  stats: { flex: 1, minWidth: 0, flexDirection: 'row', gap: 10 },
   actions: { flexDirection: 'row', flexShrink: 0, alignItems: 'center', gap: 7 },
   statSlot: { flex: 1, minWidth: 0 },
   stat: {
@@ -85,7 +86,6 @@ const s = StyleSheet.create({
     minWidth: 0,
     minHeight: 46,
     borderRadius: V2.radius.row,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,

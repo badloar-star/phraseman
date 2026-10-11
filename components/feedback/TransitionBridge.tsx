@@ -86,7 +86,7 @@ export function TransitionBridge({
       <Animated.View
         style={[
           styles.card,
-          { backgroundColor: t.bgCard, borderColor: t.border },
+          { backgroundColor: t.bgCard }, // зачем («Тень» 12.10): borderColor убран — у карточки borderWidth 0, обводки нет
           cardStyle,
         ]}
       >

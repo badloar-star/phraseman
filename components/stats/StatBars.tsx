@@ -9,6 +9,7 @@ import Reanimated, {
   cancelAnimation,
 } from 'react-native-reanimated';
 import { AdaptiveLabel } from '../text-integrity/AdaptiveLabel';
+import { nestedBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 
 export type StatBar = {
   /** Уникальный ключ (например дата дня). */
@@ -53,6 +54,7 @@ type StatBarsProps = {
   /** Цвет вспышки-подсветки зажатого столбика. */
   scrubHighlightColor?: string;
   scrubBubbleBg?: string;
+  /** Устарел («Тень» 12.10: пузырь без обводки, отделён тенью); проп оставлен, чтобы не менять вызывающих. */
   scrubBubbleBorder?: string;
   scrubValueColor?: string;
   scrubCaptionColor?: string;
@@ -175,11 +177,11 @@ export function StatBars({
   scrubEnabled = false,
   scrubHighlightColor,
   scrubBubbleBg,
-  scrubBubbleBorder,
   scrubValueColor,
   scrubCaptionColor,
   onScrubStart,
 }: StatBarsProps) {
+  const shadowGlass = useShadowGlass(); // зачем («Тень» 12.10): пузырь значения — вложенная плашка с малой тенью вместо рамки
   const [rowWidth, setRowWidth] = useState(0);
   const [scrubIndex, setScrubIndex] = useState<number | null>(null);
   const scrubIndexRef = useRef<number | null>(null);
@@ -321,7 +323,7 @@ export function StatBars({
         <Reanimated.View
           style={[
             styles.bubble,
-            { backgroundColor: scrubBubbleBg, borderColor: scrubBubbleBorder },
+            { backgroundColor: scrubBubbleBg, boxShadow: nestedBoxShadow(shadowGlass) },
             bubbleStyle,
           ]}
         >
@@ -359,7 +361,6 @@ const styles = StyleSheet.create({
     left: 0,
     width: BUBBLE_W,
     borderRadius: 11,
-    borderWidth: 1,
     paddingVertical: 5,
     paddingHorizontal: 8,
     alignItems: 'center',

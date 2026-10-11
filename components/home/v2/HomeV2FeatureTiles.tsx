@@ -41,13 +41,13 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
 }
 
 const s = StyleSheet.create({
-  row: { flexDirection: 'row', gap: V2.gapTight },
+  // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
+  row: { flexDirection: 'row', gap: 10 },
   tileSlot: { flex: 1 },
   // Квадрат от ширины ячейки — первый кадр сразу финальной геометрии, без замеров.
   tile: {
     aspectRatio: 1,
     borderRadius: V2.radius.tile,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     paddingHorizontal: 10,
     paddingBottom: 10,
     overflow: 'hidden',

@@ -9,6 +9,7 @@ import { useTheme, getVolumetricShadow } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { PracticeBackButton, PracticeHeaderTitle } from '../practice/PracticeChrome';
 
 import TapScale from '../TapScale';
@@ -175,7 +176,7 @@ function AccordionSection({ section, index, total, open, onToggle, renderBlock }
     <View
       style={[
         styles.section,
-        !isLast && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: glass.line },
+        !isLast && { borderBottomWidth: StyleSheet.hairlineWidth /* shadow-ok: разделитель-линия между разделами внутри групповой плашки */, borderBottomColor: glass.dividerTone },
       ]}
     >
       <TapScale
@@ -514,8 +515,8 @@ export default function TheoryLessonView({
                     style={[
                       styles.exampleRow,
                       i > 0 && {
-                        borderTopWidth: StyleSheet.hairlineWidth,
-                        borderTopColor: glass.line,
+                        borderTopWidth: StyleSheet.hairlineWidth, // shadow-ok: разделитель-линия между примерами
+                        borderTopColor: glass.dividerTone,
                       },
                     ]}
                   >
@@ -568,7 +569,7 @@ export default function TheoryLessonView({
           return (
             <View
               key={key}
-              style={[styles.drillWrap, { backgroundColor: glass.bg, borderColor: glass.glassEdge }]}
+              style={[styles.drillWrap, { backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }]}
             >
               {renderDrill(block.drill, drillId)}
             </View>
@@ -682,7 +683,7 @@ export default function TheoryLessonView({
           <View
             style={[
               styles.sectionsWrap,
-              { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
+              { backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) },
             ]}
           >
             {sections.map((section, i) => (
@@ -785,9 +786,8 @@ const styles = StyleSheet.create({
   sectionsWrap: {
     marginTop: 22,
     borderRadius: 20,
-    borderWidth: StyleSheet.hairlineWidth,
     paddingHorizontal: 16,
-    overflow: 'hidden',
+    // зачем («Тень» 12.10): без overflow hidden — он режет тень групповой плашки; строки внутри клипа не требуют
   },
   section: {},
   sectionHeader: {
@@ -908,7 +908,6 @@ const styles = StyleSheet.create({
   // drill
   drillWrap: {
     borderRadius: 16,
-    borderWidth: StyleSheet.hairlineWidth,
     padding: 10,
     marginTop: 2,
   },
